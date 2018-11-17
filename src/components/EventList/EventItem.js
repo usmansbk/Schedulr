@@ -57,6 +57,7 @@ export default class EventItem extends React.PureComponent {
     const startLapse = moment(parsedStart).fromNow();
     const endLapse = moment(parsedEnd).fromNow();
     const happening = !isStarted && !isEnded && !isCancelled ;
+    const timeStyle = isStarted ? styles.stated : styles.time
 
     return (
       <TouchableNativeFeedback
@@ -70,9 +71,7 @@ export default class EventItem extends React.PureComponent {
                   <Text style={styles.name} numberOfLines={1} ellipsizeMode="tail">{name}</Text>
                 </Left>
                 <Right>
-                  <Text note style={[styles.time, {
-                    color: (isStarted) ? bgLight : black
-                  }]}>{time}</Text>
+                  <Text note style={timeStyle}>{time}</Text>
                 </Right>
               </View>
               <View>

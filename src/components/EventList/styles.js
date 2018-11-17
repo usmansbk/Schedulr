@@ -95,6 +95,11 @@ const styles = StyleSheet.create({
   time: {
     alignSelf: 'flex-end'
   },
+  stated: {
+    alignSelf: 'flex-end',
+    fontWeight: 'bold',
+    color: bgLight
+  },
   item_body: {
     flex: 1,
     justifyContent: 'space-between',
