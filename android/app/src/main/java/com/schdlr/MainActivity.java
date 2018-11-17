@@ -2,6 +2,11 @@ package com.schdlr;
 
 import android.content.Intent;
 import com.facebook.react.ReactActivity;
+import com.calendarevents.CalendarEventsPackage;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+
+import org.devio.rn.splashscreen.SplashScreen;
 
 public class MainActivity extends ReactActivity {
 
@@ -19,4 +24,17 @@ public class MainActivity extends ReactActivity {
         super.onActivityResult(requestCode, resultCode, data);
         MainApplication.getCallbackManager().onActivityResult(requestCode, resultCode, data);
     }
+    
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        SplashScreen.show(this);
+        super.onCreate(savedInstanceState);
+    }
+    
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        CalendarEventsPackage.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
+  
 }
