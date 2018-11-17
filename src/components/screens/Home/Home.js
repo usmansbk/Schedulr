@@ -118,7 +118,7 @@ export default class Home extends PureComponent {
     }
   }
 
-  toggleDrawer = () => this.props.navigation.toggleDrawer();
+  toggleDrawer = () => alert('toggle drawer');
 
   toggleSearch = () => this.props.navigation.navigate('Search');
 
