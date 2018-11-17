@@ -138,6 +138,7 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-image-picker')
     implementation project(':react-native-google-sign-in')
     implementation project(':react-native-firebase')
     implementation project(':react-native-firebase')

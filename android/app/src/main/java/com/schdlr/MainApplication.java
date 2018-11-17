@@ -11,6 +11,7 @@ import io.invertase.firebase.perf.RNFirebasePerformancePackage;
 import io.invertase.firebase.analytics.RNFirebaseAnalyticsPackage;
 
 import com.facebook.react.ReactApplication;
+import com.imagepicker.ImagePickerPackage;
 import com.reactlibrary.googlesignin.RNGoogleSignInPackage;
 import com.facebook.reactnative.androidsdk.FBSDKPackage;
 import com.calendarevents.CalendarEventsPackage;
@@ -42,6 +43,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new ImagePickerPackage(),
             new RNGoogleSignInPackage(),
             new RNFirebasePackage(),
             new FBSDKPackage(mCallbackManager),
