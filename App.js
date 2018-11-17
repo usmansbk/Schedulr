@@ -18,18 +18,18 @@ import i18n from './src/config/i18n';
 
 const prefix = Config.APP_URL;
 
-const defaultHandler = (ErrorUtils.getGlobalHandler &&
-  ErrorUtils.getGlobalHandler()) || ErrorUtils._globalHandler;
+// const defaultHandler = (ErrorUtils.getGlobalHandler &&
+//   ErrorUtils.getGlobalHandler()) || ErrorUtils._globalHandler;
 
-ErrorUtils.setGlobalHandler((error, isFatal) => {
-  Firebase.crashlytics().log(error.stack);
-  if (isFatal) {
-    //Firebase.crashlytics().crash();
-  } else {
-    Firebase.crashlytics().recordError(0, 'non-fatal');
-  }
-  defaultHandler.apply(this.arguments);
-})
+// ErrorUtils.setGlobalHandler((error, isFatal) => {
+//   Firebase.crashlytics().log(error.stack);
+//   if (isFatal) {
+//     //Firebase.crashlytics().crash();
+//   } else {
+//     Firebase.crashlytics().recordError(0, 'non-fatal');
+//   }
+//   defaultHandler.apply(this.arguments);
+// })
 
 YellowBox.ignoreWarnings([
   "Warning: isMounted(...) is deprecated",

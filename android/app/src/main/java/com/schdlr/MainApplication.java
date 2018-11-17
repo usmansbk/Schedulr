@@ -13,7 +13,6 @@ import io.invertase.firebase.analytics.RNFirebaseAnalyticsPackage;
 import com.facebook.react.ReactApplication;
 import com.geektime.rnonesignalandroid.ReactNativeOneSignalPackage;
 import co.apptailor.googlesignin.RNGoogleSigninPackage;
-import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 import org.devio.rn.splashscreen.SplashScreenReactPackage;
 import cl.json.RNSharePackage;
 import cl.json.ShareApplication;
@@ -53,7 +52,6 @@ public class MainApplication extends Application implements ShareApplication, Re
           new MainReactPackage(),
             new ReactNativeOneSignalPackage(),
             new RNGoogleSigninPackage(),
-            new RNGestureHandlerPackage(),
             new SplashScreenReactPackage(),
             new RNSharePackage(),
             new ReactNativePushNotificationPackage(),
@@ -85,7 +83,7 @@ public class MainApplication extends Application implements ShareApplication, Re
   @Override
   public void onCreate() {
     super.onCreate();
-    FacebookSdk.sdkInitialize(getApplicationContext())
+    FacebookSdk.sdkInitialize(getApplicationContext());
     SoLoader.init(this, /* native exopackage */ false);
   }
   

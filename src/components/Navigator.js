@@ -7,8 +7,6 @@
 import {
   createStackNavigator,
   createSwitchNavigator,
-  createDrawerNavigator,
-  createAppContainer
 } from 'react-navigation';
 import {
   HomeScreen,
@@ -73,4 +71,4 @@ const MyApp = createSwitchNavigator(
   },
 );
 
-export default createAppContainer(MyApp)
+export default MyApp;
