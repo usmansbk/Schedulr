@@ -1,0 +1,11 @@
+export default (string) => {
+  const firstLetter = string[0].toUpperCase();
+  return firstLetter + string.substring(1);
+}
+
+export function decapitalize(string, all=false) {
+  const first = string[0]
+  const head = all ? first.toLowerCase() : first.toUpperCase();
+  const tail = string.substring(1).toLowerCase();
+  return head + tail;
+}

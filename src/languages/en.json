@@ -1,0 +1,199 @@
+{
+  "event_list": {
+    "prev": "Load previous events",
+    "footer": "No more events!",
+    "empty": "No upcoming events!"
+  },
+  "todos": {
+    "note": "All your ongoing or future events tasks will show up here.",
+    "footer": "No more tasks!"
+  },
+  "event_card": {
+    "cancelled": "Cancelled",
+    "expired": "Expired",
+    "started": "Started",
+    "ongoing": "Ongoing",
+    "ending": "Ending",
+    "starting": "Starting",
+    "happening": "Happening",
+    "description": "Description",
+    "location": "Location",
+    "type": "Type",
+    "start": "Start",
+    "end": "End",
+    "duration": "Duration",
+    "repeat": "Repeat",
+    "group": "Group",
+    "created": "Created on",
+    "title": "Title",
+    "remove_banner": "Remove banner?",
+    "upload": "Upload an Image"
+  },
+  "group": {
+    "name": "Name",
+    "description": "Description",
+    "members": "members",
+    "open": "Open",
+    "closed": "Closed",
+    "public": "Public",
+    "private": "Private",
+    "createdOn": "created on",
+    "about": "About group",
+    "title": "Group Info",
+    "repeat": "Repeat",
+    "close_warning": "You won't be able to add future events.",
+    "delete_warning": "Will delete group and related events.",
+    "deleted": "Group deleted",
+    "leave": "Leave",
+    "leave_warning": "Will stop receiving group updates?",
+    "remove_logo": "Remove logo?",
+    "empty": {
+      "title": "No events group!",
+      "note": "Join a group or create one by pressing the button below."
+    }
+  },
+  "comment": {
+    "add": "Add a comment...",
+    "prev": "Load previous comments",
+    "reload": "Swipe down to refresh",
+    "delete": "Delete comment",
+    "message_sent": "Message sent!",
+    "delete_comment": "Delete comment?"
+  },
+  "notifications": {
+    "empty": "No notifications"
+  },
+  "menu": {
+    "delete": "Delete",
+    "new": "New",
+    "cancel": "Cancel",
+    "edit": "Edit",
+    "reply": "Reply",
+    "close": "Close",
+    "open": "Open",
+    "reschedule": "Reschedule"
+  },
+  "screens": {
+    "edit_event": "Edit event",
+    "new_event": "New event",
+    "reschdl_event": "Reschedule",
+    "edit_group": "Edit group",
+    "new_group": "New group",
+    "notifications": "Notifications",
+    "lang": "Language",
+    "members": "Members",
+    "settings": "Settings",
+    "help": "Help"
+  },
+  "drawer": {
+    "home": "Home",
+    "help": "Help",
+    "settings": "Settings",
+    "invite": "Invite a friend"
+  },
+  "share": {
+    "invite": "Invite friend via...",
+    "event": "Share event via...",
+    "message": "Hey there... I use schdlr to share important events with friends and collegues"
+  },
+  "event_form": {
+    "title": "Title",
+    "upload": "Upload an Image",
+    "description": "Description",
+    "location": "Location",
+    "group": "Select group (required)",
+    "info": {
+      "start": "Start time",
+      "end": "End time"
+    }
+  },
+  "options": {
+    "yes": "Yes",
+    "no": "No",
+    "cancel": "Cancel",
+    "delete": "Delete"
+  },
+  "error": {
+    "generic": "An error occured. Try again later!",
+    "something_went_wrong": "Oops! Something went wrong. Please try again!",
+    "login_error": "Login failed. Check Internet settings",
+    "error_occured": "An error occured. Check login status or internet settings!",
+    "failed_to_load_comments": "Cannot retrieve comments at this time. Please try again!",
+    "unable_to_fetch_group": "Cannot retrieve group at this time",
+    "failed_to_update_events": "Failed to fetch updates!",
+    "failed_to_get_info": "Failed to get group info!",
+    "update_list_error": "Failed to update list",
+    "login_failed": "Login failed",
+    "failed_to_post_comment": "Failed to post comment!",
+    "no_internet": "No Internet connection",
+    "offline": "Offline"
+  },
+  "auth": {
+    "sign_in": "Sign in",
+    "sign_out": "Sign out",
+    "logout": "Logout",
+    "fb_sign_in": "Continue with facebook",
+    "goog_sign_in": "Sign in with Google",
+    "guest": "Continue as guest",
+    "message": "Sign in to get notifications, join groups, post comments and more!"
+  },
+  "button": {
+    "event_ending": "Event ending",
+    "subscribe": "Subscribe",
+    "sound": "Sound",
+    "vibration": "Vibration",
+    "retry": "Retry",
+    "remind_me": "Remind me",
+    "refresh_reminders": "Refresh reminders",
+    "enter": "Enter",
+    "preview": "Preview"
+  },
+  "label": {
+    "events_reminder": "Events reminder",
+    "push_notifications": "Push Notifications"
+  },
+  "toast": {
+    "refreshed": "Refreshed!",
+    "removed_event": "Removed from calendar!",
+    "failed_to_remove_event": "Failed to remove event!",
+    "unable_to_find_calendar": "Unable to find primary calendar!",
+    "added_to_calendar": "Added to calendar!",
+    "allow_schdlr": "Allow schdlr to save to your calendar!",
+    "group_deleted": "Group deleted!",
+    "event_deleted": "Event deleted!",
+    "comment_deleted": "Comment deleted!",
+    "enter": "Enter",
+    "form_reset": "Form reset",
+    "start_time": "Start time",
+    "end_time": "End time",
+    "login_message": "Schdlr requires a one-time login.",
+    "repeat": "Repeat",
+    "group": "Event group",
+    "event_type": "Event type",
+    "event_cancelled": "Event cancelled"
+  },
+  "input": {
+    "warn": "Can't exceed 225 characters",
+    "warn_51": "Can't exceed 51 characters",
+    "enter_comm_url": "Enter community URL"
+  },
+  "search": {
+    "empty": "No result",
+    "warn": "Searching offline...",
+    "placeholder": "Search Schdlr"
+  },
+  "tabs": {
+    "groups": "Groups",
+    "events": "Events",
+    "todos": "TO-DO"
+  },
+  "items": {
+    "build_time": "Build time",
+    "version": "Version",
+    "email_dev": "Email developer"
+  },
+  "help": {
+    "group": "A group is collection of related events. Groups allow members recieve event notifications.",
+    "edit_event": "Editing an event will affect past and future events! consider Rescheduling instead."
+  }
+}
