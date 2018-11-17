@@ -147,7 +147,6 @@ dependencies {
     implementation project(':react-native-languages')
     implementation project(':react-native-image-picker')
     implementation project(':react-native-firebase')
-    implementation project(':react-native-firebase')
     implementation 'com.facebook.android:facebook-android-sdk:[4,5)'
     implementation project(':react-native-fbsdk')
     implementation project(':react-native-calendar-events')
