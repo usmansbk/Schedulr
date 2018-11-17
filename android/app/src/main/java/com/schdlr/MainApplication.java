@@ -11,6 +11,7 @@ import io.invertase.firebase.perf.RNFirebasePerformancePackage;
 import io.invertase.firebase.analytics.RNFirebaseAnalyticsPackage;
 
 import com.facebook.react.ReactApplication;
+import com.geektime.rnonesignalandroid.ReactNativeOneSignalPackage;
 import co.apptailor.googlesignin.RNGoogleSigninPackage;
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 import org.devio.rn.splashscreen.SplashScreenReactPackage;
@@ -50,6 +51,7 @@ public class MainApplication extends Application implements ShareApplication, Re
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new ReactNativeOneSignalPackage(),
             new RNGoogleSigninPackage(),
             new RNGestureHandlerPackage(),
             new SplashScreenReactPackage(),

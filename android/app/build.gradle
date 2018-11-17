@@ -1,6 +1,23 @@
+buildscript {
+    repositories {
+        maven { url 'https://plugins.gradle.org/m2/' } // Gradle Plugin Portal 
+    }
+    dependencies {
+        classpath 'gradle.plugin.com.onesignal:onesignal-gradle-plugin:[0.12.1, 0.99.99]'
+    }
+}
+
+apply plugin: 'com.onesignal.androidsdk.onesignal-gradle-plugin'
 apply plugin: "com.android.application"
 apply plugin: 'io.fabric'
 apply plugin: "com.google.firebase.firebase-perf"
+
+project.ext.envConfigFiles = [
+    debug: ".env.development",
+    release: ".env.production",
+    anothercustombuild: ".env",
+]
+
 apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"
 
 import com.android.build.OutputFile
@@ -140,6 +157,19 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-splash-screen')
+    compile project(':react-native-share')
+    compile project(':react-native-push-notification')
+    compile project(':react-native-mail')
+    compile project(':react-native-languages')
+    compile project(':react-native-image-picker')
+    compile project(':react-native-google-signin')
+    compile project(':react-native-gesture-handler')
+    compile project(':react-native-firebase')
+    compile project(':react-native-fbsdk')
+    compile project(':react-native-config')
+    compile project(':react-native-calendar-events')
+    compile project(':react-native-onesignal')
     implementation project(':react-native-google-signin')
     implementation project(':react-native-gesture-handler')
     implementation project(':react-native-splash-screen')
