@@ -1,18 +1,6 @@
-import gql from 'graphql-tag';
 import client from '../config/apolloClient';
 import SETTINGS from '../graphql/localState/query/Settings';
-
-const COMMUNITY = gql`
-  {
-    community @client {
-      id
-      name
-      url
-      logo
-      isProtected
-    }
-  }
-`;
+import COMMUNITY from '../graphql/localState/query/Community';
 
 export const setCommunity = (community) => {
   client.writeData({

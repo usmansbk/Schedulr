@@ -7,17 +7,6 @@ const notify = (message) => {
   ToastAndroid.show(message, ToastAndroid.SHORT);
 }
 
-export function todoValidator(todo) {
-  if (!todo.id) {
-    notify('Select an event');
-    return false;
-  } else if (!todo.task) {
-    notify('Enter a task');
-    return false;
-  }
-  return true;
-}
-
 export function groupValidator(group) {
   let validity = true;
   if (!group.name) {

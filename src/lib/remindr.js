@@ -44,8 +44,7 @@ const schdlStart = (event, { sound, vibrate }) => {
   if (repeatType === 'time') {
     recur.repeatTime = getRepeatTime(Date.parse(event.start), event.repeat);
   }
-  const time = moment(event.start).format('hh:mm a');
-  const message =  `${decapitalize(event.eventType)}${event.eventType === 'HAPPENING' ? '' : ' started'} ${time}`
+  const message =  `${event.eventType === 'HAPPENING' ? '' : decapitalize(event.eventType)} starting now.`;
   const notificationObject = {
     title: `${event.name}`,
     message,
