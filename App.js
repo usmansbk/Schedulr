@@ -1,49 +1,63 @@
 /**
- * Sample React Native App
+ * Schdlr App
  * https://github.com/facebook/react-native
- *
- * @format
  * @flow
  */
 
-import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
+import React from 'react';
+import { YellowBox } from 'react-native';
+import { ApolloProvider } from 'react-apollo';
+import { MenuProvider } from 'react-native-popup-menu';
+import { Root } from 'native-base';
+import Config from 'react-native-config';
+import RNLanguages from 'react-native-languages';
+import Firebase from 'react-native-firebase';
+import Navigators from './src/components/Navigator';
+import client from './src/config/apolloClient';
+import i18n from './src/config/i18n';
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android:
-    'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
+const prefix = Config.APP_URL;
 
-type Props = {};
-export default class App extends Component<Props> {
+const defaultHandler = (ErrorUtils.getGlobalHandler &&
+  ErrorUtils.getGlobalHandler()) || ErrorUtils._globalHandler;
+
+ErrorUtils.setGlobalHandler((error, isFatal) => {
+  Firebase.crashlytics().log(error.stack);
+  if (isFatal) {
+    //Firebase.crashlytics().crash();
+  } else {
+    Firebase.crashlytics().recordError(0, 'non-fatal');
+  }
+  defaultHandler.apply(this.arguments);
+})
+
+YellowBox.ignoreWarnings([
+  "Warning: isMounted(...) is deprecated",
+  "Module RCTImageLoader"
+]);
+
+export default class App extends React.Component {
+  componentWillMount() {
+    RNLanguages.addEventListener('change', this._onLanguagesChange);
+  }
+
+  componentWillUnmount() {
+    RNLanguages.removeEventListener('change', this._onLanguagesChange);
+  }
+
+  _onLanguagesChange = ({ language }) => {
+    i18n.locale = language;
+  };
+
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to React Native!</Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
-        <Text style={styles.instructions}>{instructions}</Text>
-      </View>
-    );
+      <Root>
+        <MenuProvider backHandler>
+          <ApolloProvider client={client}>
+            <Navigators uriPrefix={prefix} />
+          </ApolloProvider>
+        </MenuProvider>
+      </Root>
+    )
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});

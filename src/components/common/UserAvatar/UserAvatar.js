@@ -42,7 +42,12 @@ export default class Avatar extends Component {
         <View>
           {
             !Boolean(src) ?
-              <UserAvatar size={size} name={name} rounded={rounded} />
+              <UserAvatar
+                size={size}
+                name={name}
+                rounded={rounded}
+                component={Image}
+              />
             : (
               <Image
                 resizeMode="cover"

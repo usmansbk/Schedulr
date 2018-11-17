@@ -19,7 +19,6 @@ import com.dieam.reactnativepushnotification.ReactNativePushNotificationPackage;
 import com.chirag.RNMail.RNMail;
 import com.reactcommunity.rnlanguages.RNLanguagesPackage;
 import com.imagepicker.ImagePickerPackage;
-import com.reactlibrary.googlesignin.RNGoogleSignInPackage;
 import com.facebook.reactnative.androidsdk.FBSDKPackage;
 import com.calendarevents.CalendarEventsPackage;
 import com.RNFetchBlob.RNFetchBlobPackage;
@@ -57,7 +56,6 @@ public class MainApplication extends Application implements ShareApplication, Re
             new RNMail(),
             new RNLanguagesPackage(),
             new ImagePickerPackage(),
-            new RNGoogleSignInPackage(),
             new RNFirebasePackage(),
             new FBSDKPackage(mCallbackManager),
             new CalendarEventsPackage(),

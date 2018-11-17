@@ -145,7 +145,6 @@ dependencies {
     compile project(':react-native-mail')
     compile project(':react-native-languages')
     compile project(':react-native-image-picker')
-    implementation project(':react-native-google-sign-in')
     implementation project(':react-native-firebase')
     implementation project(':react-native-firebase')
     implementation 'com.facebook.android:facebook-android-sdk:[4,5)'
