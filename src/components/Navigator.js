@@ -7,6 +7,7 @@
 import {
   createStackNavigator,
   createSwitchNavigator,
+  createAppContainer
 } from 'react-navigation';
 import {
   HomeScreen,
@@ -60,7 +61,7 @@ const AppNavigator = createStackNavigator({
   initialRouteName: 'Home'
 });
 
-const MyApp = createSwitchNavigator(
+const App = createSwitchNavigator(
   {
     AuthLoading,
     App: AppNavigator,
@@ -71,4 +72,4 @@ const MyApp = createSwitchNavigator(
   },
 );
 
-export default MyApp;
+export default createAppContainer(App);
