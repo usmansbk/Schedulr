@@ -4,7 +4,6 @@ import android.app.Application;
 
 import com.facebook.CallbackManager;
 import com.facebook.FacebookSdk;
-import com.facebook.appevents.AppEventsLogger;
 
 import io.invertase.firebase.RNFirebasePackage;
 import io.invertase.firebase.fabric.crashlytics.RNFirebaseCrashlyticsPackage;
@@ -12,6 +11,7 @@ import io.invertase.firebase.perf.RNFirebasePerformancePackage;
 import io.invertase.firebase.analytics.RNFirebaseAnalyticsPackage;
 
 import com.facebook.react.ReactApplication;
+import com.reactlibrary.googlesignin.RNGoogleSignInPackage;
 import com.facebook.reactnative.androidsdk.FBSDKPackage;
 import com.calendarevents.CalendarEventsPackage;
 import com.RNFetchBlob.RNFetchBlobPackage;
@@ -42,6 +42,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new RNGoogleSignInPackage(),
             new RNFirebasePackage(),
             new FBSDKPackage(mCallbackManager),
             new CalendarEventsPackage(),
@@ -67,7 +68,7 @@ public class MainApplication extends Application implements ReactApplication {
   @Override
   public void onCreate() {
     super.onCreate();
-    AppEventsLogger.activateApp(this);
+    FacebookSdk.sdkInitialize(getApplicationContext());
     SoLoader.init(this, /* native exopackage */ false);
   }
 }

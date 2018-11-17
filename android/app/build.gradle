@@ -96,7 +96,7 @@ def enableProguardInReleaseBuilds = false
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion rootProject.ext.buildToolsVersion
+    buildToolsVersion '28.0.2'
 
     defaultConfig {
         applicationId "com.schdlr"
@@ -138,13 +138,15 @@ android {
 }
 
 dependencies {
-    compile project(':react-native-firebase')
+    implementation project(':react-native-google-sign-in')
+    implementation project(':react-native-firebase')
     implementation project(':react-native-firebase')
     implementation 'com.facebook.android:facebook-android-sdk:[4,5)'
     implementation project(':react-native-fbsdk')
     implementation project(':react-native-calendar-events')
     implementation project(':react-native-fetch-blob')
     implementation project(':react-native-config')
+    implementation 'com.google.android.gms:play-services-auth:16.0.1'
     implementation "com.google.android.gms:play-services-base:16.0.1"
     implementation "com.google.firebase:firebase-core:16.0.4"
     implementation fileTree(dir: "libs", include: ["*.jar"])

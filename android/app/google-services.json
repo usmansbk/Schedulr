@@ -8,12 +8,20 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:915796894963:android:4e0703b6c32cb9b4",
+        "mobilesdk_app_id": "1:915796894963:android:0059f0ac3c78ce55",
         "android_client_info": {
-          "package_name": "com.schdlrandroid"
+          "package_name": "com.schdlr"
         }
       },
       "oauth_client": [
+        {
+          "client_id": "915796894963-gkrtvrrt3jg958l2cna6e2lei7qj4b35.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.schdlr",
+            "certificate_hash": "8d981b7da560b37b3d8a758255372d378eb8df3b"
+          }
+        },
         {
           "client_id": "915796894963-5rlco7rd3frrrudp6opqpk4u4fsd91it.apps.googleusercontent.com",
           "client_type": 3
@@ -29,8 +37,13 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "915796894963-5rlco7rd3frrrudp6opqpk4u4fsd91it.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2
