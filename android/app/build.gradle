@@ -11,13 +11,6 @@ apply plugin: 'com.onesignal.androidsdk.onesignal-gradle-plugin'
 apply plugin: "com.android.application"
 apply plugin: 'io.fabric'
 apply plugin: "com.google.firebase.firebase-perf"
-
-project.ext.envConfigFiles = [
-    debug: ".env.development",
-    release: ".env.production",
-    anothercustombuild: ".env",
-]
-
 apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"
 
 import com.android.build.OutputFile
@@ -115,7 +108,7 @@ def enableProguardInReleaseBuilds = false
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion '28.0.2'
+    buildToolsVersion  rootProject.ext.buildToolsVersion
 
     defaultConfig {
         applicationId "com.schdlr"
@@ -158,7 +151,9 @@ android {
 
 dependencies {
     implementation project(':react-native-onesignal')
-    implementation project(':react-native-google-signin')
+    implementation(project(":react-native-google-signin")){
+        exclude group: "com.google.android.gms"
+    }
     implementation project(':react-native-gesture-handler')
     implementation project(':react-native-splash-screen')
     implementation project(':react-native-share')
