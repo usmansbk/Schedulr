@@ -108,7 +108,7 @@ def enableProguardInReleaseBuilds = false
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion  rootProject.ext.buildToolsVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
         applicationId "com.schdlr"
@@ -151,9 +151,7 @@ android {
 
 dependencies {
     implementation project(':react-native-onesignal')
-    implementation(project(":react-native-google-signin")){
-        exclude group: "com.google.android.gms"
-    }
+    implementation project(":react-native-google-signin")
     implementation project(':react-native-gesture-handler')
     implementation project(':react-native-splash-screen')
     implementation project(':react-native-share')
