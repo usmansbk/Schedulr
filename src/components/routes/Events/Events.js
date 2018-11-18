@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
-import FAB from '../common/Fab';
+import FAB from '../../common/Fab';
 
 export default () => (
   <View style={styles.container}>

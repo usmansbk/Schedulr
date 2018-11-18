@@ -1,14 +1,13 @@
 import React from 'react';
 import { View } from 'react-native';
-import { Appbar, BottomNavigation, Text } from 'react-native-paper';
-import Events from '../Events';
-import Groups from '../Groups';
+import { Appbar, BottomNavigation } from 'react-native-paper';
+import EventsRoute from '../routes/Events';
+import GroupsRoute from '../routes/Groups';
+import AccountRoute from '../routes/Account';
+import StarredRoute from '../routes/Starred';
 import moment from 'moment';
 import styles, { activeColor } from './styles';
 
-const RecentsRoute = () => <Text>Starred</Text>;
-
-const NotificationsRoute = () => <Text>Notifications</Text>;
 
 export default class Home extends React.Component {
   state = {
@@ -26,10 +25,10 @@ export default class Home extends React.Component {
   _handleIndexChange = index => this.setState({ index });
 
   _renderScene = BottomNavigation.SceneMap({
-    events: Events,
-    groups: Groups,
-    starred: RecentsRoute,
-    account: NotificationsRoute
+    events: EventsRoute,
+    groups: GroupsRoute,
+    starred: StarredRoute,
+    account: AccountRoute
   });
 
   render() {
