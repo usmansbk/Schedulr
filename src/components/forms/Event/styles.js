@@ -31,5 +31,16 @@ export default StyleSheet.create({
     color: colors.primary,
     fontWeight: 'bold',
     marginRight: 16
+  },
+  pickerSpacing: {
+    marginVertical: 8
+  },
+  picker: {
+    height: 48
+  },
+  header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginVertical: 8
   }
 });

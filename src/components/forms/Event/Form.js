@@ -1,9 +1,8 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, Picker, ScrollView } from 'react-native';
 import {
   Button,
   TextInput,
-  Appbar,
   Text,
   RadioButton
 } from 'react-native-paper';
@@ -21,9 +20,38 @@ const defaultValues = {
   endDate: Date.now(),
   endTime: Date.now(),
   allDay: false,
+  type: '',
   repeat: '',
   groupId: '',
 };
+
+const frequency = [
+  { name: 'One-time event', id: 'ONCE' },
+  { name: 'Daily', id: 'DAILY' },
+  { name: 'Weekly', id: 'WEEKLY' },
+  { name: 'Monthly', id: 'MONTHLY' },
+  { name: 'Yearly', id: 'YEARLY' }
+];
+const eventTypes = [
+  { name: 'Event', id: 'EVENT' },
+  { name: 'Lecture', id: 'LECTURE' },
+  { name: 'Test', id: 'TEST' },
+  { name: 'Tutorial', id: 'TUTORIAL' },
+  { name: 'Practical', id: 'PRACTICAL' },
+  { name: 'Examination', id: 'EXAMINATION' },
+  { name: 'Hobby', id: 'HOBBY' },
+  { name: 'Study', id: 'STUDY' },
+  { name: 'Work', id: 'WORK' },
+  { name: 'Sport', id: 'SPORT' },
+  { name: 'Meeting', id: 'MEETING' },
+  { name: 'Fetival', id: 'FESTIVAL' },
+  { name: 'Ceremony', id: 'CEREMONY' },
+  { name: 'Competition', id: 'COMPETITION' },
+  { name: 'Funfare', id: 'FUNFARE' },
+  { name: 'Party', id: 'PARTY' },
+  { name: 'Happening', id: 'HAPPENING' },
+  { name: 'Interview', id: 'INTERVIEW' },
+];
 
 const formatDate = (date) => moment(date).format('ddd, Do MMM YYYY');
 const formatTime = (time) => moment(time).format('hh:mm a');
@@ -40,7 +68,9 @@ export default class Form extends React.PureComponent {
   _showPicker = (name) => this.setState({[name]: true});
 
   render() {
+    const { groups=[] } = this.props;
     return (
+      <ScrollView>
       <Formik
         initialValues={defaultValues}
         onSubmit={(values, { setSubmitting }) => {
@@ -57,20 +87,15 @@ export default class Form extends React.PureComponent {
           setFieldValue
         }) => (
           <View style={styles.container}>
-            <Appbar.Header>
-              <Appbar.BackAction
-                onPress={this.props.onBack}
-              />
-              <Appbar.Content
-                title={this.props.title}
-              />
-              <Appbar.Action
-                disabled={isSubmitting}
-                icon="send"
-                onPress={handleSubmit}
-              />
-            </Appbar.Header>
             <View style={styles.form}>
+              <View style={styles.header}>
+                <Button mode="outlined">Cancel</Button>
+                <Button
+                  loading={isSubmitting}
+                  mode="outlined"
+                  onPress={handleSubmit}
+                >Save</Button>
+              </View>
               <TextInput
                 placeholder="Event name"
                 value={values.name}
@@ -92,7 +117,6 @@ export default class Form extends React.PureComponent {
               </Text>
               <View style={styles.date}>
                 <Button
-                  disabled={values.allDay}
                   style={styles.button}
                   compact
                   mode="outlined"
@@ -101,7 +125,6 @@ export default class Form extends React.PureComponent {
                 {formatDate(values.startDate)}
                 </Button>
                 <Button
-                  disabled={values.allDay}
                   compact
                   mode="outlined"
                   onPress={() => this._showPicker('startTime')}
@@ -185,10 +208,56 @@ export default class Form extends React.PureComponent {
                   status={values.allDay ? 'checked' : 'unchecked'}
                 />
               </View>
+              <View style={styles.pickerSpacing}>
+                <Text style={styles.radioText}>Repetition</Text>
+                <Picker
+                  prompt="Repeat event"
+                  selectedValue={values.repeat}
+                  style={styles.picker}
+                  onValueChange={itemValue => setFieldValue('repeat', itemValue)}
+                >
+                  {
+                    frequency.map(freq => (
+                      <Picker.Item label={freq.name} value={freq.id} />
+                    ))
+                  }
+                </Picker>
+              </View>
+              <View style={styles.pickerSpacing}>
+                <Text style={styles.radioText}>Event group</Text>
+                <Picker
+                  prompt="Select event group"
+                  selectedValue={values.groupId}
+                  style={styles.picker}
+                  onValueChange={itemValue => setFieldValue('groupId', itemValue)}
+                >
+                  { (groups.length === 0) ? <Picker.Item label="No event group" value="" /> : 
+                    groups.map(group => (
+                      <Picker.Item label={group.name} value={group.id} />
+                    ))
+                  }
+                </Picker>
+              </View>
+              <View style={styles.pickerSpacing}>
+                <Text style={styles.radioText}>Event type</Text>
+                <Picker
+                  prompt="Event type"
+                  selectedValue={values.type}
+                  style={styles.picker}
+                  onValueChange={itemValue => setFieldValue('type', itemValue)}
+                >
+                  {
+                    eventTypes.map(type => (
+                      <Picker.Item label={type.name} value={type.id} />
+                    ))
+                  }
+                </Picker>
+              </View>
             </View>
           </View>
         )}
       </Formik>
+      </ScrollView>
     );
   }
 }
