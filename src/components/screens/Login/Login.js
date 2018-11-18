@@ -1,9 +1,9 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 import { Caption } from 'react-native-paper';
-import GLoginButton from '../GLoginButton';
-import FBLoginButton from '../FBLoginButton';
-import Logo from '../common/Logo';
+import GLoginButton from '../../common/GLoginButton';
+import FBLoginButton from '../../common/FBLoginButton';
+import Logo from '../../common/Logo';
 import styles from './styles';
 
 export default () => {

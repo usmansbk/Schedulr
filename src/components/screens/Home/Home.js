@@ -1,11 +1,11 @@
 import React from 'react';
 import { View } from 'react-native';
 import { Appbar, BottomNavigation } from 'react-native-paper';
-import EventsRoute from '../routes/Events';
-import GroupsRoute from '../routes/Groups';
-import AccountRoute from '../routes/Account';
-import StarredRoute from '../routes/Starred';
 import moment from 'moment';
+import EventsRoute from '../../routes/Events';
+import GroupsRoute from '../../routes/Groups';
+import AccountRoute from '../../routes/Account';
+import StarredRoute from '../../routes/Starred';
 import styles, { activeColor } from './styles';
 
 

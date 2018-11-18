@@ -3,8 +3,8 @@ import {
   GoogleSignin,
 } from 'react-native-google-signin';
 import { Button } from 'react-native-paper';
-import styles from '../../config/styles';
-import colors from '../../config/colors';
+import styles from '../../../config/styles';
+import colors from '../../../config/colors';
 
 
 export default class GButton extends React.Component {

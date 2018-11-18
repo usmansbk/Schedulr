@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from 'react-native-paper';
-import styles from '../../config/styles';
-import colors from '../../config/colors';
+import styles from '../../../config/styles';
+import colors from '../../../config/colors';
 
 export default class FButton extends React.Component {
   render() {
