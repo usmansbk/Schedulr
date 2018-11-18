@@ -176,7 +176,6 @@ dependencies {
     implementation project(':react-native-firebase')
     implementation 'com.facebook.android:facebook-android-sdk:4.35.0'
     implementation project(':react-native-fbsdk')
-    implementation project(':react-native-calendar-events')
     implementation project(':react-native-fetch-blob')
     implementation "com.google.android.gms:play-services-base:16.0.1"
     implementation "com.google.firebase:firebase-perf:16.2.0"

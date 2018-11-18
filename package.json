@@ -25,7 +25,6 @@
     "react-dom": "^16.6.3",
     "react-native": "0.57.5",
     "react-native-cached-image": "^1.4.3",
-    "react-native-calendar-events": "^1.6.3",
     "react-native-fbsdk": "^0.8.0",
     "react-native-firebase": "^5.1.0",
     "react-native-google-signin": "^1.0.0",

@@ -2,7 +2,6 @@ package com.schdlr;
 
 import android.content.Intent;
 import com.facebook.react.ReactActivity;
-import com.calendarevents.CalendarEventsPackage;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
@@ -33,7 +32,6 @@ public class MainActivity extends ReactActivity {
     
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        CalendarEventsPackage.onRequestPermissionsResult(requestCode, permissions, grantResults);
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
   

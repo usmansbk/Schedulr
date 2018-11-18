@@ -22,7 +22,6 @@ import com.dieam.reactnativepushnotification.ReactNativePushNotificationPackage;
 import com.chirag.RNMail.RNMail;
 import com.imagepicker.ImagePickerPackage;
 import com.facebook.reactnative.androidsdk.FBSDKPackage;
-import com.calendarevents.CalendarEventsPackage;
 import com.RNFetchBlob.RNFetchBlobPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
@@ -61,7 +60,6 @@ public class MainApplication extends Application implements ShareApplication, Re
             new ImagePickerPackage(),
             new RNFirebasePackage(),
             new FBSDKPackage(mCallbackManager),
-            new CalendarEventsPackage(),
             new RNFetchBlobPackage(),
             new RNFirebaseCrashlyticsPackage(),
             new RNFirebasePerformancePackage(),

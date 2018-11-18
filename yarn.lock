@@ -5295,11 +5295,6 @@ react-native-cached-image@^1.4.3:
     react-native-fetch-blob "0.10.8"
     url-parse "1.1.9"
 
-react-native-calendar-events@^1.6.3:
-  version "1.6.3"
-  resolved "https://registry.yarnpkg.com/react-native-calendar-events/-/react-native-calendar-events-1.6.3.tgz#2b31faf776a6df2ba0d5ecd595fe283e51de4e5c"
-  integrity sha512-ph8YFLs+uhBAch5nIxHAIoaaYmxaKqrHsAlqa7owGHNiUDJPPn2v68ksIy52XVr1GJDSP0XUqYJqxwks46tHBA==
-
 react-native-clcasher@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/react-native-clcasher/-/react-native-clcasher-1.0.0.tgz#1f77fb1a4abc6a0337ef19c991e04f19af6d2789"
