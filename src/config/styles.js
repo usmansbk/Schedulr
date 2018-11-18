@@ -1,8 +1,8 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
   loginButton: {
-    marginVertical: 2,
+    marginVertical: 4,
     width: 250,
-  }
+  },
 });

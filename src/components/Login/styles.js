@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import colors from '../../config/colors';
 
 export default StyleSheet.create({
   container: {
@@ -14,6 +15,11 @@ export default StyleSheet.create({
   },
   h1: {
     fontSize: 27,
+    fontWeight: 'bold'
+  },
+  grayed: {
+    marginVertical: 8,
+    color: colors.gray,
     fontWeight: 'bold'
   }
 });
