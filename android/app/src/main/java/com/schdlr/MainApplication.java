@@ -20,12 +20,10 @@ import cl.json.RNSharePackage;
 import cl.json.ShareApplication;
 import com.dieam.reactnativepushnotification.ReactNativePushNotificationPackage;
 import com.chirag.RNMail.RNMail;
-import com.reactcommunity.rnlanguages.RNLanguagesPackage;
 import com.imagepicker.ImagePickerPackage;
 import com.facebook.reactnative.androidsdk.FBSDKPackage;
 import com.calendarevents.CalendarEventsPackage;
 import com.RNFetchBlob.RNFetchBlobPackage;
-import com.lugg.ReactNativeConfig.ReactNativeConfigPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
@@ -60,13 +58,11 @@ public class MainApplication extends Application implements ShareApplication, Re
             new RNSharePackage(),
             new ReactNativePushNotificationPackage(),
             new RNMail(),
-            new RNLanguagesPackage(),
             new ImagePickerPackage(),
             new RNFirebasePackage(),
             new FBSDKPackage(mCallbackManager),
             new CalendarEventsPackage(),
             new RNFetchBlobPackage(),
-            new ReactNativeConfigPackage(),
             new RNFirebaseCrashlyticsPackage(),
             new RNFirebasePerformancePackage(),
             new RNFirebaseAnalyticsPackage()

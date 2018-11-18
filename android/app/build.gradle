@@ -11,7 +11,11 @@ apply plugin: 'com.onesignal.androidsdk.onesignal-gradle-plugin'
 apply plugin: "com.android.application"
 apply plugin: 'io.fabric'
 apply plugin: "com.google.firebase.firebase-perf"
-apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"
+project.ext.vectoricons = [
+    iconFontNames: [ 'FontAwesome.ttf', 'Feather.ttf' ] // Name of the font files you want to copy
+]
+
+apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
 
 import com.android.build.OutputFile
 
@@ -160,7 +164,7 @@ android {
 }
 
 dependencies {
-    compile project(':react-native-vector-icons')
+    implementation project(':react-native-vector-icons')
     implementation project(':react-native-gesture-handler')
     implementation project(':react-native-onesignal')
     implementation project(":react-native-google-signin")
@@ -168,14 +172,12 @@ dependencies {
     implementation project(':react-native-share')
     implementation project(':react-native-push-notification')
     implementation project(':react-native-mail')
-    implementation project(':react-native-languages')
     implementation project(':react-native-image-picker')
     implementation project(':react-native-firebase')
     implementation 'com.facebook.android:facebook-android-sdk:4.35.0'
     implementation project(':react-native-fbsdk')
     implementation project(':react-native-calendar-events')
     implementation project(':react-native-fetch-blob')
-    implementation project(':react-native-config')
     implementation "com.google.android.gms:play-services-base:16.0.1"
     implementation "com.google.firebase:firebase-perf:16.2.0"
     implementation('com.crashlytics.sdk.android:crashlytics:2.9.5@aar') {
