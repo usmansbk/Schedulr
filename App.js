@@ -1,10 +1,19 @@
 import React from 'react';
 import { Provider as PaperProvider } from 'react-native-paper';
-import App from './src/App';
+import SplashScreen from 'react-native-splash-screen';
+import AppContainer from './src/App';
 import theme from './src/config/theme';
 
-export default () => (
-  <PaperProvider theme={theme}>
-    <App />
-  </PaperProvider>
-);
+export default class App extends React.Component {
+  componentDidMount = () => {
+    SplashScreen.hide();
+  }
+  
+  render() {
+    return (
+      <PaperProvider theme={theme}>
+        <AppContainer />
+      </PaperProvider>
+    );
+  }
+}
