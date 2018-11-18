@@ -19,7 +19,7 @@ export default class Home extends React.Component {
       { key: 'events', title: 'Events', icon: 'date-range'},
       { key: 'groups', title: 'Groups', icon: 'group-work' },
       { key: 'starred', title: 'Starred', icon: 'star-border'},
-      { key: 'notifications', title: 'Notifications', icon: 'notifications-none' }
+      { key: 'account', title: 'Account', icon: 'account-circle' }
     ],
   };
 
@@ -31,16 +31,15 @@ export default class Home extends React.Component {
     events: MusicRoute,
     groups: AlbumsRoute,
     starred: RecentsRoute,
-    notifications: NotificationsRoute
+    account: NotificationsRoute
   });
 
   render() {
     return (
       <View style={styles.container}>
         <Appbar.Header>
-          <Appbar.Action icon="menu" />
           <Appbar.Content title={this._getTitle()}/>
-          <Appbar.Action icon="today" />
+          <Appbar.Action icon="notifications-none" />
           <Appbar.Action icon="search" />
         </Appbar.Header>
         <BottomNavigation
