@@ -10,6 +10,8 @@ import DateTimePicker from 'react-native-modal-datetime-picker';
 import { Formik } from 'formik';
 import moment from 'moment';
 import styles, { buttonTextColor } from './styles';
+import eventTypes from './types';
+import frequency from './frequency';
 
 const defaultValues = {
   name: '',
@@ -24,34 +26,6 @@ const defaultValues = {
   repeat: '',
   groupId: '',
 };
-
-const frequency = [
-  { name: 'One-time event', id: 'ONCE' },
-  { name: 'Daily', id: 'DAILY' },
-  { name: 'Weekly', id: 'WEEKLY' },
-  { name: 'Monthly', id: 'MONTHLY' },
-  { name: 'Yearly', id: 'YEARLY' }
-];
-const eventTypes = [
-  { name: 'Normal', id: 'EVENT' },
-  { name: 'Lecture', id: 'LECTURE' },
-  { name: 'Test', id: 'TEST' },
-  { name: 'Tutorial', id: 'TUTORIAL' },
-  { name: 'Practical', id: 'PRACTICAL' },
-  { name: 'Examination', id: 'EXAMINATION' },
-  { name: 'Hobby', id: 'HOBBY' },
-  { name: 'Study', id: 'STUDY' },
-  { name: 'Work', id: 'WORK' },
-  { name: 'Sport', id: 'SPORT' },
-  { name: 'Meeting', id: 'MEETING' },
-  { name: 'Fetival', id: 'FESTIVAL' },
-  { name: 'Ceremony', id: 'CEREMONY' },
-  { name: 'Competition', id: 'COMPETITION' },
-  { name: 'Funfare', id: 'FUNFARE' },
-  { name: 'Party', id: 'PARTY' },
-  { name: 'Happening', id: 'HAPPENING' },
-  { name: 'Interview', id: 'INTERVIEW' },
-];
 
 const formatDate = (date) => moment(date).format('ddd, Do MMM YYYY');
 const formatTime = (time) => moment(time).format('hh:mm a');
