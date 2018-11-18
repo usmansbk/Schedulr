@@ -18,5 +18,18 @@ export default StyleSheet.create({
   },
   button: {
     flexGrow: 1
+  },
+  input: {
+    marginVertical: 8,
+  },
+  radio: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginVertical: 8
+  },
+  radioText: {
+    color: colors.primary,
+    fontWeight: 'bold',
+    marginRight: 16
   }
 });

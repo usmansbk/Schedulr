@@ -32,6 +32,7 @@
     "react-native-hyperlink": "^0.0.14",
     "react-native-image-picker": "^0.27.1",
     "react-native-mail": "^3.0.7",
+    "react-native-modal-datetime-picker": "^6.0.0",
     "react-native-onesignal": "^3.2.8",
     "react-native-paper": "^2.2.4",
     "react-native-popup-menu": "^0.14.1",
