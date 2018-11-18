@@ -8,7 +8,7 @@ export default StyleSheet.create({
     flex: 1
   },
   barStyle: {
-    elevation: 2,
-    color: '#fff',
+    elevation: 4,
+    backgroundColor: '#fff',
   }
 });
