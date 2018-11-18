@@ -84,6 +84,7 @@ export default class Form extends React.PureComponent {
           isSubmitting,
           handleSubmit,
           handleChange,
+          handleBlur,
           setFieldValue
         }) => (
           <View style={styles.container}>
@@ -104,20 +105,20 @@ export default class Form extends React.PureComponent {
                 placeholder="Event name"
                 value={values.name}
                 onChangeText={handleChange('name')}
-                onBlur={handleChange('name')}
+                onBlur={handleBlur('name')}
               />
               <TextInput
                 placeholder="Description"
                 value={values.description}
                 onChangeText={handleChange('description')}
-                onBlur={handleChange('description')}
+                onBlur={handleBlur('description')}
                 style={styles.input}
               />
               <TextInput
                 placeholder="Location"
                 value={values.location}
                 onChangeText={handleChange('location')}
-                onBlur={handleChange('location')}
+                onBlur={handleBlur('location')}
               />
               <Text style={styles.text}>
                 From
