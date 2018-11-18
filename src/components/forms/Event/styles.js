@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 import colors from '../../../config/colors';
 
-export const buttonTextColor = colors.primary_light;
+export const buttonTextColor = colors.black;
 
 export default StyleSheet.create({
   container: {
@@ -38,7 +38,11 @@ export default StyleSheet.create({
     marginVertical: 8
   },
   picker: {
-    height: 48
+    height: 48,
+    color: colors.black
+  },
+  pickerItem: {
+    color: colors.black,
   },
   header: {
     flexDirection: 'row',

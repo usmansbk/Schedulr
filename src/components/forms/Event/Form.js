@@ -222,6 +222,7 @@ export default class Form extends React.PureComponent {
                   prompt="Repeat event"
                   selectedValue={values.repeat}
                   style={styles.picker}
+                  itemStyle={styles.pickerItem}
                   onValueChange={itemValue => setFieldValue('repeat', itemValue)}
                 >
                   {
@@ -237,6 +238,7 @@ export default class Form extends React.PureComponent {
                   prompt="Select event group"
                   selectedValue={values.groupId}
                   style={styles.picker}
+                  itemStyle={styles.pickerItem}
                   onValueChange={itemValue => setFieldValue('groupId', itemValue)}
                 >
                   { (groups.length === 0) ? <Picker.Item label="No event group" value="" /> : 
@@ -252,6 +254,7 @@ export default class Form extends React.PureComponent {
                   prompt="Event type"
                   selectedValue={values.type}
                   style={styles.picker}
+                  itemStyle={styles.pickerItem}
                   onValueChange={itemValue => setFieldValue('type', itemValue)}
                 >
                   {
