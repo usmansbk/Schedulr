@@ -12,24 +12,24 @@ import { Root } from 'native-base';
 import Config from 'react-native-config';
 import RNLanguages from 'react-native-languages';
 import Firebase from 'react-native-firebase';
-import Navigators from './src/components/Navigator';
+import AppContainer from './src/components/Navigator';
 import client from './src/config/apolloClient';
 import i18n from './src/config/i18n';
 
 const prefix = Config.APP_URL;
 
-// const defaultHandler = (ErrorUtils.getGlobalHandler &&
-//   ErrorUtils.getGlobalHandler()) || ErrorUtils._globalHandler;
+const defaultHandler = (ErrorUtils.getGlobalHandler &&
+  ErrorUtils.getGlobalHandler()) || ErrorUtils._globalHandler;
 
-// ErrorUtils.setGlobalHandler((error, isFatal) => {
-//   Firebase.crashlytics().log(error.stack);
-//   if (isFatal) {
-//     //Firebase.crashlytics().crash();
-//   } else {
-//     Firebase.crashlytics().recordError(0, 'non-fatal');
-//   }
-//   defaultHandler.apply(this.arguments);
-// })
+ErrorUtils.setGlobalHandler((error, isFatal) => {
+  Firebase.crashlytics().log(error.stack);
+  if (isFatal) {
+    //Firebase.crashlytics().crash();
+  } else {
+    Firebase.crashlytics().recordError(0, 'non-fatal');
+  }
+  defaultHandler.apply(this.arguments);
+})
 
 YellowBox.ignoreWarnings([
   "Warning: isMounted(...) is deprecated",
@@ -54,7 +54,7 @@ export default class App extends React.Component {
       <Root>
         <MenuProvider backHandler>
           <ApolloProvider client={client}>
-            <Navigators uriPrefix={prefix} />
+            <AppContainer uriPrefix={prefix} />
           </ApolloProvider>
         </MenuProvider>
       </Root>
