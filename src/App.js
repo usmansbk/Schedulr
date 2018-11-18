@@ -1,11 +1,13 @@
 import React from 'react';
-import { Text } from 'react-native';
-import { Login } from './screens';
+import {
+  Login,
+  Home
+} from './screens';
 
 export default class App extends React.Component {
   render() {
     return (
-      <Login/>
+      <Home />
     )
   }
 }
