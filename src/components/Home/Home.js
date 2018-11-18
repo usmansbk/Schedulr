@@ -1,12 +1,10 @@
 import React from 'react';
 import { View } from 'react-native';
 import { Appbar, BottomNavigation, Text } from 'react-native-paper';
+import Events from '../Events';
+import Groups from '../Groups';
 import moment from 'moment';
 import styles from './styles';
-
-const MusicRoute = () => <Text>Events</Text>;
-
-const AlbumsRoute = () => <Text>Groups</Text>;
 
 const RecentsRoute = () => <Text>Starred</Text>;
 
@@ -19,7 +17,7 @@ export default class Home extends React.Component {
       { key: 'events', title: 'Events', icon: 'date-range'},
       { key: 'groups', title: 'Groups', icon: 'group-work' },
       { key: 'starred', title: 'Starred', icon: 'star-border'},
-      { key: 'account', title: 'Account', icon: 'account-circle' }
+      { key: 'account', title: 'Account', icon: 'person' }
     ],
   };
 
@@ -28,8 +26,8 @@ export default class Home extends React.Component {
   _handleIndexChange = index => this.setState({ index });
 
   _renderScene = BottomNavigation.SceneMap({
-    events: MusicRoute,
-    groups: AlbumsRoute,
+    events: Events,
+    groups: Groups,
     starred: RecentsRoute,
     account: NotificationsRoute
   });
