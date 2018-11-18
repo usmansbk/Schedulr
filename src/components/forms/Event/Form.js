@@ -81,7 +81,7 @@ export default class Form extends React.PureComponent {
       >
         {({
           values,
-          isSubmitting,
+          isSubmitting=this.props.loading,
           handleSubmit,
           handleChange,
           handleBlur,
