@@ -4,12 +4,14 @@ import {
   Button,
   TextInput,
   Text,
+  HelperText,
   RadioButton
 } from 'react-native-paper';
 import DateTimePicker from 'react-native-modal-datetime-picker';
 import { Formik } from 'formik';
 import moment from 'moment';
 import styles, { buttonTextColor } from './styles';
+import formSchema from './schema';
 import eventTypes from './types';
 import frequency from './frequency';
 
@@ -47,6 +49,7 @@ export default class Form extends React.PureComponent {
       <ScrollView>
       <Formik
         initialValues={defaultValues}
+        validationSchema={formSchema}
         onSubmit={(values, { setSubmitting }) => {
           // this.props.handleSubmit(values);
           alert(JSON.stringify(values));
@@ -55,6 +58,8 @@ export default class Form extends React.PureComponent {
       >
         {({
           values,
+          errors,
+          touched,
           isSubmitting=this.props.loading,
           handleSubmit,
           handleChange,
@@ -81,19 +86,36 @@ export default class Form extends React.PureComponent {
                 onChangeText={handleChange('name')}
                 onBlur={handleBlur('name')}
               />
+              <HelperText
+                type="error"
+                visible={errors.name && touched.name}
+              >
+              {errors.name}
+              </HelperText>
               <TextInput
                 placeholder="Description"
                 value={values.description}
                 onChangeText={handleChange('description')}
                 onBlur={handleBlur('description')}
-                style={styles.input}
               />
+              <HelperText
+                type="error"
+                visible={errors.description && touched.description}
+              >
+              {errors.description}
+              </HelperText>
               <TextInput
                 placeholder="Location"
                 value={values.location}
                 onChangeText={handleChange('location')}
                 onBlur={handleBlur('location')}
               />
+              <HelperText
+                type="error"
+                visible={errors.location && touched.location}
+              >
+              {errors.location}
+              </HelperText>
               <Text style={styles.text}>
                 From
               </Text>
@@ -225,6 +247,16 @@ export default class Form extends React.PureComponent {
                     ))
                   }
                 </Picker>
+                {
+                  (!values.groupId) && (
+                    <HelperText
+                      type="error"
+                      visible={!values.groupId}
+                    >
+                      Event group required!
+                    </HelperText>
+                  )
+                }
               </View>
               <View style={styles.pickerSpacing}>
                 <Text style={styles.radioText}>Event type</Text>
