@@ -1,6 +1,8 @@
 import { StyleSheet } from 'react-native';
 import colors from '../../../config/colors';
 
+export const buttonTextColor = colors.primary_light;
+
 export default StyleSheet.create({
   container: {
     flex: 1

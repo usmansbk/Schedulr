@@ -9,7 +9,7 @@ import {
 import DateTimePicker from 'react-native-modal-datetime-picker';
 import { Formik } from 'formik';
 import moment from 'moment';
-import styles from './styles';
+import styles, { buttonTextColor } from './styles';
 
 const defaultValues = {
   name: '',
@@ -124,6 +124,7 @@ export default class Form extends React.PureComponent {
                   style={styles.button}
                   compact
                   mode="outlined"
+                  color={buttonTextColor}
                   onPress={() => this._showPicker('startDate')}
                 >
                 {formatDate(values.startDate)}
@@ -131,6 +132,7 @@ export default class Form extends React.PureComponent {
                 <Button
                   compact
                   mode="outlined"
+                  color={buttonTextColor}
                   onPress={() => this._showPicker('startTime')}
                 >
                 {formatTime(values.startTime)}
@@ -167,6 +169,7 @@ export default class Form extends React.PureComponent {
                   style={styles.button}
                   compact
                   mode="outlined"
+                  color={buttonTextColor}
                   onPress={() => this._showPicker('endDate')}
                 >
                 {formatDate(values.endDate)}
@@ -175,6 +178,7 @@ export default class Form extends React.PureComponent {
                   disabled={values.allDay}
                   compact
                   mode="outlined"
+                  color={buttonTextColor}
                   onPress={() => this._showPicker('endTime')}
                 >
                 {formatTime(values.endTime)}
