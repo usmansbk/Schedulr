@@ -1,13 +1,14 @@
 import React from 'react';
 import {
   Login,
-  Home
+  Home,
+  NewEvent,
 } from './screens';
 
 export default class App extends React.Component {
   render() {
     return (
-      <Home />
+      <NewEvent />
     )
   }
 }
