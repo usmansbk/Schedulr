@@ -6,10 +6,10 @@ const Fab = ({ onPress, style, icon, theme }) => (
     onPress={onPress}
     style={style}
     icon={icon}
-    color='#fff'
     theme={{
       colors: {
-        accent: theme.colors.primary
+        accent: theme.colors.primary,
+        text: '#fff'
       }
     }}
   />
