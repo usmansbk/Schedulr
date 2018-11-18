@@ -1,5 +1,5 @@
 import React from 'react';
-import Login from '../screens/components/Login';
+import Login from '../components/screens/Login';
 
 export default class LoginScreen extends React.Component {
   render() {
