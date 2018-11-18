@@ -104,17 +104,20 @@ export default class Form extends React.PureComponent {
                 placeholder="Event name"
                 value={values.name}
                 onChangeText={handleChange('name')}
+                onBlur={handleChange('name')}
               />
               <TextInput
                 placeholder="Description"
                 value={values.description}
                 onChangeText={handleChange('description')}
+                onBlur={handleChange('description')}
                 style={styles.input}
               />
               <TextInput
                 placeholder="Location"
                 value={values.location}
                 onChangeText={handleChange('location')}
+                onBlur={handleChange('location')}
               />
               <Text style={styles.text}>
                 From
