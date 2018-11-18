@@ -33,7 +33,7 @@ const frequency = [
   { name: 'Yearly', id: 'YEARLY' }
 ];
 const eventTypes = [
-  { name: 'Event', id: 'EVENT' },
+  { name: 'Normal', id: 'EVENT' },
   { name: 'Lecture', id: 'LECTURE' },
   { name: 'Test', id: 'TEST' },
   { name: 'Tutorial', id: 'TUTORIAL' },
@@ -89,7 +89,11 @@ export default class Form extends React.PureComponent {
           <View style={styles.container}>
             <View style={styles.form}>
               <View style={styles.header}>
-                <Button mode="outlined">Cancel</Button>
+                <Button
+                  icon="chevron-left"
+                  mode="outlined"
+                  onPress={this.props.handleCancel}
+                >Cancel</Button>
                 <Button
                   loading={isSubmitting}
                   mode="outlined"
