@@ -41,7 +41,7 @@ export default StyleSheet.create({
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginVertical: 8,
-    marginHorizontal: 16
+    backgroundColor: '#fff',
+    paddingHorizontal: 16
   }
 });

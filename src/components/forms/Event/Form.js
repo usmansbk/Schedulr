@@ -1,11 +1,12 @@
 import React from 'react';
-import { View, Picker, ScrollView , Alert} from 'react-native';
+import { View, Picker, ScrollView } from 'react-native';
 import {
   Button,
   TextInput,
   Text,
   HelperText,
-  RadioButton
+  RadioButton,
+  Appbar
 } from 'react-native-paper';
 import DateTimeInput from '../../common/DateTimeInput';
 import { Formik } from 'formik';
@@ -51,7 +52,7 @@ const Form = (props) => {
           setFieldValue
         }) => (
           <React.Fragment>
-          <View style={styles.header}>
+          <Appbar.Header style={styles.header}>
             <Button
               mode="outlined"
               onPress={props.handleCancel}
@@ -61,7 +62,7 @@ const Form = (props) => {
               mode="outlined"
               onPress={handleSubmit}
             >Save</Button>
-          </View>
+          </Appbar.Header>
           <ScrollView style={styles.container}>
             <View style={styles.form}>
               <TextInput
