@@ -7,10 +7,10 @@ import {
 import {
   AuthLoading,
   Login,
-  Home,
   NewEvent,
   NewGroup
 } from './screens';
+import Home from './components/screens/Home';
 
 const AppStack = createStackNavigator({
   Home,
