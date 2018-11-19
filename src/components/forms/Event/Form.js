@@ -30,7 +30,6 @@ const defaultValues = {
 const Form = (props) => {
   const { groups=[], initialValues } = props;
   return (
-    <ScrollView>
       <Formik
         initialValues={initialValues || defaultValues}
         validationSchema={formSchema}
@@ -51,20 +50,21 @@ const Form = (props) => {
           handleBlur,
           setFieldValue
         }) => (
-          <View style={styles.container}>
+          <React.Fragment>
+          <View style={styles.header}>
+            <Button
+              icon="chevron-left"
+              mode="outlined"
+              onPress={props.handleCancel}
+            >Cancel</Button>
+            <Button
+              loading={isSubmitting}
+              mode="outlined"
+              onPress={handleSubmit}
+            >Save</Button>
+          </View>
+          <ScrollView style={styles.container}>
             <View style={styles.form}>
-              <View style={styles.header}>
-                <Button
-                  icon="chevron-left"
-                  mode="outlined"
-                  onPress={props.handleCancel}
-                >Cancel</Button>
-                <Button
-                  loading={isSubmitting}
-                  mode="outlined"
-                  onPress={handleSubmit}
-                >Save</Button>
-              </View>
               <TextInput
                 placeholder="Event name"
                 value={values.name}
@@ -181,10 +181,10 @@ const Form = (props) => {
                 </Picker>
               </View>
             </View>
-          </View>
+          </ScrollView>
+          </React.Fragment>
         )}
       </Formik>
-    </ScrollView>
   );
 };
 

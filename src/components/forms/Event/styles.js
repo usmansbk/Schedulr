@@ -41,6 +41,7 @@ export default StyleSheet.create({
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginVertical: 8
+    marginVertical: 8,
+    marginHorizontal: 16
   }
 });
