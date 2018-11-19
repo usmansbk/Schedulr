@@ -48,18 +48,12 @@ export default class Input extends React.Component {
           <Button
             disabled={disabled}
             style={styles.button}
-            compact
-            mode="outlined"
-            color={colors.black}
             onPress={() => this._showPicker('showDatePicker')}
           >
           {this._formatDate(value)}
           </Button>
           <Button
             disabled={disabled}
-            compact
-            mode="outlined"
-            color={colors.black}
             onPress={() => this._showPicker('showTimePicker')}
           >
           {this._formatTime(value)}

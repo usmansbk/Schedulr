@@ -5,6 +5,7 @@ import colors from '../../../config/colors';
 
 export default (props) => (
   <TouchableRipple
+    disabled={props.disabled}
     onPress={props.onPress}
     style={[styles.button, props.style]}
   >
