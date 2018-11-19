@@ -162,32 +162,6 @@ const Form = (props) => {
               }
             </View>
             <View style={styles.pickerSpacing}>
-              <Text style={styles.radioText}>Event group</Text>
-              <Picker
-                prompt="Select event group"
-                selectedValue={values.groupId}
-                style={styles.picker}
-                itemStyle={styles.pickerItem}
-                onValueChange={itemValue => setFieldValue('groupId', itemValue)}
-              >
-                { (groups.length === 0) ? <Picker.Item label="No event group" value="" /> : 
-                  groups.map(group => (
-                    <Picker.Item key={group.id} label={group.name} value={group.id} />
-                  ))
-                }
-              </Picker>
-              {
-                (errors.groupId && touched.groupId) && (
-                  <HelperText
-                    type="error"
-                    visible={true}
-                  >
-                    {errors.groupId}
-                  </HelperText>
-                )
-              }
-            </View>
-            <View style={styles.pickerSpacing}>
               <Text style={styles.radioText}>Event type</Text>
               <Picker
                 prompt="Event type"
@@ -202,6 +176,28 @@ const Form = (props) => {
                   ))
                 }
               </Picker>
+            </View>
+            <View style={styles.pickerSpacing}>
+              <Text style={styles.radioText}>Event group</Text>
+              <Picker
+                prompt="Select event group"
+                selectedValue={values.groupId}
+                style={styles.picker}
+                itemStyle={styles.pickerItem}
+                onValueChange={itemValue => setFieldValue('groupId', itemValue)}
+              >
+                { (groups.length === 0) ? <Picker.Item label="No event group" value="" /> : 
+                  groups.map(group => (
+                    <Picker.Item key={group.id} label={group.name} value={group.id} />
+                  ))
+                }
+              </Picker>
+              <HelperText
+                type="error"
+                visible={errors.groupId && touched.groupId}
+              >
+                {errors.groupId}
+              </HelperText>
             </View>
           </View>
         </ScrollView>

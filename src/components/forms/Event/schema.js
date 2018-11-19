@@ -9,6 +9,6 @@ export default Yup.object().shape({
     .max(160, 'Too Long'),
   location: Yup.string()
     .max(160, 'Too Long'),
-  groupId: Yup.number()
+  groupId: Yup.string()
     .required('Event group is required')
 });
