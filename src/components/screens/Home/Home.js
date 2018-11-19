@@ -16,10 +16,11 @@ const Home = createMaterialBottomTabNavigator({
 }, {
   initialRouteName: 'Home',
   activeColor,
+  labeled: false,
   inactiveTintColor,
   barStyle: styles.barStyle,
   defaultNavigationOptions: ({ navigation }) => ({
-    tabBarIcon: ({ focused, horizontal, tintColor }) => {
+    tabBarIcon: ({ focused, tintColor }) => {
       const { routeName } = navigation.state;
       let iconName;
       if (routeName === 'Home') {
@@ -31,9 +32,9 @@ const Home = createMaterialBottomTabNavigator({
       } else if (routeName === 'Account') {
         iconName = 'menu';
       }
-      return <Icon name={iconName} size={horizontal ? 20 : 25} color={tintColor} />
+      return <Icon name={iconName} size={25} color={tintColor} />
     }
-  })
+  }),
 });
 
 export default createAppContainer(Home);
