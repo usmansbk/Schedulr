@@ -53,7 +53,6 @@ const Form = (props) => {
           <React.Fragment>
           <View style={styles.header}>
             <Button
-              icon="chevron-left"
               mode="outlined"
               onPress={props.handleCancel}
             >Cancel</Button>
