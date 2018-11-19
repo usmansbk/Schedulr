@@ -17,10 +17,26 @@ const Home = createMaterialTopTabNavigator({
   tabBarOptions: {
     activeTintColor: activeColor,
     inactiveTintColor,
+    showIcon: true,
+    showLabel: false,
     upperCaseLabel: false,
     indicatorStyle: styles.indicatorStyle,
     style: styles.barStyle
-  }
+  },
+  defaultNavigationOptions: ({ navigation }) => ({
+    tabBarIcon: ({ focused, horizontal, tintColor }) => {
+      const { routeName } = navigation.state;
+      let iconName;
+      if (routeName === 'Events') {
+        iconName = 'date-range'
+      } else if (routeName === 'Groups') {
+        iconName = 'group-work';
+      } else if (routeName === 'Starred') {
+        iconName = `star${focused ? '' : '-border'}`;
+      }
+      return <Icon name={iconName} size={horizontal ? 20 : 24} color={tintColor} />
+    }
+  })
 });
 
 export default createAppContainer(Home);
