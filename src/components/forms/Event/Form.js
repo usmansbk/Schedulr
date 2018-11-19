@@ -10,7 +10,11 @@ import {
 } from 'react-native-paper';
 import DateTimeInput from '../../common/DateTimeInput';
 import { Formik } from 'formik';
-import { isEventValid } from '../../../lib/formValidator';
+import {
+  isEventValid,
+  canRepeat
+} from '../../../lib/formValidator';
+import { CANT_REPEAT } from '../../../lib/errorMessages';
 import styles from './styles';
 import formSchema from './schema';
 import eventTypes from './types';
@@ -143,6 +147,16 @@ const Form = (props) => {
                     ))
                   }
                 </Picker>
+                {
+                  (!canRepeat(values)) && (
+                    <HelperText
+                      type="error"
+                      visible={true}
+                    >
+                      {CANT_REPEAT}
+                    </HelperText>
+                  )
+                }
               </View>
               <View style={styles.pickerSpacing}>
                 <Text style={styles.radioText}>Event group</Text>
@@ -163,7 +177,7 @@ const Form = (props) => {
                   (!values.groupId) && (
                     <HelperText
                       type="error"
-                      visible={!values.groupId}
+                      visible={true}
                     >
                       Event group required!
                     </HelperText>

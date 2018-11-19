@@ -1,5 +1,6 @@
 import { Alert } from 'react-native';
 import { repeatLength } from './time';
+import { CANT_REPEAT, INVALID_START } from './errorMessages';
 
 export const canRepeat = (event) => {
   if (event.repeat === 'ONCE') return true;
@@ -9,10 +10,10 @@ export const canRepeat = (event) => {
 export function isEventValid(event) {
   let validity = true
   if (!canRepeat(event)) {
-    Alert.alert("Repeat", "Event's duration should be shorter than repeat frequency.");
+    Alert.alert("Repeat", CANT_REPEAT);
     validity = false;
   } else if (event.start > event.end) {
-    Alert.alert('Duration', 'End date should be greater than start date.');
+    Alert.alert('Duration', INVALID_START);
     validity = false;
   }
   return validity;
