@@ -71,7 +71,7 @@ const Form = (props) => {
             loading={isSubmitting}
             mode="outlined"
             onPress={handleSubmit}
-          >Save</Button>
+          >Create</Button>
         </Appbar.Header>
         <ScrollView>
           <View style={styles.form}>
