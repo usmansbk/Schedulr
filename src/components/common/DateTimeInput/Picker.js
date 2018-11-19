@@ -9,7 +9,9 @@ export default (props) => (
     onPress={props.onPress}
     style={[styles.button, props.style]}
   >
-    <Text>{props.children}</Text>
+    <Text style={{
+      color: props.disabled ? colors.gray : colors.black
+    }}>{props.children}</Text>
   </TouchableRipple>
 );
 
