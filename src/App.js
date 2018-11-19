@@ -8,9 +8,9 @@ import {
   AuthLoading,
   Login,
   NewEvent,
-  NewGroup
-} from './screens';
-import Home from './components/screens/Home';
+  NewGroup,
+  Home,
+} from './components/screens';
 
 const AppStack = createStackNavigator({
   Home,

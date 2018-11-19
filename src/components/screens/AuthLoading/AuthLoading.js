@@ -5,9 +5,9 @@ import {
   View,
   AsyncStorage
 } from 'react-native';
-import colors from '../config/colors';
+import colors from '../../../config/colors';
 
-export default class App extends Component {
+export default class AuthLoading extends Component {
   constructor(props) {
     super(props);
     this._bootstrapAsync();

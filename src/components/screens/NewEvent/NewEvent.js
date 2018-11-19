@@ -1,5 +1,5 @@
 import React from 'react';
-import Form from '../components/forms/Event';
+import Form from '../../forms/Event';
 
 export default class NewEventScreen extends React.Component {
   _handleBack = () => this.props.navigation.goBack();
