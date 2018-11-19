@@ -7,10 +7,9 @@ import {
   HelperText,
   RadioButton
 } from 'react-native-paper';
-import DateTimePicker from 'react-native-modal-datetime-picker';
+import DateTimeInput from '../../common/DateTimeInput';
 import { Formik } from 'formik';
-import moment from 'moment';
-import styles, { buttonTextColor } from './styles';
+import styles from './styles';
 import formSchema from './schema';
 import eventTypes from './types';
 import frequency from './frequency';
@@ -19,30 +18,15 @@ const defaultValues = {
   name: '',
   description: '',
   location: '',
-  startDate: Date.now(),
-  startTime: Date.now(),
-  endDate: Date.now(),
-  endTime: Date.now(),
+  start: Date.now(),
+  end: Date.now(),
   allDay: false,
   type: '',
   repeat: '',
   groupId: '',
 };
 
-const formatDate = (date) => moment(date).format('ddd, Do MMM YYYY');
-const formatTime = (time) => moment(time).format('hh:mm a');
-
 export default class Form extends React.PureComponent {
-  state = {
-    startDate: false,
-    startTime: false,
-    endDate: false,
-    endTime: false,
-  };
-
-  _hidePicker = (name) => this.setState({[name]: false});
-  _showPicker = (name) => this.setState({[name]: true});
-
   render() {
     const { groups=[] } = this.props;
     return (
@@ -116,96 +100,17 @@ export default class Form extends React.PureComponent {
               >
               {errors.location}
               </HelperText>
-              <Text style={styles.text}>
-                From
-              </Text>
-              <View style={styles.date}>
-                <Button
-                  style={styles.button}
-                  compact
-                  mode="outlined"
-                  color={buttonTextColor}
-                  onPress={() => this._showPicker('startDate')}
-                >
-                {formatDate(values.startDate)}
-                </Button>
-                <Button
-                  compact
-                  mode="outlined"
-                  color={buttonTextColor}
-                  onPress={() => this._showPicker('startTime')}
-                >
-                {formatTime(values.startTime)}
-                </Button>
-                <DateTimePicker
-                  mode="date"
-                  date={new Date()}
-                  minimumDate={new Date()}
-                  isVisible={this.state.startDate}
-                  onCancel={() => this._hidePicker('startDate')}
-                  onConfirm={(date) => {
-                    setFieldValue('startDate', Date.parse(date));
-                    this._hidePicker('startDate');
-                  }}
-                />
-                <DateTimePicker
-                  mode="time"
-                  date={new Date()}
-                  minimumDate={new Date()}
-                  isVisible={this.state.startTime}
-                  onCancel={() => this._hidePicker('startTime')}
-                  onConfirm={(date) => {
-                    setFieldValue('startTime', Date.parse(date));
-                    this._hidePicker('startTime');
-                  }}
-                />
-              </View>
-              <Text style={styles.text}>
-                To
-              </Text>
-              <View style={styles.date}>
-                <Button
-                  disabled={values.allDay}
-                  style={styles.button}
-                  compact
-                  mode="outlined"
-                  color={buttonTextColor}
-                  onPress={() => this._showPicker('endDate')}
-                >
-                {formatDate(values.endDate)}
-                </Button>
-                <Button
-                  disabled={values.allDay}
-                  compact
-                  mode="outlined"
-                  color={buttonTextColor}
-                  onPress={() => this._showPicker('endTime')}
-                >
-                {formatTime(values.endTime)}
-                </Button>
-                <DateTimePicker
-                  mode="date"
-                  date={new Date()}
-                  minimumDate={new Date()}
-                  isVisible={this.state.endDate}
-                  onCancel={() => this._hidePicker('endDate')}
-                  onConfirm={(date) => {
-                    setFieldValue('endDate', Date.parse(date));
-                    this._hidePicker('endDate');
-                  }}
-                />
-                <DateTimePicker
-                  mode="time"
-                  date={new Date()}
-                  minimumDate={new Date()}
-                  isVisible={this.state.endTime}
-                  onCancel={() => this._hidePicker('endTime')}
-                  onConfirm={(date) => {
-                    setFieldValue('endTime', Date.parse(date));
-                    this._hidePicker('endTime');
-                  }}
-                />
-              </View>
+              <DateTimeInput
+                label="From"
+                value={values.start}
+                onChangeDate={(date) => setFieldValue('start', date)}
+              />
+              <DateTimeInput
+                label="To"
+                value={values.end}
+                disabled={values.allDay}
+                onChangeDate={(date) => setFieldValue('end', date)}
+              />
               <View style={styles.radio}>
                 <Text style={styles.radioText}>All Day</Text>
                 <RadioButton

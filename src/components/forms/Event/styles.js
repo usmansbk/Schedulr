@@ -15,12 +15,6 @@ export default StyleSheet.create({
     marginVertical: 8,
     fontWeight: 'bold'
   },
-  date: {
-    flexDirection: 'row',
-  },
-  button: {
-    flexGrow: 1
-  },
   input: {
     marginVertical: 8,
   },
