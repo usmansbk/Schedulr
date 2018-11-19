@@ -13,14 +13,14 @@ export default class GButton extends React.Component {
   }
 
   render() {
-    const { loading } = this.props;
+    const { loading, onPress } = this.props;
     return (
       <Button
         loading={loading}
         mode="contained"
         color={colors.google}
         style={styles.loginButton}
-        onPress={this._signIn}
+        onPress={onPress}
         disabled={loading}>
         Sign in with Google
       </Button>

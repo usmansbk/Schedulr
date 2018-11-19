@@ -6,7 +6,7 @@ import FBLoginButton from '../../common/FBLoginButton';
 import Logo from '../../common/Logo';
 import styles from './styles';
 
-export default () => (
+export default (props) => (
   <View style={styles.container}>
     <Logo />
     <Text style={styles.h1}>Welcome to Schdlr</Text>
@@ -14,8 +14,8 @@ export default () => (
       The Social Calendar
     </Caption>
     <View style={styles.content}>
-      <FBLoginButton />
-      <GLoginButton />
+      <FBLoginButton onPress={props.handleLogin} />
+      <GLoginButton onPress={props.handleLogin} />
     </View>
   </View>
 );

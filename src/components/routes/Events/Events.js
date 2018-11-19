@@ -2,12 +2,12 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import FAB from '../../common/Fab';
 
-export default () => (
+export default (props) => (
   <View style={styles.container}>
     <FAB
       style={styles.fab}
       icon="edit"
-      onPress={() => console.log('Pressed')}
+      onPress={() => props.navigation.navigate('NewEvent')}
     />
   </View>
 );

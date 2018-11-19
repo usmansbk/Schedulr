@@ -5,7 +5,7 @@ import colors from '../../../config/colors';
 
 export default class FButton extends React.Component {
   render() {
-    const { loading } = this.props;
+    const { loading, onPress } = this.props;
     return (
       <Button
         loading={loading}
@@ -13,6 +13,7 @@ export default class FButton extends React.Component {
         color={colors.facebook}
         style={styles.loginButton}
         disabled={loading}
+        onPress={onPress}
       >
         Continue with Facebook
       </Button>
