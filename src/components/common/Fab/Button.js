@@ -1,18 +1,13 @@
 import React from 'react';
-import { withTheme, FAB } from 'react-native-paper';
+import { FAB } from 'react-native-paper';
 
-const Fab = ({ onPress, style, icon, theme }) => (
+const Fab = ({ onPress, style, icon }) => (
   <FAB
     onPress={onPress}
     style={style}
+    color="#fff"
     icon={icon}
-    theme={{
-      colors: {
-        accent: theme.colors.primary,
-        text: '#fff'
-      }
-    }}
   />
 );
 
-export default withTheme(Fab);
+export default Fab;
