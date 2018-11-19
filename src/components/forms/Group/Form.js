@@ -24,7 +24,8 @@ const Form = props => {
     initialValues,
     loading,
     handleCancel,
-    handleSubmit
+    handleSubmit,
+    isEdit,
   } = props;
   return (
     <Formik
@@ -57,7 +58,7 @@ const Form = props => {
             mode="outlined"
             color={navButtonColor}
             onPress={handleSubmit}
-          >Create</Button>
+          >{ isEdit ? 'Save' : 'Create'}</Button>
         </Appbar.Header>
         <ScrollView>
           <View style={styles.form}>
