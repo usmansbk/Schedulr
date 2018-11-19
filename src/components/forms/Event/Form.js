@@ -189,7 +189,8 @@ const Form = (props) => {
                 itemStyle={styles.pickerItem}
                 onValueChange={itemValue => setFieldValue('groupId', itemValue)}
               >
-                { (groups.length === 0) ? <Picker.Item label="No event group" value="" /> : 
+                <Picker.Item label={(groups.length === 0) ? "No event group" : "Select event group"} value="" />
+                {
                   groups.map(group => (
                     <Picker.Item key={group.id} label={group.name} value={group.id} />
                   ))
