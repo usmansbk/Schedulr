@@ -5,7 +5,7 @@ import { View, StyleSheet } from 'react-native';
 export default () => (
   <View style={styles.container}>
     <Searchbar
-      placeholder="Search"
+      placeholder="Search "
       value=""
       style={styles.searchbar}
     />

@@ -1,6 +1,5 @@
 import React from 'react';
-import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
-import { createAppContainer } from 'react-navigation';
+import { createAppContainer, createBottomTabNavigator } from 'react-navigation';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import AccountRoute from '../../routes/Account';
 import SearchRoute from '../../routes/Search';
@@ -8,18 +7,22 @@ import HomeRoute from '../../routes/Home';
 import NotificationRoute from '../../routes/Notifications';
 import styles, { activeColor, inactiveTintColor } from './styles';
 
-const Home = createMaterialBottomTabNavigator({
+const Home = createBottomTabNavigator({
   Home: { screen: HomeRoute },
   Search: { screen: SearchRoute },
   Notifications: { screen: NotificationRoute },
   Account: { screen: AccountRoute }
 }, {
   initialRouteName: 'Home',
-  activeColor,
-  labeled: false,
-  inactiveTintColor,
-  barStyle: styles.barStyle,
+  tabBarOptions: {
+    activeTintColor: activeColor,
+    inactiveTintColor,
+    showLabel: false,
+    showIcon: true,
+    style: styles.barStyle,
+  },
   defaultNavigationOptions: ({ navigation }) => ({
+    tabBarVisible: navigation.state.routeName !== 'Search',
     tabBarIcon: ({ focused, tintColor }) => {
       const { routeName } = navigation.state;
       let iconName;
