@@ -1,12 +1,11 @@
 import React from 'react';
-import { createMaterialTopTabNavigator } from 'react-navigation';
-import { createAppContainer } from 'react-navigation';
+import { Dimensions } from 'react-native';
+import { createAppContainer, createMaterialTopTabNavigator } from 'react-navigation';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import EventsRoute from '../Events';
 import GroupsRoute from '../Groups';
 import StarredRoute from '../Starred';
 import styles, { activeColor, inactiveTintColor } from './styles';
-
 
 const Home = createMaterialTopTabNavigator({
   Events: { screen: EventsRoute },
@@ -14,6 +13,8 @@ const Home = createMaterialTopTabNavigator({
   Starred: { screen: StarredRoute },
 }, {
   initialRouteName: 'Events',
+  lazy: true,
+  initialLayout: {width: Dimensions.get('window').width },
   tabBarOptions: {
     activeTintColor: activeColor,
     inactiveTintColor,
