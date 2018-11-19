@@ -133,7 +133,7 @@ const Form = (props) => {
                 >
                   {
                     frequency.map(freq => (
-                      <Picker.Item label={freq.name} value={freq.id} />
+                      <Picker.Item key={freq.id} label={freq.name} value={freq.id} />
                     ))
                   }
                 </Picker>
@@ -149,7 +149,7 @@ const Form = (props) => {
                 >
                   { (groups.length === 0) ? <Picker.Item label="No event group" value="" /> : 
                     groups.map(group => (
-                      <Picker.Item label={group.name} value={group.id} />
+                      <Picker.Item key={group.id} label={group.name} value={group.id} />
                     ))
                   }
                 </Picker>
@@ -175,7 +175,7 @@ const Form = (props) => {
                 >
                   {
                     eventTypes.map(type => (
-                      <Picker.Item label={type.name} value={type.id} />
+                      <Picker.Item key={type.id} label={type.name} value={type.id} />
                     ))
                   }
                 </Picker>

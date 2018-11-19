@@ -24,11 +24,11 @@ export default class Input extends React.Component {
   _hidePicker = (name) => this.setState({[name]: false});
   _showPicker = (name) => this.setState({[name]: true});
   _handleConfirmDate = (date) => {
-    this.props.onChangeDate(date);
+    this.props.onChangeDate(Date.parse(date));
     this._hidePicker('showDatePicker');
   }
   _handleConfirmTime = (date) => {
-    this.props.onChangeDate(date);
+    this.props.onChangeDate(Date.parse(date));
     this._hidePicker('showTimePicker');
   }
   
