@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Picker, ScrollView } from 'react-native';
+import { View, Picker, ScrollView , Alert} from 'react-native';
 import {
   Button,
   TextInput,
@@ -8,8 +8,8 @@ import {
   RadioButton
 } from 'react-native-paper';
 import DateTimeInput from '../../common/DateTimeInput';
-import RepeatDialog from '../../common/RepeatDialog';
 import { Formik } from 'formik';
+import { isEventValid } from '../../../lib/formValidator';
 import styles from './styles';
 import formSchema from './schema';
 import eventTypes from './types';
@@ -22,8 +22,8 @@ const defaultValues = {
   start: Date.now(),
   end: Date.now(),
   allDay: false,
-  type: '',
-  repeat: '',
+  type: eventTypes[0].id,
+  repeat: frequency[0].id,
   groupId: '',
 };
 
@@ -35,8 +35,9 @@ const Form = (props) => {
         initialValues={initialValues || defaultValues}
         validationSchema={formSchema}
         onSubmit={(values, { setSubmitting }) => {
-          // props.handleSubmit(values);
-          alert(JSON.stringify(values));
+          if (isEventValid(values)) {
+            // props.handleSubmit(values);
+          }
           setSubmitting(false);
         }}
       >
