@@ -1,0 +1,14 @@
+import React from 'react';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+import colors from '../../../config/colors';
+
+export default ({ name, hasNotification, color, size }) => {
+  if (hasNotification) return (
+    <Icon
+      name="notifications-active"
+      color={colors.notification}
+      size={size}
+    />
+  );
+  return <Icon name={name} size={size} color={color}/>
+};

@@ -6,5 +6,6 @@ export default {
   light_gray: '#f5f5f5',
   red: '#cc3300',
   primary: '#3f51b5',
-  primary_light: '#757de8'
+  primary_light: '#757de8',
+  notification: '#FA3E3E'
 }
