@@ -177,12 +177,12 @@ const Form = (props) => {
                 }
               </Picker>
               {
-                (!values.groupId) && (
+                (errors.groupId && touched.groupId) && (
                   <HelperText
                     type="error"
                     visible={true}
                   >
-                    Event group required!
+                    {errors.groupId}
                   </HelperText>
                 )
               }
