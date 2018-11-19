@@ -8,6 +8,7 @@ import {
   RadioButton
 } from 'react-native-paper';
 import DateTimeInput from '../../common/DateTimeInput';
+import RepeatDialog from '../../common/RepeatDialog';
 import { Formik } from 'formik';
 import styles from './styles';
 import formSchema from './schema';
