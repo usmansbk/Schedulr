@@ -1,6 +1,7 @@
 import React from 'react';
-import { Searchbar } from 'react-native-paper';
 import { View, StyleSheet } from 'react-native';
+import Searchbar from './SearchBar';
+import Tabs from './Tabs';
 
 export default (props) => (
   <View style={styles.container}>
@@ -8,9 +9,9 @@ export default (props) => (
       icon="arrow-back"
       placeholder="Search "
       value=""
-      style={styles.searchbar}
       onIconPress={() => props.navigation.goBack()}
     />
+    <Tabs />
   </View>
 );
 
@@ -18,7 +19,4 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  searchbar: {
-    elevation: 2
-  }
 });

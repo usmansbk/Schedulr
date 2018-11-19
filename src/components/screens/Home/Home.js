@@ -1,4 +1,5 @@
 import React from 'react';
+import { Dimensions } from 'react-native';
 import { createAppContainer, createBottomTabNavigator } from 'react-navigation';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import AccountRoute from '../../routes/Account';
@@ -14,6 +15,7 @@ const Home = createBottomTabNavigator({
   Account: { screen: AccountRoute }
 }, {
   initialRouteName: 'Home',
+  initialLayout: { height: 0, width: Dimensions.get('window').width },
   tabBarOptions: {
     activeTintColor: activeColor,
     inactiveTintColor,
