@@ -10,7 +10,7 @@ import {
 } from 'react-native-paper';
 import { Formik } from 'formik';
 import validationSchema from './schema';
-import styles from './styles';
+import styles, { navButtonColor } from './styles';
 
 const defaultValues = {
   name: '',
@@ -49,11 +49,13 @@ const Form = props => {
         <Appbar.Header style={styles.header}>
           <Button
             mode="outlined"
+            color={navButtonColor}
             onPress={handleCancel}
           >Cancel</Button>
           <Button
             loading={isSubmitting}
             mode="outlined"
+            color={navButtonColor}
             onPress={handleSubmit}
           >Create</Button>
         </Appbar.Header>

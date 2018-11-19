@@ -1,4 +1,7 @@
 import { StyleSheet } from 'react-native';
+import colors from '../../../config/colors';
+
+export const navButtonColor = colors.primary_light;
 
 export default StyleSheet.create({
   header: {

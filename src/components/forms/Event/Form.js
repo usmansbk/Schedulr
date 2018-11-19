@@ -15,7 +15,7 @@ import {
   canRepeat
 } from '../../../lib/formValidator';
 import { CANT_REPEAT } from '../../../lib/errorMessages';
-import styles from './styles';
+import styles, { navButtonColor } from './styles';
 import formSchema from './schema';
 import eventTypes from './types';
 import frequency from './frequency';
@@ -66,10 +66,12 @@ const Form = (props) => {
           <Button
             mode="outlined"
             onPress={handleCancel}
+            color={navButtonColor}
           >Cancel</Button>
           <Button
             loading={isSubmitting}
             mode="outlined"
+            color={navButtonColor}
             onPress={handleSubmit}
           >Create</Button>
         </Appbar.Header>
