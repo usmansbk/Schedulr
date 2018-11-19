@@ -29,14 +29,20 @@ const defaultValues = {
 };
 
 const Form = (props) => {
-  const { groups=[], initialValues } = props;
+  const {
+    loading,
+    groups=[],
+    initialValues,
+    handleSubmit,
+    handleCancel,
+  } = props;
   return (
       <Formik
         initialValues={initialValues || defaultValues}
         validationSchema={formSchema}
         onSubmit={(values, { setSubmitting }) => {
           if (isEventValid(values)) {
-            // props.handleSubmit(values);
+            handleSubmit && handleSubmit(values);
           }
           setSubmitting(false);
         }}
@@ -45,7 +51,7 @@ const Form = (props) => {
           values,
           errors,
           touched,
-          isSubmitting=props.loading,
+          isSubmitting=loading,
           handleSubmit,
           handleChange,
           handleBlur,
@@ -55,7 +61,7 @@ const Form = (props) => {
           <Appbar.Header style={styles.header}>
             <Button
               mode="outlined"
-              onPress={props.handleCancel}
+              onPress={handleCancel}
             >Cancel</Button>
             <Button
               loading={isSubmitting}
