@@ -6,7 +6,7 @@ import AccountRoute from '../../routes/Account';
 import SearchRoute from '../../routes/Search';
 import HomeRoute from '../../routes/Home';
 import NotificationRoute from '../../routes/Notifications';
-import styles, { activeColor } from './styles';
+import styles, { activeColor, inactiveTintColor } from './styles';
 
 const Home = createMaterialBottomTabNavigator({
   Home: { screen: HomeRoute },
@@ -16,6 +16,7 @@ const Home = createMaterialBottomTabNavigator({
 }, {
   initialRouteName: 'Home',
   activeColor,
+  inactiveTintColor,
   barStyle: styles.barStyle,
   defaultNavigationOptions: ({ navigation }) => ({
     tabBarIcon: ({ focused, horizontal, tintColor }) => {

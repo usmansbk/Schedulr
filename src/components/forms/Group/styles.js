@@ -8,7 +8,8 @@ export default StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     backgroundColor: '#fff',
-    paddingHorizontal: 16
+    paddingHorizontal: 16,
+    elevation: 2
   },
   form: {
     margin: 16
