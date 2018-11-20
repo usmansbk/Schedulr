@@ -3,19 +3,20 @@ import { Appbar } from 'react-native-paper';
 import Details from './Details';
 
 export default ({
-  id=1,
+  id,
   title='(No title)',
   date=`Tuesday, 20 November\n02:30 - 03:30`,
-  type='Work',
-  location="No location truly",
-  groupName='Dev Mode',
-  repeat='Never',
-  createdAt='Nov 20, 2018',
+  type,
+  location,
+  groupName,
+  groupId,
+  repeat,
+  createdAt,
   description='No description',
-  status='Ongoing',
+  status,
   starred,
-  starsCount=2000,
-  commentsCount=238,
+  starsCount,
+  commentsCount,
   handleBack,
   handleDelete,
   handleRepeat,
@@ -51,6 +52,7 @@ export default ({
       type={type}
       location={location}
       groupName={groupName}
+      groupId={groupId}
       repeat={repeat}
       createdAt={createdAt}
       description={description}

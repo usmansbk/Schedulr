@@ -7,11 +7,25 @@ export default class DetailsScreen extends React.Component {
   _handleEdit = () => alert('Edit');
   _handleRepeat = () => alert('Repeat');
   _handleCancel = () => alert('Cancel');
-  _navigateToGroup = () => alert('To group');
+  _navigateToGroup = (id) => (() => alert('To group ' + id));
 
   render() {
     return (
       <Details
+        id={1}
+        title='(No title)'
+        date={`Tuesday, 20 November\n02:30 - 03:30`}
+        type='Work'
+        location="No location truly"
+        groupName='Dev Mode'
+        groupId={2}
+        repeat='Never'
+        createdAt='Nov 20, 2018'
+        description='No description'
+        status='Ongoing'
+        starred
+        starsCount={2001}
+        commentsCount={239}
         handleBack={this._goBack}
         handleDelete={this._handleDelete}
         handleCancel={this._handleCancel}

@@ -11,6 +11,7 @@ export default ({
   type,
   location,
   groupName,
+  groupId,
   repeat,
   createdAt,
   description,
@@ -44,7 +45,7 @@ export default ({
             </View>
             <View style={styles.item}>
               <Text style={styles.label}>GROUP</Text>
-              <Text onPress={navigateToGroup} style={styles.value}>{groupName}</Text>
+              <Text onPress={navigateToGroup(groupId)} style={styles.value}>{groupName}</Text>
             </View>
             <View style={styles.item}>
               <Text style={styles.label}>REPEAT</Text>
