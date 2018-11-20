@@ -24,6 +24,8 @@ const defaultValues = {
   isAuthor: true,
 };
 
+const CREATED_DATE_FORMAT = "ddd DD, MMM YYYY, hh:mm a";
+
 export default class DetailsScreen extends React.Component {
   _goBack = () => this.props.navigation.goBack();
   _handleDelete = () => alert('Delete');
@@ -64,7 +66,7 @@ export default class DetailsScreen extends React.Component {
         groupName={group.name}
         groupId={group.id}
         repeat={repeat}
-        createdAt={moment(createdAt).format('MMM DD, YYYY')}
+        createdAt={moment(createdAt).format(CREATED_DATE_FORMAT)}
         description={description}
         starred={starred}
         starsCount={starsCount}
