@@ -11,6 +11,7 @@ const FONT_SIZE = 24;
 const color = colors.primary_dark;
 
 export default ({
+  title,
   starred=true,
   starsCount="2K",
   commentsCount="1K",
@@ -40,6 +41,7 @@ export default ({
     />
     <ShareButton
       id={id}
+      title={title}
       location={location}
       color={color}
       date={date}

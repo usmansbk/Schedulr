@@ -60,6 +60,7 @@ export default ({
           </View>
           <Actions
             id={id}
+            title={title}
             location={location}
             starred={starred}
             starsCount={starsCount}

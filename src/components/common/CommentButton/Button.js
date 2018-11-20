@@ -3,7 +3,7 @@ import { IconButton } from 'react-native-paper';
 import { View, Text, StyleSheet } from 'react-native';
 import colors from '../../../config/colors';
 
-export default ({ size, color, commentsCount, id}) => (
+export default ({ id, size, color, commentsCount, id}) => (
   <View style={styles.icon}>
     <IconButton
       icon="chat-bubble-outline"
