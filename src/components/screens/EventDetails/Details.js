@@ -29,8 +29,8 @@ const CREATED_DATE_FORMAT = "ddd DD, MMM YYYY, hh:mm a";
 export default class DetailsScreen extends React.Component {
   _goBack = () => this.props.navigation.goBack();
   _handleDelete = () => alert('Delete');
-  _handleEdit = () => alert('Edit');
-  _handleRepeat = () => alert('Repeat');
+  _handleEdit = () => this.props.navigation.navigate('NewEvent', { id: this.props.id });
+  _handleRepeat = () => this.props.navigation.navigate('NewEvent', { id: this.props.id });
   _handleCancel = () => alert('Cancel');
   _navigateToGroup = (id) => alert('To group ' + id);
   _navigateToComments = (id) => alert('To comments ' + id);

@@ -3,7 +3,7 @@ import { repeatLength } from './time';
 import { CANT_REPEAT, INVALID_START } from './errorMessages';
 
 export const canRepeat = (event) => {
-  if (event.repeat === 'ONCE') return true;
+  if (event.repeat === 'NEVER') return true;
   const duration = Math.abs(event.end - event.start);
   return duration < repeatLength(event.repeat);
 };
