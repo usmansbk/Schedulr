@@ -7,28 +7,38 @@ export default StyleSheet.create({
   },
   title: {
     fontWeight: 'bold',
+    fontSize: 30
   },
   date: {
     color: colors.gray,
+    fontWeight: 'bold',
+    fontSize: 16
+  },
+  status: {
+    fontFamily: 'sans-serif-light',
+    fontSize: 18,
   },
   head: {
-    marginVertical: 8,
+    marginVertical: 16,
+  },
+  body: {
+    marginVertical: 8
   },
   content: {
-    marginHorizontal: 16,
+    marginHorizontal: 20,
     marginVertical: 8
   },
   label: {
-    fontSize: 16,
+    fontSize: 14,
     fontFamily: 'sans-serif-light',
-    textTransform: 'uppercase',
     marginVertical: 2
   },
   value: {
-    fontSize: 16,
+    fontSize: 20,
     fontFamily: 'sans-serif-bold',
+    fontWeight: 'bold',
   },
   item: {
-    marginVertical: 8
+    marginVertical: 12
   }
 });
