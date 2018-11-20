@@ -6,7 +6,8 @@ import { formatDate } from '../../../lib/time';
 const defaultValues = {
   id: 1,
   title: '(No title)',
-  date: `Tuesday, 20 November\n02:30 - 03:30`,
+  start: new Date('11/10/2018'),
+  end: Date.now(),
   type: 'Work',
   location: null,
   group: {
@@ -16,7 +17,7 @@ const defaultValues = {
   repeat: 'Never',
   createdAt: Date.now(),
   description: 'No description',
-  isCancelled: false,
+  isCancelled: true,
   starred: false,
   starsCount: 2001,
   commentsCount: 240,
