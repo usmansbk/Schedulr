@@ -4,11 +4,11 @@ import { Text, Headline, Divider } from 'react-native-paper';
 import styles from './styles';
 
 export default ({
-  title='EEEN303',
+  title='Template',
   date=`Tuesday, 20 November\n02:30 - 03:30`,
   type='Lecture',
   location='No location set',
-  groupName='EEEN303',
+  groupName='Dev',
   repeat='Never',
   createdAt='Nov 20, 2018',
   description='No description',
