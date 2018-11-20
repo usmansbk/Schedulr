@@ -21,7 +21,7 @@ import eventTypes from './types';
 import frequency from './frequency';
 
 const defaultValues = {
-  name: '',
+  title: '',
   description: '',
   location: '',
   start: Date.now(),
@@ -79,17 +79,17 @@ const Form = (props) => {
         <ScrollView>
           <View style={styles.form}>
             <TextInput
-              placeholder="Event name"
-              value={values.name}
-              onChangeText={handleChange('name')}
-              onBlur={handleBlur('name')}
+              placeholder="Title"
+              value={values.title}
+              onChangeText={handleChange('title')}
+              onBlur={handleBlur('title')}
               mode="outlined"
             />
             <HelperText
               type="error"
-              visible={errors.name && touched.name}
+              visible={errors.title && touched.title}
             >
-            {errors.name}
+            {errors.title}
             </HelperText>
             <TextInput
               placeholder="Description"
@@ -141,7 +141,7 @@ const Form = (props) => {
             <View style={styles.pickerSpacing}>
               <Text style={styles.radioText}>Repetition</Text>
               <Picker
-                prompt="Repeat event"
+                prompt="Repeat"
                 selectedValue={values.repeat}
                 style={styles.picker}
                 itemStyle={styles.pickerItem}
@@ -165,9 +165,9 @@ const Form = (props) => {
               }
             </View>
             <View style={styles.pickerSpacing}>
-              <Text style={styles.radioText}>Event type</Text>
+              <Text style={styles.radioText}></Text>
               <Picker
-                prompt="Event type"
+                prompt="Type"
                 selectedValue={values.type}
                 style={styles.picker}
                 itemStyle={styles.pickerItem}
@@ -181,15 +181,15 @@ const Form = (props) => {
               </Picker>
             </View>
             <View style={styles.pickerSpacing}>
-              <Text style={styles.radioText}>Event group</Text>
+              <Text style={styles.radioText}>Group</Text>
               <Picker
-                prompt="Select event group"
+                prompt="Select a group"
                 selectedValue={values.groupId}
                 style={styles.picker}
                 itemStyle={styles.pickerItem}
                 onValueChange={itemValue => setFieldValue('groupId', itemValue)}
               >
-                <Picker.Item label={(groups.length === 0) ? "No event group" : "Select event group"} value="" />
+                <Picker.Item label={(groups.length === 0) ? "No group" : "Select a group"} value="" />
                 {
                   groups.map(group => (
                     <Picker.Item key={group.id} label={group.name} value={group.id} />
