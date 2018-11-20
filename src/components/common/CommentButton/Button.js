@@ -1,9 +1,9 @@
 import React from 'react';
 import { IconButton } from 'react-native-paper';
 import { View, Text, StyleSheet } from 'react-native';
-import colors from '../../../config/colors';
+import styles from '../../../config/styles';
 
-export default ({ id, size, color, commentsCount, id}) => (
+export default ({ id, color, commentsCount, id}) => (
   <View style={styles.icon}>
     <IconButton
       icon="chat-bubble-outline"
@@ -14,16 +14,3 @@ export default ({ id, size, color, commentsCount, id}) => (
     <Text style={styles.badge}>{commentsCount && commentsCount}</Text>
   </View>
 );
-
-const styles = StyleSheet.create({
-  icon: {
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    marginHorizontal: 8
-  },
-  badge: {
-    fontSize: 16,
-    color: colors.gray
-  }
-});

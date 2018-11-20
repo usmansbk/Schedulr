@@ -1,7 +1,7 @@
 import React from 'react';
 import { IconButton } from 'react-native-paper';
 import { View, Text, StyleSheet } from 'react-native';
-import colors from '../../../config/colors';
+import styles from '../../../config/styles';
 
 
 export default ({ color, starred, starsCount, id}) => (
@@ -15,16 +15,3 @@ export default ({ color, starred, starsCount, id}) => (
     <Text style={styles.badge}>{starsCount && starsCount}</Text>
   </View>
 );
-
-const styles = StyleSheet.create({
-  icon: {
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    marginHorizontal: 8
-  },
-  badge: {
-    fontSize: 16,
-    color: colors.gray
-  }
-});
