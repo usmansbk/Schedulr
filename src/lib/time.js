@@ -20,4 +20,17 @@ export const repeatLength = (repeat) => {
     case 'YEARLY': return moment().weeksInYear() * ONE_WEEK;
     default: return 0;
   }
+};
+
+export const formatDate = (start, end) => {
+  const isSameDay = moment(start).isSame(moment(end), 'day');
+  const isSameWeek = moment(start).isSame(moment(end), 'week');
+  const isSameMonth = moment(start).isSame(moment(end), 'month');
+  const isSameYear = moment(start).isSame(moment(end), 'year');
+  if (isSameDay && isSameMonth && isSameMonth) {
+    return `${moment(start).format('dddd, DD MMMM YYYY')}\n${moment(start).format('hh:mm a')} - ${moment(end).format('hh:mm a')}`
+  } else if (isSameWeek && isSameMonth && isSameYear) {
+    return `${moment(start).format('MMMM YYYY')}\n${moment(start).format('ddd DD, hh:mm a')} - ${moment(end).format('ddd DD, hh:mm a')}`
+  }
+  return `${moment(start).format('MMM Do YYYY, hh:mm a')} - ${moment(end).format('MMM Do YYYY, hh:mm a')}`  
 }

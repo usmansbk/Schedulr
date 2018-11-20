@@ -15,7 +15,7 @@ export default ({
   repeat,
   createdAt,
   description,
-  status,
+  isCancelled,
   starred,
   starsCount,
   commentsCount,
@@ -29,15 +29,12 @@ export default ({
       <View style={styles.container}>
         <View style={styles.content}>
           <View style={styles.head}>
+            { isCancelled && <Text style={styles.date}>Cancelled</Text>}
             <Headline style={styles.title}>{title}</Headline>
             <Text style={styles.date}>{date}</Text>
           </View>
           <Divider />
           <View style={styles.body}>
-            <View style={styles.item}>
-              <Text style={styles.label}>STATUS</Text>
-              <Text style={styles.value}>{status}</Text>
-            </View>
             <View style={styles.item}>
               <Text style={styles.label}>TYPE</Text>
               <Text style={styles.value}>{type}</Text>

@@ -1,6 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import Details from '../../routes/EventDetails';
+import { formatDate } from '../../../lib/time';
 
 const defaultValues = {
   id: 1,
@@ -43,7 +44,7 @@ export default class DetailsScreen extends React.Component {
     if (Date.now() < start) return PENDING;
     return ONGOING;
   };
-  _formatDate = (start, end) => { return `Tuesday, 20 November\n02:30 - 03:30`};
+  _formatDate = (start, end) => formatDate(start, end);
 
   render() {
     const {

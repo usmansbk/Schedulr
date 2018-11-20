@@ -19,6 +19,7 @@ export default ({
   commentsCount,
   isAuthor,
   isValid,
+  isCancelled,
   handleBack,
   handleDelete,
   handleRepeat,
@@ -32,7 +33,7 @@ export default ({
   <React.Fragment>
     <Appbar.Header>
       <Appbar.BackAction onPress={handleBack} />
-      <Appbar.Content />
+      <Appbar.Content title={isAuthor ? '' : 'Details'} />
       {
         isAuthor && (
           <React.Fragment>
@@ -81,6 +82,7 @@ export default ({
       starred={starred}
       starsCount={starsCount}
       commentsCount={commentsCount}
+      isCancelled={isCancelled}
       navigateToGroup={navigateToGroup}
       navigateToComments={navigateToComments}
       handleShare={handleShare}
