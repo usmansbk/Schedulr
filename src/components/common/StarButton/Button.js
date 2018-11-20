@@ -1,17 +1,12 @@
 import React from 'react';
-import { IconButton } from 'react-native-paper';
-import { View, Text } from 'react-native';
-import styles from '../../../config/styles';
-
+import IconBadge from '../IconBadge';
 
 export default ({ color, starred, starsCount, id}) => (
-  <View style={styles.icon}>
-    <IconButton
-      icon={`star${starred ? '' : '-border'}`}
-      onPress={() => alert('Starred ' + id)}
-      size={25}
-      color={color}
-    />
-    <Text style={styles.badge}>{starsCount && starsCount}</Text>
-  </View>
+  <IconBadge
+    icon={`star${starred ? '' : '-border'}`}
+    onPress={() => alert('Starred ' + id)}
+    size={25}
+    color={color}
+    count={starsCount}
+  />
 );

@@ -1,6 +1,5 @@
 import React from 'react';
 import moment from 'moment';
-import numeral from 'numeral';
 import Details from '../../routes/EventDetails';
 import { formatDate } from '../../../lib/time';
 
@@ -68,8 +67,8 @@ export default class DetailsScreen extends React.Component {
         createdAt={moment(createdAt).format('MMM DD, YYYY')}
         description={description}
         starred={starred}
-        starsCount={numeral(starsCount).format('0a')}
-        commentsCount={numeral(commentsCount).format('0a')}
+        starsCount={starsCount}
+        commentsCount={commentsCount}
         isAuthor={isAuthor}
         isValid={this._isValid(isCancelled, end)}
         isCancelled={isCancelled}
