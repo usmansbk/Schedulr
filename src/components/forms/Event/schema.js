@@ -1,7 +1,7 @@
 import * as Yup from 'yup';
 
 export default Yup.object().shape({
-  name: Yup.string()
+  title: Yup.string()
     .min(2, 'Too Short')
     .max(50, 'Too Long')
     .required('Title is required'),
