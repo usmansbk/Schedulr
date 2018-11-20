@@ -23,6 +23,7 @@ export default ({
   handleEdit,
   handleCancel,
   handleShare,
+  handleMaps,
   navigateToGroup,
   navigateToComments,
 }) => (
@@ -65,6 +66,7 @@ export default ({
       navigateToGroup={navigateToGroup}
       navigateToComments={navigateToComments}
       handleShare={handleShare}
+      handleMaps={handleMaps}
     />
   </React.Fragment>
 )

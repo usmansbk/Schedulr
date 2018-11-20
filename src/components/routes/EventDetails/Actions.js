@@ -3,7 +3,6 @@ import { View, StyleSheet } from 'react-native';
 import { IconButton } from 'react-native-paper';
 import StarButton from '../../common/StarButton';
 import CommentButton from '../../common/CommentButton';
-import LocationButton from '../../common/LocationButton';
 
 import colors from '../../../config/colors';
 
@@ -19,6 +18,7 @@ export default ({
   date,
   id,
   handleShare,
+  handleMaps,
   navigateToComments,
 }) => (
   <View style={styles.actions}>
@@ -36,10 +36,10 @@ export default ({
       color={color}
       onPress={() => navigateToComments(id)}
     />
-    <LocationButton
-      id={id}
-      location={location}
-      size={FONT_SIZE}
+    <IconButton
+      disabled={!location}
+      icon={`location-${location ? 'on' : 'off'}`}
+      onPress={() => handleMaps(location)}
       color={color}
     />
     <IconButton

@@ -22,6 +22,7 @@ export default ({
   navigateToGroup,
   navigateToComments,
   handleShare,
+  handleMaps,
 }) => {
   return (
     <ScrollView>
@@ -71,6 +72,7 @@ export default ({
             commentsCount={commentsCount}
             date={date}
             handleShare={handleShare}
+            handleMaps={handleMaps}
             navigateToComments={navigateToComments}
           />
         </View>
