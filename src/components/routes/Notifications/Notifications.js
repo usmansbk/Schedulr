@@ -1,9 +1,16 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
+import { Appbar } from 'react-native-paper';
 import FAB from '../../common/Fab';
 
-export default () => (
+export default (props) => (
   <View style={styles.container}>
+    <Appbar.Header>
+      <Appbar.BackAction
+        onPress={() => props.navigation.goBack()}
+      />
+      <Appbar.Content title="Notifications" />
+    </Appbar.Header>
     <FAB
       small
       style={styles.fab}
