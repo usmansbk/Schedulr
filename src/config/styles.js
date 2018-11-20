@@ -12,7 +12,7 @@ export default StyleSheet.create({
     alignItems: 'center',
   },
   badge: {
-    fontSize: 16,
+    fontSize: 14,
     color: colors.gray
   }
 });
