@@ -7,10 +7,15 @@ const FONT_SIZE = 24;
 const color = colors.primary_dark;
 const handlePress = () => console.log('action');
 
-export default props => (
+export default ({
+  starred,
+  starsCount,
+  commentsCount,
+  location
+}) => (
   <View style={styles.actions}>
     <IconButton
-      icon={`star${props.starred ? '' : '-border'}`}
+      icon={`star${starred ? '' : '-border'}`}
       size={FONT_SIZE}
       color={color}
       onPress={handlePress}
@@ -22,7 +27,7 @@ export default props => (
       onPress={handlePress}
     />
     <IconButton
-      icon={`location-${props.location ? 'on' : 'off' }`}
+      icon={`location-${location ? 'on' : 'off' }`}
       size={FONT_SIZE}
       color={color}
       onPress={handlePress}

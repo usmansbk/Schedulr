@@ -5,15 +5,19 @@ import Actions from './Actions';
 import styles from './styles';
 
 export default ({
+  id,
   title='(No title)',
   date=`Tuesday, 20 November\n02:30 - 03:30`,
   type='Work',
-  location='No location set',
+  location,
   groupName='Dev Mode',
   repeat='Never',
   createdAt='Nov 20, 2018',
   description='No description',
-  status='Ongoing'
+  status='Ongoing',
+  starred,
+  starsCount,
+  commentsCount,
 }) => {
   return (
     <ScrollView>
@@ -32,7 +36,7 @@ export default ({
             </View>
             <View style={styles.item}>
               <Text style={styles.label}>LOCATION</Text>
-              <Text style={styles.value}>{location}</Text>
+              <Text style={styles.value}>{location || 'No location set'}</Text>
             </View>
             <View style={styles.item}>
               <Text style={styles.label}>GROUP</Text>
@@ -51,7 +55,13 @@ export default ({
               <Text style={styles.value}>{description}</Text>
             </View>
           </View>
-          <Actions />
+          <Actions
+            id={id}
+            location={location}
+            starred={starred}
+            starsCount={starsCount}
+            commentsCount={commentsCount}
+          />
         </View>
       </View>
     </ScrollView>
