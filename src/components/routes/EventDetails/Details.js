@@ -6,18 +6,19 @@ import styles from './styles';
 
 export default ({
   id,
-  title='(No title)',
-  date=`Tuesday, 20 November\n02:30 - 03:30`,
-  type='Work',
+  title,
+  date,
+  type,
   location,
-  groupName='Dev Mode',
-  repeat='Never',
-  createdAt='Nov 20, 2018',
-  description='No description',
-  status='Ongoing',
+  groupName,
+  repeat,
+  createdAt,
+  description,
+  status,
   starred,
   starsCount,
   commentsCount,
+  navigateToGroup,
 }) => {
   return (
     <ScrollView>
@@ -43,7 +44,7 @@ export default ({
             </View>
             <View style={styles.item}>
               <Text style={styles.label}>GROUP</Text>
-              <Text style={styles.value}>{groupName}</Text>
+              <Text onPress={navigateToGroup} style={styles.value}>{groupName}</Text>
             </View>
             <View style={styles.item}>
               <Text style={styles.label}>REPEAT</Text>

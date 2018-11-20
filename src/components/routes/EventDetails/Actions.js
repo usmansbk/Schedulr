@@ -12,9 +12,9 @@ const color = colors.primary_dark;
 
 export default ({
   title,
-  starred=true,
-  starsCount="2K",
-  commentsCount="1K",
+  starred,
+  starsCount,
+  commentsCount,
   location,
   date,
   id,
