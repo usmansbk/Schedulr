@@ -26,10 +26,13 @@ export default ({
           <View style={styles.head}>
             <Headline style={styles.title}>{title}</Headline>
             <Text style={styles.date}>{date}</Text>
-            <Text style={styles.status}>{status}</Text>
           </View>
           <Divider />
           <View style={styles.body}>
+            <View style={styles.item}>
+              <Text style={styles.label}>STATUS</Text>
+              <Text style={styles.value}>{status}</Text>
+            </View>
             <View style={styles.item}>
               <Text style={styles.label}>TYPE</Text>
               <Text style={styles.value}>{type}</Text>
