@@ -3,20 +3,32 @@ import { Appbar } from 'react-native-paper';
 import Details from './Details';
 
 export default class Screen extends React.Component {
+  _handleDelete = () => console.log('Delete');
+  _handleEdit = () => console.log('Edit');
+  _handleRepeat = () => console.log('Repeat');
+  _handleShare = () => console.log('Share');
+
   render() {
     return (
       <React.Fragment>
         <Appbar.Header>
           <Appbar.BackAction onPress={this.props.handleBack} />
-          <Appbar.Content title="Details" />
-          <Appbar.Action
-            icon="share"
-          />
+          <Appbar.Content />
           <Appbar.Action
             icon="delete"
+            onPress={this._handleDelete}
           />
           <Appbar.Action
-            icon="more-vert"
+            icon="repeat"
+            onPress={this._handleRepeat}
+          />
+          <Appbar.Action
+            icon="mode-edit"
+            onPress={this._handleEdit}
+          />
+          <Appbar.Action
+            icon="close"
+            onPress={this._handleCancel}
           />
         </Appbar.Header>
         <Details />

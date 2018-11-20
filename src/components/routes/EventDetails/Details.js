@@ -64,6 +64,7 @@ export default ({
             starred={starred}
             starsCount={starsCount}
             commentsCount={commentsCount}
+            date={date}
           />
         </View>
       </View>

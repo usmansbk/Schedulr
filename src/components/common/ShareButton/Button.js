@@ -2,12 +2,16 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { IconButton } from 'react-native-paper';
 
-export default ({ location, size, color }) => (
+export default ({
+  location,
+  size,
+  date,
+  color,
+}) => (
   <View style={styles.icon}>
     <IconButton
-      disabled={!location}
-      icon={`location-${location ? 'on' : 'off'}`}
-      onPress={() => alert(location ? location : 'No address set')}
+      icon="share"
+      onPress={() => alert('share event')}
       color={color}
     />
   </View>
