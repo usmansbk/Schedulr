@@ -7,7 +7,7 @@ export default ({ id, color, commentsCount}) => (
   <View style={styles.icon}>
     <IconButton
       icon="chat-bubble-outline"
-      onPress={() => alert('add comment')}
+      onPress={() => alert('add comment ' + id)}
       size={20}
       color={color}
     />

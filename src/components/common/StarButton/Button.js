@@ -8,7 +8,7 @@ export default ({ color, starred, starsCount, id}) => (
   <View style={styles.icon}>
     <IconButton
       icon={`star${starred ? '' : '-border'}`}
-      onPress={() => alert('Starred')}
+      onPress={() => alert('Starred ' + id)}
       size={25}
       color={color}
     />
