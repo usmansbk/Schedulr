@@ -7,7 +7,7 @@ import SearchRoute from '../../routes/Search';
 import HomeRoute from '../../routes/Home';
 import NotificationRoute from '../../routes/Notifications';
 import NotificationsIcon from '../../common/NotificationIcon';
-import styles, { activeColor, inactiveTintColor } from './styles';
+import styles, { activeColor, inactiveTintColor, FONT_SIZE } from './styles';
 
 const Home = createBottomTabNavigator({
   Home: { screen: HomeRoute },
@@ -35,11 +35,13 @@ const Home = createBottomTabNavigator({
         iconName = 'search';
       } else if (routeName === 'Notifications') {
         iconName = `notifications${focused ? '' : '-none'}`;
-        return <NotificationsIcon name={iconName} focused={focused} size={25} color={tintColor}/>
+        return (
+          <NotificationsIcon name={iconName} focused={focused} size={FONT_SIZE} color={tintColor}/>
+        );
       } else if (routeName === 'Account') {
         iconName = 'menu';
       }
-      return <Icon name={iconName} size={25} color={tintColor} />
+      return <Icon name={iconName} size={FONT_SIZE} color={tintColor} />
     }
   }),
 });
