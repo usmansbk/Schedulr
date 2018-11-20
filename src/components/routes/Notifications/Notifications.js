@@ -15,7 +15,7 @@ export default (props) => (
       small
       style={styles.fab}
       icon="clear-all"
-      onPress={() => props.navigation.navigate('NewEvent')}
+      onPress={() => alert('Clear Notifications')}
     />
   </View>
 );
