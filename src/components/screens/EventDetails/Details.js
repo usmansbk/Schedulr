@@ -1,6 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import Details from '../../routes/EventDetails';
+import DeleteDialog from '../../dialogs/DeleteEvent';
 import { formatDate } from '../../../lib/time';
 
 const defaultValues = {
@@ -27,8 +28,11 @@ const defaultValues = {
 const CREATED_DATE_FORMAT = "ddd DD, MMM YYYY, hh:mm a";
 
 export default class DetailsScreen extends React.Component {
+  state = {
+    visibleDialog: null,
+  }
   _goBack = () => this.props.navigation.goBack();
-  _handleDelete = () => alert('Delete');
+  _handleDelete = () => this.setState({ visibleDialog: 'delete' });
   _handleEdit = () => this.props.navigation.navigate('NewEvent', { id: this.props.id });
   _handleRepeat = () => this.props.navigation.navigate('NewEvent', { id: this.props.id });
   _handleCancel = () => alert('Cancel');
@@ -39,6 +43,7 @@ export default class DetailsScreen extends React.Component {
   _isValid = (isCancelled, end) => (!isCancelled) && (Date.now() < end);
   
   render() {
+    const { visibleDialog } = this.state;
     const {
       id,
       title,
@@ -57,6 +62,7 @@ export default class DetailsScreen extends React.Component {
       isAuthor,
     } = defaultValues;
     return (
+      <React.Fragment>
       <Details
         id={id}
         title={title}
@@ -84,6 +90,11 @@ export default class DetailsScreen extends React.Component {
         handleShare={this._handleShare}
         handleMaps={this._handleMaps}
       />
+      <DeleteDialog
+        visible={this.state.visibleDialog === 'delete'}
+        handleDismiss={() => this.setState({ visibleDialog: null})}
+      />
+      </React.Fragment>
     )
   }
 }
