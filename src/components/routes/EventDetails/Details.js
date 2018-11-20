@@ -25,6 +25,7 @@ export default ({
   handleMaps,
 }) => {
   return (
+    <React.Fragment>
     <ScrollView>
       <View style={styles.container}>
         <View style={styles.content}>
@@ -60,20 +61,22 @@ export default ({
               <Text style={styles.value}>{description || 'No description'}</Text>
             </View>
           </View>
-          <Actions
-            id={id}
-            title={title}
-            location={location}
-            starred={starred}
-            starsCount={starsCount}
-            commentsCount={commentsCount}
-            date={date}
-            handleShare={handleShare}
-            handleMaps={handleMaps}
-            navigateToComments={navigateToComments}
-          />
         </View>
       </View>
     </ScrollView>
+    <Divider />
+    <Actions
+      id={id}
+      title={title}
+      location={location}
+      starred={starred}
+      starsCount={starsCount}
+      commentsCount={commentsCount}
+      date={date}
+      handleShare={handleShare}
+      handleMaps={handleMaps}
+      navigateToComments={navigateToComments}
+    />
+    </React.Fragment>
   );
 }
