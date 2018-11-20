@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, ScrollView } from 'react-native';
 import { Text, Headline, Divider } from 'react-native-paper';
+import Actions from './Actions';
 import styles from './styles';
 
 export default ({
@@ -50,6 +51,7 @@ export default ({
               <Text style={styles.value}>{description}</Text>
             </View>
           </View>
+          <Actions />
         </View>
       </View>
     </ScrollView>
