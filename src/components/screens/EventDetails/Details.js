@@ -8,7 +8,7 @@ const defaultValues = {
   id: 1,
   title: '(No title)',
   start: new Date('11/10/2018'),
-  end: Date.now(),
+  end: new Date('11/10/2018'),
   type: 'Work',
   location: null,
   group: {
@@ -18,10 +18,10 @@ const defaultValues = {
   repeat: 'Never',
   createdAt: Date.now(),
   description: 'No description',
-  isCancelled: true,
+  isCancelled: false,
   starred: false,
   starsCount: 2001,
-  commentsCount: 240,
+  commentsCount: 2400000,
   isAuthor: true,
 };
 
