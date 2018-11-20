@@ -24,7 +24,7 @@ export default ({
       color={color}
     />
     <CommentButton
-      commentsCount={23}
+      commentsCount={commentsCount}
       size={FONT_SIZE}
       color={color}
     />
