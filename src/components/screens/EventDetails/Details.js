@@ -7,7 +7,9 @@ export default class DetailsScreen extends React.Component {
   _handleEdit = () => alert('Edit');
   _handleRepeat = () => alert('Repeat');
   _handleCancel = () => alert('Cancel');
-  _navigateToGroup = (id) => (() => alert('To group ' + id));
+  _navigateToGroup = (id) => alert('To group ' + id);
+  _navigateToComments = (id) => alert('To comments ' + id);
+  _handleShare = ({title, location, date, id}) =>  alert(`${title} - ${location} - ${date} - ${id}`);
 
   render() {
     return (
@@ -32,6 +34,8 @@ export default class DetailsScreen extends React.Component {
         handleEdit={this._handleEdit}
         handleRepeat={this._handleRepeat}
         navigateToGroup={this._navigateToGroup}
+        navigateToComments={this._navigateToComments}
+        handleShare={this._handleShare}
       />
     )
   }

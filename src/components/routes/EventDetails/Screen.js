@@ -22,7 +22,9 @@ export default ({
   handleRepeat,
   handleEdit,
   handleCancel,
-  navigateToGroup
+  handleShare,
+  navigateToGroup,
+  navigateToComments,
 }) => (
   <React.Fragment>
     <Appbar.Header>
@@ -61,6 +63,8 @@ export default ({
       starsCount={starsCount}
       commentsCount={commentsCount}
       navigateToGroup={navigateToGroup}
+      navigateToComments={navigateToComments}
+      handleShare={handleShare}
     />
   </React.Fragment>
 )

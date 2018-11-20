@@ -1,9 +1,9 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
+import { IconButton } from 'react-native-paper';
 import StarButton from '../../common/StarButton';
 import CommentButton from '../../common/CommentButton';
 import LocationButton from '../../common/LocationButton';
-import ShareButton from '../../common/ShareButton';
 
 import colors from '../../../config/colors';
 
@@ -18,6 +18,8 @@ export default ({
   location,
   date,
   id,
+  handleShare,
+  navigateToComments,
 }) => (
   <View style={styles.actions}>
     <StarButton
@@ -32,6 +34,7 @@ export default ({
       commentsCount={commentsCount}
       size={FONT_SIZE}
       color={color}
+      onPress={() => navigateToComments(id)}
     />
     <LocationButton
       id={id}
@@ -39,12 +42,10 @@ export default ({
       size={FONT_SIZE}
       color={color}
     />
-    <ShareButton
-      id={id}
-      title={title}
-      location={location}
+    <IconButton
+      icon="share"
+      onPress={() => handleShare({ location, id, title, date })}
       color={color}
-      date={date}
     />
   </View>
 );
