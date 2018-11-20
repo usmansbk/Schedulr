@@ -6,7 +6,7 @@ export default ({ name, hasNotification, color, focused, size }) => {
   if (hasNotification && !focused) return (
     <Icon
       name="notifications-active"
-      color={colors.notification}
+      color={colors.light_red}
       size={size}
     />
   );
