@@ -25,11 +25,6 @@ const defaultValues = {
   isAuthor: true,
 };
 
-const CANCELLED = 'Cancelled';
-const ONGOING = 'Ongoing';
-const PENDING = 'Pending';
-const EXPIRED = 'Expired';
-
 export default class DetailsScreen extends React.Component {
   _goBack = () => this.props.navigation.goBack();
   _handleDelete = () => alert('Delete');
@@ -40,14 +35,8 @@ export default class DetailsScreen extends React.Component {
   _navigateToComments = (id) => alert('To comments ' + id);
   _handleShare = ({title, location, date, id}) =>  alert(`${title} - ${location} - ${date} - ${id}`);
   _handleMaps = (location) => alert('Open map to ' + location);
-  _getStatus = (isCancelled, start, end) => {
-    if (isCancelled) return CANCELLED;
-    if (Date.now() > end) return EXPIRED;
-    if (Date.now() < start) return PENDING;
-    return ONGOING;
-  };
-  _formatDate = (start, end) => formatDate(start, end);
-
+  _isValid = (isCancelled, end) => (!isCancelled) && (Date.now() < end);
+  
   render() {
     const {
       id,
@@ -66,14 +55,11 @@ export default class DetailsScreen extends React.Component {
       commentsCount,
       isAuthor,
     } = defaultValues;
-    const eventStatus = this._getStatus(isCancelled, start, end);
-    const formattedDate = this._formatDate(start, end);
-    const isValid = (eventStatus === ONGOING) || (eventStatus === PENDING);
     return (
       <Details
         id={id}
         title={title}
-        date={formattedDate}
+        date={formatDate(start, end)}
         type={type}
         location={location}
         groupName={group.name}
@@ -81,12 +67,11 @@ export default class DetailsScreen extends React.Component {
         repeat={repeat}
         createdAt={moment(createdAt).format('MMM DD, YYYY')}
         description={description}
-        status={eventStatus}
         starred={starred}
         starsCount={numeral(starsCount).format('0a')}
         commentsCount={numeral(commentsCount).format('0a')}
         isAuthor={isAuthor}
-        isValid={isValid}
+        isValid={this._isValid(isCancelled, end)}
         isCancelled={isCancelled}
         handleBack={this._goBack}
         handleDelete={this._handleDelete}

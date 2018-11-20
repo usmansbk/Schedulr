@@ -13,7 +13,6 @@ export default ({
   repeat,
   createdAt,
   description,
-  status,
   starred,
   starsCount,
   commentsCount,
@@ -78,7 +77,6 @@ export default ({
       repeat={repeat}
       createdAt={createdAt}
       description={description}
-      status={status}
       starred={starred}
       starsCount={starsCount}
       commentsCount={commentsCount}
