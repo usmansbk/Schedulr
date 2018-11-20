@@ -5,6 +5,7 @@ import Starred from './Starred';
 import Home from './Home';
 import Search from './Search';
 import Notifications from './Notifications';
+import EventDetails from './EventDetails';
 
 export {
   Account,
@@ -13,5 +14,6 @@ export {
   Starred,
   Search,
   Home,
-  Notifications
+  Notifications,
+  EventDetails
 };
