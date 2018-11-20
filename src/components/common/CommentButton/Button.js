@@ -1,6 +1,6 @@
 import React from 'react';
 import { IconButton } from 'react-native-paper';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text } from 'react-native';
 import styles from '../../../config/styles';
 
 export default ({ id, color, commentsCount, id}) => (
