@@ -19,7 +19,8 @@ const styles = StyleSheet.create({
   icon: {
     flexDirection: 'row',
     justifyContent: 'flex-start',
-    alignItems: 'center'
+    alignItems: 'center',
+    marginHorizontal: 8
   },
   badge: {
     fontSize: 16,

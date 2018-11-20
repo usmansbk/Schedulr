@@ -4,7 +4,7 @@ import { View, Text, StyleSheet } from 'react-native';
 import colors from '../../../config/colors';
 
 
-export default ({ size, color, starred, starsCount, id}) => (
+export default ({ color, starred, starsCount, id}) => (
   <View style={styles.icon}>
     <IconButton
       icon={`star${starred ? '' : '-border'}`}
@@ -20,7 +20,8 @@ const styles = StyleSheet.create({
   icon: {
     flexDirection: 'row',
     justifyContent: 'flex-start',
-    alignItems: 'center'
+    alignItems: 'center',
+    marginHorizontal: 8
   },
   badge: {
     fontSize: 16,
