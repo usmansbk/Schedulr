@@ -165,7 +165,7 @@ const Form = (props) => {
               }
             </View>
             <View style={styles.pickerSpacing}>
-              <Text style={styles.radioText}></Text>
+              <Text style={styles.radioText}>Type</Text>
               <Picker
                 prompt="Type"
                 selectedValue={values.type}
