@@ -4,15 +4,15 @@ import Details from './Details';
 
 export default ({
   id,
-  title='(No title)',
-  date=`Tuesday, 20 November\n02:30 - 03:30`,
+  title,
+  date,
   type,
   location,
   groupName,
   groupId,
   repeat,
   createdAt,
-  description='No description',
+  description,
   status,
   starred,
   starsCount,

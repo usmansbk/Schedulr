@@ -57,7 +57,7 @@ export default ({
             </View>
             <View style={styles.item}>
               <Text style={styles.label}>DESCRIPTION</Text>
-              <Text style={styles.value}>{description}</Text>
+              <Text style={styles.value}>{description || 'No description'}</Text>
             </View>
           </View>
           <Actions
