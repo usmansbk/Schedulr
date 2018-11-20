@@ -1,11 +1,14 @@
 import React from 'react';
 import { IconButton } from 'react-native-paper';
 import { View, StyleSheet } from 'react-native';
+import StarButton from '../../common/StarButton';
+import CommentButton from '../../common/CommentButton';
+import LocationButton from '../../common/LocationButton';
+
 import colors from '../../../config/colors';
 
 const FONT_SIZE = 24;
 const color = colors.primary_dark;
-const handlePress = () => console.log('action');
 
 export default ({
   starred,
@@ -14,23 +17,21 @@ export default ({
   location
 }) => (
   <View style={styles.actions}>
-    <IconButton
-      icon={`star${starred ? '' : '-border'}`}
+    <StarButton
+      starred={starred}
+      starsCount={starsCount}
       size={FONT_SIZE}
       color={color}
-      onPress={handlePress}
     />
-    <IconButton
-      icon="chat"
+    <CommentButton
+      commentsCount={23}
       size={FONT_SIZE}
       color={color}
-      onPress={handlePress}
     />
-    <IconButton
-      icon={`location-${location ? 'on' : 'off' }`}
+    <LocationButton
+      location={location}
       size={FONT_SIZE}
       color={color}
-      onPress={handlePress}
     />
   </View>
 );
