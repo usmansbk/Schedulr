@@ -23,14 +23,14 @@ const Form = ({
   initialValues,
   loading,
   handleCancel,
-  handleSubmit,
+  onSubmit,
   isEdit,
 }) => (
   <Formik
     initialValues={initialValues || defaultValues}
     validationSchema={validationSchema}
     onSubmit={(values, { setSubmitting }) => {
-      //   handleSubmit && handleSubmit(values);
+      onSubmit && onSubmit(values);
       setSubmitting(false);
     }}
   >

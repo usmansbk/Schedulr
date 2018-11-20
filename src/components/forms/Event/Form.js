@@ -36,7 +36,7 @@ const Form = ({
   loading,
   groups=[],
   initialValues,
-  handleSubmit,
+  onSubmit,
   handleCancel,
   isEdit
 }) => (
@@ -45,7 +45,7 @@ const Form = ({
     validationSchema={formSchema}
     onSubmit={(values, { setSubmitting }) => {
       if (isEventValid(values)) {
-        handleSubmit && handleSubmit(values);
+        onSubmit && onSubmit(values);
       }
       setSubmitting(false);
     }}
