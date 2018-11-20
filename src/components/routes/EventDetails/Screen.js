@@ -6,7 +6,7 @@ export default class Screen extends React.Component {
   _handleDelete = () => console.log('Delete');
   _handleEdit = () => console.log('Edit');
   _handleRepeat = () => console.log('Repeat');
-  _handleShare = () => console.log('Share');
+  _handleCancel = () => console.log('Cancel');
 
   render() {
     return (
