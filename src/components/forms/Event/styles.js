@@ -14,7 +14,6 @@ export default StyleSheet.create({
   text: {
     color: colors.primary,
     marginVertical: 8,
-    fontWeight: 'bold'
   },
   input: {
     marginVertical: 8,
@@ -26,7 +25,6 @@ export default StyleSheet.create({
   },
   radioText: {
     color: colors.primary,
-    fontWeight: 'bold',
     marginRight: 16
   },
   pickerSpacing: {
