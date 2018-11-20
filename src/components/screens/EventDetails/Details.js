@@ -7,8 +7,8 @@ import { formatDate } from '../../../lib/time';
 const defaultValues = {
   id: 1,
   title: '(No title)',
-  start: new Date('11/10/2018'),
-  end: new Date('11/10/2018'),
+  start: new Date('11/21/2018'),
+  end: new Date('11/22/2018'),
   type: 'Work',
   location: null,
   group: {
