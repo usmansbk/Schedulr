@@ -1,5 +1,5 @@
 export default [
-  { name: 'Never', id: 'ONCE' },
+  { name: 'Never', id: 'NEVER' },
   { name: 'Daily', id: 'DAILY' },
   { name: 'Weekly', id: 'WEEKLY' },
   { name: 'Monthly', id: 'MONTHLY' },
