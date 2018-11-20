@@ -1,5 +1,6 @@
 import React from 'react';
 import moment from 'moment';
+import numeral from 'numeral';
 import Details from '../../routes/EventDetails';
 import { formatDate } from '../../../lib/time';
 
@@ -82,8 +83,8 @@ export default class DetailsScreen extends React.Component {
         description={description}
         status={eventStatus}
         starred={starred}
-        starsCount={starsCount}
-        commentsCount={commentsCount}
+        starsCount={numeral(starsCount).format('0a')}
+        commentsCount={numeral(commentsCount).format('0a')}
         isAuthor={isAuthor}
         isValid={isValid}
         isCancelled={isCancelled}
