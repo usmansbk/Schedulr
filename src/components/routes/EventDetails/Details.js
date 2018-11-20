@@ -7,11 +7,11 @@ export default ({
   title='EEEN303',
   date=`Tuesday, 20 November\n02:30 - 03:30`,
   type='Lecture',
-  location,
+  location='No location set',
   groupName='EEEN303',
   repeat='Never',
   createdAt='Nov 20, 2018',
-  description,
+  description='No description',
   status='Ongoing'
 }) => {
   return (
@@ -31,7 +31,7 @@ export default ({
             </View>
             <View style={styles.item}>
               <Text style={styles.label}>LOCATION</Text>
-              <Text style={styles.value}>{ location || 'No location set'}</Text>
+              <Text style={styles.value}>{location}</Text>
             </View>
             <View style={styles.item}>
               <Text style={styles.label}>GROUP</Text>
@@ -47,7 +47,7 @@ export default ({
             </View>
             <View style={styles.item}>
               <Text style={styles.label}>DESCRIPTION</Text>
-              <Text style={styles.value}>{ description || 'No description' }</Text>
+              <Text style={styles.value}>{description}</Text>
             </View>
           </View>
         </View>
