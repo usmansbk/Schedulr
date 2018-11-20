@@ -19,6 +19,8 @@ export default StyleSheet.create({
     justifyContent: 'space-between',
   },
   text: {
-    fontSize: 18
+    fontSize: 16,
+    color: colors.gray,
+    fontFamily: 'sans-serif-light'
   }
 });
