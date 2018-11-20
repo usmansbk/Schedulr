@@ -15,7 +15,7 @@ const defaultValues = {
     id: 2,
   },
   repeat: 'Never',
-  createdAt: Date.now(),
+  createdAt: new Date('11/20/2018'),
   description: 'No description',
   isCancelled: false,
   starred: false,
