@@ -1,10 +1,12 @@
 import React from 'react';
 import moment from 'moment';
+import Share from 'react-native-share';
 import Details from '../../routes/EventDetails';
 import DeleteDialog from '../../dialogs/DeleteEvent';
 import CancelDialog from '../../dialogs/CancelEvent';
 import EditDialog from '../../dialogs/EditEvent';
 import { formatDate } from '../../../lib/time';
+import env from '../../../config/env';
 
 const defaultValues = {
   id: 1,
@@ -17,6 +19,7 @@ const defaultValues = {
     name: 'Dev Mode',
     id: 2,
   },
+  allDay: false,
   repeat: 'Never',
   createdAt: new Date('11/20/2018'),
   description: 'No description',
@@ -42,7 +45,14 @@ export default class DetailsScreen extends React.Component {
   _handleCancel = ({ id, option }) => alert(`${id} - ${option}`);
   _navigateToGroup = (id) => alert('To group ' + id);
   _navigateToComments = (id) => alert('To comments ' + id);
-  _handleShare = ({title, location, date, id}) =>  alert(`${title} - ${location} - ${date} - ${id}`);
+  _handleShare = ({title, location, date, id}) =>  {
+    const shareOptions = {
+      title,
+      message: `${date}\n${location ? location : ''}`,
+      url: `${env.APP_URL}/event/${id}`
+    };
+    Share.shareSingle(shareOptions);
+  }
   _handleMaps = (location) => alert('Open map to ' + location);
   _isValid = (isCancelled, end) => (!isCancelled) && (Date.now() < end);
   _hideDialog = () => this.setState({ visibleDialog: false });
@@ -59,6 +69,7 @@ export default class DetailsScreen extends React.Component {
       group,
       repeat,
       createdAt,
+      allDay,
       description,
       isCancelled,
       starred,
@@ -71,7 +82,7 @@ export default class DetailsScreen extends React.Component {
       <Details
         id={id}
         title={title}
-        date={formatDate(start, end)}
+        date={formatDate(start, end, allDay)}
         type={type}
         location={location}
         groupName={group.name}
