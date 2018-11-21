@@ -7,7 +7,7 @@ export default {
     ...DefaultTheme.colors,
     primary: colors.primary,
     accent: colors.primary_light,
-    error: colors.red,
+    error: colors.light_red,
     text: colors.black,
   }
 };

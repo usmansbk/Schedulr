@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from "moment";
 import { View, Picker, ScrollView } from 'react-native';
 import {
   Button,
@@ -131,7 +132,11 @@ const Form = ({
             <RadioButton
               value='allDay'
               onPress={() => {
-                setFieldValue('allDay', !values.allDay)
+                const { allDay } = values;
+                setFieldValue('allDay', !allDay);
+                if (!allDay) {
+                  setFieldValue('end', moment(values.start).endOf('day').unix());
+                }
               }}
               status={values.allDay ? 'checked' : 'unchecked'}
             />

@@ -22,16 +22,14 @@ export const repeatLength = (repeat) => {
   }
 };
 
-export const formatDate = (start, end, allDay) => {
-  let tempEnd = end
-  if (allDay) tempEnd = moment(start).endOf('day');
-  const isSameDay = moment(start).isSame(moment(tempEnd), 'day');
-  const isSameMonth = moment(start).isSame(moment(tempEnd), 'month');
-  const isSameYear = moment(start).isSame(moment(tempEnd), 'year');
+export const formatDate = (start, end) => {
+  const isSameDay = moment(start).isSame(moment(end), 'day');
+  const isSameMonth = moment(start).isSame(moment(end), 'month');
+  const isSameYear = moment(start).isSame(moment(end), 'year');
   if (isSameDay && isSameMonth && isSameMonth) {
-    return `${moment(start).format('dddd, DD MMMM YYYY')}\n${moment(start).format('hh:mm a')} - ${moment(tempEnd).format('hh:mm a')}`
+    return `${moment(start).format('dddd, DD MMMM YYYY')}\n${moment(start).format('hh:mm a')} - ${moment(end).format('hh:mm a')}`
   } else if (isSameMonth && isSameYear) {
-    return `${moment(start).format('MMMM YYYY')}\n${moment(start).format('ddd DD, hh:mm a')} - ${moment(tempEnd).format('ddd DD, hh:mm a')}`
+    return `${moment(start).format('MMMM YYYY')}\n${moment(start).format('ddd DD, hh:mm a')} - ${moment(end).format('ddd DD, hh:mm a')}`
   }
-  return `From ${moment(start).format('ddd, Do MMM YYYY, hh:mm a')}\nTo ${moment(tempEnd).format('ddd, Do MMM YYYY, hh:mm a')}`  
+  return `From ${moment(start).format('ddd, Do MMM YYYY, hh:mm a')}\nTo ${moment(end).format('ddd, Do MMM YYYY, hh:mm a')}`  
 }
