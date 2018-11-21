@@ -22,7 +22,7 @@ export default class GButton extends React.Component {
         style={styles.loginButton}
         onPress={onPress}
         disabled={loading}>
-        Sign in with Google
+        Continue with Google
       </Button>
     )
   }
