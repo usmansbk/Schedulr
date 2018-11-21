@@ -14,8 +14,8 @@ export default class CancelEvent extends React.Component {
   };
 
   _onContinue = () => {
-    this.props.handleDismiss();
-    const { id, onConfirm } = this.props;
+    const { id, onConfirm, handleDismiss } = this.props;
+    handleDismiss();
     onConfirm({ id, option: this.state.checked });
   }
 

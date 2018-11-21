@@ -34,11 +34,12 @@ export default class DetailsScreen extends React.Component {
     visibleDialog: null,
   }
   _goBack = () => this.props.navigation.goBack();
-  _handleDelete = () => this.setState({ visibleDialog: 'delete' });
+  _openDeleteDialog = () => this.setState({ visibleDialog: 'delete' });
   _openEditDialog = () => this.setState({ visibleDialog: 'edit' });
   _handleEdit = ({ id, option }) => this.props.navigation.navigate('NewEvent', { id, option });
   _handleRepeat = () => this.props.navigation.navigate('NewEvent', { id: this.props.id });
-  _handleCancel = () => this.setState({ visibleDialog: 'cancel' });
+  _openCancelDialog = () => this.setState({ visibleDialog: 'cancel' });
+  _handleCancel = ({ id, option }) => alert(`${id} - ${option}`);
   _navigateToGroup = (id) => alert('To group ' + id);
   _navigateToComments = (id) => alert('To comments ' + id);
   _handleShare = ({title, location, date, id}) =>  alert(`${title} - ${location} - ${date} - ${id}`);
@@ -85,8 +86,8 @@ export default class DetailsScreen extends React.Component {
         isValid={this._isValid(isCancelled, end)}
         isCancelled={isCancelled}
         handleBack={this._goBack}
-        handleDelete={this._handleDelete}
-        handleCancel={this._handleCancel}
+        handleDelete={this._openDeleteDialog}
+        handleCancel={this._openCancelDialog}
         handleEdit={this._openEditDialog}
         handleRepeat={this._handleRepeat}
         navigateToGroup={this._navigateToGroup}
@@ -106,6 +107,7 @@ export default class DetailsScreen extends React.Component {
             id={id}
             visible={visibleDialog === 'cancel'}
             handleDismiss={this._hideDialog}
+            onConfirm={this._handleCancel}
           />
           <EditDialog
             id={id}

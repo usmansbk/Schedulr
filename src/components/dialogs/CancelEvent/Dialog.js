@@ -13,11 +13,16 @@ export default class CancelEvent extends React.Component {
     checked: 'single',
   };
 
+  _onContinue = () => {
+    const { id, onConfirm, handleDismiss } = this.props;
+    handleDismiss();
+    onConfirm({ id, option: this.state.checked });
+  }
+
   render() {
     const {
       visible,
       handleDismiss,
-      onConfirm
     } = this.props;
     const { checked } = this.state;
     return (
@@ -49,7 +54,7 @@ export default class CancelEvent extends React.Component {
             </Dialog.Content>
             <Dialog.Actions>
               <Button onPress={handleDismiss}>Dismiss</Button>
-              <Button onPress={handleDismiss}>Continue</Button>
+              <Button onPress={this._onContinue}>Continue</Button>
             </Dialog.Actions>
           </Dialog>
         </Portal>
