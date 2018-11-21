@@ -23,12 +23,13 @@ export const repeatLength = (repeat) => {
 };
 
 export const formatDate = (start, end, allDay) => {
+  if (allDay) {
+    return `${moment(start).format('dddd, DD MMMM YYYY')}\nAll day`;
+  }
   const isSameDay = moment(start).isSame(moment(end), 'day');
   const isSameMonth = moment(start).isSame(moment(end), 'month');
   const isSameYear = moment(start).isSame(moment(end), 'year');
-  if (allDay) {
-    return `${moment(start).format('dddd, DD MMMM YYYY')}\nAll day`;
-  } else if (isSameDay && isSameMonth && isSameMonth) {
+  if (isSameDay && isSameMonth && isSameMonth) {
     return `${moment(start).format('dddd, DD MMMM YYYY')}\n${moment(start).format('hh:mm a')} - ${moment(end).format('hh:mm a')}`
   } else if (isSameMonth && isSameYear) {
     return `${moment(start).format('MMMM YYYY')}\n${moment(start).format('ddd DD, hh:mm a')} - ${moment(end).format('ddd DD, hh:mm a')}`
