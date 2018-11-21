@@ -69,6 +69,7 @@ export default class DetailsScreen extends React.Component {
       location,
       group,
       repeat,
+      allDay,
       createdAt,
       description,
       isCancelled,
@@ -82,7 +83,7 @@ export default class DetailsScreen extends React.Component {
       <Details
         id={id}
         title={title}
-        date={formatDate(start, end)}
+        date={formatDate(start, end, allDay)}
         type={decapitalize(type)}
         location={location}
         groupName={group.name}
