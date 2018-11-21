@@ -49,7 +49,7 @@ export default class DetailsScreen extends React.Component {
   _handleShare = ({title, location, date, id}) =>  {
     const shareOptions = {
       title,
-      message: `${date}\n${location ? location : ''}`,
+      message: `${date}${location ? ('\n' + location) : ''}`,
       url: `${env.APP_URL}/event/${id}`
     };
     Share.shareSingle(shareOptions);
