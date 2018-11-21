@@ -2,6 +2,7 @@ import React from 'react';
 import moment from 'moment';
 import Details from '../../routes/EventDetails';
 import DeleteDialog from '../../dialogs/DeleteEvent';
+import CancelDialog from '../../dialogs/CancelEvent';
 import { formatDate } from '../../../lib/time';
 
 const defaultValues = {
@@ -35,12 +36,13 @@ export default class DetailsScreen extends React.Component {
   _handleDelete = () => this.setState({ visibleDialog: 'delete' });
   _handleEdit = () => this.props.navigation.navigate('NewEvent', { id: this.props.id });
   _handleRepeat = () => this.props.navigation.navigate('NewEvent', { id: this.props.id });
-  _handleCancel = () => alert('Cancel');
+  _handleCancel = () => this.setState({ visibleDialog: 'cancel' });
   _navigateToGroup = (id) => alert('To group ' + id);
   _navigateToComments = (id) => alert('To comments ' + id);
   _handleShare = ({title, location, date, id}) =>  alert(`${title} - ${location} - ${date} - ${id}`);
   _handleMaps = (location) => alert('Open map to ' + location);
   _isValid = (isCancelled, end) => (!isCancelled) && (Date.now() < end);
+  _hideDialog = () => this.setState({ visibleDialog: false });
   
   render() {
     const { visibleDialog } = this.state;
@@ -91,8 +93,14 @@ export default class DetailsScreen extends React.Component {
         handleMaps={this._handleMaps}
       />
       <DeleteDialog
-        visible={this.state.visibleDialog === 'delete'}
-        handleDismiss={() => this.setState({ visibleDialog: null})}
+        id={id}
+        visible={visibleDialog === 'delete'}
+        handleDismiss={this._hideDialog}
+      />
+      <CancelDialog
+        id={id}
+        visible={visibleDialog === 'cancel'}
+        handleDismiss={this._hideDialog}
       />
       </React.Fragment>
     )
