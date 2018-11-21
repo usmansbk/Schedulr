@@ -6,17 +6,17 @@ import appStyles from '../../../config/styles';
 
 export default (props) => (
   <View style={styles.container}>
-    <Appbar.Header style={appStyles.header} theme={{
-      colors: {
-        text: colors.light_gray
-      }
-    }}>
+    <Appbar.Header style={appStyles.header}>
       <Appbar.BackAction
         onPress={() => props.navigation.goBack()}
+        color={colors.gray}
       />
-      <Appbar.Content title="Notifications" />
+      <Appbar.Content
+        color={colors.gray}
+        title="Notifications" />
       <Appbar.Action
         icon="clear-all"
+        color={colors.gray}
         onPress={() => console.log('Clear Notifications')}
       />
     </Appbar.Header>

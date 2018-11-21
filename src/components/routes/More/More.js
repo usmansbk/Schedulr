@@ -6,15 +6,15 @@ import appStyles from '../../../config/styles';
 
 export default (props) => (
   <View style={styles.container}>
-    <Appbar.Header style={appStyles.header} theme={{
-      colors: {
-        text: colors.light_gray
-      }
-    }}>
+    <Appbar.Header style={appStyles.header}>
       <Appbar.BackAction
         onPress={() => props.navigation.goBack()}
+        color={colors.gray}
       />
-      <Appbar.Content title="More" />
+      <Appbar.Content
+        title="More" 
+        color={colors.gray}
+      />
     </Appbar.Header>
   </View>
 );

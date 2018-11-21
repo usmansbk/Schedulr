@@ -1,4 +1,4 @@
-import Account from './Account';
+import More from './More';
 import Events from './Events';
 import Groups from './Groups';
 import Starred from './Starred';
@@ -8,7 +8,7 @@ import Notifications from './Notifications';
 import EventDetails from './EventDetails';
 
 export {
-  Account,
+  More,
   Events,
   Groups,
   Starred,

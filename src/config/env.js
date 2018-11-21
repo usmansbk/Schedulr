@@ -21,4 +21,4 @@ export const prod = {
   BUILD: 'prod'
 };
 
-export default dev_env;
+export default dev;
