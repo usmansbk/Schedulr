@@ -10,12 +10,13 @@ import {
 export default ({
   visible,
   handleDismiss,
+  loading,
   onConfirm
 }) => (
   <View>
     <Portal>
       <Dialog
-        dismissable
+        dismissable={!loading}
         visible={visible}
         onDismiss={handleDismiss}
       >
@@ -24,8 +25,8 @@ export default ({
           <Paragraph>Will remove past and future events in this series</Paragraph>
         </Dialog.Content>
         <Dialog.Actions>
-          <Button onPress={handleDismiss}>Dismiss</Button>
-          <Button onPress={handleDismiss}>Continue</Button>
+          <Button disabled={loading} onPress={handleDismiss}>Dismiss</Button>
+          <Button loading={loading} disabled={loading} onPress={handleDismiss}>Continue</Button>
         </Dialog.Actions>
       </Dialog>
     </Portal>

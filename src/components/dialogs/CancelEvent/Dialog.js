@@ -23,13 +23,14 @@ export default class CancelEvent extends React.Component {
     const {
       visible,
       handleDismiss,
+      loading,
     } = this.props;
     const { checked } = this.state;
     return (
       <View>
         <Portal>
           <Dialog
-            dismissable
+            dismissable={!loading}
             visible={visible}
             onDismiss={handleDismiss}
           >
@@ -53,8 +54,8 @@ export default class CancelEvent extends React.Component {
               </View>
             </Dialog.Content>
             <Dialog.Actions>
-              <Button onPress={handleDismiss}>Dismiss</Button>
-              <Button onPress={this._onContinue}>Continue</Button>
+              <Button disabled={loading} onPress={handleDismiss}>Dismiss</Button>
+              <Button disabled={loading} loading={loading} onPress={this._onContinue}>Continue</Button>
             </Dialog.Actions>
           </Dialog>
         </Portal>
