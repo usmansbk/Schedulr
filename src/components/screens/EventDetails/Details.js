@@ -6,6 +6,7 @@ import DeleteDialog from '../../dialogs/DeleteEvent';
 import CancelDialog from '../../dialogs/CancelEvent';
 import EditDialog from '../../dialogs/EditEvent';
 import { formatDate } from '../../../lib/time';
+import {decapitalize} from '../../../lib/capitalizr';
 import env from '../../../config/env';
 
 const defaultValues = {
@@ -13,14 +14,14 @@ const defaultValues = {
   title: '(No title)',
   start: new Date('11/21/2018'),
   end: new Date('11/22/2018'),
-  type: 'Work',
+  type: 'WORK',
   location: null,
   group: {
     name: 'Dev Mode',
     id: 2,
   },
   allDay: false,
-  repeat: 'Never',
+  repeat: 'NEVER',
   createdAt: new Date('11/20/2018'),
   description: 'No description',
   isCancelled: false,
@@ -83,11 +84,11 @@ export default class DetailsScreen extends React.Component {
         id={id}
         title={title}
         date={formatDate(start, end, allDay)}
-        type={type}
+        type={decapitalize(type)}
         location={location}
         groupName={group.name}
         groupId={group.id}
-        repeat={repeat}
+        repeat={decapitalize(repeat)}
         createdAt={moment(createdAt).format(CREATED_DATE_FORMAT)}
         description={description}
         starred={starred}
