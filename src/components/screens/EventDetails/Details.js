@@ -3,6 +3,7 @@ import moment from 'moment';
 import Details from '../../routes/EventDetails';
 import DeleteDialog from '../../dialogs/DeleteEvent';
 import CancelDialog from '../../dialogs/CancelEvent';
+import EditDialog from '../../dialogs/EditEvent';
 import { formatDate } from '../../../lib/time';
 
 const defaultValues = {
@@ -34,7 +35,8 @@ export default class DetailsScreen extends React.Component {
   }
   _goBack = () => this.props.navigation.goBack();
   _handleDelete = () => this.setState({ visibleDialog: 'delete' });
-  _handleEdit = () => this.props.navigation.navigate('NewEvent', { id: this.props.id });
+  _openEditDialog = () => this.setState({ visibleDialog: 'edit' });
+  _handleEdit = ({ id, option }) => this.props.navigation.navigate('NewEvent', { id, option });
   _handleRepeat = () => this.props.navigation.navigate('NewEvent', { id: this.props.id });
   _handleCancel = () => this.setState({ visibleDialog: 'cancel' });
   _navigateToGroup = (id) => alert('To group ' + id);
@@ -85,23 +87,35 @@ export default class DetailsScreen extends React.Component {
         handleBack={this._goBack}
         handleDelete={this._handleDelete}
         handleCancel={this._handleCancel}
-        handleEdit={this._handleEdit}
+        handleEdit={this._openEditDialog}
         handleRepeat={this._handleRepeat}
         navigateToGroup={this._navigateToGroup}
         navigateToComments={this._navigateToComments}
         handleShare={this._handleShare}
         handleMaps={this._handleMaps}
       />
-      <DeleteDialog
-        id={id}
-        visible={visibleDialog === 'delete'}
-        handleDismiss={this._hideDialog}
-      />
-      <CancelDialog
-        id={id}
-        visible={visibleDialog === 'cancel'}
-        handleDismiss={this._hideDialog}
-      />
+      {
+        isAuthor && (
+          <React.Fragment>
+          <DeleteDialog
+            id={id}
+            visible={visibleDialog === 'delete'}
+            handleDismiss={this._hideDialog}
+          />
+          <CancelDialog
+            id={id}
+            visible={visibleDialog === 'cancel'}
+            handleDismiss={this._hideDialog}
+          />
+          <EditDialog
+            id={id}
+            visible={visibleDialog === 'edit'}
+            handleDismiss={this._hideDialog}
+            onConfirm={this._handleEdit}
+          />
+          </React.Fragment>
+        )
+      }
       </React.Fragment>
     )
   }
