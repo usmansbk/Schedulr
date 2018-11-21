@@ -19,7 +19,7 @@ const AppStack = createStackNavigator({
   NewGroup,
   EventDetails
 }, {
-  initialRouteName: 'EventDetails',
+  initialRouteName: 'Home',
   headerMode: 'none'
 });
 
