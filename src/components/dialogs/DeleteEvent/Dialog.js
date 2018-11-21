@@ -24,8 +24,8 @@ export default ({
           <Paragraph>Will remove past and future events in this series</Paragraph>
         </Dialog.Content>
         <Dialog.Actions>
-          <Button onPress={handleDismiss}>Cancel</Button>
-          <Button onPress={handleDismiss}>Done</Button>
+          <Button onPress={handleDismiss}>Dismiss</Button>
+          <Button onPress={handleDismiss}>Continue</Button>
         </Dialog.Actions>
       </Dialog>
     </Portal>
