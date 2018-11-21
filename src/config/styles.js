@@ -14,5 +14,9 @@ export default StyleSheet.create({
   badge: {
     fontSize: 14,
     color: colors.gray
+  },
+  header: {
+    elevation: 2,
+    backgroundColor: '#fff',
   }
 });
