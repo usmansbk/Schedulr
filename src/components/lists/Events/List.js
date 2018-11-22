@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 import { SectionList } from 'react-native';
 import { withNavigationFocus } from 'react-navigation';
 import sectionListGetItemLayout from 'react-native-section-list-get-item-layout';
@@ -63,6 +64,13 @@ class List extends React.Component {
     getSectionHeaderHeight: () => SECTION_HEADER_HEIGHT
   });
   shouldComponentUpdate = (nextProps) => nextProps.isFocused;
+  componentDidMount = () => {
+    this.updateList = setInterval(
+      () => this.setState({ update: moment().format('mm') }),
+    1000 * 60);
+  }
+
+  componentWillUnmount = () => clearInterval(this.updateList);
 
   render() {
     const {
