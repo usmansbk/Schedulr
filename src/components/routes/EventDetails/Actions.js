@@ -1,6 +1,5 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
-import { IconButton } from 'react-native-paper';
 import StarButton from '../../common/StarButton';
 import ShareButton from '../../common/ShareButton';
 import CommentButton from '../../common/CommentButton';
