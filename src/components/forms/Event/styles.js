@@ -42,6 +42,6 @@ export default StyleSheet.create({
     justifyContent: 'space-between',
     backgroundColor: '#fff',
     paddingHorizontal: 16,
-    elevation: 1,
+    elevation: 2,
   }
 });
