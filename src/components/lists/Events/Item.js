@@ -7,6 +7,7 @@ import {
   Headline,
   Caption
 } from 'react-native-paper';
+import Actions from '../../common/Actions';
 import styles from './styles';
 
 const START_TIME = 'hh:mm a';
@@ -33,21 +34,24 @@ export default class Item extends React.PureComponent {
         onPress={this._onPress}
         style={styles.itemContainer}
       >
-        <View>
-          <View style={styles.head}>
-            <Headline numberOfLines={1} ellipsizeMode="tail">{title}</Headline>
-            <Text style={styles.startTime}>{startTime}</Text>
+        <React.Fragment>
+          <View style={styles.itemContent}>
+            <View style={styles.head}>
+              <Headline numberOfLines={1} ellipsizeMode="tail">{title}</Headline>
+              <Text style={styles.startTime}>{startTime}</Text>
+            </View>
+            <View style={styles.body}>
+              { Boolean(description) && (
+                <Caption
+                  numberOfLines={1}
+                  ellipsizeMode="tail">
+                  {description}
+                </Caption>)
+              }
+            </View>
+            <Actions/>
           </View>
-          <View style={styles.body}>
-            { Boolean(description) && (
-              <Caption
-                numberOfLines={1}
-                ellipsizeMode="tail">
-                {description}
-              </Caption>)
-            }
-          </View>
-        </View>
+        </React.Fragment>
       </TouchableRipple>
     );
   }

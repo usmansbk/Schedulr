@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, ScrollView } from 'react-native';
 import { Text, Headline, Divider } from 'react-native-paper';
-import Actions from './Actions';
+import Actions from '../../common/Actions';
 import styles from './styles';
 
 export default ({

@@ -67,9 +67,11 @@ export default StyleSheet.create({
   itemContainer: {
     height: ITEM_HEIGHT,
     backgroundColor: '#fff',
-    paddingBottom: 8,
-    paddingHorizontal: 16,
     backgroundColor: 'white',
     justifyContent: 'space-between',
+  },
+  itemContent: {
+    paddingBottom: 4,
+    paddingHorizontal: 16,
   }
 });

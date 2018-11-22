@@ -1,9 +1,9 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
-import StarButton from '../../common/StarButton';
-import ShareButton from '../../common/ShareButton';
-import CommentButton from '../../common/CommentButton';
-import MapsButton from '../../common/MapsButton';
+import StarButton from '../StarButton';
+import ShareButton from '../ShareButton';
+import CommentButton from '../CommentButton';
+import MapsButton from '../MapsButton';
 
 import colors from '../../../config/colors';
 
@@ -53,6 +53,7 @@ export default ({
 const styles = StyleSheet.create({
   actions: {
     flexDirection: 'row',
-    justifyContent: 'space-evenly'
+    justifyContent: 'space-between',
+    paddingHorizontal: 8
   }
 });
