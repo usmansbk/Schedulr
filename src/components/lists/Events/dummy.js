@@ -14,10 +14,10 @@ export default [{
       end: new Date('11/20/2018'),
       allDay: true,
       isCancelled: false,
-      starred,
-      starsCount,
-      commentsCount,
-      repeat,
+      starred: false,
+      starsCount: 0,
+      commentsCount: 0,
+      repeat: 'WEEKLY',
     }
   },{
     cursor: 2,
@@ -30,10 +30,10 @@ export default [{
       end: new Date('11/20/2018'),
       allDay: true,
       isCancelled: false,
-      starred,
-      starsCount,
-      commentsCount,
-      repeat,
+      starred: false,
+      starsCount: 0,
+      commentsCount: 0,
+      repeat: 'WEEKLY',
     }
   },{
     cursor: 3,
@@ -46,10 +46,10 @@ export default [{
       end: new Date('11/20/2018'),
       allDay: true,
       isCancelled: false,
-      starred,
-      starsCount,
-      commentsCount,
-      repeat,
+      starred: false,
+      starsCount: 0,
+      commentsCount: 0,
+      repeat: 'WEEKLY',
     }
   },]
 }];

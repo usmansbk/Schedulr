@@ -24,8 +24,8 @@ class List extends React.Component {
   _renderEmptyList = () => <Empty />;
   _renderSeparator = () => <Separator />;
   _renderSectionHeader = ({section}) => <SectionHeader section={section} />;
-  _onPressItem = (id) => alert(Boolean(this.props.navigation + ' ' + this.props.isFocused + ' ' + id));
-  _renderItem = ({ node: {
+  _onPressItem = (id) => this.props.navigation.navigate('EventDetails', { id });
+  _renderItem = ({ item:{ node: {
     id,
     title,
     description,
@@ -39,7 +39,7 @@ class List extends React.Component {
     end,
     repeat,
     allDay,
-  }}) => <Item
+  }}}) => <Item
     id={id}
     title={title}
     description={description}

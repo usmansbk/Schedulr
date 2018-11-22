@@ -1,8 +1,8 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, PixelRatio } from 'react-native';
 import colors from '../../../config/colors';
 
 export const ITEM_HEIGHT = 150;
-export const SEPERATOR_HEIGHT = 1;
+export const SEPERATOR_HEIGHT = 1 / PixelRatio.get();
 export const SECTION_HEADER_HEIGHT = 64;
 
 export default StyleSheet.create({
@@ -58,7 +58,7 @@ export default StyleSheet.create({
   emptyIcon: {
     fontSize: 48,
   },
-  separator: {
-    height: SEPERATOR_HEIGHT
+  itemContainer: {
+    height: ITEM_HEIGHT,
   }
 });
