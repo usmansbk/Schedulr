@@ -7,8 +7,8 @@ export default ({
   size,
   color,
   id,
-  type,
   title,
+  type,
   location,
   date,
 }) => (
@@ -18,7 +18,7 @@ export default ({
     size={size}
     onPress={() => {
       const shareOptions = {
-        title,
+        title: 'Invite via...',
         subject: type,
         message: `${title}\n${date}${location ? ('\n' + location) : ''}`,
         url: `${env.APP_URL}/event/${id}`
