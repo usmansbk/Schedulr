@@ -10,7 +10,12 @@ const Fab = ({ onPress, style, icon, small }) => (
         accent: colors.primary
       }
     }}
-    style={style}
+    style={{
+      position: 'absolute',
+      margin: 16,
+      right: 0,
+      bottom: 0,
+    }}
     color="#fff"
     icon={icon}
     small={small}
