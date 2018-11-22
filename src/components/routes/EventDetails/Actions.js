@@ -19,7 +19,6 @@ export default ({
   location,
   date,
   id,
-  handleMaps,
   navigateToComments,
 }) => (
   <View style={styles.actions}>
@@ -37,7 +36,7 @@ export default ({
       color={color}
       onPress={() => navigateToComments(id)}
     />
-    <MapButton
+    <MapsButton
       color={color}
     />
     <ShareButton
