@@ -94,29 +94,23 @@ export default class DetailsScreen extends React.Component {
         navigateToGroup={this._navigateToGroup}
         navigateToComments={this._navigateToComments}
       />
-      {
-        isAuthor && (
-          <React.Fragment>
-          <DeleteDialog
-            id={id}
-            visible={visibleDialog === 'delete'}
-            handleDismiss={this._hideDialog}
-          />
-          <CancelDialog
-            id={id}
-            visible={visibleDialog === 'cancel'}
-            handleDismiss={this._hideDialog}
-            onConfirm={this._handleCancel}
-          />
-          <EditDialog
-            id={id}
-            visible={visibleDialog === 'edit'}
-            handleDismiss={this._hideDialog}
-            onConfirm={this._handleEdit}
-          />
-          </React.Fragment>
-        )
-      }
+      <DeleteDialog
+        id={id}
+        visible={visibleDialog === 'delete'}
+        handleDismiss={this._hideDialog}
+      />
+      <CancelDialog
+        id={id}
+        visible={visibleDialog === 'cancel'}
+        handleDismiss={this._hideDialog}
+        onConfirm={this._handleCancel}
+      />
+      <EditDialog
+        id={id}
+        visible={visibleDialog === 'edit'}
+        handleDismiss={this._hideDialog}
+        onConfirm={this._handleEdit}
+      />
       </React.Fragment>
     )
   }

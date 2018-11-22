@@ -67,7 +67,7 @@ class List extends React.Component {
   componentDidMount = () => {
     this.updateList = setInterval(
       () => this.setState({ update: moment().format('mm') }),
-    1000 * 60);
+    60000);
   }
 
   componentWillUnmount = () => clearInterval(this.updateList);
