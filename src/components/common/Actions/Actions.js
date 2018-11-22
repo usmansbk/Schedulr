@@ -38,6 +38,7 @@ export default ({
     />
     <MapsButton
       color={color}
+      location={location}
     />
     <ShareButton
       color={color}
