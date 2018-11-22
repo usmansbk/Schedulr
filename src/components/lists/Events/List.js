@@ -58,9 +58,15 @@ class List extends React.Component {
 }
 const defaultProps = {
   loading: false,
-  sections: [],
   onRefresh: () => console.log('Refreshing'),
   hasPreviousEvents: false,
+  sections: [{
+    title: {
+      heading: 'Today',
+      subheading: 'Thu, 22 Nov 2018',
+    },
+    data: []
+  }],
 };
 
 export default withNavigationFocus(List);

@@ -3,9 +3,24 @@ import colors from '../../../config/colors';
 
 export const ITEM_HEIGHT = 150;
 export const SEPERATOR_HEIGHT = 1;
-export const SECTION_HEADER_HEIGHT = 80;
+export const SECTION_HEADER_HEIGHT = 64;
 
 export default StyleSheet.create({
+  sectionHeader: {
+    backgroundColor: colors.light_gray_2,
+    padding: 5,
+    paddingLeft: 16,
+    height: SECTION_HEADER_HEIGHT
+  },
+  sectionHeading: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: colors.primary
+  },
+  sectionSubheading: {
+    fontWeight: 'bold',
+    color: colors.gray
+  },
   header:{
     height: 28,
     alignItems: 'center',
@@ -13,10 +28,10 @@ export default StyleSheet.create({
   },
   headerText:{
     fontSize: 24,
-    color: colors.primary,
+    color: colors.primary_dark,
   },
   footer: {
-    height: 28,
+    height: 32,
     justifyContent: 'center',
     alignItems: 'center'
   },
