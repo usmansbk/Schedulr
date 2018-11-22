@@ -119,7 +119,12 @@ const Form = ({
           <DateTimeInput
             label="From"
             value={values.start}
-            onChangeDate={(date) => setFieldValue('start', date)}
+            onChangeDate={(date) => {
+              setFieldValue('start', date);
+              if (values.allDay) {
+                setFieldValue('end', moment(date).endOf('day'));
+              }
+            }}
           />
           <DateTimeInput
             label="To"
@@ -135,7 +140,7 @@ const Form = ({
                 const { allDay } = values;
                 setFieldValue('allDay', !allDay);
                 if (!allDay) {
-                  setFieldValue('end', moment(values.start).endOf('day').unix());
+                  setFieldValue('end', moment(values.start).endOf('day'));
                 }
               }}
               status={values.allDay ? 'checked' : 'unchecked'}

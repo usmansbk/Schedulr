@@ -9,7 +9,7 @@ export default StyleSheet.create({
     flex: 1
   },
   barStyle: {
-    elevation: 1,
+    elevation: 2,
     backgroundColor: '#fff',
   },
   indicatorStyle: {
