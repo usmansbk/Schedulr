@@ -1,22 +1,50 @@
 import React from 'react';
-import { Button } from 'react-native-paper';
-import styles from '../../../config/styles';
+import { View, StyleSheet, Image, Text } from 'react-native';
+import { TouchableRipple } from 'react-native-paper';
 import colors from '../../../config/colors';
 
-export default class FButton extends React.Component {
+export default class Button extends React.Component {
   render() {
     const { loading, onPress } = this.props;
     return (
-      <Button
-        loading={loading}
-        mode="contained"
-        color={colors.facebook}
-        style={styles.loginButton}
+      <TouchableRipple
         disabled={loading}
         onPress={onPress}
+        style={styles.loginButton}
       >
-        Continue with Facebook
-      </Button>
-    )
+        <View style={styles.button}>
+          <Image style={styles.logo} source={require('./img/logo.png')} />
+          <Text style={styles.loginText}>Continue with Facebook</Text>
+        </View>
+      </TouchableRipple>
+    );
   }
 }
+
+const styles = StyleSheet.create({
+  loginButton: {
+    marginVertical: 4,
+    width: 250,
+  },
+  loginText: {
+    fontSize: 14,
+    color: '#fff',
+    marginLeft: 4,
+    textAlign: 'center',
+    fontWeight: 'bold'
+  },
+  button: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: colors.facebook,
+    height: 48,
+    elevation: 2,
+    borderRadius: 2
+  },
+  logo: {
+    height: 32,
+    width: 32,
+    marginHorizontal: 8
+  },
+})
+
