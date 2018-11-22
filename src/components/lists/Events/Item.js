@@ -49,8 +49,8 @@ export default class Item extends React.PureComponent {
                 </Caption>)
               }
             </View>
-            <Actions/>
           </View>
+          <Actions/>
         </React.Fragment>
       </TouchableRipple>
     );

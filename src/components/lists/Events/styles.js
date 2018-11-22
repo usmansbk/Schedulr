@@ -67,11 +67,12 @@ export default StyleSheet.create({
   itemContainer: {
     height: ITEM_HEIGHT,
     backgroundColor: '#fff',
-    backgroundColor: 'white',
     justifyContent: 'space-between',
+    paddingBottom: 4,
   },
   itemContent: {
     paddingBottom: 4,
     paddingHorizontal: 16,
+    justifyContent: 'space-between',
   }
 });
