@@ -55,7 +55,7 @@ class List extends React.Component {
     repeat={repeat}
     allDay={allDay}
     onPressItem={this._onPressItem}
-    onPressCommentItem={this._onPressCommentItem}
+    onPressCommentButton={this._onPressCommentItem}
   />;
   _getItemLayout = sectionListGetItemLayout({
     getItemHeight: () => ITEM_HEIGHT,

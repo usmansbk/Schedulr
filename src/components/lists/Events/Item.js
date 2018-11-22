@@ -13,11 +13,14 @@ import styles from './styles';
 const START_TIME = 'hh:mm a';
 export default class Item extends React.PureComponent {
   _onPress = () => this.props.onPressItem(this.props.id);
+  _onPressComment = () => this.props.onPressCommentButton(this.props.id);
   render() {
     const {
+      id,
       title,
       description,
       location,
+      date,
       start,
       end,
       repeat,
@@ -50,7 +53,17 @@ export default class Item extends React.PureComponent {
               }
             </View>
           </View>
-          <Actions/>
+          <Actions
+            id={id}
+            title={title}
+            location={location}
+            type={type}
+            starred={starred}
+            starsCount={starsCount}
+            commentsCount={commentsCount}
+            date={date}
+            navigateToComments={this._onPressComment}
+          />
         </React.Fragment>
       </TouchableRipple>
     );

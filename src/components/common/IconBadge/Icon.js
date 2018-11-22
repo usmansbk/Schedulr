@@ -12,6 +12,6 @@ export default ({ color, icon, size, count, onPress}) => (
       size={size}
       color={color}
     />
-    <Text style={styles.badge}>{count && numeral(count).format('0a')}</Text>
+    { Boolean(count) && <Text style={styles.badge}>{count && numeral(count).format('0a')}</Text> }
   </View>
 );
