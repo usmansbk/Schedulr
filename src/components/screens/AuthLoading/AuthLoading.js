@@ -1,11 +1,6 @@
 import React, { Component } from 'react'
-import {
-  ActivityIndicator,
-  StyleSheet,
-  View,
-  AsyncStorage
-} from 'react-native';
-import colors from '../../../config/colors';
+import { AsyncStorage } from 'react-native';
+import Loading from '../../common/Loading/Loading';
 
 export default class AuthLoading extends Component {
   constructor(props) {
@@ -20,21 +15,7 @@ export default class AuthLoading extends Component {
   
   render() {
     return (
-      <View style={[styles.container, styles.horizontal]}>
-        <ActivityIndicator size="large" color={colors.primary} />
-      </View>
+      <Loading />
     )
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center'
-  },
-  horizontal: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    padding: 10
-  }
-})
