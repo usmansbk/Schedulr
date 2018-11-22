@@ -62,6 +62,7 @@ class List extends React.Component {
     getSeparatorHeight: () => SEPERATOR_HEIGHT,
     getSectionHeaderHeight: () => SECTION_HEADER_HEIGHT
   });
+  shouldComponentUpdate = (nextProps) => nextProps.isFocused;
 
   render() {
     const {
