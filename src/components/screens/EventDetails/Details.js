@@ -42,8 +42,8 @@ export default class DetailsScreen extends React.Component {
   _handleRepeat = () => this.props.navigation.navigate('NewEvent', { id: this.props.id });
   _openCancelDialog = () => this.setState({ visibleDialog: 'cancel' });
   _handleCancel = ({ id, option }) => alert(`${id} - ${option}`);
-  _navigateToGroup = (id) => alert('To group ' + id);
-  _navigateToComments = (id) => alert('To comments ' + id);
+  _navigateToGroup = (id) => this.props.navigation.navigate('GroupEvents', { id });
+  _navigateToComments = (id) => this.props.navigation.navigate('Comments', { id });
   _isValid = (isCancelled, end) => (!isCancelled) && (Date.now() < end);
   _hideDialog = () => this.setState({ visibleDialog: false });
   

@@ -26,7 +26,7 @@ class List extends React.Component {
   _renderSeparator = () => <Separator />;
   _renderSectionHeader = ({section}) => <SectionHeader section={section} />;
   _onPressItem = (id) => this.props.navigation.navigate('EventDetails', { id });
-  _onPressCommentItem = (id) => console.log('Comment ' + id);
+  _onPressCommentItem = (id) => this.props.navigation.navigate('Comments', { id });
   _renderItem = ({ item:{ node: {
     id,
     title,
