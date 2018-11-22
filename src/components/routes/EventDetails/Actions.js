@@ -4,6 +4,7 @@ import { IconButton } from 'react-native-paper';
 import StarButton from '../../common/StarButton';
 import ShareButton from '../../common/ShareButton';
 import CommentButton from '../../common/CommentButton';
+import MapsButton from '../../common/MapsButton';
 
 import colors from '../../../config/colors';
 
@@ -36,10 +37,7 @@ export default ({
       color={color}
       onPress={() => navigateToComments(id)}
     />
-    <IconButton
-      disabled={!location}
-      icon={`location-${location ? 'on' : 'off'}`}
-      onPress={() => handleMaps(location)}
+    <MapButton
       color={color}
     />
     <ShareButton
