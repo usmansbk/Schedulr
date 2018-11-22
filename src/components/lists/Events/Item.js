@@ -63,6 +63,7 @@ export default class Item extends React.PureComponent {
             commentsCount={commentsCount}
             date={date}
             navigateToComments={this._onPressComment}
+            mode="item"
           />
         </React.Fragment>
       </TouchableRipple>

@@ -8,7 +8,8 @@ import MapsButton from '../MapsButton';
 import colors from '../../../config/colors';
 
 const FONT_SIZE = 24;
-const color = colors.primary_dark;
+const activeColor = colors.primary_dark;
+const inactiveColor = colors.gray;
 
 export default ({
   title,
@@ -19,6 +20,7 @@ export default ({
   type,
   date,
   id,
+  mode,
   navigateToComments,
 }) => (
   <View style={styles.actions}>
@@ -27,21 +29,23 @@ export default ({
       starred={starred}
       starsCount={starsCount}
       size={FONT_SIZE}
-      color={color}
+      color={activeColor}
+      inactiveColor={inactiveColor}
+      mode={mode}
     />
     <CommentButton
       id={id}
       commentsCount={commentsCount}
       size={FONT_SIZE}
-      color={color}
+      color={mode === 'item' ? inactiveColor : activeColor}
       onPress={() => navigateToComments(id)}
     />
     <MapsButton
-      color={color}
+      color={activeColor}
       location={location}
     />
     <ShareButton
-      color={color}
+      color={mode === 'item' ? inactiveColor : activeColor}
       id={id}
       type={type}
       title={title}
