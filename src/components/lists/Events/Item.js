@@ -20,7 +20,7 @@ export default class Item extends React.PureComponent {
   _parseDetails = () => {
     const { type, repeat, end, start } = this.props;
     const recurrence = repeat === 'NEVER' ? '' : repeat;
-    if (type === REMINDER) return `${recurrence ? (decapitalize(recurrence) + ' ') : ''}Reminder`;
+    if (type === REMINDER) return `${recurrence ? (decapitalize(recurrence) + ' reminder') : 'Reminder'}`;
     const duration = moment(end).from(start, true);
     return `${duration} ${type.toLowerCase()}, ${recurrence.toLowerCase()}`;
   }
