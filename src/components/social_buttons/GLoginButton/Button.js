@@ -3,28 +3,23 @@ import { View, StyleSheet, Image, Text } from 'react-native';
 import { TouchableRipple } from 'react-native-paper';
 import colors from '../../../config/colors';
 
-export default class Button extends React.Component {
-  render() {
-    const { disabled, loading, onPress } = this.props;
-    return (
-      <TouchableRipple
-        disabled={disabled}
-        onPress={onPress}
-      >
-        <View style={styles.button}>
-          <Image style={styles.logo} source={require('./img/logo.png')} />
-          <Text
-            style={[
-              styles.loginText,
-              { color: disabled ? colors.disabled : '#fff' }
-            ]}>{
-              loading ? 'Signing in...' : 'Sign in with Google'
-            }</Text>
-        </View>
-      </TouchableRipple>
-    );
-  }
-}
+export default ({ disabled, loading, onPress }) => (
+  <TouchableRipple
+    disabled={disabled}
+    onPress={onPress}
+  >
+    <View style={styles.button}>
+      <Image style={styles.logo} source={require('./img/logo.png')} />
+      <Text
+        style={[
+          styles.loginText,
+          { color: disabled ? colors.disabled : '#fff' }
+        ]}>{
+          loading ? 'Signing in...' : 'Sign in with Google'
+        }</Text>
+    </View>
+  </TouchableRipple>
+);
 
 const styles = StyleSheet.create({
   loginText: {
