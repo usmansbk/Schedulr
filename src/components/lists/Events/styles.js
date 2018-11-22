@@ -6,6 +6,24 @@ export const SEPERATOR_HEIGHT = 1;
 export const SECTION_HEADER_HEIGHT = 80;
 
 export default StyleSheet.create({
+  header:{
+    height: 28,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  headerText:{
+    fontSize: 24,
+    color: colors.primary,
+  },
+  footer: {
+    height: 28,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  footerText: {
+    fontWeight: 'bold',
+    color: colors.gray
+  },
   empty: {
     flex: 1,
     justifyContent: 'center',
