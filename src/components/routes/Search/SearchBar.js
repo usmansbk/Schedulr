@@ -4,11 +4,10 @@ import { StyleSheet } from 'react-native';
 
 export default (props) => (
   <Searchbar
-    icon="arrow-back"
+    icon="search"
     placeholder="Search "
     value=""
     style={styles.searchbar}
-    onIconPress={props.onIconPress}
   />
 );
 

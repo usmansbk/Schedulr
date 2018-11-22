@@ -6,10 +6,9 @@ import Tabs from './Tabs';
 export default (props) => (
   <View style={styles.container}>
     <Searchbar
-      icon="arrow-back"
+      icon="search"
       placeholder="Search "
       value=""
-      onIconPress={() => props.navigation.goBack()}
     />
     <Tabs />
   </View>
