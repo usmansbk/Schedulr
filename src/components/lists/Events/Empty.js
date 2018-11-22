@@ -8,6 +8,6 @@ export default () => (
   <View style={styles.empty}>
     <Headline>No upcoming event</Headline>
     <Paragraph>Create an event by pressing the bottom-right button below</Paragraph>
-    <Icon name="add" />
+    <Icon name="add-circle-outline" />
   </View>
 );

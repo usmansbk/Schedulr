@@ -18,14 +18,12 @@ class List extends React.Component {
   state = { update: null };
   _getItemLayout = () => console.log('getItemLayout');
   _keyExtractor = (item, index) => item.id;
-  _sections = () => [];
-  _renderHeader = () => <Header />;
-  _renderFooter = () => <Footer />;
+  _renderHeader = () => <Header visible={defaultProps.hasPreviousEvents} />;
+  _renderFooter = () => <Footer visible={defaultProps.sections.length}/>;
   _renderEmptyList = () => <Empty />;
   _renderSeparator = () => <Separator />;
   _renderSectionHeader = ({section}) => <SectionHeader section={section} />;
   _renderItem = () => <Item />;
-  _onRefresh = () => console.log('Refreshing');
   _getItemLayout = sectionListGetItemLayout({
     getItemHeight: () => ITEM_HEIGHT,
     getSeparatorHeight: () => SEPERATOR_HEIGHT,
@@ -33,17 +31,22 @@ class List extends React.Component {
   });
 
   render() {
+    const {
+      loading,
+      sections,
+      onRefresh,
+    } = defaultProps;
     return (
       <SectionList
         stickySectionHeadersEnabled
         getItemLayout={this._getItemLayout}
-        sections={this._sections}
+        sections={sections}
         extraData={this.props.isFocused && this.state.update}
         ListHeaderComponent={this._renderHeader}
         ListEmptyComponent={this._renderEmptyList}
         ItemSeparatorComponent={this._renderSeparator}
-        refreshing={this.props.loading}
-        onRefresh={this._onRefresh}
+        refreshing={loading}
+        onRefresh={onRefresh}
         renderItem={this._renderItem}
         renderSectionHeader={this._renderSectionHeader}
         keyExtractor={this._keyExtractor}
@@ -52,5 +55,11 @@ class List extends React.Component {
     );
   }
 }
+const defaultProps = {
+  loading: false,
+  sections: [],
+  onRefresh: () => console.log('Refreshing'),
+  hasPreviousEvents: false,
+};
 
 export default withNavigationFocus(List);
