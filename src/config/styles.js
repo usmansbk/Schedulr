@@ -8,7 +8,7 @@ export default StyleSheet.create({
     alignItems: 'center',
   },
   badge: {
-    fontSize: 16,
+    fontSize: 13,
     color: colors.gray
   },
   header: {

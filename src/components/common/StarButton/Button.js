@@ -13,7 +13,7 @@ export default ({
   <IconBadge
     icon={`star${starred ? '' : '-border'}`}
     onPress={() => alert('Starred ' + id)}
-    size={size || 25}
+    size={size ? 22 : 25}
     color={(mode && !starred) ? inactiveColor : color}
     count={starsCount}
   />

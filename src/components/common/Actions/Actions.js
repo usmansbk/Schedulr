@@ -29,7 +29,7 @@ export default ({
       id={id}
       starred={starred}
       starsCount={starsCount}
-      size={size || FONT_SIZE}
+      size={size}
       color={activeColor}
       inactiveColor={inactiveColor}
       mode={mode}
@@ -37,14 +37,14 @@ export default ({
     <CommentButton
       id={id}
       commentsCount={commentsCount}
-      size={size || FONT_SIZE}
+      size={size}
       color={mode === 'item' ? inactiveColor : activeColor}
       onPress={() => navigateToComments(id)}
     />
     <MapsButton
       color={mode === 'item' ? inactiveColor : activeColor}
       location={location}
-      size={size || FONT_SIZE}
+      size={size}
     />
     <ShareButton
       color={mode === 'item' ? inactiveColor : activeColor}
@@ -53,7 +53,7 @@ export default ({
       title={title}
       location={location}
       date={date}
-      size={size || FONT_SIZE}
+      size={size}
     />
   </View>
 );
