@@ -6,8 +6,8 @@ import styles from './styles';
 
 export default () => (
   <View style={styles.empty}>
-    <Headline>No upcoming event</Headline>
-    <Paragraph>Create an event by pressing the bottom-right button below</Paragraph>
-    <Icon name="add-circle-outline" />
+    <Icon style={styles.emptyIcon} name="event-busy" />
+    <Headline style={styles.emptyTitle}>No upcoming event</Headline>
+    <Paragraph style={styles.emptyMessage}>Create an event by pressing the bottom-right button below.</Paragraph>
   </View>
 );
