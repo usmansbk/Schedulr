@@ -93,7 +93,7 @@ class List extends React.Component {
 const defaultProps = {
   loading: false,
   onRefresh: () => console.log('Refreshing'),
-  hasPreviousEvents: false,
+  hasPreviousEvents: true,
   sections: dummy,
 };
 

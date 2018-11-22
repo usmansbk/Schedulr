@@ -41,7 +41,7 @@ export default ({
       onPress={() => navigateToComments(id)}
     />
     <MapsButton
-      color={activeColor}
+      color={mode === 'item' ? inactiveColor : activeColor}
       location={location}
     />
     <ShareButton
