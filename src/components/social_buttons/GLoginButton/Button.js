@@ -7,12 +7,13 @@ export default ({ disabled, loading, onPress }) => (
   <TouchableRipple
     disabled={disabled}
     onPress={onPress}
+    style={styles.container}
   >
-    <View style={styles.button}>
+    <View style={styles.content}>
       <Image style={styles.logo} source={require('./img/logo.png')} />
       <Text
         style={[
-          styles.loginText,
+          styles.text,
           { color: disabled ? colors.disabled : '#fff' }
         ]}>{
           loading ? 'Signing in...' : 'Sign in with Google'
@@ -22,22 +23,26 @@ export default ({ disabled, loading, onPress }) => (
 );
 
 const styles = StyleSheet.create({
-  loginText: {
+  container: {
+    width: 250,
+    height: 48,
+    elevation: 2,
+    borderRadius: 2,
+    backgroundColor: colors.google,
+    justifyContent:'center',
+    margin: 4
+  },
+  content: {
+    marginVertical: 4,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  text: {
     fontSize: 14,
     color: '#fff',
     marginLeft: 4,
     textAlign: 'center',
     fontWeight: 'bold'
-  },
-  button: {
-    marginVertical: 4,
-    width: 250,
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: colors.google,
-    height: 48,
-    elevation: 2,
-    borderRadius: 2
   },
   logo: {
     width: 48,

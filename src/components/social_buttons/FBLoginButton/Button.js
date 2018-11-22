@@ -7,12 +7,13 @@ export default ({ disabled, loading, onPress }) => (
   <TouchableRipple
     disabled={disabled}
     onPress={onPress}
+    style={styles.container}
   >
-    <View style={styles.button}>
+    <View style={styles.content}>
       <Image style={styles.logo} source={require('./img/logo.png')} />
       <Text
         style={[
-          styles.loginText,
+          styles.text,
           { color: disabled ? colors.disabled : '#fff' }
         ]}>
       {
@@ -23,27 +24,31 @@ export default ({ disabled, loading, onPress }) => (
 );
 
 const styles = StyleSheet.create({
-  loginText: {
-    fontSize: 14,
-    color: '#fff',
-    marginLeft: 4,
-    textAlign: 'center',
-    fontWeight: 'bold'
-  },
-  button: {
-    marginVertical: 4,
+  container: {
     width: 250,
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: colors.facebook,
     height: 48,
     elevation: 2,
-    borderRadius: 2
+    borderRadius: 2,
+    backgroundColor: colors.facebook,
+    justifyContent:'center',
+    margin: 4
+  },
+  content: {
+    marginVertical: 4,
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   logo: {
     height: 32,
     width: 32,
     marginHorizontal: 8
+  },
+  text: {
+    fontSize: 14,
+    color: '#fff',
+    marginLeft: 4,
+    textAlign: 'center',
+    fontWeight: 'bold'
   },
 })
 
