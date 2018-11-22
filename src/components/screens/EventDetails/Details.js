@@ -1,13 +1,11 @@
 import React from 'react';
 import moment from 'moment';
-import Share from 'react-native-share';
 import Details from '../../routes/EventDetails';
 import DeleteDialog from '../../dialogs/DeleteEvent';
 import CancelDialog from '../../dialogs/CancelEvent';
 import EditDialog from '../../dialogs/EditEvent';
 import { formatDate } from '../../../lib/time';
 import {decapitalize} from '../../../lib/capitalizr';
-import env from '../../../config/env';
 
 const defaultValues = {
   id: 1,
@@ -46,15 +44,6 @@ export default class DetailsScreen extends React.Component {
   _handleCancel = ({ id, option }) => alert(`${id} - ${option}`);
   _navigateToGroup = (id) => alert('To group ' + id);
   _navigateToComments = (id) => alert('To comments ' + id);
-  _handleShare = ({title, location, date, id}) =>  {
-    const shareOptions = {
-      title,
-      message: `${date}${location ? ('\n' + location) : ''}`,
-      url: `${env.APP_URL}/event/${id}`
-    };
-    Share.shareSingle(shareOptions);
-  }
-  _handleMaps = (location) => alert('Open map to ' + location);
   _isValid = (isCancelled, end) => (!isCancelled) && (Date.now() < end);
   _hideDialog = () => this.setState({ visibleDialog: false });
   
@@ -104,8 +93,6 @@ export default class DetailsScreen extends React.Component {
         handleRepeat={this._handleRepeat}
         navigateToGroup={this._navigateToGroup}
         navigateToComments={this._navigateToComments}
-        handleShare={this._handleShare}
-        handleMaps={this._handleMaps}
       />
       {
         isAuthor && (

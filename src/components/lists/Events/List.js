@@ -25,6 +25,7 @@ class List extends React.Component {
   _renderSeparator = () => <Separator />;
   _renderSectionHeader = ({section}) => <SectionHeader section={section} />;
   _onPressItem = (id) => this.props.navigation.navigate('EventDetails', { id });
+  _onPressCommentItem = (id) => console.log('Comment ' + id);
   _renderItem = ({ item:{ node: {
     id,
     title,
@@ -54,6 +55,7 @@ class List extends React.Component {
     repeat={repeat}
     allDay={allDay}
     onPressItem={this._onPressItem}
+    onPressCommentItem={this._onPressCommentItem}
   />;
   _getItemLayout = sectionListGetItemLayout({
     getItemHeight: () => ITEM_HEIGHT,

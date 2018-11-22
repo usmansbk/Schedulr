@@ -24,8 +24,6 @@ export default ({
   handleRepeat,
   handleEdit,
   handleCancel,
-  handleShare,
-  handleMaps,
   navigateToGroup,
   navigateToComments,
 }) => (
@@ -83,8 +81,6 @@ export default ({
       isCancelled={isCancelled}
       navigateToGroup={navigateToGroup}
       navigateToComments={navigateToComments}
-      handleShare={handleShare}
-      handleMaps={handleMaps}
     />
   </React.Fragment>
 )

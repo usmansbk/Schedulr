@@ -34,7 +34,7 @@ export default StyleSheet.create({
     color: colors.primary_dark,
   },
   footer: {
-    height: 32,
+    height: 80,
     justifyContent: 'center',
     alignItems: 'center'
   },
@@ -66,6 +66,10 @@ export default StyleSheet.create({
   },
   itemContainer: {
     height: ITEM_HEIGHT,
-    backgroundColor: '#fff'
+    backgroundColor: '#fff',
+    paddingBottom: 8,
+    paddingHorizontal: 16,
+    backgroundColor: 'white',
+    justifyContent: 'space-between',
   }
 });
