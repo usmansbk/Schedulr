@@ -11,7 +11,6 @@ import { decapitalize } from '../../../lib/capitalizr';
 import styles from './styles';
 
 const START_TIME = 'hh:mm a';
-const TASK = 'TASK';
 const REMINDER = 'REMINDER';
 
 export default class Item extends React.PureComponent {
