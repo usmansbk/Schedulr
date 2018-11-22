@@ -9,7 +9,7 @@ import styles from './styles';
 export default (props) => (
   <View style={styles.container}>
     <Logo />
-    <Text style={styles.h1}>Welcome to Schdlr</Text>
+    <Text style={styles.h1}>Welcome to Schdlr!</Text>
     <Caption>
       The Social Calendar
     </Caption>
@@ -17,5 +17,8 @@ export default (props) => (
       <FBLoginButton onPress={props.handleLogin} />
       <GLoginButton onPress={props.handleLogin} />
     </View>
+    <Caption style={styles.caption}>
+      Keep your friends and collegues up to date with the latest events!
+    </Caption>
   </View>
 );

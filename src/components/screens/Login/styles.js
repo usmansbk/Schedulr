@@ -21,5 +21,8 @@ export default StyleSheet.create({
     marginVertical: 8,
     color: colors.gray,
     fontWeight: 'bold'
+  },
+  caption: {
+    textAlign: 'center'
   }
 });
