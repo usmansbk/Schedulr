@@ -31,7 +31,7 @@ export default class Item extends React.PureComponent {
       commentsCount,
       starred,
     } = this.props;
-    const startTime = moment(start).format(START_TIME);
+    const startTime = allDay ? 'All day' : moment(start).format(START_TIME).toUpperCase();
     return (
       <TouchableRipple
         onPress={this._onPress}
@@ -39,8 +39,8 @@ export default class Item extends React.PureComponent {
       >
         <React.Fragment>
           <View style={styles.itemContent}>
-            <View style={styles.head}>
-              <Headline numberOfLines={1} ellipsizeMode="tail">{title}</Headline>
+            <View style={styles.itemHeader}>
+              <Text style={styles.itemHeadline} numberOfLines={1} ellipsizeMode="tail">{title}</Text>
               <Text style={styles.startTime}>{startTime}</Text>
             </View>
             <View style={styles.body}>

@@ -20,6 +20,10 @@ export default StyleSheet.create({
     fontWeight: 'bold',
     color: colors.primary
   },
+  sectionSubheadingContent: {
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  },
   sectionSubheading: {
     fontWeight: 'bold',
     color: colors.gray
@@ -74,5 +78,21 @@ export default StyleSheet.create({
     paddingBottom: 4,
     paddingHorizontal: 16,
     justifyContent: 'space-between',
+  },
+  itemHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  itemHeadline: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    width: 180
+  },
+  startTime: {
+    alignSelf: 'flex-end',
+    fontWeight: 'bold',
+    color: colors.gray,
+    fontSize: 18
   }
 });

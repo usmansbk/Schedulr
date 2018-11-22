@@ -1,8 +1,5 @@
 export default [{
-  title: {
-    heading: 'Today',
-    subheading: 'Thu, 22 Nov 2018',
-  },
+  title: '12/23/2018',
   data: [{
     cursor: 1,
     node: {
@@ -23,12 +20,12 @@ export default [{
     cursor: 2,
     node: {
       id: 2,
-      title: 'Dev Mode 2',
+      title: 'Dev Mode 2 Dragon Fever Slayer Authum King 2',
       description: 'Lorem Ipsum Dolor Amet',
       location: 'No location set',
       start: Date.now(),
       end: new Date('11/20/2018'),
-      allDay: true,
+      allDay: false,
       isCancelled: false,
       starred: true,
       starsCount: 2,
@@ -44,7 +41,7 @@ export default [{
       location: null,
       start: Date.now(),
       end: new Date('11/20/2018'),
-      allDay: true,
+      allDay: false,
       isCancelled: false,
       starred: false,
       starsCount: 1234567,
