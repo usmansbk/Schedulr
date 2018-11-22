@@ -1,11 +1,14 @@
-import { StyleSheet, PixelRatio } from 'react-native';
+import { StyleSheet } from 'react-native';
 import colors from '../../../config/colors';
 
 export const ITEM_HEIGHT = 150;
-export const SEPERATOR_HEIGHT = 1 / PixelRatio.get();
+export const SEPARATOR_HEIGHT = 2;
 export const SECTION_HEADER_HEIGHT = 64;
 
 export default StyleSheet.create({
+  list: {
+    backgroundColor: colors.light_gray
+  },
   sectionHeader: {
     backgroundColor: colors.light_gray_2,
     padding: 5,
@@ -58,7 +61,11 @@ export default StyleSheet.create({
   emptyIcon: {
     fontSize: 48,
   },
+  separator: {
+    height: SEPARATOR_HEIGHT
+  },
   itemContainer: {
     height: ITEM_HEIGHT,
+    backgroundColor: '#fff'
   }
 });

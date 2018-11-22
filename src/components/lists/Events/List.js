@@ -8,7 +8,7 @@ import Empty from './Empty';
 import Separator from './Separator';
 import SectionHeader from './SectionHeader';
 import Item from './Item';
-import {
+import styles, {
   ITEM_HEIGHT,
   SEPERATOR_HEIGHT,
   SECTION_HEADER_HEIGHT
@@ -69,6 +69,7 @@ class List extends React.Component {
     } = defaultProps;
     return (
       <SectionList
+        style={styles.list}
         stickySectionHeadersEnabled
         getItemLayout={this._getItemLayout}
         sections={sections}

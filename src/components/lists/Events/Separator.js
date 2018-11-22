@@ -4,5 +4,5 @@ import { Divider } from 'react-native-paper';
 import styles from './styles';
 
 export default () => (
-  <Divider />
+  <View style={styles.separator} />
 );
