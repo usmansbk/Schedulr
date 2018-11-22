@@ -9,13 +9,15 @@ export default ({ disabled, loading, onPress }) => (
     onPress={onPress}
     style={styles.container}
   >
-    <View style={styles.content}>
+    <View style={[
+      styles.content,
+      {
+        backgroundColor: disabled ? colors.disabled : colors.google
+      }
+    ]}>
       <Image style={styles.logo} source={require('./img/logo.png')} />
       <Text
-        style={[
-          styles.text,
-          { color: disabled ? colors.disabled : '#fff' }
-        ]}>{
+        style={styles.text}>{
           loading ? 'Signing in...' : 'Sign in with Google'
         }</Text>
     </View>
@@ -28,7 +30,6 @@ const styles = StyleSheet.create({
     height: 48,
     elevation: 2,
     borderRadius: 2,
-    backgroundColor: colors.google,
     justifyContent:'center',
     margin: 4
   },

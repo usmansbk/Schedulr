@@ -7,15 +7,17 @@ export default ({ disabled, loading, onPress }) => (
   <TouchableRipple
     disabled={disabled}
     onPress={onPress}
-    style={styles.container}
+    style={[
+      styles.container,
+      {
+        backgroundColor: disabled ? colors.disabled : colors.facebook
+      }
+    ]}
   >
     <View style={styles.content}>
       <Image style={styles.logo} source={require('./img/logo.png')} />
       <Text
-        style={[
-          styles.text,
-          { color: disabled ? colors.disabled : '#fff' }
-        ]}>
+        style={styles.text}>
       {
         loading ? 'Logging in...' : 'Continue with Facebook'
       }</Text>
@@ -24,12 +26,12 @@ export default ({ disabled, loading, onPress }) => (
 );
 
 const styles = StyleSheet.create({
+  color: { backgroundColor: colors.facebook },
   container: {
     width: 250,
     height: 48,
     elevation: 2,
     borderRadius: 2,
-    backgroundColor: colors.facebook,
     justifyContent:'center',
     margin: 4
   },

@@ -28,7 +28,6 @@ export default class Item extends React.PureComponent {
       starred,
     } = this.props;
     const startTime = moment(start).format(START_TIME);
-    const formattedEnd = formatEnd(start, end, allDay);
     return (
       <TouchableRipple
         onPress={this._onPress}
@@ -37,7 +36,7 @@ export default class Item extends React.PureComponent {
         <View>
           <View style={styles.head}>
             <Headline numberOfLines={1} ellipsizeMode="tail">{title}</Headline>
-            <Text style={styles.startTime}>{time}</Text>
+            <Text style={styles.startTime}>{startTime}</Text>
           </View>
           <View style={styles.body}>
             { Boolean(description) && (

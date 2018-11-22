@@ -21,7 +21,7 @@ export default ({
         message: `${date}${location ? ('\n' + location) : ''}`,
         url: `${env.APP_URL}/event/${id}`
       };
-      Share.shareSingle(shareOptions);
+      Share.open(shareOptions);
     }}
   />
 );
