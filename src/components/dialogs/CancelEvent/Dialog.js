@@ -13,6 +13,12 @@ export default class CancelEvent extends React.Component {
     checked: 'single',
   };
 
+  shouldComponentUpdate = (nextProps, nextState) => (
+    nextProps.visible !== this.props.visible ||
+    nextState.checked !== this.state.checked ||
+    nextProps.loading !== this.props.loading
+  );
+
   _onContinue = () => {
     const { id, onConfirm, handleDismiss } = this.props;
     handleDismiss();
@@ -26,6 +32,7 @@ export default class CancelEvent extends React.Component {
       loading,
     } = this.props;
     const { checked } = this.state;
+    console.log('render');
     return (
       <View>
         <Portal>
