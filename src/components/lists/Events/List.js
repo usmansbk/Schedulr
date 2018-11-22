@@ -17,10 +17,9 @@ import {
 class List extends React.Component {
   state = { update: null };
   _loadPrevious = () => console.log('Load previous events');
-  _getItemLayout = () => console.log('getItemLayout');
   _keyExtractor = (item, index) => item.id;
-  _renderHeader = () => <Header onPress={this._loadPrevious} visible={true || defaultProps.hasPreviousEvents} />;
-  _renderFooter = () => <Footer visible={true || defaultProps.sections.length}/>;
+  _renderHeader = () => <Header onPress={this._loadPrevious} visible={defaultProps.hasPreviousEvents} />;
+  _renderFooter = () => <Footer visible={defaultProps.sections.length}/>;
   _renderEmptyList = () => <Empty />;
   _renderSeparator = () => <Separator />;
   _renderSectionHeader = ({section}) => <SectionHeader section={section} />;

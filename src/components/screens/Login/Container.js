@@ -5,7 +5,7 @@ import Login from './Login';
 export default class LoginScreen extends React.Component {
 
   _signInAsync = async () => {
-    //await AsyncStorage.setItem('userToken', 'abc');
+    await AsyncStorage.setItem('userToken', 'abc');
     this.props.navigation.navigate('App');
   };
 
