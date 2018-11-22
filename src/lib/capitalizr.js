@@ -4,6 +4,7 @@ export default (string) => {
 }
 
 export function decapitalize(string, all=false) {
+  if (!string) return '';
   const first = string[0]
   const head = all ? first.toLowerCase() : first.toUpperCase();
   const tail = string.substring(1).toLowerCase();

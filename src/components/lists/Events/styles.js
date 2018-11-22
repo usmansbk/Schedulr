@@ -72,10 +72,9 @@ export default StyleSheet.create({
     height: ITEM_HEIGHT,
     backgroundColor: '#fff',
     justifyContent: 'space-between',
-    paddingBottom: 4,
   },
   itemContent: {
-    paddingBottom: 4,
+    paddingTop: 4,
     paddingHorizontal: 16,
     justifyContent: 'space-between',
   },
@@ -88,6 +87,11 @@ export default StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     width: 180
+  },
+  itemNote: {
+    fontWeight: 'bold',
+    fontSize: 16,
+    color: colors.gray
   },
   startTime: {
     alignSelf: 'flex-end',

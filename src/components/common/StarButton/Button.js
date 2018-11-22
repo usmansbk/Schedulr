@@ -3,6 +3,7 @@ import IconBadge from '../IconBadge';
 
 export default ({
   color,
+  size,
   inactiveColor,
   starred,
   starsCount,
@@ -12,7 +13,7 @@ export default ({
   <IconBadge
     icon={`star${starred ? '' : '-border'}`}
     onPress={() => alert('Starred ' + id)}
-    size={25}
+    size={size || 25}
     color={(mode && !starred) ? inactiveColor : color}
     count={starsCount}
   />

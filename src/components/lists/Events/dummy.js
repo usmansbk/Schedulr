@@ -13,8 +13,9 @@ export default [{
       isCancelled: false,
       starred: false,
       starsCount: 0,
-      commentsCount: 0,
+      commentsCount: 222203,
       repeat: 'WEEKLY',
+      type: 'LECTURE',
     }
   },{
     cursor: 2,
@@ -26,11 +27,12 @@ export default [{
       start: Date.now(),
       end: new Date('11/20/2018'),
       allDay: false,
-      isCancelled: false,
+      isCancelled: true,
       starred: true,
       starsCount: 2,
       commentsCount: 0,
-      repeat: 'WEEKLY',
+      repeat: 'DAILY',
+      type: 'REMINDER',
     }
   },{
     cursor: 3,
@@ -47,6 +49,7 @@ export default [{
       starsCount: 1234567,
       commentsCount: 0,
       repeat: 'WEEKLY',
+      type: 'HOBBY',
     }
   },]
 }];

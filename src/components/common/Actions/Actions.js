@@ -13,6 +13,7 @@ const inactiveColor = colors.gray;
 
 export default ({
   title,
+  size,
   starred,
   starsCount,
   commentsCount,
@@ -28,7 +29,7 @@ export default ({
       id={id}
       starred={starred}
       starsCount={starsCount}
-      size={FONT_SIZE}
+      size={size || FONT_SIZE}
       color={activeColor}
       inactiveColor={inactiveColor}
       mode={mode}
@@ -36,13 +37,14 @@ export default ({
     <CommentButton
       id={id}
       commentsCount={commentsCount}
-      size={FONT_SIZE}
+      size={size || FONT_SIZE}
       color={mode === 'item' ? inactiveColor : activeColor}
       onPress={() => navigateToComments(id)}
     />
     <MapsButton
       color={mode === 'item' ? inactiveColor : activeColor}
       location={location}
+      size={size || FONT_SIZE}
     />
     <ShareButton
       color={mode === 'item' ? inactiveColor : activeColor}
@@ -51,6 +53,7 @@ export default ({
       title={title}
       location={location}
       date={date}
+      size={size || FONT_SIZE}
     />
   </View>
 );
