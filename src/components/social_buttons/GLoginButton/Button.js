@@ -5,7 +5,7 @@ import colors from '../../../config/colors';
 
 export default class Button extends React.Component {
   render() {
-    const { disabled, onPress } = this.props;
+    const { disabled, loading, onPress } = this.props;
     return (
       <TouchableRipple
         disabled={disabled}
@@ -17,7 +17,9 @@ export default class Button extends React.Component {
             style={[
               styles.loginText,
               { color: disabled ? colors.disabled : '#fff' }
-            ]}>Sign in with Google</Text>
+            ]}>{
+              loading ? 'Signing in...' : 'Sign in with Google'
+            }</Text>
         </View>
       </TouchableRipple>
     );
