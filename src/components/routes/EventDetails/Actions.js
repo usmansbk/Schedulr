@@ -16,6 +16,7 @@ export default ({
   starsCount,
   commentsCount,
   location,
+  type,
   date,
   id,
   navigateToComments,
@@ -41,6 +42,7 @@ export default ({
     <ShareButton
       color={color}
       id={id}
+      type={type}
       title={title}
       location={location}
       date={date}

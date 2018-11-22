@@ -66,6 +66,7 @@ export default ({
     id={id}
     title={title}
     location={location}
+    type={type}
     starred={starred}
     starsCount={starsCount}
     commentsCount={commentsCount}
