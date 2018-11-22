@@ -2,11 +2,11 @@ import React from 'react';
 import { Searchbar } from 'react-native-paper';
 import { StyleSheet } from 'react-native';
 
-export default (props) => (
+export default ({ icon, placeholder, value}) => (
   <Searchbar
-    icon="search"
-    placeholder="Search "
-    value=""
+    icon={icon}
+    placeholder={placeholder}
+    value={value}
     style={styles.searchbar}
   />
 );

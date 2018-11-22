@@ -7,7 +7,7 @@ export default (props) => (
   <View style={styles.container}>
     <Searchbar
       icon="search"
-      placeholder="Search "
+      placeholder="Search Schdlr"
       value=""
     />
     <Tabs />
