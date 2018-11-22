@@ -9,4 +9,5 @@ export default {
   primary: '#03a9f4',
   primary_light: '#67daff',
   primary_dark: '#007ac1',
+  disabled: '#d3d3d3'
 }

@@ -5,16 +5,19 @@ import colors from '../../../config/colors';
 
 export default class Button extends React.Component {
   render() {
-    const { loading, onPress } = this.props;
+    const { disabled, onPress } = this.props;
     return (
       <TouchableRipple
-        disabled={loading}
+        disabled={disabled}
         onPress={onPress}
-        style={styles.loginButton}
       >
         <View style={styles.button}>
           <Image style={styles.logo} source={require('./img/logo.png')} />
-          <Text style={styles.loginText}>Sign in with Google</Text>
+          <Text
+            style={[
+              styles.loginText,
+              { color: disabled ? colors.disabled : '#fff' }
+            ]}>Sign in with Google</Text>
         </View>
       </TouchableRipple>
     );
@@ -22,10 +25,6 @@ export default class Button extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  loginButton: {
-    marginVertical: 4,
-    width: 250,
-  },
   loginText: {
     fontSize: 14,
     color: '#fff',
@@ -34,6 +33,8 @@ const styles = StyleSheet.create({
     fontWeight: 'bold'
   },
   button: {
+    marginVertical: 4,
+    width: 250,
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: colors.google,
