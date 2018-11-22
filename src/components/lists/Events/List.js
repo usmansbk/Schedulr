@@ -13,17 +13,48 @@ import {
   SEPERATOR_HEIGHT,
   SECTION_HEADER_HEIGHT
 } from './styles';
+import dummy from './dummy';
 
 class List extends React.Component {
   state = { update: null };
   _loadPrevious = () => console.log('Load previous events');
-  _keyExtractor = (item, index) => item.id;
+  _keyExtractor = (item, index) => item.cursor;
   _renderHeader = () => <Header onPress={this._loadPrevious} visible={defaultProps.hasPreviousEvents} />;
   _renderFooter = () => <Footer visible={defaultProps.sections.length}/>;
   _renderEmptyList = () => <Empty />;
   _renderSeparator = () => <Separator />;
   _renderSectionHeader = ({section}) => <SectionHeader section={section} />;
-  _renderItem = () => <Item />;
+  _onPressItem = (id) => alert(Boolean(this.props.navigation + ' ' + this.props.isFocused + ' ' + id));
+  _renderItem = ({ node: {
+    id,
+    title,
+    description,
+    location,
+    type,
+    isCancelled,
+    commentsCount,
+    starsCount,
+    starred,
+    start,
+    end,
+    repeat,
+    allDay,
+  }}) => <Item
+    id={id}
+    title={title}
+    description={description}
+    location={location}
+    type={type}
+    isCancelled={isCancelled}
+    commentsCount={commentsCount}
+    starsCount={starsCount}
+    starred={starred}
+    start={start}
+    end={end}
+    repeat={repeat}
+    allDay={allDay}
+    onPressItem={this._onPressItem}
+  />;
   _getItemLayout = sectionListGetItemLayout({
     getItemHeight: () => ITEM_HEIGHT,
     getSeparatorHeight: () => SEPERATOR_HEIGHT,
@@ -59,13 +90,7 @@ const defaultProps = {
   loading: false,
   onRefresh: () => console.log('Refreshing'),
   hasPreviousEvents: false,
-  sections: [{
-    title: {
-      heading: 'Today',
-      subheading: 'Thu, 22 Nov 2018',
-    },
-    data: []
-  }],
+  sections: dummy,
 };
 
 export default withNavigationFocus(List);

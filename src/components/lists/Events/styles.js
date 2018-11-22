@@ -57,5 +57,8 @@ export default StyleSheet.create({
   },
   emptyIcon: {
     fontSize: 48,
+  },
+  separator: {
+    height: SEPERATOR_HEIGHT
   }
 });
