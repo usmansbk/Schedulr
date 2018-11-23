@@ -3,7 +3,7 @@ import colors from '../../../config/colors';
 
 export const ITEM_HEIGHT = 80;
 export const SEPARATOR_HEIGHT = 1;
-export const AVATAR_SIZE = 64;
+export const AVATAR_SIZE = 50;
 export const FOOTER_HEIGHT = 80;
 
 export default StyleSheet.create({
