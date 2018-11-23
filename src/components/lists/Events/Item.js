@@ -8,7 +8,7 @@ import {
 } from 'react-native-paper';
 import Actions from '../../common/Actions';
 import { decapitalize } from '../../../lib/capitalizr';
-import styles, { primary_dark, gray, black } from './styles';
+import styles, { primary_dark, black } from './styles';
 
 const START_TIME = 'hh:mm a';
 const REMINDER = 'REMINDER';
