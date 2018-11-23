@@ -83,7 +83,7 @@ export default class Item extends React.PureComponent {
             </View>
             <View style={styles.body}>
               <Text style={styles.itemNote}>{this._parseDetails()}</Text>
-              { isCancelled && <Text style={styles.itemNote}>Cancelled</Text>}
+              { isCancelled && <Text style={styles.cancelled}>Cancelled</Text>}
             </View>
           </View>
           <Actions

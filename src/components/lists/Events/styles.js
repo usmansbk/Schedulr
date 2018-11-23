@@ -103,6 +103,11 @@ export default StyleSheet.create({
     fontSize: 16,
     color: gray
   },
+  cancelled: {
+    fontWeight: 'bold',
+    fontSize: 16,
+    color: colors.light_red
+  },
   startTime: {
     alignSelf: 'flex-end',
     fontWeight: 'bold',
