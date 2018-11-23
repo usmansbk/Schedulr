@@ -45,7 +45,7 @@ export default ({
       isAdmin && (
         <Fab
           icon="edit"
-          onPress={navigateToNewEvent}
+          onPress={() => navigateToNewEvent(id)}
         />
       )
     }
