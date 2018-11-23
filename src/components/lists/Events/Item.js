@@ -29,11 +29,10 @@ export default class Item extends React.PureComponent {
     return  allDay ? 'All day' : moment(start).format(START_TIME).toUpperCase()
   };
   _endTime = () => {
-    const { end } = this.props;
-    const today = moment().format(DATE_FORMAT);
-    const isToday = today === moment(end).format(DATE_FORMAT);
-    if (isToday) return moment(end).format(START_TIME).toUpperCase();
-    return '';
+    const { end, start } = this.props;
+    const startDay = moment(start).format(DATE_FORMAT);
+    const isSameDay = (startDay === moment(end).format(DATE_FORMAT));
+    return (isSameDay) ? moment(end).format(START_TIME).toUpperCase() : '';
   };
   _isStarted = () => {
     const { isCancelled, start, end } = this.props;
