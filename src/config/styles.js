@@ -4,8 +4,9 @@ import colors from './colors';
 export default StyleSheet.create({
   icon: {
     flexDirection: 'row',
-    justifyContent: 'flex-start',
     alignItems: 'center',
+    minWidth: 48,
+    maxWidth: 48,
   },
   badge: {
     fontSize: 16,

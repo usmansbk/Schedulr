@@ -4,6 +4,8 @@ import colors from '../../../config/colors';
 export const ITEM_HEIGHT = 150;
 export const SEPARATOR_HEIGHT = 2;
 export const SECTION_HEADER_HEIGHT = 64;
+export const primary_dark = colors.primary_dark;
+export const gray = colors.gray;
 
 export default StyleSheet.create({
   list: {
@@ -96,7 +98,6 @@ export default StyleSheet.create({
   startTime: {
     alignSelf: 'flex-end',
     fontWeight: 'bold',
-    color: colors.gray,
     fontSize: 18
   }
 });

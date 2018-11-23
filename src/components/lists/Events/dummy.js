@@ -1,5 +1,5 @@
 export default [{
-  title: '11/24/2018',
+  title: '11/23/2018',
   data: [{
     cursor: 1,
     node: {
@@ -8,7 +8,7 @@ export default [{
       description: 'Lorem Ipsum Dolor Amet',
       location: 'No location set',
       start: Date.now(),
-      end: new Date('11/20/2018'),
+      end: new Date('11/24/2018'),
       allDay: true,
       isCancelled: false,
       starred: false,
@@ -28,8 +28,8 @@ export default [{
       end: new Date('11/20/2018'),
       allDay: false,
       isCancelled: true,
-      starred: true,
-      starsCount: 2,
+      starred: false,
+      starsCount: 0,
       commentsCount: 0,
       repeat: 'DAILY',
       type: 'REMINDER',
@@ -53,7 +53,7 @@ export default [{
     }
   },]
 },{
-  title: '11/23/2018',
+  title: '11/24/2018',
   data: [{
     cursor: 5,
     node: {

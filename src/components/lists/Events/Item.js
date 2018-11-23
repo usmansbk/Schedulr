@@ -8,7 +8,7 @@ import {
 } from 'react-native-paper';
 import Actions from '../../common/Actions';
 import { decapitalize } from '../../../lib/capitalizr';
-import styles from './styles';
+import styles, { primary_dark, gray } from './styles';
 
 const START_TIME = 'hh:mm a';
 const REMINDER = 'REMINDER';
@@ -22,10 +22,14 @@ export default class Item extends React.PureComponent {
     if (type === REMINDER) return `${recurrence ? (decapitalize(recurrence) + ' reminder') : 'Reminder'}`;
     const duration = moment(end).from(start, true);
     return `${duration} ${type.toLowerCase()}, ${recurrence.toLowerCase()}`;
-  }
+  };
   _startTime = () => {
     const { allDay, start } = this.props;
     return  allDay ? 'All day' : moment(start).format(START_TIME).toUpperCase()
+  };
+  _isStarted = () => {
+    const { isCancelled, allDay, start, end } = this.props;
+    return (!isCancelled && (Date.now() > start) && (Date.now() < end));
   }
   render() {
     const {
@@ -40,6 +44,7 @@ export default class Item extends React.PureComponent {
       commentsCount,
       starred,
     } = this.props;
+    const isStarted = this._isStarted();
     return (
       <TouchableRipple
         onPress={this._onPress}
@@ -49,7 +54,9 @@ export default class Item extends React.PureComponent {
           <View style={styles.itemContent}>
             <View style={styles.itemHeader}>
               <Text style={styles.itemHeadline} numberOfLines={1} ellipsizeMode="tail">{title}</Text>
-              <Text style={styles.startTime}>{this._startTime()}</Text>
+              <Text style={[styles.startTime, {
+                color: isStarted ? primary_dark : gray
+              }]}>{this._startTime()}</Text>
             </View>
             <View style={styles.body}>
               { Boolean(description) && (
