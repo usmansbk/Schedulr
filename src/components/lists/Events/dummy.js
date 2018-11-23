@@ -39,10 +39,10 @@ export default [{
     node: {
       id: 3,
       title: 'Dev Mode 3',
-      description: 'Lorem Ipsum Dolor Amet',
+      description: 'Lorem Ipsum Dolor Amet Kasupda Method dummy schldr visual',
       location: null,
       start: Date.now(),
-      end: new Date('11/20/2018'),
+      end: Date.now(),
       allDay: false,
       isCancelled: false,
       starred: false,

@@ -96,7 +96,7 @@ export default StyleSheet.create({
   itemHeadline: {
     fontSize: 18,
     fontWeight: 'bold',
-    width: 180
+    width: 200
   },
   itemNote: {
     fontWeight: 'bold',
