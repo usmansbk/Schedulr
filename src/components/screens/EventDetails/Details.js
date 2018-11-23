@@ -11,7 +11,7 @@ const defaultValues = {
   id: 1,
   title: '(No title)',
   start: new Date('11/21/2018'),
-  end: new Date('11/22/2018'),
+  end: new Date('11/27/2018'),
   type: 'WORK',
   location: null,
   group: {
