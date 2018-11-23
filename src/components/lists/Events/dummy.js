@@ -41,7 +41,7 @@ export default [{
       title: 'Dev Mode 3',
       description: 'Lorem Ipsum Dolor Amet Kasupda Method dummy schldr visual',
       location: null,
-      start: Date.now(),
+      start: new Date('11/22/2018'),
       end: Date.now(),
       allDay: false,
       isCancelled: true,

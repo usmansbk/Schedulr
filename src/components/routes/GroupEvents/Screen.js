@@ -11,7 +11,6 @@ export default ({
   name,
   description,
   isAdmin,
-  following,
   handleShare,
   navigateToGroupInfo,
   navigateToNewEvent,
@@ -23,13 +22,6 @@ export default ({
         title={name}
         subtitle={description}
       />
-      {
-        !isAdmin && (
-          <Appbar.Action
-            icon={`person${following ? '' : '-add'}`}
-          />
-        )
-      }
       <Appbar.Action
         icon="share"
         onPress={() => handleShare({ name, description, id})}
