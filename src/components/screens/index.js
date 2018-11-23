@@ -3,6 +3,7 @@ import Home from './Home';
 import NewEvent from './NewEvent';
 import NewGroup from './NewGroup';
 import NewGroupEvent from './NewGroupEvent';
+import RescheduleEvent from './RescheduleEvent';
 import AuthLoading from './AuthLoading';
 import EventDetails from './EventDetails';
 import GroupEvents from './GroupEvents';
@@ -14,6 +15,7 @@ export {
   NewEvent,
   NewGroup,
   NewGroupEvent,
+  RescheduleEvent,
   EventDetails,
-  GroupEvents
+  GroupEvents,
 }

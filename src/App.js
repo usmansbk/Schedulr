@@ -10,6 +10,7 @@ import {
   NewEvent,
   NewGroup,
   NewGroupEvent,
+  RescheduleEvent,
   Home,
   EventDetails,
   GroupEvents
@@ -20,6 +21,7 @@ const AppStack = createStackNavigator({
   NewEvent,
   NewGroup,
   NewGroupEvent,
+  RescheduleEvent,
   EventDetails,
   GroupEvents
 }, {

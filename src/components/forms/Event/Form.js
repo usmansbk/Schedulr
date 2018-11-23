@@ -36,6 +36,7 @@ const defaultValues = {
 const Form = ({
   loading,
   groups=[],
+  locked,
   initialValues,
   onSubmit,
   handleCancel,
@@ -194,6 +195,7 @@ const Form = ({
               prompt="Select a group"
               selectedValue={values.groupId}
               style={styles.picker}
+              enabled={!locked }
               itemStyle={styles.pickerItem}
               onValueChange={itemValue => setFieldValue('groupId', itemValue)}
             >
