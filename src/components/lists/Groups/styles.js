@@ -55,8 +55,9 @@ export default StyleSheet.create({
     marginHorizontal: 4,
     alignItems: 'center',
     flexDirection: 'row',
-    flex: 1,
-
+  },
+  itemBody: {
+    width: 250
   },
   danger: {
     color: colors.light_red
