@@ -1,9 +1,9 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
+import List from '../../lists/Events';
 
 export default () => (
-  <View style={styles.container}>
-  </View>
+  <List />
 );
 
 const styles = StyleSheet.create({
