@@ -30,4 +30,7 @@ export default StyleSheet.create({
   emptyIcon: {
     fontSize: 20,
   },
+  footer: {
+    height: 80
+  }
 });
