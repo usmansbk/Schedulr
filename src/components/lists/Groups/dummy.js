@@ -13,7 +13,7 @@ export default [
     node: {
       id: 2,
       name: 'Redhat 2',
-      description: 'YouTube',
+      description: 'Lorem Ipsum Dolor Amet Schdlr Visual Studio Code Terminal',
       link: null,
       isAdmin: true,
       closed: false,

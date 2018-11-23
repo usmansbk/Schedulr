@@ -4,6 +4,7 @@ import colors from '../../../config/colors';
 export const ITEM_HEIGHT = 80;
 export const SEPARATOR_HEIGHT = 1;
 export const AVATAR_SIZE = 64;
+export const FOOTER_HEIGHT = 80;
 
 export default StyleSheet.create({
   list: {
@@ -33,15 +34,15 @@ export default StyleSheet.create({
     fontSize: 20,
   },
   footer: {
-    height: 80
+    height: FOOTER_HEIGHT
   },
   itemContainer: {
     height: ITEM_HEIGHT,
     backgroundColor: 'white',
   },
   itemAvatar: {
-    height: 64,
-    width: 64,
+    height: AVATAR_SIZE,
+    width: AVATAR_SIZE,
     marginRight: 8
   },
   itemName: {
