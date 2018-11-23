@@ -3,6 +3,7 @@ import colors from '../../../config/colors';
 
 export const ITEM_HEIGHT = 80;
 export const SEPARATOR_HEIGHT = 1;
+export const AVATAR_SIZE = 64;
 
 export default StyleSheet.create({
   list: {
@@ -33,5 +34,30 @@ export default StyleSheet.create({
   },
   footer: {
     height: 80
+  },
+  itemContainer: {
+    height: ITEM_HEIGHT,
+    backgroundColor: 'white',
+  },
+  itemAvatar: {
+    height: 64,
+    width: 64,
+    marginRight: 8
+  },
+  itemName: {
+    fontWeight: 'bold',
+    fontSize: 18
+  },
+  itemContent: {
+    marginTop: 4,
+    paddingHorizontal: 4,
+    marginHorizontal: 4,
+    alignItems: 'center',
+    flexDirection: 'row',
+    flex: 1,
+
+  },
+  danger: {
+    color: colors.light_red
   }
 });

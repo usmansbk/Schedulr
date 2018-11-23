@@ -9,6 +9,7 @@ import styles, {
   ITEM_HEIGHT,
   SEPERATOR_HEIGHT
 } from './styles';
+import groups from './dummy';
 
 class List extends Component {
   _getItemLayout = (_, index) => (
@@ -19,8 +20,8 @@ class List extends Component {
     }
   );
   shouldComponentUpdate = (nextProps) => nextProps.isFocused;
-  _onPressItem = (id) => this.props.navigation.navigate('GroupEvents', { id })
-  _keyExtractor = (item) => item.cursor
+  _onPressItem = (id) => this.props.navigation.navigate('GroupEvents', { id });
+  _keyExtractor = (item) => item.node.id;
   _renderEmptyList = () => <Empty />;
   _renderItem = ({item: { node }}) => {
     const {
@@ -51,7 +52,7 @@ class List extends Component {
   render() {
     const {
       groups=[],
-    } = this.props;
+    } = defaultProps;
     return (
       <FlatList
         style={styles.list}
@@ -69,7 +70,8 @@ class List extends Component {
 }
 
 const defaultProps = {
-  groups: []
+  groups,
+  loading: false,
 }
 
 export default withNavigationFocus(List);
