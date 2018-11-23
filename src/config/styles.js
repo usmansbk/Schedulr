@@ -9,7 +9,6 @@ export default StyleSheet.create({
     maxWidth: 48,
   },
   badge: {
-    fontSize: 16,
     color: colors.black
   },
   header: {
