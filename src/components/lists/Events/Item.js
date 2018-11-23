@@ -36,7 +36,7 @@ export default class Item extends React.PureComponent {
     return '';
   };
   _isStarted = () => {
-    const { isCancelled, allDay, start, end } = this.props;
+    const { isCancelled, start, end } = this.props;
     return (!isCancelled && (Date.now() > start) && (Date.now() < end));
   };
   render() {
