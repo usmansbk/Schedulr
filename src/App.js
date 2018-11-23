@@ -10,14 +10,16 @@ import {
   NewEvent,
   NewGroup,
   Home,
-  EventDetails
+  EventDetails,
+  GroupEvents
 } from './components/screens';
 
 const AppStack = createStackNavigator({
   Home,
   NewEvent,
   NewGroup,
-  EventDetails
+  EventDetails,
+  GroupEvents
 }, {
   initialRouteName: 'Home',
   headerMode: 'none'

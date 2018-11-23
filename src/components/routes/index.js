@@ -6,6 +6,7 @@ import Home from './Home';
 import Search from './Search';
 import Notifications from './Notifications';
 import EventDetails from './EventDetails';
+import GroupEvents from './GroupEvents';
 
 export {
   More,
@@ -15,5 +16,6 @@ export {
   Search,
   Home,
   Notifications,
-  EventDetails
+  EventDetails,
+  GroupEvents
 };

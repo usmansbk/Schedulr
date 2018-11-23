@@ -4,6 +4,7 @@ import NewEvent from './NewEvent';
 import NewGroup from './NewGroup';
 import AuthLoading from './AuthLoading';
 import EventDetails from './EventDetails';
+import GroupEvents from './GroupEvents';
 
 export {
   AuthLoading,
@@ -11,5 +12,6 @@ export {
   Home,
   NewEvent,
   NewGroup,
-  EventDetails
+  EventDetails,
+  GroupEvents
 }

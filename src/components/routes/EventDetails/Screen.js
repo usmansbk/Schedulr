@@ -30,7 +30,7 @@ export default ({
   <React.Fragment>
     <Appbar.Header>
       <Appbar.BackAction onPress={handleBack} />
-      <Appbar.Content title={(!isAuthor || !isValid) ? 'Details' : ''} />
+      <Appbar.Content title="Details" />
       {
         isAuthor && (
           <React.Fragment>
