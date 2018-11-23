@@ -1,18 +1,13 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import List from '../../lists/Groups';
 import FAB from '../../common/Fab';
 
 export default (props) => (
-  <View style={styles.container}>
+  <React.Fragment>
+    <List />
     <FAB
       icon="add"
       onPress={() => props.navigation.navigate('NewGroup')}
     />
-  </View>
+  </React.Fragment>
 );
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-})
