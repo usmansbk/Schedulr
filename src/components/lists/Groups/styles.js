@@ -39,6 +39,7 @@ export default StyleSheet.create({
   itemContainer: {
     height: ITEM_HEIGHT,
     backgroundColor: 'white',
+    justifyContent: 'center'
   },
   itemAvatar: {
     height: AVATAR_SIZE,
@@ -50,7 +51,6 @@ export default StyleSheet.create({
     fontSize: 18
   },
   itemContent: {
-    marginTop: 4,
     paddingHorizontal: 4,
     marginHorizontal: 4,
     alignItems: 'center',
