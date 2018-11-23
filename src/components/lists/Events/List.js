@@ -80,6 +80,7 @@ class List extends React.Component {
     } = defaultProps;
     return (
       <SectionList
+        initialNumToRender={0}
         style={styles.list}
         stickySectionHeadersEnabled
         getItemLayout={this._getItemLayout}

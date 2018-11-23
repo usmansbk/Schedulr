@@ -56,6 +56,7 @@ class List extends Component {
     return (
       <FlatList
         style={styles.list}
+        initialNumToRender={5}
         extraData={groups.length}
         getItemLayout={this._getItemLayout}
         ItemSeparatorComponent={this._renderSeparator}
