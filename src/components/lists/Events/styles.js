@@ -6,6 +6,7 @@ export const SEPARATOR_HEIGHT = 2;
 export const SECTION_HEADER_HEIGHT = 64;
 export const primary_dark = colors.primary_dark;
 export const gray = colors.gray;
+export const black = colors.black;
 
 export default StyleSheet.create({
   list: {
@@ -28,7 +29,7 @@ export default StyleSheet.create({
   },
   sectionSubheading: {
     fontWeight: 'bold',
-    color: colors.gray
+    color: gray
   },
   header:{
     height: 28,
@@ -46,7 +47,7 @@ export default StyleSheet.create({
   },
   footerText: {
     fontWeight: 'bold',
-    color: colors.gray
+    color: gray
   },
   empty: {
     flex: 1,
@@ -57,7 +58,7 @@ export default StyleSheet.create({
   },
   emptyTitle: {
     fontSize: 27,
-    color: colors.gray,
+    color: gray,
     fontWeight: 'bold'
   },
   emptyMessage: {
@@ -85,6 +86,13 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
   },
+  itemSubheading: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  itemSubheadingText: {
+    width: 200
+  },
   itemHeadline: {
     fontSize: 18,
     fontWeight: 'bold',
@@ -93,11 +101,17 @@ export default StyleSheet.create({
   itemNote: {
     fontWeight: 'bold',
     fontSize: 16,
-    color: colors.gray
+    color: gray
   },
   startTime: {
     alignSelf: 'flex-end',
     fontWeight: 'bold',
     fontSize: 18
+  },
+  endTime: {
+    alignSelf: 'flex-end',
+    fontWeight: 'bold',
+    fontSize: 18,
+    color: gray,
   }
 });
