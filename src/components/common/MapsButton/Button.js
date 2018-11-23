@@ -8,7 +8,7 @@ export default ({
 }) => (
   <IconButton
   disabled={!location}
-  size={size || 24}
+  size={size}
   icon={`location-${location ? 'on' : 'off'}`}
   onPress={() => {
     alert('Open maps to ' + location);

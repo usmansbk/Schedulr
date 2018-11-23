@@ -5,7 +5,7 @@ export default ({ color, size, commentsCount, onPress}) => (
   <IconBadge
     icon="chat-bubble-outline"
     onPress={onPress}
-    size={ size ? 16 : 24}
+    size={ size}
     color={color}
     count={commentsCount}
   />
