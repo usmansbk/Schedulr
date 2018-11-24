@@ -47,12 +47,13 @@ export default ({
         <Button style={styles.followButton} mode="outlined">{`Follow${following ? 'ing' : ''}`}</Button>
       </View>
       <Divider />
+      <View style={styles.space}>
       <Text style={styles.label}>ADMIN</Text>
       <View style={styles.admin}>
         <UserAvater name={adminName} rounded size={32} />
         <Text style={styles.adminName}>{adminName}</Text>
       </View>
-      <Divider />
+      </View>
       <View style={styles.space}>
         <Text style={styles.label}>PRIVACY</Text>
         <Text style={styles.value}>{isPrivate ? 'Private' : 'Public'}</Text>

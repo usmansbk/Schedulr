@@ -54,8 +54,7 @@ export default StyleSheet.create({
   admin: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: 4,
-    marginBottom: 8
+    marginVertical: 8,
   },
   adminName: {
     marginLeft: 8,
