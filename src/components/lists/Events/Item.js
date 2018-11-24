@@ -8,7 +8,7 @@ import {
 } from 'react-native-paper';
 import Avatar from 'react-native-user-avatar';
 import Actions from '../../common/Actions';
-import { decapitalize } from '../../../lib/capitalizr';
+import capitalizr, { decapitalize } from '../../../lib/capitalizr';
 import styles, { primary_light, black } from './styles';
 
 const START_TIME = 'hh:mm a';
@@ -24,7 +24,7 @@ export default class Item extends React.PureComponent {
     const recurrence = repeat === 'NEVER' ? '' : repeat;
     if (type === REMINDER) return `${recurrence ? (decapitalize(recurrence) + ' reminder') : 'Reminder'}`;
     const duration = moment(end).from(start, true);
-    return `${duration} ${type.toLowerCase()}, ${recurrence.toLowerCase()}`;
+    return capitalizr(`${duration} ${type.toLowerCase()}, ${recurrence.toLowerCase()}`);
   };
   _startTime = () => {
     const { allDay, start } = this.props;

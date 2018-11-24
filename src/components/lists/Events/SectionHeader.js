@@ -2,6 +2,7 @@ import React from 'react';
 import moment from 'moment';
 import { View } from 'react-native';
 import { Text } from 'react-native-paper';
+import capitalizr from '../../../lib/capitalizr';
 import styles from './styles';
 
 const getFormattedDate = (date) => {
@@ -34,7 +35,7 @@ export default ({ section: { title } }) => {
     <Text style={styles.sectionHeading}>{heading}</Text>
     <View style={styles.sectionSubheadingContent}>
       <Text style={styles.sectionSubheading}>{subheading}</Text>
-      <Text style={styles.sectionSubheading}>{timeAgo}</Text>
+      <Text style={styles.sectionSubheading}>{capitalizr(timeAgo)}</Text>
     </View>
   </View>
 )};
