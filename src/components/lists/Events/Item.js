@@ -6,6 +6,7 @@ import {
   Text,
   Caption
 } from 'react-native-paper';
+import Avatar from 'react-native-user-avatar';
 import Actions from '../../common/Actions';
 import { decapitalize } from '../../../lib/capitalizr';
 import styles, { primary_light, black } from './styles';
@@ -50,6 +51,7 @@ export default class Item extends React.PureComponent {
       isCancelled,
       starsCount,
       commentsCount,
+      groupName,
       starred,
     } = this.props;
     return (
@@ -58,7 +60,10 @@ export default class Item extends React.PureComponent {
         style={styles.itemContainer}
       >
         <React.Fragment>
-          <View style={styles.itemContent}>
+          <View style={styles.itemBody}>
+            <View style={styles.avatar}>
+              <Avatar rounded size={48} name={groupName} />
+            </View><View style={styles.itemContent}>
             <View style={styles.itemHeader}>
               <Text style={styles.itemHeadline} numberOfLines={1} ellipsizeMode="tail">{title}</Text>
               <Text style={[styles.startTime, {
@@ -84,6 +89,7 @@ export default class Item extends React.PureComponent {
               <Text style={styles.itemNote}>{this._parseDetails()}</Text>
               { isCancelled && <Text style={styles.cancelled}>Cancelled</Text>}
             </View>
+          </View>
           </View>
           <Actions
             id={id}

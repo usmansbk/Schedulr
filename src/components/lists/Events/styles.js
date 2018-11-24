@@ -77,9 +77,14 @@ export default StyleSheet.create({
     justifyContent: 'space-between',
   },
   itemContent: {
+    flexGrow: 1,
     paddingTop: 4,
-    paddingHorizontal: 16,
+    paddingLeft: 8,
     justifyContent: 'space-between',
+  },
+  itemBody: {
+    flexDirection: 'row',
+    paddingHorizontal: 8,
   },
   itemHeader: {
     flexDirection: 'row',
@@ -103,6 +108,7 @@ export default StyleSheet.create({
     fontSize: 16,
     color: gray
   },
+  avatar: { paddingTop: 8 },
   cancelled: {
     fontWeight: 'bold',
     fontSize: 16,

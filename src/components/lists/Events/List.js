@@ -40,6 +40,7 @@ class List extends React.Component {
     start,
     end,
     repeat,
+    group,
     allDay,
   }}}) => <Item
     id={id}
@@ -53,6 +54,7 @@ class List extends React.Component {
     starred={starred}
     start={start}
     end={end}
+    groupName={group.name}
     repeat={repeat}
     allDay={allDay}
     onPressItem={this._onPressItem}

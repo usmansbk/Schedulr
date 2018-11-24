@@ -4,7 +4,7 @@ export default [{
     cursor: 1,
     node: {
       id: 1,
-      title: 'Dev Mode',
+      title: 'EEEN301',
       description: 'Lorem Ipsum Dolor Amet',
       location: 'No location set',
       start: Date.now(),
@@ -16,12 +16,16 @@ export default [{
       commentsCount: 222203,
       repeat: 'WEEKLY',
       type: 'LECTURE',
+      group: {
+        id: 1,
+        name: 'EEEN301'
+      }
     }
   },{
     cursor: 2,
     node: {
       id: 2,
-      title: 'Dev Mode 2 Dragon Fever Slayer Authum King 2',
+      title: 'EEEN302',
       description: 'Lorem Ipsum Dolor Amet',
       location: 'No location set',
       start: Date.now(),
@@ -33,12 +37,16 @@ export default [{
       commentsCount: 0,
       repeat: 'DAILY',
       type: 'REMINDER',
+      group: {
+        id: 1,
+        name: 'EEEN302'
+      }
     }
   },{
     cursor: 3,
     node: {
       id: 3,
-      title: 'Dev Mode 3',
+      title: 'EEEN303',
       description: 'Lorem Ipsum Dolor Amet Kasupda Method dummy schldr visual',
       location: null,
       start: new Date('11/22/2018'),
@@ -50,6 +58,10 @@ export default [{
       commentsCount: 0,
       repeat: 'WEEKLY',
       type: 'HOBBY',
+      group: {
+        id: 1,
+        name: 'EEEN303'
+      }
     }
   },]
 },{
@@ -58,7 +70,7 @@ export default [{
     cursor: 5,
     node: {
       id: 1,
-      title: 'Dev Mode',
+      title: 'EEEN304',
       description: 'Lorem Ipsum Dolor Amet',
       location: 'No location set',
       start: Date.now(),
@@ -70,12 +82,16 @@ export default [{
       commentsCount: 222203,
       repeat: 'WEEKLY',
       type: 'LECTURE',
+      group: {
+        id: 1,
+        name: 'EEEN304'
+      }
     }
   },{
     cursor: 6,
     node: {
       id: 2,
-      title: 'Dev Mode 2 Dragon Fever Slayer Authum King 2',
+      title: 'CMEN201',
       description: 'Lorem Ipsum Dolor Amet',
       location: 'No location set',
       start: Date.now(),
@@ -87,12 +103,16 @@ export default [{
       commentsCount: 0,
       repeat: 'DAILY',
       type: 'REMINDER',
+      group: {
+        id: 1,
+        name: 'CMEN201'
+      }
     }
   },{
     cursor: 7,
     node: {
       id: 3,
-      title: 'Dev Mode 3',
+      title: 'GENS301',
       description: 'Lorem Ipsum Dolor Amet',
       location: null,
       start: Date.now(),
@@ -104,6 +124,10 @@ export default [{
       commentsCount: 0,
       repeat: 'WEEKLY',
       type: 'HOBBY',
+      group: {
+        id: 1,
+        name: 'GENS301'
+      }
     }
   },]
 }];
