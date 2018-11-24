@@ -92,7 +92,6 @@ export default [{
     node: {
       id: 2,
       title: 'CMEN201',
-      description: 'Lorem Ipsum Dolor Amet',
       location: 'No location set',
       start: Date.now(),
       end: Date.now(),
