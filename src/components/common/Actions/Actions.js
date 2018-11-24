@@ -68,6 +68,5 @@ const styles = StyleSheet.create({
   actions: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingHorizontal: 8
   }
 });

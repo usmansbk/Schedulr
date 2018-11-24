@@ -99,7 +99,8 @@ export default StyleSheet.create({
   itemNote: {
     fontWeight: 'bold',
     fontSize: 16,
-    color: gray
+    color: gray,
+    width: 200
   },
   left: { paddingTop: 8 },
   right: { flexGrow: 1, justifyContent: 'space-between'},
