@@ -76,7 +76,7 @@ export default class Item extends React.PureComponent {
                     {description}
                   </Caption>)
                 }
-                <Text numberOfLines={1} ellipsizeMode="tail" style={styles.itemNote}>{this._startTime()}</Text>
+                <Text numberOfLines={1} ellipsizeMode="tail" style={styles.itemNote}>{this._parseDetails()}</Text>
                 { isCancelled && <Text style={styles.cancelled}>Cancelled</Text>}
               </View>
               <View>
