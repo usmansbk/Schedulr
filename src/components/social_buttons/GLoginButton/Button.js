@@ -18,7 +18,7 @@ export default ({ disabled, loading, onPress }) => (
       <Image style={styles.logo} source={require('./img/logo.png')} />
       <Text
         style={styles.text}>{
-          loading ? 'Signing in...' : 'Sign in with Google'
+          loading ? 'Signing in...' : 'Continue with Google'
         }</Text>
     </View>
   </TouchableRipple>
