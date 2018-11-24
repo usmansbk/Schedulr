@@ -4,6 +4,7 @@ import colors from '../../../config/colors';
 export const ITEM_HEIGHT = 150;
 export const SEPARATOR_HEIGHT = 2;
 export const SECTION_HEADER_HEIGHT = 64;
+export const HEADER_HEIGHT = 28;
 export const primary_light = colors.primary;
 export const gray = colors.gray;
 export const black = colors.black;
@@ -32,7 +33,7 @@ export default StyleSheet.create({
     color: gray
   },
   header:{
-    height: 28,
+    height: HEADER_HEIGHT,
     alignItems: 'center',
     justifyContent: 'center'
   },

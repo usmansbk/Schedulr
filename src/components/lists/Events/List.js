@@ -12,7 +12,8 @@ import Item from './Item';
 import styles, {
   ITEM_HEIGHT,
   SEPERATOR_HEIGHT,
-  SECTION_HEADER_HEIGHT
+  SECTION_HEADER_HEIGHT,
+  HEADER_HEIGHT,
 } from './styles';
 import dummy from './dummy';
 
@@ -63,7 +64,8 @@ class List extends React.Component {
   _getItemLayout = sectionListGetItemLayout({
     getItemHeight: () => ITEM_HEIGHT,
     getSeparatorHeight: () => SEPERATOR_HEIGHT,
-    getSectionHeaderHeight: () => SECTION_HEADER_HEIGHT
+    getSectionHeaderHeight: () => SECTION_HEADER_HEIGHT,
+    listHeaderHeight: HEADER_HEIGHT,
   });
   shouldComponentUpdate = (nextProps) => nextProps.isFocused;
   componentDidMount = () => {
