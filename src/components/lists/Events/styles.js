@@ -75,6 +75,7 @@ export default StyleSheet.create({
   itemContainer: {
     height: ITEM_HEIGHT,
     backgroundColor: 'white',
+    paddingTop: 8,
   },
   itemContent: {
     flex: 1,
