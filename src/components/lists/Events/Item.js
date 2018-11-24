@@ -17,6 +17,7 @@ const DATE_FORMAT = 'DD MM YYYY';
 
 export default class Item extends React.PureComponent {
   _onPress = () => this.props.onPressItem(this.props.id);
+  _navigateToGroup = () => this.props.navigateToGroupEvents(this.props.groupId);
   _onPressComment = () => this.props.onPressCommentButton(this.props.id);
   _parseDetails = () => {
     const { type, repeat, end, start } = this.props;
@@ -61,35 +62,36 @@ export default class Item extends React.PureComponent {
       >
         <React.Fragment>
           <View style={styles.itemBody}>
-            <View style={styles.avatar}>
+            <TouchableRipple onPress={this._navigateToGroup} style={styles.avatar}>
               <Avatar rounded size={48} name={groupName} />
-            </View><View style={styles.itemContent}>
-            <View style={styles.itemHeader}>
-              <Text style={styles.itemHeadline} numberOfLines={1} ellipsizeMode="tail">{title}</Text>
-              <Text style={[styles.startTime, {
-                    color: this._isStarted() ? primary_light : black
-                  }]}>{this._startTime()}</Text>
+            </TouchableRipple>
+            <View style={styles.itemContent}>
+              <View style={styles.itemHeader}>
+                <Text style={styles.itemHeadline} numberOfLines={1} ellipsizeMode="tail">{title}</Text>
+                <Text style={[styles.startTime, {
+                      color: this._isStarted() ? primary_light : black
+                    }]}>{this._startTime()}</Text>
+              </View>
+              <View style={styles.itemSubheading}>
+                { Boolean(description) && (
+                  <Caption
+                    style={styles.itemSubheadingText}
+                    numberOfLines={1}
+                    ellipsizeMode="tail">
+                    {description}
+                  </Caption>)
+                }
+                {
+                  !allDay && (type !== REMINDER) && (
+                    <Text style={styles.endTime}>{this._endTime()}</Text>
+                  )
+                }
+              </View>
+              <View style={styles.body}>
+                <Text style={styles.itemNote}>{this._parseDetails()}</Text>
+                { isCancelled && <Text style={styles.cancelled}>Cancelled</Text>}
+              </View>
             </View>
-            <View style={styles.itemSubheading}>
-              { Boolean(description) && (
-                <Caption
-                  style={styles.itemSubheadingText}
-                  numberOfLines={1}
-                  ellipsizeMode="tail">
-                  {description}
-                </Caption>)
-              }
-              {
-                !allDay && (type !== REMINDER) && (
-                  <Text style={styles.endTime}>{this._endTime()}</Text>
-                )
-              }
-            </View>
-            <View style={styles.body}>
-              <Text style={styles.itemNote}>{this._parseDetails()}</Text>
-              { isCancelled && <Text style={styles.cancelled}>Cancelled</Text>}
-            </View>
-          </View>
           </View>
           <Actions
             id={id}

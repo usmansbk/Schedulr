@@ -28,6 +28,7 @@ class List extends React.Component {
   _renderSectionHeader = ({section}) => <SectionHeader section={section} />;
   _onPressItem = (id) => this.props.navigation.navigate('EventDetails', { id });
   _onPressCommentItem = (id) => this.props.navigation.navigate('Comments', { id });
+  _navigateToGroupEvents = (id) => this.props.navigation.navigate('GroupEvents', { id });
   _renderItem = ({ item:{ node: {
     id,
     title,
@@ -55,11 +56,13 @@ class List extends React.Component {
     starred={starred}
     start={start}
     end={end}
+    groupId={group.id}
     groupName={group.name}
     repeat={repeat}
     allDay={allDay}
     onPressItem={this._onPressItem}
     onPressCommentButton={this._onPressCommentItem}
+    navigateToGroupEvents={this._navigateToGroupEvents}
   />;
   _getItemLayout = sectionListGetItemLayout({
     getItemHeight: () => ITEM_HEIGHT,
