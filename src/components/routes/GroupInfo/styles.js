@@ -28,13 +28,13 @@ export default StyleSheet.create({
   },
   followersCount: {
     fontSize: 20,
-    fontFamily: 'sans-serif-light',
+    fontFamily: 'sans-serif-bold',
     color: colors.gray
   },
   followersLabel: {
-    fontSize: 22,
-    fontFamily: 'sans-serif-bold',
+    fontSize: 18,
     color: colors.gray,
+    fontFamily: 'sans-serif-light',
   },
   followButton: {
     marginTop: 10,
