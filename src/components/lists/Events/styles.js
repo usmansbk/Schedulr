@@ -101,8 +101,9 @@ export default StyleSheet.create({
     width: 200
   },
   itemHeadline: {
-    fontSize: 18,
+    fontSize: 16,
     fontFamily: 'sans-serif-bold',
+    fontWeight: 'bold',
     width: 200
   },
   itemNote: {
