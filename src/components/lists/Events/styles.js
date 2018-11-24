@@ -85,6 +85,7 @@ export default StyleSheet.create({
   itemBody: {
     flexDirection: 'row',
     paddingHorizontal: 8,
+    paddingTop: 8,
   },
   itemHeader: {
     flexDirection: 'row',
