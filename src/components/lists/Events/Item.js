@@ -61,49 +61,51 @@ export default class Item extends React.PureComponent {
         style={styles.itemContainer}
       >
         <View style={styles.itemContent}>
-          <View style={styles.itemBody}>
-            <TouchableRipple onPress={this._navigateToGroup} style={styles.left}>
-              <Avatar rounded size={48} name={groupName} />
-            </TouchableRipple>
-            <View style={styles.body}>
-              <Text style={styles.itemHeadline} numberOfLines={1} ellipsizeMode="tail">{title}</Text>
-              { Boolean(description) && (
-                <Caption
-                  style={styles.itemSubheadingText}
-                  numberOfLines={1}
-                  ellipsizeMode="tail">
-                  {description}
-                </Caption>)
-              }
-              <Text style={styles.itemNote}>{this._parseDetails()}</Text>
-              { isCancelled && <Text style={styles.cancelled}>Cancelled</Text>}
+          <TouchableRipple onPress={this._navigateToGroup} style={styles.left}>
+            <Avatar rounded size={48} name={groupName} />
+          </TouchableRipple>
+          <View style={styles.right}>
+            <View style={styles.itemBody}>
+              <View style={styles.body}>
+                <Text style={styles.itemHeadline} numberOfLines={1} ellipsizeMode="tail">{title}</Text>
+                { Boolean(description) && (
+                  <Caption
+                    style={styles.itemSubheadingText}
+                    numberOfLines={1}
+                    ellipsizeMode="tail">
+                    {description}
+                  </Caption>)
+                }
+                <Text style={styles.itemNote}>{this._parseDetails()}</Text>
+                { isCancelled && <Text style={styles.cancelled}>Cancelled</Text>}
+              </View>
+              <View>
+                <Text
+                  style={[styles.startTime, {
+                  color: this._isStarted() ? primary_light : black
+                  }]}>{this._startTime()}
+                </Text>
+                {
+                  !allDay && (type !== REMINDER) && (
+                    <Text style={styles.endTime}>{this._endTime()}</Text>
+                  )
+                }
+              </View>
             </View>
-            <View style={styles.right}>
-              <Text
-                style={[styles.startTime, {
-                color: this._isStarted() ? primary_light : black
-                }]}>{this._startTime()}
-              </Text>
-              {
-                !allDay && (type !== REMINDER) && (
-                  <Text style={styles.endTime}>{this._endTime()}</Text>
-                )
-              }
-            </View>
+            <Actions
+              id={id}
+              title={title}
+              location={location}
+              type={type}
+              starred={starred}
+              starsCount={starsCount}
+              commentsCount={commentsCount}
+              date={date}
+              navigateToComments={this._onPressComment}
+              size="small"
+              dark
+            />
           </View>
-          <Actions
-            id={id}
-            title={title}
-            location={location}
-            type={type}
-            starred={starred}
-            starsCount={starsCount}
-            commentsCount={commentsCount}
-            date={date}
-            navigateToComments={this._onPressComment}
-            size="small"
-            dark
-          />
         </View>
       </TouchableRipple>
     );

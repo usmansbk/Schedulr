@@ -78,11 +78,12 @@ export default StyleSheet.create({
   },
   itemContent: {
     flex: 1,
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+    paddingHorizontal: 8,
   },
   itemBody: {
     flexDirection: 'row',
-    paddingHorizontal: 8,
     paddingTop: 8,
   },
   itemSubheadingText: {
@@ -100,6 +101,7 @@ export default StyleSheet.create({
     color: gray
   },
   left: { paddingTop: 8 },
+  right: { flexGrow: 1, justifyContent: 'space-between'},
   body: {
     flexGrow: 1,
     marginLeft: 8,
