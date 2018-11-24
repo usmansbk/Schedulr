@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { AsyncStorage } from 'react-native';
-import Loading from '../../common/Loading/Loading';
+import Loading from './Loading';
 
 export default class AuthLoading extends Component {
   constructor(props) {
