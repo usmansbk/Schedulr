@@ -62,35 +62,33 @@ export default class Item extends React.PureComponent {
       >
         <React.Fragment>
           <View style={styles.itemBody}>
-            <TouchableRipple onPress={this._navigateToGroup} style={styles.avatar}>
+            <TouchableRipple onPress={this._navigateToGroup} style={styles.left}>
               <Avatar rounded size={48} name={groupName} />
             </TouchableRipple>
-            <View style={styles.itemContent}>
-              <View style={styles.itemHeader}>
-                <Text style={styles.itemHeadline} numberOfLines={1} ellipsizeMode="tail">{title}</Text>
-                <Text style={[styles.startTime, {
-                      color: this._isStarted() ? primary_light : black
-                    }]}>{this._startTime()}</Text>
-              </View>
-              <View style={styles.itemSubheading}>
-                { Boolean(description) && (
-                  <Caption
-                    style={styles.itemSubheadingText}
-                    numberOfLines={1}
-                    ellipsizeMode="tail">
-                    {description}
-                  </Caption>)
-                }
-                {
-                  !allDay && (type !== REMINDER) && (
-                    <Text style={styles.endTime}>{this._endTime()}</Text>
-                  )
-                }
-              </View>
-              <View style={styles.body}>
-                <Text style={styles.itemNote}>{this._parseDetails()}</Text>
-                { isCancelled && <Text style={styles.cancelled}>Cancelled</Text>}
-              </View>
+            <View style={styles.body}>
+              <Text style={styles.itemHeadline} numberOfLines={1} ellipsizeMode="tail">{title}</Text>
+              { Boolean(description) && (
+                <Caption
+                  style={styles.itemSubheadingText}
+                  numberOfLines={1}
+                  ellipsizeMode="tail">
+                  {description}
+                </Caption>)
+              }
+              <Text style={styles.itemNote}>{this._parseDetails()}</Text>
+              { isCancelled && <Text style={styles.cancelled}>Cancelled</Text>}
+            </View>
+            <View style={styles.right}>
+              <Text
+                style={[styles.startTime, {
+                color: this._isStarted() ? primary_light : black
+                }]}>{this._startTime()}
+              </Text>
+              {
+                !allDay && (type !== REMINDER) && (
+                  <Text style={styles.endTime}>{this._endTime()}</Text>
+                )
+              }
             </View>
           </View>
           <Actions

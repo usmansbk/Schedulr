@@ -74,8 +74,8 @@ export default StyleSheet.create({
   },
   itemContainer: {
     height: ITEM_HEIGHT,
-    backgroundColor: '#fff',
     justifyContent: 'space-between',
+    backgroundColor: 'white',
   },
   itemContent: {
     flexGrow: 1,
@@ -111,7 +111,11 @@ export default StyleSheet.create({
     fontSize: 16,
     color: gray
   },
-  avatar: { paddingTop: 8 },
+  left: { paddingTop: 8 },
+  body: {
+    flexGrow: 1,
+    marginLeft: 8,
+  },
   cancelled: {
     fontWeight: 'bold',
     fontSize: 16,
