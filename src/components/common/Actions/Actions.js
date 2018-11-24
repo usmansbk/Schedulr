@@ -8,7 +8,7 @@ import MapsButton from '../MapsButton';
 import colors from '../../../config/colors';
 
 const FONT_SIZE = 24;
-const activeColor = colors.primary_dark;
+const defaultColor = colors.primary_dark;
 
 export default ({
   title,
@@ -19,41 +19,46 @@ export default ({
   type,
   date,
   id,
-  mode,
+  size,
+  dark,
   navigateToComments,
-}) => (
+}) => {
+  const fontSize = size === 'small' ? 20 : FONT_SIZE;
+  const color = dark ? colors.gray : defaultColor;
+  return (
   <View style={styles.actions}>
     <StarButton
       id={id}
       starred={starred}
       starsCount={starsCount}
-      size={FONT_SIZE}
-      color={activeColor}
-      mode={mode}
+      activeColor={defaultColor}
+      iconSize={size}
+      size={fontSize}
+      color={color}
     />
     <CommentButton
       id={id}
       commentsCount={commentsCount}
-      size={FONT_SIZE}
-      color={activeColor}
+      size={fontSize}
+      color={color}
       onPress={() => navigateToComments(id)}
     />
     <MapsButton
-      color={activeColor}
+      color={color}
       location={location}
-      size={FONT_SIZE}
+      size={fontSize}
     />
     <ShareButton
-      color={activeColor}
+      color={color}
       id={id}
       type={type}
       title={title}
       location={location}
       date={date}
-      size={FONT_SIZE}
+      size={fontSize}
     />
   </View>
-);
+)};
 
 const styles = StyleSheet.create({
   actions: {

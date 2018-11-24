@@ -120,9 +120,4 @@ export default StyleSheet.create({
     fontSize: 16,
     color: gray,
   },
-  icons: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginLeft: 50,
-  }
 });

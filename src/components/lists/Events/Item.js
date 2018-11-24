@@ -5,7 +5,6 @@ import {
   TouchableRipple,
   Text,
   Caption,
-  IconButton
 } from 'react-native-paper';
 import Avatar from 'react-native-user-avatar';
 import Actions from '../../common/Actions';
@@ -92,12 +91,19 @@ export default class Item extends React.PureComponent {
               }
             </View>
           </View>
-          <View style={styles.icons}>
-            <IconButton size={16} icon="star-border" />
-            <IconButton size={16} icon="chat" />
-            <IconButton size={16} icon="location-on" />
-            <IconButton size={16} icon="share" />
-          </View>
+          <Actions
+            id={id}
+            title={title}
+            location={location}
+            type={type}
+            starred={starred}
+            starsCount={starsCount}
+            commentsCount={commentsCount}
+            date={date}
+            navigateToComments={this._onPressComment}
+            size="small"
+            dark
+          />
         </View>
       </TouchableRipple>
     );
