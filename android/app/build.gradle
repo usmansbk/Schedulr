@@ -171,7 +171,6 @@ dependencies {
     implementation project(':react-native-splash-screen')
     implementation project(':react-native-share')
     implementation project(':react-native-push-notification')
-    implementation project(':react-native-mail')
     implementation project(':react-native-image-picker')
     implementation project(':react-native-firebase')
     implementation 'com.facebook.android:facebook-android-sdk:4.35.0'

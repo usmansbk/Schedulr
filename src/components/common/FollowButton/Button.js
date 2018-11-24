@@ -8,5 +8,5 @@ export default ({
 }) => (
   <Button
     style={style}
-    mode={mode}>{`Follow${following ? 'ing' : ''}`}</Button>
+    mode={mode}>{`FOLLOW${following ? 'ING' : ''}`}</Button>
 );

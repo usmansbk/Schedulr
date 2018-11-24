@@ -19,7 +19,6 @@ import org.devio.rn.splashscreen.SplashScreenReactPackage;
 import cl.json.RNSharePackage;
 import cl.json.ShareApplication;
 import com.dieam.reactnativepushnotification.ReactNativePushNotificationPackage;
-import com.chirag.RNMail.RNMail;
 import com.imagepicker.ImagePickerPackage;
 import com.facebook.reactnative.androidsdk.FBSDKPackage;
 import com.RNFetchBlob.RNFetchBlobPackage;
@@ -56,7 +55,6 @@ public class MainApplication extends Application implements ShareApplication, Re
             new SplashScreenReactPackage(),
             new RNSharePackage(),
             new ReactNativePushNotificationPackage(),
-            new RNMail(),
             new ImagePickerPackage(),
             new RNFirebasePackage(),
             new FBSDKPackage(mCallbackManager),

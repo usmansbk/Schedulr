@@ -29,7 +29,6 @@
     "react-native-fbsdk": "^0.8.0",
     "react-native-firebase": "^5.1.0",
     "react-native-google-signin": "^1.0.0",
-    "react-native-hyperlink": "^0.0.14",
     "react-native-image-picker": "^0.27.1",
     "react-native-mail": "^3.0.7",
     "react-native-modal-datetime-picker": "^6.0.0",

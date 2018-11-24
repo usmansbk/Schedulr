@@ -41,8 +41,6 @@
 		A0DD0F544CBC4743BBB5B1E5 /* libRCTFBSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4609CB4D899542DBA1E52F8E /* libRCTFBSDK.a */; };
 		2909A8D7B51945C4B8C65939 /* libRNFirebase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 29F458FA67284466AEB38275 /* libRNFirebase.a */; };
 		F10E4D13C4AB41CA993321BD /* libRNImagePicker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F822EBA294234B9BA1EC00E2 /* libRNImagePicker.a */; };
-		E7AF5B6C05F54DB7A713C9E1 /* libRNMail.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FFFAFC39F4E94148AE2AC70F /* libRNMail.a */; };
-		93FB54B7877E4804B4C3DB35 /* RNMailTests.xctest in Resources */ = {isa = PBXBuildFile; fileRef = BF60BF073E094C84953C4467 /* RNMailTests.xctest */; };
 		0D4CF7C363664795BC404C2A /* libRNShare.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CDBBBDD8EC69453989B7090B /* libRNShare.a */; };
 		27B077F67F0F41A99C5635DC /* libSplashScreen.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB2B42C6426848BA968FFC7D /* libSplashScreen.a */; };
 		5D60CB09C3174F8499B9B05C /* libRNGoogleSignin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CE63261006148AE88753641 /* libRNGoogleSignin.a */; };
@@ -378,9 +376,6 @@
 		29F458FA67284466AEB38275 /* libRNFirebase.a */ = {isa = PBXFileReference; name = "libRNFirebase.a"; path = "libRNFirebase.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 		AF16FBA6D2FF44FE92B9473D /* RNImagePicker.xcodeproj */ = {isa = PBXFileReference; name = "RNImagePicker.xcodeproj"; path = "../node_modules/react-native-image-picker/ios/RNImagePicker.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		F822EBA294234B9BA1EC00E2 /* libRNImagePicker.a */ = {isa = PBXFileReference; name = "libRNImagePicker.a"; path = "libRNImagePicker.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
-		DECC288F20704AB1A1EF3254 /* RNMail.xcodeproj */ = {isa = PBXFileReference; name = "RNMail.xcodeproj"; path = "../node_modules/react-native-mail/RNMail.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		FFFAFC39F4E94148AE2AC70F /* libRNMail.a */ = {isa = PBXFileReference; name = "libRNMail.a"; path = "libRNMail.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
-		BF60BF073E094C84953C4467 /* RNMailTests.xctest */ = {isa = PBXFileReference; name = "RNMailTests.xctest"; path = "RNMailTests.xctest"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.cfbundle; explicitFileType = undefined; includeInIndex = 0; };
 		EAF4C69D7240473A9ADF8039 /* RNShare.xcodeproj */ = {isa = PBXFileReference; name = "RNShare.xcodeproj"; path = "../node_modules/react-native-share/ios/RNShare.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		CDBBBDD8EC69453989B7090B /* libRNShare.a */ = {isa = PBXFileReference; name = "libRNShare.a"; path = "libRNShare.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 		CFDEA38863494A0F84DF6AF6 /* SplashScreen.xcodeproj */ = {isa = PBXFileReference; name = "SplashScreen.xcodeproj"; path = "../node_modules/react-native-splash-screen/ios/SplashScreen.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
@@ -440,8 +435,6 @@
 				A0DD0F544CBC4743BBB5B1E5 /* libRCTFBSDK.a in Frameworks */,
 				2909A8D7B51945C4B8C65939 /* libRNFirebase.a in Frameworks */,
 				F10E4D13C4AB41CA993321BD /* libRNImagePicker.a in Frameworks */,
-				E7AF5B6C05F54DB7A713C9E1 /* libRNMail.a in Frameworks */,
-				93FB54B7877E4804B4C3DB35 /* RNMailTests.xctest in Resources */,
 				0D4CF7C363664795BC404C2A /* libRNShare.a in Frameworks */,
 				27B077F67F0F41A99C5635DC /* libSplashScreen.a in Frameworks */,
 				5D60CB09C3174F8499B9B05C /* libRNGoogleSignin.a in Frameworks */,
@@ -640,7 +633,6 @@
 				B71AC59AF365423799C0E562 /* RCTFBSDK.xcodeproj */,
 				1EFC465767384A67BAE84106 /* RNFirebase.xcodeproj */,
 				AF16FBA6D2FF44FE92B9473D /* RNImagePicker.xcodeproj */,
-				DECC288F20704AB1A1EF3254 /* RNMail.xcodeproj */,
 				EAF4C69D7240473A9ADF8039 /* RNShare.xcodeproj */,
 				CFDEA38863494A0F84DF6AF6 /* SplashScreen.xcodeproj */,
 				B18E933C26AD44A594CB255E /* RNGoogleSignin.xcodeproj */,
@@ -1320,7 +1312,6 @@
 					"$(SRCROOT)\..\node_modules\react-native-fbsdk\ios\RCTFBSDK/**",
 					"$(SRCROOT)\..\node_modules\react-native-firebase\ios\RNFirebase/**",
 					"$(SRCROOT)\..\node_modules\react-native-image-picker\ios",
-					"$(SRCROOT)\..\node_modules\react-native-mail\RNMail",
 					"$(SRCROOT)\..\node_modules\react-native-share\ios",
 					"$(SRCROOT)\..\node_modules\react-native-splash-screen\ios",
 					"$(SRCROOT)\..\node_modules\react-native-google-signin\ios\RNGoogleSignin",
@@ -1355,7 +1346,6 @@
 					"$(SRCROOT)\..\node_modules\react-native-fbsdk\ios\RCTFBSDK/**",
 					"$(SRCROOT)\..\node_modules\react-native-firebase\ios\RNFirebase/**",
 					"$(SRCROOT)\..\node_modules\react-native-image-picker\ios",
-					"$(SRCROOT)\..\node_modules\react-native-mail\RNMail",
 					"$(SRCROOT)\..\node_modules\react-native-share\ios",
 					"$(SRCROOT)\..\node_modules\react-native-splash-screen\ios",
 					"$(SRCROOT)\..\node_modules\react-native-google-signin\ios\RNGoogleSignin",
@@ -1388,7 +1378,6 @@
 					"$(SRCROOT)\..\node_modules\react-native-fbsdk\ios\RCTFBSDK/**",
 					"$(SRCROOT)\..\node_modules\react-native-firebase\ios\RNFirebase/**",
 					"$(SRCROOT)\..\node_modules\react-native-image-picker\ios",
-					"$(SRCROOT)\..\node_modules\react-native-mail\RNMail",
 					"$(SRCROOT)\..\node_modules\react-native-share\ios",
 					"$(SRCROOT)\..\node_modules\react-native-splash-screen\ios",
 					"$(SRCROOT)\..\node_modules\react-native-google-signin\ios\RNGoogleSignin",
@@ -1420,7 +1409,6 @@
 					"$(SRCROOT)\..\node_modules\react-native-fbsdk\ios\RCTFBSDK/**",
 					"$(SRCROOT)\..\node_modules\react-native-firebase\ios\RNFirebase/**",
 					"$(SRCROOT)\..\node_modules\react-native-image-picker\ios",
-					"$(SRCROOT)\..\node_modules\react-native-mail\RNMail",
 					"$(SRCROOT)\..\node_modules\react-native-share\ios",
 					"$(SRCROOT)\..\node_modules\react-native-splash-screen\ios",
 					"$(SRCROOT)\..\node_modules\react-native-google-signin\ios\RNGoogleSignin",
@@ -1463,7 +1451,6 @@
 					"$(SRCROOT)\..\node_modules\react-native-fbsdk\ios\RCTFBSDK/**",
 					"$(SRCROOT)\..\node_modules\react-native-firebase\ios\RNFirebase/**",
 					"$(SRCROOT)\..\node_modules\react-native-image-picker\ios",
-					"$(SRCROOT)\..\node_modules\react-native-mail\RNMail",
 					"$(SRCROOT)\..\node_modules\react-native-share\ios",
 					"$(SRCROOT)\..\node_modules\react-native-splash-screen\ios",
 					"$(SRCROOT)\..\node_modules\react-native-google-signin\ios\RNGoogleSignin",
@@ -1506,7 +1493,6 @@
 					"$(SRCROOT)\..\node_modules\react-native-fbsdk\ios\RCTFBSDK/**",
 					"$(SRCROOT)\..\node_modules\react-native-firebase\ios\RNFirebase/**",
 					"$(SRCROOT)\..\node_modules\react-native-image-picker\ios",
-					"$(SRCROOT)\..\node_modules\react-native-mail\RNMail",
 					"$(SRCROOT)\..\node_modules\react-native-share\ios",
 					"$(SRCROOT)\..\node_modules\react-native-splash-screen\ios",
 					"$(SRCROOT)\..\node_modules\react-native-google-signin\ios\RNGoogleSignin",
@@ -1548,7 +1534,6 @@
 					"$(SRCROOT)\..\node_modules\react-native-fbsdk\ios\RCTFBSDK/**",
 					"$(SRCROOT)\..\node_modules\react-native-firebase\ios\RNFirebase/**",
 					"$(SRCROOT)\..\node_modules\react-native-image-picker\ios",
-					"$(SRCROOT)\..\node_modules\react-native-mail\RNMail",
 					"$(SRCROOT)\..\node_modules\react-native-share\ios",
 					"$(SRCROOT)\..\node_modules\react-native-splash-screen\ios",
 					"$(SRCROOT)\..\node_modules\react-native-google-signin\ios\RNGoogleSignin",
@@ -1590,7 +1575,6 @@
 					"$(SRCROOT)\..\node_modules\react-native-fbsdk\ios\RCTFBSDK/**",
 					"$(SRCROOT)\..\node_modules\react-native-firebase\ios\RNFirebase/**",
 					"$(SRCROOT)\..\node_modules\react-native-image-picker\ios",
-					"$(SRCROOT)\..\node_modules\react-native-mail\RNMail",
 					"$(SRCROOT)\..\node_modules\react-native-share\ios",
 					"$(SRCROOT)\..\node_modules\react-native-splash-screen\ios",
 					"$(SRCROOT)\..\node_modules\react-native-google-signin\ios\RNGoogleSignin",
