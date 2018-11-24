@@ -7,6 +7,7 @@ import Search from './Search';
 import Notifications from './Notifications';
 import EventDetails from './EventDetails';
 import GroupEvents from './GroupEvents';
+import GroupInfo from './GroupInfo';
 
 export {
   More,
@@ -17,5 +18,6 @@ export {
   Home,
   Notifications,
   EventDetails,
-  GroupEvents
+  GroupEvents,
+  GroupInfo
 };

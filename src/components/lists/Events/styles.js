@@ -4,7 +4,7 @@ import colors from '../../../config/colors';
 export const ITEM_HEIGHT = 150;
 export const SEPARATOR_HEIGHT = 2;
 export const SECTION_HEADER_HEIGHT = 64;
-export const primary_dark = colors.primary_dark;
+export const primary_light = colors.primary;
 export const gray = colors.gray;
 export const black = colors.black;
 

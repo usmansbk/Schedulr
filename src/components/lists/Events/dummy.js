@@ -62,7 +62,7 @@ export default [{
       description: 'Lorem Ipsum Dolor Amet',
       location: 'No location set',
       start: Date.now(),
-      end: Date.now(),
+      end: new Date('11/26/2018'),
       allDay: true,
       isCancelled: false,
       starred: false,

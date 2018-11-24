@@ -8,7 +8,7 @@ import {
 } from 'react-native-paper';
 import Actions from '../../common/Actions';
 import { decapitalize } from '../../../lib/capitalizr';
-import styles, { primary_dark, black } from './styles';
+import styles, { primary_light, black } from './styles';
 
 const START_TIME = 'hh:mm a';
 const REMINDER = 'REMINDER';
@@ -62,7 +62,7 @@ export default class Item extends React.PureComponent {
             <View style={styles.itemHeader}>
               <Text style={styles.itemHeadline} numberOfLines={1} ellipsizeMode="tail">{title}</Text>
               <Text style={[styles.startTime, {
-                    color: this._isStarted() ? primary_dark : black
+                    color: this._isStarted() ? primary_light : black
                   }]}>{this._startTime()}</Text>
             </View>
             <View style={styles.itemSubheading}>

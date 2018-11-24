@@ -7,6 +7,7 @@ import RescheduleEvent from './RescheduleEvent';
 import AuthLoading from './AuthLoading';
 import EventDetails from './EventDetails';
 import GroupEvents from './GroupEvents';
+import GroupInfo from './GroupInfo';
 
 export {
   AuthLoading,
@@ -18,4 +19,5 @@ export {
   RescheduleEvent,
   EventDetails,
   GroupEvents,
-}
+  GroupInfo
+};
