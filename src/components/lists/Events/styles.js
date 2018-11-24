@@ -95,7 +95,7 @@ export default StyleSheet.create({
   },
   itemHeadline: {
     fontSize: 18,
-    fontWeight: 'bold',
+    fontFamily: 'sans-serif-bold',
     width: 200
   },
   itemNote: {
@@ -111,12 +111,12 @@ export default StyleSheet.create({
   startTime: {
     alignSelf: 'flex-end',
     fontWeight: 'bold',
-    fontSize: 18
+    fontSize: 16
   },
   endTime: {
     alignSelf: 'flex-end',
     fontWeight: 'bold',
-    fontSize: 18,
+    fontSize: 16,
     color: gray,
   }
 });

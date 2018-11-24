@@ -4,7 +4,7 @@ import { View } from 'react-native';
 import {
   TouchableRipple,
   Text,
-  Paragraph
+  Caption
 } from 'react-native-paper';
 import Actions from '../../common/Actions';
 import { decapitalize } from '../../../lib/capitalizr';
@@ -67,12 +67,12 @@ export default class Item extends React.PureComponent {
             </View>
             <View style={styles.itemSubheading}>
               { Boolean(description) && (
-                <Paragraph
+                <Caption
                   style={styles.itemSubheadingText}
                   numberOfLines={1}
                   ellipsizeMode="tail">
                   {description}
-                </Paragraph>)
+                </Caption>)
               }
               {
                 !allDay && (type !== REMINDER) && (
