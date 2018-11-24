@@ -49,7 +49,7 @@ export default ({
         <Text style={styles.followersCount}>{followersCount}</Text>
         <Text
           style={styles.followersLabel}
-          onPress={() => navigateToFollowers(id)}>Followers</Text>
+          onPress={() => navigateToFollowers(id)}>FOLLOWERS</Text>
         {
           !isAdmin && (
             <FollowButton
@@ -62,7 +62,7 @@ export default ({
       </View>
       <Divider />
       <View style={styles.space}>
-      <Text style={styles.label}>ADMIN</Text>
+      <Text style={styles.label}>BY</Text>
       <View style={styles.admin}>
         <UserAvater name={adminName} rounded size={32} />
         <Text onPress={() => navigateToProfile(adminId)} style={styles.adminName}>{adminName}</Text>

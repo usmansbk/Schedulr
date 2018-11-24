@@ -27,12 +27,12 @@ export default StyleSheet.create({
     margin: 16
   },
   followersCount: {
-    fontSize: 20,
+    fontSize: 16,
     fontFamily: 'sans-serif-bold',
     color: colors.gray
   },
   followersLabel: {
-    fontSize: 18,
+    fontSize: 16,
     color: colors.gray,
     fontFamily: 'sans-serif-light',
   },
@@ -54,7 +54,6 @@ export default StyleSheet.create({
   admin: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginVertical: 8,
   },
   adminName: {
     marginLeft: 8,
