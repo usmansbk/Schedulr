@@ -7,5 +7,4 @@ export default Yup.object().shape({
     .required('Name is required'),
   description: Yup.string()
     .max(160, 'Too Long'),
-  link: Yup.string()
 });

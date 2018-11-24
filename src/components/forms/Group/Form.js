@@ -15,7 +15,6 @@ import styles, { navButtonColor } from './styles';
 const defaultValues = {
   name: '',
   description: '',
-  link: '',
   private: false,
 };
 
@@ -85,19 +84,6 @@ const Form = ({
             visible={errors.description && touched.description}
           >
           {errors.description}
-          </HelperText>
-          <TextInput
-            placeholder="Link"
-            value={values.link}
-            onChangeText={handleChange('link')}
-            onBlur={handleBlur('link')}
-            mode="outlined"
-          />
-          <HelperText
-            type="error"
-            visible={errors.link && touched.link}
-          >
-          {errors.link}
           </HelperText>
           <View style={styles.switchButton}>
             <Text style={styles.text}>Private</Text>
