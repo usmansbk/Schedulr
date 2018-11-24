@@ -35,7 +35,9 @@ export default StyleSheet.create({
     fontSize: 22,
     fontFamily: 'sans-serif-bold',
     color: colors.gray,
-    marginBottom: 4
+  },
+  followButton: {
+    marginTop: 10,
   },
   label: {
     fontSize: 14,
@@ -48,5 +50,14 @@ export default StyleSheet.create({
   },
   space: {
     marginVertical: 8
+  },
+  admin: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: 4,
+    marginBottom: 8
+  },
+  adminName: {
+    marginLeft: 8,
   }
 });

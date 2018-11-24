@@ -44,7 +44,13 @@ export default ({
       <View style={styles.followers}>
         <Text style={styles.followersCount}>{followersCount}</Text>
         <Text style={styles.followersLabel}>Followers</Text>
-        <Button mode="outlined">{`Follow${following ? 'ing' : ''}`}</Button>
+        <Button style={styles.followButton} mode="outlined">{`Follow${following ? 'ing' : ''}`}</Button>
+      </View>
+      <Divider />
+      <Text style={styles.label}>ADMIN</Text>
+      <View style={styles.admin}>
+        <UserAvater name={adminName} rounded size={32} />
+        <Text style={styles.adminName}>{adminName}</Text>
       </View>
       <Divider />
       <View style={styles.space}>
