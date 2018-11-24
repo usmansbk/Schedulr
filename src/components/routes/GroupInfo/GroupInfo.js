@@ -3,11 +3,11 @@ import moment from 'moment';
 import { View, ScrollView } from 'react-native';
 import {
   Appbar,
-  Button,
   Divider,
   Text
 } from 'react-native-paper';
 import UserAvater from 'react-native-user-avatar';
+import FollowButton from '../../common/FollowButton';
 import styles, { AVATAR_SIZE } from './styles';
 
 export default ({
@@ -15,7 +15,6 @@ export default ({
   id,
   name,
   description,
-  link,
   closed,
   following,
   followersCount,
@@ -24,6 +23,8 @@ export default ({
   adminId,
   adminName,
   createdAt,
+  navigateToFollowers,
+  navigateToProfile,
 }) => (
   <React.Fragment>
     <Appbar.Header>
@@ -31,7 +32,9 @@ export default ({
       <Appbar.Content
         title="Group Info"
       />
-      <Appbar.Action icon="more-vert" />
+      {
+        isAdmin && (<Appbar.Action icon="more-vert" />)
+      }
     </Appbar.Header>
     <ScrollView>
       <View style={styles.container}>
@@ -43,10 +46,16 @@ export default ({
       </View>
       <View style={styles.followers}>
         <Text style={styles.followersCount}>{followersCount}</Text>
-        <Text style={styles.followersLabel}>Followers</Text>
+        <Text
+          style={styles.followersLabel}
+          onPress={() => navigateToFollowers(id)}>Followers</Text>
         {
           !isAdmin && (
-            <Button style={styles.followButton} mode="outlined">{`Follow${following ? 'ing' : ''}`}</Button>
+            <FollowButton
+              style={styles.followButton}
+              mode="outlined"
+              following={following}
+            />
           )
         }
       </View>
@@ -55,7 +64,7 @@ export default ({
       <Text style={styles.label}>ADMIN</Text>
       <View style={styles.admin}>
         <UserAvater name={adminName} rounded size={32} />
-        <Text style={styles.adminName}>{adminName}</Text>
+        <Text onPress={() => navigateToProfile(adminId)} style={styles.adminName}>{adminName}</Text>
       </View>
       </View>
       <View style={styles.space}>
