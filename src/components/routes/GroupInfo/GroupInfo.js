@@ -7,6 +7,7 @@ import {
   Text
 } from 'react-native-paper';
 import UserAvater from 'react-native-user-avatar';
+import Hyperlink from 'react-native-hyperlink';
 import FollowButton from '../../common/FollowButton';
 import styles, { AVATAR_SIZE } from './styles';
 
@@ -81,7 +82,11 @@ export default ({
       </View>
       <View style={styles.space}>
         <Text style={styles.label}>ABOUT</Text>
-        <Text style={styles.value}>{description}</Text>
+        <Hyperlink linkStyle={ { color: '#2980b9', fontSize: 20 } } linkDefault={true}>
+          <Text style={styles.value}>
+            {description}
+          </Text>
+        </Hyperlink>
       </View>
       </View>
     </ScrollView>

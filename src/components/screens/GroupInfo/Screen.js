@@ -18,7 +18,7 @@ export default class Screen extends React.Component {
 const defaultGroup = {
   id: 1,
   name: 'Demo-V',
-  description: `In this guide we will set up our app to handle external URIs. Let's suppose that we want a URI like mychat://chat/Eric to open our app and link straight into a chat screen for some user named "Eric".`,
+  description: `In this guide we will set up our app to handle external URIs. Let's suppose that we want a URI like http://www.google.com to open our app and link straight into a chat screen for some user named "Eric".`,
   closed: true,
   isPrivate: true,
   link: 'schdlr.com',
