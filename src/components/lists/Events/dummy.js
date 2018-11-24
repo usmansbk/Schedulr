@@ -95,14 +95,14 @@ export default [{
       description: 'Lorem Ipsum Dolor Amet',
       location: 'No location set',
       start: Date.now(),
-      end: new Date('11/25/2018'),
+      end: Date.now(),
       allDay: false,
-      isCancelled: true,
+      isCancelled: false,
       starred: true,
       starsCount: 2,
       commentsCount: 0,
       repeat: 'DAILY',
-      type: 'REMINDER',
+      type: 'TASK',
       group: {
         id: 1,
         name: 'CMEN201'
