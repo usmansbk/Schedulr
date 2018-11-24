@@ -74,28 +74,16 @@ export default StyleSheet.create({
   },
   itemContainer: {
     height: ITEM_HEIGHT,
-    justifyContent: 'space-between',
     backgroundColor: 'white',
   },
   itemContent: {
-    flexGrow: 1,
-    paddingTop: 4,
-    paddingLeft: 8,
-    justifyContent: 'space-between',
+    flex: 1,
+    justifyContent: 'space-between'
   },
   itemBody: {
     flexDirection: 'row',
     paddingHorizontal: 8,
     paddingTop: 8,
-  },
-  itemHeader: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-  },
-  itemSubheading: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
   },
   itemSubheadingText: {
     width: 200
@@ -131,5 +119,10 @@ export default StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 16,
     color: gray,
+  },
+  icons: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginLeft: 50,
   }
 });

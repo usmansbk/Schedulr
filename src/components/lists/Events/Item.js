@@ -4,7 +4,8 @@ import { View } from 'react-native';
 import {
   TouchableRipple,
   Text,
-  Caption
+  Caption,
+  IconButton
 } from 'react-native-paper';
 import Avatar from 'react-native-user-avatar';
 import Actions from '../../common/Actions';
@@ -60,7 +61,7 @@ export default class Item extends React.PureComponent {
         onPress={this._onPress}
         style={styles.itemContainer}
       >
-        <React.Fragment>
+        <View style={styles.itemContent}>
           <View style={styles.itemBody}>
             <TouchableRipple onPress={this._navigateToGroup} style={styles.left}>
               <Avatar rounded size={48} name={groupName} />
@@ -91,20 +92,13 @@ export default class Item extends React.PureComponent {
               }
             </View>
           </View>
-          <Actions
-            id={id}
-            size={20}
-            title={title}
-            location={location}
-            type={type}
-            starred={starred}
-            starsCount={starsCount}
-            commentsCount={commentsCount}
-            date={date}
-            navigateToComments={this._onPressComment}
-            mode="item"
-          />
-        </React.Fragment>
+          <View style={styles.icons}>
+            <IconButton size={16} icon="star-border" />
+            <IconButton size={16} icon="chat" />
+            <IconButton size={16} icon="location-on" />
+            <IconButton size={16} icon="share" />
+          </View>
+        </View>
       </TouchableRipple>
     );
   }
