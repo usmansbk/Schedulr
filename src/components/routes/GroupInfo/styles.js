@@ -45,8 +45,8 @@ export default StyleSheet.create({
     marginVertical: 2
   },
   value: {
-    fontSize: 20,
-    fontFamily: 'sans-serif-bold',
+    fontSize: 16,
+    fontFamily: 'sans-serif',
   },
   space: {
     marginVertical: 8
