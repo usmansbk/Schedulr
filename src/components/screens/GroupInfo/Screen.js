@@ -22,9 +22,9 @@ const defaultGroup = {
   closed: true,
   isPrivate: true,
   link: 'schdlr.com',
-  following: true,
+  isMember: true,
   isAdmin: true,
-  followersCount: 20000,
+  membersCount: 20000,
   createdAt: Date.now(),
   admin: {
     id: 2,

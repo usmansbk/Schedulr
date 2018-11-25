@@ -34,7 +34,7 @@ export default StyleSheet.create({
   followersLabel: {
     fontSize: 16,
     color: colors.gray,
-    fontFamily: 'sans-serif-light',
+    fontFamily: 'sans-serif-bold',
   },
   followButton: {
     marginTop: 10,
@@ -46,7 +46,8 @@ export default StyleSheet.create({
   },
   value: {
     fontSize: 16,
-    fontFamily: 'sans-serif',
+    fontFamily: 'sans-serif-bold',
+    fontWeight: 'bold'
   },
   space: {
     marginVertical: 8
@@ -57,5 +58,8 @@ export default StyleSheet.create({
   },
   adminName: {
     marginLeft: 8,
+    fontFamily: 'sans-serif-bold',
+    fontWeight: 'bold',
+    color: colors.gray
   }
 });

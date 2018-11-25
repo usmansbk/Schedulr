@@ -25,7 +25,7 @@ export default [{
     cursor: 2,
     node: {
       id: 2,
-      title: 'EEEN302',
+      title: 'Sleeping whole day',
       description: 'Lorem Ipsum Dolor Amet',
       location: 'No location set',
       start: Date.now(),
@@ -46,7 +46,7 @@ export default [{
     cursor: 3,
     node: {
       id: 3,
-      title: 'EEEN303',
+      title: 'Fix minor bugs in app',
       description: 'Lorem Ipsum Dolor Amet Kasupda Method dummy schldr visual',
       location: null,
       start: new Date('11/22/2018'),
@@ -111,7 +111,7 @@ export default [{
     cursor: 7,
     node: {
       id: 3,
-      title: 'GENS301',
+      title: 'Exboys week barbaque night',
       description: 'Lorem Ipsum Dolor Amet',
       location: null,
       start: Date.now(),

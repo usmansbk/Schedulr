@@ -4,9 +4,9 @@ import { Button } from 'react-native-paper';
 export default ({
   style,
   mode,
-  following,
+  isMember,
 }) => (
   <Button
     style={style}
-    mode={mode}>{`FOLLOW${following ? 'ING' : ''}`}</Button>
+    mode={mode}>{isMember ? 'LEAVE' : 'JOIN'}</Button>
 );

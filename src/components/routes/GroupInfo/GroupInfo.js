@@ -17,8 +17,8 @@ export default ({
   name,
   description,
   closed,
-  following,
-  followersCount,
+  isMember,
+  membersCount,
   isPrivate,
   isAdmin,
   adminId,
@@ -46,16 +46,16 @@ export default ({
         </View>
       </View>
       <View style={styles.followers}>
-        <Text style={styles.followersCount}>{followersCount}</Text>
+        <Text style={styles.membersCount}>{membersCount}</Text>
         <Text
           style={styles.followersLabel}
-          onPress={() => navigateToFollowers(id)}>FOLLOWERS</Text>
+          onPress={() => navigateToFollowers(id)}>MEMBERS</Text>
         {
           !isAdmin && (
             <FollowButton
               style={styles.followButton}
               mode="outlined"
-              following={following}
+              isMember={isMember}
             />
           )
         }
