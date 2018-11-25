@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, StyleSheet, StatusBar } from 'react-native';
 import { Appbar } from 'react-native-paper';
+import List from '../../lists/Notifications';
 import colors from '../../../config/colors';
 
 export default (props) => (
@@ -20,6 +21,7 @@ export default (props) => (
         onPress={() => console.log('Clear Notifications')}
       />
     </Appbar.Header>
+    <List />
   </View>
 );
 
