@@ -4,7 +4,7 @@ import colors from '../../../config/colors';
 
 export default () => (
   <View style={styles.container}>
-    <ActivityIndicator size="large" color='#fff' />
+    <ActivityIndicator size="large" color={colors.primary} />
   </View>
 );
 
@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    backgroundColor: colors.primary
+    backgroundColor: 'white'
   },
   horizontal: {
     flexDirection: 'row',
