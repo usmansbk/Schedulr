@@ -4,7 +4,6 @@ import { View } from 'react-native';
 import {
   TouchableRipple,
   Text,
-  Caption,
 } from 'react-native-paper';
 import Avatar from 'react-native-user-avatar';
 import Actions from '../../common/Actions';
