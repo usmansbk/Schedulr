@@ -5,7 +5,7 @@ export const ITEM_HEIGHT = 150;
 export const SEPARATOR_HEIGHT = 2;
 export const SECTION_HEADER_HEIGHT = 64;
 export const HEADER_HEIGHT = 28;
-export const primary_light = colors.primary;
+export const primary_light = colors.primary_light;
 export const gray = colors.gray;
 export const black = colors.black;
 
@@ -22,7 +22,7 @@ export default StyleSheet.create({
   sectionHeading: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: colors.primary
+    color: colors.primary_light
   },
   sectionSubheadingContent: {
     flexDirection: 'row',
@@ -91,9 +91,8 @@ export default StyleSheet.create({
     width: 200
   },
   itemHeadline: {
-    fontSize: 16,
+    fontSize: 20,
     fontFamily: 'sans-serif-bold',
-    fontWeight: 'bold',
     width: 200
   },
   itemNote: {

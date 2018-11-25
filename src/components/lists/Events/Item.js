@@ -44,7 +44,6 @@ export default class Item extends React.PureComponent {
     const {
       id,
       title,
-      description,
       location,
       date,
       allDay,
@@ -67,15 +66,7 @@ export default class Item extends React.PureComponent {
           <View style={styles.right}>
             <View style={styles.itemBody}>
               <View style={styles.body}>
-                <Text style={styles.itemHeadline} numberOfLines={1} ellipsizeMode="tail">{title}</Text>
-                { Boolean(description) && (
-                  <Caption
-                    style={styles.itemSubheadingText}
-                    numberOfLines={1}
-                    ellipsizeMode="tail">
-                    {description}
-                  </Caption>)
-                }
+                <Text style={styles.itemHeadline} numberOfLines={2} ellipsizeMode="tail">{title}</Text>
                 <Text numberOfLines={1} ellipsizeMode="tail" style={styles.itemNote}>{this._parseDetails()}</Text>
                 { isCancelled && <Text style={styles.cancelled}>Cancelled</Text>}
               </View>

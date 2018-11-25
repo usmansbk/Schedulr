@@ -4,7 +4,7 @@ export default [{
     cursor: 1,
     node: {
       id: 1,
-      title: 'EEEN301',
+      title: 'Dinner with Judie and Barbie krugger',
       description: 'Lorem Ipsum Dolor Amet',
       location: 'No location set',
       start: Date.now(),

@@ -8,7 +8,7 @@ import MapsButton from '../MapsButton';
 import colors from '../../../config/colors';
 
 const FONT_SIZE = 24;
-const defaultColor = colors.primary_dark;
+const defaultColor = colors.primary_light;
 
 export default ({
   title,
