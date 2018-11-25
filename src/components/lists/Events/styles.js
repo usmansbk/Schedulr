@@ -92,7 +92,7 @@ export default StyleSheet.create({
   },
   itemHeadline: {
     fontSize: 20,
-    fontFamily: 'sans-serif-bold',
+    fontFamily: 'sans-serif',
     width: 200
   },
   itemNote: {
@@ -112,12 +112,8 @@ export default StyleSheet.create({
     fontSize: 16,
     color: colors.light_red
   },
-  startTime: {
-    alignSelf: 'flex-end',
-    fontWeight: 'bold',
-    fontSize: 16
-  },
-  endTime: {
+  time: {
+    fontFamily: 'sans-serif',
     alignSelf: 'flex-end',
     fontWeight: 'bold',
     fontSize: 16,

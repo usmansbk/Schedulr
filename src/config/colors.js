@@ -2,7 +2,7 @@ export default {
   facebook: '#3b5998',
   google: '#4285F4',
   black: '#404040',
-  gray: '#888888',
+  gray: '#7d7d7d',
   light_gray: '#f5f5f5',
   light_gray_2: '#f8f8f8',
   light_gray_3: '#989898',

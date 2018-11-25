@@ -9,7 +9,7 @@ import {
 import Avatar from 'react-native-user-avatar';
 import Actions from '../../common/Actions';
 import capitalizr, { decapitalize } from '../../../lib/capitalizr';
-import styles, { primary_light, black } from './styles';
+import styles, { primary_light, gray } from './styles';
 
 const START_TIME = 'hh:mm a';
 const REMINDER = 'REMINDER';
@@ -72,13 +72,13 @@ export default class Item extends React.PureComponent {
               </View>
               <View>
                 <Text
-                  style={[styles.startTime, {
-                  color: this._isStarted() ? primary_light : black
+                  style={[styles.time, {
+                  color: this._isStarted() ? primary_light : gray
                   }]}>{this._startTime()}
                 </Text>
                 {
                   !allDay && (type !== REMINDER) && (
-                    <Text style={styles.endTime}>{this._endTime()}</Text>
+                    <Text style={styles.time}>{this._endTime()}</Text>
                   )
                 }
               </View>
