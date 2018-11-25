@@ -60,9 +60,11 @@ export default class Item extends React.PureComponent {
         style={styles.itemContainer}
       >
         <View style={styles.itemContent}>
-          <TouchableRipple onPress={this._navigateToGroup} style={styles.left}>
-            <Avatar rounded size={48} name={groupName} />
-          </TouchableRipple>
+          <View style={styles.left}>
+            <TouchableRipple onPress={this._navigateToGroup}>
+              <Avatar rounded size={48} name={groupName} />
+            </TouchableRipple>
+          </View>
           <View style={styles.right}>
             <View style={styles.itemBody}>
               <View style={styles.body}>
