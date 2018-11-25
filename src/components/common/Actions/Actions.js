@@ -24,7 +24,7 @@ export default ({
   navigateToComments,
 }) => {
   const fontSize = size === 'small' ? 20 : FONT_SIZE;
-  const color = dark ? colors.gray : defaultColor;
+  const color = dark ? colors.light_gray_3 : defaultColor;
   return (
   <View style={styles.actions}>
     <StarButton
