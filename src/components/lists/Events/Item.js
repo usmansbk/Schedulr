@@ -20,9 +20,10 @@ export default class Item extends React.PureComponent {
   _navigateToGroup = () => this.props.navigateToGroupEvents(this.props.groupId);
   _onPressComment = () => this.props.onPressCommentButton(this.props.id);
   _parseDetails = () => {
-    const { type, repeat, end, start } = this.props;
-    const recurrence = repeat === 'NEVER' ? '' : repeat;
-    if (type === REMINDER) return `${recurrence ? (decapitalize(recurrence) + ' reminder') : 'Reminder'}`;
+    const { type, repeat, end, allDay, start } = this.props;
+    const recurrence = repeat === 'NEVER' ? '' : decapitalize(repeat);
+    const eventType = decapitalize(type, true);
+    if ((type === REMINDER) || allDay) return `${recurrence ? (recurrence + ' ' + eventType) : eventType}`;
     const duration = moment(end).from(start, true);
     return capitalizr(`${duration} ${type.toLowerCase()}, ${recurrence.toLowerCase()}`);
   };
