@@ -4,10 +4,15 @@ import { Caption } from 'react-native-paper';
 import GLoginButton from '../../social_buttons/GLoginButton';
 import FBLoginButton from '../../social_buttons/FBLoginButton';
 import Logo from '../../common/Logo';
+import colors from '../../../config/colors';
 import styles from './styles';
 
 export default (props) => (
   <View style={styles.container}>
+    <StatusBar
+      backgroundColor={colors.primary_dark}
+      barStyle="light-content"
+    />
     <Logo />
     <Text style={styles.h1}>Welcome to Schdlr!</Text>
     <Caption>
