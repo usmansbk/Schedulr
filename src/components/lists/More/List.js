@@ -10,7 +10,13 @@ import styles from './styles';
 export default class List extends React.Component {
   _renderHeader = () => <Header />;
   _renderFooter = () => <Footer />;
-  _renderItem = () => <Item />;
+  _renderItem = ({
+    item: {
+      name,
+      icon,
+      onPress
+    }
+  }) => <Item name={name} icon={icon} onPress={onPress} />;
   _renderSeparator = () => <Separator />;
   _keyExtractor = (item) => item.id;
 

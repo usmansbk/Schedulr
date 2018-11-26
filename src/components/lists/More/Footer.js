@@ -1,9 +1,13 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { Text } from 'react-native';
+import { List } from 'react-native-paper';
 import styles from './styles';
 
 export default () => (
-  <View style={styles.footer}>
-    <Text>Footer</Text>
-  </View>
+  <List.Item
+    left={() => <List.Icon icon="exit-to-app" />}
+    title="Sign out"
+    style={styles.footer}
+    onPress={() => console.log('log out')}
+  />
 );

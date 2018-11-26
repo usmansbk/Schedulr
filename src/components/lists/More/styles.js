@@ -3,19 +3,24 @@ import colors from '../../../config/colors';
 
 const SEPARATOR_HEIGHT = 1;
 const HEADER_HEIGHT = 100;
-const FOOTER_HEIGHT = 48;
 
 export default StyleSheet.create({
   container: {
     backgroundColor: colors.light_gray
   },
   header: {
-    height: HEADER_HEIGHT
+    height: HEADER_HEIGHT,
+    backgroundColor: 'white',
+    marginVertical: 8,
   },
   separator: {
     height: SEPARATOR_HEIGHT,
   },
   footer: {
-    height: FOOTER_HEIGHT,
+    backgroundColor: 'white',
+    marginVertical: 8,
+  },
+  item: {
+    backgroundColor: 'white',
   }
-})
+});
