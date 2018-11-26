@@ -16,6 +16,8 @@ export default (props) => (
         title="More" 
       />
     </Appbar.Header>
-    <List />
+    <List
+      navigateToSettings={() => props.navigation.navigate('Settings')}
+    />
   </React.Fragment>
 );

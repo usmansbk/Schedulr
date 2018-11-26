@@ -33,11 +33,13 @@ class List extends React.Component {
   _renderSeparator = () => <Separator />;
   _renderItem = ({
     item: {
+      id,
       name,
       icon,
     }
   }) => (
     <Item
+      id={id}
       name={name}
       icon={icon}
       onPressItem={this._onPressItem}
