@@ -1,12 +1,14 @@
 import React from 'react';
 import { FlatList } from 'react-native';
 import { withNavigationFocus } from 'react-navigation';
+import Share from 'react-native-share';
 import Header from './Header';
 import Footer from './Footer';
 import Item from './Item';
 import Separator from './Separator';
 import items from './items';
 import styles from './styles';
+import env from '../../../config/env';
 
 class List extends React.Component {
   _onPressItem = (id) => {
@@ -15,13 +17,19 @@ class List extends React.Component {
       case 'settings':
         navigation.navigate('Settings');
         break;
-      case 'legal':
-        navigation.navigate('Legal');
-        break;
       case 'help':
         navigation.navigate('Help');
         break;
       case 'invite':
+        const url = env.DOWNLOAD_URL;
+        const message = "Hey there... I use Schdlr to share and follow events with friends and collegues";
+        const options = {
+          title: 'Invite via...',
+          message,
+          subject: 'Download Schdlr',
+          url
+        }
+        Share.open(options);
         break;
       default:
         break;

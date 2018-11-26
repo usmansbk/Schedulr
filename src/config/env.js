@@ -9,6 +9,7 @@ const dev = {
   PORT: '4000',
   EMAIL: 'usmansbk@gmail.com',
   APP_VERSION: `${date}-beta-dev`,
+  DOWNLOAD_URL: 'https://schdlr-ng.herokuapp.com/download'
 };
 
 export const prod = {
@@ -19,6 +20,7 @@ export const prod = {
   DOMAIN: 'schdlr-ng.herokuapp.com',
   EMAIL: 'usmansbk@gmail.com',
   APP_VERSION: `1.0.0-release`,
+  DOWNLOAD_URL: 'https://schdlr-ng.herokuapp.com/download'
 };
 
 export default dev;
