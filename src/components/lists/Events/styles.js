@@ -96,19 +96,22 @@ export default StyleSheet.create({
     width: 200
   },
   itemNote: {
-    fontWeight: 'bold',
     fontSize: 16,
     color: gray,
     width: 200
   },
-  left: { paddingTop: 8 },
-  right: { flexGrow: 1, justifyContent: 'space-between'},
+  left: {
+    paddingTop: 8
+  },
+  right: {
+    flexGrow: 1,
+    justifyContent: 'space-between'
+  },
   body: {
     flexGrow: 1,
     marginLeft: 8,
   },
   cancelled: {
-    fontWeight: 'bold',
     fontSize: 16,
     color: colors.light_red
   },
