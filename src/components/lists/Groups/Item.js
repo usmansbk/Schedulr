@@ -2,6 +2,7 @@ import React from 'react';
 import { View } from 'react-native';
 import { TouchableRipple, Text, Paragraph } from 'react-native-paper';
 import UserAvatar from 'react-native-user-avatar';
+import { CachedImage } from 'react-native-cached-image';
 import styles, { AVATAR_SIZE } from './styles';
 
 export default class Item extends React.PureComponent {
@@ -16,7 +17,7 @@ export default class Item extends React.PureComponent {
       <TouchableRipple style={styles.itemContainer} onPress={this._onPress}>
         <View style={styles.itemContent}>
           <View style={styles.itemAvatar}>
-            <UserAvatar size={AVATAR_SIZE} rounded name={name} />
+            <UserAvatar component={CachedImage} size={AVATAR_SIZE} rounded name={name} />
           </View>
           <View style={styles.itemBody}>
             <Text numberOfLines={1} ellipsizeMode="tail" style={styles.itemName}>{name}</Text>

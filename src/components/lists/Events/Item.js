@@ -6,6 +6,7 @@ import {
   Text,
 } from 'react-native-paper';
 import Avatar from 'react-native-user-avatar';
+import { CachedImage } from 'react-native-cached-image';
 import Actions from '../../common/Actions';
 import capitalizr, { decapitalize } from '../../../lib/capitalizr';
 import styles, { primary_light, gray } from './styles';
@@ -62,7 +63,12 @@ export default class Item extends React.PureComponent {
         <View style={styles.itemContent}>
           <View style={styles.left}>
             <TouchableRipple onPress={this._navigateToGroup}>
-              <Avatar rounded size={48} name={groupName} />
+              <Avatar
+                component={CachedImage}
+                rounded
+                size={48}
+                name={groupName}
+              />
             </TouchableRipple>
           </View>
           <View style={styles.right}>

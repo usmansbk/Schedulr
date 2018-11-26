@@ -1,5 +1,6 @@
 import React from 'react';
 import { FlatList } from 'react-native';
+import { withNavigationFocus } from 'react-navigation';
 import Header from './Header';
 import Footer from './Footer';
 import Item from './Item';
@@ -7,7 +8,25 @@ import Separator from './Separator';
 import items from './items';
 import styles from './styles';
 
-export default class List extends React.Component {
+class List extends React.Component {
+  _onPressItem = (id) => {
+    const { navigation } = this.props;
+    switch(id) {
+      case 'settings':
+        navigation.navigate('Settings');
+        break;
+      case 'legal':
+        navigation.navigate('Legal');
+        break;
+      case 'help':
+        console.log('Open help link in browser');
+        break;
+      case 'invite':
+        break;
+      default:
+        break;
+    }
+  };
   _renderHeader = () => <Header />;
   _renderFooter = () => <Footer />;
   _renderItem = ({
@@ -19,6 +38,7 @@ export default class List extends React.Component {
   }) => <Item name={name} icon={icon} onPress={onPress} />;
   _renderSeparator = () => <Separator />;
   _keyExtractor = (item) => item.id;
+  shouldComponentUpdate = () => this.props.isFocused;
 
   render() {
     return (
@@ -34,3 +54,5 @@ export default class List extends React.Component {
     );
   }
 }
+
+export default withNavigationFocus(List);
