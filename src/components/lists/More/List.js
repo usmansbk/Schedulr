@@ -16,10 +16,10 @@ class List extends React.Component {
         navigation.navigate('Settings');
         break;
       case 'legal':
-        console.log('Open legal link in browser');
+        navigation.navigate('Legal');
         break;
       case 'help':
-        console.log('Open help link in browser');
+        navigation.navigate('Help');
         break;
       case 'invite':
         break;
@@ -27,8 +27,10 @@ class List extends React.Component {
         break;
     }
   };
+  _keyExtractor = (item) => item.id;
   _renderHeader = () => <Header />;
   _renderFooter = () => <Footer />;
+  _renderSeparator = () => <Separator />;
   _renderItem = ({
     item: {
       name,
@@ -41,8 +43,6 @@ class List extends React.Component {
       onPressItem={this._onPressItem}
     />
   );
-  _renderSeparator = () => <Separator />;
-  _keyExtractor = (item) => item.id;
   shouldComponentUpdate = () => this.props.isFocused;
 
   render() {
