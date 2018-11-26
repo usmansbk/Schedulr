@@ -22,7 +22,7 @@ class List extends React.Component {
         break;
       case 'invite':
         const url = env.DOWNLOAD_URL;
-        const message = "Hey there... I use Schdlr to share and follow events with friends and collegues";
+        const message = "Hey there... I use Schdlr to share and follow events with friends and collegues.";
         const options = {
           title: 'Invite via...',
           message,
