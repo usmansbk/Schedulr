@@ -1,4 +1,8 @@
 import React from 'react';
+import {
+  createAppContainer,
+  createStackNavigator,
+} from 'react-navigation';
 import { Appbar } from 'react-native-paper';
 import List from '../../lists/More';
 
@@ -15,4 +19,3 @@ export default (props) => (
     <List />
   </React.Fragment>
 );
-

@@ -8,6 +8,9 @@ import AuthLoading from './AuthLoading';
 import EventDetails from './EventDetails';
 import GroupEvents from './GroupEvents';
 import GroupInfo from './GroupInfo';
+import Settings from './Settings';
+import Help from './Help';
+import Legal from './Legal';
 
 export {
   AuthLoading,
@@ -19,5 +22,8 @@ export {
   RescheduleEvent,
   EventDetails,
   GroupEvents,
-  GroupInfo
+  GroupInfo,
+  Settings,
+  Help,
+  Legal
 };

@@ -15,7 +15,11 @@ import {
   EventDetails,
   GroupEvents,
   GroupInfo,
+  Legal,
+  Help,
+  Settings
 } from './components/screens';
+
 
 const AppStack = createStackNavigator({
   Home,
@@ -25,7 +29,10 @@ const AppStack = createStackNavigator({
   RescheduleEvent,
   EventDetails,
   GroupEvents,
-  GroupInfo
+  GroupInfo,
+  Legal,
+  Help,
+  Settings
 }, {
   initialRouteName: 'Home',
   headerMode: 'none'
