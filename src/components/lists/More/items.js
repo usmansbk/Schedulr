@@ -14,9 +14,4 @@ export default [
     icon: 'help',
     name: 'Help',
   },
-  {
-    id: 'legal',
-    icon: 'copyright',
-    name: 'Legal',
-  },
 ];

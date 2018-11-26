@@ -1,3 +1,3 @@
-import Screen from './Screen';
+import Settings from './Settings';
 
-export default Screen;
+export default Settings;

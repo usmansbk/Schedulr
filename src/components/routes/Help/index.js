@@ -1,3 +1,3 @@
-import Screen from './Screen';
+import Help from './Help';
 
-export default Screen;
+export default Help;

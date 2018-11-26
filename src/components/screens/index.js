@@ -10,7 +10,6 @@ import GroupEvents from './GroupEvents';
 import GroupInfo from './GroupInfo';
 import Settings from './Settings';
 import Help from './Help';
-import Legal from './Legal';
 
 export {
   AuthLoading,
@@ -25,5 +24,4 @@ export {
   GroupInfo,
   Settings,
   Help,
-  Legal
 };
