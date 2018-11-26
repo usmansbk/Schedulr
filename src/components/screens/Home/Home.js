@@ -1,19 +1,36 @@
 import React from 'react';
 import { Dimensions } from 'react-native';
-import { createAppContainer, createBottomTabNavigator } from 'react-navigation';
+import {
+  createAppContainer,
+  createBottomTabNavigator,
+  createStackNavigator
+} from 'react-navigation';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import MoreRoute from '../../routes/More';
 import SearchRoute from '../../routes/Search';
 import HomeRoute from '../../routes/Home';
+import Settings from '../../routes/Settings';
+import Legal from '../../routes/Legal';
+import Help from '../../routes/Help';
 import NotificationRoute from '../../routes/Notifications';
 import NotificationsIcon from '../../common/NotificationIcon';
 import styles, { activeColor, inactiveTintColor, FONT_SIZE } from './styles';
+
+const More = createStackNavigator({
+  More: { screen: MoreRoute },
+  Help: { screen: Help },
+  Legal: { screen: Legal },
+  Settings: { screen: Settings }
+}, {
+  initialRouteName: 'More',
+  headerMode: 'none'
+});
 
 const Home = createBottomTabNavigator({
   Home: { screen: HomeRoute },
   Search: { screen: SearchRoute },
   Notifications: { screen: NotificationRoute },
-  More: { screen: MoreRoute }
+  More: { screen: More }
 }, {
   initialRouteName: 'Home',
   initialLayout: { height: 0, width: Dimensions.get('window').width },
