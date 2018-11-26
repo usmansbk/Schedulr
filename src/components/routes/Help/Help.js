@@ -1,6 +1,7 @@
 import React from 'react';
 import { ScrollView } from 'react-native';
 import { Appbar, List, Divider } from 'react-native-paper';
+import env from '../../../config/env';
 import styles from '../../../config/styles';
 import colors from '../../../config/colors';
 
@@ -32,7 +33,8 @@ export default (props) => (
       />
       <Divider />
       <List.Item
-        title="App info"
+        title="App version"
+        description={env.APP_VERSION}
       />
     </ScrollView>
   </React.Fragment>
