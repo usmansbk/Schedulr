@@ -15,7 +15,7 @@ export default StyleSheet.create({
     elevation: 2,
     backgroundColor: '#fff',
   },
-  headerText: {
-    color: colors.light_gray
+  headerColor: {
+    color: colors.gray
   }
 });

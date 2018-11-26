@@ -5,15 +5,19 @@ import {
 } from 'react-navigation';
 import { Appbar } from 'react-native-paper';
 import List from '../../lists/More';
+import styles from '../../../config/styles';
+import colors from '../../../config/colors';
 
 export default (props) => (
   <React.Fragment>
-    <Appbar.Header>
+    <Appbar.Header style={styles.header} collapsable>
       <Appbar.BackAction
+        color={colors.gray}
         onPress={() => props.navigation.goBack()}
       />
       <Appbar.Content
         title="More" 
+        titleStyle={styles.headerColor}
       />
     </Appbar.Header>
     <List
