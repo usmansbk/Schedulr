@@ -1,3 +1,3 @@
-import RemindMe from './RemindMe';
+import Dialog from './Dialog';
 
-export default RemindMe;
+export default Dialog;
