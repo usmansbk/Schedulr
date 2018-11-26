@@ -12,7 +12,7 @@ const dev = {
   DOWNLOAD_URL: 'https://schdlr-ng.herokuapp.com/download'
 };
 
-export const prod = {
+const prod = {
   ONE_SIGNAL_ID: 'c45c9feb-9c17-4f6b-a397-abc7b49e5e40',
   APP_URL: 'https://schdlr-ng.herokuapp.com',
   IOS_URL: '//:schdlr',
