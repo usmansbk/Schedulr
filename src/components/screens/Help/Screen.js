@@ -2,9 +2,12 @@ import React from 'react';
 import Help from '../../routes/Help';
 
 export default class Screen extends React.Component {
+  _goBack = () => this.props.navigation.goBack();
   render() {
     return (
-      <Help />
+      <Help
+        goBack={this._goBack}
+      />
     );
   }
 }
