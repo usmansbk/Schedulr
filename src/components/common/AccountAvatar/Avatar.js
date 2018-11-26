@@ -2,6 +2,7 @@ import React from 'react';
 import { View } from 'react-native';
 import { Text, Caption, TouchableRipple } from 'react-native-paper';
 import UserAvatar from 'react-native-user-avatar';
+import { CachedImage } from 'react-native-cached-image';
 import styles from './styles';
 
 
@@ -10,7 +11,7 @@ const dummy = {
   email: 'usmansbk@gmail.com'
 };
 
-export default ({ name=dummy.name, email=dummy.email, }) => (
+export default ({ name=dummy.name, email=dummy.email, pictureUrl }) => (
   <TouchableRipple
     onPress={() => alert('User profile')}
     style={styles.container}
@@ -21,6 +22,8 @@ export default ({ name=dummy.name, email=dummy.email, }) => (
         size={80}
         name={name}
         style={styles.avatar}
+        src={pictureUrl}
+        component={CachedImage}
       />
       <View style={styles.text}>
         <Text numberOfLines={1} ellipsizeMode="tail" style={styles.name}>{name}</Text>
