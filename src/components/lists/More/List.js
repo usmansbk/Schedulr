@@ -16,7 +16,7 @@ class List extends React.Component {
         navigation.navigate('Settings');
         break;
       case 'legal':
-        navigation.navigate('Legal');
+        console.log('Open legal link in browser');
         break;
       case 'help':
         console.log('Open help link in browser');
