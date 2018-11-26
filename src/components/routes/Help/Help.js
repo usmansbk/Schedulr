@@ -1,5 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
+import { ScrollView } from 'react-native';
 import { Appbar, List, Divider } from 'react-native-paper';
 import styles from '../../../config/styles';
 import colors from '../../../config/colors';
@@ -13,8 +13,7 @@ export default (props) => (
         titleStyle={styles.headerColor}
       />
     </Appbar.Header>
-    <View>
-    <List>
+    <ScrollView>
       <List.Item
         title="FAQ"
       />
@@ -35,7 +34,6 @@ export default (props) => (
       <List.Item
         title="App info"
       />
-    </List>
-    </View>
+    </ScrollView>
   </React.Fragment>
 );

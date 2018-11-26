@@ -16,7 +16,7 @@ export default ({
   navigateToNewEvent,
 }) => (
   <React.Fragment>
-    <Appbar.Header>
+    <Appbar.Header collapsable>
       <Appbar.BackAction onPress={onPress} />
       <Appbar.Content
         title={name}

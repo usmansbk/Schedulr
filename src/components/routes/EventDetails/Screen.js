@@ -28,7 +28,7 @@ export default ({
   navigateToComments,
 }) => (
   <React.Fragment>
-    <Appbar.Header>
+    <Appbar.Header collapsable>
       <Appbar.BackAction onPress={handleBack} />
       <Appbar.Content title="Details" />
       {
