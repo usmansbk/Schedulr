@@ -26,7 +26,7 @@ class List extends React.Component {
         const options = {
           title: 'Invite via...',
           message,
-          subject: 'Download Schdlr',
+          subject: 'The Social Calendar',
           url
         }
         Share.open(options);
