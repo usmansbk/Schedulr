@@ -21,6 +21,7 @@ export default class Screen extends React.Component {
         <RemindMeDialog
           visible={this.state.visible}
           hideDialog={this._hideDialog}
+          handleValueChange={this._handleValueChange}
         />
       </React.Fragment>
     );
