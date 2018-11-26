@@ -26,43 +26,41 @@ export default class CancelEvent extends React.Component {
     } = this.props;
     const { checked } = this.state;
     return (
-      <View>
-        <Portal>
-          <Dialog
-            dismissable
-            visible={visible}
-            onDismiss={handleDismiss}
-          >
-            <Dialog.Title>Edit event?</Dialog.Title>
-            <Dialog.Content>
-              <List.Item
-                title="Change only this event"
-                right={() => (
-                  <RadioButton
-                    value="single"
-                    status={ checked === 'single' ? 'checked' : 'unchecked'}
-                    onPress={() => this.setState({ checked: 'single'})}
-                  />
-                )}
-              />
-              <List.Item
-                title="Change all of this event"
-                right={() => (
-                  <RadioButton
-                    value="all"
-                    status={ checked === 'all' ? 'checked' : 'unchecked'}
-                    onPress={() => this.setState({ checked: 'all'})}
-                  />
-                )}
-              />
-            </Dialog.Content>
-            <Dialog.Actions>
-              <Button onPress={handleDismiss}>Dismiss</Button>
-              <Button onPress={this._onContinue}>Continue</Button>
-            </Dialog.Actions>
-          </Dialog>
-        </Portal>
-      </View>
+      <Portal>
+        <Dialog
+          dismissable
+          visible={visible}
+          onDismiss={handleDismiss}
+        >
+          <Dialog.Title>Edit event?</Dialog.Title>
+          <Dialog.Content>
+            <List.Item
+              title="Change only this event"
+              right={() => (
+                <RadioButton
+                  value="single"
+                  status={ checked === 'single' ? 'checked' : 'unchecked'}
+                  onPress={() => this.setState({ checked: 'single'})}
+                />
+              )}
+            />
+            <List.Item
+              title="Change all of this event"
+              right={() => (
+                <RadioButton
+                  value="all"
+                  status={ checked === 'all' ? 'checked' : 'unchecked'}
+                  onPress={() => this.setState({ checked: 'all'})}
+                />
+              )}
+            />
+          </Dialog.Content>
+          <Dialog.Actions>
+            <Button onPress={handleDismiss}>Dismiss</Button>
+            <Button onPress={this._onContinue}>Continue</Button>
+          </Dialog.Actions>
+        </Dialog>
+      </Portal>
     )
   }
 }
