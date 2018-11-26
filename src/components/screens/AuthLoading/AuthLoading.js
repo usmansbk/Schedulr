@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
-import { AsyncStorage, StatusBar } from 'react-native';
+import { AsyncStorage } from 'react-native';
 import Loading from './Loading';
-import colors from '../../../config/colors';
 
 export default class AuthLoading extends Component {
   constructor(props) {
@@ -17,10 +16,6 @@ export default class AuthLoading extends Component {
   render() {
     return (
       <React.Fragment>
-        <StatusBar
-          backgroundColor={colors.primary_dark}
-          barStyle="light-content"
-        />
         <Loading />
       </React.Fragment>
     )
