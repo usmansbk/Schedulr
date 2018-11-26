@@ -1,9 +1,9 @@
 export default [
   {
-    id: 'notifications',
-    icon: 'notifications',
-    name: 'Notifications',
-    onPress: () => alert('Notifications')
+    id: 'settings',
+    icon: 'settings',
+    name: 'Settings',
+    onPress: () => alert('Settings')
   },
   {
     id: 'invite',
