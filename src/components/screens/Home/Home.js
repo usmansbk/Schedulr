@@ -13,7 +13,7 @@ const Home = createBottomTabNavigator({
   Home: { screen: HomeRoute },
   Search: { screen: SearchRoute },
   Notifications: { screen: NotificationRoute },
-  Account: { screen: MoreRoute }
+  More: { screen: MoreRoute }
 }, {
   initialRouteName: 'Home',
   initialLayout: { height: 0, width: Dimensions.get('window').width },
@@ -43,7 +43,7 @@ const Home = createBottomTabNavigator({
             color={tintColor}
           />
         );
-      } else if (routeName === 'Account') {
+      } else if (routeName === 'More') {
         iconName = 'menu';
       }
       return <Icon name={iconName} size={FONT_SIZE} color={tintColor} />

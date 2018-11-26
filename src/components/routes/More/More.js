@@ -1,9 +1,9 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
 import { Appbar } from 'react-native-paper';
+import List from '../../lists/More';
 
 export default (props) => (
-  <View style={styles.container}>
+  <React.Fragment>
     <Appbar.Header>
       <Appbar.BackAction
         onPress={() => props.navigation.goBack()}
@@ -12,11 +12,7 @@ export default (props) => (
         title="More" 
       />
     </Appbar.Header>
-  </View>
+    <List />
+  </React.Fragment>
 );
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-})
