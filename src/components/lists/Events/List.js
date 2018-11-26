@@ -1,5 +1,4 @@
 import React from 'react';
-import moment from 'moment';
 import { SectionList } from 'react-native';
 import { withNavigationFocus } from 'react-navigation';
 import sectionListGetItemLayout from 'react-native-section-list-get-item-layout';
@@ -18,7 +17,6 @@ import styles, {
 import dummy from './dummy';
 
 class List extends React.Component {
-  state = { update: null };
   _loadPrevious = () => console.log('Load previous events');
   _keyExtractor = (item, index) => item.cursor;
   _renderHeader = () => <Header onPress={this._loadPrevious} visible={defaultProps.hasPreviousEvents} />;
@@ -71,13 +69,6 @@ class List extends React.Component {
     listHeaderHeight: HEADER_HEIGHT,
   });
   shouldComponentUpdate = (nextProps) => nextProps.isFocused;
-  componentDidMount = () => {
-    this.updateList = setInterval(
-      () => this.setState({ update: moment().format('mm') }),
-    60000);
-  }
-
-  componentWillUnmount = () => clearInterval(this.updateList);
 
   render() {
     const {
@@ -92,7 +83,7 @@ class List extends React.Component {
         stickySectionHeadersEnabled
         getItemLayout={this._getItemLayout}
         sections={sections}
-        extraData={this.props.isFocused && this.state.update}
+        extraData={this.props.isFocused}
         ListHeaderComponent={this._renderHeader}
         ListEmptyComponent={this._renderEmptyList}
         ItemSeparatorComponent={this._renderSeparator}
