@@ -33,9 +33,14 @@ class List extends React.Component {
     item: {
       name,
       icon,
-      onPress
     }
-  }) => <Item name={name} icon={icon} onPress={onPress} />;
+  }) => (
+    <Item
+      name={name}
+      icon={icon}
+      onPressItem={this._onPressItem}
+    />
+  );
   _renderSeparator = () => <Separator />;
   _keyExtractor = (item) => item.id;
   shouldComponentUpdate = () => this.props.isFocused;
