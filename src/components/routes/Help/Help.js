@@ -17,19 +17,23 @@ export default (props) => (
     <ScrollView>
       <List.Item
         title="FAQ"
+        onPress={() => props.onPressItem('faq')}
       />
       <Divider />
       <List.Item
         title="Contact us"
         description="Questions? Need help"
+        onPress={() => props.onPressItem('contact')}
       />
       <Divider />
       <List.Item
         title="Copyright information"
+        onPress={() => props.onPressItem('copyright')}
       />
       <Divider />
       <List.Item
         title="Terms and Privacy Policy"
+        onPress={() => props.onPressItem('terms')}
       />
       <Divider />
       <List.Item
