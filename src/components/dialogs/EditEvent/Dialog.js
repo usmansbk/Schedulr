@@ -1,11 +1,11 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View } from 'react-native';
 import {
   Button,
   Dialog,
   Portal,
   RadioButton,
-  Text
+  List,
 } from 'react-native-paper';
 
 export default class CancelEvent extends React.Component {
@@ -35,22 +35,26 @@ export default class CancelEvent extends React.Component {
           >
             <Dialog.Title>Edit event?</Dialog.Title>
             <Dialog.Content>
-              <View style={styles.radioButton}>
-                <Text>Change only this event</Text>
-                <RadioButton
-                  value="single"
-                  status={ checked === 'single' ? 'checked' : 'unchecked'}
-                  onPress={() => this.setState({ checked: 'single'})}
-                />
-              </View>
-              <View style={styles.radioButton}>
-                <Text>Change all of this event</Text>
-                <RadioButton
-                  value="all"
-                  status={ checked === 'all' ? 'checked' : 'unchecked'}
-                  onPress={() => this.setState({ checked: 'all'})}
-                />
-              </View>
+              <List.Item
+                title="Change only this event"
+                right={() => (
+                  <RadioButton
+                    value="single"
+                    status={ checked === 'single' ? 'checked' : 'unchecked'}
+                    onPress={() => this.setState({ checked: 'single'})}
+                  />
+                )}
+              />
+              <List.Item
+                title="Change all of this event"
+                right={() => (
+                  <RadioButton
+                    value="all"
+                    status={ checked === 'all' ? 'checked' : 'unchecked'}
+                    onPress={() => this.setState({ checked: 'all'})}
+                  />
+                )}
+              />
             </Dialog.Content>
             <Dialog.Actions>
               <Button onPress={handleDismiss}>Dismiss</Button>
@@ -62,12 +66,3 @@ export default class CancelEvent extends React.Component {
     )
   }
 }
-
-const styles = StyleSheet.create({
-  radioButton: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginVertical: 8
-  }
-})

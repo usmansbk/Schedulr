@@ -1,5 +1,6 @@
 import React from 'react';
-import { Appbar } from 'react-native-paper';
+import { View } from 'react-native';
+import { Appbar, List, Switch } from 'react-native-paper';
 import styles from '../../../config/styles';
 import colors from '../../../config/colors';
 
@@ -13,5 +14,13 @@ export default (props) => (
         titleStyle={styles.headerColor}
       />
     </Appbar.Header>
+    <View>
+      <List.Section title="Reminders">
+        <List.Item
+          title="Mute"
+          right={() => <Switch />}
+        />
+      </List.Section>
+    </View>
   </React.Fragment>
 );

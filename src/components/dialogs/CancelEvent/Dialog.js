@@ -1,11 +1,11 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View } from 'react-native';
 import {
   Button,
   Dialog,
   Portal,
   RadioButton,
-  Text
+  List
 } from 'react-native-paper';
 
 export default class CancelEvent extends React.Component {
@@ -32,7 +32,6 @@ export default class CancelEvent extends React.Component {
       loading,
     } = this.props;
     const { checked } = this.state;
-    console.log('render');
     return (
       <View>
         <Portal>
@@ -43,22 +42,26 @@ export default class CancelEvent extends React.Component {
           >
             <Dialog.Title>Cancel event?</Dialog.Title>
             <Dialog.Content>
-              <View style={styles.radioButton}>
-                <Text>Cancel only this event</Text>
-                <RadioButton
-                  value="single"
-                  status={ checked === 'single' ? 'checked' : 'unchecked'}
-                  onPress={() => this.setState({ checked: 'single'})}
-                />
-              </View>
-              <View style={styles.radioButton}>
-                <Text>Cancel all events</Text>
-                <RadioButton
-                  value="all"
-                  status={ checked === 'all' ? 'checked' : 'unchecked'}
-                  onPress={() => this.setState({ checked: 'all'})}
-                />
-              </View>
+              <List.Item
+                title="Cancel only this event"
+                right={() => (
+                  <RadioButton
+                    value="single"
+                    status={ checked === 'single' ? 'checked' : 'unchecked'}
+                    onPress={() => this.setState({ checked: 'single'})}
+                  />
+                )}
+              />
+              <List.Item
+                title="Cancel all events"
+                right={() => (
+                  <RadioButton
+                    value="all"
+                    status={ checked === 'all' ? 'checked' : 'unchecked'}
+                    onPress={() => this.setState({ checked: 'all'})}
+                  />
+                )}
+              />
             </Dialog.Content>
             <Dialog.Actions>
               <Button disabled={loading} onPress={handleDismiss}>Dismiss</Button>
@@ -70,12 +73,3 @@ export default class CancelEvent extends React.Component {
     )
   }
 }
-
-const styles = StyleSheet.create({
-  radioButton: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginVertical: 8
-  }
-})
