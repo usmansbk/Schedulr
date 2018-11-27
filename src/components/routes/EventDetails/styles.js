@@ -40,5 +40,8 @@ export default StyleSheet.create({
   },
   item: {
     marginVertical: 12
+  },
+  nav: {
+    color: colors.primary_light
   }
 });

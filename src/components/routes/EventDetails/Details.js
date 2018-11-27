@@ -43,7 +43,7 @@ export default ({
           </View>
           <View style={styles.item}>
             <Text style={styles.label}>GROUP</Text>
-            <Text onPress={() => navigateToGroup(groupId)} style={styles.value}>{groupName}</Text>
+            <Text onPress={() => navigateToGroup(groupId)} style={[styles.value, styles.nav]}>{groupName}</Text>
           </View>
           <View style={styles.item}>
             <Text style={styles.label}>REPEAT</Text>
