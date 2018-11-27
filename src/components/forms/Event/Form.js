@@ -83,7 +83,7 @@ const Form = ({
         >{ isEdit ? 'Save' : 'Create'}</Button>
       </Appbar.Header>
       <ScrollView
-        refreshControl={<RefreshControl onRefresh={resetForm} />}
+        refreshControl={<RefreshControl onRefresh={() => resetForm()} />}
       >
         <View style={styles.form}>
           <TextInput

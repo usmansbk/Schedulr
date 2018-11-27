@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, ScrollView } from 'react-native';
+import { View, ScrollView, RefreshControl } from 'react-native';
 import {
   Button,
   TextInput,
@@ -41,7 +41,8 @@ const Form = ({
       handleSubmit,
       handleChange,
       handleBlur,
-      setFieldValue
+      setFieldValue,
+      resetForm
     }) => (
       <React.Fragment>     
       <Appbar.Header style={styles.header}>
@@ -57,7 +58,7 @@ const Form = ({
           onPress={handleSubmit}
         >{ isEdit ? 'Save' : 'Create'}</Button>
       </Appbar.Header>
-      <ScrollView>
+      <ScrollView refreshControl={<RefreshControl onRefresh={() => resetForm()} />}>
         <View style={styles.form}>
           <TextInput
             placeholder="Group name"
