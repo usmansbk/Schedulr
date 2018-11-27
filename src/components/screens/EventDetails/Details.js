@@ -21,6 +21,7 @@ const defaultValues = {
   allDay: false,
   repeat: 'NEVER',
   createdAt: new Date('11/20/2018'),
+  updatedAt: new Date('11/22/2018'),
   description: 'No description',
   isCancelled: false,
   starred: false,
@@ -60,6 +61,7 @@ export default class DetailsScreen extends React.Component {
       repeat,
       allDay,
       createdAt,
+      updatedAt,
       description,
       isCancelled,
       starred,
@@ -79,6 +81,7 @@ export default class DetailsScreen extends React.Component {
         groupId={group.id}
         repeat={decapitalize(repeat)}
         createdAt={moment(createdAt).format(CREATED_DATE_FORMAT)}
+        createdAt={moment(updatedAt).format(CREATED_DATE_FORMAT)}
         description={description}
         starred={starred}
         starsCount={starsCount}

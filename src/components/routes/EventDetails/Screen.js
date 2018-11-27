@@ -12,6 +12,7 @@ export default ({
   groupId,
   repeat,
   createdAt,
+  updatedAt,
   description,
   starred,
   starsCount,
@@ -74,6 +75,7 @@ export default ({
       groupId={groupId}
       repeat={repeat}
       createdAt={createdAt}
+      updatedAt={updatedAt}
       description={description}
       starred={starred}
       starsCount={starsCount}
