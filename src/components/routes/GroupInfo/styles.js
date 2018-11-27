@@ -71,5 +71,6 @@ export default StyleSheet.create({
   menuText: {
     margin: 8,
     fontSize: 16
-  }
+  },
+  linkStyle: { color: '#2980b9' } 
 });

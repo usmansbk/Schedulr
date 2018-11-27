@@ -20,6 +20,9 @@ export default class Screen extends React.Component {
         break;
     }
   };
+  _navigateToMembers = (id) => this.props.navigation.navigate('Members', { id });
+  _navigateToProfile = (id) => this.props.navigation.navigate('UserProfile', { id });
+  
   render() {
     const { visibleDialog } = this.state;
     return (
@@ -30,6 +33,8 @@ export default class Screen extends React.Component {
           adminId={defaultGroup.admin.id}
           adminName={defaultGroup.admin.name}
           handleSelectMenu={this._handleSelectMenu}
+          navigateToMembers={this._navigateToMemberss}
+          navigateToProfile={this._navigateToProfile}
         />
         <DeleteDialog
           visible={visibleDialog === 'delete' }

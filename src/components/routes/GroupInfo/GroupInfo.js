@@ -32,7 +32,7 @@ export default ({
   adminId,
   adminName,
   createdAt,
-  navigateToFollowers,
+  navigateToMembers,
   navigateToProfile,
 }) => (
   <React.Fragment>
@@ -85,7 +85,7 @@ export default ({
         <Text style={styles.membersCount}>{membersCount}</Text>
         <Text
           style={styles.followersLabel}
-          onPress={() => navigateToFollowers(id)}>MEMBERS</Text>
+          onPress={() => navigateToMembers(id)}>MEMBERS</Text>
         {
           !isAdmin && (
             <FollowButton
@@ -118,7 +118,7 @@ export default ({
       </View>
       <View style={styles.space}>
         <Text style={styles.label}>ABOUT</Text>
-        <Hyperlink linkStyle={ { color: '#2980b9', fontSize: 20 } } linkDefault={true}>
+        <Hyperlink linkStyle={styles.linkStyle} linkDefault={true}>
           <Text style={styles.value}>
             {description}
           </Text>
