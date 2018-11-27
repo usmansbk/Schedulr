@@ -2,6 +2,7 @@ import React from 'react';
 import { FlatList } from 'react-native';
 import { withNavigationFocus } from 'react-navigation';
 import Share from 'react-native-share';
+import LogoutDialog from '../../dialogs/Logout';
 import Header from './Header';
 import Footer from './Footer';
 import Item from './Item';
@@ -11,6 +12,11 @@ import styles from './styles';
 import env from '../../../config/env';
 
 class List extends React.Component {
+  state = {
+    visible: false,
+  }
+  _openDialog = () => this.setState({ visible: true });
+  _hideDialog = () => this.setState({ visible: false });
   _onPressItem = (id) => {
     const { navigation } = this.props;
     switch(id) {
@@ -37,7 +43,7 @@ class List extends React.Component {
   };
   _keyExtractor = (item) => item.id;
   _renderHeader = () => <Header />;
-  _renderFooter = () => <Footer />;
+  _renderFooter = () => <Footer openDialog={this._openDialog} />;
   _renderSeparator = () => <Separator />;
   _renderItem = ({
     item: {
@@ -57,15 +63,22 @@ class List extends React.Component {
 
   render() {
     return (
-      <FlatList
-        style={styles.container}
-        data={items}
-        keyExtractor={this._keyExtractor}
-        renderItem={this._renderItem}
-        ItemSeparatorComponent={this._renderSeparator}
-        ListFooterComponent={this._renderFooter}
-        ListHeaderComponent={this._renderHeader}
-      />
+      <React.Fragment>
+        <FlatList
+          style={styles.container}
+          data={items}
+          keyExtractor={this._keyExtractor}
+          renderItem={this._renderItem}
+          ItemSeparatorComponent={this._renderSeparator}
+          ListFooterComponent={this._renderFooter}
+          ListHeaderComponent={this._renderHeader}
+        />
+        <LogoutDialog
+          visible={this.state.visible}
+          handleDismiss={this._hideDialog}
+          onConfirm={this._hideDialog}
+        />
+      </React.Fragment>
     );
   }
 }
