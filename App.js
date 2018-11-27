@@ -1,5 +1,6 @@
 import React from 'react';
 import { Provider as PaperProvider } from 'react-native-paper';
+import { MenuProvider } from 'react-native-popup-menu';
 import SplashScreen from 'react-native-splash-screen';
 import AppContainer from './src/App';
 import theme from './src/config/theme';
@@ -12,7 +13,9 @@ export default class App extends React.Component {
   render() {
     return (
       <PaperProvider theme={theme}>
-        <AppContainer />
+        <MenuProvider>
+          <AppContainer />
+        </MenuProvider>
       </PaperProvider>
     );
   }
