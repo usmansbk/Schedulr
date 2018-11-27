@@ -12,11 +12,11 @@ export default class App extends React.Component {
   
   render() {
     return (
-      <PaperProvider theme={theme}>
-        <MenuProvider>
+      <MenuProvider backHandler={true}>
+        <PaperProvider theme={theme}>
           <AppContainer />
-        </MenuProvider>
-      </PaperProvider>
+        </PaperProvider>
+      </MenuProvider>
     );
   }
 }
