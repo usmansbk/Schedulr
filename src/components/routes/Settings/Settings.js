@@ -15,6 +15,7 @@ export default ({
   handleValueChange,
   openRemindMeDialog,
   muteReminders,
+  alarm,
   eventEnded,
   disablePush,
   adminComments,
@@ -43,8 +44,19 @@ export default ({
         />
         <Divider />
         <List.Item
+          title="Alarm"
+          description="Set long alarm for starred events?"
+          right={() => (
+            <Switch
+              value={alarm}
+              onValueChange={() => handleValueChange('alarm')}
+            />
+          )}
+        />
+        <Divider />
+        <List.Item
           title="Event ended"
-          description="Get notified when an event end's"
+          description="Get notified when an event end's?"
           right={() => (
             <Switch
               value={eventEnded}
