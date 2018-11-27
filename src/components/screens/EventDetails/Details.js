@@ -4,7 +4,7 @@ import Details from '../../routes/EventDetails';
 import DeleteDialog from '../../dialogs/DeleteEvent';
 import CancelDialog from '../../dialogs/CancelEvent';
 import EditDialog from '../../dialogs/EditEvent';
-import { formatDate } from '../../../lib/time';
+import { formatDate, getNextDate } from '../../../lib/time';
 import {decapitalize} from '../../../lib/capitalizr';
 
 const defaultValues = {
@@ -19,7 +19,7 @@ const defaultValues = {
     id: 2,
   },
   allDay: false,
-  repeat: 'NEVER',
+  repeat: 'WEEKLY',
   createdAt: new Date('11/20/2018'),
   updatedAt: new Date('11/22/2018'),
   description: 'No description',
@@ -35,6 +35,15 @@ const CREATED_DATE_FORMAT = "ddd DD, MMM YYYY, hh:mm a";
 export default class DetailsScreen extends React.Component {
   state = {
     visibleDialog: null,
+  }
+  _getRepeatDate = () => {
+    const {
+      start,
+      repeat,
+      end
+    } = defaultValues;
+    if (repeat === 'NEVER') return '';
+    return moment(getNextDate(start, repeat, start, end)).format(CREATED_DATE_FORMAT)
   }
   _goBack = () => this.props.navigation.goBack();
   _openDeleteDialog = () => this.setState({ visibleDialog: 'delete' });
@@ -75,6 +84,7 @@ export default class DetailsScreen extends React.Component {
         id={id}
         title={title}
         date={formatDate(start, end, allDay)}
+        nextDate={this._getRepeatDate()}
         type={decapitalize(type)}
         location={location}
         groupName={group.name}

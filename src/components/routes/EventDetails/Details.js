@@ -8,6 +8,7 @@ export default ({
   id,
   title,
   date,
+  nextDate,
   type,
   location,
   groupName,
@@ -48,7 +49,7 @@ export default ({
           </View>
           <View style={styles.item}>
             <Text style={styles.label}>REPEAT</Text>
-            <Text style={styles.value}>{repeat}</Text>
+            <Text style={styles.value}>{repeat}{ nextDate ? ` - ${nextDate}` : ''}</Text>
           </View>
           <View style={styles.item}>
             <Text style={styles.label}>CREATED</Text>

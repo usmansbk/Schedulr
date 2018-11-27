@@ -6,6 +6,7 @@ export default ({
   id,
   title,
   date,
+  nextDate,
   type,
   location,
   groupName,
@@ -69,6 +70,7 @@ export default ({
       id={id}
       title={title}
       date={date}
+      nextDate={nextDate}
       type={type}
       location={location}
       groupName={groupName}
