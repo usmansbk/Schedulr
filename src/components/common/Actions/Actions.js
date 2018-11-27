@@ -23,7 +23,7 @@ export default ({
   dark,
   navigateToComments,
 }) => {
-  const fontSize = size === 'small' ? 20 : FONT_SIZE;
+  const fontSize = size === 'small' ? 22 : FONT_SIZE;
   const color = dark ? colors.light_gray_3 : defaultColor;
   return (
   <View style={styles.actions}>
