@@ -13,7 +13,6 @@ const dummy = {
 
 export default ({ name=dummy.name, email=dummy.email, pictureUrl }) => (
   <TouchableRipple
-    onPress={() => alert('User profile')}
     style={styles.container}
   >
     <View style={styles.content}>
