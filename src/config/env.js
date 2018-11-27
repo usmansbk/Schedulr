@@ -13,7 +13,8 @@ const dev = {
   DOWNLOAD_URL: `${url}/download`,
   FAQ_URL: `${url}/faq`,
   CONTACT_URL: `${url}/contact`,
-  LEGALITY_URL: `${url}/legal`
+  LEGALITY_URL: `${url}/legal`,
+  TERMS_URL: `${url}/terms`
 };
 
 const prod = {
@@ -27,7 +28,8 @@ const prod = {
   DOWNLOAD_URL: 'https://schdlr-ng.herokuapp.com/download',
   FAQ_URL: `${url}/faq`,
   CONTACT_URL: `${url}/contact`,
-  LEGALITY_URL: `${url}/legal`
+  LEGALITY_URL: `${url}/legal`,
+  TERMS_URL: `${url}/terms`
 };
 
 export default dev;
