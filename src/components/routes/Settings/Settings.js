@@ -54,7 +54,7 @@ export default ({
         />
         <Divider />
         <List.Item
-          title="Remind me before"
+          title="Remind me"
           right={() => <List.Icon icon="chevron-right" />}
           onPress={openRemindMeDialog}
         />
