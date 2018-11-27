@@ -47,7 +47,6 @@ export default StyleSheet.create({
   value: {
     fontSize: 16,
     fontFamily: 'sans-serif-bold',
-    fontWeight: 'bold'
   },
   space: {
     marginVertical: 8
