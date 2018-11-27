@@ -56,7 +56,7 @@ export default ({
               )}
               { closed && (
                 <MenuOption value="open">
-                  <Text style={styles.menuText}>open</Text>
+                  <Text style={styles.menuText}>Open</Text>
                 </MenuOption>
               )}
               <MenuOption value="delete">
