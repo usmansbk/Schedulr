@@ -45,6 +45,16 @@ export default ({
         />
         <Divider />
         <List.Item
+          title="Heads-up"
+          right={() => (
+            <Switch
+              value={headsup}
+              onValueChange={() => handleValueChange('headsup')}
+            />
+          )}
+        />
+        <Divider />
+        <List.Item
           title="Alarm"
           description="Set alarm for starred events?"
           right={() => (
@@ -62,16 +72,6 @@ export default ({
             <Switch
               value={eventEnded}
               onValueChange={() => handleValueChange('eventEnded')}
-            />
-          )}
-        />
-        <Divider />
-        <List.Item
-          title="Heads-up"
-          right={() => (
-            <Switch
-              value={headsup}
-              onValueChange={() => handleValueChange('headsup')}
             />
           )}
         />
