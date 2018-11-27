@@ -1,18 +1,48 @@
 import React from 'react';
 import GroupInfo from '../../routes/GroupInfo';
+import DeleteDialog from '../../dialogs/DeleteGroup';
+import OpenDialog from '../../dialogs/OpenGroup';
+import CloseDialog from '../../dialogs/CloseGroup';
 
 export default class Screen extends React.Component {
+  state = {
+    visibleDialog: null
+  }
   _goBack = () => this.props.navigation.goBack();
-  _handleSelectMenu = (option) => alert(option);
+  _hideDialog = () => this.setState({ visibleDialog: null });
+  _handleSelectMenu = (option) => {
+    switch (option) {
+      case 'edit':
+        break;
+      default:
+        this.setState({ visibleDialog: option });
+        break;
+    }
+  };
   render() {
+    const { visibleDialog } = this.state;
     return (
-      <GroupInfo
-        goBack={this._goBack}
-        {...defaultGroup}
-        adminId={defaultGroup.admin.id}
-        adminName={defaultGroup.admin.name}
-        handleSelectMenu={this._handleSelectMenu}
-      />
+      <React.Fragment>
+        <GroupInfo
+          goBack={this._goBack}
+          {...defaultGroup}
+          adminId={defaultGroup.admin.id}
+          adminName={defaultGroup.admin.name}
+          handleSelectMenu={this._handleSelectMenu}
+        />
+        <DeleteDialog
+          visible={visibleDialog === 'delete' }
+          handleDismiss={this._hideDialog}
+        />
+        <OpenDialog
+          visible={visibleDialog === 'open' }
+          handleDismiss={this._hideDialog}
+        />
+        <CloseDialog
+          visible={visibleDialog === 'close' }
+          handleDismiss={this._hideDialog}
+        />
+      </React.Fragment>
     );
   }
 }

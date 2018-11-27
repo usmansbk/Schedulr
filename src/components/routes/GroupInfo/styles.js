@@ -5,6 +5,13 @@ export const AVATAR_SIZE = 100;
 
 export default StyleSheet.create({
   container: { flex: 1, margin: 16 },
+  menuButton: {
+    width: 48,
+    height: 48,
+    borderRadius: 24,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   header: {
     alignItems: 'center',
     margin: 16
@@ -62,6 +69,7 @@ export default StyleSheet.create({
     color: colors.gray
   },
   menuText: {
-    marginVertical: 4
+    margin: 8,
+    fontSize: 16
   }
 });

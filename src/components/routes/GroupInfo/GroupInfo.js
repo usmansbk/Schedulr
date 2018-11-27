@@ -1,6 +1,6 @@
 import React from 'react';
 import moment from 'moment';
-import { View, ScrollView } from 'react-native';
+import { View, ScrollView, TouchableNativeFeedback } from 'react-native';
 import {
   Menu,
   MenuTrigger,
@@ -44,11 +44,21 @@ export default ({
       {
         isAdmin && (
           <Menu onSelect={handleSelectMenu}>
-            <MenuTrigger>
-              <Icon name="more-vert" />
+            <MenuTrigger 
+              customStyles={{
+                triggerWrapper: styles.menuButton,
+                TriggerTouchableComponent: TouchableNativeFeedback,
+                triggerTouchable: {
+                  background: TouchableNativeFeedback.SelectableBackground()
+                }
+              }}
+            >
+              <Icon size={24} color="white" name="more-vert" />
             </MenuTrigger>
             <MenuOptions>
-              <MenuOption value="edit" text="Edit" />
+              <MenuOption value="edit">
+                <Text style={styles.menuText}>Edit</Text>
+              </MenuOption>
               { !closed && (
                 <MenuOption value="close">
                   <Text style={styles.menuText}>Close</Text>
