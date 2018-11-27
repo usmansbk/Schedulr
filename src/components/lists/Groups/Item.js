@@ -7,6 +7,7 @@ import styles, { AVATAR_SIZE } from './styles';
 
 export default class Item extends React.PureComponent {
   _onPress = () => this.props.onPressItem(this.props.id);
+  _navigateToInfo = () => this.props.navigateToGroupInfo(this.props.id);
   render() {
     const {
       name,
@@ -16,9 +17,9 @@ export default class Item extends React.PureComponent {
     return (
       <TouchableRipple style={styles.itemContainer} onPress={this._onPress}>
         <View style={styles.itemContent}>
-          <View style={styles.itemAvatar}>
+          <TouchableRipple onPress={this._navigateToInfo} style={styles.itemAvatar}>
             <UserAvatar component={CachedImage} size={AVATAR_SIZE} rounded name={name} />
-          </View>
+          </TouchableRipple>
           <View style={styles.itemBody}>
             <Text numberOfLines={1} ellipsizeMode="tail" style={styles.itemName}>{name}</Text>
             <Paragraph numberOfLines={1} ellipsizeMode="tail" style={styles.itemDescription}>{description}</Paragraph>

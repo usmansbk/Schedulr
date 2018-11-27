@@ -21,6 +21,7 @@ class List extends Component {
   );
   shouldComponentUpdate = (nextProps) => nextProps.isFocused;
   _onPressItem = (id) => this.props.navigation.navigate('GroupEvents', { id });
+  _navigateToInfo = (id) => this.props.navigation.navigate('GroupInfo', { id });
   _keyExtractor = (item) => String(item.node.id);
   _renderEmptyList = () => <Empty />;
   _renderItem = ({item: { node }}) => {
@@ -42,6 +43,7 @@ class List extends Component {
         closed={closed}
         isAdmin={isAdmin}
         onPressItem={this._onPressItem}
+        navigateToGroupInfo={this._navigateToInfo}
       />
     )
   }
