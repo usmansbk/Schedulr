@@ -67,6 +67,7 @@ const Form = ({
       handleBlur,
       setFieldValue,
       resetForm,
+      h
     }) => (
       <React.Fragment>
       <Appbar.Header style={styles.header}>
@@ -83,7 +84,7 @@ const Form = ({
         >{ isEdit ? 'Save' : 'Create'}</Button>
       </Appbar.Header>
       <ScrollView
-        refreshControl={<RefreshControl onRefresh={() => resetForm()} />}
+        refreshControl={<RefreshControl refreshing={false} onRefresh={() => resetForm()} />}
       >
         <View style={styles.form}>
           <TextInput

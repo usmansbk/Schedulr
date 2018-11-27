@@ -58,7 +58,7 @@ const Form = ({
           onPress={handleSubmit}
         >{ isEdit ? 'Save' : 'Create'}</Button>
       </Appbar.Header>
-      <ScrollView refreshControl={<RefreshControl onRefresh={() => resetForm()} />}>
+      <ScrollView refreshControl={<RefreshControl refreshing={false} onRefresh={() => resetForm()} />}>
         <View style={styles.form}>
           <TextInput
             placeholder="Group name"
