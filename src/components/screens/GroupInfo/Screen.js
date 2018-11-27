@@ -33,7 +33,7 @@ export default class Screen extends React.Component {
           adminId={defaultGroup.admin.id}
           adminName={defaultGroup.admin.name}
           handleSelectMenu={this._handleSelectMenu}
-          navigateToMembers={this._navigateToMemberss}
+          navigateToMembers={this._navigateToMembers}
           navigateToProfile={this._navigateToProfile}
         />
         <DeleteDialog
