@@ -1,6 +1,6 @@
 import React from 'react';
 import moment from 'moment';
-import { View, ScrollView, TouchableNativeFeedback } from 'react-native';
+import { View, ScrollView } from 'react-native';
 import {
   Menu,
   MenuTrigger,
@@ -47,10 +47,6 @@ export default ({
             <MenuTrigger 
               customStyles={{
                 triggerWrapper: styles.menuButton,
-                TriggerTouchableComponent: TouchableNativeFeedback,
-                triggerTouchable: {
-                  background: TouchableNativeFeedback.SelectableBackground()
-                }
               }}
             >
               <Icon size={24} color="white" name="more-vert" />
