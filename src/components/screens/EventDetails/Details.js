@@ -81,7 +81,7 @@ export default class DetailsScreen extends React.Component {
         groupId={group.id}
         repeat={decapitalize(repeat)}
         createdAt={moment(createdAt).format(CREATED_DATE_FORMAT)}
-        createdAt={moment(updatedAt).format(CREATED_DATE_FORMAT)}
+        updatedAt={moment(updatedAt).format(CREATED_DATE_FORMAT)}
         description={description}
         starred={starred}
         starsCount={starsCount}
