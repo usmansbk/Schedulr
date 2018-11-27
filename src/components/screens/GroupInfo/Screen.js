@@ -3,6 +3,7 @@ import GroupInfo from '../../routes/GroupInfo';
 
 export default class Screen extends React.Component {
   _goBack = () => this.props.navigation.goBack();
+  _handleSelectMenu = (option) => alert(option);
   render() {
     return (
       <GroupInfo
@@ -10,6 +11,7 @@ export default class Screen extends React.Component {
         {...defaultGroup}
         adminId={defaultGroup.admin.id}
         adminName={defaultGroup.admin.name}
+        handleSelectMenu={this._handleSelectMenu}
       />
     );
   }

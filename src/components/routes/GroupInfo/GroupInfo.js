@@ -2,10 +2,17 @@ import React from 'react';
 import moment from 'moment';
 import { View, ScrollView } from 'react-native';
 import {
+  Menu,
+  MenuTrigger,
+  MenuOptions,
+  MenuOption
+} from 'react-native-popup-menu';
+import {
   Appbar,
   Divider,
   Text
 } from 'react-native-paper';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 import UserAvater from 'react-native-user-avatar';
 import Hyperlink from 'react-native-hyperlink';
 import FollowButton from '../../common/FollowButton';
@@ -13,6 +20,7 @@ import styles, { AVATAR_SIZE } from './styles';
 
 export default ({
   goBack,
+  handleSelectMenu,
   id,
   name,
   description,
@@ -34,7 +42,29 @@ export default ({
         title="Group Info"
       />
       {
-        isAdmin && (<Appbar.Action icon="more-vert" />)
+        isAdmin && (
+          <Menu onSelect={handleSelectMenu}>
+            <MenuTrigger>
+              <Icon name="more-vert" />
+            </MenuTrigger>
+            <MenuOptions>
+              <MenuOption value="edit" text="Edit" />
+              { !closed && (
+                <MenuOption value="close">
+                  <Text style={styles.menuText}>Close</Text>
+                </MenuOption>
+              )}
+              { closed && (
+                <MenuOption value="open">
+                  <Text style={styles.menuText}>open</Text>
+                </MenuOption>
+              )}
+              <MenuOption value="delete">
+                <Text style={styles.menuText}>Delete</Text>
+              </MenuOption>
+            </MenuOptions>
+          </Menu>
+        )
       }
     </Appbar.Header>
     <ScrollView>

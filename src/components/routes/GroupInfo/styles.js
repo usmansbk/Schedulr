@@ -60,5 +60,8 @@ export default StyleSheet.create({
     fontFamily: 'sans-serif-bold',
     fontWeight: 'bold',
     color: colors.gray
+  },
+  menuText: {
+    marginVertical: 4
   }
 });
