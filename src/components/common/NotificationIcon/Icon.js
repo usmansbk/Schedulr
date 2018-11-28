@@ -2,13 +2,12 @@ import React from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import colors from '../../../config/colors';
 
-export default ({ name, hasNotification, color, focused, size }) => {
-  if (hasNotification && !focused) return (
+export default ({ hasNotification, color, size }) => {
+  return (
     <Icon
-      name="notifications-active"
-      color={colors.light_red}
+      name={`notifications${hasNotification ? '' : '-none'}`}
+      color={hasNotification ? colors.light_red : color}
       size={size}
     />
   );
-  return <Icon name={name} size={size} color={color}/>
 };

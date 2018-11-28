@@ -30,7 +30,7 @@ const Home = createBottomTabNavigator({
   },
   defaultNavigationOptions: ({ navigation }) => ({
     tabBarVisible: navigation.state.routeName !== 'Search',
-    tabBarIcon: ({ focused, tintColor }) => {
+    tabBarIcon: ({ tintColor }) => {
       const { routeName } = navigation.state;
       let iconName;
       if (routeName === 'Home') {
@@ -38,11 +38,8 @@ const Home = createBottomTabNavigator({
       } else if (routeName === 'Search') {
         iconName = 'search';
       } else if (routeName === 'Notifications') {
-        iconName = `notifications${focused ? '' : '-none'}`;
         return (
           <NotificationsIcon
-            name={iconName}
-            focused={focused}
             size={FONT_SIZE}
             color={tintColor}
           />
