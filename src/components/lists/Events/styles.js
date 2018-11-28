@@ -30,7 +30,7 @@ export default StyleSheet.create({
   },
   sectionSubheading: {
     fontWeight: 'bold',
-    color: gray
+    color: colors.light_gray_3
   },
   header:{
     height: HEADER_HEIGHT,
@@ -48,7 +48,7 @@ export default StyleSheet.create({
   },
   footerText: {
     fontWeight: 'bold',
-    color: gray
+    color: colors.light_gray_3
   },
   empty: {
     flex: 1,
