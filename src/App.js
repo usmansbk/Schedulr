@@ -16,7 +16,8 @@ import {
   GroupEvents,
   GroupInfo,
   Help,
-  Settings
+  Settings,
+  UserProfile,
 } from './components/screens';
 
 
@@ -30,7 +31,8 @@ const AppStack = createStackNavigator({
   GroupEvents,
   GroupInfo,
   Help,
-  Settings
+  Settings,
+  UserProfile
 }, {
   initialRouteName: 'Home',
   headerMode: 'none'

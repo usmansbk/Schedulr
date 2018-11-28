@@ -10,6 +10,7 @@ import GroupEvents from './GroupEvents';
 import GroupInfo from './GroupInfo';
 import Settings from './Settings';
 import Help from './Help';
+import UserProfile from './UserProfile';
 
 export {
   AuthLoading,
@@ -24,4 +25,5 @@ export {
   GroupInfo,
   Settings,
   Help,
+  UserProfile
 };
