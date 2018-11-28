@@ -54,12 +54,13 @@ export default StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 56,
+    marginTop: 200,
     marginHorizontal: 20,
+    height: '100%'
   },
   emptyTitle: {
-    fontSize: 27,
-    color: gray,
+    fontSize: 25,
+    color: colors.light_gray_3,
     fontWeight: 'bold'
   },
   emptyMessage: {

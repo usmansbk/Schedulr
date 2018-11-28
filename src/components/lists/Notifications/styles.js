@@ -11,7 +11,7 @@ export default StyleSheet.create({
     height: '100%'
   },
   emptyTitle: {
-    fontSize: 27,
+    fontSize: 25,
     color: colors.light_gray_3,
     fontWeight: 'bold'
   },

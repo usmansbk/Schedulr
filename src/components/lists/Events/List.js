@@ -100,8 +100,8 @@ class List extends React.Component {
 const defaultProps = {
   loading: false,
   onRefresh: () => console.log('Refreshing'),
-  hasPreviousEvents: true,
-  sections: dummy,
+  hasPreviousEvents: false,
+  sections: dummy
 };
 
 export default withNavigationFocus(List);
