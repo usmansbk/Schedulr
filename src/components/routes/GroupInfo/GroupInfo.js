@@ -17,6 +17,8 @@ import UserAvater from 'react-native-user-avatar';
 import Hyperlink from 'react-native-hyperlink';
 import FollowButton from '../../common/FollowButton';
 import styles, { AVATAR_SIZE } from './styles';
+import appStyles from '../../../config/styles';
+import colors from '../../../config/colors';
 
 export default ({
   goBack,
@@ -36,10 +38,11 @@ export default ({
   navigateToProfile,
 }) => (
   <React.Fragment>
-    <Appbar.Header>
-      <Appbar.BackAction onPress={goBack} />
+    <Appbar.Header collapsable style={appStyles.header}>
+      <Appbar.BackAction color={colors.gray} onPress={goBack} />
       <Appbar.Content
         title="Group Info"
+        titleStyle={appStyles.headerColor}
       />
       {
         isAdmin && (
@@ -49,7 +52,7 @@ export default ({
                 triggerWrapper: styles.menuButton,
               }}
             >
-              <Icon size={24} color="white" name="more-vert" />
+              <Icon size={24} color={colors.gray} name="more-vert" />
             </MenuTrigger>
             <MenuOptions>
               <MenuOption value="edit">
