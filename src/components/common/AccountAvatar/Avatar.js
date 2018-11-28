@@ -5,15 +5,15 @@ import UserAvatar from 'react-native-user-avatar';
 import { CachedImage } from 'react-native-cached-image';
 import styles from './styles';
 
-
-const dummy = {
-  name: 'Babakolo Usman Suleiman',
-  email: 'usmansbk@gmail.com'
-};
-
-export default ({ name=dummy.name, email=dummy.email, pictureUrl }) => (
+export default ({
+  name,
+  email,
+  pictureUrl,
+  onPress
+}) => (
   <TouchableRipple
     style={styles.container}
+    onPress={onPress}
   >
     <View style={styles.content}>
       <UserAvatar
