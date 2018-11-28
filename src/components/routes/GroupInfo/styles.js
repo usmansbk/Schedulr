@@ -17,17 +17,9 @@ export default StyleSheet.create({
     margin: 16
   },
   name: {
-    fontSize: 24,
+    fontSize: 27,
     fontWeight: 'bold',
     textAlign: 'center',
-  },
-  avatar: {
-    width: AVATAR_SIZE + 4,
-    height: AVATAR_SIZE + 4,
-    borderRadius: (AVATAR_SIZE + 4) / 2,
-    borderWidth: 2,
-    borderColor: colors.primary_light,
-    margin: 4
   },
   followers: {
     alignItems: 'center',
@@ -36,7 +28,8 @@ export default StyleSheet.create({
   followersCount: {
     fontSize: 16,
     fontFamily: 'sans-serif-bold',
-    color: colors.gray
+    fontWeight: 'bold',
+    color: colors.light_gray_3
   },
   followersLabel: {
     fontSize: 16,
@@ -49,11 +42,14 @@ export default StyleSheet.create({
   label: {
     fontSize: 14,
     fontFamily: 'sans-serif-light',
+    fontWeight: 'bold',
     marginVertical: 2
   },
   value: {
     fontSize: 16,
     fontFamily: 'sans-serif-bold',
+    fontWeight: 'bold',
+    color: colors.gray
   },
   space: {
     marginVertical: 8

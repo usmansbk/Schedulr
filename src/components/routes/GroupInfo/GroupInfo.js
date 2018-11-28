@@ -79,16 +79,13 @@ export default ({
     <ScrollView>
       <View style={styles.container}>
       <View style={styles.header}>
-        <View style={styles.avatar}>
-          <UserAvater name={name} rounded size={AVATAR_SIZE} />
-          <Text style={styles.name}>{name}</Text>
-        </View>
+        <UserAvater name={name} rounded size={AVATAR_SIZE} />
+        <Text style={styles.name}>{name}</Text>
       </View>
       <View style={styles.followers}>
-        <Text style={styles.membersCount}>{membersCount}</Text>
         <Text
-          style={styles.followersLabel}
-          onPress={() => navigateToMembers(id)}>MEMBERS</Text>
+          style={styles.followersCount}
+          onPress={() => navigateToMembers(id)}>{membersCount} Members</Text>
         {
           !isAdmin && (
             <FollowButton
