@@ -1,29 +1,39 @@
 import { StyleSheet } from 'react-native';
 import colors from '../../../config/colors';
 
-export const AVATAR_SIZE = 80;
+export const AVATAR_SIZE = 120;
 
 export default StyleSheet.create({
   container: {
     flex: 1,
-    marginHorizontal: 8,
-    marginVertical: 16,
+    marginHorizontal: 16,
+    marginVertical: 32,
+    alignItems: 'center',
+  },
+  appbar: {
+    elevation: 0,
+    borderRadius: 0,
   },
   header: {
-    margin: 8,
     justifyContent: 'center',
     alignItems: 'center'
   },
   headline: {
-    fontSize: 27,
+    fontSize: 32,
     fontWeight: 'bold',
-    fontFamily: 'sans-serif-bold'
+    fontFamily: 'sans-serif-bold',
+    textAlign: 'center'
   },
   subheading: {
-    flexDirection: 'row'
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
   },
   note: {
     fontWeight: 'bold',
+    fontSize: 18,
     color: colors.light_gray_3
+  },
+  caption: {
+    fontSize: 16
   }
 });

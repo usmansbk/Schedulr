@@ -34,7 +34,7 @@ const AppStack = createStackNavigator({
   Settings,
   UserProfile
 }, {
-  initialRouteName: 'UserProfile',
+  initialRouteName: 'Home',
   headerMode: 'none'
 });
 

@@ -2,7 +2,8 @@ import React from 'react';
 import { View } from 'react-native';
 import {
   Appbar,
-  Text
+  Text,
+  Caption
 } from 'react-native-paper';
 import UserAvatar from 'react-native-user-avatar';
 import { CachedImage } from 'react-native-cached-image';
@@ -15,15 +16,12 @@ export default ({
   name=defaultProps.name,
   pictureUrl=defaultProps.pictureUrl,
   following=defaultProps.following,
-  groupsCount=defaultProps.groupsCount
+  groupsCount=defaultProps.groupsCount,
+  joined=defaultProps.joined
 }) => (
   <React.Fragment>
-    <Appbar.Header style={appStyles.header} collapsable>
+    <Appbar.Header style={[appStyles.header, styles.appbar]} collapsable>
       <Appbar.BackAction color={colors.gray} onPress={goBack} />
-      <Appbar.Content
-        title="Profile"
-        titleStyle={appStyles.headerColor}
-      />
     </Appbar.Header>
     <View style={styles.container}>
       <View style={styles.header}> 
@@ -44,6 +42,7 @@ export default ({
           <Text style={styles.note}> - </Text>
           <Text style={styles.note}>{groupsCount} Groups</Text>
         </View>
+        <Caption style={styles.caption}>Joined {joined}</Caption>
       </View>
     </View>
   </React.Fragment>
@@ -54,4 +53,5 @@ const defaultProps = {
   pictureUrl: null,
   following: 2000,
   groupsCount: 2888,
+  joined: 'Mon 12, November 2018'
 }
