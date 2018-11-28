@@ -1,6 +1,8 @@
 import React from 'react';
 import { Appbar } from 'react-native-paper';
 import Details from './Details';
+import styles from '../../../config/styles';
+import colors from '../../../config/colors';
 
 export default ({
   id,
@@ -30,20 +32,20 @@ export default ({
   navigateToComments,
 }) => (
   <React.Fragment>
-    <Appbar.Header collapsable>
-      <Appbar.BackAction onPress={handleBack} />
-      <Appbar.Content title="Details" />
+    <Appbar.Header style={styles.header}  collapsable>
+      <Appbar.BackAction color={colors.gray} onPress={handleBack} />
+      <Appbar.Content titleStyle={styles.headerColor} title="Details" />
       {
         isAuthor && (
           <React.Fragment>
             <Appbar.Action
               icon="delete"
-              color="#fff"
+              color={colors.gray}
               onPress={handleDelete}
             />
             <Appbar.Action
               icon="repeat"
-              color="#fff"
+              color={colors.gray}
               onPress={handleRepeat}
             />
             {
@@ -51,12 +53,12 @@ export default ({
                 <React.Fragment>
                   <Appbar.Action
                     icon="mode-edit"
-                    color="#fff"
+                    color={colors.gray}
                     onPress={handleEdit}
                   />
                   <Appbar.Action
                     icon="close"
-                    color="#fff"
+                    color={color.gray}
                     onPress={handleCancel}
                   />
                 </React.Fragment>
