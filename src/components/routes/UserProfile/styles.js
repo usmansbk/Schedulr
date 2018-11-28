@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import colors from '../../../config/styles';
+import colors from '../../../config/colors';
 
 export const AVATAR_SIZE = 80;
 
@@ -18,5 +18,12 @@ export default StyleSheet.create({
     fontSize: 27,
     fontWeight: 'bold',
     fontFamily: 'sans-serif-bold'
+  },
+  subheading: {
+    flexDirection: 'row'
+  },
+  note: {
+    fontWeight: 'bold',
+    color: colors.light_gray_3
   }
 });

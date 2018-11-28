@@ -39,10 +39,10 @@ export default ({
         >
           {name}
         </Text>
-        <View>
-          <Text>{following} following</Text>
-          -
-          <Text>{groupsCount} groups</Text>
+        <View style={styles.subheading}>
+          <Text style={styles.note}>{following} Following</Text>
+          <Text style={styles.note}> - </Text>
+          <Text style={styles.note}>{groupsCount} Groups</Text>
         </View>
       </View>
     </View>
