@@ -21,7 +21,7 @@ class List extends React.Component {
   _keyExtractor = (item, index) => item.cursor;
   _renderHeader = () => <Header onPress={this._loadPrevious} visible={defaultProps.hasPreviousEvents} />;
   _renderFooter = () => <Footer visible={defaultProps.sections.length}/>;
-  _renderEmptyList = () => <Empty />;
+  _renderEmptyList = () => <Empty starred={this.props.starred} />;
   _renderSeparator = () => <Separator />;
   _renderSectionHeader = ({section}) => <SectionHeader section={section} />;
   _onPressItem = (id) => this.props.navigation.navigate('EventDetails', { id });

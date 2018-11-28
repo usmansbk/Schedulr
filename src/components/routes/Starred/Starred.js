@@ -3,7 +3,7 @@ import { View, StyleSheet } from 'react-native';
 import List from '../../lists/Events';
 
 export default () => (
-  <List />
+  <List starred />
 );
 
 const styles = StyleSheet.create({
