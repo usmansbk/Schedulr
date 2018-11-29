@@ -15,8 +15,6 @@ export default ({
   goBack,
   name=defaultProps.name,
   pictureUrl=defaultProps.pictureUrl,
-  following=defaultProps.following,
-  groupsCount=defaultProps.groupsCount,
   joined=defaultProps.joined
 }) => (
   <React.Fragment>
@@ -37,12 +35,7 @@ export default ({
         >
           {name}
         </Text>
-        <View style={styles.subheading}>
-          <Text style={styles.note}>{following} Following</Text>
-          <Text style={styles.note}> - </Text>
-          <Text style={styles.note}>{groupsCount} Groups</Text>
-        </View>
-        <Caption style={styles.caption}>Joined {joined}</Caption>
+        <Caption numberOfLines={1} ellipsizeMode="tail" style={styles.caption}>Joined {joined}</Caption>
       </View>
     </View>
   </React.Fragment>
@@ -51,7 +44,5 @@ export default ({
 const defaultProps = {
   name: 'Babakolo Usman Suleiman',
   pictureUrl: null,
-  following: 2000,
-  groupsCount: 2888,
   joined: 'Mon 12, November 2018'
 }

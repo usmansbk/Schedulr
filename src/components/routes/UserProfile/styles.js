@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 import colors from '../../../config/colors';
 
-export const AVATAR_SIZE = 120;
+export const AVATAR_SIZE = 200;
 
 export default StyleSheet.create({
   container: {
