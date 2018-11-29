@@ -61,7 +61,8 @@ export default StyleSheet.create({
   emptyTitle: {
     fontSize: 25,
     color: colors.light_gray_3,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    textAlign: 'center'
   },
   emptyMessage: {
     textAlign: 'center',

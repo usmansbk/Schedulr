@@ -97,7 +97,7 @@ const Form = ({
             type="info"
             visible={values.private}
           >
-            Users won't be able to find this group!
+            Users won't be able to search for this group!
           </HelperText>
         </View>
       </ScrollView>
