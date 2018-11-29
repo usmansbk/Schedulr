@@ -62,7 +62,7 @@ const defaultGroup = {
   link: 'schdlr.com',
   isMember: true,
   isAdmin: true,
-  membersCount: 20000,
+  membersCount: 2,
   createdAt: Date.now(),
   admin: {
     id: 2,

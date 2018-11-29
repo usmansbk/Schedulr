@@ -1,5 +1,4 @@
 import React from 'react';
-import moment from 'moment';
 import { View, ScrollView } from 'react-native';
 import {
   Menu,
@@ -93,7 +92,7 @@ export default ({
               style={styles.membersCount}
               onPress={() => navigateToMembers(id)}
             >
-              {membersCount} Followers
+              {membersCount} Follower{membersCount > 1 ? 's' : ''}
             </Text>
             {
               !isAdmin && (<FollowButton isMember={isMember} />)
