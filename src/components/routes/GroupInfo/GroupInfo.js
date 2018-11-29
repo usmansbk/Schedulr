@@ -76,7 +76,7 @@ export default ({
         )
       }
     </Appbar.Header>
-    <ScrollView contentContainerStyle={styles.container}>
+    <ScrollView style={styles.container}>
       <View style={styles.container}>
         <View style={styles.avatar}>
           <View style={styles.userAvatar}>
@@ -93,7 +93,7 @@ export default ({
               style={styles.membersCount}
               onPress={() => navigateToMembers(id)}
             >
-              {membersCount} Members
+              {membersCount} Followers
             </Text>
             {
               !isAdmin && (<FollowButton isMember={isMember} />)
