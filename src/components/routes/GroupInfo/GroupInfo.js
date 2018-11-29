@@ -34,94 +34,98 @@ export default ({
   adminName,
   navigateToMembers,
   navigateToProfile,
-}) => (
-  <React.Fragment>
-    <Appbar.Header collapsable style={appStyles.header}>
-      <Appbar.BackAction color={colors.gray} onPress={goBack} />
-      <Appbar.Content
-        title="Group Info"
-        titleStyle={appStyles.headerColor}
-      />
-      {
-        isAdmin && (
-          <Menu onSelect={handleSelectMenu}>
-            <MenuTrigger 
-              customStyles={{
-                triggerWrapper: styles.menuButton,
-              }}
-            >
-              <Icon size={24} color={colors.gray} name="more-vert" />
-            </MenuTrigger>
-            <MenuOptions>
-              <MenuOption value="edit">
-                <Text style={styles.menuText}>Edit</Text>
-              </MenuOption>
-              { !closed && (
-                <MenuOption value="close">
-                  <Text style={styles.menuText}>Close</Text>
+}) => {
+  const [ first, second ] = name.split(' ');
+  const avatarName = `${first} ${second ? second : ''}`;
+  return (
+    <React.Fragment>
+      <Appbar.Header collapsable style={appStyles.header}>
+        <Appbar.BackAction color={colors.gray} onPress={goBack} />
+        <Appbar.Content
+          title="Group Info"
+          titleStyle={appStyles.headerColor}
+        />
+        {
+          isAdmin && (
+            <Menu onSelect={handleSelectMenu}>
+              <MenuTrigger 
+                customStyles={{
+                  triggerWrapper: styles.menuButton,
+                }}
+              >
+                <Icon size={24} color={colors.gray} name="more-vert" />
+              </MenuTrigger>
+              <MenuOptions>
+                <MenuOption value="edit">
+                  <Text style={styles.menuText}>Edit</Text>
                 </MenuOption>
-              )}
-              { closed && (
-                <MenuOption value="open">
-                  <Text style={styles.menuText}>Open</Text>
+                { !closed && (
+                  <MenuOption value="close">
+                    <Text style={styles.menuText}>Close</Text>
+                  </MenuOption>
+                )}
+                { closed && (
+                  <MenuOption value="open">
+                    <Text style={styles.menuText}>Open</Text>
+                  </MenuOption>
+                )}
+                <MenuOption value="delete">
+                  <Text style={styles.menuText}>Delete</Text>
                 </MenuOption>
-              )}
-              <MenuOption value="delete">
-                <Text style={styles.menuText}>Delete</Text>
-              </MenuOption>
-            </MenuOptions>
-          </Menu>
-        )
-      }
-    </Appbar.Header>
-    <ScrollView style={styles.container}>
-      <View style={styles.container}>
-        <View style={styles.avatar}>
-          <View style={styles.userAvatar}>
-          <UserAvater
-            name={name.split(' ')[0] + ' ' + name.split(' ')[1]}
-            rounded
-            component={CachedImage}
-            size={AVATAR_SIZE}
-          />
+              </MenuOptions>
+            </Menu>
+          )
+        }
+      </Appbar.Header>
+      <ScrollView style={styles.container}>
+        <View style={styles.container}>
+          <View style={styles.avatar}>
+            <View style={styles.userAvatar}>
+            <UserAvater
+              name={avatarName}
+              rounded
+              component={CachedImage}
+              size={AVATAR_SIZE}
+            />
+            </View>
+            <View style={styles.right}>
+              <Text style={styles.name}>{name}</Text>
+              <Text
+                style={styles.membersCount}
+                onPress={() => navigateToMembers(id)}
+              >
+                {membersCount} Member{membersCount > 1 ? 's' : ''}
+              </Text>
+              {
+                !isAdmin && (<FollowButton isMember={isMember} />)
+              }
+            </View>
           </View>
-          <View style={styles.right}>
-            <Text style={styles.name}>{name}</Text>
-            <Text
-              style={styles.membersCount}
-              onPress={() => navigateToMembers(id)}
-            >
-              {membersCount} Member{membersCount > 1 ? 's' : ''}
-            </Text>
+          <View style={styles.body}>
+            <View style={styles.noteView}>
+              <Icon name="visibility" size={18} />
+              <Text style={styles.note}>This is a { isPrivate ? 'private' : 'public'} group</Text>
+            </View>
             {
-              !isAdmin && (<FollowButton isMember={isMember} />)
+              closed && (
+                <View style={styles.noteView}>
+                  <Icon name="lock" size={18} />
+                  <Text style={styles.note}>This is a closed group</Text>
+                </View>
+              )
             }
+            <View style={styles.admin}>
+              <UserAvater rounded size={32} name={adminName}/>
+              <Text
+                onPress={() => navigateToProfile(adminId)}
+                style={styles.adminName}>{adminName}</Text>
+            </View>
+            <Hyperlink linkStyle={styles.linkStyle} linkDefault={true}>
+              <Text style={styles.description}>{description}</Text>
+            </Hyperlink>
           </View>
         </View>
-        <View style={styles.body}>
-          <View style={styles.noteView}>
-            <Icon name="visibility" size={18} />
-            <Text style={styles.note}>This is a { isPrivate ? 'private' : 'public'} group</Text>
-          </View>
-          {
-            closed && (
-              <View style={styles.noteView}>
-                <Icon name="lock" size={18} />
-                <Text style={styles.note}>This is a closed group</Text>
-              </View>
-            )
-          }
-          <View style={styles.admin}>
-            <UserAvater rounded size={32} name={adminName}/>
-            <Text
-              onPress={() => navigateToProfile(adminId)}
-              style={styles.adminName}>{adminName}</Text>
-          </View>
-          <Hyperlink linkStyle={styles.linkStyle} linkDefault={true}>
-            <Text style={styles.description}>{description}</Text>
-          </Hyperlink>
-        </View>
-      </View>
-    </ScrollView>
-  </React.Fragment>
-);
+      </ScrollView>
+    </React.Fragment>
+  );
+}
