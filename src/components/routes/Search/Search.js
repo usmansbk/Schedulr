@@ -1,7 +1,6 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import Searchbar from './SearchBar';
-import Tabs from './Tabs';
 
 export default (props) => (
   <View style={styles.container}>
@@ -10,7 +9,6 @@ export default (props) => (
       placeholder="Search Schdlr"
       value=""
     />
-    <Tabs />
   </View>
 );
 
