@@ -12,6 +12,7 @@ import {
   Divider,
   Text
 } from 'react-native-paper';
+import { CachedImage } from 'react-native-cached-image';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import UserAvater from 'react-native-user-avatar';
 import Hyperlink from 'react-native-hyperlink';
@@ -33,7 +34,6 @@ export default ({
   isAdmin,
   adminId,
   adminName,
-  createdAt,
   navigateToMembers,
   navigateToProfile,
 }) => (
@@ -76,54 +76,46 @@ export default ({
         )
       }
     </Appbar.Header>
-    <ScrollView>
+    <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.container}>
-      <View style={styles.header}>
-        <UserAvater name={name} rounded size={AVATAR_SIZE} />
-        <Text style={styles.name}>{name}</Text>
-      </View>
-      <View style={styles.followers}>
-        <Text
-          style={styles.followersCount}
-          onPress={() => navigateToMembers(id)}>{membersCount} Members</Text>
-        {
-          !isAdmin && (
-            <FollowButton
-              style={styles.followButton}
-              mode="outlined"
-              isMember={isMember}
-            />
-          )
-        }
-      </View>
-      <Divider />
-      <View style={styles.space}>
-      <Text style={styles.label}>BY</Text>
-      <View style={styles.admin}>
-        <UserAvater name={adminName} rounded size={32} />
-        <Text onPress={() => navigateToProfile(adminId)} style={styles.adminName}>{adminName}</Text>
-      </View>
-      </View>
-      <View style={styles.space}>
-        <Text style={styles.label}>PRIVACY</Text>
-        <Text style={styles.value}>{isPrivate ? 'Private' : 'Public'}</Text>
-      </View>
-      <View style={styles.space}>
-        <Text style={styles.label}>STATUS</Text>
-        <Text style={styles.value}>{closed ? 'Closed' : 'Open'}</Text>
-      </View>
-      <View style={styles.space}>
-        <Text style={styles.label}>CREATED ON</Text>
-        <Text style={styles.value}>{moment(createdAt).format('ddd DD MMM, YYYY hh:mm a')}</Text>
-      </View>
-      <View style={styles.space}>
-        <Text style={styles.label}>ABOUT</Text>
-        <Hyperlink linkStyle={styles.linkStyle} linkDefault={true}>
-          <Text style={styles.value}>
-            {description}
-          </Text>
-        </Hyperlink>
-      </View>
+        <View style={styles.avatar}>
+          <View style={styles.userAvatar}>
+          <UserAvater
+            name={name}
+            rounded
+            component={CachedImage}
+            size={AVATAR_SIZE}
+          />
+          </View>
+          <View style={styles.right}>
+            <Text style={styles.name}>{name}</Text>
+            <Text
+              style={styles.membersCount}
+              onPress={() => navigateToMembers(id)}
+            >
+              {membersCount} Members
+            </Text>
+            {
+              !isAdmin && (<FollowButton isMember={isMember} />)
+            }
+          </View>
+        </View>
+        <Divider />
+        <View style={styles.body}>
+          <View style={styles.noteView}>
+            <Icon name="visibility" size={18} />
+            <Text style={styles.note}>This is a { isPrivate ? 'private' : 'public'} group</Text>
+          </View>
+          <View style={styles.admin}>
+            <UserAvater rounded size={32} name={adminName}/>
+            <Text
+              onPress={() => navigateToProfile(adminId)}
+              style={styles.adminName}>{adminName}</Text>
+          </View>
+          <Hyperlink linkStyle={styles.linkStyle} linkDefault={true}>
+            <Text style={styles.description}>{description}</Text>
+          </Hyperlink>
+        </View>
       </View>
     </ScrollView>
   </React.Fragment>
