@@ -1,4 +1,5 @@
 export default (string) => {
+  if (!string) return '';
   const firstLetter = string[0].toUpperCase();
   return firstLetter + string.substring(1);
 }
