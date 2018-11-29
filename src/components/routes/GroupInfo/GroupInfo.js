@@ -8,7 +8,6 @@ import {
 } from 'react-native-popup-menu';
 import {
   Appbar,
-  Divider,
   Text
 } from 'react-native-paper';
 import { CachedImage } from 'react-native-cached-image';
@@ -99,7 +98,6 @@ export default ({
             }
           </View>
         </View>
-        <Divider />
         <View style={styles.body}>
           <View style={styles.noteView}>
             <Icon name="visibility" size={18} />
