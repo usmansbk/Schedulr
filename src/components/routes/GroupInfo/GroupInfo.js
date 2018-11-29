@@ -79,7 +79,7 @@ export default ({
         <View style={styles.avatar}>
           <View style={styles.userAvatar}>
           <UserAvater
-            name={name}
+            name={name.split(' ')[0] + ' ' + name.split(' ')[1]}
             rounded
             component={CachedImage}
             size={AVATAR_SIZE}
@@ -91,7 +91,7 @@ export default ({
               style={styles.membersCount}
               onPress={() => navigateToMembers(id)}
             >
-              {membersCount} Follower{membersCount > 1 ? 's' : ''}
+              {membersCount} Member{membersCount > 1 ? 's' : ''}
             </Text>
             {
               !isAdmin && (<FollowButton isMember={isMember} />)

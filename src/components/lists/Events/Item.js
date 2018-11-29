@@ -67,7 +67,7 @@ export default class Item extends React.PureComponent {
                 component={CachedImage}
                 rounded
                 size={48}
-                name={groupName}
+                name={groupName.split(' ')[0]}
               />
             </TouchableRipple>
           </View>
