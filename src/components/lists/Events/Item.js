@@ -55,6 +55,8 @@ export default class Item extends React.PureComponent {
       groupName,
       starred,
     } = this.props;
+    const [ first, second ] = groupName.split(' ');
+    const avatarName = `${first} ${second ? second : ''}`;
     return (
       <TouchableRipple
         onPress={this._onPress}
@@ -67,7 +69,7 @@ export default class Item extends React.PureComponent {
                 component={CachedImage}
                 rounded
                 size={48}
-                name={groupName.split(' ')[0]}
+                name={avatarName}
               />
             </TouchableRipple>
           </View>

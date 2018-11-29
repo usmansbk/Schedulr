@@ -143,7 +143,7 @@ const Form = ({
             onChangeDate={(date) => setFieldValue('end', date)}
           />
           <View style={styles.radio}>
-            <Text style={styles.radioText}>All Day</Text>
+            <Text style={styles.radioText}>All-day</Text>
             <RadioButton
               value='allDay'
               onPress={() => {
