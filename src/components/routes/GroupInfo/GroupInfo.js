@@ -103,6 +103,14 @@ export default ({
             <Icon name="visibility" size={18} />
             <Text style={styles.note}>This is a { isPrivate ? 'private' : 'public'} group</Text>
           </View>
+          {
+            closed && (
+              <View style={styles.noteView}>
+                <Icon name="lock" size={18} />
+                <Text style={styles.note}>This is a closed group</Text>
+              </View>
+            )
+          }
           <View style={styles.admin}>
             <UserAvater rounded size={32} name={adminName}/>
             <Text
