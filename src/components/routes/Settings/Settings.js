@@ -14,8 +14,8 @@ export default ({
   goBack,
   handleValueChange,
   openRemindMeDialog,
-  allNotifications,
-  muteReminders,
+  allNotification,
+  disableReminder,
   alarm,
   headsup,
   eventEnded,
@@ -36,22 +36,22 @@ export default ({
     <ScrollView>
       <List.Section title="General">
         <List.Item
-          title="Turn-off all Notifications"
+          title="Turn-off all Notification"
           right={() => (
             <Switch
-              value={allNotifications}
-              onValueChange={() => handleValueChange('allNotifications')}
+              value={allNotification}
+              onValueChange={() => handleValueChange('allNotification')}
             />
           )}
         />
       </List.Section>
       <List.Section title="Reminders">
         <List.Item
-          title="Mute"
+          title="Disable"
           right={() => (
             <Switch
-              value={muteReminders}
-              onValueChange={() => handleValueChange('muteReminder')}
+              value={disableReminder}
+              onValueChange={() => handleValueChange('disableReminder')}
             />
           )}
         />
