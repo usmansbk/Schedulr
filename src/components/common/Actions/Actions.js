@@ -48,6 +48,7 @@ export default ({
     />
     <AlarmButton
       id={id}
+      title={title}
       alarmSet={alarmSet}
       start={start}
       color={color}

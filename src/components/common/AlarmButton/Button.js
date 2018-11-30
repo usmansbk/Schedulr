@@ -4,12 +4,14 @@ import { IconButton } from 'react-native-paper';
 export default ({
   size,
   color,
-  alarmSet
+  alarmSet,
+  title,
+  start
 }) => (
   <IconButton
     icon={`alarm-${alarmSet ? 'on' : '-add'}`}
     color={color}
     size={size}
-    onPress={() => console.log('Log')}
+    onPress={() => alert(`alarm set for "${title} at ${start}`)}
   />
 );
