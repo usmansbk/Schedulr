@@ -1,6 +1,7 @@
 import React from 'react';
 import { Appbar } from 'react-native-paper';
 import List from '../../lists/Comments';
+import CommentInput from '../../common/CommentInput';
 import styles from '../../../config/styles';
 import colors from '../../../config/colors';
 
@@ -17,5 +18,6 @@ export default ({
       />
     </Appbar.Header>
     <List />
+    <CommentInput />
   </React.Fragment>
 );
