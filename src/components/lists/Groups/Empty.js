@@ -6,7 +6,7 @@ import styles from './styles';
 export default () => (
   <View style={styles.empty}>
     <Headline style={styles.emptyTitle}>
-    Follow a group to see upcoming events and agenda
+    Follow an events group to see upcoming events and agenda
     </Headline>
   </View>
 );
