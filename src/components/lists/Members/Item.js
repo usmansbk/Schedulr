@@ -25,7 +25,7 @@ export default class Item extends React.PureComponent {
             />
           </View>
           <View style={styles.itemRight}>
-            <Text style={styles.itemText}>{name}</Text>
+            <Text numberOfLines={1} ellipsizeMode="tail" style={styles.itemText}>{name}</Text>
           </View>
         </View>
       </TouchableRipple>
