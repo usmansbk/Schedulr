@@ -46,7 +46,8 @@ export default class Item extends React.PureComponent {
       id,
       title,
       location,
-      date,
+      start,
+      alarmSet,
       allDay,
       type,
       isCancelled,
@@ -95,13 +96,14 @@ export default class Item extends React.PureComponent {
             </View>
             <Actions
               id={id}
+              start={start}
+              alarmSet={alarmSet}
               title={title}
               location={location}
               type={type}
               starred={starred}
               starsCount={starsCount}
               commentsCount={commentsCount}
-              date={date}
               navigateToComments={this._onPressComment}
               size="small"
               dark

@@ -1,23 +1,26 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
+import moment from 'moment';
 import StarButton from '../StarButton';
 import ShareButton from '../ShareButton';
 import CommentButton from '../CommentButton';
-import MapsButton from '../MapsButton';
+import AlarmButton from '../AlarmButton';
 
 import colors from '../../../config/colors';
 
 const FONT_SIZE = 24;
 const defaultColor = colors.primary_light;
+const DATE_FORMAT = 'dddd Do, MMM YYYY';
 
 export default ({
+  alarmSet,
+  start,
   title,
   starred,
   starsCount,
   commentsCount,
   location,
   type,
-  date,
   id,
   size,
   dark,
@@ -43,9 +46,11 @@ export default ({
       color={color}
       onPress={() => navigateToComments(id)}
     />
-    <MapsButton
+    <AlarmButton
+      id={id}
+      alarmSet={alarmSet}
+      start={start}
       color={color}
-      location={location}
       size={fontSize}
     />
     {
@@ -53,10 +58,10 @@ export default ({
         <ShareButton
           color={color}
           id={id}
+          date={moment(start).format(DATE_FORMAT)}
           type={type}
           title={title}
           location={location}
-          date={date}
           size={fontSize}
         />
       )
