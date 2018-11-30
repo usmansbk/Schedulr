@@ -13,7 +13,6 @@ const Home = createMaterialTopTabNavigator({
   Starred: { screen: StarredRoute },
 }, {
   initialRouteName: 'Events',
-  lazy: true,
   initialLayout: { height: 0, width: Dimensions.get('window').width },
   tabBarOptions: {
     activeTintColor: activeColor,
