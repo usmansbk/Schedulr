@@ -40,7 +40,7 @@ export default ({
             <Text style={styles.value}>{type}</Text>
           </View>
           <View style={styles.item}>
-            <Text style={styles.label}>LOCATION</Text>
+            <Text style={styles.label}>VENUE</Text>
             <Text style={styles.value}>{location || 'No location set'}</Text>
           </View>
           <View style={styles.item}>
