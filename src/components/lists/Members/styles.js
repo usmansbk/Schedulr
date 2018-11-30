@@ -21,12 +21,12 @@ export default StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
-    marginHorizontal: 4
+    marginHorizontal: 8
   },
   itemRight: {
     justifyContent: 'center',
     alignItems: 'center',
-    margin: 4
+    marginLeft: 8
   },
   itemText: {
     fontFamily: 'sans-serif-bold',
