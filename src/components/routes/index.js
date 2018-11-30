@@ -8,6 +8,8 @@ import Notifications from './Notifications';
 import EventDetails from './EventDetails';
 import GroupEvents from './GroupEvents';
 import GroupInfo from './GroupInfo';
+import Members from './Members';
+import Comments from './Comments';
 
 export {
   More,
@@ -19,5 +21,7 @@ export {
   Notifications,
   EventDetails,
   GroupEvents,
-  GroupInfo
+  GroupInfo,
+  Members,
+  Comments
 };

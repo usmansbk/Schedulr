@@ -11,6 +11,8 @@ import GroupInfo from './GroupInfo';
 import Settings from './Settings';
 import Help from './Help';
 import UserProfile from './UserProfile';
+import Comments from './Comments';
+import Members from './Members';
 
 export {
   AuthLoading,
@@ -25,5 +27,7 @@ export {
   GroupInfo,
   Settings,
   Help,
-  UserProfile
+  UserProfile,
+  Comments,
+  Members
 };

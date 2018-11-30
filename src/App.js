@@ -18,6 +18,8 @@ import {
   Help,
   Settings,
   UserProfile,
+  Members,
+  Comments
 } from './components/screens';
 
 
@@ -32,7 +34,9 @@ const AppStack = createStackNavigator({
   GroupInfo,
   Help,
   Settings,
-  UserProfile
+  UserProfile,
+  Comments,
+  Members
 }, {
   initialRouteName: 'Home',
   headerMode: 'none'
