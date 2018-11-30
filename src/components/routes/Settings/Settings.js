@@ -14,6 +14,7 @@ export default ({
   goBack,
   handleValueChange,
   openRemindMeDialog,
+  allNotifications,
   muteReminders,
   alarm,
   headsup,
@@ -33,6 +34,17 @@ export default ({
       />
     </Appbar.Header>
     <ScrollView>
+      <List.Section title="General">
+        <List.Item
+          title="Turn-off all Notifications"
+          right={() => (
+            <Switch
+              value={allNotifications}
+              onValueChange={() => handleValueChange('allNotifications')}
+            />
+          )}
+        />
+      </List.Section>
       <List.Section title="Reminders">
         <List.Item
           title="Mute"
