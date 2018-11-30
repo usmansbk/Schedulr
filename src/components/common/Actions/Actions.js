@@ -1,6 +1,5 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
-import moment from 'moment';
 import StarButton from '../StarButton';
 import ShareButton from '../ShareButton';
 import CommentButton from '../CommentButton';
@@ -54,19 +53,15 @@ export default ({
       color={color}
       size={fontSize}
     />
-    {
-      (size !== 'small') && (
-        <ShareButton
-          color={color}
-          id={id}
-          date={date}
-          type={type}
-          title={title}
-          location={location}
-          size={fontSize}
-        />
-      )
-    }
+    <ShareButton
+      color={color}
+      id={id}
+      date={date}
+      type={type}
+      title={title}
+      location={location}
+      size={fontSize}
+    />
   </View>
 )};
 
