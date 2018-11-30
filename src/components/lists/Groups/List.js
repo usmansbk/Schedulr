@@ -7,7 +7,7 @@ import Footer from './Footer';
 import Empty from './Empty';
 import styles, {
   ITEM_HEIGHT,
-  SEPERATOR_HEIGHT
+  SEPARATOR_HEIGHT
 } from './styles';
 import groups from './dummy';
 
@@ -15,7 +15,7 @@ class List extends Component {
   _getItemLayout = (_, index) => (
     {
       length: ITEM_HEIGHT,
-      offset: ITEM_HEIGHT * index + SEPERATOR_HEIGHT,
+      offset: ITEM_HEIGHT * index + SEPARATOR_HEIGHT,
       index
     }
   );

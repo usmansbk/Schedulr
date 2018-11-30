@@ -14,7 +14,7 @@ export default class Item extends React.PureComponent {
     } = this.props;
     return (
       <TouchableRipple onPress={this._onPress} style={styles.itemContainer}>
-        <View>
+        <View style={styles.itemContent}>
           <View style={styles.itemLeft}>
             <UserAvatar
               name={name}

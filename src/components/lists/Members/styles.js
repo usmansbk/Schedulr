@@ -2,11 +2,45 @@ import { StyleSheet } from 'react-native';
 import colors from '../../../config/colors';
 
 export const SEPARATOR_HEIGHT = 1;
+export const ITEM_HEIGHT = 64;
 export const AVATAR_SIZE = 48;
+export const FOOTER_HEIGHT = 80;
 
 export default StyleSheet.create({
-  separator: {
-    height: SEPARATOR_HEIGHT
+  list: {
+    backgroundColor: colors.light_gray
   },
-
+  separator: {
+    height: SEPARATOR_HEIGHT,
+  },
+  itemContainer: {
+    backgroundColor: '#fff',
+    height: ITEM_HEIGHT
+  },
+  itemContent: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginHorizontal: 4
+  },
+  itemRight: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    margin: 4
+  },
+  itemText: {
+    fontFamily: 'sans-serif-bold',
+    fontWeight: 'bold',
+    fontSize: 16
+  },
+  footer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: FOOTER_HEIGHT
+  },
+  footerText: {
+    color: colors.light_gray_3,
+    fontWeight: 'bold',
+    fontSize: 16
+  }
 });
