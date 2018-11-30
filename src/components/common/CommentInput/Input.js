@@ -6,9 +6,13 @@ import {
 import {
   IconButton,
 } from 'react-native-paper';
-import styles from "./styles";
+import UserAvatar from 'react-native-user-avatar';
+import { CachedImage } from 'react-native-cached-image';
+import styles, { AVATAR_SIZE } from "./styles";
 
 export default ({
+  name="Babakolo Usman Suleiman",
+  pictureUrl,
   loading,
   content,
   handleChangeText,
@@ -16,6 +20,14 @@ export default ({
 }) => (
   <View style={styles.container}>
     <View style={styles.left}>
+      <UserAvatar
+        rounded
+        size={AVATAR_SIZE}
+        src={pictureUrl}
+        name={name}
+      />
+    </View>
+    <View style={styles.body}>
       <TextInput
         placeholder="Add a comment..."
         value={content}

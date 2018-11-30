@@ -1,7 +1,9 @@
 import { StyleSheet } from 'react-native';
 import colors from '../../../config/colors';
 
-const INPUT_WIDTH = 312;
+export const AVATAR_SIZE = 32;
+
+const INPUT_WIDTH = 278;
 
 export default StyleSheet.create({
   container: {
@@ -10,6 +12,11 @@ export default StyleSheet.create({
     flexDirection: 'row',
   },
   left: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginHorizontal: 4
+  },
+  body: {
     maxWidth: INPUT_WIDTH,
     minWidth: INPUT_WIDTH
   },
