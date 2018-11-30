@@ -45,6 +45,7 @@ class List extends React.Component {
         ListFooterComponent={this._renderFooter}
         renderItem={this._renderItem}
         ItemSeparatorComponent={this._renderSeparator}
+        getItemLayout={this._getItemLayout}
         data={dummy}
       />
     )
