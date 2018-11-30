@@ -31,7 +31,8 @@ export default StyleSheet.create({
   itemText: {
     fontFamily: 'sans-serif-bold',
     fontWeight: 'bold',
-    fontSize: 16
+    fontSize: 16,
+    width: 250
   },
   footer: {
     justifyContent: 'center',
