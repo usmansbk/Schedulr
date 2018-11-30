@@ -29,7 +29,7 @@ export default class Item extends React.PureComponent {
   };
   _startTime = () => {
     const { allDay, start } = this.props;
-    return  allDay ? 'All day' : moment(start).format(START_TIME).toUpperCase()
+    return  allDay ? 'All-day' : moment(start).format(START_TIME).toUpperCase()
   };
   _endTime = () => {
     const { end, start } = this.props;
