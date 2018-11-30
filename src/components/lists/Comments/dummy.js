@@ -1,7 +1,7 @@
 export default [
   {
     id: 1,
-    sender: {
+    author: {
       id: 1,
       name: 'Babakolo Usman',
       pictureUrl: null,
@@ -11,6 +11,7 @@ export default [
       id: 2,
       name: 'Babakolo Bello',
       pictureUrl: null
-    }
+    },
+    createdAt: Date.now()
   }
 ]

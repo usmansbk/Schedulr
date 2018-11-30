@@ -23,7 +23,7 @@ const getFormattedDate = (date) => {
   const today = moment().format(DATE_FORMAT);
   let timeAgo = '';
   const isToday = moment(subheading).format(DATE_FORMAT) === today;
-  if (!isToday) timeAgo = moment(parsedDate).startOf('d').fromNow();
+  if (!isToday) timeAgo = moment(parsedDate).startOf('d').from(moment().startOf('d'));
   return {
     heading,
     subheading,
