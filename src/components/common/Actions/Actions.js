@@ -10,11 +10,11 @@ import colors from '../../../config/colors';
 
 const FONT_SIZE = 24;
 const defaultColor = colors.primary_light;
-const DATE_FORMAT = 'dddd Do, MMM YYYY';
 
 export default ({
   alarmSet,
   start,
+  date,
   title,
   starred,
   starsCount,
@@ -58,7 +58,7 @@ export default ({
         <ShareButton
           color={color}
           id={id}
-          date={moment(start).format(DATE_FORMAT)}
+          date={date}
           type={type}
           title={title}
           location={location}

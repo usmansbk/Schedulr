@@ -14,6 +14,7 @@ import styles, { primary_light, gray } from './styles';
 const START_TIME = 'hh:mm a';
 const REMINDER = 'REMINDER';
 const DATE_FORMAT = 'DD MM YYYY';
+const SHARE_FORMAT = 'dddd Do, MMM YYYY';
 
 export default class Item extends React.PureComponent {
   _onPress = () => this.props.onPressItem(this.props.id);
@@ -97,6 +98,7 @@ export default class Item extends React.PureComponent {
             <Actions
               id={id}
               start={start}
+              date={moment(start).format(SHARE_FORMAT)}
               alarmSet={alarmSet}
               title={title}
               location={location}
