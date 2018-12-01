@@ -133,7 +133,6 @@ export default ({
             />
           )}
         />
-        <Divider />
       </List.Section>
     </ScrollView>
   </React.Fragment>
