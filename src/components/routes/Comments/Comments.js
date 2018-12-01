@@ -12,7 +12,6 @@ export default ({
   title,
   handleReply,
   handleDelete,
-  handleEdit,
   cancelReply,
 }) => (
   <React.Fragment>
@@ -26,7 +25,6 @@ export default ({
     <List
       handleReply={handleReply}
       handleDelete={handleDelete}
-      handleEdit={handleEdit}
     />
     <CommentForm
       replying={id}

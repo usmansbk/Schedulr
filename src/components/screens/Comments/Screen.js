@@ -12,7 +12,6 @@ export default class Screen extends React.Component {
   _goBack = () => this.props.navigation.goBack();
   _onDelete = (id) => this._openDialog(id, 'delete');
   _onReply = (replying, targetName) => this.setState({ replying, targetName });
-  _onEdit = (id) => alert('Edit ' + id);
   _cancelReply = () => this.setState({ replying: null, targetName: null });
   _openDialog = (id, visibleDialog) => this.setState({
     visibleDialog,
@@ -31,7 +30,6 @@ export default class Screen extends React.Component {
         goBack={this._goBack}
         handleDelete={this._onDelete}
         handleReply={this._onReply}
-        handleEdit={this._onEdit}
         cancelReply={this._cancelReply}
       />
       <DeleteCommentDialog

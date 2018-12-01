@@ -31,7 +31,6 @@ class List extends React.Component {
         navigateToProfile={this._navigateToProfile}
         handleDeleteComment={this.props.handleDelete}
         handleReplyComment={this.props.handleReply}
-        handleEditComment={this.props.handleEdit}
       />
     );
   }

@@ -14,7 +14,6 @@ import styles, { AVATAR_SIZE } from './styles';
 export default class Item extends React.PureComponent {
   _onDelete = () => this.props.handleDeleteComment(this.props.id);
   _onReply = () => this.props.handleReplyComment(this.props.id, this.props.authorName);
-  _onEdit = () => this.props.handleEditComment(this.props.id);
   _navigateToProfile = () => this.props.navigateToProfile(this.props.id);
 
   render() {
@@ -55,7 +54,6 @@ export default class Item extends React.PureComponent {
             { 
               isAuthor && (
                 <View style={styles.footer}>
-                  <Text onPress={this._onEdit} style={styles.footerText}>Edit</Text>
                   <Text onPress={this._onDelete} style={styles.footerText}>Delete</Text>
                   <Text onPress={this._onReply} style={styles.footerText}>Reply</Text>
                 </View>
