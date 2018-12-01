@@ -13,7 +13,6 @@ export default StyleSheet.create({
   emptyTitle: {
     fontSize: 25,
     color: colors.light_gray_3,
-    fontWeight: 'bold'
   },
   emptyMessage: {
     textAlign: 'center',

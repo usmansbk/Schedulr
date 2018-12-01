@@ -79,7 +79,7 @@ class List extends Component {
 }
 
 const defaultProps = {
-  groups,
+  groups: [],
   loading: false,
   onRefresh: () => console.log('Refreshing')
 }
