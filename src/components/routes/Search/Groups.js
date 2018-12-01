@@ -1,9 +1,14 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
-export default (props) => (
-  <View style={styles.container}>
-  </View>
-);
+
+export default class Groups extends React.PureComponent {
+  render() {
+    return (
+      <View style={styles.container}>
+      </View>
+    );
+  }
+}
 
 const styles = StyleSheet.create({
   container: {
