@@ -18,6 +18,7 @@ export default ({
   updatedAt,
   description,
   isCancelled,
+  start,
   starred,
   starsCount,
   commentsCount,
@@ -77,6 +78,7 @@ export default ({
     starsCount={starsCount}
     commentsCount={commentsCount}
     date={date}
+    start={start}
     navigateToComments={navigateToComments}
   />
   </React.Fragment>

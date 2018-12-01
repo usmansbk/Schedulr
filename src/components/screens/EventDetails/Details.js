@@ -83,6 +83,7 @@ export default class DetailsScreen extends React.Component {
       <Details
         id={id}
         title={title}
+        start={start}
         date={formatDate(start, end, allDay)}
         nextDate={this._getRepeatDate()}
         type={decapitalize(type)}
