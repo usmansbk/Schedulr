@@ -61,7 +61,7 @@ export default ({
         />
         <Divider />
         <List.Item
-          title="Alarm"
+          title="Starred alarm"
           description="Set alarm for starred events?"
           right={() => (
             <Switch
