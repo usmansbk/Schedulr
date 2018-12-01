@@ -8,10 +8,10 @@ export default class Screen extends React.Component {
     id: null
   }
   _goBack = () => this.props.navigation.goBack();
-  _onDelete = (id) => this._openDialog(id);
+  _onDelete = (id) => this._openDialog(id, 'delete');
   _onReply = (id) => alert('Reply ' + id);
   _onEdit = (id) => alert('Edit ' + id);
-  _openDialog = (id) => this.setState({ visibleDialog: 'delete', id });
+  _openDialog = (id, visibleDialog) => this.setState({ visibleDialog, id });
   _hideDialog = () => this.setState({ visibleDialog: null, id: null })
 
   render() {
