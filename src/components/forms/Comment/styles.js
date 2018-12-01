@@ -20,4 +20,8 @@ export default StyleSheet.create({
     maxWidth: INPUT_WIDTH,
     minWidth: INPUT_WIDTH
   },
+  alert: {
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  }
 })

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Formik } from 'formik';
 import { View, TextInput } from 'react-native';
-import { IconButton } from 'react-native-paper';
+import { IconButton, Text } from 'react-native-paper';
 import UserAvatar from 'react-native-user-avatar';
 import { CachedImage } from 'react-native-cached-image';
 import styles, { AVATAR_SIZE } from './styles';
@@ -13,14 +13,19 @@ const defaultValues = {
 
 export default ({
   pictureUrl,
-  name,
+  name="Babakolo Usman Suleiman",
   loading,
+  replying = 2,
   handleSubmit
 }) => (
   <Formik
-    initialValues={defaultValues}
+    initialValues={{
+      content: '',
+      replying: 2,
+    }}
     onSubmit={(values, { setSubmitting }) => {
       handleSubmit && handleSubmit(values);
+      alert('Submit');
       setSubmitting(false);
     }}
   >
