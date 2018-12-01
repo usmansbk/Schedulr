@@ -36,7 +36,8 @@ export default StyleSheet.create({
   },
   footer: {
     justifyContent: 'flex-end',
-    flexDirection: 'row'
+    flexDirection: 'row',
+    marginTop: 8
   },
   footerText: {
     textDecorationLine: 'underline',
