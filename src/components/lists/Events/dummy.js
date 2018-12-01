@@ -1,5 +1,5 @@
 export default [{
-  title: '11/23/2018',
+  title: '12/1/2018',
   data: [{
     cursor: 1,
     node: {
@@ -8,7 +8,7 @@ export default [{
       description: 'Lorem Ipsum Dolor Amet',
       location: 'No location set',
       start: Date.now(),
-      end: new Date('11/24/2018'),
+      end: new Date('12/2/2018'),
       allDay: true,
       isCancelled: false,
       starred: false,

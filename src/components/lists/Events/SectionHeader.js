@@ -9,8 +9,8 @@ const DATE_FORMAT = 'MMMM DD, YYYY';
 const DAY_FORMAT = 'dddd';
 
 const getFormattedDate = (date) => {
-  const parsedDate = Date.parse(date);
-  let heading = moment(parsedDate).calendar(null, {
+  const parsedDate = moment(Date.parse(date));
+  let heading = parsedDate.calendar(null, {
     sameElse: function () { return DATE_FORMAT },
   });
   let index = heading.indexOf(' at ');
@@ -19,11 +19,11 @@ const getFormattedDate = (date) => {
     heading = heading.substring(0, index);
     SUBHEADING_FORMAT = DATE_FORMAT;
   }
-  const subheading = moment(parsedDate).format(SUBHEADING_FORMAT);
-  const today = moment().format(DATE_FORMAT);
+  const subheading = parsedDate.format(SUBHEADING_FORMAT);
+  const today = moment();
   let timeAgo = '';
-  const isToday = moment(subheading).format(DATE_FORMAT) === today;
-  if (!isToday) timeAgo = moment(parsedDate).startOf('d').from(moment().startOf('d'));
+  const isToday = today.isSame(parsedDate, 'date');
+  if (!isToday) timeAgo = parsedDate.startOf('d').from(today.startOf('d'));
   return {
     heading,
     subheading,

@@ -38,7 +38,7 @@ const AppStack = createStackNavigator({
   Comments,
   Members
 }, {
-  initialRouteName: 'Comments',
+  initialRouteName: 'Home',
   headerMode: 'none'
 });
 
