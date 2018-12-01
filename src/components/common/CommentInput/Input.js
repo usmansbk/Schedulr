@@ -37,7 +37,7 @@ export default ({
     <View style={styles.right}>
       <IconButton
         icon="send"
-        disabled={loading}
+        disabled={loading || !content}
         onPress={handleSubmit}
       />
     </View>
