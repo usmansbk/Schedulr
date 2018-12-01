@@ -35,5 +35,16 @@ export default StyleSheet.create({
   },
   caption: {
     fontSize: 16
+  },
+  footer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center'
+  },
+  footerText: {
+    color: colors.gray,
+    fontFamily: 'sans-serif-bold',
+    fontSize: 20,
+    fontWeight: 'bold'
   }
 });

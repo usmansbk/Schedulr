@@ -6,6 +6,7 @@ import {
   MenuOptions,
   MenuOption
 } from 'react-native-popup-menu';
+import numeral from 'numeral';
 import {
   Appbar,
   Text
@@ -94,7 +95,7 @@ export default ({
                 style={styles.membersCount}
                 onPress={() => navigateToMembers(id)}
               >
-                {membersCount} Member{membersCount > 1 ? 's' : ''}
+                {numeral(membersCount).format('0a')} Member{membersCount > 1 ? 's' : ''}
               </Text>
               {
                 !isAdmin && (<FollowButton isMember={isMember} />)
