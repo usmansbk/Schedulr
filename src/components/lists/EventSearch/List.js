@@ -16,15 +16,17 @@ class List extends React.Component {
   _renderEmpty = () => <Empty />;
 
   render() {
-    <FlatList
-      style={styles.list}
-      getItemLayout={this._getItemLayout}
-      keyExtractor={this._keyExtractor}
-      renderItem={this._renderItem}
-      ItemSeparatorComponent={this._renderSeparator}
-      ListFooterComponent={this._renderFooter}
-      ListEmptyComponent={this._renderEmpty}
-    />
+    return (
+      <FlatList
+        style={styles.list}
+        getItemLayout={this._getItemLayout}
+        keyExtractor={this._keyExtractor}
+        renderItem={this._renderItem}
+        ItemSeparatorComponent={this._renderSeparator}
+        ListFooterComponent={this._renderFooter}
+        ListEmptyComponent={this._renderEmpty}
+      />
+    );
   }
 }
 

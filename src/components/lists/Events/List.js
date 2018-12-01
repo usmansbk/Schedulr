@@ -19,7 +19,7 @@ import dummy from './dummy';
 
 class List extends React.Component {
   _loadPrevious = () => console.log('Load previous events');
-  _keyExtractor = (item, index) => item.cursor;
+  _keyExtractor = (item, index) => item.id;
   _renderHeader = () => <Header onPress={this._loadPrevious} visible={defaultProps.hasPreviousEvents} />;
   _renderFooter = () => <Footer visible={defaultProps.sections.length}/>;
   _renderEmptyList = () => <Empty starred={this.props.starred} />;
@@ -28,7 +28,7 @@ class List extends React.Component {
   _onPressItem = (id) => this.props.navigation.navigate('EventDetails', { id });
   _onPressCommentItem = (id) => this.props.navigation.navigate('Comments', { id });
   _navigateToGroupEvents = (id) => this.props.navigation.navigate('GroupEvents', { id });
-  _renderItem = ({ item:{ node: {
+  _renderItem = ({ item: {
     id,
     title,
     description,
@@ -44,7 +44,7 @@ class List extends React.Component {
     repeat,
     group,
     allDay,
-  }}}) => <Item
+  }}) => <Item
     id={id}
     title={title}
     description={description}
