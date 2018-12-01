@@ -14,7 +14,6 @@ export default ({
   goBack,
   handleValueChange,
   openRemindMeDialog,
-  allNotification,
   disableReminder,
   alarm,
   headsup,
@@ -23,6 +22,7 @@ export default ({
   adminComments,
   membersComments,
   visitorsComments,
+  repliedComments
 }) => (
   <React.Fragment>
     <Appbar.Header style={styles.header} collapsable>
@@ -124,6 +124,16 @@ export default ({
             />
           )}
         />
+        <List.Item
+          title="Replies to my comments"
+          right={() => (
+            <Switch
+              value={repliedComments}
+              onValueChange={() => handleValueChange('repliedComments')}
+            />
+          )}
+        />
+        <Divider />
       </List.Section>
     </ScrollView>
   </React.Fragment>
