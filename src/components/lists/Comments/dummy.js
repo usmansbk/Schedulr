@@ -10,8 +10,11 @@ export default [
     isAuthor: true,
     replying: {
       id: 2,
-      name: 'Babakolo Bello',
-      pictureUrl: null
+      author: {
+        id: 1,
+        name: 'Babakolo Usman',
+      },
+      content: 'Hello worldTo'
     },
     createdAt: Date.now()
   },

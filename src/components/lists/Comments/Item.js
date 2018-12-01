@@ -5,7 +5,6 @@ import {
   Text,
   Paragraph,
   Caption,
-  IconButton
 } from 'react-native-paper';
 import UserAvatar from 'react-native-user-avatar';
 import { CachedImage } from 'react-native-cached-image';
@@ -15,6 +14,8 @@ import styles, { AVATAR_SIZE } from './styles';
 export default class Item extends React.PureComponent {
   _onDelete = () => this.props.handleDeleteComment(this.props.id);
   _onReply = () => this.props.handleReplyComment(this.props.id);
+  _onEdit = () => this.props.handleEditComment(this.props.id);
+  _navigateToProfile = () => this.props.navigateToProfile(this.props.id);
 
   render() {
     const {
@@ -26,7 +27,7 @@ export default class Item extends React.PureComponent {
     return (
       <View style={styles.itemContainer}>
         <View style={styles.itemLeft}>
-          <TouchableRipple>
+          <TouchableRipple onPress={this._navigateToProfile}>
             <UserAvatar
               name={authorName}
               component={CachedImage}
@@ -37,7 +38,12 @@ export default class Item extends React.PureComponent {
         </View>
         <View style={styles.itemRight}>
           <View style={styles.itemHeader}>
-            <Text numberOfLines={1} ellipsizeMode="tail" style={styles.authorName}>{authorName}</Text>
+            <Text
+              numberOfLines={1}
+              ellipsizeMode="tail"
+              style={styles.authorName}
+              onPress={this._navigateToProfile}
+            >{authorName}</Text>
             <Caption style={styles.timeAgo}>{timeAgo}</Caption>
           </View>
           <View style={styles.itemContent}>  
@@ -47,8 +53,9 @@ export default class Item extends React.PureComponent {
               </Paragraph>
             </Hyperlink>
             { 
-              isAuthor && (
+              false && (
                 <View style={styles.footer}>
+                  <Text onPress={this._onEdit} style={styles.footerText}>Edit</Text>
                   <Text onPress={this._onDelete} style={styles.footerText}>Delete</Text>
                   <Text onPress={this._onReply} style={styles.footerText}>Reply</Text>
                 </View>

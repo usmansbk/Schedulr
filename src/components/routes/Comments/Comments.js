@@ -8,6 +8,9 @@ import colors from '../../../config/colors';
 export default ({
   goBack,
   title,
+  handleReply,
+  handleDelete,
+  handleEdit
 }) => (
   <React.Fragment>
     <Appbar.Header style={styles.header}>
@@ -17,7 +20,11 @@ export default ({
         titleStyle={styles.headerColor}
       />
     </Appbar.Header>
-    <List />
+    <List
+      handleReply={handleReply}
+      handleDelete={handleDelete}
+      handleEdit={handleEdit}
+    />
     <CommentInput />
   </React.Fragment>
 );
