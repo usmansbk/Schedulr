@@ -1,7 +1,7 @@
 import React from 'react';
 import { Appbar } from 'react-native-paper';
 import List from '../../lists/Comments';
-import CommentInput from '../../common/CommentInput';
+import CommentForm from '../../forms/Comment';
 import styles from '../../../config/styles';
 import colors from '../../../config/colors';
 
@@ -10,7 +10,7 @@ export default ({
   title,
   handleReply,
   handleDelete,
-  handleEdit
+  handleEdit,
 }) => (
   <React.Fragment>
     <Appbar.Header style={styles.header}>
@@ -25,6 +25,6 @@ export default ({
       handleDelete={handleDelete}
       handleEdit={handleEdit}
     />
-    <CommentInput />
+    <CommentForm/>
   </React.Fragment>
 );
