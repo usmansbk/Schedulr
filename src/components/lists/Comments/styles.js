@@ -40,8 +40,8 @@ export default StyleSheet.create({
     marginTop: 8
   },
   footerText: {
-    textDecorationLine: 'underline',
     color: colors.gray,
-    marginHorizontal: 8
+    marginHorizontal: 8,
+    fontWeight: 'bold'
   }
 });
