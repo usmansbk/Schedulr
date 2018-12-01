@@ -95,44 +95,44 @@ export default ({
         />
         <Divider />
         <List.Item
-        title="Admin comments"
-        right={() => (
-          <Switch
-            value={adminComments}
-            onValueChange={() => handleValueChange('groupAdmin')}
-          />
-        )}
-      />
-      <Divider />
-      <List.Item
-        title="Group members comments"
-        right={() => (
-          <Switch
-            value={membersComments}
-            onValueChange={() => handleValueChange('groupMembers')}
-          />
-        )}
-      />
-      <Divider />
-      <List.Item
-        title="Visitors comments"
-        right={() => (
-          <Switch
-            value={visitorsComments}
-            onValueChange={() => handleValueChange('groupVisitors')}
-          />
-        )}
-      />
-      <Divider />
-      <List.Item
-        title="Replies to my comments"
-        right={() => (
-          <Switch
-            value={repliedComments}
-            onValueChange={() => handleValueChange('repliedComments')}
-          />
-        )}
-      />
+          title="Admin comments"
+          right={() => (
+            <Switch
+              value={adminComments}
+              onValueChange={() => handleValueChange('groupAdmin')}
+            />
+          )}
+        />
+        <Divider />
+        <List.Item
+          title="Group members comments"
+          right={() => (
+            <Switch
+              value={membersComments}
+              onValueChange={() => handleValueChange('groupMembers')}
+            />
+          )}
+        />
+        <Divider />
+        <List.Item
+          title="Visitors comments"
+          right={() => (
+            <Switch
+              value={visitorsComments}
+              onValueChange={() => handleValueChange('groupVisitors')}
+            />
+          )}
+        />
+        <Divider />
+        <List.Item
+          title="Replies to my comments"
+          right={() => (
+            <Switch
+              value={repliedComments}
+              onValueChange={() => handleValueChange('repliedComments')}
+            />
+          )}
+        />
       </List.Section>
     </ScrollView>
   </React.Fragment>
