@@ -17,8 +17,8 @@ export default ({
   name=defaultProps.name,
   pictureUrl=defaultProps.pictureUrl,
   joined=defaultProps.joined,
-  followingCount=defaultProps.followingCount,
-  groupsCount=defaultProps.groupsCount
+  joinedCount=defaultProps.joinedCount,
+  ownCount=defaultProps.ownCount
 }) => (
   <React.Fragment>
     <Appbar.Header style={[appStyles.header, styles.appbar]} collapsable>
@@ -41,9 +41,9 @@ export default ({
         <Caption numberOfLines={1} ellipsizeMode="tail" style={styles.caption}>Joined {joined}</Caption>
       </View>  
       <View style={styles.footer}>
-        <Text style={styles.footerText}>{numeral(followingCount).format('0a')} Following</Text>
+        <Text style={styles.footerText}>Joined {numeral(joinedCount).format('0a')}</Text>
         <Text style={styles.footerText}> - </Text>
-        <Text style={styles.footerText}>{numeral(groupsCount).format('0a')} Groups</Text>
+        <Text style={styles.footerText}>Own {numeral(ownCount).format('0a')}</Text>
       </View>
     </View>
   </React.Fragment>
@@ -53,6 +53,6 @@ const defaultProps = {
   name: 'Babakolo Usman Suleiman',
   pictureUrl: null,
   joined: 'Mon 12, November 2018',
-  followingCount: 12,
-  groupsCount: 3
+  joinedCount: 12,
+  ownCount: 3
 }
