@@ -22,6 +22,17 @@ export default StyleSheet.create({
   },
   alert: {
     flexDirection: 'row',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    margin: 8
+  },
+  alertTitle: {
+    width: 180
+  },
+  cancelText: {
+    color: colors.primary,
+    fontWeight: 'bold'
+  },
+  targetName: {
+    fontWeight: 'bold'
   }
 })

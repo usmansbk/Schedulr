@@ -6,26 +6,22 @@ import UserAvatar from 'react-native-user-avatar';
 import { CachedImage } from 'react-native-cached-image';
 import styles, { AVATAR_SIZE } from './styles';
 
-const defaultValues = {
-  content: '',
-  replying: 2
-};
-
 export default ({
   pictureUrl,
-  name="Babakolo Usman Suleiman",
+  name="Test",
   loading,
-  replying = 2,
-  handleSubmit
+  replying,
+  targetName,
+  handleSubmit,
+  cancelReply
 }) => (
   <Formik
     initialValues={{
       content: '',
-      replying: 2,
+      replying,
     }}
     onSubmit={(values, { setSubmitting }) => {
       handleSubmit && handleSubmit(values);
-      alert('Submit');
       setSubmitting(false);
     }}
   >
@@ -36,6 +32,15 @@ export default ({
       handleBlur,
       values
     }) => (
+      <React.Fragment>
+        {
+          Boolean(replying) && (
+            <View style={styles.alert}>
+              <Text numberOfLines={1} ellipsizeMode="tail" style={styles.alertTitle}>Replying <Text style={styles.targetName}>{targetName}</Text></Text>
+              <Text onPress={cancelReply} style={styles.cancelText}>Cancel</Text>
+            </View>
+          )
+        }
       <View style={styles.container}>
         <View style={styles.left}>
           <UserAvatar
@@ -62,6 +67,7 @@ export default ({
           />
         </View>
       </View>
+      </React.Fragment>
     )}
   </Formik>
 );

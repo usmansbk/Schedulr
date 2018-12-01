@@ -6,11 +6,14 @@ import styles from '../../../config/styles';
 import colors from '../../../config/colors';
 
 export default ({
+  id,
+  targetName,
   goBack,
   title,
   handleReply,
   handleDelete,
   handleEdit,
+  cancelReply,
 }) => (
   <React.Fragment>
     <Appbar.Header style={styles.header}>
@@ -25,6 +28,10 @@ export default ({
       handleDelete={handleDelete}
       handleEdit={handleEdit}
     />
-    <CommentForm/>
+    <CommentForm
+      replying={id}
+      targetName={targetName}
+      cancelReply={cancelReply}
+    />
   </React.Fragment>
 );

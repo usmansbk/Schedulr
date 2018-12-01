@@ -5,25 +5,37 @@ import DeleteCommentDialog from '../../dialogs/DeleteComment';
 export default class Screen extends React.Component {
   state = {
     visibleDialog: null,
-    id: null
+    id: null,
+    replying: null,
+    targetName: null,
   }
   _goBack = () => this.props.navigation.goBack();
   _onDelete = (id) => this._openDialog(id, 'delete');
-  _onReply = (id) => alert('Reply ' + id);
+  _onReply = (replying, targetName) => this.setState({ replying, targetName });
   _onEdit = (id) => alert('Edit ' + id);
-  _openDialog = (id, visibleDialog) => this.setState({ visibleDialog, id });
+  _cancelReply = () => this.setState({ replying: null, targetName: null });
+  _openDialog = (id, visibleDialog) => this.setState({
+    visibleDialog,
+    id,
+    targetName: null,
+    replying: null
+  });
   _hideDialog = () => this.setState({ visibleDialog: null, id: null })
 
   render() {
     return (
       <React.Fragment>
       <Comments
+        id={this.state.replying}
+        targetName={this.state.targetName}
         goBack={this._goBack}
         handleDelete={this._onDelete}
         handleReply={this._onReply}
         handleEdit={this._onEdit}
+        cancelReply={this._cancelReply}
       />
       <DeleteCommentDialog
+        id={this.state.id}
         visible={this.state.visibleDialog === 'delete'}
         handleDismiss={this._hideDialog}
       />

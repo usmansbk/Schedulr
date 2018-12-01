@@ -13,7 +13,7 @@ import styles, { AVATAR_SIZE } from './styles';
 
 export default class Item extends React.PureComponent {
   _onDelete = () => this.props.handleDeleteComment(this.props.id);
-  _onReply = () => this.props.handleReplyComment(this.props.id);
+  _onReply = () => this.props.handleReplyComment(this.props.id, this.props.authorName);
   _onEdit = () => this.props.handleEditComment(this.props.id);
   _navigateToProfile = () => this.props.navigateToProfile(this.props.id);
 
