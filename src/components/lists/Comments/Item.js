@@ -8,6 +8,7 @@ import {
 } from 'react-native-paper';
 import UserAvatar from 'react-native-user-avatar';
 import { CachedImage } from 'react-native-cached-image';
+import Hyperlink from 'react-native-hyperlink';
 import styles, { AVATAR_SIZE } from './styles';
 
 export default class Item extends React.PureComponent {
@@ -34,10 +35,12 @@ export default class Item extends React.PureComponent {
             <Text numberOfLines={1} ellipsizeMode="tail" style={styles.authorName}>{authorName}</Text>
             <Caption style={styles.timeAgo}>{timeAgo}</Caption>
           </View>
-          <View style={styles.itemContent}>
-            <Paragraph style={styles.message}>
-              {content}
-            </Paragraph>
+          <View style={styles.itemContent}>  
+            <Hyperlink linkStyle={styles.linkStyle} linkDefault={true}>
+              <Paragraph style={styles.message}>
+                {content}
+              </Paragraph>
+            </Hyperlink>
           </View>
         </View>
       </View>

@@ -3,6 +3,7 @@ import moment from 'moment';
 import { FlatList } from 'react-native';
 import { withNavigationFocus } from 'react-navigation';
 import Item from './Item';
+import Separator from './Separator';
 import styles from './styles';
 import data from './dummy';
 
@@ -26,6 +27,7 @@ class List extends React.Component {
       />
     );
   }
+  _renderSeparator = () => <Separator />;
   render() {
     return (
       <FlatList
@@ -33,6 +35,7 @@ class List extends React.Component {
         data={data}
         keyExtractor={this._keyExtractor}
         renderItem={this._renderItem}
+        ItemSeparatorComponent={this._renderSeparator}
       />
     )
   }
