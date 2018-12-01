@@ -40,7 +40,7 @@ export default StyleSheet.create({
   },
   footerText: {
     textDecorationLine: 'underline',
-    color: colors.primary_dark,
+    color: colors.gray,
     marginHorizontal: 8
   }
 });
