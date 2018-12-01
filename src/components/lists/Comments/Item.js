@@ -53,7 +53,7 @@ export default class Item extends React.PureComponent {
               </Paragraph>
             </Hyperlink>
             { 
-              false && (
+              isAuthor && (
                 <View style={styles.footer}>
                   <Text onPress={this._onEdit} style={styles.footerText}>Edit</Text>
                   <Text onPress={this._onDelete} style={styles.footerText}>Delete</Text>
