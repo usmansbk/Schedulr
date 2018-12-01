@@ -1,5 +1,5 @@
 import React from 'react';
-import { SectionList } from 'react-native';
+import { SectionList, RefreshControl } from 'react-native';
 import { withNavigationFocus } from 'react-navigation';
 import sectionListGetItemLayout from 'react-native-section-list-get-item-layout';
 import Header from './Header';
@@ -13,6 +13,7 @@ import styles, {
   SEPERATOR_HEIGHT,
   SECTION_HEADER_HEIGHT,
   HEADER_HEIGHT,
+  primary
 } from './styles';
 import dummy from './dummy';
 
@@ -91,6 +92,7 @@ class List extends React.Component {
         ItemSeparatorComponent={this._renderSeparator}
         refreshing={loading}
         onRefresh={onRefresh}
+        refreshControl={<RefreshControl refreshing={loading} colors={[primary]} />}
         renderItem={this._renderItem}
         renderSectionHeader={this._renderSectionHeader}
         keyExtractor={this._keyExtractor}

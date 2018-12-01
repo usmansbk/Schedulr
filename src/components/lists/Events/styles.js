@@ -6,6 +6,7 @@ export const SEPARATOR_HEIGHT = 2;
 export const SECTION_HEADER_HEIGHT = 64;
 export const HEADER_HEIGHT = 28;
 export const primary_light = colors.primary_light;
+export const primary = colors.primary;
 export const gray = colors.gray;
 export const black = colors.black;
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { FlatList } from 'react-native';
+import { FlatList, RefreshControl } from 'react-native';
 import { withNavigationFocus } from 'react-navigation';
 import Item from './Item';
 import Separator from './Separator';
@@ -10,6 +10,7 @@ import styles, {
   SEPARATOR_HEIGHT
 } from './styles';
 import groups from './dummy';
+import colors from '../../../config/colors';
 
 class List extends Component {
   _getItemLayout = (_, index) => (
@@ -54,9 +55,14 @@ class List extends Component {
   render() {
     const {
       groups=[],
+      loading,
+      onRefresh
     } = defaultProps;
     return (
       <FlatList
+        refreshing={loading}
+        refreshControl={<RefreshControl refreshing={loading} colors={[colors.primary]} />}
+        onRefresh={onRefresh}
         style={styles.list}
         initialNumToRender={5}
         extraData={groups.length}
@@ -75,6 +81,7 @@ class List extends Component {
 const defaultProps = {
   groups,
   loading: false,
+  onRefresh: () => console.log('Refreshing')
 }
 
 export default withNavigationFocus(List);
