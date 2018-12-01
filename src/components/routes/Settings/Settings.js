@@ -124,6 +124,7 @@ export default ({
             />
           )}
         />
+        <Divider />
         <List.Item
           title="Replies to my comments"
           right={() => (
