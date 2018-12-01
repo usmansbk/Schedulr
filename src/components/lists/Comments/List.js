@@ -15,6 +15,7 @@ class List extends React.Component {
       id,
       content,
       author,
+      replying,
       isAuthor,
       createdAt
     }
@@ -25,6 +26,9 @@ class List extends React.Component {
         authorId={author.id}
         authorName={author.name}
         authorPictureUrl={author.pictureUrl}
+        replyingId={replying && replying.id}
+        replyingName={replying && replying.author.name}
+        replyingContent={replying && replying.content}
         isAuthor={isAuthor}
         content={content}
         timeAgo={moment(createdAt).fromNow()}

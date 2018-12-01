@@ -21,6 +21,8 @@ export default class Item extends React.PureComponent {
       authorName,
       content,
       timeAgo,
+      replyingName,
+      replyingContent,
       isAuthor,
     } = this.props;
     return (
@@ -45,6 +47,18 @@ export default class Item extends React.PureComponent {
             >{authorName}</Text>
             <Caption style={styles.timeAgo}>{timeAgo}</Caption>
           </View>
+          {
+            Boolean(replyingContent) && (
+              <View style={styles.replyBox}>
+                <Text
+                  numberOfLines={1}
+                  ellipsizeMode="tail"
+                  style={styles.replyName}
+                >{replyingName}</Text>
+                <Caption numberOfLines={4} ellipsizeMode="tail">{replyingContent}</Caption>
+              </View>
+            )
+          }
           <View style={styles.itemContent}>  
             <Hyperlink linkStyle={styles.linkStyle} linkDefault={true}>
               <Paragraph style={styles.message}>

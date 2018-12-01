@@ -43,5 +43,14 @@ export default StyleSheet.create({
     color: colors.gray,
     marginHorizontal: 8,
     fontWeight: 'bold'
+  },
+  replyBox: {
+    backgroundColor: colors.light_gray,
+    padding:4
+  },
+  replyName: {
+    fontWeight: 'bold',
+    fontSize: 14,
+    width: 200
   }
 });
