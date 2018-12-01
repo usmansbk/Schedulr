@@ -67,7 +67,6 @@ const Form = ({
       handleBlur,
       setFieldValue,
       resetForm,
-      h
     }) => (
       <React.Fragment>
       <Appbar.Header style={styles.header}>
