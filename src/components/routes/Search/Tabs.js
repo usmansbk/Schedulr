@@ -33,7 +33,7 @@ export default class Tab extends React.Component {
   static appbarElevation = 2;
 
   state = {
-    index: 1,
+    index: 0,
     routes: [
       { key: 'groups', title: 'Groups' },
       { key: 'events', title: 'Events' },
