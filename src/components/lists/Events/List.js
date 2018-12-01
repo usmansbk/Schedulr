@@ -105,7 +105,7 @@ const defaultProps = {
   loading: false,
   onRefresh: () => console.log('Refreshing'),
   hasPreviousEvents: false,
-  sections: []
+  sections: dummy
 };
 
 export default withNavigationFocus(List);
