@@ -1,7 +1,6 @@
 import React from 'react';
 import {
   Button,
-  Paragraph,
   Dialog,
   Portal
 } from 'react-native-paper';
@@ -18,10 +17,7 @@ export default ({
       visible={visible}
       onDismiss={handleDismiss}
     >
-      <Dialog.Title>Delete event?</Dialog.Title>
-      <Dialog.Content>
-        <Paragraph>Will remove past and future events in this series</Paragraph>
-      </Dialog.Content>
+      <Dialog.Title>Delete comment?</Dialog.Title>
       <Dialog.Actions>
         <Button disabled={loading} onPress={handleDismiss}>Dismiss</Button>
         <Button loading={loading} disabled={loading} onPress={handleDismiss}>Continue</Button>
