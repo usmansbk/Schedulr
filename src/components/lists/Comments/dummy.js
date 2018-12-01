@@ -7,6 +7,7 @@ export default [
       pictureUrl: null,
     },
     content: 'Hello worldTo support deep linking on Android, refer http://developer.android.com/training/app-indexing/deep-linking.html#handling-intents',
+    isAuthor: true,
     replying: {
       id: 2,
       name: 'Babakolo Bello',
@@ -22,6 +23,7 @@ export default [
       pictureUrl: null,
     },
     content: 'Hello worldTo support deep linking on Android, refer http://developer.android.com/training/app-indexing/deep-linking.html#handling-intents',
+    isAuthor: false,
     replying: {
       id: 2,
       name: 'Babakolo Bello',

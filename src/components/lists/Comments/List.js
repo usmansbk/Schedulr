@@ -13,6 +13,7 @@ class List extends React.Component {
       id,
       content,
       author,
+      isAuthor,
       createdAt
     }
   }) => {
@@ -22,6 +23,7 @@ class List extends React.Component {
         authorId={author.id}
         authorName={author.name}
         authorPictureUrl={author.pictureUrl}
+        isAuthor={isAuthor}
         content={content}
         timeAgo={moment(createdAt).fromNow()}
       />

@@ -13,11 +13,15 @@ import Hyperlink from 'react-native-hyperlink';
 import styles, { AVATAR_SIZE } from './styles';
 
 export default class Item extends React.PureComponent {
+  _onDelete = () => this.props.handleDeleteComment(this.props.id);
+  _onReply = () => this.props.handleReplyComment(this.props.id);
+
   render() {
     const {
       authorName,
       content,
-      timeAgo
+      timeAgo,
+      isAuthor,
     } = this.props;
     return (
       <View style={styles.itemContainer}>
@@ -42,10 +46,14 @@ export default class Item extends React.PureComponent {
                 {content}
               </Paragraph>
             </Hyperlink>
-            <View style={styles.footer}>
-              <Text style={styles.footerText}>Delete</Text>
-              <Text style={styles.footerText}>Reply</Text>
-            </View>
+            { 
+              isAuthor && (
+                <View style={styles.footer}>
+                  <Text onPress={this._onDelete} style={styles.footerText}>Delete</Text>
+                  <Text onPress={this._onReply} style={styles.footerText}>Reply</Text>
+                </View>
+              )
+            }
           </View>
         </View>
       </View>
