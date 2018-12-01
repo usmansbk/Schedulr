@@ -25,7 +25,6 @@ export default ({
   dark,
   navigateToComments,
 }) => {
-  const fontSize = size === 'small' ? 22 : FONT_SIZE;
   const color = dark ? colors.light_gray_3 : defaultColor;
   return (
   <View style={styles.actions}>
@@ -35,13 +34,13 @@ export default ({
       starsCount={starsCount}
       activeColor={defaultColor}
       iconSize={size}
-      size={fontSize}
+      size={FONT_SIZE}
       color={color}
     />
     <CommentButton
       id={id}
       commentsCount={commentsCount}
-      size={fontSize}
+      size={FONT_SIZE}
       color={color}
       onPress={() => navigateToComments(id)}
     />
@@ -51,7 +50,7 @@ export default ({
       alarmSet={alarmSet}
       start={start}
       color={color}
-      size={fontSize}
+      size={FONT_SIZE}
     />
     {
       size !== 'small' && (
@@ -62,7 +61,7 @@ export default ({
           type={type}
           title={title}
           location={location}
-          size={fontSize}
+          size={FONT_SIZE}
         />
       )
     }
