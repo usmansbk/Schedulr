@@ -23,7 +23,6 @@ export default ({
   adminComments,
   membersComments,
   visitorsComments,
-  repliedComments,
 }) => (
   <React.Fragment>
     <Appbar.Header style={styles.header} collapsable>
@@ -34,17 +33,6 @@ export default ({
       />
     </Appbar.Header>
     <ScrollView>
-      <List.Section title="General">
-        <List.Item
-          title="Turn-off all Notification"
-          right={() => (
-            <Switch
-              value={allNotification}
-              onValueChange={() => handleValueChange('allNotification')}
-            />
-          )}
-        />
-      </List.Section>
       <List.Section title="Reminders">
         <List.Item
           title="Disable"
@@ -54,6 +42,12 @@ export default ({
               onValueChange={() => handleValueChange('disableReminder')}
             />
           )}
+        />
+        <Divider />
+        <List.Item
+          title="Remind me"
+          right={() => <List.Icon icon="chevron-right" />}
+          onPress={openRemindMeDialog}
         />
         <Divider />
         <List.Item
@@ -86,12 +80,6 @@ export default ({
               onValueChange={() => handleValueChange('eventEnded')}
             />
           )}
-        />
-        <Divider />
-        <List.Item
-          title="Remind me"
-          right={() => <List.Icon icon="chevron-right" />}
-          onPress={openRemindMeDialog}
         />
         <Divider />
       </List.Section>
@@ -133,16 +121,6 @@ export default ({
             <Switch
               value={visitorsComments}
               onValueChange={() => handleValueChange('groupVisitors')}
-            />
-          )}
-        />
-        <Divider />
-        <List.Item
-          title="Replies to your comments"
-          right={() => (
-            <Switch
-              value={repliedComments}
-              onValueChange={() => handleValueChange('repliedComments')}
             />
           )}
         />
