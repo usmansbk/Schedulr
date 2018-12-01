@@ -33,5 +33,14 @@ export default StyleSheet.create({
   },
   separator: {
     height: SEPARATOR_HEIGHT
+  },
+  footer: {
+    justifyContent: 'flex-end',
+    flexDirection: 'row'
+  },
+  footerText: {
+    textDecorationLine: 'underline',
+    color: colors.primary_dark,
+    marginHorizontal: 8
   }
 });

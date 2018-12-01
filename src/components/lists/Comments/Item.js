@@ -4,7 +4,8 @@ import {
   TouchableRipple,
   Text,
   Paragraph,
-  Caption
+  Caption,
+  IconButton
 } from 'react-native-paper';
 import UserAvatar from 'react-native-user-avatar';
 import { CachedImage } from 'react-native-cached-image';
@@ -41,6 +42,10 @@ export default class Item extends React.PureComponent {
                 {content}
               </Paragraph>
             </Hyperlink>
+            <View style={styles.footer}>
+              <Text style={styles.footerText}>Delete</Text>
+              <Text style={styles.footerText}>Reply</Text>
+            </View>
           </View>
         </View>
       </View>
