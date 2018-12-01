@@ -25,6 +25,7 @@ export default ({
         size={AVATAR_SIZE}
         src={pictureUrl}
         name={name}
+        component={CachedImage}
       />
     </View>
     <View style={styles.body}>
