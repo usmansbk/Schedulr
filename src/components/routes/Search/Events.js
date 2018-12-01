@@ -1,17 +1,10 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import List from '../../lists/EventSearch';
 
 export default class Events extends React.PureComponent {
   render() {
     return (
-      <View style={styles.container}>
-      </View>
+      <List />
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-})
