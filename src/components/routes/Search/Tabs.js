@@ -11,14 +11,14 @@ import colors from '../../../config/colors';
 const styles = StyleSheet.create({
   container: {flex: 1},
   barStyle: {
-    backgroundColor: '#fff',
+    backgroundColor: 'white',
     elevation: 2
   },
   indicatorStyle: {
     backgroundColor: colors.primary_light
   },
   label: {
-    color: '#404040'
+    color: colors.black
   }
 });
 
