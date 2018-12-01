@@ -9,7 +9,7 @@ export default ({
   start
 }) => (
   <IconButton
-    icon={`alarm-${alarmSet ? 'on' : '-add'}`}
+    icon={`alarm-${alarmSet ? 'on' : 'add'}`}
     color={color}
     size={size}
     onPress={() => alert(`alarm set for "${title} at ${start}`)}

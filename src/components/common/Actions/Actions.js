@@ -53,15 +53,19 @@ export default ({
       color={color}
       size={fontSize}
     />
-    <ShareButton
-      color={color}
-      id={id}
-      date={date}
-      type={type}
-      title={title}
-      location={location}
-      size={fontSize}
-    />
+    {
+      size !== 'small' && (
+        <ShareButton
+          color={color}
+          id={id}
+          date={date}
+          type={type}
+          title={title}
+          location={location}
+          size={fontSize}
+        />
+      )
+    }
   </View>
 )};
 
