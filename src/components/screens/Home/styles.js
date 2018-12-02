@@ -3,7 +3,8 @@ import colors from '../../../config/colors';
 
 export const activeColor = colors.primary;
 export const inactiveTintColor = colors.gray;
-export const FONT_SIZE = 25;
+export const FONT_SIZE = 24;
+export const BLUR_SIZE = 22;
 
 export default StyleSheet.create({
   container: {

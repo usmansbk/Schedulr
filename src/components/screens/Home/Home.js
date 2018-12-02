@@ -10,7 +10,7 @@ import SearchRoute from '../../routes/Search';
 import HomeRoute from '../../routes/Home';
 import NotificationRoute from '../../routes/Notifications';
 import NotificationsIcon from '../../common/NotificationIcon';
-import styles, { activeColor, inactiveTintColor, FONT_SIZE } from './styles';
+import styles, { activeColor, inactiveTintColor, FONT_SIZE, BLUR_SIZE } from './styles';
 
 
 const Home = createBottomTabNavigator({
@@ -30,7 +30,7 @@ const Home = createBottomTabNavigator({
   },
   defaultNavigationOptions: ({ navigation }) => ({
     tabBarVisible: navigation.state.routeName !== 'Search',
-    tabBarIcon: ({ tintColor }) => {
+    tabBarIcon: ({ tintColor, focused }) => {
       const { routeName } = navigation.state;
       let iconName;
       if (routeName === 'Home') {
@@ -40,14 +40,14 @@ const Home = createBottomTabNavigator({
       } else if (routeName === 'Notifications') {
         return (
           <NotificationsIcon
-            size={FONT_SIZE}
+            size={focused ? FONT_SIZE : BLUR_SIZE}
             color={tintColor}
           />
         );
       } else if (routeName === 'More') {
         iconName = 'menu';
       }
-      return <Icon name={iconName} size={FONT_SIZE} color={tintColor} />
+      return <Icon name={iconName} size={focused ? FONT_SIZE : BLUR_SIZE} color={tintColor} />
     }
   }),
 });
