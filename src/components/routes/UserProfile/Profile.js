@@ -42,7 +42,7 @@ export default ({
       </View>  
       <View style={styles.footer}>
         <Text style={styles.footerText}>Joined {numeral(joinedCount).format('0a')}</Text>
-        <Text style={styles.footerText}> - </Text>
+        <Text style={styles.footerText}> • </Text>
         <Text style={styles.footerText}>Own {numeral(ownCount).format('0a')}</Text>
       </View>
     </View>

@@ -26,13 +26,6 @@ export default StyleSheet.create({
     color: colors.light_gray_3,
     textAlign: 'center'
   },
-  emptyMessage: {
-    textAlign: 'center',
-    fontSize: 16
-  },
-  emptyIcon: {
-    fontSize: 20,
-  },
   footer: {
     height: FOOTER_HEIGHT
   },

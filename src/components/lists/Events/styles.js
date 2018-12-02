@@ -64,13 +64,6 @@ export default StyleSheet.create({
     color: colors.light_gray_3,
     textAlign: 'center'
   },
-  emptyMessage: {
-    textAlign: 'center',
-    fontSize: 16
-  },
-  emptyIcon: {
-    fontSize: 48,
-  },
   separator: {
     height: SEPARATOR_HEIGHT
   },
@@ -118,9 +111,8 @@ export default StyleSheet.create({
     color: colors.light_red
   },
   time: {
-    fontFamily: 'sans-serif',
+    fontFamily: 'sans-serif-bold',
     alignSelf: 'flex-end',
-    fontWeight: 'bold',
     fontSize: 16,
     color: gray,
   },
