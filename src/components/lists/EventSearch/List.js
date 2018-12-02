@@ -6,9 +6,20 @@ import Separator from './Separator';
 import Footer from './Footer';
 import Empty from './Empty';
 import dummy from './dummy';
-import styles, { primary } from './styles';
+import styles, {
+  primary,
+  ITEM_HEIGHT,
+  SEPARATOR_HEIGHT,
+} from './styles';
 
 class List extends React.Component {
+  _getItemLayout = (_, index) => (
+    {
+      length: ITEM_HEIGHT,
+      offset: ITEM_HEIGHT * index + SEPARATOR_HEIGHT,
+      index
+    }
+  );
   shouldComponentUpdate = nextProps => nextProps.isFocused;
   _onPressItem = (id) => this.props.navigation.navigate('EventDetails', { id });
   _keyExtractor = item => item.id;
