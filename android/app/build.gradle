@@ -1,18 +1,8 @@
-buildscript {
-    repositories {
-        maven { url 'https://plugins.gradle.org/m2/' } // Gradle Plugin Portal 
-    }
-    dependencies {
-        classpath 'gradle.plugin.com.onesignal:onesignal-gradle-plugin:[0.12.1, 0.99.99]'
-    }
-}
-
-apply plugin: 'com.onesignal.androidsdk.onesignal-gradle-plugin'
 apply plugin: "com.android.application"
 apply plugin: 'io.fabric'
 apply plugin: "com.google.firebase.firebase-perf"
 project.ext.vectoricons = [
-    iconFontNames: [ 'FontAwesome.ttf', 'Feather.ttf' ] // Name of the font files you want to copy
+    iconFontNames: [ 'MaterialIcons.ttf', 'MaterialCommunityIcons.ttf' ] // Name of the font files you want to copy
 ]
 
 apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
@@ -166,7 +156,6 @@ android {
 dependencies {
     implementation project(':react-native-vector-icons')
     implementation project(':react-native-gesture-handler')
-    implementation project(':react-native-onesignal')
     implementation project(":react-native-google-signin")
     implementation project(':react-native-splash-screen')
     implementation project(':react-native-share')

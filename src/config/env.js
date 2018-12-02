@@ -2,7 +2,6 @@ import moment from 'moment';
 const date = moment().format('YYYY-MM-DD');
 const url = 'https://schdlr-ng.herokuapp.com';
 const dev = {
-  ONE_SIGNAL_ID: 'c45c9feb-9c17-4f6b-a397-abc7b49e5e40',
   APP_URL: url,
   IOS_URL: '//:schdlr',
   PROTOCOL: 'http://',
@@ -18,7 +17,6 @@ const dev = {
 };
 
 const prod = {
-  ONE_SIGNAL_ID: 'c45c9feb-9c17-4f6b-a397-abc7b49e5e40',
   APP_URL: 'https://schdlr-ng.herokuapp.com',
   IOS_URL: '//:schdlr',
   PROTOCOL: 'https://',

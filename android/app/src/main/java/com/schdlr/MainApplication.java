@@ -13,7 +13,6 @@ import io.invertase.firebase.analytics.RNFirebaseAnalyticsPackage;
 import com.facebook.react.ReactApplication;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
-import com.geektime.rnonesignalandroid.ReactNativeOneSignalPackage;
 import co.apptailor.googlesignin.RNGoogleSigninPackage;
 import org.devio.rn.splashscreen.SplashScreenReactPackage;
 import cl.json.RNSharePackage;
@@ -50,7 +49,6 @@ public class MainApplication extends Application implements ShareApplication, Re
           new MainReactPackage(),
             new VectorIconsPackage(),
             new RNGestureHandlerPackage(),
-            new ReactNativeOneSignalPackage(),
             new RNGoogleSigninPackage(),
             new SplashScreenReactPackage(),
             new RNSharePackage(),
