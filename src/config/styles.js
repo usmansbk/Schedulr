@@ -10,7 +10,7 @@ export default StyleSheet.create({
     maxWidth: 48
   },
   iconButton: {
-    margin: 0
+    marginRight: 0
   },
   header: {
     elevation: 2,
