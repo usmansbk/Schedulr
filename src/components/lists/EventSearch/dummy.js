@@ -34,7 +34,8 @@ export default [
     type: 'LECTURE',
     group: {
       id: 1,
-      name: 'EEEN301'
+      name: 'EEEN301',
+      pictureUrl: null
     }
   },
   {

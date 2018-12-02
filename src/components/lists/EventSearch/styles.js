@@ -4,6 +4,7 @@ import colors from '../../../config/colors';
 export const primary = colors.primary;
 export const ITEM_HEIGHT = 150;
 export const SEPARATOR_HEIGHT = 1;
+export const AVATAR_SIZE = 48;
 
 export default StyleSheet.create({
   list: {
@@ -34,16 +35,16 @@ export default StyleSheet.create({
   itemContainer: {
     height: ITEM_HEIGHT,
     backgroundColor: 'white',
-    paddingTop: 8,
+    flexDirection: 'row'
   },
   itemContent: {
-    flex: 1,
-    marginHorizontal: 16,
+    marginHorizontal: 8,
     justifyContent: 'center'
   },
   itemBody: {
     flexDirection: 'row',
-    paddingTop: 8,
+    alignItems: 'center',
+    marginLeft: 8,
   },
   itemSubheadingText: {
     width: 200
@@ -51,7 +52,7 @@ export default StyleSheet.create({
   itemHeadline: {
     fontSize: 20,
     fontFamily: 'sans-serif',
-    width: 300
+    width: 250
   },
   itemNote: {
     fontSize: 16,
