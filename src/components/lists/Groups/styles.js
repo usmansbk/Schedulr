@@ -27,7 +27,13 @@ export default StyleSheet.create({
     textAlign: 'center'
   },
   footer: {
-    height: FOOTER_HEIGHT
+    height: FOOTER_HEIGHT,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  footerText: {
+    fontWeight: 'bold',
+    color: colors.light_gray_3
   },
   itemContainer: {
     height: ITEM_HEIGHT,

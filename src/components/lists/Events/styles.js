@@ -5,6 +5,7 @@ export const ITEM_HEIGHT = 150;
 export const SEPARATOR_HEIGHT = 2;
 export const SECTION_HEADER_HEIGHT = 64;
 export const HEADER_HEIGHT = 28;
+export const FOOTER_HEIGHT = 80;
 export const primary_light = colors.primary_light;
 export const primary = colors.primary;
 export const gray = colors.gray;
@@ -43,7 +44,7 @@ export default StyleSheet.create({
     color: colors.primary_dark,
   },
   footer: {
-    height: 80,
+    height: FOOTER_HEIGHT,
     justifyContent: 'center',
     alignItems: 'center'
   },
