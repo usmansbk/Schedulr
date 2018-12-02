@@ -12,6 +12,9 @@ export default StyleSheet.create({
   iconButton: {
     marginRight: 0
   },
+  badge: {
+    color: colors.gray
+  },
   header: {
     elevation: 2,
     backgroundColor: '#fff',
