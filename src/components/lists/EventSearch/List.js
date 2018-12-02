@@ -10,6 +10,7 @@ import styles, { primary } from './styles';
 
 class List extends React.Component {
   shouldComponentUpdate = nextProps => nextProps.isFocused;
+  _onPressItem = (id) => this.props.navigation.navigate('EventDetails', { id });
   _keyExtractor = item => item.id;
   _renderItem = ({
     item: {
@@ -17,7 +18,6 @@ class List extends React.Component {
       title,
       start,
       end,
-      allDay,
       starsCount,
       commentsCount,
       isCancelled,
@@ -29,12 +29,12 @@ class List extends React.Component {
     title={title}
     start={start}
     end={end}
-    allDay={allDay}
     starsCount={starsCount}
     commentsCount={commentsCount}
     isCancelled={isCancelled}
     repeat={repeat}
     type={type}
+    onPressItem={this._onPressItem}
   />;
   _renderSeparator = () => <Separator />;
   _renderFooter = () => <Footer visible={!defaultValues.hasMore} />;
