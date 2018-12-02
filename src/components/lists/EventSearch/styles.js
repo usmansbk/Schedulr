@@ -38,7 +38,7 @@ export default StyleSheet.create({
   },
   itemContent: {
     flex: 1,
-    paddingHorizontal: 8,
+    paddingHorizontal: 16,
     justifyContent: 'center'
   },
   itemBody: {
