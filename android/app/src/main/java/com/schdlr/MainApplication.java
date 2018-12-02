@@ -7,7 +7,6 @@ import com.facebook.FacebookSdk;
 
 import io.invertase.firebase.RNFirebasePackage;
 import io.invertase.firebase.fabric.crashlytics.RNFirebaseCrashlyticsPackage;
-import io.invertase.firebase.perf.RNFirebasePerformancePackage;
 import io.invertase.firebase.analytics.RNFirebaseAnalyticsPackage;
 
 import com.facebook.react.ReactApplication;
@@ -58,7 +57,6 @@ public class MainApplication extends Application implements ShareApplication, Re
             new FBSDKPackage(mCallbackManager),
             new RNFetchBlobPackage(),
             new RNFirebaseCrashlyticsPackage(),
-            new RNFirebasePerformancePackage(),
             new RNFirebaseAnalyticsPackage()
       );
     }

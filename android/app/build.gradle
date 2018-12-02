@@ -1,6 +1,5 @@
 apply plugin: "com.android.application"
 apply plugin: 'io.fabric'
-apply plugin: "com.google.firebase.firebase-perf"
 project.ext.vectoricons = [
     iconFontNames: [ 'MaterialIcons.ttf', 'MaterialCommunityIcons.ttf' ] // Name of the font files you want to copy
 ]
@@ -166,7 +165,6 @@ dependencies {
     implementation project(':react-native-fbsdk')
     implementation project(':react-native-fetch-blob')
     implementation "com.google.android.gms:play-services-base:16.0.1"
-    implementation "com.google.firebase:firebase-perf:16.2.0"
     implementation('com.crashlytics.sdk.android:crashlytics:2.9.5@aar') {
         transitive = true
     }
