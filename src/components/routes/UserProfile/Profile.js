@@ -53,6 +53,6 @@ const defaultProps = {
   name: 'Babakolo Usman Suleiman',
   pictureUrl: null,
   joined: 'Mon 12, November 2018',
-  joinedCount: 12,
+  joinedCount: 8,
   ownCount: 3
 }
