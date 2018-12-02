@@ -1,7 +1,7 @@
 import React from 'react';
 import { Dimensions } from 'react-native';
 import { createAppContainer, createMaterialTopTabNavigator } from 'react-navigation';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import EventsRoute from '../Events';
 import GroupsRoute from '../Groups';
 import StarredRoute from '../Starred';
@@ -28,11 +28,11 @@ const Home = createMaterialTopTabNavigator({
       const { routeName } = navigation.state;
       let iconName;
       if (routeName === 'Events') {
-        iconName = 'date-range'
+        iconName = 'calendar-week-begin'
       } else if (routeName === 'Groups') {
-        iconName = 'group-work';
+        iconName = 'google-circles-communities';
       } else if (routeName === 'Starred') {
-        iconName = `star${focused ? '' : '-border'}`;
+        iconName = `calendar-star`;
       }
       return <Icon name={iconName} size={focused ? FONT_SIZE : BLUR_SIZE} color={tintColor} />
     }
