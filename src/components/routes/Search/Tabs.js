@@ -64,6 +64,7 @@ export default class Tab extends React.Component {
   render() {
     return (
       <TabView
+        lazy
         style={[styles.container]}
         navigationState={this.state}
         renderScene={this._renderScene}
