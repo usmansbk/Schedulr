@@ -38,7 +38,7 @@ export default StyleSheet.create({
   },
   itemContent: {
     flex: 1,
-    paddingHorizontal: 16,
+    marginHorizontal: 16,
     justifyContent: 'center'
   },
   itemBody: {
@@ -51,7 +51,7 @@ export default StyleSheet.create({
   itemHeadline: {
     fontSize: 20,
     fontFamily: 'sans-serif',
-    width: 350
+    width: 300
   },
   itemNote: {
     fontSize: 16,
