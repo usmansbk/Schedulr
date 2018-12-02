@@ -23,7 +23,7 @@ class List extends React.Component {
   shouldComponentUpdate = nextProps => nextProps.isFocused;
   _onPressItem = (id) => this.props.navigation.navigate('EventDetails', { id });
   _navigateToGroup = (id) => this.props.navigation.navigate('GroupEvents', id);
-  _keyExtractor = item => item.id;
+  _keyExtractor = item => String(item.id);
   _renderItem = ({
     item: {
       id,
