@@ -5,7 +5,6 @@ import {
   Text,
   Caption
 } from 'react-native-paper';
-import numeral from 'numeral';
 import UserAvatar from 'react-native-user-avatar';
 import { CachedImage } from 'react-native-cached-image';
 import styles, { AVATAR_SIZE } from './styles';
@@ -17,8 +16,6 @@ export default ({
   name=defaultProps.name,
   pictureUrl=defaultProps.pictureUrl,
   joined=defaultProps.joined,
-  joinedCount=defaultProps.joinedCount,
-  ownCount=defaultProps.ownCount
 }) => (
   <React.Fragment>
     <Appbar.Header style={[appStyles.header, styles.appbar]} collapsable>
@@ -39,11 +36,6 @@ export default ({
           {name}
         </Text>
         <Caption numberOfLines={1} ellipsizeMode="tail" style={styles.caption}>Joined {joined}</Caption>
-      </View>  
-      <View style={styles.footer}>
-        <Text style={styles.footerText}>Joined {numeral(joinedCount).format('0a')}</Text>
-        <Text style={styles.footerText}> • </Text>
-        <Text style={styles.footerText}>Own {numeral(ownCount).format('0a')}</Text>
       </View>
     </View>
   </React.Fragment>
