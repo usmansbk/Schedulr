@@ -14,6 +14,7 @@ export default ({ color, icon, size, count, onPress}) => (
       icon={icon}
       size={size}
       color={color}
+      style={styles.iconButton}
     />
     {
       Boolean(count) && (

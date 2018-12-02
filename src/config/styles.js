@@ -5,7 +5,12 @@ export default StyleSheet.create({
   button: {
     flexDirection: 'row',
     alignItems: 'center',
-    maxWidth: 48,
+    justifyContent: 'flex-start',
+    minWidth: 48,
+    maxWidth: 48
+  },
+  iconButton: {
+    margin: 0
   },
   header: {
     elevation: 2,
