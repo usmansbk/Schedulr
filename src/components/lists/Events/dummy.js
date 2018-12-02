@@ -8,7 +8,7 @@ export default [{
       start: Date.now(),
       end: new Date('12/2/2018'),
       allDay: true,
-      isCancelled: false,
+      isCancelled: true,
       starred: false,
       starsCount: 0,
       commentsCount: 222203,
