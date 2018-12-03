@@ -10,6 +10,7 @@ import io.invertase.firebase.fabric.crashlytics.RNFirebaseCrashlyticsPackage;
 import io.invertase.firebase.analytics.RNFirebaseAnalyticsPackage;
 
 import com.facebook.react.ReactApplication;
+import com.amazonaws.RNAWSCognitoPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 import co.apptailor.googlesignin.RNGoogleSigninPackage;
@@ -46,6 +47,7 @@ public class MainApplication extends Application implements ShareApplication, Re
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new RNAWSCognitoPackage(),
             new VectorIconsPackage(),
             new RNGestureHandlerPackage(),
             new RNGoogleSigninPackage(),
