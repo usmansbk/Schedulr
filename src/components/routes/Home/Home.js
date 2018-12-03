@@ -24,7 +24,7 @@ const Home = createMaterialTopTabNavigator({
     style: styles.barStyle
   },
   defaultNavigationOptions: ({ navigation }) => ({
-    tabBarIcon: ({ focused, tintColor }) => {
+    tabBarIcon: ({tintColor }) => {
       const { routeName } = navigation.state;
       let iconName;
       if (routeName === 'Events') {
@@ -34,7 +34,7 @@ const Home = createMaterialTopTabNavigator({
       } else if (routeName === 'Starred') {
         iconName = `calendar-star`;
       }
-      return <Icon name={iconName} size={focused ? FONT_SIZE : BLUR_SIZE} color={tintColor} />
+      return <Icon name={iconName} size={BLUR_SIZE} color={tintColor} />
     }
   })
 });
