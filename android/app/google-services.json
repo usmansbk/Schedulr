@@ -15,7 +15,15 @@
       },
       "oauth_client": [
         {
-          "client_id": "915796894963-gkrtvrrt3jg958l2cna6e2lei7qj4b35.apps.googleusercontent.com",
+          "client_id": "915796894963-jcr3hifjhcj3fpbrsdga5fbbmcid138t.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.schdlr",
+            "certificate_hash": "5b3576e471692e0c69e6fbca8a91ce23b1393c3d"
+          }
+        },
+        {
+          "client_id": "915796894963-tk7fjb1tiiajnl2i5hds91t9r7um10kq.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.schdlr",
@@ -40,7 +48,7 @@
           "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "915796894963-5rlco7rd3frrrudp6opqpk4u4fsd91it.apps.googleusercontent.com",
+              "client_id": "915796894963-2mrc1d7nfrake8cnpvaehussb9p5gl6a.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
