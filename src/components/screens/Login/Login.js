@@ -14,8 +14,8 @@ export default (props) => (
       The Social Calendar
     </Caption>
     <View style={styles.content}>
-      <FBLoginButton onPress={props.handleLogin} />
-      <GLoginButton onPress={props.handleLogin} />
+      <FBLoginButton onLogin={props.handleLogin} />
+      <GLoginButton onLogin={props.handleLogin} />
     </View>
     <Caption style={styles.caption}>
       Keep your friends and collegues up to date with the latest events!
