@@ -27,6 +27,7 @@ export default class Container extends React.Component {
       await this.props.onLogin({
         name: user.name,
         email: user.email,
+        pictureUrl: user.photo,
         identity: 'google',
         token: idToken,
         expires_at: null
