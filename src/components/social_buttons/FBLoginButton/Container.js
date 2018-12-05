@@ -50,7 +50,8 @@ export default class Container extends React.Component {
     if (error) {
       alert('Error fetching data: ' + error.message);
       firebase.analytics().logEvent(error.message);
-    } else {
+    } else if (result) {
+      console.log(result);
       const { email, name, picture } = result;
       this.props.onLogin({
         identity: 'facebook',
@@ -58,6 +59,8 @@ export default class Container extends React.Component {
         name,
         pictureUrl: picture && picture.data && picture.data.url
       });
+    } else {
+      alert('Something went wrong!');
     }
   }
 
