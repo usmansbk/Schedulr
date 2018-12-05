@@ -1,15 +1,21 @@
 import React, { Component } from 'react'
-import { AsyncStorage } from 'react-native';
+import { Cache } from 'aws-amplify';
 import Loading from './Loading';
 
-export default class AuthLoading extends Component {
+export default class Container extends Component {
   constructor(props) {
     super(props);
     this._bootstrapAsync();
   }
 
   _bootstrapAsync = async () => {
-    const userToken = await AsyncStorage.getItem('userToken');
+    let userToken;
+    try {
+      const { token } = await Cache.getItem('federatedInfo');
+      userToken = token;
+    } catch (error) {
+      userToken = null;
+    }
     this.props.navigation.navigate(userToken ? 'App' : 'Auth');
   }
   

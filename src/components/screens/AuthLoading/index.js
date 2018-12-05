@@ -1,3 +1,3 @@
-import AuthLoading from './AuthLoading';
+import AuthLoading from './Container';
 
 export default AuthLoading;
