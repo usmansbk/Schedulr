@@ -1,7 +1,7 @@
 import React from 'react';
-import { View, StyleSheet, Image, Text } from 'react-native';
+import { View, Image, Text } from 'react-native';
 import { TouchableRipple } from 'react-native-paper';
-import colors from '../../../config/colors';
+import styles from './styles';
 
 export default ({ disabled, loading, onPress }) => (
   <TouchableRipple
@@ -19,35 +19,3 @@ export default ({ disabled, loading, onPress }) => (
     </View>
   </TouchableRipple>
 );
-
-const styles = StyleSheet.create({
-  color: { backgroundColor: colors.facebook },
-  container: {
-    width: 250,
-    height: 48,
-    elevation: 2,
-    borderRadius: 2,
-    justifyContent:'center',
-    margin: 4,
-    backgroundColor: colors.facebook
-  },
-  content: {
-    marginVertical: 4,
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-
-  logo: {
-    height: 32,
-    width: 32,
-    marginHorizontal: 8
-  },
-  text: {
-    fontSize: 14,
-    color: '#fff',
-    marginLeft: 4,
-    textAlign: 'center',
-    fontWeight: 'bold'
-  },
-})
-
