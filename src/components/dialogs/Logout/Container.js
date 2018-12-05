@@ -26,7 +26,7 @@ class Container extends React.Component {
     try {
       await LoginManager.logOut();
     } catch (error) {
-      // offline
+      firebase.crashlytics().log(error.message);
     }
   };
 
@@ -34,7 +34,7 @@ class Container extends React.Component {
     try {
       await GoogleSignin.signOut();
     } catch (error) {
-      // offline
+      firebase.crashlytics().log(error.message);
     }
   }
 
