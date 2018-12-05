@@ -12,8 +12,12 @@ GoogleSignin.configure({
 });
 
 export default class Container extends React.Component {
+  state = {
+    loading: false
+  }
 
   signIn = async () => {
+    this.setState({ loading: true });
     try {
       await GoogleSignin.hasPlayServices();
       const {
@@ -39,11 +43,15 @@ export default class Container extends React.Component {
         firebase.crashlytics().log(error.message);
       }
     }
+    this.setState({ loading: false });
   }
   render() {
+    const { loading } = this.state;
     return (
       <Button
         onPress={this.signIn}
+        disabled={loading}
+        loading={loading}
       />
     )
   }
