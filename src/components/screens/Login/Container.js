@@ -3,6 +3,9 @@ import { Auth } from 'aws-amplify';
 import Login from './Login';
 
 export default class LoginScreen extends React.Component {
+  state = {
+    loading: false
+  };
 
   _signInAsync = async ({
     name,
@@ -11,6 +14,7 @@ export default class LoginScreen extends React.Component {
     token,
     expires_at
   }) => {
+    this.setState({ loading: true });
     await Auth.federatedSignIn(identity, {
       token,
       expires_at,
@@ -22,6 +26,11 @@ export default class LoginScreen extends React.Component {
   };
 
   render() {
-    return (<Login handleLogin={this._signInAsync} />);
+    return (
+      <Login
+        loading={this.state.loading}
+        handleLogin={this._signInAsync}
+      />
+    );
   }
 }
