@@ -69,7 +69,7 @@ export default class Container extends React.Component {
     return (
       <Button
         loading={loading}
-        disabled={loading || this.props.loading}
+        disabled={loading}
         onPress={this._signIn}
       />
     )

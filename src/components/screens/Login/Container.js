@@ -1,6 +1,7 @@
 import React from 'react';
 import { Auth } from 'aws-amplify';
 import firebase from 'react-native-firebase';
+import Loading from '../../common/Loading';
 import Login from './Login';
 
 export default class LoginScreen extends React.Component {
@@ -31,9 +32,10 @@ export default class LoginScreen extends React.Component {
   };
 
   render() {
-    return (
+    return this.state.loading ? (
+      <Loading />
+    ) : (
       <Login
-        loading={this.state.loading}
         handleLogin={this._signInAsync}
       />
     );
