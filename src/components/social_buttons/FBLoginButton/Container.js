@@ -20,7 +20,7 @@ export default class Container extends React.Component {
       if (response.isCancelled) {
         alert('Login was cancelled');
       } else {
-        this._requestUserInfo();
+        await this._requestUserInfo();
       }
     } catch (error) {
       alert('Connection Error: Login failed');
@@ -46,14 +46,14 @@ export default class Container extends React.Component {
     new GraphRequestManager().addRequest(infoRequest).start();
   }
 
-  _responseInfoCallback = (error, result) => {
+  _responseInfoCallback = async (error, result) => {
     if (error) {
       alert('Error fetching data: ' + error.message);
-      firebase.analytics().logEvent(error.message);
+      firebase.crashlytics().log(error.message);
     } else if (result) {
       console.log(result);
       const { email, name, picture } = result;
-      this.props.onLogin({
+      await this.props.onLogin({
         provider: 'facebook',
         email,
         name,
