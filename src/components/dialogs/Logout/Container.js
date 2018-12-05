@@ -8,7 +8,7 @@ import Dialog from './Dialog';
 
 class Container extends React.Component {
   state = {
-    loading: false
+    loading: false,
   };
 
   _signOut = async () => {
@@ -20,7 +20,7 @@ class Container extends React.Component {
     this._handleDismiss();
     this.props.navigation.navigate('Auth');
     firebase.analytics().logEvent('logout');
-  }
+  };
 
   _fbLogout = async () => {
     try {
@@ -36,7 +36,7 @@ class Container extends React.Component {
     } catch (error) {
       firebase.crashlytics().log(error.message);
     }
-  }
+  };
 
   _handleDismiss = () => this.props.handleDismiss();
 
