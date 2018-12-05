@@ -15,7 +15,7 @@
       },
       "oauth_client": [
         {
-          "client_id": "915796894963-jcr3hifjhcj3fpbrsdga5fbbmcid138t.apps.googleusercontent.com",
+          "client_id": "915796894963-6ja5paiqf2si2pv454seouhu1giacles.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.schdlr",
@@ -23,7 +23,7 @@
           }
         },
         {
-          "client_id": "915796894963-tk7fjb1tiiajnl2i5hds91t9r7um10kq.apps.googleusercontent.com",
+          "client_id": "915796894963-7s4icvlnguqrq9o9dk04hamkpifg9f76.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.schdlr",
@@ -31,13 +31,13 @@
           }
         },
         {
-          "client_id": "915796894963-5rlco7rd3frrrudp6opqpk4u4fsd91it.apps.googleusercontent.com",
+          "client_id": "915796894963-6566v17dt2cuet54ihj3cem5vod86js3.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCQfYqBeCzvJNNO6zexbqUohweIxjVV34w"
+          "current_key": "AIzaSyBt6eqb_xkbjteJDLG2QC-iTMDLrVifzvE"
         }
       ],
       "services": {
@@ -48,7 +48,7 @@
           "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "915796894963-2mrc1d7nfrake8cnpvaehussb9p5gl6a.apps.googleusercontent.com",
+              "client_id": "915796894963-6566v17dt2cuet54ihj3cem5vod86js3.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
