@@ -43,8 +43,8 @@ export default class Container extends React.Component {
         alert("Connection Error: Login failed");
         firebase.crashlytics().log(error.message);
       }
+      this.setState({ loading: false });
     }
-    this.setState({ loading: false });
   }
   render() {
     const { loading } = this.state;
