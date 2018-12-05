@@ -7,12 +7,7 @@ export default ({ disabled, loading, onPress }) => (
   <TouchableRipple
     disabled={disabled}
     onPress={onPress}
-    style={[
-      styles.container,
-      {
-        backgroundColor: disabled ? colors.disabled : colors.facebook
-      }
-    ]}
+    style={styles.container}
   >
     <View style={styles.content}>
       <Image style={styles.logo} source={require('./img/logo.png')} />
@@ -39,7 +34,9 @@ const styles = StyleSheet.create({
     marginVertical: 4,
     flexDirection: 'row',
     alignItems: 'center',
+    backgroundColor: colors.facebook
   },
+
   logo: {
     height: 32,
     width: 32,

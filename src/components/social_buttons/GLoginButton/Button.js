@@ -9,12 +9,7 @@ export default ({ disabled, loading, onPress }) => (
     onPress={onPress}
     style={styles.container}
   >
-    <View style={[
-      styles.content,
-      {
-        backgroundColor: disabled ? colors.disabled : colors.google
-      }
-    ]}>
+    <View style={styles.content}>
       <Image style={styles.logo} source={require('./img/logo.png')} />
       <Text
         style={styles.text}>{
@@ -37,6 +32,7 @@ const styles = StyleSheet.create({
     marginVertical: 4,
     flexDirection: 'row',
     alignItems: 'center',
+    backgroundColor: colors.google
   },
   text: {
     fontSize: 14,
