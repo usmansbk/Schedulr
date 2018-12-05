@@ -1,4 +1,5 @@
 import React from 'react';
+import { AsyncStorage } from 'react-native';
 import { withNavigation } from 'react-navigation';
 import Dialog from './Dialog';
 
