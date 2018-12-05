@@ -14,7 +14,7 @@ GoogleSignin.configure({
 export default class Container extends React.Component {
   state = {
     loading: false
-  }
+  };
 
   signIn = async () => {
     this.setState({ loading: true });
