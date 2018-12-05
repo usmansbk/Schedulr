@@ -18,12 +18,12 @@ export default class Container extends React.Component {
     try {
       const response = await LoginManager.logInWithReadPermissions(['public_profile', 'email']);
       if (response.isCancelled) {
-        alert('Login cancelled');
+        alert('Login was cancelled');
       } else {
         this._requestUserInfo();
       }
     } catch (error) {
-      alert(error.message);
+      alert('Connection Error: Login failed');
     }
     this.setState({ loading: false });
   };
@@ -46,7 +46,20 @@ export default class Container extends React.Component {
     new GraphRequestManager().addRequest(infoRequest).start();
   }
 
-  _responseInfoCallback = () => console.log('Console')
+  _responseInfoCallback = (error, result) => {
+    if (error) {
+      alert('Error fetching data: ' + error.message);
+      firebase.analytics().logEvent(error.message);
+    } else {
+      const { email, name, picture } = result;
+      this.props.onLogin({
+        identity: 'facebook',
+        email,
+        name,
+        pictureUrl: picture && picture.data && picture.data.url
+      });
+    }
+  }
 
   render() {
     const { loading } = this.state;

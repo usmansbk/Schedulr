@@ -16,7 +16,7 @@ export default class Container extends React.Component {
     loading: false
   };
 
-  signIn = async () => {
+  _signIn = async () => {
     this.setState({ loading: true });
     try {
       await GoogleSignin.hasPlayServices();
@@ -40,7 +40,7 @@ export default class Container extends React.Component {
       } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
         alert("Google Play services not available");
       } else {
-        alert(error.message);
+        alert("Connection Error: Login failed");
         firebase.crashlytics().log(error.message);
       }
     }
@@ -50,7 +50,7 @@ export default class Container extends React.Component {
     const { loading } = this.state;
     return (
       <Button
-        onPress={this.signIn}
+        onPress={this._signIn}
         disabled={loading}
         loading={loading}
       />

@@ -28,13 +28,13 @@ const styles = StyleSheet.create({
     elevation: 2,
     borderRadius: 2,
     justifyContent:'center',
-    margin: 4
+    margin: 4,
+    backgroundColor: colors.facebook
   },
   content: {
     marginVertical: 4,
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: colors.facebook
   },
 
   logo: {
