@@ -19,7 +19,7 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/chdlr-20181203014524-deployment/amplify-cfn-templates/auth/cognito5c2f336b-cloudformation-template.yml",
 				"logicalId": "authcognito5c2f336b"
 			},
-			"lastPushTimeStamp": "2018-12-05T00:43:11.758Z",
+			"lastPushTimeStamp": "2018-12-05T05:39:35.255Z",
 			"output": {
 				"AppClientSecret": "1dmbgli0gvj4u8kqf6b7s7o3lvjh2hh61amrg7sc30s0944116a9",
 				"UserPoolId": "us-east-1_BZHFn3IVM",
@@ -31,7 +31,7 @@
 				"GoogleWebClient": "915796894963-6566v17dt2cuet54ihj3cem5vod86js3.apps.googleusercontent.com",
 				"FacebookWebClient": "203644060264792"
 			},
-			"lastPushDirHash": "fKqbXQKJmxjsqPNg+1Ztv8gH+BM=",
+			"lastPushDirHash": "wSypB30KtDjFVHbiwqWqTOkJomM=",
 			"[object Object]": {}
 		}
 	}
