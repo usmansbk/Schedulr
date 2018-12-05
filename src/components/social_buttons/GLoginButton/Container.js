@@ -30,11 +30,13 @@ export default class Container extends React.Component {
     } catch (error) {
       if (error.code === statusCodes.SIGN_IN_CANCELLED) {
         alert('Login cancelled');
+      } else if (error.code === statusCodes.IN_PROGRESS) {
+        alert('Login in progress');
       } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
         alert("Google Play services not available");
       } else {
         alert(error.message);
-        //firebase.crashlytics().log(error.message);
+        firebase.crashlytics().log(error.message);
       }
     }
   }
