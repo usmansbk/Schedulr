@@ -6,6 +6,7 @@ import {
   GraphRequestManager,
   AccessToken
 } from 'react-native-fbsdk';
+import Toast from 'react-native-simple-toast';
 import Button from './Button';
 
 export default class Container extends React.Component {
@@ -18,12 +19,12 @@ export default class Container extends React.Component {
     try {
       const response = await LoginManager.logInWithReadPermissions(['public_profile', 'email']);
       if (response.isCancelled) {
-        alert('Login was cancelled');
+        Toast.show('Login cancelled', Toast.SHORT);
       } else {
         await this._requestUserInfo();
       }
     } catch (error) {
-      alert('Login failed: Connection Error');
+      Toast.show('Connection error', Toast.SHORT);
       this.setState({ loading: false });
     }
   };
@@ -48,7 +49,7 @@ export default class Container extends React.Component {
 
   _responseInfoCallback = async (error, result) => {
     if (error) {
-      alert('Error fetching data: ' + error.message);
+      Toast.show(error.message, Toast.LONG);
       firebase.crashlytics().log(error.message);
     } else if (result) {
       console.log(result);
@@ -60,7 +61,7 @@ export default class Container extends React.Component {
         pictureUrl: picture && picture.data && picture.data.url
       });
     } else {
-      alert('Something went wrong!');
+      Toast.show('Something went wrong', Toast.SHORT);
     }
   }
 

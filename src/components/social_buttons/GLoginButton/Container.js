@@ -3,6 +3,7 @@ import {
   GoogleSignin,
   statusCodes
 } from 'react-native-google-signin';
+import Toast from 'react-native-simple-toast';
 import firebase from 'react-native-firebase';
 import Button from './Button';
 import env from '../../../config/env';
@@ -34,13 +35,13 @@ export default class Container extends React.Component {
       });
     } catch (error) {
       if (error.code === statusCodes.SIGN_IN_CANCELLED) {
-        alert('Login cancelled');
+        Toast.show('Login cancelled', Toast.SHORT);
       } else if (error.code === statusCodes.IN_PROGRESS) {
-        alert('Login in progress');
+        Toast.show('Login in progress', Toast.SHORT);
       } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
-        alert("Google Play services not available");
+        Toast.show("Google Play services not available", Toast.SHORT);
       } else {
-        alert("Login failed: Connection Error");
+        Toast.show("Connection Error", Toast.SHORT);
         firebase.crashlytics().log(error.message);
       }
       this.setState({ loading: false });

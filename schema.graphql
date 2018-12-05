@@ -1,0 +1,65 @@
+schema {
+  query: Query
+  mutation: Mutation
+}
+
+type Query {
+  getEvents(limit: Int, nextToken: String): EventConnection
+}
+
+type Mutation {
+  addEvent(input: AddEventInput): Event
+}
+
+type Event {
+  id: ID!
+  title: String!
+  description: String
+  location: Location
+  start: AWSDateTime!
+  end: AWSDateTime!
+  status: EventStatus!
+  allDay: Boolean!
+  repeat: EventFrequency!
+  type: EventType!
+  author: Person!
+  comments(limit: Int, nextToken: String): CommentConnection
+  group: Group!
+}
+
+type EventConnection {
+  events: [Event]
+  nextToken: String
+}
+
+type CommentConnection {
+  comments: [Comment]
+  nextToken: String
+}
+
+type Location {
+  venue: String!
+  longitude: Float
+  latitude: Float
+}
+
+enum EventStatus {
+  PENDING
+  ONGOING
+  ENDED
+  CANCELLED
+}
+
+enum EventFrequency {
+  NEVER
+  DAILY
+  WEEKLY
+  MONTHLY
+  YEARLY
+}
+
+enum EventType {
+  NORMAL
+  REMINDER
+  TASK
+}
