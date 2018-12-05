@@ -21,9 +21,7 @@ export default class Container extends Component {
   
   render() {
     return (
-      <React.Fragment>
-        <Loading />
-      </React.Fragment>
-    )
+      <Loading />
+    );
   }
 }
