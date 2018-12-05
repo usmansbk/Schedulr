@@ -19,7 +19,6 @@ export default class LoginScreen extends React.Component {
       token,
       expires_at,
     }, {
-        name,
         email
       });
     this.props.navigation.navigate('App');
