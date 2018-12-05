@@ -23,7 +23,7 @@ export default class Container extends React.Component {
         await this._requestUserInfo();
       }
     } catch (error) {
-      alert('Connection Error: Login failed');
+      alert('Login failed: Connection Error');
       this.setState({ loading: false });
     }
   };

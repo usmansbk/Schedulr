@@ -40,7 +40,7 @@ export default class Container extends React.Component {
       } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
         alert("Google Play services not available");
       } else {
-        alert("Connection Error: Login failed");
+        alert("Login failed: Connection Error");
         firebase.crashlytics().log(error.message);
       }
       this.setState({ loading: false });
