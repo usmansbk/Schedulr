@@ -19,9 +19,9 @@ export default class LoginScreen extends React.Component {
     await Auth.federatedSignIn(identity, {
       token,
       expires_at,
-    }, {
-        email
-      });
+    },{
+      email
+    });
     this.props.navigation.navigate('App');
     firebase.analytics().logEvent('sign_in', {
       name,
