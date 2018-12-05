@@ -1,6 +1,4 @@
 import React from 'react';
-import { AsyncStorage } from 'react-native';
-import { withNavigation } from 'react-navigation';
 import {
   Button,
   Paragraph,
@@ -8,11 +6,11 @@ import {
   Portal
 } from 'react-native-paper';
 
-const ConfirmDialog = ({
+export default ({
   visible,
   handleDismiss,
   loading,
-  navigation,
+  handleLogout,
 }) => (
   <Portal>
     <Dialog
@@ -26,14 +24,8 @@ const ConfirmDialog = ({
       </Dialog.Content>
       <Dialog.Actions>
         <Button disabled={loading} onPress={handleDismiss}>Dismiss</Button>
-        <Button loading={loading} disabled={loading} onPress={async () => {
-          await AsyncStorage.clear();
-          handleDismiss();
-          navigation.navigate('Auth');
-        }}>Continue</Button>
+        <Button loading={loading} disabled={loading} onPress={handleLogout}>Continue</Button>
       </Dialog.Actions>
     </Dialog>
   </Portal>
 );
-
-export default withNavigation(ConfirmDialog)
