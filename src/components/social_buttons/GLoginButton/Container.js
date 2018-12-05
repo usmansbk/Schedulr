@@ -28,7 +28,7 @@ export default class Container extends React.Component {
         name: user.name,
         email: user.email,
         pictureUrl: user.photo,
-        identity: 'google',
+        provider: 'google',
         token: idToken,
         expires_at: null
       });

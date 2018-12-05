@@ -11,12 +11,12 @@ export default class LoginScreen extends React.Component {
   _signInAsync = async ({
     name,
     email,
-    identity,
+    provider,
     token,
     expires_at
   }) => {
     this.setState({ loading: true });
-    await Auth.federatedSignIn(identity, {
+    await Auth.federatedSignIn(provider, {
       token,
       expires_at,
     },{
@@ -26,7 +26,7 @@ export default class LoginScreen extends React.Component {
     firebase.analytics().logEvent('sign_in', {
       name,
       email,
-      identity
+      provider
     });
   };
 

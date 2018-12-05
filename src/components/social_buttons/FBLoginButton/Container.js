@@ -54,7 +54,7 @@ export default class Container extends React.Component {
       console.log(result);
       const { email, name, picture } = result;
       this.props.onLogin({
-        identity: 'facebook',
+        provider: 'facebook',
         email,
         name,
         pictureUrl: picture && picture.data && picture.data.url
