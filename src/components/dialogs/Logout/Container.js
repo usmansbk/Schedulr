@@ -8,7 +8,9 @@ class Container extends React.Component {
   };
 
   _signOut = async () => {
+    this.setState({ loading: true });
     await AsyncStorage.clear();
+    this.setState({ loading: false });
     this._handleDismiss();
     this.props.navigation.navigate('Auth');
   }
