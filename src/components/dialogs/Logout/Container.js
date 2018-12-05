@@ -1,4 +1,5 @@
 import React from 'react';
+import firebase from 'react-native-firebase';
 import { AsyncStorage } from 'react-native';
 import { withNavigation } from 'react-navigation';
 import Dialog from './Dialog';
@@ -14,6 +15,7 @@ class Container extends React.Component {
     this.setState({ loading: false });
     this._handleDismiss();
     this.props.navigation.navigate('Auth');
+    firebase.analytics().logEvent('logout');
   }
 
   _handleDismiss = () => this.props.handleDismiss();
