@@ -76,10 +76,10 @@ Parameters:
               
   userpoolClientGenerateSecret:
     Type: String
-              
+          
   userpoolClientRefreshTokenValidity:
-    Type: Number
-              
+    Type: String
+                  
   userpoolClientReadAttributes:
     Type: CommaDelimitedList
       
@@ -107,6 +107,12 @@ Parameters:
   userpoolClientSetAttributes:
     Type: String
           
+  resourceName:
+    Type: String
+            
+  authSelections:
+    Type: String
+            
   useDefault:
     Type: String
             
@@ -121,11 +127,17 @@ Parameters:
             
   authRoleArn:
     Type: String
-            
-  resourceName:
+                  
+  authProviders:
+    Type: CommaDelimitedList
+      
+  facebookAppId:
     Type: String
             
-  authSelections:
+  googleClientId:
+    Type: String
+            
+  selectedParties:
     Type: String
           
 Resources:
@@ -337,6 +349,15 @@ Resources:
             - cognito-idp.${region}.amazonaws.com/${client}
             - { region: !Ref "AWS::Region",  client: !Ref UserPool}
             
+      SupportedLoginProviders: 
+        
+          
+          graph.facebook.com: '203644060264792'
+                  
+          
+          accounts.google.com: '915796894963-6566v17dt2cuet54ihj3cem5vod86js3.apps.googleusercontent.com'
+                   
+      
       AllowUnauthenticatedIdentities: !Ref allowUnauthenticatedIdentities
        
        
@@ -378,8 +399,14 @@ Outputs :
   AppClientSecret:
     Value: !GetAtt UserPoolClientInputs.appSecret
   
+  
+  GoogleWebClient:
+    Value: 915796894963-6566v17dt2cuet54ihj3cem5vod86js3.apps.googleusercontent.com
    
    
   
+  
+  FacebookWebClient:
+    Value: 203644060264792
    
   

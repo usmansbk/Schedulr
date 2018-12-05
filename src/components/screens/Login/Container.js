@@ -1,31 +1,24 @@
 import React from 'react';
-import { AsyncStorage } from 'react-native';
 import { Auth } from 'aws-amplify';
 import Login from './Login';
 
 export default class LoginScreen extends React.Component {
 
-  _signInAsync = ({
+  _signInAsync = async ({
     name,
     email,
     identity,
     token,
     expires_at
   }) => {
-    alert(`${name} ${email} ${identity} ${result.idToken}`);
-    return Auth.federatedSignIn(
-      identity,
-      {
-        token,
-        expires_at,
-      },
-      {
+    await Auth.federatedSignIn(identity, {
+      token,
+      expires_at,
+    }, {
         name,
         email
-      }
-    ).then(() => {
-      this.props.navigation.navigate('App');
-    });
+      });
+    this.props.navigation.navigate('App');
   };
 
   render() {

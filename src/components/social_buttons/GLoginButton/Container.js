@@ -34,7 +34,7 @@ export default class Container extends React.Component {
         alert("Google Play services not available");
       } else {
         alert(error.message);
-        firebase.crashlytics().log(error.message);
+        //firebase.crashlytics().log(error.message);
       }
     }
   }

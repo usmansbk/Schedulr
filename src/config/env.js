@@ -14,7 +14,8 @@ const dev = {
   CONTACT_URL: `${url}/contact`,
   LEGALITY_URL: `${url}/legal`,
   TERMS_URL: `${url}/terms`,
-  WEB_CLIENT_ID: "915796894963-5rlco7rd3frrrudp6opqpk4u4fsd91it.apps.googleusercontent.com"
+  WEB_CLIENT_ID: "915796894963-6566v17dt2cuet54ihj3cem5vod86js3.apps.googleusercontent.com"
+  
 };
 
 const prod = {

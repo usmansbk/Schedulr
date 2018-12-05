@@ -1,7 +1,7 @@
 {
     "identityPoolName": "cognito5c2f336b_identitypool_5c2f336b",
-    "allowUnauthenticatedIdentities": false,
-    "thirdPartyAuth": false,
+    "allowUnauthenticatedIdentities": true,
+    "thirdPartyAuth": true,
     "lambdaLogPolicy": "cognito5c2f336b_lambda_log_policy",
     "openIdLambdaRoleName": "cognito5c2f336b_openid_lambda_role",
     "openIdRolePolicy": "cognito5c2f336b_openid_pass_role_policy",
@@ -20,7 +20,7 @@
     "policyName": "cognito5c2f336b-sns-policy",
     "smsAuthenticationMessage": "Your authentication code is {####}",
     "smsVerificationMessage": "Your verification code is {####}",
-    "emailVerificationSubject": "Your verification code",
+    "emailVerificationSubject": "Forgot password?",
     "emailVerificationMessage": "Your verification code is {####}",
     "defaultPasswordPolicy": false,
     "passwordPolicyMinLength": 8,
@@ -35,7 +35,7 @@
     ],
     "userpoolClientName": "cognito5c2f336b_app_client",
     "userpoolClientGenerateSecret": true,
-    "userpoolClientRefreshTokenValidity": 30,
+    "userpoolClientRefreshTokenValidity": "365",
     "userpoolClientReadAttributes": [
         "email"
     ],
@@ -47,11 +47,18 @@
     "userpoolClientLogPolicy": "cognito5c2f336b_userpoolclient_lambda_log_policy",
     "userpoolClientLambdaPolicy": "cognito5c2f336b_userpoolclient_lambda_iam_policy",
     "userpoolClientSetAttributes": false,
-    "useDefault": "default",
+    "resourceName": "cognito5c2f336b",
+    "authSelections": "identityPoolAndUserPool",
+    "useDefault": "manual",
     "unAuthRoleName": "chdlr-20181203014524-unauthRole",
     "authRoleName": "chdlr-20181203014524-authRole",
     "unAuthRoleArn": "arn:aws:iam::112790165000:role/chdlr-20181203014524-unauthRole",
     "authRoleArn": "arn:aws:iam::112790165000:role/chdlr-20181203014524-authRole",
-    "resourceName": "cognito5c2f336b",
-    "authSelections": "identityPoolAndUserPool"
+    "authProviders": [
+        "graph.facebook.com",
+        "accounts.google.com"
+    ],
+    "facebookAppId": "203644060264792",
+    "googleClientId": "915796894963-6566v17dt2cuet54ihj3cem5vod86js3.apps.googleusercontent.com",
+    "selectedParties": "{\"graph.facebook.com\":\"203644060264792\",\"accounts.google.com\":\"915796894963-6566v17dt2cuet54ihj3cem5vod86js3.apps.googleusercontent.com\"}"
 }
