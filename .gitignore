@@ -36,6 +36,12 @@ node_modules/
 npm-debug.log
 yarn-error.log
 
+# amplify
+#
+amplify/
+.amplifyrc
+*/aws-exports.js
+
 # BUCK
 buck-out/
 \.buckd/
