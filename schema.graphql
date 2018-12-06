@@ -129,6 +129,7 @@ type Group implements Node {
   name: String!
   description: String
   privacy: GroupPrivacy!
+  pictureUrl: AWSURL
   isAdmin: Boolean!
   isPrivate: Boolean!
   isClosed: Boolean!
@@ -183,6 +184,7 @@ type Location {
 type SearchResult {
   events(limit: Int, nextToken: String): EventConnection
   groups(limit: Int, nextToken: String): GroupConnection
+  people(limit: Int, nextToken: String): PersonConnection
 }
 
 enum EditEventOption {
@@ -224,4 +226,5 @@ enum GroupPrivacy {
 enum SearchTarget {
   EVENT
   GROUP
+  PERSON
 }
