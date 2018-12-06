@@ -42,7 +42,13 @@ export default class Container extends React.Component {
         Toast.show("Google Play services not available", Toast.SHORT);
       } else {
         Toast.show("Connection Error", Toast.SHORT);
-        Analytics.record('error', error.message);
+        Analytics.record({
+          name: 'google_login_error',
+          attributes: {
+            name: error.name,
+            message: error.message
+          }
+        });
       }
       this.setState({ loading: false });
     }

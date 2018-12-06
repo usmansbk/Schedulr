@@ -25,14 +25,25 @@ export default class LoginScreen extends React.Component {
         email
       });
       this.props.navigation.navigate('App');
-      Analytics.record('sign_in', {
-        name,
-        email,
-        provider
+      Analytics.record({
+        name: 'sign_in',
+        attributes: {
+          username: name,
+          email,
+          provider
+        }
       });
     } catch (error) {
       Toast.show('Login failed', Toast.SHORT);
       this.setState({ loading: false });
+      Analytics.record({
+        name: 'aws_login_error',
+        attributes: {
+          username: name,
+          name: error.name,
+          message: error.message
+        }
+      });
     }
   };
 
