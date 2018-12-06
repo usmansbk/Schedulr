@@ -24,7 +24,7 @@ export default class Container extends React.Component {
         return await this._requestUserInfo();
       }
     } catch (error) {
-      Toast.show('Connection Error', Toast.SHORT);
+      Toast.show('Connection error', Toast.SHORT);
     }
     this.setState({ loading: false });
   };
