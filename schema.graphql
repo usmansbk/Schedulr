@@ -26,7 +26,7 @@ type Mutation {
   cancelEvent(input: CancelEventInput!): Event
   deleteEvent(id: ID!): Boolean
 
-  createGroup(input: AddGroupInput!): Group
+  createGroup(input: CreateGroupInput!): Group
   editGroup(input: EditGroupInput!): Group
   closeGroup(id: ID!): Group
   openGroup(id: ID!): Group
@@ -41,7 +41,7 @@ input AddCommentInput {
   replying: ID!
 }
 
-input AddGroupInput {
+input CreateGroupInput {
   name: String!
   description: String
   privacy: GroupPrivacy!
