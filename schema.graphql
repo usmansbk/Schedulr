@@ -15,6 +15,7 @@ type Query {
   getGroup(id: ID!): Group
 
   getComments(eventId: ID!, limit: Int, nextToken: String): CommentConnection
+  getMembers(groupId: ID!, limit: Int, nextToken: String): PersonConnection
 
   search(input: SearchInput!): SearchResult
 }
