@@ -1,6 +1,7 @@
 import React from 'react';
 import { Auth } from 'aws-amplify';
 import firebase from 'react-native-firebase';
+import Toast from 'react-native-simple-toast';
 import Loading from '../../common/Loading';
 import Login from './Login';
 
@@ -17,18 +18,23 @@ export default class LoginScreen extends React.Component {
     expires_at
   }) => {
     this.setState({ loading: true });
-    await Auth.federatedSignIn(provider, {
-      token,
-      expires_at,
-    },{
-      email
-    });
-    this.props.navigation.navigate('App');
-    firebase.analytics().logEvent('sign_in', {
-      name,
-      email,
-      provider
-    });
+    try {
+      await Auth.federatedSignIn(provider, {
+        token,
+        expires_at,
+      },{
+        email
+      });
+      this.props.navigation.navigate('App');
+      firebase.analytics().logEvent('sign_in', {
+        name,
+        email,
+        provider
+      });
+    } catch (error) {
+      Toast.show('Login failed', Toast.SHORT);
+      this.setState({ loading: false });
+    }
   };
 
   render() {
