@@ -21,12 +21,12 @@ export default class Container extends React.Component {
       if (response.isCancelled) {
         Toast.show('Login cancelled', Toast.SHORT);
       } else {
-        await this._requestUserInfo();
+        return await this._requestUserInfo();
       }
     } catch (error) {
       Toast.show('Connection error', Toast.SHORT);
-      this.setState({ loading: false });
     }
+    this.setState({ loading: false });
   };
 
   _requestUserInfo = async () => {
@@ -54,7 +54,7 @@ export default class Container extends React.Component {
     } else if (result) {
       console.log(result);
       const { email, name, picture } = result;
-      await this.props.onLogin({
+      return await this.props.onLogin({
         provider: 'facebook',
         email,
         name,
@@ -63,6 +63,7 @@ export default class Container extends React.Component {
     } else {
       Toast.show('Something went wrong', Toast.SHORT);
     }
+    this.setState({ loading: false });
   }
 
   render() {
