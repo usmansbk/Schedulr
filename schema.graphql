@@ -4,6 +4,7 @@ schema {
 }
 
 type Query {
+  me: Person
   getPerson(id: ID!): Person
 
   getAllEvents(limit: Int, nextToken: String): EventConnection
@@ -15,7 +16,7 @@ type Query {
 
   getComments(eventId: ID!, limit: Int, nextToken: String): CommentConnection
 
-  search(query: String!, target: SearchTarget!): SearchResult
+  search(input: SearchInput!): SearchResult
 }
 
 type Mutation {
@@ -24,7 +25,7 @@ type Mutation {
   cancelEvent(input: CancelEventInput!): Event
   deleteEvent(id: ID!): Boolean
 
-  addGroup(input: AddGroupInput!): Group
+  createGroup(input: AddGroupInput!): Group
   editGroup(input: EditGroupInput!): Group
   closeGroup(id: ID!): Group
   openGroup(id: ID!): Group
@@ -49,6 +50,7 @@ input EditGroupInput {
   id: ID!
   name: String
   description: String
+  privacy: GroupPrivacy
 }
 
 input AddEventInput {
@@ -83,6 +85,11 @@ input EditEventInputPayload {
   allDay: Boolean
   repeat: EventFrequency
   type: EventType
+}
+
+input SearchInput {
+  query: String!
+  target: SearchTarget
 }
 
 interface Node {
