@@ -4,7 +4,7 @@ import {
   statusCodes
 } from 'react-native-google-signin';
 import Toast from 'react-native-simple-toast';
-import firebase from 'react-native-firebase';
+import { Analytics } from 'aws-amplify';
 import Button from './Button';
 import env from '../../../config/env';
 
@@ -42,7 +42,7 @@ export default class Container extends React.Component {
         Toast.show("Google Play services not available", Toast.SHORT);
       } else {
         Toast.show("Connection Error", Toast.SHORT);
-        firebase.crashlytics().log(error.message);
+        Analytics.record('error', error.message);
       }
       this.setState({ loading: false });
     }

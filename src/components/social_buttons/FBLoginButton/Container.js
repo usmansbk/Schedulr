@@ -1,5 +1,5 @@
 import React from 'react';
-import firebase from 'react-native-firebase';
+import { Analytics } from 'aws-amplify';
 import {
   LoginManager,
   GraphRequest,
@@ -50,7 +50,7 @@ export default class Container extends React.Component {
   _responseInfoCallback = async (error, result) => {
     if (error) {
       Toast.show(error.message, Toast.LONG);
-      firebase.crashlytics().log(error.message);
+      Analytics.record('error', error.message);
     } else if (result) {
       console.log(result);
       const { email, name, picture } = result;

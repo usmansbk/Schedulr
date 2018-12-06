@@ -1,0 +1,11 @@
+{
+    "appName": "schdlr",
+    "roleName": "pinpointLambdaRole9b0078bf",
+    "cloudWatchPolicyName": "cloudWatchPolicy9b0078bf",
+    "pinpointPolicyName": "pinpointPolicy9b0078bf",
+    "authPolicyName": "pinpoint_amplify_9b0078bf",
+    "unauthPolicyName": "pinpoint_amplify_9b0078bf",
+    "authRoleName": "chdlr-20181203014524-authRole",
+    "unauthRoleName": "chdlr-20181203014524-unauthRole",
+    "IAMPrefix": "112790165000"
+}

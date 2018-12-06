@@ -1,6 +1,5 @@
 import React from 'react';
-import { Auth } from 'aws-amplify';
-import firebase from 'react-native-firebase';
+import { Auth, Analytics } from 'aws-amplify';
 import Toast from 'react-native-simple-toast';
 import Loading from '../../common/Loading';
 import Login from './Login';
@@ -26,7 +25,7 @@ export default class LoginScreen extends React.Component {
         email
       });
       this.props.navigation.navigate('App');
-      firebase.analytics().logEvent('sign_in', {
+      Analytics.record('sign_in', {
         name,
         email,
         provider
