@@ -51,7 +51,6 @@ public class MainApplication extends Application implements ShareApplication, Re
             new RNSharePackage(),
             new ReactNativePushNotificationPackage(),
             new ImagePickerPackage(),
-            new RNFirebasePackage(),
             new FBSDKPackage(mCallbackManager),
             new RNFetchBlobPackage()
       );
