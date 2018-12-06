@@ -16,6 +16,7 @@
     "numeral": "^2.0.6",
     "prop-types": "^15.6.2",
     "react": "16.6.1",
+    "react-apollo": "^2.3.2",
     "react-native": "0.57.5",
     "react-native-cached-image": "^1.4.3",
     "react-native-fbsdk": "^0.8.0",
