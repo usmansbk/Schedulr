@@ -34,7 +34,6 @@
     "react-native-user-avatar": "^1.0.3",
     "react-native-vector-icons": "^6.1.0",
     "react-navigation": "^3.0.0",
-    "shortid": "^2.2.14",
     "yup": "^0.26.6"
   },
   "devDependencies": {
