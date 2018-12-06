@@ -25,12 +25,15 @@ type Mutation {
   editEvent(input: EditEventInput!): Event
   cancelEvent(input: CancelEventInput!): Event
   deleteEvent(id: ID!): Boolean
+  toggleStarEvent(id: ID!): Event
 
   createGroup(input: CreateGroupInput!): Group
   editGroup(input: EditGroupInput!): Group
   closeGroup(id: ID!): Group
   openGroup(id: ID!): Group
   deleteGroup(id: ID!): Boolean
+  joinGroup(id: ID!): Group
+  leaveGroup(id: ID!): Group
 
   addComment(input: AddCommentInput!): Comment
   deleteComment(id: ID!): Boolean
