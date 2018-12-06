@@ -1,6 +1,5 @@
 import React from 'react';
-import firebase from 'react-native-firebase';
-import { Cache } from 'aws-amplify';
+import { Cache, Analytics } from 'aws-amplify';
 import { LoginManager } from 'react-native-fbsdk';
 import { GoogleSignin } from 'react-native-google-signin';
 import { withNavigation } from 'react-navigation';
@@ -19,7 +18,7 @@ class Container extends React.Component {
     this.setState({ loading: false });
     this._handleDismiss();
     this.props.navigation.navigate('Auth');
-    firebase.analytics().logEvent('logout');
+    Analytics.record('logout');
   };
 
   _fbLogout = async () => {
