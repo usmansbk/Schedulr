@@ -4,12 +4,51 @@ schema {
 }
 
 type Query {
-  getEvents(limit: Int, nextToken: String): EventConnection
+  getPerson(id: ID!): Person
+
+  getAllEvents(limit: Int, nextToken: String): EventConnection
+  getEvents(groupId: ID!, limit: Int, nextToken: String): EventConnection
   getEvent(id: ID!): Event
+
+  getGroups(limit: Int, nextToken: String): GroupConnection
+  getGroup(id: ID!): Group
+
+  getComments(eventId: ID!, limit: Int, nextToken: String): CommentConnection
+
+  search(query: String!, target: SearchTarget!): SearchResult
 }
 
 type Mutation {
   addEvent(input: AddEventInput!): Event
+  editEvent(input: EditEventInput!): Event
+  cancelEvent(input: CancelEventInput!): Event
+  deleteEvent(id: ID!): Boolean
+
+  addGroup(input: AddGroupInput!): Group
+  editGroup(input: EditGroupInput!): Group
+  closeGroup(id: ID!): Group
+  openGroup(id: ID!): Group
+  deleteGroup(id: ID!): Boolean
+
+  addComment(input: AddCommentInput!): Comment
+  deleteComment(id: ID!): Boolean
+}
+
+input AddCommentInput {
+  content: String!
+  replying: ID!
+}
+
+input AddGroupInput {
+  name: String!
+  description: String
+  privacy: GroupPrivacy!
+}
+
+input EditGroupInput {
+  id: ID!
+  name: String
+  description: String
 }
 
 input AddEventInput {
@@ -21,6 +60,29 @@ input AddEventInput {
   allDay: Boolean!
   repeat: EventFrequency!
   type: EventType!
+  groupId: ID!
+}
+
+input EditEventInput {
+  id: ID!
+  option: EditEventOption!
+  payload: EditEventInputPayload!
+}
+
+input CancelEventInput {
+  id: ID!
+  option: EditEventOption!
+}
+
+input EditEventInputPayload {
+  title: String
+  description: String
+  location: Location
+  start: AWSDateTime
+  end: AWSDateTime
+  allDay: Boolean
+  repeat: EventFrequency
+  type: EventType
 }
 
 interface Node {
@@ -32,6 +94,10 @@ type Person implements Node {
   name: String!
   email: AWSEmail!
   pictureUrl: AWSURL
+  eventsCount: Int
+  groupsCount: Int
+  events(limit: Int, nextToken: String): EventConnection
+  groups(limit: Int, nextToken: String): GroupConnection
   createdAt: AWSDateTime!
   updatedAt: AWSDateTime!
 }
@@ -44,6 +110,8 @@ type Event implements Node {
   start: AWSDateTime!
   end: AWSDateTime!
   status: EventStatus!
+  starsCount: Int!
+  commentsCount: Int!
   allDay: Boolean!
   isCancelled: Boolean!
   isAuthor: Boolean!
@@ -54,6 +122,46 @@ type Event implements Node {
   group: Group!
   createdAt: AWSDateTime!
   updatedAt: AWSDateTime!
+}
+
+type Group implements Node {
+  id: ID!
+  name: String!
+  description: String
+  privacy: GroupPrivacy!
+  isAdmin: Boolean!
+  isPrivate: Boolean!
+  isClosed: Boolean!
+  isMember: Boolean!
+  status: GroupStatus!
+  admin: Person!
+  membersCount: Int
+  eventsCount: Int
+  events(limit: Int, nextToken: String): EventConnection
+  members(limit: Int, nextToken: String): PersonConnection
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+type Comment implements Node {
+  id: ID!
+  content: String!
+  replying: Comment
+  isAuthor: Boolean!
+  event: Event!
+  author: Person!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+type PersonConnection {
+  people: [Person]
+  nextToken: String
+}
+
+type GroupConnection {
+  groups: [Group]
+  nextToken: String
 }
 
 type EventConnection {
@@ -70,6 +178,16 @@ type Location {
   address: String!
   longitude: Float
   latitude: Float
+}
+
+type SearchResult {
+  events(limit: Int, nextToken: String): EventConnection
+  groups(limit: Int, nextToken: String): GroupConnection
+}
+
+enum EditEventOption {
+  SINGLE
+  ALL
 }
 
 enum EventStatus {
@@ -91,4 +209,19 @@ enum EventType {
   NORMAL
   REMINDER
   TASK
+}
+
+enum GroupStatus {
+  OPEN
+  CLOSED
+}
+
+enum GroupPrivacy {
+  PUBLIC
+  PRIVATE
+}
+
+enum SearchTarget {
+  EVENT
+  GROUP
 }
