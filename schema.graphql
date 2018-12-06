@@ -106,6 +106,16 @@ type Person implements Node {
   groupsCount: Int
   events(limit: Int, nextToken: String): EventConnection
   groups(limit: Int, nextToken: String): GroupConnection
+  preference: UserPreference!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+type UserPreference {
+  adminComments: Boolean!
+  membersComments: Boolean!
+  repliesToMyComments: Boolean!
+  visitorsComments: Boolean!
   createdAt: AWSDateTime!
   updatedAt: AWSDateTime!
 }
