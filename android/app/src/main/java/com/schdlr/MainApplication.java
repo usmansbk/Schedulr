@@ -5,10 +5,6 @@ import android.app.Application;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookSdk;
 
-import io.invertase.firebase.RNFirebasePackage;
-import io.invertase.firebase.fabric.crashlytics.RNFirebaseCrashlyticsPackage;
-import io.invertase.firebase.analytics.RNFirebaseAnalyticsPackage;
-
 import com.facebook.react.ReactApplication;
 import com.amazonaws.RNAWSCognitoPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
@@ -57,9 +53,7 @@ public class MainApplication extends Application implements ShareApplication, Re
             new ImagePickerPackage(),
             new RNFirebasePackage(),
             new FBSDKPackage(mCallbackManager),
-            new RNFetchBlobPackage(),
-            new RNFirebaseCrashlyticsPackage(),
-            new RNFirebaseAnalyticsPackage()
+            new RNFetchBlobPackage()
       );
     }
 
