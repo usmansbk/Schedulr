@@ -19,11 +19,11 @@ export default class App extends React.Component {
   render() {
     return (
       <MenuProvider backHandler={true}>
-        <ApolloProvider client={client}>
-          <PaperProvider theme={theme}>
+        <PaperProvider theme={theme}>
+          <ApolloProvider client={client}>
             <AppContainer />
-          </PaperProvider>
-        </ApolloProvider>
+          </ApolloProvider>
+        </PaperProvider>
       </MenuProvider>
     );
   }

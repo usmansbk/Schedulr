@@ -1,0 +1,76 @@
+type User @model
+  @auth(rules: [
+    {allow: owner, ownerField: "owner", mutations: [create, update, delete], queries: [get]}
+  ]) {
+  id: ID!
+  name: String!
+  email: AWSEmail!
+  pictureUrl: AWSURL
+  events: [Event]
+  groups: [Group]
+}
+
+type Group @model {
+  id: ID!
+  name: String!
+  description: String
+  privacy: Privacy!
+  status: GroupStatus!
+  creator: User
+  members: [User]
+  events: [Event]
+}
+
+type Event @model {
+  id: ID!
+  title: String!
+  description: String
+  location: Location
+  start: AWSDateTime!
+  end: AWSDateTime!
+  allDay: Boolean
+  isCancelled: Boolean
+  cancelled: [AWSDateTime]
+  repeat: RepeatEvent
+  type: EventType
+  author: User
+  group: Group
+  comments: [Comment]
+}
+
+type Comment @model {
+  id: ID!
+  content: String!
+  replying: Comment
+  event: Event
+  author: User
+}
+
+type Location @model {
+  id: ID!
+  address: String!
+  latitude: Float
+  longitude: Float
+  event: Event
+}
+
+enum GroupStatus {
+  OPEN
+  CLOSED
+}
+enum Privacy {
+  PUBLIC
+  PRIVATE
+}
+enum RepeatEvent {
+  NEVER
+  DAILY
+  WEEKLY
+  MONTHLY
+  YEARLY
+}
+enum EventType {
+  TASK
+  REMINDER
+  NORMAL
+}
