@@ -15,7 +15,6 @@ export default ({
   goBack,
   name=defaultProps.name,
   pictureUrl=defaultProps.pictureUrl,
-  joined=defaultProps.joined,
 }) => (
   <React.Fragment>
     <Appbar.Header style={[appStyles.header, styles.appbar]} collapsable>
@@ -35,7 +34,6 @@ export default ({
         >
           {name}
         </Text>
-        <Caption numberOfLines={1} ellipsizeMode="tail" style={styles.caption}>Joined {joined}</Caption>
       </View>
     </View>
   </React.Fragment>
@@ -44,7 +42,4 @@ export default ({
 const defaultProps = {
   name: 'Babakolo Usman Suleiman',
   pictureUrl: null,
-  joined: 'Mon 12, November 2018',
-  joinedCount: 8,
-  ownCount: 3
 }
