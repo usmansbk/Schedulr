@@ -21,6 +21,8 @@ type Query {
 }
 
 type Mutation {
+  signUp(input: SignUpInput!): Person
+  
   addEvent(input: AddEventInput!): Event
   editEvent(input: EditEventInput!): Event
   cancelEvent(input: CancelEventInput!): Event
@@ -37,6 +39,12 @@ type Mutation {
 
   addComment(input: AddCommentInput!): Comment
   deleteComment(id: ID!): Boolean
+}
+
+input SignUpInput {
+  name: String!
+  email: AWSEmail!
+  pictureUrl: AWSURL
 }
 
 input AddCommentInput {
