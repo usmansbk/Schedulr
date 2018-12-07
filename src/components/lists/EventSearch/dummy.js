@@ -3,7 +3,9 @@ export default [
     id: 1,
     title: 'Dinner with Judie and Barbie krugger',
     description: 'Lorem Ipsum Dolor Amet',
-    location: 'No location set',
+    location: {
+      addres: 'B13. Faculty of Engineering'
+    },
     start: Date.now(),
     end: new Date('12/2/2018'),
     allDay: true,
@@ -22,7 +24,9 @@ export default [
     id: 2,
     title: 'Dinner with Judie and Barbie kruggerkruggerkruggerkrugger',
     description: 'Lorem Ipsum Dolor Amet',
-    location: 'No location set',
+    location: {
+      addres: 'B13. Faculty of Engineering'
+    },
     start: Date.now(),
     end: new Date('12/2/2018'),
     allDay: true,
@@ -42,7 +46,9 @@ export default [
     id: 3,
     title: 'Dinner with Judie and Barbie krugger',
     description: 'Lorem Ipsum Dolor Amet',
-    location: 'No location set',
+    location: {
+      addres: 'B13. Faculty of Engineering'
+    },
     start: Date.now(),
     end: new Date('12/2/2018'),
     allDay: true,
@@ -61,7 +67,9 @@ export default [
     id: 4,
     title: 'Dinner with Judie and Barbie krugger',
     description: 'Lorem Ipsum Dolor Amet',
-    location: 'No location set',
+    location: {
+      addres: 'B13. Faculty of Engineering'
+    },
     start: Date.now(),
     end: new Date('12/2/2018'),
     allDay: true,
@@ -80,7 +88,9 @@ export default [
     id: 5,
     title: 'Dinner with Judie and Barbie krugger',
     description: 'Lorem Ipsum Dolor Amet',
-    location: 'No location set',
+    location: {
+      addres: 'B13. Faculty of Engineering'
+    },
     start: Date.now(),
     end: new Date('12/2/2018'),
     allDay: true,
