@@ -148,6 +148,19 @@
 					"IAMPrefix": "112790165000"
 				}
 			}
+		},
+		"apischdlr": {
+			"Type": "AWS::CloudFormation::Stack",
+			"Properties": {
+				"TemplateURL": "https://s3.amazonaws.com/chdlr-20181203014524-deployment/amplify-cfn-templates/api/cloudformation-template.json",
+				"Parameters": {
+					"AppSyncApiName": "schdlr",
+					"schemaGraphql": "s3://chdlr-20181203014524-deployment/amplify-appsync-files/schema.graphql.1544143921026",
+					"ResolverBucket": "chdlr-20181203014524-deployment",
+					"ResolverRootKey": "amplify-appsync-files",
+					"DeploymentTimestamp": "1544143921026"
+				}
+			}
 		}
 	},
 	"Outputs": {
