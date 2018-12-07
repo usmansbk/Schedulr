@@ -21,6 +21,7 @@ type Query {
 }
 
 type Mutation {
+  signIn(input: SignInInput!): Person
   signUp(input: SignUpInput!): Person
 
   addEvent(input: AddEventInput!): Event
@@ -39,6 +40,10 @@ type Mutation {
 
   addComment(input: AddCommentInput!): Comment
   deleteComment(id: ID!): Boolean
+}
+
+input SignInInput {
+  email: AWSEmail
 }
 
 input SignUpInput {
@@ -113,10 +118,6 @@ type Person implements Node {
   name: String!
   email: AWSEmail!
   pictureUrl: AWSURL
-  eventsCount: Int
-  groupsCount: Int
-  events: [Event]
-  groups: [Group]
   preference: UserPreference!
   createdAt: AWSDateTime!
   updatedAt: AWSDateTime!
@@ -167,7 +168,6 @@ type Group implements Node {
   status: GroupStatus!
   admin: Person!
   membersCount: Int
-  eventsCount: Int
   events: [Event]
   members: [Person]
   createdAt: AWSDateTime!
