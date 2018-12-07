@@ -48,7 +48,7 @@ class List extends React.Component {
     id={id}
     title={title}
     description={description}
-    location={location}
+    location={location && location.address}
     type={type}
     isCancelled={isCancelled}
     commentsCount={commentsCount}

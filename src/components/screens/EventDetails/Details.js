@@ -87,7 +87,7 @@ export default class DetailsScreen extends React.Component {
         date={formatDate(start, end, allDay)}
         nextDate={this._getRepeatDate()}
         type={decapitalize(type)}
-        location={location}
+        location={location && location.address}
         groupName={group.name}
         groupId={group.id}
         repeat={decapitalize(repeat)}

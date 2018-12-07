@@ -4,7 +4,9 @@ export default [{
       id: 1,
       title: 'Dinner with Judie and Barbie krugger',
       description: 'Lorem Ipsum Dolor Amet',
-      location: 'No location set',
+      location: {
+        address: 'B13. Faculty of Engineering'
+      },
       start: Date.now(),
       end: new Date('12/2/2018'),
       allDay: true,
@@ -22,7 +24,9 @@ export default [{
       id: 2,
       title: 'Sleeping whole day',
       description: 'Lorem Ipsum Dolor Amet',
-      location: 'No location set',
+      location: {
+        address: 'B13. Faculty of Engineering'
+      },
       start: Date.now(),
       end: new Date('11/24/2018'),
       allDay: false,
@@ -61,7 +65,9 @@ export default [{
       id: 1,
       title: 'EEEN304',
       description: 'Lorem Ipsum Dolor Amet',
-      location: 'No location set',
+      location: {
+        address: 'Theatre A/B. Faculty of Art'
+      },
       start: Date.now(),
       end: new Date('11/26/2018'),
       allDay: true,

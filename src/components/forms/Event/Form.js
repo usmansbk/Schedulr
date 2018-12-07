@@ -29,7 +29,9 @@ import frequency from './frequency';
 const defaultValues = {
   title: '',
   description: '',
-  location: '',
+  location: {
+    address: ''
+  },
   start: Date.now(),
   end: Date.now(),
   allDay: false,
@@ -114,9 +116,9 @@ const Form = ({
           </HelperText>
           <TextInput
             placeholder="Location"
-            value={values.location}
-            onChangeText={handleChange('location')}
-            onBlur={handleBlur('location')}
+            value={values.location.address}
+            onChangeText={handleChange('location.address')}
+            onBlur={handleBlur('location.address')}
             mode="outlined"
           />
           <HelperText
