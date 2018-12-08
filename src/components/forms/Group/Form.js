@@ -87,7 +87,7 @@ const Form = ({
           {errors.description}
           </HelperText>
           <View style={styles.switchButton}>
-            <Text style={styles.text}>Private</Text>
+            <Text style={styles.text}>Visibility</Text>
             <Switch
               value={values.private}
               onValueChange={() => setFieldValue('private', !values.private)}
