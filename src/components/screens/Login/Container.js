@@ -32,7 +32,7 @@ export default class LoginScreen extends React.Component {
           email,
           provider
         }
-      });
+      }).catch((err) => console.log(err));
     } catch (error) {
       Toast.show('Login failed', Toast.SHORT);
       this.setState({ loading: false });

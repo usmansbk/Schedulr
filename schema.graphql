@@ -1,7 +1,4 @@
-type User @model
-  @auth(rules: [
-    {allow: owner, ownerField: "owner", mutations: [create, update, delete], queries: [get]}
-  ]) {
+type User {
   id: ID!
   name: String!
   email: AWSEmail!
@@ -10,18 +7,19 @@ type User @model
   groups: [Group]
 }
 
-type Group @model {
+type Group {
   id: ID!
   name: String!
   description: String
   privacy: Privacy!
   status: GroupStatus!
   creator: User
+  membersCount: Int
   members: [User]
   events: [Event]
 }
 
-type Event @model {
+type Event {
   id: ID!
   title: String!
   description: String
@@ -32,13 +30,17 @@ type Event @model {
   isCancelled: Boolean
   cancelled: [AWSDateTime]
   repeat: RepeatEvent
+  starredCount: Int
+  starred: [User]
+  isStarred: Boolean
   type: EventType
   author: User
   group: Group
+  commentsCount: Int
   comments: [Comment]
 }
 
-type Comment @model {
+type Comment {
   id: ID!
   content: String!
   replying: Comment
@@ -46,7 +48,7 @@ type Comment @model {
   author: User
 }
 
-type Location @model {
+type Location {
   id: ID!
   address: String!
   latitude: Float
