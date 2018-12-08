@@ -15,7 +15,7 @@ import styles, { navButtonColor } from './styles';
 const defaultValues = {
   name: '',
   description: '',
-  private: false,
+  visible: true,
 };
 
 const Form = ({
@@ -89,8 +89,8 @@ const Form = ({
           <View style={styles.switchButton}>
             <Text style={styles.text}>Visibility</Text>
             <Switch
-              value={values.private}
-              onValueChange={() => setFieldValue('private', !values.private)}
+              value={values.visible}
+              onValueChange={() => setFieldValue('visible', !values.visible)}
             />
           </View>
           <HelperText
