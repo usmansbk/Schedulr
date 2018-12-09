@@ -18,12 +18,13 @@ export default class LoginScreen extends React.Component {
   }) => {
     this.setState({ loading: true });
     try {
-      await Auth.federatedSignIn(provider, {
+      const cred = await Auth.federatedSignIn(provider, {
         token,
         expires_at,
       },{
         email
       });
+      console.log(cred);
       this.props.navigation.navigate('App');
       Analytics.record({
         name: 'sign_in',
