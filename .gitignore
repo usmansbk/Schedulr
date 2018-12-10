@@ -41,6 +41,7 @@ yarn-error.log
 amplify/
 .amplifyrc
 */aws-exports.js
+schema.graphql
 
 # BUCK
 buck-out/
