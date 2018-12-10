@@ -2,7 +2,6 @@ import { StyleSheet } from 'react-native';
 import colors from '../../../config/colors';
 
 export default StyleSheet.create({
-  color: { backgroundColor: colors.facebook },
   container: {
     width: 250,
     height: 48,
