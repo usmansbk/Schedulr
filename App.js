@@ -9,6 +9,8 @@ import config from './src/aws-exports';
 import client from './src/config/client';
 import theme from './src/config/theme';
 
+// console.disableYellowBox = true;
+
 Amplify.configure(config);
 
 export default class App extends React.Component {
