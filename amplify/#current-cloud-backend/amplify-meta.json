@@ -57,11 +57,11 @@
       "service": "AppSync",
       "output": {
         "securityType": "API_KEY",
-        "GraphQLAPIIdOutput": "6mqhbkgwbvdtzosiciodzzc5ku",
-        "GraphQLAPIEndpointOutput": "https://f2tlbgyodbbo3l2h5tfs5fkxsq.appsync-api.us-east-1.amazonaws.com/graphql",
-        "GraphQLAPIKeyOutput": "da2-2sj54hdmozdcnkq5toibxyp254"
+        "GraphQLAPIIdOutput": "6s4g44xq7vg7fnwtqz3kkffn3e",
+        "GraphQLAPIEndpointOutput": "https://7p57flfherd7fpejz37d653sv4.appsync-api.us-east-1.amazonaws.com/graphql",
+        "GraphQLAPIKeyOutput": "da2-c7vnyidwrvbvpdymkjxjvkhgvi"
       },
-      "lastPushTimeStamp": "2018-12-10T00:53:18.075Z"
+      "lastPushTimeStamp": "2018-12-10T01:03:13.973Z"
     }
   }
 }
