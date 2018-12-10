@@ -58,7 +58,7 @@ type Group {
   status: GroupStatus!
   isMember: Boolean
   isCreator: Boolean
-  creator: User
+  creator: User!
   membersCount: Int
   members: [User]
   events: [Event]
@@ -75,13 +75,13 @@ type Event {
   isCancelled: Boolean
   repeat: RepeatEvent!
   eventType: EventType!
-  group: Group
+  group: Group!
   cancelled: [AWSDateTime]
   starsCount: Int
   starred: [User]
   isStarred: Boolean
   isAuthor: Boolean
-  author: User
+  author: User!
   commentsCount: Int
   comments: [Comment]
 }
@@ -91,8 +91,8 @@ type Comment {
   content: String!
   replying: Comment
   isAuthor: Boolean
-  event: Event
-  author: User
+  event: Event!
+  author: User!
 }
 
 type Location {
@@ -100,7 +100,7 @@ type Location {
   address: String!
   latitude: Float
   longitude: Float
-  event: Event
+  event: Event!
 }
 
 type UserConnection {
@@ -168,7 +168,7 @@ input LocationInput {
   address: String!
   longitude: Float
   latitude: Float
-  eventId: ID
+  eventId: ID!
 }
 
 input CreateEventInput {
@@ -178,9 +178,9 @@ input CreateEventInput {
   start: AWSDateTime!
   end: AWSDateTime!
   allDay: Boolean
-  eventType: EventType!
+  eventType: EventType
   repeat: RepeatEvent!
-  groupId: ID
+  groupId: ID!s
 }
 
 input UpdateEventInput {
@@ -229,10 +229,12 @@ enum GroupStatus {
   OPEN
   CLOSED
 }
+
 enum Privacy {
   PUBLIC
   PRIVATE
 }
+
 enum RepeatEvent {
   NEVER
   DAILY
