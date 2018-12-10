@@ -17,7 +17,6 @@ export default StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
-
   logo: {
     height: 32,
     width: 32,

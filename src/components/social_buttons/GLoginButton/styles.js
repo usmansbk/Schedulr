@@ -8,13 +8,19 @@ export default StyleSheet.create({
     elevation: 2,
     borderRadius: 2,
     justifyContent:'center',
-    margin: 4
+    margin: 4,
+    backgroundColor: colors.google
   },
   content: {
     marginVertical: 4,
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: colors.google
+  },
+  logo: {
+    width: 32,
+    height: 32,
+    borderRadius: 2,
+    marginHorizontal: 8
   },
   text: {
     fontSize: 14,
@@ -23,9 +29,4 @@ export default StyleSheet.create({
     textAlign: 'center',
     fontWeight: 'bold'
   },
-  logo: {
-    width: 48,
-    height: 48,
-    borderRadius: 2
-  }
 });
