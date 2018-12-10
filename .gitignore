@@ -42,6 +42,7 @@ amplify/
 .amplifyrc
 */aws-exports.js
 schema.graphql
+models.graphql
 
 # BUCK
 buck-out/
