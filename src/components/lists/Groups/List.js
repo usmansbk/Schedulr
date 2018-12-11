@@ -13,6 +13,11 @@ import groups from './dummy';
 import colors from '../../../config/colors';
 
 class List extends Component {
+  defaultProps = {
+    groups,
+    loading: false,
+    onRefresh: () => console.log('Refreshing')
+  };
   _getItemLayout = (_, index) => (
     {
       length: ITEM_HEIGHT,
@@ -50,14 +55,14 @@ class List extends Component {
   }
 
   _renderSeparator = () => <Separator />;
-  _renderFooter = () => <Footer visible={defaultProps.groups.length} />;
+  _renderFooter = () => <Footer visible={this.props.groups.length} />;
 
   render() {
     const {
       groups=[],
       loading,
       onRefresh
-    } = defaultProps;
+    } = this.props;
     return (
       <FlatList
         refreshing={loading}
@@ -76,12 +81,6 @@ class List extends Component {
       />
     )
   }
-}
-
-const defaultProps = {
-  groups,
-  loading: false,
-  onRefresh: () => console.log('Refreshing')
 }
 
 export default withNavigationFocus(List);

@@ -18,10 +18,16 @@ import styles, {
 import dummy from './dummy';
 
 class List extends React.Component {
+  defaultProps = {
+    loading: false,
+    onRefresh: () => console.log('Refreshing'),
+    hasPreviousEvents: false,
+    sections: dummy
+  };
   _loadPrevious = () => console.log('Load previous events');
   _keyExtractor = (item, index) => item.id;
-  _renderHeader = () => <Header onPress={this._loadPrevious} visible={defaultProps.hasPreviousEvents} />;
-  _renderFooter = () => <Footer visible={defaultProps.sections.length}/>;
+  _renderHeader = () => <Header onPress={this._loadPrevious} visible={this.props.hasPreviousEvents} />;
+  _renderFooter = () => <Footer visible={this.props.sections.length}/>;
   _renderEmptyList = () => <Empty starred={this.props.starred} />;
   _renderSeparator = () => <Separator />;
   _renderSectionHeader = ({section}) => <SectionHeader section={section} />;
@@ -78,7 +84,7 @@ class List extends React.Component {
       loading,
       sections,
       onRefresh,
-    } = defaultProps;
+    } = this.props;
     return (
       <SectionList
         initialNumToRender={0}
@@ -101,11 +107,5 @@ class List extends React.Component {
     );
   }
 }
-const defaultProps = {
-  loading: false,
-  onRefresh: () => console.log('Refreshing'),
-  hasPreviousEvents: false,
-  sections: dummy
-};
 
 export default withNavigationFocus(List);

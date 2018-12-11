@@ -13,6 +13,11 @@ import styles, {
 } from './styles';
 
 class List extends React.Component {
+  defaultProps = {
+    loading: false,
+    onRefresh: () => console.log('Refreshing'),
+    hasMore: false,
+  };
   _getItemLayout = (_, index) => (
     {
       length: ITEM_HEIGHT,
@@ -54,14 +59,14 @@ class List extends React.Component {
     navigateToGroup={this._navigateToGroup}
   />;
   _renderSeparator = () => <Separator />;
-  _renderFooter = () => <Footer visible={!defaultValues.hasMore} />;
+  _renderFooter = () => <Footer visible={!this.props.hasMore} />;
   _renderEmpty = () => <Empty />;
 
   render() {
     const {
       loading,
       onRefresh,
-    } = defaultValues;
+    } = this.props;
     return (
       <FlatList
         data={dummy}
@@ -78,12 +83,6 @@ class List extends React.Component {
       />
     );
   }
-}
-
-const defaultValues = {
-  loading: false,
-  onRefresh: () => console.log('Refreshing'),
-  hasMore: false,
 }
 
 export default withNavigationFocus(List);
