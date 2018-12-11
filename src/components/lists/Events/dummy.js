@@ -1,4 +1,25 @@
 export default [{
+  title: '12/13/2018',
+  data: [{
+    id: 152,
+    title: 'Learning flow with react-native as a beginner',
+    description: 'Lorem Ipsum Dolor Amet',
+    location: null,
+    start: Date.now(),
+    end: new Date('12/16/2018'),
+    allDay: false,
+    isCancelled: false,
+    starred: false,
+    starsCount: 0,
+    commentsCount: 222203,
+    repeat: 'MONTHLY',
+    type: 'WORKSHOP',
+    group: {
+      id: 1,
+      name: 'EEEN301'
+    }
+  }]
+},{
   title: '12/1/2018',
   data: [{
       id: 1,
