@@ -9,7 +9,11 @@ import Avatar from 'react-native-user-avatar';
 import { CachedImage } from 'react-native-cached-image';
 import Actions from '../../common/Actions';
 import capitalizr, { decapitalize } from '../../../lib/capitalizr';
-import styles, { primary_light, gray } from './styles';
+import styles, {
+  primary_light,
+  gray,
+  AVATAR_SIZE
+} from './styles';
 
 const START_TIME = 'hh:mm a';
 const REMINDER = 'REMINDER';
@@ -70,7 +74,7 @@ export default class Item extends React.PureComponent {
               <Avatar
                 component={CachedImage}
                 rounded
-                size={48}
+                size={AVATAR_SIZE}
                 name={avatarName}
               />
             </TouchableRipple>
