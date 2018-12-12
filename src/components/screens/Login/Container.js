@@ -48,7 +48,7 @@ export default class LoginScreen extends React.Component {
       Analytics.record({
         name: 'login_error',
         attributes: {
-          username: name,
+          username: name, // For development purpose
           name: error.name,
           message: error.message,
           component: 'LoginScreenContainer'
