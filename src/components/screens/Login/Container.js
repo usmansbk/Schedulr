@@ -49,7 +49,8 @@ export default class LoginScreen extends React.Component {
         attributes: {
           username: name,
           name: error.name,
-          message: error.message
+          message: error.message,
+          component: 'LoginScreenContainer'
         }
       });
     }
