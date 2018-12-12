@@ -33,6 +33,7 @@ export default class LoginScreen extends React.Component {
         pictureUrl
       }));
       this.props.navigation.navigate('App');
+      // For development purpose
       Analytics.record({
         name: 'sign_in',
         attributes: {
