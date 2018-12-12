@@ -45,7 +45,7 @@ export default class LoginScreen extends React.Component {
       Toast.show('Login failed', Toast.SHORT);
       this.setState({ loading: false });
       Analytics.record({
-        name: 'aws_login_error',
+        name: 'login_error',
         attributes: {
           username: name,
           name: error.name,
