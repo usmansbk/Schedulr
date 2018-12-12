@@ -1,6 +1,5 @@
 import React from 'react';
-import { Auth, Analytics } from 'aws-amplify';
-import { AsyncStorage } from 'react-native';
+import { Auth, Analytics, Cache } from 'aws-amplify';
 import Toast from 'react-native-simple-toast';
 import Loading from '../../common/Loading';
 import Login from './Login';
@@ -26,7 +25,7 @@ export default class LoginScreen extends React.Component {
       },{
         email
       });
-      await AsyncStorage.setItem('loginInfo', JSON.stringify({
+      await Cache.setItem('loginInfo', JSON.stringify({
         id: credentials.data.id,
         name,
         email,

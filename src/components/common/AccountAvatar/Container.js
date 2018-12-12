@@ -1,6 +1,5 @@
 import React from 'react';
-import { Analytics } from 'aws-amplify';
-import { AsyncStorage } from 'react-native';
+import { Analytics, Cache } from 'aws-amplify';
 import { withNavigation } from 'react-navigation';
 import Avatar from './Avatar';
 
@@ -14,8 +13,8 @@ class AvatarContainer extends React.Component {
 
   componentDidMount = async () => {
     try {
-      const userInfo = await AsyncStorage.getItem('loginInfo');
-      this.setState(JSON.parse(userInfo));
+      const loginInfo = await Cache.getItem('loginInfo');
+      this.setState(JSON.parse(loginInfo));
     } catch (error) {
       Analytics.record({
         name: 'login_info_not_found',
