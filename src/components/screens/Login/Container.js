@@ -26,7 +26,7 @@ export default class LoginScreen extends React.Component {
         email
       });
       await Cache.setItem('loginInfo', JSON.stringify({
-        id: credentials.data.id,
+        id: credentials.data.IdentityId,
         name,
         email,
         pictureUrl
