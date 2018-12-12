@@ -18,7 +18,7 @@ import styles, {
 import dummy from './dummy';
 
 class List extends React.Component {
-  defaultProps = {
+  static defaultProps = {
     loading: false,
     onRefresh: () => console.log('Refreshing'),
     hasPreviousEvents: false,

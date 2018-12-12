@@ -13,7 +13,7 @@ import styles, {
 } from './styles';
 
 class List extends React.Component {
-  defaultProps = {
+  static defaultProps = {
     loading: false,
     onRefresh: () => console.log('Refreshing'),
     hasMore: false,

@@ -13,7 +13,7 @@ import groups from './dummy';
 import colors from '../../../config/colors';
 
 class List extends Component {
-  defaultProps = {
+  static defaultProps = {
     groups,
     loading: false,
     onRefresh: () => console.log('Refreshing')
