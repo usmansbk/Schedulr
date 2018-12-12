@@ -21,7 +21,8 @@ class AvatarContainer extends React.Component {
         name: 'login_info_not_found',
         attributes: {
           name: error.name,
-          message: error.message
+          message: error.message,
+          component: 'AccountAvatarContainer',
         }
       })
     }
