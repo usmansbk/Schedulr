@@ -17,7 +17,7 @@ import { decapitalize } from '../../../lib/capitalizr';
 import { getNextDate } from '../../../lib/time';
 import styles, { AVATAR_SIZE } from './styles';
 
-const FORMAT = 'ddd Do, MMM YYYY hh:mm a';
+const FORMAT = 'ddd, MMM Do, YYYY hh:mm a';
 export default class Item extends React.PureComponent {
   _onPress = () => this.props.onPressItem(this.props.id);
   _navigateToGroup = () => this.props.navigateToGroup(this.props.groupId);
