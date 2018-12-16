@@ -17,7 +17,6 @@ export default ({
   createdAt,
   updatedAt,
   description,
-  start,
   starred,
   starsCount,
   commentsCount,
@@ -82,7 +81,6 @@ export default ({
       createdAt={createdAt}
       updatedAt={updatedAt}
       description={description}
-      start={start}
       starred={starred}
       starsCount={starsCount}
       commentsCount={commentsCount}

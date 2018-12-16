@@ -62,6 +62,7 @@ export default class DetailsScreen extends React.Component {
     const {
       id,
       title,
+      start,
       end,
       type,
       location,
