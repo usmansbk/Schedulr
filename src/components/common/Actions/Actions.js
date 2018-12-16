@@ -3,7 +3,6 @@ import { View, StyleSheet } from 'react-native';
 import StarButton from '../StarButton';
 import ShareButton from '../ShareButton';
 import CommentButton from '../CommentButton';
-import AlarmButton from '../AlarmButton';
 
 import colors from '../../../config/colors';
 
@@ -11,8 +10,6 @@ const FONT_SIZE = 24;
 const defaultColor = colors.primary_light;
 
 export default ({
-  alarmSet,
-  start,
   date,
   title,
   starred,
@@ -44,27 +41,15 @@ export default ({
       color={color}
       onPress={() => navigateToComments(id)}
     />
-    <AlarmButton
-      id={id}
-      title={title}
-      alarmSet={alarmSet}
-      start={start}
+    <ShareButton
       color={color}
+      id={id}
+      date={date}
+      type={type}
+      title={title}
+      location={location}
       size={FONT_SIZE}
     />
-    {
-      size !== 'small' && (
-        <ShareButton
-          color={color}
-          id={id}
-          date={date}
-          type={type}
-          title={title}
-          location={location}
-          size={FONT_SIZE}
-        />
-      )
-    }
   </View>
 )};
 

@@ -52,7 +52,6 @@ export default class Item extends React.PureComponent {
       title,
       location,
       start,
-      alarmSet,
       allDay,
       type,
       isCancelled,
@@ -101,9 +100,7 @@ export default class Item extends React.PureComponent {
             </View>
             <Actions
               id={id}
-              start={start}
               date={moment(start).format(SHARE_FORMAT)}
-              alarmSet={alarmSet}
               title={title}
               location={location}
               type={type}

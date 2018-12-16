@@ -45,7 +45,6 @@ class List extends React.Component {
     starsCount,
     starred,
     start,
-    alarmSet,
     end,
     repeat,
     group,
@@ -61,7 +60,6 @@ class List extends React.Component {
     starsCount={starsCount}
     starred={starred}
     start={start}
-    alarmSet={alarmSet}
     end={end}
     groupId={group.id}
     groupName={group.name}
