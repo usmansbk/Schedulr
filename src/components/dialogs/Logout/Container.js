@@ -1,5 +1,5 @@
 import React from 'react';
-import { Cache, Analytics } from 'aws-amplify';
+import { Cache, Analytics, Auth } from 'aws-amplify';
 import { LoginManager } from 'react-native-fbsdk';
 import { GoogleSignin } from 'react-native-google-signin';
 import { withNavigation } from 'react-navigation';
@@ -12,8 +12,13 @@ class Container extends React.Component {
 
   _signOut = async () => {
     this.setState({ loading: true });
-    this._fbLogout();
-    this._googleSignout();
+    try {
+      await this._awsSignOut();
+      await this._fbLogout();
+      await this._googleSignout();
+    } catch {
+      // offline
+    }
     await Cache.clear();
     this.setState({ loading: false });
     this._handleDismiss();
@@ -21,21 +26,11 @@ class Container extends React.Component {
     Analytics.record('logout');
   };
 
-  _fbLogout = async () => {
-    try {
-      await LoginManager.logOut();
-    } catch (error) {
-      // offline
-    }
-  };
+  _awsSignOut = async () => await Auth.signOut();
 
-  _googleSignout = async () => {
-    try {
-      await GoogleSignin.signOut();
-    } catch (error) {
-      // offline
-    }
-  };
+  _fbLogout = async () => await LoginManager.logOut();
+
+  _googleSignout = async () => await GoogleSignin.signOut();
 
   _handleDismiss = () => this.props.handleDismiss();
 
