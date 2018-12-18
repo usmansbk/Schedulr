@@ -26,7 +26,7 @@ export default ({
   id,
   name,
   description,
-  closed,
+  isClosed,
   isMember,
   membersCount,
   isPrivate,
@@ -60,12 +60,12 @@ export default ({
                 <MenuOption value="edit">
                   <Text style={styles.menuText}>Edit</Text>
                 </MenuOption>
-                { !closed && (
+                { !isClosed && (
                   <MenuOption value="close">
                     <Text style={styles.menuText}>Close</Text>
                   </MenuOption>
                 )}
-                { closed && (
+                { isClosed && (
                   <MenuOption value="open">
                     <Text style={styles.menuText}>Open</Text>
                   </MenuOption>
@@ -108,10 +108,10 @@ export default ({
               <Text style={styles.note}>This is a { isPrivate ? 'private' : 'public'} group</Text>
             </View>
             {
-              closed && (
+              isClosed && (
                 <View style={styles.noteView}>
                   <Icon name="lock" size={18} />
-                  <Text style={styles.note}>This is a closed group</Text>
+                  <Text style={styles.note}>This group is closed</Text>
                 </View>
               )
             }

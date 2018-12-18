@@ -9,7 +9,6 @@ import {
 import styles from '../../../config/styles';
 import colors from '../../../config/colors';
 
-
 export default ({
   goBack,
   handleValueChange,

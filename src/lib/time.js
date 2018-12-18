@@ -22,7 +22,10 @@ export const repeatLength = (repeat) => {
   }
 };
 
-export const formatDate = (start, end, allDay) => {
+export const formatDate = (pstart, pend, allDay) => {
+  const start = Date.parse(pstart);
+  const end = Date.parse(pend);
+  
   if (allDay) {
     return `${moment(start).format('dddd, DD MMMM YYYY')}\nAll day`;
   }

@@ -8,5 +8,5 @@ export default ({
   <Button
     style={style}
     mode="outlined"
-  >{isMember ? 'Unfollow' : 'Follow'}</Button>
+  >{isMember ? 'Leave' : 'Join'}</Button>
 );

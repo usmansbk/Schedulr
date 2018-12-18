@@ -32,8 +32,8 @@ const defaultValues = {
   location: {
     address: ''
   },
-  start: Date.now(),
-  end: Date.now(),
+  start: moment().toDate(),
+  end: moment().toDate(),
   allDay: false,
   type: eventTypes[0].id,
   repeat: frequency[0].id,

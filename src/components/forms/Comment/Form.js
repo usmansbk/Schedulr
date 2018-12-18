@@ -36,7 +36,12 @@ export default ({
         {
           Boolean(replying) && (
             <View style={styles.alert}>
-              <Text numberOfLines={1} ellipsizeMode="tail" style={styles.alertTitle}>Replying <Text style={styles.targetName}>{targetName}</Text></Text>
+              <Text
+                numberOfLines={1}
+                ellipsizeMode="tail"
+                style={styles.alertTitle}
+              >Replying <Text style={styles.targetName}>{targetName}</Text>
+            </Text>
               <Text onPress={cancelReply} style={styles.cancelText}>Cancel</Text>
             </View>
           )

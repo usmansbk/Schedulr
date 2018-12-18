@@ -2,8 +2,7 @@ import React from 'react';
 import { View } from 'react-native';
 import {
   Appbar,
-  Text,
-  Caption
+  Text
 } from 'react-native-paper';
 import UserAvatar from 'react-native-user-avatar';
 import { CachedImage } from 'react-native-cached-image';
@@ -13,8 +12,8 @@ import appStyles from '../../../config/styles';
 
 export default ({
   goBack,
-  name=defaultProps.name,
-  pictureUrl=defaultProps.pictureUrl,
+  name,
+  pictureUrl,
 }) => (
   <React.Fragment>
     <Appbar.Header style={[appStyles.header, styles.appbar]} collapsable>
@@ -38,8 +37,3 @@ export default ({
     </View>
   </React.Fragment>
 );
-
-const defaultProps = {
-  name: 'Babakolo Usman Suleiman',
-  pictureUrl: null,
-}

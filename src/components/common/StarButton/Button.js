@@ -7,11 +7,12 @@ export default ({
   activeColor,
   starred,
   starsCount,
-  id
+  id,
+  onPress
 }) => (
   <IconBadge
     icon={`star${starred ? '' : '-border'}`}
-    onPress={() => console.log()}
+    onPress={() => onPress && onPress(id)}
     size={size}
     color={starred ? activeColor : color}
     count={starsCount}
