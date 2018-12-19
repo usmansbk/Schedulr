@@ -22,9 +22,9 @@ export const repeatLength = (repeat) => {
   }
 };
 
-export const formatDate = (pstart, pend, allDay) => {
-  const start = Date.parse(pstart);
-  const end = Date.parse(pend);
+export const formatDate = (startAt, endAt, allDay) => {
+  const start = Date.parse(startAt);
+  const end = Date.parse(endAt);
   
   if (allDay) {
     return `${moment(start).format('dddd, DD MMMM YYYY')}\nAll day`;
@@ -40,8 +40,8 @@ export const formatDate = (pstart, pend, allDay) => {
   return `From ${moment(start).format('ddd, Do MMM YYYY, hh:mm a')}\nTo ${moment(end).format('ddd, Do MMM YYYY, hh:mm a')}`  
 }
 
-export const getNextDate = (initialDate, repeat, refDate = new Date(), end) => {
-  const isEnded = Date.now() > Date.parse(end);
+export const getNextDate = (initialDate, repeat, refDate = new Date(), endAt) => {
+  const isEnded = Date.now() > Date.parse(endAt);
   const a0 = Date.parse(initialDate);
   const b0 = Date.parse(refDate);
   if (!isEnded) return a0;

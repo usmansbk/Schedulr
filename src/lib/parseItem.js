@@ -8,20 +8,23 @@ export const parseDetails = ({ eventType, repeat, endAt, allDay, startAt }) => {
   const recurrence = repeat === 'NEVER' ? '' : decapitalize(repeat);
   const eventType = decapitalize(eventType, true);
   if ((eventType === REMINDER) || allDay) return `${recurrence ? (recurrence + ' ' + eventType) : eventType}`;
-  const duration = moment(endAt).from(startAt, true);
+  const duration = moment(Date.parse(endAt)).from(Date.parse(startAt), true);
   return capitalizr(`${duration} ${eventType.toLowerCase()}, ${recurrence.toLowerCase()}`);
 };
 
 export const startTime = ({ allDay, startAt }) => {
-  return  allDay ? 'All-day' : moment(startAt).format(START_TIME).toUpperCase()
+  return  allDay ? 'All-day' : moment(Date.parse(startAt)).format(START_TIME).toUpperCase()
 };
 
 export const endTime = ({ endAt, startAt }) => {
-  const startDay = moment(startAt).format(DATE_FORMAT);
-  const isSameDay = (startDay === moment(endAt).format(DATE_FORMAT));
-  return (isSameDay) ? moment(endAt).format(START_TIME).toUpperCase() : '';
+  const parsedEnd = Date.parse(endAt);
+  const parsedStart = Date.parse(startAt);
+
+  const startDay = moment(parsedStart).format(DATE_FORMAT);
+  const isSameDay = (startDay === moment(parsedEnd).format(DATE_FORMAT));
+  return (isSameDay) ? moment(parsedEnd).format(START_TIME).toUpperCase() : '';
 };
 
 export const isStarted = ({ isCancelled, startAt, endAt }) => {
-  return (!isCancelled && (Date.now() > startAt) && (Date.now() < endAt));
+  return (!isCancelled && (Date.now() > Date.parse(startAt)) && (Date.now() < Date.parse(endAt)));
 };
