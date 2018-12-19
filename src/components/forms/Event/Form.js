@@ -32,8 +32,8 @@ const defaultValues = {
   location: {
     address: ''
   },
-  startAt: moment().toDate(),
-  endAt: moment().toDate(),
+  startAt: moment().toDate().toISOString(),
+  endAt: moment().toDate().toISOString(),
   allDay: false,
   eventType: eventTypes[0].id,
   repeat: frequency[0].id,
@@ -133,7 +133,7 @@ const Form = ({
             onChangeDate={(date) => {
               setFieldValue('startAt', date);
               if (values.allDay) {
-                setFieldValue('endAt', moment(date).endOf('day'));
+                setFieldValue('endAt', moment(date).endOf('day').toISOString());
               }
             }}
           />
@@ -151,7 +151,7 @@ const Form = ({
                 const { allDay } = values;
                 setFieldValue('allDay', !allDay);
                 if (!allDay) {
-                  setFieldValue('endAt', moment(values.startAt).endOf('day'));
+                  setFieldValue('endAt', moment(values.startAt).endOf('day').toISOString());
                 }
               }}
               status={values.allDay ? 'checked' : 'unchecked'}
