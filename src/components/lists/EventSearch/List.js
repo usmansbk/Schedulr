@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 import { FlatList, RefreshControl } from 'react-native';
 import { withNavigationFocus } from 'react-navigation';
 import Item from './Item';
@@ -6,11 +7,15 @@ import Separator from './Separator';
 import Footer from './Footer';
 import Empty from './Empty';
 import dummy from './dummy';
+import { decapitalize } from '../../../lib/capitalizr';
+import { getNextDate } from '../../../lib/time';
 import styles, {
   primary,
   ITEM_HEIGHT,
   SEPARATOR_HEIGHT,
 } from './styles';
+
+const FORMAT = 'ddd, MMM Do, YYYY hh:mm a';
 
 class List extends React.Component {
   static defaultProps = {
@@ -45,15 +50,13 @@ class List extends React.Component {
   }) => <Item
     id={id}
     title={title}
-    startAt={startAt}
-    endAt={endAt}
-    groupId={group.id}
+    date={this._getDate({ startAt, endAt, repeat })}
+    details={this._getDetails({ repeat, type })}
     groupName={group.name}
     pictureUrl={group.pictureUrl}
     starsCount={starsCount}
     commentsCount={commentsCount}
     isCancelled={isCancelled}
-    repeat={repeat}
     type={type}
     onPressItem={this._onPressItem}
     navigateToGroup={this._navigateToGroup}
@@ -61,6 +64,20 @@ class List extends React.Component {
   _renderSeparator = () => <Separator />;
   _renderFooter = () => <Footer visible={!this.props.hasMore} />;
   _renderEmpty = () => <Empty />;
+  _getDate = ({
+    startAt,
+    endAt,
+    repeat,
+  }) => {
+    return moment(getNextDate(new Date(startAt), repeat, undefined, endAt)).format(FORMAT);
+  };
+  _getDetails = ({
+    repeat,
+    type,
+  }) => {
+    let details = repeat === 'NEVER' ? '' : (decapitalize(repeat) + ' ');
+    return details + decapitalize(type);
+  }
 
   render() {
     const {

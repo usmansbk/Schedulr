@@ -11,34 +11,17 @@ import {
 import UserAvatar from 'react-native-user-avatar';
 import { CachedImage } from 'react-native-cached-image';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import moment from 'moment';
 import numeral from 'numeral';
-import { decapitalize } from '../../../lib/capitalizr';
-import { getNextDate } from '../../../lib/time';
 import styles, { AVATAR_SIZE } from './styles';
 
-const FORMAT = 'ddd, MMM Do, YYYY hh:mm a';
 export default class Item extends React.PureComponent {
   _onPress = () => this.props.onPressItem(this.props.id);
   _navigateToGroup = () => this.props.navigateToGroup(this.props.groupId);
-  _getDate = () => {
-    const {
-      startAt,
-      endAt,
-      repeat,
-    } = this.props;
-    return moment(getNextDate(new Date(startAt), repeat, undefined, endAt)).format(FORMAT);
-  };
-  _getDetails = () => {
-    const {
-      repeat,
-      type,
-    } = this.props;
-    let details = repeat === 'NEVER' ? '' : (decapitalize(repeat) + ' ');
-    return details + decapitalize(type);
-  }
+
   render() {
     const {
+      date,
+      details,
       groupName,
       pictureUrl,
       title,
@@ -60,7 +43,7 @@ export default class Item extends React.PureComponent {
           </TouchableRipple>
           <View style={styles.itemContent}>
             <View style={styles.itemHead}>
-              <Text style={styles.time}>{this._getDate()}</Text>
+              <Text style={styles.time}>{date}</Text>
             </View>
             <View>
               <Headline
@@ -68,7 +51,7 @@ export default class Item extends React.PureComponent {
                 ellipsizeMode="tail"
                 style={styles.itemHeadline}
               >{title}</Headline>
-              <Text style={styles.itemNote}>{this._getDetails()}
+              <Text style={styles.itemNote}>{details}
               { isCancelled && <Text style={styles.cancelled}> • Cancelled</Text>}
               </Text>
             </View>
