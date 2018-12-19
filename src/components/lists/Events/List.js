@@ -55,7 +55,7 @@ class List extends React.Component {
     repeat,
     group,
     allDay,
-  }}) => <Item
+  }}) => (<Item
     id={id}
     title={title}
     location={location && location.address}
@@ -75,7 +75,7 @@ class List extends React.Component {
     onPressItem={this._onPressItem}
     onPressCommentButton={this._onPressCommentItem}
     navigateToGroupEvents={this._navigateToGroupEvents}
-  />;
+  />);
   _getItemLayout = sectionListGetItemLayout({
     getItemHeight: () => ITEM_HEIGHT,
     getSeparatorHeight: () => SEPERATOR_HEIGHT,
