@@ -1,5 +1,4 @@
 import React from 'react';
-import moment from 'moment';
 import { View } from 'react-native';
 import {
   TouchableRipple,
@@ -8,52 +7,31 @@ import {
 import Avatar from 'react-native-user-avatar';
 import { CachedImage } from 'react-native-cached-image';
 import Actions from '../../common/Actions';
-import capitalizr, { decapitalize } from '../../../lib/capitalizr';
 import styles, {
   primary_light,
   gray,
   AVATAR_SIZE
 } from './styles';
 
-const START_TIME = 'hh:mm a';
 const REMINDER = 'REMINDER';
-const DATE_FORMAT = 'DD MM YYYY';
-const SHARE_FORMAT = 'dddd Do, MMM YYYY';
 
 export default class Item extends React.PureComponent {
   _onPress = () => this.props.onPressItem(this.props.id);
   _navigateToGroup = () => this.props.navigateToGroupEvents(this.props.groupId);
   _onPressComment = () => this.props.onPressCommentButton(this.props.id);
-  _parseDetails = () => {
-    const { type, repeat, end, allDay, start } = this.props;
-    const recurrence = repeat === 'NEVER' ? '' : decapitalize(repeat);
-    const eventType = decapitalize(type, true);
-    if ((type === REMINDER) || allDay) return `${recurrence ? (recurrence + ' ' + eventType) : eventType}`;
-    const duration = moment(end).from(start, true);
-    return capitalizr(`${duration} ${type.toLowerCase()}, ${recurrence.toLowerCase()}`);
-  };
-  _startTime = () => {
-    const { allDay, start } = this.props;
-    return  allDay ? 'All-day' : moment(start).format(START_TIME).toUpperCase()
-  };
-  _endTime = () => {
-    const { end, start } = this.props;
-    const startDay = moment(start).format(DATE_FORMAT);
-    const isSameDay = (startDay === moment(end).format(DATE_FORMAT));
-    return (isSameDay) ? moment(end).format(START_TIME).toUpperCase() : '';
-  };
-  _isStarted = () => {
-    const { isCancelled, start, end } = this.props;
-    return (!isCancelled && (Date.now() > start) && (Date.now() < end));
-  };
+
   render() {
     const {
       id,
       title,
       location,
-      start,
+      details,
+      startTime,
+      endTime,
+      isStarted,
+      date,
       allDay,
-      type,
+      eventType,
       isCancelled,
       starsCount,
       commentsCount,
@@ -82,28 +60,28 @@ export default class Item extends React.PureComponent {
             <View style={styles.itemBody}>
               <View style={styles.body}>
                 <Text style={styles.itemHeadline} numberOfLines={2} ellipsizeMode="tail">{title}</Text>
-                <Text numberOfLines={1} ellipsizeMode="tail" style={styles.itemNote}>{this._parseDetails()}</Text>
+                <Text numberOfLines={1} ellipsizeMode="tail" style={styles.itemNote}>{details}</Text>
                 { isCancelled && <Text style={styles.cancelled}>Cancelled</Text>}
               </View>
               <View>
                 <Text
                   style={[styles.time, {
-                  color: this._isStarted() ? primary_light : gray
-                  }]}>{this._startTime()}
+                  color: isStarted ? primary_light : gray
+                  }]}>{startTime}
                 </Text>
                 {
-                  !allDay && (type !== REMINDER) && (
-                    <Text style={styles.time}>{this._endTime()}</Text>
+                  !allDay && (eventType !== REMINDER) && (
+                    <Text style={styles.time}>{endTime}</Text>
                   )
                 }
               </View>
             </View>
             <Actions
               id={id}
-              date={moment(start).format(SHARE_FORMAT)}
+              date={date}
               title={title}
               location={location}
-              type={type}
+              eventType={eventType}
               starred={starred}
               starsCount={starsCount}
               commentsCount={commentsCount}

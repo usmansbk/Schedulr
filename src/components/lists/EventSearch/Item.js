@@ -23,11 +23,11 @@ export default class Item extends React.PureComponent {
   _navigateToGroup = () => this.props.navigateToGroup(this.props.groupId);
   _getDate = () => {
     const {
-      start,
-      end,
+      startAt,
+      endAt,
       repeat,
     } = this.props;
-    return moment(getNextDate(new Date(start), repeat, undefined, end)).format(FORMAT);
+    return moment(getNextDate(new Date(startAt), repeat, undefined, endAt)).format(FORMAT);
   };
   _getDetails = () => {
     const {

@@ -8,6 +8,12 @@ import Empty from './Empty';
 import Separator from './Separator';
 import SectionHeader from './SectionHeader';
 import Item from './Item';
+import {
+  parseDetails,
+  startTime,
+  endTime,
+  isStarted
+} from '../../../lib/parseItem';
 import styles, {
   ITEM_HEIGHT,
   SEPERATOR_HEIGHT,
@@ -34,36 +40,37 @@ class List extends React.Component {
   _onPressItem = (id) => this.props.navigation.navigate('EventDetails', { id });
   _onPressCommentItem = (id) => this.props.navigation.navigate('Comments', { id });
   _navigateToGroupEvents = (id) => this.props.navigation.navigate('GroupEvents', { id });
+
   _renderItem = ({ item: {
     id,
     title,
-    description,
     location,
-    type,
+    eventType,
     isCancelled,
     commentsCount,
     starsCount,
     starred,
-    start,
-    end,
+    startAt,
+    endAt,
     repeat,
     group,
     allDay,
   }}) => <Item
     id={id}
     title={title}
-    description={description}
     location={location && location.address}
-    type={type}
+    eventType={eventType}
+    details={parseDetails({ startAt, endAt, allDay, eventType, repeat })}
+    startTime={startTime({ allDay, startAt })}
+    endTime={endTime({ endAt, startAt })}
+    date={new Date(startAt).toDateString()}
+    isStarted={isStarted({ startAt, endAt, isCancelled })}
     isCancelled={isCancelled}
     commentsCount={commentsCount}
     starsCount={starsCount}
     starred={starred}
-    start={start}
-    end={end}
     groupId={group.id}
     groupName={group.name}
-    repeat={repeat}
     allDay={allDay}
     onPressItem={this._onPressItem}
     onPressCommentButton={this._onPressCommentItem}

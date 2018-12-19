@@ -33,8 +33,8 @@ class List extends React.Component {
     item: {
       id,
       title,
-      start,
-      end,
+      startAt,
+      endAt,
       starsCount,
       commentsCount,
       isCancelled,
@@ -45,8 +45,8 @@ class List extends React.Component {
   }) => <Item
     id={id}
     title={title}
-    start={start}
-    end={end}
+    startAt={startAt}
+    endAt={endAt}
     groupId={group.id}
     groupName={group.name}
     pictureUrl={group.pictureUrl}

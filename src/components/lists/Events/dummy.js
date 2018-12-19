@@ -5,15 +5,15 @@ export default [{
     title: 'Learning flow with react-native as a beginner',
     description: 'Lorem Ipsum Dolor Amet',
     location: null,
-    start: Date.now(),
-    end: new Date('12/16/2018'),
+    startAt: new Date().toISOString(),
+    endAt: new Date('12/16/2018').toISOString(),
     allDay: false,
     isCancelled: false,
     starred: false,
     starsCount: 0,
     commentsCount: 222203,
     repeat: 'MONTHLY',
-    type: 'WORKSHOP',
+    eventType: 'WORKSHOP',
     group: {
       id: 1,
       name: 'EEEN301'
@@ -28,15 +28,15 @@ export default [{
       location: {
         address: 'B13. Faculty of Engineering'
       },
-      start: Date.now(),
-      end: new Date('12/2/2018'),
+      startAt: new Date().toISOString(),
+      endAt: new Date('12/2/2018').toISOString(),
       allDay: true,
       isCancelled: false,
       starred: false,
       starsCount: 0,
       commentsCount: 222203,
       repeat: 'WEEKLY',
-      type: 'LECTURE',
+      eventType: 'LECTURE',
       group: {
         id: 1,
         name: 'EEEN301'
@@ -48,15 +48,15 @@ export default [{
       location: {
         address: 'B13. Faculty of Engineering'
       },
-      start: Date.now(),
-      end: new Date('11/24/2018'),
+      startAt: new Date().toISOString(),
+      endAt: new Date('11/24/2018').toISOString(),
       allDay: false,
       isCancelled: false,
       starred: false,
       starsCount: 0,
       commentsCount: 0,
       repeat: 'DAILY',
-      type: 'REMINDER',
+      eventType: 'REMINDER',
       group: {
         id: 1,
         name: 'EEEN302'
@@ -66,15 +66,15 @@ export default [{
       title: 'Fix minor bugs in app',
       description: 'Lorem Ipsum Dolor Amet Kasupda Method dummy schldr visual',
       location: null,
-      start: new Date('11/22/2018'),
-      end: Date.now(),
+      startAt: new Date('11/22/2018').toISOString(),
+      endAt: new Date().toISOString(),
       allDay: false,
       isCancelled: true,
       starred: false,
       starsCount: 1234567,
       commentsCount: 0,
       repeat: 'WEEKLY',
-      type: 'HOBBY',
+      eventType: 'HOBBY',
       group: {
         id: 1,
         name: 'EEEN303'
@@ -89,15 +89,15 @@ export default [{
       location: {
         address: 'Theatre A/B. Faculty of Art'
       },
-      start: Date.now(),
-      end: new Date('11/26/2018'),
+      startAt: new Date().toISOString(),
+      endAt: new Date('11/26/2018').toISOString(),
       allDay: true,
       isCancelled: false,
       starred: false,
       starsCount: 0,
       commentsCount: 222203,
       repeat: 'WEEKLY',
-      type: 'LECTURE',
+      eventType: 'LECTURE',
       group: {
         id: 1,
         name: 'EEEN304'
@@ -106,15 +106,15 @@ export default [{
       id: 2,
       title: 'CMEN201',
       location: 'No location set',
-      start: Date.now(),
-      end: Date.now(),
+      startAt: new Date().toISOString(),
+      endAt: new Date().toISOString(),
       allDay: false,
       isCancelled: false,
       starred: true,
       starsCount: 2,
       commentsCount: 0,
       repeat: 'DAILY',
-      type: 'TASK',
+      eventType: 'TASK',
       group: {
         id: 1,
         name: 'CMEN201'
@@ -124,15 +124,15 @@ export default [{
       title: 'Exboys week barbaque night',
       description: 'Lorem Ipsum Dolor Amet',
       location: null,
-      start: Date.now(),
-      end: new Date('11/20/2018'),
+      startAt: new Date().toISOString(),
+      endAt: new Date('11/20/2018').toISOString(),
       allDay: false,
       isCancelled: false,
       starred: false,
       starsCount: 1234567,
       commentsCount: 0,
       repeat: 'WEEKLY',
-      type: 'HOBBY',
+      eventType: 'HOBBY',
       group: {
         id: 1,
         name: 'GENS301'

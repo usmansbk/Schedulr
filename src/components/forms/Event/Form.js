@@ -32,10 +32,10 @@ const defaultValues = {
   location: {
     address: ''
   },
-  start: moment().toDate(),
-  end: moment().toDate(),
+  startAt: moment().toDate(),
+  endAt: moment().toDate(),
   allDay: false,
-  type: eventTypes[0].id,
+  eventType: eventTypes[0].id,
   repeat: frequency[0].id,
   groupId: '',
 };
@@ -129,19 +129,19 @@ const Form = ({
           </HelperText>
           <DateTimeInput
             label="From"
-            value={values.start}
+            value={values.startAt}
             onChangeDate={(date) => {
-              setFieldValue('start', date);
+              setFieldValue('startAt', date);
               if (values.allDay) {
-                setFieldValue('end', moment(date).endOf('day'));
+                setFieldValue('endAt', moment(date).endOf('day'));
               }
             }}
           />
           <DateTimeInput
             label="To"
-            value={values.end}
+            value={values.endAt}
             disabled={values.allDay}
-            onChangeDate={(date) => setFieldValue('end', date)}
+            onChangeDate={(date) => setFieldValue('endAt', date)}
           />
           <View style={styles.radio}>
             <Text style={styles.radioText}>All-day</Text>
@@ -151,7 +151,7 @@ const Form = ({
                 const { allDay } = values;
                 setFieldValue('allDay', !allDay);
                 if (!allDay) {
-                  setFieldValue('end', moment(values.start).endOf('day'));
+                  setFieldValue('endAt', moment(values.startAt).endOf('day'));
                 }
               }}
               status={values.allDay ? 'checked' : 'unchecked'}
@@ -187,14 +187,14 @@ const Form = ({
             <Text style={styles.radioText}>Type</Text>
             <Picker
               prompt="Type"
-              selectedValue={values.type}
+              selectedValue={values.eventType}
               style={styles.picker}
               itemStyle={styles.pickerItem}
-              onValueChange={itemValue => setFieldValue('type', itemValue)}
+              onValueChange={itemValue => setFieldValue('eventType', itemValue)}
             >
               {
-                eventTypes.map(type => (
-                  <Picker.Item key={type.id} label={type.name} value={type.id} />
+                eventTypes.map(eventType => (
+                  <Picker.Item key={eventType.id} label={eventType.name} value={eventType.id} />
                 ))
               }
             </Picker>
