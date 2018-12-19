@@ -9,7 +9,7 @@ export default ({
   title,
   date,
   nextDate,
-  type,
+  eventType,
   location,
   groupName,
   groupId,
@@ -37,7 +37,7 @@ export default ({
         <View style={styles.body}>
           <View style={styles.item}>
             <Text style={styles.label}>TYPE</Text>
-            <Text style={styles.value}>{type}</Text>
+            <Text style={styles.value}>{eventType}</Text>
           </View>
           <View style={styles.item}>
             <Text style={styles.label}>VENUE</Text>
@@ -72,7 +72,7 @@ export default ({
     id={id}
     title={title}
     location={location}
-    type={type}
+    eventType={eventType}
     starred={starred}
     starsCount={starsCount}
     commentsCount={commentsCount}

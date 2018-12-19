@@ -10,9 +10,9 @@ import {decapitalize} from '../../../lib/capitalizr';
 const defaultValues = {
   id: 1,
   title: '(No title)',
-  start: new Date('11/21/2018'),
-  end: new Date('11/27/2018'),
-  type: 'WORK',
+  startAt: new Date('11/21/2018'),
+  endAt: new Date('11/27/2018'),
+  eventType: 'WORK',
   location: null,
   group: {
     name: 'Dev Mode',
@@ -38,12 +38,12 @@ export default class DetailsScreen extends React.Component {
   }
   _getRepeatDate = () => {
     const {
-      start,
+      startAt,
       repeat,
-      end
+      endAt
     } = defaultValues;
     if (repeat === 'NEVER') return '';
-    return moment(getNextDate(start, repeat, start, end)).format(CREATED_DATE_FORMAT)
+    return moment(getNextDate(startAt, repeat, startAt, endAt)).format(CREATED_DATE_FORMAT)
   }
   _goBack = () => this.props.navigation.goBack();
   _openDeleteDialog = () => this.setState({ visibleDialog: 'delete' });
@@ -54,7 +54,7 @@ export default class DetailsScreen extends React.Component {
   _handleCancel = ({ id, option }) => alert(`${id} - ${option}`);
   _navigateToGroup = (id) => this.props.navigation.navigate('GroupEvents', { id });
   _navigateToComments = (id) => this.props.navigation.navigate('Comments', { id });
-  _isValid = (isCancelled, end) => (!isCancelled) && (Date.now() < end);
+  _isValid = (isCancelled, endAt) => (!isCancelled) && (Date.now() < Date.parse(endAt));
   _hideDialog = () => this.setState({ visibleDialog: false });
   
   render() {
@@ -62,9 +62,9 @@ export default class DetailsScreen extends React.Component {
     const {
       id,
       title,
-      start,
-      end,
-      type,
+      startAt,
+      endAt,
+      eventType,
       location,
       group,
       repeat,
@@ -83,9 +83,9 @@ export default class DetailsScreen extends React.Component {
       <Details
         id={id}
         title={title}
-        date={formatDate(start, end, allDay)}
+        date={formatDate(startAt, endAt, allDay)}
         nextDate={this._getRepeatDate()}
-        type={decapitalize(type)}
+        eventType={decapitalize(eventType)}
         location={location && location.address}
         groupName={group.name}
         groupId={group.id}
@@ -97,7 +97,7 @@ export default class DetailsScreen extends React.Component {
         starsCount={starsCount}
         commentsCount={commentsCount}
         isAuthor={isAuthor}
-        isValid={this._isValid(isCancelled, end)}
+        isValid={this._isValid(isCancelled, endAt)}
         isCancelled={isCancelled}
         handleBack={this._goBack}
         handleDelete={this._openDeleteDialog}

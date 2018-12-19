@@ -9,7 +9,7 @@ export default ({
   title,
   date,
   nextDate,
-  type,
+  eventType,
   location,
   groupName,
   groupId,
@@ -73,7 +73,7 @@ export default ({
       title={title}
       date={date}
       nextDate={nextDate}
-      type={type}
+      eventType={eventType}
       location={location}
       groupName={groupName}
       groupId={groupId}
