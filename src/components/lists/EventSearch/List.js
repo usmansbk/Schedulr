@@ -62,7 +62,7 @@ class List extends React.Component {
     navigateToGroup={this._navigateToGroup}
   />;
   _renderSeparator = () => <Separator />;
-  _renderFooter = () => <Footer visible={!this.props.hasMore} />;
+  _renderFooter = () => <Footer visible={this.props.hasMore} />;
   _renderEmpty = () => <Empty />;
   _getDate = ({
     startAt,
