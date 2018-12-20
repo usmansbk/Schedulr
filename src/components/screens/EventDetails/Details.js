@@ -5,9 +5,7 @@ import CancelDialog from '../../dialogs/CancelEvent';
 import EditDialog from '../../dialogs/EditEvent';
 
 export default class DetailsScreen extends React.Component {
-  state = {
-    visibleDialog: null,
-  }
+  state = { visibleDialog: null };
   _goBack = () => this.props.navigation.goBack();
   _openDeleteDialog = () => this.setState({ visibleDialog: 'delete' });
   _openEditDialog = () => this.setState({ visibleDialog: 'edit' });
@@ -17,7 +15,7 @@ export default class DetailsScreen extends React.Component {
   _handleCancel = ({ id, option }) => alert(`${id} - ${option}`);
   _navigateToGroup = (id) => this.props.navigation.navigate('GroupEvents', { id });
   _navigateToComments = (id) => this.props.navigation.navigate('Comments', { id });
-  _hideDialog = () => this.setState({ visibleDialog: false });
+  _hideDialog = () => this.setState({ visibleDialog: null });
   
   render() {
     const { visibleDialog } = this.state;

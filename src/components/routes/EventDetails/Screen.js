@@ -41,7 +41,7 @@ export default class EventDetails extends React.Component {
     } = this.props;
     if (repeat === 'NEVER') return '';
     return moment(getNextDate(startAt, repeat, startAt, endAt)).format(CREATED_DATE_FORMAT)
-  }
+  };
   _isValid = (isCancelled, endAt) => (!isCancelled) && (Date.now() < Date.parse(endAt));
 
   render() {
