@@ -3,11 +3,11 @@ import capitalizr, { decapitalize } from './capitalizr';
 
 const START_TIME = 'hh:mm a';
 const DATE_FORMAT = 'DD MM YYYY';
+const REMINDER = 'REMINDER'
 
 export const parseDetails = ({ eventType, repeat, endAt, allDay, startAt }) => {
   const recurrence = repeat === 'NEVER' ? '' : decapitalize(repeat);
-  const eventType = decapitalize(eventType, true);
-  if ((eventType === REMINDER) || allDay) return `${recurrence ? (recurrence + ' ' + eventType) : eventType}`;
+  if ((eventType === REMINDER) || allDay) return `${recurrence ? (recurrence + ' ' + decapitalize(eventType, true)) : eventType}`;
   const duration = moment(Date.parse(endAt)).from(Date.parse(startAt), true);
   return capitalizr(`${duration} ${eventType.toLowerCase()}, ${recurrence.toLowerCase()}`);
 };
