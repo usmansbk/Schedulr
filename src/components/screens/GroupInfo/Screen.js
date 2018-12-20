@@ -5,9 +5,7 @@ import OpenDialog from '../../dialogs/OpenGroup';
 import CloseDialog from '../../dialogs/CloseGroup';
 
 export default class Screen extends React.Component {
-  state = {
-    visibleDialog: null
-  }
+  state = { visibleDialog: null };
   _goBack = () => this.props.navigation.goBack();
   _hideDialog = () => this.setState({ visibleDialog: null });
   _handleSelectMenu = (option) => {
