@@ -13,7 +13,8 @@ export default class Screen extends React.Component {
     return (
       <Profile
         goBack={this._goBack}
-        {...this.props}
+        name={this.props.name}
+        pictureUrl={this.props.pictureUrl}
       />
     )
   }
