@@ -57,7 +57,7 @@ const defaultGroup = {
   id: 1,
   name: 'EEEN302',
   description: `In this guide we will set up our app to handle external URIs @usbkay. Let's suppose that we want a URI like http://www.google.com to open our app and link straight into a chat screen for some user named "Eric".`,
-  closed: true,
+  isClosed: true,
   isPrivate: true,
   link: 'schdlr.com',
   isMember: true,

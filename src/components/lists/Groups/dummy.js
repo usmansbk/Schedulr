@@ -6,7 +6,7 @@ export default [
       description: 'YouTube',
       link: null,
       isAdmin: true,
-      closed: false,
+      isClosed: false,
     },
   },
   {
@@ -16,7 +16,7 @@ export default [
       description: 'Lorem Ipsum Dolor Amet Schdlr Visual Studio Code Terminal',
       link: null,
       isAdmin: true,
-      closed: false,
+      isClosed: false,
     },
   },
   {
@@ -26,7 +26,7 @@ export default [
       description: 'YouTube',
       link: null,
       isAdmin: true,
-      closed: false,
+      isClosed: false,
     },
   },
   {
@@ -36,7 +36,7 @@ export default [
       description: 'YouTube',
       link: null,
       isAdmin: true,
-      closed: false,
+      isClosed: false,
     },
   },
   {
@@ -46,7 +46,7 @@ export default [
       description: 'YouTube',
       link: null,
       isAdmin: true,
-      closed: false,
+      isClosed: false,
     },
   },
   {
@@ -56,7 +56,7 @@ export default [
       description: 'YouTube',
       link: null,
       isAdmin: true,
-      closed: false,
+      isClosed: false,
     },
   },
   {
@@ -66,7 +66,7 @@ export default [
       description: 'YouTube',
       link: null,
       isAdmin: true,
-      closed: true,
+      isClosed: true,
     },
   },
   {
@@ -76,7 +76,7 @@ export default [
       description: 'YouTube',
       link: null,
       isAdmin: true,
-      closed: false,
+      isClosed: false,
     },
   },
   {
@@ -86,7 +86,7 @@ export default [
       description: 'YouTube',
       link: null,
       isAdmin: true,
-      closed: false,
+      isClosed: false,
     },
   },
 ];

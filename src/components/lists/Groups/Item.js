@@ -12,7 +12,7 @@ export default class Item extends React.PureComponent {
     const {
       name,
       description,
-      closed,
+      isClosed,
     } = this.props;
     return (
       <TouchableRipple style={styles.itemContainer} onPress={this._onPress}>
@@ -23,7 +23,7 @@ export default class Item extends React.PureComponent {
           <View style={styles.itemBody}>
             <Text numberOfLines={1} ellipsizeMode="tail" style={styles.itemName}>{name}</Text>
             <Paragraph numberOfLines={1} ellipsizeMode="tail" style={styles.itemDescription}>{description}</Paragraph>
-            { closed && <Text style={styles.danger}>Closed</Text> }
+            { isClosed && <Text style={styles.danger}>Closed</Text> }
           </View>
         </View>
       </TouchableRipple>

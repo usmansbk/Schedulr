@@ -36,7 +36,7 @@ class List extends Component {
       name,
       description,
       isPrivate,
-      closed,
+      isClosed,
       isAdmin,
     } = node;
 
@@ -46,7 +46,7 @@ class List extends Component {
         name={name}
         description={description}
         isPrivate={isPrivate}
-        closed={closed}
+        isClosed={isClosed}
         isAdmin={isAdmin}
         onPressItem={this._onPressItem}
         navigateToGroupInfo={this._navigateToInfo}
