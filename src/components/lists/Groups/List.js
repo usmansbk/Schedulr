@@ -9,14 +9,13 @@ import styles, {
   ITEM_HEIGHT,
   SEPARATOR_HEIGHT
 } from './styles';
-import groups from './dummy';
 import colors from '../../../config/colors';
 
 class List extends Component {
   static defaultProps = {
-    groups,
+    groups: [],
     loading: false,
-    onRefresh: () => console.log('Refreshing')
+    onRefresh: () => null
   };
   _getItemLayout = (_, index) => (
     {

@@ -21,14 +21,13 @@ import styles, {
   HEADER_HEIGHT,
   primary
 } from './styles';
-import dummy from './dummy';
 
 class List extends React.Component {
   static defaultProps = {
     loading: false,
-    onRefresh: () => console.log('Refreshing'),
     hasPreviousEvents: false,
-    sections: dummy
+    sections: [],
+    onRefresh: () => null,
   };
   _loadPrevious = () => console.log('Load previous events');
   _keyExtractor = (item, index) => item.id;

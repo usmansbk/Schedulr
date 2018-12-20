@@ -5,6 +5,7 @@ export const SEPARATOR_HEIGHT = 1;
 export const ITEM_HEIGHT = 64;
 export const AVATAR_SIZE = 48;
 export const FOOTER_HEIGHT = 80;
+export const primaryColor = colors.primary
 
 export default StyleSheet.create({
   list: {

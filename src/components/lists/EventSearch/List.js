@@ -6,7 +6,6 @@ import Item from './Item';
 import Separator from './Separator';
 import Footer from './Footer';
 import Empty from './Empty';
-import dummy from './dummy';
 import { decapitalize } from '../../../lib/capitalizr';
 import { getNextDate } from '../../../lib/time';
 import styles, {
@@ -19,9 +18,10 @@ const FORMAT = 'ddd, MMM Do, YYYY hh:mm a';
 
 class List extends React.Component {
   static defaultProps = {
+    events: [],
     loading: false,
-    onRefresh: () => console.log('Refreshing'),
     hasMore: false,
+    onRefresh: () => null,
   };
   _getItemLayout = (_, index) => (
     {
@@ -81,12 +81,13 @@ class List extends React.Component {
 
   render() {
     const {
+      events,
       loading,
       onRefresh,
     } = this.props;
     return (
       <FlatList
-        data={dummy}
+        data={events}
         refreshing={loading}
         refreshControl={<RefreshControl refreshing={loading} colors={[primary]} />}
         onRefresh={onRefresh}

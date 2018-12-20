@@ -1,16 +1,22 @@
 import React from 'react';
-import { FlatList } from 'react-native';
+import { FlatList, RefreshControl } from 'react-native';
 import { withNavigationFocus } from 'react-navigation';
 import Footer from './Footer';
 import Item from './Item';
 import Separator from './Separator';
 import styles, {
   ITEM_HEIGHT,
-  SEPARATOR_HEIGHT
+  SEPARATOR_HEIGHT,
+  primaryColor
 } from './styles';
-import dummy from './dummy';
 
 class List extends React.Component {
+  static defaultProps = {
+    members: [],
+    loading: false,
+    hasMore: false,
+    onRefresh: () => null,
+  };
   shouldComponentUpdate = (nextProps) => nextProps.isFocused;
   _getItemLayout = (_, index) => (
     {
@@ -38,6 +44,11 @@ class List extends React.Component {
     )
   }
   render() {
+    const {
+      members,
+      loading,
+      onRefresh
+    } = this.props;
     return (
       <FlatList
         style={styles.list}
@@ -46,7 +57,10 @@ class List extends React.Component {
         renderItem={this._renderItem}
         ItemSeparatorComponent={this._renderSeparator}
         getItemLayout={this._getItemLayout}
-        data={dummy}
+        data={members}
+        refreshing={loading}
+        onRefresh={onRefresh}
+        refreshControl={<RefreshControl refreshing={loading} onRefresh={onRefresh} colors={[primaryColor]}/>}
       />
     )
   }

@@ -5,9 +5,13 @@ import { withNavigationFocus } from 'react-navigation';
 import Item from './Item';
 import Separator from './Separator';
 import styles from './styles';
-import data from './dummy';
 
 class List extends React.Component {
+  static defaultProps = {
+    comments: [],
+    loading: false,
+    onRefresh: () => null
+  };
   _keyExtractor = (item) => String(item.id);
   shouldComponentUpdate = (nextProps) => nextProps.isFocused;
   _navigateToProfile = (id) => this.props.navigation.navigate('UserProfile', { id }); 
@@ -40,13 +44,20 @@ class List extends React.Component {
   }
   _renderSeparator = () => <Separator />;
   render() {
+    const {
+      loading,
+      comments,
+      onRefresh
+    } = this.props;
     return (
       <FlatList
         style={styles.list}
-        data={data}
+        data={comments}
         keyExtractor={this._keyExtractor}
         renderItem={this._renderItem}
         ItemSeparatorComponent={this._renderSeparator}
+        refreshing={loading}
+        onRefresh={onRefresh}
       />
     )
   }
