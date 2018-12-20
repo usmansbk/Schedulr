@@ -47,12 +47,13 @@ export default StyleSheet.create({
     backgroundColor: colors.light_gray_2
   },
   note: {
+    textAlign: 'left',
     fontSize: 16,
     color: colors.gray,
-    marginHorizontal: 4
+    marginHorizontal: 4,
   },
   noteView: {
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     alignItems: 'center',
     flexDirection: 'row'
   },
