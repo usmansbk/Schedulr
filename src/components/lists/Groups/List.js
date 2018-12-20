@@ -10,10 +10,11 @@ import styles, {
   SEPARATOR_HEIGHT
 } from './styles';
 import colors from '../../../config/colors';
+import dummy from './dummy';
 
 class List extends Component {
   static defaultProps = {
-    groups: [],
+    groups: dummy,
     loading: false,
     onRefresh: () => null
   };
@@ -58,7 +59,7 @@ class List extends Component {
 
   render() {
     const {
-      groups=[],
+      groups,
       loading,
       onRefresh
     } = this.props;

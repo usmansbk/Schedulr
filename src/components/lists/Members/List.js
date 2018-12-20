@@ -4,6 +4,7 @@ import { withNavigationFocus } from 'react-navigation';
 import Footer from './Footer';
 import Item from './Item';
 import Separator from './Separator';
+import Empty from './Empty';
 import styles, {
   ITEM_HEIGHT,
   SEPARATOR_HEIGHT,
@@ -27,8 +28,9 @@ class List extends React.Component {
   );
   _onPressItem = (id) => this.props.navigation.navigate('UserProfile', id);
   _keyExtractor = item => String(item.id);
-  _renderFooter = () => <Footer />;
+  _renderFooter = () => <Footer visible={!this.props.hasMore && this.props.members.length} />;
   _renderSeparator = () => <Separator />;
+  _renderEmpty = () => <Empty />;
   _renderItem = ({item: {
     id,
     name,
@@ -56,6 +58,7 @@ class List extends React.Component {
         ListFooterComponent={this._renderFooter}
         renderItem={this._renderItem}
         ItemSeparatorComponent={this._renderSeparator}
+        ListEmptyComponent={this._renderEmpty}
         getItemLayout={this._getItemLayout}
         data={members}
         refreshing={loading}

@@ -13,12 +13,13 @@ import styles, {
   ITEM_HEIGHT,
   SEPARATOR_HEIGHT,
 } from './styles';
+import dummy from './dummy';
 
 const FORMAT = 'ddd, MMM Do, YYYY hh:mm a';
 
 class List extends React.Component {
   static defaultProps = {
-    events: [],
+    events: dummy,
     loading: false,
     hasMore: false,
     onRefresh: () => null,
