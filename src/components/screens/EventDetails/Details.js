@@ -7,32 +7,31 @@ import EditDialog from '../../dialogs/EditEvent';
 import { formatDate, getNextDate } from '../../../lib/time';
 import {decapitalize} from '../../../lib/capitalizr';
 
-const defaultValues = {
-  id: 1,
-  title: '(No title)',
-  startAt: new Date('11/21/2018'),
-  endAt: new Date('11/27/2018'),
-  eventType: 'WORK',
-  location: null,
-  group: {
-    name: 'Dev Mode',
-    id: 2,
-  },
-  allDay: false,
-  repeat: 'WEEKLY',
-  createdAt: new Date('11/20/2018'),
-  updatedAt: new Date('11/22/2018'),
-  description: 'No description',
-  isCancelled: false,
-  starred: false,
-  starsCount: 2001,
-  commentsCount: 2400000,
-  isAuthor: true,
-};
-
 const CREATED_DATE_FORMAT = "ddd DD, MMM YYYY, hh:mm a";
 
 export default class DetailsScreen extends React.Component {
+  static defaultProps = {
+    id: 1,
+    title: '(No title)',
+    startAt: moment().toISOString(),
+    endAt: moment().add(1, 'h').toISOString(),
+    eventType: 'WORK',
+    location: null,
+    group: {
+      name: 'Dev Mode Group',
+      id: 2,
+    },
+    allDay: false,
+    repeat: 'WEEKLY',
+    createdAt: moment().toISOString(),
+    updatedAt: moment().toISOString(),
+    description: 'No description',
+    isCancelled: false,
+    starred: false,
+    starsCount: 1000,
+    commentsCount: 240,
+    isAuthor: true,
+  };
   state = {
     visibleDialog: null,
   }
@@ -41,7 +40,7 @@ export default class DetailsScreen extends React.Component {
       startAt,
       repeat,
       endAt
-    } = defaultValues;
+    } = this.props;
     if (repeat === 'NEVER') return '';
     return moment(getNextDate(startAt, repeat, startAt, endAt)).format(CREATED_DATE_FORMAT)
   }
@@ -77,7 +76,7 @@ export default class DetailsScreen extends React.Component {
       starsCount,
       commentsCount,
       isAuthor,
-    } = defaultValues;
+    } = this.props;
     return (
       <React.Fragment>
       <Details
