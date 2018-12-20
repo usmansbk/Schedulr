@@ -29,9 +29,6 @@ export default class Screen extends React.Component {
       <React.Fragment>
         <GroupInfo
           goBack={this._goBack}
-          {...defaultGroup}
-          adminId={defaultGroup.admin.id}
-          adminName={defaultGroup.admin.name}
           handleSelectMenu={this._handleSelectMenu}
           navigateToMembers={this._navigateToMembers}
           navigateToProfile={this._navigateToProfile}
@@ -50,22 +47,5 @@ export default class Screen extends React.Component {
         />
       </React.Fragment>
     );
-  }
-}
-
-const defaultGroup = {
-  id: 1,
-  name: 'EEEN302',
-  description: `In this guide we will set up our app to handle external URIs @usbkay. Let's suppose that we want a URI like http://www.google.com to open our app and link straight into a chat screen for some user named "Eric".`,
-  isClosed: true,
-  isPrivate: true,
-  link: 'schdlr.com',
-  isMember: true,
-  isAdmin: true,
-  membersCount: 2,
-  createdAt: Date.now(),
-  admin: {
-    id: 2,
-    name: 'Babakolo Usman Suleiman',
   }
 }
