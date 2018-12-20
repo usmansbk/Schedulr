@@ -54,8 +54,8 @@ export default [
     allDay: true,
     isCancelled: false,
     starred: false,
-    starsCount: 0,
-    commentsCount: 222203,
+    starsCount: 5,
+    commentsCount: 22,
     repeat: 'WEEKLY',
     eventType: 'LECTURE',
     group: {
@@ -75,8 +75,8 @@ export default [
     allDay: true,
     isCancelled: false,
     starred: false,
-    starsCount: 0,
-    commentsCount: 222203,
+    starsCount: 12,
+    commentsCount: 1000,
     repeat: 'WEEKLY',
     eventType: 'LECTURE',
     group: {
