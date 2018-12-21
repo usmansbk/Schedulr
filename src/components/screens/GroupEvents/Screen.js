@@ -20,7 +20,6 @@ export default class Screen extends React.Component {
   render() {
     return (
       <GroupEvents
-        {...defaultGroup}
         handleShare={this._handleShare}
         navigateToGroupInfo={this._navigateToGroupInfo}
         navigateToNewEvent={this._navigateToNewEvent}
@@ -28,12 +27,4 @@ export default class Screen extends React.Component {
       />
     );
   }
-}
-
-const defaultGroup = {
-  id: 1,
-  name: 'Demo dev',
-  description: 'lorem Ipsum Dolor Amet Schdlr Studio Code',
-  following: true,
-  isAdmin: true,
 }
