@@ -8,7 +8,7 @@ export default (props) => (
     <Headline style={styles.emptyTitle}>
     {
       props.starred ? 'Nothing to see here - yet' : (
-        'When you join a group, their events and agenda show up here'
+        'When you join a group, their events and agendas show up here'
       )
     }
     </Headline>
