@@ -14,8 +14,8 @@ import {
   RadioButton,
   Appbar
 } from 'react-native-paper';
-import DateTimeInput from '../../common/DateTimeInput';
 import { Formik } from 'formik';
+import DateTimeInput from '../../common/DateTimeInput';
 import {
   isEventValid,
   canRepeat
