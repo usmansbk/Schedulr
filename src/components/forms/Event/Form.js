@@ -33,7 +33,7 @@ const defaultValues = {
     address: ''
   },
   startAt: moment().toDate().toISOString(),
-  endAt: moment().toDate().toISOString(),
+  endAt: moment().add(2, 'hours').toDate().toISOString(),
   allDay: false,
   eventType: eventTypes[0].id,
   repeat: frequency[0].id,
