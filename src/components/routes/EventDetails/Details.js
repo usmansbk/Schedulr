@@ -55,10 +55,14 @@ export default ({
             <Text style={styles.label}>CREATED</Text>
             <Text style={styles.value}>{createdAt}</Text>
           </View>
-          <View style={styles.item}>
-            <Text style={styles.label}>UPDATED</Text>
-            <Text style={styles.value}>{updatedAt}</Text>
-          </View>
+          {
+            Boolean(updatedAt) && (
+              <View style={styles.item}>
+                <Text style={styles.label}>UPDATED</Text>
+                <Text style={styles.value}>{updatedAt}</Text>
+              </View>
+            )
+          }
           <View style={styles.item}>
             <Text style={styles.label}>DESCRIPTION</Text>
             <Text style={styles.value}>{description || 'No description'}</Text>
