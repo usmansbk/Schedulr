@@ -16,7 +16,9 @@ export default class EventDetails extends React.Component {
     startAt: moment().toISOString(),
     endAt: moment().add(1, 'h').toISOString(),
     eventType: 'WORK',
-    location: null,
+    location: {
+      address: 'Bardawa close, Kaduna',
+    },
     group: {
       name: 'Dev Mode Group',
       id: 2,
