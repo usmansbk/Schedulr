@@ -1,7 +1,5 @@
 import React from 'react';
-import {
-  Appbar,
-} from 'react-native-paper';
+import { Appbar } from 'react-native-paper';
 import Events from '../../lists/Events';
 import Fab from '../../common/Fab';
 import styles from '../../../config/styles';
@@ -48,7 +46,7 @@ export default class GroupEvents extends React.Component {
             color={colors.gray}
           />
         </Appbar.Header>
-        <Events />
+        <Events listType="group" />
         {
           isAdmin && (
             <Fab

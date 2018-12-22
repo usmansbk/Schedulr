@@ -33,7 +33,18 @@ class List extends React.Component {
   _keyExtractor = (item, index) => item.id;
   _renderHeader = () => <Header onPress={this._loadPrevious} visible={this.props.hasPreviousEvents} />;
   _renderFooter = () => <Footer visible={this.props.sections.length}/>;
-  _renderEmptyList = () => <Empty starred={this.props.starred} />;
+  _renderEmptyList = () => {
+    const {listType } = this.props;
+    let message;
+    if (listType === 'group') {
+      message = 'No upcoming event!'
+    } else if (listType === 'starred') {
+      message = 'No important event - yet'
+    } else {
+      message = 'When you join a group, their events and agendas show up here';
+    }
+    return <Empty message={message} />
+  };
   _renderSeparator = () => <Separator />;
   _renderSectionHeader = ({section}) => <SectionHeader section={section} />;
   _onPressItem = (id) => this.props.navigation.navigate('EventDetails', { id });
