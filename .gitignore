@@ -43,6 +43,7 @@ amplify/
 */aws-exports.js
 schema.graphql
 models.graphql
+*.vtl
 
 # BUCK
 buck-out/
