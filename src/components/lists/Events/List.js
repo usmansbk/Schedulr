@@ -14,6 +14,7 @@ import {
   endTime,
   isStarted
 } from '../../../lib/parseItem';
+import { formatDate } from '../../../lib/time';
 import styles, {
   ITEM_HEIGHT,
   SEPERATOR_HEIGHT,
@@ -73,12 +74,12 @@ class List extends React.Component {
     details={parseDetails({ startAt, endAt, allDay, eventType, repeat })}
     startTime={startTime({ allDay, startAt })}
     endTime={endTime({ endAt, startAt })}
-    date={new Date(startAt).toDateString()}
+    date={formatDate(starta, endAt, allDay)}
     isStarted={isStarted({ startAt, endAt, isCancelled })}
     isCancelled={isCancelled}
     commentsCount={commentsCount}
     starsCount={starsCount}
-    starred={starred}
+    starred={starred} 
     boardId={board.id}
     boardName={board.name}
     allDay={allDay}
