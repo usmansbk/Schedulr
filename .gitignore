@@ -39,6 +39,7 @@ yarn-error.log
 # amplify
 #
 amplify/
+resolvers/
 .amplifyrc
 */aws-exports.js
 schema.graphql
