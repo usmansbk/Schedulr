@@ -9,7 +9,6 @@ export default class Screen extends React.Component {
   render() {
     return (
       <GroupEvents
-        handleShare={this._handleShare}
         navigateToGroupInfo={this._navigateToGroupInfo}
         navigateToNewEvent={this._navigateToNewEvent}
         onPress={this._onBack}
