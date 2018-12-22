@@ -14,7 +14,7 @@ import dummy from './dummy';
 
 class List extends Component {
   static defaultProps = {
-    boards: dummy,
+    boards: [],
     loading: false,
     onRefresh: () => null
   };

@@ -64,7 +64,6 @@ export default class EventDetails extends React.Component {
       starsCount,
       commentsCount,
       isAuthor,
-      isValid,
       isCancelled,
       handleBack,
       handleDelete,
@@ -74,6 +73,7 @@ export default class EventDetails extends React.Component {
       navigateToBoard,
       navigateToComments,
     } = this.props;
+    const isValid = this._isValid(isCancelled, endAt);
 
     return (
       <React.Fragment>
@@ -103,7 +103,7 @@ export default class EventDetails extends React.Component {
                       />
                       <Appbar.Action
                         icon="close"
-                        color={color.gray}
+                        color={colors.gray}
                         onPress={handleCancel}
                       />
                     </React.Fragment>
@@ -130,7 +130,7 @@ export default class EventDetails extends React.Component {
           starsCount={starsCount}
           commentsCount={commentsCount}
           isAuthor={isAuthor}
-          isValid={this._isValid(isCancelled, endAt)}
+          isValid={isValid}
           isCancelled={isCancelled}
           navigateToBoard={navigateToBoard}
           navigateToComments={navigateToComments}
