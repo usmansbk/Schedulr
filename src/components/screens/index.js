@@ -12,7 +12,7 @@ import Settings from './Settings';
 import Help from './Help';
 import UserProfile from './UserProfile';
 import Comments from './Comments';
-import Members from './Members';
+import Followers from './Followers';
 
 export {
   AuthLoading,
@@ -29,5 +29,5 @@ export {
   Help,
   UserProfile,
   Comments,
-  Members
+  Followers
 };

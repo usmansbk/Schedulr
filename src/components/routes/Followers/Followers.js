@@ -1,6 +1,6 @@
 import React from 'react';
 import { Appbar } from 'react-native-paper';
-import List from '../../lists/Members';
+import List from '../../lists/Followers';
 import styles from '../../../config/styles';
 import colors from '../../../config/colors';
 

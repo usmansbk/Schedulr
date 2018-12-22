@@ -8,7 +8,7 @@ import Notifications from './Notifications';
 import EventDetails from './EventDetails';
 import GroupEvents from './GroupEvents';
 import GroupInfo from './GroupInfo';
-import Members from './Members';
+import Followers from './Followers';
 import Comments from './Comments';
 
 export {
@@ -22,6 +22,6 @@ export {
   EventDetails,
   GroupEvents,
   GroupInfo,
-  Members,
+  Followers,
   Comments
 };

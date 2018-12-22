@@ -1,11 +1,11 @@
 import React from 'react';
-import Members from '../../routes/Members';
+import Followers from '../../routes/Followers';
 
 export default class Screen extends React.Component {
   _goBack = () => this.props.navigation.goBack();
   render() {
     return (
-      <Members
+      <Followers
         goBack={this._goBack}
       />
     )
