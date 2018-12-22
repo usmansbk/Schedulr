@@ -50,6 +50,7 @@ export default class Info extends React.Component {
       isAdmin,
       admin,
       goBack,
+      handleShare,
       handleSelectMenu,
       navigateToMembers,
       navigateToProfile,
@@ -66,6 +67,11 @@ export default class Info extends React.Component {
           <Appbar.Content
             title="Group Info"
             titleStyle={appStyles.headerColor}
+          />
+          <Appbar.Action
+            icon="share"
+            onPress={() => handleShare({ name, description, id})}
+            color={colors.gray}
           />
           {
             isAdmin && (

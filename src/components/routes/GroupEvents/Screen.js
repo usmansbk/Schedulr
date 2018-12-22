@@ -21,7 +21,6 @@ export default class GroupEvents extends React.Component {
       description,
       isAdmin,
       onPress,
-      handleShare,
       navigateToGroupInfo,
       navigateToNewEvent
     } = this.props;
@@ -34,11 +33,6 @@ export default class GroupEvents extends React.Component {
             title={name}
             subtitle={description}
             titleStyle={styles.headerColor}
-          />
-          <Appbar.Action
-            icon="share"
-            onPress={() => handleShare({ name, description, id})}
-            color={colors.gray}
           />
           <Appbar.Action
             icon="info-outline"
