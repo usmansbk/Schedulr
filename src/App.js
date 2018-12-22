@@ -19,12 +19,16 @@ import {
   Settings,
   UserProfile,
   Followers,
-  Comments
+  Comments,
+  EditEvent,
+  EditBoard
 } from './components/screens';
 
 
 const AppStack = createStackNavigator({
   Home,
+  EditEvent,
+  EditBoard,
   NewEvent,
   NewBoard,
   NewBoardEvent,

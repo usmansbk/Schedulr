@@ -1,5 +1,7 @@
 import Login from './Login';
 import Home from './Home';
+import EditEvent from './EditEvent';
+import EditBoard from './EditBoard';
 import NewEvent from './NewEvent';
 import NewBoard from './NewBoard';
 import NewBoardEvent from './NewBoardEvent';
@@ -18,6 +20,8 @@ export {
   AuthLoading,
   Login,
   Home,
+  EditBoard,
+  EditEvent,
   NewEvent,
   NewBoard,
   NewBoardEvent,
