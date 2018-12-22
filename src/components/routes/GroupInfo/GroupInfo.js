@@ -28,9 +28,9 @@ export default class Info extends React.Component {
     isClosed: true,
     isPrivate: true,
     link: 'schdlr.com',
-    isMember: true,
-    isAdmin: true,
-    membersCount: 2,
+    isFollowing: false,
+    isAdmin: false,
+    followersCount: 2,
     createdAt: Date.now(),
     admin: {
       id: 2,
@@ -44,8 +44,8 @@ export default class Info extends React.Component {
       name,
       description,
       isClosed,
-      isMember,
-      membersCount,
+      isFollowing,
+      followersCount,
       isPrivate,
       isAdmin,
       admin,
@@ -119,13 +119,13 @@ export default class Info extends React.Component {
               <View style={styles.right}>
                 <Text style={styles.name}>{name}</Text>
                 <Text
-                  style={styles.membersCount}
+                  style={styles.followersCount}
                   onPress={() => navigateToMembers(id)}
                 >
-                  {numeral(membersCount).format('0a')} Member{membersCount > 1 ? 's' : ''}
+                  {numeral(followersCount).format('0a')} Follower{followersCount > 1 ? 's' : ''}
                 </Text>
                 {
-                  !isAdmin && (<FollowButton isMember={isMember} />)
+                  !isAdmin && (<FollowButton isFollowing={isFollowing} />)
                 }
               </View>
             </View>

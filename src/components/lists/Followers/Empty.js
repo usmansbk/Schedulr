@@ -6,7 +6,7 @@ import styles from './styles';
 export default () => (
   <View style={styles.empty}>
     <Headline style={styles.emptyTitle}>
-      Be the first to join!
+      Be the first to follow!
     </Headline>
   </View>
 );

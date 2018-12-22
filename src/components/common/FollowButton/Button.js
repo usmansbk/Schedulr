@@ -3,10 +3,10 @@ import { Button } from 'react-native-paper';
 
 export default ({
   style,
-  isMember,
+  isFollowing,
 }) => (
   <Button
     style={style}
     mode="outlined"
-  >{isMember ? 'Leave' : 'Join'}</Button>
+  >{isFollowing ? 'Unfollow' : 'Follow'}</Button>
 );

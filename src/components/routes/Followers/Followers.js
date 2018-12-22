@@ -11,7 +11,7 @@ export default ({
     <Appbar.Header style={styles.header}>
       <Appbar.BackAction onPress={goBack} color={colors.gray} />
       <Appbar.Content
-        title="Members"
+        title="Followers"
         titleStyle={styles.headerColor}
       />
     </Appbar.Header>
