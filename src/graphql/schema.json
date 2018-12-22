@@ -227,7 +227,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "listGroupMembers",
+          "name" : "listGroupFollowers",
           "description" : null,
           "args" : [ {
             "name" : "id",

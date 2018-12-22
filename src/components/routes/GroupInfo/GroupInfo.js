@@ -52,7 +52,7 @@ export default class Info extends React.Component {
       goBack,
       handleShare,
       handleSelectMenu,
-      navigateToMembers,
+      navigateToFollowers,
       navigateToProfile,
     } = this.props;
     const [ first, second ] = name.split(' ');
@@ -120,7 +120,7 @@ export default class Info extends React.Component {
                 <Text style={styles.name}>{name}</Text>
                 <Text
                   style={styles.followersCount}
-                  onPress={() => navigateToMembers(id)}
+                  onPress={() => navigateToFollowers(id)}
                 >
                   {numeral(followersCount).format('0a')} Follower{followersCount > 1 ? 's' : ''}
                 </Text>

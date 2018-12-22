@@ -19,7 +19,7 @@ export default ({
   eventEnded,
   disablePush,
   adminComments,
-  membersComments,
+  followersComments,
   visitorsComments,
   repliedComments
 }) => (
@@ -104,11 +104,11 @@ export default ({
         />
         <Divider />
         <List.Item
-          title="Group members comments"
+          title="Group followers comments"
           right={() => (
             <Switch
-              value={membersComments}
-              onValueChange={() => handleValueChange('groupMembers')}
+              value={followersComments}
+              onValueChange={() => handleValueChange('groupFollowers')}
             />
           )}
         />

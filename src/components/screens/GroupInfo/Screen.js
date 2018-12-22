@@ -29,7 +29,7 @@ export default class Screen extends React.Component {
         break;
     }
   };
-  _navigateToMembers = (id) => this.props.navigation.navigate('Members', { id });
+  _navigateToFollowers = (id) => this.props.navigation.navigate('Followers', { id });
   _navigateToProfile = (id) => this.props.navigation.navigate('UserProfile', { id, privacy: 'public' });
 
   render() {
@@ -40,7 +40,7 @@ export default class Screen extends React.Component {
           goBack={this._goBack}
           handleShare={this._handleShare}
           handleSelectMenu={this._handleSelectMenu}
-          navigateToMembers={this._navigateToMembers}
+          navigateToFollowers={this._navigateToFollowers}
           navigateToProfile={this._navigateToProfile}
         />
         <DeleteDialog

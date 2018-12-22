@@ -35,7 +35,7 @@ export default StyleSheet.create({
     fontSize: 27,
     fontWeight: 'bold'
   },
-  membersCount: {
+  followersCount: {
     color: colors.light_gray_3,
     fontWeight: 'bold',
     fontSize: 16,

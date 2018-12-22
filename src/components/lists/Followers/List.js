@@ -13,7 +13,7 @@ import styles, {
 
 class List extends React.Component {
   static defaultProps = {
-    members: [],
+    followers: [],
     loading: false,
     hasMore: false,
     onRefresh: () => null,
@@ -28,7 +28,7 @@ class List extends React.Component {
   );
   _onPressItem = (id) => this.props.navigation.navigate('UserProfile', id);
   _keyExtractor = item => String(item.id);
-  _renderFooter = () => <Footer visible={!this.props.hasMore && this.props.members.length} />;
+  _renderFooter = () => <Footer visible={!this.props.hasMore && this.props.followers.length} />;
   _renderSeparator = () => <Separator />;
   _renderEmpty = () => <Empty />;
   _renderItem = ({item: {
@@ -47,7 +47,7 @@ class List extends React.Component {
   }
   render() {
     const {
-      members,
+      followers,
       loading,
       onRefresh
     } = this.props;
@@ -60,7 +60,7 @@ class List extends React.Component {
         ItemSeparatorComponent={this._renderSeparator}
         ListEmptyComponent={this._renderEmpty}
         getItemLayout={this._getItemLayout}
-        data={members}
+        data={followers}
         refreshing={loading}
         onRefresh={onRefresh}
         refreshControl={<RefreshControl refreshing={loading} onRefresh={onRefresh} colors={[primaryColor]}/>}
