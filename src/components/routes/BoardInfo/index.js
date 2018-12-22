@@ -1,3 +1,3 @@
-import BoardInfo from './BoardInfo';
+import Info from './Info';
 
-export default BoardInfo;
+export default Info;
