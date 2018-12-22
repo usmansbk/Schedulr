@@ -8,7 +8,6 @@ export default class NewEventScreen extends React.Component {
     return (
       <Form
         handleCancel={this._handleBack}
-        locked
       />
     )
   }

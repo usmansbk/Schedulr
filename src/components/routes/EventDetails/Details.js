@@ -44,7 +44,7 @@ export default ({
             <Text style={styles.value}>{location || 'No location set'}</Text>
           </View>
           <View style={styles.item}>
-            <Text style={styles.label}>board</Text>
+            <Text style={styles.label}>BOARD</Text>
             <Text onPress={() => navigateToBoard(boardId)} style={[styles.value, styles.nav]}>{boardName}</Text>
           </View>
           <View style={styles.item}>
