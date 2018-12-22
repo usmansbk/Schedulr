@@ -41,7 +41,7 @@ class List extends React.Component {
     } else if (listType === 'starred') {
       message = 'No important event - yet'
     } else {
-      message = 'When you join a group, their events and agendas show up here';
+      message = 'When you follow a group, their events and agendas show up here';
     }
     return <Empty message={message} />
   };
