@@ -14,7 +14,7 @@ import dummy from './dummy';
 
 class List extends Component {
   static defaultProps = {
-    groups: dummy,
+    groups: [],
     loading: false,
     onRefresh: () => null
   };
@@ -29,7 +29,7 @@ class List extends Component {
   _onPressItem = (id) => this.props.navigation.navigate('GroupEvents', { id });
   _navigateToInfo = (id) => this.props.navigation.navigate('GroupInfo', { id });
   _keyExtractor = (item) => String(item.node.id);
-  _renderEmptyList = () => <Empty />;
+  _renderEmptyList = () => <Empty search={this.props.search} />;
   _renderItem = ({item: { node }}) => {
     const {
       id,
