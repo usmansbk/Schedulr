@@ -7,7 +7,7 @@ import styles, { AVATAR_SIZE } from './styles';
 
 export default class Item extends React.PureComponent {
   _onPress = () => this.props.onPressItem(this.props.id);
-  _navigateToInfo = () => this.props.navigateToGroupInfo(this.props.id);
+  _navigateToInfo = () => this.props.navigateToBoardInfo(this.props.id);
   render() {
     const {
       name,

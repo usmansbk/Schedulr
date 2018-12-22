@@ -61,7 +61,7 @@ const Form = ({
       <ScrollView refreshControl={<RefreshControl refreshing={false} onRefresh={() => resetForm()} />}>
         <View style={styles.form}>
           <TextInput
-            placeholder="Group name"
+            placeholder="Board name"
             value={values.name}
             onChangeText={handleChange('name')}
             onBlur={handleBlur('name')}
@@ -97,7 +97,7 @@ const Form = ({
             type="info"
             visible={values.private}
           >
-            Users won't be able to search for this group!
+            Users won't be able to search for this board!
           </HelperText>
         </View>
       </ScrollView>

@@ -17,7 +17,7 @@ export default ({
       visible={visible}
       onDismiss={handleDismiss}
     >
-      <Dialog.Title>Open group?</Dialog.Title>
+      <Dialog.Title>Open board?</Dialog.Title>
       <Dialog.Actions>
         <Button disabled={loading} onPress={handleDismiss}>Dismiss</Button>
         <Button loading={loading} disabled={loading} onPress={handleDismiss}>Continue</Button>

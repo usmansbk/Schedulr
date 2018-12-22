@@ -15,7 +15,7 @@ export default [
     commentsCount: 222203,
     repeat: 'WEEKLY',
     eventType: 'LECTURE',
-    group: {
+    board: {
       id: 1,
       name: 'EEEN301'
     }
@@ -36,7 +36,7 @@ export default [
     commentsCount: 222203,
     repeat: 'WEEKLY',
     eventType: 'LECTURE',
-    group: {
+    board: {
       id: 1,
       name: 'EEEN301',
       pictureUrl: null
@@ -58,7 +58,7 @@ export default [
     commentsCount: 22,
     repeat: 'WEEKLY',
     eventType: 'LECTURE',
-    group: {
+    board: {
       id: 1,
       name: 'EEEN301'
     }
@@ -79,7 +79,7 @@ export default [
     commentsCount: 1000,
     repeat: 'WEEKLY',
     eventType: 'LECTURE',
-    group: {
+    board: {
       id: 1,
       name: 'EEEN301'
     }
@@ -100,7 +100,7 @@ export default [
     commentsCount: 222203,
     repeat: 'WEEKLY',
     eventType: 'LECTURE',
-    group: {
+    board: {
       id: 1,
       name: 'EEEN301'
     }

@@ -1,9 +1,9 @@
 import React from 'react';
 import Share from 'react-native-share';
-import GroupInfo from '../../routes/GroupInfo';
-import DeleteDialog from '../../dialogs/DeleteGroup';
-import OpenDialog from '../../dialogs/OpenGroup';
-import CloseDialog from '../../dialogs/CloseGroup';
+import BoardInfo from '../../routes/BoardInfo';
+import DeleteDialog from '../../dialogs/DeleteBoard';
+import OpenDialog from '../../dialogs/OpenBoard';
+import CloseDialog from '../../dialogs/CloseBoard';
 import env from '../../../config/env';
 
 export default class Screen extends React.Component {
@@ -13,16 +13,16 @@ export default class Screen extends React.Component {
   _handleShare = ({ id, name }) => {
     const shareOptions = {
       title: 'Invite via...',
-      subject: 'Follow group to see latest events',
+      subject: 'Follow board to see latest events',
       message: `Follow "${name}" to see their latest events, receive updates and get reminders.\n`,
-      url: `${env.APP_URL}/group/${id}`
+      url: `${env.APP_URL}/board/${id}`
     };
     Share.open(shareOptions);
   };
   _handleSelectMenu = (option) => {
     switch (option) {
       case 'edit':
-        this.props.navigation.navigate('EditGroup', { id: this.props.id })
+        this.props.navigation.navigate('EditBoard', { id: this.props.id })
         break;
       default:
         this.setState({ visibleDialog: option });
@@ -36,7 +36,7 @@ export default class Screen extends React.Component {
     const { visibleDialog } = this.state;
     return (
       <React.Fragment>
-        <GroupInfo
+        <BoardInfo
           goBack={this._goBack}
           handleShare={this._handleShare}
           handleSelectMenu={this._handleSelectMenu}

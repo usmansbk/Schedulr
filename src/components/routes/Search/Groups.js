@@ -1,7 +1,7 @@
 import React from 'react';
-import List from '../../lists/Groups';
+import List from '../../lists/Boards';
 
-export default class Groups extends React.PureComponent {
+export default class Boards extends React.PureComponent {
   render() {
     return (
       <List search />

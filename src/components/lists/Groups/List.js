@@ -14,7 +14,7 @@ import dummy from './dummy';
 
 class List extends Component {
   static defaultProps = {
-    groups: dummy,
+    boards: dummy,
     loading: false,
     onRefresh: () => null
   };
@@ -26,8 +26,8 @@ class List extends Component {
     }
   );
   shouldComponentUpdate = (nextProps) => nextProps.isFocused;
-  _onPressItem = (id) => this.props.navigation.navigate('GroupEvents', { id });
-  _navigateToInfo = (id) => this.props.navigation.navigate('GroupInfo', { id });
+  _onPressItem = (id) => this.props.navigation.navigate('BoardEvents', { id });
+  _navigateToInfo = (id) => this.props.navigation.navigate('BoardInfo', { id });
   _keyExtractor = (item) => String(item.node.id);
   _renderEmptyList = () => <Empty search={this.props.search} />;
   _renderItem = ({item: { node }}) => {
@@ -49,17 +49,17 @@ class List extends Component {
         isClosed={isClosed}
         isAdmin={isAdmin}
         onPressItem={this._onPressItem}
-        navigateToGroupInfo={this._navigateToInfo}
+        navigateToBoardInfo={this._navigateToInfo}
       />
     )
   }
 
   _renderSeparator = () => <Separator />;
-  _renderFooter = () => <Footer visible={this.props.groups.length} />;
+  _renderFooter = () => <Footer visible={this.props.boards.length} />;
 
   render() {
     const {
-      groups,
+      boards,
       loading,
       onRefresh
     } = this.props;
@@ -70,11 +70,11 @@ class List extends Component {
         onRefresh={onRefresh}
         style={styles.list}
         initialNumToRender={5}
-        extraData={groups.length}
+        extraData={boards.length}
         getItemLayout={this._getItemLayout}
         ItemSeparatorComponent={this._renderSeparator}
         keyExtractor={this._keyExtractor}
-        data={groups}
+        data={boards}
         renderItem={this._renderItem}
         ListEmptyComponent={this._renderEmptyList}
         ListFooterComponent={this._renderFooter}

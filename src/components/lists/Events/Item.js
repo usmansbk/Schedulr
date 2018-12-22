@@ -17,7 +17,7 @@ const REMINDER = 'REMINDER';
 
 export default class Item extends React.PureComponent {
   _onPress = () => this.props.onPressItem(this.props.id);
-  _navigateToGroup = () => this.props.navigateToGroupEvents(this.props.groupId);
+  _navigateToBoard = () => this.props.navigateToBoardEvents(this.props.boardId);
   _onPressComment = () => this.props.onPressCommentButton(this.props.id);
 
   render() {
@@ -35,10 +35,10 @@ export default class Item extends React.PureComponent {
       isCancelled,
       starsCount,
       commentsCount,
-      groupName,
+      boardName,
       starred,
     } = this.props;
-    const [ first, second ] = groupName.split(' ');
+    const [ first, second ] = boardName.split(' ');
     const avatarName = `${first} ${second ? second : ''}`;
     return (
       <TouchableRipple
@@ -47,7 +47,7 @@ export default class Item extends React.PureComponent {
       >
         <View style={styles.itemContent}>
           <View style={styles.left}>
-            <TouchableRipple onPress={this._navigateToGroup}>
+            <TouchableRipple onPress={this._navigateToBoard}>
               <Avatar
                 component={CachedImage}
                 rounded

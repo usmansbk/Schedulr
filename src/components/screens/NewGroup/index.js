@@ -1,3 +1,3 @@
-import NewGroup from './NewGroup';
+import NewBoard from './NewBoard';
 
-export default NewGroup;
+export default NewBoard;

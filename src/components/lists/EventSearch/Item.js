@@ -16,13 +16,13 @@ import styles, { AVATAR_SIZE } from './styles';
 
 export default class Item extends React.PureComponent {
   _onPress = () => this.props.onPressItem(this.props.id);
-  _navigateToGroup = () => this.props.navigateToGroup(this.props.groupId);
+  _navigateToBoard = () => this.props.navigateToBoard(this.props.boardId);
 
   render() {
     const {
       date,
       details,
-      groupName,
+      boardName,
       pictureUrl,
       title,
       isCancelled,
@@ -32,9 +32,9 @@ export default class Item extends React.PureComponent {
     return (
       <TouchableRipple onPress={this._onPress} style={styles.itemContainer}>
         <View style={styles.itemBody}>
-          <TouchableRipple onPress={this._navigateToGroup}>
+          <TouchableRipple onPress={this._navigateToBoard}>
             <UserAvatar
-              name={groupName}
+              name={boardName}
               src={pictureUrl}
               rounded
               size={AVATAR_SIZE}

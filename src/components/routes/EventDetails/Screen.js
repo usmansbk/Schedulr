@@ -19,8 +19,8 @@ export default class EventDetails extends React.Component {
     location: {
       address: 'Bardawa close, Kaduna',
     },
-    group: {
-      name: 'Dev Mode Group',
+    board: {
+      name: 'Dev Mode Board',
       id: 2,
     },
     allDay: false,
@@ -55,7 +55,7 @@ export default class EventDetails extends React.Component {
       startAt,
       endAt,
       allDay,
-      group,
+      board,
       repeat,
       createdAt,
       updatedAt,
@@ -71,7 +71,7 @@ export default class EventDetails extends React.Component {
       handleRepeat,
       handleEdit,
       handleCancel,
-      navigateToGroup,
+      navigateToBoard,
       navigateToComments,
     } = this.props;
 
@@ -120,8 +120,8 @@ export default class EventDetails extends React.Component {
           nextDate={this._getRepeatDate()}
           eventType={decapitalize(eventType)}
           location={location && location.address}
-          groupName={group.name}
-          groupId={group.id}
+          boardName={board.name}
+          boardId={board.id}
           repeat={decapitalize(repeat)}
           createdAt={moment(createdAt).format(CREATED_DATE_FORMAT)}
           updatedAt={moment(updatedAt).format(CREATED_DATE_FORMAT)}
@@ -132,7 +132,7 @@ export default class EventDetails extends React.Component {
           isAuthor={isAuthor}
           isValid={this._isValid(isCancelled, endAt)}
           isCancelled={isCancelled}
-          navigateToGroup={navigateToGroup}
+          navigateToBoard={navigateToBoard}
           navigateToComments={navigateToComments}
         />
       </React.Fragment>

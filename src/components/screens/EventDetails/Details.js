@@ -13,7 +13,7 @@ export default class DetailsScreen extends React.Component {
   _handleRepeat = () => this.props.navigation.navigate('RescheduleEvent', { id: this.props.id });
   _openCancelDialog = () => this.setState({ visibleDialog: 'cancel' });
   _handleCancel = ({ id, option }) => alert(`${id} - ${option}`);
-  _navigateToGroup = (id) => this.props.navigation.navigate('GroupEvents', { id });
+  _navigateToBoard = (id) => this.props.navigation.navigate('BoardEvents', { id });
   _navigateToComments = (id) => this.props.navigation.navigate('Comments', { id });
   _hideDialog = () => this.setState({ visibleDialog: null });
   
@@ -28,7 +28,7 @@ export default class DetailsScreen extends React.Component {
           handleCancel={this._openCancelDialog}
           handleEdit={this._openEditDialog}
           handleRepeat={this._handleRepeat}
-          navigateToGroup={this._navigateToGroup}
+          navigateToBoard={this._navigateToBoard}
           navigateToComments={this._navigateToComments}
         />
         <DeleteDialog

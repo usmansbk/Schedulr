@@ -14,7 +14,7 @@ export default [{
     commentsCount: 222203,
     repeat: 'MONTHLY',
     eventType: 'WORKSHOP',
-    group: {
+    board: {
       id: 1,
       name: 'EEEN301'
     }
@@ -37,7 +37,7 @@ export default [{
       commentsCount: 222203,
       repeat: 'WEEKLY',
       eventType: 'LECTURE',
-      group: {
+      board: {
         id: 1,
         name: 'EEEN301'
       }
@@ -57,7 +57,7 @@ export default [{
       commentsCount: 0,
       repeat: 'DAILY',
       eventType: 'REMINDER',
-      group: {
+      board: {
         id: 1,
         name: 'EEEN302'
       }
@@ -75,7 +75,7 @@ export default [{
       commentsCount: 0,
       repeat: 'WEEKLY',
       eventType: 'HOBBY',
-      group: {
+      board: {
         id: 1,
         name: 'EEEN303'
       }
@@ -98,7 +98,7 @@ export default [{
       commentsCount: 222203,
       repeat: 'WEEKLY',
       eventType: 'LECTURE',
-      group: {
+      board: {
         id: 1,
         name: 'EEEN304'
       }
@@ -115,7 +115,7 @@ export default [{
       commentsCount: 0,
       repeat: 'DAILY',
       eventType: 'TASK',
-      group: {
+      board: {
         id: 1,
         name: 'CMEN201'
       }
@@ -133,7 +133,7 @@ export default [{
       commentsCount: 0,
       repeat: 'WEEKLY',
       eventType: 'HOBBY',
-      group: {
+      board: {
         id: 1,
         name: 'GENS301'
       }

@@ -1,3 +1,3 @@
-import Groups from './Groups';
+import Boards from './Boards';
 
-export default Groups;
+export default Boards;

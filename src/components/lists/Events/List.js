@@ -36,12 +36,12 @@ class List extends React.Component {
   _renderEmptyList = () => {
     const {listType } = this.props;
     let message;
-    if (listType === 'group') {
+    if (listType === 'board') {
       message = 'No upcoming event!'
     } else if (listType === 'starred') {
       message = 'No important event - yet'
     } else {
-      message = 'When you follow a group, their events and agendas show up here';
+      message = 'When you follow a board, their events and agendas show up here';
     }
     return <Empty message={message} />
   };
@@ -49,7 +49,7 @@ class List extends React.Component {
   _renderSectionHeader = ({section}) => <SectionHeader section={section} />;
   _onPressItem = (id) => this.props.navigation.navigate('EventDetails', { id });
   _onPressCommentItem = (id) => this.props.navigation.navigate('Comments', { id });
-  _navigateToGroupEvents = (id) => this.props.navigation.navigate('GroupEvents', { id });
+  _navigateToBoardEvents = (id) => this.props.navigation.navigate('BoardEvents', { id });
 
   _renderItem = ({ item: {
     id,
@@ -63,7 +63,7 @@ class List extends React.Component {
     startAt,
     endAt,
     repeat,
-    group,
+    board,
     allDay,
   }}) => (<Item
     id={id}
@@ -79,12 +79,12 @@ class List extends React.Component {
     commentsCount={commentsCount}
     starsCount={starsCount}
     starred={starred}
-    groupId={group.id}
-    groupName={group.name}
+    boardId={board.id}
+    boardName={board.name}
     allDay={allDay}
     onPressItem={this._onPressItem}
     onPressCommentButton={this._onPressCommentItem}
-    navigateToGroupEvents={this._navigateToGroupEvents}
+    navigateToBoardEvents={this._navigateToBoardEvents}
   />);
   _getItemLayout = sectionListGetItemLayout({
     getItemHeight: () => ITEM_HEIGHT,

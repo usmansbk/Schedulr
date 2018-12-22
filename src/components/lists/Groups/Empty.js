@@ -7,7 +7,7 @@ export default (props) => (
   <View style={styles.empty}>
     <Headline style={styles.emptyTitle}>
     {
-      props.search ? "Find a group" : "Join an event-group to see upcoming events and agendas"
+      props.search ? "Find a board" : "Join an event-board to see upcoming events and agendas"
     }
     </Headline>
   </View>

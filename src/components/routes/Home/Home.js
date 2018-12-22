@@ -3,13 +3,13 @@ import { Dimensions } from 'react-native';
 import { createAppContainer, createMaterialTopTabNavigator } from 'react-navigation';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import EventsRoute from '../Events';
-import GroupsRoute from '../Groups';
+import BoardsRoute from '../Boards';
 import StarredRoute from '../Starred';
 import styles, { activeColor, inactiveTintColor, FONT_SIZE, BLUR_SIZE } from './styles';
 
 const Home = createMaterialTopTabNavigator({
   Events: { screen: EventsRoute },
-  Groups: { screen: GroupsRoute },
+  Boards: { screen: BoardsRoute },
   Starred: { screen: StarredRoute },
 }, {
   initialRouteName: 'Events',
@@ -29,7 +29,7 @@ const Home = createMaterialTopTabNavigator({
       let iconName;
       if (routeName === 'Events') {
         iconName = 'calendar-week-begin'
-      } else if (routeName === 'Groups') {
+      } else if (routeName === 'Boards') {
         iconName = 'google-circles-communities';
       } else if (routeName === 'Starred') {
         iconName = `calendar-star`;

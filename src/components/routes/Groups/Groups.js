@@ -1,5 +1,5 @@
 import React from 'react';
-import List from '../../lists/Groups';
+import List from '../../lists/Boards';
 import FAB from '../../common/Fab';
 
 export default (props) => (
@@ -7,7 +7,7 @@ export default (props) => (
     <List />
     <FAB
       icon="add"
-      onPress={() => props.navigation.navigate('NewGroup')}
+      onPress={() => props.navigation.navigate('NewBoard')}
     />
   </React.Fragment>
 );

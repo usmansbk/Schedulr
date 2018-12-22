@@ -5,7 +5,7 @@ import {
   TabBar,
 } from 'react-native-tab-view';
 import Events from './Events';
-import Groups from './Groups';
+import Boards from './Boards';
 import colors from '../../../config/colors';
 
 const styles = StyleSheet.create({
@@ -35,7 +35,7 @@ export default class Tab extends React.Component {
   state = {
     index: 0,
     routes: [
-      { key: 'groups', title: 'Groups' },
+      { key: 'boards', title: 'Boards' },
       { key: 'events', title: 'Events' },
     ],
   };
@@ -52,8 +52,8 @@ export default class Tab extends React.Component {
   _renderScene = ({ route }) => {
     const { query } = this.props;
     switch(route.key) {
-      case 'groups':
-        return <Groups query={query} />;
+      case 'boards':
+        return <Boards query={query} />;
       case 'events':
         return <Events query={query} />;
       default:

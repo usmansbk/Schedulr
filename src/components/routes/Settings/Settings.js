@@ -98,17 +98,17 @@ export default ({
           right={() => (
             <Switch
               value={adminComments}
-              onValueChange={() => handleValueChange('groupAdmin')}
+              onValueChange={() => handleValueChange('boardAdmin')}
             />
           )}
         />
         <Divider />
         <List.Item
-          title="Group followers comments"
+          title="Board followers comments"
           right={() => (
             <Switch
               value={followersComments}
-              onValueChange={() => handleValueChange('groupFollowers')}
+              onValueChange={() => handleValueChange('boardFollowers')}
             />
           )}
         />
@@ -118,7 +118,7 @@ export default ({
           right={() => (
             <Switch
               value={visitorsComments}
-              onValueChange={() => handleValueChange('groupVisitors')}
+              onValueChange={() => handleValueChange('boardVisitors')}
             />
           )}
         />

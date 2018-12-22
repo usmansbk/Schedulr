@@ -1,27 +1,27 @@
 import More from './More';
 import Events from './Events';
-import Groups from './Groups';
+import Boards from './Boards';
 import Starred from './Starred';
 import Home from './Home';
 import Search from './Search';
 import Notifications from './Notifications';
 import EventDetails from './EventDetails';
-import GroupEvents from './GroupEvents';
-import GroupInfo from './GroupInfo';
+import BoardEvents from './BoardEvents';
+import BoardInfo from './BoardInfo';
 import Followers from './Followers';
 import Comments from './Comments';
 
 export {
   More,
   Events,
-  Groups,
+  Boards,
   Starred,
   Search,
   Home,
   Notifications,
   EventDetails,
-  GroupEvents,
-  GroupInfo,
+  BoardEvents,
+  BoardInfo,
   Followers,
   Comments
 };

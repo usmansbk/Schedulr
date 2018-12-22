@@ -1,3 +1,3 @@
-import GroupInfo from './GroupInfo';
+import BoardInfo from './BoardInfo';
 
-export default GroupInfo;
+export default BoardInfo;

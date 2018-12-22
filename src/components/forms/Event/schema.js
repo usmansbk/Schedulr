@@ -9,6 +9,6 @@ export default Yup.object().shape({
     .max(160, 'Too Long'),
   location: Yup.string()
     .max(160, 'Too Long'),
-  groupId: Yup.string()
-    .required('Group is required')
+  boardId: Yup.string()
+    .required('Board is required')
 });

@@ -1,7 +1,7 @@
 import React from 'react';
-import Form from '../../forms/Group';
+import Form from '../../forms/Board';
 
-export default class NewGroupScreen extends React.Component {
+export default class NewBoardScreen extends React.Component {
   _handleBack = () => this.props.navigation.goBack();
   
   render() {

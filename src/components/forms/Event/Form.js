@@ -37,12 +37,12 @@ const defaultValues = {
   allDay: false,
   eventType: eventTypes[0].id,
   repeat: frequency[0].id,
-  groupId: '',
+  boardId: '',
 };
 
 const Form = ({
   loading,
-  groups=[],
+  boards=[],
   locked,
   initialValues,
   onSubmit,
@@ -200,27 +200,27 @@ const Form = ({
             </Picker>
           </View>
           <View style={styles.pickerSpacing}>
-            <Text style={styles.radioText}>Group</Text>
+            <Text style={styles.radioText}>Board</Text>
             <Picker
-              prompt="Select a group"
-              selectedValue={values.groupId}
+              prompt="Select a board"
+              selectedValue={values.boardId}
               style={styles.picker}
               enabled={!locked }
               itemStyle={styles.pickerItem}
-              onValueChange={itemValue => setFieldValue('groupId', itemValue)}
+              onValueChange={itemValue => setFieldValue('boardId', itemValue)}
             >
-              <Picker.Item label={(groups.length === 0) ? "No group" : "Select a group"} value="" />
+              <Picker.Item label={(boards.length === 0) ? "No board" : "Select a board"} value="" />
               {
-                groups.map(group => (
-                  <Picker.Item key={group.id} label={group.name} value={group.id} />
+                boards.map(board => (
+                  <Picker.Item key={board.id} label={board.name} value={board.id} />
                 ))
               }
             </Picker>
             <HelperText
               type="error"
-              visible={errors.groupId && touched.groupId}
+              visible={errors.boardId && touched.boardId}
             >
-              {errors.groupId}
+              {errors.boardId}
             </HelperText>
           </View>
         </View>

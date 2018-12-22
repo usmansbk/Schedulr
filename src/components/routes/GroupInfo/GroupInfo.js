@@ -65,7 +65,7 @@ export default class Info extends React.Component {
         <Appbar.Header collapsable style={appStyles.header}>
           <Appbar.BackAction color={colors.gray} onPress={goBack} />
           <Appbar.Content
-            title="Group Info"
+            title="Board Info"
             titleStyle={appStyles.headerColor}
           />
           <Appbar.Action
@@ -132,13 +132,13 @@ export default class Info extends React.Component {
             <View style={styles.body}>
               <View style={styles.noteView}>
                 <Icon name="visibility" size={18} />
-                <Text style={styles.note}>This is a { isPrivate ? 'private' : 'public'} group</Text>
+                <Text style={styles.note}>This is a { isPrivate ? 'private' : 'public'} board</Text>
               </View>
               {
                 isClosed && (
                   <View style={styles.noteView}>
                     <Icon name="lock" size={18} />
-                    <Text style={styles.note}>This group is closed</Text>
+                    <Text style={styles.note}>This board is closed</Text>
                   </View>
                 )
               }

@@ -33,7 +33,7 @@ class List extends React.Component {
   );
   shouldComponentUpdate = nextProps => nextProps.isFocused;
   _onPressItem = (id) => this.props.navigation.navigate('EventDetails', { id });
-  _navigateToGroup = (id) => this.props.navigation.navigate('GroupEvents', id);
+  _navigateToBoard = (id) => this.props.navigation.navigate('BoardEvents', id);
   _keyExtractor = item => String(item.id);
   _renderItem = ({
     item: {
@@ -46,21 +46,21 @@ class List extends React.Component {
       isCancelled,
       repeat,
       type,
-      group,
+      board,
     }
   }) => <Item
     id={id}
     title={title}
     date={this._getDate({ startAt, endAt, repeat })}
     details={this._getDetails({ repeat, type })}
-    groupName={group.name}
-    pictureUrl={group.pictureUrl}
+    boardName={board.name}
+    pictureUrl={board.pictureUrl}
     starsCount={starsCount}
     commentsCount={commentsCount}
     isCancelled={isCancelled}
     type={type}
     onPressItem={this._onPressItem}
-    navigateToGroup={this._navigateToGroup}
+    navigateToBoard={this._navigateToBoard}
   />;
   _renderSeparator = () => <Separator />;
   _renderFooter = () => <Footer visible={this.props.hasMore} />;

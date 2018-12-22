@@ -5,7 +5,7 @@ import Fab from '../../common/Fab';
 import styles from '../../../config/styles';
 import colors from '../../../config/colors';
 
-export default class GroupEvents extends React.Component {
+export default class BoardEvents extends React.Component {
   static defaultProps = {
     id: 1,
     name: 'Demo dev',
@@ -21,7 +21,7 @@ export default class GroupEvents extends React.Component {
       description,
       isAdmin,
       onPress,
-      navigateToGroupInfo,
+      navigateToBoardInfo,
       navigateToNewEvent
     } = this.props;
     
@@ -36,11 +36,11 @@ export default class GroupEvents extends React.Component {
           />
           <Appbar.Action
             icon="info-outline"
-            onPress={navigateToGroupInfo}
+            onPress={navigateToBoardInfo}
             color={colors.gray}
           />
         </Appbar.Header>
-        <Events listType="group" />
+        <Events listType="board" />
         {
           isAdmin && (
             <Fab

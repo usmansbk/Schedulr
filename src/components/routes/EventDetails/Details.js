@@ -11,8 +11,8 @@ export default ({
   nextDate,
   eventType,
   location,
-  groupName,
-  groupId,
+  boardName,
+  boardId,
   repeat,
   createdAt,
   updatedAt,
@@ -21,7 +21,7 @@ export default ({
   starred,
   starsCount,
   commentsCount,
-  navigateToGroup,
+  navigateToBoard,
   navigateToComments,
 }) => (
   <React.Fragment>
@@ -44,8 +44,8 @@ export default ({
             <Text style={styles.value}>{location || 'No location set'}</Text>
           </View>
           <View style={styles.item}>
-            <Text style={styles.label}>GROUP</Text>
-            <Text onPress={() => navigateToGroup(groupId)} style={[styles.value, styles.nav]}>{groupName}</Text>
+            <Text style={styles.label}>board</Text>
+            <Text onPress={() => navigateToBoard(boardId)} style={[styles.value, styles.nav]}>{boardName}</Text>
           </View>
           <View style={styles.item}>
             <Text style={styles.label}>REPEAT</Text>
