@@ -15,7 +15,7 @@ import styles, { navButtonColor } from './styles';
 const defaultValues = {
   name: '',
   description: '',
-  private: false,
+  isPublic: true,
 };
 
 const Form = ({
@@ -87,15 +87,15 @@ const Form = ({
           {errors.description}
           </HelperText>
           <View style={styles.switchButton}>
-            <Text style={styles.text}>Private</Text>
+            <Text style={styles.text}>Public</Text>
             <Switch
-              value={values.private}
-              onValueChange={() => setFieldValue('private', !values.private)}
+              value={values.isPublic}
+              onValueChange={() => setFieldValue('isPublic', !values.isPublic)}
             />
           </View>
           <HelperText
             type="info"
-            visible={values.private}
+            visible={!values.isPublic}
           >
             Users won't be able to search for this board!
           </HelperText>

@@ -26,7 +26,7 @@ export default class Info extends React.Component {
     name: 'EEEN302',
     description: `In this guide we will set up our app to handle external URIs @usbkay. Let's suppose that we want a URI like http://www.google.com to open our app and link straight into a chat screen for some user named "Eric".`,
     isClosed: true,
-    isPrivate: true,
+    isPublic: true,
     link: 'schdlr.com',
     isFollowing: false,
     isAdmin: false,
@@ -46,7 +46,7 @@ export default class Info extends React.Component {
       isClosed,
       isFollowing,
       followersCount,
-      isPrivate,
+      isPublic,
       isAdmin,
       admin,
       goBack,
@@ -132,7 +132,7 @@ export default class Info extends React.Component {
             <View style={styles.body}>
               <View style={styles.noteView}>
                 <Icon name="visibility" size={18} />
-                <Text style={styles.note}>This is a { isPrivate ? 'private' : 'public'} board</Text>
+                <Text style={styles.note}>This is a { isPublic ? 'public' : 'private'} board</Text>
               </View>
               {
                 isClosed && (
