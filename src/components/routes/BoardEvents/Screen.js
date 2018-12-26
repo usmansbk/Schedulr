@@ -10,8 +10,8 @@ export default class BoardEvents extends React.Component {
     id: 1,
     name: 'Demo dev',
     description: 'lorem Ipsum Dolor Amet Schdlr Studio Code',
-    isMember: true,
-    isAdmin: true,
+    isFollowing: true,
+    isAuthor: true,
   };
 
   render() {
@@ -19,7 +19,7 @@ export default class BoardEvents extends React.Component {
       id,
       name,
       description,
-      isAdmin,
+      isAuthor,
       onPress,
       navigateToBoardInfo,
       navigateToNewEvent
@@ -42,7 +42,7 @@ export default class BoardEvents extends React.Component {
         </Appbar.Header>
         <Events listType="board" />
         {
-          isAdmin && (
+          isAuthor && (
             <Fab
               icon="edit"
               onPress={() => navigateToNewEvent(id)}

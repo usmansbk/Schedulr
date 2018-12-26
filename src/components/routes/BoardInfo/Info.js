@@ -29,7 +29,7 @@ export default class Info extends React.Component {
     isPublic: true,
     link: 'schdlr.com',
     isFollowing: false,
-    isAdmin: false,
+    isAuthor: false,
     followersCount: 2,
     createdAt: Date.now(),
     admin: {
@@ -47,7 +47,7 @@ export default class Info extends React.Component {
       isFollowing,
       followersCount,
       isPublic,
-      isAdmin,
+      isAuthor,
       admin,
       goBack,
       handleShare,
@@ -74,7 +74,7 @@ export default class Info extends React.Component {
             color={colors.gray}
           />
           {
-            isAdmin && (
+            isAuthor && (
               <Menu onSelect={handleSelectMenu}>
                 <MenuTrigger 
                   customStyles={{
@@ -125,7 +125,7 @@ export default class Info extends React.Component {
                   {numeral(followersCount).format('0a')} Follower{followersCount > 1 ? 's' : ''}
                 </Text>
                 {
-                  !isAdmin && (<FollowButton isFollowing={isFollowing} />)
+                  !isAuthor && (<FollowButton isFollowing={isFollowing} />)
                 }
               </View>
             </View>
