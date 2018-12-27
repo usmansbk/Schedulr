@@ -24,7 +24,6 @@ import {
   EditBoard
 } from './components/screens';
 
-
 const AppStack = createStackNavigator({
   Home,
   EditEvent,
