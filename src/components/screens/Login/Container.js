@@ -5,9 +5,7 @@ import Loading from '../../common/Loading';
 import Login from './Login';
 
 export default class LoginScreen extends React.Component {
-  state = {
-    loading: false
-  };
+  state = { loading: false };
 
   _signInAsync = async ({
     name,
