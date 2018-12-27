@@ -1,6 +1,6 @@
 import React from 'react';
 import { Appbar } from 'react-native-paper';
-import Events from '../../lists/Events';
+import List from '../../lists/Events';
 import Fab from '../../common/Fab';
 import styles from '../../../config/styles';
 import colors from '../../../config/colors';
@@ -40,7 +40,7 @@ export default class BoardEvents extends React.Component {
             color={colors.gray}
           />
         </Appbar.Header>
-        <Events listType="board" />
+        <List listType="board" />
         {
           isAuthor && (
             <Fab
