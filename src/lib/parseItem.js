@@ -5,6 +5,10 @@ const START_TIME = 'hh:mm a';
 const DATE_FORMAT = 'DD MM YYYY';
 const REMINDER = 'REMINDER'
 
+/**
+ * Parse an event details to a simple readable format
+ * @param { Object } param0
+ */
 export const parseDetails = ({ eventType, repeat, endAt, allDay, startAt }) => {
   const recurrence = repeat === 'NEVER' ? '' : decapitalize(repeat);
   if ((eventType === REMINDER) || allDay) return `${recurrence ? (recurrence + ' ' + decapitalize(eventType, true)) : eventType}`;
