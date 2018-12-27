@@ -51,12 +51,7 @@ export default class LoginScreen extends React.Component {
   };
 
   render() {
-    return this.state.loading ? (
-      <Loading />
-    ) : (
-      <Login
-        handleLogin={this._signInAsync}
-      />
-    );
+    return this.state.loading ? ( <Loading />
+    ) : ( <Login handleLogin={this._signInAsync} /> );
   }
 }
