@@ -19,17 +19,22 @@ export default class LoginScreen extends React.Component {
   }) => {
     this.setState({ loading: true });
     try {
-      const credentials = await Auth.federatedSignIn(provider, {
+      await Auth.federatedSignIn(provider, {
         token,
         expires_at,
       },{
         email
       });
-      await Cache.setItem('loginInfo', JSON.stringify({
-        id: credentials.data.IdentityId,
+      const { data: { loginUser } } = await this.props.onLogin({
         name,
         email,
         pictureUrl
+      });
+      await Cache.setItem('loginInfo', JSON.stringify({
+        id: loginUser.id,
+        name: loginUser.name,
+        email: loginUser.email,
+        pictureUrl: loginUser.pictureUrl
       }));
       this.props.navigation.navigate('App');
       // For development purpose
