@@ -23,7 +23,7 @@ export default class LoginScreen extends React.Component {
       },{
         email
       });
-      const { loginUser: { id } } = await this.props.onLogin({
+      const { data: { loginUser: { id } } } = await this.props.onLogin({
         name,
         email,
         pictureUrl
