@@ -27,7 +27,7 @@ export const repeatLength = (repeat) => {
 };
 
 /**
- * Returns a human readable date
+ * Returns a pretty human readable date
  * @param { Date } startAt 
  * @param { Date } endAt 
  * @param { Boolean } allDay 
