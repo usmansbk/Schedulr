@@ -6,7 +6,7 @@ export default client = new AWSAppSyncClient({
   url: aws_config.aws_appsync_graphqlEndpoint,
   region: aws_config.aws_appsync_region,
   auth: {
-    type: AUTH_TYPE.AWS_IAMs,
+    type: AUTH_TYPE.AWS_IAM,
     apiKey: aws_config.aws_appsync_apiKey,
     credentials: () => Auth.currentCredentials()
   }
