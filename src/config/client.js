@@ -1,4 +1,5 @@
 import AWSAppSyncClient from 'aws-appsync';
+import { Auth } from 'aws-amplify';
 import aws_config from '../aws-exports';
 
 export default client = new AWSAppSyncClient({
@@ -7,5 +8,6 @@ export default client = new AWSAppSyncClient({
   auth: {
     type: aws_config.aws_appsync_authenticationType,
     apiKey: aws_config.aws_appsync_apiKey,
+    credentials: () => Auth.currentCredentials()
   }
 });
