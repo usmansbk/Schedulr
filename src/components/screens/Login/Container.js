@@ -1,8 +1,8 @@
 import React from 'react';
 import { Auth, Analytics, Cache } from 'aws-amplify';
 import Toast from 'react-native-simple-toast';
-import Loading from '../../common/Loading';
 import Login from './Login';
+import Loading from '../../common/Loading';
 
 export default class LoginScreen extends React.Component {
   state = { loading: false };
