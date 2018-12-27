@@ -25,36 +25,27 @@ export default class LoginScreen extends React.Component {
       },{
         email
       });
-      const { data: { loginUser } } = await this.props.onLogin({
+      const { data: { loginUser: { id } } } = await this.props.onLogin({
         name,
         email,
         pictureUrl
       });
       await Cache.setItem('loginInfo', JSON.stringify({
-        id: loginUser.id,
-        name: loginUser.name,
-        email: loginUser.email,
-        pictureUrl: loginUser.pictureUrl
+        id,
+        name,
+        email,
+        pictureUrl
       }));
       this.props.navigation.navigate('App');
-      // For development purpose
-      Analytics.record({
-        name: 'sign_in',
-        attributes: {
-          username: name,
-          email,
-          provider
-        }
-      });
     } catch (error) {
       Toast.show('Login failed', Toast.SHORT);
       this.setState({ loading: false });
       Analytics.record({
         name: 'login_error',
         attributes: {
-          username: name, // For development purpose
-          name: error.name,
-          message: error.message,
+          errorName: error.name,
+          loginProvider: provider,
+          errorMessage: error.message,
           component: 'LoginScreenContainer'
         }
       });
