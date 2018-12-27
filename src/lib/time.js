@@ -13,7 +13,7 @@ export const THIRTY_MINUTES = 3 * TEN_MINUTES;
 export const FORTY_FIVE_MINUTES = 3 * FIFTEEN_MINUTES;
 
 /**
- * Converts event recurring frequency to milliseconds
+ * Converts time frequency to milliseconds
  * @param { TimeFrequency } repeat 
  */
 export const repeatLength = (repeat) => {
@@ -52,9 +52,9 @@ export const formatDate = (startAt, endAt, allDay) => {
 
 /**
  * Returns the next date of a recurring event
- * @param { Date } initialDate 
+ * @param { Date } initialDate - Initial date event happened
  * @param { TimeFrequency } repeat 
- * @param { Date } refDate 
+ * @param { Date } refDate - Inclusive 'after' date
  * @param { Date } endAt 
  */
 export const getNextDate = (initialDate, repeat, refDate = new Date(), endAt) => {
