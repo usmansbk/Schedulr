@@ -5,12 +5,12 @@ import { loginUser } from '../../../graphql/mutations';
 
 export default graphql(gql(loginUser), {
   alias: 'withLoginContainer',
-  props: ({ mutate, navigation }) => ({
-    navigation,
+  props: ({ mutate, ownProps }) => ({
     onLogin: async (input) => await mutate({
       variables: {
         input
       }
-    })
+    }),
+    ...ownProps
   })
 })(Container);

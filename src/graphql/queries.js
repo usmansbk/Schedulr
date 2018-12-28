@@ -29,13 +29,6 @@ export const getEvent = `query GetEvent($id: ID!) {
     board {
       id
       name
-      description
-      isPublic
-      isFollowing
-      isAuthor
-      followersCount
-      createdAt
-      updatedAt
     }
     cancelledDates
     starsCount
@@ -130,15 +123,6 @@ export const listBoards = `query ListBoards($limit: Int, $nextToken: String) {
         pictureUrl
       }
       followersCount
-      followers {
-        nextToken
-        items {
-          id
-          name
-          email
-          pictureUrl
-        }
-      }
       events {
         nextToken
         items {
@@ -238,34 +222,6 @@ export const searchBoard = `query SearchBoard($filter: SearchFilterInput, $limit
         pictureUrl
       }
       followersCount
-      followers {
-        nextToken
-        items {
-          id
-          name
-          email
-          pictureUrl
-        }
-      }
-      events {
-        nextToken
-        items {
-          id
-          title
-          description
-          startAt
-          endAt
-          allDay
-          isCancelled
-          cancelledDates
-          starsCount
-          isStarred
-          isAuthor
-          commentsCount
-          createdAt
-          updatedAt
-        }
-      }
       createdAt
       updatedAt
     }

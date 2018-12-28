@@ -30,12 +30,14 @@ export default class LoginScreen extends React.Component {
       });
       console.log(result);
       await Cache.setItem('loginInfo', JSON.stringify({
+        id: result.data.loginUser.id,
         name,
         email,
         pictureUrl
       }));
       this.props.navigation.navigate('App');
     } catch (error) {
+      console.log(error);
       Toast.show('Login failed', Toast.SHORT);
       this.setState({ loading: false });
       Analytics.record({
