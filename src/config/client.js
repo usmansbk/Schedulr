@@ -7,8 +7,8 @@ export default client = new AWSAppSyncClient({
   region: aws_config.aws_appsync_region,
   auth: {
     // type: AUTH_TYPE.API_KEY,
+    //apiKey: aws_config.aws_appsync_apiKey,
     type: AUTH_TYPE.AWS_IAM,
-    apiKey: aws_config.aws_appsync_apiKey,
     credentials: () => Auth.currentCredentials()
   }
 });

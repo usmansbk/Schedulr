@@ -56,12 +56,11 @@
     "schdlr": {
       "service": "AppSync",
       "output": {
-        "securityType": "API_KEY",
+        "securityType": "AWS_IAM",
         "GraphQLAPIIdOutput": "6s4g44xq7vg7fnwtqz3kkffn3e",
-        "GraphQLAPIEndpointOutput": "https://7p57flfherd7fpejz37d653sv4.appsync-api.us-east-1.amazonaws.com/graphql",
-        "GraphQLAPIKeyOutput": "da2-c7vnyidwrvbvpdymkjxjvkhgvi"
+        "GraphQLAPIEndpointOutput": "https://7p57flfherd7fpejz37d653sv4.appsync-api.us-east-1.amazonaws.com/graphql"
       },
-      "lastPushTimeStamp": "2018-12-10T01:03:13.973Z"
+      "lastPushTimeStamp": "2018-12-28T03:01:57.473Z"
     }
   }
 }
