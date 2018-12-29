@@ -17,18 +17,19 @@ export default class LoginScreen extends React.Component {
   }) => {
     this.setState({ loading: true });
     try {
-      await Auth.federatedSignIn(provider, {
+      const credentials = await Auth.federatedSignIn(provider, {
         token,
         expires_at,
       },{
         email
       });
+      // console.log(credentials);
       const result = await this.props.onLogin({
         name,
         email,
         pictureUrl
       });
-      console.log(result);
+      // console.log(result);
       await Cache.setItem('loginInfo', JSON.stringify({
         id: result.data.loginUser.id,
         name,
