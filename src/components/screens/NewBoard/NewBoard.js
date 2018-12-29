@@ -7,7 +7,7 @@ export default class NewBoardScreen extends React.Component {
     try {
       const result = await this.props.onSubmit(input);
       console.log(result);
-      this.props.navigation.navigate('Board', {
+      this.props.navigation.replace('BoardEvents', {
         id: result.data.createBoard.id
       });
     } catch(error) {

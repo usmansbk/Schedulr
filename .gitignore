@@ -1,3 +1,7 @@
+# .vscode
+#
+.vscode/
+
 # OSX
 #
 .DS_Store
@@ -40,7 +44,6 @@ yarn-error.log
 #
 amplify/
 resolvers/
-.amplifyrc
 */aws-exports.js
 schema.graphql
 models.graphql

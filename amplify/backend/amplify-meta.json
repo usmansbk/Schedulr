@@ -1,54 +1,65 @@
 {
-	"providers": {
-		"awscloudformation": {
-			"AuthRoleName": "chdlr-20181229045531-authRole",
-			"UnauthRoleArn": "arn:aws:iam::112790165000:role/chdlr-20181229045531-unauthRole",
-			"AuthRoleArn": "arn:aws:iam::112790165000:role/chdlr-20181229045531-authRole",
-			"Region": "us-east-1",
-			"DeploymentBucketName": "chdlr-20181229045531-deployment",
-			"UnauthRoleName": "chdlr-20181229045531-unauthRole",
-			"StackName": "chdlr-20181229045531",
-			"StackId": "arn:aws:cloudformation:us-east-1:112790165000:stack/chdlr-20181229045531/96c8f420-0b1d-11e9-b780-0e194fb09f5c"
-		}
-	},
-	"auth": {
-		"auth": {
-			"service": "Cognito",
-			"providerPlugin": "awscloudformation",
-			"providerMetadata": {
-				"s3TemplateURL": "https://s3.amazonaws.com/chdlr-20181229045531-deployment/amplify-cfn-templates/auth/auth-cloudformation-template.yml",
-				"logicalId": "authauth"
-			},
-			"lastPushTimeStamp": "2018-12-29T10:01:44.897Z",
-			"output": {
-				"GoogleWebClient": "915796894963-6566v17dt2cuet54ihj3cem5vod86js3.apps.googleusercontent.com",
-				"AppClientSecret": "dvepshnfgro7sn9i5dd4igu8p249g7q1c43eeofnoalmib7og3l",
-				"UserPoolId": "us-east-1_NlWZD8V4X",
-				"AppClientIDWeb": "78q5rb9g7ag39ljb9uk6prfadl",
-				"AppClientID": "2cs8h8nu1ohof0nc99vgnq0k5k",
-				"FacebookWebClient": "203644060264792",
-				"IdentityPoolId": "us-east-1:a1a2b017-d352-47fb-8ef3-a3b9e5185e67",
-				"IdentityPoolName": "schdlr505cbf0e_identitypool_505cbf0e",
-				"UserPoolName": "schdlr505cbf0e_userpool_505cbf0e"
-			},
-			"lastPushDirHash": "95Fo/b6+ekRZE9/U4kN8LDvAUSM="
-		}
-	},
-	"analytics": {
-		"schdlr": {
-			"service": "Pinpoint",
-			"providerPlugin": "awscloudformation",
-			"providerMetadata": {
-				"s3TemplateURL": "https://s3.amazonaws.com/chdlr-20181229045531-deployment/amplify-cfn-templates/analytics/pinpoint-cloudformation-template.json",
-				"logicalId": "analyticsschdlr"
-			},
-			"lastPushTimeStamp": "2018-12-29T10:01:44.903Z",
-			"output": {
-				"appName": "schdlr",
-				"Region": "us-east-1",
-				"Id": "af044914af834552a3bdb9530f4cbed7"
-			},
-			"lastPushDirHash": "hL0aZf1VvKlyDUrRslcO+iyDM24="
-		}
-	}
+  "providers": {
+    "awscloudformation": {
+      "AuthRoleName": "chdlr-20181229045531-authRole",
+      "UnauthRoleArn": "arn:aws:iam::112790165000:role/chdlr-20181229045531-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::112790165000:role/chdlr-20181229045531-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "chdlr-20181229045531-deployment",
+      "UnauthRoleName": "chdlr-20181229045531-unauthRole",
+      "StackName": "chdlr-20181229045531",
+      "StackId": "arn:aws:cloudformation:us-east-1:112790165000:stack/chdlr-20181229045531/96c8f420-0b1d-11e9-b780-0e194fb09f5c"
+    }
+  },
+  "auth": {
+    "auth": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/chdlr-20181229045531-deployment/amplify-cfn-templates/auth/auth-cloudformation-template.yml",
+        "logicalId": "authauth"
+      },
+      "lastPushTimeStamp": "2018-12-29T10:01:44.897Z",
+      "output": {
+        "GoogleWebClient": "915796894963-6566v17dt2cuet54ihj3cem5vod86js3.apps.googleusercontent.com",
+        "AppClientSecret": "dvepshnfgro7sn9i5dd4igu8p249g7q1c43eeofnoalmib7og3l",
+        "UserPoolId": "us-east-1_NlWZD8V4X",
+        "AppClientIDWeb": "78q5rb9g7ag39ljb9uk6prfadl",
+        "AppClientID": "2cs8h8nu1ohof0nc99vgnq0k5k",
+        "FacebookWebClient": "203644060264792",
+        "IdentityPoolId": "us-east-1:a1a2b017-d352-47fb-8ef3-a3b9e5185e67",
+        "IdentityPoolName": "schdlr505cbf0e_identitypool_505cbf0e",
+        "UserPoolName": "schdlr505cbf0e_userpool_505cbf0e"
+      },
+      "lastPushDirHash": "95Fo/b6+ekRZE9/U4kN8LDvAUSM="
+    }
+  },
+  "analytics": {
+    "schdlr": {
+      "service": "Pinpoint",
+      "providerPlugin": "awscloudformation",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/chdlr-20181229045531-deployment/amplify-cfn-templates/analytics/pinpoint-cloudformation-template.json",
+        "logicalId": "analyticsschdlr"
+      },
+      "lastPushTimeStamp": "2018-12-29T10:01:44.903Z",
+      "output": {
+        "appName": "schdlr",
+        "Region": "us-east-1",
+        "Id": "af044914af834552a3bdb9530f4cbed7"
+      },
+      "lastPushDirHash": "hL0aZf1VvKlyDUrRslcO+iyDM24="
+    }
+  },
+  "api": {
+    "schdlr": {
+      "service": "AppSync",
+      "output": {
+        "securityType": "AWS_IAM",
+        "GraphQLAPIIdOutput": "6s4g44xq7vg7fnwtqz3kkffn3e",
+        "GraphQLAPIEndpointOutput": "https://7p57flfherd7fpejz37d653sv4.appsync-api.us-east-1.amazonaws.com/graphql"
+      },
+      "lastPushTimeStamp": "2018-12-29T16:30:11.889Z"
+    }
+  }
 }

@@ -8,8 +8,7 @@ import styles, { AVATAR_SIZE } from './styles';
 
 export default ({
   pictureUrl,
-  name="Test",
-  loading,
+  name="...",
   replying,
   targetName,
   handleSubmit,
@@ -26,7 +25,7 @@ export default ({
     }}
   >
     {({
-      isSubmitting = loading,
+      isSubmitting,
       submitForm,
       handleChange,
       handleBlur,

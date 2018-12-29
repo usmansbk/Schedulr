@@ -20,7 +20,6 @@ const defaultValues = {
 
 const Form = ({
   initialValues,
-  loading,
   handleCancel,
   onSubmit,
   isEdit,
@@ -37,7 +36,7 @@ const Form = ({
       values,
       errors,
       touched,
-      isSubmitting=loading,
+      isSubmitting,
       submitForm,
       handleChange,
       handleBlur,

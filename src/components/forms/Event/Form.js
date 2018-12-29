@@ -41,7 +41,6 @@ const defaultValues = {
 };
 
 const Form = ({
-  loading,
   boards=[],
   locked,
   initialValues,
@@ -63,8 +62,8 @@ const Form = ({
       values,
       errors,
       touched,
-      isSubmitting=loading,
-      handleSubmit,
+      isSubmitting,
+      submitForm,
       handleChange,
       handleBlur,
       setFieldValue,
@@ -81,7 +80,7 @@ const Form = ({
           loading={isSubmitting}
           mode="outlined"
           color={navButtonColor}
-          onPress={handleSubmit}
+          onPress={submitForm}
         >{ isEdit ? 'Save' : 'Create'}</Button>
       </Appbar.Header>
       <ScrollView
