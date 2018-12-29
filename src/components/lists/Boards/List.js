@@ -10,7 +10,7 @@ import styles, {
   SEPARATOR_HEIGHT
 } from './styles';
 import colors from '../../../config/colors';
-import dummy from './dummy';
+// import dummy from './dummy';
 
 class List extends Component {
   static defaultProps = {
