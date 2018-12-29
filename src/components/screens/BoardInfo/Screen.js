@@ -34,9 +34,11 @@ export default class Screen extends React.Component {
 
   render() {
     const { visibleDialog } = this.state;
+    const id = this.props.navigation.getParam('id');
     return (
       <React.Fragment>
         <BoardInfo
+          id={id}
           goBack={this._goBack}
           handleShare={this._handleShare}
           handleSelectMenu={this._handleSelectMenu}

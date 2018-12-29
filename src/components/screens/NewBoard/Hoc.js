@@ -6,7 +6,8 @@ import { createBoard } from '../../../graphql/mutations';
 export default graphql(gql(createBoard), {
   alias: 'NewBoardContainer',
   options: {
-    refetchQueries: ['listBoards']
+    refetchQueries: ['listBoards'],
+    awaitRefetchQueries: true
   },
   props: ({ mutate, ownProps }) => ({
     onSubmit: async (input) =>  await mutate({
