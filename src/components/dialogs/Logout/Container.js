@@ -4,6 +4,7 @@ import { LoginManager } from 'react-native-fbsdk';
 import { GoogleSignin } from 'react-native-google-signin';
 import { withNavigation } from 'react-navigation';
 import Dialog from './Dialog';
+import client from '../../../config/client';
 
 class Container extends React.Component {
   state = {
@@ -16,6 +17,7 @@ class Container extends React.Component {
       await this._awsSignOut();
       await this._fbLogout();
       await this._googleSignout();
+      await client.cache.reset();
     } catch {
       // offline
     }

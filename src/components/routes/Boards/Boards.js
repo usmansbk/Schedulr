@@ -4,7 +4,12 @@ import FAB from '../../common/Fab';
 
 export default (props) => (
   <React.Fragment>
-    <List />
+    <List
+      loading={props.loading}
+      boards={props.boards}
+      onRefresh={props.onRefresh}
+      error={props.error}
+    />
     <FAB
       icon="add"
       onPress={() => props.navigation.navigate('NewBoard')}

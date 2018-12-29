@@ -29,7 +29,7 @@ class List extends Component {
   _onPressItem = (id) => this.props.navigation.navigate('BoardEvents', { id });
   _navigateToInfo = (id) => this.props.navigation.navigate('BoardInfo', { id });
   _keyExtractor = (item) => String(item.id);
-  _renderEmptyList = () => <Empty search={this.props.search} />;
+  _renderEmptyList = () => this.props.loading ? <Empty search={this.props.search} /> : null;
   _renderItem = ({item}) => {
     const {
       id,
@@ -61,12 +61,18 @@ class List extends Component {
     const {
       boards,
       loading,
-      onRefresh
+      onRefresh,
+      error
     } = this.props;
+    if (loading) console.log('Loading');
+    else console.log(boards);
+    if (error) {
+      console.log(error)
+    }
     return (
       <FlatList
         refreshing={loading}
-        refreshControl={<RefreshControl refreshing={loading} colors={[colors.primary]} />}
+        refreshControl={<RefreshControl onRefresh={onRefresh} refreshing={loading} colors={[colors.primary]} />}
         onRefresh={onRefresh}
         style={styles.list}
         initialNumToRender={5}

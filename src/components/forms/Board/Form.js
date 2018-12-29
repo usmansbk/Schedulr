@@ -52,6 +52,7 @@ const Form = ({
         >Cancel</Button>
         <Button
           loading={isSubmitting}
+          disabled={isSubmitting}
           mode="outlined"
           color={navButtonColor}
           onPress={submitForm}
