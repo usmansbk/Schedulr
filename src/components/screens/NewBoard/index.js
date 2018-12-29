@@ -1,3 +1,3 @@
-import NewBoard from './NewBoard';
+import NewBoard from './Hoc';
 
 export default NewBoard;

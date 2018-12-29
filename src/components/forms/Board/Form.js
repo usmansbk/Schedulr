@@ -28,8 +28,8 @@ const Form = ({
   <Formik
     initialValues={initialValues || defaultValues}
     validationSchema={validationSchema}
-    onSubmit={(values, { setSubmitting }) => {
-      onSubmit && onSubmit(values);
+    onSubmit={async (values, { setSubmitting }) => {
+      onSubmit && await onSubmit(values);
       setSubmitting(false);
     }}
   >
@@ -38,7 +38,7 @@ const Form = ({
       errors,
       touched,
       isSubmitting=loading,
-      handleSubmit,
+      submitForm,
       handleChange,
       handleBlur,
       setFieldValue,
@@ -55,7 +55,7 @@ const Form = ({
           loading={isSubmitting}
           mode="outlined"
           color={navButtonColor}
-          onPress={handleSubmit}
+          onPress={submitForm}
         >{ isEdit ? 'Save' : 'Create'}</Button>
       </Appbar.Header>
       <ScrollView refreshControl={<RefreshControl refreshing={false} onRefresh={() => resetForm()} />}>
