@@ -15,7 +15,6 @@ const dev = {
   LEGALITY_URL: `${url}/legal`,
   TERMS_URL: `${url}/terms`,
   WEB_CLIENT_ID: "915796894963-6566v17dt2cuet54ihj3cem5vod86js3.apps.googleusercontent.com"
-  
 };
 
 const prod = {

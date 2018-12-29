@@ -23,7 +23,6 @@ export default class Container extends React.Component {
       await GoogleSignin.hasPlayServices();
       const {
         idToken,
-        accessTokenExpirationDate,
         user
       } = await GoogleSignin.signIn();
       await this.props.onLogin({
@@ -32,7 +31,7 @@ export default class Container extends React.Component {
         pictureUrl: user.photo,
         provider: 'google',
         token: idToken,
-        expires_at: accessTokenExpirationDate
+        expires_at: null
       });
     } catch (error) {
       if (error.code === statusCodes.SIGN_IN_CANCELLED) {
