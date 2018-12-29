@@ -69,25 +69,6 @@ export const getBoard = `query GetBoard($id: ID!) {
       pictureUrl
     }
     followersCount
-    events {
-      nextToken
-      items {
-        id
-        title
-        description
-        startAt
-        endAt
-        allDay
-        isCancelled
-        cancelledDates
-        starsCount
-        isStarred
-        isAuthor
-        commentsCount
-        createdAt
-        updatedAt
-      }
-    }
     createdAt
     updatedAt
   }
@@ -111,25 +92,6 @@ export const listBoards = `query ListBoards($limit: Int, $nextToken: String) {
         pictureUrl
       }
       followersCount
-      events {
-        nextToken
-        items {
-          id
-          title
-          description
-          startAt
-          endAt
-          allDay
-          isCancelled
-          cancelledDates
-          starsCount
-          isStarred
-          isAuthor
-          commentsCount
-          createdAt
-          updatedAt
-        }
-      }
       createdAt
       updatedAt
     }
