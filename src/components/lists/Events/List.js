@@ -38,11 +38,11 @@ class List extends React.Component {
     const {listType } = this.props;
     let message;
     if (listType === 'board') {
-      message = 'No upcoming event!'
+      message = 'No upcoming Events or Reminders!'
     } else if (listType === 'starred') {
       message = 'No important event - yet'
     } else {
-      message = 'When you follow a board, their events and agendas show up here';
+      message = 'When you follow a board, their Events show up here';
     }
     return <Empty message={message} />
   };
