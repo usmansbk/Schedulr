@@ -19,7 +19,7 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/chdlr-20181229045531-deployment/amplify-cfn-templates/auth/auth-cloudformation-template.yml",
 				"logicalId": "authauth"
 			},
-			"lastPushTimeStamp": "2018-12-29T09:52:31.960Z",
+			"lastPushTimeStamp": "2018-12-29T10:01:44.897Z",
 			"output": {
 				"GoogleWebClient": "915796894963-6566v17dt2cuet54ihj3cem5vod86js3.apps.googleusercontent.com",
 				"AppClientSecret": "dvepshnfgro7sn9i5dd4igu8p249g7q1c43eeofnoalmib7og3l",
@@ -32,6 +32,23 @@
 				"UserPoolName": "schdlr505cbf0e_userpool_505cbf0e"
 			},
 			"lastPushDirHash": "95Fo/b6+ekRZE9/U4kN8LDvAUSM="
+		}
+	},
+	"analytics": {
+		"schdlr": {
+			"service": "Pinpoint",
+			"providerPlugin": "awscloudformation",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/chdlr-20181229045531-deployment/amplify-cfn-templates/analytics/pinpoint-cloudformation-template.json",
+				"logicalId": "analyticsschdlr"
+			},
+			"lastPushTimeStamp": "2018-12-29T10:01:44.903Z",
+			"output": {
+				"appName": "schdlr",
+				"Region": "us-east-1",
+				"Id": "af044914af834552a3bdb9530f4cbed7"
+			},
+			"lastPushDirHash": "hL0aZf1VvKlyDUrRslcO+iyDM24="
 		}
 	}
 }
