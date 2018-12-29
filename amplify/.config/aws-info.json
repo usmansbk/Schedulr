@@ -1,4 +1,4 @@
 {
-    "useProfile": true,
-    "profileName": "schdlr"
+    "useProfile": false,
+    "awsConfigFilePath": "C:\\Users\\Babakolo Usman\\.amplify\\awscloudformation\\yQOfHozvim"
 }

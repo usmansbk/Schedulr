@@ -17,10 +17,6 @@ export default class Container extends React.Component {
     loading: false
   };
 
-  googleGetCredential = () => {
-    const user = GoogleSignin.currentUserAsync()
-  }
-
   _signIn = async () => {
     this.setState({ loading: true });
     try {
