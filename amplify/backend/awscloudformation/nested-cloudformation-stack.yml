@@ -131,36 +131,6 @@
 					"selectedParties": "{\"graph.facebook.com\":\"203644060264792\",\"accounts.google.com\":\"915796894963-6566v17dt2cuet54ihj3cem5vod86js3.apps.googleusercontent.com\"}"
 				}
 			}
-		},
-		"analyticsschdlr": {
-			"Type": "AWS::CloudFormation::Stack",
-			"Properties": {
-				"TemplateURL": "https://s3.amazonaws.com/chdlr-20181203014524-deployment/amplify-cfn-templates/analytics/pinpoint-cloudformation-template.json",
-				"Parameters": {
-					"appName": "schdlr",
-					"roleName": "pinpointLambdaRole9b0078bf",
-					"cloudWatchPolicyName": "cloudWatchPolicy9b0078bf",
-					"pinpointPolicyName": "pinpointPolicy9b0078bf",
-					"authPolicyName": "pinpoint_amplify_9b0078bf",
-					"unauthPolicyName": "pinpoint_amplify_9b0078bf",
-					"authRoleName": "chdlr-20181203014524-authRole",
-					"unauthRoleName": "chdlr-20181203014524-unauthRole",
-					"IAMPrefix": "112790165000"
-				}
-			}
-		},
-		"apischdlr": {
-			"Type": "AWS::CloudFormation::Stack",
-			"Properties": {
-				"TemplateURL": "https://s3.amazonaws.com/chdlr-20181203014524-deployment/amplify-cfn-templates/api/cloudformation-template.json",
-				"Parameters": {
-					"AppSyncApiName": "schdlr",
-					"schemaGraphql": "s3://chdlr-20181203014524-deployment/amplify-appsync-files/schema.graphql.1544143921026",
-					"ResolverBucket": "chdlr-20181203014524-deployment",
-					"ResolverRootKey": "amplify-appsync-files",
-					"DeploymentTimestamp": "1544143921026"
-				}
-			}
 		}
 	},
 	"Outputs": {

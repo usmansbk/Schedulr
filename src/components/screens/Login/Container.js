@@ -21,15 +21,17 @@ export default class LoginScreen extends React.Component {
         token,
         expires_at,
       },{
-        email
+        email,
+        name
       });
-      // console.log(credentials);
+      console.log(credentials);
+      // const result = await getOpenIdToken('accounts.google.com', credential.identityId, credential.idToken);
       const result = await this.props.onLogin({
         name,
         email,
         pictureUrl
       });
-      // console.log(result);
+      console.log(result);
       await Cache.setItem('loginInfo', JSON.stringify({
         id: result.data.loginUser.id,
         name,
