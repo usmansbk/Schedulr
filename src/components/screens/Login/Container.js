@@ -23,14 +23,12 @@ export default class LoginScreen extends React.Component {
       },{
         email
       });
-      console.log(credentials);
-      // const result = await getOpenIdToken('accounts.google.com', credential.identityId, credential.idToken);
       const result = await this.props.onLogin({
         name,
         email,
         pictureUrl
       });
-      console.log(result);
+      // console.log(result);
       await Cache.setItem('loginInfo', JSON.stringify({
         id: result.data.loginUser.id,
         name,
@@ -39,7 +37,7 @@ export default class LoginScreen extends React.Component {
       }));
       this.props.navigation.navigate('App');
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       Toast.show('Login failed', Toast.SHORT);
       this.setState({ loading: false });
       Analytics.record({
