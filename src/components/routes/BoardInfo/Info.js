@@ -41,7 +41,6 @@ export default class Info extends React.Component {
 
   render() {
     const {
-      data,
       board,
       loading,
       goBack,
@@ -51,8 +50,6 @@ export default class Info extends React.Component {
       navigateToProfile
     } = this.props;
     if (loading) return <Loading />
-    console.log(data);
-    console.log(this.props.id);
     const {
       id,
       name,

@@ -7,8 +7,10 @@ export default class Screen extends React.Component {
   _navigateToNewEvent = (id) => this.props.navigation.navigate('NewBoardEvent', { id });
 
   render() {
+    const id = this.props.navigation.getParam('id');
     return (
       <BoardEvents
+        id={id}
         navigateToBoardInfo={this._navigateToBoardInfo}
         navigateToNewEvent={this._navigateToNewEvent}
         onPress={this._onBack}

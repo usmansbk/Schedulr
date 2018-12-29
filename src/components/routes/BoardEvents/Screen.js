@@ -24,7 +24,8 @@ export default class BoardEvents extends React.Component {
       navigateToBoardInfo,
       navigateToNewEvent
     } = this.props;
-    
+    console.log(id, 2);
+
     return (
       <React.Fragment>
         <Appbar.Header style={styles.header} collapsable>
@@ -36,7 +37,7 @@ export default class BoardEvents extends React.Component {
           />
           <Appbar.Action
             icon="info-outline"
-            onPress={navigateToBoardInfo}
+            onPress={() => navigateToBoardInfo(id)}
             color={colors.gray}
           />
         </Appbar.Header>
