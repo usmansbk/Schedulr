@@ -24,7 +24,6 @@ export default class BoardEvents extends React.Component {
       navigateToBoardInfo,
       navigateToNewEvent
     } = this.props;
-    console.log(id, 2);
 
     return (
       <React.Fragment>
