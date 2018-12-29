@@ -48,16 +48,6 @@ export const getEvent = `query GetEvent($id: ID!) {
       pictureUrl
     }
     commentsCount
-    comments {
-      nextToken
-      items {
-        id
-        content
-        isAuthor
-        createdAt
-        updatedAt
-      }
-    }
     createdAt
     updatedAt
   }
@@ -79,15 +69,6 @@ export const getBoard = `query GetBoard($id: ID!) {
       pictureUrl
     }
     followersCount
-    followers {
-      nextToken
-      items {
-        id
-        name
-        email
-        pictureUrl
-      }
-    }
     events {
       nextToken
       items {
@@ -130,15 +111,6 @@ export const listBoards = `query ListBoards($limit: Int, $nextToken: String) {
         pictureUrl
       }
       followersCount
-      followers {
-        nextToken
-        items {
-          id
-          name
-          email
-          pictureUrl
-        }
-      }
       events {
         nextToken
         items {
@@ -204,16 +176,6 @@ export const searchEvent = `query SearchEvent($filter: SearchFilterInput, $limit
         pictureUrl
       }
       commentsCount
-      comments {
-        nextToken
-        items {
-          id
-          content
-          isAuthor
-          createdAt
-          updatedAt
-        }
-      }
       createdAt
       updatedAt
     }
@@ -238,34 +200,6 @@ export const searchBoard = `query SearchBoard($filter: SearchFilterInput, $limit
         pictureUrl
       }
       followersCount
-      followers {
-        nextToken
-        items {
-          id
-          name
-          email
-          pictureUrl
-        }
-      }
-      events {
-        nextToken
-        items {
-          id
-          title
-          description
-          startAt
-          endAt
-          allDay
-          isCancelled
-          cancelledDates
-          starsCount
-          isStarred
-          isAuthor
-          commentsCount
-          createdAt
-          updatedAt
-        }
-      }
       createdAt
       updatedAt
     }

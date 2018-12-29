@@ -1,3 +1,3 @@
-import Boards from './Boards';
+import Boards from './Hoc';
 
 export default Boards;

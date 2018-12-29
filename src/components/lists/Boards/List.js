@@ -28,25 +28,25 @@ class List extends Component {
   shouldComponentUpdate = (nextProps) => nextProps.isFocused;
   _onPressItem = (id) => this.props.navigation.navigate('BoardEvents', { id });
   _navigateToInfo = (id) => this.props.navigation.navigate('BoardInfo', { id });
-  _keyExtractor = (item) => String(item.node.id);
+  _keyExtractor = (item) => String(item.id);
   _renderEmptyList = () => <Empty search={this.props.search} />;
-  _renderItem = ({item: { node }}) => {
+  _renderItem = ({item}) => {
     const {
       id,
       name,
       description,
-      isPrivate,
-      isClosed,
+      isPublic,
+      status,
       isAuthor,
-    } = node;
+    } = item;
 
     return (
       <Item
         id={id}
         name={name}
         description={description}
-        isPrivate={isPrivate}
-        isClosed={isClosed}
+        isPublic={isPublic}
+        isClosed={status === 'CLOSED'}
         isAuthor={isAuthor}
         onPressItem={this._onPressItem}
         navigateToBoardInfo={this._navigateToInfo}
