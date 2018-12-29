@@ -1,3 +1,3 @@
-import Info from './Info';
+import Info from './Hoc';
 
 export default Info;

@@ -61,14 +61,8 @@ class List extends Component {
     const {
       boards,
       loading,
-      onRefresh,
-      error
+      onRefresh
     } = this.props;
-    if (loading) console.log('Loading');
-    else console.log(boards);
-    if (error) {
-      console.log(error)
-    }
     return (
       <FlatList
         refreshing={loading}

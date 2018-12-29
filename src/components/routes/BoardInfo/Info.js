@@ -16,49 +16,59 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import UserAvater from 'react-native-user-avatar';
 import Hyperlink from 'react-native-hyperlink';
 import FollowButton from '../../common/FollowButton';
+import Loading from '../../common/Loading';
 import styles, { AVATAR_SIZE } from './styles';
 import appStyles from '../../../config/styles';
 import colors from '../../../config/colors';
 
 export default class Info extends React.Component {
   static defaultProps = {
-    id: 1,
-    name: 'EEEN302',
-    description: `In this guide we will set up our app to handle external URIs @usbkay. Let's suppose that we want a URI like http://www.google.com to open our app and link straight into a chat screen for some user named "Eric".`,
-    isClosed: true,
-    isPublic: true,
-    link: 'schdlr.com',
-    isFollowing: false,
-    isAuthor: false,
-    followersCount: 2,
-    createdAt: Date.now(),
-    admin: {
-      id: 2,
-      name: 'Babakolo Usman Suleiman',
+    board: {
+      id: 1,
+      name: 'EEEN302',
+      description: `In this guide we will set up our app to handle external URIs @usbkay. Let's suppose that we want a URI like http://www.google.com to open our app and link straight into a chat screen for some user named "Eric".`,
+      isPublic: true,
+      isFollowing: false,
+      isAuthor: false,
+      followersCount: 2,
+      createdAt: Date.now(),
+      author: {
+        id: 2,
+        name: 'Babakolo Usman Suleiman',
+      }
     }
   };
 
   render() {
     const {
-      id,
-      name,
-      description,
-      isClosed,
-      isFollowing,
-      followersCount,
-      isPublic,
-      isAuthor,
-      admin,
+      data,
+      board,
+      loading,
       goBack,
       handleShare,
       handleSelectMenu,
       navigateToFollowers,
-      navigateToProfile,
+      navigateToProfile
     } = this.props;
+    if (loading) return <Loading />
+    console.log(data);
+    console.log(this.props.id);
+    const {
+      id,
+      name,
+      description,
+      status,
+      isFollowing,
+      followersCount,
+      isPublic,
+      isAuthor,
+      author,
+    } = board;
     const [ first, second ] = name.split(' ');
     const avatarName = `${first} ${second ? second : ''}`;
-    const adminId = admin && admin.id;
-    const adminName = admin && admin.name;
+    const adminId = author && author.id;
+    const adminName = author && author.name;
+    const isClosed = status === 'CLOSED';
 
     return (
       <React.Fragment>
@@ -132,7 +142,7 @@ export default class Info extends React.Component {
             <View style={styles.body}>
               <View style={styles.noteView}>
                 <Icon name="visibility" size={18} />
-                <Text style={styles.note}>This is a { isPublic ? 'public' : 'private'} board</Text>
+                <Text style={styles.note}>{ isPublic ? 'Public' : 'Private'} board</Text>
               </View>
               {
                 isClosed && (
