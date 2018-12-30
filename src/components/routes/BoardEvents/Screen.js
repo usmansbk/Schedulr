@@ -9,9 +9,6 @@ export default class BoardEvents extends React.Component {
   static defaultProps = {
     id: 1,
     name: 'Demo dev',
-    description: 'lorem Ipsum Dolor Amet Schdlr Studio Code',
-    isFollowing: true,
-    isAuthor: true,
   };
 
   render() {

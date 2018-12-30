@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, ScrollView } from 'react-native';
+import Toast from 'react-native-simple-toast';
 import {
   Menu,
   MenuTrigger,
@@ -17,39 +18,29 @@ import UserAvater from 'react-native-user-avatar';
 import Hyperlink from 'react-native-hyperlink';
 import FollowButton from '../../common/FollowButton';
 import Loading from '../../common/Loading';
+import Error from '../../common/Error';
 import styles, { AVATAR_SIZE } from './styles';
 import appStyles from '../../../config/styles';
 import colors from '../../../config/colors';
 
 export default class Info extends React.Component {
-  static defaultProps = {
-    board: {
-      id: 1,
-      name: 'EEEN302',
-      description: `In this guide we will set up our app to handle external URIs @usbkay. Let's suppose that we want a URI like http://www.google.com to open our app and link straight into a chat screen for some user named "Eric".`,
-      isPublic: true,
-      isFollowing: false,
-      isAuthor: false,
-      followersCount: 2,
-      createdAt: Date.now(),
-      author: {
-        id: 2,
-        name: 'Babakolo Usman Suleiman',
-      }
-    }
-  };
-
   render() {
     const {
       board,
       loading,
+      error,
       goBack,
+      onRefresh,
       handleShare,
       handleSelectMenu,
       navigateToFollowers,
       navigateToProfile
     } = this.props;
     if (loading) return <Loading />
+    if (error && !board) {
+      Toast.show(error.message, Toast.SHORT);
+      return <Error onRefresh={onRefresh} />;
+    }
     const {
       id,
       name,
