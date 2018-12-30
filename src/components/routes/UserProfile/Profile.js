@@ -6,15 +6,27 @@ import {
 } from 'react-native-paper';
 import UserAvatar from 'react-native-user-avatar';
 import { CachedImage } from 'react-native-cached-image';
+import Loading from '../../common/Loading';
+import Error from '../../common/Error';
 import styles, { AVATAR_SIZE } from './styles';
 import colors from '../../../config/colors';
 import appStyles from '../../../config/styles';
 
 export default ({
   goBack,
-  name,
-  pictureUrl,
-}) => (
+  loading,
+  user,
+  error,
+  onRefresh
+}) => {
+  if (loading && !user) return <Loading />;
+  if (error && !user) return <Error onRefresh={onRefresh} />;
+
+  const {
+    name,
+    pictureUrl,
+  } = user;
+  return (
   <React.Fragment>
     <Appbar.Header style={[appStyles.header, styles.appbar]} collapsable>
       <Appbar.BackAction color={colors.gray} onPress={goBack} />
@@ -36,4 +48,4 @@ export default ({
       </View>
     </View>
   </React.Fragment>
-);
+)};
