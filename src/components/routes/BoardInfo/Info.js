@@ -1,6 +1,5 @@
 import React from 'react';
 import { View, ScrollView } from 'react-native';
-import Toast from 'react-native-simple-toast';
 import {
   Menu,
   MenuTrigger,
@@ -38,7 +37,6 @@ export default class Info extends React.Component {
     } = this.props;
     if (loading) return <Loading />
     if (error && !board) {
-      Toast.show(error.message, Toast.SHORT);
       return <Error onRefresh={onRefresh} />;
     }
     const {
