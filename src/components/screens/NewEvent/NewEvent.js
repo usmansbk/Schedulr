@@ -1,4 +1,5 @@
 import React from 'react';
+import Toast from 'react-native-simple-toast';
 import Form from '../../forms/Event';
 
 export default class NewEventScreen extends React.Component {
@@ -10,11 +11,11 @@ export default class NewEventScreen extends React.Component {
     try {
       const result = await this.props.onSubmit(input);
       this.props.navigation.replace('EventDetails', {
-        id: result.data.createBoard.id
+        id: result.data.createEvent.id
       });
     } catch(error) {
       Toast.show('Failed to create', Toast.SHORT);
-      console.log(error);
+      console.log(error.message);
     }
   }
   render() {
