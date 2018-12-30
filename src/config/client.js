@@ -17,7 +17,10 @@ export default client = new AWSAppSyncClient({
         getBoard: (_, args, { getCacheKey }) => (
           getCacheKey({ __typename: 'Board', id: args.id })),
         getEvent: (_, args, { getCacheKey }) => (
-          getCacheKey({ __typename: 'Event', id: args.id }))
+          getCacheKey({ __typename: 'Event', id: args.id })),
+        getUser: (_, args, { getCacheKey }) => (
+          getCacheKey({ __typename: 'User', id: args.id })
+        )
       }
     }
   }
