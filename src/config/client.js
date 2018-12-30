@@ -10,5 +10,15 @@ export default client = new AWSAppSyncClient({
     // apiKey: aws_config.aws_appsync_apiKey,
     type: aws_config.aws_appsync_authenticationType,
     credentials: () => Auth.currentCredentials()
+  },
+  cacheOptions: {
+    cacheRedirects: {
+      Query: {
+        getBoard: (_, args, { getCacheKey }) => (
+          getCacheKey({ __typename: 'Board', id: args.id })),
+        getEvent: (_, args, { getCacheKey }) => (
+          getCacheKey({ __typename: 'Event', id: args.id }))
+      }
+    }
   }
 });
