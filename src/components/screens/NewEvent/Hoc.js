@@ -2,7 +2,7 @@ import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
 import Container from './NewEvent';
 import { createEvent } from '../../../graphql/mutations';
-import { myBoards } from '../../../graphql/queries';
+import { listAllBoards } from '../../../graphql/queries';
 
 export default compose(
   graphql(gql(createEvent), {
@@ -20,12 +20,12 @@ export default compose(
       ...ownProps
     })
   }),
-  graphql(gql(myBoards), {
+  graphql(gql(listAllBoards), {
     options: {
       fetchPolicy: 'cache-and-network',
     },
     props: ({ data, ownProps }) => ({
-      boards: data && data.myBoards && data.myBoards.items,
+      boards: data && data.listAllBoards && data.listAllBoards.items,
       ...ownProps
     })
   })

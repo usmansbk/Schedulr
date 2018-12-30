@@ -12,7 +12,7 @@ export default graphql(gql(listAllBoards), {
   },
   props: ({ data, ownProps}) => ({
     loading: data.loading || data.networkStatus === 4,
-    boards: data && data.listAllBoards && data.listAllBoards.items,
+    boards: data && data.listAllBoards && data.listAllBoards.items || [],
     error: data.error,
     onRefresh: async () => {
       try {

@@ -168,13 +168,3 @@ export const searchBoard = `query SearchBoard($filter: SearchFilterInput, $limit
   }
 }
 `;
-
-export const myBoards = `{
-  myBoards {
-    items {
-      id
-      name
-    }
-  }
-}
-`;
