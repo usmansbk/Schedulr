@@ -35,7 +35,7 @@ export default class Info extends React.Component {
       navigateToFollowers,
       navigateToProfile
     } = this.props;
-    if (loading) return <Loading />
+    if (loading && !board) return <Loading />
     if (error && !board) {
       return <Error onRefresh={onRefresh} />;
     }
