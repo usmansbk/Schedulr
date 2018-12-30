@@ -12,7 +12,7 @@ const defaultColor = colors.primary_light;
 export default ({
   date,
   title,
-  starred,
+  isStarred,
   starsCount,
   commentsCount,
   location,
@@ -27,7 +27,7 @@ export default ({
   <View style={styles.actions}>
     <StarButton
       id={id}
-      starred={starred}
+      isStarred={isStarred}
       starsCount={starsCount}
       activeColor={defaultColor}
       iconSize={size}

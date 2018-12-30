@@ -17,11 +17,7 @@ export default ({
   alarm,
   headsup,
   eventEnded,
-  disablePush,
-  adminComments,
-  followersComments,
-  visitorsComments,
-  repliedComments
+  disablePush
 }) => (
   <React.Fragment>
     <Appbar.Header style={styles.header} collapsable>
@@ -89,46 +85,6 @@ export default ({
             <Switch
               value={disablePush}
               onValueChange={() => handleValueChange('disablePush')}
-            />
-          )}
-        />
-        <Divider />
-        <List.Item
-          title="Admin comments"
-          right={() => (
-            <Switch
-              value={adminComments}
-              onValueChange={() => handleValueChange('boardAdmin')}
-            />
-          )}
-        />
-        <Divider />
-        <List.Item
-          title="Board followers comments"
-          right={() => (
-            <Switch
-              value={followersComments}
-              onValueChange={() => handleValueChange('boardFollowers')}
-            />
-          )}
-        />
-        <Divider />
-        <List.Item
-          title="Visitors comments"
-          right={() => (
-            <Switch
-              value={visitorsComments}
-              onValueChange={() => handleValueChange('boardVisitors')}
-            />
-          )}
-        />
-        <Divider />
-        <List.Item
-          title="Replies to my comments"
-          right={() => (
-            <Switch
-              value={repliedComments}
-              onValueChange={() => handleValueChange('repliedComments')}
             />
           )}
         />

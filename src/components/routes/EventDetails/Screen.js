@@ -2,6 +2,8 @@ import React from 'react';
 import moment from 'moment';
 import { Appbar } from 'react-native-paper';
 import Details from './Details';
+import Loading from '../../common/Loading';
+import Error from '../../common/Error';
 import styles from '../../../config/styles';
 import colors from '../../../config/colors';
 import { formatDate, getNextDate } from '../../../lib/time';
@@ -10,43 +12,33 @@ import {decapitalize} from '../../../lib/capitalizr';
 const CREATED_DATE_FORMAT = "ddd DD, MMM YYYY, hh:mm a";
 
 export default class EventDetails extends React.Component {
-  static defaultProps = {
-    id: 1,
-    title: '(No title)',
-    startAt: moment().toISOString(),
-    endAt: moment().add(1, 'h').toISOString(),
-    eventType: 'WORK',
-    location: {
-      address: 'Bardawa close, Kaduna',
-    },
-    board: {
-      name: 'Dev Mode Board',
-      id: 2,
-    },
-    allDay: false,
-    repeat: 'WEEKLY',
-    createdAt: moment().toISOString(),
-    updatedAt: moment().toISOString(),
-    description: 'No description',
-    isCancelled: false,
-    starred: false,
-    starsCount: 1000,
-    commentsCount: 240,
-    isAuthor: true,
-  };
-  
   _getRepeatDate = () => {
     const {
       startAt,
       repeat,
       endAt
-    } = this.props;
+    } = this.props.event;
     if (repeat === 'NEVER') return '';
     return moment(getNextDate(startAt, repeat, startAt, endAt)).format(CREATED_DATE_FORMAT)
   };
   _isValid = (isCancelled, endAt) => (!isCancelled) && (Date.now() < Date.parse(endAt));
 
   render() {
+    const {
+      event,
+      error,
+      loading,
+      onRefresh,
+      handleBack,
+      handleDelete,
+      handleRepeat,
+      handleEdit,
+      handleCancel,
+      navigateToBoard,
+      navigateToComments,
+    } = this.props;
+    if (loading && !event) return <Loading />;
+    if (error && !event) return <Error onRefresh={onRefresh} />;
     const {
       id,
       title,
@@ -60,19 +52,12 @@ export default class EventDetails extends React.Component {
       createdAt,
       updatedAt,
       description,
-      starred,
+      isStarred,
       starsCount,
       commentsCount,
       isAuthor,
-      isCancelled,
-      handleBack,
-      handleDelete,
-      handleRepeat,
-      handleEdit,
-      handleCancel,
-      navigateToBoard,
-      navigateToComments,
-    } = this.props;
+      isCancelled
+    } = event;
     const isValid = this._isValid(isCancelled, endAt);
 
     return (
@@ -126,7 +111,7 @@ export default class EventDetails extends React.Component {
           createdAt={moment(createdAt).format(CREATED_DATE_FORMAT)}
           updatedAt={moment(updatedAt).format(CREATED_DATE_FORMAT)}
           description={description}
-          starred={starred}
+          isStarred={isStarred}
           starsCount={starsCount}
           commentsCount={commentsCount}
           isAuthor={isAuthor}

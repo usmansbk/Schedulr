@@ -18,7 +18,7 @@ export default ({
   updatedAt,
   description,
   isCancelled,
-  starred,
+  isStarred,
   starsCount,
   commentsCount,
   navigateToBoard,
@@ -77,7 +77,7 @@ export default ({
     title={title}
     location={location}
     eventType={eventType}
-    starred={starred}
+    isStarred={isStarred}
     starsCount={starsCount}
     commentsCount={commentsCount}
     date={date}
