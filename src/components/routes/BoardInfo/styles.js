@@ -62,6 +62,10 @@ export default StyleSheet.create({
     fontFamily: 'sans-serif-bold',
     marginVertical: 8
   },
+  byLine: {
+    fontFamily: 'sans-serif-light',
+    marginHorizontal: 4
+  },
   admin: {
     flexDirection: 'row',
     marginVertical: 8,
@@ -69,7 +73,6 @@ export default StyleSheet.create({
   },
   adminName: {
     fontFamily: 'sans-serif-bold',
-    fontWeight: 'bold',
     marginHorizontal: 4
   }
 });

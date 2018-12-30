@@ -21,9 +21,9 @@ export default graphql(gql(listBoards), {
         console.log(e);
         // Log error if it occurs multiple times
         Analytics.record({
-          name: error.name,
+          name: e.name,
           attributes: {
-            message: error.message,
+            message: e.message,
             component: 'BoardsContainer'
           }
         })

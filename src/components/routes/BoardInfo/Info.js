@@ -140,9 +140,11 @@ export default class Info extends React.Component {
               }
               <View style={styles.admin}>
                 <UserAvater rounded size={32} name={adminName}/>
-                <Text
-                  onPress={() => navigateToProfile(adminId)}
-                  style={styles.adminName}>{adminName}</Text>
+                <Text style={styles.byLine}>
+                  Created by <Text
+                    onPress={() => navigateToProfile(adminId)}
+                    style={styles.adminName}>{adminName}</Text>
+                </Text>
               </View>
               <Hyperlink linkStyle={styles.linkStyle} linkDefault={true}>
                 <Text style={styles.description}>{description}</Text>
