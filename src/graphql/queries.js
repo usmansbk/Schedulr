@@ -74,8 +74,8 @@ export const getBoard = `query GetBoard($id: ID!) {
   }
 }
 `;
-export const listBoards = `query ListBoards($limit: Int, $nextToken: String) {
-  listBoards(limit: $limit, nextToken: $nextToken) {
+export const listAllBoards = `query ListAllBoards($limit: Int, $nextToken: String) {
+  listAllBoards(limit: $limit, nextToken: $nextToken) {
     nextToken
     items {
       id
@@ -164,6 +164,16 @@ export const searchBoard = `query SearchBoard($filter: SearchFilterInput, $limit
       followersCount
       createdAt
       updatedAt
+    }
+  }
+}
+`;
+
+export const myBoards = `{
+  myBoards {
+    items {
+      id
+      name
     }
   }
 }

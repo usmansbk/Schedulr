@@ -2,9 +2,9 @@ import { graphql } from 'react-apollo';
 import { Analytics } from 'aws-amplify';
 import gql from 'graphql-tag';
 import Boards from './Boards';
-import { listBoards } from '../../../graphql/queries';
+import { listAllBoards } from '../../../graphql/queries';
 
-export default graphql(gql(listBoards), {
+export default graphql(gql(listAllBoards), {
   alias: 'BoardsContainer',
   options: {
     fetchPolicy: 'cache-and-network',
@@ -12,7 +12,7 @@ export default graphql(gql(listBoards), {
   },
   props: ({ data, ownProps}) => ({
     loading: data.loading || data.networkStatus === 4,
-    boards: data && data.listBoards && data.listBoards.items,
+    boards: data && data.listAllBoards && data.listAllBoards.items,
     error: data.error,
     onRefresh: async () => {
       try {
