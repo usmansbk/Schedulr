@@ -51,9 +51,9 @@ const Form = ({
   <Formik
     initialValues={initialValues || defaultValues}
     validationSchema={formSchema}
-    onSubmit={(values, { setSubmitting }) => {
+    onSubmit={async (values, { setSubmitting }) => {
       if (isEventValid(values)) {
-        onSubmit && onSubmit(values);
+        onSubmit && await onSubmit(values);
       }
       setSubmitting(false);
     }}
@@ -78,6 +78,7 @@ const Form = ({
         >Cancel</Button>
         <Button
           loading={isSubmitting}
+          disabled={isSubmitting}
           mode="outlined"
           color={navButtonColor}
           onPress={submitForm}

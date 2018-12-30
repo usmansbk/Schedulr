@@ -1,3 +1,3 @@
-import NewEvent from './NewEvent';
+import NewEvent from './Hoc';
 
 export default NewEvent;
