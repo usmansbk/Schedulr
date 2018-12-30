@@ -111,7 +111,7 @@ export default class EventDetails extends React.Component {
           boardId={board.id}
           repeat={decapitalize(repeat)}
           createdAt={moment(createdAt).format(CREATED_DATE_FORMAT)}
-          updatedAt={moment(updatedAt).format(CREATED_DATE_FORMAT)}
+          updatedAt={updatedAt && moment(updatedAt).format(CREATED_DATE_FORMAT)}
           description={description}
           isStarred={isStarred}
           starsCount={starsCount}
