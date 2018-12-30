@@ -37,7 +37,9 @@ export default class EventDetails extends React.Component {
       navigateToBoard,
       navigateToComments,
     } = this.props;
+    console.log(event);
     if (loading && !event) return <Loading />;
+    console.log(error);
     if (error && !event) return <Error onRefresh={onRefresh} />;
     const {
       id,

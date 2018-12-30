@@ -19,7 +19,7 @@ export default class DetailsScreen extends React.Component {
   
   render() {
     const { visibleDialog } = this.state;
-    const { id } = this.props.navigation.getParam('id');
+    const id = this.props.navigation.getParam('id');
     return (
       <React.Fragment>
         <Details
