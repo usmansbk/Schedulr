@@ -1,6 +1,5 @@
 import React from 'react';
 import Toast from 'react-native-simple-toast';
-import { Cache } from 'aws-amplify';
 import Form from '../../forms/Event';
 
 export default class NewEventScreen extends React.Component {
@@ -9,6 +8,7 @@ export default class NewEventScreen extends React.Component {
   }
   _handleBack = () => this.props.navigation.goBack();
   _handleSubmit = async (input) => {
+    console.log(input);
     try {
       const result = await this.props.onSubmit(input);
       this.props.navigation.replace('EventDetails', {
