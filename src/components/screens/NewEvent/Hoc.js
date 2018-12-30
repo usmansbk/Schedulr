@@ -22,7 +22,7 @@ export default compose(
   }),
   graphql(gql(listAllBoards), {
     options: {
-      fetchPolicy: 'cache-and-network',
+      fetchPolicy: 'cache-first',
     },
     props: ({ data, ownProps }) => ({
       boards: data && data.listAllBoards && data.listAllBoards.items,
