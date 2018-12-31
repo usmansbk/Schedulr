@@ -42,7 +42,7 @@ class List extends React.Component {
     } else if (listType === 'starred') {
       message = 'No important event - yet'
     } else {
-      message = 'When you follow a board, their schedules show up here';
+      message = 'When you follow a board, their schedule show up here';
     }
     return <Empty message={message} />
   };
