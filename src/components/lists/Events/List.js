@@ -37,12 +37,10 @@ class List extends React.Component {
   _renderEmptyList = () => {
     const {listType } = this.props;
     let message;
-    if (listType === 'board') {
-      message = 'No upcoming Events or Reminders!'
-    } else if (listType === 'starred') {
+    if (listType === 'starred') {
       message = 'No important event - yet'
     } else {
-      message = 'When you follow a board, their schedule show up here';
+      message = 'No upcoming Events or Reminders!';
     }
     return <Empty message={message} />
   };
