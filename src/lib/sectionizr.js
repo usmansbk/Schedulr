@@ -1,9 +1,17 @@
 import moment from 'moment';
+import { ISO8601Timestamp } from 'aws-sdk/clients/mobileanalytics';
+import { SectionListDataProp } from 'react-native-section-list-get-item-layout';
+import { Event } from '../types/types';
 
 const getDate = (date) => {
   return moment(Date.parse(date)).startOf('d').toISOString();
 }
 
+/**
+ * 
+ * @param { SectionListDataProp } sections 
+ * @param { ISO8601Timestamp} date 
+ */
 const getSection = (sections, date) => {
   let title = getDate(date);
   for (section in sections) {
@@ -18,7 +26,7 @@ const getSection = (sections, date) => {
 
 /**
  * 
- * @param { Array } sections 
+ * @param { SectionListDataProp } sections 
  * Sorts the sections in SectionList array
  */
 export const sortSections = (sections) => {
@@ -27,19 +35,19 @@ export const sortSections = (sections) => {
 
 /**
  * 
- * @param { Array } data 
- * @returns - events sorted accouding to date
+ * @param { Array<Event> } data - SectionList data 
+ * @returns { Array<Event> } events sorted according to date
  */
 export const sortEvents = (data) => data.sort((a, b) => {
   return Date.parse(a.startAt) - Date.parse(b.startAt);
 })
 
 /**
- * @param { Array } arr - An array of events
- * @returns a SectionList array
+ * @param { Array<Event> } arr - An array of events
+ * @returns { Array<SectionListDataProp> } a SectionList array
  */
-export default (arr=[]) => {
-  if (arr.length) {
+export default (arr) => {
+  if (arr && arr.length) {
     const sections = [];
     for (let item of arr) {
       const section = getSection(sections, item.startAt);
@@ -50,5 +58,5 @@ export default (arr=[]) => {
     }
     return sortSections(sections);
   }
-  return arr;
+  return [];
 }
