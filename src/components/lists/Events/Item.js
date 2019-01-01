@@ -36,7 +36,7 @@ export default class Item extends React.PureComponent {
       starsCount,
       commentsCount,
       boardName,
-      starred,
+      isStarred,
     } = this.props;
     const [ first, second ] = boardName.split(' ');
     const avatarName = `${first} ${second ? second : ''}`;
@@ -82,7 +82,7 @@ export default class Item extends React.PureComponent {
               title={title}
               location={location}
               eventType={eventType}
-              starred={starred}
+              isStarred={isStarred}
               starsCount={starsCount}
               commentsCount={commentsCount}
               navigateToComments={this._onPressComment}

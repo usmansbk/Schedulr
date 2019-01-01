@@ -58,7 +58,7 @@ class List extends React.Component {
     isCancelled,
     commentsCount,
     starsCount,
-    starred,
+    isStarred,
     startAt,
     endAt,
     repeat,
@@ -77,7 +77,7 @@ class List extends React.Component {
     isCancelled={isCancelled}
     commentsCount={commentsCount}
     starsCount={starsCount}
-    starred={starred} 
+    isStarred={isStarred} 
     boardId={board.id}
     boardName={board.name}
     allDay={allDay}

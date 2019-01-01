@@ -74,6 +74,53 @@ export const getBoard = `query GetBoard($id: ID!) {
   }
 }
 `;
+
+export const listAllEvents = `query ListAllEvents($limit: Int, $nextToken: String) {
+  listAllEvents(limit: $limit, nextToken: $nextToken) {
+    nextToken
+    items {
+      id
+      title
+      description
+      location {
+        address
+        latitude
+        longitude
+      }
+      startAt
+      endAt
+      allDay
+      isCancelled
+      repeat
+      eventType
+      board {
+        id
+        name
+        description
+        isPublic
+        isFollowing
+        isAuthor
+        followersCount
+        createdAt
+        updatedAt
+      }
+      cancelledDates
+      starsCount
+      isStarred
+      isAuthor
+      author {
+        id
+        name
+        email
+        pictureUrl
+      }
+      commentsCount
+      createdAt
+      updatedAt  
+    }
+  }
+}`
+
 export const listAllBoards = `query ListAllBoards($limit: Int, $nextToken: String) {
   listAllBoards(limit: $limit, nextToken: $nextToken) {
     nextToken
