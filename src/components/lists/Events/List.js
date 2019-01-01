@@ -112,7 +112,7 @@ class List extends React.Component {
         ItemSeparatorComponent={this._renderSeparator}
         refreshing={loading}
         onRefresh={onRefresh}
-        refreshControl={<RefreshControl refreshing={loading} colors={[primary]} />}
+        refreshControl={<RefreshControl onRefresh={onRefresh} refreshing={loading} colors={[primary]} />}
         renderItem={this._renderItem}
         renderSectionHeader={this._renderSectionHeader}
         keyExtractor={this._keyExtractor}

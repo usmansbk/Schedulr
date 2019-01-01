@@ -5,7 +5,7 @@ import FAB from '../../common/Fab';
 
 export default (props) => {
   if (props.error) {
-    Toast.show(props.error.message, Toast.SHORT);
+    Toast.show(props.error.message, Toast.LONG);
   }
   return (
     <React.Fragment>
