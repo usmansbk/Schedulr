@@ -21,3 +21,9 @@ export interface Event {
   startAt: ISO8601Timestamp;
   endAt: ISO8601Timestamp;
 }
+
+export interface Board {
+  name: String;
+  description: String;
+  isPublic: Boolean;
+}
