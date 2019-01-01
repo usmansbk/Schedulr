@@ -1,5 +1,3 @@
-import { ISO8601Timestamp } from "aws-sdk/clients/mobileanalytics";
-
 /**
  * DAILY, WEEKLY, MONTHLY, YEARLY
  */
@@ -18,8 +16,8 @@ interface TimeFrequency {
 export interface Event {
   title: String;
   description: String;
-  startAt: ISO8601Timestamp;
-  endAt: ISO8601Timestamp;
+  startAt: Date;
+  endAt: Date;
 }
 
 export interface Board {

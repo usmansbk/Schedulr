@@ -1,5 +1,4 @@
 import moment from 'moment';
-import { ISO8601Timestamp } from 'aws-sdk/clients/mobileanalytics';
 import { SectionListDataProp } from 'react-native-section-list-get-item-layout';
 import { Event } from '../types/types';
 
@@ -10,7 +9,7 @@ const getDate = (date) => {
 /**
  * 
  * @param { SectionListDataProp } sections 
- * @param { ISO8601Timestamp} date 
+ * @param { Date } date 
  */
 const getSection = (sections, date) => {
   let title = getDate(date);
