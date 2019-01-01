@@ -73,7 +73,7 @@ class List extends React.Component {
     details={parseDetails({ startAt, endAt, allDay, eventType, repeat })}
     startTime={startTime({ allDay, startAt })}
     endTime={endTime({ endAt, startAt })}
-    date={formatDate(starta, endAt, allDay)}
+    date={formatDate(startAt, endAt, allDay)}
     isStarted={isStarted({ startAt, endAt, isCancelled })}
     isCancelled={isCancelled}
     commentsCount={commentsCount}
