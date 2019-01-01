@@ -15,6 +15,7 @@ import {
   isStarted
 } from '../../../lib/parseItem';
 import { formatDate } from '../../../lib/time';
+import sectionize from '../../../lib/sectionizr';
 import styles, {
   ITEM_HEIGHT,
   SEPERATOR_HEIGHT,
@@ -96,7 +97,7 @@ class List extends React.Component {
   render() {
     const {
       loading,
-      sections,
+      events,
       onRefresh,
     } = this.props;
     return (
@@ -105,7 +106,7 @@ class List extends React.Component {
         style={styles.list}
         stickySectionHeadersEnabled
         getItemLayout={this._getItemLayout}
-        sections={sections}
+        sections={sectionize(events)}
         extraData={this.props.isFocused}
         ListHeaderComponent={this._renderHeader}
         ListEmptyComponent={this._renderEmptyList}
