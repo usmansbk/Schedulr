@@ -21,6 +21,7 @@ export default compose(
     })
   }),
   graphql(gql(listAllBoards), {
+    alias: 'NewEventContainer',
     options: {
       fetchPolicy: 'cache-first',
     },
