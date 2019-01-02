@@ -25,3 +25,8 @@ export interface Board {
   description: String;
   isPublic: Boolean;
 }
+
+export interface SectionListData {
+  data: Event[],
+  title: String
+}

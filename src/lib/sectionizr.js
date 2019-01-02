@@ -1,6 +1,5 @@
 import moment from 'moment';
-import { SectionListDataProp } from 'react-native-section-list-get-item-layout';
-import { Event } from '../types/types';
+import { Event, SectionListData } from '../types/types';
 
 const getDate = (date) => {
   return moment(Date.parse(date)).startOf('d').toISOString();
@@ -8,7 +7,7 @@ const getDate = (date) => {
 
 /**
  * 
- * @param { SectionListDataProp } sections 
+ * @param { SectionListData } sections 
  * @param { Date } date 
  */
 const getSection = (sections, date) => {
@@ -25,7 +24,7 @@ const getSection = (sections, date) => {
 
 /**
  * 
- * @param { SectionListDataProp } sections 
+ * @param { SectionListData[] } sections 
  * Sorts the sections in SectionList array
  */
 export const sortSections = (sections) => {
@@ -34,16 +33,16 @@ export const sortSections = (sections) => {
 
 /**
  * 
- * @param { Array<Event> } data - SectionList data 
- * @returns { Array<Event> } events sorted according to date
+ * @param { Event[] } data - SectionList data 
+ * @returns { Event[] } events sorted according to date
  */
 export const sortEvents = (data) => data.sort((a, b) => {
   return Date.parse(a.startAt) - Date.parse(b.startAt);
 })
 
 /**
- * @param { Array<Event> } arr - An array of events
- * @returns { Array<SectionListDataProp> } a SectionList array
+ * @param { Event[] } arr - An array of events
+ * @returns { SectionListData[] } a SectionList array
  */
 export default (arr) => {
   if (arr && arr.length) {
