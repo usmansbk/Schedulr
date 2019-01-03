@@ -20,9 +20,10 @@ export default class Screen extends React.Component {
     Share.open(shareOptions);
   };
   _handleSelectMenu = (option) => {
+    const id = this.props.navigation.getParam('id');
     switch (option) {
       case 'edit':
-        this.props.navigation.navigate('EditBoard', { id: this.props.id })
+        this.props.navigation.navigate('EditBoard', { id });
         break;
       default:
         this.setState({ visibleDialog: option });
