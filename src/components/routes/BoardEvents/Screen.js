@@ -7,20 +7,25 @@ import colors from '../../../config/colors';
 
 export default class BoardEvents extends React.Component {
   static defaultProps = {
-    id: 1,
-    name: 'Demo dev',
+    board: {
+      id: 1,
+      name: 'Demo dev'
+    }
   };
 
   render() {
     const {
-      id,
-      name,
-      description,
-      isAuthor,
+      board,
       onPress,
       navigateToBoardInfo,
       navigateToNewEvent
     } = this.props;
+    const {
+      id,
+      name,
+      description,
+      isAuthor
+    } = board;
 
     return (
       <React.Fragment>

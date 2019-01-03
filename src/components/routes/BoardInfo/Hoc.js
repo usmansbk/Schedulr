@@ -4,7 +4,10 @@ import gql from 'graphql-tag';
 import Info from './Info';
 import { getBoard } from '../../../graphql/queries';
 
+const alias = 'withBoardInfoContainer';
+
 export default graphql(gql(getBoard), {
+  alias,
   options: props => ({
     variables: {
       id: props.id,
