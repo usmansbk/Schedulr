@@ -142,10 +142,8 @@ export const updateEvent = `mutation UpdateEvent($input: UpdateEventInput!) {
     startAt
     endAt
     allDay
-    isCancelled
     repeat
     eventType
-    createdAt
     updatedAt
   }
 }
