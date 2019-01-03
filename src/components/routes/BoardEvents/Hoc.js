@@ -1,6 +1,5 @@
 import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
-import { Analytics } from 'aws-amplify';
 import Screen from './Screen';
 import { getBoard, listAllEvents } from '../../../graphql/queries';
 
@@ -31,7 +30,6 @@ export default compose(
       fetchingEvents: data.loading,
       fetchingEventsError: data.error,
       events: data && data.listAllEvents && data.listAllEvents.items,
-      nextToken: data && data.listAllEvents && data.listAllEvents.nextToken,
       ...ownProps
     })
   })
