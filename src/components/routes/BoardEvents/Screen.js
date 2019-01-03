@@ -2,24 +2,33 @@ import React from 'react';
 import { Appbar } from 'react-native-paper';
 import List from '../../lists/Events';
 import Fab from '../../common/Fab';
+import Loading from '../../common/Loading';
+import Error from '../../common/Error';
 import styles from '../../../config/styles';
 import colors from '../../../config/colors';
 
 export default class BoardEvents extends React.Component {
   static defaultProps = {
-    board: {
-      id: 1,
-      name: 'Demo dev'
-    }
+    events: []
   };
 
   render() {
     const {
       board,
+      events,
+      error,
+      loading,
+      fetchingEvents,
       onPress,
+      onRefresh,
+      onRefreshEvents,
       navigateToBoardInfo,
       navigateToNewEvent
     } = this.props;
+
+    if (loading && !board) return <Loading />;
+    if (error && !board) return <Error onRefresh={onRefresh} />;
+
     const {
       id,
       name,
@@ -42,7 +51,12 @@ export default class BoardEvents extends React.Component {
             color={colors.gray}
           />
         </Appbar.Header>
-        <List listType="board" />
+        <List
+          listType="board"
+          events={events}
+          loading={fetchingEvents}
+          onRefresh={onRefreshEvents}
+        />
         {
           isAuthor && (
             <Fab
