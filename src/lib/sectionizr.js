@@ -7,10 +7,16 @@ import { Event } from '../types/types';
  * @param { SectionListDataProp } eventsArray
  * @returns { SectionListDataProp }
  */
-export const sortSections = (eventsArray) => {
-  return eventsArray.sort((a, b) => {
+export const sortSections = (sections) => {
+  return sections.sort((a, b) => {
     return Date.parse(a.title) - Date.parse(b.title);
   });
+}
+
+export const sortData = (eventsArray) => {
+  return eventsArray.sort((a, b) => {
+    return Date.parse(a.startAt) - Date.parse(b.startAt);
+  })
 }
 
 /**
@@ -34,7 +40,7 @@ const sectionize = (eventsArray) => eventsArray.reduce((sections, currentValue) 
   // if found, add currentValue to section's data
   if (index !== -1) {
     const section = sections[index];
-    section.data.push(currentValue);
+    section.data = sortData([...section.data, currentValue]);
   } else {
     // else create a new section with currentValue in data
     // then and add section to sections list

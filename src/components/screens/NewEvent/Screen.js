@@ -23,8 +23,8 @@ export default class NewEventScreen extends React.Component {
   _getInitialValues = () => {
     const { event={}, boardId } = this.props;
     const {
-      title='',
-      description='',
+      title,
+      description,
       location,
       startAt,
       endAt,
@@ -35,8 +35,8 @@ export default class NewEventScreen extends React.Component {
     } = event;
 
     return ({
-      title: title,
-      description: description,
+      title: title || '',
+      description: description || '',
       location: location || { address: '' },
       startAt: startAt || moment().toDate().toISOString(),
       endAt: endAt || moment().add(2, 'hours').toDate().toISOString(),
