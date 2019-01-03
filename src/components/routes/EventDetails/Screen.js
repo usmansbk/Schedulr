@@ -107,7 +107,7 @@ export default class EventDetails extends React.Component {
           location={location && location.address}
           boardName={board.name}
           boardId={board.id}
-          repeat={decapitalize(repeat)}
+          repeat={repeat === 'NEVER' ? 'One-time event' : decapitalize(repeat)}
           createdAt={moment(createdAt).format(CREATED_DATE_FORMAT)}
           updatedAt={updatedAt && moment(updatedAt).format(CREATED_DATE_FORMAT)}
           description={description}
