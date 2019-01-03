@@ -12,15 +12,7 @@ import {decapitalize} from '../../../lib/capitalizr';
 const CREATED_DATE_FORMAT = "ddd DD, MMM YYYY, hh:mm a";
 
 export default class EventDetails extends React.Component {
-  _getRepeatDate = () => {
-    const {
-      startAt,
-      repeat,
-      endAt
-    } = this.props.event;
-    if (repeat === 'NEVER') return '';
-    return moment(getNextDate(startAt, repeat, startAt, endAt)).format(CREATED_DATE_FORMAT)
-  };
+  _getRepeatDate = () => getNextDate(this.props.event);
   _isValid = (isCancelled, endAt) => (!isCancelled) && (Date.now() < Date.parse(endAt));
 
   render() {

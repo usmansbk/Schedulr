@@ -12,6 +12,10 @@ export const FIFTEEN_MINUTES = 3 * FIVE_MINUTES;
 export const THIRTY_MINUTES = 3 * TEN_MINUTES;
 export const FORTY_FIVE_MINUTES = 3 * FIFTEEN_MINUTES;
 
+const DATE_ONLY = 'ddd DD, MMM YYYY';
+const DATE_TIME = "ddd DD, MMM YYYY, hh:mm a";
+
+
 /**
  * Converts time frequency to milliseconds
  * @param { TimeFrequency } repeat 
@@ -57,14 +61,18 @@ export const formatDate = (startAt, endAt, allDay) => {
  * @param { Date } refDate - Inclusive 'after' date
  * @param { Date } endAt 
  */
-export const getNextDate = (initialDate, repeat, refDate = new Date(), endAt) => {
-  const isEnded = Date.now() > Date.parse(endAt);
-  const a0 = Date.parse(initialDate);
-  const b0 = Date.parse(refDate);
-  if (!isEnded) return a0;
-  if ((a0 > b0) || (repeat === 'NEVER')) return a0;
-  const x = repeatLength(repeat);
-  const y = b0 - a0;
-  const a1 = b0 + Math.abs(x - y);
-  return a1;
+export const getNextDate = (event) => {
+  const { startAt, repeat, allDay} = event;
+  const refDate = Date.now();
+  const a0 = Date.parse(startAt);
+  const b0 = refDate;
+  let date;
+  if (((a0 < b0) || (repeat === 'NEVER')) && !allDay) {
+    date = a0;
+  } else {
+    const x = repeatLength(repeat);
+    const y = b0 - a0;
+    date = b0 + Math.abs(x - y);
+  }
+  return moment(date).format(allDay ? DATE_ONLY : DATE_TIME);
 }
