@@ -2,23 +2,10 @@ import moment from 'moment';
 import { SectionListDataProp } from 'react-native-section-list-get-item-layout';
 import { Event } from '../types/types';
 
-/**
- * 
- * @param { SectionListDataProp } sections
- * @returns { SectionListDataProp }
- */
-export const sortSections = (sections) => {
-  return sections.sort((a, b) => {
-    return Date.parse(a.title) - Date.parse(b.title);
-  });
-}
-/**
- * 
- * @param { Array<Event> } data 
- */
-export const sortData = (data) => {
-  return data.sort((a, b) => {
-    return Date.parse(a.startAt) - Date.parse(b.startAt);
+
+export const sortBy = (arr, key) => {
+  return arr.sort((a, b) => {
+    return Date.parse(a[key]) - Date.parse(b[key]);
   })
 }
 
@@ -43,7 +30,7 @@ const sectionize = (eventsArray) => eventsArray.reduce((sections, currentValue) 
   // if found, add currentValue to section's data
   if (index !== -1) {
     const section = sections[index];
-    section.data = sortData([...section.data, currentValue]);
+    section.data = sortBy([...section.data, currentValue], 'startAt');
   } else {
     // else create a new section with currentValue in data
     // then and add section to sections list
