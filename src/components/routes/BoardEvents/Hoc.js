@@ -18,21 +18,6 @@ export default compose(
     props: ({ data, ownProps }) => ({
       error: data.error,
       loading: data.loading,
-      onRefresh: async () => {
-        try {
-          await data.refetch()
-        } catch(e) {
-          console.log(e);
-          // Log error if it occurs multiple times
-          Analytics.record({
-            name: e.name,
-            attributes: {
-              message: e.message,
-              component: alias
-            }
-          })
-        }
-      },
       board: data && data.getBoard,
       ...ownProps,
     })
@@ -47,21 +32,6 @@ export default compose(
       fetchingEventsError: data.error,
       events: data && data.listAllEvents && data.listAllEvents.items,
       nextToken: data && data.listAllEvents && data.listAllEvents.nextToken,
-      onRefreshEvents: async () => {
-        try {
-          await data.refetch()
-        } catch(e) {
-          console.log(e);
-          // Log error if it occurs multiple times
-          Analytics.record({
-            name: e.name,
-            attributes: {
-              message: e.message,
-              component: alias
-            }
-          })
-        }
-      },
       ...ownProps
     })
   })

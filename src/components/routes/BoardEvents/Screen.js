@@ -21,7 +21,6 @@ export default class BoardEvents extends React.Component {
       fetchingEvents,
       onPress,
       onRefresh,
-      onRefreshEvents,
       navigateToBoardInfo,
       navigateToNewEvent
     } = this.props;
@@ -55,7 +54,6 @@ export default class BoardEvents extends React.Component {
           listType="board"
           events={events.filter(event => event.board.id === id)}
           loading={fetchingEvents}
-          onRefresh={onRefreshEvents}
         />
         {
           isAuthor && (
