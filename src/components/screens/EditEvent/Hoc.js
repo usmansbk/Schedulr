@@ -26,9 +26,11 @@ export default compose(
     alias: 'EditEventContainer',
     props: ({ mutate, ownProps }) => ({
       onSubmit: async (form) => await mutate({
-        input: {
-          id: ownProps.navigation.getParam('id'),
-          ...form
+        variables: {
+          input: {
+            id: ownProps.navigation.getParam('id'),
+            ...form
+          }
         }
       }),
       ...ownProps,

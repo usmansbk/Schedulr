@@ -1,6 +1,6 @@
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
-import Container from './NewBoard';
+import Screen from './Screen';
 import { createBoard } from '../../../graphql/mutations';
 import { listAllBoards } from '../../../graphql/queries';
 
@@ -20,4 +20,4 @@ export default graphql(gql(createBoard), {
     }),
     ...ownProps
   })
-})(Container);
+})(Screen);
