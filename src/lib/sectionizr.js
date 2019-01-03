@@ -36,7 +36,8 @@ const sectionize = (eventsArray) => eventsArray.reduce((sections, currentValue) 
     const section = sections[index];
     section.data.push(currentValue);
   } else {
-    // else create a new section and add to sections
+    // else create a new section with currentValue in data
+    // then and add section to sections list
     const newSection = {
       title: getSectionTitle(currentValue),
       data: [currentValue]
