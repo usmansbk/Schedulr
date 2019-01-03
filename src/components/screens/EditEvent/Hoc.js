@@ -1,12 +1,14 @@
 import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
 import Screen from './Screen';
-import { getEvent } from '../../../graphql/queries';
+import { getEvent, listAllBoards } from '../../../graphql/queries';
 import { updateEvent } from '../../../graphql/mutations';
+
+const alias = 'EditEventContainer';
 
 export default compose(
   graphql(gql(getEvent), {
-    alias: 'EditEventContainer',
+    alias,
     options: props => {
       const id = props.navigation.getParam('id');
       return ({
@@ -18,19 +20,25 @@ export default compose(
     },
     props: ({ data, ownProps }) => ({
       event: data && data.getEvent,
-      error: data.error,
+      ...ownProps
+    })
+  }),
+  graphql(gql(listAllBoards), {
+    alias,
+    options: {
+      fetchPolicy: 'cache',
+    },
+    props: ({ data, ownProps }) => ({
+      boards: data && data.listAllBoards && data.listAllBoards.items,
       ...ownProps
     })
   }),
   graphql(gql(updateEvent), {
-    alias: 'EditEventContainer',
+    alias,
     props: ({ mutate, ownProps }) => ({
-      onSubmit: async (form) => await mutate({
+      onSubmit: async (input) => await mutate({
         variables: {
-          input: {
-            id: ownProps.navigation.getParam('id'),
-            ...form
-          }
+          input
         }
       }),
       ...ownProps,

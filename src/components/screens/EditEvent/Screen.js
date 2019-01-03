@@ -31,25 +31,25 @@ export default class EditEventScreen extends React.Component {
     });
   };
   _onSubmit =  async (form) => {
-    console.log(input);
+    console.log(form);
+    const id = this.props.navigation.getParam('id');
     try {
-      const result = await this.props.onSubmit(form);
-      this.props.navigation.replace('EventDetails', {
-        id: result.data.updateEvent.id
+      const result = await this.props.onSubmit({
+        id,
+        ...form
       });
+      this.props.navigation.replace('EventDetails', { id });
     } catch(error) {
       Toast.show('Failed to update', Toast.SHORT);
       console.log(error.message);
     }
-  }
+  };
   
   render() {
-    if (this.props.error) {
-      Toast.show('Item not in cache', Toast.SHORT);
-    }
     return (
       <Form
         handleCancel={this._handleBack}
+        boards={this.props.boards}
         initialValues={this._getInitialValues()}
         onSubmit={this._onSubmit}
         locked

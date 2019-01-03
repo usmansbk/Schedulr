@@ -31,7 +31,7 @@ const sectionize = (eventsArray) => eventsArray.reduce((sections, currentValue) 
   // find currentValue section index
   const index = sections.findIndex(section => (
     section.title === getSectionTitle(currentValue)));
-  // if found add currentValue to section's data
+  // if found, add currentValue to section's data
   if (index !== -1) {
     const section = sections[index];
     section.data.push(currentValue);

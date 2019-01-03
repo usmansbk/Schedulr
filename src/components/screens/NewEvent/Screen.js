@@ -5,18 +5,18 @@ import Form from '../../forms/Event';
 export default class NewEventScreen extends React.Component {
   static defaultProps = {
     boards: []
-  }
+  };
   _handleBack = () => this.props.navigation.goBack();
-  _handleSubmit = async (input) => {
+  _handleSubmit = async (form) => {
     try {
-      const result = await this.props.onSubmit(input);
+      const result = await this.props.onSubmit(form);
       this.props.navigation.replace('EventDetails', {
         id: result.data.createEvent.id
       });
     } catch(error) {
       Toast.show('Failed to create', Toast.SHORT);
     }
-  }
+  };
   render() {
     return (
       <Form
