@@ -6,12 +6,11 @@ export default class EditBoardScreen extends React.Component {
   _handleBack = () => this.props.navigation.goBack();
   
   _onSubmit =  async (form) => {
+    const id = this.props.navigation.getParam('id');
     console.log(form);
     try {
-      const result = await this.props.onSubmit(input);
-      this.props.navigation.replace('BoardEvents', {
-        id: result.data.updateBoard.id
-      });
+      await this.props.onSubmit({id, ...form});
+      this.props.navigation.replace('BoardEvents', { id });
     } catch(error) {
       Toast.show('Failed to create', Toast.SHORT);
       console.log(error);
