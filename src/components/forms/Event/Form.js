@@ -131,9 +131,17 @@ const Form = ({
             label="From"
             value={values.startAt}
             onChangeDate={(date) => {
+              const prevStartAt = Date.parse(values.startAt);
+              const currentEndAt = Date.parse(values.endAt);
+              const currentStartAt = Date.parse(date);
+              const prevDuration = Math.abs(currentEndAt - prevStartAt);
+
               setFieldValue('startAt', date);
               if (values.allDay) {
                 setFieldValue('endAt', moment(date).endOf('day').toISOString());
+              } else if (currentStartAt > currentEndAt) {
+                const newEnd = moment(date).add(prevDuration, 'milliseconds').toISOString();
+                setFieldValue('endAt', newEnd);
               }
             }}
           />
