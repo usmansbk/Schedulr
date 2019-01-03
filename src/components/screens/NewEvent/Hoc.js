@@ -1,6 +1,6 @@
 import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
-import Container from './NewEvent';
+import Screen from './Screen';
 import { createEvent } from '../../../graphql/mutations';
 import { listAllBoards } from '../../../graphql/queries';
 
@@ -30,4 +30,4 @@ export default compose(
       ...ownProps
     })
   })
-)(Container);
+)(Screen);

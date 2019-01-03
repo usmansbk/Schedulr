@@ -8,7 +8,6 @@ export default class NewEventScreen extends React.Component {
   }
   _handleBack = () => this.props.navigation.goBack();
   _handleSubmit = async (input) => {
-    console.log(input);
     try {
       const result = await this.props.onSubmit(input);
       this.props.navigation.replace('EventDetails', {
@@ -16,7 +15,6 @@ export default class NewEventScreen extends React.Component {
       });
     } catch(error) {
       Toast.show('Failed to create', Toast.SHORT);
-      console.log(error.message);
     }
   }
   render() {
