@@ -15,7 +15,7 @@ import {
   isStarted
 } from '../../../lib/parseItem';
 import { formatDate } from '../../../lib/time';
-import sectionize, { sortSections } from '../../../lib/sectionizr';
+import sectionize, { sortBy } from '../../../lib/sectionizr';
 import styles, {
   ITEM_HEIGHT,
   SEPERATOR_HEIGHT,
@@ -103,7 +103,7 @@ class List extends React.Component {
       events,
       onRefresh,
     } = this.props;
-    const sections = sortSections(sectionize(events));
+    const sections = sortBy(sectionize(events), 'title');
 
     return (
       <SectionList
