@@ -4,16 +4,15 @@ import { CANT_REPEAT, INVALID_START, WRONG_TIME } from './errorMessages';
 
 export const canRepeat = ({ repeat, endAt, startAt }) => {
   if (repeat === 'NEVER') return true;
-  const duration = Math.abs(endAt - startAt);
+  const duration = Math.abs(Date.parse(endAt) - Date.parse(startAt));
   return duration < repeatLength(repeat);
 };
 export function isEventValid(event) {
   const startAt = Date.parse(event.startAt);
   const endAt = Date.parse(event.endAt);
-  const repeat = event.repeat;
 
   let validity = true
-  if (!canRepeat({ startAt, endAt, repeat })) {
+  if (!canRepeat(event)) {
     Alert.alert("Repeat", CANT_REPEAT);
     validity = false;
   } else if (startAt > endAt) {
