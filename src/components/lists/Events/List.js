@@ -36,7 +36,8 @@ class List extends React.Component {
   _renderHeader = () => <Header onPress={this._loadPrevious} visible={this.props.hasPreviousEvents} />;
   _renderFooter = () => <Footer visible={this.props.events.length}/>;
   _renderEmptyList = () => {
-    const {listType } = this.props;
+    const { listType, loading, events } = this.props;
+    if (loading && (events.length === 0)) return null;
     let message;
     if (listType === 'starred') {
       message = 'No important event - yet'
