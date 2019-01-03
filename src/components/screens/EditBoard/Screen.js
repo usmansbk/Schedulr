@@ -10,7 +10,7 @@ export default class EditBoardScreen extends React.Component {
     console.log(form);
     try {
       await this.props.onSubmit({id, ...form});
-      this.props.navigation.replace('BoardEvents', { id });
+      this.props.navigation.pop();
     } catch(error) {
       Toast.show('Failed to create', Toast.SHORT);
       console.log(error);
@@ -22,8 +22,8 @@ export default class EditBoardScreen extends React.Component {
     if (!board) return undefined;
     return ({
       name: board.name,
-      description: board.description,
-      isPublic: board.isPublic
+      description: board.description || '',
+      isPublic: Boolean(board.isPublic)
     });
   };
   

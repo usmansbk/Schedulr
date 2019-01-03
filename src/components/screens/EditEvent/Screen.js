@@ -20,24 +20,24 @@ export default class EditEventScreen extends React.Component {
     } = event;
     return ({
       title,
-      description,
-      location: location || {},
+      description: description || '',
+      location: location || { address: '' },
       startAt,
       endAt,
-      allDay,
+      allDay: Boolean(allDay),
       eventType,
       repeat,
       boardId: board.id
     });
   };
   _onSubmit =  async (form) => {
-    console.log(form);
     const id = this.props.navigation.getParam('id');
+    delete form.boardId;
     try {
       await this.props.onSubmit({ id, ...form });
-      this.props.navigation.replace('EventDetails', { id });
+      this.props.navigation.pop();
     } catch(error) {
-      Toast.show('Failed to update', Toast.SHORT);
+      Toast.show(err, Toast.SHORT);
       console.log(error.message);
     }
   };
