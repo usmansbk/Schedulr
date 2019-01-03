@@ -4,7 +4,7 @@ import { Event } from '../types/types';
 
 /**
  * 
- * @param { SectionListDataProp } eventsArray
+ * @param { SectionListDataProp } sections
  * @returns { SectionListDataProp }
  */
 export const sortSections = (sections) => {
@@ -12,9 +12,12 @@ export const sortSections = (sections) => {
     return Date.parse(a.title) - Date.parse(b.title);
   });
 }
-
-export const sortData = (eventsArray) => {
-  return eventsArray.sort((a, b) => {
+/**
+ * 
+ * @param { Array<Event> } data 
+ */
+export const sortData = (data) => {
+  return data.sort((a, b) => {
     return Date.parse(a.startAt) - Date.parse(b.startAt);
   })
 }
