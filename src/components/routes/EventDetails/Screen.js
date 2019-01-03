@@ -51,6 +51,7 @@ export default class EventDetails extends React.Component {
       isCancelled
     } = event;
     const isValid = this._isValid(isCancelled, endAt);
+    const recurring = repeat !== 'NEVER';
 
     return (
       <React.Fragment>
@@ -94,12 +95,12 @@ export default class EventDetails extends React.Component {
           id={id}
           title={title}
           date={formatDate(startAt, endAt, allDay)}
-          nextDate={this._getRepeatDate()}
+          nextDate={recurring && this._getRepeatDate()}
           eventType={decapitalize(eventType)}
           location={location && location.address}
           boardName={board.name}
           boardId={board.id}
-          repeat={repeat === 'NEVER' ? 'One-time event' : decapitalize(repeat)}
+          repeat={!recurring ? 'One-time event' : decapitalize(repeat)}
           createdAt={moment(createdAt).format(CREATED_DATE_FORMAT)}
           updatedAt={updatedAt && moment(updatedAt).format(CREATED_DATE_FORMAT)}
           description={description}

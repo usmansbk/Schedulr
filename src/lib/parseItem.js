@@ -8,15 +8,17 @@ const REMINDER = 'REMINDER'
 
 /**
  * Parse an event details to a simple readable format
- * @param { Event } param0
+ * @param { Event } event
  */
-export const parseDetails = ({ eventType, repeat, endAt, allDay, startAt }) => {
-  const shouldRepeat = repeat !== 'NEVER';
-  if (!shouldRepeat) return '';
-  const recurrence = decapitalize(repeat);
-  if ((eventType === REMINDER) || allDay) return `${recurrence ? (recurrence + ' ' + decapitalize(eventType, true)) : decapitalize(eventType)}`;
+export const parseDetails = (event) => {
+  const { endAt, allDay, startAt } = event;
+  const eventType = decapitalize(event.eventType);
+  const repeat = decapitalize(event.repeat);
+  const isRecurring = repeat !== 'Never';
+  const note = `${isRecurring ? (repeat + ' ') : ''}${eventType}`;
+  if (allDay) return note;
   const duration = moment(Date.parse(endAt)).from(Date.parse(startAt), true);
-  return capitalizr(`${duration} ${eventType.toLowerCase()} ${recurrence.toLowerCase()}`);
+  return capitalizr(`${duration} ${note}`);
 };
 
 /**

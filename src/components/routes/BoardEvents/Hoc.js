@@ -39,9 +39,9 @@ export default compose(
   }),
   graphql(gql(listAllEvents), {
     alias,
-    options: props => ({
+    options: {
       fetchPolicy: 'cache-only',
-    }),
+    },
     props: ({ data, ownProps}) => ({
       fetchingEvents: data.loading,
       fetchingEventsError: data.error,
