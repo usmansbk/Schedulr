@@ -44,7 +44,7 @@ export default class EditEventScreen extends React.Component {
   }
   
   render() {
-    if (error) {
+    if (this.props.error) {
       Toast.show('Item not in cache', Toast.SHORT);
     }
     return (
