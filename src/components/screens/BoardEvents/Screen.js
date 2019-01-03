@@ -4,7 +4,7 @@ import BoardEvents from '../../routes/BoardEvents';
 export default class Screen extends React.Component {
   _onBack = () => this.props.navigation.goBack();
   _navigateToBoardInfo = (id) => this.props.navigation.navigate('BoardInfo', { id });
-  _navigateToNewEvent = (id) => this.props.navigation.navigate('NewBoardEvent', { id });
+  _navigateToNewEvent = (boardId) => this.props.navigation.navigate('NewEvent', { boardId });
 
   render() {
     const id = this.props.navigation.getParam('id');

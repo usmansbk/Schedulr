@@ -4,8 +4,10 @@ import Screen from './Screen';
 import { createBoard } from '../../../graphql/mutations';
 import { listAllBoards } from '../../../graphql/queries';
 
+const alias =  'withNewBoardContainer';
+
 export default graphql(gql(createBoard), {
-  alias: 'NewBoardContainer',
+  alias,
   options: {
     refetchQueries: [{
       query: gql(listAllBoards)

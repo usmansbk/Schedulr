@@ -33,6 +33,7 @@ export default class EditBoardScreen extends React.Component {
         initialValues={this._getInitialValues()}
         onSubmit={this._onSubmit}
         handleCancel={this._handleBack}
+        edit
       />
     )
   }

@@ -4,8 +4,6 @@ import EditEvent from './EditEvent';
 import EditBoard from './EditBoard';
 import NewEvent from './NewEvent';
 import NewBoard from './NewBoard';
-import NewBoardEvent from './NewBoardEvent';
-import RescheduleEvent from './RescheduleEvent';
 import AuthLoading from './AuthLoading';
 import EventDetails from './EventDetails';
 import BoardEvents from './BoardEvents';
@@ -24,8 +22,6 @@ export {
   EditEvent,
   NewEvent,
   NewBoard,
-  NewBoardEvent,
-  RescheduleEvent,
   EventDetails,
   BoardEvents,
   BoardInfo,

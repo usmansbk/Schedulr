@@ -10,7 +10,7 @@ export default class DetailsScreen extends React.Component {
   _openDeleteDialog = () => this.setState({ visibleDialog: 'delete' });
   _openEditDialog = () => this.setState({ visibleDialog: 'edit' });
   _handleEdit = ({ id, option }) => this.props.navigation.navigate('EditEvent', { id, option });
-  _handleRepeat = () => this.props.navigation.navigate('RescheduleEvent', { id: this.props.id });
+  _handleRepeat = () => this.props.navigation.navigate('NewEvent', { id: this.props.id });
   _openCancelDialog = () => this.setState({ visibleDialog: 'cancel' });
   _handleCancel = ({ id, option }) => alert(`${id} - ${option}`);
   _navigateToBoard = (id) => this.props.navigation.navigate('BoardEvents', { id });

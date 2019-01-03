@@ -22,7 +22,7 @@ const Form = ({
   initialValues,
   handleCancel,
   onSubmit,
-  isEdit,
+  edit,
 }) => (
   <Formik
     initialValues={initialValues || defaultValues}
@@ -56,7 +56,7 @@ const Form = ({
           mode="outlined"
           color={navButtonColor}
           onPress={submitForm}
-        >{ isEdit ? 'Save' : 'Create'}</Button>
+        >{ edit ? 'Save' : 'Create'}</Button>
       </Appbar.Header>
       <ScrollView refreshControl={<RefreshControl refreshing={false} onRefresh={() => resetForm()} />}>
         <View style={styles.form}>

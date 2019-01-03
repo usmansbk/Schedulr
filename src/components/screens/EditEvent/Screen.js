@@ -46,9 +46,10 @@ export default class EditEventScreen extends React.Component {
     return (
       <Form
         handleCancel={this._handleBack}
-        boards={this.props.boards}
+        boards={this.props.boards.filter(board => board.isAuthor)}
         initialValues={this._getInitialValues()}
         onSubmit={this._onSubmit}
+        edit
         locked
       />
     )

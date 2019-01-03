@@ -4,7 +4,7 @@ import Screen from './Screen';
 import { getEvent, listAllBoards } from '../../../graphql/queries';
 import { updateEvent } from '../../../graphql/mutations';
 
-const alias = 'EditEventContainer';
+const alias = 'withEditEventContainer';
 
 export default compose(
   graphql(gql(getEvent), {

@@ -4,7 +4,7 @@ import Screen from './Screen';
 import { updateBoard } from '../../../graphql/mutations';
 import { getBoard } from '../../../graphql/queries';
 
-const alias = 'EditBoardContainer';
+const alias = 'withEditBoardContainer';
 
 export default compose(
   graphql(gql(getBoard), {
