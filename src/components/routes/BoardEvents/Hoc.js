@@ -2,7 +2,7 @@ import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
 import { Analytics } from 'aws-amplify';
 import Screen from './Screen';
-import { getBoard, listBoardEvents } from '../../../graphql/queries';
+import { getBoard, listAllEvents } from '../../../graphql/queries';
 
 const alias = 'withBoardEventsContainer';
 
@@ -28,7 +28,7 @@ export default compose(
             name: e.name,
             attributes: {
               message: e.message,
-              component: 'BoardsContainer'
+              component: alias
             }
           })
         }
@@ -37,20 +37,19 @@ export default compose(
       ...ownProps,
     })
   }),
-  graphql(gql(listBoardEvents), {
+  graphql(gql(listAllEvents), {
     alias,
     options: props => ({
       variables: {
         id: props.id
       },
-      fetchPolicy: 'cache-and-network',
-      notifyOnNetworkStatusChange: true,
+      fetchPolicy: 'cache-only',
     }),
     props: ({ data, ownProps}) => ({
-      fetchingEvents: data.loading || data.networkStatus === 4,
+      fetchingEvents: data.loading,
       fetchingEventsError: data.error,
-      events: data && data.listBoardEvents && data.listBoardEvents.events && data.listBoardEvents.events.items,
-      nextToken: data && data.listBoardEvents && data.listBoardEvents.events && data.listBoardEvents.events.nextToken,
+      events: data && data.listAllEvents && data.listAllEvents.items,
+      nextToken: data && data.listAllEvents && data.listAllEvents.nextToken,
       onRefreshEvents: async () => {
         try {
           await data.refetch()
@@ -61,7 +60,7 @@ export default compose(
             name: e.name,
             attributes: {
               message: e.message,
-              component: 'EventsContainer'
+              component: alias
             }
           })
         }

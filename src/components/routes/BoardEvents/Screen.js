@@ -53,7 +53,7 @@ export default class BoardEvents extends React.Component {
         </Appbar.Header>
         <List
           listType="board"
-          events={events}
+          events={events.filter(event => event.board.id === id)}
           loading={fetchingEvents}
           onRefresh={onRefreshEvents}
         />
