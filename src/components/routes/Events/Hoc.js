@@ -12,7 +12,7 @@ export default graphql(gql(listAllEvents), {
   },
   props: ({ data, ownProps}) => ({
     loading: data.loading || data.networkStatus === 4,
-    events: data && data.listAllEvents && data.listAllEvents.items || [],
+    events: data && data.listAllEvents && data.listAllEvents.items,
     nextToken: data && data.listAllEvents && data.listAllEvents.nextToken,
     error: data.error,
     onRefresh: async () => {

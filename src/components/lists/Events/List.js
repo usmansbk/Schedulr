@@ -28,13 +28,13 @@ class List extends React.Component {
   static defaultProps = {
     loading: false,
     hasPreviousEvents: false,
-    sections: [],
+    events: [],
     onRefresh: () => null,
   };
   _loadPrevious = () => console.log('Load previous events');
   _keyExtractor = (item, index) => item.id;
   _renderHeader = () => <Header onPress={this._loadPrevious} visible={this.props.hasPreviousEvents} />;
-  _renderFooter = () => <Footer visible={this.props.sections.length}/>;
+  _renderFooter = () => <Footer visible={this.props.events.length}/>;
   _renderEmptyList = () => {
     const {listType } = this.props;
     let message;
@@ -100,13 +100,15 @@ class List extends React.Component {
       events,
       onRefresh,
     } = this.props;
+    const sections = sectionize(events);
+    
     return (
       <SectionList
         initialNumToRender={0}
         style={styles.list}
         stickySectionHeadersEnabled
         getItemLayout={this._getItemLayout}
-        sections={sectionize(events)}
+        sections={sections}
         extraData={this.props.isFocused}
         ListHeaderComponent={this._renderHeader}
         ListEmptyComponent={this._renderEmptyList}
