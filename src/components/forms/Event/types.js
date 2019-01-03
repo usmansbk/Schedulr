@@ -2,10 +2,9 @@ export default [
   { name: 'Normal', id: 'EVENT' },
   { name: 'Task', id: 'TASK' },
   { name: 'Reminder', id: 'REMINDER' },
-  { name: 'Prayer', id: 'PRAYER' },
+  { name: 'Meetup', id: 'MEETUP' },
   { name: 'Lecture', id: 'LECTURE' },
   { name: 'Test', id: 'TEST' },
-  { name: 'Tutorial', id: 'TUTORIAL' },
   { name: 'Practical', id: 'PRACTICAL' },
   { name: 'Examination', id: 'EXAMINATION' },
   { name: 'Hobby', id: 'HOBBY' },
@@ -18,6 +17,5 @@ export default [
   { name: 'Competition', id: 'COMPETITION' },
   { name: 'Funfare', id: 'FUNFARE' },
   { name: 'Party', id: 'PARTY' },
-  { name: 'Happening', id: 'HAPPENING' },
   { name: 'Interview', id: 'INTERVIEW' },
 ];
