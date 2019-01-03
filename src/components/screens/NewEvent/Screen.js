@@ -2,8 +2,8 @@ import React from 'react';
 import Toast from 'react-native-simple-toast';
 import moment from 'moment';
 import Form from '../../forms/Event';
-import eventTypes from '../../forms/types';
-import frequency from '../../forms/frequency';
+import eventTypes from '../../forms/Event/types';
+import frequency from '../../forms/Event/frequency';
 
 export default class NewEventScreen extends React.Component {
   static defaultProps = {
@@ -31,7 +31,7 @@ export default class NewEventScreen extends React.Component {
       allDay,
       eventType,
       repeat,
-      board
+      board={}
     } = event;
 
     return ({
@@ -41,8 +41,8 @@ export default class NewEventScreen extends React.Component {
       startAt: startAt || moment().toDate().toISOString(),
       endAt: endAt || moment().add(2, 'hours').toDate().toISOString(),
       allDay: Boolean(allDay),
-      eventType: eventTypes[0].id,
-      repeat: frequency[0].id,
+      eventType: eventType || eventTypes[0].id,
+      repeat: repeat || frequency[0].id,
       boardId: board.id || boardId
     });
   };
