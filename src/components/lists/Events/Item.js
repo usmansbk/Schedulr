@@ -36,6 +36,7 @@ export default class Item extends React.PureComponent {
       starsCount,
       commentsCount,
       boardName,
+      pictureUrl,
       isStarred,
     } = this.props;
     const [ first, second ] = boardName.split(' ');
@@ -53,6 +54,7 @@ export default class Item extends React.PureComponent {
                 rounded
                 size={AVATAR_SIZE}
                 name={avatarName}
+                src={pictureUrl}
               />
             </TouchableRipple>
           </View>

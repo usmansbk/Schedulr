@@ -65,6 +65,7 @@ class List extends React.Component {
     endAt,
     repeat,
     board,
+    author,
     allDay,
   }}) => (<Item
     id={id}
@@ -83,6 +84,7 @@ class List extends React.Component {
     boardId={board.id}
     boardName={board.name}
     allDay={allDay}
+    pictureUrl={board.pictureUrl || author.pictureUrl}
     onPressItem={this._onPressItem}
     onPressCommentButton={this._onPressCommentItem}
     navigateToBoardEvents={this._navigateToBoardEvents}
