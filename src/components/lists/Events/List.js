@@ -32,7 +32,7 @@ class List extends React.Component {
     onRefresh: () => null,
   };
   _loadPrevious = () => console.log('Load previous events');
-  _keyExtractor = (item, index) => item.id;
+  _keyExtractor = (item) => item.id;
   _renderHeader = () => <Header onPress={this._loadPrevious} visible={this.props.hasPreviousEvents} />;
   _renderFooter = () => <Footer visible={this.props.events.length}/>;
   _renderEmptyList = () => {
@@ -101,7 +101,7 @@ class List extends React.Component {
       onRefresh,
     } = this.props;
     const sections = sectionize(events);
-    
+
     return (
       <SectionList
         initialNumToRender={0}
