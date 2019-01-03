@@ -11,10 +11,10 @@ const REMINDER = 'REMINDER'
  * @param { Event } param0
  */
 export const parseDetails = ({ eventType, repeat, endAt, allDay, startAt }) => {
-  const recurrence = repeat === 'NEVER' ? '' : decapitalize(repeat);
+  const recurrence = repeat === 'NEVER' ? '' : (decapitalize(repeat));
   if ((eventType === REMINDER) || allDay) return `${recurrence ? (recurrence + ' ' + decapitalize(eventType, true)) : eventType}`;
   const duration = moment(Date.parse(endAt)).from(Date.parse(startAt), true);
-  return capitalizr(`${duration} ${eventType.toLowerCase()}, ${recurrence.toLowerCase()}`);
+  return capitalizr(`${duration} ${eventType.toLowerCase()} ${recurrence.toLowerCase()}`);
 };
 
 /**
