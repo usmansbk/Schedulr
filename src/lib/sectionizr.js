@@ -12,7 +12,7 @@ export const sortBy = (arr, key) => {
 /**
  * 
  * @param { Event } value 
- * @returns String
+ * @returns { String }
  */
 const getSectionTitle = (value) => {
   return moment(value.startAt).startOf('d').toISOString();
@@ -21,7 +21,7 @@ const getSectionTitle = (value) => {
 /**
  * 
  * @param { Array<Event> } eventsArray 
- * @returns SectionListDataProp
+ * @returns { SectionListDataProp }
  */
 const sectionize = (eventsArray) => eventsArray.reduce((sections, currentValue) => {
   // find currentValue section index

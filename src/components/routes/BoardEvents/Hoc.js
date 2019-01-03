@@ -39,11 +39,7 @@ export default compose(
   }),
   graphql(gql(listAllEvents), {
     alias,
-    skip: props => !props.navigation.getParam('search'),
     options: props => ({
-      variables: {
-        id: props.id
-      },
       fetchPolicy: 'cache-only',
     }),
     props: ({ data, ownProps}) => ({
