@@ -26,7 +26,7 @@ export default compose(
   graphql(gql(listAllBoards), {
     alias,
     options: {
-      fetchPolicy: 'cache',
+      fetchPolicy: 'cache-only',
     },
     props: ({ data, ownProps }) => ({
       boards: data && data.listAllBoards && data.listAllBoards.items,
