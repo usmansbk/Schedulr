@@ -9,32 +9,44 @@ import {
 
 export default class CancelEvent extends React.Component {
   state = {
-    checked: 'single',
+    checked: 'SINGLE',
+    loading: false
   };
 
   shouldComponentUpdate = (nextProps, nextState) => (
     nextProps.visible !== this.props.visible ||
     nextState.checked !== this.state.checked ||
-    nextProps.loading !== this.props.loading
+    nextState.loading !== this.state.loading
   );
 
-  _onContinue = () => {
-    const { id, onConfirm, handleDismiss } = this.props;
-    handleDismiss();
-    onConfirm({ id, option: this.state.checked });
+  _onContinue = async () => {
+    const {
+      id,
+      onSubmit,
+      handleDismiss
+    } = this.props;
+    this.setState({ loading: true });
+    try {
+      await onSubmit({
+        id,
+        option: this.state.checked
+      });
+      handleDismiss();
+    } catch (error) {
+      this.setState({ loading: false });
+    }
+    // onConfirm({ id, option: this.state.checked });
   }
 
   render() {
     const {
       visible,
-      handleDismiss,
-      loading,
+      handleDismiss
     } = this.props;
-    const { checked } = this.state;
+    const { checked, loading } = this.state;
     return (
       <Portal>
         <Dialog
-          dismissable={!loading}
           visible={visible}
           onDismiss={handleDismiss}
         >
@@ -44,9 +56,9 @@ export default class CancelEvent extends React.Component {
               title="Cancel only this event"
               right={() => (
                 <RadioButton
-                  value="single"
-                  status={ checked === 'single' ? 'checked' : 'unchecked'}
-                  onPress={() => this.setState({ checked: 'single'})}
+                  value="SINGLE"
+                  status={ checked === 'SINGLE' ? 'checked' : 'unchecked'}
+                  onPress={() => this.setState({ checked: 'SINGLE'})}
                 />
               )}
             />
@@ -54,9 +66,9 @@ export default class CancelEvent extends React.Component {
               title="Cancel all events"
               right={() => (
                 <RadioButton
-                  value="all"
-                  status={ checked === 'all' ? 'checked' : 'unchecked'}
-                  onPress={() => this.setState({ checked: 'all'})}
+                  value="ALL"
+                  status={ checked === 'ALL' ? 'checked' : 'unchecked'}
+                  onPress={() => this.setState({ checked: 'ALL'})}
                 />
               )}
             />
