@@ -1,10 +1,10 @@
 import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
 import Dialog from './Dialog';
-import { cancelEvent } from '../../../graphql/mutations';
+import { closeBoard } from '../../../graphql/mutations';
 
-export default graphql(gql(cancelEvent), {
-  alias: 'withCancelEventDialog',
+export default graphql(gql(closeBoard), {
+  alias: 'withCloseBoardDialog',
   props: ({ mutate, ownProps }) => ({
     onSubmit: async (input) => await mutate({
       variables: {

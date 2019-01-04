@@ -47,14 +47,17 @@ export default class Screen extends React.Component {
           navigateToProfile={this._navigateToProfile}
         />
         <DeleteDialog
+          id={id}
           visible={visibleDialog === 'delete' }
           handleDismiss={this._hideDialog}
         />
         <OpenDialog
+          id={id}
           visible={visibleDialog === 'open' }
           handleDismiss={this._hideDialog}
         />
         <CloseDialog
+          id={id}
           visible={visibleDialog === 'close' }
           handleDismiss={this._hideDialog}
         />

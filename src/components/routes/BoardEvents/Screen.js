@@ -6,6 +6,7 @@ import Loading from '../../common/Loading';
 import Error from '../../common/Error';
 import styles from '../../../config/styles';
 import colors from '../../../config/colors';
+import { BOARD_CLOSED } from '../../../lib/constants';
 
 export default class BoardEvents extends React.Component {
   static defaultProps = {
@@ -32,7 +33,8 @@ export default class BoardEvents extends React.Component {
       id,
       name,
       description,
-      isAuthor
+      isAuthor,
+      status
     } = board;
 
     return (
@@ -56,7 +58,7 @@ export default class BoardEvents extends React.Component {
           loading={fetchingEvents}
         />
         {
-          isAuthor && (
+          isAuthor && (status !== BOARD_CLOSED ) && (
             <Fab
               icon="edit"
               onPress={() => navigateToNewEvent(id)}
