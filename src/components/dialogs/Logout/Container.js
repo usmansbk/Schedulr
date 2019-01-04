@@ -22,6 +22,7 @@ class Container extends React.Component {
       // offline
     }
     await client.cache.reset();
+    await client.clearStore();
     this.setState({ loading: false });
     this._handleDismiss();
     this.props.navigation.navigate('Auth');
