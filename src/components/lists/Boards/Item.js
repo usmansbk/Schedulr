@@ -22,7 +22,7 @@ export default class Item extends React.PureComponent {
           </TouchableRipple>
           <View style={styles.itemBody}>
             <Text numberOfLines={1} ellipsizeMode="tail" style={styles.itemName}>{name}</Text>
-            <Paragraph numberOfLines={1} ellipsizeMode="tail" style={styles.itemDescription}>{description}</Paragraph>
+            { Boolean(description) && <Paragraph numberOfLines={1} ellipsizeMode="tail" style={styles.itemDescription}>{description}</Paragraph> }
             { isClosed && <Text style={styles.danger}>Closed</Text> }
           </View>
         </View>
