@@ -4,7 +4,10 @@ import gql from 'graphql-tag';
 import Screen from './Screen';
 import { getEvent } from '../../../graphql/queries';
 
+const alias = 'withEventDetails';
+
 export default graphql(gql(getEvent), {
+  alias,
   options: props => {
     const id = props.navigation.getParam('id');
     return ({
