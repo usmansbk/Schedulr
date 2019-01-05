@@ -14,11 +14,15 @@ export default class Item extends React.PureComponent {
       description,
       isClosed,
     } = this.props;
+    
+    const [ first, second ] = name.split(' ');
+    const boardName = `${first} ${second ? second : ''}`;
+
     return (
       <TouchableRipple style={styles.itemContainer} onPress={this._onPress}>
         <View style={styles.itemContent}>
           <TouchableRipple onPress={this._navigateToInfo} style={styles.itemAvatar}>
-            <UserAvatar component={CachedImage} size={AVATAR_SIZE} rounded name={name} />
+            <UserAvatar component={CachedImage} size={AVATAR_SIZE} rounded name={boardName} />
           </TouchableRipple>
           <View style={styles.itemBody}>
             <Text numberOfLines={1} ellipsizeMode="tail" style={styles.itemName}>{name}</Text>
