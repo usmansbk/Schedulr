@@ -4,7 +4,7 @@ import { ONE_TIME_EVENT } from './constants';
 import { CANT_REPEAT, INVALID_START, WRONG_TIME } from './errorMessages';
 
 export const canRepeat = ({ repeat, endAt, startAt }) => {
-  if (repeat === ONE_TIME_EVENT ) return false;
+  if (repeat === ONE_TIME_EVENT ) return true; // One-time event can be repeated
   const duration = Math.abs(Date.parse(endAt) - Date.parse(startAt));
   return duration < repeatLength(repeat);
 };
