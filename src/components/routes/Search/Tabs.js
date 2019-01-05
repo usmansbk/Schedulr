@@ -34,7 +34,7 @@ export default class Tab extends React.Component {
 
   state = {
     index: 0,
-    routes: [
+    tabs: [
       { key: 'boards', title: 'Boards' },
       { key: 'events', title: 'Events' },
     ],

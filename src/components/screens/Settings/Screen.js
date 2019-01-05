@@ -1,5 +1,5 @@
 import React from 'react';
-import Settings from '../../routes/Settings';
+import Settings from '../../tabs/Settings';
 import RemindMeDialog from '../../dialogs/RemindMe';
 
 export default class Screen extends React.Component {

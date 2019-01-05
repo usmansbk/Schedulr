@@ -1,5 +1,5 @@
 import React from 'react';
-import Followers from '../../routes/Followers';
+import Followers from '../../tabs/Followers';
 
 export default class Screen extends React.Component {
   _goBack = () => this.props.navigation.goBack();

@@ -1,5 +1,5 @@
 import React from 'react';
-import Details from '../../routes/EventDetails';
+import Details from '../../tabs/EventDetails';
 import DeleteDialog from '../../dialogs/DeleteEvent';
 import CancelDialog from '../../dialogs/CancelEvent';
 import EditDialog from '../../dialogs/EditEvent';

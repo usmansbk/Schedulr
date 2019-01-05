@@ -1,5 +1,5 @@
 import React from 'react';
-import Profile from '../../routes/UserProfile';
+import Profile from '../../tabs/UserProfile';
 
 export default class Screen extends React.Component {
   _goBack = () => this.props.navigation.goBack();

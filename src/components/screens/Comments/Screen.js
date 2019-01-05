@@ -1,5 +1,5 @@
 import React from 'react';
-import Comments from '../../routes/Comments';
+import Comments from '../../tabs/Comments';
 import DeleteCommentDialog from '../../dialogs/DeleteComment';
 
 export default class Screen extends React.Component {
