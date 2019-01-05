@@ -1,5 +1,5 @@
 import React from 'react';
-import BoardEvents from '../../routes/BoardEvents';
+import BoardEvents from './Hoc';
 
 export default class Screen extends React.Component {
   _onBack = () => this.props.navigation.goBack();

@@ -1,6 +1,6 @@
 import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
-import Screen from './Screen';
+import Screen from './BoardEvents';
 import { getBoard, listAllEvents } from '../../../graphql/queries';
 
 const alias = 'withBoardEventsContainer';
