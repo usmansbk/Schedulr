@@ -69,7 +69,7 @@ export default class CancelEvent extends React.Component {
             Boolean(date) && (
               <Dialog.Content>
                 <List.Item
-                  title="Cancel only this event"
+                  title="Only this event"
                   right={() => (
                     <RadioButton
                       value="SINGLE"
@@ -79,7 +79,7 @@ export default class CancelEvent extends React.Component {
                   )}
                 />
                 <List.Item
-                  title="Cancel all events"
+                  title="Include future"
                   right={() => (
                     <RadioButton
                       value="ALL"
