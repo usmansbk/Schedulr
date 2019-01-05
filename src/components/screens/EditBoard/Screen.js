@@ -7,7 +7,6 @@ export default class EditBoardScreen extends React.Component {
   
   _onSubmit =  async (form) => {
     const id = this.props.navigation.getParam('id');
-    console.log(form);
     try {
       await this.props.onSubmit({id, ...form});
       this.props.navigation.pop();

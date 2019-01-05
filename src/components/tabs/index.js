@@ -5,7 +5,6 @@ import Starred from './Starred';
 import Home from './Home';
 import Search from './Search';
 import Notifications from './Notifications';
-import BoardEvents from './BoardEvents';
 
 export {
   More,
@@ -15,5 +14,4 @@ export {
   Search,
   Home,
   Notifications,
-  BoardEvents,
 };
