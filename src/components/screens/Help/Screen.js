@@ -1,6 +1,6 @@
 import React from 'react';
 import { Linking } from 'react-native';
-import Help from '../../tabs/Help';
+import Help from './Help';
 import env from '../../../config/env';
 
 export default class Screen extends React.Component {

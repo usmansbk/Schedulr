@@ -6,7 +6,6 @@ import Home from './Home';
 import Search from './Search';
 import Notifications from './Notifications';
 import BoardEvents from './BoardEvents';
-import Followers from './Followers';
 
 export {
   More,
@@ -17,5 +16,4 @@ export {
   Home,
   Notifications,
   BoardEvents,
-  Followers,
 };
