@@ -6,7 +6,7 @@ import styles from '../../../config/styles';
 import colors from '../../../config/colors';
 import { formatDate, getNextDate } from '../../../lib/time';
 import {decapitalize} from '../../../lib/capitalizr';
-import { ONE_TIME_EVENT } from '../../../lib/constants';
+import { ONE_TIME_EVENT, ONE_TIME_EVENT_TEXT } from '../../../lib/constants';
 
 const CREATED_DATE_FORMAT = "ddd DD, MMM YYYY, hh:mm a";
 
@@ -97,7 +97,7 @@ export default class EventDetails extends React.Component {
           location={location && location.address}
           boardName={board.name}
           boardId={board.id}
-          repeat={!recurring ? 'One-time event' : decapitalize(repeat)}
+          repeat={!recurring ? ONE_TIME_EVENT_TEXT : decapitalize(repeat)}
           createdAt={moment(createdAt).format(CREATED_DATE_FORMAT)}
           updatedAt={updatedAt && moment(updatedAt).format(CREATED_DATE_FORMAT)}
           description={description}

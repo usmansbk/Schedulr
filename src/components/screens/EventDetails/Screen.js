@@ -48,7 +48,6 @@ export default class DetailsScreen extends React.Component {
         <Details
           id={id}
           event={event}
-          onRefresh={onRefresh}
           handleBack={this._goBack}
           handleDelete={this._openDeleteDialog}
           handleCancel={this._openCancelDialog}
@@ -64,7 +63,7 @@ export default class DetailsScreen extends React.Component {
         />
         <CancelDialog
           id={id}
-          date={isRecurring ? event.date : null}
+          date={isRecurring ? event.startAt : null}
           visible={visibleDialog === 'cancel'}
           handleDismiss={this._hideDialog}
         />
