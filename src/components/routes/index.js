@@ -7,7 +7,6 @@ import Search from './Search';
 import Notifications from './Notifications';
 import EventDetails from './EventDetails';
 import BoardEvents from './BoardEvents';
-import BoardInfo from './BoardInfo';
 import Followers from './Followers';
 import Comments from './Comments';
 
@@ -21,7 +20,6 @@ export {
   Notifications,
   EventDetails,
   BoardEvents,
-  BoardInfo,
   Followers,
   Comments
 };

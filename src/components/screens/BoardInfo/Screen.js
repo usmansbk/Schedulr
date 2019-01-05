@@ -1,6 +1,6 @@
 import React from 'react';
 import Share from 'react-native-share';
-import BoardInfo from '../../routes/BoardInfo';
+import BoardInfo from './Hoc';
 import DeleteDialog from '../../dialogs/DeleteBoard';
 import OpenDialog from '../../dialogs/OpenBoard';
 import CloseDialog from '../../dialogs/CloseBoard';
