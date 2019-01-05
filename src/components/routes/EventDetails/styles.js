@@ -43,5 +43,8 @@ export default StyleSheet.create({
   },
   nav: {
     color: colors.primary_light
+  },
+  red: {
+    color: colors.light_red
   }
 });

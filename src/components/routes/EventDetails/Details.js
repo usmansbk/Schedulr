@@ -29,7 +29,7 @@ export default ({
     <View style={styles.container}>
       <View style={styles.content}>
         <View style={styles.head}>
-          { isCancelled && <Text style={styles.date}>Cancelled</Text>}
+          { isCancelled && <Text style={[styles.date, styles.red]}>Cancelled</Text>}
           <Headline style={styles.title}>{title}</Headline>
           <Text style={styles.date}>{date}</Text>
         </View>
