@@ -5,10 +5,8 @@ import Starred from './Starred';
 import Home from './Home';
 import Search from './Search';
 import Notifications from './Notifications';
-import EventDetails from './EventDetails';
 import BoardEvents from './BoardEvents';
 import Followers from './Followers';
-import Comments from './Comments';
 
 export {
   More,
@@ -18,8 +16,6 @@ export {
   Search,
   Home,
   Notifications,
-  EventDetails,
   BoardEvents,
   Followers,
-  Comments
 };
