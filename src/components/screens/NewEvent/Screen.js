@@ -46,6 +46,7 @@ export default class NewEventScreen extends React.Component {
       boardId: board.id || boardId
     });
   };
+
   render() {
     return (
       <Form
@@ -53,7 +54,7 @@ export default class NewEventScreen extends React.Component {
         boards={this.props.boards.filter(board => board.isAuthor)}
         handleCancel={this._handleBack}
         onSubmit={this._handleSubmit}
-        locked={Boolean(boardId)}
+        locked={Boolean(this.props.boardId)}
       />
     )
   }
