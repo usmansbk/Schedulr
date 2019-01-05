@@ -2,8 +2,6 @@ import React from 'react';
 import moment from 'moment';
 import { Appbar } from 'react-native-paper';
 import Details from './Details';
-import Loading from '../../common/Loading';
-import Error from '../../common/Error';
 import styles from '../../../config/styles';
 import colors from '../../../config/colors';
 import { formatDate, getNextDate } from '../../../lib/time';
@@ -23,9 +21,6 @@ export default class EventDetails extends React.Component {
   render() {
     const {
       event,
-      error,
-      loading,
-      onRefresh,
       handleBack,
       handleDelete,
       handleRepeat,
@@ -33,8 +28,6 @@ export default class EventDetails extends React.Component {
       navigateToBoard,
       navigateToComments,
     } = this.props;
-    if (loading && !event) return <Loading />;
-    if (error && !event) return <Error onRefresh={onRefresh} />;
     const {
       id,
       title,

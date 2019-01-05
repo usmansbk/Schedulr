@@ -5,13 +5,15 @@ import Screen from './Screen';
 import { getEvent } from '../../../graphql/queries';
 
 export default graphql(gql(getEvent), {
-  options: props => ({
+  options: props => {
+    const id = props.navigation.getParam('id');
+    return ({
     variables: {
-      id: props.id,
+      id,
     },
     notifyOnNetworkStatusChange: true,
     fetchPolicy: 'cache-and-network'
-  }),
+  })},
   props: ({ data, ownProps }) => ({
     loading: data.loading || data.networkStatus === 4,
     error: data.error,

@@ -1,3 +1,3 @@
-import Details from './Hoc';
+import Details from './Screen';
 
 export default Details;
