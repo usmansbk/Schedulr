@@ -1,9 +1,10 @@
 import { Alert } from 'react-native';
 import { repeatLength } from './time';
+import { ONE_TIME_EVENT } from './constants';
 import { CANT_REPEAT, INVALID_START, WRONG_TIME } from './errorMessages';
 
 export const canRepeat = ({ repeat, endAt, startAt }) => {
-  if (repeat === 'NEVER') return true;
+  if (repeat === ONE_TIME_EVENT ) return false;
   const duration = Math.abs(Date.parse(endAt) - Date.parse(startAt));
   return duration < repeatLength(repeat);
 };

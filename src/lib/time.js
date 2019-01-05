@@ -56,10 +56,7 @@ export const formatDate = (startAt, endAt, allDay) => {
 
 /**
  * Returns the next date of a recurring event
- * @param { Date } initialDate - Initial date event happened
- * @param { TimeFrequency } repeat 
- * @param { Date } refDate - Inclusive 'after' date
- * @param { Date } endAt 
+ * @param { Event } event
  */
 export const getNextDate = (event) => {
   const { startAt, repeat, allDay} = event;

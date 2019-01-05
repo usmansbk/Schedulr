@@ -1,10 +1,10 @@
 import moment from 'moment';
 import capitalizr, { decapitalize } from './capitalizr';
+import { ONE_TIME_EVENT } from './constants';
 import { Event } from '../types/types';
 
 const START_TIME = 'hh:mm a';
 const DATE_FORMAT = 'DD MM YYYY';
-const REMINDER = 'REMINDER'
 
 /**
  * Parse an event details to a simple readable format
@@ -13,8 +13,8 @@ const REMINDER = 'REMINDER'
 export const parseDetails = (event) => {
   const { endAt, allDay, startAt } = event;
   const eventType = decapitalize(event.eventType);
+  const isRecurring = event.repeat !== ONE_TIME_EVENT;
   const repeat = decapitalize(event.repeat);
-  const isRecurring = repeat !== 'Never';
   const note = `${isRecurring ? (repeat + ' ') : ''}${eventType}`;
   if (allDay) return note;
   const duration = moment(Date.parse(endAt)).from(Date.parse(startAt), true);

@@ -5,20 +5,20 @@ import CancelDialog from '../../dialogs/CancelEvent';
 import EditDialog from '../../dialogs/EditEvent';
 
 export default class DetailsScreen extends React.Component {
-  state = { visibleDialog: null };
+  state = { visibleDialog: null, date: null };
   _goBack = () => this.props.navigation.goBack();
   _openDeleteDialog = () => this.setState({ visibleDialog: 'delete' });
   _openEditDialog = () => this.setState({ visibleDialog: 'edit' });
   _handleEdit = ({ id, option }) => this.props.navigation.navigate('EditEvent', { id, option });
   _handleRepeat = () => this.props.navigation.navigate('NewEvent', { id: this.props.navigation.getParam('id') });
-  _openCancelDialog = () => this.setState({ visibleDialog: 'cancel' });
+  _openCancelDialog = (date) => this.setState({ visibleDialog: 'cancel', date });
   _handleCancel = ({ id, option }) => alert(`${id} - ${option}`);
   _navigateToBoard = (id) => this.props.navigation.navigate('BoardEvents', { id });
   _navigateToComments = (id) => this.props.navigation.navigate('Comments', { id });
   _hideDialog = () => this.setState({ visibleDialog: null });
   
   render() {
-    const { visibleDialog } = this.state;
+    const { visibleDialog, date } = this.state;
     const id = this.props.navigation.getParam('id');
     return (
       <React.Fragment>
@@ -39,6 +39,7 @@ export default class DetailsScreen extends React.Component {
         />
         <CancelDialog
           id={id}
+          date={date}
           visible={visibleDialog === 'cancel'}
           handleDismiss={this._hideDialog}
           onConfirm={this._handleCancel}

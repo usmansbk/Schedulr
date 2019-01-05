@@ -8,12 +8,17 @@ import styles from '../../../config/styles';
 import colors from '../../../config/colors';
 import { formatDate, getNextDate } from '../../../lib/time';
 import {decapitalize} from '../../../lib/capitalizr';
+import { ONE_TIME_EVENT } from '../../../lib/constants';
 
 const CREATED_DATE_FORMAT = "ddd DD, MMM YYYY, hh:mm a";
 
 export default class EventDetails extends React.Component {
   _getRepeatDate = () => getNextDate(this.props.event);
   _isValid = (isCancelled, endAt) => (!isCancelled) && (Date.now() < Date.parse(endAt));
+  _handleCancel = () => {
+    const isRecurring = this.props.event.repeat !== ONE_TIME_EVENT;
+    this.props.handleCancel(isRecurring ? this.props.event.startAt : null);
+  }
 
   render() {
     const {
@@ -25,7 +30,6 @@ export default class EventDetails extends React.Component {
       handleDelete,
       handleRepeat,
       handleEdit,
-      handleCancel,
       navigateToBoard,
       navigateToComments,
     } = this.props;
@@ -51,7 +55,7 @@ export default class EventDetails extends React.Component {
       isCancelled
     } = event;
     const isValid = this._isValid(isCancelled, endAt);
-    const recurring = repeat !== 'NEVER';
+    const recurring = repeat !== ONE_TIME_EVENT;
 
     return (
       <React.Fragment>
@@ -82,7 +86,7 @@ export default class EventDetails extends React.Component {
                       <Appbar.Action
                         icon="close"
                         color={colors.gray}
-                        onPress={handleCancel}
+                        onPress={this._handleCancel}
                       />
                     </React.Fragment>
                   )

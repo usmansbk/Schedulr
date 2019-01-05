@@ -49,10 +49,6 @@ export default compose(
   }),
   graphql(gql(createEvent), {
     alias,
-    options: {
-      refetchQueries: ['listEvents'],
-      awaitRefetchQueries: true
-    },
     props: ({ mutate, ownProps }) => ({
       onSubmit: async (input) =>  await mutate({
         variables: {
