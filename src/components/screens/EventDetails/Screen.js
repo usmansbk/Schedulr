@@ -1,5 +1,5 @@
 import React from 'react';
-import Details from './Hoc';
+import Details from './Container';
 import DeleteDialog from '../../dialogs/DeleteEvent';
 import CancelDialog from '../../dialogs/CancelEvent';
 import EditDialog from '../../dialogs/EditEvent';
@@ -7,7 +7,7 @@ import Loading from '../../common/Loading';
 import Error from '../../common/Error';
 import { ONE_TIME_EVENT } from '../../../lib/constants';
 
-export default class DetailsScreen extends React.Component {
+export default class Screen extends React.Component {
   state = { visibleDialog: null };
   _goBack = () => this.props.navigation.goBack();
   _openDeleteDialog = () => this.setState({ visibleDialog: 'delete' });
