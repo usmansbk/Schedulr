@@ -53,6 +53,7 @@ export default class NewEventScreen extends React.Component {
         boards={this.props.boards.filter(board => board.isAuthor)}
         handleCancel={this._handleBack}
         onSubmit={this._handleSubmit}
+        locked={Boolean(boardId)}
       />
     )
   }
