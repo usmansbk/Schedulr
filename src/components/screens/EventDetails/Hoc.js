@@ -1,7 +1,7 @@
 import { graphql } from 'react-apollo';
 import { Analytics } from 'aws-amplify';
 import gql from 'graphql-tag';
-import Screen from './Container';
+import Container from './Container';
 import { getEvent } from '../../../graphql/queries';
 
 const alias = 'withEventDetails';
@@ -38,4 +38,4 @@ export default graphql(gql(getEvent), {
     event: data && data.getEvent,
     ...ownProps,
   })
-})(Screen)
+})(Container)

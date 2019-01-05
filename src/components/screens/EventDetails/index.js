@@ -1,3 +1,3 @@
-import EventDetails from './Hoc';
+import EventDetails from './Screen';
 
 export default EventDetails;
