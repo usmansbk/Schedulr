@@ -4,9 +4,9 @@ import Form from '../../forms/Board';
 
 export default class NewBoardScreen extends React.Component {
   _handleBack = () => this.props.navigation.goBack();
-  _handleSubmit = async (input) => {
+  _handleSubmit = (input) => {
     try {
-      const result = await this.props.onSubmit(input);
+      const result = this.props.onSubmit(input);
       this.props.navigation.replace('BoardEvents', {
         id: result.data.createBoard.id
       });
