@@ -14,6 +14,7 @@ class Container extends React.Component {
   _signOut = async () => {
     this.setState({ loading: true });
     try {
+      await client.clearStore();
       await this._awsSignOut();
       await this._fbLogout();
       await this._googleSignout();
@@ -22,7 +23,7 @@ class Container extends React.Component {
       // offline
     }
     await client.cache.reset();
-    await client.clearStore();
+    await Cache.clear();
     this.setState({ loading: false });
     this._handleDismiss();
     this.props.navigation.navigate('Auth');
