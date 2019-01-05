@@ -74,5 +74,8 @@ export default StyleSheet.create({
   adminName: {
     fontFamily: 'sans-serif-bold',
     marginHorizontal: 4
+  },
+  date: {
+    marginTop: 8,
   }
 });

@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 import { View, ScrollView } from 'react-native';
 import {
   Menu,
@@ -46,6 +47,7 @@ export default class Info extends React.Component {
       status,
       isFollowing,
       followersCount,
+      createdAt,
       isPublic,
       isAuthor,
       author,
@@ -138,10 +140,15 @@ export default class Info extends React.Component {
                   </View>
                 )
               }
+              <View style={styles.date}>
+                <Text style={styles.byLine}>
+                  Created on <Text style={styles.adminName}>{moment(createdAt).toDate().toDateString()}</Text>
+                </Text>
+              </View>
               <View style={styles.admin}>
                 <UserAvater rounded size={32} name={adminName}/>
                 <Text style={styles.byLine}>
-                  Created by <Text
+                  by <Text
                     onPress={() => navigateToProfile(adminId)}
                     style={styles.adminName}>{adminName}</Text>
                 </Text>
