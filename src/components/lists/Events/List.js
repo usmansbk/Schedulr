@@ -58,6 +58,7 @@ class List extends React.Component {
     location,
     eventType,
     isCancelled,
+    cancelledDates,
     commentsCount,
     starsCount,
     isStarred,
@@ -76,7 +77,7 @@ class List extends React.Component {
     endTime={endTime({ endAt, startAt })}
     date={formatDate(startAt, endAt, allDay)}
     isStarted={isStarted({ startAt, endAt, isCancelled })}
-    isCancelled={isCancelled}
+    isCancelled={isCancelled || cancelledDates.includes(startAt)}
     commentsCount={commentsCount}
     starsCount={starsCount}
     isStarred={isStarred} 
