@@ -1,5 +1,5 @@
 import React from 'react';
-import Details from '../../tabs/EventDetails';
+import Details from './Hoc';
 import DeleteDialog from '../../dialogs/DeleteEvent';
 import CancelDialog from '../../dialogs/CancelEvent';
 import EditDialog from '../../dialogs/EditEvent';
