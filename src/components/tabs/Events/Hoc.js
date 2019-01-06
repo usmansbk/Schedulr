@@ -7,7 +7,7 @@ import { listAllEvents } from '../../../graphql/queries';
 export default graphql(gql(listAllEvents), {
   alias: 'withEventsContainer',
   options: {
-    fetchPolicy: 'cache-first',
+    fetchPolicy: 'cache-and-network',
     notifyOnNetworkStatusChange: true,
   },
   props: ({ data, ownProps}) => ({
