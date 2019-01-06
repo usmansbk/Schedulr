@@ -1,7 +1,7 @@
 // eslint-disable
 // this is an auto generated file. This will be overwritten
 export const userLogin = `{
-  me {
+  me @client {
     id
     name
     email
