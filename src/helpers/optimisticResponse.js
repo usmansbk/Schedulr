@@ -37,16 +37,26 @@ export const updateBoardResponse = (input) => ({
     isPublic: Boolean(input.isPublic),
     updatedAt: moment().toISOString()
   })
-})
+});
 
 export const cancelEventResponse = async (input) => {
 
 }
 
-export const closeBoardResponse = async (input) => {
+export const closeBoardResponse = (input) => ({
+  __typename,
+  closeBoard: Object.assign({}, input, {
+    __typename: 'Board',
+    status: 'CLOSED',
+    updatedAt: moment().toISOString()
+  })
+});
 
-}
-
-export const openBoardResponse = async (input) => {
-
-}
+export const openBoardResponse = (input) => ({
+  __typename,
+  openBoard: Object.assign({}, input, {
+    __typename: 'Board',
+    status: 'OPEN',
+    updatedAt: moment().toISOString()
+  })
+});
