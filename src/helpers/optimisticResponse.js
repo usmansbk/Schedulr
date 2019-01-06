@@ -119,6 +119,7 @@ export const cancelEventResponse = (input) => {
   } catch (error) {
     Toast.show(error.message, Toast.LONG);
   }
+  return null;
 };
 
 export const closeBoardResponse = (input) => ({
