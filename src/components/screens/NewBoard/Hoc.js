@@ -20,7 +20,7 @@ export default graphql(gql(createBoard), {
         const data = cache.readQuery({ query });
         data.listAllBoards.items = [
           ...data.listAllBoards.items.filter(item => item.id !== createBoard.id),
-          createEvent
+          createBoard
         ];
         cache.writeQuery({ query, data });
       }
