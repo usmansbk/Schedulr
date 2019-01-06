@@ -1,12 +1,11 @@
 import React from 'react';
-import { withNavigation } from 'react-navigation';
 import {
   Button,
   Dialog,
   Portal
 } from 'react-native-paper';
 
-class Dialog extends React.Component {
+export default class Dialog extends React.Component {
   state = {
     loading: false
   };
@@ -58,5 +57,3 @@ class Dialog extends React.Component {
     )
   }
 }
-
-export default withNavigation(Dialog);
