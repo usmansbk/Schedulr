@@ -1,5 +1,6 @@
 import React from 'react';
 import moment from 'moment';
+import isEqual from 'lodash.isequal';
 import { Appbar } from 'react-native-paper';
 import Details from './Details';
 import styles from '../../../config/styles';
@@ -16,7 +17,8 @@ export default class EventDetails extends React.Component {
   _handleCancel = () => {
     const isRecurring = this.props.event.repeat !== ONE_TIME_EVENT;
     this.props.handleCancel(isRecurring ? this.props.event.startAt : null);
-  }
+  };
+  shouldComponentUpdate = (nextProps) => !isEqual(nextProps.event, this.props.event);
 
   render() {
     const {
