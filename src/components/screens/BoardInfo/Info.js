@@ -152,9 +152,13 @@ export default class Info extends React.Component {
                     style={styles.adminName}>{adminName}</Text>
                 </Text>
               </View>
-              <Hyperlink linkStyle={styles.linkStyle} linkDefault={true}>
-                <Text style={styles.description}>{description}</Text>
-              </Hyperlink>
+              {
+                Boolean(description) && (
+                  <Hyperlink linkStyle={styles.linkStyle} linkDefault={true}>
+                    <Text style={styles.description}>{description}</Text>
+                  </Hyperlink>
+                )
+              }
             </View>
           </View>
         </ScrollView>
