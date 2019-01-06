@@ -1,39 +1,27 @@
 import React from 'react';
-import { Analytics, Cache } from 'aws-amplify';
 import { withNavigation } from 'react-navigation';
 import Avatar from './Avatar';
 
 class AvatarContainer extends React.Component {
-  state = {
-    id: '',
-    email: '',
-    name: '...',
-    pictureUrl: '',
-  };
-
-  componentDidMount = async () => {
-    try {
-      const loginInfo = await Cache.getItem('loginInfo');
-      this.setState(JSON.parse(loginInfo));
-    } catch (error) {
-      Analytics.record({
-        name: 'login_info_not_found',
-        attributes: {
-          name: error.name,
-          message: error.message,
-          component: 'AccountAvatarContainer',
-        }
-      })
+  static defaultProps = {
+    me: {
+      id: -1,
+      name: '...',
+      email: '',
+      pictureUrl: null
     }
   }
 
   render() {
+    const { me } = this.props;
+
     const {
       id,
       name,
       email,
       pictureUrl
-    } = this.state;
+    } = me;
+
     return (
       <Avatar
         name={name}

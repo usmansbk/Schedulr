@@ -2,7 +2,8 @@ import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
 import Screen from './Screen';
 import { createEvent } from '../../../graphql/mutations';
-import { listAllBoards, getEvent, getBoard } from '../../../graphql/queries';
+import { listAllEvents, listAllBoards, getEvent, getBoard } from '../../../graphql/queries';
+import { createEventResponse } from '../../../helpers/optimisticResponse';
 
 const alias =  'withNewEventContainer';
 
@@ -53,6 +54,15 @@ export default compose(
       onSubmit: async (input) =>  await mutate({
         variables: {
           input
+        },
+        optimisticResponse: () => createEventResponse(input),
+        update: async (cache, { data: { createEvent } }) => {
+          const query = gql(listAllEvents);
+          console.log(createEvent);
+          // data.listAllEvents.items = [
+          //   ...data.listAllEvents.items.filter(item => item.id !== createEvent.id),
+          // ];
+          //cache.writeQuery({ query, data });
         }
       }),
       ...ownProps

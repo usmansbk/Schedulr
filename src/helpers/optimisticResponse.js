@@ -1,20 +1,67 @@
-import { Cache } from 'aws-amplify';
 import gql from 'graphql-tag';
 import moment from 'moment';
 import Toast from 'react-native-simple-toast';
 import { getValue } from '../lib/formValidator';
 import client from '../config/client';
-import { getEvent } from '../graphql/queries';
+import { getEvent, getBoard, userLogin } from '../graphql/queries';
+import { BOARD_CLOSED, BOARD_OPEN } from '../lib/constants';
 
 const __typename = 'Mutation';
 
-export const createEventResponse = async (input) => {
+export const createEventResponse = (input) => {
+  const query = gql(getBoard);
 
-}
+  try {
+    const { getBoard } = client.readQuery({
+      query,
+      variables: {
+        id: input.boardId
+      }
+    });
+    const { me } = client.readQuery({
+      query: gql(userLogin)
+    });
+    console.log(me);
 
-export const createBoardResponse = async (input) => {
+    const event = {
+      __typename: 'Event',
+      id: String(Math.random() * -1000),
+      title: getValue(input.title),
+      description: getValue(input.description),
+      startAt: input.startAt,
+      endAt: input.endAt,
+      allDay: Boolean(input.allDay),
+      repeat: input.repeat,
+      eventType: input.eventType,
+      isCancelled: false,
+      board: {
+        __typename: 'Board',
+        id: getBoard.id,
+        name: getBoard.name
+      },
+      cancelledDates: [],
+      starsCount: 0,
+      isStarred: false,
+      isAuthor: true,
+      author: me,
+      commentsCount: 0,
+      createdAt: moment().toISOString(),
+      updatedAt: null
+    };
 
-}
+    return ({
+      __typename,
+      createEvent: event
+    });
+  } catch(error) {
+    Toast.show(error.message, Toast.LONG);
+  }
+  return null;
+};
+
+export const createBoardResponse = (input) => {
+
+};
 
 export const updateEventResponse = (input) => ({
   __typename,
@@ -69,13 +116,13 @@ export const cancelEventResponse = (input) => {
   } catch (error) {
     Toast.show(error.message, Toast.LONG);
   }
-}
+};
 
 export const closeBoardResponse = (input) => ({
   __typename,
   closeBoard: Object.assign({}, input, {
     __typename: 'Board',
-    status: 'CLOSED',
+    status: BOARD_CLOSED,
     updatedAt: moment().toISOString()
   })
 });
@@ -84,7 +131,7 @@ export const openBoardResponse = (input) => ({
   __typename,
   openBoard: Object.assign({}, input, {
     __typename: 'Board',
-    status: 'OPEN',
+    status: BOARD_OPEN,
     updatedAt: moment().toISOString()
   })
 });

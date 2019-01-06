@@ -1,5 +1,13 @@
 // eslint-disable
 // this is an auto generated file. This will be overwritten
+export const userLogin = `{
+  me {
+    id
+    name
+    email
+    pictureUrl
+  }
+}`;
 
 export const getUser = `query GetUser($id: ID!) {
   getUser(id: $id) {
@@ -69,7 +77,7 @@ export const getBoard = `query GetBoard($id: ID!) {
 `;
 
 export const listAllEvents = `query ListAllEvents($limit: Int, $nextToken: String) {
-  listAllEvents(limit: $limit, nextToken: $nextToken) {
+  listAllEvents(limit: $limit, nextToken: $nextToken) @connection(key: "listAllEvents") {
     nextToken
     items {
       id
