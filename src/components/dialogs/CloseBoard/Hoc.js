@@ -1,4 +1,4 @@
-import { graphql, compose } from 'react-apollo';
+import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import Dialog from './Dialog';
 import { closeBoard } from '../../../graphql/mutations';
