@@ -12,17 +12,10 @@ export const createEventResponse = (input) => {
   const query = gql(getBoard);
 
   try {
-    const { getBoard } = client.readQuery({
-      query,
-      variables: {
-        id: input.boardId
-      }
-    });
-    const { me } = client.readQuery({
-      query: gql(userLogin)
-    });
+    const { getBoard } = getBoardFromCache(query, input);
+    const { me } = getCurrentUser();
 
-    const event = {
+    const newEvent = {
       __typename: 'Event',
       id: String(Math.random() * -1000),
       title: getValue(input.title),
@@ -54,7 +47,7 @@ export const createEventResponse = (input) => {
 
     return ({
       __typename,
-      createEvent: event
+      createEvent: newEvent
     });
   } catch(error) {
     Toast.show(error.message, Toast.LONG);
@@ -63,7 +56,31 @@ export const createEventResponse = (input) => {
 };
 
 export const createBoardResponse = (input) => {
+  try {
+    const { me } = getCurrentUser();
 
+    const newBoard = {
+      __typename: 'Board',
+      id: String(Math.random() * -1000),
+      name: getValue(input.name),
+      description: getValue(input.description),
+      status: getValue(input.status),
+      isPublic: Boolean(input.isPublic),
+      isFollowing: false,
+      isAuthor: true,
+      author: me,
+      followersCount: 0,
+      createdAt: moment().toISOString(),
+      updatedAt: null
+    };
+    return ({
+      __typename,
+      createBoard: newBoard
+    });
+  } catch (error) {
+    Toast.show(error.message, Toast.LONG);
+  }
+  return null;
 };
 
 export const updateEventResponse = (input) => ({
@@ -94,12 +111,7 @@ export const updateBoardResponse = (input) => ({
 export const cancelEventResponse = (input) => {
   const query = gql(getEvent);
   try {
-    const { getEvent } = client.readQuery({
-      query,
-      variables: {
-        id: input.id
-      }
-    });
+    const { getEvent } = getEventFromCache(query, input);
     const isCancelled =  input.option === 'ALL' ? true : false;
     const cancelledDates = new Set(getEvent.cancelledDates || []);
     const updatedAt = isCancelled ? moment().toISOString() : null;
@@ -139,3 +151,27 @@ export const openBoardResponse = (input) => ({
     updatedAt: moment().toISOString()
   })
 });
+
+function getBoardFromCache(query, input) {
+  return client.readQuery({
+    query,
+    variables: {
+      id: input.boardId
+    }
+  });
+}
+
+function getEventFromCache(query, input) {
+  return client.readQuery({
+    query,
+    variables: {
+      id: input.id
+    }
+  });
+}
+
+function getCurrentUser() {
+  return client.readQuery({
+    query: gql(userLogin)
+  });
+}

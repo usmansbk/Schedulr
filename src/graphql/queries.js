@@ -116,7 +116,7 @@ export const listAllEvents = `query ListAllEvents($limit: Int, $nextToken: Strin
 }`
 
 export const listAllBoards = `query ListAllBoards($limit: Int, $nextToken: String) {
-  listAllBoards(limit: $limit, nextToken: $nextToken) {
+  listAllBoards(limit: $limit, nextToken: $nextToken)  @connection(key: "listAllBoards") {
     nextToken
     items {
       id
