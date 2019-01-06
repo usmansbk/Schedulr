@@ -23,7 +23,7 @@ const getFormattedDate = (date) => {
   const today = moment();
   let timeAgo = '';
   const isToday = today.isSame(parsedDate, 'date');
-  if (!isToday) timeAgo = parsedDate.startOf('d').from(today.startOf('d'));
+  if (!isToday) timeAgo = capitalizr(parsedDate.startOf('d').from(today.startOf('d')));
   return {
     heading,
     subheading,
@@ -38,7 +38,7 @@ export default ({ section: { title } }) => {
     <Text style={styles.sectionHeading}>{heading}</Text>
     <View style={styles.sectionSubheadingContent}>
       <Text style={styles.sectionSubheading}>{subheading}</Text>
-      <Text style={styles.sectionSubheading}>{capitalizr(timeAgo)}</Text>
+      <Text style={styles.sectionSubheading}>{timeAgo}</Text>
     </View>
   </View>
 )};

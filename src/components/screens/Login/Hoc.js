@@ -2,7 +2,6 @@ import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import Container from './Container';
 import { loginUser } from '../../../graphql/mutations';
-import { userLogin } from '../../../graphql/queries';
 
 export default graphql(gql(loginUser), {
   alias: 'withLoginContainer',
