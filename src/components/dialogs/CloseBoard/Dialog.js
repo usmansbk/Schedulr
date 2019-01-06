@@ -5,7 +5,7 @@ import {
   Portal
 } from 'react-native-paper';
 
-export default class Dailog extends React.Component {
+export default class Dialog extends React.Component {
   state = {
     loading: false
   };
