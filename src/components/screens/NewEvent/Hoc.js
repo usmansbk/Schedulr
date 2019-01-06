@@ -56,13 +56,12 @@ export default compose(
           input
         },
         optimisticResponse: () => createEventResponse(input),
-        update: async (cache, { data: { createEvent } }) => {
+        update: (cache, { data: { createEvent } }) => {
           const query = gql(listAllEvents);
-          console.log(createEvent);
-          // data.listAllEvents.items = [
-          //   ...data.listAllEvents.items.filter(item => item.id !== createEvent.id),
-          // ];
-          //cache.writeQuery({ query, data });
+          data.listAllEvents.items = [
+            ...data.listAllEvents.items.filter(item => item.id !== createEvent.id),
+          ];
+          cache.writeQuery({ query, data });
         }
       }),
       ...ownProps

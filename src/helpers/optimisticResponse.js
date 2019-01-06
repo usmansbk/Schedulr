@@ -21,8 +21,7 @@ export const createEventResponse = (input) => {
     const { me } = client.readQuery({
       query: gql(userLogin)
     });
-    console.log(me);
-
+    
     const event = {
       __typename: 'Event',
       id: String(Math.random() * -1000),

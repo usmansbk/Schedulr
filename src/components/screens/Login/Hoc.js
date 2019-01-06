@@ -13,7 +13,7 @@ export default graphql(gql(loginUser), {
       },
       update: (cache, { data: { loginUser } }) => {
       	const query = gql(userLogin);
-      	const data = { me: loginUser };
+        const data = { me: loginUser };
       	cache.writeQuery({ query, data });
       }
     }),
