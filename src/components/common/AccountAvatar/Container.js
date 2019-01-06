@@ -1,4 +1,5 @@
 import React from 'react';
+import isEqual from 'lodash.isequal';
 import { withNavigation } from 'react-navigation';
 import Avatar from './Avatar';
 
@@ -11,6 +12,8 @@ class AvatarContainer extends React.Component {
       pictureUrl: null
     }
   }
+
+  shouldComponentUpdate = (nextProps) => !isEqual(nextProps.me, this.props.me);
 
   render() {
     const { me } = this.props;
