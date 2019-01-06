@@ -7,7 +7,7 @@ import {
   List,
 } from 'react-native-paper';
 
-export default class CancelEvent extends React.Component {
+export default class EditEvent extends React.Component {
   state = {
     checked: 'single',
   };

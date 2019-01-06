@@ -5,7 +5,7 @@ import {
   Portal
 } from 'react-native-paper';
 
-export default class Dialog extends React.Component {
+export default class CloseBoard extends React.Component {
   state = {
     loading: false
   };
@@ -30,7 +30,6 @@ export default class Dialog extends React.Component {
     } catch (error) {
       this.setState({ loading: false });
     }
-    // onConfirm({ id, option: this.state.checked });
   }
 
   render() {

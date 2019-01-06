@@ -5,7 +5,7 @@ import {
   Portal
 } from 'react-native-paper';
 
-export default class Dialog extends React.Component {
+export default class DeleteBoard extends React.Component {
   state = {
     loading: false
   };
@@ -20,16 +20,17 @@ export default class Dialog extends React.Component {
       id,
       onSubmit,
     } = this.props;
+    alert('delete board');
     this.setState({ loading: true });
     try {
       await onSubmit({
         id
       });
-      this.props.navigation.pop();
+     // this.props.navigation.pop();
     } catch (error) {
+      alert(error.message);
       this.setState({ loading: false });
     }
-    // onConfirm({ id, option: this.state.checked });
   }
 
   render() {
@@ -43,7 +44,6 @@ export default class Dialog extends React.Component {
     return (
       <Portal>
         <Dialog
-          dismissable={!loading}
           visible={visible}
           onDismiss={handleDismiss}
         >
