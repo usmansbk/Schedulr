@@ -1,5 +1,6 @@
 import React from 'react';
 import moment from 'moment';
+import isEqual from 'lodash.isequal';
 import { View, ScrollView } from 'react-native';
 import {
   Menu,
@@ -24,6 +25,7 @@ import appStyles from '../../../config/styles';
 import colors from '../../../config/colors';
 
 export default class Info extends React.Component {
+  shouldComponentUpdate = (nextProps) => !isEqual(nextProps.board, this.props.board);
   render() {
     const {
       board,

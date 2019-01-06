@@ -5,7 +5,9 @@ import Dialog from './Dialog';
 import { listAllBoards } from '../../../graphql/queries';
 import { deleteBoard } from '../../../graphql/mutations';
 
-export default graphql(gql(deleteBoard), {
+export default compose(
+  withNavigation,
+  graphql(gql(deleteBoard), {
     alias: 'withDeleteBoardDialog',
     props: ({ mutate, ownProps }) => ({
       onSubmit: async (input) => await mutate({
@@ -13,9 +15,9 @@ export default graphql(gql(deleteBoard), {
           input
         },
         optimisticResponse: () => ({
-          __typname: 'Mutation',
+          __typename: 'Mutation',
           deleteBoard: {
-            __typname: 'Board',
+            __typename: 'Board',
             id: input.id
           }
         }),
@@ -28,4 +30,5 @@ export default graphql(gql(deleteBoard), {
       }),
       ...ownProps
     })
-  })(Dialog);
+  })
+)(Dialog);

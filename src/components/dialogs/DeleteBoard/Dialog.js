@@ -20,13 +20,12 @@ export default class DeleteBoard extends React.Component {
       id,
       onSubmit,
     } = this.props;
-    alert('delete board');
     this.setState({ loading: true });
     try {
       await onSubmit({
         id
       });
-     // this.props.navigation.pop();
+      this.props.navigation.pop();
     } catch (error) {
       alert(error.message);
       this.setState({ loading: false });
@@ -50,7 +49,7 @@ export default class DeleteBoard extends React.Component {
           <Dialog.Title>Delete board?</Dialog.Title>
           <Dialog.Actions>
             <Button disabled={loading} onPress={handleDismiss}>Dismiss</Button>
-            <Button loading={loading} disabled={loading} onPress={this._continue}>Continue</Button>
+            <Button loading={loading} disabled={loading} onPress={this._onContinue}>Continue</Button>
           </Dialog.Actions>
         </Dialog>
       </Portal>
