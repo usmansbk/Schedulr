@@ -1,4 +1,5 @@
 import React from 'react';
+import memoize from 'memoize-one';
 import { SectionList, RefreshControl } from 'react-native';
 import { withNavigationFocus } from 'react-navigation';
 import sectionListGetItemLayout from 'react-native-section-list-get-item-layout';
@@ -96,13 +97,15 @@ class List extends React.Component {
   });
   shouldComponentUpdate = (nextProps) => nextProps.isFocused;
 
+  _sectionize = memoize((events) => sortBy(sectionize(events), 'title'));
+
   render() {
     const {
       loading,
       events,
       onRefresh,
     } = this.props;
-    const sections = sortBy(sectionize(events), 'title');
+    const sections = this._sectionize(events);
 
     return (
       <SectionList
