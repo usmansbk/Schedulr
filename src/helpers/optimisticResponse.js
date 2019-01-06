@@ -1,5 +1,6 @@
 import { Cache } from 'aws-amplify';
 import moment from 'moment';
+import { getValue } from '../lib/formValidator';
 import client from '../config/client';
 import { getUser, getBoard } from '../graphql/queries';
 
@@ -17,6 +18,8 @@ export const updateEventResponse = (input) => ({
   __typename,
   updateEvent: Object.assign({}, input, {
     __typename: 'Event',
+    title: getValue(input.title),
+    description: getValue(input.description),
     updatedAt: moment().toISOString(),
     location: Boolean(input.location.address) ? {
       __typename: 'Location',

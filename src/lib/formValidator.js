@@ -25,3 +25,8 @@ export function isEventValid(event) {
   }
   return validity;
 }
+
+export const getValue = (value) => {
+  const ret = value && value.trim() && value.length && value;
+  return Boolean(ret) ? ret : null;
+}
