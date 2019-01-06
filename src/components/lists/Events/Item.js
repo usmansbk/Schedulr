@@ -41,6 +41,7 @@ export default class Item extends React.PureComponent {
     } = this.props;
     const [ first, second ] = boardName.split(' ');
     const avatarName = `${first} ${second ? second : ''}`;
+    console.log('Item', id);
     return (
       <TouchableRipple
         onPress={this._onPress}
