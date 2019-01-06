@@ -1,9 +1,8 @@
 import React from 'react';
 import isEqual from 'lodash.isequal';
-import { withNavigation } from 'react-navigation';
 import Avatar from './Avatar';
 
-class AvatarContainer extends React.Component {
+export default class AvatarContainer extends React.Component {
   static defaultProps = {
     me: {
       id: -1,
@@ -40,5 +39,3 @@ class AvatarContainer extends React.Component {
     );
   }
 }
-
-export default withNavigation(AvatarContainer);
