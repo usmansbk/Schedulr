@@ -27,7 +27,6 @@ export default class DeleteBoard extends React.Component {
       });
       this.props.navigation.popToTop();
     } catch (error) {
-      alert(error.message);
       this.setState({ loading: false });
     }
   }
