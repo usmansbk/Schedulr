@@ -30,11 +30,11 @@ export default class EditEventScreen extends React.Component {
       boardId: board.id
     });
   };
-  _onSubmit = (form) => {
+  _onSubmit = async (form) => {
     const id = this.props.navigation.getParam('id');
     delete form.boardId;
     try {
-      this.props.onSubmit({ id, ...form });
+      await this.props.onSubmit({ id, ...form });
       this.props.navigation.pop();
     } catch(error) {
       Toast.show(err, Toast.SHORT);

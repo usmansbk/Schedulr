@@ -1,8 +1,9 @@
 import { Cache } from 'aws-amplify';
+import gql from 'graphql-tag';
 import moment from 'moment';
 import { getValue } from '../lib/formValidator';
 import client from '../config/client';
-import { getUser, getBoard } from '../graphql/queries';
+import { getUser, getBoard, getEvent } from '../graphql/queries';
 
 const __typename = 'Mutation';
 
@@ -39,8 +40,35 @@ export const updateBoardResponse = (input) => ({
   })
 });
 
-export const cancelEventResponse = async (input) => {
-
+export const cancelEventResponse = (input) => {
+  try {
+    const data = client.readQuery({
+      query: gql(getEvent),
+      variables: {
+        id: input.id
+      }
+    });
+    console.log(data);
+    const { getEvent } = data;
+    const isCancelled =  input.option === 'ALL' ? true : false;
+    const cancelledDates = new Set(getEvent.cancelledDates || []);
+    const updatedAt = isCancelled ? moment().toISOString() : null;
+    if (!isCancelled) {
+      cancelledDates.add(input.date);
+    }
+    return ({
+      __typename,
+      cancelEvent: {
+        __typename: 'Event',
+        id: input.id,
+        isCancelled,
+        cancelledDates,
+        updatedAt
+      }
+    })
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 export const closeBoardResponse = (input) => ({

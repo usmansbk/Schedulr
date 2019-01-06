@@ -5,10 +5,10 @@ import Form from '../../forms/Board';
 export default class EditBoardScreen extends React.Component {
   _handleBack = () => this.props.navigation.goBack();
   
-  _onSubmit = (form) => {
+  _onSubmit = async (form) => {
     const id = this.props.navigation.getParam('id');
     try {
-      this.props.onSubmit({id, ...form});
+      await this.props.onSubmit({id, ...form});
       this.props.navigation.pop();
     } catch(error) {
       Toast.show('Failed to create', Toast.SHORT);

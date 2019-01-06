@@ -1,7 +1,8 @@
-import { graphql, compose } from 'react-apollo';
+import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import Dialog from './Dialog';
 import { cancelEvent } from '../../../graphql/mutations';
+import { cancelEventResponse } from '../../../helpers/optimisticResponse';
 
 export default graphql(gql(cancelEvent), {
   alias: 'withCancelEventDialog',
@@ -9,7 +10,8 @@ export default graphql(gql(cancelEvent), {
     onSubmit: async (input) => await mutate({
       variables: {
         input
-      }
+      },
+      optimisticResponse: cancelEventResponse(input)
     }),
     ...ownProps
   })

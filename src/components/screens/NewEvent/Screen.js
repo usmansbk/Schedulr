@@ -10,14 +10,15 @@ export default class NewEventScreen extends React.Component {
     boards: []
   };
   _handleBack = () => this.props.navigation.goBack();
-  _handleSubmit = (form) => {
+  _handleSubmit = async (form) => {
     try {
-      const result = this.props.onSubmit(form);
+      const result = await this.props.onSubmit(form);
       this.props.navigation.replace('EventDetails', {
         id: result.data.createEvent.id
       });
     } catch(error) {
       Toast.show('Failed to create', Toast.SHORT);
+      console.log(error);
     }
   };
   _getInitialValues = () => {
