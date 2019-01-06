@@ -3,6 +3,7 @@ import gql from 'graphql-tag';
 import Screen from './Screen';
 import { getEvent, listAllBoards } from '../../../graphql/queries';
 import { updateEvent } from '../../../graphql/mutations';
+import { updateEventResponse } from '../../../helpers/optimisticResponse';
 
 const alias = 'withEditEventContainer';
 
@@ -39,7 +40,8 @@ export default compose(
       onSubmit: async (input) => await mutate({
         variables: {
           input
-        }
+        },
+        optimisticResponse: updateEventResponse(input)
       }),
       ...ownProps,
     })

@@ -12,7 +12,7 @@ export default [
   { name: 'Work', id: 'WORK' },
   { name: 'Sport', id: 'SPORT' },
   { name: 'Meeting', id: 'MEETING' },
-  { name: 'Fetival', id: 'FESTIVAL' },
+  { name: 'Festival', id: 'FESTIVAL' },
   { name: 'Ceremony', id: 'CEREMONY' },
   { name: 'Competition', id: 'COMPETITION' },
   { name: 'Funfare', id: 'FUNFARE' },
