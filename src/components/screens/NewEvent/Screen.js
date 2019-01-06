@@ -4,6 +4,7 @@ import moment from 'moment';
 import Form from '../../forms/Event';
 import eventTypes from '../../forms/Event/types';
 import frequency from '../../forms/Event/frequency';
+import { BOARD_CLOSED } from '../../../lib/constants';
 
 export default class NewEventScreen extends React.Component {
   static defaultProps = {
@@ -52,7 +53,7 @@ export default class NewEventScreen extends React.Component {
     return (
       <Form
         initialValues={this._getInitialValues()}
-        boards={this.props.boards.filter(board => board.isAuthor && (board.status !== 'CLOSED'))}
+        boards={this.props.boards.filter(board => board.isAuthor && (board.status !== BOARD_CLOSED))}
         handleCancel={this._handleBack}
         onSubmit={this._handleSubmit}
         locked={Boolean(this.props.boardId)}
