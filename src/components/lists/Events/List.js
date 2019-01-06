@@ -106,7 +106,7 @@ class List extends React.Component {
       onRefresh,
     } = this.props;
     const sections = this._sectionize(events);
-
+    
     return (
       <SectionList
         initialNumToRender={0}
