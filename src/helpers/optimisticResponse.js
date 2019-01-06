@@ -28,9 +28,16 @@ export const updateEventResponse = (input) => ({
   })
 });
 
-export const updateBoardResponse = async (input) => {
-
-}
+export const updateBoardResponse = (input) => ({
+  __typename,
+  updateBoard: Object.assign({}, input, {
+    __typename: 'Board',
+    name: getValue(input.name),
+    description: getValue(input.description),
+    isPublic: Boolean(input.isPublic),
+    updatedAt: moment().toISOString()
+  })
+})
 
 export const cancelEventResponse = async (input) => {
 

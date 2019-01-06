@@ -36,7 +36,6 @@ export const updateBoard = `mutation UpdateBoard($input: UpdateBoardInput!) {
     id
     name
     description
-    status
     isPublic
     updatedAt
   }

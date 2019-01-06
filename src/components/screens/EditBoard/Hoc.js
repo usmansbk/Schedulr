@@ -3,6 +3,7 @@ import gql from 'graphql-tag';
 import Screen from './Screen';
 import { updateBoard } from '../../../graphql/mutations';
 import { getBoard } from '../../../graphql/queries';
+import { updateBoardResponse } from '../../../helpers/optimisticResponse';
 
 const alias = 'withEditBoardContainer';
 
@@ -29,7 +30,8 @@ export default compose(
       onSubmit: async (input) => await mutate({
         variables: {
           input
-        }
+        },
+        optimisticResponse: updateBoardResponse(input)
       }),
       ...ownProps,
     })
