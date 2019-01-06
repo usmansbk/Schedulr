@@ -7,9 +7,10 @@ import { userLogin } from '../../../graphql/queries';
 export default compose(
 	withNavigation,
 	graphql(gql(userLogin), {
-	alias: 'withAccountAvatar',
-	fetchPolicy: 'cache-only',
-	props: ({ data }) => ({
-		me: data && data.me
+		alias: 'withAccountAvatar',
+		fetchPolicy: 'cache-only',
+		props: ({ data }) => ({
+			me: data && data.me
+		})
 	})
-}))(Container);
+)(Container);
