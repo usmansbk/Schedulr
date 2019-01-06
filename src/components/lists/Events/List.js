@@ -111,7 +111,7 @@ class List extends React.Component {
         stickySectionHeadersEnabled
         getItemLayout={this._getItemLayout}
         sections={sections}
-        extraData={this.props.isFocused}
+        extraData={events.length}
         ListHeaderComponent={this._renderHeader}
         ListEmptyComponent={this._renderEmptyList}
         ItemSeparatorComponent={this._renderSeparator}

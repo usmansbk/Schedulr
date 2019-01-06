@@ -21,7 +21,7 @@ export const createEventResponse = (input) => {
     const { me } = client.readQuery({
       query: gql(userLogin)
     });
-    
+
     const event = {
       __typename: 'Event',
       id: String(Math.random() * -1000),
@@ -29,6 +29,10 @@ export const createEventResponse = (input) => {
       description: getValue(input.description),
       startAt: input.startAt,
       endAt: input.endAt,
+      location: Boolean(input.location.address) ? {
+        __typename: 'Location',
+        ...input.location
+      } : null,
       allDay: Boolean(input.allDay),
       repeat: input.repeat,
       eventType: input.eventType,

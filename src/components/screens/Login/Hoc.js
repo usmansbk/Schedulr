@@ -12,9 +12,8 @@ export default graphql(gql(loginUser), {
         input
       },
       update: (cache, { data: { loginUser } }) => {
-      	const query = gql(userLogin);
         const data = { me: loginUser };
-      	cache.writeQuery({ query, data });
+      	cache.writeData({ data });
       }
     }),
     ...ownProps
