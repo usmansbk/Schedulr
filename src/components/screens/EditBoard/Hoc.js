@@ -31,7 +31,7 @@ export default compose(
         variables: {
           input
         },
-        optimisticResponse: updateBoardResponse(input)
+        optimisticResponse: () => updateBoardResponse(input)
       }),
       ...ownProps,
     })

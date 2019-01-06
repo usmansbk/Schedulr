@@ -11,7 +11,7 @@ export default graphql(gql(cancelEvent), {
       variables: {
         input
       },
-      optimisticResponse: cancelEventResponse(input)
+      optimisticResponse: () => cancelEventResponse(input)
     }),
     ...ownProps
   })

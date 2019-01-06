@@ -11,7 +11,7 @@ export default graphql(gql(openBoard), {
       variables: {
         input
       },
-      optimisticResponse: openBoardResponse(input)
+      optimisticResponse: () => openBoardResponse(input)
     }),
     ...ownProps
   })

@@ -1,9 +1,10 @@
 import { Cache } from 'aws-amplify';
 import gql from 'graphql-tag';
 import moment from 'moment';
+import Toast from 'react-native-simple-toast';
 import { getValue } from '../lib/formValidator';
 import client from '../config/client';
-import { getUser, getBoard, getEvent } from '../graphql/queries';
+import { getEvent } from '../graphql/queries';
 
 const __typename = 'Mutation';
 
@@ -41,15 +42,14 @@ export const updateBoardResponse = (input) => ({
 });
 
 export const cancelEventResponse = (input) => {
+  const query = gql(getEvent);
   try {
-    const data = client.readQuery({
-      query: gql(getEvent),
+    const { getEvent } = client.readQuery({
+      query,
       variables: {
         id: input.id
       }
     });
-    console.log(data);
-    const { getEvent } = data;
     const isCancelled =  input.option === 'ALL' ? true : false;
     const cancelledDates = new Set(getEvent.cancelledDates || []);
     const updatedAt = isCancelled ? moment().toISOString() : null;
@@ -65,9 +65,9 @@ export const cancelEventResponse = (input) => {
         cancelledDates,
         updatedAt
       }
-    })
+    });
   } catch (error) {
-    console.log(error);
+    Toast.show(error.message, Toast.LONG);
   }
 }
 
