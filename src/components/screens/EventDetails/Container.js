@@ -18,7 +18,7 @@ export default class EventDetails extends React.Component {
     const isRecurring = this.props.event.repeat !== ONE_TIME_EVENT;
     this.props.handleCancel(isRecurring ? this.props.event.startAt : null);
   };
-  shouldComponentUpdate = (nextProps) => !isEqual(nextProps.event, this.props.event);
+ shouldComponentUpdate = (nextProps) => !isEqual(nextProps.event, this.props.event);
 
   render() {
     const {
