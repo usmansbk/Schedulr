@@ -3,7 +3,7 @@ export default {
   options: {
     id: '-1',
     __typename: 'Options',
-    headsUp: true,
+    headsUp: false,
     starredAlarm: false,
     eventEnded: false,
     muteReminder: false,
