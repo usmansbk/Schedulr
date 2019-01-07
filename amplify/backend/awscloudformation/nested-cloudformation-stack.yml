@@ -84,7 +84,7 @@
 				"TemplateURL": "https://s3.amazonaws.com/chdlr-20181229045531-deployment/amplify-cfn-templates/auth/auth-cloudformation-template.yml",
 				"Parameters": {
 					"identityPoolName": "schdlr505cbf0e_identitypool_505cbf0e",
-					"allowUnauthenticatedIdentities": true,
+					"allowUnauthenticatedIdentities": false,
 					"thirdPartyAuth": true,
 					"lambdaLogPolicy": "auth_lambda_log_policy",
 					"openIdLambdaRoleName": "auth_openid_lambda_role",

@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import { Cache } from 'aws-amplify';
 import Loading from './Loading';
 
@@ -9,12 +9,12 @@ export default class Container extends Component {
   }
 
   _bootstrapAsync = async () => {
-    let userToken;
+    let userToken = null;
     try {
       const { token } = await Cache.getItem('federatedInfo');
       userToken = token;
     } catch (error) {
-      userToken = null;
+      alert(error.message);
     }
     this.props.navigation.navigate(userToken ? 'App' : 'Auth');
   }

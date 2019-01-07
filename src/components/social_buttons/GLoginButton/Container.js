@@ -25,6 +25,7 @@ export default class Container extends React.Component {
         idToken,
         user
       } = await GoogleSignin.signIn();
+      if (!user || !user.name) throw new Error('Unauthenticated');
       await this.props.onLogin({
         name: user.name,
         email: user.email,
