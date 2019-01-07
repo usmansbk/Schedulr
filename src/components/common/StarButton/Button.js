@@ -10,14 +10,14 @@ export default class Button extends React.Component {
     };
   }
 
-  componentWillReceiveProps = (nextProps) => {
-    if (nextProps.isStarred !== this.props.isStarred) {
-      this.setState({
-        isStarred: nextProps.isStarred,
-        starsCount: nextProps.starsCount
-      });
-    }
-  }
+  // componentWillReceiveProps = (nextProps) => {
+  //   if (nextProps.isStarred !== this.state.isStarred) {
+  //     this.setState({
+  //       isStarred: nextProps.isStarred,
+  //       starsCount: nextProps.starsCount
+  //     });
+  //   }
+  // }
 
   _toggle = () => {
     this.setState(prev => ({
