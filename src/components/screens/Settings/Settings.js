@@ -13,8 +13,8 @@ export default ({
   goBack,
   handleValueChange,
   openRemindMeDialog,
-  disableReminder,
-  alarm,
+  muteReminder,
+  starredAlarm,
   headsup,
   eventEnded,
   disablePush
@@ -33,8 +33,8 @@ export default ({
           title="Disable"
           right={() => (
             <Switch
-              value={disableReminder}
-              onValueChange={() => handleValueChange('disableReminder')}
+              value={muteReminder}
+              onValueChange={() => handleValueChange('muteReminder')}
             />
           )}
         />
@@ -60,7 +60,7 @@ export default ({
           description="Set alarm for starred events?"
           right={() => (
             <Switch
-              value={alarm}
+              value={starredAlarm}
               onValueChange={() => handleValueChange('alarm')}
             />
           )}
