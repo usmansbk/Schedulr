@@ -6,7 +6,7 @@ import styles from './styles';
 export default (props) => (
   <View style={styles.empty}>
     <Headline style={styles.emptyTitle}>
-    {props.message}
+    No schedule - yet
     </Headline>
   </View>
 );
