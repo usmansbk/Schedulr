@@ -1,3 +1,3 @@
-import Starred from './Starred';
+import Starred from './Hoc';
 
 export default Starred;
