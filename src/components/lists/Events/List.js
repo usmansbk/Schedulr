@@ -39,7 +39,7 @@ class List extends React.Component {
   _renderEmptyList = () => {
     const { loading, events } = this.props;
     if (loading && (events.length === 0)) return null;
-    return <Empty message={message} />
+    return <Empty />
   };
   _renderSeparator = () => <Separator />;
   _renderSectionHeader = ({section}) => <SectionHeader section={section} />;
