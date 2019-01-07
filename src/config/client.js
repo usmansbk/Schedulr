@@ -1,8 +1,23 @@
-import AWSAppSyncClient from 'aws-appsync';
+import AWSAppSyncClient, {
+  createAppSyncLink,
+  createLinkWithCache,
+} from 'aws-appsync';
+import { ApolloLink } from 'apollo-link';
+import { withClientState } from 'apollo-link-state';
 import { Auth } from 'aws-amplify';
 import aws_config from '../aws-exports';
+import {
+  defaults,
+  resolvers
+} from '../graphql/localstate';
 
-export default client = new AWSAppSyncClient({
+const stateLink = createLinkWithCache(cache => withClientState({
+  cache,
+  resolvers,
+  defaults
+}));
+
+const appSyncLink = createAppSyncLink({
   url: aws_config.aws_appsync_graphqlEndpoint,
   region: aws_config.aws_appsync_region,
   auth: {
@@ -10,7 +25,12 @@ export default client = new AWSAppSyncClient({
     // apiKey: aws_config.aws_appsync_apiKey,
     type: aws_config.aws_appsync_authenticationType,
     credentials: () => Auth.currentCredentials()
-  },
+  }
+});
+
+const link = ApolloLink.from([stateLink, appSyncLink]);
+
+export default client = new AWSAppSyncClient({
   cacheOptions: {
     cacheRedirects: {
       Query: {
@@ -23,4 +43,4 @@ export default client = new AWSAppSyncClient({
       }
     }
   }
-});
+}, { link });
