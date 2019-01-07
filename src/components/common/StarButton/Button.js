@@ -2,7 +2,29 @@ import React from 'react';
 import IconBadge from '../IconBadge';
 
 export default class Button extends React.Component {
-  shouldComponentUpdate = (nextProps) => (this.props.starsCount !== nextProps.starsCount);
+  constructor(props) {
+    super(props);
+    this.state = {
+      isStarred: props.isStarred,
+      starsCount: props.starsCount
+    };
+  }
+
+  componentWillReceiveProps = (nextProps) => {
+    if (nextProps.isStarred !== this.props.isStarred) {
+      this.setState({
+        isStarred: nextProps.isStarred,
+        starsCount: nextProps.starsCount
+      });
+    }
+  }
+
+  _toggle = () => {
+    this.setState(prev => ({
+      isStarred: !prev.isStarred,
+      starsCount: prev.isStarred ? prev.starsCount - 1 : prev.starsCount + 1
+    }), this._onContinue);
+  }
 
   _onContinue = () => {
     const {
@@ -34,7 +56,7 @@ export default class Button extends React.Component {
     return (
       <IconBadge
         icon={`star${isStarred ? '' : '-border'}`}
-        onPress={this._onContinue}
+        onPress={this._toggle}
         size={size}
         color={isStarred ? activeColor : color}
         count={starsCount}
