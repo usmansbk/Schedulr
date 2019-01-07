@@ -1,5 +1,5 @@
 import moment from 'moment';
-import capitalizr, { decapitalize } from './capitalizr';
+import { decapitalize } from './capitalizr';
 import { ONE_TIME_EVENT } from './constants';
 import { Event } from '../types/types';
 
@@ -11,14 +11,11 @@ const DATE_FORMAT = 'DD MM YYYY';
  * @param { Event } event
  */
 export const parseDetails = (event) => {
-  const { endAt, allDay, startAt } = event;
   const eventType = decapitalize(event.eventType);
   const isRecurring = event.repeat !== ONE_TIME_EVENT;
   const repeat = decapitalize(event.repeat);
   const note = `${isRecurring ? (repeat + ' ') : ''}${eventType}`;
-  if (allDay) return note;
-  const duration = moment(Date.parse(endAt)).from(Date.parse(startAt), true);
-  return capitalizr(`${duration} ${note}`);
+  return note;
 };
 
 /**

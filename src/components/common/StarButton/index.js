@@ -1,3 +1,3 @@
-import Button from './Button';
+import Button from './Hoc';
 
 export default Button;

@@ -1,20 +1,24 @@
 import React from 'react';
 import IconBadge from '../IconBadge';
 
-export default ({
-  color,
-  size,
-  activeColor,
-  starred,
-  starsCount,
-  id,
-  onPress
-}) => (
-  <IconBadge
-    icon={`star${starred ? '' : '-border'}`}
-    onPress={() => onPress && onPress(id)}
-    size={size}
-    color={starred ? activeColor : color}
-    count={starsCount}
-  />
-);
+export default class Button extends React.Component {
+  render() {
+    const {
+      color,
+      size,
+      activeColor,
+      isStarred,
+      starsCount,
+    } = this.props;
+
+    return (
+      <IconBadge
+        icon={`star${isStarred ? '' : '-border'}`}
+        onPress={this._onContinue}
+        size={size}
+        color={isStarred ? activeColor : color}
+        count={starsCount}
+      />
+    );
+  }
+}
