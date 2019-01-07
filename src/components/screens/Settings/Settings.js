@@ -30,7 +30,7 @@ export default ({
     <ScrollView>
       <List.Section title="Reminders">
         <List.Item
-          title="Disable"
+          title="Mute"
           right={() => (
             <Switch
               value={muteReminder}
@@ -42,14 +42,14 @@ export default ({
         <List.Item
           title="Remind me"
           right={() => <List.Icon icon="chevron-right" />}
-          onPress={openRemindMeDialog}
+          onPress={!muteReminder && openRemindMeDialog}
         />
         <Divider />
         <List.Item
           title="Heads-up"
           right={() => (
             <Switch
-              value={headsUp}
+              value={!muteReminder && headsUp}
               onValueChange={() => handleValueChange('headsUp')}
             />
           )}
@@ -60,7 +60,7 @@ export default ({
           description="Set alarm for starred events?"
           right={() => (
             <Switch
-              value={starredAlarm}
+              value={!muteReminder && starredAlarm}
               onValueChange={() => handleValueChange('starredAlarm')}
             />
           )}
@@ -71,7 +71,7 @@ export default ({
           description="Get notified when an event end's?"
           right={() => (
             <Switch
-              value={eventEnded}
+              value={!muteReminder && eventEnded}
               onValueChange={() => handleValueChange('eventEnded')}
             />
           )}
