@@ -80,7 +80,7 @@ export default ({
       </List.Section>
       {
         false && (
-          <List.Section title="Push Notifications">
+          <List.Section title="Events and Boards Updates">
             <List.Item
               title="Disable"
               right={() => (
