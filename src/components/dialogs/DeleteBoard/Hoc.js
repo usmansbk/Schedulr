@@ -22,10 +22,12 @@ export default compose(
           }
         }),
         update: (cache, { data: { deleteBoard } }) => {
-          const query = gql(listAllBoards);
-          const data = cache.readQuery({ query });
-          data.listAllBoards.items = data.listAllBoards.items.filter(item => item.id !== deleteBoard.id);
-          cache.writeQuery({ query, data });
+          if (deleteBoard) {
+            const query = gql(listAllBoards);
+            const data = cache.readQuery({ query });
+            data.listAllBoards.items = data.listAllBoards.items.filter(item => item.id !== deleteBoard.id);
+            cache.writeQuery({ query, data });
+          }
         }
       }),
       ...ownProps

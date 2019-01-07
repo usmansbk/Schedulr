@@ -49,6 +49,11 @@ export default StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 18
   },
+  offlineName: {
+    color: colors.gray,
+    fontWeight: 'bold',
+    fontSize: 18
+  },
   itemContent: {
     paddingHorizontal: 4,
     marginHorizontal: 4,

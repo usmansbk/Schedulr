@@ -22,10 +22,12 @@ export default compose(
           }
         }),
         update: (cache, { data: { deleteEvent } }) => {
-          const query = gql(listAllEvents);
-          const data = cache.readQuery({ query });
-          data.listAllEvents.items = data.listAllEvents.items.filter(item => item.id !== deleteEvent.id);
-          cache.writeQuery({ query, data });
+          if (deleteEvent) {
+            const query = gql(listAllEvents);
+            const data = cache.readQuery({ query });
+            data.listAllEvents.items = data.listAllEvents.items.filter(item => item.id !== deleteEvent.id);
+            cache.writeQuery({ query, data });
+          }
         }
       }),
       ...ownProps

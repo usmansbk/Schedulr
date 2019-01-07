@@ -16,13 +16,15 @@ export default graphql(gql(createBoard), {
       },
       optimisticResponse: () => createBoardResponse(input),
       update: (cache, { data: { createBoard } }) => {
-        const query = gql(listAllBoards);
-        const data = cache.readQuery({ query });
-        data.listAllBoards.items = [
-          ...data.listAllBoards.items.filter(item => item.id !== createBoard.id),
-          createBoard
-        ];
-        cache.writeQuery({ query, data });
+        if (createBoard) {
+          const query = gql(listAllBoards);
+          const data = cache.readQuery({ query });
+          data.listAllBoards.items = [
+            ...data.listAllBoards.items.filter(item => item.id !== createBoard.id),
+            createBoard
+          ];
+          cache.writeQuery({ query, data });
+        }
       }
     }),
     ...ownProps
