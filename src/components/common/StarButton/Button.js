@@ -19,7 +19,6 @@ export default class Button extends React.Component {
         await onStarEvent(input);
       }
     } catch (error) {
-      alert(error.message);
     }
   }
 
