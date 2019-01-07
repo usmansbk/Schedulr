@@ -17,7 +17,9 @@ export default class Screen extends React.Component {
   _showDialog = () => this.setState({ visible: true });
   _hideDialog = () => this.setState({ visible: false });
   _goBack = () => this.props.navigation.goBack();
-  _handleValueChange = (id) => alert(id);
+  _handleValueChange = async (id) => {
+    await this.props.toggleOption(id);
+  };
   render() {
     const {
       options: {
@@ -30,7 +32,7 @@ export default class Screen extends React.Component {
     return (
       <React.Fragment>
         <Settings
-          headsup={headsUp}
+          headsUp={headsUp}
           starredAlarm={starredAlarm}
           eventEnded={eventEnded}
           muteReminder={muteReminder}

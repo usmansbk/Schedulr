@@ -50,7 +50,7 @@ export default ({
           right={() => (
             <Switch
               value={headsUp}
-              onValueChange={() => handleValueChange('headsup')}
+              onValueChange={() => handleValueChange('headsUp')}
             />
           )}
         />
@@ -61,7 +61,7 @@ export default ({
           right={() => (
             <Switch
               value={starredAlarm}
-              onValueChange={() => handleValueChange('alarm')}
+              onValueChange={() => handleValueChange('starredAlarm')}
             />
           )}
         />

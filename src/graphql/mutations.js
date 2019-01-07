@@ -10,6 +10,17 @@ export const loginUser = `mutation LoginUser($input: LoginInput!) {
   }
 }
 `;
+
+export const toggleOption = `mutation ToggleOption($id: ID!) {
+  toggleOption(id: $id) @client {
+    id
+    headsUp
+    starredAlarm
+    eventEnded
+    muteReminder
+  }
+}`;
+
 export const createBoard = `mutation CreateBoard($input: CreateBoardInput!) {
   createBoard(input: $input) {
     id
