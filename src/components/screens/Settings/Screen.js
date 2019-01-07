@@ -3,6 +3,14 @@ import Settings from './Settings';
 import RemindMeDialog from '../../dialogs/RemindMe';
 
 export default class Screen extends React.Component {
+  static defaultProps = {
+    options: {
+      headsUp: false,
+      starredAlarm: true,
+      eventEnded: false,
+      muteReminder: false,
+    }
+  }
   state = {
     visible: false,
   };
@@ -11,9 +19,21 @@ export default class Screen extends React.Component {
   _goBack = () => this.props.navigation.goBack();
   _handleValueChange = (id) => alert(id);
   render() {
+    const {
+      options: {
+        headsUp,
+        starredAlarm,
+        eventEnded,
+        muteReminder
+      }
+    } = this.props;
     return (
       <React.Fragment>
         <Settings
+          headsup={headsUp}
+          starredAlarm={starredAlarm}
+          eventEnded={eventEnded}
+          muteReminder={muteReminder}
           goBack={this._goBack}
           handleValueChange={this._handleValueChange}
           openRemindMeDialog={this._showDialog}

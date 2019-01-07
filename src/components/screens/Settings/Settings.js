@@ -15,7 +15,7 @@ export default ({
   openRemindMeDialog,
   muteReminder,
   starredAlarm,
-  headsup,
+  headsUp,
   eventEnded,
   disablePush
 }) => (
@@ -49,7 +49,7 @@ export default ({
           title="Heads-up"
           right={() => (
             <Switch
-              value={headsup}
+              value={headsUp}
               onValueChange={() => handleValueChange('headsup')}
             />
           )}

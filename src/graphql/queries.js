@@ -9,6 +9,16 @@ export const userLogin = `{
   }
 }`;
 
+export const userOptions = `{
+  options @client {
+    id
+    headsUp
+    starredAlarm
+    eventEnded
+    muteReminder
+  }
+}`
+
 export const getUser = `query GetUser($id: ID!) {
   getUser(id: $id) {
     id
