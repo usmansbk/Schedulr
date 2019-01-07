@@ -17,6 +17,19 @@ export const userOptions = `{
     eventEnded
     muteReminder
   }
+}`;
+
+export const remindMeBefore = `{
+  remindMeBefore @client {
+    id
+    fiveMin
+    tenMin
+    fifteenMin
+    thirtyMin
+    fortyFiveMin
+    oneHour
+    oneDay
+  }
 }`
 
 export const getUser = `query GetUser($id: ID!) {

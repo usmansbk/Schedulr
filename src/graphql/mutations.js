@@ -21,6 +21,19 @@ export const toggleOption = `mutation ToggleOption($id: ID!) {
   }
 }`;
 
+export const toggleRemindMeBefore = `mutation ToggleRemindMeBefore($id: ID!) {
+  toggleRemindMeBefore(id: $id) @client {
+    id
+    fiveMin
+    tenMin
+    fifteenMin
+    thirtyMin
+    fortyfiveMin
+    oneHour
+    oneDay
+  }
+}`;
+
 export const createBoard = `mutation CreateBoard($input: CreateBoardInput!) {
   createBoard(input: $input) {
     id

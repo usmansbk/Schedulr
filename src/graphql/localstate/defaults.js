@@ -8,8 +8,8 @@ export default {
     eventEnded: false,
     muteReminder: false,
   },
-  remindMe: {
-    __typename: 'RemindMe',
+  remindMeBefore: {
+    __typename: 'RemindMeBefore',
     id: '-1',
     fiveMin: true,
     tenMin: false,
