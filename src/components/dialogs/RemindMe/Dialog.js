@@ -10,22 +10,25 @@ import {
 export default class RemindMe extends React.Component {
   static defaultProps = {
     remindMeBefore: {
-      fiveMin: true,
+      fiveMin: false,
       tenMin: false,
       fifteenMin: false,
       thirtyMin: false,
       fortyfiveMin: false,
-      oneHour: true,
+      oneHour: false,
       oneDay: false,
     }
   };
+
+  _toggle = async (id) => {
+    await this.props.toggleRemindMe(id);
+  }
 
   render() {
     const {
       remindMeBefore,
       visible,
       hideDialog,
-      handleValueChange,
     } = this.props;
 
     const {
@@ -52,7 +55,7 @@ export default class RemindMe extends React.Component {
               right={() => (
                 <Switch
                   value={fiveMin}
-                  onValueChange={() => handleValueChange('fiveMin')}
+                  onValueChange={() => this._toggle('fiveMin')}
                 />
               )}
             />
@@ -61,7 +64,7 @@ export default class RemindMe extends React.Component {
               right={() => (
                 <Switch
                   value={tenMin}
-                  onValueChange={() => handleValueChange('tenMin')}
+                  onValueChange={() => this._toggle('tenMin')}
                 />
               )}
             />
@@ -70,7 +73,7 @@ export default class RemindMe extends React.Component {
               right={() => (
                 <Switch
                   value={fifteenMin}
-                  onValueChange={() => handleValueChange('fifteenMin')}
+                  onValueChange={() => this._toggle('fifteenMin')}
                 />
               )}
             />
@@ -79,7 +82,7 @@ export default class RemindMe extends React.Component {
               right={() => (
                 <Switch
                   value={thirtyMin}
-                  onValueChange={() => handleValueChange('thirtyMin')}
+                  onValueChange={() => this._toggle('thirtyMin')}
                 />
               )}
             />
@@ -88,7 +91,7 @@ export default class RemindMe extends React.Component {
               right={() => (
                 <Switch
                   value={fortyfiveMin}
-                  onValueChange={() => handleValueChange('fortyfiveMin')}
+                  onValueChange={() => this._toggle('fortyfiveMin')}
                 />
               )}
             />
@@ -97,7 +100,7 @@ export default class RemindMe extends React.Component {
               right={() => (
                 <Switch
                   value={oneHour}
-                  onValueChange={() => handleValueChange('oneHour')}
+                  onValueChange={() => this._toggle('oneHour')}
                 />
               )}
             />
@@ -106,7 +109,7 @@ export default class RemindMe extends React.Component {
               right={() => (
                 <Switch
                   value={oneDay}
-                  onValueChange={() => handleValueChange('oneDay')}
+                  onValueChange={() => this._toggle('oneDay')}
                 />
               )}
             />
