@@ -2,16 +2,24 @@ import React from 'react';
 import IconBadge from '../IconBadge';
 
 export default class Button extends React.Component {
-  shouldComponentUpdate = (nextProps) => (this.props.isStarred !== nextProps.isStarred);
+  shouldComponentUpdate = (nextProps) => (this.props.starsCount !== nextProps.starsCount);
 
   _onContinue = async () => {
     const {
       id,
-      onSubmit
+      isStarred,
+      onUnstarEvent,
+      onStarEvent,
     } = this.props;
+    const input = { id };
     try {
-      await onSubmit({ id });
+      if (isStarred) {
+        await onUnstarEvent(input);
+      } else {
+        await onStarEvent(input);
+      }
     } catch (error) {
+      alert(error.message);
     }
   }
 

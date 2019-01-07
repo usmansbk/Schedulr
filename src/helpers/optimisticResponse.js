@@ -161,14 +161,13 @@ export const toggleStarResponse = (input) => {
     }
   } = getEventFromCache(query, input);
   const action = isStarred ? 'unstarEvent' : 'starEvent';
-
   return ({
     __typename,
     [action] : {
       __typename: 'Event',
       id: input.id,
       isStarred: !isStarred,
-      starsCount: isStarred ? --starsCount : ++starsCount
+      starsCount: isStarred ? starsCount - 1 : starsCount + 1
     }
   });
 };

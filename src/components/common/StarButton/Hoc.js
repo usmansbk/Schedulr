@@ -7,28 +7,27 @@ import { toggleStarResponse } from '../../../helpers/optimisticResponse';
 export default compose(
   graphql(gql(starEvent), {
     alias: 'withStarEvent',
-    skip: props => props.isStarred,
+    options: {},
     props: ({ mutate, ownProps }) => ({
-      onSubmit: async (input) => await mutate({
+      onStarEvent: async (input) => await mutate({
         variables: {
           input
         },
         optimisticResponse: () => toggleStarResponse(input)
       }),
       ...ownProps
-    })
+    }),
   }),
   graphql(gql(unstarEvent), {
     alias: 'withUnstarEvent',
-    skip: props => !props.isStarred,
     props: ({ mutate, ownProps }) => ({
-      onSubmit: async (input) => await mutate({
+      onUnstarEvent: async (input) => await mutate({
         variables: {
           input
         },
         optimisticResponse: () => toggleStarResponse(input)
       }),
       ...ownProps
-    })
+    }),
   })
 )(Button);
