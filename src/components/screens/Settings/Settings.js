@@ -43,7 +43,7 @@ export default ({
           title="Remind me"
           disabled={muteReminder}
           right={() => <List.Icon icon="chevron-right" />}
-          onPress={!muteReminder && openRemindMeDialog}
+          onPress={openRemindMeDialog}
         />
         <Divider />
         <List.Item
@@ -51,7 +51,7 @@ export default ({
           right={() => (
             <Switch
               disabled={muteReminder}
-              value={!muteReminder && headsUp}
+              value={headsUp}
               onValueChange={() => handleValueChange('headsUp')}
             />
           )}
@@ -75,7 +75,7 @@ export default ({
           right={() => (
             <Switch
               disabled={muteReminder}
-              value={!muteReminder && eventEnded}
+              value={eventEnded}
               onValueChange={() => handleValueChange('eventEnded')}
             />
           )}
