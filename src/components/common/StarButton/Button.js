@@ -10,14 +10,14 @@ export default class Button extends React.Component {
     };
   }
 
-  // componentWillReceiveProps = (nextProps) => {
-  //   if (nextProps.isStarred !== this.state.isStarred) {
-  //     this.setState({
-  //       isStarred: nextProps.isStarred,
-  //       starsCount: nextProps.starsCount
-  //     });
-  //   }
-  // }
+  componentWillReceiveProps = (nextProps) => {
+    if (nextProps.isStarred !== this.state.isStarred) {
+      this.setState({
+        isStarred: nextProps.isStarred,
+        starsCount: nextProps.starsCount
+      });
+    }
+  }
 
   _toggle = () => {
     this.setState(prev => ({
@@ -49,9 +49,12 @@ export default class Button extends React.Component {
       color,
       size,
       activeColor,
-      isStarred,
-      starsCount,
     } = this.props;
+
+    const {
+      isStarred,
+      starsCount
+    } = this.state;
 
     return (
       <IconBadge
