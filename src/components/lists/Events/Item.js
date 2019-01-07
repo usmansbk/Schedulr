@@ -41,6 +41,7 @@ export default class Item extends React.PureComponent {
     } = this.props;
     const [ first, second ] = boardName.split(' ');
     const avatarName = `${first} ${second ? second : ''}`;
+    const isOffline = id[0] === '-';
     
     return (
       <TouchableRipple
@@ -62,7 +63,7 @@ export default class Item extends React.PureComponent {
           <View style={styles.right}>
             <View style={styles.itemBody}>
               <View style={styles.body}>
-                <Text style={styles.itemHeadline} numberOfLines={2} ellipsizeMode="tail">{title}</Text>
+                <Text style={isOffline ? styles.offlineTitle : styles.itemHeadline} numberOfLines={2} ellipsizeMode="tail">{title}</Text>
                 <Text numberOfLines={1} ellipsizeMode="tail" style={styles.itemNote}>{details}</Text>
                 { isCancelled && <Text style={styles.cancelled}>Cancelled</Text>}
               </View>

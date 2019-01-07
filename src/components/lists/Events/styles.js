@@ -53,6 +53,11 @@ export default StyleSheet.create({
     fontWeight: 'bold',
     color: colors.light_gray_3
   },
+  offlineTitle: {
+    color: gray,
+    fontWeight: 'bold',
+    fontSize: 18
+  },
   empty: {
     flex: 1,
     justifyContent: 'center',
