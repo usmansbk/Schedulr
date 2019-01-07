@@ -152,6 +152,10 @@ export const openBoardResponse = (input) => ({
   })
 });
 
+export const toggleStarResponse = (input) => ({
+  
+})
+
 function getBoardFromCache(query, input) {
   return client.readQuery({
     query,
