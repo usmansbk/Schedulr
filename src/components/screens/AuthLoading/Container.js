@@ -14,7 +14,7 @@ export default class Container extends Component {
       const currentUser = await Auth.currentAuthenticatedUser();
       userToken = currentUser;
     } catch (error) {
-      alert(error.message);
+      console.log(error.message);
     }
     this.props.navigation.navigate(userToken ? 'App' : 'Auth');
   }
