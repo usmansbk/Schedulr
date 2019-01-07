@@ -63,7 +63,7 @@ export default ({
           right={() => (
             <Switch
               disabled={muteReminder}
-              value={!muteReminder && starredAlarm}
+              value={starredAlarm}
               onValueChange={() => handleValueChange('starredAlarm')}
             />
           )}
