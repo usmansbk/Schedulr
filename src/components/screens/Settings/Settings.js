@@ -78,17 +78,21 @@ export default ({
         />
         <Divider />
       </List.Section>
-      <List.Section title="Push Notifications">
-        <List.Item
-          title="Disable"
-          right={() => (
-            <Switch
-              value={disablePush}
-              onValueChange={() => handleValueChange('disablePush')}
+      {
+        false && (
+          <List.Section title="Push Notifications">
+            <List.Item
+              title="Disable"
+              right={() => (
+                <Switch
+                  value={disablePush}
+                  onValueChange={() => handleValueChange('disablePush')}
+                />
+              )}
             />
-          )}
-        />
-      </List.Section>
+          </List.Section>
+        )
+      }
     </ScrollView>
   </React.Fragment>
 );
