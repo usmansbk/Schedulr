@@ -125,12 +125,12 @@ export default StyleSheet.create({
   },
   status: {
     fontFamily: 'sans-serif-bold',
-    color: colors.black_2,
+    color: colors.light_gray_3,
     fontSize: 16
   },
   duration: {
     fontWeight: 'bold',
-    color: colors.light_gray_4,
+    color: colors.light_gray_3,
     fontSize: 16
   }
 });
