@@ -1,5 +1,6 @@
 import React from 'react';
 import { Dimensions } from 'react-native';
+import PushNotification from 'react-native-push-notification';
 import {
   createAppContainer,
   createBottomTabNavigator,
@@ -10,8 +11,17 @@ import SearchRoute from '../../tabs/Search';
 import HomeRoute from '../../tabs/Home';
 import NotificationRoute from '../../tabs/Notifications';
 import NotificationsIcon from '../../common/NotificationIcon';
+import NavigationService from '../../../config/navigation';
 import styles, { activeColor, inactiveTintColor, FONT_SIZE, BLUR_SIZE } from './styles';
 
+// Configure notifications for local events reminder
+PushNotification.configure({
+  onNotification: notification => {
+    const { data: { id } } = notification;
+    NavigationService.navigate('EventDetails', { id });
+    // notification.finish(PushNotificationIOS.FetchResult.NoData);
+  }
+});
 
 const Home = createBottomTabNavigator({
   Home: { screen: HomeRoute },
