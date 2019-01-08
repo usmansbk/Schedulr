@@ -18,6 +18,13 @@ export default class EventDetails extends React.Component {
     const isRecurring = this.props.event.repeat !== ONE_TIME_EVENT;
     this.props.handleCancel(isRecurring ? this.props.event.startAt : null);
   };
+  _getDuration = (end, start) => {
+    return moment(end).from(start, true);
+  };
+  _getStartAgo = (start) => {
+    return moment(start).fromNow();
+  };
+  
  shouldComponentUpdate = (nextProps) => !isEqual(nextProps.event, this.props.event);
 
   render() {
@@ -95,6 +102,8 @@ export default class EventDetails extends React.Component {
           title={title}
           date={formatDate(startAt, endAt, allDay)}
           nextDate={recurring && this._getRepeatDate()}
+          duration={this._getDuration(endAt, startAt)}
+          startAgo={this._getStartAgo(startAt)}
           eventType={decapitalize(eventType)}
           location={location && location.address}
           boardName={board.name}

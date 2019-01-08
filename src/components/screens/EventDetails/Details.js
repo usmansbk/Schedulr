@@ -17,6 +17,8 @@ export default ({
   createdAt,
   updatedAt,
   description,
+  duration,
+  startAgo,
   isCancelled,
   isStarred,
   starsCount,
@@ -29,9 +31,12 @@ export default ({
     <View style={styles.container}>
       <View style={styles.content}>
         <View style={styles.head}>
-          { isCancelled && <Text style={[styles.date, styles.red]}>Cancelled</Text>}
+          { isCancelled ? <Text style={[styles.date, styles.red]}>Cancelled</Text> : 
+            <Text style={styles.date}>{startAgo}</Text>
+          }
           <Headline style={styles.title}>{title}</Headline>
           <Text style={styles.date}>{date}</Text>
+          <Text style={styles.date}>{duration}</Text>
         </View>
         <Divider />
         <View style={styles.body}>
