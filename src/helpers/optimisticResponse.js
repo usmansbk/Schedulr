@@ -152,22 +152,38 @@ export const openBoardResponse = (input) => ({
   })
 });
 
-export const toggleStarResponse = (input) => {
+export const unstarResponse = (input) => {
   const query = gql(getEvent);
   const {
     getEvent: {
-      isStarred,
       starsCount
     }
   } = getEventFromCache(query, input);
-  const action = isStarred ? 'unstarEvent' : 'starEvent';
   return ({
     __typename,
-    [action] : {
+    unstarEvent : {
       __typename: 'Event',
       id: input.id,
-      isStarred: !isStarred,
-      starsCount: isStarred ? starsCount - 1 : starsCount + 1
+      isStarred: false,
+      starsCount: starsCount - 1
+    }
+  });
+}
+
+export const starResponse = (input) => {
+  const query = gql(getEvent);
+  const {
+    getEvent: {
+      starsCount
+    }
+  } = getEventFromCache(query, input);
+  return ({
+    __typename,
+    starEvent : {
+      __typename: 'Event',
+      id: input.id,
+      isStarred: true,
+      starsCount: starsCount + 1
     }
   });
 };
