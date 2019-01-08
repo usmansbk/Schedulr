@@ -27,7 +27,6 @@ export const toggleRemindMeBefore = `mutation ToggleRemindMeBefore($id: ID!) {
     tenMin
     fifteenMin
     thirtyMin
-    fortyfiveMin
     oneHour
     oneDay
   }

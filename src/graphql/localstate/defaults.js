@@ -14,7 +14,6 @@ export default {
     tenMin: false,
     fifteenMin: false,
     thirtyMin: false,
-    fortyfiveMin: false,
     oneHour: false,
     oneDay: false
   }

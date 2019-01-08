@@ -9,7 +9,6 @@ import {
   TEN_MINUTES,
   FIFTEEN_MINUTES,
   THIRTY_MINUTES,
-  FORTY_FIVE_MINUTES,
   ONE_HOUR,
   ONE_DAY
 } from '../lib/time';
@@ -81,7 +80,6 @@ const schdl = (event, before) => {
     tenMin,
     fifteenMin,
     thirtyMin,
-    fortyfiveMin,
     oneHour,
     oneDay,
   } = before;
@@ -107,10 +105,6 @@ const schdl = (event, before) => {
 
     if (thirtyMin && distance > THIRTY_MINUTES) {
       setReminder(event, { amount: 30, unit: 'minutes' });
-    }
-
-    if (fortyfiveMin && distance > FORTY_FIVE_MINUTES) {
-      setReminder(event, { amount: 45, unit: 'minutes' });
     }
 
     if (oneHour && distance > ONE_HOUR) {

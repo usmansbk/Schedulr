@@ -14,7 +14,6 @@ export default class RemindMe extends React.Component {
       tenMin: false,
       fifteenMin: false,
       thirtyMin: false,
-      fortyfiveMin: false,
       oneHour: false,
       oneDay: false,
     }
@@ -36,7 +35,6 @@ export default class RemindMe extends React.Component {
       tenMin,
       fifteenMin,
       thirtyMin,
-      fortyfiveMin,
       oneHour,
       oneDay,
     } = remindMeBefore;
@@ -83,15 +81,6 @@ export default class RemindMe extends React.Component {
                 <Switch
                   value={thirtyMin}
                   onValueChange={() => this._toggle('thirtyMin')}
-                />
-              )}
-            />
-            <List.Item
-              title="45 minutes before"
-              right={() => (
-                <Switch
-                  value={fortyfiveMin}
-                  onValueChange={() => this._toggle('fortyfiveMin')}
                 />
               )}
             />

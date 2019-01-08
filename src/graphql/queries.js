@@ -25,7 +25,6 @@ export const remindMeBefore = `{
     tenMin
     fifteenMin
     thirtyMin
-    fortyfiveMin
     oneHour
     oneDay
   }
