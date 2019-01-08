@@ -1234,6 +1234,13 @@ aws-amplify@^1.1.10:
     "@aws-amplify/storage" "^1.0.19"
     "@aws-amplify/xr" "^0.1.8"
 
+aws-appsync-react@^1.2.5:
+  version "1.2.5"
+  resolved "https://registry.yarnpkg.com/aws-appsync-react/-/aws-appsync-react-1.2.5.tgz#ef829ef8acda5fc912f541d02773d5f9519776e3"
+  integrity sha512-1WDain8xdqq5uuI91D9oy97yipQyjIEdlrJdyhFYf3A1OcRU++m4QyLXfhny2wMskOPm0SYjXlNZ7ZvHPDtXbQ==
+  dependencies:
+    prop-types "^15.6.0"
+
 aws-appsync@^1.5.2:
   version "1.5.2"
   resolved "https://registry.yarnpkg.com/aws-appsync/-/aws-appsync-1.5.2.tgz#8d5d64abc1c6bb792fed038d9833039265c0231e"

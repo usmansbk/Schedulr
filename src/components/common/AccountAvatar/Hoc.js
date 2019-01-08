@@ -10,7 +10,7 @@ export default compose(
 		alias: 'withAccountAvatar',
 		fetchPolicy: 'cache-only',
 		props: ({ data }) => ({
-			me: data && data.me
+			me: data && data.me || undefined
 		})
 	})
 )(Container);

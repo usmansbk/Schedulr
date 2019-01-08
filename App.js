@@ -2,6 +2,7 @@ import React from 'react';
 import { Provider as PaperProvider } from 'react-native-paper';
 import { MenuProvider } from 'react-native-popup-menu';
 import { ApolloProvider } from 'react-apollo';
+import { Rehydrated } from 'aws-appsync-react';
 import SplashScreen from 'react-native-splash-screen';
 import Amplify from 'aws-amplify';
 import AppContainer from './src/App';
@@ -24,11 +25,13 @@ export default class App extends React.Component {
       <MenuProvider backHandler={true}>
         <PaperProvider theme={theme}>
           <ApolloProvider client={client}>
-            <AppContainer
-              ref={navigatorRef => {
-                NavigationService.setTopLevelNavigator(navigatorRef);
-              }}
-            />
+            <Rehydrated>
+              <AppContainer
+                ref={navigatorRef => {
+                  NavigationService.setTopLevelNavigator(navigatorRef);
+                }}
+              />
+            </Rehydrated>
           </ApolloProvider>
         </PaperProvider>
       </MenuProvider>
