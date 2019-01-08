@@ -1,6 +1,5 @@
 import moment from 'moment';
 import { SectionListDataProp } from 'react-native-section-list-get-item-layout';
-import { Event } from '../types/types';
 
 export const sortBy = (arr, key) => {
   return arr.sort((a, b) => {
