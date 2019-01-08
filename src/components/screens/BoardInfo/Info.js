@@ -147,7 +147,7 @@ export default class Info extends React.Component {
                 </Text>
               </View>
               <View style={styles.admin}>
-                <UserAvater rounded size={32} name={adminName}/>
+                <UserAvater rounded size={32} name={adminName} src={author.pictureUrl}/>
                 <Text style={styles.byLine}>
                   by <Text
                     onPress={() => navigateToProfile(adminId)}
