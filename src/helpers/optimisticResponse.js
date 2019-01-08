@@ -165,7 +165,7 @@ export const unstarResponse = (input) => {
       __typename: 'Event',
       id: input.id,
       isStarred: false,
-      starsCount: starsCount - 1
+      starsCount: starsCount ? starsCount - 1 : starsCount
     }
   });
 }
@@ -174,6 +174,7 @@ export const starResponse = (input) => {
   const query = gql(getEvent);
   const {
     getEvent: {
+      isStarred,
       starsCount
     }
   } = getEventFromCache(query, input);
@@ -183,7 +184,7 @@ export const starResponse = (input) => {
       __typename: 'Event',
       id: input.id,
       isStarred: true,
-      starsCount: starsCount + 1
+      starsCount: isStarred ? starsCount : starsCount + 1
     }
   });
 };
