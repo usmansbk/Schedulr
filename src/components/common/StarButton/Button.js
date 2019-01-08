@@ -2,8 +2,19 @@ import React from 'react';
 import IconBadge from '../IconBadge';
 
 export default class Button extends React.Component {
+  state = {
+    isStarred: this.props.isStarred,
+    starsCount: this.props.starsCount
+  };
 
-  _onContinue =  async () => {
+  toggle = () => {
+    this.setState(({ isStarred, starsCount }) => ({
+      isStarred: !isStarred,
+      starsCount: isStarred ? starsCount - 1 : starsCount + 1
+    }), this._onContinue)
+  };
+
+  _onContinue = () => {
     const {
       id,
       isStarred,
@@ -13,9 +24,9 @@ export default class Button extends React.Component {
     const input = { id };
     try {
       if (isStarred) {
-        await onUnstarEvent(input);
+        onUnstarEvent(input);
       } else {
-        await onStarEvent(input);
+        onStarEvent(input);
       }
     } catch (error) {
     }
@@ -23,17 +34,20 @@ export default class Button extends React.Component {
 
   render() {
     const {
-      isStarred,
-      starsCount,
       color,
       size,
       activeColor,
     } = this.props;
 
+    const {
+      isStarred,
+      starsCount,
+    } = this.state;
+
     return (
       <IconBadge
         icon={`star${isStarred ? '' : '-border'}`}
-        onPress={this._onContinue}
+        onPress={this.toggle}
         size={size}
         color={isStarred ? activeColor : color}
         count={starsCount}

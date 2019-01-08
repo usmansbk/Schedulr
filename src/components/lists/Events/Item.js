@@ -8,6 +8,8 @@ import Avatar from 'react-native-user-avatar';
 import { CachedImage } from 'react-native-cached-image';
 import Actions from '../../common/Actions';
 import styles, {
+  ITEM_HEIGHT,
+  ITEM_HEIGHT_2,
   primary_light,
   gray,
   AVATAR_SIZE,
@@ -46,7 +48,9 @@ export default class Item extends React.PureComponent {
     return (
       <TouchableRipple
         onPress={this._onPress}
-        style={styles.itemContainer}
+        style={[styles.itemContainer, {
+          height: isCancelled ? ITEM_HEIGHT : ITEM_HEIGHT_2
+        }]}
       >
         <View style={styles.itemContent}>
           <View style={styles.left}>
