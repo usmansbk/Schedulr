@@ -23,8 +23,7 @@ class Container extends React.Component {
 
   _clearStore = async () => {
     try {
-      await client.initQueryManager();
-      await client.resetStore();
+      // await client.resetStore();
       await client.clearStore();
     } catch(e) {}
   };
