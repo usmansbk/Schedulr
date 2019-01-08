@@ -24,6 +24,7 @@ class Container extends React.Component {
     this.setState({ loading: false });
     this._handleDismiss();
     this.props.navigation.navigate('Auth');
+    client.initQueryManager();
     try { await client.resetStore(); } catch (e) {}
     Analytics.record('logout');
   };

@@ -16,7 +16,6 @@ export default ({
   muteReminder,
   starredAlarm,
   headsUp,
-  eventEnded,
   disablePush
 }) => (
   <React.Fragment>
@@ -65,18 +64,6 @@ export default ({
               disabled={muteReminder}
               value={starredAlarm}
               onValueChange={() => handleValueChange('starredAlarm')}
-            />
-          )}
-        />
-        <Divider />
-        <List.Item
-          title="Event ended"
-          description="Get notified when an event end's?"
-          right={() => (
-            <Switch
-              disabled={muteReminder}
-              value={eventEnded}
-              onValueChange={() => handleValueChange('eventEnded')}
             />
           )}
         />

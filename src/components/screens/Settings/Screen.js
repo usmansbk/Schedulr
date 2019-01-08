@@ -7,7 +7,6 @@ export default class Screen extends React.Component {
     options: {
       headsUp: false,
       starredAlarm: true,
-      eventEnded: false,
       muteReminder: false,
     }
   }
@@ -25,7 +24,6 @@ export default class Screen extends React.Component {
       options: {
         headsUp,
         starredAlarm,
-        eventEnded,
         muteReminder
       }
     } = this.props;

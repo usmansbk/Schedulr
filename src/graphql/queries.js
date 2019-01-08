@@ -14,7 +14,6 @@ export const userOptions = `{
     id
     headsUp
     starredAlarm
-    eventEnded
     muteReminder
   }
 }`;

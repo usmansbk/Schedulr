@@ -16,7 +16,6 @@ export const toggleOption = `mutation ToggleOption($id: ID!) {
     id
     headsUp
     starredAlarm
-    eventEnded
     muteReminder
   }
 }`;

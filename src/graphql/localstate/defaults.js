@@ -5,7 +5,6 @@ export default {
     __typename: 'Options',
     headsUp: false,
     starredAlarm: false,
-    eventEnded: false,
     muteReminder: false,
   },
   remindMeBefore: {
