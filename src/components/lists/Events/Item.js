@@ -44,7 +44,6 @@ export default class Item extends React.PureComponent {
     const [ first, second ] = boardName.split(' ');
     const avatarName = `${first} ${second ? second : ''}`;
     const isOffline = id[0] === '-';
-    console.log(id);
     
     return (
       <TouchableRipple

@@ -93,7 +93,7 @@ export default StyleSheet.create({
     width: 200
   },
   itemHeadline: {
-    fontSize: 24,
+    fontSize: 22,
     fontFamily: 'sans-serif-bold',
     width: 200
   },
