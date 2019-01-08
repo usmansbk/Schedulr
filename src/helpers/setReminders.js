@@ -75,50 +75,18 @@ const schdlStart = (event) => {
   PushNotification.localNotificationSchedule(notification);
 };
 
-const schdlEnd = (event) => {
-  const {
-    id,
-    title,
-    startAt,
-    eventType,
-    repeat,
-  } = event;
-  const date = moment(startAt).toDate();
-  const message = `${decapitalize(eventType)} ending now`;
-  const repeatType = getRepeatType(repeat);
-  const repeatTime = {};
-  if (repeatType === 'time') {
-    repeatTime.repeatTime = getRepeatTime(date.getTime(), repeat);
-  }
-
-  const notification = {
-    title,
-    date,
-    message,
-    data: JSON.stringify({
-      id
-    }),
-    repeatType,
-    ...repeatTime
-  };
-  PushNotification.localNotificationSchedule(notification);
-};
-
 const schdl = (event, options, before) => {
   const {
     fiveMin,
     tenMin,
     fifteenMin,
     thirtyMin,
-    fortyFiveMin,
+    fortyfiveMin,
     oneHour,
     oneDay,
   } = before;
-  const endReminder = options.endReminder;
 
   const start = Date.parse(event.startAt);
-  const end = Date.parse(event.endAt);
-  const isEnded = (Date.now() > end);
   const isStarted = (Date.now() > start);
   const isCancelled = event.isCancelled;
 
@@ -141,7 +109,7 @@ const schdl = (event, options, before) => {
       setReminder(event, { amount: 30, unit: 'minutes' });
     }
 
-    if (fortyFiveMin && distance > FORTY_FIVE_MINUTES) {
+    if (fortyfiveMin && distance > FORTY_FIVE_MINUTES) {
       setReminder(event, { amount: 45, unit: 'minutes' });
     }
 
@@ -152,9 +120,6 @@ const schdl = (event, options, before) => {
     if (oneDay && distance > ONE_DAY) {
       setReminder(event, { amount: 1, unit: 'day' });
     }
-  }
-  if (endReminder && !isEnded && !isCancelled) {
-    schdlEnd(event);
   }
 };
 

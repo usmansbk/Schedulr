@@ -32,7 +32,6 @@ export default class Screen extends React.Component {
         <Settings
           headsUp={headsUp}
           starredAlarm={starredAlarm}
-          eventEnded={eventEnded}
           muteReminder={muteReminder}
           goBack={this._goBack}
           handleValueChange={this._handleValueChange}
