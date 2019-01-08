@@ -75,7 +75,7 @@ const schdlStart = (event) => {
   PushNotification.localNotificationSchedule(notification);
 };
 
-const schdl = (event, options, before) => {
+const schdl = (event, before) => {
   const {
     fiveMin,
     tenMin,
@@ -128,10 +128,11 @@ const schdlAll = (events) => {
     PushNotification.cancelAllLocalNotifications();
     const { options } = client.readQuery({ query: gql(userOptions)});
     const { remindMeBefore } = client.readQuery({ query: gql(remindMeBeforeQuery) });
-
-    events.forEach((event) => {
-      schdl(event, options, remindMeBefore);
-    });
+    if (!options.muteReminder) {
+      events.forEach((event) => {
+        schdl(event, remindMeBefore);
+      });
+    }
   });
 };
 
