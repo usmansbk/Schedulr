@@ -89,7 +89,9 @@ class List extends React.Component {
     navigateToBoardEvents={this._navigateToBoardEvents}
   />);
   _getItemLayout = sectionListGetItemLayout({
-    getItemHeight: (rowData) => rowData.isCancelled ? ITEM_HEIGHT : ITEM_HEIGHT_2,
+    getItemHeight: (rowData) => {
+      return rowData.isCancelled ? ITEM_HEIGHT : ITEM_HEIGHT_2
+    },
     getSeparatorHeight: () => SEPERATOR_HEIGHT,
     getSectionHeaderHeight: () => SECTION_HEADER_HEIGHT,
     listHeaderHeight: HEADER_HEIGHT,
