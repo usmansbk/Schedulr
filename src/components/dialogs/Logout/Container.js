@@ -23,21 +23,26 @@ class Container extends React.Component {
 
   _clearStore = async () => {
     try {
-      // await client.resetStore();
       await client.clearStore();
     } catch(e) {}
   };
 
   _awsSignOut = async () => {
-    try { await Auth.signOut(); } catch(e) {}
+    try {
+      await Auth.signOut();
+    } catch(e) {}
   };
 
   _fbLogout = async () => {
-    try { await LoginManager.logOut(); } catch(e) {}
+    try {
+      await LoginManager.logOut();
+    } catch(e) {}
   };
 
   _googleSignout = async () => {
-    try { await GoogleSignin.signOut(); } catch(e) {}
+    try {
+      await GoogleSignin.signOut();
+    } catch(e) {}
   };
 
   _handleDismiss = () => this.props.handleDismiss();
