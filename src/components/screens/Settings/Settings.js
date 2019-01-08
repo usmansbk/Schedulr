@@ -58,7 +58,7 @@ export default ({
         <Divider />
         <List.Item
           title="Starred alarm"
-          description="Set long reminders for starred events?"
+          description="Play long alarm sound?"
           right={() => (
             <Switch
               disabled={muteReminder}
