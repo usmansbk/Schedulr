@@ -15,11 +15,6 @@ export const FORTY_FIVE_MINUTES = 3 * FIFTEEN_MINUTES;
 const DATE_ONLY = 'ddd DD, MMM YYYY';
 const DATE_TIME = "ddd DD, MMM YYYY, hh:mm a";
 
-
-/**
- * Converts time frequency to milliseconds
- * @param { TimeFrequency } repeat 
- */
 export const repeatLength = (repeat) => {
   switch(repeat) {
     case 'DAILY': return ONE_DAY;
@@ -30,12 +25,6 @@ export const repeatLength = (repeat) => {
   }
 };
 
-/**
- * Returns a pretty human readable date
- * @param { Date } startAt 
- * @param { Date } endAt 
- * @param { Boolean } allDay 
- */
 export const formatDate = (startAt, endAt, allDay) => {
   const start = Date.parse(startAt);
   const end = Date.parse(endAt);
@@ -54,10 +43,6 @@ export const formatDate = (startAt, endAt, allDay) => {
   return `From ${moment(start).format('ddd, Do MMM YYYY, hh:mm a')}\nTo ${moment(end).format('ddd, Do MMM YYYY, hh:mm a')}`  
 }
 
-/**
- * Returns the next date of a recurring event
- * @param { Event } event
- */
 export const getNextDate = (event) => {
   const { startAt, repeat, allDay} = event;
   const refDate = Date.now();
