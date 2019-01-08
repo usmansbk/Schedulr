@@ -1,5 +1,4 @@
 import moment from 'moment';
-import { SectionListDataProp } from 'react-native-section-list-get-item-layout';
 
 export const sortBy = (arr, key) => {
   return arr.sort((a, b) => {
