@@ -1,6 +1,6 @@
 import React from 'react';
 import { Dimensions } from 'react-native';
-import PushNotification from 'react-native-push-notification';
+import LocalNotifications from 'react-native-push-notification';
 import {
   createAppContainer,
   createBottomTabNavigator,
@@ -15,7 +15,7 @@ import NavigationService from '../../../config/navigation';
 import styles, { activeColor, inactiveTintColor, FONT_SIZE, BLUR_SIZE } from './styles';
 
 // Configure notifications for local events reminder
-PushNotification.configure({
+LocalNotifications.configure({
   onNotification: notification => {
     const { data: { id } } = notification;
     NavigationService.navigate('EventDetails', { id });
