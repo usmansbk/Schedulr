@@ -19,7 +19,6 @@ import { formatDate } from '../../../lib/time';
 import sectionize, { sortBy } from '../../../lib/sectionizr';
 import styles, {
   ITEM_HEIGHT,
-  ITEM_HEIGHT_2,
   SEPERATOR_HEIGHT,
   SECTION_HEADER_HEIGHT,
   HEADER_HEIGHT,
@@ -89,7 +88,7 @@ class List extends React.Component {
     navigateToBoardEvents={this._navigateToBoardEvents}
   />);
   _getItemLayout = sectionListGetItemLayout({
-    getItemHeight: (rowData) => rowData.isCancelled ? ITEM_HEIGHT : ITEM_HEIGHT_2,
+    getItemHeight: () => ITEM_HEIGHT,
     getSeparatorHeight: () => SEPERATOR_HEIGHT,
     getSectionHeaderHeight: () => SECTION_HEADER_HEIGHT,
     listHeaderHeight: HEADER_HEIGHT,
