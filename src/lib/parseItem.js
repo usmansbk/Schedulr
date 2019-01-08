@@ -1,15 +1,10 @@
 import moment from 'moment';
 import { decapitalize } from './capitalizr';
 import { ONE_TIME_EVENT } from './constants';
-import { Event } from '../types/types';
 
 const START_TIME = 'hh:mm a';
 const DATE_FORMAT = 'DD MM YYYY';
 
-/**
- * Parse an event details to a simple readable format
- * @param { Event } event
- */
 export const parseDetails = (event) => {
   const eventType = decapitalize(event.eventType);
   const isRecurring = event.repeat !== ONE_TIME_EVENT;
@@ -18,18 +13,10 @@ export const parseDetails = (event) => {
   return note;
 };
 
-/**
- * 
- * @param { Event } param0 
- */
 export const startTime = ({ allDay, startAt }) => {
   return  allDay ? 'All-day' : moment(Date.parse(startAt)).format(START_TIME).toUpperCase()
 };
 
-/**
- * 
- * @param { Event } param0 
- */
 export const endTime = ({ endAt, startAt }) => {
   const parsedEnd = Date.parse(endAt);
   const parsedStart = Date.parse(startAt);
@@ -39,10 +26,26 @@ export const endTime = ({ endAt, startAt }) => {
   return (isSameDay) ? moment(parsedEnd).format(START_TIME).toUpperCase() : '';
 };
 
-/**
- * 
- * @param { Event } param0 
- */
 export const isStarted = ({ isCancelled, startAt, endAt }) => {
   return (!isCancelled && (Date.now() > Date.parse(startAt)) && (Date.now() < Date.parse(endAt)));
 };
+
+
+export const getDuration = (startAt, endAt) => {
+  return moment(startAt).from(endAt, true);
+}
+
+export const getStatus = ({
+  isCancelled,
+  cancelledDates,
+  startAt,
+  endAt
+}) => {
+  const cancelled =  isCancelled || cancelledDates.includes(startAt);
+  if (cancelled) return 'Cancelled';
+  const ended = Date.now() > Date.parse(endAt);
+  if (ended) return 'Ended';
+  const ongoing = Date.now() > Date.parse(startAt) && !ended;
+  if (ongoing) return 'Ongoing';
+  return 'Pending';
+}

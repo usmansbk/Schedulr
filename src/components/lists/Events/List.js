@@ -13,7 +13,9 @@ import {
   parseDetails,
   startTime,
   endTime,
-  isStarted
+  isStarted,
+  getDuration,
+  getStatus
 } from '../../../lib/parseItem';
 import { formatDate } from '../../../lib/time';
 import sectionize, { sortBy } from '../../../lib/sectionizr';
@@ -77,13 +79,14 @@ class List extends React.Component {
     endTime={endTime({ endAt, startAt })}
     date={formatDate(startAt, endAt, allDay)}
     isStarted={isStarted({ startAt, endAt, isCancelled })}
-    isCancelled={isCancelled || cancelledDates.includes(startAt)}
+    status={getStatus({ isCancelled, cancelledDates, startAt, endAt})}
     commentsCount={commentsCount}
     starsCount={starsCount}
     isStarred={isStarred} 
     boardId={board.id}
     boardName={board.name}
     allDay={allDay}
+    duration={getDuration(startAt, endAt)}
     onPressItem={this._onPressItem}
     onPressCommentButton={this._onPressCommentItem}
     navigateToBoardEvents={this._navigateToBoardEvents}

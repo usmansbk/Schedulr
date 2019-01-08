@@ -30,7 +30,8 @@ export default class Item extends React.PureComponent {
       details,
       startTime,
       endTime,
-      isStarted,
+      duration,
+      status,
       date,
       allDay,
       eventType,
@@ -69,14 +70,10 @@ export default class Item extends React.PureComponent {
               <View style={styles.body}>
                 <Text style={isOffline ? styles.offlineTitle : styles.itemHeadline} numberOfLines={2} ellipsizeMode="tail">{title}</Text>
                 <Text numberOfLines={1} ellipsizeMode="tail" style={styles.itemNote}>{details}</Text>
-                { isCancelled && <Text style={styles.cancelled}>Cancelled</Text>}
+                <Text style={styles.itemNote}>{duration}· {status}</Text>}
               </View>
               <View>
-                <Text
-                  style={[styles.time, {
-                  color: isStarted ? primary_light : gray
-                  }]}>{startTime}
-                </Text>
+                <Text style={styles.time}>{startTime}</Text>
                 {
                   !allDay && (eventType !== REMINDER) && (
                     <Text style={styles.time}>{endTime}</Text>
