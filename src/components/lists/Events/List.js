@@ -10,7 +10,6 @@ import Separator from './Separator';
 import SectionHeader from './SectionHeader';
 import Item from './Item';
 import {
-  parseDetails,
   startTime,
   endTime,
   isStarted,
@@ -19,6 +18,7 @@ import {
 } from '../../../lib/parseItem';
 import { formatDate } from '../../../lib/time';
 import sectionize, { sortBy } from '../../../lib/sectionizr';
+import { decapitalize } from '../../../lib/capitalizr';
 import styles, {
   ITEM_HEIGHT,
   ITEM_HEIGHT_2,
@@ -73,8 +73,8 @@ class List extends React.Component {
     id={id}
     title={title}
     location={location && location.address}
-    eventType={eventType}
-    details={parseDetails({ startAt, endAt, allDay, eventType, repeat })}
+    eventType={decapitalize(eventType, true)}
+    repeat={repeat === 'NEVER' ? 'One-time' : decapitalize(repeat)}
     startTime={startTime({ allDay, startAt })}
     endTime={endTime({ endAt, startAt })}
     date={formatDate(startAt, endAt, allDay)}

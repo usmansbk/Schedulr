@@ -25,7 +25,7 @@ export default class Item extends React.PureComponent {
       id,
       title,
       location,
-      details,
+      repeat,
       startTime,
       endTime,
       duration,
@@ -67,8 +67,8 @@ export default class Item extends React.PureComponent {
             <View style={styles.itemBody}>
               <View style={styles.body}>
                 <Text style={isOffline ? styles.offlineTitle : styles.itemHeadline} numberOfLines={2} ellipsizeMode="tail">{title}</Text>
-                <Text numberOfLines={1} ellipsizeMode="tail" style={styles.itemNote}>{details}</Text>
-                <Text style={styles.status}>{duration} · {status}</Text>
+                <Text style={styles.duration}>{duration} {eventType}</Text>
+                <Text style={styles.status}>{repeat} · {status}</Text>
               </View>
               <View>
                 <Text style={styles.time}>{startTime}</Text>

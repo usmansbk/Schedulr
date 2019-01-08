@@ -34,7 +34,7 @@ export default StyleSheet.create({
   },
   sectionSubheading: {
     fontWeight: 'bold',
-    color: colors.light_gray_3
+    color: gray
   },
   header:{
     height: HEADER_HEIGHT,
@@ -124,7 +124,13 @@ export default StyleSheet.create({
     color: gray,
   },
   status: {
+    fontFamily: 'sans-serif-bold',
+    color: colors.light_gray_3,
+    fontSize: 16
+  },
+  duration: {
     fontWeight: 'bold',
-    color: gray
+    color: colors.light_gray_3,
+    fontSize: 16
   }
 });
