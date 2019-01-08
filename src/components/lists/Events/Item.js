@@ -8,9 +8,11 @@ import Avatar from 'react-native-user-avatar';
 import { CachedImage } from 'react-native-cached-image';
 import Actions from '../../common/Actions';
 import styles, {
+  ITEM_HEIGHT,
+  ITEM_HEIGHT_2,
   primary_light,
   gray,
-  AVATAR_SIZE
+  AVATAR_SIZE,
 } from './styles';
 
 const REMINDER = 'REMINDER';
@@ -42,11 +44,14 @@ export default class Item extends React.PureComponent {
     const [ first, second ] = boardName.split(' ');
     const avatarName = `${first} ${second ? second : ''}`;
     const isOffline = id[0] === '-';
+    console.log(id);
     
     return (
       <TouchableRipple
         onPress={this._onPress}
-        style={styles.itemContainer}
+        style={[styles.itemContainer, {
+          height: isCancelled ? ITEM_HEIGHT : ITEM_HEIGHT_2
+        }]}
       >
         <View style={styles.itemContent}>
           <View style={styles.left}>
