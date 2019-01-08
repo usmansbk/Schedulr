@@ -32,7 +32,7 @@ export const isStarted = ({ isCancelled, startAt, endAt }) => {
 
 
 export const getDuration = (startAt, endAt) => {
-  return moment(startAt).from(endAt, true);
+  return decapitalize(moment(startAt).from(endAt, true));
 }
 
 export const getStatus = ({

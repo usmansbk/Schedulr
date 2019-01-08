@@ -123,4 +123,8 @@ export default StyleSheet.create({
     fontSize: 16,
     color: gray,
   },
+  status: {
+    fontWeight: 'bold',
+    color: gray
+  }
 });

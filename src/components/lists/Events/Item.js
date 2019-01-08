@@ -10,8 +10,6 @@ import Actions from '../../common/Actions';
 import styles, {
   ITEM_HEIGHT,
   ITEM_HEIGHT_2,
-  primary_light,
-  gray,
   AVATAR_SIZE,
 } from './styles';
 
@@ -70,7 +68,7 @@ export default class Item extends React.PureComponent {
               <View style={styles.body}>
                 <Text style={isOffline ? styles.offlineTitle : styles.itemHeadline} numberOfLines={2} ellipsizeMode="tail">{title}</Text>
                 <Text numberOfLines={1} ellipsizeMode="tail" style={styles.itemNote}>{details}</Text>
-                <Text style={styles.itemNote}>{duration}· {status}</Text>}
+                <Text style={styles.status}>{duration} · {status}</Text>
               </View>
               <View>
                 <Text style={styles.time}>{startTime}</Text>
