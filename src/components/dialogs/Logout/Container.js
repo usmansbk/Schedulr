@@ -1,5 +1,5 @@
 import React from 'react';
-import { Cache, Analytics, Auth } from 'aws-amplify';
+import { Auth } from 'aws-amplify';
 import { LoginManager } from 'react-native-fbsdk';
 import { GoogleSignin } from 'react-native-google-signin';
 import { withNavigation } from 'react-navigation';
@@ -13,27 +13,33 @@ class Container extends React.Component {
 
   _signOut = async () => {
     this.setState({ loading: true });
-    try {
-      await this._awsSignOut();
-      await this._fbLogout();
-      await this._googleSignout();
-      //await client.resetStore();
-    } catch {
-      // offline
-    }
+    await this._awsSignOut();
+    await this._fbLogout();
+    await this._googleSignout();
     this.setState({ loading: false });
     this._handleDismiss();
     this.props.navigation.navigate('Auth');
-    client.initQueryManager();
-    try { await client.resetStore(); } catch (e) {}
-    Analytics.record('logout');
   };
 
-  _awsSignOut = async () => await Auth.signOut();
+  _clearStore = async () => {
+    try {
+      await client.initQueryManager();
+      await client.resetStore();
+      await client.clearStore();
+    } catch(e) {}
+  };
 
-  _fbLogout = async () => await LoginManager.logOut();
+  _awsSignOut = async () => {
+    try { await Auth.signOut(); } catch(e) {}
+  };
 
-  _googleSignout = async () => await GoogleSignin.signOut();
+  _fbLogout = async () => {
+    try { await LoginManager.logOut(); } catch(e) {}
+  };
+
+  _googleSignout = async () => {
+    try { await GoogleSignin.signOut(); } catch(e) {}
+  };
 
   _handleDismiss = () => this.props.handleDismiss();
 

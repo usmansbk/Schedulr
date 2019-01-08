@@ -1,5 +1,5 @@
 import React from 'react';
-import { Auth, Analytics, Cache } from 'aws-amplify';
+import { Auth, Analytics } from 'aws-amplify';
 import Toast from 'react-native-simple-toast';
 import Login from './Login';
 import Loading from '../../common/Loading';
@@ -17,24 +17,17 @@ export default class LoginScreen extends React.Component {
   }) => {
     this.setState({ loading: true });
     try {
-      const credentials = await Auth.federatedSignIn(provider, {
+      await Auth.federatedSignIn(provider, {
         token,
         expires_at,
       },{
         email
       });
-      const result = await this.props.onLogin({
+      await this.props.onLogin({
         name,
         email,
         pictureUrl
       });
-      // console.log(result);
-      await Cache.setItem('loginInfo', JSON.stringify({
-        id: result.data.loginUser.id,
-        name,
-        email,
-        pictureUrl
-      }));
       this.props.navigation.navigate('App');
     } catch (error) {
       // console.log(error);
