@@ -24,6 +24,7 @@ export default class EventDetails extends React.Component {
   _getStartAgo = (start) => {
     return moment(start).fromNow();
   };
+  _isCancelled = ({ cancelledDates=[], startAt, isCancelled }) => isCancelled || cancelledDates.includes(startAt);
   
  shouldComponentUpdate = (nextProps) => !isEqual(nextProps.event, this.props.event);
 
@@ -54,7 +55,8 @@ export default class EventDetails extends React.Component {
       starsCount,
       commentsCount,
       isAuthor,
-      isCancelled
+      isCancelled,
+      cancelledDates
     } = event;
     const isValid = this._isValid(isCancelled, endAt);
     const recurring = repeat !== ONE_TIME_EVENT;
@@ -117,7 +119,7 @@ export default class EventDetails extends React.Component {
           commentsCount={commentsCount}
           isAuthor={isAuthor}
           isValid={isValid}
-          isCancelled={isCancelled}
+          isCancelled={this._isCancelled({ cancelledDates, isCancelled, startAt })}
           navigateToBoard={navigateToBoard}
           navigateToComments={navigateToComments}
         />
