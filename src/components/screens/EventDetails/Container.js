@@ -6,7 +6,7 @@ import Details from './Details';
 import styles from '../../../config/styles';
 import colors from '../../../config/colors';
 import { formatDate, getNextDate } from '../../../lib/time';
-import {decapitalize} from '../../../lib/capitalizr';
+import capitalizr, {decapitalize} from '../../../lib/capitalizr';
 import { ONE_TIME_EVENT, ONE_TIME_EVENT_TEXT } from '../../../lib/constants';
 
 const CREATED_DATE_FORMAT = "ddd DD, MMM YYYY, hh:mm a";
@@ -22,7 +22,7 @@ export default class EventDetails extends React.Component {
     return moment(end).from(start, true);
   };
   _getStartAgo = (start) => {
-    return moment(start).fromNow();
+    return capitalizr(moment(start).fromNow());
   };
   _isCancelled = ({ cancelledDates=[], startAt, isCancelled }) => isCancelled || cancelledDates.includes(startAt);
   
