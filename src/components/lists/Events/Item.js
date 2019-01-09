@@ -8,8 +8,6 @@ import Avatar from 'react-native-user-avatar';
 import { CachedImage } from 'react-native-cached-image';
 import Actions from '../../common/Actions';
 import styles, {
-  ITEM_HEIGHT,
-  ITEM_HEIGHT_2,
   AVATAR_SIZE,
 } from './styles';
 
@@ -42,7 +40,12 @@ export default class Item extends React.PureComponent {
     const [ first, second ] = boardName.split(' ');
     const avatarName = `${first} ${second ? second : ''}`;
     const isOffline = id[0] === '-';
-    const statusStyle = status === 'Cancelled' ? styles.red : styles.status;
+    let statusStyle = styles.status;
+    if (status === 'Cancelled') {
+      statusStyle = styles.red;
+    } else if (status === 'Ongoing') {
+      statusStyle = styles.started;
+    }
     const repeatEvent = repeat && (repeat + ' · ');
     
     return (

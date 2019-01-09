@@ -138,5 +138,11 @@ export default StyleSheet.create({
     fontSize: 16,
     color: colors.light_red,
     fontWeight: 'bold'
+  },
+  started: {
+    fontFamily: 'sans-serif-bold',
+    fontSize: 16,
+    color: colors.primary,
+    fontWeight: 'bold'
   }
 });
