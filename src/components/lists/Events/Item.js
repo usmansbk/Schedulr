@@ -43,6 +43,7 @@ export default class Item extends React.PureComponent {
     const avatarName = `${first} ${second ? second : ''}`;
     const isOffline = id[0] === '-';
     const statusStyle = status === 'Cancelled' ? styles.red : styles.status;
+    const repeatEvent = repeat && (repeat + ' · ');
     
     return (
       <TouchableRipple
@@ -66,7 +67,7 @@ export default class Item extends React.PureComponent {
               <View style={styles.body}>
                 <Text style={isOffline ? styles.offlineTitle : styles.itemHeadline} numberOfLines={2} ellipsizeMode="tail">{title}</Text>
                 <Text style={styles.duration}>{duration} {eventType}</Text>
-                <Text style={styles.status}>{repeat} · <Text style={statusStyle}>{status}</Text></Text>
+                <Text style={styles.status}>{repeatEvent}<Text style={statusStyle}>{status}</Text></Text>
               </View>
               <View>
                 <Text style={styles.time}>{startTime}</Text>

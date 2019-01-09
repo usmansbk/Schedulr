@@ -73,7 +73,7 @@ class List extends React.Component {
     title={title}
     location={location && location.address}
     eventType={decapitalize(eventType, true)}
-    repeat={repeat === 'NEVER' ? 'One-time' : decapitalize(repeat)}
+    repeat={repeat === 'NEVER' ? null : decapitalize(repeat)}
     startTime={startTime({ allDay, startAt })}
     endTime={endTime({ endAt, startAt })}
     date={formatDate(startAt, endAt, allDay)}
