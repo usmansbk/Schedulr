@@ -156,8 +156,8 @@ export const toggleStarButton = (input, prev, action) => {
   const { starsCount, isStarred } = prev;
   let newCount = starsCount;
 
-  if (isStarred && (starsCount > 0) && (action === 'unstarEvent')) newCount--;
-  else if (!isStarred && (action === 'starEvent')) newCount++;
+  if ((starsCount > 0) && (action === 'unstarEvent')) newCount--;
+  else if (action === 'starEvent') newCount++;
 
   return ({
     __typename,

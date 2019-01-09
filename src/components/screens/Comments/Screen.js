@@ -11,7 +11,7 @@ export default class Screen extends React.Component {
   }
   _goBack = () => this.props.navigation.goBack();
   _onDelete = (id) => this._openDialog(id, 'delete');
-  _onReply = (replying, targetName) => this.setState({ replying, targetName });
+  _onReply = (replying, targetName) => this.setState({ replying, targetName }, this._focusCommentInput);
   _cancelReply = () => this.setState({ replying: null, targetName: null });
   _openDialog = (id, visibleDialog) => this.setState({
     visibleDialog,
@@ -19,12 +19,17 @@ export default class Screen extends React.Component {
     targetName: null,
     replying: null
   });
-  _hideDialog = () => this.setState({ visibleDialog: null, id: null })
+  _hideDialog = () => this.setState({ visibleDialog: null, id: null });
+  _focusCommentInput = () => {
+    this._commentsRef && this._commentsRef.current.focusCommentInput();
+  }
+  componentDidMount = () => this._focusCommentInput();
 
   render() {
     return (
       <React.Fragment>
       <Comments
+        ref={commentsRef => this._commentsRef = commentsRef}
         id={this.state.replying}
         targetName={this.state.targetName}
         goBack={this._goBack}
