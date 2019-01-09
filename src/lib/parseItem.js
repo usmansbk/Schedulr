@@ -37,7 +37,7 @@ export const getDuration = (startAt, endAt) => {
 
 export const getStatus = ({
   isCancelled,
-  cancelledDates,
+  cancelledDates=[],
   startAt,
   endAt
 }) => {

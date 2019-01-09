@@ -33,7 +33,6 @@ export default class Item extends React.PureComponent {
       date,
       allDay,
       eventType,
-      isCancelled,
       starsCount,
       commentsCount,
       boardName,
@@ -43,13 +42,12 @@ export default class Item extends React.PureComponent {
     const [ first, second ] = boardName.split(' ');
     const avatarName = `${first} ${second ? second : ''}`;
     const isOffline = id[0] === '-';
+    const statusStyle = status === 'Cancelled' ? styles.red : null;
     
     return (
       <TouchableRipple
         onPress={this._onPress}
-        style={[styles.itemContainer, {
-          height: isCancelled ? ITEM_HEIGHT : ITEM_HEIGHT_2
-        }]}
+        style={styles.itemContainer}
       >
         <View style={styles.itemContent}>
           <View style={styles.left}>
@@ -68,7 +66,7 @@ export default class Item extends React.PureComponent {
               <View style={styles.body}>
                 <Text style={isOffline ? styles.offlineTitle : styles.itemHeadline} numberOfLines={2} ellipsizeMode="tail">{title}</Text>
                 <Text style={styles.duration}>{duration} {eventType}</Text>
-                <Text style={styles.status}>{repeat} · {status}</Text>
+                <Text style={styles.status}>{repeat} · <Text style={statusStyle}>{status}</Text></Text>
               </View>
               <View>
                 <Text style={styles.time}>{startTime}</Text>
