@@ -162,6 +162,7 @@ export const toggleStarButton = (input, prev, action) => {
   return ({
     __typename,
     [action] : {
+      __typename: 'Event',
       id: input.id,
       isStarred: !isStarred,
       starsCount: newCount

@@ -124,9 +124,9 @@ export default StyleSheet.create({
     color: gray,
   },
   status: {
-    fontFamily: 'sans-serif-bold',
     color: colors.light_gray_3,
-    fontSize: 16
+    fontSize: 16,
+    fontWeight: 'bold'
   },
   duration: {
     fontWeight: 'bold',

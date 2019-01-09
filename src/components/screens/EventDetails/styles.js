@@ -26,7 +26,7 @@ export default StyleSheet.create({
   },
   content: {
     marginHorizontal: 20,
-    marginVertical: 8
+    marginVertical: 4
   },
   label: {
     fontSize: 14,

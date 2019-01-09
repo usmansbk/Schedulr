@@ -42,7 +42,7 @@ export default class Item extends React.PureComponent {
     const [ first, second ] = boardName.split(' ');
     const avatarName = `${first} ${second ? second : ''}`;
     const isOffline = id[0] === '-';
-    const statusStyle = status === 'Cancelled' ? styles.red : null;
+    const statusStyle = status === 'Cancelled' ? styles.red : styles.status;
     
     return (
       <TouchableRipple
