@@ -28,7 +28,12 @@ const Form = ({
     initialValues={initialValues || defaultValues}
     validationSchema={validationSchema}
     onSubmit={async (values, { setSubmitting }) => {
-      onSubmit && await onSubmit(values);
+      const input = {
+        ...values,
+        name: value.name.trim(),
+        description: value.description.trim(),
+      };
+      onSubmit && await onSubmit(input);
       setSubmitting(false);
     }}
   >

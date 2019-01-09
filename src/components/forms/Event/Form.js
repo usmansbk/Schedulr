@@ -53,7 +53,12 @@ const Form = ({
     validationSchema={formSchema}
     onSubmit={async (values, { setSubmitting }) => {
       if (isEventValid(values)) {
-        onSubmit && await onSubmit(values);
+        const input = {
+          ...values,
+          title: value.title.trim(),
+          description: value.title.trim()
+        };
+        onSubmit && await onSubmit(input);
       }
       setSubmitting(false);
     }}
