@@ -7,15 +7,17 @@ export default class Button extends React.Component {
     const {
       id,
       isStarred,
+      starsCount,
       onUnstarEvent,
       onStarEvent,
     } = this.props;
     const input = { id };
+    const prev = { isStarred, starsCount };
     try {
       if (isStarred) {
-        await onUnstarEvent(input);
+        await onUnstarEvent(input, prev);
       } else {
-        await onStarEvent(input);
+        await onStarEvent(input, prev);
       }
     } catch (error) {
     }

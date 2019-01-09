@@ -2,18 +2,18 @@ import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
 import Button from './Button';
 import { starEvent, unstarEvent } from '../../../graphql/mutations';
-import { unstarResponse, starResponse } from '../../../helpers/optimisticResponse';
+import { toggleStarButton } from '../../../helpers/optimisticResponse';
 
 export default compose(
   graphql(gql(starEvent), {
     alias: 'withStarEvent',
     options: {},
     props: ({ mutate, ownProps }) => ({
-      onStarEvent: async (input) => await mutate({
+      onStarEvent: async (input, prev) => await mutate({
         variables: {
           input
         },
-        optimisticResponse: () => starResponse(input)
+        optimisticResponse: () => toggleStarButton(input, prev, 'starEvent')
       }),
       ...ownProps
     }),
@@ -21,11 +21,11 @@ export default compose(
   graphql(gql(unstarEvent), {
     alias: 'withUnstarEvent',
     props: ({ mutate, ownProps }) => ({
-      onUnstarEvent: async (input) => await mutate({
+      onUnstarEvent: async (input, prev) => await mutate({
         variables: {
           input
         },
-        optimisticResponse: () => unstarResponse(input)
+        optimisticResponse: () => toggleStarButton(input, prev, 'unstarEvent')
       }),
       ...ownProps
     }),

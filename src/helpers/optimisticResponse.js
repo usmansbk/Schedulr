@@ -152,42 +152,22 @@ export const openBoardResponse = (input) => ({
   })
 });
 
-export const unstarResponse = (input) => {
-  const query = gql(getEvent);
-  const {
-    getEvent: {
-      starsCount
-    }
-  } = getEventFromCache(query, input);
+export const toggleStarButton = (input, prev, action) => {
+  const { starsCount, isStarred } = prev;
+  let newCount = starsCount;
+
+  if (isStarred && (starsCount > 0) && (action === 'unstarEvent')) newCount--;
+  else if (!isStarred && (action === 'starEvent')) newCount++;
+
   return ({
     __typename,
-    unstarEvent : {
-      __typename: 'Event',
+    [action] : {
       id: input.id,
-      isStarred: false,
-      starsCount: starsCount ? starsCount - 1 : starsCount
+      isStarred: !isStarred,
+      starsCount: newCount
     }
   });
 }
-
-export const starResponse = (input) => {
-  const query = gql(getEvent);
-  const {
-    getEvent: {
-      isStarred,
-      starsCount
-    }
-  } = getEventFromCache(query, input);
-  return ({
-    __typename,
-    starEvent : {
-      __typename: 'Event',
-      id: input.id,
-      isStarred: true,
-      starsCount: isStarred ? starsCount : starsCount + 1
-    }
-  });
-};
 
 function getBoardFromCache(query, input) {
   return client.readQuery({
