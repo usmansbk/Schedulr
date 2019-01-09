@@ -19,7 +19,7 @@ export default StyleSheet.create({
     fontSize: 18,
   },
   head: {
-    marginVertical: 16,
+    marginVertical: 8,
   },
   body: {
     marginVertical: 8
