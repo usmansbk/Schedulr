@@ -21,9 +21,8 @@ export default class Screen extends React.Component {
   });
   _hideDialog = () => this.setState({ visibleDialog: null, id: null });
   _focusCommentInput = () => {
-    this._commentsRef && this._commentsRef.current.focusCommentInput();
+    this._commentsRef && this._commentsRef.focusCommentInput();
   }
-  componentDidMount = () => this._focusCommentInput();
 
   render() {
     return (
