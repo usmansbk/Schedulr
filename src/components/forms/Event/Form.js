@@ -55,8 +55,8 @@ const Form = ({
       if (isEventValid(values)) {
         const input = {
           ...values,
-          title: value.title.trim(),
-          description: value.title.trim()
+          title: values.title.trim(),
+          description: values.description.trim()
         };
         onSubmit && await onSubmit(input);
       }

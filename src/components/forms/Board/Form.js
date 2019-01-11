@@ -30,8 +30,8 @@ const Form = ({
     onSubmit={async (values, { setSubmitting }) => {
       const input = {
         ...values,
-        name: value.name.trim(),
-        description: value.description.trim(),
+        name: values.name.trim(),
+        description: values.description.trim(),
       };
       onSubmit && await onSubmit(input);
       setSubmitting(false);
