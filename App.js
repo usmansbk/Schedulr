@@ -1,5 +1,4 @@
 import React from 'react';
-import { YellowBox } from 'react-native'
 import { Provider as PaperProvider } from 'react-native-paper';
 import { MenuProvider } from 'react-native-popup-menu';
 import { ApolloProvider } from 'react-apollo';
@@ -13,9 +12,6 @@ import client from './src/config/client';
 import theme from './src/config/theme';
 
 // console.disableYellowBox = true;
-YellowBox.ignoreWarnings(['Warning: isMounted(...) is deprecated']);
-YellowBox.ignoreWarnings(['Module RCTImageLoader requires']);
-YellowBox.ignoreWarnings(['Remote debugger is in a background tab']);
 
 Amplify.configure(config);
 
