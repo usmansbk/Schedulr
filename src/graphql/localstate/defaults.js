@@ -1,15 +1,13 @@
 export default {
   me: null,
   options: {
-    id: '-1',
-    __typename: 'Options',
+    __typename: 'AppOptions',
     headsUp: false,
     starredAlarm: false,
     muteReminder: false,
   },
   remindMeBefore: {
     __typename: 'RemindMeBefore',
-    id: '-1',
     fiveMin: true,
     tenMin: false,
     fifteenMin: false,

@@ -13,7 +13,6 @@ export const loginUser = `mutation LoginUser($input: LoginInput!) {
 
 export const toggleOption = `mutation ToggleOption($id: ID!) {
   toggleOption(id: $id) @client {
-    id
     headsUp
     starredAlarm
     muteReminder
@@ -22,7 +21,6 @@ export const toggleOption = `mutation ToggleOption($id: ID!) {
 
 export const toggleRemindMeBefore = `mutation ToggleRemindMeBefore($id: ID!) {
   toggleRemindMeBefore(id: $id) @client {
-    id
     fiveMin
     tenMin
     fifteenMin
