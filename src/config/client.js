@@ -44,3 +44,5 @@ export default client = new AWSAppSyncClient({
     }
   }
 }, { link });
+
+client.onResetStore(stateLink.writeDefaults);

@@ -13,7 +13,9 @@ const CREATED_DATE_FORMAT = "ddd DD, MMM YYYY, hh:mm a";
 
 export default class EventDetails extends React.Component {
   _getRepeatDate = () => getNextDate(this.props.event);
-  _isValid = (isCancelled, endAt) => (!isCancelled) && (Date.now() < Date.parse(endAt));
+  _isValid = ({isCancelled, startAt, endAt, cancelledDates }) => {
+    return (Date.now() < Date.parse(endAt)) && !this._isCancelled({ cancelledDates, startAt, isCancelled });
+  };
   _handleCancel = () => {
     const isRecurring = this.props.event.repeat !== ONE_TIME_EVENT;
     this.props.handleCancel(isRecurring ? this.props.event.startAt : null);
@@ -58,7 +60,7 @@ export default class EventDetails extends React.Component {
       isCancelled,
       cancelledDates
     } = event;
-    const isValid = this._isValid(isCancelled, endAt);
+    const isValid = this._isValid({ isCancelled, endAt, startAt, cancelledDates });
     const recurring = repeat !== ONE_TIME_EVENT;
 
     return (
