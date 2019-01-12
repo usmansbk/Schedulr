@@ -4,7 +4,7 @@ import { LoginManager } from 'react-native-fbsdk';
 import { GoogleSignin } from 'react-native-google-signin';
 import { withNavigation } from 'react-navigation';
 import Dialog from './Dialog';
-// import client from '../../../config/client';
+import client from '../../../config/client';
 
 class Container extends React.Component {
   state = {
@@ -19,13 +19,13 @@ class Container extends React.Component {
     this.setState({ loading: false });
     this._handleDismiss();
     this.props.navigation.navigate('Auth');
-    await this._clearStore();
+    // await this._clearStore();
   };
 
   _clearStore = async () => {
     try {
       // await client.cache.reset();
-      // await client.resetStore();
+      await client.resetStore();
     } catch(e) {}
   };
 
