@@ -6,7 +6,7 @@ import Details from './Details';
 import styles from '../../../config/styles';
 import colors from '../../../config/colors';
 import { formatDate, getNextDate } from '../../../lib/time';
-import { isAuthorized } from '../../../parseItem';
+import { isEventValid } from '../../../parseItem';
 import capitalizr, {decapitalize} from '../../../lib/capitalizr';
 import { ONE_TIME_EVENT, ONE_TIME_EVENT_TEXT } from '../../../lib/constants';
 
@@ -57,7 +57,7 @@ export default class EventDetails extends React.Component {
       isCancelled,
       cancelledDates
     } = event;
-    const isAuth = isAuthorized({ isCancelled, endAt, startAt, cancelledDates });
+    const isValid = isEventValid({ isCancelled, endAt, startAt, cancelledDates });
     const recurring = repeat !== ONE_TIME_EVENT;
 
     return (
@@ -79,7 +79,7 @@ export default class EventDetails extends React.Component {
                   onPress={handleRepeat}
                 />
                 {
-                  isAuth && (
+                  isValid && (
                     <React.Fragment>
                       <Appbar.Action
                         icon="mode-edit"
