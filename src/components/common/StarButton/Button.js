@@ -21,7 +21,7 @@ export default class Button extends React.Component {
       }
     } catch (error) {
     }
-  }
+  };
 
   render() {
     const {
