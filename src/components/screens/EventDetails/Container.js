@@ -6,6 +6,7 @@ import Details from './Details';
 import styles from '../../../config/styles';
 import colors from '../../../config/colors';
 import { formatDate, getNextDate } from '../../../lib/time';
+import { isAuthorized } from '../../../parseItem';
 import capitalizr, {decapitalize} from '../../../lib/capitalizr';
 import { ONE_TIME_EVENT, ONE_TIME_EVENT_TEXT } from '../../../lib/constants';
 
@@ -13,9 +14,6 @@ const CREATED_DATE_FORMAT = "ddd DD, MMM YYYY, hh:mm a";
 
 export default class EventDetails extends React.Component {
   _getRepeatDate = () => getNextDate(this.props.event);
-  _isValid = ({isCancelled, startAt, endAt, cancelledDates }) => {
-    return (Date.now() < Date.parse(endAt)) && !this._isCancelled({ cancelledDates, startAt, isCancelled });
-  };
   _handleCancel = () => {
     const isRecurring = this.props.event.repeat !== ONE_TIME_EVENT;
     this.props.handleCancel(isRecurring ? this.props.event.startAt : null);
@@ -26,7 +24,6 @@ export default class EventDetails extends React.Component {
   _getStartAgo = (start) => {
     return capitalizr(moment(start).fromNow());
   };
-  _isCancelled = ({ cancelledDates=[], startAt, isCancelled }) => isCancelled || cancelledDates.includes(startAt);
   
  shouldComponentUpdate = (nextProps) => !isEqual(nextProps.event, this.props.event);
 
@@ -60,7 +57,7 @@ export default class EventDetails extends React.Component {
       isCancelled,
       cancelledDates
     } = event;
-    const isValid = this._isValid({ isCancelled, endAt, startAt, cancelledDates });
+    const isAuth = isAuthorized({ isCancelled, endAt, startAt, cancelledDates });
     const recurring = repeat !== ONE_TIME_EVENT;
 
     return (
@@ -82,7 +79,7 @@ export default class EventDetails extends React.Component {
                   onPress={handleRepeat}
                 />
                 {
-                  isValid && (
+                  isAuth && (
                     <React.Fragment>
                       <Appbar.Action
                         icon="mode-edit"

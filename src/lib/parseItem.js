@@ -49,3 +49,9 @@ export const getStatus = ({
   if (ongoing) return 'Ongoing';
   return 'Pending';
 }
+
+export const isEventCancelled = ({ cancelledDates=[], startAt, isCancelled }) => isCancelled || cancelledDates.includes(startAt);
+
+export const isEventValid = ({isCancelled, startAt, endAt, cancelledDates }) => {
+  return (Date.now() < Date.parse(endAt)) && !isEventCancelled({ cancelledDates, startAt, isCancelled });
+};

@@ -1,10 +1,10 @@
 import moment from 'moment';
 const date = moment().format('YYYY-MM-DD');
-const url = 'https://schdlr-ng.herokuapp.com';
+const url = `https://schdlr-ng.herokuapp.com`;
 const dev = {
   APP_URL: url,
-  IOS_URL: '//:schdlr',
-  PROTOCOL: 'http://',
+  IOS_URL: `//:schdlr`,
+  PROTOCOL: `http://`,
   DOMAIN: '192.168.43.190:4000',
   PORT: '4000',
   EMAIL: 'usmansbk@gmail.com',
@@ -18,13 +18,13 @@ const dev = {
 };
 
 const prod = {
-  APP_URL: 'https://schdlr-ng.herokuapp.com',
-  IOS_URL: '//:schdlr',
-  PROTOCOL: 'https://',
-  DOMAIN: 'schdlr-ng.herokuapp.com',
+  APP_URL: `https://schdlr-ng.herokuapp.com`,
+  IOS_URL: `//:schdlr`,
+  PROTOCOL: `https://`,
+  DOMAIN: `schdlr-ng.herokuapp.com`,
   EMAIL: 'usmansbk@gmail.com',
   APP_VERSION: `1.0.0-release`,
-  DOWNLOAD_URL: 'https://schdlr-ng.herokuapp.com/download',
+  DOWNLOAD_URL: `https://schdlr-ng.herokuapp.com/download`,
   FAQ_URL: `${url}/faq`,
   CONTACT_URL: `${url}/contact`,
   LEGALITY_URL: `${url}/legal`,
