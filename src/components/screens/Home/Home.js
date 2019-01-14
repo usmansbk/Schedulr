@@ -31,6 +31,7 @@ const Home = createBottomTabNavigator({
 }, {
   initialRouteName: 'Home',
   initialLayout: { height: 0, width: Dimensions.get('window').width },
+  lazy: true,
   tabBarOptions: {
     activeTintColor: activeColor,
     inactiveTintColor,
