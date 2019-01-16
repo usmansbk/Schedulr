@@ -6,7 +6,7 @@ import Details from './Details';
 import styles from '../../../config/styles';
 import colors from '../../../config/colors';
 import { formatDate, getNextDate } from '../../../lib/time';
-import { isEventValid } from '../../../parseItem';
+import { isEventValid, isEventCancelled } from '../../../lib/parseItem';
 import capitalizr, {decapitalize} from '../../../lib/capitalizr';
 import { ONE_TIME_EVENT, ONE_TIME_EVENT_TEXT } from '../../../lib/constants';
 
@@ -118,7 +118,7 @@ export default class EventDetails extends React.Component {
           commentsCount={commentsCount}
           isAuthor={isAuthor}
           isValid={isValid}
-          isCancelled={this._isCancelled({ cancelledDates, isCancelled, startAt })}
+          isCancelled={isEventCancelled({ cancelledDates, isCancelled, startAt })}
           navigateToBoard={navigateToBoard}
           navigateToComments={navigateToComments}
         />
