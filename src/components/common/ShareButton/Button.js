@@ -8,8 +8,8 @@ export default ({
   color,
   id,
   title,
-  type,
-  location,
+  eventType,
+  address,
   date,
 }) => (
   <IconButton
@@ -19,8 +19,8 @@ export default ({
     onPress={() => {
       const shareOptions = {
         title: 'Invite via...',
-        subject: type,
-        message: `${title}\n${date}${location ? (' at ' + location) : ''}\n`,
+        subject: eventType,
+        message: `${title}\n${date}${address ? (' at ' + address) : ''}\n`,
         url: `${env.APP_URL}/event/${id}`
       };
       Share.open(shareOptions);

@@ -22,7 +22,9 @@ export default class Item extends React.PureComponent {
     const {
       id,
       title,
-      location,
+      address,
+      latitude,
+      longitude,
       repeat,
       startTime,
       endTime,
@@ -85,13 +87,15 @@ export default class Item extends React.PureComponent {
               id={id}
               date={date}
               title={title}
-              location={location}
+              address={address}
+              latitude={latitude}
+              longitude={longitude}
               eventType={eventType}
               isStarred={isStarred}
               starsCount={starsCount}
               commentsCount={commentsCount}
               navigateToComments={this._onPressComment}
-              size="small"
+              small
               dark
             />
           </View>

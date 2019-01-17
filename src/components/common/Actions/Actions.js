@@ -2,6 +2,7 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import StarButton from '../StarButton';
 import ShareButton from '../ShareButton';
+import LocationButton from '../LocationButton';
 import CommentButton from '../CommentButton';
 
 import colors from '../../../config/colors';
@@ -15,7 +16,7 @@ export default class Actions extends React.Component {
     (this.props.date !== nextProps.date) ||
     (this.props.title !== nextProps.title) ||
     (this.props.commentsCount !== nextProps.commentsCount) ||
-    (this.props.location !== nextProps.location)
+    (this.props.address !== nextProps.address)
   );
   
   render() {
@@ -25,12 +26,14 @@ export default class Actions extends React.Component {
       isStarred,
       starsCount,
       commentsCount,
-      location,
-      type,
+      address,
+      eventType,
       id,
-      size,
+      small,
       dark,
       navigateToComments,
+      latitude,
+      longitude,
     } = this.props;
     const color = dark ? colors.light_gray_3 : defaultColor;
     return (
@@ -40,9 +43,9 @@ export default class Actions extends React.Component {
           isStarred={isStarred}
           starsCount={starsCount}
           activeColor={defaultColor}
-          iconSize={size}
           size={FONT_SIZE}
           color={color}
+          small={small}
         />
         <CommentButton
           id={id}
@@ -51,15 +54,25 @@ export default class Actions extends React.Component {
           color={color}
           onPress={() => navigateToComments(id)}
         />
-        <ShareButton
+        <LocationButton
+          address={address}
+          latitude={latitude}
+          longitude={longitude}
           color={color}
-          id={id}
-          date={date}
-          type={type}
-          title={title}
-          location={location}
-          size={FONT_SIZE}
         />
+        {
+          small ? null : (
+            <ShareButton
+              color={color}
+              id={id}
+              date={date}
+              type={eventType}
+              title={title}
+              address={address}
+              size={FONT_SIZE}
+            />
+          )
+        }
       </View>
     )
   }
