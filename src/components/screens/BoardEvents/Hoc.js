@@ -29,7 +29,7 @@ export default compose(
     props: ({ data, ownProps}) => ({
       fetchingEvents: data.loading,
       fetchingEventsError: data.error,
-      events: data && data.listAllEvents && data.listAllEvents.items,
+      events: data && data.listAllEvents && data.listAllEvents.items && data.listAllEvents.items.filter(event => event.board.id === ownProps.id),
       ...ownProps
     })
   })
