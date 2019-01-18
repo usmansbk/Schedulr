@@ -54,9 +54,9 @@ export default StyleSheet.create({
     color: colors.light_gray_3
   },
   offlineTitle: {
-    color: gray,
-    fontWeight: 'bold',
-    fontSize: 18
+    fontSize: 22,
+    fontFamily: 'sans-serif-bold',
+    color: gray
   },
   empty: {
     flex: 1,
