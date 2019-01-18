@@ -9,6 +9,7 @@ export default ({
   latitude
 }) => (
   <IconButton
+    disabled={!address}
     icon="map"
     color={color}
     size={size}
