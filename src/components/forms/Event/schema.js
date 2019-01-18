@@ -9,9 +9,6 @@ export default Yup.object().shape({
   description: Yup.string()
     .trim()
     .max(160, 'Too Long'),
-  location: Yup.string()
-    .trim()
-    .max(160, 'Too Long'),
   boardId: Yup.string()
     .required('Board is required')
 });
