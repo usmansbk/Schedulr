@@ -107,6 +107,8 @@ export default class EventDetails extends React.Component {
           startAgo={this._getStartAgo(startAt)}
           eventType={decapitalize(eventType)}
           location={location && location.address}
+          latitude={location && location.latitude}
+          longitude={location && location.longitude}
           boardName={board.name}
           boardId={board.id}
           repeat={!recurring ? ONE_TIME_EVENT_TEXT : decapitalize(repeat)}

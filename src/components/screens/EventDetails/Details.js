@@ -11,6 +11,8 @@ export default ({
   nextDate,
   eventType,
   location,
+  latitude,
+  longitude,
   boardName,
   boardId,
   repeat,
@@ -81,6 +83,8 @@ export default ({
     id={id}
     title={title}
     location={location}
+    latitude={latitude}
+    longitude={longitude}
     eventType={eventType}
     isStarred={isStarred}
     starsCount={starsCount}
