@@ -21,7 +21,11 @@ export default class EditEventScreen extends React.Component {
     return ({
       title,
       description: description || '',
-      location: location || { address: '' },
+      location: {
+        address: location && location.address || '',
+        longitude: location && location.longitude,
+        latitude: location && location.latitude
+      },
       startAt,
       endAt,
       allDay: Boolean(allDay),
