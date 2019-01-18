@@ -6,6 +6,6 @@ import styles from './styles';
 
 export default () => (
   <View style={styles.empty}>
-    <Headline style={styles.emptyTitle}>Nothing to see here - yet</Headline>
+    <Headline style={styles.emptyTitle}>No notifications</Headline>
   </View>
 );
