@@ -106,7 +106,7 @@ export default class EventDetails extends React.Component {
           duration={this._getDuration(endAt, startAt)}
           startAgo={this._getStartAgo(startAt)}
           eventType={decapitalize(eventType)}
-          location={location && location.address}
+          address={location && location.address}
           latitude={location && location.latitude}
           longitude={location && location.longitude}
           boardName={board.name}

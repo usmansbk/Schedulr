@@ -10,7 +10,7 @@ export default ({
   date,
   nextDate,
   eventType,
-  location,
+  address,
   latitude,
   longitude,
   boardName,
@@ -48,7 +48,7 @@ export default ({
           </View>
           <View style={styles.item}>
             <Text style={styles.label}>VENUE</Text>
-            <Text style={styles.value}>{location || 'No location set'}</Text>
+            <Text style={styles.value}>{address || 'No location set'}</Text>
           </View>
           <View style={styles.item}>
             <Text style={styles.label}>BOARD</Text>
@@ -82,7 +82,7 @@ export default ({
   <Actions
     id={id}
     title={title}
-    location={location}
+    address={address}
     latitude={latitude}
     longitude={longitude}
     eventType={eventType}
