@@ -37,7 +37,7 @@ export default class EditEventScreen extends React.Component {
       await this.props.onSubmit({ id, ...form });
       this.props.navigation.pop();
     } catch(error) {
-      Toast.show(err, Toast.SHORT);
+      Toast.show(error, Toast.SHORT);
       console.log(error.message);
     }
   };
