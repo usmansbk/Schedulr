@@ -64,7 +64,7 @@ export default class EventDetails extends React.Component {
       <React.Fragment>
         <Appbar.Header style={styles.header}  collapsable>
           <Appbar.BackAction color={colors.gray} onPress={handleBack} />
-          <Appbar.Content titleStyle={styles.headerColor} title="Details" />
+          <Appbar.Content titleStyle={styles.headerColor} />
           {
             isAuthor && (
               <React.Fragment>

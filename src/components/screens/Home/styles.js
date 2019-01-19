@@ -11,7 +11,7 @@ export default StyleSheet.create({
     flex: 1
   },
   barStyle: {
-    elevation: 8,
+    elevation: 0,
     backgroundColor: '#fff',
   }
 });

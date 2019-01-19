@@ -13,8 +13,7 @@ export default (props) => (
         onPress={() => props.navigation.goBack()}
       />
       <Appbar.Content
-        titleStyle={styles.headerColor}
-        title="Notifications" />
+        titleStyle={styles.headerColor}/>
       <Appbar.Action
         icon="clear-all"
         color={colors.gray}

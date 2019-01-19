@@ -16,7 +16,7 @@ export default StyleSheet.create({
     color: colors.gray
   },
   header: {
-    elevation: 2,
+    elevation: 0,
     backgroundColor: '#fff',
   },
   headerColor: {

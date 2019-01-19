@@ -64,7 +64,6 @@ export default class Info extends React.Component {
         <Appbar.Header collapsable style={appStyles.header}>
           <Appbar.BackAction color={colors.gray} onPress={goBack} />
           <Appbar.Content
-            title="Board Info"
             titleStyle={appStyles.headerColor}
           />
           <Appbar.Action
