@@ -12,7 +12,6 @@ export default (props) => (
         onPress={() => props.navigation.goBack()}
       />
       <Appbar.Content
-        title="More" 
         titleStyle={styles.headerColor}
       />
     </Appbar.Header>
