@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
   container: {flex: 1},
   barStyle: {
     backgroundColor: 'white',
-    elevation: 2
+    elevation: 0
   },
   indicatorStyle: {
     backgroundColor: colors.primary_light
@@ -60,6 +60,7 @@ export default class Tab extends React.Component {
         return null;
     }
   };
+  _getLabelText = ({ route }) => (route.title);
 
   render() {
     return (
@@ -69,6 +70,7 @@ export default class Tab extends React.Component {
         navigationState={this.state}
         renderScene={this._renderScene}
         renderTabBar={this._renderTabBar}
+        getLabelText={this._getLabelText}
         onIndexChange={this._handleIndexChange}
         initialLayout={initialLayout}
       />
