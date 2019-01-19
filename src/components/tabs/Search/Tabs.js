@@ -41,12 +41,14 @@ export default class Tab extends React.Component {
   };
 
   _handleIndexChange = index => this.setState({ index });
+  _getLabelText = ({ route }) => (route.title);
   _renderTabBar = props => (
     <TabBar
       {...props}
       indicatorStyle={styles.indicatorStyle}
       style={styles.barStyle}
       labelStyle={styles.label}
+      getLabelText={this._getLabelText}
     />
   );
   _renderScene = ({ route }) => {
@@ -60,7 +62,6 @@ export default class Tab extends React.Component {
         return null;
     }
   };
-  _getLabelText = ({ route }) => (route.title);
 
   render() {
     return (
@@ -70,7 +71,6 @@ export default class Tab extends React.Component {
         navigationState={this.state}
         renderScene={this._renderScene}
         renderTabBar={this._renderTabBar}
-        getLabelText={this._getLabelText}
         onIndexChange={this._handleIndexChange}
         initialLayout={initialLayout}
       />
