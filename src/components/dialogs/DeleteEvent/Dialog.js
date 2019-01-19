@@ -47,9 +47,13 @@ export default class DeleteEvent extends React.Component {
           onDismiss={handleDismiss}
         >
           <Dialog.Title>Delete event?</Dialog.Title>
-          <Dialog.Content>
-            <Paragraph>Will remove past and future events in this series</Paragraph>
-          </Dialog.Content>
+          {
+            false && (
+              <Dialog.Content>
+                <Paragraph>Will remove past and future events in this series</Paragraph>
+              </Dialog.Content>
+            )
+          }
           <Dialog.Actions>
             <Button disabled={loading} onPress={handleDismiss}>Dismiss</Button>
             <Button loading={loading} disabled={loading} onPress={this._onContinue}>Continue</Button>
