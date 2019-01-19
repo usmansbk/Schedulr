@@ -32,7 +32,7 @@ const Home = createMaterialTopTabNavigator({
       } else if (routeName === 'Boards') {
         iconName = 'google-circles-communities';
       } else if (routeName === 'Starred') {
-        iconName = `calendar-star`;
+        iconName = `star`;
       }
       return <Icon name={iconName} size={focused ? FONT_SIZE : BLUR_SIZE} color={tintColor} />
     }
