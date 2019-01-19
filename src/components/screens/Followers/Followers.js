@@ -5,7 +5,8 @@ import styles from '../../../config/styles';
 import colors from '../../../config/colors';
 
 export default ({
-  goBack
+  goBack,
+  isAuthor
 }) => (
   <React.Fragment>
     <Appbar.Header style={styles.header}>
@@ -15,6 +16,8 @@ export default ({
         titleStyle={styles.headerColor}
       />
     </Appbar.Header>
-    <List />
+    <List
+      isAuthor={isAuthor}
+    />
   </React.Fragment>
 );

@@ -119,7 +119,7 @@ export default class Info extends React.Component {
                 <Text style={styles.name}>{name}</Text>
                 <Text
                   style={styles.followersCount}
-                  onPress={() => navigateToFollowers(id)}
+                  onPress={() => navigateToFollowers(id, isAuthor)}
                 >
                   {numeral(followersCount).format('0a')} Follower{followersCount > 1 ? 's' : ''}
                 </Text>

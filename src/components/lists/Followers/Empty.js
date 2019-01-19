@@ -3,10 +3,12 @@ import { View } from 'react-native';
 import { Headline } from 'react-native-paper';
 import styles from './styles';
 
-export default () => (
+export default ({ isAuthor }) => (
   <View style={styles.empty}>
     <Headline style={styles.emptyTitle}>
-      Be the first to follow!
+      {
+        isAuthor ? "Send invites to friends!" : "Be the first to follow!"
+      }
     </Headline>
   </View>
 );

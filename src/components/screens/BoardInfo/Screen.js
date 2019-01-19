@@ -30,7 +30,7 @@ export default class Screen extends React.Component {
         break;
     }
   };
-  _navigateToFollowers = (id) => this.props.navigation.navigate('Followers', { id });
+  _navigateToFollowers = (id, isAuthor) => this.props.navigation.navigate('Followers', { id, isAuthor });
   _navigateToProfile = (id) => this.props.navigation.navigate('UserProfile', { id, privacy: 'public' });
 
   render() {
