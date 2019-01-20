@@ -23,11 +23,11 @@ GoogleSignin.configure({
   webClientId: env.WEB_CLIENT_ID
 });
 Amplify.configure(config);
-Auth.configure({
-  refreshHandlers: {
-    'google': refreshGoogleToken
-  } 
-});
+// Auth.configure({
+//   refreshHandlers: {
+//     'google': refreshGoogleToken
+//   } 
+// });
 
 export default class App extends React.Component {
   componentDidMount = () => {

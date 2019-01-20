@@ -12,7 +12,7 @@ import {
   ONE_HOUR,
   ONE_DAY
 } from '../lib/time';
-import { userOptions, remindMeBefore as remindMeBeforeQuery } from '../graphql/queries';
+import { Settings, RemindMeBefore } from '../graphql/queries';
 
 const setReminder = (event, before) => {
   const {
@@ -120,9 +120,9 @@ const schdl = (event, before) => {
 const schdlAll = (events) => {
   InteractionManager.runAfterInteractions(() => {
     PushNotification.cancelAllLocalNotifications();
-    const { options={} } = client.readQuery({ query: gql(userOptions)}) || {};
-    const { remindMeBefore={} } = client.readQuery({ query: gql(remindMeBeforeQuery) }) || {};
-    if (!options.muteReminder) {
+    const { settings={} } = client.readQuery({ query: gql(Settings)}) || {};
+    const { remindMeBefore={} } = client.readQuery({ query: gql(RemindMeBefore) }) || {};
+    if (!settings.muteReminder) {
       events.forEach((event) => {
         schdl(event, remindMeBefore);
       });

@@ -1,7 +1,7 @@
-export default ({
+const defaults = {
   me: null,
-  options: {
-    __typename: 'Options',
+  settings: {
+    __typename: 'Settings',
     headsUp: false,
     starredAlarm: false,
     muteReminder: false,
@@ -15,4 +15,6 @@ export default ({
     oneHour: false,
     oneDay: false
   }
-});
+};
+
+export default defaults;

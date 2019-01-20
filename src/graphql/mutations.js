@@ -11,11 +11,11 @@ export const loginUser = `mutation LoginUser($input: LoginInput!) {
 }
 `;
 
-export const toggleOption = `mutation ToggleOption($key: ID!) {
-  toggleOption(key: $key) @client
+export const ToggleSettings = `mutation ToggleSettings($key: ID!) {
+  toggleSettings(key: $key) @client
 }`;
 
-export const toggleRemindMeBefore = `mutation ToggleRemindMeBefore($key: ID!) {
+export const ToggleRemindMeBefore = `mutation ToggleRemindMeBefore($key: ID!) {
   toggleRemindMeBefore(key: $key) @client
 }`;
 

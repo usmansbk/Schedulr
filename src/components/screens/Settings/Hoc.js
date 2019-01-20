@@ -1,11 +1,11 @@
 import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
 import Screen from './Screen';
-import { userOptions } from '../../../graphql/queries';
-import { toggleOption } from '../../../graphql/mutations';
+import { Settings } from '../../../graphql/queries';
+import { ToggleSettings } from '../../../graphql/mutations';
 
 export default compose(
-  graphql(gql(userOptions), {
+  graphql(gql(Settings), {
     options: {
       fetchPolicy: 'cache-only'
     },
@@ -14,9 +14,9 @@ export default compose(
       ...ownProps
     })
   }),
-  graphql(gql(toggleOption), {
+  graphql(gql(ToggleSettings), {
     props: ({ mutate, ownProps }) => ({
-      toggleOption: async (key) => await mutate({
+      toggleSettings: async (key) => await mutate({
         variables: {
           key
         }

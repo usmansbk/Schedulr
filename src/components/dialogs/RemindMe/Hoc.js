@@ -1,11 +1,11 @@
 import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
 import Dialog from './Dialog';
-import { remindMeBefore } from '../../../graphql/queries';
-import { toggleRemindMeBefore } from '../../../graphql/mutations';
+import { RemindMeBefore } from '../../../graphql/queries';
+import { ToggleRemindMeBefore } from '../../../graphql/mutations';
 
 export default compose(
-  graphql(gql(remindMeBefore), {
+  graphql(gql(RemindMeBefore), {
     options: {
       fetchPolicy: 'cache-only'
     },
@@ -14,7 +14,7 @@ export default compose(
       ...ownProps
     })
   }),
-  graphql(gql(toggleRemindMeBefore), {
+  graphql(gql(ToggleRemindMeBefore), {
     props: ({ mutate, ownProps }) => ({
       toggleRemindMe: async (key) => await mutate({
         variables: {

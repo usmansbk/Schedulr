@@ -1,22 +1,22 @@
 import gql from 'graphql-tag';
-import { userOptions, remindMeBefore as reminders } from '../queries';
+import { Settings, RemindMeBefore } from '../queries';
 
-export default {
+const resolvers = {
   Mutation: {
-    toggleOption: (_, { key }, { cache }) => {
-      const query = gql(userOptions);
-      const { options } = cache.readQuery({ query });
-      options[key] = !options[key];
+    toggleSettings: (_, { key }, { cache }) => {
+      const query = gql(Settings);
+      const { settings } = cache.readQuery({ query });
+      settings[key] = !settings[key];
       cache.writeQuery({
         query,
         data: {
-          options
+          settings
         }
       });
       return null;
     },
     toggleRemindMeBefore: (_, { key }, { cache }) => {
-      const query = gql(reminders);
+      const query = gql(RemindMeBefore);
       const { remindMeBefore } = cache.readQuery({ query });
       remindMeBefore[key] = !remindMeBefore[key];
       cache.writeQuery({
@@ -28,4 +28,6 @@ export default {
       return null;
     }
   }
-}
+};
+
+export default resolvers;
