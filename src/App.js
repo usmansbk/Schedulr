@@ -5,7 +5,7 @@ import {
   createAppContainer,
 } from 'react-navigation';
 import LocalNotifications from 'react-native-push-notification';
-import NavigationService from '../../../config/navigation';
+import NavigationService from './config/navigation';
 import {
   AuthLoading,
   Login,
