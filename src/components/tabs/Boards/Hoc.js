@@ -7,7 +7,7 @@ import { listAllBoards } from '../../../graphql/queries';
 export default graphql(gql(listAllBoards), {
   alias: 'withBoardsContainer',
   options: {
-    fetchPolicy: 'cache-and-network',
+    fetchPolicy: 'cache-first',
     notifyOnNetworkStatusChange: true,
   },
   props: ({ data, ownProps}) => ({
