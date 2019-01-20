@@ -1,5 +1,4 @@
 import React from 'react';
-import moment from 'moment';
 import { FlatList, RefreshControl } from 'react-native';
 import { withNavigationFocus } from 'react-navigation';
 import Item from './Item';
@@ -13,13 +12,12 @@ import styles, {
   ITEM_HEIGHT,
   SEPARATOR_HEIGHT,
 } from './styles';
-import dummy from './dummy';
 
 const FORMAT = 'ddd, MMM Do, YYYY hh:mm a';
 
 class List extends React.Component {
   static defaultProps = {
-    events: dummy,
+    events: [],
     loading: false,
     hasMore: false,
     onRefresh: () => null,
