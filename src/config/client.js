@@ -2,8 +2,10 @@ import AWSAppSyncClient, {
   createAppSyncLink,
   createLinkWithCache,
 } from 'aws-appsync';
+import { AsyncStorage } from 'react-native';
 import { ApolloLink } from 'apollo-link';
 import { withClientState } from 'apollo-link-state';
+import { persistCache } from 'apollo-cache-persist';
 import { Auth } from 'aws-amplify';
 import aws_config from '../aws-exports';
 import {
@@ -11,11 +13,17 @@ import {
   resolvers
 } from '../graphql/localstate';
 
-const stateLink = createLinkWithCache(cache => withClientState({
-  cache,
-  resolvers,
-  defaults
-}));
+const stateLink = createLinkWithCache(cache => {
+  persistCache({
+    cache,
+    storage: AsyncStorage
+  });
+  return withClientState({
+    cache,
+    resolvers,
+    defaults
+  });
+});
 
 const appSyncLink = createAppSyncLink({
   url: aws_config.aws_appsync_graphqlEndpoint,
