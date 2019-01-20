@@ -30,7 +30,7 @@ const appSyncLink = createAppSyncLink({
 
 const link = ApolloLink.from([stateLink, appSyncLink]);
 
-export default client = new AWSAppSyncClient({
+const client = new AWSAppSyncClient({
   cacheOptions: {
     cacheRedirects: {
       Query: {
@@ -46,3 +46,5 @@ export default client = new AWSAppSyncClient({
 }, { link });
 
 client.onResetStore(stateLink.writeDefaults);
+
+export default client;
