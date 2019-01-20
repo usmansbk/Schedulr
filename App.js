@@ -11,6 +11,7 @@ import NavigationService from './src/config/navigation';
 import config from './src/aws-exports';
 import client from './src/config/client';
 import theme from './src/config/theme';
+import { initRefreshHandlers } from './src/config/auth';
 
 // console.disableYellowBox = true;
 
@@ -19,6 +20,7 @@ Amplify.configure(config);
 export default class App extends React.Component {
   componentDidMount = () => {
     SplashScreen.hide();
+    initRefreshHandlers();
   }
   
   render() {

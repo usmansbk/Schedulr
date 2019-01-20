@@ -1,6 +1,7 @@
 import React from 'react';
-import { Auth, Analytics } from 'aws-amplify';
+import { Analytics } from 'aws-amplify';
 import Toast from 'react-native-simple-toast';
+import Auth from '../../../config/auth';
 import Login from './Login';
 import Loading from '../../common/Loading';
 

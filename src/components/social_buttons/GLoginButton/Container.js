@@ -6,12 +6,6 @@ import {
 import Toast from 'react-native-simple-toast';
 import { Analytics } from 'aws-amplify';
 import Button from './Button';
-import env from '../../../config/env';
-
-GoogleSignin.configure({
-  offlineAccess: false,
-  webClientId: env.WEB_CLIENT_ID
-});
 
 export default class Container extends React.Component {
   state = {
@@ -24,6 +18,7 @@ export default class Container extends React.Component {
       await GoogleSignin.hasPlayServices();
       const {
         idToken,
+        accessTokenExpirationDate,
         user
       } = await GoogleSignin.signIn();
       if (!user || !user.name) throw new Error('Unauthenticated');
@@ -33,7 +28,7 @@ export default class Container extends React.Component {
         pictureUrl: user.photo,
         provider: 'google',
         token: idToken,
-        expires_at: null
+        expires_at: accessTokenExpirationDate
       });
     } catch (error) {
       if (error.code === statusCodes.SIGN_IN_CANCELLED) {
