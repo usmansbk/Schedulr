@@ -2,7 +2,7 @@
 // this is an auto generated file. This will be overwritten
 
 export const loginUser = `mutation LoginUser($input: LoginInput!) {
-  loginUser(input: $input) @connection(key: "me") {
+  loginUser(input: $input) {
     id
     name
     email
@@ -11,16 +11,16 @@ export const loginUser = `mutation LoginUser($input: LoginInput!) {
 }
 `;
 
-export const toggleOption = `mutation ToggleOption($id: ID!) {
-  toggleOption(id: $id) @client {
+export const toggleOption = `mutation ToggleOption($key: ID!) {
+  toggleOption(key: $key) @client {
     headsUp
     starredAlarm
     muteReminder
   }
 }`;
 
-export const toggleRemindMeBefore = `mutation ToggleRemindMeBefore($id: ID!) {
-  toggleRemindMeBefore(id: $id) @client {
+export const toggleRemindMeBefore = `mutation ToggleRemindMeBefore($key: ID!) {
+  toggleRemindMeBefore(key: $key) @client {
     fiveMin
     tenMin
     fifteenMin

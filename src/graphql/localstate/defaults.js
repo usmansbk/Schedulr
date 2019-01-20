@@ -1,11 +1,5 @@
 export default ({
-//   me: {
-//     __typename: 'User',
-//     id: '-1',
-//     name: 'Offline',
-//     email: 'help@schdlr.com',
-//     pictureUrl: null
-//   },
+  me: null,
   options: {
     __typename: 'Options',
     headsUp: false,

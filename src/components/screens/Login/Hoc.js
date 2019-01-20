@@ -10,10 +10,10 @@ export default graphql(gql(LoginUser), {
       variables: {
         input
       },
-      // update: (cache, { data: { loginUser } }) => {
-      //   const data = { me: loginUser };
-      // 	cache.writeData({ data });
-      // }
+      update: (cache, { data: { loginUser } }) => {
+        const data = { me: loginUser };
+      	cache.writeData({ data });
+      }
     }),
     ...ownProps
   })
