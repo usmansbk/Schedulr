@@ -12,5 +12,7 @@ export default {
   primary_light: '#63a4ff',
   primary_dark: '#004ba0',
   disabled: '#d3d3d3',
-  alt_primary: '#757de8'
+  alt_primary: '#757de8',
+  money_green: '#216C2A',
+  light_green: '#90ee90'
 }
