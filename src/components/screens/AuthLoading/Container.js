@@ -11,8 +11,6 @@ export default class Container extends Component {
   _bootstrapAsync = async () => {
     let userToken = null;
     try {
-      // const cred = await Auth.currentCredentials();
-      // console.log(cred);
       const currentUser = await Auth.currentAuthenticatedUser();
       userToken = currentUser;
     } catch (error) {
