@@ -2,6 +2,7 @@ import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import Container from './Container';
 import { loginUser as LoginUser } from '../../../graphql/mutations';
+import { userLogin } from '../../../graphql/queries';
 
 export default graphql(gql(LoginUser), {
   alias: 'withLoginContainer',
@@ -12,7 +13,10 @@ export default graphql(gql(LoginUser), {
       },
       update: (cache, { data: { loginUser } }) => {
         const data = { me: loginUser };
-      	cache.writeData({ data });
+        cache.writeQuery({
+          query: gql(userLogin),
+          data
+        });
       }
     }),
     ...ownProps
