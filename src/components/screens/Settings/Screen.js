@@ -16,8 +16,8 @@ export default class Screen extends React.Component {
   _showDialog = () => this.setState({ visible: true });
   _hideDialog = () => this.setState({ visible: false });
   _goBack = () => this.props.navigation.goBack();
-  _handleValueChange = async (id) => {
-    await this.props.toggleOption(id);
+  _handleValueChange = async (key) => {
+    await this.props.toggleOption(key);
   };
   render() {
     const {

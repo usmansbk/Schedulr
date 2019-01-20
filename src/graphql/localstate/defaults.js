@@ -1,7 +1,13 @@
-export default {
-  me: null,
+export default ({
+//   me: {
+//     __typename: 'User',
+//     id: '-1',
+//     name: 'Offline',
+//     email: 'help@schdlr.com',
+//     pictureUrl: null
+//   },
   options: {
-    __typename: 'AppOptions',
+    __typename: 'Options',
     headsUp: false,
     starredAlarm: false,
     muteReminder: false,
@@ -15,4 +21,4 @@ export default {
     oneHour: false,
     oneDay: false
   }
-};
+});

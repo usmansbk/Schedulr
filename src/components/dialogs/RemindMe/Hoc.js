@@ -16,9 +16,9 @@ export default compose(
   }),
   graphql(gql(toggleRemindMeBefore), {
     props: ({ mutate, ownProps }) => ({
-      toggleRemindMe: async (id) => await mutate({
+      toggleRemindMe: async (key) => await mutate({
         variables: {
-          id
+          key
         }
       }),
       ...ownProps

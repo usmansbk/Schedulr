@@ -3,10 +3,10 @@ import { userOptions, remindMeBefore as reminders } from '../queries';
 
 export default {
   Mutation: {
-    toggleOption: (_, { id }, { cache }) => {
+    toggleOption: (_, { key }, { cache }) => {
       const query = gql(userOptions);
       const { options } = cache.readQuery({ query });
-      options[id] = !options[id];
+      options[key] = !options[key];
       cache.writeQuery({
         query,
         data: {
@@ -15,10 +15,10 @@ export default {
       });
       return options;
     },
-    toggleRemindMeBefore: (_, { id }, { cache }) => {
+    toggleRemindMeBefore: (_, { key }, { cache }) => {
       const query = gql(reminders);
       const { remindMeBefore } = cache.readQuery({ query });
-      remindMeBefore[id] = !remindMeBefore[id];
+      remindMeBefore[key] = !remindMeBefore[key];
       cache.writeQuery({
         query,
         data: {

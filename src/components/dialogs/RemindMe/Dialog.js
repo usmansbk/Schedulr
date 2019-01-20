@@ -19,8 +19,8 @@ export default class RemindMe extends React.Component {
     }
   };
 
-  _toggle = async (id) => {
-    await this.props.toggleRemindMe(id);
+  _toggle = async (key) => {
+    await this.props.toggleRemindMe(key);
   }
 
   render() {

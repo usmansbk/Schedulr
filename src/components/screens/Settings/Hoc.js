@@ -16,9 +16,9 @@ export default compose(
   }),
   graphql(gql(toggleOption), {
     props: ({ mutate, ownProps }) => ({
-      toggleOption: async (id) => await mutate({
+      toggleOption: async (key) => await mutate({
         variables: {
-          id
+          key
         }
       }),
       ...ownProps

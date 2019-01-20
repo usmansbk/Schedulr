@@ -2,7 +2,7 @@
 // this is an auto generated file. This will be overwritten
 
 export const loginUser = `mutation LoginUser($input: LoginInput!) {
-  loginUser(input: $input) {
+  loginUser(input: $input) @connection(key: "me") {
     id
     name
     email
