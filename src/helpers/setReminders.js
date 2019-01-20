@@ -120,8 +120,8 @@ const schdl = (event, before) => {
 const schdlAll = (events) => {
   InteractionManager.runAfterInteractions(() => {
     PushNotification.cancelAllLocalNotifications();
-    const { options } = client.readQuery({ query: gql(userOptions)});
-    const { remindMeBefore } = client.readQuery({ query: gql(remindMeBeforeQuery) });
+    const { options={} } = client.readQuery({ query: gql(userOptions)}) || {};
+    const { remindMeBefore={} } = client.readQuery({ query: gql(remindMeBeforeQuery) }) || {};
     if (!options.muteReminder) {
       events.forEach((event) => {
         schdl(event, remindMeBefore);

@@ -9,6 +9,7 @@ import Button from './Button';
 import env from '../../../config/env';
 
 GoogleSignin.configure({
+  offlineAccess: false,
   webClientId: env.WEB_CLIENT_ID
 });
 
