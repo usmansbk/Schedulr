@@ -6,7 +6,7 @@ import styles from './styles';
 export default () => (
   <View style={styles.empty}>
     <Headline style={styles.emptyTitle}>
-      Nothing to display - yet
+      Find an event
     </Headline>
   </View>
 );
