@@ -45,16 +45,15 @@ export const formatDate = (startAt, endAt, allDay) => {
 
 export const getNextDate = (event) => {
   const { startAt, repeat, allDay} = event;
-  const refDate = Date.now();
   const a0 = Date.parse(startAt);
-  const b0 = refDate;
+  const b0 = Date.now();
   let date;
-  if (((a0 < b0) || (repeat === 'NEVER')) && !allDay) {
+  if ((a0 < b0) || (repeat === 'NEVER')) {
     date = a0;
   } else {
     const x = repeatLength(repeat);
-    const y = b0 - a0;
-    date = b0 + Math.abs(x - y);
+    const y = b0 - a0; // time elapsed since event started
+    date = b0 + Math.abs(x - y); // add the delta time (x-y) to next event to the reference date (b0)
   }
   return moment(date).format(allDay ? DATE_ONLY : DATE_TIME);
 }
