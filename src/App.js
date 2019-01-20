@@ -4,6 +4,8 @@ import {
   createSwitchNavigator,
   createAppContainer,
 } from 'react-navigation';
+import LocalNotifications from 'react-native-push-notification';
+import NavigationService from '../../../config/navigation';
 import {
   AuthLoading,
   Login,
@@ -21,6 +23,15 @@ import {
   EditEvent,
   EditBoard
 } from './components/screens';
+
+// Configure notifications for local events reminder
+LocalNotifications.configure({
+  onNotification: notification => {
+    const { data: { id } } = notification;
+    NavigationService.navigate('EventDetails', { id });
+    // notification.finish(PushNotificationIOS.FetchResult.NoData);
+  }
+});
 
 const AppStack = createStackNavigator({
   Home,
