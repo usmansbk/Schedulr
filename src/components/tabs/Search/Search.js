@@ -15,7 +15,7 @@ export default class Search extends React.Component {
       <View style={styles.container}>
         <Searchbar
           icon="search"
-          placeholder="Search Schdlr"
+          placeholder="Search for..."
           value={this.state.query}
           onChangeText={this._onChangeText}
           style={styles.searchbar}
