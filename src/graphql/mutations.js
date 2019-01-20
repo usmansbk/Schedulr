@@ -1,7 +1,7 @@
 // eslint-disable
 // this is an auto generated file. This will be overwritten
 
-export const loginUser = `mutation LoginUser($input: LoginInput!) {
+export const LoginUser = `mutation LoginUser($input: LoginInput!) {
   loginUser(input: $input) {
     id
     name
