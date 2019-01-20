@@ -11,6 +11,7 @@ export const userLogin = `{
 
 export const userOptions = `{
   options @client {
+    id
     headsUp
     starredAlarm
     muteReminder
@@ -19,6 +20,7 @@ export const userOptions = `{
 
 export const remindMeBefore = `{
   remindMeBefore @client {
+    id
     fiveMin
     tenMin
     fifteenMin

@@ -16,16 +16,15 @@ class Container extends React.Component {
     await this._awsSignOut();
     await this._fbLogout();
     await this._googleSignout();
+    await this._clearStore();
     this.setState({ loading: false });
     this._handleDismiss();
     this.props.navigation.navigate('Auth');
-    await this._clearStore();
   };
 
   _clearStore = async () => {
     try {
-      client.o
-      await client.cache.reset();
+      //await client.cache.reset();
       await client.clearStore();
     } catch(e) {}
   };
