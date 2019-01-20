@@ -1,7 +1,7 @@
 // eslint-disable
 // this is an auto generated file. This will be overwritten
 export const userLogin = `{
-  me @client {
+  me {
     id
     name
     email
@@ -10,7 +10,7 @@ export const userLogin = `{
 }`;
 
 export const userOptions = `{
-  options @client {
+  options {
     id
     headsUp
     starredAlarm
@@ -19,7 +19,7 @@ export const userOptions = `{
 }`;
 
 export const remindMeBefore = `{
-  remindMeBefore @client {
+  remindMeBefore {
     id
     fiveMin
     tenMin

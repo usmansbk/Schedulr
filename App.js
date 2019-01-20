@@ -25,13 +25,11 @@ export default class App extends React.Component {
       <MenuProvider backHandler={true}>
         <PaperProvider theme={theme}>
           <ApolloProvider client={client}>
-            <Rehydrated>
               <AppContainer
                 ref={navigatorRef => {
                   NavigationService.setTopLevelNavigator(navigatorRef);
                 }}
               />
-            </Rehydrated>
           </ApolloProvider>
         </PaperProvider>
       </MenuProvider>
