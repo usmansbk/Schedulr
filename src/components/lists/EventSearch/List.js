@@ -41,6 +41,7 @@ class List extends React.Component {
       title,
       startAt,
       endAt,
+      allDay,
       starsCount,
       commentsCount,
       isCancelled,
@@ -51,7 +52,7 @@ class List extends React.Component {
   }) => <Item
     id={id}
     title={title}
-    date={this._getDate({ startAt, endAt, repeat })}
+    date={this._getDate({ startAt, allDay, repeat, endAt })}
     details={this._getDetails({ repeat, type })}
     boardName={board.name}
     pictureUrl={board.pictureUrl}
@@ -65,13 +66,7 @@ class List extends React.Component {
   _renderSeparator = () => <Separator />;
   _renderFooter = () => <Footer visible={this.props.hasMore} />;
   _renderEmpty = () => <Empty />;
-  _getDate = ({
-    startAt,
-    endAt,
-    repeat,
-  }) => {
-    return moment(getNextDate(new Date(startAt), repeat, undefined, endAt)).format(FORMAT);
-  };
+  _getDate = (event) => getNextDate(event);
   _getDetails = ({
     repeat,
     type,
