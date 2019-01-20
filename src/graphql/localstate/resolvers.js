@@ -13,7 +13,7 @@ export default {
           options
         }
       });
-      return options;
+      return null;
     },
     toggleRemindMeBefore: (_, { key }, { cache }) => {
       const query = gql(reminders);
@@ -25,7 +25,7 @@ export default {
           remindMeBefore
         }
       });
-      return remindMeBefore;
+      return null;
     }
   }
 }

@@ -12,22 +12,11 @@ export const loginUser = `mutation LoginUser($input: LoginInput!) {
 `;
 
 export const toggleOption = `mutation ToggleOption($key: ID!) {
-  toggleOption(key: $key) @client {
-    headsUp
-    starredAlarm
-    muteReminder
-  }
+  toggleOption(key: $key) @client
 }`;
 
 export const toggleRemindMeBefore = `mutation ToggleRemindMeBefore($key: ID!) {
-  toggleRemindMeBefore(key: $key) @client {
-    fiveMin
-    tenMin
-    fifteenMin
-    thirtyMin
-    oneHour
-    oneDay
-  }
+  toggleRemindMeBefore(key: $key) @client
 }`;
 
 export const createBoard = `mutation CreateBoard($input: CreateBoardInput!) {
