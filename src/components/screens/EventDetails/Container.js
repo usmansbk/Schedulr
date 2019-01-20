@@ -5,7 +5,7 @@ import { Appbar } from 'react-native-paper';
 import Details from './Details';
 import styles from '../../../config/styles';
 import colors from '../../../config/colors';
-import { formatDate, getNextDate } from '../../../lib/time';
+import { formatDate } from '../../../lib/time';
 import { isEventValid, isEventCancelled } from '../../../lib/parseItem';
 import capitalizr, {decapitalize} from '../../../lib/capitalizr';
 import { ONE_TIME_EVENT, ONE_TIME_EVENT_TEXT } from '../../../lib/constants';
@@ -13,7 +13,6 @@ import { ONE_TIME_EVENT, ONE_TIME_EVENT_TEXT } from '../../../lib/constants';
 const CREATED_DATE_FORMAT = "ddd DD, MMM YYYY, hh:mm a";
 
 export default class EventDetails extends React.Component {
-  _getRepeatDate = () => getNextDate(this.props.event);
   _handleCancel = () => {
     const isRecurring = this.props.event.repeat !== ONE_TIME_EVENT;
     this.props.handleCancel(isRecurring ? this.props.event.startAt : null);
@@ -102,7 +101,6 @@ export default class EventDetails extends React.Component {
           id={id}
           title={title}
           date={formatDate(startAt, endAt, allDay)}
-          nextDate={recurring && this._getRepeatDate()}
           duration={this._getDuration(endAt, startAt)}
           startAgo={this._getStartAgo(startAt)}
           eventType={decapitalize(eventType)}
