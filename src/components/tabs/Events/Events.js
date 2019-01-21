@@ -5,12 +5,8 @@ import FAB from '../../common/Fab';
 import schdlAll from '../../../helpers/setReminders';
 
 export default class Events extends React.Component {
-  shouldComponentUpdate = (nextProps) => {
-    return ((nextProps.loading) !== this.props.loading) || (
-      nextProps.events !== this.props.events
-    );
-  };
-
+  shouldComponentUpdate = (nextProps) => nextProps.isFocused;
+  
   componentDidUpdate = () => {
     schdlAll(this.props.events);
   }
