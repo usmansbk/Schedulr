@@ -136,7 +136,27 @@ export const listAllEvents = `query ListAllEvents($limit: Int, $nextToken: Strin
       updatedAt  
     }
   }
-}`
+}`;
+
+export const listEventComments = `query ListEventComments($id: ID!, $limit: Int, $nextToken: String) {
+  listComments(id: $id, limit: $limit, nextToken: $nextToken) @connection(key: "listComments", filter: ["id"]) {
+    id
+    content
+    toComment {
+      id
+      content
+    }
+    isAuthor
+    author {
+      id
+      name
+      email
+      pictureUrl
+    }
+    createdAt
+    updatedAt
+  }
+}`;
 
 export const listAllBoards = `query ListAllBoards($limit: Int, $nextToken: String) {
   listAllBoards(limit: $limit, nextToken: $nextToken)  @connection(key: "listAllBoards") {

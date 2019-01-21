@@ -9,7 +9,7 @@ export default ({
   isAuthor
 }) => (
   <React.Fragment>
-    <Appbar.Header style={styles.header}>
+    <Appbar.Header style={styles.elevatedHeader}>
       <Appbar.BackAction onPress={goBack} color={colors.gray} />
       <Appbar.Content
         title="Followers"

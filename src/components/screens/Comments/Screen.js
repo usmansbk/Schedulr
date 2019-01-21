@@ -31,6 +31,7 @@ export default class Screen extends React.Component {
       content: message,
       toCommentId: this.state.toCommentId,
     };
+    // this.props.onSubmit(input);
     alert(JSON.stringify(input));
   }
 
