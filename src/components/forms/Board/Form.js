@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, ScrollView, RefreshControl } from 'react-native';
+import isEqual from 'lodash.isequal';
 import {
   Button,
   TextInput,
@@ -57,7 +58,7 @@ const Form = ({
         >Cancel</Button>
         <Button
           loading={isSubmitting}
-          disabled={isSubmitting}
+          disabled={isSubmitting || isEqual(initialValues, values)}
           mode="outlined"
           color={navButtonColor}
           onPress={submitForm}

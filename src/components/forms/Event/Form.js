@@ -1,5 +1,6 @@
 import React from 'react';
 import moment from "moment";
+import isEqual from 'lodash.isequal';
 import {
   View,
   Picker,
@@ -82,7 +83,7 @@ const Form = ({
           color={navButtonColor}
         >Cancel</Button>
         <Button
-          loading={isSubmitting}
+          loading={isSubmitting || isEqual(initialValues, values)}
           disabled={isSubmitting}
           mode="outlined"
           color={navButtonColor}
