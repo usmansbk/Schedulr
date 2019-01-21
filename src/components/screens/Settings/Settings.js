@@ -49,7 +49,6 @@ export default ({
             />
           )}
         />
-        <Divider />
       </List.Section>
       <List.Section title="Reminders">
         <List.Item
