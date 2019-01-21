@@ -15,6 +15,10 @@ export default class Comments extends React.Component {
     this._inputRef && this._inputRef.blurInput();
   };
 
+  _handleSubmit = (message) => {
+    this.props.onSubmit(message);
+  };
+
   render() {
     const {
       id,
@@ -41,6 +45,7 @@ export default class Comments extends React.Component {
         />
         <CommentForm
           ref={inputRef => this._inputRef = inputRef}
+          handleSubmit={this._handleSubmit}
           replying={id}
           targetName={targetName}
           cancelReply={cancelReply}

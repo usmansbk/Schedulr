@@ -14,9 +14,7 @@ export default class CommentInput extends React.Component {
 
   _onSubmit = () => {
     this.setState({ isSubmitting: true });
-    // this.props.handleSubmit({
-    //   content: message
-    // });
+    this.props.handleSubmit(this.state.message);
     this.setState({
       isSubmitting: false,
       message: ''
