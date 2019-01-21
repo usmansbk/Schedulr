@@ -3,7 +3,7 @@ export default [
     id: 1,
     author: {
       id: 1,
-      name: 'Babakolo Usman Suleiman Babakolo',
+      name: 'Babakolo Usman Suleiman Babakolo Usman',
       pictureUrl: null,
     },
     content: 'Hello worldTo support deep linking on Android, refer http://developer.android.com/training/app-indexing/deep-linking.html#handling-intents',

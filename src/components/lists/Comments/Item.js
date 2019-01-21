@@ -67,7 +67,7 @@ export default class Item extends React.PureComponent {
             { 
               isAuthor && (
                 <View style={styles.footer}>
-                  <Caption style={styles.timeAgo}>{timeAgo}</Caption>
+                  <Caption>{timeAgo}</Caption>
                   <View style={styles.actions}>
                     <Text onPress={this._onDelete} style={styles.footerText}>Delete</Text>
                     <Text onPress={this._onReply} style={styles.footerText}>Reply</Text>

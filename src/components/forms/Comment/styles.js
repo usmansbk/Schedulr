@@ -23,11 +23,10 @@ export default StyleSheet.create({
   alert: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginVertical: 16,
-    marginHorizontal: 8
+    margin: 16
   },
   alertTitle: {
-    width: 180
+    width: 250
   },
   cancelText: {
     color: colors.primary,

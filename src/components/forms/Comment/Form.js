@@ -52,7 +52,7 @@ export default class CommentInput extends React.Component {
                 ellipsizeMode="tail"
                 style={styles.alertTitle}
               >Replying <Text style={styles.targetName}>{targetName}</Text>
-            </Text>
+              </Text>
               <Text onPress={cancelReply} style={styles.cancelText}>Cancel</Text>
             </View>
           )
@@ -79,7 +79,7 @@ export default class CommentInput extends React.Component {
           <View style={styles.right}>
             <IconButton
               icon="send"
-              disabled={isSubmitting || message}
+              disabled={isSubmitting || !message}
               onPress={this._onSubmit}
             />
           </View>

@@ -29,7 +29,6 @@ export default StyleSheet.create({
   authorName: {
     fontWeight: 'bold',
     fontSize: 16,
-    width: 200
   },
   separator: {
     height: SEPARATOR_HEIGHT
@@ -55,6 +54,6 @@ export default StyleSheet.create({
   replyName: {
     fontWeight: 'bold',
     fontSize: 14,
-    width: 200
-  }
+    width: 250
+  },
 });
