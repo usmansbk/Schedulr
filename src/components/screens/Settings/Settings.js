@@ -67,7 +67,6 @@ export default ({
             />
           )}
         />
-        <Divider />
       </List.Section>
       {
         false && (
