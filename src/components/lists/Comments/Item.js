@@ -64,17 +64,17 @@ export default class Item extends React.PureComponent {
                 {content}
               </Paragraph>
             </Hyperlink>
-            { 
-              isAuthor && (
-                <View style={styles.footer}>
-                  <Caption>{timeAgo}</Caption>
+            <View style={styles.footer}>
+              <Caption>{timeAgo}</Caption>
+              {
+                isAuthor && (
                   <View style={styles.actions}>
                     <Text onPress={this._onDelete} style={styles.footerText}>Delete</Text>
                     <Text onPress={this._onReply} style={styles.footerText}>Reply</Text>
                   </View>
-                </View>
-              )
-            }
+                )
+              }
+            </View>
           </View>
         </View>
       </View>
