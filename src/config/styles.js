@@ -19,6 +19,10 @@ export default StyleSheet.create({
     elevation: 0,
     backgroundColor: '#fff',
   },
+  elevatedHeader: {
+    elevation: 1,
+    backgroundColor: '#fff',
+  },
   headerColor: {
     color: colors.gray
   },

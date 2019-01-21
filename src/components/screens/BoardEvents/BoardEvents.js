@@ -39,7 +39,7 @@ export default class BoardEvents extends React.Component {
 
     return (
       <React.Fragment>
-        <Appbar.Header style={styles.header} collapsable>
+        <Appbar.Header style={styles.elevatedHeader} collapsable>
           <Appbar.BackAction color={colors.gray} onPress={onPress} />
           <Appbar.Content
             title={name}
