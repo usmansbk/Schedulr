@@ -21,7 +21,9 @@ export default class CommentInput extends React.Component {
       isSubmitting: false,
       message: ''
     });
-  }
+  };
+
+  _onChangeText = (message) => this.setState({ message })
 
   focusInput = () => this._textInputRef && this._textInputRef.focus();
 
@@ -71,7 +73,7 @@ export default class CommentInput extends React.Component {
               placeholder="Add a comment..."
               value={message}
               onChangeText={this._onChangeText}
-              onBlur={this._onChangeText}
+              onBlur={() => this._onChangeText(message)}
             />
           </View>
           <View style={styles.right}>
