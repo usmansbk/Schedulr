@@ -17,7 +17,7 @@ import { refreshGoogleToken } from './src/config/auth';
 
 // console.disableYellowBox = true;
 
-window.LOG_LEVEL = 'DEBUG';
+// window.LOG_LEVEL = 'DEBUG';
 
 GoogleSignin.configure({
   webClientId: env.WEB_CLIENT_ID

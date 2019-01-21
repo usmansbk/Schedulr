@@ -10,7 +10,7 @@ export default compose(
       fetchPolicy: 'cache-only'
     },
     props: ({ data, ownProps }) => ({
-      options: data && data.options || undefined,
+      settings: data && data.settings || undefined,
       ...ownProps
     })
   }),

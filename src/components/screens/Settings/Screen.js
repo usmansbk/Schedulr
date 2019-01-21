@@ -4,7 +4,7 @@ import RemindMeDialog from '../../dialogs/RemindMe';
 
 export default class Screen extends React.Component {
   static defaultProps = {
-    options: {
+    settings: {
       headsUp: false,
       starredAlarm: true,
       muteReminder: false,
@@ -17,11 +17,11 @@ export default class Screen extends React.Component {
   _hideDialog = () => this.setState({ visible: false });
   _goBack = () => this.props.navigation.goBack();
   _handleValueChange = async (key) => {
-    await this.props.toggleOption(key);
+    await this.props.toggleSettings(key);
   };
   render() {
     const {
-      options: {
+      settings: {
         headsUp,
         starredAlarm,
         muteReminder
