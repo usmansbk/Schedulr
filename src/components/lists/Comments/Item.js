@@ -45,7 +45,6 @@ export default class Item extends React.PureComponent {
               style={styles.authorName}
               onPress={this._navigateToProfile}
             >{authorName}</Text>
-            <Caption style={styles.timeAgo}>{timeAgo}</Caption>
           </View>
           {
             Boolean(replyingContent) && (
@@ -68,8 +67,11 @@ export default class Item extends React.PureComponent {
             { 
               isAuthor && (
                 <View style={styles.footer}>
-                  <Text onPress={this._onDelete} style={styles.footerText}>Delete</Text>
-                  <Text onPress={this._onReply} style={styles.footerText}>Reply</Text>
+                  <Caption style={styles.timeAgo}>{timeAgo}</Caption>
+                  <View style={styles.actions}>
+                    <Text onPress={this._onDelete} style={styles.footerText}>Delete</Text>
+                    <Text onPress={this._onReply} style={styles.footerText}>Reply</Text>
+                  </View>
                 </View>
               )
             }

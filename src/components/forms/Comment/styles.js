@@ -31,8 +31,7 @@ export default StyleSheet.create({
   },
   cancelText: {
     color: colors.primary,
-    fontWeight: 'bold',
-    margin: 16
+    fontWeight: 'bold'
   },
   targetName: {
     fontWeight: 'bold'

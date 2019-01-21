@@ -35,9 +35,13 @@ export default StyleSheet.create({
     height: SEPARATOR_HEIGHT
   },
   footer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 8
+  },
+  actions: {
     justifyContent: 'flex-end',
     flexDirection: 'row',
-    marginTop: 8
   },
   footerText: {
     color: colors.gray,
