@@ -74,6 +74,7 @@ const Form = ({
       handleBlur,
       setFieldValue,
       resetForm,
+      initialValues
     }) => (
       <React.Fragment>
       <Appbar.Header style={styles.header}>
@@ -83,8 +84,8 @@ const Form = ({
           color={navButtonColor}
         >Cancel</Button>
         <Button
-          loading={isSubmitting || isEqual(initialValues, values)}
-          disabled={isSubmitting}
+          loading={isSubmitting}
+          disabled={isSubmitting || isEqual(initialValues, values)}
           mode="outlined"
           color={navButtonColor}
           onPress={submitForm}
