@@ -45,17 +45,21 @@ export default ({
           onPress={openRemindMeDialog}
         />
         <Divider />
-        <List.Item
-          title="Heads-up"
-          right={() => (
-            <Switch
-              disabled={muteReminder}
-              value={headsUp}
-              onValueChange={() => handleValueChange('headsUp')}
+        {
+          false && (
+            <List.Item
+              title="Heads-up"
+              right={() => (
+                <Switch
+                  disabled={muteReminder}
+                  value={headsUp}
+                  onValueChange={() => handleValueChange('headsUp')}
+                />
+              )}
             />
-          )}
-        />
-        <Divider />
+            <Divider />
+          )
+        }
         <List.Item
           title="Starred alarm"
           description="Play long alarm sound?"
