@@ -3,7 +3,7 @@ import moment from 'moment';
 import Toast from 'react-native-simple-toast';
 import { getValue } from '../lib/formValidator';
 import client from '../config/client';
-import { getEvent, getBoard, userLogin } from '../graphql/queries';
+import { getEvent, getBoard, Me } from '../graphql/queries';
 import { BOARD_CLOSED, BOARD_OPEN } from '../lib/constants';
 
 const __typename = 'Mutation';
@@ -190,6 +190,6 @@ function getEventFromCache(query, input) {
 
 function getCurrentUser() {
   return client.readQuery({
-    query: gql(userLogin)
+    query: gql(Me)
   });
 }

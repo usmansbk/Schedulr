@@ -18,7 +18,7 @@ export default class NewEventScreen extends React.Component {
         id: result.data.createEvent.id
       });
     } catch(error) {
-      Toast.show('Failed to create', Toast.SHORT);
+      Toast.show(error.message, Toast.SHORT);
       console.log(error);
     }
   };
