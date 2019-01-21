@@ -11,6 +11,7 @@ export const Me = `{
 
 export const Settings = `{
   settings @client {
+    id
     headsUp
     starredAlarm
     muteReminder
@@ -19,6 +20,7 @@ export const Settings = `{
 
 export const RemindMeBefore = `{
   remindMeBefore @client {
+    id
     fiveMin
     tenMin
     fifteenMin
