@@ -14,7 +14,7 @@ import {
 } from '../lib/time';
 import { Settings, RemindMeBefore } from '../graphql/queries';
 
-const setReminder = (event, before) => {
+const setReminder = (event, before, settings) => {
   const {
     id,
     title,
@@ -23,6 +23,7 @@ const setReminder = (event, before) => {
     repeat,
   } = event;
   const { amount, unit } = before;
+  const { playSound, vibrate } = settings;
   const date = moment(startAt).subtract(amount, unit).toDate();
   const message = `${decapitalize(eventType)} in ${moment(startAt).from(date, true)}`;
   const repeatType = getRepeatType(repeat);
@@ -35,6 +36,8 @@ const setReminder = (event, before) => {
     title,
     date,
     message,
+    playSound,
+    vibrate,
     data: JSON.stringify({
       id
     }),
@@ -44,7 +47,7 @@ const setReminder = (event, before) => {
   PushNotification.localNotificationSchedule(notification);
 };
 
-const schdlStart = (event) => {
+const schdlStart = (event, settings) => {
   const {
     id,
     title,
@@ -52,6 +55,7 @@ const schdlStart = (event) => {
     eventType,
     repeat,
   } = event;
+  const { playSound, vibrate } = settings;
   const time = moment(startAt).format('hh:mm a');
   const date = moment(startAt).toDate();
   const message = `${decapitalize(eventType)} - ${time}`;
@@ -65,6 +69,8 @@ const schdlStart = (event) => {
     title,
     date,
     message,
+    playSound,
+    vibrate,
     data: JSON.stringify({
       id
     }),
@@ -74,7 +80,7 @@ const schdlStart = (event) => {
   PushNotification.localNotificationSchedule(notification);
 };
 
-const schdl = (event, before) => {
+const schdl = (event, before, settings) => {
   const {
     fiveMin,
     tenMin,
@@ -89,30 +95,30 @@ const schdl = (event, before) => {
   const isCancelled = event.isCancelled;
 
   if (!isStarted && !isCancelled) {
-    schdlStart(event);
+    schdlStart(event, settings);
     const distance = start - Date.now();
     if (fiveMin && distance > FIVE_MINUTES) {
-      setReminder(event, { amount: 5, unit: 'minutes' });
+      setReminder(event, { amount: 5, unit: 'minutes' }, settings);
     }
     
     if (tenMin && distance > TEN_MINUTES) {
-      setReminder(event, { amount: 10, unit: 'minutes' });
+      setReminder(event, { amount: 10, unit: 'minutes' }, settings);
     }
 
     if (fifteenMin && distance > FIFTEEN_MINUTES) {
-      setReminder(event, { amount: 15, unit: 'minutes' });
+      setReminder(event, { amount: 15, unit: 'minutes' }, settings);
     }
 
     if (thirtyMin && distance > THIRTY_MINUTES) {
-      setReminder(event, { amount: 30, unit: 'minutes' });
+      setReminder(event, { amount: 30, unit: 'minutes' }, settings);
     }
 
     if (oneHour && distance > ONE_HOUR) {
-      setReminder(event, { amount: 1, unit: 'hour' });
+      setReminder(event, { amount: 1, unit: 'hour' }, settings);
     }
 
     if (oneDay && distance > ONE_DAY) {
-      setReminder(event, { amount: 1, unit: 'day' });
+      setReminder(event, { amount: 1, unit: 'day' }, settings);
     }
   }
 };
@@ -124,7 +130,7 @@ const schdlAll = (events) => {
     const { remindMeBefore={} } = client.readQuery({ query: gql(RemindMeBefore) }) || {};
     if (!settings.muteReminder) {
       events.forEach((event) => {
-        schdl(event, remindMeBefore);
+        schdl(event, remindMeBefore, settings);
       });
     }
   });

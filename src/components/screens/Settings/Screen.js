@@ -5,6 +5,8 @@ import RemindMeDialog from '../../dialogs/RemindMe';
 export default class Screen extends React.Component {
   static defaultProps = {
     settings: {
+      playSound: true,
+      vibrate: true,
       headsUp: false,
       starredAlarm: true,
       muteReminder: false,
@@ -22,6 +24,8 @@ export default class Screen extends React.Component {
   render() {
     const {
       settings: {
+        playSound,
+        vibrate,
         headsUp,
         starredAlarm,
         muteReminder
@@ -30,6 +34,8 @@ export default class Screen extends React.Component {
     return (
       <React.Fragment>
         <Settings
+          vibrate={vibrate}
+          playSound={playSound}
           headsUp={headsUp}
           starredAlarm={starredAlarm}
           muteReminder={muteReminder}

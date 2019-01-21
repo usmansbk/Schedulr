@@ -12,6 +12,8 @@ export const Me = `{
 export const Settings = `{
   settings @client {
     id
+    playSound
+    vibrate
     headsUp
     starredAlarm
     muteReminder

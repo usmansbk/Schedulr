@@ -15,6 +15,8 @@ export default ({
   openRemindMeDialog,
   muteReminder,
   starredAlarm,
+  playSound,
+  vibrate,
   headsUp,
   disablePush
 }) => (
@@ -27,6 +29,28 @@ export default ({
       />
     </Appbar.Header>
     <ScrollView>
+      <List.Section title="General">
+        <List.Item
+          title="Sound"
+          right={() => (
+            <Switch
+              value={playSound}
+              onValueChange={() => handleValueChange('playSound')}
+            />
+          )}
+        />
+        <Divider />
+        <List.Item
+          title="Vibrate"
+          right={() => (
+            <Switch
+              value={vibrate}
+              onValueChange={() => handleValueChange('vibrate')}
+            />
+          )}
+        />
+        <Divider />
+      </List.Section>
       <List.Section title="Reminders">
         <List.Item
           title="Mute"
