@@ -47,6 +47,7 @@ export default ({
         <Divider />
         {
           false && (
+            <React.Fragment>
             <List.Item
               title="Heads-up"
               right={() => (
@@ -58,6 +59,7 @@ export default ({
               )}
             />
             <Divider />
+            </React.Fragment>
           )
         }
         <List.Item
