@@ -26,13 +26,13 @@ export default graphql(gql(getEvent), {
       } catch(e) {
         console.log(e);
         // Log error if it occurs multiple times
-        Analytics.record({
-          name: e.name,
-          attributes: {
-            message: e.message,
-            component: 'EventContainer'
-          }
-        })
+        // Analytics.record({
+        //   name: e.name,
+        //   attributes: {
+        //     message: e.message,
+        //     component: 'EventContainer'
+        //   }
+        // })
       }
     },
     event: data && data.getEvent,

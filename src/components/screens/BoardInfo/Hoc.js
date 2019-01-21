@@ -24,13 +24,13 @@ export default graphql(gql(getBoard), {
       } catch(e) {
         console.log(e);
         // Log error if it occurs multiple times
-        Analytics.record({
-          name: e.name,
-          attributes: {
-            message: e.message,
-            component: 'BoardsContainer'
-          }
-        })
+        // Analytics.record({
+        //   name: e.name,
+        //   attributes: {
+        //     message: e.message,
+        //     component: 'BoardsContainer'
+        //   }
+        // })
       }
     },
     board: data && data.getBoard,

@@ -24,13 +24,13 @@ export default compose(
         } catch(e) {
           console.log(e);
           // Log error if it occurs multiple times
-          Analytics.record({
-            name: e.name,
-            attributes: {
-              message: e.message,
-              component: 'EventsContainer'
-            }
-          })
+          // Analytics.record({
+          //   name: e.name,
+          //   attributes: {
+          //     message: e.message,
+          //     component: 'EventsContainer'
+          //   }
+          // })
         }
       },
       ...ownProps

@@ -50,13 +50,13 @@ export default class Container extends React.Component {
   _responseInfoCallback = async (error, result) => {
     if (error) {
       Toast.show(error.message, Toast.LONG);
-      Analytics.record({
-        name: 'fb_login_error',
-        attributes: {
-          name: error.name,
-          message: error.message
-        },
-      });
+      // Analytics.record({
+      //   name: 'fb_login_error',
+      //   attributes: {
+      //     name: error.name,
+      //     message: error.message
+      //   },
+      // });
     } else if (result) {
       console.log(result);
       const { email, name, picture } = result;
