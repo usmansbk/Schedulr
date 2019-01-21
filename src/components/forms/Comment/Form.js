@@ -7,7 +7,25 @@ import { CachedImage } from 'react-native-cached-image';
 import styles, { AVATAR_SIZE } from './styles';
 
 export default class CommentInput extends React.Component {
+  state = {
+    isSubmitting: false,
+    message: ''
+  };
+
+  _onSubmit = () => {
+    this.setState({ isSubmitting: true });
+    // this.props.handleSubmit({
+    //   content: message
+    // });
+    this.setState({
+      isSubmitting: false,
+      message: ''
+    });
+  }
+
   focusInput = () => this._textInputRef && this._textInputRef.focus();
+
+  blurInput = () => this._textInputRef && this._textInputRef.blur();
 
   render() {
     const {
@@ -15,72 +33,56 @@ export default class CommentInput extends React.Component {
       name="...",
       replying,
       targetName,
-      handleSubmit,
       cancelReply
     } = this.props;
+    const {
+      isSubmitting,
+      message
+    } = this.state;
 
     return (
-      <Formik
-        initialValues={{
-          content: '',
-          replying,
-        }}
-        onSubmit={(values, { setSubmitting }) => {
-          handleSubmit && handleSubmit(values);
-          setSubmitting(false);
-        }}
-      >
-        {({
-          isSubmitting,
-          submitForm,
-          handleChange,
-          handleBlur,
-          values
-        }) => (
-          <React.Fragment>
-            {
-              Boolean(replying) && (
-                <View style={styles.alert}>
-                  <Text
-                    numberOfLines={1}
-                    ellipsizeMode="tail"
-                    style={styles.alertTitle}
-                  >Replying <Text style={styles.targetName}>{targetName}</Text>
-                </Text>
-                  <Text onPress={cancelReply} style={styles.cancelText}>Cancel</Text>
-                </View>
-              )
-            }
-          <View style={styles.container}>
-            <View style={styles.left}>
-              <UserAvatar
-                rounded
-                size={AVATAR_SIZE}
-                src={pictureUrl}
-                name={name}
-                component={CachedImage}
-              />
+      <React.Fragment>
+        {
+          Boolean(replying) && (
+            <View style={styles.alert}>
+              <Text
+                numberOfLines={1}
+                ellipsizeMode="tail"
+                style={styles.alertTitle}
+              >Replying <Text style={styles.targetName}>{targetName}</Text>
+            </Text>
+              <Text onPress={cancelReply} style={styles.cancelText}>Cancel</Text>
             </View>
-            <View style={styles.body}>
-              <TextInput
-                ref={textInputRef => this._textInputRef = textInputRef}
-                placeholder="Add a comment..."
-                value={values.content}
-                onChangeText={handleChange('content')}
-                onBlur={handleBlur('content')}
-              />
-            </View>
-            <View style={styles.right}>
-              <IconButton
-                icon="send"
-                disabled={isSubmitting || !values.content}
-                onPress={submitForm}
-              />
-            </View>
+          )
+        }
+        <View style={styles.container}>
+          <View style={styles.left}>
+            <UserAvatar
+              rounded
+              size={AVATAR_SIZE}
+              src={pictureUrl}
+              name={name}
+              component={CachedImage}
+            />
           </View>
-          </React.Fragment>
-        )}
-      </Formik>
+          <View style={styles.body}>
+            <TextInput
+              ref={textInputRef => this._textInputRef = textInputRef}
+              placeholder="Add a comment..."
+              value={message}
+              onChangeText={this._onChangeText}
+              onBlur={this._onChangeText}
+            />
+          </View>
+          <View style={styles.right}>
+            <IconButton
+              icon="send"
+              disabled={isSubmitting || message}
+              onPress={this._onSubmit}
+            />
+          </View>
+        </View>
+      </React.Fragment>
     );
   }
 }

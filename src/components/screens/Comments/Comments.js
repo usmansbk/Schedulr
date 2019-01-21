@@ -11,6 +11,10 @@ export default class Comments extends React.Component {
     this._inputRef && this._inputRef.focusInput();
   };
 
+  blurCommentInput = () => {
+    this._inputRef && this._inputRef.blurInput();
+  };
+
   render() {
     const {
       id,

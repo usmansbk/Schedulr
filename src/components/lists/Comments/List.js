@@ -5,10 +5,11 @@ import { withNavigationFocus } from 'react-navigation';
 import Item from './Item';
 import Separator from './Separator';
 import styles from './styles';
+import dummy from './dummy';
 
 class List extends React.Component {
   static defaultProps = {
-    comments: [],
+    comments: dummy,
     loading: false,
     onRefresh: () => null
   };

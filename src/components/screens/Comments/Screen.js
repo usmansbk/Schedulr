@@ -12,7 +12,7 @@ export default class Screen extends React.Component {
   _goBack = () => this.props.navigation.goBack();
   _onDelete = (id) => this._openDialog(id, 'delete');
   _onReply = (replying, targetName) => this.setState({ replying, targetName }, this._focusCommentInput);
-  _cancelReply = () => this.setState({ replying: null, targetName: null });
+  _cancelReply = () => this.setState({ replying: null, targetName: null }, this._blurCommentInput);
   _openDialog = (id, visibleDialog) => this.setState({
     visibleDialog,
     id,
@@ -22,6 +22,9 @@ export default class Screen extends React.Component {
   _hideDialog = () => this.setState({ visibleDialog: null, id: null });
   _focusCommentInput = () => {
     this._commentsRef && this._commentsRef.focusCommentInput();
+  }
+  _blurCommentInput = () => {
+    this._commentsRef && this._commentsRef.blurCommentInput();
   }
 
   render() {
