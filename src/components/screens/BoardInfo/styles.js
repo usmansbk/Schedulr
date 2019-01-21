@@ -55,7 +55,8 @@ export default StyleSheet.create({
   noteView: {
     justifyContent: 'flex-start',
     alignItems: 'center',
-    flexDirection: 'row'
+    flexDirection: 'row',
+    marginVertical: 4
   },
   description: {
     fontSize: 18,
