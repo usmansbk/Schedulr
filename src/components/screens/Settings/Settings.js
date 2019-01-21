@@ -87,7 +87,7 @@ export default ({
         }
         <List.Item
           title="Starred alarm"
-          description="Play long alarm sound?"
+          description="Play alarm sound?"
           right={() => (
             <Switch
               disabled={muteReminder}
