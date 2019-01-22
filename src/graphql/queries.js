@@ -78,8 +78,8 @@ export const getEvent = `query GetEvent($id: ID!) {
 }
 `;
 
-export const getEvent = `query GetComment($id: ID!) {
-  getComment @client (id: $id) {
+export const getComment = `query GetComment($id: ID!) {
+  getComment(id: $id) @client {
     id
     content
     author {
