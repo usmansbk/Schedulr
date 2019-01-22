@@ -12,6 +12,11 @@ export default class CommentInput extends React.Component {
     message: ''
   };
 
+  static defaultProps = {
+    name: 'Schdlr',
+    pictureUrl: null
+  }
+
   _onSubmit = () => {
     this.setState({ isSubmitting: true });
     this.props.handleSubmit(this.state.message);
@@ -30,7 +35,7 @@ export default class CommentInput extends React.Component {
   render() {
     const {
       pictureUrl,
-      name="...",
+      name,
       targetName,
       cancelReply
     } = this.props;
