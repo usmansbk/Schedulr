@@ -82,6 +82,10 @@ export const getComment = `query GetComment($id: ID!) {
   getComment(id: $id) @client {
     id
     content
+    event {
+      id
+      commentsCount
+    }
     author {
       id
       name
