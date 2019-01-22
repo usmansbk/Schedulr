@@ -43,6 +43,10 @@ class List extends React.Component {
     );
   }
   _renderSeparator = () => <Separator />;
+  scrollDown = () => {
+    this._listRef && this._listRef.scrollToEnd();
+  }
+
   render() {
     const {
       loading,
@@ -51,6 +55,7 @@ class List extends React.Component {
     } = this.props;
     return (
       <FlatList
+        ref={ref => this._listRef = ref}
         style={styles.list}
         data={comments}
         extraData={comments.length}

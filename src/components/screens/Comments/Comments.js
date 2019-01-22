@@ -17,6 +17,7 @@ export default class Comments extends React.Component {
 
   _handleSubmit = (message) => {
     this.props.onSubmit(message);
+    this._commentsList && this._commentsList.current.scrollDown();
   };
 
   render() {
@@ -42,6 +43,7 @@ export default class Comments extends React.Component {
           />
         </Appbar.Header>
         <List
+          ref={ref => this._commentsList = ref}
           loading={loading}
           comments={comments}
           onRefresh={onRefresh}
