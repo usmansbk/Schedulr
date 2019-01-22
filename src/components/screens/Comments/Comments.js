@@ -1,4 +1,5 @@
 import React from 'react';
+import Toast from 'react-native-simple-toast';
 import { Appbar } from 'react-native-paper';
 import List from '../../lists/Comments';
 import CommentForm from '../../forms/Comment';
@@ -16,8 +17,13 @@ export default class Comments extends React.Component {
   };
 
   _handleSubmit = async (message) => {
-    await this.props.onSubmit(message);
-    this._commentsListRef && this._commentsListRef.scrollDown();
+    try {
+      await this.props.onSubmit(message);
+      this._commentsListRef && this._commentsListRef.scrollDown();
+    } catch (e) {
+      Toast.show('Failed to post comment', Toast.SHORT);
+      console.log(e);
+    }
   };
 
   render() {

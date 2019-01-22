@@ -26,13 +26,13 @@ export default class Screen extends React.Component {
   _blurCommentInput = () => {
     this._commentsRef && this._commentsRef.blurCommentInput();
   };
-  _onSubmit = (message) => {
+  _onSubmit = async (message) => {
     const input = {
       content: message,
       toCommentId: this.state.toCommentId,
       eventId: this.props.eventId
     };
-    this.props.onSubmit(input);
+    await this.props.onSubmit(input);
     this._cancelReply();
   };
   _navigateToProfile = (id) => this.props.navigation.navigate('UserProfile', { id });
