@@ -6,19 +6,16 @@ import { Me } from '../../../graphql/queries';
 
 export default graphql(gql(LoginUser), {
   alias: 'withLoginContainer',
-  options: {
-    fetchPolicy: 'network-only'
-  },
   props: ({ mutate, ownProps }) => ({
     onLogin: async (input) => await mutate({
       variables: {
         input
       },
       update: (cache, { data: { loginUser } }) => {
-        const data = { me: loginUser };
+        const me = { me: loginUser };
         cache.writeQuery({
           query: gql(Me),
-          data
+          data: me
         });
       }
     }),
