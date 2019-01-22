@@ -65,6 +65,7 @@ export default class Screen extends React.Component {
       />
       <DeleteCommentDialog
         id={this.state.id}
+        eventId={this.props.eventId}
         visible={visibleDialog === 'delete'}
         handleDismiss={this._hideDialog}
       />

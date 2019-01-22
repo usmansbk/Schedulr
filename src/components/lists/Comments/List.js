@@ -35,7 +35,7 @@ class List extends React.Component {
         replyingContent={toComment && toComment.content}
         isAuthor={isAuthor}
         content={content}
-        timeAgo={moment(createdAt).fromNow()}
+        timeAgo={moment(createdAt).fromNow(true)}
         navigateToProfile={this._navigateToProfile}
         handleDeleteComment={this.props.handleDelete}
         handleReplyComment={this.props.handleReply}
