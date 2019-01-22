@@ -15,8 +15,8 @@ export default class Comments extends React.Component {
     this._inputRef && this._inputRef.blurInput();
   };
 
-  _handleSubmit = (message) => {
-    this.props.onSubmit(message);
+  _handleSubmit = async (message) => {
+    await this.props.onSubmit(message);
     this._commentsListRef && this._commentsListRef.scrollDown();
   };
 
