@@ -53,7 +53,7 @@ export default class NewEventScreen extends React.Component {
     return (
       <Form
         initialValues={this._getInitialValues()}
-        boards={this.props.boards.filter(board => board.isAuthor && (board.status !== BOARD_CLOSED) && (board.name[0] !== '-'))}
+        boards={this.props.boards.filter(board => board.isAuthor && (board.status !== BOARD_CLOSED) && (board.id[0] !== '-'))}
         handleCancel={this._handleBack}
         onSubmit={this._handleSubmit}
         locked={Boolean(this.props.boardId)}
