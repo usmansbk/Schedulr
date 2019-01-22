@@ -1,5 +1,6 @@
 import gql from 'graphql-tag';
 import moment from 'moment';
+import shortid from 'shortid';
 import Toast from 'react-native-simple-toast';
 import { getValue } from '../lib/formValidator';
 import client from '../config/client';
@@ -10,19 +11,19 @@ const __typename = 'Mutation';
 
 export const createCommentResponse = (input, eventId) => {
   const { me } = getCurrentUser();
-  const { getEvent } = getEventFromCache(gql(getEvent), { id: eventId });
+  const eventData = getEventFromCache(gql(getEvent), { id: eventId });
   const toComment = getToComment(gql(getComment), input);
 
   const newComment = {
     __typename: 'Comment',
-    id: String(Math.random() * -1000),
+    id: '-' + shortid.generate(),
     content: input.content,
     isAuthor: true,
     toComment,
     event: {
       __typename: 'Event',
       id: eventId,
-      commentsCount: getEvent.commentsCount + 1,
+      commentsCount: eventData.getEvent.commentsCount + 1,
     },
     author: me,
     updatedAt: null,
@@ -43,7 +44,7 @@ export const createEventResponse = (input) => {
 
     const newEvent = {
       __typename: 'Event',
-      id: String(Math.random() * -1000),
+      id: '-' + shortid.generate(),
       title: getValue(input.title),
       description: getValue(input.description),
       startAt: input.startAt,
@@ -87,7 +88,7 @@ export const createBoardResponse = (input) => {
 
     const newBoard = {
       __typename: 'Board',
-      id: String(Math.random() * -1000),
+      id: '-' + shortid.generate(),
       name: getValue(input.name),
       description: getValue(input.description),
       status: getValue(input.status),
