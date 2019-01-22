@@ -1,20 +1,18 @@
 import React from 'react';
 import moment from 'moment';
 import { FlatList } from 'react-native';
-import { withNavigationFocus } from 'react-navigation';
 import Item from './Item';
 import Footer from './Footer';
 import Separator from './Separator';
 import styles from './styles';
 
-class List extends React.Component {
+export default class List extends React.Component {
   static defaultProps = {
     comments: [],
     loading: false,
     onRefresh: () => null
   };
   _keyExtractor = (item) => String(item.id);
-  shouldComponentUpdate = (nextProps) => nextProps.isFocused;
   _navigateToProfile = (id) => this.props.navigation.navigate('UserProfile', { id }); 
   _renderItem = ({ item: {
       id,
@@ -71,5 +69,3 @@ class List extends React.Component {
     )
   }
 }
-
-export default withNavigationFocus(List);
