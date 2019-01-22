@@ -33,6 +33,7 @@ export default class Screen extends React.Component {
       eventId: this.props.eventId
     };
     this.props.onSubmit(input);
+    this._cancelReply();
   }
 
   render() {

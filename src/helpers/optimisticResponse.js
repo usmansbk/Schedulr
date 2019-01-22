@@ -10,7 +10,7 @@ const __typename = 'Mutation';
 
 export const createCommentResponse = (input) => {
   const { me } = getCurrentUser();
-  const toComment = getComment(gql(getComment), input);
+  const toComment = getToComment(gql(getComment), input);
 
   const newComment = {
     __typename: 'Comment',
@@ -199,7 +199,7 @@ function getBoardFromCache(query, input) {
   });
 }
 
-function getComment(query, input) {
+function getToComment(query, input) {
   if (!input.toCommentId) return null;
   return client.readQuery({
     query,
