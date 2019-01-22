@@ -10,9 +10,9 @@ export default StyleSheet.create({
   },
   itemContainer: {
     flexDirection: 'row',
-    backgroundColor: '#fff',
     paddingHorizontal: 8,
-    paddingVertical: 10
+    paddingVertical: 4,
+    backgroundColor: '#fff',
   },
   linkStyle: { color: '#2980b9' },
   itemHeader: {
@@ -24,7 +24,9 @@ export default StyleSheet.create({
     marginRight: 4
   },
   itemRight: {
-    flex: 1
+    flex: 1,
+    padding: 4,
+    borderRadius: 2
   },
   authorName: {
     fontWeight: 'bold',

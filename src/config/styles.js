@@ -20,7 +20,7 @@ export default StyleSheet.create({
     backgroundColor: '#fff',
   },
   elevatedHeader: {
-    elevation: 1,
+    elevation: 2,
     backgroundColor: '#fff',
   },
   headerColor: {
