@@ -11,14 +11,6 @@ export default class Screen extends React.Component {
   }
   _goBack = () => this.props.navigation.goBack();
   _onDelete = (id) => this._openDialog(id, 'delete');
-  _deleteComment = async () => {
-    await this.props.onDelete({
-      input: {
-        id: this.props.eventId
-      }
-    });
-    this._hideDialog();
-  };
   _onReply = (toCommentId, targetName) => this.setState({ toCommentId, targetName }, this._focusCommentInput);
   _cancelReply = () => this.setState({ toCommentId: null, targetName: null }, this._blurCommentInput);
   _openDialog = (id, visibleDialog) => this.setState({
@@ -41,7 +33,6 @@ export default class Screen extends React.Component {
       eventId: this.props.eventId
     };
     this.props.onSubmit(input);
-    // alert(JSON.stringify(input));
   }
 
   render() {
@@ -75,7 +66,6 @@ export default class Screen extends React.Component {
       <DeleteCommentDialog
         id={this.state.id}
         visible={visibleDialog === 'delete'}
-        onConfirm={this._deleteComment}
         handleDismiss={this._hideDialog}
       />
       </React.Fragment>

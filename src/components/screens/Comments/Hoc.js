@@ -2,7 +2,7 @@ import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
 import Screen from './Screen';
 import { listEventComments } from '../../../graphql/queries';
-import { createComment, deleteComment } from '../../../graphql/mutations';
+import { createComment } from '../../../graphql/mutations';
 
 const alias = 'withCommentsScreen';
 
@@ -32,25 +32,6 @@ export default compose(
       onSubmit: async (input) => await mutate({
         variables: {
           input
-        }
-      }),
-      ...ownProps
-    })
-  }),
-  graphql(gql(deleteComment), {
-    alias,
-    props: ({ mutate, ownProps }) => ({
-      onDelete: async (input) => await mutate({
-        variables: {
-          input
-        },
-        update: (cache, { data: { deleteComment } }) => {
-          if (deleteComment) {
-            const query = gql(listEventComments);
-            const data = cache.readQuery({ query });
-            data.listEventComments.items = data.listEventComments.items.filter(item => item.id !== deleteComment.id);
-            cache.writeQuery({ query, data });
-          }
         }
       }),
       ...ownProps
