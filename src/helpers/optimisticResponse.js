@@ -10,7 +10,7 @@ import { BOARD_CLOSED, BOARD_OPEN } from '../lib/constants';
 const __typename = 'Mutation';
 
 export const deleteCommentResponse = (input) => {
-  const data = getPrevComment(gql(getComment), input);
+  const data = getNode(gql(getComment), input.id);
   const { event } = data.getComment;
   const count = event.commentsCount;
 
@@ -31,8 +31,8 @@ export const deleteCommentResponse = (input) => {
 
 export const createCommentResponse = (input, eventId) => {
   const { me } = getCurrentUser();
-  const eventData = getEventFromCache(gql(getEvent), { id: eventId });
-  const toComment = getToComment(gql(getComment), input);
+  const eventData = getNode(gql(getEvent), eventId);
+  const toComment = input.toCommentId ? getNode(gql(getComment), input.toCommentId) : null;
 
   const newComment = {
     __typename: 'Comment',
@@ -59,7 +59,7 @@ export const createEventResponse = (input) => {
   const query = gql(getBoard);
 
   try {
-    const { getBoard } = getBoardFromCache(query, input);
+    const { getBoard } = getNode(query, input.boardId);
     const { me } = getCurrentUser();
 
     const newEvent = {
@@ -158,7 +158,7 @@ export const updateBoardResponse = (input) => ({
 export const cancelEventResponse = (input) => {
   const query = gql(getEvent);
   try {
-    const { getEvent } = getEventFromCache(query, input);
+    const { getEvent } = getNode(query, input.id);
     const isCancelled =  input.option === 'ALL' ? true : false;
     const cancelledDates = new Set(getEvent.cancelledDates || []);
     const updatedAt = isCancelled ? moment().toISOString() : null;
@@ -217,39 +217,11 @@ export const toggleStarButton = (input, prev, action) => {
   });
 }
 
-function getPrevComment(query, input) {
+function getNode(query, id) {
   return client.readQuery({
     query,
     variables: {
-      id: input.id
-    }
-  });
-}
-
-function getBoardFromCache(query, input) {
-  return client.readQuery({
-    query,
-    variables: {
-      id: input.boardId
-    }
-  });
-}
-
-function getToComment(query, input) {
-  if (!input.toCommentId) return null;
-  return client.readQuery({
-    query,
-    variables: {
-      id: input.toCommentId
-    }
-  });
-}
-
-function getEventFromCache(query, input) {
-  return client.readQuery({
-    query,
-    variables: {
-      id: input.id
+      id
     }
   });
 }
