@@ -33,6 +33,7 @@ export default class Screen extends React.Component {
       eventId: this.props.eventId
     };
     await this.props.onSubmit(input);
+    this.commentsRef.scrollDown();
     this._cancelReply();
   };
   _navigateToProfile = (id) => this.props.navigation.navigate('UserProfile', { id });

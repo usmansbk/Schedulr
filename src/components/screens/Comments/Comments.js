@@ -16,10 +16,13 @@ export default class Comments extends React.Component {
     this._inputRef && this._inputRef.blurInput();
   };
 
+  scrollDown = () => {
+    this._commentsListRef && this._commentsListRef.scrollDown();
+  }
+
   _handleSubmit = async (message) => {
     try {
       await this.props.onSubmit(message);
-      this._commentsListRef && this._commentsListRef.scrollDown();
     } catch (e) {
       Toast.show('Failed to post comment', Toast.SHORT);
       console.log(e);
