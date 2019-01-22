@@ -15,7 +15,7 @@ export default graphql(gql(deleteComment), {
       if (deleteComment) {
         const query = gql(listEventComments);
         const data = cache.readQuery({ query });
-        data.listEventComments.items = data.listEventComments.items.filter(item => item.id !== deleteComment.id);
+        data.listComments.items = data.listComments.items.filter(item => item.id !== deleteComment.id);
         cache.writeQuery({ query, data });
       }
     },
