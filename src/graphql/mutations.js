@@ -198,6 +198,10 @@ export const createComment = `mutation CreateComment($input: CreateCommentInput!
       createdAt
       updatedAt
     }
+    event {
+      id
+      commentsCount
+    }
     isAuthor
     author {
       id

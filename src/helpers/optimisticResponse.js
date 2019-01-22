@@ -22,7 +22,7 @@ export const createCommentResponse = (input, eventId) => {
     event: {
       __typename: 'Event',
       id: eventId,
-      commentsCount: getEvent.commentsCount,
+      commentsCount: getEvent.commentsCount + 1,
     },
     author: me,
     updatedAt: null,
