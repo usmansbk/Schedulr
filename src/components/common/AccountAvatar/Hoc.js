@@ -8,9 +8,11 @@ export default compose(
 	withNavigation,
 	graphql(gql(Me), {
 		alias: 'withAccountAvatar',
-		fetchPolicy: 'cache-only',
+		options: {
+			fetchPolicy: 'cache-only',
+		},
 		props: ({ data }) => ({
 			me: data && data.me || undefined
-		})
+		}),
 	})
 )(Container);
