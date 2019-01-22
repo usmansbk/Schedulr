@@ -3,6 +3,7 @@ import gql from 'graphql-tag';
 import Screen from './Screen';
 import { listEventComments } from '../../../graphql/queries';
 import { createComment } from '../../../graphql/mutations';
+import { createCommentResponse } from '../../../helpers/optimisticResponse';
 
 const alias = 'withCommentsScreen';
 
@@ -32,7 +33,8 @@ export default compose(
       onSubmit: async (input) => await mutate({
         variables: {
           input
-        }
+        },
+        optimisticResponse: () => createCommentResponse(input)
       }),
       ...ownProps
     })

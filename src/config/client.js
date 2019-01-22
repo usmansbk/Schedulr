@@ -37,7 +37,10 @@ const client = new AWSAppSyncClient({
         getEvent: (_, args, { getCacheKey }) => (
           getCacheKey({ __typename: 'Event', id: args.id })),
         getUser: (_, args, { getCacheKey }) => (
-          getCacheKey({ __typename: 'User', id: args.id }))
+          getCacheKey({ __typename: 'User', id: args.id })),
+        getComment: (_, args, { getCacheKey }) => (
+          getCacheKey({ __typename: 'Comment', id: args.id })
+        )
       },
     }
   }

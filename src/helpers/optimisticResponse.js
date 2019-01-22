@@ -3,10 +3,30 @@ import moment from 'moment';
 import Toast from 'react-native-simple-toast';
 import { getValue } from '../lib/formValidator';
 import client from '../config/client';
-import { getEvent, getBoard, Me } from '../graphql/queries';
+import { getEvent, getBoard, Me, getComment } from '../graphql/queries';
 import { BOARD_CLOSED, BOARD_OPEN } from '../lib/constants';
 
 const __typename = 'Mutation';
+
+export const createCommentResponse = (input) => {
+  const { me } = getCurrentUser();
+  const toComment = getComment(gql(getComment), input);
+
+  const newComment = {
+    __typename: 'Comment',
+    id: String(Math.random() * -1000),
+    conent: input.conent,
+    isAuthor: true,
+    toComment,
+    author: me,
+    updatedAt: null,
+    createdAt: moment().toISOString()
+  };
+  return ({
+    __typename,
+    createComment: newComment
+  });
+}
 
 export const createEventResponse = (input) => {
   const query = gql(getBoard);
@@ -175,6 +195,16 @@ function getBoardFromCache(query, input) {
     query,
     variables: {
       id: input.boardId
+    }
+  });
+}
+
+function getComment(query, input) {
+  if (!input.toCommentId) return null;
+  return client.readQuery({
+    query,
+    variables: {
+      id: input.toCommentId
     }
   });
 }

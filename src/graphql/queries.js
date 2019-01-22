@@ -77,6 +77,20 @@ export const getEvent = `query GetEvent($id: ID!) {
   }
 }
 `;
+
+export const getEvent = `query GetComment($id: ID!) {
+  getComment @client (id: $id) {
+    id
+    content
+    author {
+      id
+      name
+      email
+      pictureUrl
+    }
+  }
+}`;
+
 export const getBoard = `query GetBoard($id: ID!) {
   getBoard(id: $id) {
     id
