@@ -52,6 +52,7 @@ export default StyleSheet.create({
     padding:4
   },
   replyName: {
+    color: colors.gray,
     fontWeight: 'bold',
     fontSize: 14,
   },
