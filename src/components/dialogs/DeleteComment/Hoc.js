@@ -19,13 +19,13 @@ export default graphql(gql(deleteComment), {
         cache.writeQuery({ query, data });
       }
     },
-    // optimisticResponse: () => ({
-    //   __typename: 'Mutation',
-    //   deleteComment: {
-    //     __typename: 'Comment',
-    //     id: props.id
-    //   }
-    // }),
+    optimisticResponse: () => ({
+      __typename: 'Mutation',
+      deleteComment: {
+        __typename: 'Comment',
+        id: props.id
+      }
+    }),
   }),
   props: ({ mutate, ownProps }) => ({
     onDelete: async () => await mutate(),
