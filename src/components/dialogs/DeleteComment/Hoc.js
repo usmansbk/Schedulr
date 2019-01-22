@@ -15,9 +15,10 @@ export default graphql(gql(deleteComment), {
       if (deleteComment) {
         const query = gql(listEventComments);
         const eventQuery = gql(getEvent);
+        const id = props.eventId;
 
-        const data = cache.readQuery({ query, variables: { id: props.eventId } });
-        const prevEventData = cache.readQuery({ query: eventQuery, variables: { id: props.eventId } });
+        const data = cache.readQuery({ query, variables: { id } });
+        const prevEventData = cache.readQuery({ query: eventQuery, variables: { id } });
 
         data.listComments.items = data.listComments.items.filter(item => item.id !== deleteComment.id);
         prevEventData.getEvent.commentsCount = prevEventData.getEvent.commentsCount - 1;
