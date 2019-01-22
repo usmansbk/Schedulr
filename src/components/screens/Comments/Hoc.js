@@ -17,6 +17,7 @@ export default compose(
       fetchPolicy: 'cache-and-network'
     }),
     props: ({ data, ownProps }) => ({
+      eventId: ownProps.navigation.getParam('id'),
       loading: data.loading || data.networkStatus === 4,
       error: data.error,
       onRefresh: () => data.refetch(),
@@ -25,6 +26,16 @@ export default compose(
       ...ownProps
     })
   }),
-  // graphql(gql(createComment), {}),
+  graphql(gql(createComment), {
+    alias,
+    props: ({ mutate, ownProps }) => ({
+      onSubmit: (input) => mutate({
+        variables: {
+          input
+        }
+      }),
+      ...ownProps
+    })
+  }),
   // graphql(gql(deleteComment), {}),
 )(Screen);

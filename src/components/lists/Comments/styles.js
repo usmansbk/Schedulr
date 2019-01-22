@@ -24,7 +24,7 @@ export default StyleSheet.create({
     marginRight: 4
   },
   itemRight: {
-    maxWidth: 300
+    flex: 1
   },
   authorName: {
     fontWeight: 'bold',
@@ -54,6 +54,5 @@ export default StyleSheet.create({
   replyName: {
     fontWeight: 'bold',
     fontSize: 14,
-    width: 250
   },
 });

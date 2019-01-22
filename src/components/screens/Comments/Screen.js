@@ -30,9 +30,10 @@ export default class Screen extends React.Component {
     const input = {
       content: message,
       toCommentId: this.state.toCommentId,
+      eventId: this.props.eventId
     };
-    // this.props.onSubmit(input);
-    alert(JSON.stringify(input));
+    this.props.onSubmit(input);
+    // alert(JSON.stringify(input));
   }
 
   render() {
@@ -43,9 +44,12 @@ export default class Screen extends React.Component {
     const {
       loading,
       comments,
-      onRefresh
+      onRefresh,
+      error
     } = this.props;
-
+    if (error) {
+      alert(error);
+    }
     return (
       <React.Fragment>
       <Comments

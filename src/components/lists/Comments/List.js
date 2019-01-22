@@ -31,7 +31,7 @@ class List extends React.Component {
         authorName={author.name}
         authorPictureUrl={author.pictureUrl}
         replyingId={toComment && toComment.id}
-        replyingName={toComment && toComment.author.name}
+        replyingName={toComment && toComment.author && toComment.author.name}
         replyingContent={toComment && toComment.content}
         isAuthor={isAuthor}
         content={content}
@@ -53,6 +53,7 @@ class List extends React.Component {
       <FlatList
         style={styles.list}
         data={comments}
+        extraData={comments.length}
         keyExtractor={this._keyExtractor}
         renderItem={this._renderItem}
         ItemSeparatorComponent={this._renderSeparator}
