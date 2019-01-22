@@ -29,8 +29,9 @@ export default StyleSheet.create({
     borderRadius: 2
   },
   authorName: {
-    fontWeight: 'bold',
-    color: colors.black
+    fontFamily: 'sans-serif-bold',
+    color: colors.black,
+    fontWeight: 'bold'
   },
   separator: {
     height: SEPARATOR_HEIGHT
