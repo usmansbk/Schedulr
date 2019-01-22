@@ -34,7 +34,7 @@ export default class List extends React.Component {
         replyingContent={toComment && toComment.content}
         isAuthor={isAuthor}
         content={content}
-        timeAgo={timeAgo.format(moment(createdAt).toDate(), 'time')}
+        timeAgo={timeAgo.format(moment(createdAt).toDate(), 'twitter')}
         navigateToProfile={this.props.navigateToProfile}
         handleDeleteComment={this.props.handleDelete}
         handleReplyComment={this.props.handleReply}
