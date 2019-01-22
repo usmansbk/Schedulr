@@ -20,7 +20,7 @@ export default ({
       <Dialog.Title>Delete comment?</Dialog.Title>
       <Dialog.Actions>
         <Button disabled={loading} onPress={handleDismiss}>Dismiss</Button>
-        <Button loading={loading} disabled={loading} onPress={handleDismiss}>Continue</Button>
+        <Button loading={loading} disabled={loading} onPress={onConfirm}>Continue</Button>
       </Dialog.Actions>
     </Dialog>
   </Portal>

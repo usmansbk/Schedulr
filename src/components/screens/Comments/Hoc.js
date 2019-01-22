@@ -29,7 +29,7 @@ export default compose(
   graphql(gql(createComment), {
     alias,
     props: ({ mutate, ownProps }) => ({
-      onSubmit: (input) => mutate({
+      onSubmit: async (input) => await mutate({
         variables: {
           input
         }
@@ -37,5 +37,23 @@ export default compose(
       ...ownProps
     })
   }),
-  // graphql(gql(deleteComment), {}),
+  graphql(gql(deleteComment), {
+    alias,
+    props: ({ mutate, ownProps }) => ({
+      onDelete: async (input) => await mutate({
+        variables: {
+          input
+        },
+        update: (cache, { data: { deleteComment } }) => {
+          if (deleteComment) {
+            const query = gql(listEventComments);
+            const data = cache.readQuery({ query });
+            data.listEventComments.items = data.listEventComments.items.filter(item => item.id !== deleteComment.id);
+            cache.writeQuery({ query, data });
+          }
+        }
+      }),
+      ...ownProps
+    })
+  }),
 )(Screen);
