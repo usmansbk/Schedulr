@@ -23,7 +23,8 @@ export default StyleSheet.create({
   alert: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    margin: 16
+    backgroundColor: colors.light_gray,
+    padding: 16
   },
   alertTitle: {
     width: 250
