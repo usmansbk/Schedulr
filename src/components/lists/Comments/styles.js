@@ -6,7 +6,8 @@ const SEPARATOR_HEIGHT = 4
 
 export default StyleSheet.create({
   list: {
-    backgroundColor: colors.light_gray
+    backgroundColor: colors.light_gray,
+    marginTop: 4
   },
   itemContainer: {
     flexDirection: 'row',
