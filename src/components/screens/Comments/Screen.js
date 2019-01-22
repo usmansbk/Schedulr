@@ -35,7 +35,7 @@ export default class Screen extends React.Component {
     this.props.onSubmit(input);
     this._cancelReply();
   };
-  _navigateToProfile = (id) => this.props.navigation('UserProfile', { id });
+  _navigateToProfile = (id) => this.props.navigation.navigate('UserProfile', { id });
 
   render() {
     const {
