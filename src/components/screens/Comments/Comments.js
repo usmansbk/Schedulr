@@ -21,7 +21,10 @@ export default class Comments extends React.Component {
 
   render() {
     const {
+      loading,
       targetName,
+      comments,
+      onRefresh,
       goBack,
       title,
       handleReply,
@@ -39,6 +42,9 @@ export default class Comments extends React.Component {
           />
         </Appbar.Header>
         <List
+          loading={loading}
+          comments={comments}
+          onRefresh={onRefresh}
           handleReply={handleReply}
           handleDelete={handleDelete}
         />

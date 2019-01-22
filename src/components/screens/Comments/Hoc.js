@@ -10,10 +10,18 @@ export default compose(
   graphql(gql(listEventComments), {
     alias,
     options: props => ({
-
+      notifyOnNetworkStatusChange: true,
+      variables: {
+        id: props.navigation.getParam('id')
+      },
+      fetchPolicy: 'cache-and-network'
     }),
     props: ({ data, ownProps }) => ({
-      eventId:
+      loading: data.loading || data.networkStatus === 4,
+      error: data.error,
+      onRefresh: () => data.refetch(),
+      comments: data && data.listComments && data.listComments.items,
+      nextToken: data && data.listComments && data.listComments.nextToken,
       ...ownProps
     })
   }),

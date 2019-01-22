@@ -5,11 +5,10 @@ import { withNavigationFocus } from 'react-navigation';
 import Item from './Item';
 import Separator from './Separator';
 import styles from './styles';
-import dummy from './dummy';
 
 class List extends React.Component {
   static defaultProps = {
-    comments: dummy,
+    comments: [],
     loading: false,
     onRefresh: () => null
   };
@@ -20,7 +19,7 @@ class List extends React.Component {
       id,
       content,
       author,
-      replying,
+      toComment,
       isAuthor,
       createdAt
     }
@@ -31,9 +30,9 @@ class List extends React.Component {
         authorId={author.id}
         authorName={author.name}
         authorPictureUrl={author.pictureUrl}
-        replyingId={replying && replying.id}
-        replyingName={replying && replying.author.name}
-        replyingContent={replying && replying.content}
+        replyingId={toComment && toComment.id}
+        replyingName={toComment && toComment.author.name}
+        replyingContent={toComment && toComment.content}
         isAuthor={isAuthor}
         content={content}
         timeAgo={moment(createdAt).fromNow()}

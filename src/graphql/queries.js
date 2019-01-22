@@ -140,21 +140,24 @@ export const listAllEvents = `query ListAllEvents($limit: Int, $nextToken: Strin
 
 export const listEventComments = `query ListEventComments($id: ID!, $limit: Int, $nextToken: String) {
   listComments(id: $id, limit: $limit, nextToken: $nextToken) @connection(key: "listComments", filter: ["id"]) {
-    id
-    content
-    toComment {
+    nextToken
+    items {
       id
       content
+      toComment {
+        id
+        content
+      }
+      isAuthor
+      author {
+        id
+        name
+        email
+        pictureUrl
+      }
+      createdAt
+      updatedAt
     }
-    isAuthor
-    author {
-      id
-      name
-      email
-      pictureUrl
-    }
-    createdAt
-    updatedAt
   }
 }`;
 

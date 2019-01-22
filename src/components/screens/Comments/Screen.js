@@ -36,20 +36,33 @@ export default class Screen extends React.Component {
   }
 
   render() {
+    const {
+      visibleDialog,
+      targetName
+    } = this.state;
+    const {
+      loading,
+      comments,
+      onRefresh
+    } = this.props;
+
     return (
       <React.Fragment>
       <Comments
+        loading={loading}
+        comments={comments}
         ref={commentsRef => this._commentsRef = commentsRef}
-        targetName={this.state.targetName}
+        targetName={targetName}
         goBack={this._goBack}
         handleDelete={this._onDelete}
         handleReply={this._onReply}
         cancelReply={this._cancelReply}
         onSubmit={this._onSubmit}
+        onRefresh={onRefresh}
       />
       <DeleteCommentDialog
         id={this.state.id}
-        visible={this.state.visibleDialog === 'delete'}
+        visible={visibleDialog === 'delete'}
         handleDismiss={this._hideDialog}
       />
       </React.Fragment>
