@@ -21,7 +21,6 @@ export default class Comments extends React.Component {
 
   render() {
     const {
-      id,
       targetName,
       goBack,
       title,
@@ -46,7 +45,6 @@ export default class Comments extends React.Component {
         <CommentForm
           ref={inputRef => this._inputRef = inputRef}
           handleSubmit={this._handleSubmit}
-          replying={id}
           targetName={targetName}
           cancelReply={cancelReply}
         />

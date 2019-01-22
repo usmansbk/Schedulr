@@ -1,3 +1,3 @@
-import Screen from './Hoc';
+import Screen from './Screen';
 
 export default Screen;

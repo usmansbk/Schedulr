@@ -40,7 +40,6 @@ export default class Screen extends React.Component {
       <React.Fragment>
       <Comments
         ref={commentsRef => this._commentsRef = commentsRef}
-        id={this.state.toCommentId}
         targetName={this.state.targetName}
         goBack={this._goBack}
         handleDelete={this._onDelete}

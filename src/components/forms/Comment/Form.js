@@ -31,7 +31,6 @@ export default class CommentInput extends React.Component {
     const {
       pictureUrl,
       name="...",
-      replying,
       targetName,
       cancelReply
     } = this.props;
@@ -43,7 +42,7 @@ export default class CommentInput extends React.Component {
     return (
       <React.Fragment>
         {
-          Boolean(replying) && (
+          Boolean(targetName) && (
             <View style={styles.alert}>
               <Text
                 numberOfLines={1}
