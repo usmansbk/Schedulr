@@ -36,7 +36,7 @@ export default StyleSheet.create({
   footer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: 8
+    marginTop: 16
   },
   actions: {
     justifyContent: 'flex-end',

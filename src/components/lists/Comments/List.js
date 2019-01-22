@@ -3,6 +3,7 @@ import moment from 'moment';
 import { FlatList } from 'react-native';
 import { withNavigationFocus } from 'react-navigation';
 import Item from './Item';
+import Footer from './Footer';
 import Separator from './Separator';
 import styles from './styles';
 
@@ -43,6 +44,7 @@ class List extends React.Component {
     );
   }
   _renderSeparator = () => <Separator />;
+  _renderFooter = () => <Footer />;
   scrollDown = () => {
     this._listRef && this._listRef.scrollToEnd();
   }
@@ -61,6 +63,7 @@ class List extends React.Component {
         extraData={comments.length}
         keyExtractor={this._keyExtractor}
         renderItem={this._renderItem}
+        ListFooterComponent={this._renderFooter}
         ItemSeparatorComponent={this._renderSeparator}
         refreshing={loading}
         onRefresh={onRefresh}

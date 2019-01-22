@@ -13,6 +13,7 @@ export default class DeleteComment extends React.Component {
   _onDelete = async () => {
     this.setState({ loading: true });
     await this.props.onDelete();
+    this.setState({ loading: false });
     this.props.handleDismiss();
   }
   
@@ -26,7 +27,6 @@ export default class DeleteComment extends React.Component {
     return (
       <Portal>
         <Dialog
-          dismissable={!loading}
           visible={visible}
           onDismiss={handleDismiss}
         >
