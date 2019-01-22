@@ -13,6 +13,7 @@ export default compose(
 
     }),
     props: ({ data, ownProps }) => ({
+      eventId:
       ...ownProps
     })
   }),
