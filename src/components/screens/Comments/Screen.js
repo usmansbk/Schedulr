@@ -26,6 +26,9 @@ export default class Screen extends React.Component {
   _blurCommentInput = () => {
     this._commentsRef && this._commentsRef.blurCommentInput();
   };
+  _scrollDown = () => {
+    this._commentsRef && this._commentsRef.scrollDown();
+  }
   _onSubmit = async (message) => {
     const input = {
       content: message,
@@ -33,8 +36,8 @@ export default class Screen extends React.Component {
       eventId: this.props.eventId
     };
     await this.props.onSubmit(input);
-    this.commentsRef.scrollDown();
     this._cancelReply();
+    this._scrollDown();
   };
   _navigateToProfile = (id) => this.props.navigation.navigate('UserProfile', { id });
 
