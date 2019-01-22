@@ -3,6 +3,7 @@ import gql from 'graphql-tag';
 import Dialog from './Dialog';
 import { listEventComments } from '../../../graphql/queries';
 import { deleteComment } from '../../../graphql/mutations';
+import { deleteCommentResponse } from '../../../helpers/optimisticResponse';
 
 export default graphql(gql(deleteComment), {
   options: props => ({ 
@@ -19,13 +20,7 @@ export default graphql(gql(deleteComment), {
         cache.writeQuery({ query, data });
       }
     },
-    optimisticResponse: () => ({
-      __typename: 'Mutation',
-      deleteComment: {
-        __typename: 'Comment',
-        id: props.id
-      }
-    }),
+    optimisticResponse: () => deleteCommentResponse({ id: props.id }),
   }),
   props: ({ mutate, ownProps }) => ({
     onDelete: async () => await mutate(),

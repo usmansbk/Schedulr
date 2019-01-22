@@ -9,6 +9,26 @@ import { BOARD_CLOSED, BOARD_OPEN } from '../lib/constants';
 
 const __typename = 'Mutation';
 
+export const deleteCommentResponse = (input) => {
+  const data = getPrevComment(gql(getComment), input);
+  const { event } = data.getComment;
+  const count = event.commentsCount;
+
+  const deleteComment = {
+    __typename: 'Comment',
+    id: input.id,
+    event: {
+      __typename: 'Event',
+      id: event.id,
+      commentsCount: count > 0 ? count - 1 : count
+    }
+  };
+  return ({
+    __typename,
+    deleteComment
+  });
+};
+
 export const createCommentResponse = (input, eventId) => {
   const { me } = getCurrentUser();
   const eventData = getEventFromCache(gql(getEvent), { id: eventId });
@@ -193,6 +213,15 @@ export const toggleStarButton = (input, prev, action) => {
       id: input.id,
       isStarred: !isStarred,
       starsCount: newCount
+    }
+  });
+}
+
+function getPrevComment(query, input) {
+  return client.readQuery({
+    query,
+    variables: {
+      id: input.id
     }
   });
 }
