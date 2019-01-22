@@ -147,6 +147,12 @@ export const listEventComments = `query ListEventComments($id: ID!, $limit: Int,
       toComment {
         id
         content
+        author {
+          id
+          name
+          email
+          pictureUrl
+        }
       }
       isAuthor
       author {
