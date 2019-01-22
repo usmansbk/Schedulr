@@ -34,7 +34,18 @@ export default compose(
         variables: {
           input
         },
-        optimisticResponse: () => createCommentResponse(input)
+        optimisticResponse: () => createCommentResponse(input),
+        update: (cache, { data: { createComment } }) => {
+          if (createComment) {
+            const query = gql(listEventComments);
+            const data = cache.readQuery({ query, variables: { id: ownProps.navigation.getParam('id') } });
+            data.listComments.items = [
+              ...data.listComments.items.filter(item => item.id !== createComment.id),
+              createComment
+            ];
+            cache.writeQuery({ query, data });
+          }
+        }
       }),
       ...ownProps
     })

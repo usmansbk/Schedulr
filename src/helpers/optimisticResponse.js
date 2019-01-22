@@ -15,7 +15,7 @@ export const createCommentResponse = (input) => {
   const newComment = {
     __typename: 'Comment',
     id: String(Math.random() * -1000),
-    conent: input.conent,
+    content: input.content,
     isAuthor: true,
     toComment,
     author: me,
