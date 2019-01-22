@@ -13,7 +13,7 @@ export default class DeleteComment extends React.Component {
   _onDelete = async () => {
     this.setState({ loading: true });
     await this.props.onDelete();
-    this.props.onConfirm();
+    this.props.handleDismiss();
   }
   
   render() {
