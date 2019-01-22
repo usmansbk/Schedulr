@@ -30,7 +30,8 @@ export default class Comments extends React.Component {
       title,
       handleReply,
       handleDelete,
-      cancelReply
+      cancelReply,
+      navigateToProfile
     } = this.props;
 
     return (
@@ -49,6 +50,7 @@ export default class Comments extends React.Component {
           onRefresh={onRefresh}
           handleReply={handleReply}
           handleDelete={handleDelete}
+          navigateToProfile={navigateToProfile}
         />
         <CommentForm
           ref={inputRef => this._inputRef = inputRef}

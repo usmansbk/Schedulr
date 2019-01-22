@@ -13,7 +13,6 @@ export default class List extends React.Component {
     onRefresh: () => null
   };
   _keyExtractor = (item) => String(item.id);
-  _navigateToProfile = (id) => this.props.navigation.navigate('UserProfile', { id }); 
   _renderItem = ({ item: {
       id,
       content,
@@ -35,7 +34,7 @@ export default class List extends React.Component {
         isAuthor={isAuthor}
         content={content}
         timeAgo={moment(createdAt).fromNow(true)}
-        navigateToProfile={this._navigateToProfile}
+        navigateToProfile={this.props.navigateToProfile}
         handleDeleteComment={this.props.handleDelete}
         handleReplyComment={this.props.handleReply}
       />

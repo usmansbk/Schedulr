@@ -213,6 +213,10 @@ export const createComment = `mutation CreateComment($input: CreateCommentInput!
 export const deleteComment = `mutation DeleteComment($input: DeleteCommentInput!) {
   deleteComment(input: $input) {
     id
+    event {
+      id
+      commentsCount
+    }
   }
 }
 `;

@@ -8,8 +8,9 @@ import { BOARD_CLOSED, BOARD_OPEN } from '../lib/constants';
 
 const __typename = 'Mutation';
 
-export const createCommentResponse = (input) => {
+export const createCommentResponse = (input, eventId) => {
   const { me } = getCurrentUser();
+  const { getEvent } = getEventFromCache(gql(getEvent), { id: eventId });
   const toComment = getToComment(gql(getComment), input);
 
   const newComment = {
@@ -18,6 +19,11 @@ export const createCommentResponse = (input) => {
     content: input.content,
     isAuthor: true,
     toComment,
+    event: {
+      __typename: 'Event',
+      id: eventId,
+      commentsCount: getEvent.commentsCount,
+    },
     author: me,
     updatedAt: null,
     createdAt: moment().toISOString()

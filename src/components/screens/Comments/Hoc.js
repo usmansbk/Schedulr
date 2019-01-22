@@ -34,7 +34,7 @@ export default compose(
         variables: {
           input
         },
-        optimisticResponse: () => createCommentResponse(input),
+        optimisticResponse: () => createCommentResponse(input, ownProps.navigation.getParam('id')),
         update: (cache, { data: { createComment } }) => {
           if (createComment) {
             const query = gql(listEventComments);

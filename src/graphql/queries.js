@@ -168,6 +168,10 @@ export const listEventComments = `query ListEventComments($id: ID!, $limit: Int,
           pictureUrl
         }
       }
+      event {
+        id
+        commentsCount
+      }
       isAuthor
       author {
         id

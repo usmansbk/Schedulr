@@ -34,7 +34,8 @@ export default class Screen extends React.Component {
     };
     this.props.onSubmit(input);
     this._cancelReply();
-  }
+  };
+  _navigateToProfile = (id) => this.props.navigation('UserProfile', { id });
 
   render() {
     const {
@@ -63,6 +64,7 @@ export default class Screen extends React.Component {
         cancelReply={this._cancelReply}
         onSubmit={this._onSubmit}
         onRefresh={onRefresh}
+        navigateToProfile={this._navigateToProfile}
       />
       <DeleteCommentDialog
         id={this.state.id}
