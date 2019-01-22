@@ -196,9 +196,12 @@ export const createComment = `mutation CreateComment($input: CreateCommentInput!
       items {
         id
         content
-        isAuthor
-        createdAt
-        updatedAt
+        author {
+          id
+          name
+          email
+          pictureUrl
+        }
       }
     }
     event {

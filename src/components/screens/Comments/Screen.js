@@ -32,9 +32,11 @@ export default class Screen extends React.Component {
   _onSubmit = async (message) => {
     const input = {
       content: message,
-      toCommentId: this.state.toCommentId,
       eventId: this.props.eventId
     };
+    
+    if (this.state.toCommentId) input.toCommentId = this.state.toCommentId;
+    
     await this.props.onSubmit(input);
     this._cancelReply();
     this._scrollDown();

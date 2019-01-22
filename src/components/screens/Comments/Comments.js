@@ -24,7 +24,7 @@ export default class Comments extends React.Component {
     try {
       await this.props.onSubmit(message);
     } catch (e) {
-      Toast.show('Failed to post comment', Toast.SHORT);
+      Toast.show(e.message, Toast.SHORT);
       console.log(e);
     }
   };
