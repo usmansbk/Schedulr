@@ -25,6 +25,7 @@ export default class Comments extends React.Component {
       loading,
       targetName,
       comments,
+      me,
       onRefresh,
       goBack,
       title,
@@ -53,6 +54,8 @@ export default class Comments extends React.Component {
           navigateToProfile={navigateToProfile}
         />
         <CommentForm
+          name={me && me.name}
+          pictureUrl={me && me.pictureUrl}
           ref={inputRef => this._inputRef = inputRef}
           handleSubmit={this._handleSubmit}
           targetName={targetName}

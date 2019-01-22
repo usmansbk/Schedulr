@@ -1,7 +1,7 @@
 import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
 import Screen from './Screen';
-import { listEventComments } from '../../../graphql/queries';
+import { listEventComments, Me } from '../../../graphql/queries';
 import { createComment } from '../../../graphql/mutations';
 import { createCommentResponse } from '../../../helpers/optimisticResponse';
 
@@ -50,4 +50,13 @@ export default compose(
       ...ownProps
     })
   }),
+  graphql(gql(Me), {
+    options: {
+      fetchPolicy: 'cache-only'
+    },
+    props: ({ data, ownProps }) => ({
+      me: data && data.me,
+      ...ownProps
+    })
+  })
 )(Screen);

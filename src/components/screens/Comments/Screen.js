@@ -45,6 +45,7 @@ export default class Screen extends React.Component {
     const {
       loading,
       comments,
+      me,
       onRefresh,
       error
     } = this.props;
@@ -55,6 +56,7 @@ export default class Screen extends React.Component {
       <React.Fragment>
       <Comments
         loading={loading}
+        me={me}
         comments={comments}
         ref={commentsRef => this._commentsRef = commentsRef}
         targetName={targetName}
