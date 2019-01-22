@@ -1,9 +1,10 @@
 import React from 'react';
-import moment from 'moment';
 import { FlatList } from 'react-native';
+import moment from 'moment';
 import Item from './Item';
 import Footer from './Footer';
 import Separator from './Separator';
+import timeAgo from '../../../config/timeAgo';
 import styles from './styles';
 
 export default class List extends React.Component {
@@ -33,7 +34,7 @@ export default class List extends React.Component {
         replyingContent={toComment && toComment.content}
         isAuthor={isAuthor}
         content={content}
-        timeAgo={moment(createdAt).fromNow(true)}
+        timeAgo={timeAgo.format(moment(createdAt).toDate(), 'time')}
         navigateToProfile={this.props.navigateToProfile}
         handleDeleteComment={this.props.handleDelete}
         handleReplyComment={this.props.handleReply}
