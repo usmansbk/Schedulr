@@ -39,21 +39,21 @@ export default class Item extends React.PureComponent {
         </View>
         <View style={styles.itemRight}>
           <View style={styles.itemHeader}>
-            <Text
+            <Caption
               numberOfLines={1}
               ellipsizeMode="tail"
               style={styles.authorName}
               onPress={this._navigateToProfile}
-            >{authorName}</Text>
+            >{authorName}</Caption>
           </View>
           {
             Boolean(replyingContent) && (
               <View style={styles.replyBox}>
-                <Text
+                <Caption
                   numberOfLines={1}
                   ellipsizeMode="tail"
                   style={styles.replyName}
-                >{replyingName}</Text>
+                >{replyingName}</Caption>
                 <Caption numberOfLines={4} ellipsizeMode="tail">{replyingContent}</Caption>
               </View>
             )
