@@ -1,7 +1,6 @@
 import React from 'react';
 import {
   Button,
-  Paragraph,
   Dialog,
   Portal,
   RadioButton,
@@ -15,6 +14,7 @@ export default class DeleteEvent extends React.Component {
   };
   
   shouldComponentUpdate = (nextProps, nextState) => (
+    nextState.checked !== this.state.checked ||
     nextProps.visible !== this.props.visible ||
     nextState.loading !== this.state.loading
   );
@@ -55,26 +55,19 @@ export default class DeleteEvent extends React.Component {
           {
             !isSingle && (
               <Dialog.Content>
-                <List.Item
-                  title="Delete only this event"
-                  right={() => (
-                    <RadioButton
-                      value="single"
-                      status={ checked === 'single' ? 'checked' : 'unchecked'}
-                      onPress={() => this.setState({ checked: 'single'})}
-                    />
-                  )}
-                />
-                <List.Item
-                  title="Delete all of this event"
-                  right={() => (
-                    <RadioButton
-                      value="all"
-                      status={ checked === 'all' ? 'checked' : 'unchecked'}
-                      onPress={() => this.setState({ checked: 'all'})}
-                    />
-                  )}
-                />
+                <RadioButton.Group
+                  value={checked}
+                  onValueChange={checked => this.setState({ checked })}
+                >
+                  <List.Item
+                    title="Delete only this event"
+                    right={() => <RadioButton value="single" />}
+                  />
+                  <List.Item
+                    title="Delete all of this event"
+                    right={() => <RadioButton value="all" />}
+                  />
+                </RadioButton.Group>
               </Dialog.Content>
             )
           }
