@@ -116,6 +116,7 @@ export const createBoardResponse = (input) => {
       isFollowing: false,
       isAuthor: true,
       author: me,
+      eventsCount: 0,
       followersCount: 0,
       createdAt: moment().toISOString(),
       updatedAt: null

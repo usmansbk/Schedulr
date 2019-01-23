@@ -47,6 +47,7 @@ export default class Info extends React.Component {
       description,
       status,
       isFollowing,
+      eventsCount,
       followersCount,
       createdAt,
       isPublic,
@@ -116,12 +117,18 @@ export default class Info extends React.Component {
               </View>
               <View style={styles.right}>
                 <Text style={styles.name}>{name}</Text>
-                <Text
-                  style={styles.followersCount}
-                  onPress={() => navigateToFollowers(id, isAuthor)}
-                >
-                  {numeral(followersCount).format('0a')} Follower{followersCount > 1 ? 's' : ''}
-                </Text>
+                <View style={styles.countRow}>
+                  <Text
+                    style={styles.count}
+                    onPress={() => navigateToFollowers(id, isAuthor)}
+                  >
+                    {numeral(followersCount).format('0a')} Follower{followersCount > 1 ? 's' : ''}
+                  </Text>
+                  <Text style={styles.count}>·</Text>
+                  <Text style={styles.count}>
+                    {numeral(eventsCount).format('0a')} Event{eventsCount > 1 ? 's' : ''}
+                  </Text>
+                </View>
                 {
                   !isAuthor && (<FollowButton isFollowing={isFollowing} />)
                 }

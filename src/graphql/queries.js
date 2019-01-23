@@ -110,6 +110,7 @@ export const getBoard = `query GetBoard($id: ID!) {
       email
       pictureUrl
     }
+    eventsCount
     followersCount
     createdAt
     updatedAt
@@ -205,6 +206,7 @@ export const listAllBoards = `query ListAllBoards($limit: Int, $nextToken: Strin
         email
         pictureUrl
       }
+      eventsCount
       followersCount
       createdAt
       updatedAt
@@ -276,6 +278,7 @@ export const searchBoard = `query SearchBoard($filter: SearchFilterInput, $limit
         email
         pictureUrl
       }
+      eventsCount
       followersCount
       createdAt
       updatedAt

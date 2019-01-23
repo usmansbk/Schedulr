@@ -35,11 +35,14 @@ export default StyleSheet.create({
     fontSize: 27,
     fontWeight: 'bold'
   },
-  followersCount: {
+  count: {
     color: colors.light_gray_3,
     fontWeight: 'bold',
     fontSize: 16,
     marginVertical: 16
+  },
+  countRow: {
+    flexDirection: 'row'
   },
   body: {
     flex: 2,
