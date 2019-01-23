@@ -41,6 +41,12 @@ export default StyleSheet.create({
     fontSize: 16,
     marginVertical: 16
   },
+  middot: {
+    color: colors.light_gray_3,
+    fontWeight: 'bold',
+    fontSize: 20,
+    marginVertical: 16
+  },
   countRow: {
     flexDirection: 'row'
   },
