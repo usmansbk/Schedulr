@@ -43,14 +43,14 @@ export default class Item extends React.PureComponent {
     const avatarName = `${first} ${second ? second : ''}`;
     const isOffline = id[0] === '-';
     let statusStyle = styles.status;
-    if (status === 'Cancelled') {
-      statusStyle = styles.red;
-    } else if (status === 'Ongoing') {
+    if (status === 'Ongoing') {
       statusStyle = styles.started;
     } else if (status === 'Pending') {
       statusStyle = styles.pending;
     } else if (status === 'Ended') {
       statusStyle = styles.ended;
+    } else if (status === 'Cancelled') {
+      statusStyle = styles.red;
     }
     const repeatEvent = repeat && (repeat + ' · ');
     
