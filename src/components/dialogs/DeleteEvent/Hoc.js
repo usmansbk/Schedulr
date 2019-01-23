@@ -4,6 +4,7 @@ import { withNavigation } from 'react-navigation';
 import Dialog from './Dialog';
 import { listAllEvents } from '../../../graphql/queries';
 import { deleteEvent } from '../../../graphql/mutations';
+import { deleteEventResponse } from '../../../helpers/optimisticResponse';
 
 export default compose(
   withNavigation,
@@ -14,13 +15,7 @@ export default compose(
         variables: {
           input
         },
-        optimisticResponse: () => ({
-          __typename: 'Mutation',
-          deleteEvent: {
-            __typename: 'Event',
-            id: input.id
-          }
-        }),
+        optimisticResponse: () => deleteEventResponse(input),
         update: (cache, { data: { deleteEvent } }) => {
           if (deleteEvent) {
             const query = gql(listAllEvents);

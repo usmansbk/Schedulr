@@ -60,6 +60,7 @@ export const getEvent = `query GetEvent($id: ID!) {
     board {
       id
       name
+      eventsCount
     }
     cancelledDates
     starsCount
@@ -139,6 +140,7 @@ export const listAllEvents = `query ListAllEvents($limit: Int, $nextToken: Strin
       board {
         id
         name
+        eventsCount
       }
       cancelledDates
       starsCount
@@ -240,6 +242,7 @@ export const searchEvent = `query SearchEvent($filter: SearchFilterInput, $limit
         isPublic
         isFollowing
         isAuthor
+        eventsCount
         followersCount
         createdAt
         updatedAt

@@ -122,6 +122,7 @@ export const createEvent = `mutation CreateEvent($input: CreateEventInput!) {
     board {
       id
       name
+      eventsCount
     }
     cancelledDates
     starsCount
@@ -161,6 +162,10 @@ export const updateEvent = `mutation UpdateEvent($input: UpdateEventInput!) {
 export const deleteEvent = `mutation DeleteEvent($input: DeleteEventInput!) {
   deleteEvent(input: $input) {
     id
+    board {
+      id
+      eventsCount
+    }
   }
 }
 `;

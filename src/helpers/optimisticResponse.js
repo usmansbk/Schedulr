@@ -29,6 +29,25 @@ export const deleteCommentResponse = (input) => {
   });
 };
 
+export const deleteEventResponse = (input) => {
+  const data = getNode(gql(getEvent), input.id);
+  const event = data.getEvent;
+  const boardData = getNode(gql(getBoard), event.board.id);
+  const board = boardData.getBoard;
+  const eventsCount = board.eventsCount;
+  return ({
+    __typename: 'Mutation',
+    deleteEvent: {
+      __typename: 'Event',
+      id: input.id,
+      board: {
+        id: board.id,
+        eventsCount: eventsCount > 1 ? eventsCount - 1 : eventsCount
+      }
+    }
+  });
+};
+
 export const createCommentResponse = (input, eventId) => {
   const { me } = getCurrentUser();
   const eventData = getNode(gql(getEvent), eventId);
@@ -80,7 +99,8 @@ export const createEventResponse = (input) => {
       board: {
         __typename: 'Board',
         id: getBoard.id,
-        name: getBoard.name
+        name: getBoard.name,
+        eventsCount: getBoard.eventsCount + 1,
       },
       cancelledDates: [],
       starsCount: 0,
