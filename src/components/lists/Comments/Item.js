@@ -22,7 +22,8 @@ export default class Item extends React.PureComponent {
       content,
       timeAgo,
       isAuthor,
-      replies
+      toCommentAuthorName,
+      toCommentContent
     } = this.props;
     return (
       <View style={styles.itemContainer}>
@@ -45,12 +46,23 @@ export default class Item extends React.PureComponent {
               onPress={this._navigateToProfile}
             >{authorName}</Text>
           </View>
+          {
+            Boolean(toCommentContent) && (
+              <View style={styles.replyBox}>
+                <Caption
+                  numberOfLines={1}
+                  ellipsizeMode="tail"
+                  style={styles.replyName}
+                >{toCommentAuthorName}</Caption>
+                <Caption numberOfLines={4} ellipsizeMode="tail">{toCommentContent}</Caption>
+              </View>
+            )
+          }
           <View style={styles.itemContent}>  
             <Hyperlink linkStyle={styles.linkStyle} linkDefault={true}>
               <Paragraph style={styles.message}>
                 {content}
               </Paragraph>
-              <Text>{replies.length}</Text>
             </Hyperlink>
             <View style={styles.footer}>
               <Caption>{timeAgo}</Caption>

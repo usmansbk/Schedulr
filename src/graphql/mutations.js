@@ -191,17 +191,12 @@ export const createComment = `mutation CreateComment($input: CreateCommentInput!
   createComment(input: $input) {
     id
     content
-    replies {
-      nextToken
-      items {
+    toComment {
+      id
+      content
+      author {
         id
-        content
-        author {
-          id
-          name
-          email
-          pictureUrl
-        }
+        name
       }
     }
     event {

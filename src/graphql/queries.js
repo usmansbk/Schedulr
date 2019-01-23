@@ -162,19 +162,12 @@ export const listEventComments = `query ListEventComments($id: ID!, $limit: Int,
     items {
       id
       content
-      replies {
-        nextToken
-        items {
+      toComment {
+        id
+        content
+        author {
           id
-          content
-          author {
-            id
-            name
-            email
-            pictureUrl
-          }
-          isAuthor
-          createdAt
+          name
         }
       }
       event {
