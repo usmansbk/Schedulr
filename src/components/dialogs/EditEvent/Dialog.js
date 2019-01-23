@@ -33,26 +33,19 @@ export default class EditEvent extends React.Component {
         >
           <Dialog.Title>Edit event?</Dialog.Title>
           <Dialog.Content>
-            <List.Item
-              title="Change only this event"
-              right={() => (
-                <RadioButton
-                  value="single"
-                  status={ checked === 'single' ? 'checked' : 'unchecked'}
-                  onPress={() => this.setState({ checked: 'single'})}
-                />
-              )}
-            />
-            <List.Item
-              title="Change all of this event"
-              right={() => (
-                <RadioButton
-                  value="all"
-                  status={ checked === 'all' ? 'checked' : 'unchecked'}
-                  onPress={() => this.setState({ checked: 'all'})}
-                />
-              )}
-            />
+            <RadioButton.Group  
+              value={checked}
+              onValueChange={checked => this.setState({ checked })}
+            >
+              <List.Item
+                title="Change only this event"
+                right={() => <RadioButton value="single" />}
+              />
+              <List.Item
+                title="Change all of this event"
+                right={() => <RadioButton value="all" />}
+              />
+            </RadioButton.Group>
           </Dialog.Content>
           <Dialog.Actions>
             <Button onPress={handleDismiss}>Dismiss</Button>
