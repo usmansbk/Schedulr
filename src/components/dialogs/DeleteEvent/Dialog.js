@@ -31,6 +31,7 @@ export default class DeleteEvent extends React.Component {
       });
       this.props.navigation.popToTop();
     } catch (error) {
+      // alert(error.message);
       this.setState({ loading: false });
     }
   }

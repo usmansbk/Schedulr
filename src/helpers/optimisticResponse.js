@@ -42,6 +42,7 @@ export const deleteEventResponse = (input) => {
       id: input.id,
       board: {
         id: board.id,
+        __typename: 'Board',
         eventsCount: eventsCount > 1 ? eventsCount - 1 : eventsCount
       }
     }

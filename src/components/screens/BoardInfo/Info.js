@@ -124,7 +124,7 @@ export default class Info extends React.Component {
                   >
                     {numeral(followersCount).format('0a')} Follower{followersCount > 1 ? 's' : ''}
                   </Text>
-                  <Text style={styles.middot}>'  ·  '</Text>
+                  <Text style={styles.middot}>{'  ·  '}</Text>
                   <Text style={styles.count}>
                     {numeral(eventsCount).format('0a')} Event{eventsCount > 1 ? 's' : ''}
                   </Text>
