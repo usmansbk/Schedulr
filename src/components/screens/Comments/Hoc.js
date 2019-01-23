@@ -22,7 +22,7 @@ export default compose(
       loading: data.loading || data.networkStatus === 4,
       error: data.error,
       onRefresh: () => data.refetch(),
-      comments: data && data.listComments && data.listComments.items,
+      comments: data && data.listComments && data.listComments.items && data.listComments.items.sort((a, b) => Date.parse(a.createdAt) - Date.parse(b.createdAt)),
       nextToken: data && data.listComments && data.listComments.nextToken,
       ...ownProps
     })
