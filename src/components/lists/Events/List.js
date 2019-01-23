@@ -13,6 +13,7 @@ import {
   startTime,
   endTime,
   isStarted,
+  isEnded,
   getDuration,
   getStatus
 } from '../../../lib/parseItem';

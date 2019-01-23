@@ -138,7 +138,18 @@ export default StyleSheet.create({
   },
   started: {
     fontFamily: 'sans-serif-bold',
-    color: colors.primary,
+    color: colors.green,
     fontWeight: 'bold'
-  }
+  },
+  ended: {
+    fontFamily: 'sans-serif-bold',
+    color: colors.soft_blue,
+    fontWeight: 'bold'
+  },
+  pending: {
+    fontFamily: 'sans-serif-bold',
+    color: colors.yellow,
+    fontWeight: 'bold'
+  },
+  
 });

@@ -47,6 +47,10 @@ export default class Item extends React.PureComponent {
       statusStyle = styles.red;
     } else if (status === 'Ongoing') {
       statusStyle = styles.started;
+    } else if (status === 'Pending') {
+      statusStyle = styles.pending;
+    } else if (status === 'Ended') {
+      statusStyle = styles.ended;
     }
     const repeatEvent = repeat && (repeat + ' · ');
     
