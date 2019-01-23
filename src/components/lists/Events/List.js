@@ -1,7 +1,7 @@
 import React from 'react';
 import memoize from 'memoize-one';
-import { SectionList, RefreshControl } from 'react-native';
-import { withNavigationFocus } from 'react-navigation';
+import { RefreshControl } from 'react-native';
+import { withNavigationFocus, SectionList } from 'react-navigation';
 import sectionListGetItemLayout from 'react-native-section-list-get-item-layout';
 import Header from './Header';
 import Footer from './Footer';
@@ -13,7 +13,6 @@ import {
   startTime,
   endTime,
   isStarted,
-  isEnded,
   getDuration,
   getStatus
 } from '../../../lib/parseItem';
