@@ -21,7 +21,7 @@ export default compose(
     },
     props: ({ data, ownProps }) => ({
       event: data && data.getEvent,
-      isNew: props.navigation.getParam('isNew'),
+      isNew: ownProps.navigation.getParam('isNew'),
       ...ownProps
     }),
     skip: props => {
