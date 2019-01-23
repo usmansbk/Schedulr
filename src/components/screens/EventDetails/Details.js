@@ -2,6 +2,7 @@ import React from 'react';
 import { View, ScrollView } from 'react-native';
 import { Text, Headline, Divider } from 'react-native-paper';
 import Actions from '../../common/Actions';
+import Tag from '../../common/Tag';
 import styles from './styles';
 
 export default ({
@@ -32,7 +33,7 @@ export default ({
     <View style={styles.container}>
       <View style={styles.content}>
         <View style={styles.head}>
-          { isCancelled ? <Text style={[styles.date, styles.red]}>Cancelled</Text> : 
+          { isCancelled ? <Tag status={'Cancelled'} /> : 
             <Text style={styles.date}>{startAgo}</Text>
           }
           <Headline style={styles.title}>{title}</Headline>
