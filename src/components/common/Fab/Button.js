@@ -2,8 +2,9 @@ import React from 'react';
 import { FAB } from 'react-native-paper';
 import colors from '../../../config/colors';
 
-const Fab = ({ onPress, icon, small }) => (
+const Fab = ({ onPress, label, icon, small }) => (
   <FAB
+    label={label}
     onPress={onPress}
     theme={{
       colors: {
