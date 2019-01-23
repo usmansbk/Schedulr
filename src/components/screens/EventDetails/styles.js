@@ -13,7 +13,8 @@ export default StyleSheet.create({
   date: {
     color: colors.gray,
     fontWeight: 'bold',
-    fontSize: 16
+    fontSize: 16,
+    paddingBottom: 4
   },
   status: {
     fontFamily: 'sans-serif-light',
