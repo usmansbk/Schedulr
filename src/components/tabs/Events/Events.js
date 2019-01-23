@@ -13,7 +13,7 @@ export default class Events extends React.Component {
 
   render() {
     if (this.props.error) {
-      Toast.show(this.props.error.name, Toast.LONG);
+      Toast.show(this.props.error.message, Toast.LONG);
     }
     return (
       <React.Fragment>
