@@ -42,7 +42,7 @@ export default class DeleteEvent extends React.Component {
       handleDismiss
     } = this.props;
 
-    const { loading } = this.state;
+    const { loading, checked } = this.state;
 
     return (
       <Portal>
