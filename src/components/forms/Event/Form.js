@@ -87,7 +87,7 @@ const Form = ({
         >Cancel</Button>
         <Button
           loading={isSubmitting}
-          disabled={!isNew && !isValid || isSubmitting || isEqual(initialValues, values)}
+          disabled={!isNew && (!isValid || isSubmitting || isEqual(initialValues, values))}
           mode="outlined"
           color={navButtonColor}
           onPress={submitForm}
