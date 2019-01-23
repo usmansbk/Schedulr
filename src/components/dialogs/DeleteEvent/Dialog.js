@@ -3,12 +3,15 @@ import {
   Button,
   Paragraph,
   Dialog,
-  Portal
+  Portal,
+  RadioButton,
+  List
 } from 'react-native-paper';
 
 export default class DeleteEvent extends React.Component {
   state = {
-    loading: false
+    loading: false,
+    checked: 'single',
   };
   
   shouldComponentUpdate = (nextProps, nextState) => (
@@ -51,7 +54,26 @@ export default class DeleteEvent extends React.Component {
           {
             !isSingle && (
               <Dialog.Content>
-                <Paragraph>Will remove past and future events in this series</Paragraph>
+                <List.Item
+                  title="Delete only this event"
+                  right={() => (
+                    <RadioButton
+                      value="single"
+                      status={ checked === 'single' ? 'checked' : 'unchecked'}
+                      onPress={() => this.setState({ checked: 'single'})}
+                    />
+                  )}
+                />
+                <List.Item
+                  title="Delete all of this event"
+                  right={() => (
+                    <RadioButton
+                      value="all"
+                      status={ checked === 'all' ? 'checked' : 'unchecked'}
+                      onPress={() => this.setState({ checked: 'all'})}
+                    />
+                  )}
+                />
               </Dialog.Content>
             )
           }
