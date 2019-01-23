@@ -191,6 +191,7 @@ export const createComment = `mutation CreateComment($input: CreateCommentInput!
   createComment(input: $input) {
     id
     content
+    toCommentId
     toComment {
       id
       content

@@ -23,7 +23,8 @@ export default class Item extends React.PureComponent {
       timeAgo,
       isAuthor,
       toCommentAuthorName,
-      toCommentContent
+      toCommentContent,
+      isToCommentDeleted
     } = this.props;
     return (
       <View style={styles.itemContainer}>
@@ -47,16 +48,23 @@ export default class Item extends React.PureComponent {
             >{authorName}</Text>
           </View>
           {
-            Boolean(toCommentContent) && (
+            isToCommentDeleted ? (
               <View style={styles.replyBox}>
-                <Caption
-                  numberOfLines={1}
-                  ellipsizeMode="tail"
-                  style={styles.replyName}
-                >{toCommentAuthorName}</Caption>
-                <Caption numberOfLines={4} ellipsizeMode="tail">{toCommentContent}</Caption>
+                <Caption style={styles.replyName}>Replying to deleted comment</Caption>
               </View>
-            )
+            ) : (
+            <React.Fragment>{
+              Boolean(toCommentContent) && (
+                <View style={styles.replyBox}>
+                  <Caption
+                    numberOfLines={1}
+                    ellipsizeMode="tail"
+                    style={styles.replyName}
+                  >{toCommentAuthorName}</Caption>
+                  <Caption numberOfLines={4} ellipsizeMode="tail">{toCommentContent}</Caption>
+                </View>
+              )}
+            </React.Fragment>)
           }
           <View style={styles.itemContent}>  
             <Hyperlink linkStyle={styles.linkStyle} linkDefault={true}>

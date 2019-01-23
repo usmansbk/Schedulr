@@ -162,6 +162,7 @@ export const listEventComments = `query ListEventComments($id: ID!, $limit: Int,
     items {
       id
       content
+      toCommentId
       toComment {
         id
         content
