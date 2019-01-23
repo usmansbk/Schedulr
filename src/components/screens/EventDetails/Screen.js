@@ -23,7 +23,7 @@ export default class Screen extends React.Component {
     }
   }
   _handleEdit = ({ id, option }) => this.props.navigation.navigate('EditEvent', { id, option });
-  _handleRepeat = () => this.props.navigation.navigate('NewEvent', { id: this.props.navigation.getParam('id') });
+  _handleRepeat = () => this.props.navigation.navigate('NewEvent', { id: this.props.navigation.getParam('id'), isNew: true });
   _openCancelDialog = () => this.setState({ visibleDialog: 'cancel' });
   _navigateToBoard = (id) => this.props.navigation.navigate('BoardEvents', { id });
   _navigateToComments = (id) => this.props.navigation.navigate('Comments', { id });

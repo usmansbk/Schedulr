@@ -47,7 +47,8 @@ const Form = ({
   initialValues,
   onSubmit,
   handleCancel,
-  edit
+  edit,
+  isNew,
 }) => (
   <Formik
     initialValues={initialValues || defaultValues}
@@ -86,7 +87,7 @@ const Form = ({
         >Cancel</Button>
         <Button
           loading={isSubmitting}
-          disabled={!isValid || isSubmitting || isEqual(initialValues, values)}
+          disabled={!isNew && !isValid || isSubmitting || isEqual(initialValues, values)}
           mode="outlined"
           color={navButtonColor}
           onPress={submitForm}
