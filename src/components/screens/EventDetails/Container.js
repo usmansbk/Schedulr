@@ -17,12 +17,8 @@ export default class EventDetails extends React.Component {
     const isRecurring = this.props.event.repeat !== ONE_TIME_EVENT;
     this.props.handleCancel(isRecurring ? this.props.event.startAt : null);
   };
-  _getDuration = (end, start) => {
-    return moment(end).from(start, true);
-  };
-  _getStartAgo = (start) => {
-    return capitalizr(moment(start).fromNow());
-  };
+  _getDuration = (end, start) => decapitalize(moment(end).from(start, true));
+  _getStartAgo = (start) => capitalizr(moment(start).fromNow());
   
  shouldComponentUpdate = (nextProps) => !isEqual(nextProps.event, this.props.event);
 
