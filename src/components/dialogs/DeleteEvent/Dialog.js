@@ -35,6 +35,7 @@ export default class DeleteEvent extends React.Component {
   render() {
     const {
       visible,
+      isSingle,
       handleDismiss
     } = this.props;
 
@@ -48,7 +49,7 @@ export default class DeleteEvent extends React.Component {
         >
           <Dialog.Title>Delete event?</Dialog.Title>
           {
-            false && (
+            !isSingle && (
               <Dialog.Content>
                 <Paragraph>Will remove past and future events in this series</Paragraph>
               </Dialog.Content>

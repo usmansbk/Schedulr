@@ -55,3 +55,5 @@ export const isEventCancelled = ({ cancelledDates=[], startAt, isCancelled }) =>
 export const isEventValid = ({isCancelled, startAt, endAt, cancelledDates }) => {
   return (Date.now() < Date.parse(endAt)) && !isEventCancelled({ cancelledDates, startAt, isCancelled });
 };
+
+export const isSingle = (repeat) => repeat === ONE_TIME_EVENT;
