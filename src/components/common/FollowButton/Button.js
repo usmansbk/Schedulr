@@ -1,12 +1,12 @@
 import React from 'react';
-import { Button } from 'react-native-paper';
+import Fab from '../Fab';
 
 export default ({
   style,
   isFollowing,
 }) => (
-  <Button
-    style={style}
-    mode="outlined"
-  >{isFollowing ? 'Unfollow' : 'Follow'}</Button>
+  <Fab
+    icon={isFollowing ? "check" : "add"}
+    label={isFollowing ? "Following" : "Follow"}
+  />
 );

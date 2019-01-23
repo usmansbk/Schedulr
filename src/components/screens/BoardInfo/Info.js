@@ -129,9 +129,6 @@ export default class Info extends React.Component {
                     {numeral(eventsCount).format('0a')} Event{eventsCount > 1 ? 's' : ''}
                   </Text>
                 </View>
-                {
-                  !isAuthor && (<FollowButton isFollowing={isFollowing} />)
-                }
               </View>
             </View>
             <View style={styles.body}>
@@ -169,7 +166,10 @@ export default class Info extends React.Component {
               }
             </View>
           </View>
-        </ScrollView>
+      </ScrollView>
+      {
+        !isAuthor && (<FollowButton isFollowing={isFollowing} />)
+      }
       </React.Fragment>
     );
   }
