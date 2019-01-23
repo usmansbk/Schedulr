@@ -42,14 +42,14 @@ export default StyleSheet.create({
     marginVertical: 16
   },
   middot: {
-    textAlignVertical: 'center',
     color: colors.light_gray_3,
     fontWeight: 'bold',
     fontSize: 20,
     marginVertical: 16
   },
   countRow: {
-    flexDirection: 'row'
+    flexDirection: 'row',
+    alignItems: 'center'
   },
   body: {
     flex: 2,

@@ -23,6 +23,7 @@ import Error from '../../common/Error';
 import styles, { AVATAR_SIZE } from './styles';
 import appStyles from '../../../config/styles';
 import colors from '../../../config/colors';
+import { CIRCLE } from '../../../lib/constants';
 
 export default class Info extends React.Component {
   shouldComponentUpdate = (nextProps) => !isEqual(nextProps.board, this.props.board);
@@ -124,7 +125,7 @@ export default class Info extends React.Component {
                   >
                     {numeral(followersCount).format('0a')} Follower{followersCount > 1 ? 's' : ''}
                   </Text>
-                  <Text style={styles.middot}>{' ● '}</Text>
+                  <Text style={styles.middot}>{` ${CIRCLE} `}</Text>
                   <Text style={styles.count}>
                     {numeral(eventsCount).format('0a')} Event{eventsCount > 1 ? 's' : ''}
                   </Text>
