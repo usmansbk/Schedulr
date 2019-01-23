@@ -13,8 +13,6 @@ import styles, {
   SEPARATOR_HEIGHT,
 } from './styles';
 
-const FORMAT = 'ddd, MMM Do, YYYY hh:mm a';
-
 class List extends React.Component {
   static defaultProps = {
     events: [],
