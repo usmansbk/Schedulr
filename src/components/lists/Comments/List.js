@@ -18,9 +18,9 @@ export default class List extends React.Component {
       id,
       content,
       author,
-      toComment,
+      replies,
       isAuthor,
-      createdAt
+      createdAt,
     }
   }) => {
     return (
@@ -29,9 +29,7 @@ export default class List extends React.Component {
         authorId={author.id}
         authorName={author.name}
         authorPictureUrl={author.pictureUrl}
-        replyingId={toComment && toComment.id}
-        replyingName={toComment && toComment.author && toComment.author.name}
-        replyingContent={toComment && toComment.content}
+        replies={replies && replies.items || []}
         isAuthor={isAuthor}
         content={content}
         timeAgo={timeAgo.format(moment(createdAt).toDate(), 'twitter')}

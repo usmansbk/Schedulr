@@ -173,6 +173,8 @@ export const listEventComments = `query ListEventComments($id: ID!, $limit: Int,
             email
             pictureUrl
           }
+          isAuthor
+          createdAt
         }
       }
       event {
