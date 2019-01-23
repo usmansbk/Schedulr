@@ -7,6 +7,7 @@ import {
 import Avatar from 'react-native-user-avatar';
 import { CachedImage } from 'react-native-cached-image';
 import Actions from '../../common/Actions';
+import Tag from '../../common/Tag';
 import styles, {
   AVATAR_SIZE,
 } from './styles';
@@ -42,16 +43,6 @@ export default class Item extends React.PureComponent {
     const [ first, second ] = boardName.split(' ');
     const avatarName = `${first} ${second ? second : ''}`;
     const isOffline = id[0] === '-';
-    let statusStyle = styles.status;
-    if (status === 'Ongoing') {
-      statusStyle = styles.started;
-    } else if (status === 'Pending') {
-      statusStyle = styles.pending;
-    } else if (status === 'Ended') {
-      statusStyle = styles.ended;
-    } else if (status === 'Cancelled') {
-      statusStyle = styles.red;
-    }
     const repeatEvent = repeat && (repeat + ' · ');
     
     return (
@@ -76,7 +67,7 @@ export default class Item extends React.PureComponent {
               <View style={styles.body}>
                 <Text style={isOffline ? styles.offlineTitle : styles.itemHeadline} numberOfLines={2} ellipsizeMode="tail">{title}</Text>
                 <Text style={styles.duration}>{duration} {eventType}</Text>
-                <Text style={styles.status}>{repeatEvent}<Text style={statusStyle}>{status}</Text></Text>
+                <Text style={styles.status}>{repeatEvent}<Tag status={status} /></Text>
               </View>
               <View>
                 <Text style={styles.time}>{startTime}</Text>
