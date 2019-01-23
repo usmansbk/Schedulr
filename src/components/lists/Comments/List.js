@@ -1,11 +1,11 @@
 import React from 'react';
-import { FlatList } from 'react-native';
+import { FlatList, RefreshControl } from 'react-native';
 import moment from 'moment';
 import Item from './Item';
 import Footer from './Footer';
 import Separator from './Separator';
 import timeAgo from '../../../config/timeAgo';
-import styles from './styles';
+import styles, { primary } from './styles';
 
 export default class List extends React.Component {
   static defaultProps = {
@@ -66,6 +66,7 @@ export default class List extends React.Component {
         ItemSeparatorComponent={this._renderSeparator}
         refreshing={loading}
         onRefresh={onRefresh}
+        refreshControl={<RefreshControl refreshing={loading} onRefresh={onRefresh} colors={[primary]} />}
       />
     )
   }

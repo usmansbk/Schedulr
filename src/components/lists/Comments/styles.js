@@ -2,7 +2,8 @@ import { StyleSheet } from 'react-native';
 import colors from '../../../config/colors';
 
 export const AVATAR_SIZE = 32;
-const SEPARATOR_HEIGHT = 4
+export const primary = colors.primary;
+const SEPARATOR_HEIGHT = 4;
 
 export default StyleSheet.create({
   list: {
