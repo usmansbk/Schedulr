@@ -20,7 +20,7 @@ export default StyleSheet.create({
     backgroundColor: colors.light_gray_2,
     padding: 5,
     paddingLeft: 16,
-    elevation: 1,
+    elevation: 2,
     height: SECTION_HEADER_HEIGHT
   },
   sectionHeading: {

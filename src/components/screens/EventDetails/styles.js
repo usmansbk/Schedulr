@@ -8,6 +8,7 @@ export default StyleSheet.create({
   title: {
     fontWeight: 'bold',
     fontSize: 30,
+    paddingVertical: 4
   },
   date: {
     color: colors.gray,

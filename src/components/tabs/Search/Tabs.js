@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
   container: {flex: 1},
   barStyle: {
     backgroundColor: 'white',
-    elevation: 1
+    elevation: 4
   },
   indicatorStyle: {
     backgroundColor: colors.primary_light
