@@ -43,7 +43,7 @@ export default class Item extends React.PureComponent {
     const [ first, second ] = boardName.split(' ');
     const avatarName = `${first} ${second ? second : ''}`;
     const isOffline = id[0] === '-';
-    const repeatEvent = repeat && (repeat + ' · ');
+    const repeatEvent = repeat && (repeat + ' • ');
     
     return (
       <TouchableRipple
