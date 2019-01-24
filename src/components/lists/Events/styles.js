@@ -57,7 +57,8 @@ export default StyleSheet.create({
   offlineTitle: {
     fontSize: 22,
     fontFamily: 'sans-serif-bold',
-    color: gray
+    color: gray,
+    width: 200
   },
   empty: {
     flex: 1,
