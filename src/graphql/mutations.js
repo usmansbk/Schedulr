@@ -7,6 +7,8 @@ export const LoginUser = `mutation LoginUser($input: LoginInput!) {
     name
     email
     pictureUrl
+    followingCount
+    createdCount
   }
 }
 `;

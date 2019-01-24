@@ -6,6 +6,8 @@ export const Me = `{
     name
     email
     pictureUrl
+    followingCount
+    createdCount
   }
 }`;
 
@@ -38,6 +40,8 @@ export const getUser = `query GetUser($id: ID!) {
     name
     email
     pictureUrl
+    followingCount
+    createdCount
   }
 }
 `;
@@ -184,6 +188,8 @@ export const listEventComments = `query ListEventComments($id: ID!, $limit: Int,
         name
         email
         pictureUrl
+        followingCount
+        createdCount
       }
       createdAt
       updatedAt
@@ -207,6 +213,8 @@ export const listAllBoards = `query ListAllBoards($limit: Int, $nextToken: Strin
         name
         email
         pictureUrl
+        followingCount
+        createdCount
       }
       eventsCount
       followersCount
