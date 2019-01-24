@@ -35,6 +35,8 @@ export const createBoard = `mutation CreateBoard($input: CreateBoardInput!) {
       name
       email
       pictureUrl
+      followingCount
+      createdCount
     }
     eventsCount
     followersCount
@@ -73,6 +75,8 @@ export const followBoard = `mutation FollowBoard($input: FollowBoardInput!) {
       name
       email
       pictureUrl
+      followingCount
+      createdCount
     }
     eventsCount
     followersCount
@@ -135,6 +139,8 @@ export const createEvent = `mutation CreateEvent($input: CreateEventInput!) {
       name
       email
       pictureUrl
+      followingCount
+      createdCount
     }
     commentsCount
     createdAt
@@ -219,6 +225,8 @@ export const createComment = `mutation CreateComment($input: CreateCommentInput!
       name
       email
       pictureUrl
+      followingCount
+      createdCount
     }
     createdAt
     updatedAt

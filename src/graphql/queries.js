@@ -75,6 +75,8 @@ export const getEvent = `query GetEvent($id: ID!) {
       name
       email
       pictureUrl
+      followingCount
+      createdCount
     }
     commentsCount
     createdAt
@@ -96,6 +98,8 @@ export const getComment = `query GetComment($id: ID!) {
       name
       email
       pictureUrl
+      followingCount
+      createdCount
     }
   }
 }`;
@@ -114,6 +118,8 @@ export const getBoard = `query GetBoard($id: ID!) {
       name
       email
       pictureUrl
+      followingCount
+      createdCount
     }
     eventsCount
     followersCount
@@ -155,6 +161,8 @@ export const listAllEvents = `query ListAllEvents($limit: Int, $nextToken: Strin
         name
         email
         pictureUrl
+        followingCount
+        createdCount
       }
       commentsCount
       createdAt
@@ -264,6 +272,8 @@ export const searchEvent = `query SearchEvent($filter: SearchFilterInput, $limit
         name
         email
         pictureUrl
+        followingCount
+        createdCount
       }
       commentsCount
       createdAt
@@ -288,6 +298,8 @@ export const searchBoard = `query SearchBoard($filter: SearchFilterInput, $limit
         name
         email
         pictureUrl
+        followingCount
+        createdCount
       }
       eventsCount
       followersCount
