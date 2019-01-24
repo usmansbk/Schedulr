@@ -50,7 +50,7 @@ export default StyleSheet.create({
   count: {
     color: colors.light_gray_3,
     fontWeight: 'bold',
-    fontSize: 16,
+    fontSize: 20,
     marginVertical: 16
   },
   middot: {

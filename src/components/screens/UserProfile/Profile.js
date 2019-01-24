@@ -9,7 +9,7 @@ import UserAvatar from 'react-native-user-avatar';
 import { CachedImage } from 'react-native-cached-image';
 import Loading from '../../common/Loading';
 import Error from '../../common/Error';
-import { CIRCLE } from '../../../config/constants';
+import { CIRCLE } from '../../../lib/constants';
 import styles, { AVATAR_SIZE } from './styles';
 import colors from '../../../config/colors';
 import appStyles from '../../../config/styles';
@@ -53,11 +53,11 @@ export default ({
           <Text
             style={styles.count}
           >
-            Following {numeral(followingCount).format('0a')}
+          {numeral(followingCount).format('0a')} Following
           </Text>
           <Text style={styles.middot}>{` ${CIRCLE} `}</Text>
           <Text style={styles.count}>
-            Created {numeral(createdCount).format('0a')}
+          {numeral(createdCount).format('0a')} Created
           </Text>
         </View>
       </View>
