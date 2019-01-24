@@ -39,7 +39,10 @@ export default StyleSheet.create({
     height: ITEM_HEIGHT,
     backgroundColor: 'white',
     justifyContent: 'center',
-    elevation: 2
+    elevation: 1,
+    borderRadius: 2,
+    marginHorizontal: 4,
+    marginVertical: 2
   },
   itemAvatar: {
     height: AVATAR_SIZE,
