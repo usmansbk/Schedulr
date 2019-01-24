@@ -1,5 +1,6 @@
 import React from 'react';
 import { View } from 'react-native';
+import numeral from 'numeral';
 import {
   Appbar,
   Text
@@ -8,6 +9,7 @@ import UserAvatar from 'react-native-user-avatar';
 import { CachedImage } from 'react-native-cached-image';
 import Loading from '../../common/Loading';
 import Error from '../../common/Error';
+import { CIRCLE } from '../../../config/constants';
 import styles, { AVATAR_SIZE } from './styles';
 import colors from '../../../config/colors';
 import appStyles from '../../../config/styles';
@@ -25,6 +27,8 @@ export default ({
   const {
     name,
     pictureUrl,
+    followingCount,
+    createdCount
   } = user;
   return (
   <React.Fragment>
@@ -45,6 +49,17 @@ export default ({
         >
           {name}
         </Text>
+        <View style={styles.countRow}>
+          <Text
+            style={styles.count}
+          >
+            Following {numeral(followingCount).format('0a')}
+          </Text>
+          <Text style={styles.middot}>{` ${CIRCLE} `}</Text>
+          <Text style={styles.count}>
+            Created {numeral(createdCount).format('0a')}
+          </Text>
+        </View>
       </View>
     </View>
   </React.Fragment>
