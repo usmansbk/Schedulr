@@ -38,7 +38,8 @@ export default StyleSheet.create({
   itemContainer: {
     height: ITEM_HEIGHT,
     backgroundColor: 'white',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    elevation: 2
   },
   itemAvatar: {
     height: AVATAR_SIZE,
