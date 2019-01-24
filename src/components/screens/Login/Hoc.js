@@ -2,7 +2,8 @@ import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import Container from './Container';
 import { LoginUser } from '../../../graphql/mutations';
-import { Me } from '../../../graphql/queries';
+import { Me, Settings, RemindMeBefore } from '../../../graphql/queries';
+import defaults from '../../../graphql/localstate/defaults';
 
 export default graphql(gql(LoginUser), {
   alias: 'withLoginContainer',
@@ -16,6 +17,14 @@ export default graphql(gql(LoginUser), {
         cache.writeQuery({
           query: gql(Me),
           data: me
+        });
+        cache.writeQuery({
+          query: gql(Settings),
+          data: { settings: defaults.settings }
+        });
+        cache.writeQuery({
+          query: gql(RemindMeBefore),
+          data: { remindMeBefore: defaults.remindMeBefore }
         });
       }
     }),
