@@ -66,7 +66,7 @@ export default StyleSheet.create({
     flexDirection: 'row',
   },
   itemBody: {
-    width: 280
+    width: 250
   },
   danger: {
     color: colors.light_red
@@ -77,5 +77,6 @@ export default StyleSheet.create({
   nameRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems: 'center'
   }
 });
