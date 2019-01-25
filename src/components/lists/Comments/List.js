@@ -4,7 +4,6 @@ import moment from 'moment';
 import Item from './Item';
 import Footer from './Footer';
 import Separator from './Separator';
-import timeAgo from '../../../config/timeAgo';
 import styles, { primary } from './styles';
 
 export default class List extends React.Component {
@@ -35,7 +34,7 @@ export default class List extends React.Component {
         isToCommentDeleted={toCommentId && !toComment}
         toCommentAuthorName={toComment && toComment.author.name}
         toCommentContent={toComment && toComment.content}
-        timeAgo={timeAgo.format(moment(createdAt).toDate(), 'twitter')}
+        timeAgo={moment(createdAt).fromNow()}
         navigateToProfile={this.props.navigateToProfile}
         handleDeleteComment={this.props.handleDelete}
         handleReplyComment={this.props.handleReply}
