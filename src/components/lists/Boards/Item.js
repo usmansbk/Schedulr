@@ -14,8 +14,7 @@ export default class Item extends React.PureComponent {
       name,
       description,
       isClosed,
-      isPublic,
-      isAuthor
+      isPublic
     } = this.props;
     
     const [ first, second ] = name.split(' ');
