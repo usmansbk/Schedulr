@@ -14,7 +14,6 @@ const Home = createMaterialTopTabNavigator({
 }, {
   initialRouteName: 'Events',
   initialLayout: { height: 0, width: Dimensions.get('window').width },
-  animationEnabled: false,
   tabBarOptions: {
     activeTintColor: activeColor,
     inactiveTintColor,
