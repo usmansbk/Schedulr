@@ -34,7 +34,7 @@ export default class List extends React.Component {
         isToCommentDeleted={toCommentId && !toComment}
         toCommentAuthorName={toComment && toComment.author.name}
         toCommentContent={toComment && toComment.content}
-        timeAgo={moment(createdAt).fromNow()}
+        timeAgo={moment(createdAt).fromNow(true) + ' ago'}
         navigateToProfile={this.props.navigateToProfile}
         handleDeleteComment={this.props.handleDelete}
         handleReplyComment={this.props.handleReply}

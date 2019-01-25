@@ -13,7 +13,7 @@ import config from './src/aws-exports';
 import client from './src/config/client';
 import theme from './src/config/theme';
 import env from './src/config/env';
-import { refreshGoogleToken } from './src/config/auth';
+// import { refreshGoogleToken } from './src/config/auth';
 
 // console.disableYellowBox = true;
 
