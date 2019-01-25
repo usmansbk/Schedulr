@@ -1,7 +1,6 @@
 import React from 'react';
 import { View } from 'react-native';
 import { TouchableRipple, Text, Paragraph } from 'react-native-paper';
-import Icon from 'react-native-vector-icons/MaterialIcons';
 import UserAvatar from 'react-native-user-avatar';
 import { CachedImage } from 'react-native-cached-image';
 import styles, { AVATAR_SIZE, PRIMARY } from './styles';
