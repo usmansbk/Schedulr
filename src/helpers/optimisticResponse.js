@@ -182,10 +182,10 @@ export const cancelEventResponse = (input) => {
   try {
     const { getEvent } = getNode(query, input.id);
     const isCancelled =  input.option === 'ALL' ? true : false;
-    const cancelledDates = getEvent.cancelledDates;
+    const cancelledDates = getEvent.cancelledDates || [];
     const updatedAt = isCancelled ? moment().toISOString() : null;
     if (!isCancelled) {
-      cancelledDates.add(input.date);
+      cancelledDates.push(input.date);
     }
     return ({
       __typename,
