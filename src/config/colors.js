@@ -17,5 +17,8 @@ export default {
   light_green: '#90ee90',
   green: '#008000',
   yellow: '#ff9900',
-  soft_blue: '#688bf8'
+  soft_blue: '#688bf8',
+  deep_purple: '#562765',
+  orange: '#F53900',
+  blue: '004f86'
 }
