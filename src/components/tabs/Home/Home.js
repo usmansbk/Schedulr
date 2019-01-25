@@ -5,7 +5,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import EventsRoute from '../Events';
 import BoardsRoute from '../Boards';
 import StarredRoute from '../Starred';
-import styles, { activeColor, inactiveTintColor, FONT_SIZE, BLUR_SIZE } from './styles';
+import styles, { activeColor, inactiveTintColor, FONT_SIZE } from './styles';
 
 const Home = createMaterialTopTabNavigator({
   Events: { screen: EventsRoute },
@@ -35,7 +35,7 @@ const Home = createMaterialTopTabNavigator({
       } else if (routeName === 'Starred') {
         iconName = `star`;
       }
-      return <Icon name={iconName} size={focused ? FONT_SIZE : BLUR_SIZE} color={tintColor} />
+      return <Icon name={iconName} size={FONT_SIZE} color={tintColor} />
     }
   })
 });
