@@ -19,8 +19,8 @@ const styles = StyleSheet.create({
 
 export default createAppContainer(createMaterialTopTabNavigator(
   {
-    Events,
-    Boards
+    Boards,
+    Events
   },
   {
     tabBarOptions: {
