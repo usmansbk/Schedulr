@@ -69,12 +69,18 @@ export default StyleSheet.create({
     width: 250
   },
   danger: {
-    color: colors.light_red
+    color: colors.light_red,
+    fontWeight: 'bold'
   },
   paragraph: {
     textAlign: 'center'
   },
   nameRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center'
+  },
+  itemFooter: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center'

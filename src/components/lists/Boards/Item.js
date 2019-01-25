@@ -32,10 +32,12 @@ export default class Item extends React.PureComponent {
           <View style={styles.itemBody}>
             <View style={styles.nameRow}>
               <Text numberOfLines={1} ellipsizeMode="tail" style={isOffline ? styles.offlineName : styles.itemName}>{name}</Text>
-              { (!isPublic && isAuthor) && <Icon size={14} name="person" color={PRIMARY} /> }
             </View>
             { Boolean(description) && <Paragraph numberOfLines={1} ellipsizeMode="tail" style={styles.itemDescription}>{description}</Paragraph> }
-            { isClosed && <Text style={styles.danger}>Closed</Text> }
+            <View style={styles.itemFooter}>
+              { isClosed && <Text style={styles.danger}>Closed</Text> }
+              { !isPublic && <Text style={styles.danger}>Private</Text> }
+            </View>
           </View>
         </View>
       </TouchableRipple>
