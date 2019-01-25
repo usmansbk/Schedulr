@@ -3,6 +3,7 @@ import moment from 'moment';
 import { View } from 'react-native';
 import { Text } from 'react-native-paper';
 import capitalizr from '../../../lib/capitalizr';
+import { BULLET } from '../../../lib/constants';
 import styles from './styles';
 
 const DATE_FORMAT = 'MMMM DD, YYYY';
@@ -31,14 +32,16 @@ const getFormattedDate = (date) => {
   };
 }
 
-export default ({ section: { title } }) => {
+export default ({ section: { title , data } }) => {
   const {heading, subheading, timeAgo } = getFormattedDate(title);
+  const count = data.length;
+  const itemsCount = `${count} Item${count > 1 ? 's' : ''}` + (timeAgo ? ` ${BULLET} ` : '') ;
   return (
   <View style={styles.sectionHeader}>
     <Text style={styles.sectionHeading}>{heading}</Text>
     <View style={styles.sectionSubheadingContent}>
       <Text style={styles.sectionSubheading}>{subheading}</Text>
-      <Text style={styles.sectionSubheading}>{timeAgo}</Text>
+      <Text style={styles.sectionSubheading}>{itemsCount}{timeAgo}</Text>
     </View>
   </View>
 )};
