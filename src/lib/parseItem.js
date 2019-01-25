@@ -44,7 +44,7 @@ export const getStatus = ({
   const cancelled =  isCancelled || cancelledDates.includes(startAt);
   if (cancelled) return 'Cancelled';
   const ended = Date.now() > Date.parse(endAt);
-  if (ended) return 'Ended';
+  if (ended) return 'Done';
   const ongoing = Date.now() > Date.parse(startAt) && !ended;
   if (ongoing) return 'Ongoing';
   return 'Pending';

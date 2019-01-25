@@ -32,7 +32,7 @@ export default ({ status }) => {
     statusStyle = styles.started;
   } else if (status === 'Pending') {
     statusStyle = styles.pending;
-  } else if (status === 'Ended') {
+  } else if (status === 'Done') {
     statusStyle = styles.ended;
   } else if (status === 'Cancelled') {
     statusStyle = styles.red;
