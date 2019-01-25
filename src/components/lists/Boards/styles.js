@@ -5,6 +5,7 @@ export const ITEM_HEIGHT = 80;
 export const SEPARATOR_HEIGHT = 1;
 export const AVATAR_SIZE = 50;
 export const FOOTER_HEIGHT = 80;
+export const PRIMARY = colors.primary;
 
 export default StyleSheet.create({
   list: {
@@ -65,12 +66,16 @@ export default StyleSheet.create({
     flexDirection: 'row',
   },
   itemBody: {
-    width: 250
+    width: 280
   },
   danger: {
     color: colors.light_red
   },
   paragraph: {
     textAlign: 'center'
+  },
+  nameRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   }
 });

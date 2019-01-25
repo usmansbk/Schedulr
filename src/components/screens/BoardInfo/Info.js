@@ -140,7 +140,7 @@ export default class Info extends React.Component {
               {
                 isClosed && (
                   <View style={styles.noteView}>
-                    <Icon name="lock" size={18} />
+                    <Icon name="person" size={18} />
                     <Text style={styles.note}>This board is closed</Text>
                   </View>
                 )
