@@ -25,7 +25,7 @@ const Home = createMaterialTopTabNavigator({
     style: styles.barStyle
   },
   defaultNavigationOptions: ({ navigation }) => ({
-    tabBarIcon: ({ focused, tintColor }) => {
+    tabBarIcon: ({ tintColor }) => {
       const { routeName } = navigation.state;
       let iconName;
       if (routeName === 'Events') {
