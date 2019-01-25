@@ -87,7 +87,7 @@ class List extends React.Component {
     boardId={board.id}
     boardName={board.name}
     allDay={allDay}
-    duration={getDuration(startAt, endAt)}
+    duration={getDuration(startAt, endAt, eventType)}
     onPressItem={this._onPressItem}
     onPressCommentButton={this._onPressCommentItem}
     navigateToBoardEvents={this._navigateToBoardEvents}
