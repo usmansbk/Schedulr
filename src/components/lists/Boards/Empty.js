@@ -13,7 +13,7 @@ export default (props) => (
     {
       props.search && (
         <Paragraph style={styles.paragraph}>
-          Find a board and follow, then get notified on event updates.
+          Find a board, follow, and get notified on event updates.
         </Paragraph>
       )
     }
