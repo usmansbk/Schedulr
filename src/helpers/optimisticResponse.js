@@ -65,8 +65,12 @@ export const createCommentResponse = (input, eventId) => {
       id: eventId,
       commentsCount: eventData.getEvent.commentsCount + 1,
     },
-    author: me,
-    updatedAt: null,
+    author: {
+      __typename: 'User',
+      id: me.id,
+      name: me.name,
+      pictureUrl: me.pictureUrl
+    },
     createdAt: moment().toISOString()
   };
   return ({

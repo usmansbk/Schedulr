@@ -176,7 +176,6 @@ export const listEventComments = `query ListEventComments($id: ID!, $limit: Int,
         pictureUrl
       }
       createdAt
-      updatedAt
     }
   }
 }`;
