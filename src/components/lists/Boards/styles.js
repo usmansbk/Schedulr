@@ -51,13 +51,11 @@ export default StyleSheet.create({
     marginRight: 8
   },
   itemName: {
-    fontWeight: 'bold',
-    fontSize: 18
+    fontFamily: 'sans-serif-bold'
   },
   offlineName: {
     color: colors.gray,
-    fontWeight: 'bold',
-    fontSize: 18
+    fontFamily: 'sans-serif-bold'
   },
   itemContent: {
     paddingHorizontal: 4,
@@ -66,11 +64,11 @@ export default StyleSheet.create({
     flexDirection: 'row',
   },
   itemBody: {
-    width: 250
+    width: 250,
+    alignItems: 'flex-start'
   },
   danger: {
     color: colors.light_red,
-    fontWeight: 'bold'
   },
   paragraph: {
     textAlign: 'center'
@@ -78,7 +76,7 @@ export default StyleSheet.create({
   nameRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center'
+    alignItems: 'flex-start'
   },
   itemFooter: {
     flexDirection: 'row',

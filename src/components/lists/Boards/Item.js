@@ -1,6 +1,6 @@
 import React from 'react';
 import { View } from 'react-native';
-import { TouchableRipple, Text, Paragraph } from 'react-native-paper';
+import { TouchableRipple, Text, Paragraph, Caption } from 'react-native-paper';
 import UserAvatar from 'react-native-user-avatar';
 import { CachedImage } from 'react-native-cached-image';
 import styles, { AVATAR_SIZE, PRIMARY } from './styles';
@@ -31,10 +31,10 @@ export default class Item extends React.PureComponent {
             <View style={styles.nameRow}>
               <Text numberOfLines={1} ellipsizeMode="tail" style={isOffline ? styles.offlineName : styles.itemName}>{name}</Text>
             </View>
-            { Boolean(description) && <Paragraph numberOfLines={1} ellipsizeMode="tail" style={styles.itemDescription}>{description}</Paragraph> }
+            { Boolean(description) && <Caption numberOfLines={1} ellipsizeMode="tail" style={styles.itemDescription}>{description}</Caption> }
             <View style={styles.itemFooter}>
-              { isClosed && <Text style={styles.danger}>Closed</Text> }
-              { !isPublic && <Text style={styles.danger}>Private</Text> }
+              { isClosed && <Caption style={styles.danger}>Closed</Caption> }
+              { !isPublic && <Caption style={styles.danger}>Private</Caption> }
             </View>
           </View>
         </View>
