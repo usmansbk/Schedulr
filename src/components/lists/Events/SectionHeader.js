@@ -35,7 +35,7 @@ const getFormattedDate = (date) => {
 export default ({ section: { title , data } }) => {
   const {heading, subheading, timeAgo } = getFormattedDate(title);
   const count = data.length;
-  const itemsCount = `${count} Item${count > 1 ? 's' : ''}` + (timeAgo ? ` ${BULLET} ` : '') ;
+  const itemsCount = `${count} event${count > 1 ? 's' : ''}` + (timeAgo ? ` ${BULLET} ` : '') ;
   return (
   <View style={styles.sectionHeader}>
     <Text style={styles.sectionHeading}>{heading}</Text>

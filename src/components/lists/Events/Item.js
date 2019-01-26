@@ -13,8 +13,6 @@ import styles, {
   AVATAR_SIZE,
 } from './styles';
 
-const REMINDER = 'REMINDER';
-
 export default class Item extends React.PureComponent {
   _onPress = () => this.props.onPressItem(this.props.id);
   _navigateToBoard = () => this.props.navigateToBoardEvents(this.props.boardId);
@@ -73,7 +71,7 @@ export default class Item extends React.PureComponent {
               <View>
                 <Text style={styles.time}>{startTime}</Text>
                 {
-                  !allDay && (eventType !== REMINDER) && (
+                  !allDay && (
                     <Text style={styles.time}>{endTime}</Text>
                   )
                 }

@@ -1,6 +1,6 @@
 import moment from 'moment';
 import { decapitalize } from './capitalizr';
-import { ONE_TIME_EVENT, REMINDER } from './constants';
+import { ONE_TIME_EVENT } from './constants';
 
 const START_TIME = 'hh:mm a';
 const DATE_FORMAT = 'DD MM YYYY';
@@ -31,7 +31,6 @@ export const isStarted = ({ isCancelled, startAt, endAt }) => {
 };
 
 export const getDuration = (startAt, endAt, eventType) => {
-  if (eventType === REMINDER) return '';
   return decapitalize(moment(startAt).from(endAt, true)) + ' ';
 }
 
