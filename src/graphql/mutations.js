@@ -218,7 +218,6 @@ export const createComment = `mutation CreateComment($input: CreateCommentInput!
       pictureUrl
     }
     createdAt
-    updatedAt
   }
 }
 `;

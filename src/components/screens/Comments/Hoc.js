@@ -34,18 +34,23 @@ export default compose(
         variables: {
           input
         },
-       optimisticResponse: () => createCommentResponse(input, ownProps.navigation.getParam('id')),
         update: (cache, { data: { createComment } }) => {
           if (createComment) {
             const query = gql(listEventComments);
             const data = cache.readQuery({ query, variables: { id: ownProps.navigation.getParam('id') } });
+            let newComment = null;
+            if (createComment) {
+              newComment = Object.assign({}, createComment);
+              delete newComment.event;
+            }
             data.listComments.items = [
               ...data.listComments.items.filter(item => item.id !== createComment.id),
-              createComment
+              newComment
             ];
             cache.writeQuery({ query, data });
           }
-        }
+        },
+        optimisticResponse: () => createCommentResponse(input, ownProps.navigation.getParam('id'))
       }),
       ...ownProps
     })

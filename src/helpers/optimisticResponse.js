@@ -58,6 +58,7 @@ export const createCommentResponse = (input, eventId) => {
     __typename: 'Comment',
     id: '-' + shortid.generate(),
     content: input.content,
+    toCommentId: null,
     isAuthor: true,
     toComment,
     event: {
