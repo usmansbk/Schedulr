@@ -51,11 +51,12 @@ export default StyleSheet.create({
     marginRight: 8
   },
   itemName: {
-    fontFamily: 'sans-serif-bold'
+    fontFamily: 'sans-serif-bold',
+    fontWeight: 'bold'
   },
   offlineName: {
     color: colors.gray,
-    fontFamily: 'sans-serif-bold'
+    fontWeight: 'bold'
   },
   itemContent: {
     paddingHorizontal: 4,
