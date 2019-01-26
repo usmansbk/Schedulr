@@ -134,14 +134,6 @@ export const createEvent = `mutation CreateEvent($input: CreateEventInput!) {
     starsCount
     isStarred
     isAuthor
-    author {
-      id
-      name
-      email
-      pictureUrl
-      followingCount
-      createdCount
-    }
     commentsCount
     createdAt
     updatedAt
@@ -223,10 +215,7 @@ export const createComment = `mutation CreateComment($input: CreateCommentInput!
     author {
       id
       name
-      email
       pictureUrl
-      followingCount
-      createdCount
     }
     createdAt
     updatedAt

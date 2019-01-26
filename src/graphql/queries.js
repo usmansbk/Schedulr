@@ -64,20 +64,11 @@ export const getEvent = `query GetEvent($id: ID!) {
     board {
       id
       name
-      eventsCount
     }
     cancelledDates
     starsCount
     isStarred
     isAuthor
-    author {
-      id
-      name
-      email
-      pictureUrl
-      followingCount
-      createdCount
-    }
     commentsCount
     createdAt
     updatedAt
@@ -96,10 +87,7 @@ export const getComment = `query GetComment($id: ID!) {
     author {
       id
       name
-      email
       pictureUrl
-      followingCount
-      createdCount
     }
   }
 }`;
@@ -150,20 +138,11 @@ export const listAllEvents = `query ListAllEvents($limit: Int, $nextToken: Strin
       board {
         id
         name
-        eventsCount
       }
       cancelledDates
       starsCount
       isStarred
       isAuthor
-      author {
-        id
-        name
-        email
-        pictureUrl
-        followingCount
-        createdCount
-      }
       commentsCount
       createdAt
       updatedAt  
@@ -194,10 +173,7 @@ export const listEventComments = `query ListEventComments($id: ID!, $limit: Int,
       author {
         id
         name
-        email
         pictureUrl
-        followingCount
-        createdCount
       }
       createdAt
       updatedAt
@@ -254,27 +230,11 @@ export const searchEvent = `query SearchEvent($filter: SearchFilterInput, $limit
       board {
         id
         name
-        description
-        isPublic
-        isFollowing
-        isAuthor
-        eventsCount
-        followersCount
-        createdAt
-        updatedAt
       }
       cancelledDates
       starsCount
       isStarred
       isAuthor
-      author {
-        id
-        name
-        email
-        pictureUrl
-        followingCount
-        createdCount
-      }
       commentsCount
       createdAt
       updatedAt

@@ -80,7 +80,7 @@ export const createEventResponse = (input) => {
 
   try {
     const { getBoard } = getNode(query, input.boardId);
-    const { me } = getCurrentUser();
+    // const { me } = getCurrentUser();
 
     const newEvent = {
       __typename: 'Event',
@@ -107,7 +107,7 @@ export const createEventResponse = (input) => {
       starsCount: 0,
       isStarred: false,
       isAuthor: true,
-      author: me,
+      // author: me,
       commentsCount: 0,
       createdAt: moment().toISOString(),
       updatedAt: null
