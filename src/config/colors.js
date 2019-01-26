@@ -7,7 +7,7 @@ export default {
   light_gray_2: '#f8f8f8',
   light_gray_3: '#989898',
   red: '#cc3300',
-  light_red: '#FA3E3E',
+  light_red: '#eb5a46',
   primary: '#1976d2',
   primary_light: '#63a4ff',
   primary_dark: '#004ba0',
