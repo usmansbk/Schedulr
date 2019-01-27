@@ -9,10 +9,13 @@ export default StyleSheet.create({
   list: {
     backgroundColor: colors.light_gray,
   },
-  itemContainer: {
+  itemMainContent: {
     flexDirection: 'row',
     paddingHorizontal: 8,
     paddingVertical: 4,
+  },
+  itemContainer: {
+    flex: 1,
     backgroundColor: '#fff',
   },
   linkStyle: { color: '#2980b9' },
@@ -38,7 +41,9 @@ export default StyleSheet.create({
     height: SEPARATOR_HEIGHT
   },
   footer: {
-    minHeight: 80
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 8
   },
   actions: {
     justifyContent: 'flex-end',

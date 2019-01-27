@@ -7,13 +7,23 @@ import colors from '../../../config/colors';
 
 export default class Comments extends React.Component {
 
+  state = {
+    showOptions: false
+  }
+
   focusCommentInput = () => this._inputRef && this._inputRef.focusInput();
 
-  blurCommentInput = () => {this._inputRef && this._inputRef.blurInput();
+  blurCommentInput = () => this._inputRef && this._inputRef.blurInput();
 
   scrollDown = () => this._commentsListRef && this._commentsListRef.scrollDown();
 
   _handleSubmit = (message) => this.props.onSubmit && this.props.onSubmit(message);
+
+  _handleDelete = () => this.props.handleDelete(this.state.id);
+
+  _onLongPress = (id) => this.setState({ showOptions: true, id });
+
+  _dismissActions = () => this.setState({ showOptions: false, id: null });
 
   render() {
     const {
@@ -25,7 +35,6 @@ export default class Comments extends React.Component {
       goBack,
       title,
       handleReply,
-      handleDelete,
       cancelReply,
       navigateToProfile
     } = this.props;
@@ -38,6 +47,15 @@ export default class Comments extends React.Component {
             title={title || 'Comments'}
             titleStyle={styles.headerColor}
           />
+          {
+            this.state.showOptions && (
+              <Appbar.Action
+                icon="delete"
+                onPress={this._handleDelete}
+                color={colors.gray}
+              />
+            )
+          }
         </Appbar.Header>
         <List
           ref={commentsRef => this._commentsListRef = commentsRef}
@@ -45,8 +63,10 @@ export default class Comments extends React.Component {
           comments={comments}
           onRefresh={onRefresh}
           handleReply={handleReply}
-          handleDelete={handleDelete}
+          handleDelete={this._handleDelete}
           navigateToProfile={navigateToProfile}
+          onLongPressItem={this._onLongPress}
+          onPressItem={this._dismissActions}
         />
         <CommentForm
           name={me && me.name || undefined}

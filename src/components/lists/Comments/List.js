@@ -38,6 +38,8 @@ export default class List extends React.Component {
         navigateToProfile={this.props.navigateToProfile}
         handleDeleteComment={this.props.handleDelete}
         handleReplyComment={this.props.handleReply}
+        onLongPress={this.props.onLongPressItem}
+        onPress={this.props.onPressItem}
       />
     );
   }
