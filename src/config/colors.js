@@ -14,6 +14,7 @@ export default {
   disabled: '#d3d3d3',
   alt_primary: '#757de8',
   money_green: '#216C2A',
+  light_green_2: '#34D058',
   light_green: '#90ee90',
   green: '#008000',
   yellow: '#ff9900',
