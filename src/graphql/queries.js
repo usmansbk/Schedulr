@@ -76,22 +76,6 @@ export const getEvent = `query GetEvent($id: ID!) {
 }
 `;
 
-export const getComment = `query GetComment($id: ID!) {
-  getComment(id: $id) @client {
-    id
-    content
-    event {
-      id
-      commentsCount
-    }
-    author {
-      id
-      name
-      pictureUrl
-    }
-  }
-}`;
-
 export const getBoard = `query GetBoard($id: ID!) {
   getBoard(id: $id) {
     id
@@ -156,7 +140,7 @@ export const listEventComments = `query ListEventComments($id: ID!, $limit: Int,
     items {
       id
       content
-      toCommentId
+      isReply
       toComment {
         id
         content

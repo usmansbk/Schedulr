@@ -17,7 +17,7 @@ export default class List extends React.Component {
       id,
       content,
       author,
-      toCommentId,
+      isReply,
       toComment,
       isAuthor,
       createdAt,
@@ -31,7 +31,7 @@ export default class List extends React.Component {
         authorPictureUrl={author.pictureUrl}
         isAuthor={isAuthor}
         content={content}
-        isToCommentDeleted={toCommentId && !toComment}
+        isToCommentDeleted={isReply && !toComment}
         toCommentAuthorName={toComment && toComment.author.name}
         toCommentContent={toComment && toComment.content}
         timeAgo={moment(createdAt).fromNow(true) + ' ago'}
