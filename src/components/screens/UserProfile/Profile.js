@@ -53,11 +53,11 @@ export default ({
           <Text
             style={styles.count}
           >
-          {numeral(followingCount).format('0a')} Following
+          Following {numeral(followingCount).format('0a')}
           </Text>
           <Text style={styles.middot}>{` ${CIRCLE} `}</Text>
           <Text style={styles.count}>
-          {numeral(createdCount).format('0a')} Created
+          Created {numeral(createdCount).format('0a')}
           </Text>
         </View>
       </View>
