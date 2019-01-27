@@ -9,7 +9,7 @@ export default () => (
       Find an event
     </Headline>
     <Paragraph style={styles.paragraph}>
-      Use the top-left filter button to customize your search.
+      Press the top-left filter button to customize your search.
     </Paragraph>
   </View>
 );
