@@ -7,7 +7,7 @@ export default ({ isAuthor }) => (
   <View style={styles.empty}>
     <Headline style={styles.emptyTitle}>
       {
-        isAuthor ? "Send invites to friends!" : "Be the first to follow!"
+        isAuthor ? "Send invites!" : "Be the first to follow!"
       }
     </Headline>
   </View>
