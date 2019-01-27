@@ -3,6 +3,7 @@ import { FlatList, RefreshControl } from 'react-native';
 import moment from 'moment';
 import Item from './Item';
 import Footer from './Footer';
+import Empty from './Empty';
 import Separator from './Separator';
 import styles, { primary } from './styles';
 
@@ -45,6 +46,7 @@ export default class List extends React.Component {
   }
   _renderSeparator = () => <Separator />;
   _renderFooter = () => <Footer />;
+  _renderEmpty = () => <Empty />;
   scrollDown = () => {
     this._listRef && this._listRef.scrollToEnd();
   }
@@ -64,6 +66,7 @@ export default class List extends React.Component {
         keyExtractor={this._keyExtractor}
         renderItem={this._renderItem}
         ListFooterComponent={this._renderFooter}
+        ListEmptyComponent={this._renderEmpty}
         ItemSeparatorComponent={this._renderSeparator}
         refreshing={loading}
         onRefresh={onRefresh}

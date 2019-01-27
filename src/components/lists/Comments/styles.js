@@ -57,4 +57,20 @@ export default StyleSheet.create({
     color: colors.gray,
     fontWeight: 'bold',
   },
+  empty: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 200,
+    marginHorizontal: 20,
+    height: '100%'
+  },
+  emptyTitle: {
+    fontSize: 25,
+    color: colors.light_gray_3,
+    textAlign: 'center'
+  },
+  paragraph: {
+    textAlign: 'center'
+  },
 });
