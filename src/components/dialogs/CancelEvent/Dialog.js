@@ -31,7 +31,7 @@ export default class CancelEvent extends React.Component {
     }
   }
 
-  _onContinue = async () => {
+  _onContinue = () => {
     const {
       id,
       date,
@@ -40,7 +40,7 @@ export default class CancelEvent extends React.Component {
     } = this.props;
     this.setState({ loading: true });
     try {
-      await onSubmit({
+      onSubmit({
         id,
         option: this.state.checked,
         date

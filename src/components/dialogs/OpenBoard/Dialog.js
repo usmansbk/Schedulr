@@ -15,7 +15,7 @@ export default class OpenBoard extends React.Component {
     nextState.loading !== this.state.loading
   );
 
-  _onContinue = async () => {
+  _onContinue = () => {
     const {
       id,
       onSubmit,
@@ -23,9 +23,7 @@ export default class OpenBoard extends React.Component {
     } = this.props;
     this.setState({ loading: true });
     try {
-      await onSubmit({
-        id
-      });
+      onSubmit({ id });
       handleDismiss();
     } catch (error) {
       this.setState({ loading: false });

@@ -19,14 +19,14 @@ export default class DeleteEvent extends React.Component {
     nextState.loading !== this.state.loading
   );
 
-  _onContinue = async () => {
+  _onContinue = () => {
     const {
       id,
       onSubmit,
     } = this.props;
     this.setState({ loading: true });
     try {
-      await onSubmit({
+      onSubmit({
         id
       });
       this.props.navigation.popToTop();
