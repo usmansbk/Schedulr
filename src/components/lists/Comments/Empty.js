@@ -12,8 +12,8 @@ export default ({ error }) => (
     </Headline>
     {
       error && (
-        <Paragraph>
-          Check your internet connection. Swipe to refresh.
+        <Paragraph style={styles.paragraph}>
+          Check your internet connection. Swipe down to refresh.
         </Paragraph>
       )
     }
