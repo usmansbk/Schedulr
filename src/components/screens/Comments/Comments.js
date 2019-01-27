@@ -21,7 +21,9 @@ export default class Comments extends React.Component {
 
   _handleDelete = () => this.props.handleDelete(this.state.id);
 
-  _onLongPress = (id) => this.setState({ showOptions: true, id });
+  _onLongPress = (id) => {
+    this.setState(prev => ({ showOptions: !prev.showOptions, id: prev.showOptions ? id : null }));
+  };
 
   _dismissActions = () => this.setState({ showOptions: false, id: null });
 
