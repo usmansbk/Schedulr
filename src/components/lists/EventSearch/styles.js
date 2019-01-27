@@ -81,5 +81,8 @@ export default StyleSheet.create({
   },
   iconBadge: {
     marginLeft: 4,
-  }
+  },
+  paragraph: {
+    textAlign: 'center'
+  },
 });
