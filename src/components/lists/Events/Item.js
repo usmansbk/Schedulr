@@ -41,7 +41,7 @@ export default class Item extends React.PureComponent {
     } = this.props;
     const [ first, second ] = boardName.split(' ');
     const avatarName = `${first} ${second ? second : ''}`;
-    const isOffline = id[0] === '-';
+    const isPending = id[0] === '-';
     const repeatEvent = repeat && (repeat + ` ${BULLET} `);
     
     return (
@@ -64,7 +64,7 @@ export default class Item extends React.PureComponent {
           <View style={styles.right}>
             <View style={styles.itemBody}>
               <View style={styles.body}>
-                <Text style={isOffline ? styles.offlineTitle : styles.itemHeadline} numberOfLines={2} ellipsizeMode="tail">{title}</Text>
+                <Text style={isPending ? styles.offlineTitle : styles.itemHeadline} numberOfLines={2} ellipsizeMode="tail">{title}</Text>
                 <Text style={styles.duration}>{duration}{eventType}</Text>
                 <Text style={styles.status}>{repeatEvent}<Tag status={status} /></Text>
               </View>

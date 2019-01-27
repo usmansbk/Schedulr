@@ -19,7 +19,7 @@ export default class Item extends React.PureComponent {
     
     const [ first, second ] = name.split(' ');
     const boardName = `${first} ${second ? second : ''}`;
-    const isOffline = id[0] === '-';
+    const isPending = id[0] === '-';
 
     return (
       <TouchableRipple style={styles.itemContainer} onPress={this._onPress}>
@@ -29,7 +29,7 @@ export default class Item extends React.PureComponent {
           </TouchableRipple>
           <View style={styles.itemBody}>
             <View style={styles.nameRow}>
-              <Text numberOfLines={1} ellipsizeMode="tail" style={isOffline ? styles.offlineName : styles.itemName}>{name}</Text>
+              <Text numberOfLines={1} ellipsizeMode="tail" style={isPending ? styles.offlineName : styles.itemName}>{name}</Text>
             </View>
             { Boolean(description) && <Caption numberOfLines={1} ellipsizeMode="tail" style={styles.itemDescription}>{description}</Caption> }
             <View style={styles.itemFooter}>

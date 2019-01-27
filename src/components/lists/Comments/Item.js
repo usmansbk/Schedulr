@@ -18,6 +18,7 @@ export default class Item extends React.PureComponent {
 
   render() {
     const {
+      id,
       authorName,
       content,
       timeAgo,
@@ -26,6 +27,9 @@ export default class Item extends React.PureComponent {
       toCommentContent,
       isToCommentDeleted
     } = this.props;
+
+    const isPending = id[0] === '-';
+
     return (
       <View style={styles.itemContainer}>
         <View style={styles.itemLeft}>
@@ -73,7 +77,7 @@ export default class Item extends React.PureComponent {
               </Paragraph>
             </Hyperlink>
             <View style={styles.footer}>
-              <Caption>{timeAgo}</Caption>
+              <Caption>{isPending ? 'pending' : timeAgo}</Caption>
               {
                 isAuthor && (
                   <View style={styles.actions}>
