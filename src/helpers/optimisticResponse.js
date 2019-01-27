@@ -50,20 +50,19 @@ export const deleteEventResponse = (input) => {
 
 export const createCommentResponse = (input, eventId) => {
   const { me } = getCurrentUser();
-  const eventData = getNode(gql(getEvent), eventId);
-  const toComment = input.toCommentId ? getNode(gql(getComment), input.toCommentId) : null;
-
+  const eventNode = getNode(gql(getEvent), eventId);
+  const toCommentNode = input.toCommentId ? getNode(gql(getComment), input.toCommentId) : null;
   const newComment = {
     __typename: 'Comment',
     id: '-' + shortid.generate(),
     content: input.content,
     isReply: Boolean(input.toCommentId),
     isAuthor: true,
-    toComment,
+    toComment: toCommentNode.getComment,
     event: {
       __typename: 'Event',
       id: eventId,
-      commentsCount: eventData.getEvent.commentsCount + 1,
+      commentsCount: eventNode.getEvent.commentsCount + 1,
     },
     author: {
       __typename: 'User',
