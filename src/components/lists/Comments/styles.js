@@ -38,18 +38,11 @@ export default StyleSheet.create({
     height: SEPARATOR_HEIGHT
   },
   footer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginTop: 16
+    minHeight: 80
   },
   actions: {
     justifyContent: 'flex-end',
     flexDirection: 'row',
-  },
-  footerText: {
-    color: colors.gray,
-    marginHorizontal: 8,
-    fontWeight: 'bold'
   },
   replyBox: {
     backgroundColor: colors.light_gray,

@@ -1,5 +1,4 @@
 import React from 'react';
-import Toast from 'react-native-simple-toast';
 import { Appbar } from 'react-native-paper';
 import List from '../../lists/Comments';
 import CommentForm from '../../forms/Comment';
@@ -8,26 +7,13 @@ import colors from '../../../config/colors';
 
 export default class Comments extends React.Component {
 
-  focusCommentInput = () => {
-    this._inputRef && this._inputRef.focusInput();
-  };
+  focusCommentInput = () => this._inputRef && this._inputRef.focusInput();
 
-  blurCommentInput = () => {
-    this._inputRef && this._inputRef.blurInput();
-  };
+  blurCommentInput = () => {this._inputRef && this._inputRef.blurInput();
 
-  scrollDown = () => {
-    this._commentsListRef && this._commentsListRef.scrollDown();
-  }
+  scrollDown = () => this._commentsListRef && this._commentsListRef.scrollDown();
 
-  _handleSubmit = async (message) => {
-    try {
-      await this.props.onSubmit(message);
-    } catch (e) {
-      Toast.show(e.message, Toast.SHORT);
-      console.log(e);
-    }
-  };
+  _handleSubmit = (message) => this.props.onSubmit && this.props.onSubmit(message);
 
   render() {
     const {

@@ -1,4 +1,5 @@
 import React from 'react';
+import Toast from 'react-native-simple-toast';
 import Comments from './Comments';
 import DeleteCommentDialog from '../../dialogs/DeleteComment';
 
@@ -29,15 +30,18 @@ export default class Screen extends React.Component {
   _scrollDown = () => {
     this._commentsRef && this._commentsRef.scrollDown();
   }
-  _onSubmit = async (message) => {
+  _onSubmit = (message) => {
     const input = {
       content: message,
       eventId: this.props.eventId
     };
     
     if (this.state.toCommentId) input.toCommentId = this.state.toCommentId;
-    
-    await this.props.onSubmit(input);
+    try {
+      this.props.onSubmit(input);
+    } catch (error) {
+      Toast.show(error.message, Toast.SHORT);
+    }
     this._cancelReply();
     this._scrollDown();
   };
