@@ -8,7 +8,8 @@ import colors from '../../../config/colors';
 export default class Comments extends React.Component {
 
   state = {
-    showOptions: false
+    showOptions: false,
+    id: null
   }
 
   focusCommentInput = () => this._inputRef && this._inputRef.focusInput();
@@ -17,12 +18,17 @@ export default class Comments extends React.Component {
 
   scrollDown = () => this._commentsListRef && this._commentsListRef.scrollDown();
 
-  _handleSubmit = (message) => this.props.onSubmit && this.props.onSubmit(message);
+  _handleSubmit = (message) => {
+    this.props.onSubmit && this.props.onSubmit(message);
+  };
 
-  _handleDelete = () => this.props.handleDelete(this.state.id);
+  _handleDelete = () => {
+    this.props.handleDelete(this.state.id);
+    this._dismissActions();
+  }
 
   _onLongPress = (id) => {
-    this.setState(prev => ({ showOptions: !prev.showOptions, id: prev.showOptions ? id : null }));
+    this.setState(prev => ({ showOptions: !prev.showOptions, id: prev.id ? null : id }));
   };
 
   _dismissActions = () => this.setState({ showOptions: false, id: null });
