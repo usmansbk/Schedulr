@@ -67,6 +67,7 @@ export default class Screen extends React.Component {
       <Comments
         loading={loading}
         me={me}
+        error={Boolean(error)}
         comments={comments}
         ref={commentsRef => this._commentsRef = commentsRef}
         targetName={targetName}

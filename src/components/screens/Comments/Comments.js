@@ -39,6 +39,7 @@ export default class Comments extends React.Component {
       targetName,
       comments,
       me,
+      error,
       onRefresh,
       goBack,
       title,
@@ -67,6 +68,7 @@ export default class Comments extends React.Component {
         </Appbar.Header>
         <List
           ref={commentsRef => this._commentsListRef = commentsRef}
+          error={error}
           loading={loading}
           comments={comments}
           onRefresh={onRefresh}

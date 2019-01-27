@@ -46,7 +46,7 @@ export default class List extends React.Component {
   }
   _renderSeparator = () => <Separator />;
   _renderFooter = () => <Footer />;
-  _renderEmpty = () => <Empty />;
+  _renderEmpty = () => <Empty error={this.props.error} />;
   scrollDown = () => {
     this._listRef && this._listRef.scrollToEnd();
   }

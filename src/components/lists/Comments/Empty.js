@@ -6,10 +6,16 @@ import styles from './styles';
 export default ({ error }) => (
   <View style={styles.empty}>
     <Headline style={styles.emptyTitle}>
-      Network error
+      {
+        error ? 'Network error' : 'Ask a question'
+      }
     </Headline>
-    <Paragraph>
-      Check your internet connection. Swipe to refresh.
-    </Paragraph>
+    {
+      error && (
+        <Paragraph>
+          Check your internet connection. Swipe to refresh.
+        </Paragraph>
+      )
+    }
   </View>
 );
