@@ -39,9 +39,9 @@ class List extends React.Component {
   _renderHeader = () => <Header onPress={this._loadPrevious} visible={this.props.hasPreviousEvents} />;
   _renderFooter = () => <Footer visible={this.props.events.length}/>;
   _renderEmptyList = () => {
-    const { loading, events } = this.props;
+    const { loading, events, error } = this.props;
     if (loading && (events.length === 0)) return null;
-    return <Empty />
+    return <Empty error={error} />
   };
   _renderSeparator = () => <Separator />;
   _renderSectionHeader = ({section}) => <SectionHeader section={section} />;

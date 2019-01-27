@@ -1,12 +1,21 @@
 import React from 'react';
 import { View } from 'react-native';
-import { Headline } from 'react-native-paper';
+import { Headline, Paragraph } from 'react-native-paper';
 import styles from './styles';
 
-export default () => (
+export default ({ error }) => (
   <View style={styles.empty}>
     <Headline style={styles.emptyTitle}>
-    No schedule - yet
+    {
+      error ? 'Network error' : 'No schedule - yet'
+    }
     </Headline>
+    {
+      error && (
+        <Paragraph style={styles.paragraph}>
+          Check your internet connection. Swipe down to refresh.
+        </Paragraph>
+      )
+    }
   </View>
 );

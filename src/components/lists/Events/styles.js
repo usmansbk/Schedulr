@@ -132,5 +132,8 @@ export default StyleSheet.create({
   duration: {
     fontWeight: 'bold',
     color: colors.light_gray_3,
-  }
+  },
+  paragraph: {
+    textAlign: 'center'
+  },
 });
