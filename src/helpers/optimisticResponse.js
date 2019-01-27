@@ -18,7 +18,7 @@ export const deleteCommentResponse = (input) => {
     id: input.id,
     event: {
       __typename: 'Event',
-      id: event.id,
+      id: eventNode.id,
       commentsCount: count > 0 ? count - 1 : count
     }
   };
