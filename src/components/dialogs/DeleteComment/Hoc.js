@@ -20,7 +20,7 @@ export default graphql(gql(deleteComment), {
         cache.writeQuery({ query, data });
       }
     },
-    optimisticResponse: () => deleteCommentResponse({ id: props.id }),
+    optimisticResponse: () => deleteCommentResponse({ id: props.id, eventId: props.eventId }),
   }),
   props: ({ mutate, ownProps }) => ({
     onDelete: async () => await mutate(),

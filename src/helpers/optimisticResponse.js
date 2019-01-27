@@ -10,9 +10,8 @@ import { BOARD_CLOSED, BOARD_OPEN } from '../lib/constants';
 const __typename = 'Mutation';
 
 export const deleteCommentResponse = (input) => {
-  const data = getNode(gql(getComment), input.id);
-  const { event } = data.getComment;
-  const count = event.commentsCount;
+  const eventNode = getNode(gql(getEvent), input.eventId);
+  const count = eventNode.getEvent.commentsCount;
 
   const deleteComment = {
     __typename: 'Comment',
