@@ -101,6 +101,15 @@ export const getBoard = `query GetBoard($id: ID!) {
 }
 `;
 
+export const getComment = `query GetComment($id: ID!) {
+  id
+  content
+  author {
+    id
+    name
+  }
+}`;
+
 export const listAllEvents = `query ListAllEvents($limit: Int, $nextToken: String) {
   listAllEvents(limit: $limit, nextToken: $nextToken) @connection(key: "listAllEvents") {
     nextToken

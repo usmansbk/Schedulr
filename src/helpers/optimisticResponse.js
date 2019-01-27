@@ -52,13 +52,14 @@ export const createCommentResponse = (input, eventId) => {
   const { me } = getCurrentUser();
   const eventNode = getNode(gql(getEvent), eventId);
   const toCommentNode = input.toCommentId ? getNode(gql(getComment), input.toCommentId) : null;
+  const toComment = toCommentNode && toCommentNode.getComment;
   const newComment = {
     __typename: 'Comment',
     id: '-' + shortid.generate(),
     content: input.content,
     isReply: Boolean(input.toCommentId),
     isAuthor: true,
-    toComment: toCommentNode.getComment,
+    toComment,
     event: {
       __typename: 'Event',
       id: eventId,
