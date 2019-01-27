@@ -22,6 +22,7 @@ export default class Events extends React.Component {
           events={this.props.events}
           hasPreviousEvents={Boolean(this.props.nextToken)}
           onRefresh={this.props.onRefresh}
+          error={Boolean(this.props.error)}
         />
         <FAB
           icon="edit"
