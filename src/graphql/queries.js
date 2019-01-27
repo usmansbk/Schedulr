@@ -102,7 +102,7 @@ export const getBoard = `query GetBoard($id: ID!) {
 `;
 
 export const getComment = `query GetComment($id: ID!) {
-  getComment {
+  getComment(id: $id) {
     id
     content
     author {
