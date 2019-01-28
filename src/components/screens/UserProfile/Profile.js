@@ -50,15 +50,14 @@ export default ({
           {name}
         </Text>
         <View style={styles.countRow}>
-          <Text
-            style={styles.count}
-          >
-          Following {numeral(followingCount).format('0a')}
-          </Text>
-          <Text style={styles.middot}>{` ${CIRCLE} `}</Text>
-          <Text style={styles.count}>
-          Created {numeral(createdCount).format('0a')}
-          </Text>
+          <View style={styles.item}>
+            <Text style={styles.count}>Following</Text>
+            <Text style={styles.count}>{numeral(followingCount).format('0a')}</Text>
+          </View>
+          <View style={styles.item}>
+            <Text style={styles.count}>Created</Text>
+            <Text style={styles.count}>{numeral(createdCount).format('0a')}</Text>
+          </View>
         </View>
       </View>
     </View>

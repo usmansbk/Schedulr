@@ -50,17 +50,21 @@ export default StyleSheet.create({
   count: {
     color: colors.light_gray_3,
     fontWeight: 'bold',
-    fontSize: 20,
-    marginVertical: 16
+    fontSize: 24,
+    marginVertical: 8
   },
-  middot: {
+  itemText: {
     color: colors.light_gray_3,
     fontWeight: 'bold',
     fontSize: 20,
-    marginVertical: 16
   },
   countRow: {
     flexDirection: 'row',
-    alignItems: 'center'
+    alignItems: 'center',
+    justifyContent: 'space-between'
   },
+  item: {
+    justifyContent: 'center',
+    alignItems: 'center'
+  }
 });
