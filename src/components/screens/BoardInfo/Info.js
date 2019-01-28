@@ -150,14 +150,12 @@ export default class Info extends React.Component {
                   Created on <Text style={styles.adminName}>{moment(createdAt).toDate().toDateString()}</Text>
                 </Text>
               </View>
-              <View style={styles.admin}>
+              <TouchableRipple style={styles.admin} onPress={() => navigateToProfile(adminId)}>
                 <UserAvater rounded size={32} name={adminName} src={author.pictureUrl}/>
                 <Text style={styles.byLine}>
-                  by <Text
-                    onPress={() => navigateToProfile(adminId)}
-                    style={styles.adminName}>{adminName}</Text>
+                  by <Text style={styles.adminName}>{adminName}</Text>
                 </Text>
-              </View>
+              </TouchableRipple>
               {
                 Boolean(description) && (
                   <Hyperlink linkStyle={styles.linkStyle} linkDefault={true}>
