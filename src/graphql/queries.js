@@ -45,6 +45,67 @@ export const getUser = `query GetUser($id: ID!) {
   }
 }
 `;
+
+export const followingBoards = `query FollowingBoard($id: ID!, $limit: Int, $nextToken: String) {
+  followingBoards: getUser(id: $id) {
+    id
+    followingBoards(limit: $limit, nextToken: $nextToken) {
+      nextToken
+      items {
+        id
+        name
+        description
+        status
+        isPublic
+        isFollowing
+        isAuthor
+        author {
+          id
+          name
+          email
+          pictureUrl
+          followingCount
+          createdCount
+        }
+        eventsCount
+        followersCount
+        createdAt
+        updatedAt
+      }
+    }
+  }
+}`;
+
+export const createdBoards = `query FollowingBoard($id: ID!, $limit: Int, $nextToken: String) {
+  createdBoards: getUser(id: $id) {
+    id
+    createdBoards(limit: $limit, nextToken: $nextToken) {
+      nextToken
+      items {
+        id
+        name
+        description
+        status
+        isPublic
+        isFollowing
+        isAuthor
+        author {
+          id
+          name
+          email
+          pictureUrl
+          followingCount
+          createdCount
+        }
+        eventsCount
+        followersCount
+        createdAt
+        updatedAt
+      }
+    }
+  }
+}`;
+
 export const getEvent = `query GetEvent($id: ID!) {
   getEvent(id: $id) {
     id
