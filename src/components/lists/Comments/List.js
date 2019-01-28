@@ -6,6 +6,7 @@ import Footer from './Footer';
 import Empty from './Empty';
 import Separator from './Separator';
 import styles, { primary } from './styles';
+import { timeAgo } from '../../../lib/time';
 
 export default class List extends React.Component {
   static defaultProps = {
@@ -35,7 +36,7 @@ export default class List extends React.Component {
         isToCommentDeleted={isReply && !toComment}
         toCommentAuthorName={toComment && toComment.author.name}
         toCommentContent={toComment && toComment.content}
-        timeAgo={moment(createdAt).fromNow(true) + ' ago'}
+        timeAgo={timeAgo(createdAt)}
         navigateToProfile={this.props.navigateToProfile}
         handleDeleteComment={this.props.handleDelete}
         handleReplyComment={this.props.handleReply}

@@ -57,3 +57,10 @@ export const getNextDate = (event) => {
   }
   return moment(date).format(allDay ? DATE_ONLY : DATE_TIME);
 }
+
+export const timeAgo = (date) => {
+  const parsedDate = Date.parse(date);
+  let timeAgo = moment(parsedDate).fromNow(true) + ' ago';
+  if (timeAgo.includes('seconds')) timeAgo = 'now';
+  return timeAgo;
+}
