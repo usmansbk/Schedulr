@@ -65,7 +65,7 @@ export default ({
           {
             Boolean(updatedAt) && (
               <View style={styles.item}>
-                <Text style={styles.label}>UPDATED</Text>
+                <Text style={styles.label}>EDITED</Text>
                 <Text style={styles.value}>{updatedAt}</Text>
               </View>
             )
