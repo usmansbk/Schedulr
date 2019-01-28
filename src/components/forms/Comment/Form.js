@@ -72,7 +72,7 @@ export default class CommentInput extends React.Component {
           <View style={styles.body}>
             <TextInput
               ref={textInputRef => this._textInputRef = textInputRef}
-              placeholder="Add a comment..."
+              placeholder="About this event..."
               value={message}
               onChangeText={this._onChangeText}
               onBlur={() => this._onChangeText(message)}
