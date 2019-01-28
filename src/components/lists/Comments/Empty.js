@@ -7,7 +7,7 @@ export default ({ error }) => (
   <View style={styles.empty}>
     <Headline style={styles.emptyTitle}>
       {
-        error ? 'Network error' : 'Ask a question'
+        error ? 'Network error' : 'About this event'
       }
     </Headline>
     {

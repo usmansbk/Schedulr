@@ -59,9 +59,6 @@ export default class Screen extends React.Component {
       onRefresh,
       error
     } = this.props;
-    // if (error) {
-    //   alert(error);
-    // }
     return (
       <React.Fragment>
       <Comments

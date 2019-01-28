@@ -1,5 +1,6 @@
 import { graphql } from 'react-apollo';
-import { Analytics } from 'aws-amplify';
+import SimpleToast from 'react-native-simple-toast';
+// import { Analytics } from 'aws-amplify';
 import gql from 'graphql-tag';
 import Boards from './Boards';
 import { listAllBoards } from '../../../graphql/queries';
@@ -18,7 +19,7 @@ export default graphql(gql(listAllBoards), {
       try {
         await data.refetch()
       } catch(e) {
-        console.log(e);
+        SimpleToast.show(e.message, SimpleToast.SHORT);
         // Log error if it occurs multiple times
         // Analytics.record({
         //   name: e.name,

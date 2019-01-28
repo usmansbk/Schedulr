@@ -1,5 +1,6 @@
 import { graphql, compose } from 'react-apollo';
-import { Analytics } from 'aws-amplify';
+import SimpleToast from 'react-native-simple-toast';
+// import { Analytics } from 'aws-amplify';
 import { withNavigationFocus } from 'react-navigation';
 import gql from 'graphql-tag';
 import Events from './Events';
@@ -23,6 +24,7 @@ export default compose(
           await data.refetch()
         } catch(e) {
           console.log(e);
+          SimpleToast.show(e.message, SimpleToast.SHORT);
           // Log error if it occurs multiple times
           // Analytics.record({
           //   name: e.name,

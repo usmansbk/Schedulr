@@ -4,6 +4,7 @@ import Screen from './Screen';
 import { listEventComments, Me } from '../../../graphql/queries';
 import { createComment } from '../../../graphql/mutations';
 import { createCommentResponse } from '../../../helpers/optimisticResponse';
+import SimpleToast from 'react-native-simple-toast';
 
 const alias = 'withCommentsScreen';
 
@@ -21,7 +22,13 @@ export default compose(
       eventId: ownProps.navigation.getParam('id'),
       loading: data.loading || data.networkStatus === 4,
       error: data.error,
-      onRefresh: () => data.refetch(),
+      onRefresh: async () => {
+        try {
+          await data.refetch();
+        } catch (e) {
+          SimpleToast.show('Refresh failed', SimpleToast.SHORT);
+        }
+      },
       comments: data && data.listComments && data.listComments.items && data.listComments.items.sort((a, b) => Date.parse(a.createdAt) - Date.parse(b.createdAt)),
       nextToken: data && data.listComments && data.listComments.nextToken,
       ...ownProps
