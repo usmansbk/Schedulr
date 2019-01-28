@@ -1,6 +1,6 @@
 import React from 'react';
 import { Auth, Analytics } from 'aws-amplify';
-import Toast from 'react-native-simple-toast';
+import SimpleToast from 'react-native-simple-toast';
 import Login from './Login';
 import Loading from '../../common/Loading';
 
@@ -30,7 +30,7 @@ export default class LoginScreen extends React.Component {
       });
       this.props.navigation.navigate('App');
     } catch (error) {
-      Toast.show('Login failed', Toast.SHORT);
+      SimpleToast.show('Login failed', SimpleToast.SHORT);
       this.setState({ loading: false });
       // Analytics.record({
       //   name: 'login_error',

@@ -1,5 +1,5 @@
 import React from 'react';
-import Toast from 'react-native-simple-toast';
+import SimpleToast from 'react-native-simple-toast';
 import moment from 'moment';
 import Form from '../../forms/Event';
 import eventTypes from '../../forms/Event/types';
@@ -18,7 +18,7 @@ export default class NewEventScreen extends React.Component {
         id: result.data.createEvent.id
       });
     } catch(error) {
-      Toast.show(error.message, Toast.SHORT);
+      SimpleToast.show(error.message, SimpleToast.SHORT);
       console.log(error);
     }
   };

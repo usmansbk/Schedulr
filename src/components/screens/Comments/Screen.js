@@ -1,5 +1,5 @@
 import React from 'react';
-import Toast from 'react-native-simple-toast';
+import SimpleToast from 'react-native-simple-toast';
 import Comments from './Comments';
 import DeleteCommentDialog from '../../dialogs/DeleteComment';
 
@@ -40,7 +40,7 @@ export default class Screen extends React.Component {
     try {
       this.props.onSubmit(input);
     } catch (error) {
-      Toast.show(error.message, Toast.SHORT);
+      SimpleToast.show(error.message, SimpleToast.SHORT);
     }
     this._cancelReply();
     this._scrollDown();

@@ -1,6 +1,6 @@
 import { Auth } from 'aws-amplify';
 import { GoogleSignin, statusCodes } from 'react-native-google-signin';
-import Toast from 'react-native-simple-toast';
+import SimpleToast from 'react-native-simple-toast';
 
 export function refreshGoogleToken() {
   let token = null;
@@ -16,7 +16,7 @@ export function refreshGoogleToken() {
   //   console.log(token);
   // } catch (error) {
   //   if (error.code === statusCodes.SIGN_IN_REQUIRED) {
-  //     Toast.show('Signin required', Toast.SHORT);
+  //     SimpleToast.show('Signin required', SimpleToast.SHORT);
   //   }
   // }
   console.log('refreshed');

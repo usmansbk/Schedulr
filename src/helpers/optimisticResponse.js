@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 import moment from 'moment';
 import shortid from 'shortid';
-import Toast from 'react-native-simple-toast';
+import SimpleToast from 'react-native-simple-toast';
 import { getValue } from '../lib/formValidator';
 import client from '../config/client';
 import { getEvent, getBoard, Me, getComment } from '../graphql/queries';
@@ -122,7 +122,7 @@ export const createEventResponse = (input) => {
       createEvent: newEvent
     });
   } catch(error) {
-    Toast.show(error.message, Toast.LONG);
+    SimpleToast.show(error.message, SimpleToast.LONG);
   }
   return null;
 };
@@ -151,7 +151,7 @@ export const createBoardResponse = (input) => {
       createBoard: newBoard
     });
   } catch (error) {
-    Toast.show(error.message, Toast.LONG);
+    SimpleToast.show(error.message, SimpleToast.LONG);
   }
   return null;
 };
@@ -202,7 +202,7 @@ export const cancelEventResponse = (input) => {
       }
     });
   } catch (error) {
-    Toast.show(error.message, Toast.LONG);
+    SimpleToast.show(error.message, SimpleToast.LONG);
   }
   return null;
 };

@@ -1,5 +1,5 @@
 import React from 'react';
-import Toast from 'react-native-simple-toast';
+import SimpleToast from 'react-native-simple-toast';
 import Form from '../../forms/Event';
 
 export default class EditEventScreen extends React.Component {
@@ -41,7 +41,7 @@ export default class EditEventScreen extends React.Component {
       this.props.onSubmit({ id, ...form });
       this.props.navigation.pop();
     } catch(error) {
-      Toast.show(error, Toast.SHORT);
+      SimpleToast.show(error, SimpleToast.SHORT);
       console.log(error.message);
     }
   };

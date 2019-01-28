@@ -6,7 +6,7 @@ import {
   GraphRequestManager,
   AccessToken
 } from 'react-native-fbsdk';
-import Toast from 'react-native-simple-toast';
+import SimpleToast from 'react-native-simple-toast';
 import Button from './Button';
 
 export default class Container extends React.Component {
@@ -19,12 +19,12 @@ export default class Container extends React.Component {
     try {
       const response = await LoginManager.logInWithReadPermissions(['public_profile', 'email']);
       if (response.isCancelled) {
-        Toast.show('Login cancelled', Toast.SHORT);
+        SimpleToast.show('Login cancelled', SimpleToast.SHORT);
       } else {
         return await this._requestUserInfo();
       }
     } catch (error) {
-      Toast.show('Connection error', Toast.SHORT);
+      SimpleToast.show('Connection error', SimpleToast.SHORT);
     }
     this.setState({ loading: false });
   };
@@ -49,7 +49,7 @@ export default class Container extends React.Component {
 
   _responseInfoCallback = async (error, result) => {
     if (error) {
-      Toast.show(error.message, Toast.LONG);
+      SimpleToast.show(error.message, SimpleToast.LONG);
       // Analytics.record({
       //   name: 'fb_login_error',
       //   attributes: {
@@ -67,7 +67,7 @@ export default class Container extends React.Component {
         pictureUrl: picture && picture.data && picture.data.url
       });
     } else {
-      Toast.show('Something went wrong', Toast.SHORT);
+      SimpleToast.show('Something went wrong', SimpleToast.SHORT);
     }
     this.setState({ loading: false });
   }

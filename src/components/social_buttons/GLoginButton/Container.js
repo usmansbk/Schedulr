@@ -3,7 +3,7 @@ import {
   GoogleSignin,
   statusCodes
 } from 'react-native-google-signin';
-import Toast from 'react-native-simple-toast';
+import SimpleToast from 'react-native-simple-toast';
 import { Analytics } from 'aws-amplify';
 import Button from './Button';
 
@@ -32,13 +32,13 @@ export default class Container extends React.Component {
       });
     } catch (error) {
       if (error.code === statusCodes.SIGN_IN_CANCELLED) {
-        Toast.show('Login cancelled', Toast.SHORT);
+        SimpleToast.show('Login cancelled', SimpleToast.SHORT);
       } else if (error.code === statusCodes.IN_PROGRESS) {
-        Toast.show('Login in progress', Toast.SHORT);
+        SimpleToast.show('Login in progress', SimpleToast.SHORT);
       } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
-        Toast.show("Google Play services not available", Toast.SHORT);
+        SimpleToast.show("Google Play services not available", SimpleToast.SHORT);
       } else {
-        Toast.show("Connection error", Toast.SHORT);
+        SimpleToast.show("Connection error", SimpleToast.SHORT);
         // Analytics.record({
         //   name: 'google_login_error',
         //   attributes: {

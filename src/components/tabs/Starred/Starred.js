@@ -1,5 +1,4 @@
 import React from 'react';
-import Toast from 'react-native-simple-toast';
 import List from '../../lists/Events';
 
 export default class Starred extends React.Component {

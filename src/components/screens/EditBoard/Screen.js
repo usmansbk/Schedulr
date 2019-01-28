@@ -1,5 +1,5 @@
 import React from 'react';
-import Toast from 'react-native-simple-toast';
+import SimpleToast from 'react-native-simple-toast';
 import Form from '../../forms/Board';
 
 export default class EditBoardScreen extends React.Component {
@@ -11,7 +11,7 @@ export default class EditBoardScreen extends React.Component {
       this.props.onSubmit({id, ...form});
       this.props.navigation.pop();
     } catch(error) {
-      Toast.show('Failed to create', Toast.SHORT);
+      SimpleToast.show('Failed to create', SimpleToast.SHORT);
       console.log(error);
     }
   };
