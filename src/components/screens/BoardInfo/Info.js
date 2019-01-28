@@ -11,7 +11,8 @@ import {
 import numeral from 'numeral';
 import {
   Appbar,
-  Text
+  Text,
+  TouchableRipple
 } from 'react-native-paper';
 import { CachedImage } from 'react-native-cached-image';
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -150,11 +151,13 @@ export default class Info extends React.Component {
                   Created on <Text style={styles.adminName}>{moment(createdAt).toDate().toDateString()}</Text>
                 </Text>
               </View>
-              <TouchableRipple style={styles.admin} onPress={() => navigateToProfile(adminId)}>
-                <UserAvater rounded size={32} name={adminName} src={author.pictureUrl}/>
-                <Text style={styles.byLine}>
-                  by <Text style={styles.adminName}>{adminName}</Text>
-                </Text>
+              <TouchableRipple onPress={() => navigateToProfile(adminId)}>
+                <View style={styles.admin} >
+                  <UserAvater rounded size={32} name={adminName} src={author.pictureUrl}/>
+                  <Text style={styles.byLine}>
+                    by <Text style={styles.adminName}>{adminName}</Text>
+                  </Text>
+                </View>
               </TouchableRipple>
               {
                 Boolean(description) && (
