@@ -19,12 +19,14 @@ export default ({
   loading,
   user,
   error,
-  onRefresh
+  onRefresh,
+  navigateToUserBoards
 }) => {
   if (loading && !user) return <Loading />;
   if (error && !user) return <Error onRefresh={onRefresh} />;
 
   const {
+    id,
     name,
     pictureUrl,
     followingCount,
@@ -49,7 +51,7 @@ export default ({
         >
           {name}
         </Text>
-        <View style={styles.countRow}>
+        <View style={styles.countRow} onPress={() => navigateToUserBoards(id)}>
           <View style={styles.item}>
             <Text style={styles.label}>Following</Text>
             <Text style={styles.count}>{numeral(followingCount).format('0a')}</Text>
