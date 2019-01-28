@@ -42,7 +42,7 @@ export default ({ section: { title , data } }) => {
     <Text style={styles.sectionHeading}>{heading}</Text>
     <View style={styles.sectionSubheadingContent}>
       <Text style={styles.sectionSubheading}>{subheading}</Text>
-      <Text style={styles.sectionSubheading}>{itemsCount}{itemsCount + timeAgo}</Text>
+      <Text style={styles.sectionSubheading}>{itemsCount}{timeAgo}</Text>
     </View>
   </View>
 )};
