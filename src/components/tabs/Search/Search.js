@@ -10,12 +10,14 @@ export default class Search extends React.Component {
 
   _onChangeText = query => this.setState({ query });
 
+  _goBack = () => this.props.navigation.goBack();
+
   render() {
     return (
       <View style={styles.container}>
         <Searchbar
-          icon="filter-list"
-          onIconPress={() => null}
+          icon="arrow-back"
+          onIconPress={() => this._goBack}
           placeholder="Search for..."
           value={this.state.query}
           onChangeText={this._onChangeText}
