@@ -6,11 +6,10 @@ import { listAllEvents } from '../../../graphql/queries';
 export default graphql(gql(listAllEvents), {
   options: {
     fetchPolicy: 'cache-only',
-    notifyOnNetworkStatusChange: true,
   },
   props: ({ data }) => ({
     error: data.error,
-    loading: data.loading || data.networkStatus === 4,
+    loading: data.loading,
     events: data && data.listAllEvents && data.listAllEvents.items || [],
     onRefresh: async () => {
       try {

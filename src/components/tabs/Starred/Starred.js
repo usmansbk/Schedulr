@@ -10,10 +10,6 @@ export default class Starred extends React.Component {
   }
   
   render() {
-    if (this.props.error) {
-      Toast.show(this.props.error.name, Toast.LONG);
-    }
-
     return (
       <List
         listType="starred"
