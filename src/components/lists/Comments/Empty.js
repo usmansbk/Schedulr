@@ -3,7 +3,7 @@ import { View } from 'react-native';
 import { Headline, Paragraph } from 'react-native-paper';
 import styles from './styles';
 
-export default ({ error }) => (
+export default ({ error, loading }) => loading ? null : (
   <View style={styles.empty}>
     <Headline style={styles.emptyTitle}>
       {
