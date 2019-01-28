@@ -53,7 +53,7 @@ export default StyleSheet.create({
     fontSize: 24,
     marginVertical: 8
   },
-  itemText: {
+  label: {
     color: colors.light_gray_3,
     fontWeight: 'bold',
     fontSize: 20,
@@ -61,10 +61,11 @@ export default StyleSheet.create({
   countRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
   },
   item: {
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    marginHorizontal: 16
   }
 });

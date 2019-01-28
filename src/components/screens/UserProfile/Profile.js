@@ -51,11 +51,11 @@ export default ({
         </Text>
         <View style={styles.countRow}>
           <View style={styles.item}>
-            <Text style={styles.count}>Following</Text>
+            <Text style={styles.label}>Following</Text>
             <Text style={styles.count}>{numeral(followingCount).format('0a')}</Text>
           </View>
           <View style={styles.item}>
-            <Text style={styles.count}>Created</Text>
+            <Text style={styles.label}>Created</Text>
             <Text style={styles.count}>{numeral(createdCount).format('0a')}</Text>
           </View>
         </View>
