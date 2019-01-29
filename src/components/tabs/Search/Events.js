@@ -3,14 +3,16 @@ import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
 import List from '../../lists/EventSearch';
 import Fab from '../../common/Fab';
+import navigation from '../../../config/navigation';
 import { listAllEvents } from '../../../graphql/queries';
 
 class Events extends React.PureComponent {
+  _navigateToBoard = (id) => navigation.navigate('BoardEvents', { id });
+  _navigateToEvent = (id) => navigation.navigate('EventDetails', { id });
+
   render() {
     const {
       isConnected,
-      navigateToBoard,
-      navigateToEvent
     } = this.props.screenProps;
     const {
       loading,
@@ -22,8 +24,8 @@ class Events extends React.PureComponent {
           isConnected={isConnected}
           loading={loading}
           events={events}
-          navigateToBoard={navigateToBoard}
-          navigateToEvent={navigateToEvent}
+          navigateToBoard={this._navigateToBoard}
+          navigateToEvent={this._navigateToEvent}
         />
         {
           isConnected && (

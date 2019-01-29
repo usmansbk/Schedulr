@@ -2,14 +2,17 @@ import React from 'react';
 import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
 import List from '../../lists/BoardSearch';
+import navigation from '../../../config/navigation';
 import { listAllBoards } from '../../../graphql/queries';
 
 class Boards extends React.PureComponent {
+
+  _navigateToBoard = (id) => navigation.navigate('BoardEvents', { id });
+  _navigateToBoardInfo = (id) => navigation.navigate('BoardInfo', { id });
+
   render() {
     const {
       isConnected,
-      navigateToBoard,
-      navigateToBoardInfo
     } = this.props.screenProps;
     const {
       loading,
@@ -20,8 +23,8 @@ class Boards extends React.PureComponent {
         isConnected={isConnected}
         boards={boards}
         loading={loading}
-        navigateToBoard={navigateToBoard}
-        navigateToBoardInfo={navigateToBoardInfo}
+        navigateToBoard={this._navigateToBoard}
+        navigateToBoardInfo={this._navigateToBoardInfo}
       />
     );
   }
