@@ -1,4 +1,5 @@
 import moment from 'moment';
+import twitter from 'moment-twitter';
 import twix from 'twix';
 import capitalizr from './capitalizr';
 
@@ -67,9 +68,10 @@ export const getNextDate = (event) => {
 }
 
 export const timeAgo = (date) => {
-  const justNow = Math.abs(moment(date).diff(moment(), 'minutes')) < 1;
-  if (justNow) return 'now';
-  return moment(date).fromNow();
+  return twitter(date).twitterShort();
+  // const justNow = Math.abs(moment(date).diff(moment(), 'minutes')) < 1;
+  // if (justNow) return 'now';
+  // return moment(date).fromNow();
 };
 
 export const getSectionHeaderData = (date) => {
