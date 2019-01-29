@@ -50,6 +50,7 @@ class List extends React.Component {
     title={title}
     date={this._getDate({ startAt, allDay, repeat, endAt })}
     details={this._getDetails({ repeat, type })}
+    boardId={board.id}
     boardName={board.name}
     pictureUrl={board.pictureUrl}
     starsCount={starsCount}

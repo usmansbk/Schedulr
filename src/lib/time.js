@@ -17,6 +17,7 @@ export const FORTY_FIVE_MINUTES = 3 * FIFTEEN_MINUTES;
 
 const DATE_FORMAT = 'MMMM DD, YYYY';
 const DAY_FORMAT = 'dddd';
+const NEXT_LAST_FORMAT = 'dddd, Do';
 
 const headingCalendarFormats = {
   sameDay: '[Today]',
@@ -29,9 +30,9 @@ const headingCalendarFormats = {
 
 const subheadingCalendarFormats = {
   sameDay: DATE_FORMAT,
-  nextDay: DATE_FORMAT,
+  nextDay: NEXT_LAST_FORMAT,
   nextWeek: DATE_FORMAT,
-  lastDay: DATE_FORMAT,
+  lastDay: NEXT_LAST_FORMAT,
   lastWeek: DATE_FORMAT,
   sameElse: DAY_FORMAT
 };
