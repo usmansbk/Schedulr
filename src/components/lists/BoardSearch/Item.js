@@ -1,9 +1,9 @@
 import React from 'react';
 import { View } from 'react-native';
-import { TouchableRipple, Text, Paragraph, Caption } from 'react-native-paper';
+import { TouchableRipple, Text, Caption } from 'react-native-paper';
 import UserAvatar from 'react-native-user-avatar';
 import { CachedImage } from 'react-native-cached-image';
-import styles, { AVATAR_SIZE, PRIMARY } from './styles';
+import styles, { AVATAR_SIZE } from './styles';
 
 export default class Item extends React.PureComponent {
   _onPress = () => this.props.onPressItem(this.props.id);

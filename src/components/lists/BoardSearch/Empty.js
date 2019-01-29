@@ -3,7 +3,7 @@ import { View } from 'react-native';
 import { Headline, Paragraph } from 'react-native-paper';
 import styles from './styles';
 
-export default ({ search, profile }) => {
+export default () => {
   let title = "What interests you?";
   let paragraph = "Find a board, follow, and get notified on event updates."
 
