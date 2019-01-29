@@ -28,7 +28,7 @@ class List extends Component {
   _onPressItem = (id) => this.props.navigation.navigate('BoardEvents', { id });
   _navigateToInfo = (id) => this.props.navigation.navigate('BoardInfo', { id });
   _keyExtractor = (item) => String(item.id);
-  _renderEmptyList = () => this.props.loading ? null : <Empty />;
+  _renderEmptyList = () => this.props.loading ? null : <Empty isConnected={this.props.isConnected}/>;
   _renderItem = ({item}) => {
     const {
       id,

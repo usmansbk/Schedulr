@@ -1,11 +1,23 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, NetInfo } from 'react-native';
 import { Searchbar } from 'react-native-paper';
 import Tabs from './Tabs';
 
 export default class Search extends React.Component {
   state = {
-    query: ''
+    query: '',
+    isConnected: null
+  }
+
+  _handleNetworkChange = (isConnected) => this.setState({ isConnected });
+
+  componentDidMount = () => {
+    NetInfo.isConnected.fetch().then(isConnected => this.setState({ isConnected }));
+    NetInfo.isConnected.addEventListener('connectionChange', this._handleNetworkChange);
+  }
+
+  componentWillUnmount = () => {
+    NetInfo.isConnected.removeEventListener('connectionChange', this._handleNetworkChange);
   }
 
   _onChangeText = query => this.setState({ query });
@@ -13,6 +25,7 @@ export default class Search extends React.Component {
   _goBack = () => this.props.navigation.goBack();
 
   render() {
+    const { query, isConnected } = this.state;
     return (
       <View style={styles.container}>
         <Searchbar
@@ -23,7 +36,7 @@ export default class Search extends React.Component {
           onChangeText={this._onChangeText}
           style={styles.searchbar}
         />
-        <Tabs screenProps={{query: this.state.query}} />
+        <Tabs screenProps={{query, isConnected}} />
       </View>
     );
   }
