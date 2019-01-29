@@ -11,6 +11,10 @@ export default class Search extends React.Component {
 
   _handleNetworkChange = (isConnected) => this.setState({ isConnected });
 
+  _navigateToBoard = (id) => this.props.navigation.navigate('BoardEvents', { id });
+  _navigateToEvent = (id) => this.props.navigation.navigate('EventDetails', { id });
+  _navigateToBoardInfo = (id) => this.props.navigation.navigate('BoardInfo', { id });
+
   componentDidMount = () => {
     NetInfo.isConnected.fetch().then(isConnected => this.setState({ isConnected }));
     NetInfo.isConnected.addEventListener('connectionChange', this._handleNetworkChange);
@@ -36,7 +40,13 @@ export default class Search extends React.Component {
           onChangeText={this._onChangeText}
           style={styles.searchbar}
         />
-        <Tabs screenProps={{query, isConnected}} />
+        <Tabs screenProps={{
+          query,
+          isConnected,
+          navigateToBoard: this._navigateToBoard,
+          navigateToEvent: this._navigateToEvent,
+          navigateToBoardInfo: this._navigateToBoardInfo
+        }} />
       </View>
     );
   }

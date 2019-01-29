@@ -10,11 +10,15 @@ export default class Events extends React.PureComponent {
         <List
           isConnected={isConnected}
         />
-        <Fab
-          small
-          icon="filter-list"
-          onPress={() => null}
-        />
+        {
+          isConnected && (
+            <Fab
+              small
+              icon="filter-list"
+              onPress={() => null}
+            />
+          )
+        }
       </React.Fragment>
     );
   }

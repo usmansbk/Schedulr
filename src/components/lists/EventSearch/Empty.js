@@ -11,8 +11,12 @@ export default ({ isConnected }) => (
         isConnected ? 'Find an event' : 'Searching offline...'
       }
     </Headline>
-    <Paragraph style={styles.paragraph}>
-      Press the <Icon name="filter-list" size={12} /> button to customize your search.
-    </Paragraph>
+    {
+      isConnected && (
+        <Paragraph style={styles.paragraph}>
+          Press the <Icon name="filter-list" size={12} /> button to customize your search.
+        </Paragraph>
+      )
+    }
   </View>
 );
