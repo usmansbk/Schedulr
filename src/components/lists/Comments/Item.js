@@ -66,6 +66,7 @@ export default class Item extends React.PureComponent {
                 style={styles.authorName}
                 onPress={this._navigateToProfile}
               >{authorName}</Text>
+              <Caption>{isPending ? 'pending' : timeAgo}</Caption>
             </View>
             {
               isToCommentDeleted ? (
@@ -93,7 +94,6 @@ export default class Item extends React.PureComponent {
                 </Paragraph>
               </Hyperlink>
               <View style={styles.footer}>
-                <Caption>{isPending ? 'pending' : timeAgo}</Caption>
                 {
                   isAuthor && (
                     <View style={styles.actions}>
