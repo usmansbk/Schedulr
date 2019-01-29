@@ -80,10 +80,9 @@ export const getNextDate = (event) => {
 }
 
 export const timeAgo = (date) => {
-  const parsedDate = Date.parse(date);
-  const justNow = moment(parsedDate).diff(moment(), 'minutes') < 1;
+  const justNow = Math.abs(moment(date).diff(moment(), 'minutes')) < 1;
   if (justNow) return 'now';
-  return moment(parsedDate).fromNow(true) + ' ago';
+  return moment(date).fromNow();
 };
 
 export const getSectionHeaderData = (date) => {
@@ -91,7 +90,7 @@ export const getSectionHeaderData = (date) => {
   const heading = momentDate.calendar(null, headingCalendarFormats);
   const subheading = momentDate.calendar(null, subheadingCalendarFormats);
   let timeAgo = '';
-  if (momentDate.diff(moment(), 'days') > 2) {
+  if (Math.abs(momentDate.diff(moment()), 'days') > 1) {
     timeAgo = capitalizr(momentDate.fromNow());
   }
   return {
