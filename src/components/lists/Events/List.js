@@ -10,11 +10,10 @@ import Separator from './Separator';
 import SectionHeader from './SectionHeader';
 import Item from './Item';
 import {
-  startTime,
-  endTime,
   isStarted,
   getDuration,
-  getStatus
+  getStatus,
+  getTime
 } from '../../../lib/parseItem';
 import { formatDate } from '../../../lib/time';
 import sectionize, { sortBy } from '../../../lib/sectionizr';
@@ -76,8 +75,7 @@ class List extends React.Component {
     latitude={location && location.latitude}
     eventType={decapitalize(eventType)}
     repeat={repeat === 'NEVER' ? null : decapitalize(repeat)}
-    startTime={startTime({ allDay, startAt })}
-    endTime={endTime({ endAt, startAt })}
+    time={getTime({ allDay, startAt, endAt })}
     date={formatDate(startAt, endAt, allDay)}
     isStarted={isStarted({ startAt, endAt, isCancelled })}
     status={getStatus({ isCancelled, cancelledDates, startAt, endAt})}
@@ -86,7 +84,6 @@ class List extends React.Component {
     isStarred={isStarred} 
     boardId={board.id}
     boardName={board.name}
-    allDay={allDay}
     duration={getDuration(startAt, endAt, eventType)}
     onPressItem={this._onPressItem}
     onPressCommentButton={this._onPressCommentItem}

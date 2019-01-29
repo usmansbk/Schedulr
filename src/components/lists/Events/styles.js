@@ -58,7 +58,6 @@ export default StyleSheet.create({
     fontSize: 22,
     fontFamily: 'sans-serif-bold',
     color: gray,
-    width: 200
   },
   empty: {
     flex: 1,
@@ -97,7 +96,6 @@ export default StyleSheet.create({
   itemHeadline: {
     fontSize: 22,
     fontFamily: 'sans-serif-bold',
-    width: 200
   },
   itemNote: {
     fontSize: 16,
@@ -121,7 +119,6 @@ export default StyleSheet.create({
   },
   time: {
     fontFamily: 'sans-serif-bold',
-    alignSelf: 'flex-end',
     fontSize: 16,
     color: gray,
   },

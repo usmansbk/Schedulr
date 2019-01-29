@@ -26,12 +26,10 @@ export default class Item extends React.PureComponent {
       latitude,
       longitude,
       repeat,
-      startTime,
-      endTime,
+      time,
       duration,
       status,
       date,
-      allDay,
       eventType,
       starsCount,
       commentsCount,
@@ -65,16 +63,9 @@ export default class Item extends React.PureComponent {
             <View style={styles.itemBody}>
               <View style={styles.body}>
                 <Text style={isPending ? styles.offlineTitle : styles.itemHeadline} numberOfLines={2} ellipsizeMode="tail">{title}</Text>
+                <Text style={styles.time}>{time}</Text>
                 <Text style={styles.duration}>{duration}{eventType}</Text>
                 <Text style={styles.status}>{repeatEvent}<Tag status={status} /></Text>
-              </View>
-              <View>
-                <Text style={styles.time}>{startTime}</Text>
-                {
-                  !allDay && (
-                    <Text style={styles.time}>{endTime}</Text>
-                  )
-                }
               </View>
             </View>
             <Actions

@@ -13,6 +13,14 @@ export const parseDetails = (event) => {
   return note;
 };
 
+export const getTime = ({ startAt, endAt, allDay }) => {
+  const t = moment(startAt).twix(endAt, {
+    allDay,
+    hideDate: true
+  });
+  return t.format();
+}
+
 export const startTime = ({ allDay, startAt }) => {
   return  allDay ? 'All-day' : moment(startAt).format(START_TIME).toUpperCase()
 };
