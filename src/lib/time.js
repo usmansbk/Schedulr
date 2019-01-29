@@ -90,7 +90,7 @@ export const getSectionHeaderData = (date) => {
   const heading = momentDate.calendar(null, headingCalendarFormats);
   const subheading = momentDate.calendar(null, subheadingCalendarFormats);
   let timeAgo = '';
-  if (Math.abs(momentDate.diff(moment(), 'days')) > 1) {
+  if (Math.abs(momentDate.diff(moment(), 'hours')) > 24) {
     timeAgo = capitalizr(momentDate.fromNow());
   }
   return {
