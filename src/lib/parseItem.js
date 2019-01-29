@@ -3,7 +3,6 @@ import { decapitalize } from './capitalizr';
 import { ONE_TIME_EVENT } from './constants';
 
 const START_TIME = 'hh:mm a';
-const DATE_FORMAT = 'DD MM YYYY';
 
 export const parseDetails = (event) => {
   const eventType = decapitalize(event.eventType);
@@ -14,25 +13,23 @@ export const parseDetails = (event) => {
 };
 
 export const startTime = ({ allDay, startAt }) => {
-  return  allDay ? 'All-day' : moment(Date.parse(startAt)).format(START_TIME).toUpperCase()
+  return  allDay ? 'All-day' : moment(startAt).format(START_TIME).toUpperCase()
 };
 
 export const endTime = ({ endAt, startAt }) => {
-  const parsedEnd = Date.parse(endAt);
-  const parsedStart = Date.parse(startAt);
-
-  const startDay = moment(parsedStart).format(DATE_FORMAT);
-  const isSameDay = (startDay === moment(parsedEnd).format(DATE_FORMAT));
-  return (isSameDay) ? moment(parsedEnd).format(START_TIME).toUpperCase() : '';
+  const isSameDay = moment(startAt).isSame(moment(endAt), 'day');
+  return (isSameDay) ? moment(startAt).format(START_TIME).toUpperCase() : '';
 };
 
 export const isStarted = ({ isCancelled, startAt, endAt }) => {
   return (!isCancelled && (Date.now() > Date.parse(startAt)) && (Date.now() < Date.parse(endAt)));
 };
 
-export const getDuration = (startAt, endAt, eventType) => {
+export const getDuration = (startAt, endAt) => {
   return decapitalize(moment(startAt).from(endAt, true)) + ' ';
 }
+
+export const isEventCancelled = ({ cancelledDates=[], startAt, isCancelled }) => isCancelled || cancelledDates.includes(startAt);
 
 export const getStatus = ({
   isCancelled,
@@ -40,7 +37,7 @@ export const getStatus = ({
   startAt,
   endAt
 }) => {
-  const cancelled =  isCancelled || cancelledDates.includes(startAt);
+  const cancelled =  isEventCancelled({ cancelledDates, startAt, isCancelled });
   if (cancelled) return 'Cancelled';
   const ended = Date.now() > Date.parse(endAt);
   if (ended) return 'Done';
@@ -48,8 +45,6 @@ export const getStatus = ({
   if (ongoing) return 'Ongoing';
   return 'Pending';
 }
-
-export const isEventCancelled = ({ cancelledDates=[], startAt, isCancelled }) => isCancelled || cancelledDates.includes(startAt);
 
 export const isEventValid = ({isCancelled, startAt, endAt, cancelledDates }) => {
   return (Date.now() < Date.parse(endAt)) && !isEventCancelled({ cancelledDates, startAt, isCancelled });

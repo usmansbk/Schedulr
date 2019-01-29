@@ -1,4 +1,5 @@
 import moment from 'moment';
+import capitalizr from './capitalizr';
 
 export const SECOND = 1000;
 export const ONE_MINUTE = 60 * SECOND;
@@ -14,6 +15,26 @@ export const FORTY_FIVE_MINUTES = 3 * FIFTEEN_MINUTES;
 
 const DATE_ONLY = 'ddd DD, MMM YYYY';
 const DATE_TIME = "ddd DD, MMM YYYY, hh:mm a";
+const DATE_FORMAT = 'MMMM DD, YYYY';
+const DAY_FORMAT = 'dddd';
+
+const headingCalendarFormats = {
+  sameDay: '[Today]',
+  nextDay: '[Tomorrow]',
+  nextWeek: DAY_FORMAT,
+  lastDay: '[Yesterday]',
+  lastWeek: '[Last] dddd',
+  sameElse: DATE_FORMAT
+};
+
+const subheadingCalendarFormats = {
+  sameDay: DATE_FORMAT,
+  nextDay: DATE_FORMAT,
+  nextWeek: DATE_FORMAT,
+  lastDay: DATE_FORMAT,
+  lastWeek: DATE_FORMAT,
+  sameElse: DAY_FORMAT
+};
 
 export const repeatLength = (repeat) => {
   switch(repeat) {
@@ -60,7 +81,22 @@ export const getNextDate = (event) => {
 
 export const timeAgo = (date) => {
   const parsedDate = Date.parse(date);
-  let timeAgo = moment(parsedDate).fromNow(true) + ' ago';
-  if (timeAgo.includes('seconds')) timeAgo = 'now';
-  return timeAgo;
-}
+  const justNow = moment(parsedDate).diff(moment(), 'minutes') < 1;
+  if (justNow) return 'now';
+  return moment(parsedDate).fromNow(true) + ' ago';
+};
+
+export const getSectionHeaderData = (date) => {
+  const momentDate = moment(date);
+  const heading = momentDate.calendar(null, headingCalendarFormats);
+  const subheading = momentDate.calendar(null, subheadingCalendarFormats);
+  let timeAgo = '';
+  if (momentDate.diff(moment(), 'days') > 2) {
+    timeAgo = capitalizr(momentDate.fromNow());
+  }
+  return {
+    heading,
+    subheading,
+    timeAgo
+  };
+};
