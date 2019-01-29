@@ -14,8 +14,6 @@ export const FIFTEEN_MINUTES = 3 * FIVE_MINUTES;
 export const THIRTY_MINUTES = 3 * TEN_MINUTES;
 export const FORTY_FIVE_MINUTES = 3 * FIFTEEN_MINUTES;
 
-const DATE_ONLY = 'ddd DD, MMM YYYY';
-const DATE_TIME = "ddd DD, MMM YYYY, hh:mm a";
 const DATE_FORMAT = 'MMMM DD, YYYY';
 const DAY_FORMAT = 'dddd';
 
