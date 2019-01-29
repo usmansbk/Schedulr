@@ -36,7 +36,9 @@ export default compose(
     },
     props: ({ data, ownProps }) => ({
       loading: data.loading,
-      boards: data && data.listAllBoards && data.listAllBoards.items.filter(item => item.name.toLowerCase().includes(ownProps.screenProps.query.toLowerCase())),
+      boards: data && data.listAllBoards && data.listAllBoards.items.filter(
+        item => item.name.toLowerCase().includes(ownProps.screenProps.query.toLowerCase())
+      ),
       ...ownProps
     })
   })
