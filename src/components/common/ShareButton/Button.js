@@ -20,7 +20,7 @@ export default ({
       const shareOptions = {
         title: 'Invite via...',
         subject: eventType,
-        message: `${title}\n${date}${address ? (' at ' + address) : ''}\n`,
+        message: `${title}\n${eventType}\n${date}${address ? (' at ' + address) : ''}\n`,
         url: `${env.APP_URL}/event/${id}`
       };
       Share.open(shareOptions);
