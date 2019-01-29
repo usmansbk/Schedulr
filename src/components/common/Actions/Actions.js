@@ -66,7 +66,7 @@ export default class Actions extends React.Component {
               color={color}
               id={id}
               date={date}
-              type={eventType}
+              eventType={eventType}
               title={title}
               address={address}
               size={FONT_SIZE}
