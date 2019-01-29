@@ -5,6 +5,7 @@ import {
   Text,
   Paragraph,
   Caption,
+  Button,
 } from 'react-native-paper';
 import UserAvatar from 'react-native-user-avatar';
 import { CachedImage } from 'react-native-cached-image';
@@ -97,12 +98,7 @@ export default class Item extends React.PureComponent {
                 {
                   isAuthor && (
                     <View style={styles.actions}>
-                      {
-                        this.state.showOptions && (
-                          <Caption onPress={this._onDelete} style={styles.footerText}>Delete</Caption>
-                        )
-                      }
-                      <Caption onPress={this._onReply} style={styles.footerText}>Reply</Caption>
+                      <Button compact mode="text" onPress={this._onReply}>REPLY</Button>
                     </View>
                   )
                 }

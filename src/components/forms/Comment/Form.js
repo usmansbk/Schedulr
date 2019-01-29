@@ -1,7 +1,7 @@
 import React from 'react';
 import { Formik } from 'formik';
 import { View, TextInput } from 'react-native';
-import { IconButton, Text } from 'react-native-paper';
+import { IconButton, Text, Button } from 'react-native-paper';
 import UserAvatar from 'react-native-user-avatar';
 import { CachedImage } from 'react-native-cached-image';
 import styles, { AVATAR_SIZE } from './styles';
@@ -55,7 +55,7 @@ export default class CommentInput extends React.Component {
                 style={styles.alertTitle}
               >Replying <Text style={styles.targetName}>{targetName}</Text>
               </Text>
-              <Text onPress={cancelReply} style={styles.cancelText}>Cancel</Text>
+              <Button compact mode="text" onPress={cancelReply}>Cancel</Button>
             </View>
           )
         }

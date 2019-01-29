@@ -23,6 +23,7 @@ export default StyleSheet.create({
   alert: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems: 'center',
     backgroundColor: colors.light_gray,
     padding: 16
   },
