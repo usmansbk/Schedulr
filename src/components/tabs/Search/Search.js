@@ -6,7 +6,7 @@ import Tabs from './Tabs';
 export default class Search extends React.Component {
   state = {
     query: '',
-    isConnected: null
+    isConnected: true
   }
 
   _handleNetworkChange = (isConnected) => this.setState({ isConnected });

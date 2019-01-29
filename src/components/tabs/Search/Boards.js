@@ -29,6 +29,7 @@ class Boards extends React.PureComponent {
 
 export default compose(
   graphql(gql(listAllBoards), {
+    alias: 'withSearchBoardsOffline',
     skip: props => props.screenProps.isConnected,
     options: {
       fetchPolicy: 'cache-only'

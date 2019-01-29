@@ -1,14 +1,29 @@
 import React from 'react';
+import { graphql, compose } from 'react-apollo';
+import gql from 'graphql-tag';
 import List from '../../lists/EventSearch';
 import Fab from '../../common/Fab';
+import { listAllEvents } from '../../../graphql/queries';
 
-export default class Events extends React.PureComponent {
+class Events extends React.PureComponent {
   render() {
-    const { isConnected, query } = this.props.screenProps;
+    const {
+      isConnected,
+      navigateToBoard,
+      navigateToEvent
+    } = this.props.screenProps;
+    const {
+      loading,
+      events
+    } = this.props;
     return (
       <React.Fragment>
         <List
           isConnected={isConnected}
+          loading={loading}
+          events={events}
+          navigateToBoard={navigateToBoard}
+          navigateToEvent={navigateToEvent}
         />
         {
           isConnected && (
@@ -23,3 +38,20 @@ export default class Events extends React.PureComponent {
     );
   }
 }
+
+export default compose(
+  graphql(gql(listAllEvents), {
+    alias: 'withSearchEventsOffline',
+    skip: props => props.screenProps.isConnected,
+    options: {
+      fetchPolicy: 'cache-only'
+    },
+    props: ({ data, ownProps }) => ({
+      loading: data.loading,
+      events: data && data.listAllEvents && data.listAllEvents.items.filter(
+        item => item.title.toLowerCase().includes(ownProps.screenProps.query.toLowerCase())
+      ),
+      ...ownProps
+    })
+  })
+)(Events);
