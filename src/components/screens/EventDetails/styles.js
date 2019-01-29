@@ -16,9 +16,17 @@ export default StyleSheet.create({
     fontSize: 16,
     paddingBottom: 4
   },
+  headNote: {
+    flexDirection: 'row'
+  },
   status: {
     fontFamily: 'sans-serif-light',
     fontSize: 18,
+  },
+  note: {
+    fontFamily: 'sans-serif-bold',
+    color: colors.gray,
+    fontWeight: 'bold'
   },
   head: {
     marginVertical: 8,

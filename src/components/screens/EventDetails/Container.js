@@ -6,7 +6,7 @@ import Details from './Details';
 import styles from '../../../config/styles';
 import colors from '../../../config/colors';
 import { formatDate } from '../../../lib/time';
-import { isEventValid, isEventCancelled, getDuration } from '../../../lib/parseItem';
+import { isEventValid, isEventCancelled, getDuration, getStatus } from '../../../lib/parseItem';
 import capitalizr, {decapitalize} from '../../../lib/capitalizr';
 import { ONE_TIME_EVENT, ONE_TIME_EVENT_TEXT } from '../../../lib/constants';
 
@@ -98,7 +98,13 @@ export default class EventDetails extends React.Component {
           title={title}
           date={formatDate(startAt, endAt, allDay)}
           duration={this._getDuration(startAt, endAt)}
-          startAgo={this._getStartAgo(startAt)}
+          timeAgo={this._getStartAgo(startAt)}
+          status={getStatus({
+            isCancelled,
+            cancelledDates,
+            startAt,
+            endAt
+          })}
           eventType={decapitalize(eventType)}
           address={location && location.address}
           latitude={location && location.latitude}

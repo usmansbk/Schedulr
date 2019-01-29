@@ -3,6 +3,7 @@ import { View, ScrollView } from 'react-native';
 import { Text, Headline, Divider } from 'react-native-paper';
 import Actions from '../../common/Actions';
 import Tag from '../../common/Tag';
+import { BULLET } from '../../../lib/constants';
 import styles from './styles';
 
 export default ({
@@ -20,7 +21,8 @@ export default ({
   updatedAt,
   description,
   duration,
-  startAgo,
+  timeAgo,
+  status,
   isCancelled,
   isStarred,
   starsCount,
@@ -33,9 +35,11 @@ export default ({
     <View style={styles.container}>
       <View style={styles.content}>
         <View style={styles.head}>
-          { isCancelled ? <Tag status={'Cancelled'} /> : 
-            <Text style={styles.date}>{startAgo}</Text>
-          }
+          <View style={styles.headNote}>
+            <Tag status={status} />{
+              !isCancelled && <Text style={styles.note}> {BULLET} {timeAgo}</Text>
+            }
+          </View>
           <Headline style={styles.title}>{title}</Headline>
           <Text style={styles.date}>{date}</Text>
           <Text style={styles.date}>{duration}</Text>
