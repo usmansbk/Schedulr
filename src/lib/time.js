@@ -48,7 +48,12 @@ export const repeatLength = (repeat) => {
 };
 
 export const formatDate = (startAt, endAt, allDay) => {
-  return moment(startAt).twix(endAt, allDay).format(); 
+  return moment(startAt).twix(endAt, allDay).format({
+    explicitAllDay: true,
+    allDay: 'All day',
+    implicitMinutes: false,
+    groupMeridiems: false
+  }); 
 }
 
 const getIteration = (repeat) => {
