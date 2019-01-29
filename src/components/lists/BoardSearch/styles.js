@@ -71,6 +71,9 @@ export default StyleSheet.create({
   danger: {
     color: colors.light_red,
   },
+  paragraph: {
+    textAlign: 'center'
+  },
   nameRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
