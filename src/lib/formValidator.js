@@ -34,6 +34,7 @@ export function isEventValid(event) {
   return validity;
 }
 
+// Trim the value of a form TextInput
 export const getValue = (value) => {
   const ret = value && value.trim() && value.length && value;
   return Boolean(ret) ? ret : null;

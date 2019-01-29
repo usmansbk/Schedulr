@@ -47,21 +47,18 @@ export const repeatLength = (repeat) => {
 };
 
 export const formatDate = (startAt, endAt, allDay) => {
-  const start = Date.parse(startAt);
-  const end = Date.parse(endAt);
-  
   if (allDay) {
-    return `${moment(start).format('dddd, DD MMMM YYYY')}\nAll day`;
+    return `${moment(startAt).format('dddd, DD MMMM YYYY')}\nAll day`;
   }
-  const isSameDay = moment(start).isSame(moment(end), 'day');
-  const isSameMonth = moment(start).isSame(moment(end), 'month');
-  const isSameYear = moment(start).isSame(moment(end), 'year');
+  const isSameDay = moment(startAt).isSame(moment(endAt), 'day');
+  const isSameMonth = moment(startAt).isSame(moment(endAt), 'month');
+  const isSameYear = moment(startAt).isSame(moment(endAt), 'year');
   if (isSameDay && isSameMonth && isSameMonth) {
-    return `${moment(start).format('dddd, DD MMMM YYYY')}\n${moment(start).format('hh:mm a')} - ${moment(end).format('hh:mm a')}`
+    return `${moment(startAt).format('dddd, DD MMMM YYYY')}\n${moment(startAt).format('hh:mm a')} - ${moment(endAt).format('hh:mm a')}`
   } else if (isSameMonth && isSameYear) {
-    return `${moment(start).format('MMMM YYYY')}\n${moment(start).format('ddd DD, hh:mm a')} - ${moment(end).format('ddd DD, hh:mm a')}`
+    return `${moment(startAt).format('MMMM YYYY')}\n${moment(startAt).format('ddd DD, hh:mm a')} - ${moment(endAt).format('ddd DD, hh:mm a')}`
   }
-  return `From ${moment(start).format('ddd, Do MMM YYYY, hh:mm a')}\nTo ${moment(end).format('ddd, Do MMM YYYY, hh:mm a')}`  
+  return `From ${moment(startAt).format('ddd, Do MMM YYYY, hh:mm a')}\nTo ${moment(endAt).format('ddd, Do MMM YYYY, hh:mm a')}`  
 }
 
 export const getNextDate = (event) => {
