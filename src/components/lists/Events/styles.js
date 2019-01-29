@@ -130,6 +130,9 @@ export default StyleSheet.create({
     fontWeight: 'bold',
     color: colors.light_gray_3,
   },
+  durationRow: {
+    flexDirection: 'row'
+  },
   paragraph: {
     textAlign: 'center'
   },

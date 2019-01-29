@@ -64,7 +64,7 @@ export default class Item extends React.PureComponent {
               <View style={styles.body}>
                 <Text style={isPending ? styles.offlineTitle : styles.itemHeadline} numberOfLines={1} ellipsizeMode="tail">{title}</Text>
                 <Text style={styles.time}>{time}</Text>
-                <Text style={styles.duration}>{duration}{eventType}</Text>
+                <Text style={styles.duration}>{duration} {eventType}</Text>
                 <Text style={styles.status}>{repeatEvent}<Tag status={status} /></Text>
               </View>
             </View>

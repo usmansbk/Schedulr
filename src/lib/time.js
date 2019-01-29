@@ -51,19 +51,21 @@ export const formatDate = (startAt, endAt, allDay) => {
   return moment(startAt).twix(endAt, allDay).format(); 
 }
 
-export const getNextDate = (event) => {
-  const { startAt, repeat, allDay} = event;
-  const a0 = Date.parse(startAt);
-  const b0 = Date.now();
-  let date;
-  if ((a0 < b0) || (repeat === 'NEVER')) {
-    date = a0;
-  } else {
-    const x = repeatLength(repeat);
-    const y = b0 - a0; // time elapsed since event started
-    date = b0 + Math.abs(x - y); // add the delta time (x-y) to next event to the reference date (b0)
+const getIteration = (repeat) => {
+  switch(repeat) {
+    case 'DAILY': return 'day';
+    case 'WEEKLY': return 'week';
+    case 'MONTHLY': return 'month';
+    case 'YEARLY': return 'year';
+    default: return 'hour';
   }
-  return moment(date).format(allDay ? DATE_ONLY : DATE_TIME);
+}
+
+export const getNextDate = (event) => {
+  const { startAt, endAt, repeat, allDay} = event;
+  const iter = moment(startAt).twix(endAt).iterate(getIteration(repeat));
+  if (iter.hasNext()) return iter.next().format();
+  return moment(startAt).toDate().toDateString();
 }
 
 export const timeAgo = (date) => {

@@ -17,7 +17,7 @@ export default class EventDetails extends React.Component {
     const isRecurring = this.props.event.repeat !== ONE_TIME_EVENT;
     this.props.handleCancel(isRecurring ? this.props.event.startAt : null);
   };
-  _getDuration = (end, start) => getDuration(start, end);
+  _getDuration = (start, end) => getDuration(start, end);
   _getStartAgo = (start) => capitalizr(moment(start).fromNow());
   
  shouldComponentUpdate = (nextProps) => !isEqual(nextProps.event, this.props.event);
@@ -97,7 +97,7 @@ export default class EventDetails extends React.Component {
           id={id}
           title={title}
           date={formatDate(startAt, endAt, allDay)}
-          duration={this._getDuration(endAt, startAt)}
+          duration={this._getDuration(startAt, endAt)}
           startAgo={this._getStartAgo(startAt)}
           eventType={decapitalize(eventType)}
           address={location && location.address}
