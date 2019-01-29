@@ -61,7 +61,7 @@ const getIteration = (repeat) => {
 }
 
 export const getNextDate = (event) => {
-  const { startAt, endAt, repeat, allDay} = event;
+  const { startAt, endAt, repeat } = event;
   const iter = moment(startAt).twix(endAt).iterate(getIteration(repeat));
   if (iter.hasNext()) return iter.next().format();
   return moment(startAt).toDate().toDateString();
@@ -69,9 +69,6 @@ export const getNextDate = (event) => {
 
 export const timeAgo = (date) => {
   return twitter(date).twitterShort();
-  // const justNow = Math.abs(moment(date).diff(moment(), 'minutes')) < 1;
-  // if (justNow) return 'now';
-  // return moment(date).fromNow();
 };
 
 export const getSectionHeaderData = (date) => {
