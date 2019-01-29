@@ -12,10 +12,15 @@ export const parseDetails = (event) => {
 };
 
 export const getTime = ({ startAt, endAt, allDay }) => {
-  if (allDay) return 'All day';
   const t = moment(startAt).twix(endAt, allDay);
   const isSameDay = t.isSame('day');
-  return t.format({ hideDate: true && isSameDay });
+  return t.format({
+    hideDate: true && isSameDay,
+    allDay: 'All day',
+    explicitAllDay: true,
+    implicitMinutes: false,
+    groupMeridiems: false
+  });
 }
 
 export const isStarted = ({ isCancelled, startAt, endAt }) => {
