@@ -29,7 +29,7 @@ const headingCalendarFormats = {
 };
 
 const subheadingCalendarFormats = {
-  sameDay: DATE_FORMAT,
+  sameDay: NEXT_LAST_FORMAT,
   nextDay: NEXT_LAST_FORMAT,
   nextWeek: DATE_FORMAT,
   lastDay: NEXT_LAST_FORMAT,
