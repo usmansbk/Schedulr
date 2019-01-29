@@ -6,7 +6,7 @@ import Details from './Details';
 import styles from '../../../config/styles';
 import colors from '../../../config/colors';
 import { formatDate } from '../../../lib/time';
-import { isEventValid, isEventCancelled } from '../../../lib/parseItem';
+import { isEventValid, isEventCancelled, getDuration } from '../../../lib/parseItem';
 import capitalizr, {decapitalize} from '../../../lib/capitalizr';
 import { ONE_TIME_EVENT, ONE_TIME_EVENT_TEXT } from '../../../lib/constants';
 
@@ -17,7 +17,7 @@ export default class EventDetails extends React.Component {
     const isRecurring = this.props.event.repeat !== ONE_TIME_EVENT;
     this.props.handleCancel(isRecurring ? this.props.event.startAt : null);
   };
-  _getDuration = (end, start) => decapitalize(moment(end).from(start, true));
+  _getDuration = (end, start) => getDuration(start, end);
   _getStartAgo = (start) => capitalizr(moment(start).fromNow());
   
  shouldComponentUpdate = (nextProps) => !isEqual(nextProps.event, this.props.event);

@@ -1,4 +1,5 @@
 import moment from 'moment';
+import twix from 'twix';
 import capitalizr from './capitalizr';
 
 export const SECOND = 1000;
@@ -47,18 +48,7 @@ export const repeatLength = (repeat) => {
 };
 
 export const formatDate = (startAt, endAt, allDay) => {
-  if (allDay) {
-    return `${moment(startAt).format('dddd, DD MMMM YYYY')}\nAll day`;
-  }
-  const isSameDay = moment(startAt).isSame(moment(endAt), 'day');
-  const isSameMonth = moment(startAt).isSame(moment(endAt), 'month');
-  const isSameYear = moment(startAt).isSame(moment(endAt), 'year');
-  if (isSameDay && isSameMonth && isSameMonth) {
-    return `${moment(startAt).format('dddd, DD MMMM YYYY')}\n${moment(startAt).format('hh:mm a')} - ${moment(endAt).format('hh:mm a')}`
-  } else if (isSameMonth && isSameYear) {
-    return `${moment(startAt).format('MMMM YYYY')}\n${moment(startAt).format('ddd DD, hh:mm a')} - ${moment(endAt).format('ddd DD, hh:mm a')}`
-  }
-  return `From ${moment(startAt).format('ddd, Do MMM YYYY, hh:mm a')}\nTo ${moment(endAt).format('ddd, Do MMM YYYY, hh:mm a')}`  
+  return moment(startAt).twix(endAt, allDay).format(); 
 }
 
 export const getNextDate = (event) => {

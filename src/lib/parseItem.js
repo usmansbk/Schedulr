@@ -1,4 +1,5 @@
 import moment from 'moment';
+import twix from 'twix';
 import { decapitalize } from './capitalizr';
 import { ONE_TIME_EVENT } from './constants';
 
@@ -26,7 +27,8 @@ export const isStarted = ({ isCancelled, startAt, endAt }) => {
 };
 
 export const getDuration = (startAt, endAt) => {
-  return decapitalize(moment(startAt).from(endAt, true)) + ' ';
+  const t = moment(startAt).twix(endAt);
+  return decapitalize(t.humanizeLength()) + ' ';
 }
 
 export const isEventCancelled = ({ cancelledDates=[], startAt, isCancelled }) => isCancelled || cancelledDates.includes(startAt);
