@@ -109,7 +109,7 @@ class List extends React.Component {
     
     return (
       <SectionList
-        initialNumToRender={0}
+        initialNumToRender={8}
         style={styles.list}
         stickySectionHeadersEnabled
         getItemLayout={this._getItemLayout}

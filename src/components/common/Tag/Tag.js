@@ -4,40 +4,27 @@ import { Text } from 'react-native-paper';
 import colors from '../../../config/colors';
 
 const styles = StyleSheet.create({
-  red: {
+  text: {
     fontFamily: 'sans-serif-bold',
+    fontWeight: 'bold'
+  },
+  Cancelled: {
     color: colors.light_red,
-    fontWeight: 'bold'
   },
-  started: {
-    fontFamily: 'sans-serif-bold',
-    color: colors.green,
-    fontWeight: 'bold'
+  Started: {
+    color: colors.green
   },
-  ended: {
-    fontFamily: 'sans-serif-bold',
+  Done: {
     color: colors.soft_blue,
-    fontWeight: 'bold'
   },
-  pending: {
-    fontFamily: 'sans-serif-bold',
+  Pending: {
     color: colors.yellow,
-    fontWeight: 'bold'
   },
 });
 
 export default ({ status }) => {
-  let statusStyle = styles.status;
-  if (status === 'Ongoing') {
-    statusStyle = styles.started;
-  } else if (status === 'Pending') {
-    statusStyle = styles.pending;
-  } else if (status === 'Done') {
-    statusStyle = styles.ended;
-  } else if (status === 'Cancelled') {
-    statusStyle = styles.red;
-  }
+  let statusStyle = styles[status];
   return (
-    <Text style={statusStyle}>{status}</Text>
+    <Text style={[styles.text, statusStyle]}>{status}</Text>
   );
 };
