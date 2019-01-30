@@ -2,7 +2,7 @@ import {
   createMaterialTopTabNavigator,
   createAppContainer
 } from 'react-navigation';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 import Created from './Created';
 import Following from './Following';
 import colors from '../../../config/colors';
@@ -23,6 +23,7 @@ export default createAppContainer(createMaterialTopTabNavigator(
     Created
   },
   {
+    initialLayout: { height: 0, width: Dimensions.get('window').width },
     tabBarOptions: {
       activeTintColor: colors.primary,
       inactiveTintColor: colors.gray,
