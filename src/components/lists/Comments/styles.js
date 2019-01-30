@@ -25,7 +25,8 @@ export default StyleSheet.create({
     alignItems: 'center'
   },
   itemLeft: {
-    marginRight: 4
+    marginRight: 4,
+    paddingTop: 10,
   },
   itemRight: {
     flex: 1,
