@@ -11,6 +11,7 @@ import {
 import UserAvatar from 'react-native-user-avatar';
 import { CachedImage } from 'react-native-cached-image';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import Tag from '../../common/Tag';
 import numeral from 'numeral';
 import styles, { AVATAR_SIZE } from './styles';
 import colors from '../../../config/colors';
@@ -26,36 +27,32 @@ export default class Item extends React.PureComponent {
       boardName,
       pictureUrl,
       title,
-      isCancelled,
+      status,
       starsCount,
       commentsCount,
     } = this.props;
     return (
       <TouchableRipple onPress={this._onPress} style={styles.itemContainer}>
-        <View style={styles.itemBody}>
-          <TouchableRipple onPress={this._navigateToBoard}>
-            <UserAvatar
-              name={boardName}
-              src={pictureUrl}
-              rounded
-              size={AVATAR_SIZE}
-              component={CachedImage}
-            />
-          </TouchableRipple>
-          <View style={styles.itemContent}>
-            <View style={styles.itemHead}>
-              <Text style={styles.time}>{date}</Text>
-            </View>
-            <View style={styles.itemContentBody}>
-              <Headline
-                numberOfLines={1}
-                ellipsizeMode="tail"
-                style={styles.itemHeadline}
-              >{title}</Headline>
-              <Text style={styles.itemNote}>{details}
-              { isCancelled && <Text style={styles.cancelled}>Cancelled</Text>}
-              </Text>
-            </View>
+        <View style={styles.itemContent}>
+          <View style={styles.left}>
+            <TouchableRipple style={styles.left} onPress={this._navigateToBoard}>
+              <UserAvatar
+                name={boardName}
+                src={pictureUrl}
+                rounded
+                size={AVATAR_SIZE}
+                component={CachedImage}
+              />
+            </TouchableRipple>
+          </View>
+          <View style={styles.right}>
+            <Text style={styles.time}>{date}</Text>
+            <Headline
+              numberOfLines={1}
+              ellipsizeMode="tail"
+              style={styles.itemHeadline}
+            >{title}</Headline>
+            <Tag status={status} />
             <View style={styles.itemFooter}>
               <Caption>by {boardName}</Caption>
               <View style={styles.counts}>

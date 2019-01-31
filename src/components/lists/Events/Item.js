@@ -3,6 +3,7 @@ import { View } from 'react-native';
 import {
   TouchableRipple,
   Text,
+  Headline,
 } from 'react-native-paper';
 import Avatar from 'react-native-user-avatar';
 import { CachedImage } from 'react-native-cached-image';
@@ -62,7 +63,7 @@ export default class Item extends React.PureComponent {
           <View style={styles.right}>
             <View style={styles.itemBody}>
               <View style={styles.body}>
-                <Text style={isPending ? styles.offlineTitle : styles.itemHeadline} numberOfLines={1} ellipsizeMode="tail">{title}</Text>
+                <Headline style={isPending ? styles.offlineTitle : styles.itemHeadline} numberOfLines={1} ellipsizeMode="tail">{title}</Headline>
                 <Text style={styles.time}>{time}</Text>
                 <Text style={styles.duration}>{duration} {eventType}</Text>
                 <Text style={styles.status}>{repeatEvent}<Tag status={status} /></Text>
