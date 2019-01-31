@@ -46,7 +46,7 @@ export default class Item extends React.PureComponent {
             <View style={styles.itemHead}>
               <Text style={styles.time}>{date}</Text>
             </View>
-            <View>
+            <View style={styles.itemContentBody}>
               <Headline
                 numberOfLines={1}
                 ellipsizeMode="tail"

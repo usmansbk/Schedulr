@@ -44,7 +44,7 @@ class Events extends React.PureComponent {
 export default compose(
   graphql(gql(listAllEvents), {
     alias: 'withSearchEventsOffline',
-    skip: props => props.screenProps.isConnected,
+    skip: props => false && props.screenProps.isConnected,
     options: {
       fetchPolicy: 'cache-only'
     },

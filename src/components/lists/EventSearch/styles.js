@@ -46,6 +46,8 @@ export default StyleSheet.create({
     alignItems: 'center',
     marginLeft: 8,
   },
+  itemContentBody: {
+  },
   itemSubheadingText: {
     width: 200
   },

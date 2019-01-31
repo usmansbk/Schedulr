@@ -55,7 +55,7 @@ export default StyleSheet.create({
     color: colors.light_gray_3
   },
   offlineTitle: {
-    fontSize: 22,
+    fontSize: 20,
     fontFamily: 'sans-serif-bold',
     color: gray,
   },
@@ -94,7 +94,7 @@ export default StyleSheet.create({
     width: 200
   },
   itemHeadline: {
-    fontSize: 22,
+    fontSize: 20,
     fontFamily: 'sans-serif-bold',
   },
   itemNote: {
