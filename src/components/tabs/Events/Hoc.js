@@ -13,6 +13,7 @@ export default compose(
     options: {
       fetchPolicy: 'cache-first',
       notifyOnNetworkStatusChange: true,
+      onError: () => SimpleToast.show('Failed to fetch updates', SimpleToast.SHORT)
     },
     props: ({ data, ownProps}) => ({
       loading: data.loading || data.networkStatus === 4,
@@ -23,7 +24,6 @@ export default compose(
         try {
           await data.refetch()
         } catch(e) {
-          console.log(e);
           SimpleToast.show(e.message, SimpleToast.SHORT);
           // Log error if it occurs multiple times
           // Analytics.record({
