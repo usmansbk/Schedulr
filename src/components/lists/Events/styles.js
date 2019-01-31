@@ -103,7 +103,7 @@ export default StyleSheet.create({
     width: 200
   },
   left: {
-    paddingTop: 4
+    paddingTop: 8
   },
   right: {
     flexGrow: 1,

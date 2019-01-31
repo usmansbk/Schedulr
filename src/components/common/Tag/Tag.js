@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
   Cancelled: {
     color: colors.light_red,
   },
-  Started: {
+  Ongoing: {
     color: colors.green
   },
   Done: {
