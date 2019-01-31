@@ -5,6 +5,7 @@ import { IconButton, Text, Button } from 'react-native-paper';
 import UserAvatar from 'react-native-user-avatar';
 import { CachedImage } from 'react-native-cached-image';
 import styles, { AVATAR_SIZE } from './styles';
+import colors from '../../../config/colors';
 
 export default class CommentInput extends React.Component {
   state = {
@@ -60,16 +61,15 @@ export default class CommentInput extends React.Component {
           )
         }
         <View style={styles.container}>
-          <View style={styles.left}>
-            <UserAvatar
-              rounded
-              size={AVATAR_SIZE}
-              src={pictureUrl}
-              name={name}
-              component={CachedImage}
-            />
-          </View>
-          <View style={styles.body}>
+          <UserAvatar
+            rounded
+            size={AVATAR_SIZE}
+            src={pictureUrl}
+            name={name}
+            component={CachedImage}
+            style={styles.avatar}
+          />
+          <View style={styles.input}>
             <TextInput
               ref={textInputRef => this._textInputRef = textInputRef}
               placeholder="About this event..."
@@ -78,13 +78,13 @@ export default class CommentInput extends React.Component {
               onBlur={() => this._onChangeText(message)}
             />
           </View>
-          <View style={styles.right}>
-            <IconButton
-              icon="send"
-              disabled={isSubmitting || !message}
-              onPress={this._onSubmit}
-            />
-          </View>
+          <IconButton
+            icon="send"
+            color={colors.primary}
+            disabled={isSubmitting || !message}
+            onPress={this._onSubmit}
+            style={styles.right}
+          />
         </View>
       </React.Fragment>
     );

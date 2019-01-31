@@ -10,13 +10,18 @@ export default StyleSheet.create({
     borderTopWidth: 1,
     borderColor: colors.light_gray_3,
     flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 8
   },
-  left: {
+  right: {
     justifyContent: 'center',
     alignItems: 'center',
-    marginHorizontal: 4
+    marginRight: 4
   },
-  body: {
+  avatar: {
+    paddingRight: 4
+  },
+  input: {
     maxWidth: INPUT_WIDTH,
     minWidth: INPUT_WIDTH
   },
