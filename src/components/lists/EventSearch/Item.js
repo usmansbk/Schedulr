@@ -13,6 +13,7 @@ import { CachedImage } from 'react-native-cached-image';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import numeral from 'numeral';
 import styles, { AVATAR_SIZE } from './styles';
+import colors from '../../../config/colors';
 
 export default class Item extends React.PureComponent {
   _onPress = () => this.props.onPressItem(this.props.id);
@@ -52,16 +53,16 @@ export default class Item extends React.PureComponent {
                 style={styles.itemHeadline}
               >{title}</Headline>
               <Text style={styles.itemNote}>{details}
-              { isCancelled && <Text style={styles.cancelled}> • Cancelled</Text>}
+              { isCancelled && <Text style={styles.cancelled}>Cancelled</Text>}
               </Text>
             </View>
             <View style={styles.itemFooter}>
               <View style={styles.footerIcon}>
-                <Icon size={14} name="star" />
+                <Icon color={colors.gray}  size={14} name="star" />
                 <Caption>{numeral(starsCount).format('0a')}</Caption>
               </View>
               <View style={styles.footerIcon}>
-                <Icon size={14} name="chat-bubble-outline" />
+                <Icon color={colors.gray} size={14} name="comment" />
                 <Caption style={styles.iconBadge}>{numeral(commentsCount).format('0a')}</Caption>
               </View>
             </View>

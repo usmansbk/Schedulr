@@ -68,9 +68,9 @@ const getIteration = (repeat) => {
 
 export const getNextDate = (event) => {
   const { startAt, endAt, repeat } = event;
-  const iter = moment(startAt).twix(endAt).iterate(getIteration(repeat));
-  if (iter.hasNext()) return iter.next().format();
-  return moment(startAt).toDate().toDateString();
+  // const iter = moment(startAt).twix(endAt).iterate(getIteration(repeat));
+  // if (iter.hasNext()) return iter.next().format();
+  return moment(startAt).twix(endAt).format();
 }
 
 export const timeAgo = (date) => {
