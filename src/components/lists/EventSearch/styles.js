@@ -35,31 +35,25 @@ export default StyleSheet.create({
   itemContainer: {
     height: ITEM_HEIGHT,
     backgroundColor: 'white',
-    flexDirection: 'row'
   },
   itemContent: {
     marginHorizontal: 8,
-    justifyContent: 'center'
-  },
-  itemBody: {
     flexDirection: 'row',
-    alignItems: 'center',
-    marginLeft: 8,
-  },
-  itemContentBody: {
-  },
-  itemSubheadingText: {
-    width: 200
+    flex: 1
   },
   itemHeadline: {
     fontSize: 20,
     fontFamily: 'sans-serif',
-    width: 250
   },
-  itemNote: {
-    fontSize: 16,
-    color: colors.gray,
-    width: 200
+  left: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingHorizontal: 8,
+  },
+  right: {
+    flex: 1,
+    justifyContent: 'center',
+    paddingHorizontal: 8,
   },
   cancelled: {
     fontSize: 16,

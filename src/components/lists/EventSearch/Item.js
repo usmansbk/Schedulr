@@ -35,7 +35,7 @@ export default class Item extends React.PureComponent {
       <TouchableRipple onPress={this._onPress} style={styles.itemContainer}>
         <View style={styles.itemContent}>
           <View style={styles.left}>
-            <TouchableRipple style={styles.left} onPress={this._navigateToBoard}>
+            <TouchableRipple onPress={this._navigateToBoard}>
               <UserAvatar
                 name={boardName}
                 src={pictureUrl}
@@ -54,7 +54,7 @@ export default class Item extends React.PureComponent {
             >{title}</Headline>
             <Tag status={status} />
             <View style={styles.itemFooter}>
-              <Caption>by {boardName}</Caption>
+              <Caption numberOfLines={1}>by {boardName}</Caption>
               <View style={styles.counts}>
                 <View style={styles.footerIcon}>
                   <Icon color={colors.gray}  size={14} name="star" />
