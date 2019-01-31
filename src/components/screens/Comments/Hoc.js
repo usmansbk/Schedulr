@@ -16,7 +16,7 @@ export default compose(
       variables: {
         id: props.navigation.getParam('id')
       },
-      fetchPolicy: 'cache-and-network'
+      fetchPolicy: 'network-only'
     }),
     props: ({ data, ownProps }) => ({
       eventId: ownProps.navigation.getParam('id'),

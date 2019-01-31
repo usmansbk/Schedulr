@@ -1,6 +1,5 @@
 import React from 'react';
 import { FlatList, RefreshControl } from 'react-native';
-import moment from 'moment';
 import Item from './Item';
 import Footer from './Footer';
 import Empty from './Empty';
@@ -38,10 +37,8 @@ export default class List extends React.Component {
         toCommentContent={toComment && toComment.content}
         timeAgo={timeAgo(createdAt)}
         navigateToProfile={this.props.navigateToProfile}
-        handleDeleteComment={this.props.handleDelete}
+        onDelete={this.props.onDelete}
         handleReplyComment={this.props.handleReply}
-        onLongPress={this.props.onLongPressItem}
-        onPress={this.props.onPressItem}
       />
     );
   }

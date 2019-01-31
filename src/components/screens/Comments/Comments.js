@@ -8,7 +8,6 @@ import colors from '../../../config/colors';
 export default class Comments extends React.Component {
 
   state = {
-    showOptions: false,
     id: null
   }
 
@@ -22,16 +21,9 @@ export default class Comments extends React.Component {
     this.props.onSubmit && this.props.onSubmit(message);
   };
 
-  _handleDelete = () => {
-    this.props.handleDelete(this.state.id);
-    this._dismissActions();
+  _handleDelete = (id) => {
+    this.props.handleDelete(id);
   }
-
-  _onLongPress = (id) => {
-    this.setState(prev => ({ showOptions: !prev.showOptions, id: prev.id ? null : id }));
-  };
-
-  _dismissActions = () => this.setState({ showOptions: false, id: null });
 
   render() {
     const {
@@ -56,15 +48,6 @@ export default class Comments extends React.Component {
             title={title || 'Comments'}
             titleStyle={styles.headerColor}
           />
-          {
-            this.state.showOptions && (
-              <Appbar.Action
-                icon="delete"
-                onPress={this._handleDelete}
-                color={colors.gray}
-              />
-            )
-          }
         </Appbar.Header>
         <List
           ref={commentsRef => this._commentsListRef = commentsRef}
@@ -73,10 +56,8 @@ export default class Comments extends React.Component {
           comments={comments}
           onRefresh={onRefresh}
           handleReply={handleReply}
-          handleDelete={this._handleDelete}
+          onDelete={this._handleDelete}
           navigateToProfile={navigateToProfile}
-          onLongPressItem={this._onLongPress}
-          onPressItem={this._dismissActions}
         />
         <CommentForm
           name={me && me.name || undefined}

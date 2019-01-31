@@ -9,13 +9,11 @@ export default StyleSheet.create({
   list: {
     backgroundColor: colors.light_gray,
   },
-  itemMainContent: {
+  itemContainer: {
+    flex: 1,
     flexDirection: 'row',
     paddingHorizontal: 8,
     paddingVertical: 4,
-  },
-  itemContainer: {
-    flex: 1,
     backgroundColor: '#fff',
   },
   linkStyle: { color: '#2980b9' },
