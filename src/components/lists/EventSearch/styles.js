@@ -73,6 +73,7 @@ export default StyleSheet.create({
   },
   itemFooter: {
     flexDirection: 'row',
+    justifyContent: 'space-between'
   },
   footerIcon: {
     flexDirection: 'row',
@@ -85,4 +86,7 @@ export default StyleSheet.create({
   paragraph: {
     textAlign: 'center'
   },
+  counts: {
+    flexDirection: 'row'
+  }
 });

@@ -57,13 +57,16 @@ export default class Item extends React.PureComponent {
               </Text>
             </View>
             <View style={styles.itemFooter}>
-              <View style={styles.footerIcon}>
-                <Icon color={colors.gray}  size={14} name="star" />
-                <Caption>{numeral(starsCount).format('0a')}</Caption>
-              </View>
-              <View style={styles.footerIcon}>
-                <Icon color={colors.gray} size={14} name="comment" />
-                <Caption style={styles.iconBadge}>{numeral(commentsCount).format('0a')}</Caption>
+              <Caption>by {boardName}</Caption>
+              <View style={styles.counts}>
+                <View style={styles.footerIcon}>
+                  <Icon color={colors.gray}  size={14} name="star" />
+                  <Caption>{numeral(starsCount).format('0a')}</Caption>
+                </View>
+                <View style={styles.footerIcon}>
+                  <Icon color={colors.gray} size={14} name="comment" />
+                  <Caption style={styles.iconBadge}>{numeral(commentsCount).format('0a')}</Caption>
+                </View>
               </View>
             </View>
           </View>
