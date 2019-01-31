@@ -30,6 +30,7 @@ export default class Comments extends React.Component {
       loading,
       targetName,
       comments,
+      nextToken,
       me,
       error,
       onRefresh,
@@ -54,6 +55,7 @@ export default class Comments extends React.Component {
           error={error}
           loading={loading}
           comments={comments}
+          nextToken={nextToken}
           onRefresh={onRefresh}
           handleReply={handleReply}
           onDelete={this._handleDelete}
