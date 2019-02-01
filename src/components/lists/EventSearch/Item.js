@@ -23,7 +23,6 @@ export default class Item extends React.PureComponent {
   render() {
     const {
       date,
-      details,
       boardName,
       pictureUrl,
       title,

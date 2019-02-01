@@ -61,7 +61,7 @@ export default StyleSheet.create({
   },
   time: {
     fontFamily: 'sans-serif-bold',
-    fontSize: 16,
+    fontSize: 14,
     color: colors.gray,
   },
   separator: {
