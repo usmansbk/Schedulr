@@ -44,6 +44,7 @@ export default class Tab extends React.Component {
   _renderTabBar = props => (
     <TabBar
       {...props}
+      onTabPress={this._scrollToTop}
       indicatorStyle={styles.indicatorStyle}
       style={styles.barStyle}
       labelStyle={styles.label}
