@@ -36,10 +36,12 @@ export default class Search extends React.Component {
           onChangeText={this._onChangeText}
           style={styles.searchbar}
         />
-        <Tabs screenProps={{
-          query,
-          isConnected
-        }} />
+        <Tabs
+          screenProps={{
+            query,
+            isConnected
+          }}
+        />
       </View>
     );
   }
