@@ -3,7 +3,6 @@ import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
 import List from '../../lists/EventSearch';
 import Fab from '../../common/Fab';
-import navigation from '../../../config/navigation';
 import { listAllEvents } from '../../../graphql/queries';
 
 class Events extends React.PureComponent {
