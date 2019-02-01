@@ -49,7 +49,9 @@ const AppStack = createStackNavigator({
   Followers
 }, {
   initialRouteName: 'Home',
-  headerMode: 'none'
+  defaultNavigationOptions: {
+    header: null
+  }
 });
 
 const AuthStack = createStackNavigator({

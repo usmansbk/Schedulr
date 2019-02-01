@@ -1,16 +1,17 @@
 import React from 'react';
+import { Text } from 'react-native';
 import Profile from './Hoc';
 
 export default class Screen extends React.Component {
-  _goBack = () => this.props.navigation.goBack();
+  static navigationOptions = ({ navigation }) => ({
+    header:( <Profile
+      id={navigation.getParam('id')}
+      goBack={() => navigation.goBack()}
+    />)
+  });
 
   render() {
     const id = this.props.navigation.getParam('id');
-    return (
-      <Profile
-        id={id}
-        goBack={this._goBack}
-      />
-    )
+    return <Text>Hello</Text>
   }
 }
