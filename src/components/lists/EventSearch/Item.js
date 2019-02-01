@@ -30,7 +30,7 @@ export default class Item extends React.PureComponent {
       starsCount,
       commentsCount,
     } = this.props;
-    const [ first, second ] = boardName.split(' ');
+    const [ first, second ] = title.split(' ');
     const avatarName = `${first} ${second ? second : ''}`;
 
     return (
