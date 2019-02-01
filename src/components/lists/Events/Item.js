@@ -34,6 +34,7 @@ export default class Item extends React.PureComponent {
       eventType,
       starsCount,
       commentsCount,
+      boardId,
       boardName,
       pictureUrl,
       isStarred,
@@ -53,7 +54,7 @@ export default class Item extends React.PureComponent {
               <Avatar
                 component={CachedImage}
                 size={AVATAR_SIZE}
-                name={boardName[0]}
+                name={boardName[0] + boardId}
                 src={pictureUrl}
               />
             </TouchableRipple>

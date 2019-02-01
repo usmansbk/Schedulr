@@ -36,6 +36,7 @@ export default class Item extends React.PureComponent {
       content,
       timeAgo,
       isAuthor,
+      authorId,
       authorPictureUrl,
       toCommentAuthorName,
       toCommentContent,
@@ -49,7 +50,7 @@ export default class Item extends React.PureComponent {
         <View style={styles.itemLeft}>
           <TouchableRipple onPress={this._navigateToProfile}>
             <UserAvatar
-              name={authorName[0]}
+              name={authorName[0] + authorId}
               component={CachedImage}
               src={authorPictureUrl}
               size={AVATAR_SIZE}

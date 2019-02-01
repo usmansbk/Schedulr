@@ -23,6 +23,7 @@ export default class Item extends React.PureComponent {
   render() {
     const {
       date,
+      boardId,
       boardName,
       pictureUrl,
       title,
@@ -36,7 +37,7 @@ export default class Item extends React.PureComponent {
           <View style={styles.left}>
             <TouchableRipple onPress={this._navigateToBoard}>
               <UserAvatar
-                name={boardName[0]}
+                name={boardName[0] + boardId}
                 src={pictureUrl}
                 size={AVATAR_SIZE}
                 component={CachedImage}
