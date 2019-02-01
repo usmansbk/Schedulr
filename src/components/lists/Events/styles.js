@@ -82,16 +82,15 @@ export default StyleSheet.create({
   },
   itemContent: {
     flex: 1,
-    justifyContent: 'space-between',
     flexDirection: 'row',
     paddingHorizontal: 8,
+    // backgroundColor: 'green',
   },
   itemBody: {
-    flexDirection: 'row',
     paddingTop: 4,
-  },
-  itemSubheadingText: {
-    width: 200
+    marginLeft: 8,
+    flex: 1,
+    // backgroundColor: 'red',
   },
   itemHeadline: {
     fontSize: 20,
@@ -106,12 +105,8 @@ export default StyleSheet.create({
     paddingTop: 8
   },
   right: {
-    flexGrow: 1,
-    justifyContent: 'space-between'
-  },
-  body: {
-    flexGrow: 1,
-    marginLeft: 8,
+    justifyContent: 'space-between',
+    flex: 1
   },
   cancelled: {
     fontSize: 16,

@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native';
 import colors from '../../../config/colors';
 
 export const primary = colors.primary;
-export const ITEM_HEIGHT = 150;
+export const ITEM_HEIGHT = 148;
 export const SEPARATOR_HEIGHT = 1;
 export const AVATAR_SIZE = 48;
 
