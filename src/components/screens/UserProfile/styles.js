@@ -5,10 +5,10 @@ export const AVATAR_SIZE = 200;
 
 export default StyleSheet.create({
   container: {
-    paddingHorizontal: 16,
-    paddingVertical: 32,
-    alignItems: 'center',
-    justifyContent: 'center',
+    // paddingHorizontal: 16,
+    // // paddingVertical: 32,
+    // alignItems: 'center',
+    // justifyContent: 'center',
     // backgroundColor: 'green'
   },
   appbar: {
