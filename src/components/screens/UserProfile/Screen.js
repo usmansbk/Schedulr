@@ -12,6 +12,6 @@ export default class Screen extends React.Component {
 
   render() {
     const id = this.props.navigation.getParam('id');
-    return <UserBoards id={id} />
+    return <UserBoards screenProps={{id}} />
   }
 }

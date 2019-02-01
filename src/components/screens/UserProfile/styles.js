@@ -52,13 +52,13 @@ export default StyleSheet.create({
   count: {
     color: colors.light_gray_3,
     fontWeight: 'bold',
-    fontSize: 24,
+    fontSize: 18,
     marginVertical: 8
   },
   label: {
     color: colors.light_gray_3,
     fontWeight: 'bold',
-    fontSize: 20,
+    fontSize: 18,
   },
   countRow: {
     flexDirection: 'row',
