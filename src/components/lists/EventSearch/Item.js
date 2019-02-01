@@ -36,7 +36,7 @@ export default class Item extends React.PureComponent {
           <View style={styles.left}>
             <TouchableRipple onPress={this._navigateToBoard}>
               <UserAvatar
-                name={boardName}
+                name={boardName[0]}
                 src={pictureUrl}
                 size={AVATAR_SIZE}
                 component={CachedImage}
@@ -52,7 +52,7 @@ export default class Item extends React.PureComponent {
             >{title}</Headline>
             <Tag status={status} />
             <View style={styles.itemFooter}>
-              <Caption numberOfLines={1}>by {boardName}</Caption>
+              <Caption style={styles.boardName} ellipsizeMode="tail" numberOfLines={1}>by {boardName}</Caption>
               <View style={styles.counts}>
                 <View style={styles.footerIcon}>
                   <Icon color={colors.gray}  size={14} name="star" />

@@ -84,5 +84,8 @@ export default StyleSheet.create({
   },
   counts: {
     flexDirection: 'row'
+  },
+  boardName: {
+    width: 150
   }
 });

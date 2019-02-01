@@ -49,7 +49,7 @@ export default class Item extends React.PureComponent {
         <View style={styles.itemLeft}>
           <TouchableRipple onPress={this._navigateToProfile}>
             <UserAvatar
-              name={authorName}
+              name={authorName[0]}
               component={CachedImage}
               src={authorPictureUrl}
               size={AVATAR_SIZE}

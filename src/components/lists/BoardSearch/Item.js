@@ -17,15 +17,13 @@ export default class Item extends React.PureComponent {
       isPublic
     } = this.props;
     
-    const [ first, second ] = name.split(' ');
-    const boardName = `${first} ${second ? second : ''}`;
     const isPending = id[0] === '-';
 
     return (
       <TouchableRipple style={styles.itemContainer} onPress={this._onPress}>
         <View style={styles.itemContent}>
           <TouchableRipple onPress={this._navigateToInfo} style={styles.itemAvatar}>
-            <UserAvatar component={CachedImage} size={AVATAR_SIZE} name={boardName} />
+            <UserAvatar component={CachedImage} size={AVATAR_SIZE} name={name[0]} />
           </TouchableRipple>
           <View style={styles.itemBody}>
             <View style={styles.nameRow}>
