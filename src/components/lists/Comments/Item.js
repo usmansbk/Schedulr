@@ -41,13 +41,15 @@ export default class Item extends React.PureComponent {
     } = this.props;
 
     const isPending = id[0] === '-';
+    const [ first, second ] = authorName.split(' ');
+    const avatarName = `${first} ${second ? second : ''}`;
 
     return (
       <View style={styles.itemContainer}>
         <View style={styles.itemLeft}>
           <TouchableRipple onPress={this._navigateToProfile}>
             <UserAvatar
-              name={authorName.slice(0, 2)}
+              name={avatarName}
               component={CachedImage}
               src={authorPictureUrl}
               size={AVATAR_SIZE}

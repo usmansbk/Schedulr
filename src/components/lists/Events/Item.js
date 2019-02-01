@@ -41,6 +41,8 @@ export default class Item extends React.PureComponent {
     
     const isPending = id[0] === '-';
     const repeatEvent = repeat && (repeat + ` ${BULLET} `);
+    const [ first, second ] = title.split(' ');
+    const avatarName = `${first} ${second ? second : ''}`;
     
     return (
       <TouchableRipple
@@ -53,7 +55,7 @@ export default class Item extends React.PureComponent {
               <Avatar
                 component={CachedImage}
                 size={AVATAR_SIZE}
-                name={boardName.slice(0, 2)}
+                name={avatarName}
                 src={pictureUrl}
               />
             </TouchableRipple>

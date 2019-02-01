@@ -18,12 +18,14 @@ export default class Item extends React.PureComponent {
     } = this.props;
     
     const isPending = id[0] === '-';
+    const [ first, second ] = name.split(' ');
+    const avatarName = `${first} ${second ? second : ''}`;
 
     return (
       <TouchableRipple style={styles.itemContainer} onPress={this._onPress}>
         <View style={styles.itemContent}>
           <TouchableRipple onPress={this._navigateToInfo} style={styles.itemAvatar}>
-            <UserAvatar component={CachedImage} size={AVATAR_SIZE} name={name.slice(0, 2)} />
+            <UserAvatar component={CachedImage} size={AVATAR_SIZE} name={avatarName} />
           </TouchableRipple>
           <View style={styles.itemBody}>
             <View style={styles.nameRow}>
