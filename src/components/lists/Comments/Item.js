@@ -51,7 +51,6 @@ export default class Item extends React.PureComponent {
             <UserAvatar
               name={authorName}
               component={CachedImage}
-              rounded
               src={authorPictureUrl}
               size={AVATAR_SIZE}
             />

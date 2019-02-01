@@ -25,7 +25,7 @@ export default class Item extends React.PureComponent {
       <TouchableRipple style={styles.itemContainer} onPress={this._onPress}>
         <View style={styles.itemContent}>
           <TouchableRipple onPress={this._navigateToInfo} style={styles.itemAvatar}>
-            <UserAvatar component={CachedImage} size={AVATAR_SIZE} rounded name={boardName} />
+            <UserAvatar component={CachedImage} size={AVATAR_SIZE} name={boardName} />
           </TouchableRipple>
           <View style={styles.itemBody}>
             <View style={styles.nameRow}>

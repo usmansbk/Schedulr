@@ -53,7 +53,6 @@ export default class Item extends React.PureComponent {
             <TouchableRipple onPress={this._navigateToBoard}>
               <Avatar
                 component={CachedImage}
-                rounded
                 size={AVATAR_SIZE}
                 name={avatarName}
                 src={pictureUrl}
