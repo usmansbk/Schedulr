@@ -1,34 +1,77 @@
+import React from 'react';
+import { Dimensions, StyleSheet } from 'react-native';
 import {
-  createMaterialTopTabNavigator,
-  createAppContainer
-} from 'react-navigation';
-import { StyleSheet } from 'react-native';
+  TabView,
+  TabBar,
+} from 'react-native-tab-view';
 import Events from './Events';
 import Boards from './Boards';
 import colors from '../../../config/colors';
 
 const styles = StyleSheet.create({
+  container: {flex: 1},
   barStyle: {
-    elevation: 4,
-    backgroundColor: '#fff',
+    backgroundColor: 'white',
+    elevation: 2
   },
   indicatorStyle: {
     backgroundColor: colors.primary_light
+  },
+  label: {
+    color: colors.black
   }
 });
 
-export default createAppContainer(createMaterialTopTabNavigator(
-  {
-    Boards,
-    Events
-  },
-  {
-    tabBarOptions: {
-      activeTintColor: colors.primary,
-      inactiveTintColor: colors.gray,
-      upperCaseLabel: false,
-      indicatorStyle: styles.indicatorStyle,
-      style: styles.barStyle
-    },
+const initialLayout = {
+  height: 0,
+  width: Dimensions.get('window').width,
+};
+
+export default class Tab extends React.Component {
+  static title = "Search bar";
+  static backgroundColor = colors.primary_light;
+  static appbarElevation = 4;
+
+  state = {
+    index: 0,
+    routes: [
+      { key: 'boards', title: 'Boards' },
+      { key: 'events', title: 'Events' },
+    ],
+  };
+
+  _handleIndexChange = index => this.setState({ index });
+  _renderTabBar = props => (
+    <TabBar
+      {...props}
+      indicatorStyle={styles.indicatorStyle}
+      style={styles.barStyle}
+      labelStyle={styles.label}
+    />
+  );
+  _renderScene = ({ route }) => {
+    const { query, isConnected } = this.props;
+    switch(route.key) {
+      case 'boards':
+        return <Boards query={query} isConnected={isConnected} />;
+      case 'events':
+        return <Events query={query} isConnected={isConnected} />;
+      default:
+        return null;
+    }
+  };
+
+  render() {
+    return (
+      <TabView
+        lazy
+        style={[styles.container]}
+        navigationState={this.state}
+        renderScene={this._renderScene}
+        renderTabBar={this._renderTabBar}
+        onIndexChange={this._handleIndexChange}
+        initialLayout={initialLayout}
+      />
+    )
   }
-));
+}

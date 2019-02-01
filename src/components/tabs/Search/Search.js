@@ -37,10 +37,8 @@ export default class Search extends React.Component {
           style={styles.searchbar}
         />
         <Tabs
-          screenProps={{
-            query,
-            isConnected
-          }}
+          query={query}
+          isConnected={isConnected}
         />
       </View>
     );

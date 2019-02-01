@@ -9,8 +9,6 @@ class Events extends React.PureComponent {
   render() {
     const {
       isConnected,
-    } = this.props.screenProps;
-    const {
       loading,
       events
     } = this.props;
@@ -38,14 +36,14 @@ class Events extends React.PureComponent {
 export default compose(
   graphql(gql(listAllEvents), {
     alias: 'withSearchEventsOffline',
-    skip: props => false && props.screenProps.isConnected,
+    skip: props => false && props.isConnected,
     options: {
       fetchPolicy: 'cache-only'
     },
     props: ({ data, ownProps }) => ({
       loading: data.loading,
       events: data && data.listAllEvents && data.listAllEvents.items.filter(
-        item => item.title.toLowerCase().includes(ownProps.screenProps.query.toLowerCase())
+        item => item.title.toLowerCase().includes(ownProps.query.toLowerCase())
       ),
       ...ownProps
     })
