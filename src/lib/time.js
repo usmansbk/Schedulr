@@ -58,11 +58,11 @@ export const formatDate = (startAt, endAt, allDay) => {
 
 const getIteration = (repeat) => {
   switch(repeat) {
-    case 'DAILY': return 'day';
-    case 'WEEKLY': return 'week';
-    case 'MONTHLY': return 'month';
-    case 'YEARLY': return 'year';
-    default: return 'hour';
+    case 'DAILY': return 'days';
+    case 'WEEKLY': return 'weeks';
+    case 'MONTHLY': return 'months';
+    case 'YEARLY': return 'years';
+    default: return 'hours';
   }
 }
 
