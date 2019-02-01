@@ -65,7 +65,7 @@ export default ({
           </View>
         </TouchableRipple>
       </View>
-      <UserBoard id={id} />
     </View>
+    <UserBoard id={id} />
   </React.Fragment>
 )};

@@ -5,11 +5,11 @@ export const AVATAR_SIZE = 200;
 
 export default StyleSheet.create({
   container: {
-    flex: 1,
-    marginHorizontal: 16,
-    marginVertical: 32,
+    paddingHorizontal: 16,
+    paddingVertical: 32,
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    // backgroundColor: 'green'
   },
   appbar: {
     elevation: 0,
@@ -17,7 +17,8 @@ export default StyleSheet.create({
   },
   header: {
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    // backgroundColor: 'red'
   },
   headline: {
     fontSize: 32,
@@ -63,6 +64,7 @@ export default StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
+    // backgroundColor: 'blue'
   },
   item: {
     justifyContent: 'center',
