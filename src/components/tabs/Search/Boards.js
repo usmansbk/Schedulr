@@ -7,9 +7,6 @@ import { listAllBoards } from '../../../graphql/queries';
 
 class Boards extends React.PureComponent {
 
-  _navigateToBoard = (id) => navigation.navigate('BoardEvents', { id });
-  _navigateToBoardInfo = (id) => navigation.navigate('BoardInfo', { id });
-
   render() {
     const {
       isConnected,
@@ -23,8 +20,6 @@ class Boards extends React.PureComponent {
         isConnected={isConnected}
         boards={boards}
         loading={loading}
-        navigateToBoard={this._navigateToBoard}
-        navigateToBoardInfo={this._navigateToBoardInfo}
       />
     );
   }

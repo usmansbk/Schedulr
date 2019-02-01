@@ -7,9 +7,6 @@ import navigation from '../../../config/navigation';
 import { listAllEvents } from '../../../graphql/queries';
 
 class Events extends React.PureComponent {
-  _navigateToBoard = (id) => navigation.navigate('BoardEvents', { id });
-  _navigateToEvent = (id) => navigation.navigate('EventDetails', { id });
-
   render() {
     const {
       isConnected,
@@ -24,8 +21,6 @@ class Events extends React.PureComponent {
           isConnected={isConnected}
           loading={loading}
           events={events}
-          navigateToBoard={this._navigateToBoard}
-          navigateToEvent={this._navigateToEvent}
         />
         {
           isConnected && (
