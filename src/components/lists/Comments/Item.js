@@ -36,6 +36,7 @@ export default class Item extends React.PureComponent {
       content,
       timeAgo,
       isAuthor,
+      authorPictureUrl,
       toCommentAuthorName,
       toCommentContent,
       isToCommentDeleted
@@ -51,6 +52,7 @@ export default class Item extends React.PureComponent {
               name={authorName}
               component={CachedImage}
               rounded
+              src={authorPictureUrl}
               size={AVATAR_SIZE}
             />
           </TouchableRipple>
