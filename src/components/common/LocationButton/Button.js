@@ -13,6 +13,7 @@ const handleAddress = (address, lat, lon) => {
 export default ({
   size,
   color,
+  activeColor,
   address,
   longitude,
   latitude
@@ -20,7 +21,7 @@ export default ({
   <IconButton
     disabled={!address}
     icon="map"
-    color={color}
+    color={address ? activeColor : color}
     size={size}
     onPress={() => handleAddress(address, latitude, longitude)}
   />
