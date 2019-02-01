@@ -8,9 +8,9 @@ import {
 } from 'react-native-paper';
 import UserAvatar from 'react-native-user-avatar';
 import { CachedImage } from 'react-native-cached-image';
+import UserBoard from '../UserBoards';
 import Loading from '../../common/Loading';
 import Error from '../../common/Error';
-import { CIRCLE } from '../../../lib/constants';
 import styles, { AVATAR_SIZE } from './styles';
 import colors from '../../../config/colors';
 import appStyles from '../../../config/styles';
@@ -65,6 +65,7 @@ export default ({
           </View>
         </TouchableRipple>
       </View>
+      <UserBoard id={id} />
     </View>
   </React.Fragment>
 )};
