@@ -9,6 +9,7 @@ export default StyleSheet.create({
     marginHorizontal: 16,
     marginVertical: 32,
     alignItems: 'center',
+    justifyContent: 'center'
   },
   appbar: {
     elevation: 0,
