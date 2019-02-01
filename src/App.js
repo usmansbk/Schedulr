@@ -50,7 +50,7 @@ const AppStack = createStackNavigator({
 }, {
   initialRouteName: 'Home',
   defaultNavigationOptions: {
-    header: null
+    header: null,
   }
 });
 

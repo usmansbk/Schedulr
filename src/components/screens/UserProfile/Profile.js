@@ -30,10 +30,6 @@ export default ({
     createdCount
   } = user;
   return (
-  <React.Fragment>
-    <Appbar.Header style={[appStyles.header, styles.appbar]} collapsable>
-      <Appbar.BackAction color={colors.gray} onPress={goBack} />
-    </Appbar.Header>
     <View style={styles.header}> 
       <UserAvatar
         name={name}
@@ -58,5 +54,4 @@ export default ({
         </View>
       </View>
     </View>
-  </React.Fragment>
 )};

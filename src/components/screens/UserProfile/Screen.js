@@ -1,6 +1,6 @@
 import React from 'react';
-import { Text } from 'react-native';
 import Profile from './Hoc';
+import UserBoards from '../UserBoards';
 
 export default class Screen extends React.Component {
   static navigationOptions = ({ navigation }) => ({
@@ -12,6 +12,6 @@ export default class Screen extends React.Component {
 
   render() {
     const id = this.props.navigation.getParam('id');
-    return <Text>Hello</Text>
+    return <UserBoards id={id} />
   }
 }

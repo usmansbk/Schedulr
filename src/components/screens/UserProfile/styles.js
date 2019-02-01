@@ -5,8 +5,7 @@ export const AVATAR_SIZE = 200;
 
 export default StyleSheet.create({
   container: {
-    // paddingHorizontal: 16,
-    // // paddingVertical: 32,
+    paddingHorizontal: 16,
     // alignItems: 'center',
     // justifyContent: 'center',
     // backgroundColor: 'green'
@@ -18,6 +17,7 @@ export default StyleSheet.create({
   header: {
     justifyContent: 'center',
     alignItems: 'center',
+    paddingTop: 32,
     // backgroundColor: 'red'
   },
   headline: {
