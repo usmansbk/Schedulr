@@ -6,13 +6,11 @@ import {
   Paragraph,
   Caption,
   Button,
-  IconButton,
 } from 'react-native-paper';
 import UserAvatar from 'react-native-user-avatar';
 import { CachedImage } from 'react-native-cached-image';
 import Hyperlink from 'react-native-hyperlink';
 import styles, { AVATAR_SIZE } from './styles';
-import colors from '../../../config/colors';
 
 export default class Item extends React.PureComponent {
   state = {
@@ -36,7 +34,6 @@ export default class Item extends React.PureComponent {
       content,
       timeAgo,
       isAuthor,
-      authorId,
       authorPictureUrl,
       toCommentAuthorName,
       toCommentContent,
@@ -50,7 +47,7 @@ export default class Item extends React.PureComponent {
         <View style={styles.itemLeft}>
           <TouchableRipple onPress={this._navigateToProfile}>
             <UserAvatar
-              name={authorName[0] + authorId}
+              name={authorName.slice(0, 2)}
               component={CachedImage}
               src={authorPictureUrl}
               size={AVATAR_SIZE}

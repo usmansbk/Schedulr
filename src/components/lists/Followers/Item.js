@@ -9,7 +9,6 @@ export default class Item extends React.PureComponent {
   _onPress = () => this.props.onPressItem(this.props.id);
   render() {
     const {
-      id,
       name,
       pictureUrl
     } = this.props;
@@ -18,7 +17,7 @@ export default class Item extends React.PureComponent {
         <View style={styles.itemContent}>
           <View style={styles.itemLeft}>
             <UserAvatar
-              name={name[0] + id}
+              name={name.slice(0, 2)}
               size={AVATAR_SIZE}
               component={CachedImage}
               src={pictureUrl}

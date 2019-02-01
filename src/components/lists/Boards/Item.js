@@ -23,7 +23,7 @@ export default class Item extends React.PureComponent {
       <TouchableRipple style={styles.itemContainer} onPress={this._onPress}>
         <View style={styles.itemContent}>
           <TouchableRipple onPress={this._navigateToInfo} style={styles.itemAvatar}>
-            <UserAvatar component={CachedImage} size={AVATAR_SIZE} name={name[0] + id} />
+            <UserAvatar component={CachedImage} size={AVATAR_SIZE} name={name.slice(0, 2)} />
           </TouchableRipple>
           <View style={styles.itemBody}>
             <View style={styles.nameRow}>
