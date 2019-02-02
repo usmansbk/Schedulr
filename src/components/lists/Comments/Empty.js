@@ -13,7 +13,7 @@ export default ({ error, loading }) => loading ? null : (
     {
       error && (
         <Paragraph style={styles.paragraph}>
-          Check your internet connection. Swipe down to refresh.
+          Check your internet connection. Pull to refresh.
         </Paragraph>
       )
     }
