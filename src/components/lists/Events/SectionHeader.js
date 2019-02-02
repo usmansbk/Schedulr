@@ -1,6 +1,6 @@
 import React from 'react';
 import { View } from 'react-native';
-import { Text } from 'react-native-paper';
+import { Text, Caption } from 'react-native-paper';
 import { getSectionHeaderData } from '../../../lib/time';
 import { BULLET } from '../../../lib/constants';
 import styles from './styles';
@@ -16,7 +16,7 @@ export default ({ section: { title , data } }) => {
     <Text style={styles.sectionHeading}>{heading}</Text>
     <View style={styles.sectionSubheadingContent}>
       <Text style={styles.sectionSubheading}>{subheading}</Text>
-      <Text style={styles.sectionSubheading}>{itemsCount}{timeAgo}</Text>
+      <Caption>{itemsCount}{timeAgo}</Caption>
     </View>
   </View>
 )};
