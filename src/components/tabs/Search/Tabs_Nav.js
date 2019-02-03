@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
   }
 });
 
-export default createAppContainer(createMaterialTopTabNavigator(
+const Tabs = createMaterialTopTabNavigator(
   {
     Boards,
     Events
@@ -31,4 +31,6 @@ export default createAppContainer(createMaterialTopTabNavigator(
       style: styles.barStyle
     },
   }
-));
+);
+
+export default createAppContainer(Tabs);
