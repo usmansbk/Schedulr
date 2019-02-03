@@ -54,7 +54,7 @@ export default StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 16,
     marginTop: 8,
-    marginBotton: 4
+    marginBottom: 4
   },
   label: {
     color: colors.light_gray_3,

@@ -43,7 +43,7 @@ export default compose(
     props: ({ data, ownProps }) => ({
       loading: data.loading,
       events: data && data.listAllEvents && data.listAllEvents.items.filter(
-        item => item.title.toLowerCase().includes(ownProps.query.toLowerCase())
+        item => item.title.toLowerCase().includes('')
       ),
       ...ownProps
     })
