@@ -28,7 +28,7 @@ export default graphql(gql(followingBoards), {
   alias: 'withUserFollowingBoardsTab',
   options: props => ({
     variables: {
-      id: props.screenProps.id
+      id: props.navigation.getParam('id')
     },
     notifyOnNetworkStatusChange: true,
     fetchPolicy: 'cache-and-network',
