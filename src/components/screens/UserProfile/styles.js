@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 import colors from '../../../config/colors';
 
-export const AVATAR_SIZE = 200;
+export const AVATAR_SIZE = 150;
 
 export default StyleSheet.create({
   container: {
@@ -52,13 +52,13 @@ export default StyleSheet.create({
   count: {
     color: colors.light_gray_3,
     fontWeight: 'bold',
-    fontSize: 18,
-    marginVertical: 8
+    fontSize: 16,
+    marginTop: 8,
+    marginBotton: 4
   },
   label: {
     color: colors.light_gray_3,
-    fontWeight: 'bold',
-    fontSize: 18,
+    fontSize: 16,
   },
   countRow: {
     flexDirection: 'row',
