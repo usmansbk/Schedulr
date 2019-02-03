@@ -29,6 +29,7 @@ const Home = createBottomTabNavigator({
     style: styles.barStyle,
   },
   defaultNavigationOptions: ({ navigation }) => ({
+    tabBarVisible: navigation.state.routeName !== 'Search',
     tabBarIcon: ({ tintColor, focused }) => {
       const { routeName } = navigation.state;
       let iconName;
