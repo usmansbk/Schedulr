@@ -12,6 +12,7 @@ const styles = StyleSheet.create({
     padding: 16
   },
   placeholder: {
+    fontFamily: 'sans-serif-bold',
     color: colors.gray,
     fontSize: 18,
     paddingLeft: 16
