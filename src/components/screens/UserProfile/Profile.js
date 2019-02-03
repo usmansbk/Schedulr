@@ -4,14 +4,13 @@ import numeral from 'numeral';
 import {
   Appbar,
   Text,
+  Headline,
 } from 'react-native-paper';
 import UserAvatar from 'react-native-user-avatar';
 import { CachedImage } from 'react-native-cached-image';
 import Loading from '../../common/Loading';
 import Error from '../../common/Error';
 import styles, { AVATAR_SIZE } from './styles';
-import colors from '../../../config/colors';
-import appStyles from '../../../config/styles';
 
 export default ({
   goBack,
@@ -38,11 +37,7 @@ export default ({
         size={AVATAR_SIZE}
         component={CachedImage}
       />
-      <Text
-        style={styles.headline}
-      >
-        {name}
-      </Text>
+      <Headline style={styles.headline}>{name}</Headline>
       <View style={styles.countRow}>
         <View style={styles.item}>
           <Text style={styles.count}>{numeral(followingCount).format('0a')}</Text>

@@ -21,7 +21,6 @@ export default StyleSheet.create({
     // backgroundColor: 'red'
   },
   headline: {
-    fontSize: 32,
     fontWeight: 'bold',
     fontFamily: 'sans-serif-bold',
     textAlign: 'center'
