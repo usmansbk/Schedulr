@@ -1,6 +1,7 @@
 import {
   createMaterialTopTabNavigator,
-  createAppContainer
+  createAppContainer,
+  createStackNavigator
 } from 'react-navigation';
 import { StyleSheet } from 'react-native';
 import Events from './Events';
@@ -36,4 +37,12 @@ const Tabs = createAppContainer(createMaterialTopTabNavigator(
   }
 ));
 
-export default createAppContainer(Tabs);
+const SearchStack = createStackNavigator({
+  Tabs
+}, {
+  defaultNavigationOptions: {
+    header: null
+  }
+})
+
+export default createAppContainer(SearchStack);
