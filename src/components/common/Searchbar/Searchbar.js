@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
 export default ({ placeholder, icon, onPress }) => (
   <TouchableRipple onPress={onPress}>
     <View style={styles.container}>
-      <Icon name={icon || 'search'} size={24} />
+      <Icon color={colors.gray} name={icon || 'search'} size={24} />
       <Text style={styles.placeholder}>{ placeholder }</Text>
     </View>
   </TouchableRipple>
