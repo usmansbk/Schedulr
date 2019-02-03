@@ -11,6 +11,7 @@ export default class Events extends React.PureComponent {
     } = this.props;
     return (
       <List
+        bestMatch
         loading={loading}
         events={events}
       />
