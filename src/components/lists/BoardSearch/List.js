@@ -5,7 +5,6 @@ import Item from './Item';
 import Separator from './Separator';
 import Footer from './Footer';
 import Empty from './Empty';
-import Navigation from '../../../config/navigation';
 import styles, {
   ITEM_HEIGHT,
   SEPARATOR_HEIGHT
@@ -26,8 +25,8 @@ class List extends Component {
     }
   );
   shouldComponentUpdate = (nextProps) => nextProps.isFocused;
-  _onPressItem = (id) => Navigation.navigate('BoardEvents', { id });
-  _navigateToInfo = (id) => Navigation.navigate('BoardInfo', { id });
+  _onPressItem = (id) => this.props.navigation.navigate('BoardEvents', { id });
+  _navigateToInfo = (id) => this.props.navigation.navigate('BoardInfo', { id });
   _keyExtractor = (item) => String(item.id);
   _renderEmptyList = () => this.props.loading ? null : <Empty isConnected={this.props.isConnected}/>;
   _renderItem = ({item}) => {

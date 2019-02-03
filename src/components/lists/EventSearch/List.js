@@ -5,7 +5,6 @@ import Item from './Item';
 import Separator from './Separator';
 import Footer from './Footer';
 import Empty from './Empty';
-import Navigation from '../../../config/navigation';
 import { decapitalize } from '../../../lib/capitalizr';
 import { getNextDate } from '../../../lib/time';
 import styles, {
@@ -29,8 +28,8 @@ class List extends React.Component {
     }
   );
   shouldComponentUpdate = nextProps => nextProps.isFocused;
-  _onPressItem = (id) => Navigation.navigate('EventDetails', { id });
-  _navigateToBoard = (id) => Navigation.navigate('BoardEvents', { id });
+  _onPressItem = (id) => this.props.navigation.navigate('EventDetails', { id });
+  _navigateToBoard = (id) => this.props.navigation.navigate('BoardEvents', { id });
   _keyExtractor = item => String(item.id);
   _renderItem = ({
     item: {
