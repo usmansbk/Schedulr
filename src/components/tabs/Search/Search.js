@@ -34,7 +34,6 @@ export default class Search extends React.Component {
           placeholder="Search for..."
           value={this.state.query}
           onChangeText={this._onChangeText}
-          autoFocus
           style={styles.searchbar}
         />
         <Tabs
