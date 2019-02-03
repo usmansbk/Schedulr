@@ -4,12 +4,10 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import { Headline, Paragraph } from 'react-native-paper';
 import styles from './styles';
 
-export default ({ isConnected }) => (
+export default ({ isConnected,  }) => (
   <View style={styles.empty}>
     <Headline style={styles.emptyTitle}>
-      {
-        isConnected ? 'Find an event' : 'Searching offline...'
-      }
+      Find an event
     </Headline>
     {
       isConnected && (

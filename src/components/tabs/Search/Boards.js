@@ -12,7 +12,7 @@ export default class Boards extends React.PureComponent {
     } = this.props;
     return (
       <List
-        bestMatch
+        isConnected
         boards={boards}
         loading={loading}
       />
