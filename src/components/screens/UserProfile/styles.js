@@ -17,7 +17,6 @@ export default StyleSheet.create({
   content: {
     justifyContent: 'center',
     alignItems: 'center',
-    paddingTop: 32,
     // backgroundColor: 'red'
   },
   headline: {
@@ -51,7 +50,7 @@ export default StyleSheet.create({
   count: {
     color: colors.light_gray_3,
     fontWeight: 'bold',
-    fontSize: 22,
+    fontSize: 25,
     marginTop: 8,
     marginBottom: 4
   },
