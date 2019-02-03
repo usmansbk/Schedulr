@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
   placeholder: {
     color: colors.gray,
     fontSize: 18,
-    paddingLeft: 8
+    paddingLeft: 16
   }
 });
 

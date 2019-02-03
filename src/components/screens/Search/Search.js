@@ -33,6 +33,7 @@ export default class Search extends React.Component {
           onIconPress={this._goBack}
           placeholder="Search for..."
           value={this.state.query}
+          autoFocus
           onChangeText={this._onChangeText}
           style={styles.searchbar}
         />
