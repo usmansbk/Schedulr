@@ -21,7 +21,7 @@ export default class Events extends React.Component {
     } = this.props;
 
     if (error) SimpleToast.show('Failed to load events', SimpleToast.SHORT);
-    
+
     return (
       <React.Fragment>
         <List
@@ -29,7 +29,7 @@ export default class Events extends React.Component {
           events={events}
           hasPreviousEvents={Boolean(nextToken)}
           onRefresh={onRefresh}
-          error={Boolean(error)}
+          error={error}
         />
         <FAB
           icon="edit"
