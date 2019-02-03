@@ -5,6 +5,7 @@ import {
   Appbar,
   Text,
   Headline,
+  TouchableRipple,
 } from 'react-native-paper';
 import UserAvatar from 'react-native-user-avatar';
 import { CachedImage } from 'react-native-cached-image';
@@ -17,12 +18,14 @@ export default ({
   loading,
   user,
   error,
-  onRefresh
+  onRefresh,
+  navigateToUserBoards
 }) => {
   if (loading && !user) return <Loading />;
   if (error && !user) return <Error onRefresh={onRefresh} />;
 
   const {
+    id,
     name,
     pictureUrl,
     followingCount,
@@ -38,15 +41,17 @@ export default ({
         component={CachedImage}
       />
       <Headline style={styles.headline}>{name}</Headline>
-      <View style={styles.countRow}>
-        <View style={styles.item}>
-          <Text style={styles.count}>{numeral(followingCount).format('0a')}</Text>
-          <Text style={styles.label}>Following</Text>
+      <TouchableRipple onPress={() => navigateToUserBoards(id)}>
+        <View style={styles.countRow}>
+          <View style={styles.item}>
+            <Text style={styles.count}>{numeral(followingCount).format('0a')}</Text>
+            <Text style={styles.label}>Following</Text>
+          </View>
+            <View style={styles.item}>
+              <Text style={styles.count}>{numeral(createdCount).format('0a')}</Text>
+              <Text style={styles.label}>Created</Text>
+            </View>
         </View>
-        <View style={styles.item}>
-          <Text style={styles.count}>{numeral(createdCount).format('0a')}</Text>
-          <Text style={styles.label}>Created</Text>
-        </View>
-      </View>
+      </TouchableRipple>
     </View>
 )};

@@ -6,8 +6,8 @@ export const AVATAR_SIZE = 150;
 export default StyleSheet.create({
   container: {
     paddingHorizontal: 16,
-    // alignItems: 'center',
-    // justifyContent: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
     // backgroundColor: 'green'
   },
   appbar: {
