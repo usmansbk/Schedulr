@@ -16,6 +16,7 @@ export default class Boards extends React.Component {
           loading={this.props.loading}
           boards={this.props.boards}
           onRefresh={this.props.onRefresh}
+          error={this.props.error}
         />
         <FAB
           icon="add"
