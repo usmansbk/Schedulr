@@ -135,7 +135,7 @@ export default class Info extends React.Component {
             </View>
             <View style={styles.body}>
               <View style={styles.noteView}>
-                <Icon name={isPublic ? 'group' : 'person'} size={18} />
+                <Icon name="visibility" size={18} />
                 <Text style={styles.note}>{ isPublic ? 'Public' : 'Private'} board</Text>
               </View>
               {
