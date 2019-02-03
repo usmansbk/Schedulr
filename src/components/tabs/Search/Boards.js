@@ -10,9 +10,7 @@ class Boards extends React.PureComponent {
     const {
       loading,
       boards,
-      screenProps: {
-        isConnected
-      }
+      isConnected,
     } = this.props;
     return (
       <List
@@ -27,14 +25,14 @@ class Boards extends React.PureComponent {
 export default compose(
   graphql(gql(listAllBoards), {
     alias: 'withSearchBoardsOffline',
-    skip: props => props.screenProps.isConnected,
+    skip: props => props.isConnected,
     options: {
       fetchPolicy: 'cache-only'
     },
     props: ({ data, ownProps }) => ({
       loading: data.loading,
       boards: data && data.listAllBoards && data.listAllBoards.items.filter(
-        item => item.name.toLowerCase().includes(ownProps.screenProps.query.toLowerCase())
+        item => item.name.toLowerCase().includes(ownProps.query.toLowerCase())
       ),
       ...ownProps
     })
