@@ -14,7 +14,7 @@ export default graphql(gql(listAllBoards), {
   props: ({ data, ownProps}) => ({
     loading: data.loading || data.networkStatus === 4,
     boards: data && data.listAllBoards && data.listAllBoards.items || [],
-    error: data.error,
+    error: data.error && !data.listAllBoards,
     onRefresh: async () => {
       try {
         await data.refetch()

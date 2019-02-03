@@ -13,13 +13,12 @@ export default compose(
     options: {
       fetchPolicy: 'cache-first',
       notifyOnNetworkStatusChange: true,
-      onError: () => SimpleToast.show('Failed to fetch updates', SimpleToast.SHORT)
     },
     props: ({ data, ownProps}) => ({
       loading: data.loading || data.networkStatus === 4,
       events: data && data.listAllEvents && data.listAllEvents.items || [],
       nextToken: data && data.listAllEvents && data.listAllEvents.nextToken,
-      error: data.error,
+      error: data.error && !data.listAllEvents,
       onRefresh: async () => {
         try {
           await data.refetch()

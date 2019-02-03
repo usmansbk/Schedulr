@@ -2,6 +2,7 @@ import React from 'react';
 import List from '../../lists/Events';
 import FAB from '../../common/Fab';
 import schdlAll from '../../../helpers/setReminders';
+import SimpleToast from 'react-native-simple-toast';
 
 export default class Events extends React.Component {
   shouldComponentUpdate = (nextProps) => nextProps.isFocused;
@@ -11,14 +12,24 @@ export default class Events extends React.Component {
   }
 
   render() {
+    const {
+      loading,
+      events,
+      nextToken,
+      error,
+      onRefresh
+    } = this.props;
+
+    if (error) SimpleToast.show('Failed to load events', SimpleToast.SHORT);
+    
     return (
       <React.Fragment>
         <List
-          loading={this.props.loading}
-          events={this.props.events}
-          hasPreviousEvents={Boolean(this.props.nextToken)}
-          onRefresh={this.props.onRefresh}
-          error={Boolean(this.props.error)}
+          loading={loading}
+          events={events}
+          hasPreviousEvents={Boolean(nextToken)}
+          onRefresh={onRefresh}
+          error={Boolean(error)}
         />
         <FAB
           icon="edit"

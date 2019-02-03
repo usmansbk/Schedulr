@@ -17,7 +17,7 @@ export default compose(
         id: props.navigation.getParam('id')
       },
       fetchPolicy: 'network-only',
-      onError: () => SimpleToast.show('Failed to fetch new comments', SimpleToast.SHORT),
+      onError: () => SimpleToast.show('Failed to fetch comments', SimpleToast.SHORT),
     }),
     props: ({ data, ownProps }) => ({
       eventId: ownProps.navigation.getParam('id'),
