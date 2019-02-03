@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, StyleSheet, NetInfo } from 'react-native';
 import { Searchbar } from 'react-native-paper';
-import Tabs from './Tabs';
+import Tabs from './Tabs_Nav';
 
 export default class Search extends React.Component {
   state = {
@@ -37,8 +37,10 @@ export default class Search extends React.Component {
           style={styles.searchbar}
         />
         <Tabs
-          query={query}
-          isConnected={isConnected}
+          screenProps={{
+            query,
+            isConnected
+          }}
         />
       </View>
     );

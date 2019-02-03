@@ -8,7 +8,9 @@ import { listAllEvents } from '../../../graphql/queries';
 class Events extends React.PureComponent {
   render() {
     const {
-      isConnected,
+      screenProps: {
+        isConnected,
+      },
       loading,
       events
     } = this.props;
@@ -36,14 +38,14 @@ class Events extends React.PureComponent {
 export default compose(
   graphql(gql(listAllEvents), {
     alias: 'withSearchEventsOffline',
-    skip: props => false && props.isConnected,
+    skip: props => false && props.screenProps.isConnected,
     options: {
       fetchPolicy: 'cache-only'
     },
     props: ({ data, ownProps }) => ({
       loading: data.loading,
       events: data && data.listAllEvents && data.listAllEvents.items.filter(
-        item => item.title.toLowerCase().includes(ownProps.query.toLowerCase())
+        item => item.title.toLowerCase().includes(ownProps.screenProps.query.toLowerCase())
       ),
       ...ownProps
     })
