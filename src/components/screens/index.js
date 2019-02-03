@@ -14,6 +14,7 @@ import UserProfile from './UserProfile';
 import UserBoards from './UserBoards';
 import Comments from './Comments';
 import Followers from './Followers';
+import SearchScreen from './Search';
 
 export {
   AuthLoading,
@@ -31,5 +32,6 @@ export {
   UserProfile,
   UserBoards,
   Comments,
-  Followers
+  Followers,
+  SearchScreen
 };

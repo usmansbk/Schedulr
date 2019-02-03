@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   createMaterialTopTabNavigator,
   createAppContainer,
@@ -6,6 +7,7 @@ import {
 import { StyleSheet } from 'react-native';
 import Events from './Events';
 import Boards from './Boards';
+import Searchbar from '../../common/Searchbar';
 import colors from '../../../config/colors';
 
 const styles = StyleSheet.create({
@@ -40,9 +42,12 @@ const Tabs = createAppContainer(createMaterialTopTabNavigator(
 const SearchStack = createStackNavigator({
   Tabs
 }, {
-  defaultNavigationOptions: {
-    header: null
-  }
+  defaultNavigationOptions: ({ navigation }) => ({
+    header: <Searchbar 
+      placeholder="Search for..."
+      onPress={() => navigation.navigate('SearchScreen')}
+    />
+  })
 })
 
 export default createAppContainer(SearchStack);

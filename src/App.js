@@ -22,7 +22,8 @@ import {
   Followers,
   Comments,
   EditEvent,
-  EditBoard
+  EditBoard,
+  SearchScreen
 } from './components/screens';
 
 // Configure notifications for local events reminder
@@ -48,7 +49,8 @@ const AppStack = createStackNavigator({
   UserProfile,
   UserBoards,
   Comments,
-  Followers
+  Followers,
+  SearchScreen
 }, {
   initialRouteName: 'Home',
   defaultNavigationOptions: {
