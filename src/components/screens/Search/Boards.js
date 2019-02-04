@@ -4,37 +4,38 @@ import gql from 'graphql-tag';
 import List from '../../lists/BoardSearch';
 import { listAllBoards } from '../../../graphql/queries';
 
-class Boards extends React.PureComponent {
+export default class Boards extends React.Component {
 
+  shouldComponentUpdate = (nextProps) => {
+    return nextProps.screenProps.isConnected !== this.props.screenProps.isConnected
+  }
+  
   render() {
     const {
-      loading,
-      boards,
-      screenProps: { isConnected },
+      screenProps: { isConnected, query },
     } = this.props;
     return (
-      <List
+      <ListHoc
         isConnected={isConnected}
-        boards={boards}
-        loading={loading}
+        query={query}
       />
     );
   }
 }
 
-export default compose(
+const ListHoc = compose(
   graphql(gql(listAllBoards), {
     alias: 'withSearchBoardsOffline',
-    skip: props => props.screenProps.isConnected,
+    skip: props => props.isConnected,
     options: {
       fetchPolicy: 'cache-only'
     },
     props: ({ data, ownProps }) => ({
       loading: data.loading,
       boards: data && data.listAllBoards && data.listAllBoards.items.filter(
-        item => item.name.toLowerCase().includes(ownProps.screenProps.query.toLowerCase())
+        item => item.name.toLowerCase().includes(ownProps.query.toLowerCase())
       ),
       ...ownProps
     })
   })
-)(Boards);
+)(List);

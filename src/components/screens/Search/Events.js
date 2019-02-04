@@ -5,19 +5,21 @@ import List from '../../lists/EventSearch';
 import Fab from '../../common/Fab';
 import { listAllEvents } from '../../../graphql/queries';
 
-class Events extends React.PureComponent {
+export default class Events extends React.Component {
+
+  shouldComponentUpdate = (nextProps) => {
+    return nextProps.screenProps.isConnected !== this.props.screenProps.isConnected
+  }
+
   render() {
     const {
-      screenProps: { isConnected },
-      loading,
-      events
+      screenProps: { isConnected, query },
     } = this.props;
     return (
       <React.Fragment>
-        <List
+        <ListHoc
           isConnected={isConnected}
-          loading={loading}
-          events={events}
+          query={query}
         />
         {
           isConnected && (
@@ -33,19 +35,19 @@ class Events extends React.PureComponent {
   }
 }
 
-export default compose(
+const ListHoc = compose(
   graphql(gql(listAllEvents), {
     alias: 'withSearchEventsOffline',
-    skip: props => false && props.screenProps.isConnected,
+    skip: props => false && props.isConnected,
     options: {
       fetchPolicy: 'cache-only'
     },
     props: ({ data, ownProps }) => ({
       loading: data.loading,
       events: data && data.listAllEvents && data.listAllEvents.items.filter(
-        item => item.title.toLowerCase().includes(ownProps.screenProps.query.toLowerCase())
+        item => item.title.toLowerCase().includes(ownProps.query.toLowerCase())
       ),
       ...ownProps
     })
   })
-)(Events);
+)(List);
