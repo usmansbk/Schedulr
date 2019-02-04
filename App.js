@@ -32,7 +32,7 @@ export default class App extends React.Component {
   componentDidMount = () => {
     SplashScreen.hide();
   }
-  
+
   render() {
     return (
       <MenuProvider backHandler={true}>
