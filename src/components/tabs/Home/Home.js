@@ -12,6 +12,7 @@ const Home = createMaterialTopTabNavigator({
   Boards: { screen: BoardsRoute },
   Starred: { screen: StarredRoute },
 }, {
+  animationEnabled: true,
   initialRouteName: 'Events',
   initialLayout: { height: 0, width: Dimensions.get('window').width },
   tabBarOptions: {
