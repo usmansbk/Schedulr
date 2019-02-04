@@ -13,17 +13,11 @@ export default class Events extends React.Component {
     schdlAll(this.props.events);
   }
  
-  componentDidMount = () => {
-    Linking.addEventListener('url', this.handleOpenURL);
-  }
+  componentDidMount = () => Linking.addEventListener('url', this.handleOpenURL);
 
-  componentWillUnmount = () => {
-    Linking.removeEventListener('url', this.handleOpenURL);
-  }
+  componentWillUnmount = () => Linking.removeEventListener('url', this.handleOpenURL);
 
-  handleOpenURL = (event) => {
-    this.navigate(event.url);
-  }
+  handleOpenURL = event => this.navigate(event.url);
 
   navigate = (url) => {
     const route = url.replace(/.*?:\/\//g, '');
