@@ -33,6 +33,7 @@ const Tabs = createMaterialTopTabNavigator(
       indicatorStyle: styles.indicatorStyle,
       style: styles.barStyle
     },
+    lazy: true
   }
 );
 

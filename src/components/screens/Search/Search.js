@@ -29,7 +29,7 @@ export default class Search extends React.Component {
   _goBack = () => this.props.navigation.goBack();
 
   render() {
-    const { query, isConnected } = this.state;
+    const { query } = this.state;
     return (
       <View style={styles.container}>
         <Searchbar
@@ -43,8 +43,7 @@ export default class Search extends React.Component {
         />
         <Tabs
           screenProps={{
-            query,
-            isConnected
+            query
           }}
         />
       </View>

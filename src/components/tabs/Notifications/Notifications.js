@@ -8,10 +8,6 @@ import colors from '../../../config/colors';
 export default (props) => (
   <View style={styles.container}>
     <Appbar.Header style={styles.header} collapsable>
-      <Appbar.BackAction
-        color={colors.gray}
-        onPress={() => props.navigation.goBack()}
-      />
       <Appbar.Content
         titleStyle={styles.headerColor}/>
       <Appbar.Action
