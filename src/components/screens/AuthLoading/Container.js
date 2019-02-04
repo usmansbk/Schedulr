@@ -45,7 +45,6 @@ export default class Container extends Component {
     const route = url.replace(/.*?:\/\//g, '');
     const id = route.match(/\/([^\/]+)\/?$/)[1];
     const routeName = route.split('/')[1];
-    alert(`${routeName} - ${id}`)
     switch(routeName) {
       case 'event':
         NavigationService.navigate('EventDetails', { id });
