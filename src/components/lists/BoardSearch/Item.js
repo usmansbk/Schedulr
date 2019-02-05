@@ -34,8 +34,6 @@ export default class Item extends React.PureComponent {
             { Boolean(description) && <Caption numberOfLines={1} ellipsizeMode="tail" style={styles.itemDescription}>{description}</Caption> }
             <View style={styles.itemFooter}>
               { isClosed && <Caption style={styles.danger}>Closed</Caption> }
-              { isClosed && !isPublic && <Caption> · </Caption>}
-              { !isPublic && <Caption style={styles.danger}>Private</Caption> }
             </View>
           </View>
         </View>

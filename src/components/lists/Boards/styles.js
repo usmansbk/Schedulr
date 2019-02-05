@@ -52,11 +52,11 @@ export default StyleSheet.create({
   },
   itemName: {
     fontFamily: 'sans-serif-bold',
-    fontWeight: 'bold'
+    fontSize: 16
   },
   offlineName: {
+    fontFamily: 'sans-serif-bold',
     color: colors.gray,
-    fontWeight: 'bold'
   },
   itemContent: {
     paddingHorizontal: 4,

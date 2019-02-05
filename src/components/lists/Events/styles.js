@@ -113,7 +113,7 @@ export default StyleSheet.create({
     color: colors.light_red
   },
   time: {
-    fontFamily: 'sans-serif-bold',
+    fontFamily: 'sans-serif-light',
     fontSize: 16,
     color: gray,
   },

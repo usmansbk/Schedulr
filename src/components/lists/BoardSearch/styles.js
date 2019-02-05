@@ -52,11 +52,12 @@ export default StyleSheet.create({
   },
   itemName: {
     fontFamily: 'sans-serif-bold',
-    fontWeight: 'bold'
+    fontSize: 16
   },
   offlineName: {
     color: colors.gray,
-    fontWeight: 'bold'
+    fontFamily: 'sans-serif-bold',
+    fontSize: 16
   },
   itemContent: {
     paddingHorizontal: 4,
@@ -70,6 +71,7 @@ export default StyleSheet.create({
   },
   danger: {
     color: colors.light_red,
+    fontWeight: 'bold'
   },
   paragraph: {
     textAlign: 'center'

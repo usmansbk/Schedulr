@@ -8,7 +8,7 @@ import { listAllEvents } from '../../../graphql/queries';
 export default class Events extends React.Component {
 
   shouldComponentUpdate = (nextProps) => {
-    return nextProps.screenProps.isConnected !== this.props.screenProps.isConnected
+    return nextProps.screenProps.query !== this.props.screenProps.query
   }
 
   render() {
