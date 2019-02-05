@@ -59,7 +59,6 @@ export default class Actions extends React.Component {
           latitude={latitude}
           longitude={longitude}
           color={color}
-          activeColor={defaultColor}
         />
         {
           small ? null : (
