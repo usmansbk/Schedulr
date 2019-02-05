@@ -25,7 +25,6 @@ export default StyleSheet.create({
   },
   sectionHeading: {
     fontSize: 24,
-    fontWeight: 'bold',
     color: colors.primary_light
   },
   sectionSubheadingContent: {
