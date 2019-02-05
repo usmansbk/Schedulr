@@ -19,7 +19,7 @@ export default ({
 }) => (
   <IconButton
     disabled={!address}
-    icon="map"
+    icon={address ? 'location-on' : 'location-off'}
     color={color}
     size={size}
     onPress={() => handleAddress(address, latitude, longitude)}
