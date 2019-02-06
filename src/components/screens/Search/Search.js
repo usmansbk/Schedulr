@@ -9,20 +9,20 @@ export default class Search extends React.Component {
     isConnected: true
   }
 
-  _handleNetworkChange = (isConnected) => {
-    if (this.state.isConnected !== isConnected) {
-      this.setState({ isConnected })
-    }
-  };
+  // _handleNetworkChange = (isConnected) => {
+  //   if (this.state.isConnected !== isConnected) {
+  //     this.setState({ isConnected })
+  //   }
+  // };
 
-  componentDidMount = () => {
-    NetInfo.isConnected.fetch().then(this._handleNetworkChange);
-    NetInfo.isConnected.addEventListener('connectionChange', this._handleNetworkChange);
-  }
+  // componentDidMount = () => {
+  //   NetInfo.isConnected.fetch().then(this._handleNetworkChange);
+  //   NetInfo.isConnected.addEventListener('connectionChange', this._handleNetworkChange);
+  // }
 
-  componentWillUnmount = () => {
-    NetInfo.isConnected.removeEventListener('connectionChange', this._handleNetworkChange);
-  }
+  // componentWillUnmount = () => {
+  //   NetInfo.isConnected.removeEventListener('connectionChange', this._handleNetworkChange);
+  // }
 
   _onChangeText = query => this.setState({ query });
 
