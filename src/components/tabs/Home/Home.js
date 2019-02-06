@@ -1,6 +1,6 @@
 import React from 'react';
 import { Dimensions } from 'react-native';
-import { createAppContainer, createMaterialTopTabNavigator } from 'react-navigation';
+import { createMaterialTopTabNavigator } from 'react-navigation';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import EventsRoute from '../Events';
 import BoardsRoute from '../Boards';
@@ -40,4 +40,4 @@ const Home = createMaterialTopTabNavigator({
   })
 });
 
-export default createAppContainer(Home);
+export default Home;
