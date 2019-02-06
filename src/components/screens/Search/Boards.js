@@ -12,30 +12,29 @@ export default class Boards extends React.Component {
   
   render() {
     const {
-      screenProps: { isConnected, query },
+      screenProps: { query },
     } = this.props;
     return (
-      <ListHoc
-        isConnected={isConnected}
+      <List
         query={query}
       />
     );
   }
 }
 
-const ListHoc = compose(
-  graphql(gql(listAllBoards), {
-    alias: 'withSearchBoardsOffline',
-    skip: props => props.isConnected,
-    options: {
-      fetchPolicy: 'cache-only'
-    },
-    props: ({ data, ownProps }) => ({
-      loading: data.loading,
-      boards: data && data.listAllBoards && data.listAllBoards.items.filter(
-        item => item.name.toLowerCase().includes(ownProps.query.toLowerCase())
-      ),
-      ...ownProps
-    })
-  })
-)(List);
+// const ListHoc = compose(
+//   graphql(gql(listAllBoards), {
+//     alias: 'withSearchBoardsOffline',
+//     skip: props => props.isConnected,
+//     options: {
+//       fetchPolicy: 'cache-only'
+//     },
+//     props: ({ data, ownProps }) => ({
+//       loading: data.loading,
+//       boards: data && data.listAllBoards && data.listAllBoards.items.filter(
+//         item => item.name.toLowerCase().includes(ownProps.query.toLowerCase())
+//       ),
+//       ...ownProps
+//     })
+//   })
+// )(List);

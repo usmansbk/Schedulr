@@ -4,17 +4,13 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import { Headline, Paragraph } from 'react-native-paper';
 import styles from './styles';
 
-export default ({ isConnected,  }) => (
+export default () => (
   <View style={styles.empty}>
     <Headline style={styles.emptyTitle}>
       Find an event
     </Headline>
-    {
-      isConnected && (
-        <Paragraph style={styles.paragraph}>
-          Press the <Icon name="filter-list" size={12} /> button to customize your search.
-        </Paragraph>
-      )
-    }
+    <Paragraph style={styles.paragraph}>
+      Press the <Icon name="filter-list" size={12} /> button to customize your search.
+    </Paragraph>
   </View>
 );

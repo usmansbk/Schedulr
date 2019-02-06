@@ -17,8 +17,7 @@ export default class Events extends React.Component {
     } = this.props;
     return (
       <React.Fragment>
-        <ListHoc
-          isConnected={isConnected}
+        <List
           query={query}
         />
         {
@@ -35,19 +34,19 @@ export default class Events extends React.Component {
   }
 }
 
-const ListHoc = compose(
-  graphql(gql(listAllEvents), {
-    alias: 'withSearchEventsOffline',
-    skip: props => false && props.isConnected,
-    options: {
-      fetchPolicy: 'cache-only'
-    },
-    props: ({ data, ownProps }) => ({
-      loading: data.loading,
-      events: data && data.listAllEvents && data.listAllEvents.items.filter(
-        item => item.title.toLowerCase().includes(ownProps.query.toLowerCase())
-      ),
-      ...ownProps
-    })
-  })
-)(List);
+// const ListHoc = compose(
+//   graphql(gql(listAllEvents), {
+//     alias: 'withSearchEventsOffline',
+//     skip: props => false && props.isConnected,
+//     options: {
+//       fetchPolicy: 'cache-only'
+//     },
+//     props: ({ data, ownProps }) => ({
+//       loading: data.loading,
+//       events: data && data.listAllEvents && data.listAllEvents.items.filter(
+//         item => item.title.toLowerCase().includes(ownProps.query.toLowerCase())
+//       ),
+//       ...ownProps
+//     })
+//   })
+// )(List);

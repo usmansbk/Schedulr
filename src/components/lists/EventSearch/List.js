@@ -62,7 +62,7 @@ class List extends React.Component {
   />;
   _renderSeparator = () => <Separator />;
   _renderFooter = () => <Footer visible={!this.props.nextToken && this.props.events.length} />;
-  _renderEmpty = () => <Empty isConnected={this.props.isConnected} />;
+  _renderEmpty = () => <Empty />;
   _getDate = (event) => getNextDate(event);
   _getDetails = ({
     repeat,
