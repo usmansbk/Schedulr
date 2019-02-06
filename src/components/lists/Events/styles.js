@@ -32,7 +32,7 @@ export default StyleSheet.create({
     justifyContent: 'space-between'
   },
   sectionSubheading: {
-    fontWeight: 'bold',
+    fontFamily: 'sans-serif-bold',
     color: gray
   },
   header:{
@@ -117,12 +117,12 @@ export default StyleSheet.create({
     color: gray,
   },
   status: {
-    color: colors.light_gray_3,
-    fontWeight: 'bold'
+    color: gray,
+    fontFamily: 'sans-serif-bold'
   },
   duration: {
-    fontWeight: 'bold',
-    color: colors.light_gray_3,
+    fontFamily: 'sans-serif-bold',
+    color: gray,
   },
   durationRow: {
     flexDirection: 'row'
