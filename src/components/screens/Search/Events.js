@@ -20,15 +20,11 @@ export default class Events extends React.Component {
         <List
           query={query}
         />
-        {
-          isConnected && (
-            <Fab
-              small
-              icon="filter-list"
-              onPress={() => null}
-            />
-          )
-        }
+        <Fab
+          small
+          icon="near-me"
+          onPress={() => null}
+        />
       </React.Fragment>
     );
   }

@@ -2,7 +2,7 @@ import {
   createMaterialTopTabNavigator,
   createAppContainer
 } from 'react-navigation';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 import Events from './Events';
 import Boards from './Boards';
 import colors from '../../../config/colors';
@@ -26,6 +26,9 @@ const Tabs = createMaterialTopTabNavigator(
     Events
   },
   {
+    initialRouteName: 'Boards',
+    initialLayout: { height: 0, width: Dimensions.get('window').width },
+    animationEnabled: true,
     tabBarOptions: {
       activeTintColor: colors.primary,
       inactiveTintColor: colors.gray,
