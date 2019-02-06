@@ -1,11 +1,17 @@
 import React from 'react';
 import { Auth, Analytics } from 'aws-amplify';
 import SimpleToast from 'react-native-simple-toast';
+import client from '../../../config/client';
 import Login from './Login';
 import Loading from '../../common/Loading';
 
 export default class LoginScreen extends React.Component {
   state = { loading: false };
+  
+  _bootstrap = async () => {
+    try { await client.clearStore() } catch (e) {}
+    try { await Auth.signOut() } catch (e) {}
+  }
 
   _signInAsync = async ({
     name,
@@ -17,6 +23,7 @@ export default class LoginScreen extends React.Component {
   }) => {
     this.setState({ loading: true });
     try {
+      await this._bootstrap();
       await Auth.federatedSignIn(provider, {
         token,
         expires_at,
