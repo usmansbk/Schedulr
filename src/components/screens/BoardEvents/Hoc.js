@@ -12,11 +12,12 @@ export default compose(
       variables: {
         id: props.id,
       },
-      fetchPolicy: 'cache-only'
+      fetchPolicy: 'cache-first',
+      notifyOnNetworkStatusChange: true,
     }),
     props: ({ data, ownProps }) => ({
       error: data.error,
-      loading: data.loading,
+      loading: data.loading || (data.networkStatus === 4),
       board: data && data.getBoard,
       ...ownProps,
     })

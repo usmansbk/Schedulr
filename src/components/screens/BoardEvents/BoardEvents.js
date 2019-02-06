@@ -26,8 +26,8 @@ export default class BoardEvents extends React.Component {
       navigateToNewEvent
     } = this.props;
 
-    if (loading && !board) return <Loading />;
-    if (error && !board) return <Error onRefresh={onRefresh} />;
+    if (loading) return <Loading />;
+    if (!board) return <Error onRefresh={onRefresh} />;
 
     const {
       id,
