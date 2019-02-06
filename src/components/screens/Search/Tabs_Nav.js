@@ -1,6 +1,5 @@
 import {
   createMaterialTopTabNavigator,
-  createAppContainer
 } from 'react-navigation';
 import { StyleSheet, Dimensions } from 'react-native';
 import Events from './Events';
@@ -40,4 +39,4 @@ const Tabs = createMaterialTopTabNavigator(
   }
 );
 
-export default createAppContainer(Tabs);
+export default Tabs;

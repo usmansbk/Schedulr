@@ -1,7 +1,5 @@
 import {
   createMaterialTopTabNavigator,
-  createStackNavigator,
-  createAppContainer
 } from 'react-navigation';
 import { StyleSheet, Dimensions } from 'react-native';
 import Created from './Created';
@@ -18,7 +16,7 @@ const styles = StyleSheet.create({
   }
 });
 
-const Tabs = createAppContainer(createMaterialTopTabNavigator(
+const Tabs = createMaterialTopTabNavigator(
   {
     Following,
     Created
@@ -33,7 +31,7 @@ const Tabs = createAppContainer(createMaterialTopTabNavigator(
       style: styles.barStyle
     },
   }
-));
+);
 
 export default Tabs;
 
