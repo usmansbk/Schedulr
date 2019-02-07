@@ -1,5 +1,6 @@
 import {
   createMaterialTopTabNavigator,
+  createStackNavigator
 } from 'react-navigation';
 import { StyleSheet, Dimensions } from 'react-native';
 import Created from './Created';
@@ -30,10 +31,13 @@ const Tabs = createMaterialTopTabNavigator(
       indicatorStyle: styles.indicatorStyle,
       style: styles.barStyle
     },
+    navigationOptions: {
+      title: 'More'
+    }
   }
 );
 
-export default Tabs;
+export default Tabs
 
 // export default createAppContainer(
 //   createStackNavigator({
