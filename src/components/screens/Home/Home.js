@@ -34,7 +34,7 @@ const Home = createBottomTabNavigator({
       let iconName;
       if (routeName === 'Home') {
         iconName = 'home'
-      } else if (routeName === 'Search') {
+      } else if (routeName === 'Explore') {
         iconName = 'search';
       } else if (routeName === 'Notifications') {
         return (
