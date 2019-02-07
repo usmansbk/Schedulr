@@ -11,7 +11,7 @@ import { withCollapsible } from 'react-navigation-collapsible';
 
 const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
 
-class SearchTab extends Component{
+class ExploreTab extends Component{
   static defaultProps = {
     data: [],
     loading: false,
@@ -66,4 +66,4 @@ const collapsibleParams = {
   }
 }
 
-export default withCollapsible(SearchTab, collapsibleParams);
+export default withCollapsible(ExploreTab, collapsibleParams);

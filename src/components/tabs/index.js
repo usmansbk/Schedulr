@@ -3,7 +3,7 @@ import Events from './Events';
 import Boards from './Boards';
 import Starred from './Starred';
 import Home from './Home';
-import Search from './Search';
+import Explore from './Explore';
 import Notifications from './Notifications';
 
 export {
@@ -11,7 +11,7 @@ export {
   Events,
   Boards,
   Starred,
-  Search,
+  Explore,
   Home,
   Notifications,
 };
