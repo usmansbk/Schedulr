@@ -26,4 +26,7 @@ export default StyleSheet.create({
     color: colors.light_gray_3,
     textAlign: 'center'
   },
+  paragraph: {
+    textAlign: 'center'
+  },
 })
