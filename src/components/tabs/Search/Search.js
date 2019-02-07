@@ -28,7 +28,7 @@ class SearchTab extends Component{
     return (
       <AnimatedFlatList 
         style={styles.list}
-        data={this.state.data}
+        data={this.props.data}
         renderItem={this.renderItem}
         keyExtractor={(item, index) => String(index)}
         ListEmptyComponent={this._renderEmptyList}
