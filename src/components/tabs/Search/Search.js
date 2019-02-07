@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import { TouchableRipple, Searchbar, Text } from 'react-native-paper';
 import { FlatList } from 'react-navigation';
 import { Animated } from 'react-native';
+import Empty from './Empty';
+import Item from './Item';
 import colors from '../../../config/colors';
 import styles from './styles';
 
@@ -10,28 +12,15 @@ import { withCollapsible } from 'react-navigation-collapsible';
 const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
 
 class SearchTab extends Component{
-  constructor(props){
-    super(props);
-
-    const data = [];
-    for(let i = 0 ; i < 60 ; i++){
-      data.push(i.toString());
-    }
-
-    this.state = {
-      data: data
-    }
+  static defaultProps = {
+    data: [],
+    loading: false,
+    error: false
   }
 
-  renderItem = ({item}) => (
-    <TouchableRipple 
-      onPress={() => {
-        this.props.navigation.navigate('DetailScreen');
-      }}
-      style={styles.item}>
-      <Text style={{fontSize: 22}}>{item}</Text>
-    </TouchableRipple>
-  )
+  _renderEmptyList = () => <Empty />
+
+  renderItem = ({item}) => <Item />
 
   render(){
     const { paddingHeight, animatedY, onScroll } = this.props.collapsible;
@@ -42,12 +31,13 @@ class SearchTab extends Component{
         data={this.state.data}
         renderItem={this.renderItem}
         keyExtractor={(item, index) => String(index)}
+        ListEmptyComponent={this._renderEmptyList}
 
         contentContainerStyle={{paddingTop: paddingHeight}}
         scrollIndicatorInsets={{top: paddingHeight}}        
         onScroll={onScroll} 
         _mustAddThis={animatedY}
-        />
+      />
     )
   }
 }
