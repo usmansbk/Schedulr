@@ -1,8 +1,9 @@
 import React from 'react';
 import {
   Appbar,
-  Text
 } from 'react-native-paper';
+import { graphql } from 'react-apollo';
+import gql from 'graphql-tag';
 import Tabs from './Tabs';
 import colors from '../../../config/colors';
 import appStyles from '../../../config/styles';
@@ -23,7 +24,7 @@ export default class UserBoardsScreen extends React.Component {
           />
           <Appbar.Content
             title={title || 'More'}
-            style={appStyles.headerColor}
+            titleStyle={appStyles.headerColor}
           />
         </Appbar.Header>
         <Tabs screenProps={{id}}/>

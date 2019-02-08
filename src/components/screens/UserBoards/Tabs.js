@@ -31,9 +31,6 @@ const Tabs = createMaterialTopTabNavigator(
       indicatorStyle: styles.indicatorStyle,
       style: styles.barStyle
     },
-    navigationOptions: {
-      title: 'More'
-    }
   }
 );
 
