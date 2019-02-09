@@ -11,6 +11,9 @@ export default StyleSheet.create({
     // flex: 1,
     backgroundColor: colors.light_gray
   },
+  contentContainer: {
+    flexGrow: 1
+  },
   footer: {
     height: 80,
     justifyContent: 'center',

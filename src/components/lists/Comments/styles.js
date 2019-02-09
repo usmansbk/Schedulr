@@ -10,6 +10,9 @@ export default StyleSheet.create({
     // flex: 1,
     backgroundColor: colors.light_gray,
   },
+  contentContainer: {
+    flexGrow: 1
+  },
   itemContainer: {
     flex: 1,
     flexDirection: 'row',

@@ -9,6 +9,9 @@ export default StyleSheet.create({
     // flex: 1,
     backgroundColor: colors.light_gray
   },
+  contentContainer: {
+    flexGrow: 1
+  },
   header: {
     height: HEADER_HEIGHT,
     backgroundColor: 'white',
