@@ -3,6 +3,7 @@ import { FlatList } from 'react-navigation';
 import Empty from './Empty';
 import Footer from './Footer';
 import Item from './Item';
+import styles from './styles';
 
 export default class List extends React.Component {
   _renderEmpty = () => <Empty visible />;
