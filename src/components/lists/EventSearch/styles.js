@@ -8,7 +8,7 @@ export const AVATAR_SIZE = 48;
 
 export default StyleSheet.create({
   list: {
-    flex: 1,
+    // flex: 1,
     backgroundColor: colors.light_gray
   },
   footer: {

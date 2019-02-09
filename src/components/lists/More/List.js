@@ -65,7 +65,7 @@ class List extends React.Component {
     return (
       <React.Fragment>
         <FlatList
-          contentContainerStyle={styles.container}
+          style={styles.container}
           data={items}
           keyExtractor={this._keyExtractor}
           renderItem={this._renderItem}

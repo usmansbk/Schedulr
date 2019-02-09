@@ -33,7 +33,7 @@ class ExploreTab extends Component{
         keyExtractor={(item, index) => String(index)}
         ListEmptyComponent={this._renderEmptyList}
 
-        contentContainerStyle={{paddingTop: paddingHeight, flex: 1}}
+        contentContainerStyle={{paddingTop: paddingHeight}}
         scrollIndicatorInsets={{top: paddingHeight}}        
         onScroll={onScroll} 
         _mustAddThis={animatedY}

@@ -14,7 +14,7 @@ export const black = colors.black;
 
 export default StyleSheet.create({
   list: {
-    flex: 1,
+    // flex: 1,
     backgroundColor: colors.light_gray
   },
   sectionHeader: {

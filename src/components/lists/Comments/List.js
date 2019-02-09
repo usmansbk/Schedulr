@@ -58,7 +58,7 @@ export default class List extends React.Component {
     return (
       <FlatList
         ref={ref => this._listRef = ref}
-        contentContainerStyle={styles.list}
+        style={styles.list}
         data={comments}
         extraData={comments.length}
         keyExtractor={this._keyExtractor}

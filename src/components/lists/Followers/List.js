@@ -53,7 +53,7 @@ class List extends React.Component {
     } = this.props;
     return (
       <FlatList
-        contentContainerStyle={styles.list}
+        style={styles.list}
         keyExtractor={this._keyExtractor}
         ListFooterComponent={this._renderFooter}
         renderItem={this._renderItem}
