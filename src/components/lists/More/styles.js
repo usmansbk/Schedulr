@@ -6,6 +6,7 @@ const HEADER_HEIGHT = 100;
 
 export default StyleSheet.create({
   container: {
+    flex: 1,
     backgroundColor: colors.light_gray
   },
   header: {

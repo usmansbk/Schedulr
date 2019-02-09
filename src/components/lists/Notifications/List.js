@@ -12,6 +12,7 @@ export default class List extends React.Component {
     return (
       <FlatList
         data={[]}
+        contentContainerStyle={{flex: 1}}
         renderItem={this._renderItem}
         ListEmptyComponent={this._renderEmpty}
         ListFooterComponent={this._renderFooter}

@@ -9,6 +9,7 @@ export const primaryColor = colors.primary
 
 export default StyleSheet.create({
   list: {
+    flex: 1,
     backgroundColor: colors.light_gray
   },
   separator: {
@@ -49,9 +50,6 @@ export default StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 200,
-    marginHorizontal: 20,
-    height: '100%'
   },
   emptyTitle: {
     fontSize: 25,

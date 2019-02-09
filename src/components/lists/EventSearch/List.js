@@ -84,7 +84,7 @@ class List extends React.Component {
         refreshing={loading}
         refreshControl={<RefreshControl refreshing={loading} colors={[primary]} />}
         onRefresh={onRefresh}
-        style={styles.list}
+        contentContainerStyle={styles.list}
         getItemLayout={this._getItemLayout}
         keyExtractor={this._keyExtractor}
         renderItem={this._renderItem}
