@@ -170,7 +170,10 @@ export default class Info extends React.Component {
           </View>
       </ScrollView>
       {
-        !isAuthor && (<FollowButton isFollowing={isFollowing} />)
+        !isAuthor && (<FollowButton
+          isFollowing={isFollowing}
+          id={id}
+        />)
       }
       </React.Fragment>
     );
