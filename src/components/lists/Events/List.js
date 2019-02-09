@@ -110,6 +110,7 @@ class List extends React.Component {
     return (
       <SectionList
         initialNumToRender={2}
+        contentContainerStyle={styles.contentContainer}
         style={styles.list}
         stickySectionHeadersEnabled
         getItemLayout={this._getItemLayout}

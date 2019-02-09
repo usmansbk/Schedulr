@@ -1,11 +1,14 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 import colors from '../../../config/colors';
+
+const SCREEN_HEIGHT = Dimensions.get("window").height;
 
 export default StyleSheet.create({
   empty: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    height: SCREEN_HEIGHT
   },
   emptyTitle: {
     fontSize: 25,
