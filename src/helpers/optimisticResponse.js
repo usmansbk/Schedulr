@@ -9,6 +9,28 @@ import { BOARD_CLOSED, BOARD_OPEN } from '../lib/constants';
 
 const __typename = 'Mutation';
 
+export const followBoardResponse = (id) => {
+  const boardNode = getNode(gql(getBoard), id);
+  return ({
+    __typename,
+    followBoard: boardNode.getBoard
+  })
+};
+
+export const unfollowBoardResponse = (id) => {
+  const boardNode = getNode(gql(getBoard), id);
+  const count = boardNode.getBoard.followersCount;
+  return ({
+    __typename,
+    unfollowBoard: {
+      __typename: 'Board',
+      id,
+      isFollowing: false,
+      followersCount: count > 0 ? count - 1 : count
+    }
+  })
+};
+
 export const deleteCommentResponse = (input) => {
   const eventNode = getNode(gql(getEvent), input.eventId);
   const count = eventNode.getEvent.commentsCount;
