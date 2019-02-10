@@ -11,9 +11,15 @@ const __typename = 'Mutation';
 
 export const followBoardResponse = (id) => {
   const boardNode = getNode(gql(getBoard), id);
+  const board = boardNode.getBoard;
+  const count = board.followersCount;
+  
   return ({
     __typename,
-    followBoard: boardNode.getBoard
+    followBoard: Object.assign({}, board, {
+      isFollowing: true,
+      followersCount: count + 1
+    })
   })
 };
 
@@ -57,7 +63,7 @@ export const deleteEventResponse = (input) => {
   const board = boardData.getBoard;
   const eventsCount = board.eventsCount;
   return ({
-    __typename: 'Mutation',
+    __typename,
     deleteEvent: {
       __typename: 'Event',
       id: input.id,
