@@ -14,10 +14,9 @@ import {
   Text,
   TouchableRipple
 } from 'react-native-paper';
-import { CachedImage } from 'react-native-cached-image';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import UserAvater from 'react-native-user-avatar';
 import Hyperlink from 'react-native-hyperlink';
+import UserAvater from '../../common/UserAvatar';
 import FollowButton from '../../common/FollowButton';
 import Loading from '../../common/Loading';
 import Error from '../../common/Error';
@@ -112,8 +111,6 @@ export default class Info extends React.Component {
               <View style={styles.userAvatar}>
               <UserAvater
                 name={avatarName}
-                rounded
-                component={CachedImage}
                 size={AVATAR_SIZE}
               />
               </View>
@@ -153,7 +150,7 @@ export default class Info extends React.Component {
               </View>
               <TouchableRipple onPress={() => navigateToProfile(adminId)}>
                 <View style={styles.admin} >
-                  <UserAvater rounded size={32} name={adminName} src={author.pictureUrl}/>
+                  <UserAvater size={32} name={adminName} src={author.pictureUrl}/>
                   <Text style={styles.byLine}>
                     by <Text style={styles.adminName}>{adminName}</Text>
                   </Text>
