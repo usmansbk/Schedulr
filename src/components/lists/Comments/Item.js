@@ -1,15 +1,13 @@
 import React from 'react';
 import { View } from 'react-native';
 import {
-  TouchableRipple,
   Text,
   Paragraph,
   Caption,
   Button,
 } from 'react-native-paper';
-import UserAvatar from 'react-native-user-avatar';
-import { CachedImage } from 'react-native-cached-image';
 import Hyperlink from 'react-native-hyperlink';
+import UserAvatar from '../../common/UserAvatar';
 import styles, { AVATAR_SIZE } from './styles';
 
 export default class Item extends React.PureComponent {
@@ -47,14 +45,12 @@ export default class Item extends React.PureComponent {
     return (
       <View style={styles.itemContainer}>
         <View style={styles.itemLeft}>
-          <TouchableRipple onPress={this._navigateToProfile}>
-            <UserAvatar
-              name={avatarName}
-              component={CachedImage}
-              src={authorPictureUrl}
-              size={AVATAR_SIZE}
-            />
-          </TouchableRipple>
+          <UserAvatar
+            name={avatarName}
+            src={authorPictureUrl}
+            size={AVATAR_SIZE}
+            onPress={this._navigateToProfile}
+          />
         </View>
         <View style={styles.itemRight}>
           <View style={styles.itemHeader}>

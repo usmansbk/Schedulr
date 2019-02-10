@@ -8,9 +8,8 @@ import {
   Headline,
   Caption
 } from 'react-native-paper';
-import UserAvatar from 'react-native-user-avatar';
-import { CachedImage } from 'react-native-cached-image';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import UserAvatar from '../../common/UserAvatar';
 import Tag from '../../common/Tag';
 import numeral from 'numeral';
 import styles, { AVATAR_SIZE } from './styles';
@@ -37,14 +36,12 @@ export default class Item extends React.PureComponent {
       <TouchableRipple onPress={this._onPress} style={styles.itemContainer}>
         <View style={styles.itemContent}>
           <View style={styles.left}>
-            <TouchableRipple onPress={this._navigateToBoard}>
-              <UserAvatar
-                name={avatarName}
-                src={pictureUrl}
-                size={AVATAR_SIZE}
-                component={CachedImage}
-              />
-            </TouchableRipple>
+            <UserAvatar
+              name={avatarName}
+              src={pictureUrl}
+              size={AVATAR_SIZE}
+              onPress={this._navigateToBoard}
+            />
           </View>
           <View style={styles.right}>
             <Text style={styles.time}>{date}</Text>

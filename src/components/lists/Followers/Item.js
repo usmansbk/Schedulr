@@ -1,8 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 import { Text, TouchableRipple } from 'react-native-paper';
-import UserAvatar from 'react-native-user-avatar';
-import { CachedImage } from 'react-native-cached-image';
+import UserAvatar from '../../common/UserAvatar';
 import styles, { AVATAR_SIZE } from "./styles";
 
 export default class Item extends React.PureComponent {
@@ -21,7 +20,6 @@ export default class Item extends React.PureComponent {
             <UserAvatar
               name={avatarName}
               size={AVATAR_SIZE}
-              component={CachedImage}
               src={pictureUrl}
             />
           </View>

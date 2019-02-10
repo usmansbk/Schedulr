@@ -5,8 +5,7 @@ import {
   Text,
   Headline,
 } from 'react-native-paper';
-import Avatar from 'react-native-user-avatar';
-import { CachedImage } from 'react-native-cached-image';
+import Avatar from '../../common/UserAvatar';
 import Actions from '../../common/Actions';
 import Tag from '../../common/Tag';
 import { BULLET } from '../../../lib/constants';
@@ -51,14 +50,12 @@ export default class Item extends React.PureComponent {
       >
         <View style={styles.itemContent}>
           <View style={styles.left}>
-            <TouchableRipple onPress={this._navigateToBoard}>
-              <Avatar
-                component={CachedImage}
-                size={AVATAR_SIZE}
-                name={avatarName}
-                src={pictureUrl}
-              />
-            </TouchableRipple>
+            <Avatar
+              size={AVATAR_SIZE}
+              name={avatarName}
+              src={pictureUrl}
+              onPress={this._navigateToBoard}
+            />
           </View>
           <View style={styles.right}>
             <View style={styles.itemBody}>
