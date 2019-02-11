@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
   countRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between',
+    justifyContent: 'space-evenly',
     // backgroundColor: 'blue'
   },
   item: {
