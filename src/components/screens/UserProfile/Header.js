@@ -1,0 +1,74 @@
+import React from 'react';
+import {
+  View,
+  Image,
+  Animated,
+  StyleSheet,
+  Text
+} from 'react-native';
+import { Headline } from 'react-native-paper';
+import numeral from 'numeral';
+
+export default ({
+  translateY,
+  translateOpacity,
+  translateProgress,
+  user: {
+    pictureUrl,
+    name,
+    followingCount=0,
+    createdCount=0,
+  }
+}) => (
+  <View style={{width: '100%', height: '100%', justifyContent: 'center'}}>
+    <Image
+      source={{uri: pictureUrl}}
+      resizeMode="cover"
+      style={{ position: 'absolute', width: '100%', height: '100%', opacity: 0.5 }}
+    />
+    <Animated.Image source={{uri: pictureUrl}} resizeMode="cover"
+      style={{ transform: [{ scale: translateOpacity }], alignSelf: 'center', width: 100, height: 100, borderWidth: 4, borderColor: 'white', borderRadius: 50 }}
+    />
+    <Headline style={styles.headline}>{name}</Headline>
+    <View style={styles.countRow}>
+      <View style={styles.item}>
+        <Text style={styles.count}>{numeral(followingCount).format('0a')}</Text>
+        <Text style={styles.label}>Following</Text>
+      </View>
+        <View style={styles.item}>
+          <Text style={styles.count}>{numeral(createdCount).format('0a')}</Text>
+          <Text style={styles.label}>Created</Text>
+        </View>
+    </View>
+  </View>
+);
+
+const styles = StyleSheet.create({
+  headline: {
+    fontWeight: 'bold',
+    fontFamily: 'sans-serif-bold',
+    textAlign: 'center',
+  },
+  count: {
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: 25,
+    marginTop: 8,
+    marginBottom: 4
+  },
+  label: {
+    color: 'white',
+    fontSize: 16,
+  },
+  countRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    // backgroundColor: 'blue'
+  },
+  item: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginHorizontal: 16
+  }
+})

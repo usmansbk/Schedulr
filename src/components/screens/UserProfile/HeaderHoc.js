@@ -1,7 +1,7 @@
 import { graphql } from 'react-apollo';
 import { Analytics } from 'aws-amplify';
 import gql from 'graphql-tag';
-import Profile from './Profile';
+import Header from './Header';
 import { getUser } from '../../../graphql/queries';
 
 export default graphql(gql(getUser), {
@@ -30,7 +30,7 @@ export default graphql(gql(getUser), {
         })
       }
     },
-    user: data && data.getUser,
+    user: data && data.getUser || {},
     ...ownProps,
   })
-})(Profile)
+})(Header)

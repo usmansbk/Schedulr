@@ -1,8 +1,10 @@
+import React from 'react';
 import {
   createMaterialTopTabNavigator,
-  createAppContainer,
 } from 'react-navigation';
 import { StyleSheet, Dimensions } from 'react-native';
+import { withCollapsibleForTab } from 'react-navigation-collapsible';
+import UserProfile from './HeaderHoc';
 import Created from './Created';
 import Following from './Following';
 import colors from '../../../config/colors';
@@ -23,6 +25,7 @@ const Tabs = createMaterialTopTabNavigator(
     Created
   },
   {
+    animationEnabled: true,
     initialLayout: { height: 0, width: Dimensions.get('window').width },
     navigationOptions: {
       title: 'More'
@@ -37,13 +40,25 @@ const Tabs = createMaterialTopTabNavigator(
   }
 );
 
-export default createAppContainer(Tabs);
-// export default createAppContainer(
-//   createStackNavigator({
-//     Tabs
-//   }, {
-//     defaultNavigationOptions: {
-//       headerTitle: 'More',
-//     }
-//   })
-// );
+const ProfileHeader = ({ navigation, collapsible }) => {
+  const { translateY, translateOpacity, translateProgress } = collapsible;
+  const id = navigation.getParam('id');
+  return (
+    <UserProfile
+      id={id}
+      translateY={translateY}
+      translateOpacity={translateOpacity}
+      translateProgress={translateProgress}
+    />
+  );
+};
+
+const collapsibleParams = {
+  collapsibleComponent: ProfileHeader,
+  collapsibleBackgroundStyle: {
+    height: 250,
+    disableFadeoutInnerComponent: true
+  }
+};
+
+export default withCollapsibleForTab(Tabs, collapsibleParams);
