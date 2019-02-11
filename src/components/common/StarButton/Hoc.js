@@ -16,15 +16,20 @@ export default compose(
         },
         optimisticResponse: () => toggleStarButton(input, prev, 'starEvent'),
         update: (cache, { data: { starEvent } }) => {
-          const data = cache.readQuery(gql(listAllEvents));
-          const eventNode = cache.readQuery(gql(getEvent), { id: ownProps.id});
+          const data = cache.readQuery({ query: gql(listAllEvents) });
+          const eventNode = cache.readQuery({
+           query: gql(getEvent),
+           variables: {
+             id: ownProps.id
+           }
+          });
           if (eventNode.getEvent) {
             const event = Object.assign({}, eventNode.getEvent, starEvent);
             data.listAllEvents.items = [
               ...data.listAllEvents.items.filter(item => item.id !== starEvent.id),
               event
             ];
-            cache.writeQuery({ query, data });
+            cache.writeQuery({ query: gql(listAllEvents), data });
           }
         }
       }),
