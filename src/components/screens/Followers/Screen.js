@@ -7,6 +7,7 @@ export default class Screen extends React.Component {
     const isAuthor = this.props.navigation.getParam('isAuthor');
     return (
       <Followers
+        id={this.props.navigation.getParam('id')}
         isAuthor={isAuthor}
         goBack={this._goBack}
       />

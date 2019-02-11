@@ -260,6 +260,20 @@ export const listAllBoards = `query ListAllBoards($limit: Int, $nextToken: Strin
 }
 `;
 
+export const listBoardFollowers = `query Followers($id: ID!, $limit: Int, $nextToken: String) {
+  listFollowers(id: $id, limit: $limit, nextToken: $nextToken) {
+    nextToken
+    items {
+      id
+      name
+      email
+      pictureUrl
+      followingCount
+      createdCount
+    }
+  }
+}`
+
 export const searchEvent = `query SearchEvent($filter: SearchFilterInput, $limit: Int, $nextToken: String) {
   searchEvent(filter: $filter, limit: $limit, nextToken: $nextToken) {
     nextToken
