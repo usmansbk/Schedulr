@@ -46,6 +46,7 @@ const ProfileHeader = ({ navigation, collapsible }) => {
   return (
     <UserProfile
       id={id}
+      goBack={() => navigation.goBack()}
       translateY={translateY}
       translateOpacity={translateOpacity}
       translateProgress={translateProgress}
@@ -56,7 +57,7 @@ const ProfileHeader = ({ navigation, collapsible }) => {
 const collapsibleParams = {
   collapsibleComponent: ProfileHeader,
   collapsibleBackgroundStyle: {
-    height: 250,
+    height: 280,
     disableFadeoutInnerComponent: true
   }
 };

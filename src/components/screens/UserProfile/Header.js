@@ -6,13 +6,15 @@ import {
   StyleSheet,
   Text
 } from 'react-native';
-import { Headline } from 'react-native-paper';
+import { Headline, Appbar } from 'react-native-paper';
 import numeral from 'numeral';
+import colors from '../../../config/colors';
 
 export default ({
   translateY,
   translateOpacity,
   translateProgress,
+  goBack,
   user: {
     pictureUrl,
     name,
@@ -21,6 +23,9 @@ export default ({
   }
 }) => (
   <View style={{width: '100%', height: '100%', justifyContent: 'center'}}>
+    <Appbar.Header collapsable style={styles.header}>
+      <Appbar.BackAction onPress={goBack} />
+    </Appbar.Header>
     <Image
       source={{uri: pictureUrl}}
       resizeMode="cover"
@@ -44,20 +49,22 @@ export default ({
 );
 
 const styles = StyleSheet.create({
+  header: {backgroundColor: 'transparent'},
   headline: {
     fontWeight: 'bold',
     fontFamily: 'sans-serif-bold',
     textAlign: 'center',
+    color: colors.white
   },
   count: {
-    color: 'white',
+    color: colors.white,
     fontWeight: 'bold',
     fontSize: 25,
     marginTop: 8,
     marginBottom: 4
   },
   label: {
-    color: 'white',
+    color: colors.white,
     fontSize: 16,
   },
   countRow: {
