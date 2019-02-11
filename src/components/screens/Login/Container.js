@@ -41,7 +41,7 @@ export default class LoginScreen extends React.Component {
       if (url) NavigationService.deepLinkNavigate(url);
       else this.props.navigation.navigate('App');
     } catch (error) {
-      SimpleToast.show('Login failed' + error.message, SimpleToast.SHORT);
+      SimpleToast.show('Login failed: ' + error.message, SimpleToast.SHORT);
       this.setState({ loading: false });
       // Analytics.record({
       //   name: 'login_error',
