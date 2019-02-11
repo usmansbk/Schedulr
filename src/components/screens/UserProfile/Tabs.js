@@ -26,7 +26,7 @@ const Tabs = createMaterialTopTabNavigator(
   },
   {
     animationEnabled: true,
-    // initialLayout: { height: 0, width: Dimensions.get('window').width },
+    initialLayout: { height: 0, width: Dimensions.get('window').width },
     navigationOptions: {
       title: 'More'
     },
@@ -57,7 +57,8 @@ const collapsibleParams = {
   collapsibleComponent: ProfileHeader,
   collapsibleBackgroundStyle: {
     height: 280,
-    disableFadeoutInnerComponent: true
+    disableFadeoutInnerComponent: true,
+    backgroundColor: colors.primary_light
   }
 };
 
