@@ -46,7 +46,6 @@ const ProfileHeader = ({ navigation, collapsible }) => {
   return (
     <UserProfile
       id={id}
-      goBack={() => navigation.goBack()}
       translateY={translateY}
       translateOpacity={translateOpacity}
       translateProgress={translateProgress}

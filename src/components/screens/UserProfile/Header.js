@@ -23,9 +23,6 @@ export default ({
   }
 }) => (
   <View style={{width: '100%', height: '100%', justifyContent: 'center'}}>
-    <Appbar.Header collapsable style={styles.header}>
-      <Appbar.BackAction onPress={goBack} />
-    </Appbar.Header>
     <Image
       source={{uri: pictureUrl}}
       resizeMode="cover"
