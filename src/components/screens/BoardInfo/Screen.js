@@ -31,7 +31,7 @@ export default class Screen extends React.Component {
     }
   };
   _navigateToFollowers = (id, isAuthor) => this.props.navigation.navigate('Followers', { id, isAuthor });
-  _navigateToProfile = (id) => this.props.navigation.navigate('UserProfile', { id, privacy: 'public' });
+  _navigateToProfile = (id) => this.props.navigation.push('UserProfile', { id, privacy: 'public' });
 
   render() {
     const { visibleDialog } = this.state;

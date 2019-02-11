@@ -1,17 +1,20 @@
 import React from 'react';
 import { graphql, compose } from 'react-apollo';
+import { Animated } from 'react-native'
 import gql from 'graphql-tag';
 import SimpleToast from 'react-native-simple-toast';
 import { withCollapsibleForTabChild } from 'react-navigation-collapsible';
 import List from '../../lists/Boards';
 import { followingBoards } from '../../../graphql/queries';
 
+const AnimatedList = Animated.createAnimatedComponent(List);
+
 class Boards extends React.Component {
   render() {
     const { animatedY, onScroll } = this.props.collapsible;
 
     return (
-      <List
+      <AnimatedList
         loading={this.props.loading}
         boards={this.props.boards}
         onRefresh={this.props.onRefresh}

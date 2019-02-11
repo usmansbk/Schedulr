@@ -1,10 +1,13 @@
 import React from 'react';
+import { Animated } from 'react-native';
 import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
 import SimpleToast from 'react-native-simple-toast';
 import { withCollapsibleForTabChild } from 'react-navigation-collapsible';
 import List from '../../lists/Boards';
 import { createdBoards } from '../../../graphql/queries';
+
+const AnimatedList = Animated.createAnimatedComponent(List);
 
 class Boards extends React.Component {
   shouldComponentUpdate = (nextProps) => {
@@ -17,7 +20,7 @@ class Boards extends React.Component {
     const { animatedY, onScroll } = this.props.collapsible;
 
     return (
-      <List
+      <AnimatedList
         loading={this.props.loading}
         boards={this.props.boards}
         onRefresh={this.props.onRefresh}
