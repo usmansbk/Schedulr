@@ -1,5 +1,6 @@
 import {
   createMaterialTopTabNavigator,
+  createAppContainer,
 } from 'react-navigation';
 import { StyleSheet, Dimensions } from 'react-native';
 import Created from './Created';
@@ -23,6 +24,9 @@ const Tabs = createMaterialTopTabNavigator(
   },
   {
     initialLayout: { height: 0, width: Dimensions.get('window').width },
+    navigationOptions: {
+      title: 'More'
+    },
     tabBarOptions: {
       activeTintColor: colors.primary,
       inactiveTintColor: colors.gray,
@@ -33,8 +37,7 @@ const Tabs = createMaterialTopTabNavigator(
   }
 );
 
-export default (Tabs);
-
+export default createAppContainer(Tabs);
 // export default createAppContainer(
 //   createStackNavigator({
 //     Tabs
