@@ -22,11 +22,11 @@ export default ({
     createdCount=0,
   }
 }) => (
-  <View style={{width: '100%', height: '100%', justifyContent: 'center'}}>
+  <Animated.View style={[styles.header]}>
     <Image
       source={{uri: pictureUrl}}
       resizeMode="cover"
-      style={{ position: 'absolute', width: '100%', height: '100%', opacity: 0.5 }}
+      style={[styles.image]}
     />
     <Animated.Image source={{uri: pictureUrl}} resizeMode="cover"
       style={{ transform: [{ scale: translateOpacity }], alignSelf: 'center', width: 100, height: 100, borderWidth: 4, borderColor: colors.white, borderRadius: 50 }}
@@ -42,11 +42,21 @@ export default ({
           <Text style={styles.label}>Created</Text>
         </View>
     </View>
-  </View>
+  </Animated.View>
 );
 
 const styles = StyleSheet.create({
-  header: {backgroundColor: 'transparent'},
+  header: {
+    width: '100%',
+    height: '100%',
+    justifyContent: 'center'
+  },
+  image: {
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
+    opacity: 0.5
+  },
   headline: {
     fontWeight: 'bold',
     fontFamily: 'sans-serif-bold',
