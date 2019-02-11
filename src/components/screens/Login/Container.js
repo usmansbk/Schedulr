@@ -35,14 +35,7 @@ export default class LoginScreen extends React.Component {
         email,
         pictureUrl
       });
-      const handleDeepLink = this.props.handleDeepLink;
-      alert(handleDeepLink);
-      if (handleDeepLink) {
-        alert('has deep link')
-        // handleDeepLink();
-      } else {
-        this.props.navigation.navigate('App');
-      }
+      this.props.navigation.navigate('App');
     } catch (error) {
       SimpleToast.show('Login failed', SimpleToast.SHORT);
       this.setState({ loading: false });

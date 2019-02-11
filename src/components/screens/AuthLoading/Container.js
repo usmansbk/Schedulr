@@ -7,7 +7,6 @@ import NavigationService from '../../../config/navigation';
 export default class Container extends Component {
   constructor(props) {
     super(props);
-    // this._bootstrapAsync();
   }
 
   _bootstrapAsync = async (url) => {
@@ -16,13 +15,12 @@ export default class Container extends Component {
       const currentUser = await Auth.currentAuthenticatedUser();
       userToken = currentUser;
       if (url && userToken) {
-        this.navigate(url)
+        NavigationService.deepLinkNavigate(url)
       } else {
         this.props.navigation.navigate('App');
       }
     } catch (error) {
-      const onLogin = url ? () => this.navigate(url) : null;
-      this.props.navigation.navigate('Auth', { onLogin });
+      this.props.navigation.navigate('Auth');
     }
   }
 
@@ -40,22 +38,6 @@ export default class Container extends Component {
 
   handleOpenURL = (event) => {
     this._bootstrapAsync(event.url);
-  }
-
-  navigate = (url) => {
-    const route = url.replace(/.*?:\/\//g, '');
-    const id = route.match(/\/([^\/]+)\/?$/)[1];
-    const routeName = route.split('/')[1];
-    switch(routeName) {
-      case 'event':
-        NavigationService.navigate('EventDetails', { id });
-        break;
-      case 'board':
-        NavigationService.navigate('BoardInfo', { id });
-        break;
-      default:
-        break;
-    }
   }
 
   render() {

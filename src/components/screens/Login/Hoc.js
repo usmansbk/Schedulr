@@ -28,7 +28,6 @@ export default graphql(gql(LoginUser), {
         });
       }
     }),
-    handleDeepLink: ownProps.navigation.getParam('onLogin'),
     ...ownProps
   })
 })(Container);
