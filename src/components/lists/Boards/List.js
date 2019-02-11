@@ -26,6 +26,7 @@ class List extends Component {
       index
     }
   );
+  shouldComponentUpdate = (nextProps) => nextProps.navigation.isFocused;
   _onPressItem = (id) => this.props.navigation.navigate('BoardEvents', { id });
   _navigateToInfo = (id) => this.props.navigation.navigate('BoardInfo', { id });
   _keyExtractor = (item) => String(item.id);
