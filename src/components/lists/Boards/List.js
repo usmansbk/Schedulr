@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { RefreshControl } from 'react-native';
+import { RefreshControl, Animated } from 'react-native';
 import { withNavigationFocus, FlatList } from 'react-navigation';
 import Item from './Item';
 import Separator from './Separator';
@@ -10,6 +10,8 @@ import styles, {
   SEPARATOR_HEIGHT
 } from './styles';
 import colors from '../../../config/colors';
+
+const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
 
 class List extends Component {
   static defaultProps = {
@@ -60,10 +62,12 @@ class List extends Component {
     const {
       boards,
       loading,
-      onRefresh
+      onRefresh,
+      onScroll,
+      animatedY
     } = this.props;
     return (
-      <FlatList
+      <AnimatedFlatList
         refreshing={loading}
         refreshControl={<RefreshControl onRefresh={onRefresh} refreshing={loading} colors={[colors.primary]} />}
         onRefresh={onRefresh}
@@ -78,6 +82,8 @@ class List extends Component {
         renderItem={this._renderItem}
         ListEmptyComponent={this._renderEmptyList}
         ListFooterComponent={this._renderFooter}
+        onScroll={onScroll}
+        _mustAddThis={animatedY}
       />
     )
   }

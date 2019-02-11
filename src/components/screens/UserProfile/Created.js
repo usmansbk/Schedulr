@@ -1,7 +1,8 @@
 import React from 'react';
-import { graphql } from 'react-apollo';
+import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
 import SimpleToast from 'react-native-simple-toast';
+import { withCollapsibleForTabChild } from 'react-navigation-collapsible';
 import List from '../../lists/Boards';
 import { createdBoards } from '../../../graphql/queries';
 
@@ -13,18 +14,22 @@ class Boards extends React.Component {
   }
   
   render() {
+    const { animatedY, onScroll } = this.props.collapsible;
+
     return (
       <List
         loading={this.props.loading}
         boards={this.props.boards}
         onRefresh={this.props.onRefresh}
+        animatedY={animatedY}
+        onScroll={onScroll}
         profile
       />
     )
   }
 }
 
-export default graphql(gql(createdBoards), {
+export default compose(graphql(gql(createdBoards), {
   alias: 'withUserCreatedBoardsTab',
   options: props => ({
     variables: {
@@ -46,4 +51,4 @@ export default graphql(gql(createdBoards), {
     },
     ...ownProps
   }),
-})(Boards);
+}), withCollapsibleForTabChild)(Boards);
