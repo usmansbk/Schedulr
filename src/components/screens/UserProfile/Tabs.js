@@ -27,9 +27,6 @@ const Tabs = createMaterialTopTabNavigator(
   {
     animationEnabled: true,
     initialLayout: { height: 0, width: Dimensions.get('window').width },
-    navigationOptions: {
-      title: 'More'
-    },
     tabBarOptions: {
       activeTintColor: colors.primary,
       inactiveTintColor: colors.gray,

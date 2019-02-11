@@ -24,6 +24,7 @@ import {
   EditBoard,
   SearchScreen
 } from './components/screens';
+import colors from './config/colors';
 
 // Configure notifications for local events reminder
 LocalNotifications.configure({
@@ -52,7 +53,14 @@ const AppStack = createStackNavigator({
 }, {
   initialRouteName: 'Home',
   defaultNavigationOptions: {
-    header: null,
+    headerStyle: {
+      borderBottomColor: 'transparent',
+      borderBottomWidth: 0,
+      elevation: 0
+    },
+    headerTitleStyle: { color: 'white' },
+    headerTintColor: 'white',
+    headerTransparent: true,
   }
 });
 
