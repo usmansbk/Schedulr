@@ -11,10 +11,7 @@ import numeral from 'numeral';
 import colors from '../../../config/colors';
 
 export default ({
-  translateY,
   translateOpacity,
-  translateProgress,
-  goBack,
   user: {
     pictureUrl,
     name,
