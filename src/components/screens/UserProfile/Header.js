@@ -22,7 +22,7 @@ export default ({
     createdCount=0,
   }
 }) => (
-  <Animated.View style={[styles.header]}>
+  <View style={[styles.header]}>
     <Image
       source={{uri: pictureUrl}}
       resizeMode="cover"
@@ -42,7 +42,7 @@ export default ({
           <Text style={styles.label}>Created</Text>
         </View>
     </View>
-  </Animated.View>
+  </View>
 );
 
 const styles = StyleSheet.create({
