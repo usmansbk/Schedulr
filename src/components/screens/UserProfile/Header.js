@@ -29,7 +29,7 @@ export default ({
       style={[styles.image]}
     />
     <Animated.Image source={{uri: pictureUrl}} resizeMode="cover"
-      style={{ transform: [{ scale: translateOpacity }], alignSelf: 'center', width: 100, height: 100, borderWidth: 4, borderColor: colors.white, borderRadius: 50 }}
+      style={[{ transform: [{ scale: translateOpacity}]}, styles.backgroundImage]}
     />
     <Headline style={styles.headline}>{name}</Headline>
     <View style={styles.countRow}>
@@ -50,6 +50,14 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     justifyContent: 'center'
+  },
+  backgroundImage: {
+    alignSelf: 'center',
+    width: 100,
+    height: 100,
+    borderWidth: 4,
+    borderColor: colors.white,
+    borderRadius: 50 
   },
   image: {
     position: 'absolute',
