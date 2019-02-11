@@ -4,7 +4,7 @@ import {
 } from 'react-navigation';
 import { StyleSheet, Dimensions } from 'react-native';
 import { withCollapsibleForTab } from 'react-navigation-collapsible';
-import UserProfile from './HeaderHoc';
+import ProfileHeader from './HeaderHoc';
 import Created from './Created';
 import Following from './Following';
 import colors from '../../../config/colors';
@@ -37,11 +37,11 @@ const Tabs = createMaterialTopTabNavigator(
   }
 );
 
-const ProfileHeader = ({ navigation, collapsible }) => {
+const Header = ({ navigation, collapsible }) => {
   const { translateY, translateOpacity, translateProgress } = collapsible;
   const id = navigation.getParam('id');
   return (
-    <UserProfile
+    <ProfileHeader
       id={id}
       translateY={translateY}
       translateOpacity={translateOpacity}
@@ -51,7 +51,7 @@ const ProfileHeader = ({ navigation, collapsible }) => {
 };
 
 const collapsibleParams = {
-  collapsibleComponent: ProfileHeader,
+  collapsibleComponent: Header,
   collapsibleBackgroundStyle: {
     height: 250,
     disableFadeoutInnerComponent: true,
