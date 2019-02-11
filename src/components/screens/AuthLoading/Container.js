@@ -21,7 +21,9 @@ export default class Container extends Component {
         this.props.navigation.navigate('App');
       }
     } catch (error) {
-      this.props.navigation.navigate('Auth');
+      const onLogin = url ? () => this.navigate(url) : null;
+      alert(onLogin);
+      this.props.navigation.navigate('Auth', { onLogin });
     }
   }
 
