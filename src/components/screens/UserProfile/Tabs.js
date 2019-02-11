@@ -26,7 +26,7 @@ const Tabs = createMaterialTopTabNavigator(
   },
   {
     animationEnabled: true,
-    initialLayout: { height: 0, width: Dimensions.get('window').width },
+    // initialLayout: { height: 0, width: Dimensions.get('window').width },
     navigationOptions: {
       title: 'More'
     },
