@@ -21,10 +21,10 @@ function deepLinkNavigate(url) {
   const routeName = route.split('/')[1];
   switch(routeName) {
     case 'event':
-      NavigationService.navigate('EventDetails', { id });
+      navigate('EventDetails', { id });
       break;
     case 'board':
-      NavigationService.navigate('BoardInfo', { id });
+      navigate('BoardInfo', { id });
       break;
     default:
       break;
