@@ -7,13 +7,27 @@ import schdlAll from '../../../helpers/setReminders';
 import SimpleToast from 'react-native-simple-toast';
 
 export default class Events extends React.Component {
+  constructor(props) {
+    super(props);
+    this._handleDeeplink();
+  }
+
+  _handleDeeplink = async () => {
+    const url = await Linking.getInitialURL();
+    if (url) {
+      NavigationService.deepLinkNavigate(url);
+    }
+  }
+  
   shouldComponentUpdate = (nextProps) => nextProps.isFocused;
   
   componentDidUpdate = () => {
     schdlAll(this.props.events);
   }
  
-  componentDidMount = () => Linking.addEventListener('url', this.handleOpenURL);
+  componentDidMount = async () => {
+    Linking.addEventListener('url', this.handleOpenURL)
+  };
 
   componentWillUnmount = () => Linking.removeEventListener('url', this.handleOpenURL);
 

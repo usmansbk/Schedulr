@@ -1,9 +1,7 @@
 import React from 'react';
-import { Linking } from 'react-native';
 import { Auth, Analytics } from 'aws-amplify';
 import SimpleToast from 'react-native-simple-toast';
 import client from '../../../config/client';
-import NavigationService from '../../../config/navigation';
 import Login from './Login';
 import Loading from '../../common/Loading';
 
@@ -37,9 +35,7 @@ export default class LoginScreen extends React.Component {
         email,
         pictureUrl
       });
-      const url = await Linking.getInitialURL();
-      if (url) NavigationService.deepLinkNavigate(url);
-      else this.props.navigation.navigate('App');
+      this.props.navigation.navigate('App');
     } catch (error) {
       SimpleToast.show('Login failed: ' + error.message, SimpleToast.SHORT);
       this.setState({ loading: false });
