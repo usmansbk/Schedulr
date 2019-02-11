@@ -18,8 +18,8 @@ const styles = StyleSheet.create({
 
 const TopTabNavigator = createMaterialTopTabNavigator(
   {
-    Screen1: { screen: TabChild1Screen },
-    Screen2: { screen: TabChild1Screen },
+    Following: { screen: TabChild1Screen },
+    Created: { screen: TabChild1Screen },
   },
   {
     animationEnabled: true,
