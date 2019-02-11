@@ -14,17 +14,17 @@ export default StyleSheet.create({
   },
   header: {
     height: HEADER_HEIGHT,
-    backgroundColor: 'white',
+    backgroundColor: colors.white,
     marginVertical: 8,
   },
   separator: {
     height: SEPARATOR_HEIGHT,
   },
   footer: {
-    backgroundColor: 'white',
+    backgroundColor: colors.white,
     marginVertical: 8,
   },
   item: {
-    backgroundColor: 'white',
+    backgroundColor: colors.white,
   }
 });

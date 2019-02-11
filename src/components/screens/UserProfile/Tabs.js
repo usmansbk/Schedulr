@@ -12,7 +12,7 @@ import colors from '../../../config/colors';
 const styles = StyleSheet.create({
   barStyle: {
     elevation: 2,
-    backgroundColor: '#fff',
+    backgroundColor: colors.white,
   },
   indicatorStyle: {
     backgroundColor: colors.primary_light

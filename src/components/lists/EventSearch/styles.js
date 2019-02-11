@@ -35,7 +35,7 @@ export default StyleSheet.create({
   },
   itemContainer: {
     height: ITEM_HEIGHT,
-    backgroundColor: 'white',
+    backgroundColor: colors.white,
   },
   itemContent: {
     marginHorizontal: 8,

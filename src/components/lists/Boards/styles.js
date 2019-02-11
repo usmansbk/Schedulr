@@ -39,7 +39,7 @@ export default StyleSheet.create({
   },
   itemContainer: {
     height: ITEM_HEIGHT,
-    backgroundColor: 'white',
+    backgroundColor: colors.white,
     justifyContent: 'center',
     elevation: 1,
     borderRadius: 2,

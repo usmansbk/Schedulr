@@ -58,8 +58,8 @@ const AppStack = createStackNavigator({
       borderBottomWidth: 0,
       elevation: 0
     },
-    headerTitleStyle: { color: 'white' },
-    headerTintColor: 'white',
+    headerTitleStyle: { color: colors.white },
+    headerTintColor: colors.white,
     headerTransparent: true,
   }
 });
