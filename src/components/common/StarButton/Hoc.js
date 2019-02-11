@@ -18,12 +18,14 @@ export default compose(
         update: (cache, { data: { starEvent } }) => {
           const data = cache.readQuery(gql(listAllEvents));
           const eventNode = cache.readQuery(gql(getEvent), { id: ownProps.id});
-          const event = Object.assign({}, eventNode.getEvent, starEvent);
-          data.listAllEvents.items = [
-            ...data.listAllEvents.items.filter(item => item.id !== starEvent.id),
-            event
-          ];
-          cache.writeQuery({ query, data });
+          if (eventNode.getEvent) {
+            const event = Object.assign({}, eventNode.getEvent, starEvent);
+            data.listAllEvents.items = [
+              ...data.listAllEvents.items.filter(item => item.id !== starEvent.id),
+              event
+            ];
+            cache.writeQuery({ query, data });
+          }
         }
       }),
       ...ownProps
