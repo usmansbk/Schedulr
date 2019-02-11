@@ -53,7 +53,7 @@ const ProfileHeader = ({ navigation, collapsible }) => {
 const collapsibleParams = {
   collapsibleComponent: ProfileHeader,
   collapsibleBackgroundStyle: {
-    height: 280,
+    height: 250,
     disableFadeoutInnerComponent: true,
     backgroundColor: colors.primary_light
   }
