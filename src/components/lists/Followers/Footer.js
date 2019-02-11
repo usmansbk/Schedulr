@@ -5,6 +5,6 @@ import styles from './styles';
 
 export default ({visible}) => visible ? (
   <View style={styles.footer}>
-    <Text style={styles.footerText}>End of list</Text>
+    <Text style={styles.footerText}>That's all!</Text>
   </View>
 ) : null;
