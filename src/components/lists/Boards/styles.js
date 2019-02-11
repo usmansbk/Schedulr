@@ -41,10 +41,6 @@ export default StyleSheet.create({
     height: ITEM_HEIGHT,
     backgroundColor: colors.white,
     justifyContent: 'center',
-    elevation: 1,
-    borderRadius: 2,
-    marginHorizontal: 4,
-    marginVertical: 2
   },
   itemAvatar: {
     height: AVATAR_SIZE,

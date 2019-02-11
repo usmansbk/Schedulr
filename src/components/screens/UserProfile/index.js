@@ -1,3 +1,3 @@
-import Screen from './Tabs';
+import Screen from './TestTab';
 
 export default Screen;
