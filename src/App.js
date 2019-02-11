@@ -37,19 +37,81 @@ LocalNotifications.configure({
 
 const AppStack = createStackNavigator({
   Home,
-  EditEvent,
-  EditBoard,
-  NewEvent,
-  NewBoard,
-  EventDetails,
-  BoardEvents,
-  BoardInfo,
-  Help,
-  Settings,
-  UserProfile,
-  Comments,
-  Followers,
-  SearchScreen
+  EditEvent: {
+    screen: EditEvent,
+    navigationOptions: {
+      header: null
+    }
+  },
+  EditBoard: {
+    screen: EditBoard,
+    navigationOptions: {
+      header: null
+    }
+  },
+  NewEvent: {
+    screen: NewEvent,
+    navigationOptions: {
+      header: null
+    }
+  },
+  NewBoard: {
+    screen: NewBoard,
+    navigationOptions: {
+      header: null
+    }
+  },
+  EventDetails: {
+    screen: EventDetails,
+    navigationOptions: {
+      header: null
+    }
+  },
+  BoardEvents: {
+    screen: BoardEvents,
+    navigationOptions: {
+      header: null
+    }
+  },
+  BoardInfo: {
+    screen: BoardInfo,
+    navigationOptions: {
+      header: null
+    }
+  },
+  Help: {
+    screen: Help,
+    navigationOptions: {
+      header: null
+    }
+  },
+  Settings: {
+    screen: Settings,
+    navigationOptions: {
+      header: null
+    }
+  },
+  UserProfile: {
+    screen: UserProfile,
+  },
+  Comments: {
+    screen: Comments,
+    navigationOptions: {
+      header: null
+    }
+  },
+  Followers: {
+    screen: Followers,
+    navigationOptions: {
+      header: null
+    }
+  },
+  SearchScreen: {
+    screen: SearchScreen,
+    navigationOptions: {
+      header: null
+    }
+  }
 }, {
   initialRouteName: 'Home',
   defaultNavigationOptions: {
