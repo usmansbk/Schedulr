@@ -54,8 +54,6 @@ class Boards extends Component{
         style={styles.list}
         renderItem={this.renderItem}
         keyExtractor={this._keyExtractor}
-        contentContainerStyle={{paddingTop: translateY}}
-
         refreshing={this.state.loading}
         data={data}
         onRefresh={this._onRefresh}

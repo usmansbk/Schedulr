@@ -7,7 +7,7 @@ import Item from '../../lists/Boards/Item';
 import Separator from '../../lists/Boards/Separator';
 import Empty from '../../lists/Boards/Empty';
 import { withCollapsibleForTabChild } from 'react-navigation-collapsible';
-import { createdBoards } from '../../../graphql/queries';
+import { createdBoards as createdBoardsQuery } from '../../../graphql/queries';
 import client from '../../../config/client';
 import colors from '../../../config/colors';
 
@@ -25,18 +25,18 @@ class Boards extends Component{
     const id = this.props.navigation.getParam('id');
     this.setState({ loading: true });
     try {
-      const data = await client.query({
-        query: gql(createdBoards),
+      const { data: { createdBoards} } = await client.query({
+        query: gql(createdBoardsQuery),
         variables: {
           id
         }
       });
-      const items = data.createdBoards && data.createdBoards.items || [];
-      this.setState({ data: items });
+      const items = createdBoards && createdBoards.createdBoards && createdBoards.createdBoards.items || [];
+      this.setState({ data: items, loading: false });
     } catch (e) {
       SimpleToast.show('Connection error', SimpleToast.SHORT);
+      this.setState({ loading: false });
     }
-    this.setState({ loading: false });
   };
 
   componentDidMount = async () => {
@@ -82,7 +82,7 @@ class Boards extends Component{
         contentContainerStyle={{paddingTop: translateY}}
 
         refreshing={this.state.loading}
-        data={data}
+        data={this.state.data}
         onRefresh={this._onRefresh}
         ItemSeparatorComponent={this.renderSeparator}
         ListEmptyComponent={this._renderEmptyList}
