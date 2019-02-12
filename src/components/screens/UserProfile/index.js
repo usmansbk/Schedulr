@@ -1,3 +1,3 @@
-import Screen from './Tabs';
+import UserProfile from './Hoc';
 
-export default Screen;
+export default UserProfile;

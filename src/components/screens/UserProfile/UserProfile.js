@@ -2,11 +2,10 @@ import React from 'react';
 import {
   View,
   Image,
-  Animated,
   StyleSheet,
   Text
 } from 'react-native';
-import { Headline } from 'react-native-paper';
+import { Headline, TouchableRipple } from 'react-native-paper';
 import numeral from 'numeral';
 import colors from '../../../config/colors';
 
@@ -22,13 +21,13 @@ export default ({
     <Image
       source={{uri: pictureUrl}}
       resizeMode="cover"
-      style={styles.image}
-    />
-    <Animated.Image source={{uri: pictureUrl}} resizeMode="cover"
       style={styles.backgroundImage}
     />
+    <Image source={{uri: pictureUrl}} resizeMode="cover"
+      style={styles.image}
+    />
     <Headline style={styles.headline}>{name}</Headline>
-    <View style={styles.countRow}>
+    <TouchableRipple style={styles.countRow}>
       <View style={styles.item}>
         <Text style={styles.count}>{numeral(followingCount).format('0a')}</Text>
         <Text style={styles.label}>Following</Text>
@@ -37,7 +36,7 @@ export default ({
           <Text style={styles.count}>{numeral(createdCount).format('0a')}</Text>
           <Text style={styles.label}>Created</Text>
         </View>
-    </View>
+    </TouchableRipple>
   </View>
 );
 
@@ -49,15 +48,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: colors.primary_light
   },
-  backgroundImage: {
+  image: {
     alignSelf: 'center',
-    width: 100,
-    height: 100,
+    width: 120,
+    height: 120,
     borderWidth: 4,
     borderColor: colors.white,
-    borderRadius: 50 
+    borderRadius: 60 
   },
-  image: {
+  backgroundImage: {
     position: 'absolute',
     width: '100%',
     height: '100%',
@@ -89,5 +88,6 @@ const styles = StyleSheet.create({
   item: {
     justifyContent: 'center',
     alignItems: 'center',
+    paddingHorizontal: 16
   }
 })
