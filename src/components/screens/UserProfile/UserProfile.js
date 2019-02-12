@@ -25,7 +25,9 @@ export default ({
       resizeMode="cover"
       style={styles.backgroundImage}
     />
-    <Image source={{uri: pictureUrl}} resizeMode="cover"
+    <Image
+      source={{uri: pictureUrl}}
+      resizeMode="cover"
       style={styles.image}
     />
     <Headline style={styles.headline}>{name}</Headline>
