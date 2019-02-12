@@ -10,7 +10,9 @@ import numeral from 'numeral';
 import colors from '../../../config/colors';
 
 export default ({
+  navigation,
   user: {
+    id,
     pictureUrl,
     name,
     followingCount=0,
@@ -27,7 +29,10 @@ export default ({
       style={styles.image}
     />
     <Headline style={styles.headline}>{name}</Headline>
-    <TouchableRipple style={styles.countRow}>
+    <TouchableRipple onPress={() => navigation.navigate('UserBoards', {
+      id,
+      name
+    })} style={styles.countRow}>
       <View style={styles.item}>
         <Text style={styles.count}>{numeral(followingCount).format('0a')}</Text>
         <Text style={styles.label}>Following</Text>
