@@ -11,6 +11,7 @@ import BoardInfo from './BoardInfo';
 import Settings from './Settings';
 import Help from './Help';
 import UserProfile from './UserProfile';
+import UserBoards from './UserBoards';
 import Comments from './Comments';
 import Followers from './Followers';
 import SearchScreen from './Search';
@@ -29,6 +30,7 @@ export {
   Settings,
   Help,
   UserProfile,
+  UserBoards,
   Comments,
   Followers,
   SearchScreen

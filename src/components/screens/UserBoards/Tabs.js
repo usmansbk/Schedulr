@@ -1,10 +1,7 @@
-import React from 'react';
 import { StyleSheet, Dimensions } from 'react-native';
 import { createMaterialTopTabNavigator } from 'react-navigation';
 import Following from './Following';
 import Created from './Created';
-import ProfileHeader from './HeaderHoc';
-import { withCollapsibleForTab } from 'react-navigation-collapsible';
 import colors from '../../../config/colors';
 
 const styles = StyleSheet.create({
@@ -17,7 +14,7 @@ const styles = StyleSheet.create({
   }
 });
 
-const TopTabNavigator = createMaterialTopTabNavigator(
+const Tabs = createMaterialTopTabNavigator(
   {
     Following,
     Created,
@@ -35,28 +32,4 @@ const TopTabNavigator = createMaterialTopTabNavigator(
   }
 );
 
-// eslint-disable-next-line no-unused-vars
-const GroupImageHeader = ({ navigation, collapsible }) => {
-  const { translateY, translateOpacity, translateProgress } = collapsible;
-  const id = navigation.getParam('id');
-  return (
-    <ProfileHeader
-      id={id}
-      translateY={translateY}
-      translateOpacity={translateOpacity}
-      translateProgress={translateProgress}
-    />
-  );
-};
-
-
-const collapsibleParams = {
-  collapsibleComponent: GroupImageHeader,
-  collapsibleBackgroundStyle: {
-    height: 250,
-    disableFadeoutInnerComponent: true,
-    backgroundColor: colors.primary_light
-  }
-}
-
-export default withCollapsibleForTab(TopTabNavigator, collapsibleParams);
+export default Tabs;
