@@ -101,6 +101,11 @@ const AppStack = createStackNavigator({
   },
   UserBoards: {
     screen: UserBoards,
+    navigationOptions: {
+      headerTransparent: false,
+      headerTitleStyle: { color: colors.gray },
+      headerTintColor: colors.gray,
+    }
   },
   Comments: {
     screen: Comments,
