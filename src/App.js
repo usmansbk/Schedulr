@@ -18,6 +18,7 @@ import {
   Help,
   Settings,
   UserProfile,
+  UserBoards,
   Followers,
   Comments,
   EditEvent,
@@ -97,6 +98,9 @@ const AppStack = createStackNavigator({
   },
   UserProfile: {
     screen: UserProfile,
+  },
+  UserBoards: {
+    screen: UserBoards,
   },
   Comments: {
     screen: Comments,
