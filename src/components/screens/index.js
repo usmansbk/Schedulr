@@ -10,7 +10,7 @@ import BoardEvents from './BoardEvents';
 import BoardInfo from './BoardInfo';
 import Settings from './Settings';
 import Help from './Help';
-import UserProfile from './UserProfile';
+import UserProfile from './UProfile';
 import Comments from './Comments';
 import Followers from './Followers';
 import SearchScreen from './Search';
