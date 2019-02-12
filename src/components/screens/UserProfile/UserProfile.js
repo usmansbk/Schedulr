@@ -29,18 +29,17 @@ export default ({
       style={styles.image}
     />
     <Headline style={styles.headline}>{name}</Headline>
-    <TouchableRipple onPress={() => navigation.navigate('UserBoards', {
-      id,
-      name
-    })} style={styles.countRow}>
-      <View style={styles.item}>
-        <Text style={styles.count}>{numeral(followingCount).format('0a')}</Text>
-        <Text style={styles.label}>Following</Text>
-      </View>
+    <TouchableRipple onPress={() => navigation.navigate('UserBoards', { id, name})}>
+      <View style={styles.countRow}>
+        <View style={styles.item}>
+          <Text style={styles.count}>{numeral(followingCount).format('0a')}</Text>
+          <Text style={styles.label}>Following</Text>
+        </View>
         <View style={styles.item}>
           <Text style={styles.count}>{numeral(createdCount).format('0a')}</Text>
           <Text style={styles.label}>Created</Text>
         </View>
+      </View>
     </TouchableRipple>
   </View>
 );
