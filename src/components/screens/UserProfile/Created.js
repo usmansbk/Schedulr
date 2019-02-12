@@ -79,7 +79,7 @@ class Boards extends Component{
         style={styles.list}
         renderItem={this.renderItem}
         keyExtractor={this._keyExtractor}
-        contentContainerStyle={{paddingTop: translateY}}
+        contentContainerStyle={{flex: 1, paddingTop: translateY}}
 
         refreshing={this.state.loading}
         data={this.state.data}
