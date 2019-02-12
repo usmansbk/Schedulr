@@ -1,7 +1,8 @@
 import React from 'react';
 import { StyleSheet, Dimensions } from 'react-native';
 import { createMaterialTopTabNavigator } from 'react-navigation';
-import TabChild1Screen from './TabChild1Screen.js';
+import Following from './Following';
+import Created from './Created';
 import ProfileHeader from './HeaderHoc';
 import { withCollapsibleForTab } from 'react-navigation-collapsible';
 import colors from '../../../config/colors';
@@ -18,8 +19,8 @@ const styles = StyleSheet.create({
 
 const TopTabNavigator = createMaterialTopTabNavigator(
   {
-    Following: { screen: TabChild1Screen },
-    Created: { screen: TabChild1Screen },
+    Following,
+    Created,
   },
   {
     animationEnabled: true,

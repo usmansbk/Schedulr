@@ -1,57 +1,186 @@
-import React from 'react';
-import { Animated } from 'react-native';
+import React, {Component} from 'react';
+import { Animated, StyleSheet } from 'react-native';
+import { FlatList } from 'react-navigation';
 import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
 import SimpleToast from 'react-native-simple-toast';
+import Item from '../../lists/Boards/Item';
+import Separator from '../../lists/Boards/Separator';
+import Empty from '../../lists/Boards/Empty';
 import { withCollapsibleForTabChild } from 'react-navigation-collapsible';
-import List from '../../lists/Boards';
 import { createdBoards } from '../../../graphql/queries';
+import colors from '../../../config/colors';
 
-const AnimatedList = Animated.createAnimatedComponent(List);
+const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
 
-class Boards extends React.Component {
-  shouldComponentUpdate = (nextProps) => {
-    return ((nextProps.loading) !== this.props.loading) || (
-      nextProps.boards !== this.props.boards
-    );
-  }
-  
-  render() {
-    const { animatedY, onScroll } = this.props.collapsible;
+class Boards extends Component{
+  state = {
+    loading: false,
+    data: [],
+  };
+
+  _keyExtractor = (item) => String(item.id);
+  renderSeparator = () => <Separator />;
+  _renderEmptyList = () => this.state.loading ? null : <Empty profile />;
+  renderItem = ({item}) => {
+    const {
+      id,
+      name,
+      description,
+      isPublic,
+      status,
+      isAuthor,
+    } = item;
 
     return (
-      <AnimatedList
-        loading={this.props.loading}
-        boards={this.props.boards}
-        onRefresh={this.props.onRefresh}
-        animatedY={animatedY}
-        onScroll={onScroll}
-        profile
+      <Item
+        id={id}
+        name={name}
+        description={description}
+        isPublic={isPublic}
+        isClosed={status === 'CLOSED'}
+        isAuthor={isAuthor}
+        onPressItem={this._onPressItem}
+        navigateToBoardInfo={this._navigateToInfo}
+      />
+    )
+  }
+
+  render(){
+    const { translateY, animatedY, onScroll } = this.props.collapsible;
+
+    return (
+      <AnimatedFlatList 
+        style={styles.list}
+        renderItem={this.renderItem}
+        keyExtractor={this._keyExtractor}
+        contentContainerStyle={{paddingTop: translateY}}
+
+        refreshing={this.state.loading}
+        data={data}
+        onRefresh={this._onRefresh}
+        ItemSeparatorComponent={this.renderSeparator}
+        ListEmptyComponent={this._renderEmptyList}
+
+        onScroll={onScroll} 
+        _mustAddThis={animatedY}
       />
     )
   }
 }
 
-export default compose(graphql(gql(createdBoards), {
-  alias: 'withUserCreatedBoardsTab',
-  options: props => ({
-    variables: {
-      id: props.navigation.getParam('id')
-    },
-    notifyOnNetworkStatusChange: true,
-    fetchPolicy: 'cache-and-network',
-  }),
-  props: ({ data, ownProps }) => ({
-    loading: data.loading || data.networkStatus === 4,
-    boards: data && data.createdBoards && data.createdBoards.createdBoards && data.createdBoards.createdBoards.items || [],
-    error: data.error,
-    onRefresh: async () => {
-      try {
-        await data.refetch();
-      } catch(e) {
-        SimpleToast.show(e.message, SimpleToast.SHORT);
-      }
-    },
-    ...ownProps
-  }),
-}), withCollapsibleForTabChild)(Boards);
+const styles = StyleSheet.create({
+  list: {
+    flex: 1,
+    backgroundColor: colors.light_gray
+  }
+});
+
+const data = [
+  {
+    id: 1,
+    name: 'Lorem',
+    description: '',
+    createdAt: new Date().toISOString(),
+    isPublic: false,
+    isAuthor: false
+  },
+  {
+    id: 2,
+    name: 'Lorem',
+    description: '',
+    createdAt: new Date().toISOString(),
+    isPublic: false,
+    isAuthor: false
+  },
+  {
+    id: 3,
+    name: 'Lorem',
+    description: '',
+    createdAt: new Date().toISOString(),
+    isPublic: false,
+    isAuthor: false
+  },
+  {
+    id: 4,
+    name: 'Lorem',
+    description: '',
+    createdAt: new Date().toISOString(),
+    isPublic: false,
+    isAuthor: false
+  },
+  {
+    id: 5,
+    name: 'Lorem',
+    description: '',
+    createdAt: new Date().toISOString(),
+    isPublic: false,
+    isAuthor: false
+  },
+  {
+    id: 6,
+    name: 'Lorem',
+    description: '',
+    createdAt: new Date().toISOString(),
+    isPublic: false,
+    isAuthor: false
+  },
+  {
+    id: 7,
+    name: 'Lorem',
+    description: '',
+    createdAt: new Date().toISOString(),
+    isPublic: false,
+    isAuthor: false
+  },
+  {
+    id: 8,
+    name: 'Lorem',
+    description: '',
+    createdAt: new Date().toISOString(),
+    isPublic: false,
+    isAuthor: false
+  },
+  {
+    id: 11,
+    name: 'Lorem',
+    description: '',
+    createdAt: new Date().toISOString(),
+    isPublic: false,
+    isAuthor: false
+  },
+  {
+    id: 12,
+    name: 'Lorem',
+    description: '',
+    createdAt: new Date().toISOString(),
+    isPublic: false,
+    isAuthor: false
+  },
+  {
+    id: 13,
+    name: 'Lorem',
+    description: '',
+    createdAt: new Date().toISOString(),
+    isPublic: false,
+    isAuthor: false
+  },
+  {
+    id: 14,
+    name: 'Lorem',
+    description: '',
+    createdAt: new Date().toISOString(),
+    isPublic: false,
+    isAuthor: false
+  },
+  {
+    id: 15,
+    name: 'Lorem',
+    description: '',
+    createdAt: new Date().toISOString(),
+    isPublic: false,
+    isAuthor: false
+  },
+]
+
+export default withCollapsibleForTabChild(Boards);
