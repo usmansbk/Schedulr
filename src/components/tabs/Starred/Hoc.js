@@ -10,7 +10,7 @@ export default graphql(gql(listAllEvents), {
   props: ({ data }) => ({
     error: data.error,
     loading: data.loading,
-    events: data && data.listAllEvents && data.listAllEvents.items || [],
+    events: data && data.listAllEvents && data.listAllEvents.items.filter(item => item.isStarred) || [],
     onRefresh: async () => {
       try {
         await data.refetch();

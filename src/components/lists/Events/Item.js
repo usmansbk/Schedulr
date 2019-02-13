@@ -1,4 +1,5 @@
 import React from 'react';
+import * as Animatable from 'react-native-animatable';
 import { View } from 'react-native';
 import {
   TouchableRipple,
@@ -17,6 +18,12 @@ export default class Item extends React.PureComponent {
   _onPress = () => this.props.onPressItem(this.props.id);
   _navigateToBoard = () => this.props.navigateToBoardEvents(this.props.boardId);
   _onPressComment = () => this.props.onPressCommentButton(this.props.id);
+  handleViewRef = ref => this.view = ref;
+  onRemove = async () => {
+    if (this.props.animated) {
+      await this.view.bounceOut(500);
+    }
+  }
 
   render() {
     const {
@@ -33,7 +40,6 @@ export default class Item extends React.PureComponent {
       eventType,
       starsCount,
       commentsCount,
-      boardName,
       pictureUrl,
       isStarred,
     } = this.props;
@@ -48,7 +54,7 @@ export default class Item extends React.PureComponent {
         onPress={this._onPress}
         style={styles.itemContainer}
       >
-        <View style={styles.itemContent}>
+        <Animatable.View useNativeDriver ref={this.handleViewRef} style={styles.itemContent}>
           <View style={styles.left}>
             <Avatar
               size={AVATAR_SIZE}
@@ -77,12 +83,13 @@ export default class Item extends React.PureComponent {
               isStarred={isStarred}
               starsCount={starsCount}
               commentsCount={commentsCount}
+              onRemove={this.onRemove}
               navigateToComments={this._onPressComment}
               small
               dark
             />
           </View>
-        </View>
+        </Animatable.View>
       </TouchableRipple>
     );
   }

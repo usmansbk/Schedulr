@@ -88,6 +88,7 @@ class List extends React.Component {
     onPressItem={this._onPressItem}
     onPressCommentButton={this._onPressCommentItem}
     navigateToBoardEvents={this._navigateToBoardEvents}
+    animated={this.props.animated}
   />);
   _getItemLayout = sectionListGetItemLayout({
     getItemHeight: () => ITEM_HEIGHT,

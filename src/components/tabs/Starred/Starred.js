@@ -3,17 +3,16 @@ import List from '../../lists/Events';
 
 export default class Starred extends React.Component {
   shouldComponentUpdate = (nextProps) => {
-    return ((nextProps.loading) !== this.props.loading) || (
-      nextProps.events !== this.props.events
-    );
+    return nextProps.events.length !== this.props.events.length;
   }
   
   render() {
     return (
       <List
+        animated
         listType="starred"
         loading={this.props.loading}
-        events={this.props.events.filter(item => item.isStarred)}
+        events={this.props.events}
         onRefresh={this.props.onRefresh}
       />
     );
