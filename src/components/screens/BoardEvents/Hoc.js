@@ -30,7 +30,7 @@ export default compose(
     },
     props: ({ data, ownProps}) => ({
       fetchingEvents: data.loading,
-      fetchingEventsError: data.error,
+      error: data.error,
       events: data && data.listAllEvents && data.listAllEvents.items && data.listAllEvents.items.filter(event => event.board.id === ownProps.id),
       ...ownProps
     })
@@ -43,12 +43,13 @@ export default compose(
       notifyOnNetworkStatusChange: true,
       variables: {
         id: props.id
-      }
+      },
+      onError: (e) => alert(e.message)
     }),
     props: ({ data, ownProps}) => ({
       fetchingEvents: data.loading || data.networkStatus === 4,
-      fetchingEventsError: data.error,
-      events: data && data.listBoardEvents && data.listBoardEvents.events && data.listBoardEvents.events.items,
+      error: data.error,
+      events: data && data.listBoardEvents && data.listBoardEvents.getBoard && data.listBoardEvents.getBoard.events && data.listBoardEvents.getBoard.events.items,
       ...ownProps
     }) 
   })
