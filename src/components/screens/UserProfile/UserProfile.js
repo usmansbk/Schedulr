@@ -33,7 +33,11 @@ export default ({
       defaultSource={require('./img/placeholder.png')}
     />
     <Headline style={styles.headline}>{name}</Headline>
-    <TouchableRipple onPress={() => navigation.push('UserBoards', { id, name})}>
+    <TouchableRipple onPress={() => navigation.push('UserBoards', {
+      id,
+      name,
+      profile: navigation.getParam('profile', false)
+    })}>
       <View style={styles.countRow}>
         <View style={styles.item}>
           <Text style={styles.count}>{numeral(followingCount).format('0a')}</Text>

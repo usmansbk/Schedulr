@@ -23,12 +23,12 @@ const Tabs = createMaterialTopTabNavigator(
   {
     animationEnabled: true,
     initialLayout: { height: 0, width: Dimensions.get('window').width },
-    navigationOptions: {
-      title: 'Boards',
+    navigationOptions: ({ navigation }) => ({
+      title: navigation.getParam('name', 'Boards'),
       headerTransparent: false,
       headerTitleStyle: { color: colors.gray },
       headerTintColor: colors.gray,
-    },
+    }),
     tabBarOptions: {
       activeTintColor: colors.primary,
       inactiveTintColor: colors.gray,

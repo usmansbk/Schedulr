@@ -16,9 +16,10 @@ import styles, {
   SEPARATOR_HEIGHT
 } from '../../lists/Boards/styles';
 import sortBoards from '../../../lib/utils';
-import { createdBoards as createdBoardsQuery } from '../../../graphql/queries';
+import { createdBoards as createdBoardsQuery, listAllBoards } from '../../../graphql/queries';
 
 const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
+const alias = 'withUserBoards';
 
 class CreatedBoards extends Component{
   _getItemLayout = (_, index) => (
@@ -96,7 +97,25 @@ class CreatedBoards extends Component{
 
 export default compose(
   withCollapsibleForTabChild,
+  graphql(gql(listAllBoards), {
+    alias,
+    skip: props => !props.navigation.getParam('profile'),
+    options: props => ({
+      fetchPolicy: 'cache-only'
+    }),
+    props: ({ data }) => ({
+      loading: data.loading,
+      error: data.error,
+      data: (
+        data && data.listAllBoards &&
+        data.listAllBoards.items &&
+        data.listAllBoards.items.filter(item => item.isAuthor)
+      ),
+    }),
+  }),
   graphql(gql(createdBoardsQuery), {
+    alias,
+    skip: props => props.navigation.getParam('profile'),
     options: props => ({
       variables: {
         id: props.navigation.getParam('id')
