@@ -104,6 +104,7 @@ class FollowingBoards extends Component{
         ItemSeparatorComponent={this._renderSeparator}
         keyExtractor={this._keyExtractor}
         ListEmptyComponent={this._renderEmptyList}
+        ListFooterComponent={this._renderFooter}
       />
     )
   }
