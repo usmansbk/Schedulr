@@ -32,7 +32,7 @@ export default class AvatarContainer extends React.Component {
         onPress={() => (
           this.props.navigation.navigate('UserProfile', {
             id,
-            privacy: 'private'
+            profile: true
           })
         )}
       />
