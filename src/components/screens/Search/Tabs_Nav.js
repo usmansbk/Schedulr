@@ -1,3 +1,5 @@
+import React from 'react';
+import { Searchbar } from 'react-native-paper';
 import {
   createMaterialTopTabNavigator,
 } from 'react-navigation';
@@ -34,6 +36,22 @@ const Tabs = createMaterialTopTabNavigator(
       upperCaseLabel: false,
       indicatorStyle: styles.indicatorStyle,
       style: styles.barStyle
+    },
+    defaultNavigationOptions: ({ navigation }) => {
+      return ({
+        headerTransparent: false,
+        header: (
+          <Searchbar
+            icon="arrow-back"
+            onIconPress={() => navigation.goBack()}
+            placeholder="Search for..."
+            value={navigation.getParam('query', '')}
+            autoFocus
+            onChangeText={(query) => navigation.setParam({ query })}
+            style={{ elevation: 0 }}
+          />
+        )
+      })
     },
     lazy: true
   }

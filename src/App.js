@@ -116,9 +116,6 @@ const AppStack = createStackNavigator({
   },
   SearchScreen: {
     screen: SearchScreen,
-    navigationOptions: {
-      header: null
-    }
   }
 }, {
   initialRouteName: 'Home',

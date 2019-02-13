@@ -5,15 +5,9 @@ import List from '../../lists/BoardSearch';
 import { listAllBoards } from '../../../graphql/queries';
 
 export default class Boards extends React.Component {
-
-  shouldComponentUpdate = (nextProps) => {
-    return nextProps.screenProps.query !== this.props.screenProps.query
-  }
   
   render() {
-    const {
-      screenProps: { query },
-    } = this.props;
+    const query = this.props.navigation.getParam('query', '');
     return (
       <List
         query={query}

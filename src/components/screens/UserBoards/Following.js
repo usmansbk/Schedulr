@@ -31,8 +31,7 @@ class FollowingBoards extends Component{
         query: gql(followingBoardsQuery),
         variables: {
           id: this.props.navigation.getParam('id')
-        },
-        fetchPolicy: 'cache-and-network'
+        }
       });
       const items = followingBoards && followingBoards.followingBoards &&  followingBoards.followingBoards.items || [];
       this.setState({
