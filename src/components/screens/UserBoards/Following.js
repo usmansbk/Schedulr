@@ -69,7 +69,7 @@ class FollowingBoards extends Component{
       error
     } = this.props;
 
-    if (loading) return <Loading />;
+    if (loading && !data.length) return <Loading />;
     if (error && !data.length) return <ErrorScreen loading={loading} onRefresh={onRefresh} />;
 
     return (

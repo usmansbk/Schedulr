@@ -69,7 +69,7 @@ class CreatedBoards extends Component{
       data
     } = this.props;
     
-    if (loading) return <Loading />;
+    if (loading && !data.length) return <Loading />;
     if (error && !data.length) return <ErrorScreen loading={loading} onRefresh={onRefresh} />;
 
     return (
