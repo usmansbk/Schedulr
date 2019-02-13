@@ -104,7 +104,7 @@ export default compose(
         try {
           await data.refetch();
         } catch(e) {
-          SimpleToast.show('Connection error: ' + e.message, SimpleToast.SHORT);
+          SimpleToast.show('Connection error', SimpleToast.SHORT);
         }
       },
       ...ownProps
