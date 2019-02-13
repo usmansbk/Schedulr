@@ -37,7 +37,7 @@ const Tabs = createMaterialTopTabNavigator(
       indicatorStyle: styles.indicatorStyle,
       style: styles.barStyle
     },
-    defaultNavigationOptions: ({ navigation }) => {
+    navigationOptions: ({ navigation }) => {
       return ({
         headerTransparent: false,
         header: (
@@ -47,7 +47,7 @@ const Tabs = createMaterialTopTabNavigator(
             placeholder="Search for..."
             value={navigation.getParam('query', '')}
             autoFocus
-            onChangeText={(query) => navigation.setParam({ query })}
+            onChangeText={(query) => navigation.setParams({ query })}
             style={{ elevation: 0 }}
           />
         )

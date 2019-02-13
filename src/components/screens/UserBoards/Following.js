@@ -31,7 +31,8 @@ class FollowingBoards extends Component{
         query: gql(followingBoardsQuery),
         variables: {
           id: this.props.navigation.getParam('id')
-        }
+        },
+        fetchPolicy: 'network-only'
       });
       const items = followingBoards && followingBoards.followingBoards &&  followingBoards.followingBoards.items || [];
       this.setState({
@@ -39,7 +40,7 @@ class FollowingBoards extends Component{
         loading: false
       });
     } catch(e) {
-      SimpleToast.show('Connection error', SimpleToast.SHORT);
+      SimpleToast.show('Connection error: ' + e.message, SimpleToast.SHORT);
       this.setState({ loading: false });
     }
   };

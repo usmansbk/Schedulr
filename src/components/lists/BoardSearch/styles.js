@@ -9,7 +9,7 @@ export const PRIMARY = colors.primary;
 
 export default StyleSheet.create({
   list: {
-    // flex: 1,
+    flex: 1,
     backgroundColor: colors.light_gray
   },
   contentContainer: {
