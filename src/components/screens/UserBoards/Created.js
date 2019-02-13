@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { compose, graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import SimpleToast from 'react-native-simple-toast';
 import List from '../../lists/Boards';

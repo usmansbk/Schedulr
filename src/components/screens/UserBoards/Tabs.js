@@ -1,5 +1,6 @@
 import { StyleSheet, Dimensions } from 'react-native';
 import { createMaterialTopTabNavigator } from 'react-navigation';
+import { withCollapsibleForTab } from 'react-navigation-collapsible';
 import Following from './Following';
 import Created from './Created';
 import colors from '../../../config/colors';
@@ -22,6 +23,11 @@ const Tabs = createMaterialTopTabNavigator(
   {
     animationEnabled: true,
     initialLayout: { height: 0, width: Dimensions.get('window').width },
+    navigationOptions: {
+      headerTransparent: false,
+      headerTitleStyle: { color: colors.gray },
+      headerTintColor: colors.gray,
+    },
     tabBarOptions: {
       activeTintColor: colors.primary,
       inactiveTintColor: colors.gray,
@@ -32,4 +38,4 @@ const Tabs = createMaterialTopTabNavigator(
   }
 );
 
-export default Tabs;
+export default withCollapsibleForTab(Tabs, { iOSCollapsedColor: '#032' });
