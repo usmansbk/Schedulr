@@ -12,6 +12,12 @@ import styles, {
 const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
 
 class FollowingBoards extends Component{
+  state = {
+    loading: false,
+    data,
+  };
+
+  _refresh = () => null;
 
   _getItemLayout = (_, index) => (
     {
@@ -56,7 +62,9 @@ class FollowingBoards extends Component{
     return (
       <AnimatedFlatList 
         style={styles.list}
-        data={data}
+        data={this.state.data}
+        refreshing={this.state.loading}
+        onRefresh={this._refresh}
         renderItem={this._renderItem}
 
         onScroll={onScroll} 
