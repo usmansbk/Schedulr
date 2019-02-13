@@ -28,8 +28,8 @@ class List extends React.Component {
     }
   );
   shouldComponentUpdate = nextProps => nextProps.isFocused;
-  _onPressItem = (id) => this.props.navigation.navigate('EventDetails', { id });
-  _navigateToBoard = (id) => this.props.navigation.navigate('BoardEvents', { id });
+  _onPressItem = (id) => this.props.navigation.navigate('EventDetails', { id, cacheFirst: true });
+  _navigateToBoard = (id) => this.props.navigation.navigate('BoardEvents', { id, cacheFirst: true });
   _keyExtractor = item => String(item.id);
   _renderItem = ({
     item: {

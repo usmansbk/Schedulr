@@ -1,7 +1,7 @@
 import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
 import Screen from './BoardEvents';
-import { getBoard, listAllEvents } from '../../../graphql/queries';
+import { getBoard, listAllEvents, listBoardEvents } from '../../../graphql/queries';
 
 const alias = 'withBoardEventsContainer';
 
@@ -24,6 +24,7 @@ export default compose(
   }),
   graphql(gql(listAllEvents), {
     alias,
+    skip: props => props.cacheFirst,
     options: {
       fetchPolicy: 'cache-only',
     },
@@ -33,5 +34,22 @@ export default compose(
       events: data && data.listAllEvents && data.listAllEvents.items && data.listAllEvents.items.filter(event => event.board.id === ownProps.id),
       ...ownProps
     })
+  }),
+  graphql(gql(listBoardEvents), {
+    alias,
+    skip: props => !props.cacheFirst,
+    options: props => ({
+      fetchPolicy: 'cache-first',
+      notifyOnNetworkStatusChange: true,
+      variables: {
+        id: props.id
+      }
+    }),
+    props: ({ data, ownProps}) => ({
+      fetchingEvents: data.loading || data.networkStatus === 4,
+      fetchingEventsError: data.error,
+      events: data && data.listBoardEvents && data.listBoardEvents.events && data.listBoardEvents.events.items,
+      ...ownProps
+    }) 
   })
 )(Screen);

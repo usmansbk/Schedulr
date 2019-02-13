@@ -260,6 +260,41 @@ export const listAllBoards = `query ListAllBoards($limit: Int, $nextToken: Strin
 }
 `;
 
+export const listBoardEvents = `query ListBoardEvents($id: ID!, $limit: Int, $nextToken: String) {
+  listBoardEvents: getBoard(id: $id) {
+    events(limit: $limit, nextToken: $nextToken) {
+      nextToken
+      items {
+        id
+        title
+        description
+        location {
+          address
+          latitude
+          longitude
+        }
+        startAt
+        endAt
+        allDay
+        isCancelled
+        repeat
+        eventType
+        board {
+          id
+          name
+        }
+        cancelledDates
+        starsCount
+        isStarred
+        isAuthor
+        commentsCount
+        createdAt
+        updatedAt  
+      }
+    }
+  }
+}`
+
 export const listBoardFollowers = `query Followers($id: ID!, $limit: Int, $nextToken: String) {
   listFollowers(id: $id, limit: $limit, nextToken: $nextToken) {
     nextToken
