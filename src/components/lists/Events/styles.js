@@ -76,12 +76,11 @@ export default StyleSheet.create({
     height: SEPARATOR_HEIGHT
   },
   itemContainer: {
-    height: ITEM_HEIGHT,
     backgroundColor: colors.white,
-    paddingTop: 4,
   },
   itemContent: {
-    flex: 1,
+    paddingTop: 4,
+    height: ITEM_HEIGHT,
     flexDirection: 'row',
     paddingHorizontal: 8,
     // backgroundColor: 'green',
