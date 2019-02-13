@@ -6,7 +6,7 @@ export default [
   },
   {
     id: 'invite',
-    icon: 'group',
+    icon: 'share',
     name: 'Invite a friend',
   },
   {
