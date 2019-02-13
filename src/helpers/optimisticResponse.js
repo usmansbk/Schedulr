@@ -13,12 +13,13 @@ export const followBoardResponse = (id) => {
   const boardNode = getNode(gql(getBoard), id);
   const board = boardNode.getBoard;
   const count = board.followersCount;
+  const isFollowing = board.isFollowing;
   
   return ({
     __typename,
     followBoard: Object.assign({}, board, {
       isFollowing: true,
-      followersCount: count + 1
+      followersCount: !isFollowing ? (count + 1) : count
     })
   })
 };
@@ -26,13 +27,15 @@ export const followBoardResponse = (id) => {
 export const unfollowBoardResponse = (id) => {
   const boardNode = getNode(gql(getBoard), id);
   const count = boardNode.getBoard.followersCount;
+  const isFollowing = boardNode.getBoard.isFollowing;
+
   return ({
     __typename,
     unfollowBoard: {
       __typename: 'Board',
       id,
       isFollowing: false,
-      followersCount: count > 0 ? count - 1 : count
+      followersCount: (isFollowing && (count > 0)) ? count - 1 : count
     }
   })
 };
