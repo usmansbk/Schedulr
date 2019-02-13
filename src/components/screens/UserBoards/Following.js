@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
+import gql from 'graphql-tag';
 import { Animated } from 'react-native';
 import { FlatList } from 'react-navigation';
+import SimpleToast from 'react-native-simple-toast';
 import { withCollapsibleForTabChild } from 'react-navigation-collapsible';
 import Item from '../../lists/Boards/Item';
 import Separator from '../../lists/Boards/Separator';
@@ -8,16 +10,40 @@ import styles, {
   ITEM_HEIGHT,
   SEPARATOR_HEIGHT
 } from '../../lists/Boards/styles';
+import client from '../../../config/client';
+import { followingBoards as followingBoardsQuery } from '../../../graphql/queries';
 
 const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
 
 class FollowingBoards extends Component{
   state = {
     loading: false,
-    data,
+    data: [],
   };
 
-  _refresh = () => null;
+  _fetchBoards = async () => {
+    this.setState({ loading: true });
+    try {
+      const { data: { followingBoards }} = await client.query({
+        query: gql(followingBoardsQuery),
+        variables: {
+          id: this.props.navigation.getParam('id')
+        }
+      });
+      const items = followingBoards && followingBoards.followingBoards &&  followingBoards.followingBoards.items || [];
+      this.setState({
+        data: items,
+        loading: false
+      });
+    } catch(e) {
+      SimpleToast.show('Connection error', SimpleToast.SHORT);
+      this.setState({ loading: false });
+    }
+  };
+
+  componentDidMount = async () => {
+    await this._fetchBoards();
+  };
 
   _getItemLayout = (_, index) => (
     {
@@ -64,12 +90,14 @@ class FollowingBoards extends Component{
         style={styles.list}
         data={this.state.data}
         refreshing={this.state.loading}
-        onRefresh={this._refresh}
+        onRefresh={this._fetchBoards}
         renderItem={this._renderItem}
 
         onScroll={onScroll} 
         _mustAddThis={animatedY}
         
+        contentContainerStyle={styles.contentContainer}
+        initialNumToRender={5}
         getItemLayout={this._getItemLayout}
         ItemSeparatorComponent={this._renderSeparator}
         keyExtractor={this._keyExtractor}
@@ -78,111 +106,5 @@ class FollowingBoards extends Component{
     )
   }
 }
-const data = [
-  {
-    id: 1,
-    name: 'Lorem',
-    description: '',
-    createdAt: new Date().toISOString(),
-    isPublic: false,
-    isAuthor: false
-  },
-  {
-    id: 2,
-    name: 'Lorem',
-    description: '',
-    createdAt: new Date().toISOString(),
-    isPublic: false,
-    isAuthor: false
-  },
-  {
-    id: 3,
-    name: 'Lorem',
-    description: '',
-    createdAt: new Date().toISOString(),
-    isPublic: false,
-    isAuthor: false
-  },
-  {
-    id: 4,
-    name: 'Lorem',
-    description: '',
-    createdAt: new Date().toISOString(),
-    isPublic: false,
-    isAuthor: false
-  },
-  {
-    id: 5,
-    name: 'Lorem',
-    description: '',
-    createdAt: new Date().toISOString(),
-    isPublic: false,
-    isAuthor: false
-  },
-  {
-    id: 6,
-    name: 'Lorem',
-    description: '',
-    createdAt: new Date().toISOString(),
-    isPublic: false,
-    isAuthor: false
-  },
-  {
-    id: 7,
-    name: 'Lorem',
-    description: '',
-    createdAt: new Date().toISOString(),
-    isPublic: false,
-    isAuthor: false
-  },
-  {
-    id: 8,
-    name: 'Lorem',
-    description: '',
-    createdAt: new Date().toISOString(),
-    isPublic: false,
-    isAuthor: false
-  },
-  {
-    id: 11,
-    name: 'Lorem',
-    description: '',
-    createdAt: new Date().toISOString(),
-    isPublic: false,
-    isAuthor: false
-  },
-  {
-    id: 12,
-    name: 'Lorem',
-    description: '',
-    createdAt: new Date().toISOString(),
-    isPublic: false,
-    isAuthor: false
-  },
-  {
-    id: 13,
-    name: 'Lorem',
-    description: '',
-    createdAt: new Date().toISOString(),
-    isPublic: false,
-    isAuthor: false
-  },
-  {
-    id: 14,
-    name: 'Lorem',
-    description: '',
-    createdAt: new Date().toISOString(),
-    isPublic: false,
-    isAuthor: false
-  },
-  {
-    id: 15,
-    name: 'Lorem',
-    description: '',
-    createdAt: new Date().toISOString(),
-    isPublic: false,
-    isAuthor: false
-  },
-]
 
 export default withCollapsibleForTabChild(FollowingBoards);
