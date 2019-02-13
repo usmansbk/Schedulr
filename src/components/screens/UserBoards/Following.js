@@ -82,7 +82,6 @@ class FollowingBoards extends Component{
     )
   }
 
-
   render(){
     const { animatedY, onScroll } = this.props.collapsible;
 
