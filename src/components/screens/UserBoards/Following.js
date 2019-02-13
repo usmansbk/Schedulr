@@ -13,6 +13,7 @@ import styles, {
   SEPARATOR_HEIGHT
 } from '../../lists/Boards/styles';
 import client from '../../../config/client';
+import sortBoards from '../../../lib/utils';
 import { followingBoards as followingBoardsQuery } from '../../../graphql/queries';
 
 const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
@@ -90,7 +91,7 @@ class FollowingBoards extends Component{
     return (
       <AnimatedFlatList 
         style={styles.list}
-        data={this.state.data}
+        data={sortBoards(this.state.data)}
         refreshing={this.state.loading}
         onRefresh={this._fetchBoards}
         extraData={this.state.data.length}
