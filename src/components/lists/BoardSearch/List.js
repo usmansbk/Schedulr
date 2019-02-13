@@ -68,7 +68,7 @@ class List extends Component {
         refreshControl={<RefreshControl onRefresh={onRefresh} refreshing={loading} colors={[colors.primary]} />}
         onRefresh={onRefresh}
         style={styles.list}
-        contentContainer={styles.contentContainer}
+        contentContainerStyle={styles.contentContainer}
         initialNumToRender={5}
         extraData={boards.length}
         getItemLayout={this._getItemLayout}
