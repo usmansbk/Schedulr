@@ -3,6 +3,7 @@ import {
   View,
   Image,
   StyleSheet,
+  ScrollView,
   Text
 } from 'react-native';
 import { Headline, TouchableRipple } from 'react-native-paper';
@@ -19,7 +20,7 @@ export default ({
     createdCount=0,
   }
 }) => (
-  <View style={styles.header}>
+  <ScrollView contentContainerStyle={styles.header}>
     <Image
       source={{uri: pictureUrl}}
       resizeMode="cover"
@@ -43,7 +44,7 @@ export default ({
         </View>
       </View>
     </TouchableRipple>
-  </View>
+  </ScrollView>
 );
 
 const styles = StyleSheet.create({

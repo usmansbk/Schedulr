@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import { Text, FlatList, Animated, TouchableOpacity } from 'react-native';
+import { Text, Animated, TouchableOpacity } from 'react-native';
+import { FlatList } from 'react-navigation';
 import { withCollapsibleForTabChild } from 'react-navigation-collapsible';
 
 const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
