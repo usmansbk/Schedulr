@@ -5,6 +5,8 @@ import { Animated } from 'react-native';
 import { FlatList } from 'react-navigation';
 import SimpleToast from 'react-native-simple-toast';
 import { withCollapsibleForTabChild } from 'react-navigation-collapsible';
+import Loading from '../../common/Loading';
+import ErrorScreen from '../../common/Error';
 import Item from '../../lists/Boards/Item';
 import Separator from '../../lists/Boards/Separator';
 import Footer from '../../lists/Boards/Footer';
@@ -59,12 +61,13 @@ class CreatedBoards extends Component{
   render(){
     const { animatedY, onScroll } = this.props.collapsible;
 
+    if (this.props.loading) return <Loading />;
+    if (this.props.error) return <ErrorScreen onRefresh={this.props.onRefresh} />;
+
     return (
       <AnimatedFlatList 
         style={styles.list}
         data={sortBoards(this.props.data)}
-        refreshing={this.props.loading}
-        onRefresh={this.props.onRefresh}
         extraData={this.props.data.length}
 
         onScroll={onScroll} 
