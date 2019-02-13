@@ -6,6 +6,7 @@ import SimpleToast from 'react-native-simple-toast';
 import { withCollapsibleForTabChild } from 'react-navigation-collapsible';
 import Item from '../../lists/Boards/Item';
 import Separator from '../../lists/Boards/Separator';
+import Footer from '../../lists/Boards/Footer';
 import styles, {
   ITEM_HEIGHT,
   SEPARATOR_HEIGHT
@@ -56,7 +57,7 @@ class FollowingBoards extends Component{
   _navigateToInfo = (id) => this.props.navigation.navigate('BoardInfo', { id });
   _keyExtractor = (item) => String(item.id);
   _renderSeparator = () => <Separator />;
-  _renderFooter = () => <Footer visible={this.props.boards.length} />;
+  _renderFooter = () => <Footer visible={this.state.data.length} />;
   _renderItem = ({item}) => {
     const {
       id,
@@ -91,6 +92,7 @@ class FollowingBoards extends Component{
         data={this.state.data}
         refreshing={this.state.loading}
         onRefresh={this._fetchBoards}
+        extraData={this.state.data.length}
         renderItem={this._renderItem}
 
         onScroll={onScroll} 
