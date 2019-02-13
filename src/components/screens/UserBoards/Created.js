@@ -100,9 +100,9 @@ export default compose(
   graphql(gql(listAllBoards), {
     alias,
     skip: props => !props.navigation.getParam('profile'),
-    options: props => ({
+    options: {
       fetchPolicy: 'cache-only'
-    }),
+    },
     props: ({ data }) => ({
       loading: data.loading,
       error: data.error,

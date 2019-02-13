@@ -16,9 +16,10 @@ import styles, {
   SEPARATOR_HEIGHT
 } from '../../lists/Boards/styles';
 import sortBoards from '../../../lib/utils';
-import { followingBoards as followingBoardsQuery } from '../../../graphql/queries';
+import { followingBoards as followingBoardsQuery, listAllBoards } from '../../../graphql/queries';
 
 const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
+const alias = 'withFollowingBoards';
 
 class FollowingBoards extends Component{
   _getItemLayout = (_, index) => (
@@ -96,7 +97,25 @@ class FollowingBoards extends Component{
 
 export default compose(
   withCollapsibleForTabChild,
+  graphql(gql(listAllBoards), {
+    alias,
+    skip: props => !props.navigation.getParam('profile'),
+    options: {
+      fetchPolicy: 'cache-only'
+    },
+    props: ({ data }) => ({
+      loading: data.loading,
+      error: data.error,
+      data: (
+        data && data.listAllBoards &&
+        data.listAllBoards.items &&
+        data.listAllBoards.items.filter(item => item.isFollowing)
+      ),
+    }),
+  }),
   graphql(gql(followingBoardsQuery), {
+    alias,
+    skip: props => props.navigation.getParam('profile'),
     options: props => ({
       variables: {
         id: props.navigation.getParam('id')
