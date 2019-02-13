@@ -262,6 +262,7 @@ export const listAllBoards = `query ListAllBoards($limit: Int, $nextToken: Strin
 
 export const listBoardEvents = `query ListBoardEvents($id: ID!, $limit: Int, $nextToken: String) {
   listBoardEvents: getBoard(id: $id) {
+    id
     events(limit: $limit, nextToken: $nextToken) {
       nextToken
       items {
