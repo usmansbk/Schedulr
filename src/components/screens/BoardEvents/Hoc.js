@@ -53,9 +53,8 @@ export default compose(
       loadingEventsError: data.error,
       events: (
         data && data.listBoardEvents &&
-        data.listBoardEvents.getBoard &&
-        data.listBoardEvents.getBoard.events &&
-        data.listBoardEvents.getBoard.events.items
+        data.listBoardEvents.events &&
+        data.listBoardEvents.events.items
       ),
       ...ownProps
     }) 
