@@ -32,7 +32,7 @@ export default ({
       style={styles.image}
     />
     <Headline style={styles.headline}>{name}</Headline>
-    <TouchableRipple onPress={() => navigation.navigate('UserBoards', { id, name})}>
+    <TouchableRipple onPress={() => navigation.push('UserBoards', { id, name})}>
       <View style={styles.countRow}>
         <View style={styles.item}>
           <Text style={styles.count}>{numeral(followingCount).format('0a')}</Text>
