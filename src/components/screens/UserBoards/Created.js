@@ -93,7 +93,7 @@ export default compose(
       variables: {
         id: props.navigation.getParam('id')
       },
-      fetchPolicy: 'cache-and-network',
+      fetchPolicy: 'no-cache',
       notifyOnNetworkStatusChange: true,
     }),
     props: ({ data, ownProps }) => ({
