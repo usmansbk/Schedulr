@@ -9,6 +9,7 @@ const styles = StyleSheet.create({
   barStyle: {
     elevation: 4,
     backgroundColor: colors.white,
+    borderTopWidth: 0
   },
   indicatorStyle: {
     backgroundColor: colors.primary_light
