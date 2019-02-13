@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { RefreshControl, Animated } from 'react-native';
+import memoize from 'memoize-one';
 import { withNavigationFocus, FlatList } from 'react-navigation';
 import Item from './Item';
 import Separator from './Separator';
@@ -57,6 +58,20 @@ class List extends Component {
 
   _renderSeparator = () => <Separator />;
   _renderFooter = () => <Footer visible={this.props.boards.length} />;
+  _sort = memoize((data) => {
+    const sorted = data.sort((a, b) => {
+      const nameA = a.name.toUpperCase();
+      const nameB = b.name.toUpperCase();
+      if (nameA < nameB) {
+        return -1;
+      }
+      if (nameA > nameB) {
+        return 1;
+      }
+      return 0;
+    });
+    return sorted;
+  });
 
   render() {
     const {
@@ -64,6 +79,8 @@ class List extends Component {
       loading,
       onRefresh,
     } = this.props;
+    const data = this._sort(boards);
+
     return (
       <AnimatedFlatList
         refreshing={loading}
@@ -76,7 +93,7 @@ class List extends Component {
         getItemLayout={this._getItemLayout}
         ItemSeparatorComponent={this._renderSeparator}
         keyExtractor={this._keyExtractor}
-        data={boards}
+        data={data}
         renderItem={this._renderItem}
         ListEmptyComponent={this._renderEmptyList}
         ListFooterComponent={this._renderFooter}
