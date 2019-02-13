@@ -1,128 +1,52 @@
 import React, {Component} from 'react';
-import gql from 'graphql-tag';
-import SimpleToast from 'react-native-simple-toast';
-import List from '../../lists/Boards';
-import { createdBoards as createdBoardsQuery } from '../../../graphql/queries';
+import { Text, FlatList, Animated, TouchableOpacity } from 'react-native';
+import { withCollapsibleForTabChild } from 'react-navigation-collapsible';
 
-class Boards extends Component{
+const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
+
+class TabChild1Screen extends Component{
+  static navigationOptions = {
+    title: 'Child 1'
+  };
+
+  constructor(props){
+    super(props);
+
+    const data = [];
+    for(let i = 0 ; i < 60 ; i++){
+      data.push(i);
+    }
+
+    this.state = {
+      data: data
+    }
+  }
+
+  renderItem = ({item}) => (
+    <TouchableOpacity 
+      onPress={() => {
+        this.props.navigation.navigate('DetailScreen');
+      }}
+      style={{width: '100%', height: 50, borderBottomColor: '#0002', borderBottomWidth: 0.5, paddingHorizontal: 20, justifyContent: 'center'}}>
+      <Text style={{fontSize: 22}}>{item}</Text>
+    </TouchableOpacity>
+  )
 
   render(){
+    const { animatedY, onScroll } = this.props.collapsible;
 
     return (
-      <List 
-        board={data}
-        loading={false}
-        onRefresh={this._onRefresh}
+      <AnimatedFlatList 
+        style={{flex: 1}}
+        data={this.state.data}
+        renderItem={this.renderItem}
+        keyExtractor={(item, index) => String(index)}
+
+        onScroll={onScroll} 
+        _mustAddThis={animatedY}
       />
     )
   }
 }
 
-const data = [
-  {
-    id: 1,
-    name: 'Lorem',
-    description: '',
-    createdAt: new Date().toISOString(),
-    isPublic: false,
-    isAuthor: false
-  },
-  {
-    id: 2,
-    name: 'Lorem',
-    description: '',
-    createdAt: new Date().toISOString(),
-    isPublic: false,
-    isAuthor: false
-  },
-  {
-    id: 3,
-    name: 'Lorem',
-    description: '',
-    createdAt: new Date().toISOString(),
-    isPublic: false,
-    isAuthor: false
-  },
-  {
-    id: 4,
-    name: 'Lorem',
-    description: '',
-    createdAt: new Date().toISOString(),
-    isPublic: false,
-    isAuthor: false
-  },
-  {
-    id: 5,
-    name: 'Lorem',
-    description: '',
-    createdAt: new Date().toISOString(),
-    isPublic: false,
-    isAuthor: false
-  },
-  {
-    id: 6,
-    name: 'Lorem',
-    description: '',
-    createdAt: new Date().toISOString(),
-    isPublic: false,
-    isAuthor: false
-  },
-  {
-    id: 7,
-    name: 'Lorem',
-    description: '',
-    createdAt: new Date().toISOString(),
-    isPublic: false,
-    isAuthor: false
-  },
-  {
-    id: 8,
-    name: 'Lorem',
-    description: '',
-    createdAt: new Date().toISOString(),
-    isPublic: false,
-    isAuthor: false
-  },
-  {
-    id: 11,
-    name: 'Lorem',
-    description: '',
-    createdAt: new Date().toISOString(),
-    isPublic: false,
-    isAuthor: false
-  },
-  {
-    id: 12,
-    name: 'Lorem',
-    description: '',
-    createdAt: new Date().toISOString(),
-    isPublic: false,
-    isAuthor: false
-  },
-  {
-    id: 13,
-    name: 'Lorem',
-    description: '',
-    createdAt: new Date().toISOString(),
-    isPublic: false,
-    isAuthor: false
-  },
-  {
-    id: 14,
-    name: 'Lorem',
-    description: '',
-    createdAt: new Date().toISOString(),
-    isPublic: false,
-    isAuthor: false
-  },
-  {
-    id: 15,
-    name: 'Lorem',
-    description: '',
-    createdAt: new Date().toISOString(),
-    isPublic: false,
-    isAuthor: false
-  },
-]
-
-export default (Boards);
+export default withCollapsibleForTabChild(TabChild1Screen);
