@@ -70,7 +70,7 @@ class CreatedBoards extends Component{
     } = this.props;
     
     if (loading) return <Loading />;
-    if (error) return <ErrorScreen loading={loading} onRefresh={onRefresh} />;
+    if (error && !data.length) return <ErrorScreen loading={loading} onRefresh={onRefresh} />;
 
     return (
       <AnimatedFlatList 
