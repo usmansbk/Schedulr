@@ -7,6 +7,7 @@ import { withCollapsibleForTabChild } from 'react-navigation-collapsible';
 import Item from '../../lists/Boards/Item';
 import Separator from '../../lists/Boards/Separator';
 import Footer from '../../lists/Boards/Footer';
+import Empty from '../../lists/Boards/Empty';
 import styles, {
   ITEM_HEIGHT,
   SEPARATOR_HEIGHT
@@ -58,6 +59,7 @@ class FollowingBoards extends Component{
   _keyExtractor = (item) => String(item.id);
   _renderSeparator = () => <Separator />;
   _renderFooter = () => <Footer visible={this.state.data.length} />;
+  _renderEmptyList = () => this.state.loading ? null : <Empty profile />;
   _renderItem = ({item}) => {
     const {
       id,
