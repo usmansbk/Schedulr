@@ -31,7 +31,8 @@ class CreatedBoards extends Component{
         query: gql(createdBoardsQuery),
         variables: {
           id: this.props.navigation.getParam('id')
-        }
+        },
+        fetchPolicy: 'cache-and-network'
       });
       const items = createdBoards && createdBoards.createdBoards &&  createdBoards.createdBoards.items || [];
       this.setState({
