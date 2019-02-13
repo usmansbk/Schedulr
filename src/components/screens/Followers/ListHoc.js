@@ -16,6 +16,7 @@ export default graphql(gql(listBoardFollowers), {
     followers: data && data.listFollowers && data.listFollowers.items,
     hasMore: data && data.listFollowers && data.listFollowers.nextToken,
     loading: data.loading || data.networkStatus === 4,
+    error: data.error,
     onRefresh: async () => await data.refetch(),
     ...ownProps
   })

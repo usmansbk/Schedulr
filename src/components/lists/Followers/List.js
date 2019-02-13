@@ -30,7 +30,11 @@ class List extends React.Component {
   _keyExtractor = item => String(item.id);
   _renderFooter = () => <Footer visible={!this.props.hasMore && this.props.followers.length} />;
   _renderSeparator = () => <Separator />;
-  _renderEmpty = () => <Empty isAuthor={this.props.isAuthor} />;
+  _renderEmpty = () => <Empty
+    onRefresh={this.props.onRefresh}
+    error={this.props.error}
+    isAuthor={this.props.isAuthor}
+  />;
   _renderItem = ({item: {
     id,
     name,
