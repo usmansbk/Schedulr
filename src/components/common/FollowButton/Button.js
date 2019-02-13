@@ -14,13 +14,16 @@ export default class Button extends React.Component {
 
   render() {
     const {
-      isFollowing
+      isFollowing,
+      small
     } = this.props;
+    const label = small ? undefined : (isFollowing ? "Following" : "Follow");
     return (
       <Fab
         icon={isFollowing ? "check" : "add"}
-        label={isFollowing ? "Following" : "Follow"}
+        label={label}
         onPress={this._onPress}
+        small={small}
       />
     );
   }

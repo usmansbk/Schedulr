@@ -1,7 +1,8 @@
 import React from 'react';
 import { View } from 'react-native';
 import { TouchableRipple, Text, Caption } from 'react-native-paper';
-import UserAvatar from 'react-native-user-avatar';
+import UserAvatar from '../../common/UserAvatar';
+import FollowButton from '../../common/FollowButton';
 import styles, { AVATAR_SIZE } from './styles';
 
 export default class Item extends React.PureComponent {
@@ -38,6 +39,9 @@ export default class Item extends React.PureComponent {
               { isClosed && <Caption style={styles.danger}>Closed</Caption> }
             </View>
           </View>
+          <FollowButton
+            small
+          />
         </View>
       </TouchableRipple>
     );

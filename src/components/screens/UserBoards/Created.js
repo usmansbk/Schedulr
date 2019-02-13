@@ -7,7 +7,7 @@ import SimpleToast from 'react-native-simple-toast';
 import { withCollapsibleForTabChild } from 'react-navigation-collapsible';
 import Loading from '../../common/Loading';
 import ErrorScreen from '../../common/Error';
-import Item from '../../lists/Boards/Item';
+import Item from '../../lists/BoardSearch/Item';
 import Separator from '../../lists/Boards/Separator';
 import Footer from '../../lists/Boards/Footer';
 import Empty from '../../lists/Boards/Empty';

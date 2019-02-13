@@ -39,13 +39,17 @@ export default StyleSheet.create({
     color: colors.light_gray_3
   },
   itemContainer: {
-    height: ITEM_HEIGHT,
     backgroundColor: colors.white,
-    justifyContent: 'center',
-    elevation: 1,
-    borderRadius: 2,
-    marginHorizontal: 4,
-    marginVertical: 2
+  },
+  itemContent: {
+    height: ITEM_HEIGHT,
+    paddingHorizontal: 4,
+    alignItems: 'center',
+    flexDirection: 'row',
+  },
+  itemBody: {
+    width: 250,
+    alignItems: 'flex-start'
   },
   itemAvatar: {
     height: AVATAR_SIZE,
@@ -60,16 +64,6 @@ export default StyleSheet.create({
     color: colors.gray,
     fontFamily: 'sans-serif-bold',
     fontSize: 16
-  },
-  itemContent: {
-    paddingHorizontal: 4,
-    marginHorizontal: 4,
-    alignItems: 'center',
-    flexDirection: 'row',
-  },
-  itemBody: {
-    width: 250,
-    alignItems: 'flex-start'
   },
   danger: {
     color: colors.light_red,
