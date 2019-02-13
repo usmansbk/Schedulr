@@ -6,7 +6,10 @@ import FollowButton from '../../common/FollowButton';
 import styles, { AVATAR_SIZE } from './styles';
 
 export default class Item extends React.PureComponent {
-  _onPress = () => this.props.onPressItem(this.props.id);
+  _onPress = () => {
+    const cacheFirst = !(this.props.isAuthor || this.props.isFollowing);
+    this.props.onPressItem(this.props.id, cacheFirst);
+  };
   _navigateToInfo = () => this.props.navigateToBoardInfo(this.props.id);
   render() {
     const {
