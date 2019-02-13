@@ -98,6 +98,7 @@ export default compose(
     }),
     props: ({ data, ownProps }) => ({
       loading: data.loading || data.networkStatus === 4,
+      error: data.error,
       data: data && data.createdBoards && data.createdBoards.createdBoards &&  data.createdBoards.createdBoards.items || [],
       onRefresh: async () => {
         try {
