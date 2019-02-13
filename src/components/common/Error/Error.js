@@ -18,8 +18,9 @@ export default (props) => (
         icon="refresh"
         onPress={props.onRefresh}
         mode="outlined"
+        loading={props.loading}
       >
-        Try again
+      { props.loading ? "Loading..." : "Try again" }
       </Button>
     </View>
   </View>

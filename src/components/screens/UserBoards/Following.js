@@ -60,15 +60,21 @@ class FollowingBoards extends Component{
 
   render(){
     const { animatedY, onScroll } = this.props.collapsible;
+    const {
+      loading,
+      onRefresh,
+      data,
+      error
+    } = this.props;
 
-    if (this.props.loading) return <Loading />;
-    if (this.props.error) return <ErrorScreen onRefresh={this.props.onRefresh} />;
+    if (loading) return <Loading />;
+    if (error) return <ErrorScreen loading={loading} onRefresh={onRefresh} />;
 
     return (
       <AnimatedFlatList 
         style={styles.list}
-        data={sortBoards(this.props.data)}
-        extraData={this.props.data.length}
+        data={sortBoards(data)}
+        extraData={data.length}
         renderItem={this._renderItem}
 
         onScroll={onScroll} 
