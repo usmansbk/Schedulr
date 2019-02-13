@@ -27,4 +27,7 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
+  paragraph: {
+    textAlign: 'center'
+  },
 });
