@@ -14,6 +14,8 @@ import styles, {
   AVATAR_SIZE,
 } from './styles';
 
+const ANIMATION_DURATION = 250;
+
 export default class Item extends React.PureComponent {
   _onPress = () => this.props.onPressItem(this.props.id);
   _navigateToBoard = () => this.props.navigateToBoardEvents(this.props.boardId);
@@ -21,7 +23,7 @@ export default class Item extends React.PureComponent {
   handleViewRef = ref => this.view = ref;
   onRemove = async () => {
     if (this.props.animated) {
-      await this.view.fadeOut(500);
+      await this.view.fadeOut(ANIMATION_DURATION);
     }
   }
 
