@@ -29,7 +29,7 @@ export default compose(
       fetchPolicy: 'cache-only',
     },
     props: ({ data, ownProps}) => ({
-      fetchingEvents: data.loading,
+      loadingEvents: data.loading,
       error: data.error,
       events: data && data.listAllEvents && data.listAllEvents.items && data.listAllEvents.items.filter(event => event.board.id === ownProps.id),
       ...ownProps
@@ -44,10 +44,9 @@ export default compose(
       variables: {
         id: props.id
       },
-      onError: (e) => alert(e.message)
     }),
     props: ({ data, ownProps}) => ({
-      fetchingEvents: data.loading || data.networkStatus === 4,
+      loadingEvents: data.loading || data.networkStatus === 4,
       error: data.error,
       events: data && data.listBoardEvents && data.listBoardEvents.getBoard && data.listBoardEvents.getBoard.events && data.listBoardEvents.getBoard.events.items,
       ...ownProps
