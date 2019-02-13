@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Auth } from 'aws-amplify';
+import { Cache } from 'aws-amplify';
 import Loading from './Loading';
 
 export default class Container extends Component {
@@ -10,7 +10,8 @@ export default class Container extends Component {
 
   _bootstrapAsync = async () => {
     try {
-      await Auth.currentAuthenticatedUser();
+      await Cache.getItem('federatedInfo');
+      // await Auth.currentAuthenticatedUser();
       this.props.navigation.navigate('App');
     } catch (error) {
       this.props.navigation.navigate('Auth');
