@@ -13,8 +13,9 @@ export default class Item extends React.PureComponent {
       id,
       name,
       description,
+      isAuthor,
       isClosed,
-      isPublic
+      isFollowing,
     } = this.props;
     
     const isPending = id[0] === '-';
@@ -39,9 +40,15 @@ export default class Item extends React.PureComponent {
               { isClosed && <Caption style={styles.danger}>Closed</Caption> }
             </View>
           </View>
-          <FollowButton
-            small
-          />
+          {
+            !isAuthor && (
+              <FollowButton
+                id={id}
+                isFollowing={isFollowing}
+                small
+              />
+            )
+          }
         </View>
       </TouchableRipple>
     );

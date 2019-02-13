@@ -42,6 +42,7 @@ class FollowingBoards extends Component{
       isPublic,
       status,
       isAuthor,
+      isFollowing
     } = item;
 
     return (
@@ -50,6 +51,7 @@ class FollowingBoards extends Component{
         name={name}
         description={description}
         isPublic={isPublic}
+        isFollowing={isFollowing}
         isClosed={status === 'CLOSED'}
         isAuthor={isAuthor}
         onPressItem={this._onPressItem}

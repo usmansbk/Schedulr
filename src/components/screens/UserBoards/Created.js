@@ -42,6 +42,7 @@ class CreatedBoards extends Component{
       isPublic,
       status,
       isAuthor,
+      isFollowing
     } = item;
 
     return (
@@ -52,6 +53,7 @@ class CreatedBoards extends Component{
         isPublic={isPublic}
         isClosed={status === 'CLOSED'}
         isAuthor={isAuthor}
+        isFollowing={isFollowing}
         onPressItem={this._onPressItem}
         navigateToBoardInfo={this._navigateToInfo}
       />
