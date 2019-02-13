@@ -42,7 +42,7 @@ export default compose(
     alias,
     skip: props => !props.cacheFirst,
     options: props => ({
-      fetchPolicy: 'cache-first',
+      fetchPolicy: 'cache-and-network',
       notifyOnNetworkStatusChange: true,
       variables: {
         id: props.id
