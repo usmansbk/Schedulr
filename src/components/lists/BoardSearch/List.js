@@ -25,8 +25,8 @@ class List extends Component {
     }
   );
   shouldComponentUpdate = (nextProps) => nextProps.isFocused;
-  _onPressItem = (id) => this.props.navigation.navigate('BoardEvents', { id });
-  _navigateToInfo = (id) => this.props.navigation.navigate('BoardInfo', { id });
+  _onPressItem = (id) => this.props.navigation.push('BoardEvents', { id });
+  _navigateToInfo = (id) => this.props.navigation.push('BoardInfo', { id });
   _keyExtractor = (item) => String(item.id);
   _renderEmptyList = () => this.props.loading ? null : <Empty />;
   _renderItem = ({item}) => {
