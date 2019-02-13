@@ -17,8 +17,8 @@ export default class Comments extends React.Component {
 
   scrollDown = () => this._commentsListRef && this._commentsListRef.scrollDown();
 
-  _handleSubmit = (message) => {
-    this.props.onSubmit && this.props.onSubmit(message);
+  _handleSubmit =  async (message) => {
+    if (this.props.onSubmit) await this.props.onSubmit(message);
   };
 
   _handleDelete = (id) => {
