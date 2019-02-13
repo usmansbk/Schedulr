@@ -18,9 +18,9 @@ export default class CommentInput extends React.Component {
     pictureUrl: null
   }
 
-  _onSubmit = () => {
+  _onSubmit = async () => {
     this.setState({ isSubmitting: true });
-    this.props.handleSubmit(this.state.message);
+    await this.props.handleSubmit(this.state.message);
     this.setState({
       isSubmitting: false,
       message: ''
