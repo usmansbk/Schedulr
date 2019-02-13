@@ -46,7 +46,6 @@ const Tabs = createMaterialTopTabNavigator(
             onIconPress={() => navigation.goBack()}
             placeholder="Search for..."
             value={navigation.getParam('query', '')}
-            autoFocus
             onChangeText={(query) => navigation.setParams({ query })}
             style={{ elevation: 0 }}
           />
