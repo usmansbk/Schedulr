@@ -10,9 +10,9 @@ export default class Container extends Component {
 
   _bootstrapAsync = async () => {
     try {
-      await Cache.getItem('federatedInfo');
+      const { token } = await Cache.getItem('federatedInfo');
+      if (token) this.props.navigation.navigate('App');
       // await Auth.currentAuthenticatedUser();
-      this.props.navigation.navigate('App');
     } catch (error) {
       this.props.navigation.navigate('Auth');
     }

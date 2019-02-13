@@ -30,7 +30,6 @@ export default ({
       source={{uri: pictureUrl}}
       resizeMode="cover"
       style={styles.image}
-      defaultSource={require('./img/placeholder.png')}
     />
     <Headline style={styles.headline}>{name}</Headline>
     <TouchableRipple onPress={() => navigation.push('UserBoards', {
