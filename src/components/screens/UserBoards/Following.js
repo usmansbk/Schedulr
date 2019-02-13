@@ -5,11 +5,7 @@ import { withCollapsibleForTabChild } from 'react-navigation-collapsible';
 
 const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
 
-class TabChild1Screen extends Component{
-  static navigationOptions = {
-    title: 'Child 1'
-  };
-
+class FollowingBoards extends Component{
   constructor(props){
     super(props);
 
@@ -50,4 +46,4 @@ class TabChild1Screen extends Component{
   }
 }
 
-export default withCollapsibleForTabChild(TabChild1Screen);
+export default withCollapsibleForTabChild(FollowingBoards);
