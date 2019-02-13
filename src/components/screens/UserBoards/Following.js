@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import gql from 'graphql-tag';
+import { graphql, compose } from 'react-apollo';
 import { Animated } from 'react-native';
 import { FlatList } from 'react-navigation';
 import SimpleToast from 'react-native-simple-toast';
@@ -12,43 +13,12 @@ import styles, {
   ITEM_HEIGHT,
   SEPARATOR_HEIGHT
 } from '../../lists/Boards/styles';
-import client from '../../../config/client';
 import sortBoards from '../../../lib/utils';
 import { followingBoards as followingBoardsQuery } from '../../../graphql/queries';
 
 const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
 
 class FollowingBoards extends Component{
-  state = {
-    loading: false,
-    data: [],
-  };
-
-  _fetchBoards = async () => {
-    this.setState({ loading: true });
-    try {
-      const { data: { followingBoards }} = await client.query({
-        query: gql(followingBoardsQuery),
-        variables: {
-          id: this.props.navigation.getParam('id')
-        },
-        fetchPolicy: 'network-only'
-      });
-      const items = followingBoards && followingBoards.followingBoards &&  followingBoards.followingBoards.items || [];
-      this.setState({
-        data: items,
-        loading: false
-      });
-    } catch(e) {
-      SimpleToast.show('Connection error: ' + e.message, SimpleToast.SHORT);
-      this.setState({ loading: false });
-    }
-  };
-
-  componentDidMount = async () => {
-    await this._fetchBoards();
-  };
-
   _getItemLayout = (_, index) => (
     {
       length: ITEM_HEIGHT,
@@ -60,8 +30,8 @@ class FollowingBoards extends Component{
   _navigateToInfo = (id) => this.props.navigation.navigate('BoardInfo', { id });
   _keyExtractor = (item) => String(item.id);
   _renderSeparator = () => <Separator />;
-  _renderFooter = () => <Footer visible={this.state.data.length} />;
-  _renderEmptyList = () => this.state.loading ? null : <Empty profile />;
+  _renderFooter = () => <Footer visible={this.props.data.length} />;
+  _renderEmptyList = () => this.props.loading ? null : <Empty profile />;
   _renderItem = ({item}) => {
     const {
       id,
@@ -92,10 +62,10 @@ class FollowingBoards extends Component{
     return (
       <AnimatedFlatList 
         style={styles.list}
-        data={sortBoards(this.state.data)}
-        refreshing={this.state.loading}
-        onRefresh={this._fetchBoards}
-        extraData={this.state.data.length}
+        data={sortBoards(this.props.data)}
+        refreshing={this.props.loading}
+        onRefresh={this.props.onRefresh}
+        extraData={this.props.data.length}
         renderItem={this._renderItem}
 
         onScroll={onScroll} 
@@ -113,4 +83,27 @@ class FollowingBoards extends Component{
   }
 }
 
-export default withCollapsibleForTabChild(FollowingBoards);
+export default compose(
+  withCollapsibleForTabChild,
+  graphql(gql(followingBoardsQuery), {
+    options: props => ({
+      variables: {
+        id: props.navigation.getParam('id')
+      },
+      fetchPolicy: 'cache-and-network',
+      notifyOnNetworkStatusChange: true,
+    }),
+    props: ({ data, ownProps }) => ({
+      loading: data.loading || data.networkStatus === 4,
+      data: data && data.followingBoards && data.followingBoards.followingBoards &&  data.followingBoards.followingBoards.items || [],
+      onRefresh: async () => {
+        try {
+          await data.refetch();
+        } catch(e) {
+          SimpleToast.show('Connection error: ' + e.message, SimpleToast.SHORT);
+        }
+      },
+      ...ownProps
+    })
+  })
+)(FollowingBoards);
