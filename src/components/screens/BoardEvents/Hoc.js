@@ -30,8 +30,11 @@ export default compose(
     },
     props: ({ data, ownProps}) => ({
       loadingEvents: data.loading,
-      error: data.error,
-      events: data && data.listAllEvents && data.listAllEvents.items && data.listAllEvents.items.filter(event => event.board.id === ownProps.id),
+      loadingEventsError: data.error,
+      events: (
+        data && data.listAllEvents && data.listAllEvents.items && 
+        data.listAllEvents.items.filter(event => event.board.id === ownProps.id)
+      ),
       ...ownProps
     })
   }),
@@ -47,8 +50,13 @@ export default compose(
     }),
     props: ({ data, ownProps}) => ({
       loadingEvents: data.loading || data.networkStatus === 4,
-      error: data.error,
-      events: data && data.listBoardEvents && data.listBoardEvents.getBoard && data.listBoardEvents.getBoard.events && data.listBoardEvents.getBoard.events.items,
+      loadingEventsError: data.error,
+      events: (
+        data && data.listBoardEvents &&
+        data.listBoardEvents.getBoard &&
+        data.listBoardEvents.getBoard.events &&
+        data.listBoardEvents.getBoard.events.items
+      ),
       ...ownProps
     }) 
   })

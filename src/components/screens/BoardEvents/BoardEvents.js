@@ -20,14 +20,14 @@ export default class BoardEvents extends React.Component {
       error,
       loading,
       loadingEvents,
+      loadingEventsError,
       onPress,
       onRefresh,
       navigateToBoardInfo,
       navigateToNewEvent
     } = this.props;
-    if (error) alert(error.message);
     if (loading) return <Loading />;
-    if (!board) return <Error onRefresh={onRefresh} />;
+    if (!board && error) return <Error onRefresh={onRefresh} />;
 
     const {
       id,
@@ -56,6 +56,7 @@ export default class BoardEvents extends React.Component {
           listType="board"
           events={events}
           loading={loadingEvents}
+          error={loadingEventsError}
         />
         {
           isAuthor && (status !== BOARD_CLOSED ) && (
