@@ -45,7 +45,7 @@ export default StyleSheet.create({
     height: FOOTER_HEIGHT
   },
   footerText: {
-    color: colors.light_gray_3,
+    color: colors.primary_light,
     fontWeight: 'bold',
     fontSize: 16
   },
