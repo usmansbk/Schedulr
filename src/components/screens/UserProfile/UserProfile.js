@@ -1,10 +1,10 @@
 import React from 'react';
 import {
   View,
-  Image,
   StyleSheet,
   ScrollView,
-  Text
+  Text,
+  Image
 } from 'react-native';
 import { Headline, TouchableRipple } from 'react-native-paper';
 import numeral from 'numeral';
@@ -30,6 +30,7 @@ export default ({
       source={{uri: pictureUrl}}
       resizeMode="cover"
       style={styles.image}
+      defaultSource={require('./img/placeholder.png')}
     />
     <Headline style={styles.headline}>{name}</Headline>
     <TouchableRipple onPress={() => navigation.push('UserBoards', { id, name})}>
