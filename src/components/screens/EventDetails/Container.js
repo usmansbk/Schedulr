@@ -105,6 +105,7 @@ export default class EventDetails extends React.Component {
             startAt,
             endAt
           })}
+          startAt={startAt}
           eventType={decapitalize(eventType)}
           address={location && location.address}
           latitude={location && location.latitude}

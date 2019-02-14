@@ -22,20 +22,11 @@ import {
   canRepeat
 } from '../../../lib/formValidator';
 import { CANT_REPEAT } from '../../../lib/errorMessages';
+import { getLabel } from '../../../lib/time';
 import styles, { navButtonColor } from './styles';
 import formSchema from './schema';
 import eventTypes from './types';
 import frequency from './frequency';
-
-function getLabel(id, date) {
-  switch(id) {
-    case 'Weekday': return 'Every weekday (Mon-Fri)';
-    case 'Weekly': return `Weekly (every ${moment(date).format('dddd')})`;
-    case 'Monthly': return `Monthly (${moment(date).format('Do')} of every month)`;
-    case 'Yearly': return `Yearly (every ${moment(date).format('Do MMM')})`;
-    default: return id;
-  }
-}
 
 const defaultValues = {
   title: '',

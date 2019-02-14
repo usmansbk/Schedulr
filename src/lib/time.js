@@ -92,3 +92,13 @@ export const getSectionHeaderData = (date) => {
     timeAgo
   };
 };
+
+export function getLabel(id, date) {
+  switch(id) {
+    case 'Weekday': return 'Every weekday (Mon-Fri)';
+    case 'Weekly': return `Weekly (every ${moment(date).format('dddd')})`;
+    case 'Monthly': return `Monthly (${moment(date).format('Do')} of every month)`;
+    case 'Yearly': return `Yearly (every ${moment(date).format('Do MMM')})`;
+    default: return id;
+  }
+}
