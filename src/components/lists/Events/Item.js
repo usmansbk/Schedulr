@@ -23,7 +23,7 @@ export default class Item extends React.PureComponent {
   handleViewRef = ref => this.view = ref;
   onRemove = async () => {
     if (this.props.animated) {
-      await this.view.fadeOut(ANIMATION_DURATION);
+      await this.view.bounceOut(ANIMATION_DURATION);
     }
   }
 
@@ -56,7 +56,7 @@ export default class Item extends React.PureComponent {
         onPress={this._onPress}
         style={styles.itemContainer}
       >
-        <Animatable.View ref={this.handleViewRef} style={styles.itemContent}>
+        <Animatable.View useNativeDriver ref={this.handleViewRef} style={styles.itemContent}>
           <View style={styles.left}>
             <Avatar
               size={AVATAR_SIZE}
