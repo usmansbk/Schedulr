@@ -167,7 +167,7 @@ const Form = ({
           <DateTimeInput
             label="To"
             value={values.endAt}
-            disabled={values.allDay}
+            disabled={values.allDay || (values.repeat === 'WEEKDAY')}
             onChangeDate={(date) => setFieldValue('endAt', date)}
           />
           <View style={styles.radio}>
