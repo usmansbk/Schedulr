@@ -9,11 +9,14 @@ import {
   Caption
 } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import emojiRegex from 'emoji-regex';
 import UserAvatar from '../../common/UserAvatar';
 import Tag from '../../common/Tag';
 import numeral from 'numeral';
 import styles, { AVATAR_SIZE } from './styles';
 import colors from '../../../config/colors';
+
+const regex = emojiRegex();
 
 export default class Item extends React.PureComponent {
   _onPress = () => this.props.onPressItem(this.props.id);
@@ -29,8 +32,14 @@ export default class Item extends React.PureComponent {
       starsCount,
       commentsCount,
     } = this.props;
-    const [ first, second ] = title.split(' ');
-    const avatarName = `${first} ${second ? second : ''}`;
+    const emojiMatch = regex.exec(title);
+    let avatarName;
+    if (emojiMatch) {
+      avatarName = emojiMatch[0];
+    } else {
+      const [ first, second ] = title.split(' ');
+      avatarName = `${first} ${second ? second : ''}`;
+    }
 
     return (
       <TouchableRipple onPress={this._onPress} style={styles.itemContainer}>

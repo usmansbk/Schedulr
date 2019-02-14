@@ -1,8 +1,11 @@
 import React from 'react';
 import { View } from 'react-native';
 import { TouchableRipple, Text, Caption } from 'react-native-paper';
+import emojiRegex from 'emoji-regex';
 import UserAvatar from '../../common/UserAvatar';
 import styles, { AVATAR_SIZE } from './styles';
+
+const regex = emojiRegex();
 
 export default class Item extends React.PureComponent {
   _onPress = () => this.props.onPressItem(this.props.id);
@@ -16,8 +19,14 @@ export default class Item extends React.PureComponent {
     } = this.props;
     
     const isPending = id[0] === '-';
-    const [ first, second ] = name.split(' ');
-    const avatarName = `${first} ${second ? second : ''}`;
+    const emojiMatch = regex.exec(name);
+    let avatarName;
+    if (emojiMatch) {
+      avatarName = emojiMatch[0];
+    } else {
+      const [ first, second ] = name.split(' ');
+      avatarName = `${first} ${second ? second : ''}`;
+    }
 
     return (
       <TouchableRipple style={styles.itemContainer} onPress={this._onPress}>

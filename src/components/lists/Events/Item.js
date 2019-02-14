@@ -6,6 +6,7 @@ import {
   Text,
   Headline,
 } from 'react-native-paper';
+import emojiRegex from 'emoji-regex';
 import Avatar from '../../common/UserAvatar';
 import Actions from '../../common/Actions';
 import Tag from '../../common/Tag';
@@ -13,6 +14,8 @@ import { BULLET } from '../../../lib/constants';
 import styles, {
   AVATAR_SIZE,
 } from './styles';
+
+const regex = emojiRegex();
 
 const ANIMATION_DURATION = 250;
 
@@ -48,8 +51,14 @@ export default class Item extends React.PureComponent {
     
     const isPending = id[0] === '-';
     const repeatEvent = repeat && (repeat + ` ${BULLET} `);
-    const [ first, second ] = title.split(' ');
-    const avatarName = `${first} ${second ? second : ''}`;
+    const emojiMatch = regex.exec(title);
+    let avatarName;
+    if (emojiMatch) {
+      avatarName = emojiMatch[0];
+    } else {
+      const [ first, second ] = title.split(' ');
+      avatarName = `${first} ${second ? second : ''}`;
+    }
     
     return (
       <TouchableRipple
