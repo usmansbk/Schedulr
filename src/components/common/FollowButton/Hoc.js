@@ -49,6 +49,8 @@ export default compose(
               const allEventsData = cache.readQuery({ query: allEventsQuery });
               allEventsData.listAllEvents.items = uniqWith([...allEventsData.listAllEvents.items, ...items], _filter);
               cache.writeQuery({ query: allEventsQuery, data: allEventsData });
+            }).catch(e => {
+              SimpleToast.show('Failed to add board events. Refresh all events!', SimpleToast.SHORT);
             });
           }
         },
