@@ -6,8 +6,6 @@ import UserAvatar from '../../common/UserAvatar';
 import FollowButton from '../../common/FollowButton';
 import styles, { AVATAR_SIZE } from './styles';
 
-const regex = emojiRegex();
-
 export default class Item extends React.PureComponent {
   _onPress = () => {
     const cacheFirst = !(this.props.isAuthor || this.props.isFollowing);
@@ -25,7 +23,7 @@ export default class Item extends React.PureComponent {
     } = this.props;
     
     const isPending = id[0] === '-';
-    const emojiMatch = regex.exec(name);
+    const emojiMatch = emojiRegex().exec(name);
     let avatarName;
     if (emojiMatch) {
       avatarName = emojiMatch[0];

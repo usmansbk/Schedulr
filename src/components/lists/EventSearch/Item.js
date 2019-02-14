@@ -16,8 +16,6 @@ import numeral from 'numeral';
 import styles, { AVATAR_SIZE } from './styles';
 import colors from '../../../config/colors';
 
-const regex = emojiRegex();
-
 export default class Item extends React.PureComponent {
   _onPress = () => this.props.onPressItem(this.props.id);
   _navigateToBoard = () => this.props.navigateToBoard(this.props.boardId);
@@ -32,7 +30,7 @@ export default class Item extends React.PureComponent {
       starsCount,
       commentsCount,
     } = this.props;
-    const emojiMatch = regex.exec(title);
+    const emojiMatch = emojiRegex().exec(title);
     let avatarName;
     if (emojiMatch) {
       avatarName = emojiMatch[0];

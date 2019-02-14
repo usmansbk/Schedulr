@@ -15,8 +15,6 @@ import styles, {
   AVATAR_SIZE,
 } from './styles';
 
-const regex = emojiRegex();
-
 const ANIMATION_DURATION = 250;
 
 export default class Item extends React.PureComponent {
@@ -51,7 +49,7 @@ export default class Item extends React.PureComponent {
     
     const isPending = id[0] === '-';
     const repeatEvent = repeat && (repeat + ` ${BULLET} `);
-    const emojiMatch = regex.exec(title);
+    const emojiMatch = emojiRegex().exec(title);
     let avatarName;
     if (emojiMatch) {
       avatarName = emojiMatch[0];

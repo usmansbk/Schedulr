@@ -5,8 +5,6 @@ import emojiRegex from 'emoji-regex';
 import UserAvatar from '../../common/UserAvatar';
 import styles, { AVATAR_SIZE } from './styles';
 
-const regex = emojiRegex();
-
 export default class Item extends React.PureComponent {
   _onPress = () => this.props.onPressItem(this.props.id);
   _navigateToInfo = () => this.props.navigateToBoardInfo(this.props.id);
@@ -19,7 +17,7 @@ export default class Item extends React.PureComponent {
     } = this.props;
     
     const isPending = id[0] === '-';
-    const emojiMatch = regex.exec(name);
+    const emojiMatch = emojiRegex().exec(name);
     let avatarName;
     if (emojiMatch) {
       avatarName = emojiMatch[0];
