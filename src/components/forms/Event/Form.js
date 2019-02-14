@@ -137,7 +137,7 @@ const Form = ({
           {errors.location}
           </HelperText>
           <DateTimeInput
-            label="Start"
+            label="From"
             value={values.startAt}
             onChangeDate={(date) => {
               const prevStartAt = Date.parse(values.startAt);
@@ -155,7 +155,7 @@ const Form = ({
             }}
           />
           <DateTimeInput
-            label="End"
+            label="To"
             value={values.endAt}
             disabled={values.allDay}
             onChangeDate={(date) => setFieldValue('endAt', date)}
