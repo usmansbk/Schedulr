@@ -70,8 +70,8 @@ class FollowingBoards extends Component{
       error
     } = this.props;
 
-    if (loading && !data.length) return <Loading />;
-    if (error && !data.length) return <ErrorScreen loading={loading} onRefresh={onRefresh} />;
+    if (loading && !data) return <Loading />;
+    if (error && !data) return <ErrorScreen loading={loading} onRefresh={onRefresh} />;
 
     return (
       <AnimatedFlatList 
@@ -126,7 +126,11 @@ export default compose(
     props: ({ data, ownProps }) => ({
       loading: data.loading || data.networkStatus === 4,
       error: data.error,
-      data: data && data.followingBoards && data.followingBoards.followingBoards &&  data.followingBoards.followingBoards.items || [],
+      data: (
+        data && data.followingBoards &&
+        data.followingBoards.followingBoards &&
+        data.followingBoards.followingBoards.items
+      ),
       onRefresh: async () => {
         try {
           await data.refetch();

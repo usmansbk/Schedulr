@@ -70,8 +70,8 @@ class CreatedBoards extends Component{
       data
     } = this.props;
     
-    if (loading && !data.length) return <Loading />;
-    if (error && !data.length) return <ErrorScreen loading={loading} onRefresh={onRefresh} />;
+    if (loading && !data) return <Loading />;
+    if (error && !data) return <ErrorScreen loading={loading} onRefresh={onRefresh} />;
 
     return (
       <AnimatedFlatList 
@@ -126,7 +126,11 @@ export default compose(
     props: ({ data, ownProps }) => ({
       loading: data.loading || data.networkStatus === 4,
       error: data.error,
-      data: data && data.createdBoards && data.createdBoards.createdBoards &&  data.createdBoards.createdBoards.items || [],
+      data: (
+        data && data.createdBoards &&
+        data.createdBoards.createdBoards &&
+        data.createdBoards.createdBoards.items
+      ),
       onRefresh: async () => {
         try {
           await data.refetch();
