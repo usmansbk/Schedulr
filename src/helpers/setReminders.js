@@ -138,7 +138,7 @@ const schdlAll = (events) => {
 
 function getRepeatType(repeat) {
   switch(repeat) {
-    case 'DAILY': return 'day';
+    case 'DAILY': case 'WEEKDAY': return 'day';
     case 'WEEKLY': return 'week';
     default: return 'time';
   }
