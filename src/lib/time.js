@@ -40,6 +40,7 @@ const subheadingCalendarFormats = {
 export const repeatLength = (repeat) => {
   switch(repeat) {
     case 'DAILY': return ONE_DAY;
+    case 'WEEKDAY': return ONE_DAY;
     case 'WEEKLY': return ONE_WEEK;
     case 'MONTHLY': return moment().daysInMonth() * ONE_DAY;
     case 'YEARLY': return moment().weeksInYear() * ONE_WEEK;

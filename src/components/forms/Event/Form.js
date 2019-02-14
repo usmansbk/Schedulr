@@ -27,6 +27,16 @@ import formSchema from './schema';
 import eventTypes from './types';
 import frequency from './frequency';
 
+function getLabel(id, date) {
+  switch(id) {
+    case 'Weekday': return 'Every weekday (Mon-Fri)';
+    case 'Weekly': return `Weekly (every ${moment(date).format('dddd')})`;
+    case 'Monthly': return `Monthly (${moment(date).format('Do')} of every month)`;
+    case 'Yearly': return `Yearly (every ${moment(date).format('Do MMM')})`;
+    default: return id;
+  }
+}
+
 const defaultValues = {
   title: '',
   description: '',
@@ -167,7 +177,7 @@ const Form = ({
               onPress={() => {
                 const { allDay } = values;
                 setFieldValue('allDay', !allDay);
-                if (!allDay) {
+                if (!allDay || (values.repeat === 'WEEKDAY')) {
                   setFieldValue('endAt', moment(values.startAt).endOf('day').toISOString());
                 }
               }}
@@ -185,7 +195,7 @@ const Form = ({
             >
               {
                 frequency.map(freq => (
-                  <Picker.Item key={freq.id} label={freq.name} value={freq.id} />
+                  <Picker.Item key={freq.id} label={getLabel(freq.name, values.startAt)} value={freq.id} />
                 ))
               }
             </Picker>
