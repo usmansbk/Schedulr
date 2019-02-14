@@ -16,7 +16,7 @@ export default compose(
       variables: {
         id: props.navigation.getParam('id')
       },
-      fetchPolicy: 'network-only',
+      fetchPolicy: 'cache-and-network',
       onError: () => SimpleToast.show('Failed to fetch comments', SimpleToast.SHORT),
     }),
     props: ({ data, ownProps }) => ({
@@ -44,13 +44,16 @@ export default compose(
         },
         update: (cache, { data: { createComment } }) => {
           if (createComment) {
+            const id = ownProps.navigation.getParam('id');
             const query = gql(listEventComments);
-            const data = cache.readQuery({ query, variables: { id: ownProps.navigation.getParam('id') } });
+            const data = cache.readQuery({ query, variables: { id } });
+            const comment = Object.assign({}, createComment);
+            delete comment.event;
             data.listComments.items = [
               ...data.listComments.items.filter(item => item.id !== createComment.id),
-              createComment
+              comment
             ];
-            cache.writeQuery({ query, data });
+            cache.writeQuery({ query, data, variables: { id }});
           }
         },
         optimisticResponse: () => createCommentResponse(input, ownProps.navigation.getParam('id'))
