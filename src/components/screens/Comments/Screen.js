@@ -64,6 +64,7 @@ export default class Screen extends React.Component {
       <Comments
         loading={loading}
         me={me}
+        title={this.props.navigation.getParam('title')}
         error={Boolean(error)}
         comments={comments}
         ref={commentsRef => this._commentsRef = commentsRef}

@@ -54,7 +54,7 @@ export default class Actions extends React.Component {
           commentsCount={commentsCount}
           size={FONT_SIZE}
           color={color}
-          onPress={() => navigateToComments(id)}
+          onPress={() => navigateToComments(id, title)}
         />
         <LocationButton
           address={address}
