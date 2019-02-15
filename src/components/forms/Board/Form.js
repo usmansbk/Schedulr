@@ -105,7 +105,7 @@ const Form = ({
             type="info"
             visible={!values.isPublic}
           >
-            Users won't be able to search for this board! Users can still follow board via invitation link.
+            Users won't be able to search for this board. Users can still follow board via invitation link.
           </HelperText>
         </View>
       </ScrollView>
