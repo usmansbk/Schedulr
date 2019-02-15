@@ -152,7 +152,10 @@ android {
 }
 
 dependencies {
-    compile project(':react-native-geolocation-service')
+    compile(project(':react-native-geolocation-service')) {
+        exclude group: 'com.google.android.gms', module: 'play-services-location'
+    }
+    implementation 'com.google.android.gms:play-services-location:16.0.0'
     implementation project(':amazon-cognito-identity-js')
     implementation project(':react-native-vector-icons')
     implementation project(':react-native-gesture-handler')
