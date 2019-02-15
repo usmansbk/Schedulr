@@ -1,10 +1,14 @@
 import React from 'react';
 import { Alert } from 'react-native';
 import { IconButton } from 'react-native-paper';
+import openMap from 'react-native-open-maps';
 
-const handleAddress = (address, lat, lon) => {
-  if (lat && lon) {
-    alert(`latitude: ${lat}\nlongitude: ${lon}`);
+const handleAddress = ({ address, latitude, longitude }) => {
+  if (latitude && longitude) {
+    openMap({
+      latitude,
+      longitude,
+    })
   } else if (address) {
     Alert.alert('Address', address);
   }
@@ -22,6 +26,10 @@ export default ({
     icon={address ? 'location-on' : 'location-off'}
     color={color}
     size={size}
-    onPress={() => handleAddress(address, latitude, longitude)}
+    onPress={() => handleAddress({
+      address,
+      latitude: 37.865101,
+      longitude: -119.538330
+    })}
   />
 );
