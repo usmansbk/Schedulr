@@ -7,7 +7,7 @@ async function requestLocationPermission() {
       PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
       {
         title: 'Schdlr Location Permission',
-        message: "Schdlr App needs access to your location so your boards and events can reach people.",
+        message: "Schdlr App needs access to your location so events are easier to find.",
         buttonPositive: "OK",
         buttonNegative: "Cancel",
         buttonNeutral: "Ask Me Later"
