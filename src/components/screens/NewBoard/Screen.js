@@ -27,7 +27,7 @@ export default class NewBoardScreen extends React.Component {
               latitude
             }
           } = position;
-          alert(`Latitude: ${latitude} - Longitude: ${longitude}`);
+          // alert(`Latitude: ${latitude} - Longitude: ${longitude}`);
         },
         (error) => {
           alert(error.message)
