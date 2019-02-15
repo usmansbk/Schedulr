@@ -32,7 +32,9 @@ const defaultValues = {
   title: '',
   description: '',
   location: {
-    address: ''
+    address: '',
+    longitude: '',
+    latitude: ''
   },
   startAt: moment().toDate().toISOString(),
   endAt: moment().add(2, 'hours').toDate().toISOString(),

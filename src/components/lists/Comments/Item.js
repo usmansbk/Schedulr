@@ -5,10 +5,12 @@ import {
   Paragraph,
   Caption,
   Button,
+  IconButton
 } from 'react-native-paper';
 import Hyperlink from 'react-native-hyperlink';
 import UserAvatar from '../../common/UserAvatar';
 import styles, { AVATAR_SIZE } from './styles';
+import colors from '../../../config/colors';
 
 export default class Item extends React.PureComponent {
   state = {
@@ -89,8 +91,8 @@ export default class Item extends React.PureComponent {
             </Hyperlink>
             <View style={styles.footer}>
             <View style={styles.actions}>
-              {isAuthor && <Button compact mode="text" onPress={this._onDelete}>DELETE</Button>}
-              <Button compact mode="text" onPress={this._onReply}>REPLY</Button>
+              {isAuthor && <IconButton color={colors.light_red} icon="delete" onPress={this._onDelete} />}
+              <IconButton color={colors.primary} icon="reply" onPress={this._onReply}/>
             </View>
             </View>
           </View>
