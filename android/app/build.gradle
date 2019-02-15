@@ -152,6 +152,7 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-geolocation-service')
     implementation project(':amazon-cognito-identity-js')
     implementation project(':react-native-vector-icons')
     implementation project(':react-native-gesture-handler')
