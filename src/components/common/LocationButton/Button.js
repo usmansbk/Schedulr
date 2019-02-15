@@ -28,8 +28,8 @@ export default ({
     size={size}
     onPress={() => handleAddress({
       address,
-      latitude: 37.865101,
-      longitude: -119.538330
+      latitude,
+      longitude
     })}
   />
 );
