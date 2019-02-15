@@ -21,6 +21,6 @@ export default StyleSheet.create({
   text: {
     fontSize: 16,
     color: colors.gray,
-    fontFamily: 'sans-serif-light'
+    fontFamily: 'sans-serif-bold'
   }
 });
