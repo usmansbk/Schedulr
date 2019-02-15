@@ -15,13 +15,15 @@ import validationSchema from './schema';
 import styles, { navButtonColor } from './styles';
 import { requestLocationPermission } from '../../../helpers/permissions';
 
-const defaultValues = {
-  name: '',
-  description: '',
-  isPublic: true,
-};
+export default class Form extends React.Component {
 
-class Form extends React.Component {
+  static defaultProps = {
+    initialValues: {
+      name: '',
+      description: '',
+      isPublic: true,
+    }
+  };
   
   componentDidMount = () => {
     if (requestLocationPermission()) {
@@ -33,7 +35,7 @@ class Form extends React.Component {
               latitude
             }
           } = position;
-          // alert(`Latitude: ${latitude} - Longitude: ${longitude}`);
+          alert(`Latitude: ${latitude} - Longitude: ${longitude}`);
         },
         (error) => {
           alert(error.message)
@@ -146,5 +148,3 @@ class Form extends React.Component {
     );
   }
 }
-
-export default Form;
