@@ -17,6 +17,10 @@ import styles, { navButtonColor } from './styles';
 import { requestLocationPermission } from '../../../helpers/permissions';
 
 export default class Form extends React.Component {
+  state = {
+    longitude: null,
+    latitude: null
+  };
 
   static defaultProps = {
     initialValues: {
@@ -70,6 +74,7 @@ export default class Form extends React.Component {
             ...values,
             name: values.name.trim(),
             description: values.description.trim(),
+            location: this.state
           };
           onSubmit && await onSubmit(input);
           setSubmitting(false);
