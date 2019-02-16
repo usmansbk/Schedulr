@@ -160,7 +160,7 @@ export default class Form extends React.Component {
                     type="info"
                     visible={!values.isPublic}
                   >
-                    Users won't be able to search for this board. Users can still follow board via invitation link.
+                    Invites only.
                   </HelperText>
                 )
               }
