@@ -67,10 +67,6 @@ export const followingBoards = `query FollowingBoard($id: ID!, $limit: Int, $nex
           followingCount
           createdCount
         }
-        location {
-          longitude
-          latitude
-        }
         eventsCount
         followersCount
         createdAt
@@ -100,10 +96,6 @@ export const createdBoards = `query FollowingBoard($id: ID!, $limit: Int, $nextT
           pictureUrl
           followingCount
           createdCount
-        }
-        location {
-          longitude
-          latitude
         }
         eventsCount
         followersCount
