@@ -116,6 +116,13 @@ export const createEventResponse = (input) => {
   try {
     const { getBoard } = getNode(query, input.boardId);
     // const { me } = getCurrentUser();
+    let venue = null;
+    if (input.venue && input.venue.address ) {
+      venue = {
+        __typename: 'Venue',
+        address: input.venue.address
+      }
+    }
 
     const newEvent = {
       __typename: 'Event',
@@ -124,14 +131,7 @@ export const createEventResponse = (input) => {
       description: getValue(input.description),
       startAt: input.startAt,
       endAt: input.endAt,
-      venu: Boolean(input.venue.location) ? {
-        __typename: 'Venue',
-        address: input.venue.address,
-        location: {
-          __typename: 'Location',
-          ...input.venu.location
-        },
-      } : null,
+      venue,
       allDay: Boolean(input.allDay),
       repeat: input.repeat,
       eventType: input.eventType,

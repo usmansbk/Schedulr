@@ -113,10 +113,6 @@ export const getEvent = `query GetEvent($id: ID!) {
     description
     venue {
       address
-      location {
-        latitude
-        longitude
-      }
     }
     startAt
     endAt
@@ -184,10 +180,6 @@ export const listAllEvents = `query ListAllEvents($limit: Int, $nextToken: Strin
       description
       venue {
         address
-        location {
-          latitude
-          longitude
-        }
       }
       startAt
       endAt
@@ -275,10 +267,6 @@ export const listBoardEvents = `query ListBoardEvents($id: ID!, $limit: Int, $ne
         description
         venue {
           address
-          location {
-            latitude
-            longitude
-          }
         }
         startAt
         endAt
@@ -325,10 +313,6 @@ export const searchEvent = `query SearchEvent($filter: SearchFilterInput, $limit
       description
       venue {
         address
-        location {
-          latitude
-          longitude
-        }
       }
       startAt
       endAt

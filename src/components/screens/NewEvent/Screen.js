@@ -27,7 +27,7 @@ export default class NewEventScreen extends React.Component {
     const {
       title,
       description,
-      location,
+      venue,
       startAt,
       endAt,
       allDay,
@@ -36,10 +36,20 @@ export default class NewEventScreen extends React.Component {
       board={}
     } = event;
 
+    const location = (venue && venue.location) ? {
+      ...venue.location
+    } : {
+      longitude: null,
+      latitude: null
+    };
+
     return ({
       title: title || '',
       description: description || '',
-      location: location || { address: '' },
+      venue: {
+        address: venue && venue.address || '',
+        location
+      },
       startAt: startAt || moment().toDate().toISOString(),
       endAt: endAt || moment().add(2, 'hours').toDate().toISOString(),
       allDay: Boolean(allDay),

@@ -116,10 +116,6 @@ export const createEvent = `mutation CreateEvent($input: CreateEventInput!) {
     description
     venue {
       address
-      location {
-        latitude
-        longitude
-      }
     }
     startAt
     endAt
@@ -149,10 +145,6 @@ export const updateEvent = `mutation UpdateEvent($input: UpdateEventInput!) {
     description
     venue {
       address
-      location {
-        latitude
-        longitude
-      }
     }
     startAt
     endAt
