@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, ScrollView, RefreshControl } from 'react-native';
 import Geolocation from 'react-native-geolocation-service';
+import SimpleToast from 'react-native-simple-toast';
 import isEqual from 'lodash.isequal';
 import {
   Button,
@@ -35,10 +36,13 @@ export default class Form extends React.Component {
               latitude
             }
           } = position;
-          alert(`Latitude: ${latitude} - Longitude: ${longitude}`);
+          this.setState({
+            latitude,
+            longitude
+          });
         },
         (error) => {
-          alert(error.message)
+          SimpleToast.show(error.message, SimpleToast.SHORT);
         },
         {
           enableHighAccuracy: true,
