@@ -19,7 +19,6 @@ export const buildEventForm = (values) => {
 
 export const buildBoardForm = (values, loc) => {
   const location = (loc && loc.latitude && loc.longitude) ? loc : null;
-  alert((loc && loc.latitude && loc.longitude) + ' ' + values.isPublic);
   const input = {
     ...values,
     name: values.name.trim(),
