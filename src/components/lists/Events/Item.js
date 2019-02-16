@@ -33,8 +33,6 @@ export default class Item extends React.PureComponent {
       id,
       title,
       address,
-      latitude,
-      longitude,
       repeat,
       time,
       duration,
@@ -86,8 +84,6 @@ export default class Item extends React.PureComponent {
               date={date}
               title={title}
               address={address}
-              latitude={latitude}
-              longitude={longitude}
               eventType={eventType}
               isStarred={isStarred}
               starsCount={starsCount}

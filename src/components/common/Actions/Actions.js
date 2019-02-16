@@ -32,8 +32,6 @@ export default class Actions extends React.Component {
       small,
       dark,
       navigateToComments,
-      latitude,
-      longitude,
       onRemove
     } = this.props;
     const color = dark ? colors.light_gray_3 : defaultColor;
@@ -58,8 +56,6 @@ export default class Actions extends React.Component {
         />
         <LocationButton
           address={address}
-          latitude={latitude}
-          longitude={longitude}
           color={color}
         />
         {

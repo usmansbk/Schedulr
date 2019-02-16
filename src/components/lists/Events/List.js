@@ -55,7 +55,7 @@ class List extends React.Component {
   _renderItem = ({ item: {
     id,
     title,
-    location,
+    venue,
     eventType,
     isCancelled,
     cancelledDates,
@@ -70,9 +70,7 @@ class List extends React.Component {
   }}) => (<Item
     id={id}
     title={title}
-    address={location && location.address}
-    longitude={location && location.longitude}
-    latitude={location && location.latitude}
+    address={venue && venue.address}
     eventType={decapitalize(eventType)}
     repeat={repeat === 'NEVER' ? null : decapitalize(repeat)}
     time={getTime({ allDay, startAt, endAt })}
