@@ -67,6 +67,10 @@ export const followingBoards = `query FollowingBoard($id: ID!, $limit: Int, $nex
           followingCount
           createdCount
         }
+        location {
+          longitude
+          latitude
+        }
         eventsCount
         followersCount
         createdAt
@@ -97,6 +101,10 @@ export const createdBoards = `query FollowingBoard($id: ID!, $limit: Int, $nextT
           followingCount
           createdCount
         }
+        location {
+          longitude
+          latitude
+        }
         eventsCount
         followersCount
         createdAt
@@ -111,10 +119,12 @@ export const getEvent = `query GetEvent($id: ID!) {
     id
     title
     description
-    location {
+    venue {
       address
-      latitude
-      longitude
+      location {
+        latitude
+        longitude
+      }
     }
     startAt
     endAt
@@ -154,6 +164,10 @@ export const getBoard = `query GetBoard($id: ID!) {
       followingCount
       createdCount
     }
+    location {
+      latitude
+      longitude
+    }
     eventsCount
     followersCount
     createdAt
@@ -180,10 +194,12 @@ export const listAllEvents = `query ListAllEvents($limit: Int, $nextToken: Strin
       id
       title
       description
-      location {
+      venue {
         address
-        latitude
-        longitude
+        location {
+          latitude
+          longitude
+        }
       }
       startAt
       endAt
@@ -251,6 +267,10 @@ export const listAllBoards = `query ListAllBoards($limit: Int, $nextToken: Strin
         followingCount
         createdCount
       }
+      location {
+        latitude
+        longitude
+      }
       eventsCount
       followersCount
       createdAt
@@ -269,10 +289,12 @@ export const listBoardEvents = `query ListBoardEvents($id: ID!, $limit: Int, $ne
         id
         title
         description
-        location {
+        venue {
           address
-          latitude
-          longitude
+          location {
+            latitude
+            longitude
+          }
         }
         startAt
         endAt
@@ -317,10 +339,12 @@ export const searchEvent = `query SearchEvent($filter: SearchFilterInput, $limit
       id
       title
       description
-      location {
+      venue {
         address
-        latitude
-        longitude
+        location {
+          latitude
+          longitude
+        }
       }
       startAt
       endAt
@@ -361,6 +385,10 @@ export const searchBoard = `query SearchBoard($filter: SearchFilterInput, $limit
         pictureUrl
         followingCount
         createdCount
+      }
+      location {
+        latitude
+        longitude
       }
       eventsCount
       followersCount

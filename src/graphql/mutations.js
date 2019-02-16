@@ -38,6 +38,10 @@ export const createBoard = `mutation CreateBoard($input: CreateBoardInput!) {
       followingCount
       createdCount
     }
+    location {
+      longitude
+      latitude
+    }
     eventsCount
     followersCount
     createdAt
@@ -78,6 +82,10 @@ export const followBoard = `mutation FollowBoard($input: FollowBoardInput!) {
       followingCount
       createdCount
     }
+    location {
+      longitude
+      latitude
+    }
     eventsCount
     followersCount
     createdAt
@@ -114,10 +122,12 @@ export const createEvent = `mutation CreateEvent($input: CreateEventInput!) {
     id
     title
     description
-    location {
+    venue {
       address
-      latitude
-      longitude
+      location {
+        latitude
+        longitude
+      }
     }
     startAt
     endAt
@@ -145,10 +155,12 @@ export const updateEvent = `mutation UpdateEvent($input: UpdateEventInput!) {
     id
     title
     description
-    location {
+    venue {
       address
-      latitude
-      longitude
+      location {
+        latitude
+        longitude
+      }
     }
     startAt
     endAt
