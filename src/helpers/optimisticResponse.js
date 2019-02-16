@@ -198,13 +198,9 @@ export const updateEventResponse = (input) => ({
     title: getValue(input.title),
     description: getValue(input.description),
     updatedAt: moment().toISOString(),
-    venue: Boolean(input.venue.location) ? {
+    venue: Boolean(input.venue.address) ? {
       __typename: 'Venue',
       address: input.venue.address,
-      location: {
-        __typename: 'Location',
-        ...input.venue.location
-      }
     } : null
   })
 });

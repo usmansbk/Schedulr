@@ -14,8 +14,6 @@ export default ({
   startAt,
   eventType,
   address,
-  latitude,
-  longitude,
   boardName,
   boardId,
   repeat,
@@ -89,8 +87,6 @@ export default ({
     id={id}
     title={title}
     address={address}
-    latitude={latitude}
-    longitude={longitude}
     eventType={eventType}
     isStarred={isStarred}
     starsCount={starsCount}

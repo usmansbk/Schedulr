@@ -4,9 +4,14 @@ export const buildEventForm = (values) => {
     venue = {
       address: values.venue.address
     };
-    if (values.venue.location.latitude && values.location.longitude) {
-      venue.location = values.venue.location;
-    }
+  }
+  if (
+      values.venue && values.venue.location &&
+      values.venue.location.latitude &&
+      values.location.longitude
+    ) {
+    venue = venue || {};
+    venue.location = values.venue.location;
   }
   const input = {
     ...values,
