@@ -200,7 +200,7 @@ export const updateEventResponse = (input) => ({
     updatedAt: moment().toISOString(),
     venue: Boolean(input.venue.address) ? {
       __typename: 'Venue',
-      address: input.venue.address,
+      address:  input.venue.address,
     } : null
   })
 });

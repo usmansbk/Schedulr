@@ -23,8 +23,10 @@ export default class EditEventScreen extends React.Component {
       description: description || '',
       venue: {
         address: venue && venue.address || '',
-        longitude: null,
-        latitude: null
+        location: {
+          longitude: venue && venue.location && venue.location.longitude,
+          latitude: venue && venue.location && venue.location.latitude,
+        }
       },
       startAt,
       endAt,
