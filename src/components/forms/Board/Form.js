@@ -176,7 +176,7 @@ export default class Form extends React.Component {
                 type="info"
                 visible
               >
-                Helps nearby users find your board and events.
+                Helps nearby users find your board.
               </HelperText>
             </View>
           </ScrollView>
