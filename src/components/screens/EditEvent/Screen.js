@@ -10,7 +10,7 @@ export default class EditEventScreen extends React.Component {
     const {
       title,
       description,
-      location,
+      venue,
       startAt,
       endAt,
       allDay,
@@ -21,10 +21,10 @@ export default class EditEventScreen extends React.Component {
     return ({
       title,
       description: description || '',
-      location: {
-        address: location && location.address || '',
-        longitude: location && location.longitude,
-        latitude: location && location.latitude
+      venue: {
+        address: venue && venue.address || '',
+        longitude: venue && venue.location && venue.longitude,
+        latitude: venue && venue.location && venue.latitude
       },
       startAt,
       endAt,

@@ -31,10 +31,12 @@ import frequency from './frequency';
 const defaultValues = {
   title: '',
   description: '',
-  location: {
+  venue: {
     address: '',
-    longitude: '',
-    latitude: ''
+    location: {
+      longitude: null,
+      latitude: null
+    }
   },
   startAt: moment().toDate().toISOString(),
   endAt: moment().add(2, 'hours').toDate().toISOString(),
@@ -127,10 +129,10 @@ const Form = ({
           {errors.description}
           </HelperText>
           <TextInput
-            placeholder="Location"
-            value={values.location.address}
-            onChangeText={handleChange('location.address')}
-            onBlur={handleBlur('location.address')}
+            placeholder="Venue"
+            value={values.venue.address}
+            onChangeText={handleChange('venue.address')}
+            onBlur={handleBlur('venue.address')}
             mode="outlined"
           />
           <HelperText

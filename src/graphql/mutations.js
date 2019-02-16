@@ -38,10 +38,6 @@ export const createBoard = `mutation CreateBoard($input: CreateBoardInput!) {
       followingCount
       createdCount
     }
-    location {
-      longitude
-      latitude
-    }
     eventsCount
     followersCount
     createdAt
@@ -81,10 +77,6 @@ export const followBoard = `mutation FollowBoard($input: FollowBoardInput!) {
       pictureUrl
       followingCount
       createdCount
-    }
-    location {
-      longitude
-      latitude
     }
     eventsCount
     followersCount

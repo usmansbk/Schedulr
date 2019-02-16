@@ -36,7 +36,7 @@ export default class EventDetails extends React.Component {
       id,
       title,
       eventType,
-      location,
+      venue,
       startAt,
       endAt,
       allDay,
@@ -107,9 +107,9 @@ export default class EventDetails extends React.Component {
           })}
           startAt={startAt}
           eventType={decapitalize(eventType)}
-          address={location && location.address}
-          latitude={location && location.latitude}
-          longitude={location && location.longitude}
+          address={venue && venue.address}
+          latitude={venue && venue.location && venue.location.latitude}
+          longitude={venue && venue.location && venue.location.longitude}
           boardName={board.name}
           boardId={board.id}
           repeat={!recurring ? ONE_TIME_EVENT_TEXT : decapitalize(repeat)}

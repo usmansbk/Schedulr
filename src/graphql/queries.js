@@ -164,10 +164,6 @@ export const getBoard = `query GetBoard($id: ID!) {
       followingCount
       createdCount
     }
-    location {
-      latitude
-      longitude
-    }
     eventsCount
     followersCount
     createdAt
@@ -266,10 +262,6 @@ export const listAllBoards = `query ListAllBoards($limit: Int, $nextToken: Strin
         pictureUrl
         followingCount
         createdCount
-      }
-      location {
-        latitude
-        longitude
       }
       eventsCount
       followersCount
@@ -385,10 +377,6 @@ export const searchBoard = `query SearchBoard($filter: SearchFilterInput, $limit
         pictureUrl
         followingCount
         createdCount
-      }
-      location {
-        latitude
-        longitude
       }
       eventsCount
       followersCount

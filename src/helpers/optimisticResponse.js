@@ -124,9 +124,13 @@ export const createEventResponse = (input) => {
       description: getValue(input.description),
       startAt: input.startAt,
       endAt: input.endAt,
-      location: Boolean(input.location.address) ? {
-        __typename: 'Location',
-        ...input.location
+      venu: Boolean(input.venue.address) ? {
+        __typename: 'Venue',
+        address: input.venue.address,
+        location: Boolean(input.venue.location) ? {
+          __typename: 'Location',
+          ...input.venu.location
+        } : null
       } : null,
       allDay: Boolean(input.allDay),
       repeat: input.repeat,
@@ -167,6 +171,10 @@ export const createBoardResponse = (input) => {
       id: '-' + shortid.generate(),
       name: getValue(input.name),
       description: getValue(input.description),
+      location: Boolean(input.location) ? {
+        __typename: 'Location',
+        ...input.location,
+      } : null,
       status: getValue(input.status),
       isPublic: Boolean(input.isPublic),
       isFollowing: false,
