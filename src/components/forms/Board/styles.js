@@ -17,6 +17,15 @@ export default StyleSheet.create({
   switchButton: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingVertical: 8
+  },
+  checkbox: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingTop: 16,
+    paddingBottom: 4
   },
   text: {
     fontSize: 16,

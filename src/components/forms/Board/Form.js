@@ -9,7 +9,9 @@ import {
   Text,
   HelperText,
   Switch,
-  Appbar
+  Appbar,
+  Divider,
+  Checkbox
 } from 'react-native-paper';
 import { Formik } from 'formik';
 import validationSchema from './schema';
@@ -34,8 +36,17 @@ export default class Form extends React.Component {
       }
     }
   };
+
+  _tagLocation = () => {
+    const { latitude, longitude } = this.state;
+    if (latitude && longitude) {
+      this.setState({ latitude: null, longitude: null });
+    } else {
+      this.getLocation();
+    }
+  }
   
-  componentDidMount = () => {
+  getLocation = () => {
     if (requestLocationPermission()) {
       Geolocation.getCurrentPosition(
         (position) => {
@@ -143,11 +154,29 @@ export default class Form extends React.Component {
                   onValueChange={() => setFieldValue('isPublic', !values.isPublic)}
                 />
               </View>
+              {
+                (!values.isPublic) && (  
+                  <HelperText
+                    type="info"
+                    visible={!values.isPublic}
+                  >
+                    Users won't be able to search for this board. Users can still follow board via invitation link.
+                  </HelperText>
+                )
+              }
+              <Divider />
+              <View style={styles.checkbox}>
+                <Text style={styles.text}>Tag current location</Text>
+                <Checkbox
+                  status={(this.state.latitude && this.state.longitude) ? 'checked' : 'unchecked'}
+                  onPress={this._tagLocation}
+                />
+              </View>
               <HelperText
                 type="info"
-                visible={!values.isPublic}
+                visible
               >
-                Users won't be able to search for this board. Users can still follow board via invitation link.
+                Helps nearby users find event.
               </HelperText>
             </View>
           </ScrollView>
