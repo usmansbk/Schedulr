@@ -27,6 +27,7 @@ import styles, { navButtonColor } from './styles';
 import formSchema from './schema';
 import eventTypes from './types';
 import frequency from './frequency';
+import { buildEventForm } from '../../../helpers/buildForm';
 
 const defaultValues = {
   title: '',
@@ -60,11 +61,7 @@ const Form = ({
     validationSchema={formSchema}
     onSubmit={async (values, { setSubmitting }) => {
       if (isEventValid(values)) {
-        const input = {
-          ...values,
-          title: values.title.trim(),
-          description: values.description.trim()
-        };
+        const input = buildEventForm(values);
         onSubmit && await onSubmit(input);
       }
       setSubmitting(false);

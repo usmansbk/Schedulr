@@ -11,7 +11,7 @@ export default class NewBoardScreen extends React.Component {
         id: result.data.createBoard.id
       });
     } catch(error) {
-      SimpleToast.show('Failed to create board', SimpleToast.SHORT);
+      SimpleToast.show('Failed to create board: ' + error.message, SimpleToast.SHORT);
     }
   };
 

@@ -15,6 +15,7 @@ import { Formik } from 'formik';
 import validationSchema from './schema';
 import styles, { navButtonColor } from './styles';
 import { requestLocationPermission } from '../../../helpers/permissions';
+import { buildBoardForm } from '../../../helpers/buildForm';
 
 export default class Form extends React.Component {
   state = {
@@ -74,16 +75,11 @@ export default class Form extends React.Component {
         initialValues={initialValues || defaultValues}
         validationSchema={validationSchema}
         onSubmit={async (values, { setSubmitting }) => {
-          const input = {
-            ...values,
-            name: values.name.trim(),
-            description: values.description.trim(),
-            location: this.state
-          };
+          const input = buildBoardForm (values, this.state);
           onSubmit && await onSubmit(input);
           setSubmitting(false);
         }}
-      >
+      > 
         {({
           values,
           errors,
