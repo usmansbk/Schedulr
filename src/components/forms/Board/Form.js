@@ -137,9 +137,9 @@ export default class Form extends React.Component {
               {errors.description}
               </HelperText>
               <View style={styles.switchButton}>
-                <Text style={styles.text}>Public</Text>
+                <Text style={styles.text}>Private</Text>
                 <Switch
-                  value={values.isPublic}
+                  value={!values.isPublic}
                   onValueChange={() => setFieldValue('isPublic', !values.isPublic)}
                 />
               </View>
