@@ -72,7 +72,7 @@ export default class Form extends React.Component {
 
     return (
       <Formik
-        initialValues={initialValues || defaultValues}
+        initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={async (values, { setSubmitting }) => {
           const input = buildBoardForm (values, this.state);
