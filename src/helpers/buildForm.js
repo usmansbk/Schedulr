@@ -1,16 +1,16 @@
 export const buildEventForm = (values) => {
-  let venue = {
-    address: ''
-  };
+  let venue = null;
   if (values.venue && values.venue.address) {
-    venue.address = values.venue.address;
+    venue = {
+      address: values.venue.address
+    };
   }
   if (
-      values.venue &&
-      values.venue.location &&
+      values.venue && values.venue.location &&
       values.venue.location.latitude &&
-      values.venue.location.longitude
+      values.location.longitude
     ) {
+    venue = venue || {};
     venue.location = values.venue.location;
   }
   const input = {
