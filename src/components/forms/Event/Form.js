@@ -64,7 +64,7 @@ export default class Form extends React.Component {
   }
 
   componentDidMount = () => {
-    InteractionManager.runAfterInteractions(this.getLocation);
+    this.getLocation();
   }
 
   _tagLocation = () => {
