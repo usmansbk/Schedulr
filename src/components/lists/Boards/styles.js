@@ -66,6 +66,7 @@ export default StyleSheet.create({
   },
   danger: {
     color: colors.light_red,
+    fontWeight: 'bold'
   },
   nameRow: {
     flexDirection: 'row',
