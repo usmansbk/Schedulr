@@ -7,7 +7,8 @@ import {
   View,
   Picker,
   ScrollView,
-  RefreshControl
+  RefreshControl,
+  InteractionManager
 } from 'react-native';
 import {
   IconButton,
@@ -60,6 +61,10 @@ export default class Form extends React.Component {
       repeat: frequency[0].id,
       boardId: '',
     }
+  }
+
+  componentDidMount = () => {
+    InteractionManager.runAfterInteractions(this.getLocation);
   }
 
   _tagLocation = () => {

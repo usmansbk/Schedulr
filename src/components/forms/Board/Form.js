@@ -1,5 +1,10 @@
 import React from 'react';
-import { View, ScrollView, RefreshControl } from 'react-native';
+import {
+  View,
+  ScrollView,
+  RefreshControl,
+  InteractionManager
+} from 'react-native';
 import Geolocation from 'react-native-geolocation-service';
 import SimpleToast from 'react-native-simple-toast';
 import isEqual from 'lodash.isequal';
@@ -44,6 +49,10 @@ export default class Form extends React.Component {
     } else {
       this.getLocation();
     }
+  }
+
+  componentDidMount = () => {
+    InteractionManager.runAfterInteractions(this.getLocation);
   }
   
   getLocation = () => {
