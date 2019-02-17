@@ -43,7 +43,7 @@ export default StyleSheet.create({
   },
   itemContent: {
     height: ITEM_HEIGHT,
-    paddingHorizontal: 4,
+    paddingHorizontal: 8,
     alignItems: 'center',
     flexDirection: 'row',
   },
