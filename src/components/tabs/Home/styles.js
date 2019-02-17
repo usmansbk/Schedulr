@@ -11,7 +11,7 @@ export default StyleSheet.create({
   },
   barStyle: {
     elevation: 4,
-    backgroundColor: '#fff',
+    backgroundColor: colors.white,
   },
   indicatorStyle: {
     backgroundColor: colors.primary_light
