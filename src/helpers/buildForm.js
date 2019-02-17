@@ -1,4 +1,4 @@
-export const buildEventForm = (values) => {
+export const buildEventForm = (values, myLocation) => {
   let venue = null;
   if (values.venue && values.venue.address) {
     venue = {
@@ -6,12 +6,12 @@ export const buildEventForm = (values) => {
     };
   }
   if (
-      values.venue && values.venue.location &&
-      values.venue.location.latitude &&
-      values.location.longitude
+      myLocation &&
+      myLocation.latitude &&
+      myLocation.longitude
     ) {
     venue = venue || {};
-    venue.location = values.venue.location;
+    venue.location = myLocation;
   }
   const input = {
     ...values,
@@ -22,8 +22,8 @@ export const buildEventForm = (values) => {
   return input;
 };
 
-export const buildBoardForm = (values, loc) => {
-  const location = (loc && loc.latitude && loc.longitude) ? loc : null;
+export const buildBoardForm = (values, myLocation) => {
+  const location = (myLocation && myLocation.latitude && myLocation.longitude) ? myLocation : null;
   const input = {
     ...values,
     name: values.name.trim(),

@@ -43,5 +43,17 @@ export default StyleSheet.create({
     backgroundColor: '#fff',
     paddingHorizontal: 16,
     elevation: 0,
+  },
+  checkbox: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+  },
+  checkboxLabel: {
+    color: colors.primary
+  },
+  checkboxItem: {
+    flexDirection: 'row',
+    justifyContent: 'space-between'
   }
 });
