@@ -31,5 +31,8 @@ export default StyleSheet.create({
     fontSize: 16,
     color: colors.gray,
     fontFamily: 'sans-serif-bold'
+  },
+  primary: {
+    color: colors.primary
   }
 });

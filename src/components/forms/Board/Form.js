@@ -166,7 +166,7 @@ export default class Form extends React.Component {
               }
               <Divider />
               <View style={styles.checkbox}>
-                <Text style={styles.text}>Tag current location</Text>
+                <Text style={[styles.text, styles.primary]}>Tag current location</Text>
                 <Checkbox
                   status={(this.state.latitude && this.state.longitude) ? 'checked' : 'unchecked'}
                   onPress={this._tagLocation}
