@@ -4,8 +4,8 @@ import { Headline } from 'react-native-paper';
 import Error from '../../common/Error';
 import styles from './styles';
 
-export default ({ isAuthor, error, onRefresh }) => {
-  if (error) return <Error onRefresh={onRefresh} />
+export default ({ isAuthor, error }) => {
+  if (error) return <Error />
   return (
     <View style={styles.empty}>
       <Headline style={styles.emptyTitle}>

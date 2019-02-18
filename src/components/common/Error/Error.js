@@ -13,16 +13,20 @@ export default (props) => (
     <Headline style={styles.headline}>
       Something went wrong. Please try again
     </Headline>
-    <View style={styles.content}>
-      <Button
-        icon="refresh"
-        onPress={props.onRefresh}
-        mode="outlined"
-        loading={props.loading}
-      >
-      { props.loading ? "Loading..." : "Try again" }
-      </Button>
-    </View>
+    {
+      props.onRefresh && (
+        <View style={styles.content}>
+          <Button
+            icon="refresh"
+            onPress={props.onRefresh}
+            mode="outlined"
+            loading={props.loading}
+          >
+          { props.loading ? "Loading..." : "Try again" }
+          </Button>
+        </View>
+      )
+    }
   </View>
 );
 
