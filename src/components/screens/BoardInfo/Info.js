@@ -1,7 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import isEqual from 'lodash.isequal';
-import { View, ScrollView } from 'react-native';
+import { View, ScrollView, RefreshControl } from 'react-native';
 import {
   Menu,
   MenuTrigger,
@@ -105,7 +105,9 @@ export default class Info extends React.Component {
             )
           }
         </Appbar.Header>
-        <ScrollView style={styles.container}>
+        <ScrollView
+          refreshControl={<RefreshControl onRefresh={onRefresh} refreshing={loading} />}
+          style={styles.container}>
           <View style={styles.container}>
             <View style={styles.avatar}>
               <View style={styles.userAvatar}>
