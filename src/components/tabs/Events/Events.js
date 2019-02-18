@@ -12,11 +12,7 @@ export default class Events extends React.Component {
     super(props);
     this._handleDeeplink();
   }
-
-  state = {
-    visible: false
-  };
-
+  
   _handleDeeplink = async () => {
     const url = await Linking.getInitialURL();
     if (url) {
