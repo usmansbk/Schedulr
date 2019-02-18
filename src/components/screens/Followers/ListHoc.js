@@ -17,7 +17,13 @@ export default graphql(gql(listBoardFollowers), {
     hasMore: data && data.listFollowers && data.listFollowers.nextToken,
     loading: data.loading || data.networkStatus === 4,
     error: data.error,
-    onRefresh: async () => await data.refetch(),
+    onRefresh: async () => {
+      try {
+        await data.refetch()
+      } catch(e) {
+        SimpleToast.show('Refresh failed', SimpleToast.SHORT);
+      }
+    },
     ...ownProps
   })
 })(List);
