@@ -15,7 +15,7 @@ export default graphql(gql(getEvent), {
       id,
     },
     notifyOnNetworkStatusChange: true,
-    fetchPolicy: 'cache-first'
+    fetchPolicy: 'cache-and-network'
   })},
   props: ({ data, ownProps }) => ({
     loading: data.loading || data.networkStatus === 4,
