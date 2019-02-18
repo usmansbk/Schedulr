@@ -93,7 +93,7 @@ export const getSectionHeaderData = (date) => {
   };
 };
 
-export function getLabel(id, date) {
+export function getRepeatLabel(id, date) {
   switch(id) {
     case 'Weekday': return 'Every weekday (Mon-Fri)';
     case 'Weekly': return `Weekly (every ${moment(date).format('dddd')})`;

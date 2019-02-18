@@ -27,7 +27,7 @@ import {
   canRepeat
 } from '../../../lib/formValidator';
 import { CANT_REPEAT } from '../../../lib/errorMessages';
-import { getLabel } from '../../../lib/time';
+import { getRepeatLabel } from '../../../lib/time';
 import styles, { navButtonColor } from './styles';
 import formSchema from './schema';
 import eventTypes from './types';
@@ -246,7 +246,7 @@ export default class Form extends React.Component {
                 >
                   {
                     frequency.map(freq => (
-                      <Picker.Item key={freq.id} label={getLabel(freq.name, values.startAt)} value={freq.id} />
+                      <Picker.Item key={freq.id} label={getRepeatLabel(freq.name, values.startAt)} value={freq.id} />
                     ))
                   }
                 </Picker>
