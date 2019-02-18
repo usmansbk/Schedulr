@@ -6,7 +6,7 @@ import {
   InteractionManager
 } from 'react-native';
 import Geolocation from 'react-native-geolocation-service';
-import SimpleToast from 'react-native-simple-toast';
+// import SimpleToast from 'react-native-simple-toast';
 import isEqual from 'lodash.isequal';
 import {
   Button,
