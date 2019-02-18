@@ -1,16 +1,21 @@
 import React from 'react';
-import { Linking, Platform } from 'react-native';
+import { Linking } from 'react-native';
+import SimpleToast from 'react-native-simple-toast';
 import List from '../../lists/Events';
 import FAB from '../../common/Fab';
 import NavigationService from '../../../config/navigation';
 import schdlAll from '../../../helpers/setReminders';
-import SimpleToast from 'react-native-simple-toast';
+import { requestLocationPermission } from '../../../helpers/permissions';
 
 export default class Events extends React.Component {
   constructor(props) {
     super(props);
     this._handleDeeplink();
   }
+
+  state = {
+    visible: false
+  };
 
   _handleDeeplink = async () => {
     const url = await Linking.getInitialURL();
@@ -26,7 +31,8 @@ export default class Events extends React.Component {
   }
  
   componentDidMount = async () => {
-    Linking.addEventListener('url', this.handleOpenURL)
+    Linking.addEventListener('url', this.handleOpenURL);
+    requestLocationPermission();
   };
 
   componentWillUnmount = () => Linking.removeEventListener('url', this.handleOpenURL);
