@@ -11,14 +11,14 @@ import {
   InteractionManager
 } from 'react-native';
 import {
-  IconButton,
+  // IconButton,
   Button,
   TextInput,
   Text,
   HelperText,
   RadioButton,
   Appbar,
-  Checkbox
+  // Checkbox
 } from 'react-native-paper';
 import { Formik } from 'formik';
 import DateTimeInput from '../../common/DateTimeInput';
@@ -34,7 +34,7 @@ import eventTypes from './types';
 import frequency from './frequency';
 import { buildEventForm } from '../../../helpers/buildForm';
 import { requestLocationPermission } from '../../../helpers/permissions';
-import colors from '../../../config/colors';
+// import colors from '../../../config/colors';
 
 
 export default class Form extends React.Component {
@@ -67,14 +67,14 @@ export default class Form extends React.Component {
     this.getLocation();
   }
 
-  _tagLocation = () => {
-    const { latitude, longitude } = this.state;
-    if (latitude && longitude) {
-      this.setState({ latitude: null, longitude: null });
-    } else {
-      this.getLocation();
-    }
-  }
+  // _tagLocation = () => {
+  //   const { latitude, longitude } = this.state;
+  //   if (latitude && longitude) {
+  //     this.setState({ latitude: null, longitude: null });
+  //   } else {
+  //     this.getLocation();
+  //   }
+  // }
   
   getLocation = () => {
     if (requestLocationPermission()) {
@@ -197,21 +197,6 @@ export default class Form extends React.Component {
               >
               {errors.location}
               </HelperText>
-              <View style={styles.checkboxItem}>
-                <View style={styles.checkbox}>
-                  <Text style={styles.checkboxLabel}>Tag Current City</Text>
-                  <Checkbox
-                    status={(this.state.latitude && this.state.longitude) ? 'checked' : 'unchecked'}
-                    onPress={this._tagLocation}
-                  />
-                </View>
-                <IconButton
-                  color={colors.primary}
-                  icon="help-outline"
-                  size={20}
-                  onPress={() => SimpleToast.show("Helps nearby users find event easily.", SimpleToast.SHORT)}
-                />
-              </View>
               <DateTimeInput
                 label="From"
                 value={values.startAt}

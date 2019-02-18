@@ -15,8 +15,8 @@ import {
   HelperText,
   Switch,
   Appbar,
-  Divider,
-  Checkbox
+  // Divider,
+  // Checkbox
 } from 'react-native-paper';
 import { Formik } from 'formik';
 import validationSchema from './schema';
@@ -42,14 +42,14 @@ export default class Form extends React.Component {
     }
   };
 
-  _tagLocation = () => {
-    const { latitude, longitude } = this.state;
-    if (latitude && longitude) {
-      this.setState({ latitude: null, longitude: null });
-    } else {
-      this.getLocation();
-    }
-  }
+  // _tagLocation = () => {
+  //   const { latitude, longitude } = this.state;
+  //   if (latitude && longitude) {
+  //     this.setState({ latitude: null, longitude: null });
+  //   } else {
+  //     this.getLocation();
+  //   }
+  // }
 
   componentDidMount = () => {
     InteractionManager.runAfterInteractions(this.getLocation);
@@ -71,7 +71,7 @@ export default class Form extends React.Component {
           });
         },
         (error) => {
-          SimpleToast.show(error.message, SimpleToast.SHORT);
+          // SimpleToast.show(error.message, SimpleToast.SHORT);
         },
         {
           enableHighAccuracy: true,
@@ -173,20 +173,6 @@ export default class Form extends React.Component {
                   </HelperText>
                 )
               }
-              <Divider />
-              <View style={styles.checkbox}>
-                <Text style={[styles.text, styles.primary]}>Tag current location</Text>
-                <Checkbox
-                  status={(this.state.latitude && this.state.longitude) ? 'checked' : 'unchecked'}
-                  onPress={this._tagLocation}
-                />
-              </View>
-              <HelperText
-                type="info"
-                visible
-              >
-                Helps nearby users find your board.
-              </HelperText>
             </View>
           </ScrollView>
           </React.Fragment>
