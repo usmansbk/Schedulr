@@ -1,5 +1,6 @@
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
+import SimpleToast from 'react-native-simple-toast';
 import List from '../../lists/Followers';
 import { listBoardFollowers } from '../../../graphql/queries';
 
