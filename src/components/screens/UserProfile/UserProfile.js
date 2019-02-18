@@ -7,6 +7,7 @@ import {
   Image
 } from 'react-native';
 import { Headline, TouchableRipple } from 'react-native-paper';
+import { CachedImage } from 'react-native-cached-image';
 import numeral from 'numeral';
 import colors from '../../../config/colors';
 
@@ -21,7 +22,7 @@ export default ({
   }
 }) => (
   <ScrollView contentContainerStyle={styles.header}>
-    <Image
+    <CachedImage
       source={{uri: pictureUrl}}
       resizeMode="cover"
       style={styles.backgroundImage}
@@ -61,11 +62,12 @@ const styles = StyleSheet.create({
   },
   image: {
     alignSelf: 'center',
+    justifyContent: 'center',
     width: 120,
     height: 120,
     borderWidth: 4,
     borderColor: colors.white,
-    borderRadius: 60 
+    borderRadius: 60
   },
   backgroundImage: {
     position: 'absolute',
