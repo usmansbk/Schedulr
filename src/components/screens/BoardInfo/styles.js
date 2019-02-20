@@ -4,7 +4,11 @@ import colors from '../../../config/colors';
 export const AVATAR_SIZE = 80;
 
 export default StyleSheet.create({
-  container: { flex: 1, paddingVertical: 8 },
+  container: {
+    flex: 1,
+    paddingVertical: 8,
+    backgroundColor: colors.bg
+  },
   menuButton: {
     width: 48,
     height: 48,

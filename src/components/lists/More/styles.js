@@ -4,6 +4,8 @@ import colors from '../../../config/colors';
 const SEPARATOR_HEIGHT = 1;
 const HEADER_HEIGHT = 100;
 
+export const black = colors.black
+
 export default StyleSheet.create({
   container: {
     // flex: 1,
