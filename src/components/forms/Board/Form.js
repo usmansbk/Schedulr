@@ -15,12 +15,10 @@ import {
   HelperText,
   Switch,
   Appbar,
-  // Divider,
-  // Checkbox
 } from 'react-native-paper';
 import { Formik } from 'formik';
 import validationSchema from './schema';
-import styles, { navButtonColor } from './styles';
+import styles, { navButtonColor, placeholder } from './styles';
 import { requestLocationPermission } from '../../../helpers/permissions';
 import { buildBoardForm } from '../../../helpers/buildForm';
 
@@ -128,7 +126,12 @@ export default class Form extends React.Component {
               onPress={submitForm}
             >{ edit ? 'Save' : 'Create'}</Button>
           </Appbar.Header>
-          <ScrollView refreshControl={<RefreshControl refreshing={false} onRefresh={() => resetForm()} />}>
+          <ScrollView
+            style={styles.container}
+            refreshControl={<RefreshControl
+            refreshing={false}
+            onRefresh={() => resetForm()}
+          />}>
             <View style={styles.form}>
               <TextInput
                 placeholder="Board name"

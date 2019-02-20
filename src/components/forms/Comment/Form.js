@@ -76,7 +76,7 @@ export default class CommentInput extends React.Component {
               value={message}
               onChangeText={this._onChangeText}
               onBlur={() => this._onChangeText(message)}
-              placeholderTextColor={colors.black}
+              placeholderTextColor={colors.placeholder}
               style={styles.textInput}
             />
           </View>

@@ -52,7 +52,6 @@ const SearchBar = ({navigation}) => {
         editable={false}
         collapsable
         placeholder="Search"
-        placeholderTextColor={colors.placeholder}
         style={{
           backgroundColor: colors.bg
         }}

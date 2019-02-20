@@ -2,11 +2,11 @@ import { StyleSheet } from 'react-native';
 import colors from '../../../config/colors';
 
 export const buttonTextColor = colors.black;
-export const navButtonColor = colors.primary_dark;
+export const navButtonColor = colors.navButtonColor;
 
 export default StyleSheet.create({
   container: {
-    flex: 1
+    backgroundColor: colors.bg
   },
   form: {
     margin: 16
@@ -40,7 +40,7 @@ export default StyleSheet.create({
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    backgroundColor: '#fff',
+    backgroundColor: colors.bg,
     paddingHorizontal: 16,
     elevation: 0,
   },

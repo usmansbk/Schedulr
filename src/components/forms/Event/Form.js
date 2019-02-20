@@ -155,7 +155,11 @@ export default class Form extends React.Component {
             >{ edit ? 'Save' : 'Create'}</Button>
           </Appbar.Header>
           <ScrollView
-            refreshControl={<RefreshControl refreshing={false} onRefresh={() => resetForm()} />}
+            refreshControl={<RefreshControl
+              refreshing={false}
+              onRefresh={() => resetForm()}
+            />}
+            style={styles.container}
           >
             <View style={styles.form}>
               <TextInput

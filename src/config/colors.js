@@ -15,7 +15,7 @@ const light = {
   primary: '#1976d2',
   primary_light: '#63a4ff',
   primary_dark: '#004ba0',
-  disabled: '#d3d3d3',
+  // disabled: '#d3d3d3',
   alt_primary: '#757de8',
   money_green: '#216C2A',
   light_green_2: '#34D058',
@@ -25,7 +25,8 @@ const light = {
   soft_blue: '#688bf8',
   deep_purple: '#562765',
   blue: '004f86',
-  placeholder: '#7d7d7d'
+  placeholder: '#7d7d7d',
+  navButtonColor: '#004ba0',
 }
 
 const dark = {
@@ -53,7 +54,8 @@ const dark = {
   soft_blue: '#688bf8',
   deep_purple: '#562765',
   blue: '004f86',
-  placeholder: 'white'
+  placeholder: 'white',
+  navButtonColor: 'white'
 };
 
 let defaultPalatte = dark;
