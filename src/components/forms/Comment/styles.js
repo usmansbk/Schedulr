@@ -11,7 +11,14 @@ export default StyleSheet.create({
     borderColor: colors.light_gray_3,
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 8
+    paddingHorizontal: 8,
+    backgroundColor: colors.bg
+  },
+  placeholder: {
+    color: colors.black
+  },
+  textInput: {
+    color: colors.black
   },
   right: {
     justifyContent: 'center',
