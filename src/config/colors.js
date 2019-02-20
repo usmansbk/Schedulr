@@ -29,7 +29,7 @@ const dark = {
   facebook: '#3b5998',
   google: '#4285F4',
   black: '#ffffff',
-  gray: '#7d7d7d',
+  gray: 'white',
   bg: '#212121',
   light_gray: '#303030',
   light_gray_2: '#424242',
