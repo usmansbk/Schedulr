@@ -51,7 +51,8 @@ const Tabs = createMaterialTopTabNavigator(
             onChangeText={(query) => navigation.setParams({ query })}
             style={{
               elevation: 0,
-              backgroundColor: colors.bg
+              backgroundColor: colors.bg,
+              borderRadius: 0
             }}
           />
         )
