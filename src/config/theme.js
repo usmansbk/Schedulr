@@ -1,9 +1,10 @@
 import { DefaultTheme } from 'react-native-paper';
 import colors from './colors';
+import { isDayTime } from '../lib/time';
 
 export default {
   ...DefaultTheme,
-  dark: true,
+  dark: !isDayTime(),
   colors: {
     ...DefaultTheme.colors,
     primary: colors.primary,

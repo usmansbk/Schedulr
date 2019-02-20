@@ -58,10 +58,10 @@ const dark = {
   navButtonColor: 'white'
 };
 
-let defaultPalatte = dark;
+let defaultPalette = dark;
 
 if (isDayTime()) {
-  defaultPalatte = light;
+  defaultPalette = light;
 }
 
-export default dark;
+export default defaultPalette;
