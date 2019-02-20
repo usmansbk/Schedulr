@@ -17,7 +17,7 @@ export default StyleSheet.create({
     flexGrow: 1,
   },
   list: {
-    backgroundColor: colors.light_gray
+    backgroundColor: colors.bg
   },
   sectionHeader: {
     backgroundColor: colors.light_gray_2,

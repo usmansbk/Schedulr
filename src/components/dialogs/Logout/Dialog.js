@@ -3,8 +3,9 @@ import {
   Button,
   Paragraph,
   Dialog,
-  Portal
+  Portal,
 } from 'react-native-paper';
+import colors from '../../../config/colors';
 
 export default ({
   visible,
@@ -14,6 +15,7 @@ export default ({
 }) => (
   <Portal>
     <Dialog
+      style={{backgroundColor: colors.bg}}
       dismissable={!loading}
       visible={visible}
       onDismiss={handleDismiss}
