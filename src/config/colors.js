@@ -40,7 +40,7 @@ const dark = {
   light_gray_3: '#989898',
   white: '#424242',
   red: '#cc3300',
-  light_red: '#eb5a46',
+  light_red: '#e44232',
   primary: '#1976d2',
   primary_light: '#63a4ff',
   primary_dark: '#004ba0',
