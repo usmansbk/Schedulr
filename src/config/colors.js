@@ -1,3 +1,5 @@
+import { isDayTime } from '../lib/time';
+
 const light = {
   facebook: '#3b5998',
   google: '#4285F4',
@@ -22,7 +24,8 @@ const light = {
   yellow: '#ff9900',
   soft_blue: '#688bf8',
   deep_purple: '#562765',
-  blue: '004f86'
+  blue: '004f86',
+  placeholder: '#7d7d7d'
 }
 
 const dark = {
@@ -30,11 +33,11 @@ const dark = {
   google: '#4285F4',
   black: '#ffffff',
   gray: 'white',
-  bg: '#212121',
+  bg: '#303030',
   light_gray: '#303030',
-  light_gray_2: '#424242',
+  light_gray_2: '#212121',
   light_gray_3: '#989898',
-  white: '#000000',
+  white: '#424242',
   red: '#cc3300',
   light_red: '#eb5a46',
   primary: '#1976d2',
@@ -49,7 +52,14 @@ const dark = {
   yellow: '#ff9900',
   soft_blue: '#688bf8',
   deep_purple: '#562765',
-  blue: '004f86'
+  blue: '004f86',
+  placeholder: 'white'
 };
+
+let defaultPalatte = dark;
+
+if (isDayTime()) {
+  defaultPalatte = light;
+}
 
 export default dark;

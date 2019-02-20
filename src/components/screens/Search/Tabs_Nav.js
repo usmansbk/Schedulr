@@ -46,7 +46,7 @@ const Tabs = createMaterialTopTabNavigator(
             icon="arrow-back"
             onIconPress={() => navigation.goBack()}
             placeholder="Search for..."
-            placeholderTextColor={colors.black}
+            placeholderTextColor={colors.placeholder}
             value={navigation.getParam('query', '')}
             onChangeText={(query) => navigation.setParams({ query })}
             style={{

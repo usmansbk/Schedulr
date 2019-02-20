@@ -15,9 +15,10 @@ export const black = colors.black;
 export default StyleSheet.create({
   contentContainer: {
     flexGrow: 1,
+    backgroundColor: colors.bg
   },
   list: {
-    backgroundColor: colors.bg
+    backgroundColor: colors.light_gray
   },
   sectionHeader: {
     backgroundColor: colors.light_gray_2,
@@ -74,7 +75,6 @@ export default StyleSheet.create({
   },
   separator: {
     height: SEPARATOR_HEIGHT,
-    backgroundColor: colors.light_gray
   },
   itemContainer: {
     backgroundColor: colors.white,
