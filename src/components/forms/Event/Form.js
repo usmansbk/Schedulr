@@ -8,7 +8,6 @@ import {
   Picker,
   ScrollView,
   RefreshControl,
-  InteractionManager
 } from 'react-native';
 import {
   // IconButton,
@@ -245,6 +244,7 @@ export default class Form extends React.Component {
                   prompt="Repeat"
                   selectedValue={values.repeat}
                   style={styles.picker}
+                  
                   itemStyle={styles.pickerItem}
                   onValueChange={itemValue => setFieldValue('repeat', itemValue)}
                 >
