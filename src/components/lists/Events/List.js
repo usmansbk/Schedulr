@@ -45,10 +45,7 @@ class List extends React.Component {
   _keyExtractor = (item, index) => item.id + index;
   _renderHeader = () => <Header onPress={this._loadPrevious} visible={this.props.hasPreviousEvents} />;
   _renderFooter = () => <Footer loading={this.state.loading} visible={this.props.events.length}/>;
-  _renderEmptyList = () => {
-    const { loading, error } = this.props;
-    return <Empty error={error} loading={loading} />
-  };
+  _renderEmptyList = () => <Empty error={this.props.error} loading={this.props.loading} />;
   _renderSeparator = () => <Separator />;
   _renderSectionHeader = ({section}) => <SectionHeader section={section} />;
   _onPressItem = (id) => this.props.navigation.navigate('EventDetails', { id });
