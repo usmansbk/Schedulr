@@ -18,7 +18,7 @@ export default StyleSheet.create({
     flexDirection: 'row',
     paddingHorizontal: 8,
     paddingVertical: 4,
-    backgroundColor: '#fff',
+    backgroundColor: colors.white,
   },
   linkStyle: { color: '#2980b9' },
   itemHeader: {

@@ -80,6 +80,6 @@ const styles = StyleSheet.create({
   actions: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    backgroundColor: colors.white
+    backgroundColor: 'transparent'
   }
 });

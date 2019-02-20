@@ -31,7 +31,7 @@ export default ({
   navigateToComments,
 }) => (
   <React.Fragment>
-  <ScrollView>
+  <ScrollView style={styles.bg}>
     <View style={styles.container}>
       <View style={styles.content}>
         <View style={styles.head}>
