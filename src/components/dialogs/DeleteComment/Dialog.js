@@ -4,6 +4,7 @@ import {
   Dialog,
   Portal
 } from 'react-native-paper';
+import colors from '../../../config/colors';
 
 export default class DeleteComment extends React.Component {
   state = {
@@ -28,6 +29,7 @@ export default class DeleteComment extends React.Component {
       <Portal>
         <Dialog
           visible={visible}
+          style={{backgroundColor: colors.bg}}
           onDismiss={handleDismiss}
         >
           <Dialog.Title>Delete comment?</Dialog.Title>

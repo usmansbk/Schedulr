@@ -4,6 +4,7 @@ import {
   Dialog,
   Portal
 } from 'react-native-paper';
+import colors from '../../../config/colors';
 
 export default class OpenBoard extends React.Component {
   state = {
@@ -43,6 +44,7 @@ export default class OpenBoard extends React.Component {
         <Dialog
           visible={visible}
           onDismiss={handleDismiss}
+          style={{backgroundColor: colors.bg}}
         >
           <Dialog.Title>Open board?</Dialog.Title>
           <Dialog.Actions>

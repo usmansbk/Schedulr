@@ -73,7 +73,8 @@ export default StyleSheet.create({
     textAlign: 'center'
   },
   separator: {
-    height: SEPARATOR_HEIGHT
+    height: SEPARATOR_HEIGHT,
+    backgroundColor: colors.light_gray
   },
   itemContainer: {
     backgroundColor: colors.white,
