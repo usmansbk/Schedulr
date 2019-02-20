@@ -134,13 +134,13 @@ export default class Info extends React.Component {
             </View>
             <View style={styles.body}>
               <View style={styles.noteView}>
-                <Icon color={colors.white} name="visibility" size={18} />
+                <Icon color={colors.black} name="visibility" size={18} />
                 <Text style={styles.note}>{ isPublic ? 'Public' : 'Private'} board</Text>
               </View>
               {
                 isClosed && (
                   <View style={styles.noteView}>
-                    <Icon color={colors.white} name="lock" size={18} />
+                    <Icon color={colors.black} name="lock" size={18} />
                     <Text style={styles.note}>This board is closed</Text>
                   </View>
                 )
