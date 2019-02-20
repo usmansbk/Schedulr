@@ -12,7 +12,7 @@ export default {
     error: colors.light_red,
     text: colors.black,
     placeholder: colors.placeholder,
-    blackground: colors.bg,
+    blackground: colors.light_gray,
     disabled: colors.disabled || DefaultTheme.colors.disabled
   }
 };
