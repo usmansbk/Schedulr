@@ -2,11 +2,9 @@ import { StyleSheet } from 'react-native';
 import colors from '../../../config/colors';
 
 export default StyleSheet.create({
-  bg: {
-    backgroundColor: colors.bg
-  },
   container: {
     flex: 1,
+    backgroundColor: colors.bg
   },
   title: {
     fontWeight: 'bold',

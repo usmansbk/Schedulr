@@ -30,9 +30,8 @@ export default ({
   navigateToBoard,
   navigateToComments,
 }) => (
-  <React.Fragment>
-  <ScrollView style={styles.bg}>
-    <View style={styles.container}>
+  <View style={styles.container}>
+    <ScrollView style={styles.bg}>
       <View style={styles.content}>
         <View style={styles.head}>
           <View style={styles.headNote}>
@@ -80,19 +79,18 @@ export default ({
           </View>
         </View>
       </View>
-    </View>
-  </ScrollView>
-  <Divider />
-  <Actions
-    id={id}
-    title={title}
-    address={address}
-    eventType={eventType}
-    isStarred={isStarred}
-    starsCount={starsCount}
-    commentsCount={commentsCount}
-    date={date}
-    navigateToComments={navigateToComments}
-  />
-  </React.Fragment>
+    </ScrollView>
+    <Divider />
+    <Actions
+      id={id}
+      title={title}
+      address={address}
+      eventType={eventType}
+      isStarred={isStarred}
+      starsCount={starsCount}
+      commentsCount={commentsCount}
+      date={date}
+      navigateToComments={navigateToComments}
+    />
+  </View>
 );
