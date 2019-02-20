@@ -24,6 +24,7 @@ export default StyleSheet.create({
     marginVertical: 8
   },
   radioText: {
+    fontWeight: 'bold',
     color: colors.primary,
     marginRight: 16
   },
