@@ -38,7 +38,7 @@ const dark = {
   white: '#424242',
   red: '#cc3300',
   light_red: '#f2476a',
-  primary: '#1976d2',
+  primary: '#63a4ff',
   primary_light: '#63a4ff',
   primary_dark: '#004ba0',
   disabled: '#d3d3d3',
