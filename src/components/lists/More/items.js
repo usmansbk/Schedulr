@@ -16,7 +16,7 @@ export default [
   },
   {
     id: 'dark',
-    icon: 'brightness-2',
-    name: 'Night mode'
+    icon: 'brightness-6',
+    name: 'Dark mode'
   }
 ];
