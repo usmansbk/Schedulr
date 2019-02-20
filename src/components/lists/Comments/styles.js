@@ -11,7 +11,8 @@ export default StyleSheet.create({
     backgroundColor: colors.light_gray,
   },
   contentContainer: {
-    flexGrow: 1
+    flexGrow: 1,
+    backgroundColor: colors.light_gray
   },
   itemContainer: {
     flex: 1,
