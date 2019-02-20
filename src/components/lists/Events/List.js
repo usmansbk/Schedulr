@@ -27,10 +27,13 @@ import styles, {
 } from './styles';
 
 class List extends React.Component {
-  state = {
-    loading: false,
-    sections: [],
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      loading: false,
+      sections: this._sectionize(this.props.events),
+    }
+  }
 
   static defaultProps = {
     loading: false,
@@ -43,17 +46,11 @@ class List extends React.Component {
   _renderHeader = () => <Header onPress={this._loadPrevious} visible={this.props.hasPreviousEvents} />;
   _renderFooter = () => <Footer loading={this.state.loading} visible={this.props.events.length}/>;
   _renderEmptyList = () => {
-    const { loading, events, error } = this.props;
-    if (loading && (events.length === 0)) return null;
-    return <Empty error={error} />
+    const { loading, error } = this.props;
+    return <Empty error={error} loading={loading} />
   };
   _renderSeparator = () => <Separator />;
   _renderSectionHeader = ({section}) => <SectionHeader section={section} />;
-  _renderRefreshControl = (<RefreshControl
-    onRefresh={this.props.onRefresh}
-    refreshing={this.props.loading}
-    colors={[primary]}
-  />);
   _onPressItem = (id) => this.props.navigation.navigate('EventDetails', { id });
   _onPressCommentItem = (id, title) => this.props.navigation.navigate('Comments', { id, title });
   _navigateToBoardEvents = (id) => {
@@ -61,6 +58,14 @@ class List extends React.Component {
     if (this.props.listType === 'board') screen = 'BoardInfo';
     this.props.navigation.navigate(screen, { id })
   };
+  componentWillReceiveProps = (nextProps) => {
+    const { events } = nextProps;
+    if (events !== this.props.events) {
+      this.setState({
+        sections: this._sectionize(events)
+      });
+    }
+  }
 
   _renderItem = ({ item: {
     id,
@@ -106,19 +111,17 @@ class List extends React.Component {
   });
   shouldComponentUpdate = (nextProps) => nextProps.isFocused;
 
-  componentDidMount = () => {
-    this.setState({ loading: true });
-    const sections = this._sectionize(this.props.events);
-    this.setState({ sections, loading: false });
-  };
+  _loadMore = () => null
 
   _sectionize = memoize((events) => sortBy(sectionize(events), 'title'));
+  // _sectionize = (events) => sortBy(sectionize(events), 'title');
 
   render() {
     const {
       loading,
       onRefresh,
     } = this.props;
+    const { sections } = this.state;
     
     return (
       <SectionList
@@ -127,18 +130,24 @@ class List extends React.Component {
         style={styles.list}
         stickySectionHeadersEnabled
         getItemLayout={this._getItemLayout}
-        sections={this.state.sections}
-        extraData={this.state.sections.length}
+        sections={sections}
+        extraData={sections.length}
         ListHeaderComponent={this._renderHeader}
         ListEmptyComponent={this._renderEmptyList}
         ItemSeparatorComponent={this._renderSeparator}
         refreshing={loading}
         onRefresh={onRefresh}
-        refreshControl={this._renderRefreshControl}
+        refreshControl={<RefreshControl
+          onRefresh={this.props.onRefresh}
+          refreshing={this.props.loading}
+          colors={[primary]}
+        />}
         renderItem={this._renderItem}
         renderSectionHeader={this._renderSectionHeader}
         keyExtractor={this._keyExtractor}
         ListFooterComponent={this._renderFooter}
+        onEndReachedThreshold={0.5}
+        onEndReached={this._loadMore}
       />
     );
   }
