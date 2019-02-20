@@ -19,7 +19,7 @@ export default StyleSheet.create({
     height: SEPARATOR_HEIGHT,
   },
   itemContainer: {
-    backgroundColor: '#fff',
+    backgroundColor: colors.white,
     height: ITEM_HEIGHT
   },
   itemContent: {
