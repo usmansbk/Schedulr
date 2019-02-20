@@ -28,7 +28,7 @@ export default ({
         titleStyle={styles.headerColor}
       />
     </Appbar.Header>
-    <ScrollView>
+    <ScrollView style={styles.bg}>
       <List.Section title="General">
         <List.Item
           title="Sound"

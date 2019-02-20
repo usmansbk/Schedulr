@@ -29,4 +29,7 @@ export default StyleSheet.create({
   headerColor: {
     color: colors.gray
   },
+  bg: {
+    backgroundColor: colors.bg
+  }
 });

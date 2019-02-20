@@ -14,7 +14,7 @@ export default (props) => (
         titleStyle={styles.headerColor}
       />
     </Appbar.Header>
-    <ScrollView>
+    <ScrollView style={styles.bg}>
       <List.Item
         title="FAQ"
         onPress={() => props.onPressItem('faq')}
