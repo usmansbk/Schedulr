@@ -63,13 +63,6 @@ export default ({
         />
         <Divider />
         <List.Item
-          title="Remind me"
-          disabled={muteReminder}
-          right={() => <List.Icon icon="chevron-right" />}
-          onPress={openRemindMeDialog}
-        />
-        <Divider />
-        <List.Item
           title="Heads-up"
           right={() => (
             <Switch
@@ -90,6 +83,14 @@ export default ({
             />
           )}
         />
+        <Divider />
+        <List.Item
+          title="Remind me"
+          disabled={muteReminder}
+          right={() => <List.Icon icon="chevron-right" />}
+          onPress={openRemindMeDialog}
+        />
+        <Divider />
       </List.Section>
       <List.Section title="Push notifications">
         <List.Item
