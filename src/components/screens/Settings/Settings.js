@@ -69,26 +69,19 @@ export default ({
           onPress={openRemindMeDialog}
         />
         <Divider />
-        {
-          false && (
-            <React.Fragment>
-            <List.Item
-              title="Heads-up"
-              right={() => (
-                <Switch
-                  disabled={muteReminder}
-                  value={headsUp}
-                  onValueChange={() => handleValueChange('headsUp')}
-                />
-              )}
-            />
-            <Divider />
-            </React.Fragment>
-          )
-        }
         <List.Item
-          title="Starred alarm"
-          description="Play alarm sound?"
+          title="Heads-up"
+          right={() => (
+            <Switch
+              disabled={false && muteReminder}
+              value={headsUp}
+              onValueChange={() => handleValueChange('headsUp')}
+            />
+          )}
+        />
+        <Divider />
+        <List.Item
+          title="Starred events only"
           right={() => (
             <Switch
               disabled={muteReminder}
@@ -98,21 +91,17 @@ export default ({
           )}
         />
       </List.Section>
-      {
-        false && (
-          <List.Section title="Events and Boards Updates">
-            <List.Item
-              title="Disable"
-              right={() => (
-                <Switch
-                  value={disablePush}
-                  onValueChange={() => handleValueChange('disablePush')}
-                />
-              )}
+      <List.Section title="Push notifications">
+        <List.Item
+          title="Disable"
+          right={() => (
+            <Switch
+              value={false && disablePush}
+              onValueChange={() => handleValueChange('disablePush')}
             />
-          </List.Section>
-        )
-      }
+          )}
+        />
+      </List.Section>
     </ScrollView>
   </React.Fragment>
 );
