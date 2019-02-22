@@ -53,7 +53,7 @@ export default ({
       </List.Section>
       <List.Section title="Reminders">
         <List.Item
-          title="Mute"
+          title="Disable"
           right={() => (
             <Switch
               value={muteReminder}
