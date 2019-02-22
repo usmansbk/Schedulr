@@ -73,7 +73,7 @@ export default ({
           title="Heads-up"
           right={() => (
             <Switch
-              disabled={false && muteReminder}
+              disabled={true}
               value={headsUp}
               onValueChange={() => handleValueChange('headsUp')}
             />
@@ -96,7 +96,8 @@ export default ({
           title="Disable"
           right={() => (
             <Switch
-              value={false && disablePush}
+              disabled={true}
+              value={disablePush}
               onValueChange={() => handleValueChange('disablePush')}
             />
           )}
