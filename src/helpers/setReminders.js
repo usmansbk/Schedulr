@@ -130,7 +130,8 @@ const schdlAll = (events) => {
     const { remindMeBefore={} } = client.readQuery({ query: gql(RemindMeBefore) }) || {};
     if (!settings.muteReminder) {
       events.forEach((event) => {
-        schdl(event, remindMeBefore, settings);
+        if (settings.starredAlarm && !event.isStarred) return;
+        return schdl(event, remindMeBefore, settings);
       });
     }
   });
