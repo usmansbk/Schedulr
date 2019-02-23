@@ -126,7 +126,6 @@ class List extends React.Component {
         contentContainerStyle={styles.contentContainer}
         style={styles.list}
         stickySectionHeadersEnabled
-        getItemLayout={this._getItemLayout}
         sections={sections}
         extraData={sections.length}
         ListHeaderComponent={this._renderHeader}

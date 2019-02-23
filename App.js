@@ -15,7 +15,7 @@ import theme from './src/config/theme';
 import env from './src/config/env';
 // import { refreshGoogleToken } from './src/config/auth';
 
-// console.disableYellowBox = true;
+console.disableYellowBox = true;
 
 // window.LOG_LEVEL = 'DEBUG';
 GoogleSignin.configure({
