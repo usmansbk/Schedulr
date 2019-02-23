@@ -100,12 +100,12 @@ class List extends React.Component {
     navigateToBoardEvents={this._navigateToBoardEvents}
     animated={this.props.animated}
   />);
-  _getItemLayout = sectionListGetItemLayout({
-    getItemHeight: () => ITEM_HEIGHT,
-    getSeparatorHeight: () => SEPERATOR_HEIGHT,
-    getSectionHeaderHeight: () => SECTION_HEADER_HEIGHT,
-    listHeaderHeight: HEADER_HEIGHT,
-  });
+  // _getItemLayout = sectionListGetItemLayout({
+  //   getItemHeight: () => ITEM_HEIGHT,
+  //   getSeparatorHeight: () => SEPERATOR_HEIGHT,
+  //   getSectionHeaderHeight: () => SECTION_HEADER_HEIGHT,
+  //   listHeaderHeight: HEADER_HEIGHT,
+  // });
   shouldComponentUpdate = (nextProps) => nextProps.isFocused;
 
   _loadMore = () => null
@@ -142,8 +142,6 @@ class List extends React.Component {
         renderSectionHeader={this._renderSectionHeader}
         keyExtractor={this._keyExtractor}
         ListFooterComponent={this._renderFooter}
-        onEndReachedThreshold={0.5}
-        onEndReached={this._loadMore}
       />
     );
   }
