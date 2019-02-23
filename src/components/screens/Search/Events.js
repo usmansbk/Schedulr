@@ -2,7 +2,6 @@ import React from 'react';
 import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
 import List from '../../lists/EventSearch';
-import Fab from '../../common/Fab';
 import { listAllEvents } from '../../../graphql/queries';
 
 export default class Events extends React.Component {
@@ -10,16 +9,9 @@ export default class Events extends React.Component {
   render() {
     const query = this.props.navigation.getParam('query', '');
     return (
-      <React.Fragment>
-        <List
-          query={query}
-        />
-        <Fab
-          small
-          icon="near-me"
-          onPress={() => null}
-        />
-      </React.Fragment>
+      <List
+        query={query}
+      />
     );
   }
 }

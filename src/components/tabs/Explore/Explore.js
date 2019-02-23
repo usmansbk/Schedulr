@@ -50,7 +50,11 @@ const SearchBar = ({navigation}) => {
       <Searchbar
         icon="search"
         editable={false}
+        collapsable
         placeholder="Search"
+        style={{
+          backgroundColor: colors.bg
+        }}
       />
     </TouchableRipple>
   );

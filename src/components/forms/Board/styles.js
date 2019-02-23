@@ -1,13 +1,17 @@
 import { StyleSheet } from 'react-native';
 import colors from '../../../config/colors';
 
-export const navButtonColor = colors.primary_dark;
+export const navButtonColor = colors.navButtonColor;
+export const placeholder = colors.placeholder;
 
 export default StyleSheet.create({
+  container: {
+    backgroundColor: colors.bg
+  },
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    backgroundColor: '#fff',
+    backgroundColor: colors.bg,
     paddingHorizontal: 16,
     elevation: 0
   },
@@ -29,7 +33,7 @@ export default StyleSheet.create({
   },
   text: {
     fontSize: 16,
-    color: colors.gray,
+    color: colors.placeholder,
     fontFamily: 'sans-serif-bold'
   },
   primary: {

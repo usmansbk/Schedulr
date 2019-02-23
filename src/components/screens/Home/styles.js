@@ -12,6 +12,6 @@ export default StyleSheet.create({
   },
   barStyle: {
     elevation: 0,
-    backgroundColor: colors.white,
+    backgroundColor: colors.bg,
   }
 });

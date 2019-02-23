@@ -1,8 +1,6 @@
 import PushNotification from 'react-native-push-notification';
 import { InteractionManager } from 'react-native';
 import moment from 'moment';
-import gql from 'graphql-tag';
-import client from '../config/client';
 import { decapitalize } from '../lib/capitalizr';
 import {
   FIVE_MINUTES,
@@ -12,7 +10,6 @@ import {
   ONE_HOUR,
   ONE_DAY
 } from '../lib/time';
-import { Settings, RemindMeBefore } from '../graphql/queries';
 
 const setReminder = (event, before, settings) => {
   const {
@@ -126,11 +123,12 @@ const schdl = (event, before, settings) => {
 const schdlAll = (events) => {
   InteractionManager.runAfterInteractions(() => {
     PushNotification.cancelAllLocalNotifications();
-    const { settings={} } = client.readQuery({ query: gql(Settings)}) || {};
-    const { remindMeBefore={} } = client.readQuery({ query: gql(RemindMeBefore) }) || {};
+    const { settings={} } = {};
+    const { remindMeBefore={} } = {};
     if (!settings.muteReminder) {
       events.forEach((event) => {
-        schdl(event, remindMeBefore, settings);
+        if (settings.starredAlarm && !event.isStarred) return;
+        return schdl(event, remindMeBefore, settings);
       });
     }
   });

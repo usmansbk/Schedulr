@@ -11,13 +11,14 @@ import colors from '../../../config/colors';
 const styles = StyleSheet.create({
   barStyle: {
     elevation: 4,
-    backgroundColor: colors.white,
+    backgroundColor: colors.bg,
   },
   indicatorStyle: {
     backgroundColor: colors.primary_light
   },
   searchbar: {
-    elevation: 0
+    elevation: 0,
+    backgroundColor: colors.bg
   }
 });
 
@@ -45,9 +46,14 @@ const Tabs = createMaterialTopTabNavigator(
             icon="arrow-back"
             onIconPress={() => navigation.goBack()}
             placeholder="Search for..."
+            placeholderTextColor={colors.placeholder}
             value={navigation.getParam('query', '')}
             onChangeText={(query) => navigation.setParams({ query })}
-            style={{ elevation: 0 }}
+            style={{
+              elevation: 0,
+              backgroundColor: colors.bg,
+              borderRadius: 0
+            }}
           />
         )
       })

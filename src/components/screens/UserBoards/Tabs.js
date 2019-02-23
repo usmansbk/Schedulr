@@ -8,7 +8,7 @@ import colors from '../../../config/colors';
 const styles = StyleSheet.create({
   barStyle: {
     elevation: 4,
-    backgroundColor: colors.white,
+    backgroundColor: colors.bg,
     borderTopWidth: 0
   },
   indicatorStyle: {
@@ -29,6 +29,9 @@ const Tabs = createMaterialTopTabNavigator(
       headerTransparent: false,
       headerTitleStyle: { color: colors.gray },
       headerTintColor: colors.gray,
+      headerStyle: {
+        backgroundColor: colors.bg
+      }
     }),
     tabBarOptions: {
       activeTintColor: colors.primary,

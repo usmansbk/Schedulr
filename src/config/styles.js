@@ -20,13 +20,16 @@ export default StyleSheet.create({
   },
   header: {
     elevation: 0,
-    backgroundColor: '#fff',
+    backgroundColor: colors.bg,
   },
   elevatedHeader: {
     elevation: 4,
-    backgroundColor: '#fff',
+    backgroundColor: colors.bg,
   },
   headerColor: {
     color: colors.gray
   },
+  bg: {
+    backgroundColor: colors.bg
+  }
 });

@@ -4,6 +4,7 @@ import {
   Dialog,
   Portal
 } from 'react-native-paper';
+import colors from '../../../config/colors';
 
 export default class CloseBoard extends React.Component {
   state = {
@@ -42,6 +43,7 @@ export default class CloseBoard extends React.Component {
         <Dialog
           visible={visible}
           onDismiss={handleDismiss}
+          style={{backgroundColor: colors.bg}}
         >
           <Dialog.Title>Close board?</Dialog.Title>
           <Dialog.Actions>

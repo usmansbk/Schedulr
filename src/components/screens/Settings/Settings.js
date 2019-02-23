@@ -28,7 +28,7 @@ export default ({
         titleStyle={styles.headerColor}
       />
     </Appbar.Header>
-    <ScrollView>
+    <ScrollView style={styles.bg}>
       <List.Section title="General">
         <List.Item
           title="Sound"
@@ -53,11 +53,33 @@ export default ({
       </List.Section>
       <List.Section title="Reminders">
         <List.Item
-          title="Mute"
+          title="Disable"
           right={() => (
             <Switch
               value={muteReminder}
               onValueChange={() => handleValueChange('muteReminder')}
+            />
+          )}
+        />
+        <Divider />
+        <List.Item
+          title="Heads-up"
+          right={() => (
+            <Switch
+              disabled={true}
+              value={headsUp}
+              onValueChange={() => handleValueChange('headsUp')}
+            />
+          )}
+        />
+        <Divider />
+        <List.Item
+          title="Starred events only"
+          right={() => (
+            <Switch
+              disabled={muteReminder}
+              value={starredAlarm}
+              onValueChange={() => handleValueChange('starredAlarm')}
             />
           )}
         />
@@ -69,50 +91,19 @@ export default ({
           onPress={openRemindMeDialog}
         />
         <Divider />
-        {
-          false && (
-            <React.Fragment>
-            <List.Item
-              title="Heads-up"
-              right={() => (
-                <Switch
-                  disabled={muteReminder}
-                  value={headsUp}
-                  onValueChange={() => handleValueChange('headsUp')}
-                />
-              )}
-            />
-            <Divider />
-            </React.Fragment>
-          )
-        }
+      </List.Section>
+      <List.Section title="Push notifications">
         <List.Item
-          title="Starred alarm"
-          description="Play alarm sound?"
+          title="Disable"
           right={() => (
             <Switch
-              disabled={muteReminder}
-              value={starredAlarm}
-              onValueChange={() => handleValueChange('starredAlarm')}
+              disabled={true}
+              value={disablePush}
+              onValueChange={() => handleValueChange('disablePush')}
             />
           )}
         />
       </List.Section>
-      {
-        false && (
-          <List.Section title="Events and Boards Updates">
-            <List.Item
-              title="Disable"
-              right={() => (
-                <Switch
-                  value={disablePush}
-                  onValueChange={() => handleValueChange('disablePush')}
-                />
-              )}
-            />
-          </List.Section>
-        )
-      }
     </ScrollView>
   </React.Fragment>
 );

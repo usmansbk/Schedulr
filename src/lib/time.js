@@ -19,6 +19,11 @@ const DATE_FORMAT = 'MMMM DD, YYYY';
 const DAY_FORMAT = 'dddd';
 const NEXT_LAST_FORMAT = 'dddd, Do';
 
+const TIME_FORMAT = 'hh:mm:ss';
+  
+const dayStart = moment('07:00:00', TIME_FORMAT);
+const dayEnd = moment('19:00:00', TIME_FORMAT);
+
 const headingCalendarFormats = {
   sameDay: '[Today]',
   nextDay: '[Tomorrow]',
@@ -93,7 +98,7 @@ export const getSectionHeaderData = (date) => {
   };
 };
 
-export function getLabel(id, date) {
+export function getRepeatLabel(id, date) {
   switch(id) {
     case 'Weekday': return 'Every weekday (Mon-Fri)';
     case 'Weekly': return `Weekly (every ${moment(date).format('dddd')})`;
@@ -101,4 +106,8 @@ export function getLabel(id, date) {
     case 'Yearly': return `Yearly (every ${moment(date).format('Do MMM')})`;
     default: return id;
   }
+}
+
+export function isDayTime() {
+  return moment().isBetween(dayStart, dayEnd);
 }

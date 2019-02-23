@@ -14,6 +14,7 @@ export default StyleSheet.create({
   },
   contentContainer: {
     flexGrow: 1,
+    backgroundColor: colors.light_gray
   },
   separator: {
     height: SEPARATOR_HEIGHT

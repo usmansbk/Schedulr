@@ -6,7 +6,8 @@ export default StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 32
+    padding: 32,
+    backgroundColor: colors.bg
   },
   content: {
     justifyContent: 'center',
@@ -15,7 +16,8 @@ export default StyleSheet.create({
   },
   h1: {
     fontSize: 27,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    color: colors.black
   },
   grayed: {
     marginVertical: 8,

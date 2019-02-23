@@ -7,6 +7,7 @@ import {
   Headline,
   Button
 } from 'react-native-paper';
+import colors from '../../../config/colors';
 
 export default (props) => (
   <View style={styles.container}>
@@ -35,7 +36,8 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    paddingHorizontal: 16
+    paddingHorizontal: 16,
+    backgroundColor: colors.bg
   },
   headline: {
     textAlign: 'center',

@@ -4,7 +4,7 @@ import { Text, Headline, Divider } from 'react-native-paper';
 import Actions from '../../common/Actions';
 import Tag from '../../common/Tag';
 import { BULLET } from '../../../lib/constants';
-import { getLabel } from '../../../lib/time';
+import { getRepeatLabel } from '../../../lib/time';
 import styles from './styles';
 
 export default ({
@@ -30,9 +30,8 @@ export default ({
   navigateToBoard,
   navigateToComments,
 }) => (
-  <React.Fragment>
-  <ScrollView>
-    <View style={styles.container}>
+  <View style={styles.container}>
+    <ScrollView style={styles.bg}>
       <View style={styles.content}>
         <View style={styles.head}>
           <View style={styles.headNote}>
@@ -60,7 +59,7 @@ export default ({
           </View>
           <View style={styles.item}>
             <Text style={styles.label}>REPEAT</Text>
-            <Text style={styles.value}>{getLabel(repeat, startAt)}</Text>
+            <Text style={styles.value}>{getRepeatLabel(repeat, startAt)}</Text>
           </View>
           <View style={styles.item}>
             <Text style={styles.label}>CREATED</Text>
@@ -80,19 +79,18 @@ export default ({
           </View>
         </View>
       </View>
-    </View>
-  </ScrollView>
-  <Divider />
-  <Actions
-    id={id}
-    title={title}
-    address={address}
-    eventType={eventType}
-    isStarred={isStarred}
-    starsCount={starsCount}
-    commentsCount={commentsCount}
-    date={date}
-    navigateToComments={navigateToComments}
-  />
-  </React.Fragment>
+    </ScrollView>
+    <Divider />
+    <Actions
+      id={id}
+      title={title}
+      address={address}
+      eventType={eventType}
+      isStarred={isStarred}
+      starsCount={starsCount}
+      commentsCount={commentsCount}
+      date={date}
+      navigateToComments={navigateToComments}
+    />
+  </View>
 );

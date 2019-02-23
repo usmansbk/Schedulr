@@ -11,14 +11,15 @@ export default StyleSheet.create({
     backgroundColor: colors.light_gray,
   },
   contentContainer: {
-    flexGrow: 1
+    flexGrow: 1,
+    backgroundColor: colors.light_gray
   },
   itemContainer: {
     flex: 1,
     flexDirection: 'row',
     paddingHorizontal: 8,
     paddingVertical: 4,
-    backgroundColor: '#fff',
+    backgroundColor: colors.white,
   },
   linkStyle: { color: '#2980b9' },
   itemHeader: {

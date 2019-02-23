@@ -8,7 +8,6 @@ import {
   Picker,
   ScrollView,
   RefreshControl,
-  InteractionManager
 } from 'react-native';
 import {
   // IconButton,
@@ -27,7 +26,7 @@ import {
   canRepeat
 } from '../../../lib/formValidator';
 import { CANT_REPEAT } from '../../../lib/errorMessages';
-import { getLabel } from '../../../lib/time';
+import { getRepeatLabel } from '../../../lib/time';
 import styles, { navButtonColor } from './styles';
 import formSchema from './schema';
 import eventTypes from './types';
@@ -155,7 +154,11 @@ export default class Form extends React.Component {
             >{ edit ? 'Save' : 'Create'}</Button>
           </Appbar.Header>
           <ScrollView
-            refreshControl={<RefreshControl refreshing={false} onRefresh={() => resetForm()} />}
+            refreshControl={<RefreshControl
+              refreshing={false}
+              onRefresh={() => resetForm()}
+            />}
+            style={styles.container}
           >
             <View style={styles.form}>
               <TextInput
@@ -241,12 +244,13 @@ export default class Form extends React.Component {
                   prompt="Repeat"
                   selectedValue={values.repeat}
                   style={styles.picker}
+                  
                   itemStyle={styles.pickerItem}
                   onValueChange={itemValue => setFieldValue('repeat', itemValue)}
                 >
                   {
                     frequency.map(freq => (
-                      <Picker.Item key={freq.id} label={getLabel(freq.name, values.startAt)} value={freq.id} />
+                      <Picker.Item key={freq.id} label={getRepeatLabel(freq.name, values.startAt)} value={freq.id} />
                     ))
                   }
                 </Picker>

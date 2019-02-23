@@ -6,6 +6,7 @@ import {
   List,
   Switch
 } from 'react-native-paper';
+import colors from '../../../config/colors';
 
 export default class RemindMe extends React.Component {
   static defaultProps = {
@@ -45,6 +46,7 @@ export default class RemindMe extends React.Component {
           visible={visible}
           dismissable
           onDismiss={hideDialog}
+          style={{backgroundColor: colors.bg}}
         >
           <Dialog.Title>Remind me</Dialog.Title>
           <Dialog.Content>

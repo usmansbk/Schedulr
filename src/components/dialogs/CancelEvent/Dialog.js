@@ -6,6 +6,7 @@ import {
   RadioButton,
   List
 } from 'react-native-paper';
+import colors from '../../../config/colors';
 
 export default class CancelEvent extends React.Component {
   constructor(props) {
@@ -63,6 +64,7 @@ export default class CancelEvent extends React.Component {
         <Dialog
           visible={visible}
           onDismiss={handleDismiss}
+          style={{backgroundColor: colors.bg}}
         >
           <Dialog.Title>Cancel event?</Dialog.Title>
           {

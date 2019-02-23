@@ -3,7 +3,7 @@ import colors from '../../../config/colors';
 
 export const AVATAR_SIZE = 48;
 export const ITEM_HEIGHT = 154;
-export const SEPARATOR_HEIGHT = 2;
+export const SEPARATOR_HEIGHT = 1;
 export const SECTION_HEADER_HEIGHT = 64;
 export const HEADER_HEIGHT = 28;
 export const FOOTER_HEIGHT = 80;
@@ -15,6 +15,7 @@ export const black = colors.black;
 export default StyleSheet.create({
   contentContainer: {
     flexGrow: 1,
+    backgroundColor: colors.light_gray
   },
   list: {
     backgroundColor: colors.light_gray
@@ -73,7 +74,7 @@ export default StyleSheet.create({
     textAlign: 'center'
   },
   separator: {
-    height: SEPARATOR_HEIGHT
+    height: SEPARATOR_HEIGHT,
   },
   itemContainer: {
     backgroundColor: colors.white,
