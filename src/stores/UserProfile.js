@@ -1,15 +1,16 @@
 import { observable, action, runInAction } from 'mobx';
+import { persist } from 'mobx-persist';
 import gql from 'graphql-tag';
 import client from '../config/client';
 import { LoginUser } from '../graphql/mutations';
 import SimpleToast from 'react-native-simple-toast';
 
 export default class UserProfile {
-  id = '0';
-  __typename = "User";
-  @observable name = "Mobx";
-  @observable email = "hello@help.com";
-  @observable pictureUrl = null;
+  @persist @observable id = '0';
+  @persist @observable __typename = "User";
+  @persist @observable name = "Mobx";
+  @persist @observable email = "hello@help.com";
+  @persist @observable pictureUrl = null;
 
   asJs() {
     return ({
