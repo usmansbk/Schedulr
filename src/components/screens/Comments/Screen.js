@@ -1,8 +1,10 @@
 import React from 'react';
 import SimpleToast from 'react-native-simple-toast';
+import { inject } from 'mobx-react/native';
 import Comments from './Comments';
 import DeleteCommentDialog from '../../dialogs/DeleteComment';
 
+@inject("stores")
 export default class Screen extends React.Component {
   state = {
     visibleDialog: null,
@@ -55,10 +57,12 @@ export default class Screen extends React.Component {
     const {
       loading,
       comments,
-      me,
+      stores,
       onRefresh,
       error
     } = this.props;
+    
+    const me = stores.me.asJs();
     return (
       <React.Fragment>
       <Comments

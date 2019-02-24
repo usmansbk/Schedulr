@@ -1,14 +1,10 @@
 import React from 'react';
-import { inject, observer } from 'mobx-react/native';
 import { View, TextInput } from 'react-native';
 import { IconButton, Text, Button } from 'react-native-paper';
-import UserAvatar from 'react-native-user-avatar';
-import { CachedImage } from 'react-native-cached-image';
+import UserAvatar from '../../common/UserAvatar';
 import styles, { AVATAR_SIZE } from './styles';
 import colors from '../../../config/colors';
 
-@inject("stores")
-@observer
 export default class CommentInput extends React.Component {
   state = {
     isSubmitting: false,
@@ -33,15 +29,11 @@ export default class CommentInput extends React.Component {
   render() {
     const {
       targetName,
-      stores,
+      pictureUrl,
+      name,
       cancelReply
     } = this.props;
     
-    const {
-      pictureUrl,
-      name,
-    } = stores.me;
-
     const {
       isSubmitting,
       message
@@ -64,12 +56,9 @@ export default class CommentInput extends React.Component {
         }
         <View style={styles.container}>
           <UserAvatar
-            rounded
             size={AVATAR_SIZE}
             src={pictureUrl}
             name={name}
-            component={CachedImage}
-            style={styles.avatar}
           />
           <View style={styles.input}>
             <TextInput

@@ -6,6 +6,7 @@ import { getValue } from '../lib/formValidator';
 import client from '../config/client';
 import { getEvent, getBoard, getComment } from '../graphql/queries';
 import { BOARD_CLOSED, BOARD_OPEN } from '../lib/constants';
+import stores from '../stores';
 
 const __typename = 'Mutation';
 
@@ -80,7 +81,8 @@ export const deleteEventResponse = (input) => {
 };
 
 export const createCommentResponse = (input, eventId) => {
-  const { me } = {};
+  const me = stores.me.asJs();
+  
   const eventNode = getNode(gql(getEvent), eventId);
   const toCommentNode = input.toCommentId ? getNode(gql(getComment), input.toCommentId) : null;
   const toComment = toCommentNode && toCommentNode.getComment;

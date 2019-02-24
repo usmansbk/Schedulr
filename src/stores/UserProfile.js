@@ -11,6 +11,16 @@ export default class UserProfile {
   @observable email = "hello@help.com";
   @observable pictureUrl = null;
 
+  asJs() {
+    return ({
+      __typename: this.__typename,
+      id: this.id,
+      name: this.name,
+      email: this.email,
+      pictureUrl: this.pictureUrl,
+    })
+  }
+
   @action
   async login(input) {
     try {
