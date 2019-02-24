@@ -1,3 +1,3 @@
-import Login from './Hoc';
+import Login from './Container';
 
 export default Login;

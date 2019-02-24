@@ -1,10 +1,13 @@
 import React from 'react';
 import { Auth, Analytics } from 'aws-amplify';
 import SimpleToast from 'react-native-simple-toast';
+import { inject, observer } from 'mobx-react/native';
 import client from '../../../config/client';
 import Login from './Login';
 import Loading from '../../common/Loading';
 
+@inject("stores")
+@observer
 export default class LoginScreen extends React.Component {
   state = { loading: false };
   
@@ -30,7 +33,7 @@ export default class LoginScreen extends React.Component {
       },{
         email
       });
-      await this.props.onLogin({
+      await this.props.stores.me.login({
         name,
         email,
         pictureUrl

@@ -1,30 +1,48 @@
 import React from 'react';
 import { View } from 'react-native';
+import { inject, observer } from 'mobx-react/native';
 import { Text, Caption, TouchableRipple } from 'react-native-paper';
 import UserAvatar from '../UserAvatar';
 import styles from './styles';
 
-export default ({
-  name,
-  email,
-  pictureUrl,
-  onPress
-}) => (
-  <TouchableRipple
-    style={styles.container}
-    onPress={onPress}
-  >
-    <View style={styles.content}>
-      <UserAvatar
-        size={80}
-        name={name}
-        style={styles.avatar}
-        src={pictureUrl}
-      />
-      <View style={styles.text}>
-        <Text numberOfLines={1} ellipsizeMode="tail" style={styles.name}>{name}</Text>
-        <Caption numberOfLines={1} ellipsizeMode="tail" >{email}</Caption>
-      </View>
-    </View>
-  </TouchableRipple>
-);
+@inject("stores")
+@observer
+export default class Avatar extends React.Component {
+  onPress = () => {
+    this.props.navigation.navigate('UserProfile', {
+      id,
+      profile: true
+    })
+  }
+
+  render() {
+    const {
+      stores,
+    } = this.props;
+    const {
+      name,
+      email,
+      pictureUrl,
+    } = stores.me;
+
+    return (
+      <TouchableRipple
+        style={styles.container}
+        onPress={this.onPress}
+      >
+        <View style={styles.content}>
+          <UserAvatar
+            size={80}
+            name={name}
+            style={styles.avatar}
+            src={pictureUrl}
+          />
+          <View style={styles.text}>
+            <Text numberOfLines={1} ellipsizeMode="tail" style={styles.name}>{name}</Text>
+            <Caption numberOfLines={1} ellipsizeMode="tail" >{email}</Caption>
+          </View>
+        </View>
+      </TouchableRipple>
+    );
+  }
+}

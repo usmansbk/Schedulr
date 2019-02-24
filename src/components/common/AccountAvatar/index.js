@@ -1,3 +1,3 @@
-import Avatar from './Container';
+import Avatar from './Avatar';
 
 export default Avatar;

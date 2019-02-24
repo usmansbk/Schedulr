@@ -1,9 +1,32 @@
-import { observable } from 'mobx';
+import { observable, action } from 'mobx';
+import gql from 'graphql-tag';
+import client from '../config/client';
+import { LoginUser } from '../graphql/mutations';
+import SimpleToast from 'react-native-simple-toast';
 
 export default class UserProfile {
-  id;
+  id = '0';
   __typename = "User";
   @observable name = "Mobx";
   @observable email = "hello@help.com";
-  @observable pictureUrl;
+  @observable pictureUrl = null;
+
+  @action async login(input) {
+    try {
+      const response = await client.query({
+        query: gql(LoginUser),
+        variables: {
+          input
+        }
+      });
+      const me = response.data.loginUser;
+      this.id = me.id;
+      this.name = me.name;
+      this.email = me.email;
+      this.pictureUrl = me.pictureUrl;
+      
+    } catch (e) {
+      SimpleToast.show(e.message, SimpleToast.SHORT);
+    }
+  }
 }

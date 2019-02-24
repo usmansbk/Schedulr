@@ -4,7 +4,7 @@ import shortid from 'shortid';
 import SimpleToast from 'react-native-simple-toast';
 import { getValue } from '../lib/formValidator';
 import client from '../config/client';
-import { getEvent, getBoard, Me, getComment } from '../graphql/queries';
+import { getEvent, getBoard, getComment } from '../graphql/queries';
 import { BOARD_CLOSED, BOARD_OPEN } from '../lib/constants';
 
 const __typename = 'Mutation';
@@ -80,7 +80,7 @@ export const deleteEventResponse = (input) => {
 };
 
 export const createCommentResponse = (input, eventId) => {
-  const { me } = getCurrentUser();
+  const { me } = {};
   const eventNode = getNode(gql(getEvent), eventId);
   const toCommentNode = input.toCommentId ? getNode(gql(getComment), input.toCommentId) : null;
   const toComment = toCommentNode && toCommentNode.getComment;
@@ -284,11 +284,5 @@ function getNode(query, id) {
     variables: {
       id
     }
-  });
-}
-
-function getCurrentUser() {
-  return client.readQuery({
-    query: gql(Me)
   });
 }
