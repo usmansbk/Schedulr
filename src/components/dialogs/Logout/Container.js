@@ -18,6 +18,7 @@ class Container extends React.Component {
     await this._fbLogout();
     await this._googleSignout();
     await this._clearStore();
+    await this._purgeAsyncStorage();
     this.setState({ loading: false });
     this._handleDismiss();
     this.props.navigation.navigate('Auth');
