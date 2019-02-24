@@ -1,8 +1,11 @@
 import { observable, action } from 'mobx';
 
+const LIGHT = 'Light';
+const DARK = 'Dark';
+
 export default class SettingsState {
   @observable language = "en_US";
-  @observable theme = 'light';
+  @observable theme = LIGHT;
   @observable sound = true;
   @observable vibrate = true;
   @observable disableReminders = false;
@@ -13,5 +16,11 @@ export default class SettingsState {
   @action toggle (value) {
     this[value] = !this[value]
   }
-  autoTheme = false;
+
+  @action toggleTheme () {
+    if (this.theme === LIGHT)
+      this.theme = DARK;
+    else
+      this.theme = LIGHT;
+  }
 }

@@ -15,7 +15,7 @@ export default [
     name: 'Help',
   },
   {
-    id: 'dark',
+    id: 'theme',
     icon: 'brightness-6',
     name: 'Dark mode'
   }
