@@ -1,5 +1,5 @@
 import React from 'react';
-import { Formik } from 'formik';
+import { inject, observer } from 'mobx-react/native';
 import { View, TextInput } from 'react-native';
 import { IconButton, Text, Button } from 'react-native-paper';
 import UserAvatar from 'react-native-user-avatar';
@@ -7,16 +7,13 @@ import { CachedImage } from 'react-native-cached-image';
 import styles, { AVATAR_SIZE } from './styles';
 import colors from '../../../config/colors';
 
+@inject("stores")
+@observer
 export default class CommentInput extends React.Component {
   state = {
     isSubmitting: false,
     message: ''
   };
-
-  static defaultProps = {
-    name: 'Schdlr',
-    pictureUrl: null
-  }
 
   _onSubmit = () => {
     this.setState({ isSubmitting: true });
@@ -35,11 +32,16 @@ export default class CommentInput extends React.Component {
 
   render() {
     const {
-      pictureUrl,
-      name,
       targetName,
+      stores,
       cancelReply
     } = this.props;
+    
+    const {
+      pictureUrl,
+      name,
+    } = stores.me;
+
     const {
       isSubmitting,
       message
