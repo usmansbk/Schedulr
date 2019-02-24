@@ -10,8 +10,4 @@ export default class SettingsState {
   @observable starredEventsOnly = false;
   @observable disablePushNotifications = false;
   autoTheme = false;
-
-  constructor(rootStore) {
-    this.rootStore = rootStore;
-  }
 }

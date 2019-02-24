@@ -3,6 +3,7 @@ import { Provider as PaperProvider } from 'react-native-paper';
 import { MenuProvider } from 'react-native-popup-menu';
 import { GoogleSignin } from 'react-native-google-signin';
 import { ApolloProvider } from 'react-apollo';
+import { Provider as MobxProvider } from 'mobx-react/native';
 import { Rehydrated } from 'aws-appsync-react';
 import SplashScreen from 'react-native-splash-screen';
 import Amplify, { Auth } from 'aws-amplify';
@@ -13,6 +14,7 @@ import config from './src/aws-exports';
 import client from './src/config/client';
 import theme from './src/config/theme';
 import env from './src/config/env';
+import stores from './src/stores';
 // import { refreshGoogleToken } from './src/config/auth';
 
 console.disableYellowBox = true;
@@ -39,11 +41,13 @@ export default class App extends React.Component {
         <PaperProvider theme={theme}>
           <ApolloProvider client={client}>
             <Rehydrated loading={<Loading />}>
-              <AppContainer
-                ref={navigatorRef => {
-                  NavigationService.setTopLevelNavigator(navigatorRef);
-                }}
-              />
+              <MobxProvider stores={stores}>
+                <AppContainer
+                  ref={navigatorRef => {
+                    NavigationService.setTopLevelNavigator(navigatorRef);
+                  }}
+                />
+              </MobxProvider>
             </Rehydrated>
           </ApolloProvider>
         </PaperProvider>
