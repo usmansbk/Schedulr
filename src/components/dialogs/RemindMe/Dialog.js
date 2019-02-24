@@ -6,27 +6,32 @@ import {
   List,
   Switch
 } from 'react-native-paper';
+import { inject, observer } from 'mobx-react/native';
 import colors from '../../../config/colors';
 
+@inject("stores")
+@observer
 export default class RemindMe extends React.Component {
   static defaultProps = {
-    remindMeBefore: {
-      fiveMin: false,
-      tenMin: false,
-      fifteenMin: false,
-      thirtyMin: false,
-      oneHour: false,
-      oneDay: false,
+    stores: {
+      remindMeBefore: {
+        fiveMin: false,
+        tenMin: false,
+        fifteenMin: false,
+        thirtyMin: false,
+        oneHour: false,
+        oneDay: false,
+      }
     }
   };
 
   _toggle = async (key) => {
-    await this.props.toggleRemindMe(key);
+    await this.props.stores.remindMeStore.toggle(key);
   }
 
   render() {
     const {
-      remindMeBefore,
+      stores,
       visible,
       hideDialog,
     } = this.props;
@@ -38,7 +43,7 @@ export default class RemindMe extends React.Component {
       thirtyMin,
       oneHour,
       oneDay,
-    } = remindMeBefore;
+    } = stores.remindMeStore;
 
     return (
       <Portal>

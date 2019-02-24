@@ -1,3 +1,3 @@
-import Dialog from './Hoc';
+import Dialog from './Dialog';
 
 export default Dialog;

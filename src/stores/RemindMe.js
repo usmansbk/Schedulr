@@ -1,4 +1,4 @@
-import { observable } from 'mobx';
+import { observable, action } from 'mobx';
 
 export default class RemindMe {
   @observable fiveMin = true;
@@ -7,4 +7,8 @@ export default class RemindMe {
   @observable thirtyMin = false;
   @observable oneHour = false;
   @observable oneDay = false;
+
+  @action toggle(key) {
+    this[key] = !this[key];
+  }
 }
