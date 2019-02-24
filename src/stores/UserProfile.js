@@ -1,4 +1,4 @@
-import { observable, action } from 'mobx';
+import { observable, action, runInAction } from 'mobx';
 import gql from 'graphql-tag';
 import client from '../config/client';
 import { LoginUser } from '../graphql/mutations';
@@ -11,20 +11,22 @@ export default class UserProfile {
   @observable email = "hello@help.com";
   @observable pictureUrl = null;
 
-  @action async login(input) {
+  @action
+  async login(input) {
     try {
-      const response = await client.query({
-        query: gql(LoginUser),
+      const response = await client.mutate({
+        mutation: gql(LoginUser),
         variables: {
           input
         }
       });
       const me = response.data.loginUser;
-      this.id = me.id;
-      this.name = me.name;
-      this.email = me.email;
-      this.pictureUrl = me.pictureUrl;
-      
+      runInAction(() => {
+        this.id = me.id;
+        this.name = me.name;
+        this.email = me.email;
+        this.pictureUrl = me.pictureUrl;
+      });
     } catch (e) {
       SimpleToast.show(e.message, SimpleToast.SHORT);
     }
