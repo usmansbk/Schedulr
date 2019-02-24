@@ -113,7 +113,7 @@ export default class Settings extends React.Component {
               right={() => (
                 <Switch
                   value={disablePushNotifications}
-                  onValueChange={() => handleValueChange('disablePushNotifications')}
+                  onValueChange={() => this.handleValueChange('disablePushNotifications')}
                 />
               )}
             />
