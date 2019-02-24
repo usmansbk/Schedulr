@@ -1,4 +1,5 @@
 import React from 'react';
+import { AsyncStorage } from 'react-native';
 import { Auth } from 'aws-amplify';
 import { LoginManager } from 'react-native-fbsdk';
 import { GoogleSignin } from 'react-native-google-signin';
@@ -21,6 +22,12 @@ class Container extends React.Component {
     this._handleDismiss();
     this.props.navigation.navigate('Auth');
   };
+
+  _purgeAsyncStorage = async () => {
+    try {
+      await AsyncStorage.clear();
+    } catch(e) {}
+  }
 
   _clearStore = async () => {
     try {
