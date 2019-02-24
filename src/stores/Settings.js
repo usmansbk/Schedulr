@@ -1,4 +1,4 @@
-import { observable } from 'mobx';
+import { observable, action } from 'mobx';
 
 export default class SettingsState {
   @observable language = "en_US";
@@ -9,5 +9,9 @@ export default class SettingsState {
   @observable headsUp = false;
   @observable starredEventsOnly = false;
   @observable disablePushNotifications = false;
+
+  @action toggle (value) {
+    this[value] = !this[value]
+  }
   autoTheme = false;
 }

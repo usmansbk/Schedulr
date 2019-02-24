@@ -6,19 +6,24 @@ import {
   Switch,
   Divider
 } from 'react-native-paper';
-import { inject } from 'mobx-react/native';
+import { inject, observer } from 'mobx-react/native';
 import styles from '../../../config/styles';
 import colors from '../../../config/colors';
 
 @inject("stores")
+@observer
 export default class Settings extends React.Component {
   static defaultProps = {
-    state: {}
+    stores: {}
   }
+
+  handleValueChange = (value) => {
+    this.props.stores.settingsStore.toggle(value)
+  }
+
   render() {
     const {
       goBack,
-      handleValueChange,
       openRemindMeDialog,
       stores,
     } = this.props;
@@ -47,7 +52,7 @@ export default class Settings extends React.Component {
               right={() => (
                 <Switch
                   value={sound}
-                  onValueChange={() => handleValueChange('sound')}
+                  onValueChange={() => this.handleValueChange('sound')}
                 />
               )}
             />
@@ -57,7 +62,7 @@ export default class Settings extends React.Component {
               right={() => (
                 <Switch
                   value={vibrate}
-                  onValueChange={() => handleValueChange('vibrate')}
+                  onValueChange={() => this.handleValueChange('vibrate')}
                 />
               )}
             />
@@ -69,7 +74,7 @@ export default class Settings extends React.Component {
               right={() => (
                 <Switch
                   value={disableReminders}
-                  onValueChange={() => handleValueChange('disableReminders')}
+                  onValueChange={() => this.handleValueChange('disableReminders')}
                 />
               )}
             />
@@ -78,9 +83,8 @@ export default class Settings extends React.Component {
               title="Heads-up"
               right={() => (
                 <Switch
-                  disabled={true}
                   value={headsUp}
-                  onValueChange={() => handleValueChange('headsUp')}
+                  onValueChange={() => this.handleValueChange('headsUp')}
                 />
               )}
             />
@@ -89,9 +93,8 @@ export default class Settings extends React.Component {
               title="Starred events only"
               right={() => (
                 <Switch
-                  disabled={starredEventsOnly}
                   value={starredEventsOnly}
-                  onValueChange={() => handleValueChange('starredEventsAlarm')}
+                  onValueChange={() => this.handleValueChange('starredEventsOnly')}
                 />
               )}
             />
@@ -109,7 +112,6 @@ export default class Settings extends React.Component {
               title="Disable"
               right={() => (
                 <Switch
-                  disabled={true}
                   value={disablePushNotifications}
                   onValueChange={() => handleValueChange('disablePushNotifications')}
                 />
