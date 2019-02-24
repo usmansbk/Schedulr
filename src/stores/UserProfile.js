@@ -2,7 +2,8 @@ import { observable } from 'mobx';
 
 export default class UserProfile {
   id;
-  name = "Mobx";
-  email = "hello@help.com";
-  pictureUrl;
+  __typename = "User";
+  @observable name = "Mobx";
+  @observable email = "hello@help.com";
+  @observable pictureUrl;
 }

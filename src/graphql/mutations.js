@@ -13,14 +13,6 @@ export const LoginUser = `mutation LoginUser($input: LoginInput!) {
 }
 `;
 
-export const ToggleSettings = `mutation ToggleSettings($key: ID!) {
-  toggleSettings(key: $key) @client
-}`;
-
-export const ToggleRemindMeBefore = `mutation ToggleRemindMeBefore($key: ID!) {
-  toggleRemindMeBefore(key: $key) @client
-}`;
-
 export const createBoard = `mutation CreateBoard($input: CreateBoardInput!) {
   createBoard(input: $input) {
     id

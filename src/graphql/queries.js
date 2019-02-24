@@ -1,38 +1,5 @@
 // eslint-disable
 // this is an auto generated file. This will be overwritten
-export const Me = `{
-  me @client {
-    id
-    name
-    email
-    pictureUrl
-    followingCount
-    createdCount
-  }
-}`;
-
-export const Settings = `{
-  settings @client {
-    id
-    playSound
-    vibrate
-    headsUp
-    starredAlarm
-    muteReminder
-  }
-}`;
-
-export const RemindMeBefore = `{
-  remindMeBefore @client {
-    id
-    fiveMin
-    tenMin
-    fifteenMin
-    thirtyMin
-    oneHour
-    oneDay
-  }
-}`
 
 export const getUser = `query GetUser($id: ID!) {
   getUser(id: $id) {
