@@ -13,12 +13,10 @@ export default class Screen extends React.Component {
     return (
       <React.Fragment>
         <Settings
-          state={this.props.stores.settingsStore}
           goBack={this._goBack}
           openRemindMeDialog={this._showDialog}
         />
         <RemindMeDialog
-          state={this.props.stores.remindMeStore}
           visible={this.state.visible}
           hideDialog={this._hideDialog}
           handleValueChange={this._handleValueChange}

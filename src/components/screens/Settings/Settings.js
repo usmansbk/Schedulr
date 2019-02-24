@@ -6,9 +6,11 @@ import {
   Switch,
   Divider
 } from 'react-native-paper';
+import { inject } from 'mobx-react/native';
 import styles from '../../../config/styles';
 import colors from '../../../config/colors';
 
+@inject("stores")
 export default class Settings extends React.Component {
   static defaultProps = {
     state: {}
@@ -18,7 +20,7 @@ export default class Settings extends React.Component {
       goBack,
       handleValueChange,
       openRemindMeDialog,
-      state,
+      stores,
     } = this.props;
     const {
       sound,
@@ -27,7 +29,7 @@ export default class Settings extends React.Component {
       headsUp,
       starredEventsOnly,
       disablePushNotifications,
-    } = state;
+    } = stores.settingsStore;
 
     return (
       <React.Fragment>
@@ -96,7 +98,7 @@ export default class Settings extends React.Component {
             <Divider />
             <List.Item
               title="Remind me"
-              disabled={muteReminder}
+              disabled={disableReminders}
               right={() => <List.Icon icon="chevron-right" />}
               onPress={openRemindMeDialog}
             />
