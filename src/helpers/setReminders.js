@@ -10,6 +10,7 @@ import {
   ONE_HOUR,
   ONE_DAY
 } from '../lib/time';
+import stores from '../stores';
 
 const setReminder = (event, before, settings) => {
   const {
@@ -20,7 +21,7 @@ const setReminder = (event, before, settings) => {
     repeat,
   } = event;
   const { amount, unit } = before;
-  const { playSound, vibrate } = settings;
+  const { sound, vibrate } = settings;
   const date = moment(startAt).subtract(amount, unit).toDate();
   const message = `${decapitalize(eventType)} in ${moment(startAt).from(date, true)}`;
   const repeatType = getRepeatType(repeat);
@@ -33,7 +34,7 @@ const setReminder = (event, before, settings) => {
     title,
     date,
     message,
-    playSound,
+    playSound: sound,
     vibrate,
     data: JSON.stringify({
       id
@@ -123,11 +124,11 @@ const schdl = (event, before, settings) => {
 const schdlAll = (events) => {
   InteractionManager.runAfterInteractions(() => {
     PushNotification.cancelAllLocalNotifications();
-    const { settings={} } = {};
-    const { remindMeBefore={} } = {};
-    if (!settings.muteReminder) {
+    const settings = stores.settingsStore;
+    const remindMeBefore = stores.remindMeStore;
+    if (!settings.disableReminders) {
       events.forEach((event) => {
-        if (settings.starredAlarm && !event.isStarred) return;
+        if (settings.starredEventsOnly && !event.isStarred) return;
         return schdl(event, remindMeBefore, settings);
       });
     }
