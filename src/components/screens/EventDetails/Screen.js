@@ -26,7 +26,7 @@ export default class Screen extends React.Component {
   _handleRepeat = () => this.props.navigation.navigate('NewEvent', { id: this.props.navigation.getParam('id'), isNew: true });
   _openCancelDialog = () => this.setState({ visibleDialog: 'cancel' });
   _navigateToBoard = (id) => this.props.navigation.navigate('BoardEvents', { id });
-  _navigateToComments = (id, title) => this.props.navigation.navigate('Comments', { id, title });
+  _navigateToComments = (id, title, date) => this.props.navigation.navigate('Comments', { id, title, date });
   _hideDialog = () => this.setState({ visibleDialog: null });
   
   render() {

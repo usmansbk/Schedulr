@@ -49,7 +49,7 @@ class List extends React.Component {
   _renderSeparator = () => <Separator />;
   _renderSectionHeader = ({section}) => <SectionHeader section={section} />;
   _onPressItem = (id) => this.props.navigation.navigate('EventDetails', { id });
-  _onPressCommentItem = (id, title) => this.props.navigation.navigate('Comments', { id, title });
+  _onPressCommentItem = (id, title, date) => this.props.navigation.navigate('Comments', { id, title, date });
   _navigateToBoardEvents = (id) => {
     let screen = 'BoardEvents';
     if (this.props.listType === 'board') screen = 'BoardInfo';

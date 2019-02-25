@@ -20,7 +20,7 @@ const ANIMATION_DURATION = 250;
 export default class Item extends React.PureComponent {
   _onPress = () => this.props.onPressItem(this.props.id);
   _navigateToBoard = () => this.props.navigateToBoardEvents(this.props.boardId);
-  _onPressComment = () => this.props.onPressCommentButton(this.props.id, this.props.title);
+  _onPressComment = () => this.props.onPressCommentButton(this.props.id, this.props.title, this.props.date);
   handleViewRef = ref => this.view = ref;
   onRemove = async () => {
     if (this.props.animated) {

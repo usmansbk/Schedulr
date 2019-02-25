@@ -69,6 +69,7 @@ export default class Screen extends React.Component {
         loading={loading}
         me={me}
         title={this.props.navigation.getParam('title')}
+        date={this.props.navigation.getParam('date')}
         error={Boolean(error)}
         comments={comments}
         ref={commentsRef => this._commentsRef = commentsRef}

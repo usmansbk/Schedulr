@@ -36,6 +36,7 @@ export default class Comments extends React.Component {
       onRefresh,
       goBack,
       title,
+      date,
       handleReply,
       cancelReply,
       navigateToProfile
@@ -47,6 +48,7 @@ export default class Comments extends React.Component {
           <Appbar.BackAction onPress={goBack} color={colors.gray} />
           <Appbar.Content
             title={title || 'Comments'}
+            subtitle={date}
             titleStyle={styles.headerColor}
           />
         </Appbar.Header>
