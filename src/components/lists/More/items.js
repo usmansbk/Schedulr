@@ -14,9 +14,4 @@ export default [
     icon: 'help',
     name: 'Help',
   },
-  {
-    id: 'theme',
-    icon: 'brightness-6',
-    name: 'Dark mode'
-  }
 ];

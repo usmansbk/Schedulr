@@ -2,7 +2,6 @@ import React from 'react';
 import { FlatList } from 'react-native';
 import { withNavigationFocus } from 'react-navigation';
 import Share from 'react-native-share';
-import { inject, observer } from 'mobx-react/native';
 import LogoutDialog from '../../dialogs/Logout';
 import Header from './Header';
 import Footer from './Footer';
@@ -12,8 +11,6 @@ import items from './items';
 import styles from './styles';
 import env from '../../../config/env';
 
-@inject("stores")
-@observer
 class List extends React.Component {
   state = {
     visible: false,
@@ -39,9 +36,6 @@ class List extends React.Component {
           url
         }
         Share.open(options);
-        break;
-      case 'theme':
-        this.props.stores.settingsStore.toggleTheme();
         break;
       default:
         break;
