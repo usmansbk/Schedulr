@@ -1,4 +1,3 @@
-import { isDayTime } from '../lib/time';
 
 const light = {
   facebook: '#3b5998',
@@ -26,37 +25,31 @@ const light = {
   navButtonColor: '#004ba0',
 }
 
-const dark = {
-  facebook: '#3b5998',
-  google: '#4285F4',
-  black: '#ffffff',
-  gray: 'white',
-  bg: '#303030',
-  light_gray: '#303030',
-  light_gray_2: '#212121',
-  light_gray_3: '#989898',
-  white: '#424242',
-  red: '#cc3300',
-  light_red: '#ff5252',
-  primary: '#63a4ff',
-  primary_light: '#63a4ff',
-  primary_dark: '#004ba0',
-  disabled: '#d3d3d3',
-  alt_primary: '#757de8',
-  money_green: '#216C2A',
-  green: '#7FFF00',
-  yellow: '#ffc40d',
-  soft_blue: '#7ad7f0',
-  deep_purple: '#562765',
-  blue: '004f86',
-  placeholder: 'white',
-  navButtonColor: 'white'
-};
+// const dark = {
+//   facebook: '#3b5998',
+//   google: '#4285F4',
+//   black: '#ffffff',
+//   gray: 'white',
+//   bg: '#303030',
+//   light_gray: '#303030',
+//   light_gray_2: '#212121',
+//   light_gray_3: '#989898',
+//   white: '#424242',
+//   red: '#cc3300',
+//   light_red: '#ff5252',
+//   primary: '#63a4ff',
+//   primary_light: '#63a4ff',
+//   primary_dark: '#004ba0',
+//   disabled: '#d3d3d3',
+//   alt_primary: '#757de8',
+//   money_green: '#216C2A',
+//   green: '#7FFF00',
+//   yellow: '#ffc40d',
+//   soft_blue: '#7ad7f0',
+//   deep_purple: '#562765',
+//   blue: '004f86',
+//   placeholder: 'white',
+//   navButtonColor: 'white'
+// };
 
-let defaultPalette = dark;
-
-if (isDayTime()) {
-  defaultPalette = light;
-}
-
-export default defaultPalette;
+export default light;
