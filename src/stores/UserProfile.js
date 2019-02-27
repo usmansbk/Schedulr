@@ -6,13 +6,11 @@ import { LoginUser } from '../graphql/mutations';
 import SimpleToast from 'react-native-simple-toast';
 
 export default class UserProfile {
-  @persist @observable id = '0';
+  @persist @observable id;
   @persist @observable __typename = "User";
   @persist @observable name = "Mobx";
   @persist @observable email = "hello@help.com";
   @persist @observable pictureUrl = null;
-  @persist @observable createdCount = 0;
-  @persist @observable followingCount = 0;
 
   asJs() {
     return ({
