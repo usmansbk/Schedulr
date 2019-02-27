@@ -58,7 +58,6 @@ export default class Container extends React.Component {
       //   },
       // });
     } else if (result) {
-      console.log(result);
       const { email, name, picture } = result;
       return await this.props.onLogin({
         provider: 'facebook',

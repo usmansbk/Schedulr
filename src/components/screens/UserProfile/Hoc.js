@@ -1,6 +1,7 @@
 import { graphql } from 'react-apollo';
 import { Analytics } from 'aws-amplify';
 import gql from 'graphql-tag';
+import SimpleToast from 'react-native-simple-toast';
 import UserProfile from './UserProfile';
 import { getUser } from '../../../graphql/queries';
 
@@ -19,7 +20,7 @@ export default graphql(gql(getUser), {
       try {
         await data.refetch()
       } catch(e) {
-        console.log(e);
+        SimpleToast.show(e.message, SimpleToast.SHORT);
         // Log error if it occurs multiple times
         // Analytics.record({
         //   name: e.name,

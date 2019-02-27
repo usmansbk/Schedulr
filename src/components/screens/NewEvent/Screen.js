@@ -19,7 +19,6 @@ export default class NewEventScreen extends React.Component {
       });
     } catch(error) {
       SimpleToast.show(error.message, SimpleToast.SHORT);
-      console.log(error);
     }
   };
   _getInitialValues = () => {
