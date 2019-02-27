@@ -4,7 +4,7 @@ import shortid from 'shortid';
 import SimpleToast from 'react-native-simple-toast';
 import { getValue } from '../lib/formValidator';
 import client from '../config/client';
-import { getEvent, getBoard, getComment } from '../graphql/queries';
+import { getEvent, getBoard, getComment, getUser } from '../graphql/queries';
 import { BOARD_CLOSED, BOARD_OPEN } from '../lib/constants';
 import stores from '../stores';
 
@@ -117,7 +117,6 @@ export const createEventResponse = (input) => {
 
   try {
     const { getBoard } = getNode(query, input.boardId);
-    // const { me } = getCurrentUser();
     let venue = null;
     if (input.venue && input.venue.address ) {
       venue = {
@@ -148,7 +147,6 @@ export const createEventResponse = (input) => {
       starsCount: 0,
       isStarred: false,
       isAuthor: true,
-      // author: me,
       commentsCount: 0,
       createdAt: moment().toISOString(),
       updatedAt: null
@@ -166,8 +164,8 @@ export const createEventResponse = (input) => {
 
 export const createBoardResponse = (input) => {
   try {
-    const me = stores.me.asJs();
-    
+    const { getUser } = getNode(gql(getUser), stores.me.id);
+
     const newBoard = {
       __typename: 'Board',
       id: '-' + shortid.generate(),
@@ -177,7 +175,7 @@ export const createBoardResponse = (input) => {
       isPublic: Boolean(input.isPublic),
       isFollowing: false,
       isAuthor: true,
-      author: me,
+      author: getUser,
       eventsCount: 0,
       followersCount: 0,
       createdAt: moment().toISOString(),

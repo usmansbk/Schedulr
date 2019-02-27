@@ -21,8 +21,6 @@ export default class UserProfile {
       name: this.name,
       email: this.email,
       pictureUrl: this.pictureUrl,
-      createdCount: this.createdCount,
-      followingCount: this.followingCount
     })
   }
 
