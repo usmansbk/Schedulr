@@ -166,8 +166,8 @@ export const createEventResponse = (input) => {
 
 export const createBoardResponse = (input) => {
   try {
-    const { me } = getCurrentUser();
-
+    const me = stores.me.asJs();
+    
     const newBoard = {
       __typename: 'Board',
       id: '-' + shortid.generate(),

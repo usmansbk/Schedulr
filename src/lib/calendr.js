@@ -5,7 +5,10 @@ import moment from 'moment';
   * @param { Date } afterDate - date to start from
   * @return 
   */
-function getNextDayEvents(initialEvents, afterDate=moment().toISOString() ) {
+function getNextDayEvents(initialEvents, nextDate) {
+  const refDate = moment();
+  if (nextDate) refDate = moment(nextDate);
+  return initialEvents.reduce()
   const item = {
     data: [],
     title: moment(afterDate).add(1, 'day').startOf('day').toISOString()

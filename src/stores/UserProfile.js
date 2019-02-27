@@ -11,6 +11,8 @@ export default class UserProfile {
   @persist @observable name = "Mobx";
   @persist @observable email = "hello@help.com";
   @persist @observable pictureUrl = null;
+  @persist @observable createdCount = 0;
+  @persist @observable followingCount = 0;
 
   asJs() {
     return ({
@@ -19,6 +21,8 @@ export default class UserProfile {
       name: this.name,
       email: this.email,
       pictureUrl: this.pictureUrl,
+      createdCount: this.createdCount,
+      followingCount: this.followingCount
     })
   }
 
