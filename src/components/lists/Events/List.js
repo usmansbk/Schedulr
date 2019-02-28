@@ -1,5 +1,5 @@
 import React from 'react';
-import memoize from 'memoize-one';
+import moment from 'moment';
 import { RefreshControl } from 'react-native';
 import { withNavigationFocus, SectionList } from 'react-navigation';
 import sectionListGetItemLayout from 'react-native-section-list-get-item-layout';
@@ -16,7 +16,6 @@ import {
   getTime
 } from '../../../lib/parseItem';
 import { formatDate } from '../../../lib/time';
-import sectionize, { sortBy } from '../../../lib/sectionizr';
 import { decapitalize } from '../../../lib/capitalizr';
 import { getNextDayEvents } from '../../../lib/calendr';
 import styles, {
@@ -32,7 +31,8 @@ class List extends React.Component {
     super(props);
     this.state = {
       loading: false,
-      sections: [getNextDayEvents(this.props.events)],
+      sections: [],
+      nextDate: moment().toISOString()
     }
   }
 
@@ -56,12 +56,37 @@ class List extends React.Component {
     if (this.props.listType === 'board') screen = 'BoardInfo';
     this.props.navigation.navigate(screen, { id })
   };
+
+  fetchEvents = () => {
+    const { events } = this.props;
+    if (events) {
+      this.setState(state => ({
+        sections: [...state.sections, getNextDayEvents(events, state.nextDate)],
+        nextDate: moment(state.nextDate).add(1, 'day').toISOString()
+      }));
+    }
+  }
+  
+  _onEndReached = () => {
+    if (this.props.events) {
+      this.setState(state => ({
+        sections: [...state.sections, getNextDayEvents(this.props.events, state.nextDate)],
+        nextDate: moment(state.nextDate).add(1, 'day').toISOString()
+      }))
+    }
+  };
+
+  componentDidMount = () => {
+    this.fetchEvents();
+  }
+
   componentWillReceiveProps = (nextProps) => {
     const { events } = nextProps;
-    if (events !== this.props.events) {
-      this.setState({
-        sections: [getNextDayEvents(events)]
-      });
+    if (events && (events !== this.props.events)) {
+      this.setState(state => ({
+        sections: [getNextDayEvents(events)],
+        nextDate: moment().toISOString()
+      }));
     }
   }
 
@@ -109,11 +134,6 @@ class List extends React.Component {
   });
   shouldComponentUpdate = (nextProps) => nextProps.isFocused;
 
-  _loadMore = () => null
-
-  _sectionize = memoize((events) => sortBy(sectionize(events), 'title'));
-  // _sectionize = (events) => sortBy(sectionize(events), 'title');
-
   render() {
     const {
       loading,
@@ -140,6 +160,8 @@ class List extends React.Component {
           refreshing={this.props.loading}
           colors={[primary]}
         />}
+        onEndReachedThreshold={0.5}
+        onEndReached={this._onEndReached}
         renderItem={this._renderItem}
         renderSectionHeader={this._renderSectionHeader}
         keyExtractor={this._keyExtractor}

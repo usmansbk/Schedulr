@@ -16,7 +16,7 @@ function getRepeat(recur) {
   * @return 
   */
 function getNextDayEvents(initialEvents, nextDate) {
-  const refDate = moment();
+  let refDate = moment();
   if (nextDate) refDate = moment(nextDate);
 
   return initialEvents.reduce((accumulator, currentEvent) => {

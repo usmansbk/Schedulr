@@ -1,4 +1,5 @@
 import React from 'react';
+import { View } from 'react-native';
 import { Appbar } from 'react-native-paper';
 import List from '../../lists/Events';
 import Fab from '../../common/Fab';
@@ -38,7 +39,15 @@ export default class BoardEvents extends React.Component {
     } = board;
 
     return (
-      <React.Fragment>
+      <View style={styles.container}>
+        {
+          isAuthor && (status !== BOARD_CLOSED ) && (
+            <Fab
+              icon="edit"
+              onPress={() => navigateToNewEvent(id)}
+            />
+          )
+        }
         <Appbar.Header style={styles.elevatedHeader} collapsable>
           <Appbar.BackAction color={colors.gray} onPress={onPress} />
           <Appbar.Content
@@ -58,15 +67,7 @@ export default class BoardEvents extends React.Component {
           loading={loadingEvents}
           error={loadingEventsError}
         />
-        {
-          isAuthor && (status !== BOARD_CLOSED ) && (
-            <Fab
-              icon="edit"
-              onPress={() => navigateToNewEvent(id)}
-            />
-          )
-        }
-      </React.Fragment>
+      </View>
     );
   }
 }

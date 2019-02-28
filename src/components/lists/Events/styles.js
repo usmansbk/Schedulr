@@ -14,7 +14,6 @@ export const black = colors.black;
 
 export default StyleSheet.create({
   contentContainer: {
-    flexGrow: 1,
     backgroundColor: colors.light_gray
   },
   list: {
