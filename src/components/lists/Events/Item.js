@@ -79,20 +79,6 @@ export default class Item extends React.PureComponent {
               <Text style={styles.duration}>{duration} {eventType}</Text>
               <Text style={styles.status}>{repeatEvent}<Tag status={status} /></Text>
             </View>
-            <Actions
-              id={id}
-              date={date}
-              title={title}
-              address={address}
-              eventType={eventType}
-              isStarred={isStarred}
-              starsCount={starsCount}
-              commentsCount={commentsCount}
-              onRemove={this.onRemove}
-              navigateToComments={this._onPressComment}
-              small
-              dark
-            />
           </View>
         </Animatable.View>
       </TouchableRipple>

@@ -2,9 +2,10 @@ import { StyleSheet } from 'react-native';
 import colors from '../../../config/colors';
 
 export const AVATAR_SIZE = 48;
-export const ITEM_HEIGHT = 154;
+export const ITEM_HEIGHT = 124;
 export const SEPARATOR_HEIGHT = 1;
 export const SECTION_HEADER_HEIGHT = 64;
+export const SECTION_FOOTER_HEIGHT = 20;
 export const HEADER_HEIGHT = 28;
 export const FOOTER_HEIGHT = 80;
 export const primary_light = colors.primary_light;
@@ -37,6 +38,11 @@ export default StyleSheet.create({
   sectionSubheading: {
     fontFamily: 'sans-serif-bold',
     color: gray
+  },
+  sectionFooter: {
+    height: SECTION_FOOTER_HEIGHT,
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   header:{
     height: HEADER_HEIGHT,

@@ -27,7 +27,10 @@ function getNextDayEvents(initialEvents, nextDate) {
       const recurrence = eventDate.recur().every(1, repeat);
       const hasNext = recurrence.matches(refDate.format('l'));
       if (hasNext) {
-        accumulator.data.push(currentEvent);
+        const start = moment(refDate.toISOString());
+        accumulator.data.push(Object.assign({}, currentEvent, {
+          startAt: moment(currentEvent.startAt)
+        }));
       }
     } else if (eventDate.isSame(refDate, 'day')) {
       accumulator.data.push(currentEvent);

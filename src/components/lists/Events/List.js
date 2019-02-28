@@ -8,6 +8,7 @@ import Footer from './Footer';
 import Empty from './Empty';
 import Separator from './Separator';
 import SectionHeader from './SectionHeader';
+import SectionFooter from './SectionFooter';
 import Item from './Item';
 import {
   isStarted,
@@ -22,6 +23,7 @@ import styles, {
   ITEM_HEIGHT,
   SEPERATOR_HEIGHT,
   SECTION_HEADER_HEIGHT,
+  SECTION_FOOTER_HEIGHT,
   HEADER_HEIGHT,
   primary
 } from './styles';
@@ -49,6 +51,7 @@ class List extends React.Component {
   _renderEmptyList = () => <Empty error={this.props.error} loading={this.props.loading} />;
   _renderSeparator = () => <Separator />;
   _renderSectionHeader = ({section}) => <SectionHeader section={section} />;
+  _renderSectionFooter = ({ section }) => <SectionFooter section={section} />;
   _onPressItem = (id) => this.props.navigation.navigate('EventDetails', { id });
   _onPressCommentItem = (id, title, date) => this.props.navigation.navigate('Comments', { id, title, date });
   _navigateToBoardEvents = (id) => {
@@ -86,7 +89,7 @@ class List extends React.Component {
   }
 
   componentWillReceiveProps = (nextProps) => {
-    if (nextProps.events !== this.props.events) {
+    if (nextProps.events.length !== this.props.events.length) {
       this._bootstrap(nextProps.events);
     }
   }
@@ -118,7 +121,6 @@ class List extends React.Component {
     status={getStatus({ isCancelled, cancelledDates, startAt, endAt})}
     commentsCount={commentsCount}
     starsCount={starsCount}
-    isStarred={isStarred} 
     boardId={board.id}
     boardName={board.name}
     duration={getDuration(startAt, endAt, eventType)}
@@ -131,6 +133,7 @@ class List extends React.Component {
     getItemHeight: () => ITEM_HEIGHT,
     getSeparatorHeight: () => SEPERATOR_HEIGHT,
     getSectionHeaderHeight: () => SECTION_HEADER_HEIGHT,
+    getSectionFooterHeight: () => SECTION_FOOTER_HEIGHT,
     listHeaderHeight: HEADER_HEIGHT,
   });
   shouldComponentUpdate = (nextProps) => nextProps.isFocused;
@@ -165,6 +168,7 @@ class List extends React.Component {
         onEndReached={this._onEndReached}
         renderItem={this._renderItem}
         renderSectionHeader={this._renderSectionHeader}
+        renderSectionFooter={this._renderSectionFooter}
         keyExtractor={this._keyExtractor}
         ListFooterComponent={this._renderFooter}
       />
