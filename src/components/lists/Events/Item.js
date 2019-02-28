@@ -8,7 +8,6 @@ import {
 } from 'react-native-paper';
 import emojiRegex from 'emoji-regex';
 import Avatar from '../../common/UserAvatar';
-import Actions from '../../common/Actions';
 import Tag from '../../common/Tag';
 import { BULLET } from '../../../lib/constants';
 import styles, {
@@ -32,17 +31,12 @@ export default class Item extends React.PureComponent {
     const {
       id,
       title,
-      address,
       repeat,
       time,
       duration,
       status,
-      date,
       eventType,
-      starsCount,
-      commentsCount,
       pictureUrl,
-      isStarred,
     } = this.props;
     
     const isPending = id[0] === '-';

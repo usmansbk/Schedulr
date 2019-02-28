@@ -1,5 +1,6 @@
 import moment from 'moment';
 import 'moment-recur';
+import { sortBy } from '../lib/sectionizr';
 
 function getRepeat(recur) {
   switch (recur) {
@@ -28,9 +29,7 @@ function getNextDayEvents(initialEvents, nextDate) {
       const hasNext = recurrence.matches(refDate.format('l'));
       if (hasNext) {
         const start = moment(refDate.toISOString());
-        accumulator.data.push(Object.assign({}, currentEvent, {
-          startAt: moment(currentEvent.startAt)
-        }));
+        accumulator.data.push(currentEvent);
       }
     } else if (eventDate.isSame(refDate, 'day')) {
       accumulator.data.push(currentEvent);

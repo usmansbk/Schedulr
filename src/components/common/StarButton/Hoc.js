@@ -1,4 +1,5 @@
 import { graphql, compose } from 'react-apollo';
+import SimpleToast from 'react-native-simple-toast';
 import gql from 'graphql-tag';
 import Button from './Button';
 import { starEvent, unstarEvent } from '../../../graphql/mutations';
@@ -8,7 +9,11 @@ import { listAllEvents, getEvent } from '../../../graphql/queries';
 export default compose(
   graphql(gql(starEvent), {
     alias: 'withStarEvent',
-    options: {},
+    options: {
+      onCompleted: () => {
+        SimpleToast.show('Event saved', SimpleToast.SHORT);
+      }
+    },
     props: ({ mutate, ownProps }) => ({
       onStarEvent: async (input, prev) => await mutate({
         variables: {
@@ -38,6 +43,11 @@ export default compose(
   }),
   graphql(gql(unstarEvent), {
     alias: 'withUnstarEvent',
+    options: {
+      onCompleted: () => {
+        SimpleToast.show('Event unsaved', SimpleToast.SHORT);
+      }
+    },
     props: ({ mutate, ownProps }) => ({
       onUnstarEvent: async (input, prev) => await mutate({
         variables: {

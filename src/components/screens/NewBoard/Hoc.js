@@ -1,5 +1,6 @@
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
+import SimpleToast from 'react-native-simple-toast';
 import Screen from './Screen';
 import { createBoard } from '../../../graphql/mutations';
 import { listAllBoards } from '../../../graphql/queries';
@@ -9,6 +10,11 @@ const alias =  'withNewBoardContainer';
 
 export default graphql(gql(createBoard), {
   alias,
+  options: {
+    onCompleted: () => {
+      SimpleToast.show('Board created', SimpleToast.SHORT);
+    }
+  },
   props: ({ mutate, ownProps }) => ({
     onSubmit: async (input) =>  await mutate({
       variables: {

@@ -97,13 +97,9 @@ class List extends React.Component {
   _renderItem = ({ item: {
     id,
     title,
-    venue,
     eventType,
     isCancelled,
     cancelledDates,
-    commentsCount,
-    starsCount,
-    isStarred,
     startAt,
     endAt,
     repeat,
@@ -112,23 +108,18 @@ class List extends React.Component {
   }}) => (<Item
     id={id}
     title={title}
-    address={venue && venue.address}
     eventType={decapitalize(eventType)}
     repeat={repeat === 'NEVER' ? null : decapitalize(repeat)}
     time={getTime({ allDay, startAt, endAt })}
-    date={formatDate(startAt, endAt, allDay)}
-    isStarted={isStarted({ startAt, endAt, isCancelled })}
     status={getStatus({ isCancelled, cancelledDates, startAt, endAt})}
-    commentsCount={commentsCount}
-    starsCount={starsCount}
     boardId={board.id}
-    boardName={board.name}
     duration={getDuration(startAt, endAt, eventType)}
     onPressItem={this._onPressItem}
     onPressCommentButton={this._onPressCommentItem}
     navigateToBoardEvents={this._navigateToBoardEvents}
     animated={this.props.animated}
   />);
+
   _getItemLayout = sectionListGetItemLayout({
     getItemHeight: () => ITEM_HEIGHT,
     getSeparatorHeight: () => SEPERATOR_HEIGHT,
@@ -136,6 +127,7 @@ class List extends React.Component {
     getSectionFooterHeight: () => SECTION_FOOTER_HEIGHT,
     listHeaderHeight: HEADER_HEIGHT,
   });
+  
   shouldComponentUpdate = (nextProps) => nextProps.isFocused;
 
   render() {

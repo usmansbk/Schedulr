@@ -4,6 +4,7 @@ import Screen from './Screen';
 import { createEvent } from '../../../graphql/mutations';
 import { listAllEvents, listAllBoards, getEvent } from '../../../graphql/queries';
 import { createEventResponse } from '../../../helpers/optimisticResponse';
+import SimpleToast from 'react-native-simple-toast';
 
 const alias =  'withNewEventContainer';
 
@@ -31,6 +32,11 @@ export default compose(
   }),
   graphql(gql(createEvent), {
     alias,
+    options: {
+      onCompleted: () => {
+        SimpleToast.show('Event created', SimpleToast.SHORT);
+      }
+    },
     props: ({ mutate, ownProps }) => ({
       onSubmit: async (input) =>  await mutate({
         variables: {
