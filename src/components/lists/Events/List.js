@@ -58,12 +58,23 @@ class List extends React.Component {
   };
 
   loadSections = (events) => {
+    this.setState({ loading: true });
     if (events) {
       this.setState(state => ({
         sections: [...state.sections, getNextDayEvents(events, state.nextDate)],
-        nextDate: moment(state.nextDate).add(1, 'day').toISOString()
+        nextDate: moment(state.nextDate).add(1, 'day').toISOString(),
+        loading: false
       }));
     }
+  }
+
+  _bootstrap = (events) => {
+    if (events) {
+      this.setState({
+        sections: [getNextDayEvents(events)],
+        nextDate: moment().add(1, 'day').toISOString()
+      });
+    }  
   }
   
   _onEndReached = () => {
@@ -71,16 +82,12 @@ class List extends React.Component {
   };
 
   componentDidMount = () => {
-    this.loadSections(this.props.events);
+    this._bootstrap(this.props.events);
   }
 
   componentWillReceiveProps = (nextProps) => {
-    const { events } = nextProps;
-    if (events !== this.props.events) {
-      this.setState({
-        sections: [getNextDayEvents(events)],
-        nextDate: moment().toISOString()
-      });
+    if (nextProps.events !== this.props.events) {
+      this._bootstrap(nextProps.events);
     }
   }
 
