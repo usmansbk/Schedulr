@@ -18,6 +18,7 @@ import {
 import { formatDate } from '../../../lib/time';
 import sectionize, { sortBy } from '../../../lib/sectionizr';
 import { decapitalize } from '../../../lib/capitalizr';
+import { getNextDayEvents } from '../../../lib/calendr';
 import styles, {
   ITEM_HEIGHT,
   SEPERATOR_HEIGHT,
@@ -31,7 +32,7 @@ class List extends React.Component {
     super(props);
     this.state = {
       loading: false,
-      sections: this._sectionize(this.props.events),
+      sections: [getNextDayEvents(this.props.events)],
     }
   }
 
@@ -59,7 +60,7 @@ class List extends React.Component {
     const { events } = nextProps;
     if (events !== this.props.events) {
       this.setState({
-        sections: this._sectionize(events)
+        sections: [getNextDayEvents(events)]
       });
     }
   }
