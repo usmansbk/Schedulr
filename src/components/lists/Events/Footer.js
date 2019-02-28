@@ -1,20 +1,13 @@
 import React from 'react';
-import { View } from 'react-native';
-import { Text, ActivityIndicator } from 'react-native-paper';
-import styles from './styles';
+import { ActivityIndicator } from 'react-native-paper';
 
-export default ({ visible, loading }) => {
+export default ({ loading }) => {
   if (loading) return (
     <ActivityIndicator
       animating={loading}
       hideWhenStopped
       size="small"
     />
-  );
-  if (visible) return (
-    <View style={styles.footer}>
-      <Text style={styles.footerText}>No more events</Text>
-    </View>
   );
   return null;
 }

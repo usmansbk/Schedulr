@@ -47,7 +47,7 @@ class List extends React.Component {
   _loadPrevious = () => console.log('Load previous events');
   _keyExtractor = (item, index) => item.id + index;
   _renderHeader = () => <Header onPress={this._loadPrevious} visible={this.props.hasPreviousEvents} />;
-  _renderFooter = () => <Footer loading={this.state.loading} visible={this.props.events.length}/>;
+  _renderFooter = () => <Footer loading={this.state.loading} />;
   _renderEmptyList = () => <Empty error={this.props.error} loading={this.props.loading} />;
   _renderSeparator = () => <Separator />;
   _renderSectionHeader = ({section}) => <SectionHeader section={section} />;
