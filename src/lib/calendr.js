@@ -5,6 +5,7 @@ function getRepeat(recur) {
   switch (recur) {
     case 'DAILY': return 'days';
     case 'WEEKLY':  return 'weeks';
+    case 'MONTHLY': return 'months';
     case 'YEARLY': return 'years';
     default: return null;
   }
