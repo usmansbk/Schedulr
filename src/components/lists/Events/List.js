@@ -57,8 +57,7 @@ class List extends React.Component {
     this.props.navigation.navigate(screen, { id })
   };
 
-  fetchEvents = () => {
-    const { events } = this.props;
+  loadSections = (events) => {
     if (events) {
       this.setState(state => ({
         sections: [...state.sections, getNextDayEvents(events, state.nextDate)],
@@ -68,25 +67,20 @@ class List extends React.Component {
   }
   
   _onEndReached = () => {
-    if (this.props.events) {
-      this.setState(state => ({
-        sections: [...state.sections, getNextDayEvents(this.props.events, state.nextDate)],
-        nextDate: moment(state.nextDate).add(1, 'day').toISOString()
-      }))
-    }
+    this.loadSections(this.props.events);
   };
 
   componentDidMount = () => {
-    this.fetchEvents();
+    this.loadSections(this.props.events);
   }
 
   componentWillReceiveProps = (nextProps) => {
     const { events } = nextProps;
-    if (events && (events !== this.props.events)) {
-      this.setState(state => ({
+    if (events !== this.props.events) {
+      this.setState({
         sections: [getNextDayEvents(events)],
         nextDate: moment().toISOString()
-      }));
+      });
     }
   }
 
