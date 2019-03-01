@@ -16,7 +16,6 @@ import styles, {
 export default class Item extends React.PureComponent {
   _onPress = () => this.props.onPressItem(this.props.id, this.props.startAt, this.props.endAt);
   _navigateToBoard = () => this.props.navigateToBoardEvents(this.props.boardId);
-  _onPressComment = () => this.props.onPressCommentButton(this.props.id);
 
   render() {
     const {
