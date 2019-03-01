@@ -16,8 +16,6 @@ export default StyleSheet.create({
   },
   h1: {
     fontSize: 27,
-    fontWeight: 'bold',
-    color: colors.black
   },
   grayed: {
     marginVertical: 8,

@@ -26,13 +26,15 @@ import styles, {
   primary
 } from './styles';
 
+const DAYS_PER_PAGE = 3;
+
 class List extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       loading: false,
       sections: [],
-      nextDate: moment().toISOString()
+      nextDate: moment().toISOString(),
     }
   }
 
@@ -62,7 +64,7 @@ class List extends React.Component {
     if (events) {
       this.setState(state => ({
         sections: [...state.sections, getNextDayEvents(events, state.nextDate)],
-        nextDate: moment(state.nextDate).add(1, 'day').toISOString(),
+        nextDate: moment(state.nextDate).add(DAYS_PER_PAGE, 'day').toISOString(),
         loading: false
       }));
     }

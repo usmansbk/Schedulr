@@ -2,7 +2,7 @@
 const light = {
   facebook: '#3b5998',
   google: '#4285F4',
-  black: '#404040',
+  black: '#212121',
   bg: 'white',
   gray: '#7d7d7d',
   light_gray: '#f5f5f5',
