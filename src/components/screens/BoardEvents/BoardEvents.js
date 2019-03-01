@@ -39,15 +39,7 @@ export default class BoardEvents extends React.Component {
     } = board;
 
     return (
-      <View style={styles.container}>
-        {
-          isAuthor && (status !== BOARD_CLOSED ) && (
-            <Fab
-              icon="edit"
-              onPress={() => navigateToNewEvent(id)}
-            />
-          )
-        }
+      <React.Fragment>
         <Appbar.Header style={styles.elevatedHeader} collapsable>
           <Appbar.BackAction color={colors.gray} onPress={onPress} />
           <Appbar.Content
@@ -67,7 +59,15 @@ export default class BoardEvents extends React.Component {
           loading={loadingEvents}
           error={loadingEventsError}
         />
-      </View>
+        {
+          isAuthor && (status !== BOARD_CLOSED ) && (
+            <Fab
+              icon="edit"
+              onPress={() => navigateToNewEvent(id)}
+            />
+          )
+        }
+      </React.Fragment>
     );
   }
 }
