@@ -32,6 +32,8 @@ export default class Screen extends React.Component {
   render() {
     const { visibleDialog } = this.state;
     const id = this.props.navigation.getParam('id');
+    const refStartDate = this.props.navigation.getParam('refStartDate');
+    const refEndDate = this.props.navigation.getParam('refEndDate');
     const {
       event,
       error,
@@ -49,6 +51,8 @@ export default class Screen extends React.Component {
         <Details
           id={id}
           event={event}
+          refStartDate={refStartDate}
+          refEndDate={refEndDate}
           handleBack={this._goBack}
           handleDelete={this._openDeleteDialog}
           handleCancel={this._openCancelDialog}

@@ -43,14 +43,14 @@ class List extends React.Component {
     onRefresh: () => null,
   };
   _loadPrevious = () => console.log('Load previous events');
-  _keyExtractor = (item, index) => item.id + item.startAt;
+  _keyExtractor = (item) => item.id + item.startAt;
   _renderHeader = () => <Header onPress={this._loadPrevious} visible={this.props.hasPreviousEvents} />;
   _renderFooter = () => <Footer loading={this.state.loading} />;
   _renderEmptyList = () => <Empty error={this.props.error} loading={this.props.loading} />;
   _renderSeparator = () => <Separator />;
-  _renderSectionHeader = ({section}) => <SectionHeader section={section} />;
+  _renderSectionHeader = ({ section }) => <SectionHeader section={section} />;
   _renderSectionFooter = ({ section }) => <SectionFooter section={section} />;
-  _onPressItem = (id) => this.props.navigation.navigate('EventDetails', { id });
+  _onPressItem = (id, refStartDate, refEndDate) => this.props.navigation.navigate('EventDetails', { id, refStartDate, refEndDate });
   _onPressCommentItem = (id, title, date) => this.props.navigation.navigate('Comments', { id, title, date });
   _navigateToBoardEvents = (id) => {
     let screen = 'BoardEvents';
@@ -87,7 +87,7 @@ class List extends React.Component {
   }
 
   componentWillReceiveProps = (nextProps) => {
-    if (nextProps.events.length !== this.props.events.length) {
+    if (nextProps.events !== this.props.events) {
       this._bootstrap(nextProps.events);
     }
   }
@@ -106,6 +106,8 @@ class List extends React.Component {
   }}) => (<Item
     id={id}
     title={title}
+    startAt={startAt}
+    endAt={endAt}
     eventType={decapitalize(eventType)}
     repeat={repeat === 'NEVER' ? null : decapitalize(repeat)}
     time={getTime({ allDay, startAt, endAt })}

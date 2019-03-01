@@ -25,6 +25,8 @@ export default class EventDetails extends React.Component {
   render() {
     const {
       event,
+      refStartDate,
+      refEndDate,
       handleBack,
       handleDelete,
       handleRepeat,
@@ -52,7 +54,10 @@ export default class EventDetails extends React.Component {
       isCancelled,
       cancelledDates
     } = event;
-    const isValid = isEventValid({ isCancelled, endAt, startAt, cancelledDates });
+    const start = refStartDate || startAt;
+    const end = refEndDate || endAt;
+
+    const isValid = isEventValid({ isCancelled, endAt: end, startAt: start, cancelledDates });
     const recurring = repeat !== ONE_TIME_EVENT;
 
     return (
@@ -96,16 +101,16 @@ export default class EventDetails extends React.Component {
         <Details
           id={id}
           title={title}
-          date={formatDate(startAt, endAt, allDay)}
-          duration={this._getDuration(startAt, endAt)}
-          timeAgo={this._getStartAgo(startAt)}
+          date={formatDate(start, end, allDay)}
+          duration={this._getDuration(start, end)}
+          timeAgo={this._getStartAgo(start)}
           status={getStatus({
             isCancelled,
             cancelledDates,
-            startAt,
-            endAt
+            startAt: start,
+            endAt: end
           })}
-          startAt={startAt}
+          startAt={start}
           eventType={decapitalize(eventType)}
           address={venue && venue.address}
           latitude={venue && venue.location && venue.location.latitude}
@@ -121,7 +126,7 @@ export default class EventDetails extends React.Component {
           commentsCount={commentsCount}
           isAuthor={isAuthor}
           isValid={isValid}
-          isCancelled={isEventCancelled({ cancelledDates, isCancelled, startAt })}
+          isCancelled={isEventCancelled({ cancelledDates, isCancelled, startAt: start })}
           navigateToBoard={navigateToBoard}
           navigateToComments={navigateToComments}
         />
