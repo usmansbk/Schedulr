@@ -26,7 +26,7 @@ import styles, {
   primary
 } from './styles';
 
-const DAYS_PER_PAGE = 3;
+const DAYS_PER_PAGE = 1;
 
 class List extends React.Component {
   constructor(props) {

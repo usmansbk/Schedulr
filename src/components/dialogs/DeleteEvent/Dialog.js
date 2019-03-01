@@ -55,7 +55,7 @@ export default class DeleteEvent extends React.Component {
         >
           <Dialog.Title>Delete event?</Dialog.Title>
           {
-            !isSingle && (
+            false && (
               <Dialog.Content>
                 <RadioButton.Group
                   value={checked}

@@ -69,7 +69,7 @@ export default class Screen extends React.Component {
         />
         <CancelDialog
           id={id}
-          date={isRecurring ? event.startAt : null}
+          date={isRecurring ? refStartDate : null}
           visible={visibleDialog === 'cancel'}
           handleDismiss={this._hideDialog}
         />
