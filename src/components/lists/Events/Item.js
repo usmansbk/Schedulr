@@ -1,5 +1,4 @@
 import React from 'react';
-import * as Animatable from 'react-native-animatable';
 import { View } from 'react-native';
 import {
   TouchableRipple,
@@ -14,18 +13,10 @@ import styles, {
   AVATAR_SIZE,
 } from './styles';
 
-const ANIMATION_DURATION = 250;
-
 export default class Item extends React.PureComponent {
   _onPress = () => this.props.onPressItem(this.props.id);
   _navigateToBoard = () => this.props.navigateToBoardEvents(this.props.boardId);
   _onPressComment = () => this.props.onPressCommentButton(this.props.id, this.props.title, this.props.date);
-  handleViewRef = ref => this.view = ref;
-  onRemove = async () => {
-    if (this.props.animated) {
-      await this.view.bounceOut(ANIMATION_DURATION);
-    }
-  }
 
   render() {
     const {
@@ -55,7 +46,7 @@ export default class Item extends React.PureComponent {
         onPress={this._onPress}
         style={styles.itemContainer}
       >
-        <Animatable.View useNativeDriver ref={this.handleViewRef} style={styles.itemContent}>
+        <View useNativeDriver style={styles.itemContent}>
           <View style={styles.left}>
             <Avatar
               size={AVATAR_SIZE}
@@ -74,7 +65,7 @@ export default class Item extends React.PureComponent {
               <Text style={styles.status}>{repeatEvent}<Tag status={status} /></Text>
             </View>
           </View>
-        </Animatable.View>
+        </View>
       </TouchableRipple>
     );
   }

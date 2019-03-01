@@ -11,12 +11,10 @@ import SectionHeader from './SectionHeader';
 import SectionFooter from './SectionFooter';
 import Item from './Item';
 import {
-  isStarted,
   getDuration,
   getStatus,
   getTime
 } from '../../../lib/parseItem';
-import { formatDate } from '../../../lib/time';
 import { decapitalize } from '../../../lib/capitalizr';
 import { getNextDayEvents } from '../../../lib/calendr';
 import styles, {

@@ -32,7 +32,6 @@ export default class Actions extends React.Component {
       small,
       dark,
       navigateToComments,
-      onRemove
     } = this.props;
     const color = dark ? colors.light_gray_3 : defaultColor;
     return (
@@ -45,7 +44,6 @@ export default class Actions extends React.Component {
           size={FONT_SIZE}
           color={color}
           small={small}
-          onUnstarComplete={onRemove}
         />
         <CommentButton
           id={id}
