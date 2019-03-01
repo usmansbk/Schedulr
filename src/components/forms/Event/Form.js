@@ -202,7 +202,7 @@ export default class Form extends React.Component {
               </HelperText>
               <DateTimeInput
                 label="From"
-                disabled={allDay}
+                disabled={values.allDay}
                 value={values.startAt}
                 onChangeDate={(date) => {
                   const prevStartAt = Date.parse(values.startAt);
