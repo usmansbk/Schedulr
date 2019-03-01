@@ -202,6 +202,7 @@ export default class Form extends React.Component {
               </HelperText>
               <DateTimeInput
                 label="From"
+                disabled={allDay}
                 value={values.startAt}
                 onChangeDate={(date) => {
                   const prevStartAt = Date.parse(values.startAt);
@@ -232,6 +233,7 @@ export default class Form extends React.Component {
                     const { allDay } = values;
                     setFieldValue('allDay', !allDay);
                     if (!allDay) {
+                      setFieldValue('startAt', moment(values.startAt).startOf('day').toISOString());
                       setFieldValue('endAt', moment(values.startAt).endOf('day').toISOString());
                     }
                   }}
