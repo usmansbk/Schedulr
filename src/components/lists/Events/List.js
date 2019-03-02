@@ -1,5 +1,4 @@
 import React from 'react';
-import moment from 'moment';
 import { RefreshControl } from 'react-native';
 import { withNavigationFocus, SectionList } from 'react-navigation';
 import sectionListGetItemLayout from 'react-native-section-list-get-item-layout';
@@ -32,9 +31,9 @@ class List extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      loading: false,
+      loadingMore: false,
       sections: [],
-      nextDate: moment().toISOString(),
+      afterDays: 0
     }
   }
 
@@ -47,7 +46,7 @@ class List extends React.Component {
   _loadPrevious = () => console.log('Load previous events');
   _keyExtractor = (item) => item.id + item.startAt;
   _renderHeader = () => <Header onPress={this._loadPrevious} visible={this.props.hasPreviousEvents} />;
-  _renderFooter = () => <Footer loading={this.state.loading} />;
+  _renderFooter = () => <Footer loading={this.state.loadingMore} />;
   _renderEmptyList = () => <Empty error={this.props.error} loading={this.props.loading} />;
   _renderSeparator = () => <Separator />;
   _renderSectionHeader = ({ section }) => <SectionHeader section={section} />;
@@ -59,23 +58,26 @@ class List extends React.Component {
     this.props.navigation.navigate(screen, { id })
   };
 
-  loadSections = (events) => {
-    this.setState({ loading: true });
-    if (events) {
-      this.setState(state => ({
-        sections: [...state.sections, ...getNextEvents(events, state.nextDate, DAYS_PER_PAGE)],
-        nextDate: moment(state.nextDate).add(DAYS_PER_PAGE, 'day').toISOString(),
-        loading: false
-      }));
-    }
+  loadSections = (events=[]) => {
+    this.setState({ loadingMore: true }, () => {
+      this.setState(state => {
+        const afterDays = state.afterDays + 1;
+        const moreSections = getNextEvents(events, afterDays, DAYS_PER_PAGE);
+        return ({
+          sections: [...state.sections, ...moreSections],
+          afterDays,
+          loadingMore: false
+        })
+      });
+    });
   }
 
   _bootstrap = (events) => {
     if (events) {
-      this.setState({
-        sections: [...getNextEvents(events, undefined, DAYS_PER_PAGE)],
-        nextDate: moment().add(DAYS_PER_PAGE, 'day').toISOString()
-      });
+      this.setState(state => ({
+        sections: [...getNextEvents(events, state.afterDays, DAYS_PER_PAGE)],
+        afterDays:  0
+      }));
     }  
   }
   
@@ -118,7 +120,6 @@ class List extends React.Component {
     onPressItem={this._onPressItem}
     onPressCommentButton={this._onPressCommentItem}
     navigateToBoardEvents={this._navigateToBoardEvents}
-    animated={this.props.animated}
   />);
 
   _getItemLayout = sectionListGetItemLayout({
