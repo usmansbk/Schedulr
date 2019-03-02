@@ -12,6 +12,19 @@ function getRepeat(recur) {
   }
 }
 
+function getNextEvents(initialEvents, nextDate, daysPerPage) {
+  const sections = [];
+  let _nextDate = nextDate;
+  let temp = moment();
+  if (nextDate) temp = moment(nextDate);
+
+  for (let i = 0; i < daysPerPage; i++) {
+    sections.push(getNextDayEvents(initialEvents, _nextDate));
+    _nextDate = temp.add(1, 'day').toISOString();
+  }
+  return sections;
+}
+
 /**
   * @param { Array } initialEvents - an array of calendar events
   * @param { Date } afterDate - date to start from
@@ -62,6 +75,6 @@ function getPreviousDayEvents(initialEvents, beforeDate=moment() ) {
 }
 
 export {
-  getNextDayEvents,
+  getNextEvents,
   getPreviousDayEvents
 }

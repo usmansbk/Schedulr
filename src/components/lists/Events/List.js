@@ -16,7 +16,7 @@ import {
   getTime
 } from '../../../lib/parseItem';
 import { decapitalize } from '../../../lib/capitalizr';
-import { getNextDayEvents } from '../../../lib/calendr';
+import { getNextEvents } from '../../../lib/calendr';
 import styles, {
   ITEM_HEIGHT,
   SEPERATOR_HEIGHT,
@@ -26,7 +26,7 @@ import styles, {
   primary
 } from './styles';
 
-const DAYS_PER_PAGE = 1;
+const DAYS_PER_PAGE = 3;
 
 class List extends React.Component {
   constructor(props) {
@@ -63,7 +63,7 @@ class List extends React.Component {
     this.setState({ loading: true });
     if (events) {
       this.setState(state => ({
-        sections: [...state.sections, getNextDayEvents(events, state.nextDate)],
+        sections: [...state.sections, ...getNextEvents(events, state.nextDate, DAYS_PER_PAGE)],
         nextDate: moment(state.nextDate).add(DAYS_PER_PAGE, 'day').toISOString(),
         loading: false
       }));
@@ -73,8 +73,8 @@ class List extends React.Component {
   _bootstrap = (events) => {
     if (events) {
       this.setState({
-        sections: [getNextDayEvents(events)],
-        nextDate: moment().add(1, 'day').toISOString()
+        sections: [...getNextEvents(events, undefined, DAYS_PER_PAGE)],
+        nextDate: moment().add(DAYS_PER_PAGE, 'day').toISOString()
       });
     }  
   }
