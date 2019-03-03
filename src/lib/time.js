@@ -102,7 +102,7 @@ export function getRepeatLabel(id, date) {
   switch(id) {
     case 'Weekly': return `Weekly (every ${moment(date).format('dddd')})`;
     case 'Monthly': return `Monthly (${moment(date).format('Do')} of every month)`;
-    case 'Yearly': return `Yearly (every ${moment(date).format('Do MMM')})`;
+    case 'Yearly': return `Yearly (every ${moment(date).format('Do MMMM')})`;
     default: return id;
   }
 }
