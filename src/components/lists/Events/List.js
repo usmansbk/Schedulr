@@ -77,7 +77,6 @@ class List extends React.Component {
     if (events) {
       this.setState(state => ({
         sections: getNextEvents(events, state.afterDays, DAYS_PER_PAGE),
-        afterDays: state.afterDays + DAYS_PER_PAGE
       }));
     }  
   }
