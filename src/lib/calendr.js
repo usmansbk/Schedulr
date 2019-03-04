@@ -12,9 +12,13 @@ function getRepeat(recur) {
   }
 }
 
-function getNextEvents(initialEvents, afterDays) {
-  const nextDate = moment().add(afterDays, 'day').toISOString();
-  return [ getNextDayEvents(initialEvents, nextDate) ];
+function getNextEvents(initialEvents=[], afterDays, daysPerPage) {
+  const sections = [];
+  for (let i = afterDays; i < afterDays + daysPerPage; i++) {
+    const nextDate = moment().add(i, 'day').toISOString();
+    sections.push(getNextDayEvents(initialEvents, nextDate));
+  }
+  return sections;
 }
 
 /**

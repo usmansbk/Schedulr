@@ -43,10 +43,11 @@ class List extends React.Component {
     events: [],
     onRefresh: () => null,
   };
+
   _loadPrevious = () => console.log('Load previous events');
   _keyExtractor = (item) => item.id + item.startAt;
   _renderHeader = () => <Header onPress={this._loadPrevious} visible={this.props.hasPreviousEvents} />;
-  _renderFooter = () => <Footer loading={this.state.loadingMore} />;
+  _renderFooter = () => <Footer onPress={this._onEndReached} loading={this.state.loadingMore} />;
   _renderEmptyList = () => <Empty error={this.props.error} loading={this.props.loading} />;
   _renderSeparator = () => <Separator />;
   _renderSectionHeader = ({ section }) => <SectionHeader section={section} />;
@@ -61,7 +62,7 @@ class List extends React.Component {
   loadSections = (events=[]) => {
     this.setState({ loadingMore: true }, () => {
       this.setState(state => {
-        const afterDays = state.afterDays + 1;
+        const afterDays = state.afterDays + DAYS_PER_PAGE;
         const moreSections = getNextEvents(events, afterDays, DAYS_PER_PAGE);
         return ({
           sections: [...state.sections, ...moreSections],
@@ -75,8 +76,8 @@ class List extends React.Component {
   _bootstrap = (events) => {
     if (events) {
       this.setState(state => ({
-        sections: [...getNextEvents(events, state.afterDays, DAYS_PER_PAGE)],
-        afterDays:  0
+        sections: getNextEvents(events, state.afterDays, DAYS_PER_PAGE),
+        afterDays: state.afterDays + DAYS_PER_PAGE
       }));
     }  
   }
@@ -85,15 +86,19 @@ class List extends React.Component {
     this.loadSections(this.props.events);
   };
 
+  // componentWillReceiveProps = (nextProps) => {
+  //   if (nextProps.events !== this.props.events) {
+  //     this._bootstrap(nextProps.events);
+  //   }
+  // };
+
   componentDidMount = () => {
     this._bootstrap(this.props.events);
   }
-
-  componentWillReceiveProps = (nextProps) => {
-    if (nextProps.events !== this.props.events) {
-      this._bootstrap(nextProps.events);
-    }
-  }
+  
+  shouldComponentUpdate = (nextProps, nextState) => {
+    return nextProps.isFocused;
+  };
 
   _renderItem = ({ item: {
     id,
@@ -129,8 +134,6 @@ class List extends React.Component {
     getSectionFooterHeight: () => SECTION_FOOTER_HEIGHT,
     listHeaderHeight: HEADER_HEIGHT,
   });
-  
-  shouldComponentUpdate = (nextProps) => nextProps.isFocused;
 
   render() {
     const {

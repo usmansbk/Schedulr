@@ -120,7 +120,7 @@ export default StyleSheet.create({
   time: {
     fontFamily: 'sans-serif-medium',
     fontSize: 14,
-    color: colors.gray
+    color: gray
   },
   status: {
     color: gray,
