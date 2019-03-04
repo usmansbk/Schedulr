@@ -86,11 +86,11 @@ class List extends React.Component {
     this.loadSections(this.props.events);
   };
 
-  // componentWillReceiveProps = (nextProps) => {
-  //   if (nextProps.events !== this.props.events) {
-  //     this._bootstrap(nextProps.events);
-  //   }
-  // };
+  componentWillReceiveProps = (nextProps) => {
+    if (nextProps.events !== this.props.events) {
+      this._bootstrap(nextProps.events);
+    }
+  };
 
   componentDidMount = () => {
     this._bootstrap(this.props.events);
