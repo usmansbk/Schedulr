@@ -30,7 +30,6 @@ export default class Item extends React.PureComponent {
     } = this.props;
     
     const isPending = id[0] === '-';
-    const repeatEvent = repeat && (repeat + ` ${BULLET} `);
     const emojiMatch = emojiRegex().exec(title);
     let avatarName;
     if (emojiMatch) {
@@ -58,10 +57,13 @@ export default class Item extends React.PureComponent {
             <View style={styles.itemBody}>
               <Headline
                 style={isPending ? styles.offlineTitle : styles.itemHeadline}
-                numberOfLines={1} ellipsizeMode="tail">{title}</Headline>
+                numberOfLines={1}
+                ellipsizeMode="tail">
+                {title}
+              </Headline>
               <Text style={styles.time}>{time}</Text>
-              <Text style={styles.duration}>{duration} {eventType}</Text>
-              <Text style={styles.status}>{repeatEvent}<Tag status={status} /></Text>
+              <Text style={styles.duration}>{duration} {eventType} {repeat}</Text>
+              <Tag status={status} />
             </View>
           </View>
         </View>

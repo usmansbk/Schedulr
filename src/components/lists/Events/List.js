@@ -28,14 +28,12 @@ import styles, {
 const DAYS_PER_PAGE = 3;
 
 class List extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      loadingMore: false,
-      sections: [],
-      afterDays: 0
-    }
-  }
+
+  state = {
+    loadingMore: false,
+    sections: [],
+    afterDays: 0
+  };
 
   static defaultProps = {
     loading: false,
@@ -94,7 +92,7 @@ class List extends React.Component {
   componentDidMount = () => {
     this._bootstrap(this.props.events);
   }
-  
+
   shouldComponentUpdate = (nextProps, nextState) => {
     return nextProps.isFocused;
   };
@@ -131,7 +129,7 @@ class List extends React.Component {
     getSeparatorHeight: () => SEPERATOR_HEIGHT,
     getSectionHeaderHeight: () => SECTION_HEADER_HEIGHT,
     getSectionFooterHeight: () => SECTION_FOOTER_HEIGHT,
-    listHeaderHeight: HEADER_HEIGHT,
+    listHeaderHeight: () => HEADER_HEIGHT,
   });
 
   render() {
@@ -156,8 +154,8 @@ class List extends React.Component {
         refreshing={loading}
         onRefresh={onRefresh}
         refreshControl={<RefreshControl
-          onRefresh={this.props.onRefresh}
-          refreshing={this.props.loading}
+          onRefresh={onRefresh}
+          refreshing={loading}
           colors={[primary]}
         />}
         onEndReachedThreshold={0.5}
