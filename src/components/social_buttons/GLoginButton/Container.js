@@ -38,7 +38,7 @@ export default class Container extends React.Component {
       } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
         SimpleToast.show("Google Play services not available", SimpleToast.SHORT);
       } else {
-        SimpleToast.show("Connection error", SimpleToast.SHORT);
+        SimpleToast.show("Connection error: " + error.message, SimpleToast.SHORT);
         // Analytics.record({
         //   name: 'google_login_error',
         //   attributes: {
