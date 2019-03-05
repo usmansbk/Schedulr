@@ -81,7 +81,7 @@ export default class CancelEvent extends React.Component {
                   )}
                 />
                 <List.Item
-                  title="Include future events"
+                  title="All of this event"
                   right={() => (
                     <RadioButton
                       value="ALL"
