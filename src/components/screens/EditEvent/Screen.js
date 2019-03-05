@@ -6,6 +6,9 @@ export default class EditEventScreen extends React.Component {
   _handleBack = () => this.props.navigation.goBack();
   _getInitialValues = () => {
     const { event } = this.props;
+    const refStartAt = this.props.navigation.getParam('refStartDate');
+    const refEndAt = this.props.navigation.getParam('refEndDate');
+
     if (!event) return undefined;
     const {
       title,
@@ -28,8 +31,8 @@ export default class EditEventScreen extends React.Component {
           latitude: venue && venue.location && venue.location.latitude,
         }
       },
-      startAt,
-      endAt,
+      startAt: refStartAt || startAt,
+      endAt: refEndAt || endAt,
       allDay: Boolean(allDay),
       eventType,
       repeat,

@@ -22,7 +22,7 @@ export default class Screen extends React.Component {
       this.setState({ visibleDialog: 'edit' });
     }
   }
-  _handleEdit = ({ id, option }) => this.props.navigation.navigate('EditEvent', { id, option });
+  _handleEdit = ({ id, option, refStartDate, refEndDate }) => this.props.navigation.navigate('EditEvent', { id, option, refEndDate, refStartDate });
   _handleRepeat = () => this.props.navigation.navigate('NewEvent', { id: this.props.navigation.getParam('id'), isNew: true });
   _openCancelDialog = () => this.setState({ visibleDialog: 'cancel' });
   _navigateToBoard = (id) => this.props.navigation.navigate('BoardEvents', { id });
@@ -75,6 +75,8 @@ export default class Screen extends React.Component {
         />
         <EditDialog
           id={id}
+          refStartDate={refStartDate}
+          refEndDate={refEndDate}
           visible={visibleDialog === 'edit'}
           handleDismiss={this._hideDialog}
           onConfirm={this._handleEdit}

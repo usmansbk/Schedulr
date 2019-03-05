@@ -26,13 +26,14 @@ import styles, {
 } from './styles';
 
 const DAYS_PER_PAGE = 3;
+const INITIAL_AFTERDAYS = 0;
 
 class List extends React.Component {
 
   state = {
     loadingMore: false,
     sections: [],
-    afterDays: 0
+    afterDays: INITIAL_AFTERDAYS
   };
 
   static defaultProps = {
@@ -73,10 +74,9 @@ class List extends React.Component {
 
   _bootstrap = (events) => {
     if (events) {
-      this.setState(state => ({
-        sections: getNextEvents(events, state.afterDays, DAYS_PER_PAGE),
-        afterDays: 0
-      }));
+      this.setState({
+        sections: getNextEvents(events, INITIAL_AFTERDAYS, DAYS_PER_PAGE),
+      });
     }  
   }
   

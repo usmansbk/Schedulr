@@ -14,9 +14,9 @@ export default class EditEvent extends React.Component {
   };
 
   _onContinue = () => {
-    const { id, onConfirm, handleDismiss } = this.props;
+    const { id, onConfirm, handleDismiss, refStartDate, refEndDate } = this.props;
     handleDismiss();
-    onConfirm({ id, option: this.state.checked });
+    onConfirm({ id, option: this.state.checked, refEndDate, refStartDate });
   }
 
   render() {
