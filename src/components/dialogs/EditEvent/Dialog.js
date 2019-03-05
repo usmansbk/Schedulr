@@ -40,11 +40,11 @@ export default class EditEvent extends React.Component {
               onValueChange={checked => this.setState({ checked })}
             >
               <List.Item
-                title="Change only this event"
+                title="Only this event"
                 right={() => <RadioButton value="single" />}
               />
               <List.Item
-                title="Change all of this event"
+                title="All of this event"
                 right={() => <RadioButton value="all" />}
               />
             </RadioButton.Group>
