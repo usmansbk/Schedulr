@@ -8,7 +8,6 @@ import {
 import emojiRegex from 'emoji-regex';
 import Avatar from '../../common/UserAvatar';
 import Tag from '../../common/Tag';
-import { BULLET } from '../../../lib/constants';
 import styles, {
   AVATAR_SIZE,
 } from './styles';
