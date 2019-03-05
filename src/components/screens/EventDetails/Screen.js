@@ -30,16 +30,19 @@ export default class Screen extends React.Component {
   _hideDialog = () => this.setState({ visibleDialog: null });
   
   render() {
-    const { visibleDialog } = this.state;
-    const id = this.props.navigation.getParam('id');
-    const refStartAt = this.props.navigation.getParam('refStartAt');
-    const refEndAt = this.props.navigation.getParam('refEndAt');
     const {
+      visibleDialog
+    } = this.state;
+    const {
+      navigation,
       event,
       error,
       loading,
-      onRefresh,
+      onRefresh
     } = this.props;
+    const id = navigation.getParam('id');
+    const refStartAt = navigation.getParam('refStartAt');
+    const refEndAt = navigation.getParam('refEndAt');
 
     if (loading && !event) return <Loading />;
     if (error && !event) return <Error onRefresh={onRefresh} />;
