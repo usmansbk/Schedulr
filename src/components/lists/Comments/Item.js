@@ -4,7 +4,6 @@ import {
   Text,
   Paragraph,
   Caption,
-  Button,
   IconButton
 } from 'react-native-paper';
 import Hyperlink from 'react-native-hyperlink';
@@ -41,14 +40,12 @@ export default class Item extends React.PureComponent {
     } = this.props;
 
     const isPending = id[0] === '-';
-    const [ first, second ] = authorName.split(' ');
-    const avatarName = `${first} ${second ? second : ''}`;
 
     return (
       <View style={styles.itemContainer}>
         <View style={styles.itemLeft}>
           <UserAvatar
-            name={avatarName}
+            name={authorName}
             src={authorPictureUrl}
             size={AVATAR_SIZE}
             onPress={this._navigateToProfile}

@@ -9,7 +9,6 @@ import {
   Caption
 } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import emojiRegex from 'emoji-regex';
 import UserAvatar from '../../common/UserAvatar';
 import Tag from '../../common/Tag';
 import numeral from 'numeral';
@@ -30,21 +29,13 @@ export default class Item extends React.PureComponent {
       starsCount,
       commentsCount,
     } = this.props;
-    const emojiMatch = emojiRegex().exec(title);
-    let avatarName;
-    if (emojiMatch) {
-      avatarName = emojiMatch[0];
-    } else {
-      const [ first, second ] = title.split(' ');
-      avatarName = `${first} ${second ? second : ''}`;
-    }
 
     return (
       <TouchableRipple onPress={this._onPress} style={styles.itemContainer}>
         <View style={styles.itemContent}>
           <View style={styles.left}>
             <UserAvatar
-              name={avatarName}
+              name={title}
               src={pictureUrl}
               size={AVATAR_SIZE}
               onPress={this._navigateToBoard}

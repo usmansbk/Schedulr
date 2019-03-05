@@ -11,14 +11,12 @@ export default class Item extends React.PureComponent {
       name,
       pictureUrl
     } = this.props;
-    const [ first, second ] = name.split(' ');
-    const avatarName = `${first} ${second ? second : ''}`;
     return (
       <TouchableRipple onPress={this._onPress} style={styles.itemContainer}>
         <View style={styles.itemContent}>
           <View style={styles.itemLeft}>
             <UserAvatar
-              name={avatarName}
+              name={name}
               size={AVATAR_SIZE}
               src={pictureUrl}
             />

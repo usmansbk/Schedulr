@@ -55,8 +55,7 @@ export default class Info extends React.Component {
       isAuthor,
       author,
     } = board;
-    const [ first, second ] = name.split(' ');
-    const avatarName = `${first} ${second ? second : ''}`;
+
     const adminId = author && author.id;
     const adminName = author && author.name;
     const isClosed = status === 'CLOSED';
@@ -112,7 +111,7 @@ export default class Info extends React.Component {
             <View style={styles.avatar}>
               <View style={styles.userAvatar}>
               <UserAvater
-                name={avatarName}
+                name={name}
                 size={AVATAR_SIZE}
               />
               </View>

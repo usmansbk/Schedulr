@@ -5,7 +5,6 @@ import {
   Text,
   Headline,
 } from 'react-native-paper';
-import emojiRegex from 'emoji-regex';
 import Avatar from '../../common/UserAvatar';
 import Tag from '../../common/Tag';
 import styles, {
@@ -29,15 +28,6 @@ export default class Item extends React.PureComponent {
     } = this.props;
     
     const isPending = id[0] === '-';
-    const emojiMatch = emojiRegex().exec(title);
-    let avatarName;
-    if (emojiMatch) {
-      avatarName = emojiMatch[0];
-    } else {
-      const [ first, second ] = title.split(' ');
-      avatarName = `${first} ${second ? second : ''}`;
-    }
-    
     return (
       <TouchableRipple
         onPress={this._onPress}
@@ -47,7 +37,7 @@ export default class Item extends React.PureComponent {
           <View style={styles.left}>
             <Avatar
               size={AVATAR_SIZE}
-              name={avatarName}
+              name={title}
               src={pictureUrl}
               onPress={this._navigateToBoard}
             />
