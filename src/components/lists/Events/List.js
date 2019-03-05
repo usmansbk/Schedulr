@@ -95,7 +95,7 @@ class List extends React.Component {
     this._bootstrap(this.props.events);
   }
 
-  shouldComponentUpdate = (nextProps, nextState) => {
+  shouldComponentUpdate = (nextProps) => {
     return nextProps.isFocused;
   };
 
