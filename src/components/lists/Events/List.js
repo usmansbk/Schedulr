@@ -51,7 +51,7 @@ class List extends React.Component {
   _renderSeparator = () => <Separator />;
   _renderSectionHeader = ({ section }) => <SectionHeader section={section} />;
   _renderSectionFooter = ({ section }) => <SectionFooter section={section} />;
-  _onPressItem = (id, refStartDate, refEndDate) => this.props.navigation.push('EventDetails', { id, refStartDate, refEndDate });
+  _onPressItem = (id, refStartAt, refEndAt) => this.props.navigation.push('EventDetails', { id, refStartAt, refEndAt });
   _navigateToBoardEvents = (id) => {
     let screen = 'BoardEvents';
     if (this.props.listType === 'board') screen = 'BoardInfo';

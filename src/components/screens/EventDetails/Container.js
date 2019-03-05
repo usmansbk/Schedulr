@@ -25,8 +25,8 @@ export default class EventDetails extends React.Component {
   render() {
     const {
       event,
-      refStartDate,
-      refEndDate,
+      refStartAt,
+      refEndAt,
       handleBack,
       handleDelete,
       handleRepeat,
@@ -54,8 +54,8 @@ export default class EventDetails extends React.Component {
       isCancelled,
       cancelledDates
     } = event;
-    const start = refStartDate || startAt;
-    const end = refEndDate || endAt;
+    const start = refStartAt || startAt;
+    const end = refEndAt || endAt;
 
     const isValid = isEventValid({ isCancelled, endAt: end, startAt: start, cancelledDates });
     const recurring = repeat !== ONE_TIME_EVENT;

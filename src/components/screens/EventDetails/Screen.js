@@ -22,7 +22,7 @@ export default class Screen extends React.Component {
       this.setState({ visibleDialog: 'edit' });
     }
   }
-  _handleEdit = ({ id, option, refStartDate, refEndDate }) => this.props.navigation.navigate('EditEvent', { id, option, refEndDate, refStartDate });
+  _handleEdit = ({ id, option, refStartAt, refEndAt }) => this.props.navigation.navigate('EditEvent', { id, option, refEndAt, refStartAt });
   _handleRepeat = () => this.props.navigation.navigate('NewEvent', { id: this.props.navigation.getParam('id'), isNew: true });
   _openCancelDialog = () => this.setState({ visibleDialog: 'cancel' });
   _navigateToBoard = (id) => this.props.navigation.navigate('BoardEvents', { id });
@@ -32,8 +32,8 @@ export default class Screen extends React.Component {
   render() {
     const { visibleDialog } = this.state;
     const id = this.props.navigation.getParam('id');
-    const refStartDate = this.props.navigation.getParam('refStartDate');
-    const refEndDate = this.props.navigation.getParam('refEndDate');
+    const refStartAt = this.props.navigation.getParam('refStartAt');
+    const refEndAt = this.props.navigation.getParam('refEndAt');
     const {
       event,
       error,
@@ -51,8 +51,8 @@ export default class Screen extends React.Component {
         <Details
           id={id}
           event={event}
-          refStartDate={refStartDate}
-          refEndDate={refEndDate}
+          refStartAt={refStartAt}
+          refEndAt={refEndAt}
           handleBack={this._goBack}
           handleDelete={this._openDeleteDialog}
           handleCancel={this._openCancelDialog}
@@ -69,14 +69,14 @@ export default class Screen extends React.Component {
         />
         <CancelDialog
           id={id}
-          date={isRecurring ? refStartDate : null}
+          date={isRecurring ? refStartAt : null}
           visible={visibleDialog === 'cancel'}
           handleDismiss={this._hideDialog}
         />
         <EditDialog
           id={id}
-          refStartDate={refStartDate}
-          refEndDate={refEndDate}
+          refStartAt={refStartAt}
+          refEndAt={refEndAt}
           visible={visibleDialog === 'edit'}
           handleDismiss={this._hideDialog}
           onConfirm={this._handleEdit}

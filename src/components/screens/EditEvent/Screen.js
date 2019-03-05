@@ -6,8 +6,8 @@ export default class EditEventScreen extends React.Component {
   _handleBack = () => this.props.navigation.goBack();
   _getInitialValues = () => {
     const { event } = this.props;
-    const refStartAt = this.props.navigation.getParam('refStartDate');
-    const refEndAt = this.props.navigation.getParam('refEndDate');
+    const refStartAt = this.props.navigation.getParam('refStartAt');
+    const refEndAt = this.props.navigation.getParam('refEndAt');
 
     if (!event) return undefined;
     const {
