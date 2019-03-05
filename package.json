@@ -32,7 +32,6 @@
     "react-native-geolocation-service": "^2.0.0",
     "react-native-google-signin": "^1.0.0",
     "react-native-hyperlink": "^0.0.14",
-    "react-native-image-picker": "^0.27.1",
     "react-native-modal-datetime-picker": "^6.0.0",
     "react-native-open-maps": "^0.3.3",
     "react-native-paper": "^2.2.4",
