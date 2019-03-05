@@ -58,7 +58,7 @@ class List extends React.Component {
     this.props.navigation.navigate(screen, { id })
   };
 
-  loadSections = (events=[]) => {
+  loadMoreEvents = (events=[]) => {
     this.setState({ loadingMore: true }, () => {
       this.setState(state => {
         const afterDays = state.afterDays + DAYS_PER_PAGE;
@@ -82,7 +82,7 @@ class List extends React.Component {
   }
   
   _onEndReached = () => {
-    this.loadSections(this.props.events);
+    this.loadMoreEvents(this.props.events);
   };
 
   componentWillReceiveProps = (nextProps) => {
