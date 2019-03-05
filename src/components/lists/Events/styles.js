@@ -10,6 +10,7 @@ export const HEADER_HEIGHT = 28;
 export const FOOTER_HEIGHT = 80;
 export const primary_light = colors.primary_light;
 export const primary = colors.primary;
+export const primary_dark = colors.primary_dark;
 export const gray = colors.gray;
 export const black = colors.black;
 
@@ -51,7 +52,7 @@ export default StyleSheet.create({
   },
   headerText:{
     fontSize: 24,
-    color: colors.primary_dark,
+    color: primary_dark,
   },
   footer: {
     height: FOOTER_HEIGHT,
