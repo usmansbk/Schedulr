@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
   Done: {
     color: colors.soft_blue,
   },
-  Pending: {
+  Upcoming: {
     color: colors.yellow,
   },
 });

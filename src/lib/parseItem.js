@@ -47,7 +47,7 @@ export const getStatus = ({
   if (isEnded) return 'Done';
   const isOngoing = moment(startAt).twix(endAt).isCurrent();
   if (isOngoing) return 'Ongoing';
-  return 'Pending';
+  return 'Upcoming';
 }
 
 export const isEventValid = ({isCancelled, startAt, endAt, cancelledDates }) => {
