@@ -29,7 +29,7 @@ export const isStarted = ({ isCancelled, startAt, endAt }) => {
 };
 
 export const isToday = ({ startAt, isCancelled, cancelledDates }) => {
-  return moment(startAt).isSame(moment(), 'day') && !(isCancelled || cancelledDates.includes(startAt));
+  return moment(startAt).isSame(moment(), 'day') || isCancelled || cancelledDates.includes(startAt);
 }
 
 export const getDuration = (startAt, endAt) => {
