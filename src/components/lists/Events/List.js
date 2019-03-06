@@ -117,12 +117,12 @@ class List extends React.Component {
     startAt={startAt}
     endAt={endAt}
     eventType={decapitalize(eventType)}
-    repeat={repeat === 'NEVER' ? null : decapitalize(repeat)}
+    repeat={repeat === 'NEVER' ? null : decapitalize(repeat, true)}
     time={getTime({ allDay, startAt, endAt })}
     status={getStatus({ isCancelled, cancelledDates, startAt, endAt})}
     boardId={board.id}
     duration={getDuration(startAt, endAt, eventType)}
-    isToday={isToday(startAt)}
+    showTag={isToday({ startAt, cancelledDates, isCancelled })}
     onPressItem={this._onPressItem}
     onPressCommentButton={this._onPressCommentItem}
     navigateToBoardEvents={this._navigateToBoardEvents}
