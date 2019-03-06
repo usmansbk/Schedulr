@@ -58,6 +58,7 @@ export default class Form extends React.Component {
       allDay: false,
       eventType: eventTypes[0].id,
       repeat: frequency[0].id,
+      until: null,
       boardId: '',
     }
   }
@@ -248,7 +249,12 @@ export default class Form extends React.Component {
                   style={styles.picker}
                   
                   itemStyle={styles.pickerItem}
-                  onValueChange={itemValue => setFieldValue('repeat', itemValue)}
+                  onValueChange={itemValue => {
+                    setFieldValue('repeat', itemValue);
+                    if (itemValue === frequency[0].id) {
+                      setFieldValue('until', null);
+                    }
+                  }}
                 >
                   {
                     frequency.map(freq => (
@@ -267,6 +273,15 @@ export default class Form extends React.Component {
                   )
                 }
               </View>
+              {
+                (values.repeat !== frequency[0].id) && (
+                  <DateTimeInput
+                    label="Until"
+                    value={values.until || moment(values.startAt).add(1, 'year').toISOString()}
+                    onChangeDate={(date) => setFieldValue('until', date)}
+                  />
+                )
+              }
               <View style={styles.pickerSpacing}>
                 <Text style={styles.radioText}>Type</Text>
                 <Picker

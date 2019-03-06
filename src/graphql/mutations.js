@@ -114,6 +114,7 @@ export const createEvent = `mutation CreateEvent($input: CreateEventInput!) {
     allDay
     isCancelled
     repeat
+    until
     eventType
     board {
       id
@@ -142,6 +143,7 @@ export const updateEvent = `mutation UpdateEvent($input: UpdateEventInput!) {
     endAt
     allDay
     repeat
+    until
     eventType
     updatedAt
   }

@@ -17,6 +17,7 @@ export default ({
   boardName,
   boardId,
   repeat,
+  until,
   createdAt,
   updatedAt,
   description,
@@ -61,6 +62,14 @@ export default ({
             <Text style={styles.label}>REPEAT</Text>
             <Text style={styles.value}>{getRepeatLabel(repeat, startAt)}</Text>
           </View>
+          {
+            Boolean(until) && (
+              <View style={styles.item}>
+                <Text style={styles.label}>UNTIL</Text>
+                <Text style={styles.value}>{until}</Text>
+              </View>
+            )
+          }
           <View style={styles.item}>
             <Text style={styles.label}>CREATED</Text>
             <Text style={styles.value}>{createdAt}</Text>

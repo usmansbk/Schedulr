@@ -86,6 +86,7 @@ export const getEvent = `query GetEvent($id: ID!) {
     allDay
     isCancelled
     repeat
+    until
     eventType
     board {
       id
@@ -153,6 +154,7 @@ export const listAllEvents = `query ListAllEvents($limit: Int, $nextToken: Strin
       allDay
       isCancelled
       repeat
+      until
       eventType
       board {
         id
@@ -240,6 +242,7 @@ export const listBoardEvents = `query ListBoardEvents($id: ID!, $limit: Int, $ne
         allDay
         isCancelled
         repeat
+        until
         eventType
         board {
           id
@@ -286,6 +289,7 @@ export const searchEvent = `query SearchEvent($filter: SearchFilterInput, $limit
       allDay
       isCancelled
       repeat
+      until
       eventType
       board {
         id

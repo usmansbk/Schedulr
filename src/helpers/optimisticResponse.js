@@ -135,6 +135,7 @@ export const createEventResponse = (input) => {
       venue,
       allDay: Boolean(input.allDay),
       repeat: input.repeat,
+      until: input.until,
       eventType: input.eventType,
       isCancelled: false,
       board: {

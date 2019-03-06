@@ -36,9 +36,9 @@ export default class Input extends React.Component {
   render() {
     const {
       label,
-      value,
       disabled,
     } = this.props;
+    const value = this.props.value || moment().toDate().toISOString();
     return (
       <View>
         <Text style={styles.text}>

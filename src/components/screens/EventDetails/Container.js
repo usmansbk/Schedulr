@@ -10,7 +10,7 @@ import { isEventValid, isEventCancelled, getDuration, getStatus } from '../../..
 import capitalizr, {decapitalize} from '../../../lib/capitalizr';
 import { ONE_TIME_EVENT, ONE_TIME_EVENT_TEXT } from '../../../lib/constants';
 
-const CREATED_DATE_FORMAT = "ddd DD, MMM YYYY, hh:mm a";
+const DATE_FORMAT = "ddd DD, MMM YYYY, hh:mm a";
 
 export default class EventDetails extends React.Component {
   _handleCancel = () => {
@@ -44,6 +44,7 @@ export default class EventDetails extends React.Component {
       allDay,
       board,
       repeat,
+      until,
       createdAt,
       updatedAt,
       description,
@@ -122,8 +123,9 @@ export default class EventDetails extends React.Component {
           boardName={board.name}
           boardId={board.id}
           repeat={!recurring ? ONE_TIME_EVENT_TEXT : decapitalize(repeat)}
-          createdAt={moment(createdAt).format(CREATED_DATE_FORMAT)}
-          updatedAt={updatedAt && moment(updatedAt).format(CREATED_DATE_FORMAT)}
+          until={until && moment(until).format(DATE_FORMAT)}
+          createdAt={moment(createdAt).format(DATE_FORMAT)}
+          updatedAt={updatedAt && moment(updatedAt).format(DATE_FORMAT)}
           description={description}
           isStarred={isStarred}
           starsCount={starsCount}
