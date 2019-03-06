@@ -23,6 +23,7 @@ export default class Item extends React.PureComponent {
       time,
       duration,
       status,
+      isToday,
       eventType,
       pictureUrl,
     } = this.props;
@@ -52,7 +53,7 @@ export default class Item extends React.PureComponent {
               </Headline>
               <Text style={styles.time}>{time}</Text>
               <Text style={styles.duration}>{duration} {eventType} {repeat}</Text>
-              <Tag status={status} />
+              { isToday && <Tag status={status} /> }
             </View>
           </View>
         </View>

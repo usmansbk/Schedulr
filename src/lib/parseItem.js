@@ -28,6 +28,10 @@ export const isStarted = ({ isCancelled, startAt, endAt }) => {
   return (!isCancelled && t.isCurrent());
 };
 
+export const isToday = (startAt) => {
+  return moment(startAt).isSame(moment(), 'day');
+}
+
 export const getDuration = (startAt, endAt) => {
   const t = moment(startAt).twix(endAt);
   return decapitalize(t.humanizeLength());

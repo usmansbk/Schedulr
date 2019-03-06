@@ -12,7 +12,8 @@ import Item from './Item';
 import {
   getDuration,
   getStatus,
-  getTime
+  getTime,
+  isToday
 } from '../../../lib/parseItem';
 import { decapitalize } from '../../../lib/capitalizr';
 import { getNextEvents } from '../../../lib/calendr';
@@ -121,6 +122,7 @@ class List extends React.Component {
     status={getStatus({ isCancelled, cancelledDates, startAt, endAt})}
     boardId={board.id}
     duration={getDuration(startAt, endAt, eventType)}
+    isToday={isToday(startAt)}
     onPressItem={this._onPressItem}
     onPressCommentButton={this._onPressCommentItem}
     navigateToBoardEvents={this._navigateToBoardEvents}
