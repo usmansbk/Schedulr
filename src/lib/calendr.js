@@ -54,11 +54,11 @@ function getNextDayEvents(initialEvents, nextDate) {
           startAt,
           endAt
         }));
-        accumulator.data = sortBy(accumulator.data, 'startAt');
       }
     } else if (eventDate.isSame(refDate, 'day')) {
       accumulator.data.push(currentEvent);
     }
+    accumulator.data = sortBy(accumulator.data, 'startAt');
     return accumulator;
   }, {
     data: [],
