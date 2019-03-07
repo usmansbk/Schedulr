@@ -251,7 +251,9 @@ export default class Form extends React.Component {
                   itemStyle={styles.pickerItem}
                   onValueChange={itemValue => {
                     setFieldValue('repeat', itemValue);
-                    if (itemValue === frequency[0].id) {
+                    if (itemValue !== frequency[0].id) {
+                      moment(values.startAt).add(1, 'year').toISOString()
+                    } else {
                       setFieldValue('until', null);
                     }
                   }}
@@ -277,7 +279,7 @@ export default class Form extends React.Component {
                 (values.repeat !== frequency[0].id) && (
                   <DateTimeInput
                     label="Until"
-                    value={values.until || moment(values.startAt).add(1, 'year').toISOString()}
+                    value={values.until}
                     onChangeDate={(date) => setFieldValue('until', date)}
                   />
                 )

@@ -33,7 +33,9 @@ function getNextDayEvents(initialEvents, nextDate) {
   return initialEvents.reduce((accumulator, currentEvent) => {
     const eventDate = moment(currentEvent.startAt);
     const repeat = getRepeat(currentEvent.repeat);
-    if (repeat && !currentEvent.isCancelled) {
+    const shouldRecur = currentEvent.until ? eventDate.isSameOrBefore(moment(currentEvent.until)) : true;
+
+    if (shouldRecur && repeat && !currentEvent.isCancelled) {
       const recurrence = eventDate.recur().every(1, repeat);
       const hasNext = recurrence.matches(refDate.format('l'));
       if (hasNext) {

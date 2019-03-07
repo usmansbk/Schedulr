@@ -16,10 +16,11 @@ export const black = colors.black;
 
 export default StyleSheet.create({
   contentContainer: {
-    backgroundColor: colors.light_gray
+    backgroundColor: colors.light_gray,
+    flexGrow: 1
   },
   list: {
-    backgroundColor: colors.light_gray
+    backgroundColor: colors.light_gray,
   },
   sectionHeader: {
     backgroundColor: colors.light_gray_2,
