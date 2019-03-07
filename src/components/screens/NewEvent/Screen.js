@@ -32,6 +32,7 @@ export default class NewEventScreen extends React.Component {
       allDay,
       eventType,
       repeat,
+      until,
       board={}
     } = event;
 
@@ -54,6 +55,7 @@ export default class NewEventScreen extends React.Component {
       allDay: Boolean(allDay),
       eventType: eventType || eventTypes[0].id,
       repeat: repeat || frequency[0].id,
+      until,
       boardId: board.id || boardId
     });
   };

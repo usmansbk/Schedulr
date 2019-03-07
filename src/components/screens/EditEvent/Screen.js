@@ -19,6 +19,7 @@ export default class EditEventScreen extends React.Component {
       allDay,
       eventType,
       repeat,
+      until,
       board
     } = event;
     return ({
@@ -36,6 +37,7 @@ export default class EditEventScreen extends React.Component {
       allDay: Boolean(allDay),
       eventType,
       repeat,
+      until,
       boardId: board.id
     });
   };
