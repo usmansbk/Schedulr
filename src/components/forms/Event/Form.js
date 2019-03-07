@@ -39,8 +39,9 @@ import { requestLocationPermission } from '../../../helpers/permissions';
 export default class Form extends React.Component {
   state = {
     latitude: null,
-    longitude: null
-  }
+    longitude: null,
+    forever: true
+  };
 
   static defaultProps = {
     initialValues: {
@@ -120,7 +121,8 @@ export default class Form extends React.Component {
         validationSchema={formSchema}
         onSubmit={async (values, { setSubmitting }) => {
           if (isEventValid(values)) {
-            const input = buildEventForm(values, this.state);
+            const { longitude, latitude } = this.state;
+            const input = buildEventForm(values, { longitude, latitude });
             onSubmit && await onSubmit(input);
           }
           setSubmitting(false);
@@ -275,8 +277,31 @@ export default class Form extends React.Component {
                   )
                 }
               </View>
+
               {
                 (values.repeat !== frequency[0].id) && (
+                  <View style={styles.radio}>
+                    <Text style={styles.radioText}>Until Forever</Text>
+                    <RadioButton
+                      value='Forever'
+                      onPress={() => {
+                        this.setState(prev => ({
+                          forever: !prev.forever
+                        }), () => {
+                          if (this.state.forever) {
+                            setFieldValue('until', null);
+                          } else {
+                            setFieldValue('until', moment(values.startAt).add(1, 'year').toISOString());
+                          }
+                        });
+                      }}
+                      status={this.state.forever ? 'checked' : 'unchecked'}
+                    />
+                  </View>
+                )
+              }
+              {
+                (!this.state.forever) && (
                   <DateTimeInput
                     label="Until"
                     value={values.until}
