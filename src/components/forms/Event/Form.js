@@ -281,7 +281,7 @@ export default class Form extends React.Component {
               {
                 (values.repeat !== frequency[0].id) && (
                   <View style={styles.radio}>
-                    <Text style={styles.radioText}>Until Forever</Text>
+                    <Text style={styles.radioText}>Repeat Forever</Text>
                     <RadioButton
                       value='Forever'
                       onPress={() => {
@@ -303,7 +303,7 @@ export default class Form extends React.Component {
               {
                 (!this.state.forever) && (
                   <DateTimeInput
-                    label="Until"
+                    label="Repeat Until"
                     value={values.until}
                     onChangeDate={(date) => setFieldValue('until', date)}
                   />
