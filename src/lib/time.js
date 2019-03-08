@@ -101,6 +101,7 @@ export const getSectionHeaderData = (date) => {
 export function getRepeatLabel(id, date) {
   switch(id) {
     case 'Weekly': return `Weekly (every ${moment(date).format('dddd')})`;
+    case 'Weekday': return 'Weekdays (Mon - Fri)';
     case 'Monthly': return `Monthly (${moment(date).format('Do')} of every month)`;
     case 'Yearly': return `Yearly (every ${moment(date).format('Do MMMM')})`;
     default: return id;
