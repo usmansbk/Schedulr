@@ -50,7 +50,7 @@ function getNextDayEvents(initialEvents, nextDate) {
       } else {
         recurrence = eventDate.recur().every(1, repeat);
       }
-      const hasNext = recurrence.matches(refDate.format('l'));
+      const hasNext = recurrence.matches(refDate);
       if (hasNext) {
         const start = moment(currentEvent.startAt);
         const startSec = start.seconds();
