@@ -10,7 +10,6 @@ import {
   RefreshControl,
 } from 'react-native';
 import {
-  // IconButton,
   Button,
   TextInput,
   Text,
