@@ -42,7 +42,7 @@ export default class Form extends React.Component {
     this.state = {
       latitude: null,
       longitude: null,
-      forever: Boolean(props.initialValues.until)
+      forever: !Boolean(props.initialValues.until)
     }
   }
 
