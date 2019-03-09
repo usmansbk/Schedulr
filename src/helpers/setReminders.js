@@ -12,6 +12,18 @@ import {
 } from '../lib/time';
 import stores from '../stores';
 
+const setRepeatReminder = (event, before, settings) => {
+  // if repeat === 'weekdays' then
+  // setReminder for monday to friday
+  // else
+  // setReminder(event, before, settings)
+  if (event.repeat === 'WEEKDAYS') {
+
+  } else {
+    setReminder(event, before, settings);
+  }
+}
+
 const setReminder = (event, before, settings) => {
   const {
     id,
