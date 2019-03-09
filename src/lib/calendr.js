@@ -2,6 +2,7 @@ import moment from 'moment';
 import 'moment-recur';
 import { sortBy } from '../lib/sectionizr';
 
+const DAYS_IN_WEEK = 7;
 const weekdays = [
   "Monday",
   "Tuesday",
@@ -16,6 +17,7 @@ function getRepeat(recur) {
     case 'WEEKDAYS': return 'weekdays';
     case 'WEEKLY':  return 'weeks';
     case 'MONTHLY': return 'months';
+    case 'MONTHLY_DAY': return 'month_day';
     case 'YEARLY': return 'years';
     default: return null;
   }
@@ -47,6 +49,13 @@ function getNextDayEvents(initialEvents, nextDate) {
       let recurrence;
       if (repeat === 'weekdays') {
         recurrence = eventDate.recur().every(weekdays).daysOfWeek();
+      } else if (repeat === 'month_day') {
+        const currentDate = eventDate.date();
+        const weekOfMonth = Math.ceil(currentDate / DAYS_IN_WEEK) - 1;
+        const daysOfWeek = eventDate.format('dddd');
+
+        recurrence = eventDate.recur().every(daysOfWeek).daysOfWeek()
+          .every(weekOfMonth).weeksOfMonthByDay();
       } else {
         recurrence = eventDate.recur().every(1, repeat);
       }

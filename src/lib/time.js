@@ -103,7 +103,7 @@ export const getSectionHeaderData = (date) => {
 
 function getMonthlyDay(date) {
   const d = moment(date);
-  const currentDate =d.date();
+  const currentDate = d.date();
   const week = Math.ceil(currentDate / DAYS_IN_WEEK);
   let order;
   if (week === 1) order = "first";
@@ -114,7 +114,7 @@ function getMonthlyDay(date) {
 
   const dayInWeek = d.format('dddd');
 
-  return `Monthly (on ${order} ${dayInWeek})`;
+  return `Monthly (every ${order} ${dayInWeek})`;
 }
 
 export function getRepeatLabel(id, date) {
