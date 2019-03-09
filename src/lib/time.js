@@ -1,7 +1,8 @@
 import moment from 'moment';
-import twitter from 'moment-twitter';
-import twix from 'twix';
-import capitalizr from './capitalizr';
+import 'moment-twitter';
+import 'twix';
+import numeral from 'numeral';
+import capitalizr, { decapitalize } from './capitalizr';
 
 export const SECOND = 1000;
 export const ONE_MINUTE = 60 * SECOND;
@@ -19,6 +20,7 @@ const DATE_FORMAT = 'MMMM DD, YYYY';
 const DAY_FORMAT = 'dddd';
 const NEXT_LAST_FORMAT = 'dddd, Do';
 
+const DAYS_IN_WEEK = 7;
 const TIME_FORMAT = 'hh:mm:ss';
   
 const dayStart = moment('07:00:00', TIME_FORMAT);
@@ -47,7 +49,7 @@ export const repeatLength = (repeat) => {
     case 'DAILY': return ONE_DAY;
     case 'WEEKDAYS': return ONE_DAY;
     case 'WEEKLY': return ONE_WEEK;
-    case 'MONTHLY': return moment().daysInMonth() * ONE_DAY;
+    case 'MONTHLY': case 'MONTHLY_DAY': return moment().daysInMonth() * ONE_DAY;
     case 'YEARLY': return moment().weeksInYear() * ONE_WEEK;
     default: return 0;
   }
@@ -99,13 +101,32 @@ export const getSectionHeaderData = (date) => {
   };
 };
 
+function getMonthlyDay(date) {
+  const d = moment(date);
+  const currentDate =d.date();
+  const week = Math.ceil(currentDate / DAYS_IN_WEEK);
+  let order;
+  if (week === 1) order = "first";
+  else if (week === 2) order = "second";
+  else if (week === 3) order = "third";
+  else if (week === 4) order = "last";
+  else order = numeral(week).format('0o');
+
+  const dayInWeek = d.format('dddd');
+
+  return `Monthly (on ${order} ${dayInWeek})`;
+}
+
 export function getRepeatLabel(id, date) {
-  switch(id) {
-    case 'Weekly': return `Weekly (every ${moment(date).format('dddd')})`;
-    case 'Weekdays': return 'Weekdays (Mon - Fri)';
-    case 'Monthly': return `Monthly (${moment(date).format('Do')} of every month)`;
-    case 'Yearly': return `Yearly (every ${moment(date).format('Do MMMM')})`;
-    default: return id;
+  const val = id.toLowerCase();
+  switch(val) {
+    case 'never': return 'One-time event';
+    case 'weekly': return `Weekly (every ${moment(date).format('dddd')})`;
+    case 'weekdays': return 'Weekdays (Mon - Fri)';
+    case 'monthly_day': return getMonthlyDay(date);
+    case 'monthly': return `Monthly (${moment(date).format('Do')} of every month)`;
+    case 'yearly': return `Yearly (every ${moment(date).format('Do MMMM')})`;
+    default: return decapitalize(id);
   }
 }
 

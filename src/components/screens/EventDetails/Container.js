@@ -5,10 +5,10 @@ import { Appbar } from 'react-native-paper';
 import Details from './Details';
 import styles from '../../../config/styles';
 import colors from '../../../config/colors';
-import { formatDate } from '../../../lib/time';
+import { formatDate, getRepeatLabel } from '../../../lib/time';
 import { isEventValid, isEventCancelled, getDuration, getStatus } from '../../../lib/parseItem';
 import capitalizr, {decapitalize} from '../../../lib/capitalizr';
-import { ONE_TIME_EVENT, ONE_TIME_EVENT_TEXT } from '../../../lib/constants';
+import { ONE_TIME_EVENT } from '../../../lib/constants';
 
 const DATE_FORMAT = "ddd DD, MMM YYYY, hh:mm a";
 
@@ -59,7 +59,6 @@ export default class EventDetails extends React.Component {
     const end = refEndAt || endAt;
 
     const isValid = isEventValid({ isCancelled, endAt: end, startAt: start, cancelledDates });
-    const recurring = repeat !== ONE_TIME_EVENT;
 
     return (
       <React.Fragment>
@@ -122,7 +121,7 @@ export default class EventDetails extends React.Component {
           longitude={venue && venue.location && venue.location.longitude}
           boardName={board.name}
           boardId={board.id}
-          repeat={!recurring ? ONE_TIME_EVENT_TEXT : decapitalize(repeat)}
+          repeat={getRepeatLabel(repeat, start)}
           until={until && moment(until).format(DATE_FORMAT)}
           createdAt={moment(createdAt).format(DATE_FORMAT)}
           updatedAt={updatedAt && moment(updatedAt).format(DATE_FORMAT)}

@@ -13,7 +13,8 @@ import {
   getDuration,
   getStatus,
   getTime,
-  isToday
+  isToday,
+  parseRepeat
 } from '../../../lib/parseItem';
 import { decapitalize } from '../../../lib/capitalizr';
 import { getNextEvents } from '../../../lib/calendr';
@@ -117,7 +118,7 @@ class List extends React.Component {
     startAt={startAt}
     endAt={endAt}
     eventType={decapitalize(eventType)}
-    repeat={repeat === 'NEVER' ? null : decapitalize(repeat, true)}
+    repeat={parseRepeat(repeat)}
     time={getTime({ allDay, startAt, endAt })}
     status={getStatus({ isCancelled, cancelledDates, startAt, endAt})}
     boardId={board.id}

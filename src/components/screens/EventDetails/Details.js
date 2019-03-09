@@ -4,7 +4,6 @@ import { Text, Headline, Divider } from 'react-native-paper';
 import Actions from '../../common/Actions';
 import Tag from '../../common/Tag';
 import { BULLET } from '../../../lib/constants';
-import { getRepeatLabel } from '../../../lib/time';
 import styles from './styles';
 
 export default ({
@@ -60,7 +59,7 @@ export default ({
           </View>
           <View style={styles.item}>
             <Text style={styles.label}>REPEAT</Text>
-            <Text style={styles.value}>{getRepeatLabel(repeat, startAt)}</Text>
+            <Text style={styles.value}>{repeat}</Text>
           </View>
           {
             Boolean(until) && (

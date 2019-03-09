@@ -262,7 +262,7 @@ export default class Form extends React.Component {
                 >
                   {
                     frequency.map(freq => (
-                      <Picker.Item key={freq.id} label={getRepeatLabel(freq.name, values.startAt)} value={freq.id} />
+                      <Picker.Item key={freq.id} label={getRepeatLabel(freq.id, values.startAt)} value={freq.id} />
                     ))
                   }
                 </Picker>

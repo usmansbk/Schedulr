@@ -58,4 +58,17 @@ export const isEventValid = ({isCancelled, startAt, endAt, cancelledDates }) => 
   return moment().twix(endAt).isCurrent() && !isEventCancelled({ cancelledDates, startAt, isCancelled });
 };
 
+export const parseRepeat = (repeat) => {
+  const val = repeat.toLowerCase();
+  switch(val) {
+    case 'never': return null;
+    case 'daily': return 'daily';
+    case 'weekly': return 'weekly';
+    case 'weekdays': return 'every weekdays';
+    case 'monthly': case 'monthly_day': return 'monthly';
+    case 'yearly': return 'yearly';
+    default: return repeat;
+  }
+}
+
 export const isSingle = (repeat) => repeat === ONE_TIME_EVENT;
