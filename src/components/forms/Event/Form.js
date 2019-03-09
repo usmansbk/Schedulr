@@ -37,11 +37,14 @@ import { requestLocationPermission } from '../../../helpers/permissions';
 
 
 export default class Form extends React.Component {
-  state = {
-    latitude: null,
-    longitude: null,
-    forever: true
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      latitude: null,
+      longitude: null,
+      forever: Boolean(props.initialValues.until)
+    }
+  }
 
   static defaultProps = {
     initialValues: {
