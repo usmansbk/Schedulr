@@ -105,16 +105,9 @@ function getMonthlyDay(date) {
   const d = moment(date);
   const currentDate = d.date();
   const week = Math.ceil(currentDate / DAYS_IN_WEEK);
-  let order;
-  if (week === 1) order = "first";
-  else if (week === 2) order = "second";
-  else if (week === 3) order = "third";
-  else if (week === 4) order = "last";
-  else order = numeral(week).format('0o');
-
+  const order = numeral(week).format('0o');
   const dayInWeek = d.format('dddd');
-
-  return `Monthly (every ${order} ${dayInWeek})`;
+  return `Monthly (${order} ${dayInWeek} of every month)`;
 }
 
 export function getRepeatLabel(id, date) {
@@ -124,7 +117,7 @@ export function getRepeatLabel(id, date) {
     case 'weekly': return `Weekly (every ${moment(date).format('dddd')})`;
     case 'weekdays': return 'Weekdays (Mon - Fri)';
     case 'monthly_day': return getMonthlyDay(date);
-    case 'monthly': return `Monthly (${moment(date).format('Do')} of every month)`;
+    case 'monthly': return `Monthly (on the same day)`;
     case 'yearly': return `Yearly (every ${moment(date).format('Do MMMM')})`;
     default: return decapitalize(id);
   }
