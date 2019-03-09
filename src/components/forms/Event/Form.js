@@ -17,7 +17,6 @@ import {
   HelperText,
   RadioButton,
   Appbar,
-  // Checkbox
 } from 'react-native-paper';
 import { Formik } from 'formik';
 import DateTimeInput from '../../common/DateTimeInput';
@@ -33,7 +32,6 @@ import eventTypes from './types';
 import frequency from './frequency';
 import { buildEventForm } from '../../../helpers/buildForm';
 import { requestLocationPermission } from '../../../helpers/permissions';
-// import colors from '../../../config/colors';
 
 
 export default class Form extends React.Component {
@@ -70,15 +68,6 @@ export default class Form extends React.Component {
   componentDidMount = () => {
     this.getLocation();
   }
-
-  // _tagLocation = () => {
-  //   const { latitude, longitude } = this.state;
-  //   if (latitude && longitude) {
-  //     this.setState({ latitude: null, longitude: null });
-  //   } else {
-  //     this.getLocation();
-  //   }
-  // }
   
   getLocation = () => {
     if (requestLocationPermission()) {
