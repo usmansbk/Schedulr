@@ -64,7 +64,7 @@ export const parseRepeat = (repeat) => {
     case 'never': return null;
     case 'daily': return 'daily';
     case 'weekly': return 'weekly';
-    case 'weekdays': return 'every weekdays';
+    case 'weekdays': return 'every weekday';
     case 'monthly': case 'monthly_day': return 'monthly';
     case 'yearly': return 'yearly';
     default: return repeat;
