@@ -141,7 +141,16 @@ const schdlAll = (events) => {
     if (!settings.disableReminders) {
       events.forEach((event) => {
         if (settings.starredEventsOnly && !event.isStarred) return;
-        return schdl(event, remindMeBefore, settings);
+        switch (event.repeat) {
+          case 'MONTH_DAY':
+            break;
+          case 'WEEKDAYS':
+            break;
+          default:
+            schdl(event, remindMeBefore, settings);
+            break;
+        }
+        return;
       });
     }
   });
