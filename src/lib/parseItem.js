@@ -1,5 +1,5 @@
 import moment from 'moment';
-import twix from 'twix';
+import 'twix';
 import { decapitalize } from './capitalizr';
 import { ONE_TIME_EVENT } from './constants';
 
