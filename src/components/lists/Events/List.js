@@ -181,7 +181,7 @@ class List extends React.Component {
         refreshing={loading}
         onRefresh={this._onRefresh}
         refreshControl={<RefreshControl
-          onRefresh={onRefresh}
+          onRefresh={this._onRefresh}
           refreshing={loading}
           colors={[primary_dark]}
         />}
