@@ -17,7 +17,10 @@ import {
   parseRepeat
 } from '../../../lib/parseItem';
 import { decapitalize } from '../../../lib/capitalizr';
-import { getNextEvents } from '../../../lib/calendr';
+import {
+  getNextEvents,
+  getPreviousEvents
+} from '../../../lib/calendr';
 import styles, {
   ITEM_HEIGHT,
   SEPERATOR_HEIGHT,
@@ -28,6 +31,7 @@ import styles, {
 } from './styles';
 
 const DAYS_PER_PAGE = 3;
+const INITIAL_BEFOREDAYS = 1;
 const INITIAL_AFTERDAYS = 0;
 
 class List extends React.Component {
@@ -35,7 +39,8 @@ class List extends React.Component {
   state = {
     loadingMore: false,
     sections: [],
-    afterDays: INITIAL_AFTERDAYS
+    afterDays: INITIAL_AFTERDAYS,
+    beforeDays: INITIAL_BEFOREDAYS
   };
 
   static defaultProps = {
@@ -45,9 +50,8 @@ class List extends React.Component {
     onRefresh: () => null,
   };
 
-  _loadPrevious = () => console.log('Load previous events');
   _keyExtractor = (item) => item.id + item.startAt;
-  _renderHeader = () => <Header onPress={this._loadPrevious} visible={this.props.hasPreviousEvents} />;
+  _renderHeader = () => <Header onPress={this.loadPreviousEvents} />;
   _renderFooter = () => <Footer onPress={this._onEndReached} loading={this.state.loadingMore} />;
   _renderEmptyList = () => <Empty error={this.props.error} loading={this.props.loading} />;
   _renderSeparator = () => <Separator />;
@@ -59,6 +63,21 @@ class List extends React.Component {
     if (this.props.listType === 'board') screen = 'BoardInfo';
     this.props.navigation.navigate(screen, { id })
   };
+  
+  loadPreviousEvents = () => {
+    const { events } = this.props;
+    this.setState({ loadingPrev: true }, () => {
+      this.setState(state => {
+        const beforeDays = state.beforeDays;
+        const prevSections = getPreviousEvents(events, beforeDays, DAYS_PER_PAGE);
+        return ({
+          sections: [...prevSections, ...state.sections],
+          beforeDays: beforeDays + DAYS_PER_PAGE,
+          loadingPrev: false
+        })
+      })
+    })
+  }
 
   loadMoreEvents = (events=[]) => {
     this.setState({ loadingMore: true }, () => {
@@ -78,7 +97,8 @@ class List extends React.Component {
     if (events) {
       this.setState({
         sections: getNextEvents(events, INITIAL_AFTERDAYS, DAYS_PER_PAGE),
-        afterDays: INITIAL_AFTERDAYS
+        afterDays: INITIAL_AFTERDAYS,
+        beforeDays: INITIAL_BEFOREDAYS
       });
     }  
   }

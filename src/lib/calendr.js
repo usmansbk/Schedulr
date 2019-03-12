@@ -32,6 +32,15 @@ function getNextEvents(initialEvents=[], afterDays, daysPerPage) {
   return sections;
 }
 
+function getPreviousEvents(initialEvents=[], beforeDays, daysPerPage) {
+  const sections = [];
+  for (let i = beforeDays; i < beforeDays + daysPerPage; i++) {
+    const nextDate = moment().add(-(i), 'day').toISOString();
+    sections.push(getNextDayEvents(initialEvents, nextDate));
+  }
+  return sections.reverse();
+}
+
 /**
   * @param { Array } initialEvents - an array of calendar events
   * @param { Date } afterDate - date to start from
@@ -94,11 +103,7 @@ function getNextDayEvents(initialEvents, nextDate) {
   });
 }
 
-function getPreviousDayEvents(initialEvents, beforeDate=moment() ) {
-
-}
-
 export {
   getNextEvents,
-  getPreviousDayEvents
+  getPreviousEvents
 }
