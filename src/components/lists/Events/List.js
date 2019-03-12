@@ -103,6 +103,11 @@ class List extends React.Component {
       });
     }  
   }
+
+  _onRefresh = () => {
+    this._bootstrap(this.props.events);
+    this.props.onRefresh();
+  };
   
   _onEndReached = () => {
     this.loadMoreEvents(this.props.events);
@@ -116,7 +121,7 @@ class List extends React.Component {
 
   componentDidMount = () => {
     this._bootstrap(this.props.events);
-  }
+  };
 
   shouldComponentUpdate = (nextProps) => {
     return nextProps.isFocused;
@@ -159,10 +164,7 @@ class List extends React.Component {
   });
 
   render() {
-    const {
-      loading,
-      onRefresh,
-    } = this.props;
+    const { loading } = this.props;
     const { sections } = this.state;
     
     return (
@@ -177,7 +179,7 @@ class List extends React.Component {
         ListEmptyComponent={this._renderEmptyList}
         ItemSeparatorComponent={this._renderSeparator}
         refreshing={loading}
-        onRefresh={onRefresh}
+        onRefresh={this._onRefresh}
         refreshControl={<RefreshControl
           onRefresh={onRefresh}
           refreshing={loading}
