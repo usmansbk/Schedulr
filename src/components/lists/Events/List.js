@@ -38,6 +38,7 @@ class List extends React.Component {
 
   state = {
     loadingMore: false,
+    loadingPrev: false,
     sections: [],
     afterDays: INITIAL_AFTERDAYS,
     beforeDays: INITIAL_BEFOREDAYS
@@ -51,7 +52,7 @@ class List extends React.Component {
   };
 
   _keyExtractor = (item) => item.id + item.startAt;
-  _renderHeader = () => <Header onPress={this.loadPreviousEvents} />;
+  _renderHeader = () => <Header onPress={this.loadPreviousEvents} loading={this.state.loadingPrev} />;
   _renderFooter = () => <Footer onPress={this._onEndReached} loading={this.state.loadingMore} />;
   _renderEmptyList = () => <Empty error={this.props.error} loading={this.props.loading} />;
   _renderSeparator = () => <Separator />;
