@@ -1,8 +1,9 @@
 import { StyleSheet } from 'react-native';
 import colors from '../../../config/colors';
 
-export const AVATAR_SIZE = 48;
+export const AVATAR_SIZE = 50;
 export const ITEM_HEIGHT = 124;
+export const ITEM_HEIGHT_SMALL = 104;
 export const SEPARATOR_HEIGHT = 1;
 export const SECTION_HEADER_HEIGHT = 64;
 export const SECTION_FOOTER_HEIGHT = 20;
@@ -86,6 +87,13 @@ export default StyleSheet.create({
   itemContainer: {
     backgroundColor: colors.white,
   },
+  itemContentSmall: {
+    paddingTop: 4,
+    height: ITEM_HEIGHT_SMALL,
+    flexDirection: 'row',
+    paddingHorizontal: 8,
+    // backgroundColor: 'green',
+  },
   itemContent: {
     paddingTop: 4,
     height: ITEM_HEIGHT,
@@ -109,7 +117,7 @@ export default StyleSheet.create({
     width: 200
   },
   left: {
-    paddingTop: 8
+    paddingTop: 16
   },
   right: {
     justifyContent: 'space-between',
