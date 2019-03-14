@@ -72,16 +72,6 @@ export default class Settings extends React.Component {
               )}
             />
             <Divider />
-            <List.Item
-              title="Dark mode"
-              right={() => (
-                <Switch
-                  value={dark}
-                  onValueChange={() => this.toggleTheme()}
-                />
-              )}
-            />
-            <Divider />
           </List.Section>
           <List.Section title="Reminders">
             <List.Item
