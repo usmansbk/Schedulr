@@ -181,11 +181,13 @@ class List extends React.Component {
         ItemSeparatorComponent={this._renderSeparator}
         refreshing={loading}
         onRefresh={this._onRefresh}
-        refreshControl={<RefreshControl
-          onRefresh={this._onRefresh}
-          refreshing={loading}
-          colors={[primary_dark]}
-        />}
+        refreshControl={
+          <RefreshControl
+            onRefresh={this._onRefresh}
+            refreshing={loading}
+            colors={[primary_dark]}
+          />
+        }
         onEndReachedThreshold={0.5}
         onEndReached={this._onEndReached}
         renderItem={this._renderItem}
