@@ -2,8 +2,8 @@ import { StyleSheet } from 'react-native';
 import colors from '../../../config/colors';
 
 export const AVATAR_SIZE = 50;
-export const ITEM_HEIGHT = 124;
-export const ITEM_HEIGHT_SMALL = 104;
+export const ITEM_HEIGHT = 122;
+export const ITEM_HEIGHT_SMALL = 102;
 export const SEPARATOR_HEIGHT = 1;
 export const SECTION_HEADER_HEIGHT = 64;
 export const SECTION_FOOTER_HEIGHT = 20;

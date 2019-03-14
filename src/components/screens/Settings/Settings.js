@@ -21,6 +21,10 @@ export default class Settings extends React.Component {
     this.props.stores.settingsStore.toggle(value)
   }
 
+  toggleTheme = () => {
+    this.props.stores.settingsStore.toggleTheme();
+  }
+
   render() {
     const {
       goBack,
@@ -28,6 +32,7 @@ export default class Settings extends React.Component {
       stores,
     } = this.props;
     const {
+      dark,
       sound,
       vibrate,
       disableReminders,
@@ -63,6 +68,16 @@ export default class Settings extends React.Component {
                 <Switch
                   value={vibrate}
                   onValueChange={() => this.handleValueChange('vibrate')}
+                />
+              )}
+            />
+            <Divider />
+            <List.Item
+              title="Dark mode"
+              right={() => (
+                <Switch
+                  value={dark}
+                  onValueChange={() => this.toggleTheme()}
                 />
               )}
             />

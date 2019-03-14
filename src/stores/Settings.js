@@ -1,12 +1,9 @@
 import { observable, action } from 'mobx';
 import { persist } from 'mobx-persist';
 
-const LIGHT = 'Light';
-const DARK = 'Dark';
-
 export default class SettingsState {
   @persist @observable language = "en_US";
-  @persist @observable theme = LIGHT;
+  @persist @observable dark = false;
   @persist @observable sound = true;
   @persist @observable vibrate = true;
   @persist @observable disableReminders = false;
@@ -19,9 +16,6 @@ export default class SettingsState {
   }
 
   @action toggleTheme () {
-    if (this.theme === LIGHT)
-      this.theme = DARK;
-    else
-      this.theme = LIGHT;
+    this.dark = !this.dark;
   }
 }
