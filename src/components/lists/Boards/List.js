@@ -68,7 +68,13 @@ class List extends Component {
     return (
       <FlatList
         refreshing={loading}
-        refreshControl={<RefreshControl onRefresh={onRefresh} refreshing={loading} colors={[colors.primary]} />}
+        refreshControl={
+          <RefreshControl
+            onRefresh={onRefresh}
+            refreshing={loading}
+            colors={[colors.primary]}
+          />
+        }
         onRefresh={onRefresh}
         style={styles.list}
         contentContainerStyle={styles.contentContainer}
