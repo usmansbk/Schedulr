@@ -1,6 +1,6 @@
 import moment from 'moment';
-import 'moment-twitter';
 import 'twix';
+import twitter from 'moment-twitter';
 import numeral from 'numeral';
 import capitalizr, { decapitalize } from './capitalizr';
 
