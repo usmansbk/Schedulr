@@ -3,6 +3,7 @@ import { View } from 'react-native';
 import {
   TouchableRipple,
   Text,
+  Caption,
   Headline,
 } from 'react-native-paper';
 import Avatar from '../../common/UserAvatar';
@@ -52,7 +53,7 @@ export default class Item extends React.PureComponent {
                 {title}
               </Headline>
               <Text style={styles.time}>{time}</Text>
-              <Text style={styles.duration}>{duration} {eventType} {repeat}</Text>
+              <Caption>{duration} {eventType} {repeat}</Caption>
               { showTag && <Tag status={status} /> }
             </View>
           </View>
