@@ -2,6 +2,7 @@ import React from 'react';
 import { View } from 'react-native';
 import { TouchableRipple, Text, Caption } from 'react-native-paper';
 import UserAvatar from '../../common/UserAvatar';
+import Tag from '../../common/Tag';
 import styles, { AVATAR_SIZE } from './styles';
 
 export default class Item extends React.PureComponent {
@@ -32,7 +33,7 @@ export default class Item extends React.PureComponent {
             </View>
             { Boolean(description) && <Caption numberOfLines={1} ellipsizeMode="tail" style={styles.itemDescription}>{description}</Caption> }
             <View style={styles.itemFooter}>
-              { isClosed && <Caption style={styles.danger}>Closed</Caption> }
+              { isClosed && <Tag status="Closed" /> }
             </View>
           </View>
         </View>

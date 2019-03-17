@@ -20,6 +20,9 @@ const styles = StyleSheet.create({
   Upcoming: {
     color: colors.yellow,
   },
+  Closed: {
+    color: colors.light_red
+  }
 });
 
 export default ({ status }) => {
