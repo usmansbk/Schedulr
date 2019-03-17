@@ -21,7 +21,8 @@ const styles = StyleSheet.create({
     color: colors.yellow,
   },
   Closed: {
-    color: colors.light_red
+    color: colors.light_red,
+    fontWeight: 'normal'
   }
 });
 
