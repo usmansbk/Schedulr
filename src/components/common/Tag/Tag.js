@@ -22,7 +22,8 @@ const styles = StyleSheet.create({
   },
   Closed: {
     color: colors.light_red,
-    fontWeight: 'normal'
+    fontWeight: 'normal',
+    fontSize: 12
   }
 });
 
