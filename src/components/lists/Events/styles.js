@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 import colors from '../../../config/colors';
 
-export const AVATAR_SIZE = 50;
+export const AVATAR_SIZE = 54;
 export const ITEM_HEIGHT = 122;
 export const ITEM_HEIGHT_SMALL = 102;
 export const SEPARATOR_HEIGHT = 1;
