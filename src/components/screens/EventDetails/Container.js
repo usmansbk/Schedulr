@@ -20,9 +20,9 @@ export default class EventDetails extends React.Component {
   _getDuration = (start, end) => getDuration(start, end);
   _getStartAgo = (start, end) => {
     let timeAgo;
-    if (Date.now() < moment(start).milliseconds()) {
+    if (moment().isBefore(moment(start))) {
       timeAgo = moment(start).fromNow(); 
-    } else if (Date.now() > moment(end).milliseconds()) {
+    } else if (moment().isAfter(moment(end))) {
       timeAgo = moment(end).fromNow();
     } else {
       timeAgo = `${moment(end).fromNow(true)} left`;
