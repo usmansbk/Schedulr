@@ -10,7 +10,6 @@ export default ({
   id,
   title,
   date,
-  startAt,
   eventType,
   address,
   boardName,

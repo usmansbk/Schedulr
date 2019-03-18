@@ -18,7 +18,17 @@ export default class EventDetails extends React.Component {
     this.props.handleCancel(isRecurring ? this.props.event.startAt : null);
   };
   _getDuration = (start, end) => getDuration(start, end);
-  _getStartAgo = (start) => capitalizr(moment(start).fromNow());
+  _getStartAgo = (start, end) => {
+    let timeAgo;
+    if (Date.now() < moment(start).milliseconds()) {
+      timeAgo = moment(start).fromNow(); 
+    } else if (Date.now() > moment(end).milliseconds()) {
+      timeAgo = moment(end).fromNow();
+    } else {
+      timeAgo = `${moment(end).fromNow(true)} left`;
+    }
+    return capitalizr(timeAgo);
+  };
   
  shouldComponentUpdate = (nextProps) => !isEqual(nextProps.event, this.props.event);
 
@@ -107,7 +117,7 @@ export default class EventDetails extends React.Component {
           title={title}
           date={formatDate(start, end, allDay)}
           duration={this._getDuration(start, end)}
-          timeAgo={this._getStartAgo(start)}
+          timeAgo={this._getStartAgo(start, end)}
           status={getStatus({
             isCancelled,
             cancelledDates,
