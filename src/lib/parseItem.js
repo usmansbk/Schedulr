@@ -21,6 +21,11 @@ export const getTime = ({ startAt, endAt, allDay }) => {
     implicitMinutes: false,
     groupMeridiems: false
   });
+};
+
+export const getHumanTime = ({ startAt, endAt }) => {
+  const t = moment(startAt).twix(endAt);
+  return t.format();
 }
 
 export const isStarted = ({ isCancelled, startAt, endAt }) => {

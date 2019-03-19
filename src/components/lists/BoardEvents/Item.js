@@ -16,24 +16,20 @@ export default class Item extends React.PureComponent {
   _onPress = () => this.props.onPressItem(this.props.id, this.props.startAt, this.props.endAt);
   render() {
     const {
-      id,
       title,
       repeat,
       time,
       duration,
-      status,
-      showTag,
       eventType,
       pictureUrl,
     } = this.props;
-    
-    const isPending = id[0] === '-';
+
     return (
       <TouchableRipple
         onPress={this._onPress}
         style={styles.itemContainer}
       >
-        <View useNativeDriver style={showTag ? styles.itemContent : styles.itemContentSmall}>
+        <View useNativeDriver style={styles.itemContentSmall}>
           <View style={styles.left}>
             <Avatar
               size={AVATAR_SIZE}
@@ -44,14 +40,13 @@ export default class Item extends React.PureComponent {
           <View style={styles.right}>
             <View style={styles.itemBody}>
               <Headline
-                style={isPending ? styles.offlineTitle : styles.itemHeadline}
+                style={styles.itemHeadline}
                 numberOfLines={1}
                 ellipsizeMode="tail">
                 {title}
               </Headline>
               <Text style={styles.time}>{time}</Text>
               <Caption>{duration} {eventType} {repeat}</Caption>
-              { showTag && <Tag status={status} /> }
             </View>
           </View>
         </View>

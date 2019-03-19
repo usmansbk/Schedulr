@@ -7,9 +7,7 @@ import Footer from './Footer';
 import Empty from './Empty';
 import {
   getDuration,
-  getStatus,
-  getTime,
-  isToday,
+  getHumanTime,
   parseRepeat
 } from '../../../lib/parseItem';
 import { decapitalize } from '../../../lib/capitalizr';
@@ -40,8 +38,6 @@ class List extends Component {
     id,
     title,
     eventType,
-    isCancelled,
-    cancelledDates,
     startAt,
     endAt,
     repeat,
@@ -54,11 +50,9 @@ class List extends Component {
     endAt={endAt}
     eventType={decapitalize(eventType)}
     repeat={parseRepeat(repeat)}
-    time={getTime({ allDay, startAt, endAt })}
-    status={getStatus({ isCancelled, cancelledDates, startAt, endAt})}
+    time={getHumanTime({ allDay, startAt, endAt })}
     boardId={board.id}
     duration={getDuration(startAt, endAt, eventType)}
-    showTag={isToday({ startAt, cancelledDates, isCancelled })}
     onPressItem={this._onPressItem}
   />);
 
