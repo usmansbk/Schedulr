@@ -23,7 +23,7 @@ const NEXT_LAST_FORMAT = 'dddd, Do';
 const DAYS_IN_WEEK = 7;
 const TIME_FORMAT = 'hh:mm:ss';
   
-const dayStart = moment('07:00:00', TIME_FORMAT);
+const dayStart = moment('06:30:00', TIME_FORMAT);
 const dayEnd = moment('19:00:00', TIME_FORMAT);
 
 const headingCalendarFormats = {
