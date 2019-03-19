@@ -32,6 +32,7 @@ export default class Screen extends React.Component {
   };
   _navigateToFollowers = (id, isAuthor) => this.props.navigation.navigate('Followers', { id, isAuthor });
   _navigateToProfile = (id) => this.props.navigation.push('UserProfile', { id, privacy: 'public' });
+  _navigateToAllEvents = (id) => this.props.navigation.push('ListBoardEvents', { id });
 
   render() {
     const { visibleDialog } = this.state;
@@ -45,6 +46,7 @@ export default class Screen extends React.Component {
           handleSelectMenu={this._handleSelectMenu}
           navigateToFollowers={this._navigateToFollowers}
           navigateToProfile={this._navigateToProfile}
+          navigateToAllEvents={this._navigateToAllEvents}
         />
         <DeleteDialog
           id={id}

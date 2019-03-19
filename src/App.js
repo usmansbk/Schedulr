@@ -23,7 +23,8 @@ import {
   Comments,
   EditEvent,
   EditBoard,
-  SearchScreen
+  SearchScreen,
+  ListBoardEvents
 } from './components/screens';
 import colors from './config/colors';
 
@@ -74,6 +75,12 @@ const AppStack = createStackNavigator({
   },
   BoardEvents: {
     screen: BoardEvents,
+    navigationOptions: {
+      header: null
+    }
+  },
+  ListBoardEvents: {
+    screen: ListBoardEvents,
     navigationOptions: {
       header: null
     }

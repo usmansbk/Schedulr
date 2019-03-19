@@ -15,6 +15,7 @@ import UserBoards from './UserBoards';
 import Comments from './Comments';
 import Followers from './Followers';
 import SearchScreen from './Search';
+import ListBoardEvents from './ListBoardEvents';
 
 export {
   AuthLoading,
@@ -33,5 +34,6 @@ export {
   UserBoards,
   Comments,
   Followers,
-  SearchScreen
+  SearchScreen,
+  ListBoardEvents
 };

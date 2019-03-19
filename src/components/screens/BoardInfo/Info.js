@@ -37,7 +37,8 @@ export default class Info extends React.Component {
       handleShare,
       handleSelectMenu,
       navigateToFollowers,
-      navigateToProfile
+      navigateToProfile,
+      navigateToEvents,
     } = this.props;
     if (loading && !board) return <Loading />;
     if (error && !board) return <Error onRefresh={onRefresh} />;
@@ -125,7 +126,10 @@ export default class Info extends React.Component {
                     {numeral(followersCount).format('0a')} Follower{followersCount > 1 ? 's' : ''}
                   </Text>
                   <Text style={styles.middot}>{` ${CIRCLE} `}</Text>
-                  <Text style={styles.count}>
+                  <Text
+                    style={styles.count}
+                    onPress={() => navigateToEvents(id)}
+                  >
                     {numeral(eventsCount).format('0a')} Event{eventsCount > 1 ? 's' : ''}
                   </Text>
                 </View>
