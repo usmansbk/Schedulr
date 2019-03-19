@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, ScrollView } from 'react-native';
 import { Text, Headline, Divider } from 'react-native-paper';
+import Hyperlink from 'react-native-hyperlink';
 import Actions from '../../common/Actions';
 import Tag from '../../common/Tag';
 import { BULLET } from '../../../lib/constants';
@@ -38,7 +39,7 @@ export default ({
             {
               !isCancelled && <Text style={styles.note}> {BULLET} {timeAgo}</Text>
             }
-          </View>
+          </View> 
           <Headline style={styles.title}>{title}</Headline>
           <Text style={styles.date}>{date}</Text>
           <Text style={styles.date}>{duration}</Text>
@@ -83,7 +84,9 @@ export default ({
           }
           <View style={styles.item}>
             <Text style={styles.label}>DESCRIPTION</Text>
-            <Text style={styles.value}>{description || 'No description'}</Text>
+            <Hyperlink linkStyle={styles.linkStyle} linkDefault={true}>
+              <Text style={styles.value}>{description || 'No description'}</Text>
+            </Hyperlink>
           </View>
         </View>
       </View>

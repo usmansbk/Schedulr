@@ -49,6 +49,7 @@ export default StyleSheet.create({
     fontFamily: 'sans-serif-bold',
     fontWeight: 'bold',
   },
+  linkStyle: { color: '#2980b9' },
   item: {
     marginVertical: 12
   },
