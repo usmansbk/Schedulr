@@ -14,3 +14,10 @@ export default sortBoards = memoize((data) => {
   });
   return sorted;
 });
+
+export const sortEvents = memoize((data) => {
+  const sorted = data.sort((a, b) => {
+    return Date.parse(a.createdAt) - Date.parse(b.createdAt);
+  });
+  return sorted;
+})
