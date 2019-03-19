@@ -34,7 +34,8 @@ export default ({
       <View style={styles.content}>
         <View style={styles.head}>
           <View style={styles.headNote}>
-            <Tag status={status} />{
+            <Tag status={status} />
+            {
               !isCancelled && <Text style={styles.note}> {BULLET} {timeAgo}</Text>
             }
           </View>

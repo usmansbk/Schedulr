@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
   Ongoing: {
     color: colors.green
   },
-  Done: {
+  Ended: {
     color: colors.soft_blue,
   },
   Upcoming: {
