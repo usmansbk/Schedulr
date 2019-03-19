@@ -5,6 +5,6 @@ import styles from './styles';
 
 export default ({ visible }) => visible ? (
   <View style={styles.footer}>
-    <Text style={styles.footerText}>No previous events</Text>
+    <Text style={styles.footerText}>No more events</Text>
   </View>
 ) : null;
