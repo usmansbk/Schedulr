@@ -17,7 +17,7 @@ export default sortBoards = memoize((data) => {
 
 export const sortEvents = memoize((data) => {
   const sorted = data.sort((a, b) => {
-    return Date.parse(a.createdAt) - Date.parse(b.createdAt);
+    return Date.parse(a.startAt) - Date.parse(b.startAt);
   });
   return sorted;
 })
