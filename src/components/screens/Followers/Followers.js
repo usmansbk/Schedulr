@@ -9,7 +9,7 @@ export default ({
   goBack,
   isAuthor
 }) => (
-  <React.Fragment>
+  <>
     <Appbar.Header style={styles.elevatedHeader}>
       <Appbar.BackAction onPress={goBack} color={colors.gray} />
       <Appbar.Content
@@ -21,5 +21,5 @@ export default ({
       id={id}
       isAuthor={isAuthor}
     />
-  </React.Fragment>
+  </>
 );

@@ -6,7 +6,7 @@ import styles from '../../../config/styles';
 import colors from '../../../config/colors';
 
 export default (props) => (
-  <React.Fragment>
+  <>
     <Appbar.Header style={styles.header} collapsable>
       <Appbar.BackAction color={colors.gray} onPress={props.goBack} />
       <Appbar.Content
@@ -41,5 +41,5 @@ export default (props) => (
         description={env.APP_VERSION}
       />
     </ScrollView>
-  </React.Fragment>
+  </>
 );

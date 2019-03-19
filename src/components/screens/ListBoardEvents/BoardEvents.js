@@ -31,7 +31,7 @@ export default class BoardEvents extends React.Component {
     } = board;
 
     return (
-      <React.Fragment>
+      <>
         <Appbar.Header style={styles.elevatedHeader} collapsable>
           <Appbar.BackAction color={colors.gray} onPress={onPress} />
           <Appbar.Content
@@ -46,7 +46,7 @@ export default class BoardEvents extends React.Component {
           loading={loadingEvents}
           error={loadingEventsError}
         />
-      </React.Fragment>
+      </>
     );
   }
 }

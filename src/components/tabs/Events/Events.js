@@ -47,7 +47,7 @@ export default class Events extends React.Component {
     if (error) SimpleToast.show('Failed to load events', SimpleToast.SHORT);
 
     return (
-      <React.Fragment>
+      <>
         <List
           loading={loading}
           events={events}
@@ -59,7 +59,7 @@ export default class Events extends React.Component {
           icon="edit"
           onPress={() => this.props.navigation.navigate('NewEvent')}
         />
-      </React.Fragment>
+      </>
     )
   }
 }

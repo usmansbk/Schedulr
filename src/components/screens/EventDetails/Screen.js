@@ -50,7 +50,7 @@ export default class Screen extends React.Component {
     const isRecurring = event.repeat !== ONE_TIME_EVENT;
 
     return (
-      <React.Fragment>
+      <>
         <Details
           id={id}
           event={event}
@@ -84,7 +84,7 @@ export default class Screen extends React.Component {
           handleDismiss={this._hideDialog}
           onConfirm={this._handleEdit}
         />
-      </React.Fragment>
+      </>
     )
   }
 }

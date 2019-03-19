@@ -62,7 +62,7 @@ export default class Info extends React.Component {
     const isClosed = status === 'CLOSED';
 
     return (
-      <React.Fragment>
+      <>
         <Appbar.Header collapsable style={appStyles.header}>
           <Appbar.BackAction color={colors.gray} onPress={goBack} />
           <Appbar.Content
@@ -177,7 +177,7 @@ export default class Info extends React.Component {
           id={id}
         />)
       }
-      </React.Fragment>
+      </>
     );
   }
 }

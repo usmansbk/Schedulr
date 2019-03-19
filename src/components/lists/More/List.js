@@ -63,7 +63,7 @@ class List extends React.Component {
 
   render() {
     return (
-      <React.Fragment>
+      <>
         <FlatList
           style={styles.container}
           contentContainerStyle={styles.contentContainer}
@@ -79,7 +79,7 @@ class List extends React.Component {
           handleDismiss={this._hideDialog}
           onConfirm={this._hideDialog}
         />
-      </React.Fragment>
+      </>
     );
   }
 }

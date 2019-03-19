@@ -71,13 +71,13 @@ export default class EventDetails extends React.Component {
     const isValid = isEventValid({ isCancelled, endAt: end, startAt: start, cancelledDates });
 
     return (
-      <React.Fragment>
+      <>
         <Appbar.Header style={styles.header}  collapsable>
           <Appbar.BackAction color={colors.gray} onPress={handleBack} />
           <Appbar.Content titleStyle={styles.headerColor} />
           {
             isAuthor && (
-              <React.Fragment>
+              <>
                 <Appbar.Action
                   icon="delete"
                   color={colors.gray}
@@ -94,7 +94,7 @@ export default class EventDetails extends React.Component {
                 }
                 {
                   isValid && (
-                    <React.Fragment>
+                    <>
                       <Appbar.Action
                         icon="mode-edit"
                         color={colors.gray}
@@ -105,10 +105,10 @@ export default class EventDetails extends React.Component {
                         color={colors.gray}
                         onPress={this._handleCancel}
                       />
-                    </React.Fragment>
+                    </>
                   )
                 }
-              </React.Fragment>
+              </>
             )
           }
         </Appbar.Header>
@@ -145,7 +145,7 @@ export default class EventDetails extends React.Component {
           navigateToBoard={navigateToBoard}
           navigateToComments={navigateToComments}
         />
-      </React.Fragment>
+      </>
     )
   }
 }

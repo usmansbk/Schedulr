@@ -11,7 +11,7 @@ export default class Boards extends React.Component {
   
   render() {
     return (
-      <React.Fragment>
+      <>
         <List
           loading={this.props.loading}
           boards={this.props.boards}
@@ -22,7 +22,7 @@ export default class Boards extends React.Component {
           icon="add"
           onPress={() => this.props.navigation.navigate('NewBoard')}
         />
-      </React.Fragment>
+      </>
     )
   }
 }

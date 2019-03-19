@@ -67,7 +67,7 @@ export default class Item extends React.PureComponent {
                 <Caption style={styles.replyName}>Replying to deleted comment</Caption>
               </View>
             ) : (
-            <React.Fragment>{
+            <>{
               Boolean(toCommentContent) && (
                 <View style={styles.replyBox}>
                   <Caption
@@ -78,7 +78,7 @@ export default class Item extends React.PureComponent {
                   <Caption numberOfLines={4} ellipsizeMode="tail">{toCommentContent}</Caption>
                 </View>
               )}
-            </React.Fragment>)
+            </>)
           }
           <View style={styles.itemContent}>  
             <Hyperlink linkStyle={styles.linkStyle} linkDefault={true}>

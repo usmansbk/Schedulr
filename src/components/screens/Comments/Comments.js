@@ -42,7 +42,7 @@ export default class Comments extends React.Component {
     } = this.props;
 
     return (
-      <React.Fragment>
+      <>
         <Appbar.Header style={styles.elevatedHeader}>
           <Appbar.BackAction onPress={goBack} color={colors.gray} />
           <Appbar.Content
@@ -69,7 +69,7 @@ export default class Comments extends React.Component {
           targetName={targetName}
           cancelReply={cancelReply}
         />
-      </React.Fragment>
+      </>
     );
   }
 }

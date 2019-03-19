@@ -111,7 +111,7 @@ export default class Form extends React.Component {
           initialValues,
           isValid
         }) => (
-          <React.Fragment>     
+          <>     
           <Appbar.Header style={styles.header}>
             <Button
               mode="outlined"
@@ -178,7 +178,7 @@ export default class Form extends React.Component {
               }
             </View>
           </ScrollView>
-          </React.Fragment>
+          </>
         )}
       </Formik>
     );

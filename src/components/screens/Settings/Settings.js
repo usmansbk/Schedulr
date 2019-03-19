@@ -42,7 +42,7 @@ export default class Settings extends React.Component {
     } = stores.settingsStore;
 
     return (
-      <React.Fragment>
+      <>
         <Appbar.Header style={styles.header} collapsable>
           <Appbar.BackAction color={colors.gray} onPress={goBack} />
           <Appbar.Content
@@ -84,16 +84,21 @@ export default class Settings extends React.Component {
               )}
             />
             <Divider />
-            <List.Item
-              title="Heads-up"
-              right={() => (
-                <Switch
-                  value={headsUp}
-                  onValueChange={() => this.handleValueChange('headsUp')}
+            {
+              false && (
+              <>
+                <List.Item
+                  title="Heads-up"
+                  right={() => (
+                    <Switch
+                      value={headsUp}
+                      onValueChange={() => this.handleValueChange('headsUp')}
+                    />
+                  )}
                 />
-              )}
-            />
-            <Divider />
+                <Divider />
+              </>)
+            }
             <List.Item
               title="Starred events only"
               right={() => (
@@ -124,7 +129,7 @@ export default class Settings extends React.Component {
             />
           </List.Section>
         </ScrollView>
-      </React.Fragment>
+      </>
     );
   }
 }

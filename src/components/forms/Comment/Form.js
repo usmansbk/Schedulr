@@ -40,7 +40,7 @@ export default class CommentInput extends React.Component {
     } = this.state;
 
     return (
-      <React.Fragment>
+      <>
         {
           Boolean(targetName) && (
             <View style={styles.alert}>
@@ -79,7 +79,7 @@ export default class CommentInput extends React.Component {
             style={styles.right}
           />
         </View>
-      </React.Fragment>
+      </>
     );
   }
 }

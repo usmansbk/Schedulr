@@ -64,7 +64,7 @@ export default class Screen extends React.Component {
     
     const me = stores.me.asJs();
     return (
-      <React.Fragment>
+      <>
       <Comments
         loading={loading}
         me={me}
@@ -87,7 +87,7 @@ export default class Screen extends React.Component {
         visible={visibleDialog === 'delete'}
         handleDismiss={this._hideDialog}
       />
-      </React.Fragment>
+      </>
     )
   }
 }

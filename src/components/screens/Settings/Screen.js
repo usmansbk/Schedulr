@@ -11,7 +11,7 @@ export default class Screen extends React.Component {
   _goBack = () => this.props.navigation.goBack();
   render() {
     return (
-      <React.Fragment>
+      <>
         <Settings
           goBack={this._goBack}
           openRemindMeDialog={this._showDialog}
@@ -21,7 +21,7 @@ export default class Screen extends React.Component {
           hideDialog={this._hideDialog}
           handleValueChange={this._handleValueChange}
         />
-      </React.Fragment>
+      </>
     );
   }
 }

@@ -38,7 +38,7 @@ export default class Screen extends React.Component {
     const { visibleDialog } = this.state;
     const id = this.props.navigation.getParam('id');
     return (
-      <React.Fragment>
+      <>
         <BoardInfo
           id={id}
           goBack={this._goBack}
@@ -63,7 +63,7 @@ export default class Screen extends React.Component {
           visible={visibleDialog === 'close' }
           handleDismiss={this._hideDialog}
         />
-      </React.Fragment>
+      </>
     );
   }
 }
