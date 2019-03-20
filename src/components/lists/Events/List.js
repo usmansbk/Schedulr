@@ -131,7 +131,7 @@ export default class List extends React.Component {
     this.listRef.current.scrollToLocation({
       itemIndex: 0,
       sectionIndex: 0,
-      viewPosition: 0
+      viewPosition: SECTION_HEADER_HEIGHT
     });
   };
 
