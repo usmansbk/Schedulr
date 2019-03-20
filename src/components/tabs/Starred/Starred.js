@@ -11,6 +11,7 @@ export default class Starred extends React.Component {
       <List
         animated
         listType="starred"
+        navigation={this.props.navigation}
         loading={this.props.loading}
         events={this.props.events}
         onRefresh={this.props.onRefresh}

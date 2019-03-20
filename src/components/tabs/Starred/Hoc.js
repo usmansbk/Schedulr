@@ -7,7 +7,7 @@ export default graphql(gql(listAllEvents), {
   options: {
     fetchPolicy: 'cache-only',
   },
-  props: ({ data }) => ({
+  props: ({ data, ownProps }) => ({
     error: data.error,
     loading: data.loading,
     events: data && data.listAllEvents && data.listAllEvents.items.filter(item => item.isStarred) || [],
@@ -17,6 +17,7 @@ export default graphql(gql(listAllEvents), {
       } catch (e) {
 
       }
-    }
+    },
+    ...ownProps
   })
 })(Starred);
