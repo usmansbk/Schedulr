@@ -51,6 +51,7 @@ export default class Events extends React.Component {
         <List
           loading={loading}
           events={events}
+          navigation={this.props.navigation}
           hasPreviousEvents={Boolean(nextToken)}
           onRefresh={onRefresh}
           error={error}

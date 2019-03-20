@@ -1,6 +1,6 @@
 import React from 'react';
 import { RefreshControl } from 'react-native';
-import { withNavigationFocus, SectionList } from 'react-navigation';
+import { SectionList } from 'react-navigation';
 import sectionListGetItemLayout from 'react-native-section-list-get-item-layout';
 import Header from './Header';
 import Footer from './Footer';
@@ -34,8 +34,12 @@ const DAYS_PER_PAGE = 3;
 const INITIAL_BEFOREDAYS = 1;
 const INITIAL_AFTERDAYS = 0;
 
-class List extends React.Component {
+export default class List extends React.Component {
 
+  constructor(props) {
+    super(props);
+    this.listRef = React.createRef();
+  }
   state = {
     loadingMore: false,
     loadingPrev: false,
@@ -123,8 +127,12 @@ class List extends React.Component {
     this._bootstrap(this.props.events);
   };
 
-  shouldComponentUpdate = (nextProps) => {
-    return nextProps.isFocused;
+  scrollToTop = () => {
+    this.listRef.current.scrollToLocation({
+      itemIndex: 0,
+      sectionIndex: 0,
+      viewPosition: 0
+    });
   };
 
   _renderItem = ({ item: {
@@ -169,6 +177,7 @@ class List extends React.Component {
     
     return (
       <SectionList
+        ref={this.listRef}
         initialNumToRender={0}
         getItemLayout={this._getItemLayout}
         contentContainerStyle={styles.contentContainer}
@@ -199,5 +208,3 @@ class List extends React.Component {
     );
   }
 }
-
-export default withNavigationFocus(List);

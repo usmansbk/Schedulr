@@ -13,6 +13,15 @@ export default class BoardEvents extends React.Component {
     events: []
   };
 
+  constructor(props) {
+    super(props);
+    this.eventsList = React.createRef();
+  }
+
+  _scrollToTop = () => {
+    this.eventsList.current.scrollToTop();
+  };
+
   render() {
     const {
       board,
@@ -47,14 +56,21 @@ export default class BoardEvents extends React.Component {
             titleStyle={styles.headerColor}
           />
           <Appbar.Action
+            icon="event-note"
+            onPress={this._scrollToTop}
+            color={colors.gray}
+          />
+          <Appbar.Action
             icon="info-outline"
             onPress={() => navigateToBoardInfo(id)}
             color={colors.gray}
           />
         </Appbar.Header>
         <List
+          ref={this.eventsList}
           listType="board"
           events={events}
+          navigation={this.props.navigation}
           loading={loadingEvents}
           error={loadingEventsError}
         />

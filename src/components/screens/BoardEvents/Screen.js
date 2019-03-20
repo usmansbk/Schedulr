@@ -13,6 +13,7 @@ export default class Screen extends React.Component {
       <BoardEvents
         id={id}
         cacheFirst={cacheFirst}
+        navigation={this.props.navigation}
         navigateToBoardInfo={this._navigateToBoardInfo}
         navigateToNewEvent={this._navigateToNewEvent}
         onPress={this._onBack}
