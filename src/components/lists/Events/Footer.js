@@ -24,7 +24,7 @@ export default ({ loading, onPress }) => {
   return (
     <TouchableRipple onPress={onPress} style={styles.container}>
       <View style={styles.view}>
-        <Text style={styles.text}>Show more</Text>
+        <Text style={styles.text}>Show more days</Text>
       </View>
     </TouchableRipple>
   )
