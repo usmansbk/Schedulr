@@ -1,23 +1,27 @@
-import { graphql } from 'react-apollo';
+import { graphql, compose } from 'react-apollo';
+import { withNavigationFocus } from 'react-navigation';
 import gql from 'graphql-tag';
 import Starred from './Starred';
 import { listAllEvents } from '../../../graphql/queries';
 
-export default graphql(gql(listAllEvents), {
-  options: {
-    fetchPolicy: 'cache-only',
-  },
-  props: ({ data, ownProps }) => ({
-    error: data.error,
-    loading: data.loading,
-    events: data && data.listAllEvents && data.listAllEvents.items.filter(item => item.isStarred) || [],
-    onRefresh: async () => {
-      try {
-        await data.refetch();
-      } catch (e) {
-
-      }
+export default compose(
+  withNavigationFocus,
+  graphql(gql(listAllEvents), {
+    options: {
+      fetchPolicy: 'cache-only',
     },
-    ...ownProps
+    props: ({ data, ownProps }) => ({
+      error: data.error,
+      loading: data.loading,
+      events: data && data.listAllEvents && data.listAllEvents.items.filter(item => item.isStarred) || [],
+      onRefresh: async () => {
+        try {
+          await data.refetch();
+        } catch (e) {
+
+        }
+      },
+      ...ownProps
+    })
   })
-})(Starred);
+)(Starred);
