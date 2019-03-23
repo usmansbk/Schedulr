@@ -261,7 +261,7 @@ export const listBoardEvents = `query ListBoardEvents($id: ID!, $limit: Int, $ne
 }`
 
 export const listBoardFollowers = `query Followers($id: ID!, $limit: Int, $nextToken: String) {
-  listFollowers(id: $id, limit: $limit, nextToken: $nextToken) {
+  listFollowers(id: $id, limit: $limit, nextToken: $nextToken)  @connection(key: "listFollowers",filter: ["id"])  {
     nextToken
     items {
       id
