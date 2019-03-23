@@ -36,13 +36,11 @@ export default ({
         <View style={styles.head}>
           <View style={styles.headNote}>
             <Tag status={status} />
-            {
-              !isCancelled && <Text style={styles.note}> {BULLET} {timeAgo}</Text>
-            }
+            {!isCancelled && <Text style={styles.note}> {BULLET} {timeAgo}</Text>}
           </View> 
           <Headline style={styles.title}>{title}</Headline>
           <Text style={styles.date}>{date}</Text>
-          <Text style={styles.date}>{duration}</Text>
+          {(duration !== 'A day') && <Text style={styles.date}>{duration}</Text>}
         </View>
         <Divider />
         <View style={styles.body}>
