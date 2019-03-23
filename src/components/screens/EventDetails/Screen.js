@@ -43,6 +43,7 @@ export default class Screen extends React.Component {
     const id = navigation.getParam('id');
     const refStartAt = navigation.getParam('refStartAt');
     const refEndAt = navigation.getParam('refEndAt');
+    const cardView = navigation.getParam('cardView');
 
     if (loading && !event) return <Loading />;
     if (error && !event) return <Error onRefresh={onRefresh} />;
@@ -53,6 +54,7 @@ export default class Screen extends React.Component {
       <>
         <Details
           id={id}
+          cardView={cardView}
           event={event}
           refStartAt={refStartAt}
           refEndAt={refEndAt}

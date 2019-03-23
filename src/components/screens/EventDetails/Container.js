@@ -43,6 +43,7 @@ export default class EventDetails extends React.Component {
       handleEdit,
       navigateToBoard,
       navigateToComments,
+      cardView
     } = this.props;
     const {
       id,
@@ -144,6 +145,7 @@ export default class EventDetails extends React.Component {
           isCancelled={isEventCancelled({ cancelledDates, isCancelled, startAt: start })}
           navigateToBoard={navigateToBoard}
           navigateToComments={navigateToComments}
+          cardView={cardView}
         />
       </>
     )

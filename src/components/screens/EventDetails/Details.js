@@ -29,14 +29,21 @@ export default ({
   commentsCount,
   navigateToBoard,
   navigateToComments,
+  cardView
 }) => (
   <View style={styles.container}>
     <ScrollView style={styles.bg}>
       <View style={styles.content}>
         <View style={styles.head}>
           <View style={styles.headNote}>
-            <Tag status={status} />
-            {!isCancelled && <Text style={styles.note}> {BULLET} {timeAgo}</Text>}
+            {
+              cardView && (
+                <>
+                  <Tag status={status} />
+                  {!isCancelled && <Text style={styles.note}> {BULLET} {timeAgo}</Text>}
+                </>
+              )
+            }
           </View> 
           <Headline style={styles.title}>{title}</Headline>
           <Text style={styles.date}>{date}</Text>
