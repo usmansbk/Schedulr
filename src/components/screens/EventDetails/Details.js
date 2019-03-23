@@ -37,7 +37,7 @@ export default ({
         <View style={styles.head}>
           <View style={styles.headNote}>
             {
-              cardView && (
+              !cardView && (
                 <>
                   <Tag status={status} />
                   {!isCancelled && <Text style={styles.note}> {BULLET} {timeAgo}</Text>}
