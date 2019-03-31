@@ -4,7 +4,7 @@ import shortid from 'shortid';
 import SimpleToast from 'react-native-simple-toast';
 import { getValue } from '../lib/formValidator';
 import client from '../config/client';
-import { getEvent, getBoard, getComment, getUser } from '../graphql/queries';
+import { getEvent, getBoard, getComment, getUser as getUserQuery } from '../graphql/queries';
 import { BOARD_CLOSED, BOARD_OPEN } from '../lib/constants';
 import stores from '../stores';
 
@@ -165,7 +165,7 @@ export const createEventResponse = (input) => {
 
 export const createBoardResponse = (input) => {
   try {
-    const { getUser } = getNode(gql(getUser), stores.me.id);
+    const { getUser } = getNode(gql(getUserQuery), stores.me.id);
 
     const newBoard = {
       __typename: 'Board',
