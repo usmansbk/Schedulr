@@ -32,7 +32,7 @@ export default StyleSheet.create({
   },
   sectionHeading: {
     fontSize: 24,
-    color: colors.primary_light
+    color: primary_light
   },
   sectionSubheadingContent: {
     flexDirection: 'row',
@@ -54,7 +54,7 @@ export default StyleSheet.create({
   },
   headerText:{
     fontSize: 24,
-    color: primary_dark,
+    color: primary_light,
   },
   footer: {
     height: FOOTER_HEIGHT,
