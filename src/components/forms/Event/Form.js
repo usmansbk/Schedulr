@@ -157,6 +157,7 @@ export default class Form extends React.Component {
             <View style={styles.form}>
               <TextInput
                 placeholder="Title"
+                label="Title"
                 value={values.title}
                 onChangeText={handleChange('title')}
                 onBlur={handleBlur('title')}
@@ -170,6 +171,7 @@ export default class Form extends React.Component {
               </HelperText>
               <TextInput
                 placeholder="Description"
+                label="Description"
                 value={values.description}
                 onChangeText={handleChange('description')}
                 onBlur={handleBlur('description')}
@@ -183,6 +185,7 @@ export default class Form extends React.Component {
               </HelperText>
               <TextInput
                 placeholder="Venue"
+                label="Venue"
                 value={values.venue.address}
                 onChangeText={handleChange('venue.address')}
                 onBlur={handleBlur('venue.address')}

@@ -135,6 +135,7 @@ export default class Form extends React.Component {
             <View style={styles.form}>
               <TextInput
                 placeholder="Board name"
+                label="Name"
                 value={values.name}
                 onChangeText={handleChange('name')}
                 onBlur={handleBlur('name')}
@@ -148,6 +149,7 @@ export default class Form extends React.Component {
               </HelperText>
               <TextInput
                 placeholder="Description"
+                label="Description"
                 value={values.description}
                 onChangeText={handleChange('description')}
                 onBlur={handleBlur('description')}
