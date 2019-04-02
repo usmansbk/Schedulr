@@ -1,6 +1,6 @@
 import moment from 'moment';
 import 'moment-recur';
-import { sortBy } from '../lib/sectionizr';
+import { sortBy } from 'lib/sectionizr';
 
 const DAYS_IN_WEEK = 7;
 const weekdays = [

@@ -1,7 +1,7 @@
 import PushNotification from 'react-native-push-notification';
 import { InteractionManager } from 'react-native';
 import moment from 'moment';
-import { decapitalize } from '../lib/capitalizr';
+import { decapitalize } from 'lib/capitalizr';
 import {
   FIVE_MINUTES,
   TEN_MINUTES,
@@ -9,8 +9,8 @@ import {
   THIRTY_MINUTES,
   ONE_HOUR,
   ONE_DAY
-} from '../lib/time';
-import stores from '../stores';
+} from 'lib/time';
+import stores from 'stores';
 
 const setRepeatReminder = (event, before, settings) => {
   // if repeat === 'weekdays' then

@@ -1,8 +1,8 @@
 import { observable, action, runInAction } from 'mobx';
 import { persist } from 'mobx-persist';
 import gql from 'graphql-tag';
-import client from '../config/client';
-import { LoginUser } from '../graphql/mutations';
+import client from 'config/client';
+import { LoginUser } from 'mygraphql/mutations';
 import SimpleToast from 'react-native-simple-toast';
 
 export default class UserProfile {

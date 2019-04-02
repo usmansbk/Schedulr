@@ -5,7 +5,7 @@ import {
   createAppContainer,
 } from 'react-navigation';
 import LocalNotifications from 'react-native-push-notification';
-import NavigationService from './config/navigation';
+import NavigationService from 'config/navigation';
 import {
   AuthLoading,
   Login,
@@ -25,8 +25,8 @@ import {
   EditBoard,
   SearchScreen,
   ListBoardEvents
-} from './components/screens';
-import colors from './config/colors';
+} from 'components/screens';
+import colors from 'config/colors';
 
 // Configure notifications for local events reminder
 LocalNotifications.configure({

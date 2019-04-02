@@ -2,11 +2,11 @@ import gql from 'graphql-tag';
 import moment from 'moment';
 import shortid from 'shortid';
 import SimpleToast from 'react-native-simple-toast';
-import { getValue } from '../lib/formValidator';
+import { getValue } from 'lib/formValidator';
 import client from '../config/client';
-import { getEvent, getBoard, getComment, getUser as getUserQuery } from '../graphql/queries';
-import { BOARD_CLOSED, BOARD_OPEN } from '../lib/constants';
-import stores from '../stores';
+import { getEvent, getBoard, getComment, getUser as getUserQuery } from 'mygraphql/queries';
+import { BOARD_CLOSED, BOARD_OPEN } from 'lib/constants';
+import stores from 'stores';
 
 const __typename = 'Mutation';
 
