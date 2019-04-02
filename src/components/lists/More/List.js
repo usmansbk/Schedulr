@@ -2,14 +2,14 @@ import React from 'react';
 import { FlatList } from 'react-native';
 import { withNavigationFocus } from 'react-navigation';
 import Share from 'react-native-share';
-import LogoutDialog from '../../dialogs/Logout';
+import LogoutDialog from 'components/dialogs/Logout';
 import Header from './Header';
 import Footer from './Footer';
 import Item from './Item';
 import Separator from './Separator';
 import items from './items';
 import styles from './styles';
-import env from '../../../config/env';
+import env from 'config/env';
 
 class List extends React.Component {
   state = {

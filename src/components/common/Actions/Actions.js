@@ -5,7 +5,7 @@ import ShareButton from '../ShareButton';
 import LocationButton from '../LocationButton';
 import CommentButton from '../CommentButton';
 
-import colors from '../../../config/colors';
+import colors from 'config/colors';
 
 const FONT_SIZE = 22;
 const defaultColor = colors.primary_light;

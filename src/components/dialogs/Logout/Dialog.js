@@ -5,7 +5,7 @@ import {
   Dialog,
   Portal,
 } from 'react-native-paper';
-import colors from '../../../config/colors';
+import colors from 'config/colors';
 
 export default ({
   visible,

@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import colors from '../../../config/colors';
+import colors from 'config/colors';
 
 export const SEPARATOR_HEIGHT = 1;
 export const ITEM_HEIGHT = 64;

@@ -2,8 +2,8 @@ import { graphql } from 'react-apollo';
 import SimpleToast from 'react-native-simple-toast';
 import gql from 'graphql-tag';
 import Dialog from './Dialog';
-import { closeBoard } from '../../../graphql/mutations';
-import { closeBoardResponse } from '../../../helpers/optimisticResponse';
+import { closeBoard } from 'mygraphql/mutations';
+import { closeBoardResponse } from 'helpers/optimisticResponse';
 
 export default graphql(gql(closeBoard), {
   alias: 'withCloseBoardDialog',

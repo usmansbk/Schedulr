@@ -7,7 +7,7 @@ import {
   Headline,
   Button
 } from 'react-native-paper';
-import colors from '../../../config/colors';
+import colors from 'config/colors';
 
 export default (props) => (
   <View style={styles.container}>

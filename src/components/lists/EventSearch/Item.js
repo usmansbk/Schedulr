@@ -9,11 +9,11 @@ import {
   Caption
 } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import UserAvatar from '../../common/UserAvatar';
-import Tag from '../../common/Tag';
+import UserAvatar from 'components/common/UserAvatar';
+import Tag from 'components/common/Tag';
 import numeral from 'numeral';
 import styles, { AVATAR_SIZE } from './styles';
-import colors from '../../../config/colors';
+import colors from 'config/colors';
 
 export default class Item extends React.PureComponent {
   _onPress = () => this.props.onPressItem(this.props.id);

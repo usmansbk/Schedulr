@@ -5,7 +5,7 @@ import Footer from './Footer';
 import Empty from './Empty';
 import Separator from './Separator';
 import styles, { primary } from './styles';
-import { timeAgo } from '../../../lib/time';
+import { timeAgo } from 'lib/time';
 
 export default class List extends React.Component {
   static defaultProps = {

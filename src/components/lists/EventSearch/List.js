@@ -5,8 +5,8 @@ import Item from './Item';
 import Separator from './Separator';
 import Footer from './Footer';
 import Empty from './Empty';
-import { decapitalize } from '../../../lib/capitalizr';
-import { getNextDate } from '../../../lib/time';
+import { decapitalize } from 'lib/capitalizr';
+import { getNextDate } from 'lib/time';
 import styles, {
   primary,
   ITEM_HEIGHT,

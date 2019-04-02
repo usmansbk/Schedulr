@@ -1,8 +1,8 @@
 import React from 'react';
 import { View } from 'react-native';
 import { Text, Caption, Headline } from 'react-native-paper';
-import { getSectionHeaderData } from '../../../lib/time';
-import { BULLET } from '../../../lib/constants';
+import { getSectionHeaderData } from 'lib/time';
+import { BULLET } from 'lib/constants';
 import styles from './styles';
 
 

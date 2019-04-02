@@ -1,9 +1,9 @@
 import React from 'react';
 import { View, TextInput } from 'react-native';
 import { IconButton, Text, Button } from 'react-native-paper';
-import UserAvatar from '../../common/UserAvatar';
+import UserAvatar from 'components/common/UserAvatar';
 import styles, { AVATAR_SIZE } from './styles';
-import colors from '../../../config/colors';
+import colors from 'config/colors';
 
 export default class CommentInput extends React.Component {
   state = {

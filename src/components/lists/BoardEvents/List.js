@@ -9,14 +9,14 @@ import {
   getDuration,
   getHumanTime,
   parseRepeat
-} from '../../../lib/parseItem';
-import { sortEvents } from '../../../lib/utils';
-import { decapitalize } from '../../../lib/capitalizr';
+} from 'lib/parseItem';
+import { sortEvents } from 'lib/utils';
+import { decapitalize } from 'lib/capitalizr';
 import styles, {
   ITEM_HEIGHT,
   SEPARATOR_HEIGHT
 } from './styles';
-import colors from '../../../config/colors';
+import colors from 'config/colors';
 
 class List extends Component {
   static defaultProps = {

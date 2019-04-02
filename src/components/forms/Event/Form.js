@@ -18,19 +18,19 @@ import {
   Appbar,
 } from 'react-native-paper';
 import { Formik } from 'formik';
-import DateTimeInput from '../../common/DateTimeInput';
+import DateTimeInput from 'components/common/DateTimeInput';
 import {
   isEventValid,
   canRepeat
-} from '../../../lib/formValidator';
-import { CANT_REPEAT } from '../../../lib/errorMessages';
-import { getRepeatLabel } from '../../../lib/time';
+} from 'lib/formValidator';
+import { CANT_REPEAT } from 'lib/errorMessages';
+import { getRepeatLabel } from 'lib/time';
 import styles, { navButtonColor } from './styles';
 import formSchema from './schema';
 import eventTypes from './types';
 import frequency from './frequency';
-import { buildEventForm } from '../../../helpers/buildForm';
-import { requestLocationPermission } from '../../../helpers/permissions';
+import { buildEventForm } from 'helpers/buildForm';
+import { requestLocationPermission } from 'helpers/permissions';
 
 
 export default class Form extends React.Component {

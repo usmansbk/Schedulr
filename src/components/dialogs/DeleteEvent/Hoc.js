@@ -3,9 +3,9 @@ import SimpleToast from 'react-native-simple-toast';
 import gql from 'graphql-tag';
 import { withNavigation } from 'react-navigation';
 import Dialog from './Dialog';
-import { listAllEvents } from '../../../graphql/queries';
-import { deleteEvent } from '../../../graphql/mutations';
-import { deleteEventResponse } from '../../../helpers/optimisticResponse';
+import { listAllEvents } from 'mygraphql/queries';
+import { deleteEvent } from 'mygraphql/mutations';
+import { deleteEventResponse } from 'helpers/optimisticResponse';
 
 export default compose(
   withNavigation,

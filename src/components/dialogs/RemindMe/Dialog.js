@@ -7,7 +7,7 @@ import {
   Switch
 } from 'react-native-paper';
 import { inject, observer } from 'mobx-react/native';
-import colors from '../../../config/colors';
+import colors from 'config/colors';
 
 @inject("stores")
 @observer

@@ -7,9 +7,9 @@ import {
   IconButton
 } from 'react-native-paper';
 import Hyperlink from 'react-native-hyperlink';
-import UserAvatar from '../../common/UserAvatar';
+import UserAvatar from 'components/common/UserAvatar';
 import styles, { AVATAR_SIZE } from './styles';
-import colors from '../../../config/colors';
+import colors from 'config/colors';
 
 export default class Item extends React.PureComponent {
   state = {

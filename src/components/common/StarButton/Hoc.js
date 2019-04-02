@@ -1,9 +1,9 @@
 import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
 import Button from './Button';
-import { starEvent, unstarEvent } from '../../../graphql/mutations';
-import { toggleStarButton } from '../../../helpers/optimisticResponse';
-import { listAllEvents, getEvent } from '../../../graphql/queries';
+import { starEvent, unstarEvent } from 'mygraphql/mutations';
+import { toggleStarButton } from 'helpers/optimisticResponse';
+import { listAllEvents, getEvent } from 'mygraphql/queries';
 
 export default compose(
   graphql(gql(starEvent), {

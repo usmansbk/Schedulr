@@ -4,7 +4,7 @@ import DateTimePicker from 'react-native-modal-datetime-picker';
 import { Text } from 'react-native-paper';
 import { View, StyleSheet } from 'react-native';
 import Button from './Picker';
-import colors from '../../../config/colors';
+import colors from 'config/colors';
 
 export default class Input extends React.Component {
 

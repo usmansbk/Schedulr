@@ -1,6 +1,6 @@
 import React from 'react';
 import { FAB } from 'react-native-paper';
-import colors from '../../../config/colors';
+import colors from 'config/colors';
 
 const Fab = ({ onPress, label, icon, small }) => (
   <FAB

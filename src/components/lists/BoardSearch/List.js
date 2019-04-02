@@ -9,7 +9,7 @@ import styles, {
   ITEM_HEIGHT,
   SEPARATOR_HEIGHT
 } from './styles';
-import colors from '../../../config/colors';
+import colors from 'config/colors';
 
 class List extends Component {
   static defaultProps = {

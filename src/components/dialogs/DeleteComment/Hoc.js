@@ -1,8 +1,8 @@
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import Dialog from './Dialog';
-import { listEventComments } from '../../../graphql/queries';
-import { deleteComment } from '../../../graphql/mutations';
+import { listEventComments } from 'mygraphql/queries';
+import { deleteComment } from 'mygraphql/mutations';
 // import { deleteCommentResponse } from '../../../helpers/optimisticResponse';
 
 export default graphql(gql(deleteComment), {

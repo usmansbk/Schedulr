@@ -2,13 +2,13 @@ import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
 import uniqWith from 'lodash.uniqwith';
 import Button from './Button';
-import { followBoard, unfollowBoard } from '../../../graphql/mutations';
-import { listAllBoards, listAllEvents, listBoardEvents } from '../../../graphql/queries';
+import { followBoard, unfollowBoard } from 'mygraphql/mutations';
+import { listAllBoards, listAllEvents, listBoardEvents } from 'mygraphql/queries';
 import {
   followBoardResponse,
   unfollowBoardResponse
-} from '../../../helpers/optimisticResponse';
-import client from '../../../config/client';
+} from 'helpers/optimisticResponse';
+import client from 'config/client';
 import SimpleToast from 'react-native-simple-toast';
 
 const _filter = (a, b) => a.id === b.id;

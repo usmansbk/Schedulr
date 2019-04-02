@@ -3,8 +3,8 @@ import gql from 'graphql-tag';
 import { withNavigation } from 'react-navigation';
 import Dialog from './Dialog';
 import SimpleToast from 'react-native-simple-toast';
-import { listAllBoards } from '../../../graphql/queries';
-import { deleteBoard } from '../../../graphql/mutations';
+import { listAllBoards } from 'mygraphql/queries';
+import { deleteBoard } from 'mygraphql/mutations';
 
 export default compose(
   withNavigation,

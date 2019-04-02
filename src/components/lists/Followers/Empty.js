@@ -1,7 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 import { Headline } from 'react-native-paper';
-import Error from '../../common/Error';
+import Error from 'components/common/Error';
 import styles from './styles';
 
 export default ({ isAuthor, error }) => {

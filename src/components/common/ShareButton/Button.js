@@ -1,7 +1,7 @@
 import React from 'react';
 import Share from 'react-native-share';
 import { IconButton } from 'react-native-paper';
-import env from '../../../config/env';
+import env from 'config/env';
 
 export default ({
   size,

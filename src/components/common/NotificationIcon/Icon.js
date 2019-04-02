@@ -1,6 +1,6 @@
 import React from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import colors from '../../../config/colors';
+import colors from 'config/colors';
 
 export default ({ hasNotification, color, size }) => {
   return (

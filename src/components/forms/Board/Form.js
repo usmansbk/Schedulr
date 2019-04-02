@@ -19,8 +19,8 @@ import {
 import { Formik } from 'formik';
 import validationSchema from './schema';
 import styles, { navButtonColor, placeholder } from './styles';
-import { requestLocationPermission } from '../../../helpers/permissions';
-import { buildBoardForm } from '../../../helpers/buildForm';
+import { requestLocationPermission } from 'helpers/permissions';
+import { buildBoardForm } from 'helpers/buildForm';
 
 export default class Form extends React.Component {
   state = {

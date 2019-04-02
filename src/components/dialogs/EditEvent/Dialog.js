@@ -6,7 +6,7 @@ import {
   RadioButton,
   List,
 } from 'react-native-paper';
-import colors from '../../../config/colors';
+import colors from 'config/colors';
 
 export default class EditEvent extends React.Component {
   state = {

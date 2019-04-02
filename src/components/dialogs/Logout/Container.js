@@ -5,7 +5,7 @@ import { LoginManager } from 'react-native-fbsdk';
 import { GoogleSignin } from 'react-native-google-signin';
 import { withNavigation } from 'react-navigation';
 import Dialog from './Dialog';
-import client from '../../../config/client';
+import client from 'config/client';
 
 class Container extends React.Component {
   state = {

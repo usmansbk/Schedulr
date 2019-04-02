@@ -5,7 +5,7 @@ import {
   IconButton
 } from 'react-native-paper';
 import { View } from 'react-native';
-import styles from '../../../config/styles';
+import styles from 'config/styles';
 
 export default ({ color, icon, size, count, onPress}) => (
   <View style={styles.button}>

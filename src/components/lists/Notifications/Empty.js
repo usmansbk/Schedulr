@@ -3,7 +3,7 @@ import { View } from 'react-native';
 import { Headline, Caption } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import styles from './styles';
-import colors from '../../../config/colors';
+import colors from 'config/colors';
 
 export default () => (
   <View style={styles.empty}>

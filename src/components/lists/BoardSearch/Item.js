@@ -1,8 +1,8 @@
 import React from 'react';
 import { View } from 'react-native';
 import { TouchableRipple, Text, Caption } from 'react-native-paper';
-import UserAvatar from '../../common/UserAvatar';
-import FollowButton from '../../common/FollowButton';
+import UserAvatar from 'components/common/UserAvatar';
+import FollowButton from 'components/common/FollowButton';
 import styles, { AVATAR_SIZE } from './styles';
 
 export default class Item extends React.PureComponent {

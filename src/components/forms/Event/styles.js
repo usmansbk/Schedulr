@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import colors from '../../../config/colors';
+import colors from 'config/colors';
 
 export const buttonTextColor = colors.black;
 export const navButtonColor = colors.navButtonColor;

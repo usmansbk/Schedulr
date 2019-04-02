@@ -1,8 +1,8 @@
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import Dialog from './Dialog';
-import { cancelEvent } from '../../../graphql/mutations';
-import { cancelEventResponse } from '../../../helpers/optimisticResponse';
+import { cancelEvent } from 'mygraphql/mutations';
+import { cancelEventResponse } from 'helpers/optimisticResponse';
 
 export default graphql(gql(cancelEvent), {
   alias: 'withCancelEventDialog',
