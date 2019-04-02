@@ -1,9 +1,9 @@
 import React from 'react';
 import { ScrollView } from 'react-native';
 import { Appbar, List, Divider } from 'react-native-paper';
-import env from '../../../config/env';
-import styles from '../../../config/styles';
-import colors from '../../../config/colors';
+import env from 'config/env';
+import styles from 'config/styles';
+import colors from 'config/colors';
 
 export default (props) => (
   <>

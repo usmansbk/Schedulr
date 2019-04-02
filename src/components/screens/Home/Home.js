@@ -5,11 +5,11 @@ import {
   createBottomTabNavigator,
 } from 'react-navigation';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import MoreRoute from '../../tabs/More';
-import ExploreTab from '../../tabs/Explore';
-import HomeRoute from '../../tabs/Home';
-import NotificationRoute from '../../tabs/Notifications';
-import NotificationsIcon from '../../common/NotificationIcon';
+import MoreRoute from 'components/tabs/More';
+import ExploreTab from 'components/tabs/Explore';
+import HomeRoute from 'components/tabs/Home';
+import NotificationRoute from 'components/tabs/Notifications';
+import NotificationsIcon from 'components/common/NotificationIcon';
 import styles, { activeColor, inactiveTintColor, FONT_SIZE, BLUR_SIZE } from './styles';
 
 const Home = createBottomTabNavigator({

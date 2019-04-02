@@ -2,9 +2,9 @@ import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import SimpleToast from 'react-native-simple-toast';
 import Screen from './Screen';
-import { createBoard } from '../../../graphql/mutations';
-import { listAllBoards } from '../../../graphql/queries';
-import { createBoardResponse } from '../../../helpers/optimisticResponse';
+import { createBoard } from 'mygraphql/mutations';
+import { listAllBoards } from 'mygraphql/queries';
+import { createBoardResponse } from 'helpers/optimisticResponse';
 
 const alias =  'withNewBoardContainer';
 

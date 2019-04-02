@@ -9,7 +9,7 @@ import {
 import { Headline, TouchableRipple } from 'react-native-paper';
 import { CachedImage } from 'react-native-cached-image';
 import numeral from 'numeral';
-import colors from '../../../config/colors';
+import colors from 'config/colors';
 
 export default ({
   navigation,

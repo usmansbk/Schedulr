@@ -1,6 +1,6 @@
 import React from 'react';
-import List from '../../lists/Boards';
-import FAB from '../../common/Fab';
+import List from 'components/lists/Boards';
+import FAB from 'components/common/Fab';
 
 export default class Boards extends React.Component {
   shouldComponentUpdate = (nextProps) => {

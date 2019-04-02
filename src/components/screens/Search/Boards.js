@@ -1,8 +1,8 @@
 import React from 'react';
 import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
-import List from '../../lists/BoardSearch';
-import { listAllBoards } from '../../../graphql/queries';
+import List from 'components/lists/BoardSearch';
+import { listAllBoards } from 'mygraphql/queries';
 
 export default class Boards extends React.Component {
   

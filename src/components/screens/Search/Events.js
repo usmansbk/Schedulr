@@ -1,8 +1,8 @@
 import React from 'react';
 import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
-import List from '../../lists/EventSearch';
-import { listAllEvents } from '../../../graphql/queries';
+import List from 'components/lists/EventSearch';
+import { listAllEvents } from 'mygraphql/queries';
 
 export default class Events extends React.Component {
 

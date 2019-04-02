@@ -3,7 +3,7 @@ import { createMaterialTopTabNavigator } from 'react-navigation';
 import { withCollapsibleForTab } from 'react-navigation-collapsible';
 import Following from './Following';
 import Created from './Created';
-import colors from '../../../config/colors';
+import colors from 'config/colors';
 
 const styles = StyleSheet.create({
   barStyle: {

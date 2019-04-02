@@ -4,7 +4,7 @@ import SimpleToast from 'react-native-simple-toast';
 import { withNavigationFocus } from 'react-navigation';
 import gql from 'graphql-tag';
 import Events from './Events';
-import { listAllEvents } from '../../../graphql/queries';
+import { listAllEvents } from 'mygraphql/queries';
 
 export default compose(
   withNavigationFocus,

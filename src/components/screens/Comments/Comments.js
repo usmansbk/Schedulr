@@ -1,9 +1,9 @@
 import React from 'react';
 import { Appbar } from 'react-native-paper';
-import List from '../../lists/Comments';
-import CommentForm from '../../forms/Comment';
-import styles from '../../../config/styles';
-import colors from '../../../config/colors';
+import List from 'components/lists/Comments';
+import CommentForm from 'components/forms/Comment';
+import styles from 'config/styles';
+import colors from 'config/colors';
 
 export default class Comments extends React.Component {
 

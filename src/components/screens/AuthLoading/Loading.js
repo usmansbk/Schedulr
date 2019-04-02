@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, StyleSheet, ActivityIndicator } from 'react-native';
-import colors from '../../../config/colors';
+import colors from 'config/colors';
 
 export default () => (
   <View style={styles.container}>

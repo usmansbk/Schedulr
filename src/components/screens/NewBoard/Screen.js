@@ -1,6 +1,6 @@
 import React from 'react';
 import SimpleToast from 'react-native-simple-toast';
-import Form from '../../forms/Board';
+import Form from 'components/forms/Board';
 
 export default class NewBoardScreen extends React.Component {
   _handleBack = () => this.props.navigation.goBack();

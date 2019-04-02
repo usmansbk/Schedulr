@@ -1,12 +1,12 @@
 import React from 'react';
 import { Appbar } from 'react-native-paper';
-import List from '../../lists/Events';
-import Fab from '../../common/Fab';
-import Loading from '../../common/Loading';
-import Error from '../../common/Error';
-import styles from '../../../config/styles';
-import colors from '../../../config/colors';
-import { BOARD_CLOSED } from '../../../lib/constants';
+import List from 'components/lists/Events';
+import Fab from 'components/common/Fab';
+import Loading from 'components/common/Loading';
+import Error from 'components/common/Error';
+import styles from 'config/styles';
+import colors from 'config/colors';
+import { BOARD_CLOSED } from 'lib/constants';
 
 export default class BoardEvents extends React.Component {
   static defaultProps = {

@@ -7,8 +7,8 @@ import {
   Divider
 } from 'react-native-paper';
 import { inject, observer } from 'mobx-react/native';
-import styles from '../../../config/styles';
-import colors from '../../../config/colors';
+import styles from 'config/styles';
+import colors from 'config/colors';
 
 @inject("stores")
 @observer

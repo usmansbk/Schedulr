@@ -3,7 +3,7 @@ import SimpleToast from 'react-native-simple-toast';
 // import { Analytics } from 'aws-amplify';
 import gql from 'graphql-tag';
 import Boards from './Boards';
-import { listAllBoards } from '../../../graphql/queries';
+import { listAllBoards } from 'mygraphql/queries';
 
 export default graphql(gql(listAllBoards), {
   alias: 'withBoardsContainer',

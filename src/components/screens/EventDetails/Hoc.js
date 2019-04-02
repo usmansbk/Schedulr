@@ -3,7 +3,7 @@ import { Analytics } from 'aws-amplify';
 import gql from 'graphql-tag';
 import SimpleToast from 'react-native-simple-toast';
 import Screen from './Screen';
-import { getEvent } from '../../../graphql/queries';
+import { getEvent } from 'mygraphql/queries';
 
 const alias = 'withEventDetails';
 

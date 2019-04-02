@@ -2,7 +2,7 @@ import React from 'react';
 import SimpleToast from 'react-native-simple-toast';
 import { inject } from 'mobx-react/native';
 import Comments from './Comments';
-import DeleteCommentDialog from '../../dialogs/DeleteComment';
+import DeleteCommentDialog from 'components/dialogs/DeleteComment';
 
 @inject("stores")
 export default class Screen extends React.Component {

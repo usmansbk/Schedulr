@@ -1,6 +1,6 @@
 import React from 'react';
 import Settings from './Settings';
-import RemindMeDialog from '../../dialogs/RemindMe';
+import RemindMeDialog from 'components/dialogs/RemindMe';
 
 export default class Screen extends React.Component {
   state = {

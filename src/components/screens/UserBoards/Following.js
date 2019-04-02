@@ -5,18 +5,18 @@ import { Animated } from 'react-native';
 import { FlatList } from 'react-navigation';
 import SimpleToast from 'react-native-simple-toast';
 import { withCollapsibleForTabChild } from 'react-navigation-collapsible';
-import Loading from '../../common/Loading';
-import ErrorScreen from '../../common/Error';
-import Item from '../../lists/BoardSearch/Item';
-import Separator from '../../lists/Boards/Separator';
-import Footer from '../../lists/Boards/Footer';
-import Empty from '../../lists/Boards/Empty';
+import Loading from 'components/common/Loading';
+import ErrorScreen from 'components/common/Error';
+import Item from 'components/lists/BoardSearch/Item';
+import Separator from 'components/lists/Boards/Separator';
+import Footer from 'components/lists/Boards/Footer';
+import Empty from 'components/lists/Boards/Empty';
 import styles, {
   ITEM_HEIGHT,
   SEPARATOR_HEIGHT
-} from '../../lists/Boards/styles';
-import sortBoards from '../../../lib/utils';
-import { followingBoards as followingBoardsQuery, listAllBoards } from '../../../graphql/queries';
+} from 'components/lists/Boards/styles';
+import sortBoards from 'lib/utils';
+import { followingBoards as followingBoardsQuery, listAllBoards } from 'mygraphql/queries';
 
 const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
 const alias = 'withFollowingBoards';

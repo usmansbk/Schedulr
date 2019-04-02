@@ -1,7 +1,7 @@
 import React from 'react';
 import { Linking } from 'react-native';
 import Help from './Help';
-import env from '../../../config/env';
+import env from 'config/env';
 
 export default class Screen extends React.Component {
   _goBack = () => this.props.navigation.goBack();

@@ -2,7 +2,7 @@ import { graphql, compose } from 'react-apollo';
 import { withNavigationFocus } from 'react-navigation';
 import gql from 'graphql-tag';
 import Starred from './Starred';
-import { listAllEvents } from '../../../graphql/queries';
+import { listAllEvents } from 'mygraphql/queries';
 
 export default compose(
   withNavigationFocus,

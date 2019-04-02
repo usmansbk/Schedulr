@@ -1,8 +1,8 @@
 import React from 'react';
 import { Appbar } from 'react-native-paper';
 import List from './ListHoc';
-import styles from '../../../config/styles';
-import colors from '../../../config/colors';
+import styles from 'config/styles';
+import colors from 'config/colors';
 
 export default ({
   id,

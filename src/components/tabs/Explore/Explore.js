@@ -1,13 +1,12 @@
 import React, {Component} from 'react';
 import { TouchableRipple, Searchbar, Text } from 'react-native-paper';
+import { withCollapsible } from 'react-navigation-collapsible';
 import { FlatList } from 'react-navigation';
 import { Animated } from 'react-native';
 import Empty from './Empty';
 import Item from './Item';
-import colors from '../../../config/colors';
+import colors from 'config/colors';
 import styles from './styles';
-
-import { withCollapsible } from 'react-navigation-collapsible';
 
 const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
 

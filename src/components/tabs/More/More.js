@@ -1,5 +1,5 @@
 import React from 'react';
-import List from '../../lists/More';
+import List from 'components/lists/More';
 
 export default (props) => (
     <List

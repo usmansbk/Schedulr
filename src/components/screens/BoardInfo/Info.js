@@ -20,14 +20,14 @@ import {
 } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Hyperlink from 'react-native-hyperlink';
-import UserAvater from '../../common/UserAvatar';
-import FollowButton from '../../common/FollowButton';
-import Loading from '../../common/Loading';
-import Error from '../../common/Error';
+import UserAvater from 'components/common/UserAvatar';
+import FollowButton from 'components/common/FollowButton';
+import Loading from 'components/common/Loading';
+import Error from 'components/common/Error';
 import styles, { AVATAR_SIZE } from './styles';
-import appStyles from '../../../config/styles';
-import colors from '../../../config/colors';
-import { CIRCLE } from '../../../lib/constants';
+import appStyles from 'config/styles';
+import colors from 'config/colors';
+import { CIRCLE } from 'lib/constants';
 
 export default class Info extends React.Component {
   shouldComponentUpdate = (nextProps) => !isEqual(nextProps.board, this.props.board);

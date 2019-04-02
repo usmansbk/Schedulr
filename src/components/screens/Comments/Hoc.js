@@ -1,9 +1,9 @@
 import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
 import Screen from './Screen';
-import { listEventComments } from '../../../graphql/queries';
-import { createComment } from '../../../graphql/mutations';
-import { createCommentResponse } from '../../../helpers/optimisticResponse';
+import { listEventComments } from 'mygraphql/queries';
+import { createComment } from 'mygraphql/mutations';
+import { createCommentResponse } from 'helpers/optimisticResponse';
 import SimpleToast from 'react-native-simple-toast';
 
 const alias = 'withCommentsScreen';

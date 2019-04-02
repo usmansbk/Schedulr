@@ -1,9 +1,9 @@
 import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
 import Screen from './Screen';
-import { updateBoard } from '../../../graphql/mutations';
-import { getBoard } from '../../../graphql/queries';
-import { updateBoardResponse } from '../../../helpers/optimisticResponse';
+import { updateBoard } from 'mygraphql/mutations';
+import { getBoard } from 'mygraphql/queries';
+import { updateBoardResponse } from 'helpers/optimisticResponse';
 
 const alias = 'withEditBoardContainer';
 

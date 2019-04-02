@@ -1,9 +1,9 @@
 import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
 import Screen from './Screen';
-import { createEvent } from '../../../graphql/mutations';
-import { listAllEvents, listAllBoards, getEvent } from '../../../graphql/queries';
-import { createEventResponse } from '../../../helpers/optimisticResponse';
+import { createEvent } from 'mygraphql/mutations';
+import { listAllEvents, listAllBoards, getEvent } from 'mygraphql/queries';
+import { createEventResponse } from 'helpers/optimisticResponse';
 import SimpleToast from 'react-native-simple-toast';
 
 const alias =  'withNewEventContainer';

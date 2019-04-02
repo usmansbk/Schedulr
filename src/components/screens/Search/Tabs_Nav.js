@@ -6,7 +6,7 @@ import {
 import { StyleSheet, Dimensions } from 'react-native';
 import Events from './Events';
 import Boards from './Boards';
-import colors from '../../../config/colors';
+import colors from 'config/colors';
 
 const styles = StyleSheet.create({
   barStyle: {

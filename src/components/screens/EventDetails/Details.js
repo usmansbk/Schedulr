@@ -2,9 +2,9 @@ import React from 'react';
 import { View, ScrollView } from 'react-native';
 import { Text, Headline, Divider } from 'react-native-paper';
 import Hyperlink from 'react-native-hyperlink';
-import Actions from '../../common/Actions';
-import Tag from '../../common/Tag';
-import { BULLET } from '../../../lib/constants';
+import Actions from 'components/common/Actions';
+import Tag from 'components/common/Tag';
+import { BULLET } from 'lib/constants';
 import styles from './styles';
 
 export default ({

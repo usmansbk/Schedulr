@@ -1,12 +1,12 @@
 import React from 'react';
 import Details from './Container';
-import DeleteDialog from '../../dialogs/DeleteEvent';
-import CancelDialog from '../../dialogs/CancelEvent';
-import EditDialog from '../../dialogs/EditEvent';
-import Loading from '../../common/Loading';
-import Error from '../../common/Error';
-import { isSingle } from '../../../lib/parseItem';
-import { ONE_TIME_EVENT } from '../../../lib/constants';
+import DeleteDialog from 'components/dialogs/DeleteEvent';
+import CancelDialog from 'components/dialogs/CancelEvent';
+import EditDialog from 'components/dialogs/EditEvent';
+import Loading from 'components/common/Loading';
+import Error from 'components/common/Error';
+import { isSingle } from 'lib/parseItem';
+import { ONE_TIME_EVENT } from 'lib/constants';
 
 export default class Screen extends React.Component {
   state = { visibleDialog: null };

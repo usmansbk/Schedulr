@@ -1,10 +1,10 @@
 import React from 'react';
 import { Appbar } from 'react-native-paper';
-import List from '../../lists/BoardEvents';
-import Loading from '../../common/Loading';
-import Error from '../../common/Error';
-import styles from '../../../config/styles';
-import colors from '../../../config/colors';
+import List from 'components/lists/BoardEvents';
+import Loading from 'components/common/Loading';
+import Error from 'components/common/Error';
+import styles from 'config/styles';
+import colors from 'config/colors';
 
 export default class BoardEvents extends React.Component {
   static defaultProps = {

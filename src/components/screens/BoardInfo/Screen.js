@@ -1,10 +1,10 @@
 import React from 'react';
 import Share from 'react-native-share';
 import BoardInfo from './Hoc';
-import DeleteDialog from '../../dialogs/DeleteBoard';
-import OpenDialog from '../../dialogs/OpenBoard';
-import CloseDialog from '../../dialogs/CloseBoard';
-import env from '../../../config/env';
+import DeleteDialog from 'components/dialogs/DeleteBoard';
+import OpenDialog from 'components/dialogs/OpenBoard';
+import CloseDialog from 'components/dialogs/CloseBoard';
+import env from 'config/env';
 
 export default class Screen extends React.Component {
   state = { visibleDialog: null };

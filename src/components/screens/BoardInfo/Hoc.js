@@ -3,7 +3,7 @@ import { Analytics } from 'aws-amplify';
 import SimpleToast from 'react-native-simple-toast';
 import gql from 'graphql-tag';
 import Info from './Info';
-import { getBoard } from '../../../graphql/queries';
+import { getBoard } from 'mygraphql/queries';
 
 const alias = 'withBoardInfoContainer';
 

@@ -1,9 +1,9 @@
 import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
 import Screen from './Screen';
-import { getEvent, listAllBoards } from '../../../graphql/queries';
-import { updateEvent } from '../../../graphql/mutations';
-import { updateEventResponse } from '../../../helpers/optimisticResponse';
+import { getEvent, listAllBoards } from 'mygraphql/queries';
+import { updateEvent } from 'mygraphql/mutations';
+import { updateEventResponse } from 'helpers/optimisticResponse';
 
 const alias = 'withEditEventContainer';
 

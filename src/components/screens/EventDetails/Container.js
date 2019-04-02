@@ -3,12 +3,12 @@ import moment from 'moment';
 import isEqual from 'lodash.isequal';
 import { Appbar } from 'react-native-paper';
 import Details from './Details';
-import styles from '../../../config/styles';
-import colors from '../../../config/colors';
-import { formatDate, getRepeatLabel } from '../../../lib/time';
-import { isEventValid, isEventCancelled, getDuration, getStatus } from '../../../lib/parseItem';
-import capitalizr, {decapitalize} from '../../../lib/capitalizr';
-import { ONE_TIME_EVENT } from '../../../lib/constants';
+import styles from 'config/styles';
+import colors from 'config/colors';
+import { formatDate, getRepeatLabel } from 'lib/time';
+import { isEventValid, isEventCancelled, getDuration, getStatus } from 'lib/parseItem';
+import capitalizr, {decapitalize} from 'lib/capitalizr';
+import { ONE_TIME_EVENT } from 'lib/constants';
 
 const DATE_FORMAT = "ddd DD, MMM YYYY, hh:mm a";
 

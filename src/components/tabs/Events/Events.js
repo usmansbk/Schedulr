@@ -1,11 +1,11 @@
 import React from 'react';
 import { Linking } from 'react-native';
 import SimpleToast from 'react-native-simple-toast';
-import List from '../../lists/Events';
-import FAB from '../../common/Fab';
-import NavigationService from '../../../config/navigation';
-import schdlAll from '../../../helpers/setReminders';
-import { requestLocationPermission } from '../../../helpers/permissions';
+import List from 'components/lists/Events';
+import FAB from 'components/common/Fab';
+import NavigationService from 'config/navigation';
+import schdlAll from 'helpers/setReminders';
+import { requestLocationPermission } from 'helpers/permissions';
 
 export default class Events extends React.Component {
   constructor(props) {
