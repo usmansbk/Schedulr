@@ -3,16 +3,10 @@ import {
   Button,
   Dialog,
   Portal,
-  RadioButton,
-  List,
 } from 'react-native-paper';
 import colors from 'config/colors';
 
 export default class EditEvent extends React.Component {
-  state = {
-    checked: 'single',
-  };
-
   _onContinue = () => {
     const { id, onConfirm, handleDismiss, refStartAt, refEndAt } = this.props;
     handleDismiss();
@@ -24,7 +18,7 @@ export default class EditEvent extends React.Component {
       visible,
       handleDismiss,
     } = this.props;
-    const { checked } = this.state;
+
     return (
       <Portal>
         <Dialog
@@ -34,21 +28,6 @@ export default class EditEvent extends React.Component {
           style={{backgroundColor: colors.bg}}
         >
           <Dialog.Title>Edit event?</Dialog.Title>
-          <Dialog.Content>
-            <RadioButton.Group  
-              value={checked}
-              onValueChange={checked => this.setState({ checked })}
-            >
-              <List.Item
-                title="Only this event"
-                right={() => <RadioButton value="single" />}
-              />
-              <List.Item
-                title="All of this event"
-                right={() => <RadioButton value="all" />}
-              />
-            </RadioButton.Group>
-          </Dialog.Content>
           <Dialog.Actions>
             <Button onPress={handleDismiss}>Dismiss</Button>
             <Button onPress={this._onContinue}>Continue</Button>
