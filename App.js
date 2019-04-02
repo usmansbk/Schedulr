@@ -7,6 +7,7 @@ import { Provider as MobxProvider } from 'mobx-react/native';
 import { Rehydrated } from 'aws-appsync-react';
 import SplashScreen from 'react-native-splash-screen';
 import Amplify, { Auth } from 'aws-amplify';
+import 'babel-polyfill';
 import AppContainer from './src/App';
 import Loading from './src/components/common/Loading';
 import NavigationService from './src/config/navigation';

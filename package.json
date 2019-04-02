@@ -54,6 +54,7 @@
     "@babel/plugin-proposal-decorators": "^7.3.0",
     "babel-jest": "23.6.0",
     "babel-plugin-transform-remove-console": "^6.9.4",
+    "babel-polyfill": "^6.26.0",
     "jest": "23.6.0",
     "metro-react-native-babel-preset": "^0.52.0",
     "react-test-renderer": "16.6.1"
