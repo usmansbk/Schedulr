@@ -99,7 +99,11 @@ export default class EventDetails extends React.Component {
                       <Appbar.Action
                         icon="mode-edit"
                         color={colors.gray}
-                        onPress={handleEdit}
+                        onPress={() => handleEdit({
+                          id,
+                          refStartAt: startAt,
+                          refEndAt: endAt
+                        })}
                       />
                       <Appbar.Action
                         icon="close"

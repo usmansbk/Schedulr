@@ -2,7 +2,6 @@ import React from 'react';
 import Details from './Container';
 import DeleteDialog from 'components/dialogs/DeleteEvent';
 import CancelDialog from 'components/dialogs/CancelEvent';
-import EditDialog from 'components/dialogs/EditEvent';
 import Loading from 'components/common/Loading';
 import Error from 'components/common/Error';
 import { isSingle } from 'lib/parseItem';
@@ -12,17 +11,7 @@ export default class Screen extends React.Component {
   state = { visibleDialog: null };
   _goBack = () => this.props.navigation.goBack();
   _openDeleteDialog = () => this.setState({ visibleDialog: 'delete' });
-  _openEditDialog = () => {
-    const { event } = this.props;
-    if (event.repeat === ONE_TIME_EVENT) {
-      this._handleEdit({
-        id: event.id
-      });
-    } else {
-      this.setState({ visibleDialog: 'edit' });
-    }
-  }
-  _handleEdit = ({ id, option, refStartAt, refEndAt }) => this.props.navigation.navigate('EditEvent', { id, option, refEndAt, refStartAt });
+  _handleEdit = ({ id, refStartAt, refEndAt }) => this.props.navigation.navigate('EditEvent', { id, refEndAt, refStartAt });
   _handleRepeat = () => this.props.navigation.navigate('NewEvent', { id: this.props.navigation.getParam('id'), isNew: true });
   _openCancelDialog = () => this.setState({ visibleDialog: 'cancel' });
   _navigateToBoard = (id) => this.props.navigation.navigate('BoardEvents', { id });
@@ -61,7 +50,7 @@ export default class Screen extends React.Component {
           handleBack={this._goBack}
           handleDelete={this._openDeleteDialog}
           handleCancel={this._openCancelDialog}
-          handleEdit={this._openEditDialog}
+          handleEdit={this._handleEdit}
           handleRepeat={this._handleRepeat}
           navigateToBoard={this._navigateToBoard}
           navigateToComments={this._navigateToComments}
@@ -77,14 +66,6 @@ export default class Screen extends React.Component {
           date={isRecurring ? refStartAt : null}
           visible={visibleDialog === 'cancel'}
           handleDismiss={this._hideDialog}
-        />
-        <EditDialog
-          id={id}
-          refStartAt={refStartAt}
-          refEndAt={refEndAt}
-          visible={visibleDialog === 'edit'}
-          handleDismiss={this._hideDialog}
-          onConfirm={this._handleEdit}
         />
       </>
     )
