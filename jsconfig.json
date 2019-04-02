@@ -1,15 +1,15 @@
 {
   "compilerOptions": {
-      "experimentalDecorators": true,
-      "baseUrl": ".",
-      "paths": {
-        "*": ["src/*"],
-        "components/*": ["src/components/*"],
-        "config/*": ["src/config/*"],
-        "mygraphql/*": ["src/graphql/*"],
-        "helpers/*": ["src/helpers/*"],
-        "lib/*": ["src/lib"],
-        "stores/*": ["src/stores"]
-      }
+    "experimentalDecorators": true,
+    "baseUrl": ".",
+    "paths": {
+      "*": ["src/*"],
+      "components/*": ["src/components/*"],
+      "config/*": ["src/config/*"],
+      "mygraphql/*": ["src/graphql/*"],
+      "helpers/*": ["src/helpers/*"],
+      "lib/*": ["src/lib"],
+      "stores/*": ["src/stores"]
+    }
   }
 }

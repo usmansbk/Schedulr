@@ -4,6 +4,7 @@
     ["@babel/plugin-proposal-decorators", { "legacy": true }],
     ["module-resolver", {
       "root": ["./src"],
+      "extensions": [".ios.js", ".android.js", ".js", ".json"],
       "alias": {
         "components": "./src/components",
         "config": "./src/config",
