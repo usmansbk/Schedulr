@@ -7,7 +7,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "aws-amplify": "1.1.23",
+    "aws-amplify": "1.1.10",
     "aws-appsync": "^1.5.2",
     "aws-appsync-react": "^1.2.5",
     "emoji-regex": "^7.0.3",
@@ -30,6 +30,7 @@
     "react-native-cached-image": "^1.4.3",
     "react-native-fbsdk": "^0.8.0",
     "react-native-geolocation-service": "^2.0.0",
+    "react-native-gesture-handler": "^1.1.0",
     "react-native-google-signin": "^1.0.0",
     "react-native-hyperlink": "^0.0.14",
     "react-native-modal-datetime-picker": "^6.0.0",
