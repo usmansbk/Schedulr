@@ -2,6 +2,17 @@
   "presets": ["module:metro-react-native-babel-preset"],
   "plugins": [
     ["@babel/plugin-proposal-decorators", { "legacy": true }],
+    ["module-resolver", {
+      "root": ["./src"],
+      "alias": {
+        "components": "./src/components",
+        "config": "./src/config",
+        "mygraphql": "./src/graphql",
+        "helpers": "./src/helpers",
+        "lib": "./src/lib",
+        "stores": "./src/stores"
+      }
+    }]
   ],
   "env": {
     "production": {

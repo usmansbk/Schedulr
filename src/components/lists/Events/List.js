@@ -15,12 +15,12 @@ import {
   getTime,
   isToday,
   parseRepeat
-} from '../../../lib/parseItem';
-import { decapitalize } from '../../../lib/capitalizr';
+} from 'lib/parseItem';
+import { decapitalize } from 'lib/capitalizr';
 import {
   getNextEvents,
   getPreviousEvents
-} from '../../../lib/calendr';
+} from 'lib/calendr';
 import styles, {
   ITEM_HEIGHT,
   SEPERATOR_HEIGHT,
