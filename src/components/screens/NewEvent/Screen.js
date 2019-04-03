@@ -33,6 +33,7 @@ export default class NewEventScreen extends React.Component {
       eventType,
       repeat,
       until,
+      forever,
       board={}
     } = event;
 
@@ -56,6 +57,7 @@ export default class NewEventScreen extends React.Component {
       eventType: eventType || eventTypes[0].id,
       repeat: repeat || frequency[0].id,
       until,
+      forever,
       boardId: board.id || boardId
     });
   };

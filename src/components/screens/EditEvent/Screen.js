@@ -20,6 +20,7 @@ export default class EditEventScreen extends React.Component {
       eventType,
       repeat,
       until,
+      forever,
       board
     } = event;
     return ({
@@ -38,6 +39,7 @@ export default class EditEventScreen extends React.Component {
       eventType,
       repeat,
       until,
+      forever,
       boardId: board.id
     });
   };

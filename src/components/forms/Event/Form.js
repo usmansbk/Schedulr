@@ -39,7 +39,6 @@ export default class Form extends React.Component {
     this.state = {
       latitude: null,
       longitude: null,
-      forever: !Boolean(props.initialValues.until)
     }
   }
 
@@ -59,6 +58,7 @@ export default class Form extends React.Component {
       allDay: false,
       eventType: eventTypes[0].id,
       repeat: frequency[0].id,
+      forever: false,
       until: null,
       boardId: '',
     }
@@ -112,8 +112,7 @@ export default class Form extends React.Component {
         validationSchema={formSchema}
         onSubmit={async (values, { setSubmitting }) => {
           if (isEventValid(values)) {
-            const { longitude, latitude } = this.state;
-            const input = buildEventForm(values, { longitude, latitude });
+            const input = buildEventForm(values, this.state);
             onSubmit && await onSubmit(input);
           }
           setSubmitting(false);
@@ -203,14 +202,13 @@ export default class Form extends React.Component {
                 value={values.startAt}
                 onChangeDate={(date) => {
                   const prevStartAt = Date.parse(values.startAt);
-                  const currentEndAt = Date.parse(values.endAt);
-                  const currentStartAt = Date.parse(date);
-                  const prevDuration = Math.abs(currentEndAt - prevStartAt);
-    
+                  
                   setFieldValue('startAt', date);
                   if (values.allDay) {
                     setFieldValue('endAt', moment(date).endOf('day').toISOString());
-                  } else if (currentStartAt > currentEndAt) {
+                  } else {
+                    const prevEndAt = Date.parse(values.endAt);
+                    const prevDuration = Math.abs(prevEndAt - prevStartAt);
                     const newEnd = moment(date).add(prevDuration, 'milliseconds').toISOString();
                     setFieldValue('endAt', newEnd);
                   }
@@ -247,16 +245,16 @@ export default class Form extends React.Component {
                   itemStyle={styles.pickerItem}
                   onValueChange={itemValue => {
                     setFieldValue('repeat', itemValue);
-                    if (itemValue !== frequency[0].id) {
-                      moment(values.startAt).add(1, 'year').toISOString()
-                    } else {
-                      setFieldValue('until', null);
-                    }
+                    setFieldValue('forever',  (itemValue !== frequency[0].id));
                   }}
                 >
                   {
                     frequency.map(freq => (
-                      <Picker.Item key={freq.id} label={getRepeatLabel(freq.id, values.startAt)} value={freq.id} />
+                      <Picker.Item
+                        key={freq.id}
+                        label={getRepeatLabel(freq.id, values.startAt)}
+                        value={freq.id}
+                      />
                     ))
                   }
                 </Picker>
@@ -271,31 +269,22 @@ export default class Form extends React.Component {
                   )
                 }
               </View>
-
               {
-                (values.repeat !== frequency[0].id) && (
+                (values.forever) && (
                   <View style={styles.radio}>
                     <Text style={styles.radioText}>Repeat Forever</Text>
                     <RadioButton
                       value='Forever'
                       onPress={() => {
-                        this.setState(prev => ({
-                          forever: !prev.forever
-                        }), () => {
-                          if (this.state.forever) {
-                            setFieldValue('until', null);
-                          } else {
-                            setFieldValue('until', moment(values.startAt).add(1, 'year').toISOString());
-                          }
-                        });
+                        setFieldValue('forever', !values.forever);
                       }}
-                      status={this.state.forever ? 'checked' : 'unchecked'}
+                      status={values.forever ? 'checked' : 'unchecked'}
                     />
                   </View>
                 )
               }
               {
-                (!this.state.forever) && (
+                (!values.forever) && (
                   <DateTimeInput
                     label="Repeat Until"
                     value={values.until}
