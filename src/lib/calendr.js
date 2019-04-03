@@ -83,7 +83,8 @@ function getNextDayEvents(initialEvents, nextDate) {
 
         const endAt = moment(startAt).add(duration).toISOString();
         
-        const shouldRecur = currentEvent.until ? moment(startAt).isSameOrBefore(moment(currentEvent.until)) : true;
+        const shouldRecur = currentEvent.until ?
+          moment(startAt).isSameOrBefore(moment(currentEvent.until)) : currentEvent.forever;
 
         if (shouldRecur) {
           accumulator.data.push(Object.assign({}, currentEvent, {
