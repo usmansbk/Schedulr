@@ -15,7 +15,7 @@ import stores from 'stores';
 const __typename = 'Mutation';
 
 export const followBoardResponse = (id) => {
-  const boardNode = getNode(gql(getBoard), id);
+  const boardNode = getNode(gql(getBoardQuery), id);
   const board = boardNode.getBoard;
   const count = board.followersCount;
   const isFollowing = board.isFollowing;
@@ -30,7 +30,7 @@ export const followBoardResponse = (id) => {
 };
 
 export const unfollowBoardResponse = (id) => {
-  const boardNode = getNode(gql(getBoard), id);
+  const boardNode = getNode(gql(getBoardQuery), id);
   const count = boardNode.getBoard.followersCount;
   const isFollowing = boardNode.getBoard.isFollowing;
 
@@ -67,7 +67,7 @@ export const deleteCommentResponse = (input) => {
 export const deleteEventResponse = (input) => {
   const data = getNode(gql(getEvent), input.id);
   const event = data.getEvent;
-  const boardData = getNode(gql(getBoard), event.board.id);
+  const boardData = getNode(gql(getBoardQuery), event.board.id);
   const board = boardData.getBoard;
   const eventsCount = board.eventsCount;
   return ({
@@ -76,8 +76,8 @@ export const deleteEventResponse = (input) => {
       __typename: 'Event',
       id: input.id,
       board: {
-        id: board.id,
         __typename: 'Board',
+        id: board.id,
         eventsCount: eventsCount > 1 ? eventsCount - 1 : eventsCount
       }
     }

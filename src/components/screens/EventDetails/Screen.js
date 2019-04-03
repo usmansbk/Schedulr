@@ -4,7 +4,6 @@ import DeleteDialog from 'components/dialogs/DeleteEvent';
 import CancelDialog from 'components/dialogs/CancelEvent';
 import Loading from 'components/common/Loading';
 import Error from 'components/common/Error';
-import { isSingle } from 'lib/parseItem';
 import { ONE_TIME_EVENT } from 'lib/constants';
 
 export default class Screen extends React.Component {
@@ -57,7 +56,6 @@ export default class Screen extends React.Component {
         />
         <DeleteDialog
           id={id}
-          isSingle={isSingle(event.repeat)}
           visible={visibleDialog === 'delete'}
           handleDismiss={this._hideDialog}
         />

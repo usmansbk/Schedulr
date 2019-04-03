@@ -3,15 +3,12 @@ import {
   Button,
   Dialog,
   Portal,
-  RadioButton,
-  List
 } from 'react-native-paper';
 import colors from 'config/colors';
 
 export default class DeleteEvent extends React.Component {
   state = {
     loading: false,
-    checked: 'single',
   };
   
   shouldComponentUpdate = (nextProps, nextState) => (
@@ -40,11 +37,10 @@ export default class DeleteEvent extends React.Component {
   render() {
     const {
       visible,
-      isSingle,
       handleDismiss
     } = this.props;
 
-    const { loading, checked } = this.state;
+    const { loading } = this.state;
 
     return (
       <Portal>
@@ -54,25 +50,6 @@ export default class DeleteEvent extends React.Component {
           style={{backgroundColor: colors.bg}}
         >
           <Dialog.Title>Delete event?</Dialog.Title>
-          {
-            false && (
-              <Dialog.Content>
-                <RadioButton.Group
-                  value={checked}
-                  onValueChange={checked => this.setState({ checked })}
-                >
-                  <List.Item
-                    title="Delete only this event"
-                    right={() => <RadioButton value="single" />}
-                  />
-                  <List.Item
-                    title="Delete all of this event"
-                    right={() => <RadioButton value="all" />}
-                  />
-                </RadioButton.Group>
-              </Dialog.Content>
-            )
-          }
           <Dialog.Actions>
             <Button disabled={loading} onPress={handleDismiss}>Dismiss</Button>
             <Button loading={loading} disabled={loading} onPress={this._onContinue}>Continue</Button>
