@@ -2,8 +2,6 @@ import React from 'react';
 import List from 'components/lists/Events';
 
 export default class Starred extends React.Component {
-
-  shouldComponentUpdate = (nextProps) => nextProps.isFocused;
   
   render() {
     return (
