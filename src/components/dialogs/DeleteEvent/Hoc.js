@@ -1,5 +1,4 @@
 import { graphql, compose } from 'react-apollo';
-import SimpleToast from 'react-native-simple-toast';
 import gql from 'graphql-tag';
 import { withNavigation } from 'react-navigation';
 import Dialog from './Dialog';
@@ -11,11 +10,6 @@ export default compose(
   withNavigation,
   graphql(gql(deleteEvent), {
     alias: 'withDeleteEventDialog',
-    options: {
-      onCompleted: () => {
-        SimpleToast.show('Event deleted', SimpleToast.SHORT);
-      }
-    },
     props: ({ mutate, ownProps }) => ({
       onSubmit: async (input) => await mutate({
         variables: {

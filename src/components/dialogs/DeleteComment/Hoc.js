@@ -3,7 +3,7 @@ import gql from 'graphql-tag';
 import Dialog from './Dialog';
 import { listEventComments } from 'mygraphql/queries';
 import { deleteComment } from 'mygraphql/mutations';
-// import { deleteCommentResponse } from '../../../helpers/optimisticResponse';
+import { deleteCommentResponse } from '../../../helpers/optimisticResponse';
 
 export default graphql(gql(deleteComment), {
   options: props => ({ 
@@ -20,7 +20,7 @@ export default graphql(gql(deleteComment), {
         cache.writeQuery({ query, data });
       }
     },
-    // optimisticResponse: () => deleteCommentResponse({ id: props.id, eventId: props.eventId }),
+    optimisticResponse: () => deleteCommentResponse({ id: props.id, eventId: props.eventId }),
   }),
   props: ({ mutate, ownProps }) => ({
     onDelete: async () => await mutate(),

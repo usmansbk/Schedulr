@@ -78,7 +78,7 @@ export const deleteEventResponse = (input) => {
       board: {
         __typename: 'Board',
         id: board.id,
-        eventsCount: eventsCount > 1 ? eventsCount - 1 : eventsCount
+        eventsCount: eventsCount > 0 ? eventsCount - 1 : eventsCount
       }
     }
   });
