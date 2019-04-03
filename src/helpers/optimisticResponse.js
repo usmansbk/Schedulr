@@ -46,15 +46,15 @@ export const unfollowBoardResponse = (id) => {
 };
 
 export const deleteCommentResponse = (input) => {
-  const eventNode = getNode(gql(getEvent), input.eventId);
-  const count = eventNode.getEvent.commentsCount;
+  const data = getNode(gql(getEvent), input.eventId);
+  const count = data.getEvent.commentsCount;
 
   const deleteComment = {
     __typename: 'Comment',
     id: input.id,
     event: {
       __typename: 'Event',
-      id: eventNode.id,
+      id: input.eventId,
       commentsCount: count > 0 ? count - 1 : count
     }
   };
