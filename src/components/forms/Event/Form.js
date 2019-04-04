@@ -270,7 +270,7 @@ export default class Form extends React.Component {
                 }
               </View>
               {
-                (values.forever) && (
+                (values.repeat !== frequency[0].id) && (
                   <View style={styles.radio}>
                     <Text style={styles.radioText}>Repeat Forever</Text>
                     <RadioButton
@@ -289,7 +289,7 @@ export default class Form extends React.Component {
                 )
               }
               {
-                (!values.forever && (itemValue !== frequency[0].id)) && (
+                (!values.forever && (values.repeat !== frequency[0].id)) && (
                   <DateTimeInput
                     label="Repeat Until"
                     value={values.until}
