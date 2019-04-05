@@ -101,8 +101,8 @@ export default class EventDetails extends React.Component {
                         color={colors.gray}
                         onPress={() => handleEdit({
                           id,
-                          refStartAt: startAt,
-                          refEndAt: endAt
+                          refStartAt: start,
+                          refEndAt: end
                         })}
                       />
                       <Appbar.Action
