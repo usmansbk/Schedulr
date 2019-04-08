@@ -6,14 +6,20 @@ export default class Starred extends React.Component {
   shouldComponentUpdate = (nextProps) => nextProps.isFocused;
   
   render() {
+    const {
+      navigation,
+      loading,
+      events,
+      onRefresh
+    } = this.props;
+
     return (
       <List
-        animated
         listType="starred"
-        navigation={this.props.navigation}
-        loading={this.props.loading}
-        events={this.props.events}
-        onRefresh={this.props.onRefresh}
+        navigation={navigation}
+        loading={loading}
+        events={events}
+        onRefresh={onRefresh}
       />
     );
   }
