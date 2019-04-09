@@ -1,5 +1,5 @@
 import React from 'react';
-import List from 'components/lists/Events';
+import List from 'components/lists/BoardEvents';
 
 export default class Starred extends React.Component {
 
@@ -15,7 +15,7 @@ export default class Starred extends React.Component {
 
     return (
       <List
-        listType="starred"
+        starred
         navigation={navigation}
         loading={loading}
         events={events}
