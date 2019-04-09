@@ -25,18 +25,22 @@ function getRepeat(recur) {
 
 function getNextEvents(initialEvents=[], afterDays, daysPerPage) {
   const sections = [];
-  for (let i = afterDays; i < afterDays + daysPerPage; i++) {
-    const nextDate = moment().add(i, 'day').toISOString();
-    sections.push(getNextDayEvents(initialEvents, nextDate));
+  if (initialEvents.length) {
+    for (let i = afterDays; i < afterDays + daysPerPage; i++) {
+      const nextDate = moment().add(i, 'day').toISOString();
+      sections.push(getNextDayEvents(initialEvents, nextDate));
+    }
   }
   return sections;
 }
 
 function getPreviousEvents(initialEvents=[], beforeDays, daysPerPage) {
   const sections = [];
-  for (let i = beforeDays; i < beforeDays + daysPerPage; i++) {
-    const nextDate = moment().add(-(i), 'day').toISOString();
-    sections.push(getNextDayEvents(initialEvents, nextDate));
+  if (initialEvents.length) {
+    for (let i = beforeDays; i < beforeDays + daysPerPage; i++) {
+      const nextDate = moment().add(-(i), 'day').toISOString();
+      sections.push(getNextDayEvents(initialEvents, nextDate));
+    }
   }
   return sections.reverse();
 }
