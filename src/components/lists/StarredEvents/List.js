@@ -10,6 +10,7 @@ import {
   getHumanTime,
   parseRepeat
 } from 'lib/parseItem';
+import { formatDate } from 'lib/time';
 import { sortEvents } from 'lib/utils';
 import { decapitalize } from 'lib/capitalizr';
 import styles, {
@@ -33,6 +34,7 @@ class List extends Component {
   );
   shouldComponentUpdate = (nextProps) => nextProps.navigation.isFocused;
   _onPressItem = (id) => this.props.navigation.push('EventDetails', { id, cardView: true });
+  _navigateToComments = (id, title, date) => this.props.navigation.navigate('Comments', { id, title, date });
   _keyExtractor = (item) => String(item.id);
 
   _renderItem = ({ item: {
@@ -42,6 +44,7 @@ class List extends Component {
     startAt,
     endAt,
     repeat,
+    venue,
     board,
     allDay,
     starsCount,
@@ -60,7 +63,9 @@ class List extends Component {
     time={getHumanTime({ allDay, startAt, endAt })}
     boardId={board.id}
     duration={getDuration(startAt, endAt, eventType)}
+    address={venue && venue.address}
     onPressItem={this._onPressItem}
+    onPressComment={this._navigateToComments}
   />);
 
   _renderEmptyList = () => <Empty error={this.props.error} loading={this.props.loading} />;

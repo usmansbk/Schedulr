@@ -14,8 +14,11 @@ import styles, {
 
 export default class Item extends React.PureComponent {
   _onPress = () => this.props.onPressItem(this.props.id, this.props.startAt, this.props.endAt);
+  _onPressComment = () => this.props.onPressComment(this.props.id, this.props.title, this.props.time);
+
   render() {
     const {
+      id,
       title,
       repeat,
       time,
@@ -24,7 +27,8 @@ export default class Item extends React.PureComponent {
       pictureUrl,
       isStarred,
       starsCount,
-      commentsCount
+      commentsCount,
+      address,
     } = this.props;
 
     return (
@@ -52,11 +56,15 @@ export default class Item extends React.PureComponent {
               <Caption>{duration} {eventType} {repeat}</Caption>
             </View>
             <Actions
+              id={id}
               title={title}
+              address={address}
               eventType={eventType}
               isStarred={isStarred}
               starsCount={starsCount}
               commentsCount={commentsCount}
+              date={time}
+              navigateToComments={this._onPressComment}
             />
           </View>
         </View>
