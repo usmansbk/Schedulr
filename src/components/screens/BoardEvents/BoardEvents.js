@@ -55,11 +55,15 @@ export default class BoardEvents extends React.Component {
             subtitle={description}
             titleStyle={styles.headerColor}
           />
-          <Appbar.Action
-            icon="event-note"
-            onPress={this._scrollToTop}
-            color={colors.gray}
-          />
+          {
+            Boolean(events.length) && (
+              <Appbar.Action
+                icon="event-note"
+                onPress={this._scrollToTop}
+                color={colors.gray}
+              />
+            )
+          }
           <Appbar.Action
             icon="info-outline"
             onPress={() => navigateToBoardInfo(id)}
