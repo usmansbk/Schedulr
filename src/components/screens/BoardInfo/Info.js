@@ -4,7 +4,8 @@ import isEqual from 'lodash.isequal';
 import {
   View,
   ScrollView,
-  RefreshControl
+  RefreshControl,
+  Alert
 } from 'react-native';
 import {
   Menu,
@@ -27,7 +28,7 @@ import Error from 'components/common/Error';
 import styles, { AVATAR_SIZE } from './styles';
 import appStyles from 'config/styles';
 import colors from 'config/colors';
-import { CIRCLE } from 'lib/constants';
+import { CIRCLE, INFO } from 'lib/constants';
 
 export default class Info extends React.Component {
   shouldComponentUpdate = (nextProps) => !isEqual(nextProps.board, this.props.board);
@@ -142,7 +143,14 @@ export default class Info extends React.Component {
             <View style={styles.body}>
               <View style={styles.noteView}>
                 <Icon color={colors.black} name="visibility" size={18} />
-                <Text style={styles.note}>{ isPublic ? 'Public' : 'Private'} board</Text>
+                <Text
+                  style={styles.note}
+                  onPress={() => {
+                    if (isPublic) {
+                      Alert.alert('Info', INFO)
+                    }
+                  }}
+                >{ isPublic ? 'Public' : 'Private'} board</Text>
               </View>
               {
                 isClosed && (
