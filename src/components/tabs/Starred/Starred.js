@@ -1,5 +1,5 @@
 import React from 'react';
-import List from 'components/lists/BoardEvents';
+import List from 'components/lists/StarredEvents';
 
 export default class Starred extends React.Component {
 
