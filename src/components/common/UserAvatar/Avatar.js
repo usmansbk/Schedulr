@@ -1,8 +1,8 @@
 import React from 'react';
 import { TouchableRipple } from 'react-native-paper';
-import { CachedImage } from 'react-native-cached-image';
 import UserAvatar from 'react-native-user-avatar';
 import emojiRegex from 'emoji-regex';
+import CachedImage from './CachedImage';
 
 export default ({
   name,
