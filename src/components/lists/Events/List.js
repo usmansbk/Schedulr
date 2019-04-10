@@ -56,8 +56,16 @@ export default class List extends React.Component {
   };
 
   _keyExtractor = (item) => item.id + item.startAt;
-  _renderHeader = () => <Header onPress={this.loadPreviousEvents} loading={this.state.loadingPrev} />;
-  _renderFooter = () => <Footer onPress={this._onEndReached} loading={this.state.loadingMore} />;
+  _renderHeader = () => (
+    this.state.sections.length ?
+    <Header onPress={this.loadPreviousEvents} loading={this.state.loadingPrev} />
+    : null
+  );
+  _renderFooter = () => (
+    this.state.sections.length ?
+    <Footer onPress={this._onEndReached} loading={this.state.loadingMore} />
+    : null
+  );
   _renderEmptyList = () => <Empty error={this.props.error} loading={this.props.loading} />;
   _renderSeparator = () => <Separator />;
   _renderSectionHeader = ({ section }) => <SectionHeader section={section} />;
