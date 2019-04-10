@@ -3,7 +3,7 @@ import 'moment-recur';
 import { sortBy } from 'lib/sectionizr';
 
 const DAYS_IN_WEEK = 7;
-const weekdays = [
+export const weekdays = [
   "Monday",
   "Tuesday",
   "Wednesday",
