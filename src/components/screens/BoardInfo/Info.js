@@ -147,7 +147,7 @@ export default class Info extends React.Component {
                   style={styles.note}
                   onPress={() => {
                     if (isPublic) {
-                      Alert.alert('Info', INFO)
+                      Alert.alert('Public Board', INFO)
                     }
                   }}
                 >{ isPublic ? 'Public' : 'Private'} board</Text>

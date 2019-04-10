@@ -7,7 +7,7 @@ import {
   Headline,
 } from 'react-native-paper';
 import Avatar from 'components/common/UserAvatar';
-import Tag from 'components/common/Tag';
+import Actions from 'components/common/Actions';
 import styles, {
   AVATAR_SIZE,
 } from './styles';
@@ -22,6 +22,9 @@ export default class Item extends React.PureComponent {
       duration,
       eventType,
       pictureUrl,
+      isStarred,
+      starsCount,
+      commentsCount
     } = this.props;
 
     return (
@@ -29,7 +32,7 @@ export default class Item extends React.PureComponent {
         onPress={this._onPress}
         style={styles.itemContainer}
       >
-        <View useNativeDriver style={styles.itemContentSmall}>
+        <View useNativeDriver style={styles.itemContent}>
           <View style={styles.left}>
             <Avatar
               size={AVATAR_SIZE}
@@ -48,6 +51,13 @@ export default class Item extends React.PureComponent {
               <Text style={styles.time}>{time}</Text>
               <Caption>{duration} {eventType} {repeat}</Caption>
             </View>
+            <Actions
+              title={title}
+              eventType={eventType}
+              isStarred={isStarred}
+              starsCount={starsCount}
+              commentsCount={commentsCount}
+            />
           </View>
         </View>
       </TouchableRipple>

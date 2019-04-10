@@ -44,11 +44,17 @@ class List extends Component {
     repeat,
     board,
     allDay,
+    starsCount,
+    commentsCount,
+    isStarred
   }}) => (<Item
     id={id}
     title={title}
     startAt={startAt}
     endAt={endAt}
+    starsCount={starsCount}
+    commentsCount={commentsCount}
+    isStarred={isStarred}
     eventType={decapitalize(eventType)}
     repeat={parseRepeat(repeat)}
     time={getHumanTime({ allDay, startAt, endAt })}
