@@ -59,12 +59,11 @@ export default class Item extends React.PureComponent {
               id={id}
               title={title}
               address={address}
-              eventType={eventType}
               isStarred={isStarred}
               starsCount={starsCount}
               commentsCount={commentsCount}
-              date={time}
               navigateToComments={this._onPressComment}
+              small
             />
           </View>
         </View>
