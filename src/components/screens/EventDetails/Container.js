@@ -84,15 +84,11 @@ export default class EventDetails extends React.Component {
                   color={colors.gray}
                   onPress={handleDelete}
                 />
-                {
-                  !isValid && (
-                    <Appbar.Action
-                      icon="repeat"
-                      color={colors.gray}
-                      onPress={handleRepeat}
-                    />
-                  )
-                }
+                <Appbar.Action
+                  icon="repeat"
+                  color={colors.gray}
+                  onPress={handleRepeat}
+                />
                 {
                   isValid && (
                     <>
