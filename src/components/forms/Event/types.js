@@ -1,7 +1,8 @@
 export default [
   { name: 'Lecture', id: 'LECTURE' },
-  { name: 'Examination', id: 'EXAMINATION' },
   { name: 'Normal', id: 'EVENT' },
+  { name: 'Examination', id: 'EXAMINATION' },
+  { name: 'Test', id: 'TEST' },
   { name: 'Task', id: 'TASK' },
   { name: 'Meetup', id: 'MEETUP' },
   { name: 'Hobby', id: 'HOBBY' },
