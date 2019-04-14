@@ -58,7 +58,7 @@ export default class BoardEvents extends React.Component {
           {
             Boolean(events.length) && (
               <Appbar.Action
-                icon="event-note"
+                icon="keyboard-arrow-up"
                 onPress={this._scrollToTop}
                 color={colors.gray}
               />
