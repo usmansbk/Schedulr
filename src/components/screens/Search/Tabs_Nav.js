@@ -5,7 +5,7 @@ import {
 } from 'react-navigation';
 import { StyleSheet, Dimensions } from 'react-native';
 import Events from './Events';
-import Boards from './Boards';
+import Calendars from './Boards';
 import colors from 'config/colors';
 
 const styles = StyleSheet.create({
@@ -24,11 +24,11 @@ const styles = StyleSheet.create({
 
 const Tabs = createMaterialTopTabNavigator(
   {
-    Boards,
+    Calendars,
     Events
   },
   {
-    initialRouteName: 'Boards',
+    initialRouteName: 'Calendars',
     initialLayout: { height: 0, width: Dimensions.get('window').width },
     animationEnabled: true,
     tabBarOptions: {
