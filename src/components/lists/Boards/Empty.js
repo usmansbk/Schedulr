@@ -4,8 +4,8 @@ import { Headline, Paragraph } from 'react-native-paper';
 import styles from './styles';
 
 export default ({ profile, error }) => {
-  let title = "Follow or create a board";
-  if (profile) title = "No boards";
+  let title = "Follow or create a Calendar";
+  if (profile) title = "No Calendar";
   if (error) {
     title = "Network error";
   }

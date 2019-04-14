@@ -10,5 +10,5 @@ export default Yup.object().shape({
     .trim()
     .max(160, 'Too Long'),
   boardId: Yup.string()
-    .required('Board is required')
+    .required('Calendar is required')
 });

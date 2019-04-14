@@ -5,6 +5,6 @@ import styles from './styles';
 
 export default ({ visible }) => visible ? (
   <View style={styles.footer}>
-    <Text style={styles.footerText}>No more boards</Text>
+    <Text style={styles.footerText}>No more calendars</Text>
   </View>
 ) : null;
