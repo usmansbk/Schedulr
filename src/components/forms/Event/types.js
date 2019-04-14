@@ -14,4 +14,5 @@ export default [
   { name: 'Ceremony', id: 'CEREMONY' },
   { name: 'Competition', id: 'COMPETITION' },
   { name: 'Party', id: 'PARTY' },
+  { name: 'Holiday', id: 'HOLIDAY' },
 ];
