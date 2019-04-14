@@ -85,7 +85,7 @@ export default class EventDetails extends React.Component {
                   onPress={handleDelete}
                 />
                 <Appbar.Action
-                  icon="repeat"
+                  icon="content-copy"
                   color={colors.gray}
                   onPress={handleRepeat}
                 />
