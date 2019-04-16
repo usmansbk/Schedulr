@@ -10,7 +10,6 @@ import {
   getHumanTime,
   parseRepeat
 } from 'lib/parseItem';
-import { formatDate } from 'lib/time';
 import { sortEvents } from 'lib/utils';
 import { decapitalize } from 'lib/capitalizr';
 import styles, {

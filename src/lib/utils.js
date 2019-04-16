@@ -20,4 +20,4 @@ export const sortEvents = memoize((data) => {
     return Date.parse(a.startAt) - Date.parse(b.startAt);
   });
   return sorted;
-})
+});
