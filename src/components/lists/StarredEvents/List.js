@@ -34,9 +34,9 @@ class List extends Component {
     }
   );
   shouldComponentUpdate = (nextProps) => nextProps.navigation.isFocused;
-  _onPressItem = (id) => this.props.navigation.push('EventDetails', { id, cardView: true });
+  _onPressItem = (id, refStartAt, refEndAt) => this.props.navigation.push('EventDetails', { id, refStartAt, refEndAt });
   _navigateToComments = (id, title, date) => this.props.navigation.navigate('Comments', { id, title, date });
-  _keyExtractor = (item) => String(item.id);
+  _keyExtractor = (item) => String(item.id); 
 
   _renderItem = ({ item: {
     id,

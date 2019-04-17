@@ -1,5 +1,6 @@
 import moment from 'moment';
 import 'moment-recur';
+import memoize from 'memoize-one';
 import { sortBy } from 'lib/sectionizr';
 
 const DAYS_IN_WEEK = 7;
@@ -108,7 +109,7 @@ function getNextDayEvents(initialEvents, nextDate) {
   });
 }
 
-function getEvents(events) {
+const getEvents = memoize((events) => {
   return events.map((currentEvent) => {
     const eventDate = moment(currentEvent.startAt);
     const repeat = getRepeat(currentEvent.repeat);
@@ -140,7 +141,7 @@ function getEvents(events) {
     }
     return currentEvent;
   });
-}
+});
 
 export {
   getEvents,

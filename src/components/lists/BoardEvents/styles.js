@@ -53,7 +53,7 @@ export default StyleSheet.create({
   },
   itemContentSmall: {
     paddingTop: 4,
-    height: ITEM_HEIGHT_SMALL,
+    height: ITEM_HEIGHT,
     flexDirection: 'row',
     paddingHorizontal: 8,
     // backgroundColor: 'green',

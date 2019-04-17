@@ -8,9 +8,11 @@ import Empty from './Empty';
 import {
   getDuration,
   getHumanTime,
-  parseRepeat
+  parseRepeat,
+  getStatus
 } from 'lib/parseItem';
-import { sortEvents } from 'lib/utils';
+import { sortStarredEvents } from 'lib/utils';
+import { getEvents } from 'lib/calendr';
 import { decapitalize } from 'lib/capitalizr';
 import styles, {
   ITEM_HEIGHT,
@@ -32,7 +34,7 @@ class List extends Component {
     }
   );
   shouldComponentUpdate = (nextProps) => nextProps.navigation.isFocused;
-  _onPressItem = (id) => this.props.navigation.push('EventDetails', { id, cardView: true });
+  _onPressItem = (id, refStartAt, refEndAt) => this.props.navigation.push('EventDetails', { id, refStartAt, refEndAt });
   _keyExtractor = (item) => String(item.id);
 
   _renderItem = ({ item: {
@@ -44,11 +46,14 @@ class List extends Component {
     repeat,
     board,
     allDay,
+    isCancelled,
+    cancelledDates,
   }}) => (<Item
     id={id}
     title={title}
     startAt={startAt}
     endAt={endAt}
+    status={getStatus({ isCancelled, cancelledDates, startAt, endAt})}
     eventType={decapitalize(eventType)}
     repeat={parseRepeat(repeat)}
     time={getHumanTime({ allDay, startAt, endAt })}
@@ -86,7 +91,7 @@ class List extends Component {
         getItemLayout={this._getItemLayout}
         ItemSeparatorComponent={this._renderSeparator}
         keyExtractor={this._keyExtractor}
-        data={sortEvents(events)}
+        data={sortStarredEvents(getEvents(events))}
         renderItem={this._renderItem}
         ListEmptyComponent={this._renderEmptyList}
         ListFooterComponent={this._renderFooter}
