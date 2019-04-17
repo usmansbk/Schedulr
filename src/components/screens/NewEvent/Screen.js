@@ -47,8 +47,23 @@ export default class NewEventScreen extends React.Component {
     const targetDate = this.props.navigation.getParam('targetDate', moment().toISOString())
     const initialStartAt = moment(targetDate).toISOString();
     const initialEndAt = moment(targetDate).add(2, 'hours').toISOString();
-    const start = startAt || initialStartAt;
-    const end = endAt || initialEndAt;
+    let newStart = startAt;
+    let newEnd = endAt;
+
+    if (startAt) {
+      const currentStart = moment(startAt);
+      const currentEnd = moment(endAt);
+      const duration = Math.abs(moment.duration(currentStart.diff(currentEnd)));
+      
+      const startSec = currentStart.seconds();
+      const startMins = currentStart.minutes();
+      const startHours = currentStart.hours();
+      
+      newStart = moment().seconds(startSec).minutes(startMins).hours(startHours).toISOString();
+      newEnd = moment(newStart).add(duration).toISOString();
+    }
+    const start = newStart || initialStartAt;
+    const end = newEnd || initialEndAt;
 
     return ({
       title: title || '',
