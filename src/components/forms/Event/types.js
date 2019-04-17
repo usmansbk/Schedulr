@@ -15,4 +15,6 @@ export default [
   { name: 'Competition', id: 'COMPETITION' },
   { name: 'Party', id: 'PARTY' },
   { name: 'Holiday', id: 'HOLIDAY' },
+  { name: 'Fast', id: 'FAST' },
+  { name: 'Worship', id: 'WORSHIP' }
 ];
