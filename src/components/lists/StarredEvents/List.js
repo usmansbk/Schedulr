@@ -13,6 +13,7 @@ import {
 } from 'lib/parseItem';
 import { sortStarredEvents } from 'lib/utils';
 import { decapitalize } from 'lib/capitalizr';
+import { getEvents } from 'lib/calendr';
 import styles, {
   ITEM_HEIGHT,
   SEPARATOR_HEIGHT
@@ -100,7 +101,7 @@ class List extends Component {
         getItemLayout={this._getItemLayout}
         ItemSeparatorComponent={this._renderSeparator}
         keyExtractor={this._keyExtractor}
-        data={sortStarredEvents(events)}
+        data={sortStarredEvents(getEvents(events))}
         renderItem={this._renderItem}
         ListEmptyComponent={this._renderEmptyList}
         ListFooterComponent={this._renderFooter}

@@ -108,7 +108,42 @@ function getNextDayEvents(initialEvents, nextDate) {
   });
 }
 
+function getEvents(events) {
+  return events.map((currentEvent) => {
+    const eventDate = moment(currentEvent.startAt);
+    const repeat = getRepeat(currentEvent.repeat);
+    let recurrence;
+    if (repeat) {
+      if (repeat === 'weekdays') {
+        recurrence = eventDate.recur().every(weekdays).daysOfWeek();
+      } else {
+        recurrence = eventDate.recur().every(1, repeat);
+      }
+      recurrence.fromDate(moment().toISOString());
+      const start = moment(currentEvent.startAt);
+      const end = moment(currentEvent.endAt);
+      
+      const startSec = start.seconds();
+      const startMins = start.minutes();
+      const startHours = start.hours();
+
+      const duration = Math.abs(moment.duration(start.diff(end)));
+
+      const nextDates = recurrence.next(1);
+
+      const startAt = nextDates[0].seconds(startSec).minutes(startMins).hours(startHours).toISOString();
+      const endAt = moment(startAt).add(duration).toISOString();
+      return  Object.assign({}, currentEvent, {
+        startAt,
+        endAt,
+      });
+    }
+    return currentEvent;
+  });
+}
+
 export {
+  getEvents,
   getNextEvents,
   getPreviousEvents
 }
