@@ -11,7 +11,18 @@ import { BULLET } from 'lib/constants';
 import styles from './styles';
 
 export default class SectionHeader extends React.PureComponent {
-  _onPress = () => this.props.onPress(this.props.section.title);
+  _onPress = () => {
+    const date = moment(this.props.section.title);
+    const now = moment();
+    
+    const startSec = now.seconds();
+    const startMins = now.minutes();
+    const startHours = now.hours();
+
+    const targetDate = date.seconds(startSec).minutes(startMins).hours(startHours).toISOString();
+
+    this.props.onPress(targetDate);
+  }
 
   render() {
     const { section: { title , data }, onPress } = this.props;
