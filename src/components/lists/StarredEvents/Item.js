@@ -6,6 +6,7 @@ import {
   Caption,
   Headline,
 } from 'react-native-paper';
+import Tag from 'components/common/Tag';
 import Avatar from 'components/common/UserAvatar';
 import Actions from 'components/common/Actions';
 import styles, {
@@ -22,6 +23,7 @@ export default class Item extends React.PureComponent {
       title,
       repeat,
       time,
+      status,
       duration,
       eventType,
       pictureUrl,
@@ -54,6 +56,7 @@ export default class Item extends React.PureComponent {
               </Headline>
               <Text style={styles.time}>{time}</Text>
               <Caption>{duration} {eventType} {repeat}</Caption>
+              <Tag status={status} /> 
             </View>
             <Actions
               id={id}

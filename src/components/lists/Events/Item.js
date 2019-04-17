@@ -6,8 +6,8 @@ import {
   Caption,
   Headline,
 } from 'react-native-paper';
-import Avatar from '../../common/UserAvatar';
-import Tag from '../../common/Tag';
+import Avatar from 'components/common/UserAvatar';
+import Tag from 'components/common/Tag';
 import styles, {
   AVATAR_SIZE,
 } from './styles';

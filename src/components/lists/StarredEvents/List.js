@@ -8,7 +8,8 @@ import Empty from './Empty';
 import {
   getDuration,
   getHumanTime,
-  parseRepeat
+  parseRepeat,
+  getStatus
 } from 'lib/parseItem';
 import { sortStarredEvents } from 'lib/utils';
 import { decapitalize } from 'lib/capitalizr';
@@ -40,6 +41,8 @@ class List extends Component {
     id,
     title,
     eventType,
+    isCancelled,
+    cancelledDates,
     startAt,
     endAt,
     repeat,
@@ -52,6 +55,7 @@ class List extends Component {
   }}) => (<Item
     id={id}
     title={title}
+    status={getStatus({ isCancelled, cancelledDates, startAt, endAt})}
     startAt={startAt}
     endAt={endAt}
     starsCount={starsCount}
