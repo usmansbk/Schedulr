@@ -1,5 +1,6 @@
 import moment from 'moment';
 import 'moment-recur';
+import 'twix';
 import memoize from 'memoize-one';
 import { sortBy } from 'lib/sectionizr';
 
@@ -58,6 +59,7 @@ function getNextDayEvents(initialEvents, nextDate) {
   return initialEvents.reduce((accumulator, currentEvent) => {
     const eventDate = moment(currentEvent.startAt);
     const repeat = getRepeat(currentEvent.repeat);
+    const isExtended = eventDate.twix(currentEvent.endAt).contains(refDate.toISOString());
 
     if (repeat && !currentEvent.isCancelled) {
       let recurrence;
@@ -98,7 +100,7 @@ function getNextDayEvents(initialEvents, nextDate) {
           }));
         }
       }
-    } else if (!repeat && eventDate.isSame(refDate, 'day')) {
+    } else if (!repeat && eventDate.isSame(refDate, 'day') || isExtended) {
       accumulator.data.push(currentEvent);
     }
     accumulator.data = sortBy(accumulator.data, 'startAt');
