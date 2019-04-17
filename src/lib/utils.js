@@ -21,3 +21,16 @@ export const sortEvents = memoize((data) => {
   });
   return sorted;
 });
+
+export const sortStarredEvents = memoize((data) => {
+  const sorted = data.sort((a, b) => {
+    const now = Date.now();
+    const endAtA = Date.parse(a.endAt);
+    const endAtB = Date.parse(b.endAt);
+    if (now > endAtA || now > endAtB) {
+      return Date.parse(endAtA) - Date.parse(b.endAtB);
+    }
+    return Date.parse(a.startAt) - Date.parse(b.startAt);
+  });
+  return sorted;
+});

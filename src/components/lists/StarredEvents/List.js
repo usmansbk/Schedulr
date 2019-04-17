@@ -10,7 +10,7 @@ import {
   getHumanTime,
   parseRepeat
 } from 'lib/parseItem';
-import { sortEvents } from 'lib/utils';
+import { sortStarredEvents } from 'lib/utils';
 import { decapitalize } from 'lib/capitalizr';
 import styles, {
   ITEM_HEIGHT,
@@ -96,7 +96,7 @@ class List extends Component {
         getItemLayout={this._getItemLayout}
         ItemSeparatorComponent={this._renderSeparator}
         keyExtractor={this._keyExtractor}
-        data={sortEvents(events)}
+        data={sortStarredEvents(events)}
         renderItem={this._renderItem}
         ListEmptyComponent={this._renderEmptyList}
         ListFooterComponent={this._renderFooter}
