@@ -14,12 +14,13 @@ import {
   getStatus,
   getTime,
   isToday,
-  parseRepeat
+  isPast,
+  parseRepeat,
 } from 'lib/parseItem';
 import { decapitalize } from 'lib/capitalizr';
 import {
   getNextEvents,
-  getPreviousEvents
+  getPreviousEvents,
 } from 'lib/calendr';
 import styles, {
   ITEM_HEIGHT,
@@ -68,7 +69,7 @@ export default class List extends React.Component {
   );
   _renderEmptyList = () => <Empty error={this.props.error} loading={this.props.loading} />;
   _renderSeparator = () => <Separator />;
-  _renderSectionHeader = ({ section }) => <SectionHeader section={section} />;
+  _renderSectionHeader = ({ section }) => <SectionHeader onPress={this._onPressSectionHeader} section={section} />;
   _renderSectionFooter = ({ section }) => <SectionFooter section={section} />;
   _onPressItem = (id, refStartAt, refEndAt) => this.props.navigation.push('EventDetails', { id, refStartAt, refEndAt });
   _navigateToBoardEvents = (id) => {
@@ -76,6 +77,13 @@ export default class List extends React.Component {
     if (this.props.listType === 'board') screen = 'BoardInfo';
     this.props.navigation.navigate(screen, { id })
   };
+  _onPressSectionHeader = (targetDate) => {
+    if (!isPast(targetDate)) {
+      this.props.navigation.navigate('NewEvent', {
+        targetDate
+      });
+    }
+  }
   
   loadPreviousEvents = () => {
     const { events } = this.props;

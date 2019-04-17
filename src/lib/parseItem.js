@@ -28,6 +28,11 @@ export const getHumanTime = ({ startAt, endAt }) => {
   return t.format();
 }
 
+export const isPast = (date) => {
+  const d = moment(date).endOf('day');
+  return moment().twix(d).isPast();
+}
+
 export const isStarted = ({ isCancelled, startAt, endAt }) => {
   const t = moment(startAt).twix(endAt);
   return (!isCancelled && t.isCurrent());

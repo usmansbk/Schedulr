@@ -44,6 +44,12 @@ export default class NewEventScreen extends React.Component {
       latitude: null
     };
 
+    const targetDate = this.props.navigation.getParam('targetDate', moment().toISOString())
+    const initialStartAt = moment(targetDate).toISOString();
+    const initialEndAt = moment(targetDate).add(2, 'hours').toISOString();
+    const start = startAt || initialStartAt;
+    const end = endAt || initialEndAt;
+
     return ({
       title: title || '',
       description: description || '',
@@ -51,8 +57,8 @@ export default class NewEventScreen extends React.Component {
         address: venue && venue.address || '',
         location
       },
-      startAt: startAt || moment().toDate().toISOString(),
-      endAt: endAt || moment().add(2, 'hours').toDate().toISOString(),
+      startAt: start,
+      endAt: end,
       allDay: Boolean(allDay),
       eventType: eventType || eventTypes[0].id,
       repeat: repeat || frequency[0].id,
