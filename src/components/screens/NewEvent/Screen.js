@@ -4,6 +4,7 @@ import moment from 'moment';
 import Form from 'components/forms/Event';
 import eventTypes from 'components/forms/Event/types';
 import frequency from 'components/forms/Event/frequency';
+import { isPast } from 'lib/parseItem';
 import { BOARD_CLOSED } from 'lib/constants';
 
 export default class NewEventScreen extends React.Component {
@@ -60,6 +61,9 @@ export default class NewEventScreen extends React.Component {
       const startHours = currentStart.hours();
       
       newStart = moment().seconds(startSec).minutes(startMins).hours(startHours).toISOString();
+      if (isPast(newStart)) {
+        newStart = moment(newStart).add(1, 'day').toISOString();
+      }
       newEnd = moment(newStart).add(duration).toISOString();
     }
     const start = newStart || initialStartAt;
