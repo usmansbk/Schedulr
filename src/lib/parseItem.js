@@ -33,6 +33,8 @@ export const isPast = (date) => {
   return moment().twix(d).isPast();
 }
 
+export const isPastExact = date => moment().twix(date).isPast();
+
 export const isStarted = ({ isCancelled, startAt, endAt }) => {
   const t = moment(startAt).twix(endAt);
   return (!isCancelled && t.isCurrent());
