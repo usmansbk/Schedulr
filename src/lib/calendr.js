@@ -120,7 +120,9 @@ const getEvents = memoize((events) => {
       } else {
         recurrence = eventDate.recur().every(1, repeat);
       }
-      recurrence.fromDate(moment().toISOString());
+      if (Date.now() > Date.parse(currentEvent.startAt)) {
+        recurrence.fromDate(moment().toISOString());
+      }
       const start = moment(currentEvent.startAt);
       const end = moment(currentEvent.endAt);
       
