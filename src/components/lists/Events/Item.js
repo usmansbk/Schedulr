@@ -7,7 +7,6 @@ import {
   Headline,
 } from 'react-native-paper';
 import Avatar from 'components/common/UserAvatar';
-import Tag from 'components/common/Tag';
 import styles, {
   AVATAR_SIZE,
 } from './styles';
@@ -54,7 +53,6 @@ export default class Item extends React.PureComponent {
               </Headline>
               <Text style={styles.time}>{time}</Text>
               <Caption>{duration} {eventType} {repeat}</Caption>
-              { showTag && <Tag status={status} /> }
             </View>
           </View>
         </View>

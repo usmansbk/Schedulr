@@ -6,7 +6,7 @@ export default {
   ...DefaultTheme,
   colors: {
     ...DefaultTheme.colors,
-    dark: !isDayTime(),
+    // dark: !isDayTime(),
     primary: colors.primary,
     accent: colors.primary_light,
     error: colors.light_red,

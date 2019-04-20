@@ -53,5 +53,5 @@ const dark = {
   navButtonColor: 'white'
 };
 
-export default isDayTime() ? light : dark;
-// export default light;
+// export default isDayTime() ? light : dark;
+export default light;
