@@ -34,7 +34,7 @@ export default class Item extends React.PureComponent {
         onPress={this._onPress}
         style={styles.itemContainer}
       >
-        <View useNativeDriver style={showTag ? styles.itemContent : styles.itemContentSmall}>
+        <View useNativeDriver style={styles.itemContentSmall}>
           <View style={styles.left}>
             <Avatar
               size={AVATAR_SIZE}
