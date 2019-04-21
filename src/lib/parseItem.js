@@ -41,7 +41,11 @@ export const isStarted = ({ isCancelled, startAt, endAt }) => {
 };
 
 export const isToday = ({ startAt, endAt, isCancelled, cancelledDates }) => {
-  return moment(startAt).twix(endAt).isCurrent() || isCancelled || cancelledDates.includes(startAt);
+  return (
+    moment(startAt).twix(endAt).isSame('day') ||
+    moment(startAt).twix(endAt).isCurrent() ||
+    isCancelled || cancelledDates.includes(startAt)
+  );
 }
 
 export const getDuration = (startAt, endAt) => {
