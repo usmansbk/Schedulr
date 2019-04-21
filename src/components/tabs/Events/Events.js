@@ -14,9 +14,13 @@ export default class Events extends React.Component {
   }
   
   _handleDeeplink = async () => {
-    const url = await Linking.getInitialURL();
-    if (url) {
-      NavigationService.deepLinkNavigate(url);
+    try {
+      const url = await Linking.getInitialURL();
+      if (url) {
+        NavigationService.deepLinkNavigate(url);
+      }
+    } catch (error) {
+      SimpleToast.show(error.message, SimpleToast.SHORT);
     }
   }
   
