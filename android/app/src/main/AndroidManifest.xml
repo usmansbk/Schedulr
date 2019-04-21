@@ -21,8 +21,10 @@
       android:roundIcon="@mipmap/ic_launcher_round"
       android:allowBackup="false"
       android:theme="@style/AppTheme">
+        <meta-data android:name="com.dieam.reactnativepushnotification.notification_channel_name" android:value="SCHDLR_NOTIFICATION_CHANNEL"/>
+        <meta-data android:name="com.dieam.reactnativepushnotification.notification_channel_description" android:value="SCHDLR_NOTIFICATION_CHANNEL_DESCRIPTION"/>
         <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
-        <meta-data  android:name="com.dieam.reactnativepushnotification.notification_color"
+        <meta-data android:name="com.dieam.reactnativepushnotification.notification_color"
                 android:resource="@android:color/white"/>
         
         <receiver
