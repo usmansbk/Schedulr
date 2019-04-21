@@ -27,7 +27,7 @@ import styles, {
   SECTION_HEADER_HEIGHT,
   SECTION_FOOTER_HEIGHT,
   HEADER_HEIGHT,
-  primary_dark
+  primary
 } from './styles';
 
 const DAYS_PER_PAGE = 3;
@@ -208,7 +208,7 @@ export default class List extends React.Component {
           <RefreshControl
             onRefresh={this._onRefresh}
             refreshing={loading}
-            colors={[primary_dark]}
+            colors={[primary]}
           />
         }
         onEndReachedThreshold={0.5}

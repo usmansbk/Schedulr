@@ -82,7 +82,12 @@ class List extends React.Component {
       <FlatList
         data={events}
         refreshing={loading}
-        refreshControl={<RefreshControl refreshing={loading} colors={[primary]} />}
+        refreshControl={
+          <RefreshControl
+            refreshing={loading}
+            colors={[primary]}
+          />
+        }
         onRefresh={onRefresh}
         style={styles.list}
         contentContainerStyle={styles.contentContainer}

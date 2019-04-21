@@ -69,7 +69,13 @@ export default class List extends React.Component {
         ItemSeparatorComponent={this._renderSeparator}
         refreshing={loading}
         onRefresh={onRefresh}
-        refreshControl={<RefreshControl refreshing={loading} onRefresh={onRefresh} colors={[primary]} />}
+        refreshControl={
+          <RefreshControl
+            refreshing={loading}
+            onRefresh={onRefresh}
+            colors={[primary]}
+          />
+        }
       />
     )
   }

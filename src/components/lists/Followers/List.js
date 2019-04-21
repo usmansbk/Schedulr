@@ -68,7 +68,13 @@ class List extends React.Component {
         data={followers}
         refreshing={loading}
         onRefresh={onRefresh}
-        refreshControl={<RefreshControl refreshing={loading} onRefresh={onRefresh} colors={[primaryColor]}/>}
+        refreshControl={
+          <RefreshControl
+            refreshing={loading}
+            onRefresh={onRefresh}
+            colors={[primaryColor]}
+          />
+        }
       />
     )
   }
