@@ -15,22 +15,26 @@ export default sortBoards = memoize((data) => {
   return sorted;
 });
 
-export const sortEvents = memoize((data) => {
-  const sorted = data.sort((a, b) => {
+export const sortEvents = memoize((events) => {
+  const sorted = events.sort((a, b) => {
     return Date.parse(a.startAt) - Date.parse(b.startAt);
   });
   return sorted;
 });
 
-export const sortStarredEvents = memoize((data) => {
-  const sorted = data.sort((a, b) => {
+export const sortStarredEvents = memoize((events) => {
+  const sorted = events.sort((a, b) => {
     const now = Date.now();
+
+    const startAtA = Date.parse(a.startAt);
+    const startAtB = Date.parse(b.startAt);
+
     const endAtA = Date.parse(a.endAt);
     const endAtB = Date.parse(b.endAt);
-    if (now > endAtA || now > endAtB) {
-      return Date.parse(endAtA) - Date.parse(b.endAtB);
-    }
-    return Date.parse(a.startAt) - Date.parse(b.startAt);
+
+    if (now > endAtA) return now - endAtA;
+    if (now > endAtB) return endAtB - now;
+    return startAtA - startAtB;
   });
   return sorted;
 });
