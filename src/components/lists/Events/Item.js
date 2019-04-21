@@ -24,7 +24,6 @@ export default class Item extends React.PureComponent {
       time,
       duration,
       status,
-      showTag,
       eventType,
       pictureUrl,
     } = this.props;
@@ -43,7 +42,7 @@ export default class Item extends React.PureComponent {
               src={pictureUrl}
               onPress={this._navigateToBoard}
             />
-            { showTag && <Badge status={status} /> }
+            <Badge status={status} />
           </View>
           <View style={styles.right}>
             <View style={styles.itemBody}>

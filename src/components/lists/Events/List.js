@@ -13,7 +13,6 @@ import {
   getDuration,
   getStatus,
   getTime,
-  isToday,
   isPast,
   parseRepeat,
 } from 'lib/parseItem';
@@ -173,7 +172,6 @@ export default class List extends React.Component {
     status={getStatus({ isCancelled, cancelledDates, startAt, endAt})}
     boardId={board.id}
     duration={getDuration(startAt, endAt, eventType)}
-    showTag={isToday({ startAt, endAt, cancelledDates, isCancelled })}
     onPressItem={this._onPressItem}
     onPressCommentButton={this._onPressCommentItem}
     navigateToBoardEvents={this._navigateToBoardEvents}
