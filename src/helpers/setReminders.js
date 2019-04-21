@@ -13,6 +13,8 @@ import {
 import stores from 'stores';
 import colors from 'config/colors';
 
+const color = colors.primary_light;
+
 const setReminder = (event, before, settings) => {
   const {
     id,
@@ -35,7 +37,7 @@ const setReminder = (event, before, settings) => {
     title,
     date,
     message,
-    color: colors.primary_light,
+    color,
     playSound: sound,
     vibrate,
     data: JSON.stringify({
@@ -68,7 +70,7 @@ const schdlStart = (event, settings) => {
   const notification = {
     title,
     date,
-    color: colors.primary_light,
+    color,
     message,
     playSound,
     vibrate,
