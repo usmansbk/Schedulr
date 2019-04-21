@@ -1,6 +1,7 @@
 import React from 'react';
-import { Linking } from 'react-native';
+import { Linking, Platform } from 'react-native';
 import SimpleToast from 'react-native-simple-toast';
+import LocalNotifications from 'react-native-push-notification';
 import List from 'components/lists/Events';
 import FAB from 'components/common/Fab';
 import NavigationService from 'config/navigation';
@@ -11,6 +12,21 @@ export default class Events extends React.Component {
   constructor(props) {
     super(props);
     this._handleDeeplink();
+    this._handleLocalNotifications();
+  }
+
+  _handleLocalNotifications = () => {
+    // Configure notifications for local events reminder
+    LocalNotifications.configure({
+      onNotification: notification => {
+        const { data: { id } } = notification;
+
+        NavigationService.navigate('EventDetails', { id });
+        if (Platform.OS === 'ios') {
+          notification.finish(PushNotificationIOS.FetchResult.NoData);
+        }
+      }
+    });
   }
   
   _handleDeeplink = async () => {

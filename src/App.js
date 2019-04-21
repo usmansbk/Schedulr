@@ -1,11 +1,8 @@
-import React from 'react';
 import {
   createStackNavigator,
   createSwitchNavigator,
   createAppContainer,
 } from 'react-navigation';
-import LocalNotifications from 'react-native-push-notification';
-import NavigationService from 'config/navigation';
 import {
   AuthLoading,
   Login,
@@ -27,15 +24,6 @@ import {
   ListBoardEvents
 } from 'components/screens';
 import colors from 'config/colors';
-
-// Configure notifications for local events reminder
-LocalNotifications.configure({
-  onNotification: notification => {
-    const { data: { id } } = notification;
-    NavigationService.navigate('EventDetails', { id });
-    // notification.finish(PushNotificationIOS.FetchResult.NoData);
-  }
-});
 
 /**
  * I don't know why setting common navigationOptions to null headers
