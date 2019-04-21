@@ -173,7 +173,7 @@ export default class List extends React.Component {
     status={getStatus({ isCancelled, cancelledDates, startAt, endAt})}
     boardId={board.id}
     duration={getDuration(startAt, endAt, eventType)}
-    showTag={isToday({ startAt, cancelledDates, isCancelled })}
+    showTag={isToday({ startAt, endAt, cancelledDates, isCancelled })}
     onPressItem={this._onPressItem}
     onPressCommentButton={this._onPressCommentItem}
     navigateToBoardEvents={this._navigateToBoardEvents}
@@ -195,7 +195,7 @@ export default class List extends React.Component {
       <SectionList
         ref={this.listRef}
         initialNumToRender={0}
-        getItemLayout={this._getItemLayout}
+        // getItemLayout={this._getItemLayout}
         contentContainerStyle={styles.contentContainer}
         style={styles.list}
         stickySectionHeadersEnabled

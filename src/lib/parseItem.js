@@ -40,8 +40,8 @@ export const isStarted = ({ isCancelled, startAt, endAt }) => {
   return (!isCancelled && t.isCurrent());
 };
 
-export const isToday = ({ startAt, isCancelled, cancelledDates }) => {
-  return moment(startAt).isSame(moment(), 'day') || isCancelled || cancelledDates.includes(startAt);
+export const isToday = ({ startAt, endAt, isCancelled, cancelledDates }) => {
+  return moment(startAt).twix(endAt).isCurrent() || isCancelled || cancelledDates.includes(startAt);
 }
 
 export const getDuration = (startAt, endAt) => {

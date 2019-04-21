@@ -7,6 +7,7 @@ import {
   Headline,
 } from 'react-native-paper';
 import Avatar from 'components/common/UserAvatar';
+import Badge from 'components/common/Badge';
 import styles, {
   AVATAR_SIZE,
 } from './styles';
@@ -42,6 +43,7 @@ export default class Item extends React.PureComponent {
               src={pictureUrl}
               onPress={this._navigateToBoard}
             />
+            { showTag && <Badge status={status} /> }
           </View>
           <View style={styles.right}>
             <View style={styles.itemBody}>
