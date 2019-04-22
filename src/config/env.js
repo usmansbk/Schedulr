@@ -1,6 +1,6 @@
 import moment from 'moment';
 const date = moment().format('YYYY-MM-DD');
-const url = `https://schdlr-ng.herokuapp.com`;
+const url = `https://schdlr.com`;
 const dev = {
   APP_URL: url,
   IOS_URL: `//:schdlr`,
