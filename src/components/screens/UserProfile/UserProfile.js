@@ -4,7 +4,6 @@ import {
   StyleSheet,
   ScrollView,
   Text,
-  Image
 } from 'react-native';
 import { Headline, TouchableRipple } from 'react-native-paper';
 import { CachedImage } from 'react-native-cached-image';
@@ -27,11 +26,13 @@ export default ({
       resizeMode="cover"
       style={styles.backgroundImage}
     />
-    <Image
-      source={{uri: pictureUrl}}
-      resizeMode="cover"
-      style={styles.image}
-    />
+    <View style={styles.image}>
+      <CachedImage
+        source={{uri: pictureUrl}}
+        resizeMode="cover"
+        style={styles.avatar}
+      />
+    </View>
     <Headline style={styles.headline}>{name}</Headline>
     <TouchableRipple onPress={() => navigation.push('UserBoards', {
       id,
@@ -52,6 +53,8 @@ export default ({
   </ScrollView>
 );
 
+const AVATAR_HEIGHT = 120;
+
 const styles = StyleSheet.create({
   header: {
     width: '100%',
@@ -60,14 +63,19 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: colors.primary_light
   },
+  avatar: {
+    width: AVATAR_HEIGHT,
+    height: AVATAR_HEIGHT,
+  },
   image: {
-    alignSelf: 'center',
-    justifyContent: 'center',
-    width: 120,
-    height: 120,
+    width: AVATAR_HEIGHT,
+    height: AVATAR_HEIGHT,
+    borderRadius: AVATAR_HEIGHT / 2,
     borderWidth: 4,
     borderColor: colors.white,
-    borderRadius: 60
+    alignItems: 'center',
+    justifyContent: 'center',
+    overflow: 'hidden'
   },
   backgroundImage: {
     position: 'absolute',
