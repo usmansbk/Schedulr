@@ -46,7 +46,7 @@ export default class OpenBoard extends React.Component {
           onDismiss={handleDismiss}
           style={{backgroundColor: colors.bg}}
         >
-          <Dialog.Title>Open board?</Dialog.Title>
+          <Dialog.Title>Open calendar?</Dialog.Title>
           <Dialog.Actions>
             <Button disabled={loading} onPress={handleDismiss}>Dismiss</Button>
             <Button loading={loading} disabled={loading} onPress={this._onContinue}>Continue</Button>
