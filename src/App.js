@@ -21,7 +21,8 @@ import {
   EditEvent,
   EditBoard,
   SearchScreen,
-  ListBoardEvents
+  ListBoardEvents,
+  WebView
 } from 'components/screens';
 import colors from 'config/colors';
 
@@ -111,7 +112,13 @@ const AppStack = createStackNavigator({
   },
   SearchScreen: {
     screen: SearchScreen,
-  }
+  },
+  WebView: {
+    screen: WebView,
+    navigationOptions: {
+      header: null
+    }
+  },
 }, {
   initialRouteName: 'Home',
   defaultNavigationOptions: {

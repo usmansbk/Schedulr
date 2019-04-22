@@ -16,6 +16,7 @@ import Comments from './Comments';
 import Followers from './Followers';
 import SearchScreen from './Search';
 import ListBoardEvents from './ListBoardEvents';
+import WebView from './WebView';
 
 export {
   AuthLoading,
@@ -35,5 +36,6 @@ export {
   Comments,
   Followers,
   SearchScreen,
-  ListBoardEvents
+  ListBoardEvents,
+  WebView
 };

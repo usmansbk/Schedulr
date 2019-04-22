@@ -1,5 +1,4 @@
 import React from 'react';
-import { Linking } from 'react-native';
 import Help from './Help';
 import env from 'config/env';
 
@@ -24,8 +23,9 @@ export default class Screen extends React.Component {
         url = env.APP_URL;
         break;
     }
-    Linking.openURL(url)
-      .catch(err => console.error('An error occured', err));
+    this.props.navigation.navigate('WebView', {
+      url
+    });
   };
 
   render() {
