@@ -1,31 +1,33 @@
 import React from 'react';
 import {
   View,
-  StyleSheet
+  StyleSheet,
+  PixelRatio
 } from 'react-native';
-import Badge from './Badge';
 import colors from 'config/colors';
 
 const styles = StyleSheet.create({
   container: {
-    height: 8,
-    width: 8,
-    borderRadius: 4,
+    height: 10,
+    width: 10,
+    borderRadius: 5,
     position: 'absolute',
-    bottom: 30,
+    top: 17,
     right: 8,
+    borderWidth: 1 / PixelRatio.get(),
+    borderColor: 'white'
   },
   Cancelled: {
-    backgroundColor: colors.light_red,
+    backgroundColor: colors.error,
   },
   Ongoing: {
-    backgroundColor: colors.green
+    backgroundColor: colors.success
   },
   Ended: {
     backgroundColor: colors.soft_blue,
   },
   Upcoming: {
-    backgroundColor: colors.yellow,
+    backgroundColor: colors.warning,
   },
 });
 

@@ -24,6 +24,9 @@ const light = {
   blue: '004f86',
   placeholder: '#7d7d7d',
   navButtonColor: '#004ba0',
+  success: '#53C41A',
+  error: '#FF180B',
+  warning: '#FBAD15',
 }
 
 const dark = {
