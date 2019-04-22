@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { ScrollView, View, Text } from 'react-native';
 import { Caption, Headline } from 'react-native-paper';
 import GLoginButton from 'components/social_buttons/GLoginButton';
 import FBLoginButton from 'components/social_buttons/FBLoginButton';
@@ -7,7 +7,7 @@ import Logo from 'components/common/Logo';
 import styles from './styles';
 
 export default (props) => (
-  <View style={styles.container}>
+  <ScrollView contentContainerStyle={styles.container}>
     <Logo />
     <Headline style={styles.h1}>Welcome to Schdlr!</Headline>
     <Caption>
@@ -20,5 +20,5 @@ export default (props) => (
     <Caption style={styles.caption}>
       Keep your friends and collegues up to date with the latest events!
     </Caption>
-  </View>
+  </ScrollView>
 );

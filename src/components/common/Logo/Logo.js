@@ -1,28 +1,22 @@
 import React from 'react';
-import { Text, View, StyleSheet } from 'react-native';
-import colors from 'config/colors';
+import { Image, View, StyleSheet } from 'react-native';
+
+const src = require('./img/logo.png');
 
 export default () => (
-  <View style={styles.container}>
-    <Text style={styles.text}>S</Text>
-  </View>
+  <Image
+    source={src}
+    style={styles.logo}
+    resizeMode="contain"
+  />
 );
 
-const LENGTH = 82;
+const LENGTH = 200;
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: colors.light_gray,
-    margin: 8,
-    height: LENGTH,
+  logo: {
+    alignSelf: 'center',
     width: LENGTH,
-    borderRadius: LENGTH / 2,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  text: {
-    fontSize: 72,
-    fontWeight: 'bold',
-    color: colors.primary
+    height: LENGTH
   }
-})
+});

@@ -22,7 +22,8 @@ console.disableYellowBox = true;
 
 // window.LOG_LEVEL = 'DEBUG';
 GoogleSignin.configure({
-  webClientId: env.WEB_CLIENT_ID
+  webClientId: env.WEB_CLIENT_ID,
+  offlineAccess: true
 });
 Amplify.configure(config);
 // Auth.configure({
