@@ -4,6 +4,7 @@ import { Auth } from 'aws-amplify';
 import { LoginManager } from 'react-native-fbsdk';
 import { GoogleSignin } from 'react-native-google-signin';
 import { withNavigation } from 'react-navigation';
+import SimpleToast from 'react-native-simple-toast';
 import Dialog from './Dialog';
 import client from 'config/client';
 
@@ -22,6 +23,7 @@ class Container extends React.Component {
     this.setState({ loading: false });
     this._handleDismiss();
     this.props.navigation.navigate('Auth');
+    SimpleToast.show("You've been logged out", SimpleToast.SHORT);
   };
 
   _purgeAsyncStorage = async () => {

@@ -11,7 +11,7 @@ export default () => (
   />
 );
 
-const LENGTH = 200;
+const LENGTH = 180;
 
 const styles = StyleSheet.create({
   logo: {

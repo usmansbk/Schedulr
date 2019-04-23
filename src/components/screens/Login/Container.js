@@ -39,6 +39,7 @@ export default class LoginScreen extends React.Component {
         pictureUrl
       });
       this.props.navigation.navigate('App');
+      SimpleToast.show(`Welcome ${name}!`, SimpleToast.SHORT);
     } catch (error) {
       SimpleToast.show('Login failed: ' + error.message, SimpleToast.SHORT);
       this.setState({ loading: false });
