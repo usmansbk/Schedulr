@@ -20,6 +20,7 @@
     "mobx-persist": "^0.4.1",
     "mobx-react": "^5.4.3",
     "moment": "^2.22.2",
+    "moment-business": "^3.0.1",
     "moment-recur": "^1.0.7",
     "moment-twitter": "^0.2.0",
     "numeral": "^2.0.6",

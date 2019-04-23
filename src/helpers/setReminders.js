@@ -2,6 +2,8 @@ import PushNotification from 'react-native-push-notification';
 import { InteractionManager } from 'react-native';
 import moment from 'moment';
 import 'moment-recur';
+import 'twix';
+import business from 'moment-business';
 import { decapitalize } from 'lib/capitalizr';
 import {
   FIVE_MINUTES,
@@ -154,21 +156,34 @@ const schdlAll = (events) => {
 
 function schdlWeekdaysEvent(event, remindMeBefore, settings) {
   const start = moment(event.startAt);
-  // const end = moment(event.endAt);
+  const end = moment(event.endAt);
   // const duration = Math.abs(moment.duration(start.diff(end)));
-  const recurrence = start.recur().every(weekdays).daysOfWeek();
+  const recurrence = start.recur(end).every(weekdays).daysOfWeek(); // Exclusive operation
   const days = recurrence.next(5);
-  days.forEach(day => {
+  days.forEach(nextDay => {
     const nextEvent = Object.assign({}, event, {
-      startAt: day.toISOString(),
+      startAt: nextDay.toISOString(),
       // endAt: day.add(duration).toISOString()
     });
     schdl(nextEvent, remindMeBefore, settings);
   });
+
+  // 
+  const isWeekday = business.isWeekDay(start);
+  const isToday = start.isSame(moment(), 'day');
+  const isPending = start.twix(end).isFuture();
+
+  if (isWeekday && isToday && isPending) {
+    const todayEvent = Object.assign({}, event, {
+      repeat: 'NEVER'
+    });
+    schdl(todayEvent, remindMeBefore, settings);
+  }
 }
 
 function getRepeatType(repeat) {
   switch(repeat) {
+    case 'NEVER': return null;
     case 'DAILY': return 'day';
     case 'WEEKLY': case 'WEEKDAYS':  return 'week';
     default: return 'time';
