@@ -7,18 +7,20 @@ import Logo from 'components/common/Logo';
 import styles from './styles';
 
 export default (props) => (
-  <ScrollView contentContainerStyle={styles.container}>
-    <Logo />
-    <Headline style={styles.h1}>Welcome to Schdlr!</Headline>
-    <Caption>
-      The Social Calendar
-    </Caption>
-    <View style={styles.content}>
-      <FBLoginButton disabled={props.loading} onLogin={props.handleLogin} />
-      <GLoginButton disabled={props.loading} onLogin={props.handleLogin} />
+  <ScrollView>
+    <View style={styles.container}>
+      <Logo />
+      <Headline style={styles.h1}>Welcome to Schdlr!</Headline>
+      <Caption>
+        The Social Calendar
+      </Caption>
+      <View style={styles.content}>
+        <FBLoginButton disabled={props.loading} onLogin={props.handleLogin} />
+        <GLoginButton disabled={props.loading} onLogin={props.handleLogin} />
+      </View>
+      <Caption style={styles.caption}>
+        Keep your friends and collegues up to date with the latest events!
+      </Caption>
     </View>
-    <Caption style={styles.caption}>
-      Keep your friends and collegues up to date with the latest events!
-    </Caption>
   </ScrollView>
 );
