@@ -3,10 +3,11 @@ import colors from '../../../config/colors';
 
 export default StyleSheet.create({
   container: {
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     padding: 32,
-    backgroundColor: colors.bg
+    backgroundColor: colors.primary_light
   },
   content: {
     justifyContent: 'center',
@@ -15,13 +16,10 @@ export default StyleSheet.create({
   },
   h1: {
     fontSize: 27,
-  },
-  grayed: {
-    marginVertical: 8,
-    color: colors.gray,
-    fontWeight: 'bold'
+    color: colors.white
   },
   caption: {
-    textAlign: 'center'
+    textAlign: 'center',
+    color: colors.white
   }
 });
