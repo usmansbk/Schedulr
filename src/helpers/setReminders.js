@@ -169,8 +169,8 @@ function schdlWeekdaysEvent(event, remindMeBefore, settings) {
 
 function getRepeatType(repeat) {
   switch(repeat) {
-    case 'DAILY': case 'WEEKDAYS': return 'day';
-    case 'WEEKLY': return 'week';
+    case 'DAILY': return 'day';
+    case 'WEEKLY': case 'WEEKDAYS':  return 'week';
     default: return 'time';
   }
 }
