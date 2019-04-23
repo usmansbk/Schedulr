@@ -1,6 +1,7 @@
 import PushNotification from 'react-native-push-notification';
 import { InteractionManager } from 'react-native';
 import moment from 'moment';
+import 'moment-recur';
 import { decapitalize } from 'lib/capitalizr';
 import {
   FIVE_MINUTES,
@@ -10,6 +11,7 @@ import {
   ONE_HOUR,
   ONE_DAY
 } from 'lib/time';
+import { weekdays } from 'lib/calendr';
 import stores from 'stores';
 import colors from 'config/colors';
 
@@ -138,6 +140,7 @@ const schdlAll = (events) => {
           case 'MONTH_DAY':
             break;
           case 'WEEKDAYS':
+            schdlWeekdaysEvent(event, remindMeBefore, settings);
             break;
           default:
             schdl(event, remindMeBefore, settings);
@@ -148,6 +151,21 @@ const schdlAll = (events) => {
     }
   });
 };
+
+function schdlWeekdaysEvent(event, remindMeBefore, settings) {
+  const start = moment(event.startAt);
+  // const end = moment(event.endAt);
+  // const duration = Math.abs(moment.duration(start.diff(end)));
+  const recurrence = start.recur().every(weekdays).daysOfWeek();
+  const days = recurrence.next(5);
+  days.forEach(day => {
+    const nextEvent = Object.assign({}, event, {
+      startAt: day.toISOString(),
+      // endAt: day.add(duration).toISOString()
+    });
+    schdl(nextEvent, remindMeBefore, settings);
+  });
+}
 
 function getRepeatType(repeat) {
   switch(repeat) {
