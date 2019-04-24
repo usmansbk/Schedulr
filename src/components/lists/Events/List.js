@@ -1,5 +1,5 @@
 import React from 'react';
-import { RefreshControl } from 'react-native';
+import { RefreshControl, InteractionManager } from 'react-native';
 import { SectionList } from 'react-navigation';
 import sectionListGetItemLayout from 'react-native-section-list-get-item-layout';
 import Header from './Header';
@@ -58,12 +58,18 @@ export default class List extends React.Component {
   _keyExtractor = (item) => item.id + item.startAt;
   _renderHeader = () => (
     this.state.sections.length ?
-    <Header onPress={this.loadPreviousEvents} />
+    <Header
+      loading={this.state.loadingPrev}
+      onPress={this.loadPreviousEvents}
+    />
     : null
   );
   _renderFooter = () => (
     this.state.sections.length ?
-    <Footer onPress={this._onEndReached} loading={this.state.loadingMore} />
+    <Footer
+      onPress={this._onEndReached}
+      loading={this.state.loadingMore}
+    />
     : null
   );
   _renderEmptyList = () => <Empty error={this.props.error} loading={this.props.loading} />;
@@ -86,17 +92,18 @@ export default class List extends React.Component {
   
   loadPreviousEvents = () => {
     const { events } = this.props;
-    this.setState({ loadingPrev: true }, () => {
+    this.setState({ loadingPrev: true });
+    InteractionManager.runAfterInteractions(() => {
       this.setState(state => {
         const beforeDays = state.beforeDays;
         const prevSections = getPreviousEvents(events, beforeDays, DAYS_PER_PAGE);
         return ({
-          sections: [...prevSections, ...state.sections],
+          sections: prevSections.concat(state.sections),
           beforeDays: beforeDays + DAYS_PER_PAGE,
-          loadingPrev: false
-        })
-      })
-    })
+        });
+      });
+    });
+    this.setState({ loadingPrev: false });
   }
 
   loadMoreEvents = (events=[]) => {
