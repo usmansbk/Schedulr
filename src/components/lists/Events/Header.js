@@ -1,16 +1,9 @@
 import React from 'react';
-import { TouchableRipple, ActivityIndicator } from 'react-native-paper';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import { TouchableRipple, ActivityIndicator, Text } from 'react-native-paper';
 import styles from './styles';
 
-export default ({ loading, onPress }) => loading ? (
-  <ActivityIndicator
-    size="small"
-    animating={loading}
-    hideWhenStopped
-  />
-) : (
+export default ({ onPress }) => (
   <TouchableRipple onPress={onPress} style={styles.header}>
-    <Icon size={24} style={styles.headerText} name="keyboard-arrow-up" />
+    <Text style={styles.headerText}>Load past days</Text>
   </TouchableRipple>
 );

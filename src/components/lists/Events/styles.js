@@ -53,7 +53,6 @@ export default StyleSheet.create({
     justifyContent: 'center'
   },
   headerText:{
-    fontSize: 24,
     color: primary_light,
   },
   footer: {

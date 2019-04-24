@@ -58,7 +58,7 @@ export default class List extends React.Component {
   _keyExtractor = (item) => item.id + item.startAt;
   _renderHeader = () => (
     this.state.sections.length ?
-    <Header onPress={this.loadPreviousEvents} loading={this.state.loadingPrev} />
+    <Header onPress={this.loadPreviousEvents} />
     : null
   );
   _renderFooter = () => (
@@ -187,7 +187,7 @@ export default class List extends React.Component {
 
   render() {
     const { loading } = this.props;
-    const { sections } = this.state;
+    const { sections, loadingPrev } = this.state;
     
     return (
       <SectionList
@@ -202,12 +202,12 @@ export default class List extends React.Component {
         ListHeaderComponent={this._renderHeader}
         ListEmptyComponent={this._renderEmptyList}
         ItemSeparatorComponent={this._renderSeparator}
-        refreshing={loading}
+        refreshing={loading || loadingPrev}
         onRefresh={this._onRefresh}
         refreshControl={
           <RefreshControl
             onRefresh={this._onRefresh}
-            refreshing={loading}
+            refreshing={loading || loadingPrev}
             colors={[primary]}
           />
         }
