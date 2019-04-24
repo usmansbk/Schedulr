@@ -4,6 +4,6 @@ import styles from './styles';
 
 export default ({ onPress }) => (
   <TouchableRipple onPress={onPress} style={styles.header}>
-    <Text style={styles.headerText}>Load past days</Text>
+    <Text style={styles.headerText}>Load past few days</Text>
   </TouchableRipple>
 );
