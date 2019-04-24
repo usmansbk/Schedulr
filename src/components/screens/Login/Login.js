@@ -18,7 +18,7 @@ export default (props) => (
         <GLoginButton disabled={props.loading} onLogin={props.handleLogin} />
       </View>
       <Caption style={styles.caption}>
-        Keep your friends and collegues up to date with the latest events!
+        Keep your friends and colleagues up to date with the latest events!
       </Caption>
     </View>
 );
