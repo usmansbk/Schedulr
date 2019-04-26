@@ -133,7 +133,7 @@ export default class Info extends React.Component {
                   <Text style={styles.middot}>{` ${CIRCLE} `}</Text>
                   <Text
                     style={styles.count}
-                    onPress={() => navigateToEvents(id)}
+                    onPress={() => navigateToEvents(id, isFollowing || isAuthor)}
                   >
                     {numeral(eventsCount).format('0a')} Event{eventsCount > 1 ? 's' : ''}
                   </Text>
