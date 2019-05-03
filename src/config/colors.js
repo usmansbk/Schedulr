@@ -53,7 +53,10 @@ const dark = {
   deep_purple: '#562765',
   blue: '004f86',
   placeholder: 'white',
-  navButtonColor: 'white'
+  navButtonColor: 'white',
+  success: '#53C41A',
+  error: '#FF180B',
+  warning: '#FBAD15',
 };
 
 export default isDayTime() ? light : dark;
