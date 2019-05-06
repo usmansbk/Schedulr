@@ -7,6 +7,7 @@ import {
 } from 'react-native';
 import { Headline, TouchableRipple } from 'react-native-paper';
 import { CachedImage } from 'react-native-cached-image';
+import UserAvatar from 'components/common/UserAvatar';
 import numeral from 'numeral';
 import colors from 'config/colors';
 
@@ -27,10 +28,10 @@ export default ({
       style={styles.backgroundImage}
     />
     <View style={styles.image}>
-      <CachedImage
-        source={{uri: pictureUrl}}
-        resizeMode="cover"
-        style={styles.avatar}
+      <UserAvatar
+        src={pictureUrl}
+        size={AVATAR_HEIGHT}
+        name={name}
       />
     </View>
     <Headline style={styles.headline}>{name}</Headline>
