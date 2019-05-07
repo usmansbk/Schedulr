@@ -9,7 +9,7 @@ export default ({ error, loading }) =>{
     <View style={styles.empty}>
       <Headline style={styles.emptyTitle}>
       {
-        error ? 'Network error' : 'No schedule - yet'
+        error ? 'Network error' : 'No schedule yet'
       }
       </Headline>
       {
