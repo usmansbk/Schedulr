@@ -36,6 +36,8 @@ const Home = createBottomTabNavigator({
         iconName = 'home'
       } else if (routeName === 'Explore') {
         iconName = 'search';
+      } else if (routeName === 'More') {
+        iconName = 'menu';
       } else if (routeName === 'Notifications') {
         return (
           <NotificationsIcon
@@ -43,8 +45,6 @@ const Home = createBottomTabNavigator({
             color={tintColor}
           />
         );
-      } else if (routeName === 'More') {
-        iconName = 'menu';
       }
       return <Icon name={iconName} size={focused ? FONT_SIZE : BLUR_SIZE} color={tintColor} />
     }
