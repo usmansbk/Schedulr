@@ -8,11 +8,13 @@ import {
 import { Headline, TouchableRipple } from 'react-native-paper';
 import { CachedImage } from 'react-native-cached-image';
 import UserAvatar from 'components/common/UserAvatar';
+import Loading from 'components/common/Loading';
 import numeral from 'numeral';
 import colors from 'config/colors';
 
 export default ({
   navigation,
+  loading,
   user: {
     id,
     pictureUrl,
@@ -20,7 +22,7 @@ export default ({
     followingCount=0,
     createdCount=0,
   }
-}) => (
+}) => loading ? <Loading /> : (
   <ScrollView contentContainerStyle={styles.header}>
     <CachedImage
       source={{uri: pictureUrl}}
