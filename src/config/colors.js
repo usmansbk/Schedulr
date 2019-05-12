@@ -1,4 +1,5 @@
-import { isDayTime } from '../lib/time';
+// import { isDayTime } from '../lib/time';
+import stores from 'stores';
 
 const light = {
   facebook: '#3b5998',
@@ -59,5 +60,5 @@ const dark = {
   warning: '#FBAD15',
 };
 
-export default isDayTime() ? light : dark;
+export default stores.settingsStore.dark ? dark : light;
 // export default light;

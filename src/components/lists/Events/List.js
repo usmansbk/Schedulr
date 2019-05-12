@@ -200,7 +200,7 @@ export default class List extends React.Component {
       <SectionList
         ref={this.listRef}
         initialNumToRender={0}
-        getItemLayout={this._getItemLayout}
+        // getItemLayout={this._getItemLayout}
         contentContainerStyle={styles.contentContainer}
         style={styles.list}
         stickySectionHeadersEnabled

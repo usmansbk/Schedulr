@@ -13,9 +13,9 @@ import Loading from './src/components/common/Loading';
 import NavigationService from './src/config/navigation';
 import config from './src/aws-exports';
 import client from './src/config/client';
+import stores from './src/stores';
 import theme from './src/config/theme';
 import env from './src/config/env';
-import stores from './src/stores';
 // import { refreshGoogleToken } from './src/config/auth';
 
 console.disableYellowBox = true;
