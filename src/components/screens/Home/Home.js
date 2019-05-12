@@ -10,7 +10,7 @@ import ExploreTab from 'components/tabs/Explore';
 import HomeRoute from 'components/tabs/Home';
 import NotificationRoute from 'components/tabs/Notifications';
 import NotificationsIcon from 'components/common/NotificationIcon';
-import styles, { activeColor, inactiveTintColor, FONT_SIZE, BLUR_SIZE } from './styles';
+import styles, { activeColor, inactiveTintColor, FONT_SIZE } from './styles';
 
 const Home = createBottomTabNavigator({
   Home: { screen: HomeRoute },
@@ -38,14 +38,9 @@ const Home = createBottomTabNavigator({
       } else if (routeName === 'More') {
         iconName = 'menu';
       } else if (routeName === 'Notifications') {
-        return (
-          <NotificationsIcon
-            size={focused ? FONT_SIZE : BLUR_SIZE}
-            color={tintColor}
-          />
-        );
+        return <NotificationsIcon focused={focused} size={FONT_SIZE} color={tintColor} />;
       }
-      return <Icon name={iconName} size={focused ? FONT_SIZE : BLUR_SIZE} color={tintColor} />
+      return <Icon name={iconName} size={FONT_SIZE} color={tintColor} />;
     }
   }),
 });
