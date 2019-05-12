@@ -55,7 +55,7 @@ export default class Item extends React.PureComponent {
                 {title}
               </Headline>
               <Text style={styles.time}>{time}</Text>
-              <Caption>{duration} {eventType} {repeat}</Caption>
+              <Caption>{duration ? duration + ' ' : ''}{eventType} {repeat}</Caption>
               <Tag status={status} /> 
             </View>
             <Actions
