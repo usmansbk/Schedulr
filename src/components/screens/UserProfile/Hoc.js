@@ -14,7 +14,8 @@ export default graphql(gql(getUser), {
     fetchPolicy: 'cache-and-network'
   }),
   props: ({ data, ownProps }) => ({
-    loading: data.loading || data.networkStatus === 4,
+    loading: data.loading,
+    refreshing: data.networkStatus === 4,
     error: data.error,
     onRefresh: async () => {
       try {

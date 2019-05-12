@@ -15,6 +15,9 @@ import colors from 'config/colors';
 export default ({
   navigation,
   loading,
+  error,
+  onRefresh,
+  refreshing,
   user: {
     id,
     pictureUrl,
@@ -22,39 +25,43 @@ export default ({
     followingCount=0,
     createdCount=0,
   }
-}) => loading ? <Loading /> : (
-  <ScrollView contentContainerStyle={styles.header}>
-    <CachedImage
-      source={{uri: pictureUrl}}
-      resizeMode="cover"
-      style={styles.backgroundImage}
-    />
-    <View style={styles.image}>
-      <UserAvatar
-        src={pictureUrl}
-        size={AVATAR_HEIGHT}
-        name={name}
+}) => {
+  if (loading) return <Loading />;
+  if (error) return <Error onRefresh={onRefresh} loading={refreshing} />;
+  return (
+    <ScrollView contentContainerStyle={styles.header}>
+      <CachedImage
+        source={{uri: pictureUrl}}
+        resizeMode="cover"
+        style={styles.backgroundImage}
       />
-    </View>
-    <Headline style={styles.headline}>{name}</Headline>
-    <TouchableRipple onPress={() => navigation.push('UserBoards', {
-      id,
-      name,
-      profile: navigation.getParam('profile', false)
-    })}>
-      <View style={styles.countRow}>
-        <View style={styles.item}>
-          <Text style={styles.count}>{numeral(followingCount).format('0a')}</Text>
-          <Text style={styles.label}>Following</Text>
-        </View>
-        <View style={styles.item}>
-          <Text style={styles.count}>{numeral(createdCount).format('0a')}</Text>
-          <Text style={styles.label}>Created</Text>
-        </View>
+      <View style={styles.image}>
+        <UserAvatar
+          src={pictureUrl}
+          size={AVATAR_HEIGHT}
+          name={name}
+        />
       </View>
-    </TouchableRipple>
-  </ScrollView>
-);
+      <Headline style={styles.headline}>{name}</Headline>
+      <TouchableRipple onPress={() => navigation.push('UserBoards', {
+        id,
+        name,
+        profile: navigation.getParam('profile', false)
+      })}>
+        <View style={styles.countRow}>
+          <View style={styles.item}>
+            <Text style={styles.count}>{numeral(followingCount).format('0a')}</Text>
+            <Text style={styles.label}>Following</Text>
+          </View>
+          <View style={styles.item}>
+            <Text style={styles.count}>{numeral(createdCount).format('0a')}</Text>
+            <Text style={styles.label}>Created</Text>
+          </View>
+        </View>
+      </TouchableRipple>
+    </ScrollView>
+  );
+}
 
 const AVATAR_HEIGHT = 120;
 
