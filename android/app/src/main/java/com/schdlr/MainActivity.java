@@ -4,6 +4,9 @@ import android.content.Intent;
 import com.facebook.react.ReactActivity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import com.facebook.react.ReactActivityDelegate;
+import com.facebook.react.ReactRootView;
+import com.swmansion.gesturehandler.react.RNGestureHandlerEnabledRootView;
 
 import org.devio.rn.splashscreen.SplashScreen;
 
@@ -33,6 +36,16 @@ public class MainActivity extends ReactActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
+
+    @Override
+    protected ReactActivityDelegate createReactActivityDelegate() {
+        return new ReactActivityDelegate(this, getMainComponentName()) {
+            @Override
+            protected ReactRootView createRootView() {
+            return new RNGestureHandlerEnabledRootView(MainActivity.this);
+            }
+        };
     }
   
 }
