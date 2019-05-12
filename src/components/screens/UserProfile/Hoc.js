@@ -1,5 +1,5 @@
 import { graphql } from 'react-apollo';
-import { Analytics } from 'aws-amplify';
+// import { Analytics } from 'aws-amplify';
 import gql from 'graphql-tag';
 import SimpleToast from 'react-native-simple-toast';
 import UserProfile from './UserProfile';
