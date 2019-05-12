@@ -178,7 +178,7 @@ export default class List extends React.Component {
     time={getTime({ allDay, startAt, endAt })}
     status={getStatus({ isCancelled, cancelledDates, startAt, endAt})}
     boardId={board.id}
-    duration={getDuration(startAt, endAt, eventType)}
+    duration={getDuration(startAt, endAt, allDay)}
     onPressItem={this._onPressItem}
     onPressCommentButton={this._onPressCommentItem}
     navigateToBoardEvents={this._navigateToBoardEvents}

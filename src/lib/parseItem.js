@@ -48,7 +48,8 @@ export const isToday = ({ startAt, endAt, isCancelled, cancelledDates }) => {
   );
 }
 
-export const getDuration = (startAt, endAt) => {
+export const getDuration = (startAt, endAt, allDay) => {
+  if (allDay) return null;
   const t = moment(startAt).twix(endAt);
   return decapitalize(t.humanizeLength());
 };

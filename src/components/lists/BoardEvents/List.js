@@ -58,7 +58,7 @@ class List extends Component {
     repeat={parseRepeat(repeat)}
     time={getHumanTime({ allDay, startAt, endAt })}
     boardId={board.id}
-    duration={getDuration(startAt, endAt, eventType)}
+    duration={getDuration(startAt, endAt, allDay)}
     onPressItem={this._onPressItem}
   />);
 

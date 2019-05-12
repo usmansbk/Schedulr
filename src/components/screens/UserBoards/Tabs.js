@@ -22,8 +22,7 @@ const Tabs = createMaterialTopTabNavigator(
     Created,
   },
   {
-    animationEnabled: true,
-    initialLayout: { height: 0, width: Dimensions.get('window').width },
+    initialLayout: { height: 0, width: Dimensions.get('window').width }, 
     navigationOptions: ({ navigation }) => ({
       title: navigation.getParam('name', 'Boards'),
       headerTransparent: false,
