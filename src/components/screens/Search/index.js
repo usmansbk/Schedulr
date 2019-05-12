@@ -1,3 +1,3 @@
-import Search from './Tabs_Nav';
+import Search from './Screen';
 
 export default Search;
