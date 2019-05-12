@@ -9,6 +9,7 @@ import { Headline, TouchableRipple } from 'react-native-paper';
 import { CachedImage } from 'react-native-cached-image';
 import UserAvatar from 'components/common/UserAvatar';
 import Loading from 'components/common/Loading';
+import Error from 'components/common/Error';
 import numeral from 'numeral';
 import colors from 'config/colors';
 
