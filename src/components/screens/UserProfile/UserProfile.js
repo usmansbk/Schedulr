@@ -19,16 +19,19 @@ export default ({
   error,
   onRefresh,
   refreshing,
-  user: {
+  user
+}) => {
+  if (loading && !user) return <Loading />;
+  if (error && !user) return <Error onRefresh={onRefresh} loading={refreshing} />;
+
+  const {
     id,
     pictureUrl,
     name,
     followingCount=0,
-    createdCount=0,
-  }
-}) => {
-  if (loading) return <Loading />;
-  if (error) return <Error onRefresh={onRefresh} loading={refreshing} />;
+    createdCount=0
+  } = user;
+
   return (
     <ScrollView contentContainerStyle={styles.header}>
       <CachedImage

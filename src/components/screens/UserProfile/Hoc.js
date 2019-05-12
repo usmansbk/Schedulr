@@ -32,7 +32,7 @@ export default graphql(gql(getUser), {
         // })
       }
     },
-    user: data && data.getUser || {},
+    user: data && data.getUser,
     ...ownProps,
   })
 })(UserProfile)
