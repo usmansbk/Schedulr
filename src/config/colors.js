@@ -1,7 +1,4 @@
-// import { isDayTime } from '../lib/time';
-import stores from 'stores';
-
-const light = {
+export const light = {
   facebook: '#3b5998',
   google: '#4285F4',
   black: '#212121',
@@ -30,7 +27,7 @@ const light = {
   warning: '#FBAD15',
 }
 
-const dark = {
+export const dark = {
   facebook: '#3b5998',
   google: '#4285F4',
   black: '#ffffff',
@@ -60,5 +57,4 @@ const dark = {
   warning: '#FBAD15',
 };
 
-export default stores.settingsStore.dark ? dark : light;
-// export default light;
+export default light;

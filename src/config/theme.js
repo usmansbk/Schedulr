@@ -1,18 +1,20 @@
+import { observable } from 'mobx';
 import { DefaultTheme } from 'react-native-paper';
 import stores from 'stores';
-import colors from './colors';
-// import { isDayTime } from '../lib/time';
+// import colors from './colors';
 
-export default {
+const themeStore = observable({
   ...DefaultTheme,
   colors: {
     ...DefaultTheme.colors,
     dark: stores.settingsStore.dark,
-    primary: colors.primary,
-    accent: colors.primary_light,
-    error: colors.light_red,
-    text: colors.black,
-    placeholder: colors.placeholder,
-    disabled: colors.disabled || DefaultTheme.colors.disabled
+    primary: stores.settingsStore.colorTheme.primary,
+    accent: stores.settingsStore.colorTheme.primary_light,
+    error: stores.settingsStore.colorTheme.light_red,
+    text: stores.settingsStore.colorTheme.black,
+    placeholder: stores.settingsStore.colorTheme.placeholder,
+    disabled: stores.settingsStore.colorTheme.disabled || DefaultTheme.colors.disabled
   }
-};
+});
+
+export default themeStore;

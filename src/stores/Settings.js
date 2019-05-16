@@ -1,5 +1,6 @@
-import { observable, action } from 'mobx';
+import { observable, action, computed } from 'mobx';
 import { persist } from 'mobx-persist';
+import { dark, light } from 'config/colors';
 
 export default class SettingsState {
   @persist @observable language = "en_US";
@@ -17,5 +18,10 @@ export default class SettingsState {
 
   @action toggleTheme () {
     this.dark = !this.dark;
+  }
+
+  @computed get colorTheme () {
+    if (this.dark) return dark;
+    return light;
   }
 }
