@@ -1,7 +1,6 @@
 import { observable } from 'mobx';
 import { DefaultTheme } from 'react-native-paper';
 import stores from 'stores';
-// import colors from './colors';
 
 const themeStore = observable({
   ...DefaultTheme,
