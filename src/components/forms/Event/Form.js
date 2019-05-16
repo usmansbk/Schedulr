@@ -197,6 +197,7 @@ export default class Form extends React.Component {
               {errors.location}
               </HelperText>
               <DateTimeInput
+                noMin
                 label="From"
                 disabled={values.allDay}
                 value={values.startAt}

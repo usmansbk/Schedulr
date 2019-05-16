@@ -37,6 +37,7 @@ export default class Input extends React.Component {
     const {
       label,
       disabled,
+      noMin
     } = this.props;
     const value = this.props.value || moment().toDate().toISOString();
     return (
@@ -61,7 +62,7 @@ export default class Input extends React.Component {
           <DateTimePicker
             mode="date"
             date={new Date(value)}
-            minimumDate={new Date()}
+            minimumDate={noMin ? undefined : new Date()}
             isVisible={this.state.showDatePicker}
             onCancel={() => this._hidePicker('showDatePicker')}
             onConfirm={this._handleConfirmDate}

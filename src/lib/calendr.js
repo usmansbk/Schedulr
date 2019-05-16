@@ -60,8 +60,9 @@ function getNextDayEvents(initialEvents, nextDate) {
     const eventDate = moment(currentEvent.startAt);
     const repeat = getRepeat(currentEvent.repeat);
     const isExtended = eventDate.twix(currentEvent.endAt).contains(refDate.toISOString());
+    const isValid = currentEvent.until ? refDate.isSameOrBefore(moment(currentEvent.until), 'day') : true;
 
-    if (repeat && !currentEvent.isCancelled) {
+    if (repeat && !currentEvent.isCancelled && isValid) {
       let recurrence;
       if (repeat === 'weekdays') {
         recurrence = eventDate.recur().every(weekdays).daysOfWeek();
@@ -89,16 +90,11 @@ function getNextDayEvents(initialEvents, nextDate) {
         const startAt = refDate.seconds(startSec).minutes(startMins).hours(startHours).toISOString();
 
         const endAt = moment(startAt).add(duration).toISOString();
-        
-        const shouldRecur = currentEvent.until ?
-          moment(startAt).isSameOrBefore(moment(currentEvent.until)) : true;
 
-        if (shouldRecur) {
-          accumulator.data.push(Object.assign({}, currentEvent, {
-            startAt,
-            endAt
-          }));
-        }
+        accumulator.data.push(Object.assign({}, currentEvent, {
+          startAt,
+          endAt
+        }));
       }
     } else if (!repeat && eventDate.isSame(refDate, 'day') || isExtended) {
       accumulator.data.push(currentEvent);
