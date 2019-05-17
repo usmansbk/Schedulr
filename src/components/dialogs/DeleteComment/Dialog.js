@@ -4,8 +4,10 @@ import {
   Dialog,
   Portal
 } from 'react-native-paper';
-import colors from 'config/colors';
+import { inject, observer } from 'mobx-react/native';
 
+@inject('stores')
+@observer
 export default class DeleteComment extends React.Component {
   state = {
     loading: false
@@ -22,6 +24,7 @@ export default class DeleteComment extends React.Component {
     const {
       visible,
       handleDismiss,
+      stores
     } = this.props;
     const { loading } = this.state;
 
@@ -29,7 +32,7 @@ export default class DeleteComment extends React.Component {
       <Portal>
         <Dialog
           visible={visible}
-          style={{backgroundColor: colors.bg}}
+          style={{backgroundColor: stores.themeStore.colors.bg}}
           onDismiss={handleDismiss}
         >
           <Dialog.Title>Delete comment?</Dialog.Title>

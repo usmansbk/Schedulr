@@ -4,8 +4,10 @@ import {
   Dialog,
   Portal
 } from 'react-native-paper';
-import colors from 'config/colors';
+import { inject, observer } from 'mobx-react/native';
 
+@inject('stores')
+@observer
 export default class DeleteBoard extends React.Component {
   state = {
     loading: false
@@ -36,6 +38,7 @@ export default class DeleteBoard extends React.Component {
     const {
       visible,
       handleDismiss,
+      stores
     } = this.props;
 
     const { loading } = this.state;
@@ -45,7 +48,7 @@ export default class DeleteBoard extends React.Component {
         <Dialog
           visible={visible}
           onDismiss={handleDismiss}
-          style={{backgroundColor: colors.bg}}
+          style={{backgroundColor: stores.themeStore.colors.bg}}
         >
           <Dialog.Title>Delete calendar?</Dialog.Title>
           <Dialog.Actions>
