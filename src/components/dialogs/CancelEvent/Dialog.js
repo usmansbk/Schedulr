@@ -39,7 +39,8 @@ export default class CancelEvent extends React.Component {
       id,
       date,
       onSubmit,
-      handleDismiss
+      handleDismiss,
+      stores
     } = this.props;
     this.setState({ loading: true });
     try {
