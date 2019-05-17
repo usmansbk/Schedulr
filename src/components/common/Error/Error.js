@@ -7,42 +7,28 @@ import {
   Headline,
   Button
 } from 'react-native-paper';
-import colors from 'config/colors';
+import { inject, observer } from 'mobx-react/native';
 
-export default (props) => (
-  <View style={styles.container}>
-    <Headline style={styles.headline}>
-      Something went wrong. Please try again
-    </Headline>
-    {
-      props.onRefresh && (
-        <View style={styles.content}>
-          <Button
-            icon="refresh"
-            onPress={props.onRefresh}
-            mode="outlined"
-            loading={props.loading}
-          >
-          { props.loading ? "Loading..." : "Try again" }
-          </Button>
-        </View>
-      )
-    }
-  </View>
-);
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingHorizontal: 16,
-    backgroundColor: colors.bg
-  },
-  headline: {
-    textAlign: 'center',
-  },
-  content: {
-    margin: 16
-  }
-})
+export default inject('stores')(observer(
+  ({ onRefresh, loading, stores }) => (
+    <View style={stores.appStyles.error.container}>
+      <Headline style={stores.appStyles.error.headline}>
+        Something went wrong. Please try again
+      </Headline>
+      {
+        onRefresh && (
+          <View style={stores.appStyles.error.content}>
+            <Button
+              icon="refresh"
+              onPress={onRefresh}
+              mode="outlined"
+              loading={loading}
+            >
+            { loading ? "Loading..." : "Try again" }
+            </Button>
+          </View>
+        )
+      }
+    </View>
+  )
+));

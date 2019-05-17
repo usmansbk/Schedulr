@@ -49,6 +49,26 @@ export default class AppStyles {
     });
   }
 
+  @computed get error () {
+    const colors = this.settings.dark ? dark : light;
+
+    return StyleSheet.create({
+      container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingHorizontal: 16,
+        backgroundColor: colors.bg
+      },
+      headline: {
+        textAlign: 'center',
+      },
+      content: {
+        margin: 16
+      }
+    });
+  }
+
   @computed get notifications () {
     const colors = this.settings.dark ? dark : light;
 
