@@ -7,16 +7,14 @@ import { Provider as MobxProvider } from 'mobx-react/native';
 import { Rehydrated } from 'aws-appsync-react';
 import SplashScreen from 'react-native-splash-screen';
 import 'babel-polyfill';
-import Amplify, { Auth } from 'aws-amplify';
+import Amplify from 'aws-amplify';
 import AppContainer from './src/App';
 import Loading from './src/components/common/Loading';
 import NavigationService from './src/config/navigation';
 import config from './src/aws-exports';
 import client from './src/config/client';
 import stores from './src/stores';
-import theme from './src/config/theme';
 import env from './src/config/env';
-// import { refreshGoogleToken } from './src/config/auth';
 
 console.disableYellowBox = true;
 
@@ -26,11 +24,6 @@ GoogleSignin.configure({
   offlineAccess: true
 });
 Amplify.configure(config);
-// Auth.configure({
-//   refreshHandlers: {
-//     'google': refreshGoogleToken
-//   } 
-// });
 
 export default class App extends React.Component {
   componentDidMount = () => {
@@ -40,7 +33,7 @@ export default class App extends React.Component {
   render() {
     return (
       <MenuProvider backHandler={true}>
-        <PaperProvider theme={theme}>
+        <PaperProvider theme={stores.themeStore.theme}>
           <ApolloProvider client={client}>
             <Rehydrated loading={<Loading />}>
               <MobxProvider stores={stores}>
