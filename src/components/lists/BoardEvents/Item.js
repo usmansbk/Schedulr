@@ -6,12 +6,17 @@ import {
   Caption,
   Headline,
 } from 'react-native-paper';
+import { inject, observer } from 'mobx-react/native';
 import Avatar from 'components/common/UserAvatar';
 import Tag from 'components/common/Tag';
-import styles, {
-  AVATAR_SIZE,
-} from './styles';
+import { board_events } from 'lib/constants';
 
+const {
+  AVATAR_SIZE,
+} = board_events;
+
+@inject('stores')
+@observer
 export default class Item extends React.PureComponent {
   _onPress = () => this.props.onPressItem(this.props.id, this.props.startAt, this.props.endAt);
   render() {
@@ -22,8 +27,11 @@ export default class Item extends React.PureComponent {
       duration,
       eventType,
       pictureUrl,
-      status
+      status,
+      stores
     } = this.props;
+
+    const styles = stores.appStyles.boardEvents;
 
     return (
       <TouchableRipple

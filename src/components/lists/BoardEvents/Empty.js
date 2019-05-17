@@ -1,24 +1,26 @@
 import React from 'react';
 import { View } from 'react-native';
 import { Headline, Paragraph } from 'react-native-paper';
-import styles from './styles';
+import { inject, observer } from 'mobx-react/native';
 
-export default ({ error, loading }) =>{
-  if (loading) return null;
-  return (
-    <View style={styles.empty}>
-      <Headline style={styles.emptyTitle}>
-      {
-        error ? 'Network error' : 'No schedule yet'
-      }
-      </Headline>
-      {
-        error && (
-          <Paragraph style={styles.paragraph}>
-            Check your internet connection. Pull to refresh.
-          </Paragraph>
-        )
-      }
-    </View>
-  );  
-}
+export default inject('stores')(observer(
+  ({ error, loading, stores }) =>{
+    if (loading) return null;
+    return (
+      <View style={stores.appStyles.boardEvents.empty}>
+        <Headline style={stores.appStyles.boardEvents.emptyTitle}>
+        {
+          error ? 'Network error' : 'No schedule yet'
+        }
+        </Headline>
+        {
+          error && (
+            <Paragraph style={stores.appStyles.boardEvents.paragraph}>
+              Check your internet connection. Pull to refresh.
+            </Paragraph>
+          )
+        }
+      </View>
+    );  
+  }
+))

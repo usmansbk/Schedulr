@@ -48,3 +48,11 @@ export const board_info = {
   AVATAR_SIZE : 80
 };
 
+// list/boardEvents
+export const board_events = {
+  AVATAR_SIZE : 54,
+  ITEM_HEIGHT : 122,
+  ITEM_HEIGHT_SMALL : 102,
+  SEPARATOR_HEIGHT : 1,
+  FOOTER_HEIGHT : 80,
+}

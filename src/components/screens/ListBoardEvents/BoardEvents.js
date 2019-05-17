@@ -1,11 +1,12 @@
 import React from 'react';
 import { Appbar } from 'react-native-paper';
+import { inject, observer } from 'mobx-react/native';
 import List from 'components/lists/BoardEvents';
 import Loading from 'components/common/Loading';
 import Error from 'components/common/Error';
-import styles from 'config/styles';
-import colors from 'config/colors';
 
+@inject('stores')
+@observer
 export default class BoardEvents extends React.Component {
   static defaultProps = {
     events: []
@@ -21,6 +22,7 @@ export default class BoardEvents extends React.Component {
       loadingEventsError,
       onPress,
       onRefresh,
+      stores
     } = this.props;
     if (loading) return <Loading />;
     if (!board && error) return <Error onRefresh={onRefresh} />;
@@ -29,6 +31,9 @@ export default class BoardEvents extends React.Component {
       name,
       description,
     } = board;
+
+    const styles = stores.appStyles.styles;
+    const colors = stores.themeStore.colors;
 
     return (
       <>
