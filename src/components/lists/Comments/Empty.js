@@ -1,21 +1,23 @@
 import React from 'react';
 import { View } from 'react-native';
 import { Headline, Paragraph } from 'react-native-paper';
-import styles from './styles';
+import { inject, observer } from 'mobx-react/native';
 
-export default ({ error, loading }) => loading ? null : (
-  <View style={styles.empty}>
-    <Headline style={styles.emptyTitle}>
+export default inject('stores')(observer(
+  ({ error, loading, stores }) => loading ? null : (
+    <View style={stores.appStyles.commentsList.empty}>
+      <Headline style={stores.appStyles.commentsList.emptyTitle}>
+        {
+          error ? 'Network error' : 'No comments'
+        }
+      </Headline>
       {
-        error ? 'Network error' : 'No comments'
+        error && (
+          <Paragraph style={stores.appStyles.commentsList.paragraph}>
+            Check your internet connection. Pull to refresh.
+          </Paragraph>
+        )
       }
-    </Headline>
-    {
-      error && (
-        <Paragraph style={styles.paragraph}>
-          Check your internet connection. Pull to refresh.
-        </Paragraph>
-      )
-    }
-  </View>
-);
+    </View>
+  )
+));

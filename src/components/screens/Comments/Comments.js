@@ -1,10 +1,11 @@
 import React from 'react';
 import { Appbar } from 'react-native-paper';
+import { inject, observer } from 'mobx-react/native';
 import List from 'components/lists/Comments';
 import CommentForm from 'components/forms/Comment';
-import styles from 'config/styles';
-import colors from 'config/colors';
 
+@inject('stores')
+@observer
 export default class Comments extends React.Component {
 
   state = {
@@ -38,8 +39,12 @@ export default class Comments extends React.Component {
       title,
       handleReply,
       cancelReply,
-      navigateToProfile
+      navigateToProfile,
+      stores
     } = this.props;
+
+    const styles = stores.appStyles.styles;
+    const colors = stores.themeStore.colors;
 
     return (
       <>

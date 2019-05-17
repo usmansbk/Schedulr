@@ -55,4 +55,10 @@ export const board_events = {
   ITEM_HEIGHT_SMALL : 102,
   SEPARATOR_HEIGHT : 1,
   FOOTER_HEIGHT : 80,
-}
+};
+
+// list/commentsList
+export const comments_list = {
+  AVATAR_SIZE : 32,
+  SEPARATOR_HEIGHT : 4
+};

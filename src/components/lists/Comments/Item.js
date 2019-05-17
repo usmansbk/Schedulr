@@ -7,10 +7,14 @@ import {
   IconButton
 } from 'react-native-paper';
 import Hyperlink from 'react-native-hyperlink';
+import { inject, observer } from 'mobx-react/native';
 import UserAvatar from 'components/common/UserAvatar';
-import styles, { AVATAR_SIZE } from './styles';
-import colors from 'config/colors';
+import { comments_list } from 'lib/constants';
 
+const { AVATAR_SIZE } = comments_list;
+
+@inject('stores')
+@observer
 export default class Item extends React.PureComponent {
   state = {
     showOptions: false
@@ -36,8 +40,12 @@ export default class Item extends React.PureComponent {
       authorPictureUrl,
       toCommentAuthorName,
       toCommentContent,
-      isToCommentDeleted
+      isToCommentDeleted,
+      stores
     } = this.props;
+
+    const styles = stores.appStyles.commentsList;
+    const colors = stores.themeStore.colors;
 
     const isPending = id[0] === '-';
 

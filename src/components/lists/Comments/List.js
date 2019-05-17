@@ -1,12 +1,14 @@
 import React from 'react';
 import { FlatList, RefreshControl } from 'react-native';
+import { inject, observer } from 'mobx-react/native';
 import Item from './Item';
 import Footer from './Footer';
 import Empty from './Empty';
 import Separator from './Separator';
-import styles, { primary } from './styles';
 import { timeAgo } from 'lib/time';
 
+@inject('stores')
+@observer
 export default class List extends React.Component {
   static defaultProps = {
     comments: [],
@@ -53,8 +55,12 @@ export default class List extends React.Component {
     const {
       loading,
       comments,
-      onRefresh
+      onRefresh,
+      stores
     } = this.props;
+
+    const styles = stores.appStyles.commentsList;
+
     return (
       <FlatList
         ref={ref => this._listRef = ref}
@@ -73,7 +79,7 @@ export default class List extends React.Component {
           <RefreshControl
             refreshing={loading}
             onRefresh={onRefresh}
-            colors={[primary]}
+            colors={[stores.themeStore.colors.primary]}
           />
         }
       />
