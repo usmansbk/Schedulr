@@ -2,15 +2,17 @@ import React from 'react';
 import { FlatList } from 'react-native';
 import { withNavigationFocus } from 'react-navigation';
 import Share from 'react-native-share';
+import { inject, observer } from 'mobx-react/native';
 import LogoutDialog from 'components/dialogs/Logout';
 import Header from './Header';
 import Footer from './Footer';
 import Item from './Item';
 import Separator from './Separator';
 import items from './items';
-import styles from './styles';
 import env from 'config/env';
 
+@inject("stores")
+@observer
 class List extends React.Component {
   state = {
     visible: false,
@@ -62,6 +64,8 @@ class List extends React.Component {
   shouldComponentUpdate = () => this.props.isFocused;
 
   render() {
+    const { moreList } = this.props.stores.appStyles;
+    const styles = moreList
     return (
       <>
         <FlatList

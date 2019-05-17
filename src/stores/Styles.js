@@ -7,6 +7,37 @@ export default class AppStyles {
     this.settings = settingsStore;
   }
 
+  @computed get moreList () {
+    const colors = this.settings.dark ? dark : light;
+    const SEPARATOR_HEIGHT = 1;
+    const HEADER_HEIGHT = 100;
+
+    return StyleSheet.create({
+      container: {
+        backgroundColor: colors.light_gray
+      },
+      contentContainer: {
+        flexGrow: 1,
+        backgroundColor: colors.light_gray
+      },
+      header: {
+        height: HEADER_HEIGHT,
+        backgroundColor: colors.white,
+        marginVertical: 8,
+      },
+      separator: {
+        height: SEPARATOR_HEIGHT,
+      },
+      footer: {
+        backgroundColor: colors.white,
+        marginVertical: 8,
+      },
+      item: {
+        backgroundColor: colors.white,
+      }
+    });
+  }
+
   @computed get styles () {
     const colors = this.settings.dark ? dark : light;
 
