@@ -8,6 +8,19 @@ export default class AppStyles {
     this.settings = settingsStore;
   }
 
+  @computed get loading () {
+    const colors = this.settings.dark ? dark : light;
+    
+    return StyleSheet.create({
+      container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: colors.bg
+      },
+    });
+  }
+
   @computed get eventsList () {
     const colors = this.settings.dark ? dark : light;
     

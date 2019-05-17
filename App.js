@@ -10,7 +10,7 @@ import { observer } from 'mobx-react/native';
 import 'babel-polyfill';
 import Amplify from 'aws-amplify';
 import AppContainer from './src/App';
-import Loading from './src/components/common/Loading';
+import Loading from './src/components/common/Hydrating';
 import NavigationService from './src/config/navigation';
 import config from './src/aws-exports';
 import client from './src/config/client';

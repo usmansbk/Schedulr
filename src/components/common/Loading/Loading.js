@@ -1,18 +1,11 @@
 import React from 'react';
 import { View, StyleSheet, ActivityIndicator } from 'react-native';
-import colors from 'config/colors';
+import { inject, observer } from 'mobx-react/native';
 
-export default () => (
-  <View style={styles.container}>
-    <ActivityIndicator size="large" color={colors.primary} />
-  </View>
-);
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: colors.bg
-  },
-});
+export default inject('stores')(observer(
+  ({ stores }) => (
+    <View style={stores.appStyles.loading.container}>
+      <ActivityIndicator size="large" color={stores.themeStore.colors.primary} />
+    </View>
+  )
+));
