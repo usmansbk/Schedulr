@@ -4,6 +4,7 @@ import {
   createMaterialTopTabNavigator,
 } from 'react-navigation';
 import { StyleSheet, Dimensions } from 'react-native';
+import { inject, observer } from 'mobx-react/native';
 import Events from './Events';
 import Calendars from './Boards';
 import colors from 'config/colors';
@@ -41,25 +42,29 @@ const Tabs = createMaterialTopTabNavigator(
     navigationOptions: ({ navigation }) => {
       return ({
         headerTransparent: false,
-        header: (
-          <Searchbar
-            icon="arrow-back"
-            onIconPress={() => navigation.goBack()}
-            placeholder="Search for..."
-            placeholderTextColor={colors.placeholder}
-            value={navigation.getParam('query', '')}
-            onChangeText={(query) => navigation.setParams({ query })}
-            style={{
-              elevation: 0,
-              backgroundColor: colors.bg,
-              borderRadius: 0
-            }}
-          />
-        )
+        header: <SearchBar navigation={navigation} />
       })
     },
     lazy: true
   }
 );
+
+const SearchBar = inject('stores')(observer(
+  ({ navigation, stores }) => (
+    <Searchbar
+      icon="arrow-back"
+      onIconPress={() => navigation.goBack()}
+      placeholder="Search for..."
+      placeholderTextColor={stores.themeStore.colors.placeholder}
+      value={navigation.getParam('query', '')}
+      onChangeText={(query) => navigation.setParams({ query })}
+      style={{
+        elevation: 0,
+        backgroundColor: stores.themeStore.colors.bg,
+        borderRadius: 0
+      }}
+    />
+  )
+));
 
 export default Tabs;
