@@ -6,10 +6,12 @@ import {
   Headline,
   TouchableRipple
 } from 'react-native-paper';
+import { inject, observer } from 'mobx-react/native';
 import { getSectionHeaderData } from 'lib/time';
 import { BULLET } from 'lib/constants';
-import styles from './styles';
 
+@inject('stores')
+@observer
 export default class SectionHeader extends React.PureComponent {
   _onPress = () => {
     const date = moment(this.props.section.title);
@@ -25,7 +27,11 @@ export default class SectionHeader extends React.PureComponent {
   }
 
   render() {
-    const { section: { title , data }, onPress } = this.props;
+    const {
+      section: { title , data },
+      onPress,
+      stores
+    } = this.props;
 
     const { heading, subheading, timeAgo } = getSectionHeaderData(title);
     const count = data.length;
@@ -37,6 +43,8 @@ export default class SectionHeader extends React.PureComponent {
     if (count > 1) {
       itemsCount = `${count} events ${time ? BULLET : ''} `;
     }
+
+    const styles = stores.appStyles.eventsList;
 
     return (
       <TouchableRipple onPress={this._onPress}>

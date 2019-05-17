@@ -1,13 +1,15 @@
 import React from 'react';
 import { View } from 'react-native';
 import { Text } from 'react-native-paper';
-import styles from './styles';
+import { inject, observer} from 'mobx-react/native';
 
-export default ({ section }) => {
-  if (section.data.length) return null;
-  return (
-    <View style={styles.sectionFooter}>
-      <Text style={styles.footerText}>No events</Text>
-    </View>
-  );
-}
+export default inject('stores')(observer(
+  ({ section, stores }) => {
+    if (section.data.length) return null;
+    return (
+      <View style={stores.appStyles.eventsList.sectionFooter}>
+        <Text style={stores.appStyles.eventsList.footerText}>No events</Text>
+      </View>
+    );
+  }
+))
