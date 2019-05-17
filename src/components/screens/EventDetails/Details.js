@@ -2,111 +2,114 @@ import React from 'react';
 import { View, ScrollView } from 'react-native';
 import { Text, Headline, Divider } from 'react-native-paper';
 import Hyperlink from 'react-native-hyperlink';
+import { inject, observer } from 'mobx-react/native';
 import Actions from 'components/common/Actions';
 import Tag from 'components/common/Tag';
 import { BULLET } from 'lib/constants';
-import styles from './styles';
 
-export default ({
-  id,
-  title,
-  date,
-  eventType,
-  address,
-  boardName,
-  boardId,
-  repeat,
-  until,
-  createdAt,
-  updatedAt,
-  description,
-  duration,
-  timeAgo,
-  status,
-  isCancelled,
-  isStarred,
-  starsCount,
-  commentsCount,
-  navigateToBoard,
-  navigateToComments,
-  cardView
-}) => (
-  <View style={styles.container}>
-    <ScrollView style={styles.bg}>
-      <View style={styles.content}>
-        <View style={styles.head}>
-          <View style={styles.headNote}>
+export default inject('stores')(observer(
+  ({
+    id,
+    title,
+    date,
+    eventType,
+    address,
+    boardName,
+    boardId,
+    repeat,
+    until,
+    createdAt,
+    updatedAt,
+    description,
+    duration,
+    timeAgo,
+    status,
+    isCancelled,
+    isStarred,
+    starsCount,
+    commentsCount,
+    navigateToBoard,
+    navigateToComments,
+    cardView,
+    stores
+  }) => (
+    <View style={stores.appStyles.eventDetails.container}>
+      <ScrollView style={stores.appStyles.eventDetails.bg}>
+        <View style={stores.appStyles.eventDetails.content}>
+          <View style={stores.appStyles.eventDetails.head}>
+            <View style={stores.appStyles.eventDetails.headNote}>
+              {
+                !cardView && (
+                  <>
+                    <Tag status={status} />
+                    {!isCancelled && <Text style={stores.appStyles.eventDetails.note}> {BULLET} {timeAgo}</Text>}
+                  </>
+                )
+              }
+            </View> 
+            <Headline style={stores.appStyles.eventDetails.title}>{title}</Headline>
+            <Text style={stores.appStyles.eventDetails.date}>{date}</Text>
+            {(duration !== 'A day') && <Text style={stores.appStyles.eventDetails.date}>{duration}</Text>}
+          </View>
+          <Divider />
+          <View style={stores.appStyles.eventDetails.body}>
+            <View style={stores.appStyles.eventDetails.item}>
+              <Text style={stores.appStyles.eventDetails.label}>TYPE</Text>
+              <Text style={stores.appStyles.eventDetails.value}>{eventType}</Text>
+            </View>
+            <View style={stores.appStyles.eventDetails.item}>
+              <Text style={stores.appStyles.eventDetails.label}>VENUE</Text>
+              <Text style={stores.appStyles.eventDetails.value}>{address || 'No location set'}</Text>
+            </View>
+            <View style={stores.appStyles.eventDetails.item}>
+              <Text style={stores.appStyles.eventDetails.label}>CALENDAR</Text>
+              <Text onPress={() => navigateToBoard(boardId)} style={[stores.appStyles.eventDetails.value, stores.appStyles.eventDetails.nav]}>{boardName}</Text>
+            </View>
+            <View style={stores.appStyles.eventDetails.item}>
+              <Text style={stores.appStyles.eventDetails.label}>REPEAT</Text>
+              <Text style={stores.appStyles.eventDetails.value}>{repeat}</Text>
+            </View>
             {
-              !cardView && (
-                <>
-                  <Tag status={status} />
-                  {!isCancelled && <Text style={styles.note}> {BULLET} {timeAgo}</Text>}
-                </>
+              Boolean(until) && (
+                <View style={stores.appStyles.eventDetails.item}>
+                  <Text style={stores.appStyles.eventDetails.label}>UNTIL</Text>
+                  <Text style={stores.appStyles.eventDetails.value}>{until}</Text>
+                </View>
               )
             }
-          </View> 
-          <Headline style={styles.title}>{title}</Headline>
-          <Text style={styles.date}>{date}</Text>
-          {(duration !== 'A day') && <Text style={styles.date}>{duration}</Text>}
-        </View>
-        <Divider />
-        <View style={styles.body}>
-          <View style={styles.item}>
-            <Text style={styles.label}>TYPE</Text>
-            <Text style={styles.value}>{eventType}</Text>
-          </View>
-          <View style={styles.item}>
-            <Text style={styles.label}>VENUE</Text>
-            <Text style={styles.value}>{address || 'No location set'}</Text>
-          </View>
-          <View style={styles.item}>
-            <Text style={styles.label}>CALENDAR</Text>
-            <Text onPress={() => navigateToBoard(boardId)} style={[styles.value, styles.nav]}>{boardName}</Text>
-          </View>
-          <View style={styles.item}>
-            <Text style={styles.label}>REPEAT</Text>
-            <Text style={styles.value}>{repeat}</Text>
-          </View>
-          {
-            Boolean(until) && (
-              <View style={styles.item}>
-                <Text style={styles.label}>UNTIL</Text>
-                <Text style={styles.value}>{until}</Text>
-              </View>
-            )
-          }
-          <View style={styles.item}>
-            <Text style={styles.label}>CREATED</Text>
-            <Text style={styles.value}>{createdAt}</Text>
-          </View>
-          {
-            Boolean(updatedAt) && (
-              <View style={styles.item}>
-                <Text style={styles.label}>EDITED</Text>
-                <Text style={styles.value}>{updatedAt}</Text>
-              </View>
-            )
-          }
-          <View style={styles.item}>
-            <Text style={styles.label}>DESCRIPTION</Text>
-            <Hyperlink linkStyle={styles.linkStyle} linkDefault={true}>
-              <Text style={styles.value}>{description || 'No description'}</Text>
-            </Hyperlink>
+            <View style={stores.appStyles.eventDetails.item}>
+              <Text style={stores.appStyles.eventDetails.label}>CREATED</Text>
+              <Text style={stores.appStyles.eventDetails.value}>{createdAt}</Text>
+            </View>
+            {
+              Boolean(updatedAt) && (
+                <View style={stores.appStyles.eventDetails.item}>
+                  <Text style={stores.appStyles.eventDetails.label}>EDITED</Text>
+                  <Text style={stores.appStyles.eventDetails.value}>{updatedAt}</Text>
+                </View>
+              )
+            }
+            <View style={stores.appStyles.eventDetails.item}>
+              <Text style={stores.appStyles.eventDetails.label}>DESCRIPTION</Text>
+              <Hyperlink linkStyle={stores.appStyles.eventDetails.linkStyle} linkDefault={true}>
+                <Text style={stores.appStyles.eventDetails.value}>{description || 'No description'}</Text>
+              </Hyperlink>
+            </View>
           </View>
         </View>
-      </View>
-    </ScrollView>
-    <Divider />
-    <Actions
-      id={id}
-      title={title}
-      address={address}
-      eventType={eventType}
-      isStarred={isStarred}
-      starsCount={starsCount}
-      commentsCount={commentsCount}
-      date={date}
-      navigateToComments={navigateToComments}
-    />
-  </View>
-);
+      </ScrollView>
+      <Divider />
+      <Actions
+        id={id}
+        title={title}
+        address={address}
+        eventType={eventType}
+        isStarred={isStarred}
+        starsCount={starsCount}
+        commentsCount={commentsCount}
+        date={date}
+        navigateToComments={navigateToComments}
+      />
+    </View>
+  )
+));

@@ -2,9 +2,8 @@ import React from 'react';
 import moment from 'moment';
 import isEqual from 'lodash.isequal';
 import { Appbar } from 'react-native-paper';
+import { inject, observer } from 'mobx-react/native';
 import Details from './Details';
-import styles from 'config/styles';
-import colors from 'config/colors';
 import { formatDate, getRepeatLabel } from 'lib/time';
 import { isEventValid, isEventCancelled, getDuration, getStatus } from 'lib/parseItem';
 import capitalizr, {decapitalize} from 'lib/capitalizr';
@@ -12,6 +11,8 @@ import { ONE_TIME_EVENT } from 'lib/constants';
 
 const DATE_FORMAT = "ddd DD, MMM YYYY, hh:mm a";
 
+@inject('stores')
+@observer
 export default class EventDetails extends React.Component {
   _handleCancel = () => {
     const isRecurring = this.props.event.repeat !== ONE_TIME_EVENT;
@@ -43,7 +44,8 @@ export default class EventDetails extends React.Component {
       handleEdit,
       navigateToBoard,
       navigateToComments,
-      cardView
+      cardView,
+      stores
     } = this.props;
     const {
       id,
@@ -71,6 +73,9 @@ export default class EventDetails extends React.Component {
 
     const isValid = isEventValid({ isCancelled, endAt: end, startAt: start, cancelledDates });
 
+    const colors = stores.themeStore.colors;
+    const styles = stores.appStyles.styles;
+    
     return (
       <>
         <Appbar.Header style={styles.header}  collapsable>
