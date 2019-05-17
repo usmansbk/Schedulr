@@ -1,10 +1,15 @@
 import React from 'react';
 import { View } from 'react-native';
 import { TouchableRipple, Text, Caption } from 'react-native-paper';
+import { inject, observer } from 'mobx-react/native';
 import UserAvatar from 'components/common/UserAvatar';
 import FollowButton from 'components/common/FollowButton';
-import styles, { AVATAR_SIZE } from './styles';
+import { board_search } from 'lib/constants';
 
+const { AVATAR_SIZE } = board_search;
+
+@inject('stores')
+@observer
 export default class Item extends React.PureComponent {
   _onPress = () => {
     const cacheFirst = !(this.props.isAuthor || this.props.isFollowing);
@@ -19,10 +24,13 @@ export default class Item extends React.PureComponent {
       isAuthor,
       isClosed,
       isFollowing,
+      stores
     } = this.props;
     
     const isPending = id[0] === '-';
 
+    const styles = stores.appStyles.boardSearch;
+    
     return (
       <TouchableRipple style={styles.itemContainer} onPress={this._onPress}>
         <View style={styles.itemContent}>

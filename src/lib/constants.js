@@ -74,3 +74,10 @@ export const event_search = {
   SEPARATOR_HEIGHT : 1,
   AVATAR_SIZE : 48,
 };
+
+export const board_search = {
+  ITEM_HEIGHT : 80,
+  SEPARATOR_HEIGHT : 1,
+  AVATAR_SIZE : 50,
+  FOOTER_HEIGHT : 80,
+};

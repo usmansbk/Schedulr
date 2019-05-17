@@ -1,16 +1,20 @@
 import React, { Component } from 'react';
 import { RefreshControl } from 'react-native';
 import { withNavigationFocus, FlatList } from 'react-navigation';
+import { inject, observer } from 'mobx-react/native';
 import Item from './Item';
 import Separator from './Separator';
 import Footer from './Footer';
 import Empty from './Empty';
-import styles, {
+import { board_search } from 'lib/constants';
+
+const {
   ITEM_HEIGHT,
   SEPARATOR_HEIGHT
-} from './styles';
-import colors from 'config/colors';
+} = board_search;
 
+@inject('stores')
+@observer
 class List extends Component {
   static defaultProps = {
     boards: [],
@@ -60,8 +64,12 @@ class List extends Component {
     const {
       boards,
       loading,
-      onRefresh
+      onRefresh,
+      stores
     } = this.props;
+
+    const styles = stores.appStyles.boardSearch;
+
     return (
       <FlatList
         refreshing={loading}
@@ -69,7 +77,7 @@ class List extends Component {
           <RefreshControl
             onRefresh={onRefresh}
             refreshing={loading}
-            colors={[colors.primary]}
+            colors={[stores.themeStore.colors.primary]}
           />
         }
         onRefresh={onRefresh}
