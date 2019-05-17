@@ -17,3 +17,10 @@ export const events = {
   HEADER_HEIGHT : 28,
   FOOTER_HEIGHT : 80
 };
+
+export const boards = {
+  ITEM_HEIGHT : 80,
+  SEPARATOR_HEIGHT : 1,
+  AVATAR_SIZE : 50,
+  FOOTER_HEIGHT : 80,
+}

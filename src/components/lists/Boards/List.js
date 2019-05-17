@@ -1,17 +1,22 @@
 import React, { Component } from 'react';
 import { RefreshControl } from 'react-native';
 import { withNavigationFocus, FlatList } from 'react-navigation';
+import { inject, observer } from 'mobx-react/native';
 import Item from './Item';
 import Separator from './Separator';
 import Footer from './Footer';
 import Empty from './Empty';
-import styles, {
-  ITEM_HEIGHT,
-  SEPARATOR_HEIGHT
-} from './styles';
-import colors from '../../../config/colors';
-import sortBoards from '../../../lib/utils';
+import sortBoards from 'lib/utils';
+import { boards } from 'lib/constants';
 
+const {
+  AVATAR_SIZE,
+  ITEM_HEIGHT,
+  SEPARATOR_HEIGHT,
+} = boards;
+
+@inject('stores')
+@observer
 class List extends Component {
   static defaultProps = {
     boards: [],
@@ -62,8 +67,11 @@ class List extends Component {
       boards,
       loading,
       onRefresh,
+      stores
     } = this.props;
     const data = sortBoards(boards);
+    const styles = stores.appStyles.boardsList;
+    const colors = stores.themeStore.colors;
 
     return (
       <FlatList

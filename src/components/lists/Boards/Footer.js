@@ -1,10 +1,12 @@
 import React from 'react';
 import { View } from 'react-native';
 import { Text } from 'react-native-paper';
-import styles from './styles';
+import { inject, observer } from 'mobx-react/native';
 
-export default ({ visible }) => visible ? (
-  <View style={styles.footer}>
-    <Text style={styles.footerText}>No more calendars</Text>
-  </View>
-) : null;
+export default inject('stores')(observer(
+  ({ visible, stores }) => visible ? (
+    <View style={stores.appStyles.boardsList.footer}>
+      <Text style={stores.appStyles.boardsList.footerText}>No more calendars</Text>
+    </View>
+  ) : null
+));

@@ -1,10 +1,15 @@
 import React from 'react';
 import { View } from 'react-native';
 import { TouchableRipple, Text, Caption } from 'react-native-paper';
+import { inject, observer } from 'mobx-react/native';
 import UserAvatar from 'components/common/UserAvatar';
 import Tag from 'components/common/Tag';
-import styles, { AVATAR_SIZE } from './styles';
+import { boards } from 'lib/constants';
 
+const { AVATAR_SIZE } = boards
+
+@inject('stores')
+@observer
 export default class Item extends React.PureComponent {
   _onPress = () => this.props.onPressItem(this.props.id);
   _navigateToInfo = () => this.props.navigateToBoardInfo(this.props.id);
@@ -13,10 +18,13 @@ export default class Item extends React.PureComponent {
       id,
       name,
       description,
-      isClosed
+      isClosed,
+      stores
     } = this.props;
     
     const isPending = id[0] === '-';
+
+    const styles = stores.appStyles.boardsList;
 
     return (
       <TouchableRipple style={styles.itemContainer} onPress={this._onPress}>
