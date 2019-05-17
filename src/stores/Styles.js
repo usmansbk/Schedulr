@@ -8,6 +8,34 @@ export default class AppStyles {
     this.settings = settingsStore;
   }
 
+  @computed get tag() {
+    const colors = this.settings.dark ? dark : light;
+
+    return StyleSheet.create({
+      text: {
+        fontFamily: 'sans-serif-bold',
+        fontWeight: 'bold'
+      },
+      Cancelled: {
+        color: colors.light_red,
+      },
+      Ongoing: {
+        color: colors.green
+      },
+      Ended: {
+        color: colors.soft_blue,
+      },
+      Upcoming: {
+        color: colors.yellow,
+      },
+      Closed: {
+        color: colors.light_red,
+        fontWeight: 'normal',
+        fontSize: 12
+      }
+    });
+  }
+
   @computed get loading () {
     const colors = this.settings.dark ? dark : light;
 
