@@ -86,8 +86,7 @@ class List extends Component {
         onRefresh={onRefresh}
         style={styles.list}
         contentContainerStyle={styles.contentContainer}
-        initialNumToRender={5}
-        extraData={boards.length}
+        initialNumToRender={7}
         getItemLayout={this._getItemLayout}
         ItemSeparatorComponent={this._renderSeparator}
         keyExtractor={this._keyExtractor}
