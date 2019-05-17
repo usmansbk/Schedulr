@@ -34,3 +34,8 @@ export const starredEvents = {
   SEPARATOR_HEIGHT : 1,
   FOOTER_HEIGHT : 80,
 }
+
+// screen/boardInfo
+export const board_info = {
+  AVATAR_SIZE : 80
+};

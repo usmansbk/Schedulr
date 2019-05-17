@@ -21,15 +21,17 @@ import {
 } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Hyperlink from 'react-native-hyperlink';
+import { inject, observer } from 'mobx-react/native';
 import UserAvater from 'components/common/UserAvatar';
 import FollowButton from 'components/common/FollowButton';
 import Loading from 'components/common/Loading';
 import Error from 'components/common/Error';
-import styles, { AVATAR_SIZE } from './styles';
-import appStyles from 'config/styles';
-import colors from 'config/colors';
-import { CIRCLE, INFO } from 'lib/constants';
+import { board_info, CIRCLE, INFO } from 'lib/constants';
 
+const { AVATAR_SIZE } = board_info;
+
+@inject('stores')
+@observer
 export default class Info extends React.Component {
   shouldComponentUpdate = (nextProps) => !isEqual(nextProps.board, this.props.board);
   render() {
@@ -44,6 +46,7 @@ export default class Info extends React.Component {
       navigateToFollowers,
       navigateToProfile,
       navigateToEvents,
+      stores
     } = this.props;
     if (loading && !board) return <Loading />;
     if (error && !board) return <Error onRefresh={onRefresh} />;
@@ -65,6 +68,10 @@ export default class Info extends React.Component {
     const adminId = author && author.id;
     const adminName = author && author.name;
     const isClosed = status === 'CLOSED';
+
+    const appStyles = stores.appStyles.styles;
+    const styles = stores.appStyles.boardInfo;
+    const colors = stores.themeStore.colors;
 
     return (
       <>
