@@ -2,6 +2,7 @@ import React from 'react';
 import { RefreshControl, InteractionManager } from 'react-native';
 import { SectionList } from 'react-navigation';
 import sectionListGetItemLayout from 'react-native-section-list-get-item-layout';
+import { inject, observer } from 'mobx-react/native';
 import Header from './Header';
 import Footer from './Footer';
 import Empty from './Empty';
@@ -21,19 +22,21 @@ import {
   getNextEvents,
   getPreviousEvents,
 } from 'lib/calendr';
-import styles, {
+import { events } from 'lib/constants';
+
+const DAYS_PER_PAGE = 3;
+const INITIAL_BEFOREDAYS = 1;
+const INITIAL_AFTERDAYS = 0;
+const {
   ITEM_HEIGHT,
   SEPERATOR_HEIGHT,
   SECTION_HEADER_HEIGHT,
   SECTION_FOOTER_HEIGHT,
   HEADER_HEIGHT,
-  primary
-} from './styles';
+} = events;
 
-const DAYS_PER_PAGE = 3;
-const INITIAL_BEFOREDAYS = 1;
-const INITIAL_AFTERDAYS = 0;
-
+@inject('stores')
+@observer
 export default class List extends React.Component {
 
   constructor(props) {
@@ -193,8 +196,9 @@ export default class List extends React.Component {
   });
 
   render() {
-    const { loading } = this.props;
+    const { loading, stores } = this.props;
     const { sections, loadingPrev } = this.state;
+    const styles = stores.appStyles.eventsList;
     
     return (
       <SectionList
@@ -215,7 +219,7 @@ export default class List extends React.Component {
           <RefreshControl
             onRefresh={this._onRefresh}
             refreshing={loading || loadingPrev}
-            colors={[primary]}
+            colors={[stores.themeStore.colors.primary]}
           />
         }
         onEndReachedThreshold={0.5}
