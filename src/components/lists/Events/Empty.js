@@ -2,7 +2,6 @@ import React from 'react';
 import { View } from 'react-native';
 import { Headline, Paragraph } from 'react-native-paper';
 import { inject, observer } from 'mobx-react/native';
-import styles from './styles';
 
 export default inject('stores')(observer(
   ({ error, loading, stores }) =>{
