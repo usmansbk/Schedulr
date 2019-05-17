@@ -11,7 +11,8 @@ import ExploreTab from 'components/tabs/Explore';
 import HomeRoute from 'components/tabs/Home';
 import NotificationRoute from 'components/tabs/Notifications';
 import NotificationsIcon from 'components/common/NotificationIcon';
-import { FONT_SIZE } from 'lib/constants';
+
+const FONT_SIZE = 25;
 
 const Home = createBottomTabNavigator({
   Home: { screen: HomeRoute },
@@ -23,8 +24,6 @@ const Home = createBottomTabNavigator({
   initialLayout: { height: 0, width: Dimensions.get('window').width },
   tabBarComponent: props => <TabBarComponent {...props} />,
   tabBarOptions: {
-    // activeTintColor: activeColor,
-    // inactiveTintColor,
     showLabel: false,
     showIcon: true,
   },
