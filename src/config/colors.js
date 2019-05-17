@@ -50,7 +50,7 @@ export const dark = {
   soft_blue: '#7ad7f0',
   deep_purple: '#562765',
   blue: '004f86',
-  placeholder: 'white',
+  placeholder: '#7d7d7d',
   navButtonColor: 'white',
   success: '#53C41A',
   error: '#FF180B',
