@@ -1,16 +1,25 @@
 import React from 'react';
 import { View } from 'react-native';
 import { Text, TouchableRipple } from 'react-native-paper';
+import { inject, observer } from 'mobx-react/native';
 import UserAvatar from 'components/common/UserAvatar';
-import styles, { AVATAR_SIZE } from "./styles";
+import { followers_list } from 'lib/constants';
 
+const { AVATAR_SIZE } = followers_list;
+
+@inject('stores')
+@observer
 export default class Item extends React.PureComponent {
   _onPress = () => this.props.onPressItem(this.props.id);
   render() {
     const {
       name,
-      pictureUrl
+      pictureUrl,
+      stores
     } = this.props;
+    
+    const styles = stores.appStyles.followersList;
+
     return (
       <TouchableRipple onPress={this._onPress} style={styles.itemContainer}>
         <View style={styles.itemContent}>

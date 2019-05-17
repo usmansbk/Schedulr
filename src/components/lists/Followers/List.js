@@ -1,16 +1,20 @@
 import React from 'react';
 import { FlatList, RefreshControl } from 'react-native';
 import { withNavigationFocus } from 'react-navigation';
+import { inject, observer } from 'mobx-react/native';
+import { followers_list } from 'lib/constants';
 import Footer from './Footer';
 import Item from './Item';
 import Separator from './Separator';
 import Empty from './Empty';
-import styles, {
-  ITEM_HEIGHT,
-  SEPARATOR_HEIGHT,
-  primaryColor
-} from './styles';
 
+const {
+  ITEM_HEIGHT,
+  SEPARATOR_HEIGHT
+} = followers_list;
+
+@inject('stores')
+@observer
 class List extends React.Component {
   static defaultProps = {
     followers: [],
@@ -53,8 +57,12 @@ class List extends React.Component {
     const {
       followers,
       loading,
-      onRefresh
+      onRefresh,
+      stores
     } = this.props;
+
+    const styles = stores.appStyles.followersList;
+
     return (
       <FlatList
         style={styles.list}
@@ -72,7 +80,7 @@ class List extends React.Component {
           <RefreshControl
             refreshing={loading}
             onRefresh={onRefresh}
-            colors={[primaryColor]}
+            colors={[stores.themeStore.colors.primary]}
           />
         }
       />

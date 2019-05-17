@@ -35,7 +35,16 @@ export const starredEvents = {
   FOOTER_HEIGHT : 80,
 }
 
+// list/followers
+export const followers_list = {
+  SEPARATOR_HEIGHT : 1,
+  ITEM_HEIGHT : 64,
+  AVATAR_SIZE : 48,
+  FOOTER_HEIGHT : 80,
+}
+
 // screen/boardInfo
 export const board_info = {
   AVATAR_SIZE : 80
 };
+

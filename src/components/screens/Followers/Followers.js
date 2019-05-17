@@ -1,25 +1,29 @@
 import React from 'react';
 import { Appbar } from 'react-native-paper';
+import { inject, observer } from 'mobx-react/native';
 import List from './ListHoc';
 import styles from 'config/styles';
 import colors from 'config/colors';
 
-export default ({
-  id,
-  goBack,
-  isAuthor
-}) => (
-  <>
-    <Appbar.Header style={styles.elevatedHeader}>
-      <Appbar.BackAction onPress={goBack} color={colors.gray} />
-      <Appbar.Content
-        title="Followers"
-        titleStyle={styles.headerColor}
+export default inject('stores')(observer(
+  ({
+    id,
+    goBack,
+    isAuthor,
+    stores
+  }) => (
+    <>
+      <Appbar.Header style={stores.appStyles.styles.elevatedHeader}>
+        <Appbar.BackAction onPress={goBack} color={stores.themeStore.colors.gray} />
+        <Appbar.Content
+          title="Followers"
+          titleStyle={stores.appStyles.styles.headerColor}
+        />
+      </Appbar.Header>
+      <List
+        id={id}
+        isAuthor={isAuthor}
       />
-    </Appbar.Header>
-    <List
-      id={id}
-      isAuthor={isAuthor}
-    />
-  </>
-);
+    </>
+  )
+));
