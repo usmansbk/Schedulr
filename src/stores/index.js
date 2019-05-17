@@ -3,6 +3,7 @@ import { AsyncStorage  } from 'react-native';
 import Settings from './Settings';
 import RemindMe from './RemindMe';
 import Theme from './Theme';
+import AppStyles from './Styles';
 import UserProfile from './UserProfile';
 
 const hydrate = create({
@@ -19,6 +20,7 @@ hydrate('me', meStore);
 
 // Create theme store after hydrating the settings store
 const themeStore = new Theme(settingsStore);
+const appStyles = new AppStyles(settingsStore);
 
 class RootStore {
   constructor() {
@@ -26,6 +28,7 @@ class RootStore {
     this.remindMeStore = remindMeStore;
     this.themeStore = themeStore;
     this.me = meStore;
+    this.appStyles = appStyles;
   }
 }
 
