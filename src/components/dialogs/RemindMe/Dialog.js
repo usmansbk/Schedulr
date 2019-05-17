@@ -7,7 +7,6 @@ import {
   Switch
 } from 'react-native-paper';
 import { inject, observer } from 'mobx-react/native';
-import colors from 'config/colors';
 
 @inject("stores")
 @observer
@@ -44,6 +43,8 @@ export default class RemindMe extends React.Component {
       oneHour,
       oneDay,
     } = stores.remindMeStore;
+
+    const { colors } = stores.themeStore;
 
     return (
       <Portal>
