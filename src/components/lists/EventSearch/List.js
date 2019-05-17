@@ -1,18 +1,22 @@
 import React from 'react';
 import { RefreshControl } from 'react-native';
 import { withNavigationFocus, FlatList } from 'react-navigation';
+import { inject, observer } from 'mobx-react/native';
 import Item from './Item';
 import Separator from './Separator';
 import Footer from './Footer';
 import Empty from './Empty';
 import { decapitalize } from 'lib/capitalizr';
 import { getNextDate } from 'lib/time';
-import styles, {
-  primary,
+import { event_search } from 'lib/constants';
+
+const {
   ITEM_HEIGHT,
   SEPARATOR_HEIGHT,
-} from './styles';
+} = event_search;
 
+@inject('stores')
+@observer
 class List extends React.Component {
   static defaultProps = {
     events: [],
@@ -77,7 +81,10 @@ class List extends React.Component {
       events,
       loading,
       onRefresh,
+      stores
     } = this.props;
+    const styles = stores.appStyles.eventSearch;
+
     return (
       <FlatList
         data={events}
@@ -85,7 +92,7 @@ class List extends React.Component {
         refreshControl={
           <RefreshControl
             refreshing={loading}
-            colors={[primary]}
+            colors={[stores.themeStore.colors.primary]}
           />
         }
         onRefresh={onRefresh}

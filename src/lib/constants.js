@@ -67,4 +67,10 @@ export const comments_list = {
 export const comment_input = {
   AVATAR_SIZE : 32,
   INPUT_WIDTH : 278
-}
+};
+
+export const event_search = {
+  ITEM_HEIGHT : 148,
+  SEPARATOR_HEIGHT : 1,
+  AVATAR_SIZE : 48,
+};

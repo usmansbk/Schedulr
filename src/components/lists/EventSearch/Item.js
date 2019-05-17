@@ -9,12 +9,16 @@ import {
   Caption
 } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { inject, observer } from 'mobx-react/native';
+import numeral from 'numeral';
 import UserAvatar from 'components/common/UserAvatar';
 import Tag from 'components/common/Tag';
-import numeral from 'numeral';
-import styles, { AVATAR_SIZE } from './styles';
-import colors from 'config/colors';
+import { event_search } from 'lib/constants';
 
+const { AVATAR_SIZE } = event_search;
+
+@inject('stores')
+@observer
 export default class Item extends React.PureComponent {
   _onPress = () => this.props.onPressItem(this.props.id);
   _navigateToBoard = () => this.props.navigateToBoard(this.props.boardId);
@@ -28,7 +32,11 @@ export default class Item extends React.PureComponent {
       status,
       starsCount,
       commentsCount,
+      stores
     } = this.props;
+
+    const styles = stores.appStyles.eventSearch;
+    const colors = stores.themeStore.colors;
 
     return (
       <TouchableRipple onPress={this._onPress} style={styles.itemContainer}>
