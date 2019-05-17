@@ -12,11 +12,11 @@ export default class Comments extends React.Component {
     id: null
   }
 
-  focusCommentInput = () => this._inputRef && this._inputRef.focusInput();
+  focusCommentInput = () => this._inputRef && this._inputRef.wrappedInstance.focusInput();
 
-  blurCommentInput = () => this._inputRef && this._inputRef.blurInput();
+  blurCommentInput = () => this._inputRef && this._inputRef.wrappedInstance.blurInput();
 
-  scrollDown = () => this._commentsListRef && this._commentsListRef.scrollDown();
+  scrollDown = () => this._commentsListRef && this._commentsListRef.wrappedInstance.scrollDown();
 
   _handleSubmit = (message) => {
     if (this.props.onSubmit) this.props.onSubmit(message);
