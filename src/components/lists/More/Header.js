@@ -1,10 +1,10 @@
 import React from 'react';
 import { View } from 'react-native';
+import { observer, inject } from 'mobx-react/native';
 import AccountAvatar from 'components/common/AccountAvatar';
-import styles from './styles';
 
-export default () => (
-  <View style={styles.header}>
+export default inject('stores')(observer(({ stores }) => (
+  <View style={stores.appStyles.moreList.header}>
     <AccountAvatar />
   </View>
-);
+)));
