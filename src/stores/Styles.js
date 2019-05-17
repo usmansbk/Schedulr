@@ -62,14 +62,11 @@ export default class AppStyles {
       headerText:{
         color: colors.primary_light,
       },
-      footer: {
-        height: FOOTER_HEIGHT,
-        justifyContent: 'center',
-        alignItems: 'center'
-      },
+      footerContainer: { height: FOOTER_HEIGHT },
+      footerContent: { flex: 1, justifyContent: 'center', alignItems: 'center' },
       footerText: {
         fontWeight: 'bold',
-        color: colors.light_gray_3
+        color: colors.gray
       },
       offlineTitle: {
         fontSize: 20,

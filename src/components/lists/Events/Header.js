@@ -1,9 +1,11 @@
 import React from 'react';
 import { TouchableRipple, ActivityIndicator, Text } from 'react-native-paper';
-import styles from './styles';
+import { inject, observer } from 'mobx-react/native';
 
-export default ({ onPress, loading }) => (
-  <TouchableRipple disabled={loading} onPress={onPress} style={styles.header}>
-    <Text style={styles.headerText}>Load past few days</Text>
-  </TouchableRipple>
-);
+export default inject('stores')(observer(
+  ({ onPress, loading, stores }) => (
+    <TouchableRipple disabled={loading} onPress={onPress} style={stores.appStyles.eventsList.header}>
+      <Text style={stores.appStyles.eventsList.headerText}>Load past few days</Text>
+    </TouchableRipple>
+  )
+));

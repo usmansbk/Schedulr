@@ -4,28 +4,24 @@ import {
   Text,
   TouchableRipple,
 } from 'react-native-paper';
-import { View, StyleSheet } from 'react-native';
-import { gray } from './styles';
+import { View } from 'react-native';
+import { inject, observer } from 'mobx-react/native';
 
-const styles = StyleSheet.create({
-  container: { height: 48 },
-  view: { flex: 1, justifyContent: 'center', alignItems: 'center' },
-  text: { fontWeight: 'bold', color: gray }
-})
-
-export default ({ loading, onPress }) => {
-  if (loading) return (
-    <ActivityIndicator
-      animating={loading}
-      hideWhenStopped
-      size="small"
-    />
-  );
-  return (
-    <TouchableRipple onPress={onPress} style={styles.container}>
-      <View style={styles.view}>
-        <Text style={styles.text}>Load next few days</Text>
-      </View>
-    </TouchableRipple>
-  )
-}
+export default inject('stores')(observer(
+  ({ loading, onPress, stores }) => {
+    if (loading) return (
+      <ActivityIndicator
+        animating={loading}
+        hideWhenStopped
+        size="small"
+      />
+    );
+    return (
+      <TouchableRipple onPress={onPress} style={stores.appStyles.eventsList.footerContainer}>
+        <View style={stores.appStyles.eventsList.footerContent}>
+          <Text style={stores.appStyles.eventsList.footerText}>Load next few days</Text>
+        </View>
+      </TouchableRipple>
+    )
+  }
+))
