@@ -6,13 +6,16 @@ import {
   Caption,
   Headline,
 } from 'react-native-paper';
+import { inject, observer } from 'mobx-react/native';
 import Tag from 'components/common/Tag';
 import Avatar from 'components/common/UserAvatar';
 import Actions from 'components/common/Actions';
-import styles, {
-  AVATAR_SIZE,
-} from './styles';
+import { starredEvents } from 'lib/constants';
 
+const { AVATAR_SIZE } = starredEvents;
+
+@inject('stores')
+@observer
 export default class Item extends React.PureComponent {
   _onPress = () => this.props.onPressItem(this.props.id, this.props.startAt, this.props.endAt);
   _onPressComment = () => this.props.onPressComment(this.props.id, this.props.title, this.props.time);
@@ -31,7 +34,11 @@ export default class Item extends React.PureComponent {
       starsCount,
       commentsCount,
       address,
+      stores
     } = this.props;
+
+    const styles = stores.appStyles.starredEventsList;
+
 
     return (
       <TouchableRipple

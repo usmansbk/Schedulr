@@ -18,9 +18,19 @@ export const events = {
   FOOTER_HEIGHT : 80
 };
 
+// list/boards
 export const boards = {
   ITEM_HEIGHT : 80,
   SEPARATOR_HEIGHT : 1,
   AVATAR_SIZE : 50,
+  FOOTER_HEIGHT : 80,
+};
+
+// list/starredEvents
+export const starredEvents = {
+  AVATAR_SIZE : 54,
+  ITEM_HEIGHT : 145,
+  ITEM_HEIGHT_SMALL : 102,
+  SEPARATOR_HEIGHT : 1,
   FOOTER_HEIGHT : 80,
 }

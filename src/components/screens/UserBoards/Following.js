@@ -5,22 +5,26 @@ import { Animated } from 'react-native';
 import { FlatList } from 'react-navigation';
 import SimpleToast from 'react-native-simple-toast';
 import { withCollapsibleForTabChild } from 'react-navigation-collapsible';
+import { inject, observer } from 'mobx-react/native';
 import Loading from 'components/common/Loading';
 import ErrorScreen from 'components/common/Error';
 import Item from 'components/lists/BoardSearch/Item';
 import Separator from 'components/lists/Boards/Separator';
 import Footer from 'components/lists/Boards/Footer';
 import Empty from 'components/lists/Boards/Empty';
-import styles, {
-  ITEM_HEIGHT,
-  SEPARATOR_HEIGHT
-} from 'components/lists/Boards/styles';
 import sortBoards from 'lib/utils';
+import { boards } from 'lib/constants';
 import { followingBoards as followingBoardsQuery, listAllBoards } from 'mygraphql/queries';
 
+const {
+  ITEM_HEIGHT,
+  SEPARATOR_HEIGHT
+} = boards;
 const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
 const alias = 'withFollowingBoards';
 
+@inject('stores')
+@observer
 class FollowingBoards extends Component{
   _getItemLayout = (_, index) => (
     {
@@ -67,11 +71,14 @@ class FollowingBoards extends Component{
       loading,
       onRefresh,
       data,
-      error
+      error,
+      stores
     } = this.props;
 
     if (loading && !data) return <Loading />;
     if (error && !data) return <ErrorScreen loading={loading} onRefresh={onRefresh} />;
+
+    const styles = stores.appStyles.boardsList;
 
     return (
       <AnimatedFlatList 

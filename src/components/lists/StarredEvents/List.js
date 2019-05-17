@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { RefreshControl } from 'react-native';
 import { withNavigationFocus, FlatList } from 'react-navigation';
+import { inject, observer } from 'mobx-react/native';
 import Item from './Item';
 import Separator from './Separator';
 import Footer from './Footer';
@@ -14,12 +15,12 @@ import {
 import { sortStarredEvents } from 'lib/utils';
 import { decapitalize } from 'lib/capitalizr';
 import { getEvents } from 'lib/calendr';
-import styles, {
-  ITEM_HEIGHT,
-  SEPARATOR_HEIGHT
-} from './styles';
-import colors from 'config/colors';
+import { starredEvents } from 'lib/constants';
 
+const { ITEM_HEIGHT, SEPARATOR_HEIGHT } = starredEvents;
+
+@inject('stores')
+@observer
 class List extends Component {
   static defaultProps = {
     events: [],
@@ -81,7 +82,11 @@ class List extends Component {
       events,
       loading,
       onRefresh,
+      stores
     } = this.props;
+
+    const styles = stores.appStyles.starredEventsList;
+    const colors = stores.themeStore.colors;
 
     return (
       <FlatList
