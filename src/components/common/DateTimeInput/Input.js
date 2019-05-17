@@ -2,10 +2,12 @@ import React from 'react';
 import moment from 'moment';
 import DateTimePicker from 'react-native-modal-datetime-picker';
 import { Text } from 'react-native-paper';
-import { View, StyleSheet } from 'react-native';
+import { View } from 'react-native';
+import { inject, observer } from 'mobx-react/native';
 import Button from './Picker';
-import colors from 'config/colors';
 
+@inject('stores')
+@observer
 export default class Input extends React.Component {
 
   state = {
@@ -37,9 +39,13 @@ export default class Input extends React.Component {
     const {
       label,
       disabled,
-      noMin
+      noMin,
+      stores
     } = this.props;
+
     const value = this.props.value || moment().toDate().toISOString();
+    const styles = stores.appStyles.datePicker;
+
     return (
       <View>
         <Text style={styles.text}>
@@ -80,17 +86,3 @@ export default class Input extends React.Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  date: {
-    flexDirection: 'row',
-  },
-  button: {
-    flexGrow: 1
-  },
-  text: {
-    color: colors.primary,
-    marginVertical: 8,
-    fontWeight: 'bold'
-  },
-});

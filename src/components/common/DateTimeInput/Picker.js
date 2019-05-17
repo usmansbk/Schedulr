@@ -1,27 +1,17 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
 import { Text, TouchableRipple } from 'react-native-paper';
-import colors from 'config/colors';
+import { inject, observer } from 'mobx-react/native';
 
-export default (props) => (
-  <TouchableRipple
-    disabled={props.disabled}
-    onPress={props.onPress}
-    style={[styles.button, props.style]}
-  >
-    <Text style={{
-      color: props.disabled ? colors.gray : colors.black
-    }}>{props.children}</Text>
-  </TouchableRipple>
-);
-
-const styles = StyleSheet.create({
-  button: {
-    borderWidth: 1,
-    borderColor: colors.light_gray,
-    height: 48,
-    justifyContent: 'center',
-    paddingHorizontal: 8,
-    borderRadius: 4,
-  }
-})
+export default inject('stores')(observer(
+  (props) => (
+    <TouchableRipple
+      disabled={props.disabled}
+      onPress={props.onPress}
+      style={[props.stores.appStyles.datePicker.pickerButton, props.style]}
+    >
+      <Text style={{
+        color: props.disabled ? props.stores.themeStore.colors.gray : props.stores.themeStore.colors.black
+      }}>{props.children}</Text>
+    </TouchableRipple>
+  )
+));

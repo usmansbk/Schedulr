@@ -44,6 +44,32 @@ export default class AppStyles {
     });
   }
 
+  @computed get datePicker () {
+    const colors = this.settings.dark ? dark : light;
+
+    return StyleSheet.create({
+      date: {
+        flexDirection: 'row',
+      },
+      button: {
+        flexGrow: 1
+      },
+      text: {
+        color: colors.primary,
+        marginVertical: 8,
+        fontWeight: 'bold'
+      },
+      pickerButton: {
+        borderWidth: 1,
+        borderColor: colors.light_gray,
+        height: 48,
+        justifyContent: 'center',
+        paddingHorizontal: 8,
+        borderRadius: 4,
+      }
+    });    
+  }
+
   @computed get loading () {
     const colors = this.settings.dark ? dark : light;
 
