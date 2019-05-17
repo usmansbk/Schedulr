@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
     height: '100%',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: colors.primary_light
+    backgroundColor: '#303030'
   },
   avatar: {
     width: AVATAR_HEIGHT,
