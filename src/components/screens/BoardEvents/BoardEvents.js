@@ -14,13 +14,10 @@ export default class BoardEvents extends React.Component {
     events: []
   };
 
-  constructor(props) {
-    super(props);
-    this.eventsList = React.createRef();
-  }
+  _eventsListRef = ref => this.eventsListRef = ref;
 
   _scrollToTop = () => {
-    this.eventsList.current.scrollToTop();
+    this.eventsListRef && this.eventsListRef.wrappedInstance.scrollToTop(); 
   };
 
   render() {
@@ -76,7 +73,7 @@ export default class BoardEvents extends React.Component {
           />
         </Appbar.Header>
         <List
-          ref={this.eventsList}
+          ref={this._eventsListRef}
           listType="board"
           events={events}
           navigation={this.props.navigation}
