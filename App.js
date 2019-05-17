@@ -6,6 +6,7 @@ import { ApolloProvider } from 'react-apollo';
 import { Provider as MobxProvider } from 'mobx-react/native';
 import { Rehydrated } from 'aws-appsync-react';
 import SplashScreen from 'react-native-splash-screen';
+import { observer } from 'mobx-react/native';
 import 'babel-polyfill';
 import Amplify from 'aws-amplify';
 import AppContainer from './src/App';
@@ -25,6 +26,7 @@ GoogleSignin.configure({
 });
 Amplify.configure(config);
 
+@observer
 export default class App extends React.Component {
   componentDidMount = () => {
     SplashScreen.hide();
