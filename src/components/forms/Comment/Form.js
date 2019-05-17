@@ -1,10 +1,14 @@
 import React from 'react';
 import { View, TextInput } from 'react-native';
 import { IconButton, Text, Button } from 'react-native-paper';
+import { inject, observer } from 'mobx-react';
 import UserAvatar from 'components/common/UserAvatar';
-import styles, { AVATAR_SIZE } from './styles';
-import colors from 'config/colors';
+import { comment_input } from 'lib/constants';
 
+const { AVATAR_SIZE } = comment_input;
+
+@inject('stores')
+@observer
 export default class CommentInput extends React.Component {
   state = {
     isSubmitting: false,
@@ -31,13 +35,17 @@ export default class CommentInput extends React.Component {
       targetName,
       pictureUrl,
       name,
-      cancelReply
+      cancelReply,
+      stores
     } = this.props;
     
     const {
       isSubmitting,
       message
     } = this.state;
+
+    const styles = stores.appStyles.commentInput;
+    const colors = stores.themeStore.colors;
 
     return (
       <>

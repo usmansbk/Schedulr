@@ -7,7 +7,8 @@ import {
   starredEvents,
   followers_list,
   board_events,
-  comments_list
+  comments_list,
+  comment_input
 } from 'lib/constants';
 
 export default class AppStyles {
@@ -72,6 +73,61 @@ export default class AppStyles {
       },
       content: {
         margin: 16
+      }
+    });
+  }
+
+  @computed get commentInput () {
+    const colors = this.settings.dark ? dark : light;
+    
+    const {
+      AVATAR_SIZE,
+      INPUT_WIDTH
+    } = comment_input;
+
+    return StyleSheet.create({
+      container: {
+        borderTopWidth: 1,
+        borderColor: colors.light_gray_3,
+        flexDirection: 'row',
+        alignItems: 'center',
+        paddingHorizontal: 8,
+        backgroundColor: colors.bg
+      },
+      placeholder: {
+        color: colors.black
+      },
+      textInput: {
+        color: colors.black
+      },
+      right: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginRight: 4
+      },
+      avatar: {
+        paddingRight: 4
+      },
+      input: {
+        maxWidth: INPUT_WIDTH,
+        minWidth: INPUT_WIDTH
+      },
+      alert: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        backgroundColor: colors.light_gray,
+        padding: 16
+      },
+      alertTitle: {
+        width: 250
+      },
+      cancelText: {
+        color: colors.primary,
+        fontWeight: 'bold'
+      },
+      targetName: {
+        fontWeight: 'bold'
       }
     });
   }

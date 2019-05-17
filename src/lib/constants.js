@@ -62,3 +62,9 @@ export const comments_list = {
   AVATAR_SIZE : 32,
   SEPARATOR_HEIGHT : 4
 };
+
+// form/comment
+export const comment_input = {
+  AVATAR_SIZE : 32,
+  INPUT_WIDTH : 278
+}
