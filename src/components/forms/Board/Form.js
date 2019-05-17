@@ -6,7 +6,7 @@ import {
   InteractionManager
 } from 'react-native';
 import Geolocation from 'react-native-geolocation-service';
-// import SimpleToast from 'react-native-simple-toast';
+import SimpleToast from 'react-native-simple-toast';
 import isEqual from 'lodash.isequal';
 import {
   Button,
@@ -17,11 +17,13 @@ import {
   Appbar,
 } from 'react-native-paper';
 import { Formik } from 'formik';
+import { inject, observer } from 'mobx-react/native';
 import validationSchema from './schema';
-import styles, { navButtonColor, placeholder } from './styles';
 import { requestLocationPermission } from 'helpers/permissions';
 import { buildBoardForm } from 'helpers/buildForm';
 
+@inject('stores')
+@observer
 export default class Form extends React.Component {
   state = {
     longitude: null,
@@ -39,15 +41,6 @@ export default class Form extends React.Component {
       }
     }
   };
-
-  // _tagLocation = () => {
-  //   const { latitude, longitude } = this.state;
-  //   if (latitude && longitude) {
-  //     this.setState({ latitude: null, longitude: null });
-  //   } else {
-  //     this.getLocation();
-  //   }
-  // }
 
   componentDidMount = () => {
     InteractionManager.runAfterInteractions(this.getLocation);
@@ -69,7 +62,7 @@ export default class Form extends React.Component {
           });
         },
         (error) => {
-          // SimpleToast.show(error.message, SimpleToast.SHORT);
+          SimpleToast.show(error.message, SimpleToast.SHORT);
         },
         {
           enableHighAccuracy: true,
@@ -86,8 +79,12 @@ export default class Form extends React.Component {
       handleCancel,
       onSubmit,
       edit,
+      stores
     } = this.props;
 
+    const styles = stores.appStyles.boardForm;
+    const navButtonColor = stores.themeStore.colors.navButtonColor;
+    
     return (
       <Formik
         initialValues={initialValues}

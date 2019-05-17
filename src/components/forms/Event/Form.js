@@ -18,6 +18,7 @@ import {
   Appbar,
 } from 'react-native-paper';
 import { Formik } from 'formik';
+import { inject, observer } from 'mobx-react/native';
 import DateTimeInput from 'components/common/DateTimeInput';
 import {
   isEventValid,
@@ -25,14 +26,14 @@ import {
 } from 'lib/formValidator';
 import { CANT_REPEAT } from 'lib/errorMessages';
 import { getRepeatLabel } from 'lib/time';
-import styles, { navButtonColor } from './styles';
 import formSchema from './schema';
 import eventTypes from './types';
 import frequency from './frequency';
 import { buildEventForm } from 'helpers/buildForm';
 import { requestLocationPermission } from 'helpers/permissions';
 
-
+@inject('stores')
+@observer
 export default class Form extends React.Component {
   constructor(props) {
     super(props);
@@ -104,7 +105,11 @@ export default class Form extends React.Component {
       handleCancel,
       edit,
       isNew,
+      stores
     } = this.props;
+
+    const styles = stores.appStyles.eventForm;
+    const navButtonColor = stores.themeStore.colors.navButtonColor;
 
     return (
       <Formik

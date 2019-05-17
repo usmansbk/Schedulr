@@ -70,6 +70,106 @@ export default class AppStyles {
     });    
   }
 
+  @computed get boardForm () {
+    const colors = this.settings.dark ? dark : light;
+
+    return StyleSheet.create({
+      container: {
+        backgroundColor: colors.bg
+      },
+      header: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        backgroundColor: colors.bg,
+        paddingHorizontal: 16,
+        elevation: 0
+      },
+      form: {
+        margin: 16
+      },
+      switchButton: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        paddingVertical: 8
+      },
+      checkbox: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        paddingTop: 16,
+        paddingBottom: 4
+      },
+      text: {
+        fontSize: 16,
+        color: colors.placeholder,
+        fontFamily: 'sans-serif-bold'
+      },
+      primary: {
+        color: colors.primary
+      }
+    });    
+  }
+
+  @computed get eventForm () {
+    const colors = this.settings.dark ? dark : light;
+
+    return StyleSheet.create({
+      container: {
+        backgroundColor: colors.bg
+      },
+      form: {
+        margin: 16
+      },
+      text: {
+        color: colors.primary,
+        marginVertical: 8,
+      },
+      input: {
+        marginVertical: 8,
+      },
+      radio: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginVertical: 8
+      },
+      radioText: {
+        fontWeight: 'bold',
+        color: colors.primary,
+        marginRight: 16
+      },
+      pickerSpacing: {
+        marginVertical: 8
+      },
+      picker: {
+        height: 48,
+        color: colors.black
+      },
+      pickerItem: {
+        color: colors.black,
+      },
+      header: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        backgroundColor: colors.bg,
+        paddingHorizontal: 16,
+        elevation: 0,
+      },
+      checkbox: {
+        flexDirection: 'row',
+        justifyContent: 'flex-start',
+        alignItems: 'center',
+      },
+      checkboxLabel: {
+        color: colors.primary
+      },
+      checkboxItem: {
+        flexDirection: 'row',
+        justifyContent: 'space-between'
+      }
+    });    
+  }
+
   @computed get loading () {
     const colors = this.settings.dark ? dark : light;
 
