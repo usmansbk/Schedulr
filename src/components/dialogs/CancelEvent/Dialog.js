@@ -40,7 +40,6 @@ export default class CancelEvent extends React.Component {
       date,
       onSubmit,
       handleDismiss,
-      stores
     } = this.props;
     this.setState({ loading: true });
     try {
@@ -59,7 +58,8 @@ export default class CancelEvent extends React.Component {
     const {
       date,
       visible,
-      handleDismiss
+      handleDismiss,
+      stores
     } = this.props;
     const { checked, loading } = this.state;
     return (

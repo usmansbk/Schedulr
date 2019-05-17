@@ -23,7 +23,6 @@ export default class DeleteEvent extends React.Component {
     const {
       id,
       onSubmit,
-      stores
     } = this.props;
     this.setState({ loading: true });
     try {

@@ -23,7 +23,6 @@ export default class CloseBoard extends React.Component {
       id,
       onSubmit,
       handleDismiss,
-      stores
     } = this.props;
     this.setState({ loading: true });
     try {
@@ -38,6 +37,7 @@ export default class CloseBoard extends React.Component {
     const {
       visible,
       handleDismiss,
+      stores
     } = this.props;
     const { loading } = this.state;
 

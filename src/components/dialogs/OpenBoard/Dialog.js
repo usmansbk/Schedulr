@@ -22,8 +22,7 @@ export default class OpenBoard extends React.Component {
     const {
       id,
       onSubmit,
-      handleDismiss,
-      stores
+      handleDismiss
     } = this.props;
     this.setState({ loading: true });
     try {
@@ -39,6 +38,7 @@ export default class OpenBoard extends React.Component {
     const {
       visible,
       handleDismiss,
+      stores
     } = this.props;
     const { loading } = this.state;
 
