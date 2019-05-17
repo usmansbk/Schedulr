@@ -55,6 +55,7 @@ const SearchBar = inject('stores')(observer(
           editable={false}
           collapsable
           placeholder="Search"
+          theme={{ roundness: 0 }}
           style={{
             backgroundColor: stores.themeStore.colors.bg
           }}
