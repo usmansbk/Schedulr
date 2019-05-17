@@ -3,13 +3,15 @@ import { TouchableRipple, Searchbar, Text } from 'react-native-paper';
 import { withCollapsible } from 'react-navigation-collapsible';
 import { FlatList } from 'react-navigation';
 import { Animated } from 'react-native';
+import { inject, observer } from 'mobx-react/native';
 import Empty from './Empty';
 import Item from './Item';
 import colors from 'config/colors';
-import styles from './styles';
 
 const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
 
+@inject('stores')
+@observer
 class ExploreTab extends Component{
   static defaultProps = {
     data: [],
@@ -23,6 +25,7 @@ class ExploreTab extends Component{
 
   render(){
     const { paddingHeight, animatedY, onScroll } = this.props.collapsible;
+    const styles = this.props.stores.appStyles.explore;
 
     return (
       <AnimatedFlatList 
@@ -41,23 +44,25 @@ class ExploreTab extends Component{
   }
 }
 
-const SearchBar = ({navigation}) => {
-  return (
-    <TouchableRipple
-      onPress={() => navigation.navigate('SearchScreen')}
-    >
-      <Searchbar
-        icon="search"
-        editable={false}
-        collapsable
-        placeholder="Search"
-        style={{
-          backgroundColor: colors.bg
-        }}
-      />
-    </TouchableRipple>
-  );
-}
+const SearchBar = inject('stores')(observer(
+  ({navigation, stores }) => {
+    return (
+      <TouchableRipple
+        onPress={() => navigation.navigate('SearchScreen')}
+      >
+        <Searchbar
+          icon="search"
+          editable={false}
+          collapsable
+          placeholder="Search"
+          style={{
+            backgroundColor: stores.themeStore.colors.bg
+          }}
+        />
+      </TouchableRipple>
+    );
+  }
+));
 
 const collapsibleParams = {
   collapsibleComponent: SearchBar,

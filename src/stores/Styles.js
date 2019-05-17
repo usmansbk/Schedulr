@@ -21,6 +21,40 @@ export default class AppStyles {
     });
   }
 
+  @computed get explore () {
+    const colors = this.settings.dark ? dark : light;
+
+    return StyleSheet.create({
+      list: {
+        backgroundColor: colors.light_gray
+      },
+      contentContainer: {
+        flexGrow: 1
+      },
+      item: {
+        width: '100%',
+        height: 50,
+        borderBottomColor: '#0002',
+        borderBottomWidth: 0.5,
+        paddingHorizontal: 20,
+        justifyContent: 'center'
+      },
+      empty: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+      },
+      emptyTitle: {
+        fontSize: 25,
+        color: colors.light_gray_3,
+        textAlign: 'center'
+      },
+      paragraph: {
+        textAlign: 'center'
+      },
+    });
+  }
+
   @computed get starredEventsList () {
     const colors = this.settings.dark ? dark : light;
 
