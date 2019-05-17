@@ -209,7 +209,6 @@ export default class List extends React.Component {
         style={styles.list}
         stickySectionHeadersEnabled
         sections={sections}
-        extraData={sections.length}
         ListHeaderComponent={this._renderHeader}
         ListEmptyComponent={this._renderEmptyList}
         ItemSeparatorComponent={this._renderSeparator}
