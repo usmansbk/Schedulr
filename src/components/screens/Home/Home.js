@@ -2,15 +2,16 @@ import React from 'react';
 import { Dimensions } from 'react-native';
 import {
   createAppContainer,
-  createBottomTabNavigator,
 } from 'react-navigation';
+import { BottomTabBar, createBottomTabNavigator } from 'react-navigation-tabs';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { inject, observer } from 'mobx-react/native';
 import MoreRoute from 'components/tabs/More';
 import ExploreTab from 'components/tabs/Explore';
 import HomeRoute from 'components/tabs/Home';
 import NotificationRoute from 'components/tabs/Notifications';
 import NotificationsIcon from 'components/common/NotificationIcon';
-import styles, { activeColor, inactiveTintColor, FONT_SIZE } from './styles';
+import { FONT_SIZE } from 'lib/constants';
 
 const Home = createBottomTabNavigator({
   Home: { screen: HomeRoute },
@@ -20,12 +21,12 @@ const Home = createBottomTabNavigator({
 }, {
   initialRouteName: 'Home',
   initialLayout: { height: 0, width: Dimensions.get('window').width },
+  tabBarComponent: props => <TabBarComponent {...props} />,
   tabBarOptions: {
-    activeTintColor: activeColor,
-    inactiveTintColor,
+    // activeTintColor: activeColor,
+    // inactiveTintColor,
     showLabel: false,
     showIcon: true,
-    style: styles.barStyle,
   },
   defaultNavigationOptions: ({ navigation }) => ({
     tabBarIcon: ({ tintColor, focused }) => {
@@ -44,5 +45,14 @@ const Home = createBottomTabNavigator({
     }
   }),
 });
+
+const TabBarComponent = inject('stores')(observer(
+  (props) => (
+    <BottomTabBar
+      style={props.stores.appStyles.bottomTab.barStyle}
+      {...props}
+    />
+  )
+));
 
 export default createAppContainer(Home);

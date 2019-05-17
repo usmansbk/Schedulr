@@ -6,6 +6,9 @@ export const BULLET = '•';
 export const CIRCLE = '●';
 export const INFO = "This calendar's content, including its followers and event details, are visible to the public."
 
+
+export const FONT_SIZE = 25;
+
 // list/events
 export const events = {
   AVATAR_SIZE : 54,
