@@ -6,12 +6,14 @@ import {
   Caption,
   Headline,
 } from 'react-native-paper';
+import { inject, observer } from 'mobx-react/native';
 import Avatar from 'components/common/UserAvatar';
 import Badge from 'components/common/Badge';
-import styles, {
-  AVATAR_SIZE,
-} from './styles';
+import { events } from 'lib/constants';
 
+
+@inject('stores')
+@observer
 export default class Item extends React.PureComponent {
   _onPress = () => this.props.onPressItem(this.props.id, this.props.startAt, this.props.endAt);
   _navigateToBoard = () => this.props.navigateToBoardEvents(this.props.boardId);
@@ -26,7 +28,10 @@ export default class Item extends React.PureComponent {
       status,
       eventType,
       pictureUrl,
+      stores
     } = this.props;
+
+    const styles = stores.appStyles.eventsList;
     
     const isPending = id[0] === '-';
     return (
@@ -37,7 +42,7 @@ export default class Item extends React.PureComponent {
         <View useNativeDriver style={styles.itemContentSmall}>
           <View style={styles.left}>
             <Avatar
-              size={AVATAR_SIZE}
+              size={events.AVATAR_SIZE}
               name={title}
               src={pictureUrl}
               onPress={this._navigateToBoard}

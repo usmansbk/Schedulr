@@ -5,3 +5,15 @@ export const ONE_TIME_EVENT_TEXT = 'One-time event';
 export const BULLET = '•';
 export const CIRCLE = '●';
 export const INFO = "This calendar's content, including its followers and event details, are visible to the public."
+
+// list/events
+export const events = {
+  AVATAR_SIZE : 54,
+  ITEM_HEIGHT : 122,
+  ITEM_HEIGHT_SMALL : 102,
+  SEPARATOR_HEIGHT : 1,
+  SECTION_HEADER_HEIGHT : 64,
+  SECTION_FOOTER_HEIGHT : 20,
+  HEADER_HEIGHT : 28,
+  FOOTER_HEIGHT : 80
+};
