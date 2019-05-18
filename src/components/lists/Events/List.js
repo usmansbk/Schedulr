@@ -102,15 +102,13 @@ export default class List extends React.Component {
       const { beforeDays } = this.state;
       this.setState(state => {
         const prevSections = getPreviousEvents(events, beforeDays, DAYS_PER_PAGE);
+        const beforeNumOfDays = beforeDays + DAYS_PER_PAGE;
         return ({
           sections: prevSections.concat(state.sections),
-          beforeDays: beforeDays + DAYS_PER_PAGE,
+          beforeDays: beforeNumOfDays,
+          loadingPrev: false,
+          hasPrev: hasPreviousEvents(events, { beforeNumOfDays })
         });
-      });
-      
-      this.setState({
-        loadingPrev: false,
-        hasPrev: hasPreviousEvents(events, { beforeNumOfDays: beforeDays + DAYS_PER_PAGE })
       });
     }
   };
@@ -118,19 +116,17 @@ export default class List extends React.Component {
   loadMoreEvents = (events=[]) => {
     if (this.state.hasMore) {
       this.setState({ loadingMore: true });
-      const afterDays = this.state.afterDays + DAYS_PER_PAGE;
 
+      const { afterDays } = this.state;
       this.setState(state => {
-        const moreSections = getNextEvents(events, afterDays, DAYS_PER_PAGE);
+        const afterNumOfDays = afterDays + DAYS_PER_PAGE;
+        const moreSections = getNextEvents(events, afterNumOfDays, DAYS_PER_PAGE);
         return ({
           sections: [...state.sections, ...moreSections],
-          afterDays,
+          afterDays: afterNumOfDays,
+          loadingMore: false,
+          hasMore: hasMoreEvents(events, { afterNumOfDays })
         })
-      });
-      
-      this.setState({
-        loadingMore: false,
-        hasMore: hasMoreEvents(events, { afterNumOfDays: afterDays })
       });
     }
   };

@@ -144,7 +144,7 @@ const getEvents = (events) => {
 };
 
 function hasPreviousEvents(events, { beforeNumOfDays, beforeDate }) {
-  const refDate = beforeNumOfDays ? moment().add(-(beforeNumOfDays), 'days') :
+  const refDate = beforeNumOfDays ? moment().endOf('day').add(-(beforeNumOfDays), 'days') :
     moment(beforeDate);
   return events.some((event) => {
     const eventDate = moment(event.startAt);
@@ -153,7 +153,7 @@ function hasPreviousEvents(events, { beforeNumOfDays, beforeDate }) {
 }
 
 function hasMoreEvents(events, { afterNumOfDays, afterDate }) {
-  const refDate = afterNumOfDays ? moment().add(afterNumOfDays, 'days') :
+  const refDate = afterNumOfDays ? moment().startOf('day').add(afterNumOfDays, 'days') :
     moment(afterDate);
   return events.some((event) => {
     const eventDate = moment(event.startAt);
