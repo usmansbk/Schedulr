@@ -66,7 +66,7 @@ class CreatedBoards extends Component{
   }
 
   render(){
-    const { animatedY, onScroll } = this.props.collapsible;
+    // const { animatedY, onScroll } = this.props.collapsible;
     const {
       loading,
       error,
@@ -86,8 +86,8 @@ class CreatedBoards extends Component{
         data={sortBoards(data)}
         extraData={data.length}
 
-        onScroll={onScroll} 
-        _mustAddThis={animatedY}
+        // onScroll={onScroll} 
+        // _mustAddThis={animatedY}
         
         renderItem={this._renderItem}
         contentContainerStyle={styles.contentContainer}
@@ -103,7 +103,7 @@ class CreatedBoards extends Component{
 }
 
 export default compose(
-  withCollapsibleForTabChild,
+  // withCollapsibleForTabChild,
   graphql(gql(listAllBoards), {
     alias,
     skip: props => !props.navigation.getParam('profile'),

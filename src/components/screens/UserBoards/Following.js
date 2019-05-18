@@ -66,7 +66,7 @@ class FollowingBoards extends Component{
   }
 
   render(){
-    const { animatedY, onScroll } = this.props.collapsible;
+    // const { animatedY, onScroll } = this.props.collapsible;
     const {
       loading,
       onRefresh,
@@ -87,8 +87,8 @@ class FollowingBoards extends Component{
         extraData={data.length}
         renderItem={this._renderItem}
 
-        onScroll={onScroll} 
-        _mustAddThis={animatedY}
+        // onScroll={onScroll} 
+        // _mustAddThis={animatedY}
         
         contentContainerStyle={styles.contentContainer}
         initialNumToRender={5}
@@ -103,7 +103,7 @@ class FollowingBoards extends Component{
 }
 
 export default compose(
-  withCollapsibleForTabChild,
+  // withCollapsibleForTabChild,
   graphql(gql(listAllBoards), {
     alias,
     skip: props => !props.navigation.getParam('profile'),

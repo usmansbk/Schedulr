@@ -13,7 +13,7 @@ const Tabs = createMaterialTopTabNavigator(
     Created,
   },
   {
-    initialLayout: { height: 0, width: Dimensions.get('window').width }, 
+    initialLayout: { height: 0, width: Dimensions.get('window').width },
     navigationOptions: ({ navigation }) => ({
       header: <HeaderComponent
         title={navigation.getParam('name', 'Boards')}
@@ -52,4 +52,6 @@ const TabBarComponent = inject('stores')(observer(
   />
 ));
 
-export default withCollapsibleForTab(Tabs, { iOSCollapsedColor: '#032' });
+// export default withCollapsibleForTab(Tabs, collapsibleParams);
+
+export default Tabs;
