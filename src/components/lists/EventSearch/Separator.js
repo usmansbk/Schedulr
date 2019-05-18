@@ -1,9 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
-import { inject, observer } from 'mobx-react/native';
+import styles from './styles';
 
-export default inject('stores')(observer(
-  ({ stores }) => (
-    <View style={stores.appStyles.separator} />
-  )
-));
+export default () => (
+  <View style={styles.separator} />
+);

@@ -1,78 +1,83 @@
 import React from 'react';
-import {
-  View
-} from 'react-native';
+import { View } from 'react-native';
 import {
   TouchableRipple,
   Text,
+  Caption,
   Headline,
-  Caption
 } from 'react-native-paper';
-import Icon from 'react-native-vector-icons/MaterialIcons';
 import { inject, observer } from 'mobx-react/native';
-import numeral from 'numeral';
-import UserAvatar from 'components/common/UserAvatar';
 import Tag from 'components/common/Tag';
-import { event_search } from 'lib/constants';
+import Avatar from 'components/common/UserAvatar';
+import Actions from 'components/common/Actions';
+import { starredEvents } from 'lib/constants';
 
-const { AVATAR_SIZE } = event_search;
+const { AVATAR_SIZE } = starredEvents;
 
 @inject('stores')
 @observer
 export default class Item extends React.PureComponent {
-  _onPress = () => this.props.onPressItem(this.props.id);
-  _navigateToBoard = () => this.props.navigateToBoard(this.props.boardId);
+  _onPress = () => this.props.onPressItem(this.props.id, this.props.startAt, this.props.endAt);
+  _onPressComment = () => this.props.onPressComment(this.props.id, this.props.title, this.props.time);
 
   render() {
     const {
-      date,
-      boardName,
-      pictureUrl,
+      id,
       title,
+      repeat,
+      time,
       status,
+      duration,
+      eventType,
+      pictureUrl,
+      isStarred,
       starsCount,
       commentsCount,
+      address,
       stores
     } = this.props;
 
-    const styles = stores.appStyles.eventSearch;
-    const colors = stores.themeStore.colors;
+    const styles = stores.appStyles.starredEventsList;
+
 
     return (
-      <TouchableRipple onPress={this._onPress} style={styles.itemContainer}>
-        <View style={styles.itemContent}>
+      <TouchableRipple
+        onPress={this._onPress}
+        style={styles.itemContainer}
+      >
+        <View useNativeDriver style={styles.itemContent}>
           <View style={styles.left}>
-            <UserAvatar
+            <Avatar
+              size={AVATAR_SIZE}
               name={title}
               src={pictureUrl}
-              size={AVATAR_SIZE}
-              onPress={this._navigateToBoard}
             />
           </View>
           <View style={styles.right}>
-            <Text style={styles.time}>{date}</Text>
-            <Headline
-              numberOfLines={1}
-              ellipsizeMode="tail"
-              style={styles.itemHeadline}
-            >{title}</Headline>
-            <Tag status={status} />
-            <View style={styles.itemFooter}>
-              <Caption style={styles.boardName} ellipsizeMode="tail" numberOfLines={1}>by {boardName}</Caption>
-              <View style={styles.counts}>
-                <View style={styles.footerIcon}>
-                  <Icon color={colors.gray}  size={14} name="star" />
-                  <Caption>{numeral(starsCount).format('0a')}</Caption>
-                </View>
-                <View style={styles.footerIcon}>
-                  <Icon color={colors.gray} size={14} name="comment" />
-                  <Caption style={styles.iconBadge}>{numeral(commentsCount).format('0a')}</Caption>
-                </View>
-              </View>
+            <View style={styles.itemBody}>
+              <Headline
+                style={styles.itemHeadline}
+                numberOfLines={1}
+                ellipsizeMode="tail">
+                {title}
+              </Headline>
+              <Text style={styles.time}>{time}</Text>
+              <Caption>{duration ? duration + ' ' : ''}{eventType} {repeat}</Caption>
+              <Tag status={status} /> 
             </View>
+            <Actions
+              id={id}
+              title={title}
+              address={address}
+              isStarred={isStarred}
+              starsCount={starsCount}
+              commentsCount={commentsCount}
+              navigateToComments={this._onPressComment}
+              small
+            />
           </View>
         </View>
       </TouchableRipple>
-    )
+    );
   }
 }

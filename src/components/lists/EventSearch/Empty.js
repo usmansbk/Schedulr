@@ -1,14 +1,24 @@
 import React from 'react';
 import { View } from 'react-native';
 import { Headline, Paragraph } from 'react-native-paper';
-import { inject, observer } from 'mobx-react/native';
+import styles from './styles';
 
-export default inject('stores')(observer(
-  ({ stores }) => (
-    <View style={stores.appStyles.eventSearch.empty}>
-      <Headline style={stores.appStyles.eventSearch.emptyTitle}>
-        Find an event
+export default ({ error, loading }) =>{
+  if (loading) return null;
+  return (
+    <View style={styles.empty}>
+      <Headline style={styles.emptyTitle}>
+      {
+        error ? 'Network error' : "No event"
+      }
       </Headline>
+      {
+        error && (
+          <Paragraph style={styles.paragraph}>
+            Check your internet connection. Pull to refresh.
+          </Paragraph>
+        )
+      }
     </View>
-  )
-));
+  );  
+}
