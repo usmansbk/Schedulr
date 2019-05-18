@@ -16,9 +16,20 @@ const { AVATAR_SIZE } = starredEvents;
 
 @inject('stores')
 @observer
-export default class Item extends React.PureComponent {
+export default class Item extends React.Component {
   _onPress = () => this.props.onPressItem(this.props.id, this.props.startAt, this.props.endAt);
   _onPressComment = () => this.props.onPressComment(this.props.id, this.props.title, this.props.time);
+  shouldComponentUpdate = (nextProps) => {
+    return (
+      this.props.title !== nextProps.title ||
+      this.props.time !== nextProps.time ||
+      this.props.status !== nextProps.status ||
+      this.props.eventType !== nextProps.eventType ||
+      this.props.starsCount !== nextProps.starsCount ||
+      this.props.commentsCount !== nextProps.commentsCount ||
+      this.props.address !== nextProps.address
+    );
+  }
 
   render() {
     const {

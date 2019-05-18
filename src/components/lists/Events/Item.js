@@ -14,9 +14,17 @@ import { events } from 'lib/constants';
 
 @inject('stores')
 @observer
-export default class Item extends React.PureComponent {
+export default class Item extends React.Component {
   _onPress = () => this.props.onPressItem(this.props.id, this.props.startAt, this.props.endAt);
   _navigateToBoard = () => this.props.navigateToBoardEvents(this.props.boardId);
+  shouldComponentUpdate = (nextProps) => {
+    return (
+      nextProps.title !== this.props.title ||
+      nextProps.time !== this.props.time ||
+      nextProps.status !== this.props.status ||
+      nextProps.repeat !== this.props.repeat
+    );
+  }
 
   render() {
     const {

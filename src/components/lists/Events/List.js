@@ -143,7 +143,7 @@ export default class List extends React.Component {
   };
 
   componentWillReceiveProps = (nextProps) => {
-    if (nextProps.events !== this.props.events) {
+    if (nextProps.events.length !== this.props.events.length) {
       this._bootstrap(nextProps.events);
     }
   };

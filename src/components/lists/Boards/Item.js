@@ -10,9 +10,17 @@ const { AVATAR_SIZE } = boards
 
 @inject('stores')
 @observer
-export default class Item extends React.PureComponent {
+export default class Item extends React.Component {
   _onPress = () => this.props.onPressItem(this.props.id);
   _navigateToInfo = () => this.props.navigateToBoardInfo(this.props.id);
+  shouldComponentUpdate = (nextProps) => {
+    return (
+      this.props.name !== nextProps.name ||
+      this.props.description !== nextProps.description ||
+      this.props.isClosed !== nextProps.isClosed
+    );
+  };
+  
   render() {
     const {
       id,

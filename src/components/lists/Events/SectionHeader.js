@@ -12,7 +12,7 @@ import { BULLET } from 'lib/constants';
 
 @inject('stores')
 @observer
-export default class SectionHeader extends React.PureComponent {
+export default class SectionHeader extends React.Component {
   _onPress = () => {
     const date = moment(this.props.section.title);
     const now = moment();
