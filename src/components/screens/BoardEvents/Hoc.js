@@ -24,7 +24,7 @@ export default compose(
   }),
   graphql(gql(listAllEvents), {
     alias,
-    skip: props => props.cacheFirst,
+    skip: props => !props.cacheFirst,
     options: {
       fetchPolicy: 'cache-only',
     },
@@ -40,7 +40,7 @@ export default compose(
   }),
   graphql(gql(listBoardEvents), {
     alias,
-    skip: props => !props.cacheFirst,
+    skip: props => props.cacheFirst,
     options: props => ({
       fetchPolicy: 'cache-and-network',
       notifyOnNetworkStatusChange: true,
