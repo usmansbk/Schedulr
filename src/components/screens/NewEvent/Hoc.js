@@ -41,13 +41,9 @@ export default compose(
           if (createEvent) {
             const query = gql(listAllEvents);
             const data = cache.readQuery({ query });
-            let newEvent = null;
-            newEvent = Object.assign({}, createEvent, {
-              board: createdEvent.board
-            });
             data.listAllEvents.items = [
               ...data.listAllEvents.items.filter(item => item.id !== createEvent.id),
-              newEvent
+              createEvent
             ];
             cache.writeQuery({ query, data });
           }
