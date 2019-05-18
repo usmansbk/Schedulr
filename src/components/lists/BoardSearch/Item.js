@@ -12,10 +12,10 @@ const { AVATAR_SIZE } = board_search;
 @observer
 export default class Item extends React.PureComponent {
   _onPress = () => {
-    const cacheFirst = !(this.props.isAuthor || this.props.isFollowing);
+    const cacheFirst = (this.props.isAuthor || this.props.isFollowing);
     this.props.onPressItem(this.props.id, cacheFirst);
   };
-  _navigateToInfo = () => this.props.navigateToBoardInfo(this.props.id);
+  // _navigateToInfo = () => this.props.navigateToBoardInfo(this.props.id);
   render() {
     const {
       id,
@@ -37,7 +37,7 @@ export default class Item extends React.PureComponent {
           <UserAvatar
             size={AVATAR_SIZE}
             name={name}
-            onPress={this._navigateToInfo}
+            // onPress={this._navigateToInfo}
             style={styles.itemAvatar}
           />
           <View style={styles.itemBody}>
