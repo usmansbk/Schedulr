@@ -3,6 +3,7 @@ import { RefreshControl, InteractionManager } from 'react-native';
 import { SectionList } from 'react-navigation';
 import sectionListGetItemLayout from 'react-native-section-list-get-item-layout';
 import { inject, observer } from 'mobx-react/native';
+import moment from 'moment';
 import Header from './Header';
 import Footer from './Footer';
 import Empty from './Empty';
@@ -25,8 +26,7 @@ import {
 import { events } from 'lib/constants';
 
 const DAYS_PER_PAGE = 3;
-const INITIAL_BEFOREDAYS = 1;
-const INITIAL_AFTERDAYS = 0;
+
 const {
   ITEM_HEIGHT,
   SEPERATOR_HEIGHT,
@@ -47,8 +47,10 @@ export default class List extends React.Component {
     loadingMore: false,
     loadingPrev: false,
     sections: [],
-    afterDays: INITIAL_AFTERDAYS,
-    beforeDays: INITIAL_BEFOREDAYS
+    hasNext: true,
+    hasPrev: true,
+    after: moment().toISOString(),
+    before: moment().toISOString()
   };
 
   static defaultProps = {
@@ -96,39 +98,31 @@ export default class List extends React.Component {
   loadPreviousEvents = () => {
     const { events } = this.props;
     this.setState({ loadingPrev: true });
-    InteractionManager.runAfterInteractions(() => {
-      this.setState(state => {
-        const beforeDays = state.beforeDays;
-        const prevSections = getPreviousEvents(events, beforeDays, DAYS_PER_PAGE);
-        return ({
-          sections: prevSections.concat(state.sections),
-          beforeDays: beforeDays + DAYS_PER_PAGE,
-        });
-      });
-    });
+
+    // get previous available day
+    // get events of day
+    // set state
+
     this.setState({ loadingPrev: false });
   }
 
   loadMoreEvents = (events=[]) => {
-    this.setState({ loadingMore: true }, () => {
-      this.setState(state => {
-        const afterDays = state.afterDays + DAYS_PER_PAGE;
-        const moreSections = getNextEvents(events, afterDays, DAYS_PER_PAGE);
-        return ({
-          sections: [...state.sections, ...moreSections],
-          afterDays,
-          loadingMore: false
-        })
-      });
-    });
+    
+    this.setState({ loadingMore: true });
+
+    // get next available day
+    // get events of day
+    // set state
+
+    this.setState({ loadingMore: false });
   }
 
   _bootstrap = (events) => {
     if (events) {
       this.setState({
-        sections: getNextEvents(events, INITIAL_AFTERDAYS, DAYS_PER_PAGE),
-        afterDays: INITIAL_AFTERDAYS,
-        beforeDays: INITIAL_BEFOREDAYS
+        // sections: getNextEvents(events, INITIAL_AFTERDAYS, DAYS_PER_PAGE),
+        afterDays: moment().toISOString(),
+        beforeDays: moment().toISOString()
       });
     }  
   }
@@ -153,11 +147,13 @@ export default class List extends React.Component {
   };
 
   scrollToTop = () => {
-    this.listRef.current.scrollToLocation({
-      itemIndex: 0,
-      sectionIndex: 0,
-      viewPosition: SECTION_HEADER_HEIGHT
-    });
+    if (this.state.sections.length) {
+      this.listRef.current.scrollToLocation({
+        itemIndex: 0,
+        sectionIndex: 0,
+        viewPosition: SECTION_HEADER_HEIGHT
+      });
+    }
   };
 
   _renderItem = ({ item: {

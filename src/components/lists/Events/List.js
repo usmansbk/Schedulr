@@ -39,13 +39,10 @@ const {
 @observer
 export default class List extends React.Component {
 
-  constructor(props) {
-    super(props);
-    this.listRef = React.createRef();
-  }
   state = {
     loadingMore: false,
     loadingPrev: false,
+    hasPrev: true,
     sections: [],
     afterDays: INITIAL_AFTERDAYS,
     beforeDays: INITIAL_BEFOREDAYS
@@ -152,14 +149,6 @@ export default class List extends React.Component {
     this._bootstrap(this.props.events);
   };
 
-  scrollToTop = () => {
-    this.listRef.current.scrollToLocation({
-      itemIndex: 0,
-      sectionIndex: 0,
-      viewPosition: SECTION_HEADER_HEIGHT
-    });
-  };
-
   _renderItem = ({ item: {
     id,
     title,
@@ -202,7 +191,6 @@ export default class List extends React.Component {
     
     return (
       <SectionList
-        ref={this.listRef}
         initialNumToRender={0}
         // getItemLayout={this._getItemLayout}
         contentContainerStyle={styles.contentContainer}
