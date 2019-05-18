@@ -2,7 +2,8 @@ import React from 'react';
 import { Searchbar } from 'react-native-paper';
 import {
   createMaterialTopTabNavigator,
-} from 'react-navigation';
+  MaterialTopTabBar
+} from 'react-navigation-tabs';
 import { StyleSheet, Dimensions } from 'react-native';
 import { inject, observer } from 'mobx-react/native';
 import Events from './Events';
@@ -32,12 +33,9 @@ const Tabs = createMaterialTopTabNavigator(
     initialRouteName: 'Calendars',
     initialLayout: { height: 0, width: Dimensions.get('window').width },
     animationEnabled: true,
+    tabBarComponent: props => <TabBarComponent {...props} />,
     tabBarOptions: {
-      activeTintColor: colors.primary,
-      inactiveTintColor: colors.gray,
       upperCaseLabel: false,
-      indicatorStyle: styles.indicatorStyle,
-      style: styles.barStyle
     },
     navigationOptions: ({ navigation }) => {
       return ({
@@ -48,6 +46,16 @@ const Tabs = createMaterialTopTabNavigator(
     lazy: true
   }
 );
+const TabBarComponent = inject('stores')(observer(
+  (props) => <MaterialTopTabBar
+    activeTintColor={props.stores.themeStore.colors.primary}
+    inactiveTintColor={props.stores.themeStore.colors.tint}
+    indicatorStyle={props.stores.appStyles.userBoardsTab.indicatorStyle}
+    style={props.stores.appStyles.userBoardsTab.barStyle}
+    {...props}
+  />
+));
+
 
 const SearchBar = inject('stores')(observer(
   ({ navigation, stores }) => (

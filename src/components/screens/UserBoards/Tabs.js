@@ -1,6 +1,8 @@
+import React from 'react';
 import { StyleSheet, Dimensions } from 'react-native';
-import { createMaterialTopTabNavigator } from 'react-navigation';
+import { createMaterialTopTabNavigator, MaterialTopTabBar } from 'react-navigation-tabs';
 import { withCollapsibleForTab } from 'react-navigation-collapsible';
+import { inject, observer } from 'mobx-react/native';
 import Following from './Following';
 import Created from './Created';
 import colors from 'config/colors';
@@ -32,14 +34,21 @@ const Tabs = createMaterialTopTabNavigator(
         backgroundColor: colors.bg
       }
     }),
+    tabBarComponent: props => <TabBarComponent {...props} />,
     tabBarOptions: {
-      activeTintColor: colors.primary,
-      inactiveTintColor: colors.gray,
       upperCaseLabel: false,
-      indicatorStyle: styles.indicatorStyle,
-      style: styles.barStyle
     },
   }
 );
+
+const TabBarComponent = inject('stores')(observer(
+  (props) => <MaterialTopTabBar
+    activeTintColor={props.stores.themeStore.colors.primary}
+    inactiveTintColor={props.stores.themeStore.colors.tint}
+    indicatorStyle={props.stores.appStyles.userBoardsTab.indicatorStyle}
+    style={props.stores.appStyles.userBoardsTab.barStyle}
+    {...props}
+  />
+));
 
 export default withCollapsibleForTab(Tabs, { iOSCollapsedColor: '#032' });

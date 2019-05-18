@@ -18,6 +18,21 @@ export default class AppStyles {
     this.settings = settingsStore;
   }
 
+  @computed get userBoardsTab () {
+    const colors = this.settings.dark ? dark : light;
+    
+    return StyleSheet.create({
+      barStyle: {
+        elevation: 4,
+        backgroundColor: colors.bg,
+        borderTopWidth: 0
+      },
+      indicatorStyle: {
+        backgroundColor: colors.primary_light
+      }
+    });
+  }
+
   @computed get topTab () {
     const colors = this.settings.dark ? dark : light;
 
