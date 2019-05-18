@@ -50,12 +50,10 @@ export default class List extends React.Component {
   scrollDown = () => {
     this._listRef && this._listRef.scrollToEnd();
   }
-  shouldComponentUpdate = (nextProps) => {
-    (
-      nextProps.comments.length !== this.props.comments.length ||
-      nextProps.loading !== this.props.loading
-    );
-  };
+  shouldComponentUpdate = (nextProps) => (
+    nextProps.comments.length !== this.props.comments.length ||
+    nextProps.loading !== this.props.loading
+  );
 
   render() {
     const {
