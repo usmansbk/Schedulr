@@ -22,6 +22,7 @@ import {
   getNextEvents,
   getPreviousEvents,
   hasPreviousEvents,
+  hasMoreEvents
 } from 'lib/calendr';
 import { events } from 'lib/constants';
 
@@ -44,6 +45,7 @@ export default class List extends React.Component {
     loadingMore: false,
     loadingPrev: false,
     hasPrev: true,
+    hasMore: true,
     sections: [],
     afterDays: INITIAL_AFTERDAYS,
     beforeDays: INITIAL_BEFOREDAYS
@@ -51,7 +53,6 @@ export default class List extends React.Component {
 
   static defaultProps = {
     loading: false,
-    hasPrev: false,
     events: [],
     onRefresh: () => null,
   };
@@ -69,6 +70,7 @@ export default class List extends React.Component {
   _renderFooter = () => (
     this.state.sections.length ?
     <Footer
+      hasMore={this.state.hasMore}
       onPress={this._onEndReached}
       loading={this.state.loadingMore}
     />
@@ -113,17 +115,20 @@ export default class List extends React.Component {
   };
 
   loadMoreEvents = (events=[]) => {
-    this.setState({ loadingMore: true }, () => {
+    this.setState({ loadingMore: true });
+    const { afterDays } = this.state;
+    const hasMore = hasMoreEvents(events, { afterNumOfDays: afterDays });
+    if (hasMore) {
       this.setState(state => {
         const afterDays = state.afterDays + DAYS_PER_PAGE;
         const moreSections = getNextEvents(events, afterDays, DAYS_PER_PAGE);
         return ({
           sections: [...state.sections, ...moreSections],
           afterDays,
-          loadingMore: false
         })
       });
-    });
+    }
+    this.setState({ loadingMore: false, hasMore });
   };
 
   _bootstrap = (events) => {
@@ -132,7 +137,8 @@ export default class List extends React.Component {
         sections: getNextEvents(events, INITIAL_AFTERDAYS, DAYS_PER_PAGE),
         afterDays: INITIAL_AFTERDAYS,
         beforeDays: INITIAL_BEFOREDAYS,
-        hasPrev: true
+        hasPrev: true,
+        hasMore: true
       });
     }  
   };

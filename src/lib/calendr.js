@@ -143,11 +143,21 @@ const getEvents = (events) => {
   });
 };
 
-function hasPreviousEvents(events, beforeDays) {
-  const beforeDate = moment().add(-(beforeDays), 'days');
+function hasPreviousEvents(events, { beforeNumOfDays, beforeDate }) {
+  const refDate = beforeNumOfDays ? moment().add(-(beforeNumOfDays), 'days') :
+    moment(beforeDate);
   return events.some((event) => {
     const eventDate = moment(event.startAt);
-    return eventDate.isBefore(beforeDate);
+    return eventDate.isSameOrBefore(refDate);
+  });
+}
+
+function hasMoreEvents(events, { afterNumOfDays, afterDate }) {
+  const refDate = afterNumOfDays ? moment().add(afterNumOfDays, 'days') :
+    moment(afterDate);
+  return events.some((event) => {
+    const eventDate = moment(event.startAt);
+    return eventDate.isSameOrAfter(refDate);
   });
 }
 
@@ -155,5 +165,6 @@ export {
   getEvents,
   getNextEvents,
   getPreviousEvents,
-  hasPreviousEvents
+  hasPreviousEvents,
+  hasMoreEvents
 }
