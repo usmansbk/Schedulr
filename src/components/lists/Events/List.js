@@ -1,5 +1,5 @@
 import React from 'react';
-import { RefreshControl, InteractionManager } from 'react-native';
+import { RefreshControl } from 'react-native';
 import { SectionList } from 'react-navigation';
 import sectionListGetItemLayout from 'react-native-section-list-get-item-layout';
 import { inject, observer } from 'mobx-react/native';
@@ -96,39 +96,43 @@ export default class List extends React.Component {
   
   loadPreviousEvents = () => {
     const { events } = this.props;
-    this.setState({ loadingPrev: true });
-    const { beforeDays } = this.state;
-    const hasPrev = hasPreviousEvents(events, { beforeNumOfDays: beforeDays });
-    if (hasPrev) {
-      InteractionManager.runAfterInteractions(() => {
-        this.setState(state => {
-          const beforeDays = state.beforeDays;
-          const prevSections = getPreviousEvents(events, beforeDays, DAYS_PER_PAGE);
-          return ({
-            sections: prevSections.concat(state.sections),
-            beforeDays: beforeDays + DAYS_PER_PAGE,
-          });
+    if (this.state.hasPrev) {
+      this.setState({ loadingPrev: true });
+
+      const { beforeDays } = this.state;
+      this.setState(state => {
+        const prevSections = getPreviousEvents(events, beforeDays, DAYS_PER_PAGE);
+        return ({
+          sections: prevSections.concat(state.sections),
+          beforeDays: beforeDays + DAYS_PER_PAGE,
         });
       });
+      
+      this.setState({
+        loadingPrev: false,
+        hasPrev: hasPreviousEvents(events, { beforeNumOfDays: beforeDays + DAYS_PER_PAGE })
+      });
     }
-    this.setState({ loadingPrev: false, hasPrev });
   };
 
   loadMoreEvents = (events=[]) => {
-    this.setState({ loadingMore: true });
-    const { afterDays } = this.state;
-    const hasMore = hasMoreEvents(events, { afterNumOfDays: afterDays });
-    if (hasMore) {
+    if (this.state.hasMore) {
+      this.setState({ loadingMore: true });
+      const afterDays = this.state.afterDays + DAYS_PER_PAGE;
+
       this.setState(state => {
-        const afterDays = state.afterDays + DAYS_PER_PAGE;
         const moreSections = getNextEvents(events, afterDays, DAYS_PER_PAGE);
         return ({
           sections: [...state.sections, ...moreSections],
           afterDays,
         })
       });
+      
+      this.setState({
+        loadingMore: false,
+        hasMore: hasMoreEvents(events, { afterNumOfDays: afterDays })
+      });
     }
-    this.setState({ loadingMore: false, hasMore });
   };
 
   _bootstrap = (events) => {
@@ -137,8 +141,8 @@ export default class List extends React.Component {
         sections: getNextEvents(events, INITIAL_AFTERDAYS, DAYS_PER_PAGE),
         afterDays: INITIAL_AFTERDAYS,
         beforeDays: INITIAL_BEFOREDAYS,
-        hasPrev: true,
-        hasMore: true
+        hasPrev: hasPreviousEvents(events, { beforeNumOfDays: INITIAL_BEFOREDAYS }),
+        hasMore: hasMoreEvents(events, { afterNumOfDays: INITIAL_AFTERDAYS })
       });
     }  
   };

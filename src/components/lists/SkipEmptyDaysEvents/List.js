@@ -119,10 +119,12 @@ export default class List extends React.Component {
 
   _bootstrap = (events) => {
     if (events) {
+      const today = moment().toISOString();
+
       this.setState({
-        // sections: getNextEvents(events, INITIAL_AFTERDAYS, DAYS_PER_PAGE),
-        afterDays: moment().toISOString(),
-        beforeDays: moment().toISOString()
+        // sections: generateNextEvents(events, today, EVENTS_PER_PAGE),
+        afterDate: today,
+        beforeDate: today
       });
     }  
   }
