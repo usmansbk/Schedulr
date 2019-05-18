@@ -2,14 +2,14 @@ import React from 'react';
 import Fab from '../Fab';
 
 export default class Button extends React.Component {
-  _onPress = async () => {
+  _onPress = () => {
     const {
       isFollowing,
       onFollowBoard,
       onUnfollowBoard
     } = this.props;
-    if (isFollowing) await onUnfollowBoard();
-    else await onFollowBoard();
+    if (isFollowing) onUnfollowBoard();
+    else onFollowBoard();
   };
 
   render() {

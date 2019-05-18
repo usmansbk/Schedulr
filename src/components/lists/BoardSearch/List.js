@@ -29,7 +29,12 @@ class List extends Component {
     }
   );
   shouldComponentUpdate = (nextProps) => { 
-    return (nextProps.navigation.isFocused);
+    return (nextProps.navigation.isFocused &&
+      (
+        nextProps.boards !== this.props.boards ||
+        nextProps.loading !== this.props.loading
+      )
+    );
   };
   _onPressItem = (id, cacheFirst) => this.props.navigation.navigate('BoardInfo', { id, cacheFirst });
   _keyExtractor = (item) => String(item.id);
@@ -41,6 +46,7 @@ class List extends Component {
       description,
       isPublic,
       status,
+      isFollowing,
       isAuthor,
     } = item;
 
@@ -52,6 +58,7 @@ class List extends Component {
         isPublic={isPublic}
         isClosed={status === 'CLOSED'}
         isAuthor={isAuthor}
+        isFollowing={isFollowing}
         onPressItem={this._onPressItem}
         navigateToBoardInfo={this._navigateToInfo}
       />
