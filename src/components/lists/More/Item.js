@@ -6,6 +6,8 @@ import { inject, observer } from 'mobx-react/native';
 @observer
 export default class Item extends React.PureComponent {
   _onPress = () => this.props.onPressItem(this.props.id);
+  shouldComponentUpdate = () => false;
+  
   render() {
     const {
       name,

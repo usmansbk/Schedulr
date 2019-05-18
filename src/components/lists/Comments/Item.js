@@ -15,7 +15,7 @@ const { AVATAR_SIZE } = comments_list;
 
 @inject('stores')
 @observer
-export default class Item extends React.PureComponent {
+export default class Item extends React.Component {
   state = {
     showOptions: false
   };
@@ -28,6 +28,11 @@ export default class Item extends React.PureComponent {
         showOptions: !prev.showOptions
       }));
     }
+  };
+  shouldComponentUpdate = (nextProps) => {
+    return (
+      nextProps.content !== this.props.content
+    )
   };
 
   render() {

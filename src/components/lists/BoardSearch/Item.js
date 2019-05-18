@@ -10,10 +10,17 @@ const { AVATAR_SIZE } = board_search;
 
 @inject('stores')
 @observer
-export default class Item extends React.PureComponent {
+export default class Item extends React.Component {
   _onPress = () => {
     const cacheFirst = (this.props.isAuthor || this.props.isFollowing);
     this.props.onPressItem(this.props.id, cacheFirst);
+  };
+  shouldComponentUpdate = (nextProps) => {
+    return (
+      this.props.name !== nextProps.name ||
+      this.props.description !== nextProps.description ||
+      this.props.isClosed !== nextProps.isClosed
+    );
   };
   // _navigateToInfo = () => this.props.navigateToBoardInfo(this.props.id);
   render() {

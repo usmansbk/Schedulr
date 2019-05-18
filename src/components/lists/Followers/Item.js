@@ -9,8 +9,10 @@ const { AVATAR_SIZE } = followers_list;
 
 @inject('stores')
 @observer
-export default class Item extends React.PureComponent {
+export default class Item extends React.Component {
   _onPress = () => this.props.onPressItem(this.props.id);
+  shouldComponentUpdate = () => false;
+  
   render() {
     const {
       name,
