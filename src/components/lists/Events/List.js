@@ -21,6 +21,7 @@ import { decapitalize } from 'lib/capitalizr';
 import {
   getNextEvents,
   getPreviousEvents,
+  hasPreviousEvents,
 } from 'lib/calendr';
 import { events } from 'lib/constants';
 
@@ -50,7 +51,7 @@ export default class List extends React.Component {
 
   static defaultProps = {
     loading: false,
-    hasPreviousEvents: false,
+    hasPrev: false,
     events: [],
     onRefresh: () => null,
   };
@@ -59,6 +60,7 @@ export default class List extends React.Component {
   _renderHeader = () => (
     this.state.sections.length ?
     <Header
+      hasPrev={this.state.hasPrev}
       loading={this.state.loadingPrev}
       onPress={this.loadPreviousEvents}
     />
@@ -88,23 +90,26 @@ export default class List extends React.Component {
         targetDate
       });
     }
-  }
+  };
   
   loadPreviousEvents = () => {
     const { events } = this.props;
     this.setState({ loadingPrev: true });
-    InteractionManager.runAfterInteractions(() => {
-      this.setState(state => {
-        const beforeDays = state.beforeDays;
-        const prevSections = getPreviousEvents(events, beforeDays, DAYS_PER_PAGE);
-        return ({
-          sections: prevSections.concat(state.sections),
-          beforeDays: beforeDays + DAYS_PER_PAGE,
+    const hasPrev = hasPreviousEvents(events, this.state.beforeDays);
+    if (hasPrev) {
+      InteractionManager.runAfterInteractions(() => {
+        this.setState(state => {
+          const beforeDays = state.beforeDays;
+          const prevSections = getPreviousEvents(events, beforeDays, DAYS_PER_PAGE);
+          return ({
+            sections: prevSections.concat(state.sections),
+            beforeDays: beforeDays + DAYS_PER_PAGE,
+          });
         });
       });
-    });
-    this.setState({ loadingPrev: false });
-  }
+    }
+    this.setState({ loadingPrev: false, hasPrev });
+  };
 
   loadMoreEvents = (events=[]) => {
     this.setState({ loadingMore: true }, () => {
@@ -118,17 +123,18 @@ export default class List extends React.Component {
         })
       });
     });
-  }
+  };
 
   _bootstrap = (events) => {
     if (events) {
       this.setState({
         sections: getNextEvents(events, INITIAL_AFTERDAYS, DAYS_PER_PAGE),
         afterDays: INITIAL_AFTERDAYS,
-        beforeDays: INITIAL_BEFOREDAYS
+        beforeDays: INITIAL_BEFOREDAYS,
+        hasPrev: true
       });
     }  
-  }
+  };
 
   _onRefresh = () => {
     this._bootstrap(this.props.events);

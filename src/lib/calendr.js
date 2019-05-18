@@ -143,8 +143,17 @@ const getEvents = (events) => {
   });
 };
 
+function hasPreviousEvents(events, beforeDays) {
+  const beforeDate = moment().add(-(beforeDays), 'days');
+  return events.some((event) => {
+    const eventDate = moment(event.startAt);
+    return eventDate.isBefore(beforeDate);
+  });
+}
+
 export {
   getEvents,
   getNextEvents,
-  getPreviousEvents
+  getPreviousEvents,
+  hasPreviousEvents
 }
