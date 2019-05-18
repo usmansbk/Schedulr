@@ -22,7 +22,14 @@ class List extends React.Component {
     hasMore: false,
     onRefresh: () => null,
   };
-  shouldComponentUpdate = (nextProps) => nextProps.isFocused;
+  shouldComponentUpdate = (nextProps) => { 
+    return (nextProps.navigation.isFocused &&
+      (
+        nextProps.followers.length !== this.props.followers.length ||
+        nextProps.loading !== this.props.loading
+      )
+    );
+  };
   _getItemLayout = (_, index) => (
     {
       length: ITEM_HEIGHT,

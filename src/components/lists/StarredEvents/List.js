@@ -34,7 +34,14 @@ class List extends Component {
       index
     }
   );
-  shouldComponentUpdate = (nextProps) => nextProps.navigation.isFocused;
+  shouldComponentUpdate = (nextProps) => { 
+    return (nextProps.navigation.isFocused &&
+      (
+        nextProps.events.length !== this.props.events.length ||
+        nextProps.loading !== this.props.loading
+      )
+    );
+  };
   _onPressItem = (id, refStartAt, refEndAt) => this.props.navigation.navigate('EventDetails', { id, refStartAt, refEndAt });
   _navigateToComments = (id, title, date) => this.props.navigation.navigate('Comments', { id, title, date });
   _keyExtractor = (item) => String(item.id); 

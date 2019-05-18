@@ -28,7 +28,14 @@ class List extends Component {
       index
     }
   );
-  shouldComponentUpdate = (nextProps) => nextProps.isFocused;
+  shouldComponentUpdate = (nextProps) => { 
+    return (nextProps.navigation.isFocused &&
+      (
+        nextProps.boards.length !== this.props.boards.length ||
+        nextProps.loading !== this.props.loading
+      )
+    );
+  };
   _onPressItem = (id, cacheFirst) => this.props.navigation.navigate('BoardInfo', { id, cacheFirst });
   // _navigateToInfo = (id) => this.props.navigation.navigate('BoardInfo', { id });
   _keyExtractor = (item) => String(item.id);

@@ -109,6 +109,7 @@ function getNextDayEvents(initialEvents, nextDate) {
 
 const getEvents = memoize((events) => {
   return events.map((currentEvent) => {
+    console.log(currentEvent.title);
     const eventDate = moment(currentEvent.startAt);
     const repeat = getRepeat(currentEvent.repeat);
     let recurrence;
@@ -127,7 +128,6 @@ const getEvents = memoize((events) => {
       const startSec = start.seconds();
       const startMins = start.minutes();
       const startHours = start.hours();
-      console.log(currentEvent.title);
 
       const duration = Math.abs(moment.duration(start.diff(end)));
       console.log('duration', duration);
