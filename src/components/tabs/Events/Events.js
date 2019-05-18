@@ -54,7 +54,7 @@ export default class Events extends React.Component {
     Linking.addEventListener('url', this.handleOpenURL);
     requestLocationPermission();
     this.subscription = NetInfo.addEventListener(state =>
-      this.props.stores.settingsStore.toggleConnection(state.isConnected)
+      this.props.stores.appState.toggleConnection(state.isConnected)
     );
   };
 

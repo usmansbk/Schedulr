@@ -3,7 +3,6 @@ import { persist } from 'mobx-persist';
 
 export default class SettingsState {
   @persist @observable language = "en_US";
-  @observable isConnected = false;
   @persist @observable dark = false;
   @persist @observable sound = true;
   @persist @observable vibrate = true;
@@ -19,9 +18,4 @@ export default class SettingsState {
   @action toggleTheme () {
     this.dark = !this.dark;
   }
-
-  @action toggleConnection (isConnected) {
-    this.isConnected = isConnected;
-  }
-
 }

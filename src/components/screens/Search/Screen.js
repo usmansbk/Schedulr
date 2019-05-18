@@ -48,8 +48,8 @@ const SearchBar = inject('stores')(observer(
       onIconPress={() => navigation.goBack()}
       placeholder="Search for..."
       placeholderTextColor={stores.themeStore.colors.placeholder}
-      value={navigation.getParam('query', '')}
-      onChangeText={(query) => navigation.setParams({ query })}
+      value={stores.appState.searchQuery}
+      onChangeText={(query) => stores.appState.onChangeText(query)}
       style={{
         elevation: 0,
         backgroundColor: stores.themeStore.colors.bg,
