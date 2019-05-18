@@ -132,8 +132,8 @@ const getEvents = (events) => {
 
       const nextDates = recurrence.next(1);
 
-      const startAt = nextDates[0].seconds(startSec).minutes(startMins).hours(startHours).toISOString();
-      const endAt = moment(startAt).add(duration).toISOString();
+      const startAt = nextDates[0].local().seconds(startSec).minutes(startMins).hours(startHours).toISOString();
+      const endAt = moment(startAt).local().add(duration).toISOString();
       return  Object.assign({}, currentEvent, {
         startAt,
         endAt,

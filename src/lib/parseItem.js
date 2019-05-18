@@ -23,9 +23,9 @@ export const getTime = ({ startAt, endAt, allDay }) => {
   });
 };
 
-export const getHumanTime = ({ startAt, endAt }) => {
-  const t = moment(startAt).twix(endAt);
-  return t.format();
+export const getHumanTime = ({ startAt, endAt, allDay }) => {
+  const t = moment(startAt).twix(endAt, allDay).format();
+  return t;
 }
 
 export const isPast = (date) => {
