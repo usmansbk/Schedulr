@@ -148,6 +148,7 @@ export const createEventResponse = (input) => {
         id: getBoard.id,
         name: getBoard.name,
         eventsCount: getBoard.eventsCount + 1,
+        isFollowing: false
       },
       cancelledDates: [],
       starsCount: 0,

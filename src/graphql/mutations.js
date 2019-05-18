@@ -121,6 +121,7 @@ export const createEvent = `mutation CreateEvent($input: CreateEventInput!) {
       id
       name
       eventsCount
+      isFollowing
     }
     cancelledDates
     starsCount

@@ -26,6 +26,8 @@ export default inject('stores')(observer(
     status,
     isCancelled,
     isStarred,
+    isAuthor,
+    isFollowing,
     starsCount,
     commentsCount,
     navigateToBoard,
@@ -63,7 +65,7 @@ export default inject('stores')(observer(
             </View>
             <View style={stores.appStyles.eventDetails.item}>
               <Text style={stores.appStyles.eventDetails.label}>CALENDAR</Text>
-              <Text onPress={() => navigateToBoard(boardId)} style={[stores.appStyles.eventDetails.value, stores.appStyles.eventDetails.nav]}>{boardName}</Text>
+              <Text onPress={() => navigateToBoard(boardId, (isFollowing || isAuthor))} style={[stores.appStyles.eventDetails.value, stores.appStyles.eventDetails.nav]}>{boardName}</Text>
             </View>
             <View style={stores.appStyles.eventDetails.item}>
               <Text style={stores.appStyles.eventDetails.label}>REPEAT</Text>

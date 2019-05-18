@@ -43,12 +43,8 @@ export default compose(
             const data = cache.readQuery({ query });
             let newEvent = null;
             newEvent = Object.assign({}, createEvent, {
-              board: {
-                __typename: 'Board',
-                id: createEvent.board.id,
-                name: createEvent.board.name
-              }
-            })
+              board: createdEvent.board
+            });
             data.listAllEvents.items = [
               ...data.listAllEvents.items.filter(item => item.id !== createEvent.id),
               newEvent

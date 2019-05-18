@@ -145,6 +145,7 @@ export default class EventDetails extends React.Component {
           isStarred={isStarred}
           starsCount={starsCount}
           commentsCount={commentsCount}
+          isFollowing={board.isFollowing}
           isAuthor={isAuthor}
           isValid={isValid}
           isCancelled={isEventCancelled({ cancelledDates, isCancelled, startAt: start })}

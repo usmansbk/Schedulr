@@ -92,6 +92,8 @@ export const getEvent = `query GetEvent($id: ID!) {
     board {
       id
       name
+      eventsCount
+      isFollowing
     }
     cancelledDates
     starsCount
@@ -161,6 +163,8 @@ export const listAllEvents = `query ListAllEvents {
       board {
         id
         name
+        isFollowing
+        eventsCount
       }
       cancelledDates
       starsCount
@@ -250,6 +254,8 @@ export const listBoardEvents = `query ListBoardEvents($id: ID!, $limit: Int, $ne
         board {
           id
           name
+          eventsCount
+          isFollowing
         }
         cancelledDates
         starsCount
@@ -298,6 +304,8 @@ export const searchEvent = `query SearchEvent($filter: SearchFilterInput, $limit
       board {
         id
         name
+        eventsCount
+        isFollowing
       }
       cancelledDates
       starsCount
