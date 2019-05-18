@@ -95,7 +95,8 @@ export default class List extends React.Component {
   loadPreviousEvents = () => {
     const { events } = this.props;
     this.setState({ loadingPrev: true });
-    const hasPrev = hasPreviousEvents(events, this.state.beforeDays);
+    const { beforeDays } = this.state;
+    const hasPrev = hasPreviousEvents(events, { beforeNumOfDays: beforeDays });
     if (hasPrev) {
       InteractionManager.runAfterInteractions(() => {
         this.setState(state => {

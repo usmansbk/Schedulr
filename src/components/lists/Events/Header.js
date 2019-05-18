@@ -11,7 +11,7 @@ export default inject('stores')(observer(
     >
       <Text style={stores.appStyles.eventsList.headerText}>
         {
-          hasPrev ? "Load past few days" : "No previous events!"
+          hasPrev ? "Load past few days" : "No previous events"
         }
       </Text>
     </TouchableRipple>
