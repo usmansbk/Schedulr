@@ -4,7 +4,7 @@ import { inject, observer } from 'mobx-react/native';
 
 @inject("stores")
 @observer
-export default class Item extends React.PureComponent {
+export default class Item extends React.Component {
   _onPress = () => this.props.onPressItem(this.props.id);
   shouldComponentUpdate = () => false;
   

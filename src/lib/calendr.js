@@ -127,12 +127,13 @@ const getEvents = memoize((events) => {
       const startSec = start.seconds();
       const startMins = start.minutes();
       const startHours = start.hours();
+      console.log(currentEvent.title);
 
       const duration = Math.abs(moment.duration(start.diff(end)));
       console.log('duration', duration);
 
       const nextDates = recurrence.next(1);
-      console.log('nextDate', nextDates[0]);
+      console.log('nextDate', nextDates[0].toISOString());
 
       const startAt = nextDates[0].seconds(startSec).minutes(startMins).hours(startHours).toISOString();
       const endAt = moment(startAt).add(duration).toISOString();
