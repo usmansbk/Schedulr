@@ -24,7 +24,6 @@ const Tabs = createMaterialTopTabNavigator(
     },
     navigationOptions: ({ navigation }) => {
       return ({
-        headerTransparent: false,
         header: <SearchBar navigation={navigation} />
       })
     },
