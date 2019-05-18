@@ -48,6 +48,8 @@ const Home = createBottomTabNavigator({
 const TabBarComponent = inject('stores')(observer(
   (props) => (
     <BottomTabBar
+      inactiveTintColor={props.stores.themeStore.colors.tint}
+      activeTintColor={props.stores.themeStore.colors.primary}
       style={props.stores.appStyles.bottomTab.barStyle}
       {...props}
     />
