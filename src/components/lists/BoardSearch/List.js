@@ -37,7 +37,6 @@ class List extends Component {
     );
   };
   _onPressItem = (id, cacheFirst) => this.props.navigation.navigate('BoardInfo', { id, cacheFirst });
-  // _navigateToInfo = (id) => this.props.navigation.navigate('BoardInfo', { id });
   _keyExtractor = (item) => String(item.id);
   _renderEmptyList = () => this.props.loading ? null : <Empty />;
   _renderItem = ({item}) => {
@@ -90,7 +89,7 @@ class List extends Component {
         onRefresh={onRefresh}
         style={styles.list}
         contentContainerStyle={styles.contentContainer}
-        initialNumToRender={5}
+        initialNumToRender={7}
         getItemLayout={this._getItemLayout}
         ItemSeparatorComponent={this._renderSeparator}
         keyExtractor={this._keyExtractor}

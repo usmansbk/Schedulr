@@ -22,7 +22,6 @@ export default class Item extends React.Component {
       this.props.isClosed !== nextProps.isClosed
     );
   };
-  // _navigateToInfo = () => this.props.navigateToBoardInfo(this.props.id);
   render() {
     const {
       id,
@@ -44,7 +43,6 @@ export default class Item extends React.Component {
           <UserAvatar
             size={AVATAR_SIZE}
             name={name}
-            // onPress={this._navigateToInfo}
             style={styles.itemAvatar}
           />
           <View style={styles.itemBody}>
