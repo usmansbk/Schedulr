@@ -14,7 +14,7 @@ export default graphql(gql(getBoard), {
       id: props.id,
     },
     notifyOnNetworkStatusChange: true,
-    fetchPolicy: 'cache-and-network'
+    fetchPolicy: 'cache-first'
   }),
   props: ({ data, ownProps }) => ({
     loading: data.loading || data.networkStatus === 4,
