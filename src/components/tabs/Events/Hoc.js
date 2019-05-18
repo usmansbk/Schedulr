@@ -11,7 +11,7 @@ export default compose(
   graphql(gql(listAllEvents), {
     alias: 'withEventsContainer',
     options: {
-      fetchPolicy: 'cache-and-network',
+      fetchPolicy: 'cache-first',
       notifyOnNetworkStatusChange: true,
     },
     props: ({ data, ownProps}) => ({
