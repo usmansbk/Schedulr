@@ -80,7 +80,7 @@ class List extends Component {
     onPressComment={this._navigateToComments}
   />);
 
-  _renderEmptyList = () => <Empty error={this.props.error} loading={this.props.loading} />;
+  _renderEmptyList = () => <Empty search={this.props.search} error={this.props.error} loading={this.props.loading} />;
   _renderSeparator = () => <Separator />;
   _renderFooter = () => <Footer visible={this.props.events.length} />;
 

@@ -2,7 +2,7 @@ import React from 'react';
 import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
 import { inject, observer } from 'mobx-react/native';
-import List from 'components/lists/EventSearch';
+import List from 'components/lists/StarredEvents';
 import { listAllEvents } from 'mygraphql/queries';
 
 @inject('stores')
@@ -18,6 +18,7 @@ export default class Events extends React.Component {
       <ListHoc
         query={query}
         isConnected={isConnected}
+        search
       />
     );
   }
