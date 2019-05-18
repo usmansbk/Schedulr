@@ -30,7 +30,7 @@ class List extends React.Component {
       index
     }
   );
-  _onPressItem = (id) => this.props.navigation.push('UserProfile', { id });
+  _onPressItem = (id) => this.props.navigation.navigate('UserProfile', { id });
   _keyExtractor = item => String(item.id);
   _renderFooter = () => <Footer visible={!this.props.hasMore && this.props.followers.length} />;
   _renderSeparator = () => <Separator />;
