@@ -295,7 +295,7 @@ export default class Form extends React.Component {
                 )
               }
               {
-                (!values.forever && (values.repeat !== frequency[0].id)) && (
+                (values.until || (values.repeat !== frequency[0].id && !values.forever)) && (
                   <DateTimeInput
                     label="Repeat Until"
                     value={values.until}
