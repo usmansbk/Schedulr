@@ -157,7 +157,9 @@ function hasMoreEvents(events, { afterNumOfDays, afterDate }) {
     moment(afterDate);
   return events.some((event) => {
     const eventDate = moment(event.startAt);
-    return eventDate.isSameOrAfter(refDate);
+    const isRepeating = getRepeat(event.repeat);
+    const isValid = event.until ? moment(event.until).isSameOrAfter(refDate) : true;
+    return eventDate.isSameOrAfter(refDate) || (isRepeating && isValid);
   });
 }
 
