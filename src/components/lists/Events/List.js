@@ -80,7 +80,7 @@ export default class List extends React.Component {
   _navigateToBoardEvents = (id) => {
     let screen = 'BoardEvents';
     if (this.props.listType === 'board') screen = 'BoardInfo';
-    this.props.navigation.navigate(screen, { id })
+    this.props.navigation.navigate(screen, { id, cacheFirst: true })
   };
   _onPressSectionHeader = (targetDate) => {
     if (!isPast(targetDate)) {
