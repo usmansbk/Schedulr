@@ -3,7 +3,7 @@ import List from 'components/lists/StarredEvents';
 
 export default class Starred extends React.Component {
 
-  shouldComponentUpdate = (nextProps) => nextProps.isFocused;
+  // shouldComponentUpdate = (nextProps) => nextProps.isFocused;
   
   render() {
     const {
