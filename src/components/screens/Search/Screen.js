@@ -4,25 +4,10 @@ import {
   createMaterialTopTabNavigator,
   MaterialTopTabBar
 } from 'react-navigation-tabs';
-import { StyleSheet, Dimensions } from 'react-native';
+import { Dimensions } from 'react-native';
 import { inject, observer } from 'mobx-react/native';
 import Events from './Events';
 import Calendars from './Boards';
-import colors from 'config/colors';
-
-const styles = StyleSheet.create({
-  barStyle: {
-    elevation: 4,
-    backgroundColor: colors.bg,
-  },
-  indicatorStyle: {
-    backgroundColor: colors.primary_light
-  },
-  searchbar: {
-    elevation: 0,
-    backgroundColor: colors.bg
-  }
-});
 
 const Tabs = createMaterialTopTabNavigator(
   {

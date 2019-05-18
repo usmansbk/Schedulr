@@ -1,22 +1,11 @@
 import React from 'react';
-import { StyleSheet, Dimensions } from 'react-native';
+import { Dimensions } from 'react-native';
+import { Appbar } from 'react-native-paper';
 import { createMaterialTopTabNavigator, MaterialTopTabBar } from 'react-navigation-tabs';
 import { withCollapsibleForTab } from 'react-navigation-collapsible';
 import { inject, observer } from 'mobx-react/native';
 import Following from './Following';
 import Created from './Created';
-import colors from 'config/colors';
-
-const styles = StyleSheet.create({
-  barStyle: {
-    elevation: 4,
-    backgroundColor: colors.bg,
-    borderTopWidth: 0
-  },
-  indicatorStyle: {
-    backgroundColor: colors.primary_light
-  }
-});
 
 const Tabs = createMaterialTopTabNavigator(
   {
@@ -26,13 +15,10 @@ const Tabs = createMaterialTopTabNavigator(
   {
     initialLayout: { height: 0, width: Dimensions.get('window').width }, 
     navigationOptions: ({ navigation }) => ({
-      title: navigation.getParam('name', 'Boards'),
-      headerTransparent: false,
-      headerTitleStyle: { color: colors.gray },
-      headerTintColor: colors.gray,
-      headerStyle: {
-        backgroundColor: colors.bg
-      }
+      header: <HeaderComponent
+        title={navigation.getParam('name', 'Boards')}
+        goBack={() => navigation.goBack()}
+      />
     }),
     tabBarComponent: props => <TabBarComponent {...props} />,
     tabBarOptions: {
@@ -40,6 +26,21 @@ const Tabs = createMaterialTopTabNavigator(
     },
   }
 );
+
+const HeaderComponent = inject('stores')(observer(
+  ({ stores, title, goBack }) => (
+    <Appbar.Header style={stores.appStyles.styles.header}>
+      <Appbar.BackAction
+        onPress={goBack}
+        color={stores.themeStore.colors.gray} 
+      />
+      <Appbar.Content
+        title={title}
+        titleStyle={stores.appStyles.styles.headerColor}
+      />
+    </Appbar.Header>
+  )
+));
 
 const TabBarComponent = inject('stores')(observer(
   (props) => <MaterialTopTabBar
