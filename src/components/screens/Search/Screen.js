@@ -46,6 +46,7 @@ const SearchBar = inject('stores')(observer(
     <Searchbar
       icon="arrow-back"
       onIconPress={() => navigation.goBack()}
+      autoFocus
       placeholder="Search for..."
       placeholderTextColor={stores.themeStore.colors.placeholder}
       value={stores.appState.query}
