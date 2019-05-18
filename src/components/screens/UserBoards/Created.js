@@ -1,10 +1,8 @@
 import React, {Component} from 'react';
 import gql from 'graphql-tag';
 import { graphql, compose } from 'react-apollo';
-import { Animated } from 'react-native';
 import { FlatList } from 'react-navigation';
 import SimpleToast from 'react-native-simple-toast';
-import { withCollapsibleForTabChild } from 'react-navigation-collapsible';
 import { inject, observer } from 'mobx-react/native';
 import Loading from 'components/common/Loading';
 import ErrorScreen from 'components/common/Error';
@@ -20,7 +18,7 @@ const {
   ITEM_HEIGHT,
   SEPARATOR_HEIGHT
 } = boards;
-const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
+
 const alias = 'withUserBoards';
 
 @inject('stores')
@@ -66,7 +64,6 @@ class CreatedBoards extends Component{
   }
 
   render(){
-    // const { animatedY, onScroll } = this.props.collapsible;
     const {
       loading,
       error,
@@ -81,17 +78,12 @@ class CreatedBoards extends Component{
     const styles = stores.appStyles.boardsList;
 
     return (
-      <AnimatedFlatList 
+      <FlatList 
         style={styles.list}
         data={sortBoards(data)}
-        extraData={data.length}
-
-        // onScroll={onScroll} 
-        // _mustAddThis={animatedY}
-        
         renderItem={this._renderItem}
         contentContainerStyle={styles.contentContainer}
-        initialNumToRender={5}
+        initialNumToRender={7}
         getItemLayout={this._getItemLayout}
         ItemSeparatorComponent={this._renderSeparator}
         keyExtractor={this._keyExtractor}
@@ -103,7 +95,6 @@ class CreatedBoards extends Component{
 }
 
 export default compose(
-  // withCollapsibleForTabChild,
   graphql(gql(listAllBoards), {
     alias,
     skip: props => !props.navigation.getParam('profile'),
