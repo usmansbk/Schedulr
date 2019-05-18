@@ -18,9 +18,26 @@ export default class AppStyles {
     this.settings = settingsStore;
   }
 
+  @computed get topTab () {
+    const colors = this.settings.dark ? dark : light;
+
+    return StyleSheet.create({
+      container: {
+        flex: 1
+      },
+      barStyle: {
+        elevation: 4,
+        backgroundColor: colors.bg,
+      },
+      indicatorStyle: {
+        backgroundColor: colors.primary_light
+      }
+    });
+  }
+
   @computed get bottomTab () {
     const colors = this.settings.dark ? dark : light;
-    
+
     return StyleSheet.create({
       container: {
         flex: 1
