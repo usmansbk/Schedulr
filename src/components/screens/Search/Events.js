@@ -27,14 +27,14 @@ export default class Events extends React.Component {
 const ListHoc = compose(
   graphql(gql(listAllEvents), {
     alias: 'withSearchEventsOffline',
-    skip: props => props.isConnected,
     options: {
       fetchPolicy: 'cache-only'
     },
     props: ({ data, ownProps }) => ({
       loading: data.loading,
       events: data && data.listAllEvents && data.listAllEvents.items.filter(
-        item => item.title.toLowerCase().includes(ownProps.query.toLowerCase())
+        item => item.title.toLowerCase().includes(ownProps.query.toLowerCase()) ||
+          item.eventType.toLowerCase().includes(ownProps.query.toLowerCase())
       ),
       ...ownProps
     })

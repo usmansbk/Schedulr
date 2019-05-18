@@ -26,7 +26,6 @@ export default class Boards extends React.Component {
 const ListHoc = compose(
   graphql(gql(listAllBoards), {
     alias: 'withSearchBoardsOffline',
-    skip: props => props.isConnected,
     options: {
       fetchPolicy: 'cache-only'
     },
