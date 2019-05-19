@@ -1,5 +1,5 @@
 import React from 'react';
-import { RefreshControl, InteractionManager } from 'react-native';
+import { RefreshControl } from 'react-native';
 import { SectionList } from 'react-navigation';
 import sectionListGetItemLayout from 'react-native-section-list-get-item-layout';
 import { inject, observer } from 'mobx-react/native';
@@ -20,12 +20,12 @@ import {
 } from 'lib/parseItem';
 import { decapitalize } from 'lib/capitalizr';
 import {
-  getNextEvents,
-  getPreviousEvents,
+  hasMoreEvents,
+  hasPreviousEvents,
+  generatePreviousEvents,
+  generateMoreEvents
 } from 'lib/calendr';
 import { events } from 'lib/constants';
-
-const DAYS_PER_PAGE = 3;
 
 const {
   ITEM_HEIGHT,
@@ -34,6 +34,8 @@ const {
   SECTION_FOOTER_HEIGHT,
   HEADER_HEIGHT,
 } = events;
+
+const DAYS_PER_PAGE = 3;
 
 @inject('stores')
 @observer
@@ -49,13 +51,12 @@ export default class List extends React.Component {
     sections: [],
     hasNext: true,
     hasPrev: true,
-    after: moment().toISOString(),
-    before: moment().toISOString()
+    afterDate: moment().toISOString(),
+    beforeDate: moment().toISOString()
   };
 
   static defaultProps = {
     loading: false,
-    hasPreviousEvents: false,
     events: [],
     onRefresh: () => null,
   };
@@ -64,6 +65,7 @@ export default class List extends React.Component {
   _renderHeader = () => (
     this.state.sections.length ?
     <Header
+      hasPrev={this.state.hasPrev}
       loading={this.state.loadingPrev}
       onPress={this.loadPreviousEvents}
     />
@@ -72,6 +74,7 @@ export default class List extends React.Component {
   _renderFooter = () => (
     this.state.sections.length ?
     <Footer
+      hasMore={this.state.hasMore}
       onPress={this._onEndReached}
       loading={this.state.loadingMore}
     />
@@ -85,7 +88,7 @@ export default class List extends React.Component {
   _navigateToBoardEvents = (id) => {
     let screen = 'BoardEvents';
     if (this.props.listType === 'board') screen = 'BoardInfo';
-    this.props.navigation.navigate(screen, { id })
+    this.props.navigation.navigate(screen, { id, cacheFirst: true })
   };
   _onPressSectionHeader = (targetDate) => {
     if (!isPast(targetDate)) {
@@ -93,41 +96,56 @@ export default class List extends React.Component {
         targetDate
       });
     }
-  }
+  };
   
   loadPreviousEvents = () => {
     const { events } = this.props;
-    this.setState({ loadingPrev: true });
+    if (this.state.hasPrev) {
+      this.setState({ loadingPrev: true });
+      const beforeDate = this.state.beforeDate;
 
-    // get previous available day
-    // get events of day
-    // set state
+      this.setState(state => {
+        const prevSections = generatePreviousEvents(events, beforeDate, DAYS_PER_PAGE);
+        return ({
+          sections: prevSection.concat(state.sections),
+          // beforeDate: prevSections[0].title,
+          loadingPrev: false,
+          hasPrev: hasPreviousEvents(events, { beforeDate })
+        });
+      });
+    }
+  };
 
-    this.setState({ loadingPrev: false });
-  }
+  loadMoreEvents = (events=[]) => {    
+    if (this.state.hasMore) {
+      this.setState({ loadingMore: true });
+      const afterDate = this.state.afterDate;
 
-  loadMoreEvents = (events=[]) => {
-    
-    this.setState({ loadingMore: true });
-
-    // get next available day
-    // get events of day
-    // set state
-
-    this.setState({ loadingMore: false });
-  }
+      this.setState(state => {
+        const moreSections = generateMoreEvents(events, afterDate, DAYS_PER_PAGE);
+        return ({
+          sections: [...state.sections, ...moreSections],
+          // afterDate: moreSections[moreSections.length - 1].title,
+          loadingMore: false,
+          hasMore: hasMoreEvents(events, { afterDate })
+        })
+      });
+    }
+  };
 
   _bootstrap = (events) => {
     if (events) {
       const today = moment().toISOString();
 
       this.setState({
-        // sections: generateNextEvents(events, today, EVENTS_PER_PAGE),
+        sections: generateNextEvents(events, today),
         afterDate: today,
-        beforeDate: today
+        beforeDate: today,
+        hasPrev: hasPreviousEvents(events, { beforeDate: today }),
+        hasMore: hasMoreEvents(events, { afterDate: today })
       });
     }  
-  }
+  };
 
   _onRefresh = () => {
     this._bootstrap(this.props.events);
@@ -146,6 +164,10 @@ export default class List extends React.Component {
 
   componentDidMount = () => {
     this._bootstrap(this.props.events);
+  };
+
+  onScroll = (handler) => {
+    this.listRef.current.onScroll(handler);
   };
 
   scrollToTop = () => {
@@ -195,7 +217,7 @@ export default class List extends React.Component {
 
   render() {
     const { loading, stores } = this.props;
-    const { sections, loadingPrev } = this.state;
+    const { sections } = this.state;
     const styles = stores.appStyles.eventsList;
     
     return (
@@ -210,12 +232,12 @@ export default class List extends React.Component {
         ListHeaderComponent={this._renderHeader}
         ListEmptyComponent={this._renderEmptyList}
         ItemSeparatorComponent={this._renderSeparator}
-        refreshing={loading || loadingPrev}
+        refreshing={loading}
         onRefresh={this._onRefresh}
         refreshControl={
           <RefreshControl
             onRefresh={this._onRefresh}
-            refreshing={loading || loadingPrev}
+            refreshing={loading}
             colors={[stores.themeStore.colors.primary]}
           />
         }
