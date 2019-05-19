@@ -107,7 +107,7 @@ export default class List extends React.Component {
       this.setState(state => {
         const prevSections = generatePreviousEvents(events, beforeDate, DAYS_PER_PAGE);
         return ({
-          sections: prevSection.concat(state.sections),
+          sections: prevSections.concat(state.sections),
           // beforeDate: prevSections[0].title,
           loadingPrev: false,
           hasPrev: hasPreviousEvents(events, { beforeDate })
