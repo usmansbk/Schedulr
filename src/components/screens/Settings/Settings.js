@@ -6,6 +6,7 @@ import {
   Switch,
   Divider
 } from 'react-native-paper';
+import SimpleToast from 'react-native-simple-toast';
 import { inject, observer } from 'mobx-react/native';
 
 @inject("stores")
@@ -23,10 +24,18 @@ export default class Settings extends React.Component {
     this.props.stores.settingsStore.toggleTheme();
   }
 
+  _handleRemindMeDialog = () => {
+    const { openRemindMeDialog, stores } = this.props;
+    if (stores.settingsStore.disableReminders) {
+      SimpleToast.show('Enable reminder!', SimpleToast.SHORT);
+    } else {
+      openRemindMeDialog();
+    }
+  }
+
   render() {
     const {
       goBack,
-      openRemindMeDialog,
       stores,
     } = this.props;
     const {
@@ -122,9 +131,8 @@ export default class Settings extends React.Component {
             <Divider />
             <List.Item
               title="Remind me"
-              disabled={disableReminders}
               right={() => <List.Icon icon="chevron-right" />}
-              onPress={openRemindMeDialog}
+              onPress={this._handleRemindMeDialog}
             />
             <Divider />
           </List.Section>
