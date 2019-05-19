@@ -89,6 +89,7 @@ class FollowingBoards extends Component{
         keyExtractor={this._keyExtractor}
         ListEmptyComponent={this._renderEmptyList}
         ListFooterComponent={this._renderFooter}
+        keyboardShouldPersistTaps="always"
       />
     )
   }
