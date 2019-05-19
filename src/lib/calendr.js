@@ -1,7 +1,6 @@
 import moment from 'moment';
 import 'moment-recur';
 import 'twix';
-import memoize from 'memoize-one';
 import { sortBy } from 'lib/sectionizr';
 
 const DAYS_IN_WEEK = 7;
@@ -163,10 +162,20 @@ function hasMoreEvents(events, { afterNumOfDays, afterDate }) {
   });
 }
 
+function generateNextEvents(events, afterDate) {
+  return [];
+}
+
+function generatePreviousEvents(events, beforeDate) {
+  return [];
+}
+
 export {
   getEvents,
   getNextEvents,
   getPreviousEvents,
   hasPreviousEvents,
-  hasMoreEvents
+  hasMoreEvents,
+  generateNextEvents,
+  generatePreviousEvents
 }

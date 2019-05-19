@@ -23,7 +23,7 @@ import {
   hasMoreEvents,
   hasPreviousEvents,
   generatePreviousEvents,
-  generateMoreEvents
+  generateNextEvents,
 } from 'lib/calendr';
 import { events } from 'lib/constants';
 
@@ -122,7 +122,7 @@ export default class List extends React.Component {
       const afterDate = this.state.afterDate;
 
       this.setState(state => {
-        const moreSections = generateMoreEvents(events, afterDate, DAYS_PER_PAGE);
+        const moreSections = generateNextEvents(events, afterDate, DAYS_PER_PAGE);
         return ({
           sections: [...state.sections, ...moreSections],
           // afterDate: moreSections[moreSections.length - 1].title,

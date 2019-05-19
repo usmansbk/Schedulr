@@ -16,7 +16,7 @@ export default inject('stores')(observer(
         <View style={stores.appStyles.eventsList.footerContent}>
           <Text style={stores.appStyles.eventsList.footerText}>
             {
-              hasMore ? "Load next few days" : "No more events"
+              loading ? 'Loading' : (hasMore ? "Load next few days" : "No more events")
             }
           </Text>
         </View>
