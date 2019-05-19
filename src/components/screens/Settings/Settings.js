@@ -136,7 +136,7 @@ export default class Settings extends React.Component {
             />
             <Divider />
           </List.Section>
-          <List.Section title="Push notifications">
+          <List.Section title="Push notification">
             <List.Item
               title="Disable"
               right={() => (
