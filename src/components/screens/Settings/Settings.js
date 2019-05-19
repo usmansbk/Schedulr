@@ -93,7 +93,7 @@ export default class Settings extends React.Component {
             />
             <Divider />
           </List.Section>
-          <List.Section title="Reminders">
+          <List.Section title="Reminder">
             <List.Item
               title="Disable"
               right={() => (
