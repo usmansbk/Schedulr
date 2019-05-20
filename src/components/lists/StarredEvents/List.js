@@ -51,13 +51,14 @@ class List extends Component {
     venue,
     board,
     allDay,
+    isConcluded,
     starsCount,
     commentsCount,
     isStarred
   }}) => (<Item
     id={id}
     title={title}
-    status={getStatus({ isCancelled, cancelledDates, startAt, endAt})}
+    status={getStatus({ isCancelled, cancelledDates, startAt, endAt, isConcluded})}
     startAt={startAt}
     endAt={endAt}
     starsCount={starsCount}

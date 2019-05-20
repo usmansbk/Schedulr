@@ -60,8 +60,10 @@ export const getStatus = ({
   isCancelled,
   cancelledDates = [],
   startAt,
-  endAt
+  endAt,
+  isConcluded
 }) => {
+  if (isConcluded) return 'Concluded';
   const cancelled =  isEventCancelled({ cancelledDates, startAt, isCancelled });
   if (cancelled) return 'Cancelled';
   const isEnded = moment().twix(endAt).isPast();

@@ -62,11 +62,11 @@ function getNextDate(events=[], refDate, before) {
       }
       recurrence.fromDate(refDate);
       const nextDates = before ? recurrence.previous(1) : recurrence.next(1);
-      return nextDates[0].startOf('day');
+      return nextDates[0];
     } else if (eventDate.twix(endDate).contains(refDate)) {
       recurrence = eventDate.recur(endDate).every(1).day().fromDate(refDate);
       const nextDates = before ? recurrence.previous(1) : recurrence.next(1);
-      return nextDates[0].startOf('day');
+      return nextDates[0];
     }
     return eventDate;
   }).filter(date => {
@@ -173,6 +173,7 @@ const getEvents = (events) => {
   return events.map((currentEvent) => {
     const eventDate = moment(currentEvent.startAt);
     const repeat = getRepeat(currentEvent.repeat);
+    const untilAt = currentEvent.until ? moment(currentEvent.until) : undefined;
     let recurrence;
     if (repeat) {
       if (repeat === 'weekdays') {
@@ -180,9 +181,7 @@ const getEvents = (events) => {
       } else {
         recurrence = eventDate.recur().every(1, repeat);
       }
-      if (moment.now() > eventDate) {
-        recurrence.fromDate(moment());
-      }
+      recurrence.fromDate(moment().add(-1, 'day')); // it exclusive so minus one day to include today
       const end = moment(currentEvent.endAt);
       
       const startSec = eventDate.seconds();
@@ -192,12 +191,15 @@ const getEvents = (events) => {
       const duration = Math.abs(moment.duration(eventDate.diff(end)));
 
       const nextDates = recurrence.next(1);
-
-      const startAt = nextDates[0].local().seconds(startSec).minutes(startMins).hours(startHours).toISOString();
+      const isConcluded = untilAt ? moment(startAt).isAfter(untilAt) : false;
+      const nextDate = isConcluded ? untilAt : nextDates[0]
+      const startAt = nextDate.local().seconds(startSec).minutes(startMins).hours(startHours).toISOString();
       const endAt = moment(startAt).local().add(duration).toISOString();
+      
       return  Object.assign({}, currentEvent, {
         startAt,
         endAt,
+        isConcluded
       });
     }
     return currentEvent;

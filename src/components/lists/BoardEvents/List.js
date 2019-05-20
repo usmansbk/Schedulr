@@ -57,6 +57,7 @@ class List extends Component {
     repeat,
     board,
     allDay,
+    isConcluded,
     isCancelled,
     cancelledDates,
   }}) => (<Item
@@ -64,7 +65,7 @@ class List extends Component {
     title={title}
     startAt={startAt}
     endAt={endAt}
-    status={getStatus({ isCancelled, cancelledDates, startAt, endAt})}
+    status={getStatus({ isCancelled, cancelledDates, startAt, endAt, isConcluded})}
     eventType={decapitalize(eventType)}
     repeat={parseRepeat(repeat)}
     time={getHumanTime({ allDay, startAt, endAt })}

@@ -88,6 +88,9 @@ export default class AppStyles {
         color: colors.light_red,
         fontWeight: 'normal',
         fontSize: 12
+      },
+      Concluded: {
+        color: colors.soft_blue,
       }
     });
   }
