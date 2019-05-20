@@ -5857,6 +5857,11 @@ react-native-modal@^9.0.0:
     prop-types "^15.6.2"
     react-native-animatable "^1.2.4"
 
+react-native-navigation-bar-color@^0.0.9:
+  version "0.0.9"
+  resolved "https://registry.yarnpkg.com/react-native-navigation-bar-color/-/react-native-navigation-bar-color-0.0.9.tgz#3568e89ac714532e576013e9fee89e4ebd48deb8"
+  integrity sha512-8axPLhcccW7W6veE62OXrzHMs7nQT6QqWCdyGJn6/LUyst+Fkys7hCDdW+soxwHbMmDIr0Ih1lDIAT06FvExnw==
+
 react-native-open-maps@^0.3.3:
   version "0.3.3"
   resolved "https://registry.yarnpkg.com/react-native-open-maps/-/react-native-open-maps-0.3.3.tgz#5120a740dcbcf84d7205ede6ec308139a499c96f"

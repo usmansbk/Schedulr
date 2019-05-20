@@ -1,6 +1,7 @@
 import React from 'react';
 import { Auth, Analytics } from 'aws-amplify';
 import SimpleToast from 'react-native-simple-toast';
+import changeNavigationBarColor from 'react-native-navigation-bar-color';
 import { inject, observer } from 'mobx-react/native';
 import client from 'config/client';
 import Login from './Login';
@@ -14,6 +15,12 @@ export default class LoginScreen extends React.Component {
   _bootstrap = async () => {
     try { await client.clearStore() } catch (e) {}
     // try { await Auth.signOut() } catch (e) {}
+  }
+
+  componentDidMount = () => {
+    const { stores } = this.props;
+    const colors = stores.themeStore.colors;
+    changeNavigationBarColor(colors.primary_light, false);
   }
 
   _signInAsync = async ({

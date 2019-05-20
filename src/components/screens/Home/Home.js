@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dimensions } from 'react-native';
+import { Dimensions, StatusBar } from 'react-native';
 import {
   createAppContainer,
 } from 'react-navigation';
@@ -47,12 +47,18 @@ const Home = createBottomTabNavigator({
 
 const TabBarComponent = inject('stores')(observer(
   (props) => (
+    <>
+    <StatusBar
+      backgroundColor={props.stores.themeStore.colors.bg}
+      barStyle={props.stores.settingsStore.dark ? "light-content" : "dark-content"}
+    />
     <BottomTabBar
       inactiveTintColor={props.stores.themeStore.colors.tint}
       activeTintColor={props.stores.themeStore.colors.primary}
       style={props.stores.appStyles.bottomTab.barStyle}
       {...props}
     />
+    </>
   )
 ));
 

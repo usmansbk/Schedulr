@@ -29,6 +29,7 @@ import { events } from 'lib/constants';
 const DAYS_PER_PAGE = 3;
 const INITIAL_BEFOREDAYS = 1;
 const INITIAL_AFTERDAYS = 0;
+const MAX_LENGTH_FOR_RERENDER = 100;
 const {
   ITEM_HEIGHT,
   SEPERATOR_HEIGHT,
@@ -153,8 +154,15 @@ export default class List extends React.Component {
   };
 
   componentWillReceiveProps = (nextProps) => {
-    if (nextProps.events.length !== this.props.events.length) {
+    const newLength = nextProps.events.length;
+    const prevLength = this.props.events.length;
+
+    if (prevLength !== newLength) {
       this._bootstrap(nextProps.events);
+    } else if (nextProps.events !== this.props.events) {
+      if (newLength > MAX_LENGTH_FOR_RERENDER) {
+
+      }
     }
   };
 

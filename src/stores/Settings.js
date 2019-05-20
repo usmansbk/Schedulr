@@ -1,5 +1,7 @@
 import { observable, action } from 'mobx';
 import { persist } from 'mobx-persist';
+import changeNavigationBarColor from 'react-native-navigation-bar-color';
+import { dark, light } from 'config/colors';
 
 export default class SettingsState {
   @persist @observable language = "en_US";
@@ -17,5 +19,6 @@ export default class SettingsState {
 
   @action toggleTheme () {
     this.dark = !this.dark;
+    changeNavigationBarColor(this.dark ? dark.bg : light.bg, !this.dark);
   }
 }

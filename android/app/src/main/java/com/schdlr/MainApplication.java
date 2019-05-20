@@ -6,6 +6,7 @@ import com.facebook.CallbackManager;
 import com.facebook.FacebookSdk;
 
 import com.facebook.react.ReactApplication;
+import com.thebylito.navigationbarcolor.NavigationBarColorPackage;
 
 import com.swmansion.reanimated.ReanimatedPackage;
 import com.reactnativecommunity.webview.RNCWebViewPackage;
@@ -46,6 +47,7 @@ public class MainApplication extends Application implements ShareApplication, Re
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new NavigationBarColorPackage(),
             new ReanimatedPackage(),
             new RNCWebViewPackage(),
             new RNFusedLocationPackage(),

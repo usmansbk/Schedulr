@@ -2,6 +2,7 @@ import React from 'react';
 import { Linking, Platform } from 'react-native';
 import SimpleToast from 'react-native-simple-toast';
 import LocalNotifications from 'react-native-push-notification';
+import changeNavigationBarColor from 'react-native-navigation-bar-color';
 import { inject, observer } from 'mobx-react/native';
 import List from 'components/lists/Events';
 import FAB from 'components/common/Fab';
@@ -50,6 +51,10 @@ export default class Events extends React.Component {
   }
  
   componentDidMount = async () => {
+    const { stores } = this.props;
+    const colors = stores.themeStore.colors;
+    changeNavigationBarColor(colors.bg, !stores.settingsStore.dark);
+
     Linking.addEventListener('url', this.handleOpenURL);
     requestLocationPermission();
   };
@@ -66,7 +71,8 @@ export default class Events extends React.Component {
       events,
       nextToken,
       error,
-      onRefresh
+      onRefresh,
+      stores
     } = this.props;
 
     if (error) SimpleToast.show('Failed to load events', SimpleToast.SHORT);
