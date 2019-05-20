@@ -59,9 +59,7 @@ function getNextDate(events=[],  refDate, before) {
       } else {
         recurrence = eventDate.recur().every(1, repeat);
       }
-      if (moment.now() > eventDate) {
-        recurrence.fromDate(refDate);
-      }
+      recurrence.fromDate(refDate);
       const nextDates = recurrence.next(1);
       return nextDates[0].startOf('day');
     }
