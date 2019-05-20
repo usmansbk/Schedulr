@@ -47,6 +47,7 @@ function getPreviousEvents(initialEvents=[], beforeDays, daysPerPage) {
   return sections.reverse();
 }
 
+/* Return next available event date */
 function getNextDate(events=[],  refDate, before) {
   return uniqWith(events.map((currentEvent) => {
     const eventDate = moment(currentEvent.startAt);
@@ -68,7 +69,7 @@ function getNextDate(events=[],  refDate, before) {
   }).filter(date => {
     if (before) return date.isBefore(refDate, 'day');
     return date.isAfter(refDate, 'day');
-  }).sort((a, b) => a - b), (a, b) => a.toISOString() === b.toISOString());
+  }).sort((a, b) => a - b), (a, b) => a.toISOString() === b.toISOString())[0];
 };
 
 /**
@@ -80,11 +81,11 @@ function getNextDate(events=[],  refDate, before) {
  */
 function generateNextEvents(events=[], afterDate, DAYS_PER_PAGE) {
   const sections = [];
-  let nextDate = getNextDate(events, afterDate)[0];
+  let nextDate = getNextDate(events, afterDate);
   if (events.length && nextDate) {
     for (let i = 0; i < DAYS_PER_PAGE; i++) {
       sections.push(getNextDayEvents(events, nextDate));
-      nextDate = getNextDate(events, nextDate)[0];
+      nextDate = getNextDate(events, nextDate);
       if (!nextDate) break;
     }
   }
