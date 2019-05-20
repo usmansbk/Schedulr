@@ -24,6 +24,7 @@ import {
   hasPreviousEvents,
   generatePreviousEvents,
   generateNextEvents,
+  getNextDate
 } from 'lib/calendr';
 import { events } from 'lib/constants';
 
@@ -49,10 +50,8 @@ export default class List extends React.Component {
     loadingMore: false,
     loadingPrev: false,
     sections: [],
-    hasNext: true,
-    hasPrev: true,
-    afterDate: moment().toISOString(),
-    beforeDate: moment().toISOString()
+    afterDate: null,
+    beforeDate: null
   };
 
   static defaultProps = {
@@ -65,7 +64,7 @@ export default class List extends React.Component {
   _renderHeader = () => (
     this.state.sections.length ?
     <Header
-      hasPrev={this.state.hasPrev}
+      hasPrev={this.state.beforeDate}
       loading={this.state.loadingPrev}
       onPress={this.loadPreviousEvents}
     />
@@ -74,7 +73,7 @@ export default class List extends React.Component {
   _renderFooter = () => (
     this.state.sections.length ?
     <Footer
-      hasMore={this.state.hasMore}
+      hasMore={this.state.afterDate}
       onPress={this._onEndReached}
       loading={this.state.loadingMore}
     />
@@ -117,17 +116,17 @@ export default class List extends React.Component {
   };
 
   loadMoreEvents = (events=[]) => {    
-    if (this.state.hasMore) {
+    if (this.state.afterDate) {
       this.setState({ loadingMore: true });
-      const afterDate = this.state.afterDate;
+      const moreSections = generateNextEvents(events, this.state.afterDate, DAYS_PER_PAGE);
+      const sectionLength = moreSections.length;
+      const afterDate = Boolean(sectionLength) && moment(moreSections[sectionLength - 1].date);
 
       this.setState(state => {
-        const moreSections = generateNextEvents(events, afterDate, DAYS_PER_PAGE);
         return ({
           sections: [...state.sections, ...moreSections],
-          // afterDate: moreSections[moreSections.length - 1].title,
+          afterDate,
           loadingMore: false,
-          hasMore: hasMoreEvents(events, { afterDate })
         })
       });
     }
@@ -135,16 +134,18 @@ export default class List extends React.Component {
 
   _bootstrap = (events) => {
     if (events) {
-      const today = moment().toISOString();
+      const yesterday = moment().startOf('day').add(-1, 'd');
+
+      const sections = generateNextEvents(events, yesterday, DAYS_PER_PAGE);
+
+      const sectionLength = sections.length;
+      const afterDate = sectionLength && moment(sections[sectionLength - 1].title);
 
       this.setState({
-        sections: generateNextEvents(events, today),
-        afterDate: today,
-        beforeDate: today,
-        hasPrev: hasPreviousEvents(events, { beforeDate: today }),
-        hasMore: hasMoreEvents(events, { afterDate: today })
+        sections,
+        afterDate
       });
-    }  
+    }
   };
 
   _onRefresh = () => {

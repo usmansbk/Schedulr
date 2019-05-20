@@ -1,6 +1,7 @@
 import moment from 'moment';
 import 'moment-recur';
 import 'twix';
+import uniqWith from 'lodash.uniqwith';
 import { sortBy } from 'lib/sectionizr';
 
 const DAYS_IN_WEEK = 7;
@@ -28,7 +29,7 @@ function getNextEvents(initialEvents=[], afterDays, daysPerPage) {
   const sections = [];
   if (initialEvents.length) {
     for (let i = afterDays; i < afterDays + daysPerPage; i++) {
-      const nextDate = moment().add(i, 'day').toISOString();
+      const nextDate = moment().add(i, 'day');
       sections.push(getNextDayEvents(initialEvents, nextDate));
     }
   }
@@ -39,11 +40,70 @@ function getPreviousEvents(initialEvents=[], beforeDays, daysPerPage) {
   const sections = [];
   if (initialEvents.length) {
     for (let i = beforeDays; i < beforeDays + daysPerPage; i++) {
-      const nextDate = moment().add(-(i), 'day').toISOString();
+      const nextDate = moment().add(-(i), 'day');
       sections.push(getNextDayEvents(initialEvents, nextDate));
     }
   }
   return sections.reverse();
+}
+
+function getNextDate(events=[],  refDate, before) {
+  return uniqWith(events.map((currentEvent) => {
+    const eventDate = moment(currentEvent.startAt);
+    const repeat = getRepeat(currentEvent.repeat);
+    let recurrence;
+    if (repeat) {
+      if (repeat === 'weekdays') {
+        recurrence = eventDate.recur().every(weekdays).daysOfWeek();
+      } else {
+        recurrence = eventDate.recur().every(1, repeat);
+      }
+      if (moment.now() > eventDate) {
+        recurrence.fromDate(refDate);
+      }
+      const nextDates = recurrence.next(1);
+      return nextDates[0].startOf('day');
+    }
+    return eventDate;
+  }).filter(date => {
+    if (before) return date.sBefore(refDate, 'day');
+    return date.isAfter(refDate, 'day');
+  }).sort((a, b) => a - b), (a, b) => a.toISOString() === b.toISOString());
+};
+
+/**
+ * 
+ * @param { Array } events 
+ * @param { Date } afterDate 
+ * @param { Number } DAYS_PER_PAGE 
+ * @returns a SectionListData of events with empty days omitted
+ */
+function generateNextEvents(events=[], afterDate, DAYS_PER_PAGE) {
+  const sections = [];
+  let nextDate = getNextDate(events, afterDate)[0];
+  if (events.length && nextDate) {
+    for (let i = 0; i < DAYS_PER_PAGE; i++) {
+      sections.push(getNextDayEvents(events, nextDate));
+      nextDate = getNextDate(events, nextDate)[0];
+      if (!nextDate) break;
+    }
+  }
+  return sections;
+}
+
+/**
+ * 
+ * @param { Array } events 
+ * @param { Date } afterDate 
+ * @param { Number } DAYS_PER_PAGE 
+ * @returns a SectionListData of events with empty days omitted
+ */
+function generatePreviousEvents(events=[], beforeDate) {
+  const sections = [];
+  if (events.length) {
+
+  }
+  return sections;
 }
 
 /**
@@ -58,7 +118,7 @@ function getNextDayEvents(initialEvents, nextDate) {
   return initialEvents.reduce((accumulator, currentEvent) => {
     const eventDate = moment(currentEvent.startAt);
     const repeat = getRepeat(currentEvent.repeat);
-    const isExtended = eventDate.twix(currentEvent.endAt).contains(refDate.toISOString());
+    const isExtended = eventDate.twix(currentEvent.endAt).contains(refDate);
     const isValid = currentEvent.until ? refDate.isSameOrBefore(moment(currentEvent.until), 'day') : true;
 
     if (repeat && !currentEvent.isCancelled && isValid) {
@@ -102,7 +162,7 @@ function getNextDayEvents(initialEvents, nextDate) {
     return accumulator;
   }, {
     data: [],
-    title: refDate.startOf('day').toISOString()
+    title: refDate.startOf('day').toISOString(),
   });
 }
 
@@ -117,17 +177,16 @@ const getEvents = (events) => {
       } else {
         recurrence = eventDate.recur().every(1, repeat);
       }
-      if (Date.now() > Date.parse(currentEvent.startAt)) {
-        recurrence.fromDate(moment().toISOString());
+      if (moment.now() > eventDate) {
+        recurrence.fromDate(moment());
       }
-      const start = eventDate;
       const end = moment(currentEvent.endAt);
       
-      const startSec = start.seconds();
-      const startMins = start.minutes();
-      const startHours = start.hours();
+      const startSec = eventDate.seconds();
+      const startMins = eventDate.minutes();
+      const startHours = eventDate.hours();
 
-      const duration = Math.abs(moment.duration(start.diff(end)));
+      const duration = Math.abs(moment.duration(eventDate.diff(end)));
 
       const nextDates = recurrence.next(1);
 
@@ -162,17 +221,10 @@ function hasMoreEvents(events, { afterNumOfDays, afterDate }) {
   });
 }
 
-function generateNextEvents(events, afterDate) {
-  return [];
-}
-
-function generatePreviousEvents(events, beforeDate) {
-  return [];
-}
-
 export {
   getEvents,
   getNextEvents,
+  getNextDate,
   getPreviousEvents,
   hasPreviousEvents,
   hasMoreEvents,
