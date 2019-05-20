@@ -120,7 +120,7 @@ export default class List extends React.Component {
       this.setState({ loadingMore: true });
       const moreSections = generateNextEvents(events, this.state.afterDate, DAYS_PER_PAGE);
       const sectionLength = moreSections.length;
-      const afterDate = Boolean(sectionLength) && moment(moreSections[sectionLength - 1].date);
+      const afterDate = Boolean(sectionLength) && moment(moreSections[sectionLength - 1].title);
 
       this.setState(state => {
         return ({

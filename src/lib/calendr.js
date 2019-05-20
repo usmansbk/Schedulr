@@ -66,7 +66,7 @@ function getNextDate(events=[],  refDate, before) {
     }
     return eventDate;
   }).filter(date => {
-    if (before) return date.sBefore(refDate, 'day');
+    if (before) return date.isBefore(refDate, 'day');
     return date.isAfter(refDate, 'day');
   }).sort((a, b) => a - b), (a, b) => a.toISOString() === b.toISOString());
 };
