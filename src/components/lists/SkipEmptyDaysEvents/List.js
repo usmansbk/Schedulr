@@ -133,7 +133,6 @@ export default class List extends React.Component {
     if (events) {
       const yesterday = moment().endOf('D').add(-1, 'd');
       const sections = generateNextEvents(events, yesterday, DAYS_PER_PAGE);
-
       const sectionLength = sections.length;
       const afterDate = (sectionLength === DAYS_PER_PAGE) && moment(sections[sectionLength - 1].title);
       const beforeDate = sectionLength && moment(sections[0].title);
