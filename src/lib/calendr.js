@@ -68,7 +68,7 @@ function getNextDate(events=[], refDate, before) {
       const nextDates = before ? recurrence.previous(1) : recurrence.next(1);
       return nextDates[0].startOf('day');
     }
-    return eventDate;
+    return eventDate.startOf('day');
   }).filter(date => {
     if (before) return date.isBefore(refDate, 'day');
     return date.isAfter(refDate, 'day');
