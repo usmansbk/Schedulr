@@ -155,7 +155,7 @@ export default class List extends React.Component {
   };
 
   componentWillReceiveProps = (nextProps) => {
-    if (nextProps.events.length !== this.props.events.length) {
+    if (nextProps.events !== this.props.events) {
       this._bootstrap(nextProps.events);
     }
   };
@@ -222,7 +222,7 @@ export default class List extends React.Component {
       <SectionList
         ref={this.listRef}
         initialNumToRender={0}
-        // getItemLayout={this._getItemLayout}
+        getItemLayout={this._getItemLayout}
         contentContainerStyle={styles.contentContainer}
         style={styles.list}
         stickySectionHeadersEnabled

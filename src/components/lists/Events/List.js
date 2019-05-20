@@ -154,15 +154,8 @@ export default class List extends React.Component {
   };
 
   componentWillReceiveProps = (nextProps) => {
-    const newLength = nextProps.events.length;
-    const prevLength = this.props.events.length;
-
-    if (prevLength !== newLength) {
+    if (nextProps.events !== this.props.events) {
       this._bootstrap(nextProps.events);
-    } else if (nextProps.events !== this.props.events) {
-      if (newLength > MAX_LENGTH_FOR_RERENDER) {
-
-      }
     }
   };
 
@@ -213,7 +206,7 @@ export default class List extends React.Component {
     return (
       <SectionList
         initialNumToRender={0}
-        // getItemLayout={this._getItemLayout}
+        getItemLayout={this._getItemLayout}
         contentContainerStyle={styles.contentContainer}
         style={styles.list}
         stickySectionHeadersEnabled
