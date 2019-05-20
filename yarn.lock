@@ -760,11 +760,6 @@
     hoist-non-react-statics "^2.5.0"
     prop-types "^15.6.0"
 
-"@react-native-community/netinfo@^3.0.1":
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/@react-native-community/netinfo/-/netinfo-3.0.1.tgz#920e0afb6225bd0d6dbf18c02e21f245cfd689b8"
-  integrity sha512-VbVpgtDpMS642q06Z8vO4yGZortJLyQ37g0h+dD/UMQ8BppeJ54QASsym1B8iEhr1FFThNSorpd2dWUmpwqmvg==
-
 "@react-navigation/core@~3.4.1":
   version "3.4.1"
   resolved "https://registry.yarnpkg.com/@react-navigation/core/-/core-3.4.1.tgz#8c7e0e53cfb8ccaf87afb76a2733f5e5fde20cd8"

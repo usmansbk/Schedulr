@@ -2,7 +2,6 @@ import React from 'react';
 import { Linking, Platform } from 'react-native';
 import SimpleToast from 'react-native-simple-toast';
 import LocalNotifications from 'react-native-push-notification';
-import NetInfo from '@react-native-community/netinfo';
 import { inject, observer } from 'mobx-react/native';
 import List from 'components/lists/Events';
 import FAB from 'components/common/Fab';
@@ -53,14 +52,10 @@ export default class Events extends React.Component {
   componentDidMount = async () => {
     Linking.addEventListener('url', this.handleOpenURL);
     requestLocationPermission();
-    this.subscription = NetInfo.addEventListener(state =>
-      this.props.stores.appState.toggleConnection(state.isConnected)
-    );
   };
 
   componentWillUnmount = () => {
     Linking.removeEventListener('url', this.handleOpenURL);
-    this.subscription();
   };
 
   handleOpenURL = event => NavigationService.deepLinkNavigate(event.url);
