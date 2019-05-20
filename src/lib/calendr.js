@@ -48,7 +48,7 @@ function getPreviousEvents(initialEvents=[], beforeDays, daysPerPage) {
 }
 
 /* Return next available event date */
-function getNextDate(events=[],  refDate, before) {
+function getNextDate(events=[], refDate, before) {
   return uniqWith(events.map((currentEvent) => {
     const eventDate = moment(currentEvent.startAt);
     const endDate = moment(currentEvent.endAt);
@@ -65,7 +65,7 @@ function getNextDate(events=[],  refDate, before) {
       return nextDates[0].startOf('day');
     } else if (eventDate.twix(endDate).contains(refDate)) {
       recurrence = eventDate.recur(endDate).every(1).day().fromDate(refDate);
-      nextDates = before ? recurrence.previous(1) : recurrence.next(1);
+      const nextDates = before ? recurrence.previous(1) : recurrence.next(1);
       return nextDates[0].startOf('day');
     }
     return eventDate;
