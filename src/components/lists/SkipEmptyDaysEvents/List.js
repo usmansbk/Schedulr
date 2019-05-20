@@ -104,7 +104,7 @@ export default class List extends React.Component {
 
       this.setState(state => {
         return ({
-          sections: prevSections.concat(state.sections),
+          sections: [...prevSections, ...state.sections],
           beforeDate,
           loadingPrev: false,
         });

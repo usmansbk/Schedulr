@@ -158,7 +158,7 @@ function getNextDayEvents(initialEvents, nextDate) {
           endAt
         }));
       }
-    } else if (!repeat && eventDate.isSame(refDate, 'day') || isExtended) {
+    } else if (!repeat && (eventDate.isSame(refDate, 'day') || isExtended)) {
       accumulator.data.push(currentEvent);
     }
     accumulator.data = sortBy(accumulator.data, 'startAt');
