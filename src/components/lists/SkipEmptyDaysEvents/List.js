@@ -20,11 +20,8 @@ import {
 } from 'lib/parseItem';
 import { decapitalize } from 'lib/capitalizr';
 import {
-  hasMoreEvents,
-  hasPreviousEvents,
   generatePreviousEvents,
   generateNextEvents,
-  getNextDate
 } from 'lib/calendr';
 import { events } from 'lib/constants';
 
@@ -99,17 +96,17 @@ export default class List extends React.Component {
   
   loadPreviousEvents = () => {
     const { events } = this.props;
-    if (this.state.hasPrev) {
+    if (this.state.beforeDate) {
       this.setState({ loadingPrev: true });
-      const beforeDate = this.state.beforeDate;
+      const prevSections = generatePreviousEvents(events, this.state.beforeDate, DAYS_PER_PAGE);
+      const sectionLength = prevSections.length;
+      const beforeDate = Boolean(sectionLength) && moment(prevSections[0].title);
 
       this.setState(state => {
-        const prevSections = generatePreviousEvents(events, beforeDate, DAYS_PER_PAGE);
         return ({
           sections: prevSections.concat(state.sections),
-          // beforeDate: prevSections[0].title,
+          beforeDate,
           loadingPrev: false,
-          hasPrev: hasPreviousEvents(events, { beforeDate })
         });
       });
     }
@@ -140,10 +137,12 @@ export default class List extends React.Component {
 
       const sectionLength = sections.length;
       const afterDate = sectionLength && moment(sections[sectionLength - 1].title);
+      const beforeDate = sectionLength && moment(sections[0].title);
 
       this.setState({
         sections,
-        afterDate
+        afterDate,
+        beforeDate,
       });
     }
   };

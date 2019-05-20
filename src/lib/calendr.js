@@ -51,6 +51,7 @@ function getPreviousEvents(initialEvents=[], beforeDays, daysPerPage) {
 function getNextDate(events=[],  refDate, before) {
   return uniqWith(events.map((currentEvent) => {
     const eventDate = moment(currentEvent.startAt);
+    const endDate = moment(currentEvent.endAt);
     const repeat = getRepeat(currentEvent.repeat);
     let recurrence;
     if (repeat) {
@@ -60,14 +61,21 @@ function getNextDate(events=[],  refDate, before) {
         recurrence = eventDate.recur().every(1, repeat);
       }
       recurrence.fromDate(refDate);
-      const nextDates = recurrence.next(1);
+      const nextDates = before ? recurrence.previous(1) : recurrence.next(1);
+      return nextDates[0].startOf('day');
+    } else if (eventDate.twix(endDate).contains(refDate)) {
+      recurrence = eventDate.recur(endDate).every(1).day().fromDate(refDate);
+      nextDates = before ? recurrence.previous(1) : recurrence.next(1);
       return nextDates[0].startOf('day');
     }
     return eventDate;
   }).filter(date => {
     if (before) return date.isBefore(refDate, 'day');
     return date.isAfter(refDate, 'day');
-  }).sort((a, b) => a - b), (a, b) => a.toISOString() === b.toISOString())[0];
+  }).sort((a, b) => {
+    if (before) return -(a - b);
+    return a - b;
+  }), (a, b) => a.toISOString() === b.toISOString())[0];
 };
 
 /**
@@ -77,13 +85,13 @@ function getNextDate(events=[],  refDate, before) {
  * @param { Number } DAYS_PER_PAGE 
  * @returns a SectionListData of events with empty days omitted
  */
-function generateNextEvents(events=[], afterDate, DAYS_PER_PAGE) {
+function generateNextEvents(events=[], refDate, DAYS_PER_PAGE=3, before) {
   const sections = [];
-  let nextDate = getNextDate(events, afterDate);
+  let nextDate = getNextDate(events, refDate, before);
   if (events.length && nextDate) {
     for (let i = 0; i < DAYS_PER_PAGE; i++) {
       sections.push(getNextDayEvents(events, nextDate));
-      nextDate = getNextDate(events, nextDate);
+      nextDate = getNextDate(events, nextDate, before);
       if (!nextDate) break;
     }
   }
@@ -97,12 +105,8 @@ function generateNextEvents(events=[], afterDate, DAYS_PER_PAGE) {
  * @param { Number } DAYS_PER_PAGE 
  * @returns a SectionListData of events with empty days omitted
  */
-function generatePreviousEvents(events=[], beforeDate) {
-  const sections = [];
-  if (events.length) {
-
-  }
-  return sections;
+function generatePreviousEvents(events=[], beforeDate, DAYS_PER_PAGE) {
+  return generateNextEvents(events, beforeDate, DAYS_PER_PAGE, true).reverse();
 }
 
 /**
