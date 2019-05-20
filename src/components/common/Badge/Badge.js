@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
   Ongoing: {
     backgroundColor: colors.success
   },
-  Ended: {
+  Done: {
     backgroundColor: colors.soft_blue,
   },
   Upcoming: {

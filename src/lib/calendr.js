@@ -62,11 +62,11 @@ function getNextDate(events=[], refDate, before) {
       }
       recurrence.fromDate(refDate);
       const nextDates = before ? recurrence.previous(1) : recurrence.next(1);
-      return nextDates[0];
+      return nextDates[0].startOf('day');
     } else if (eventDate.twix(endDate).contains(refDate)) {
       recurrence = eventDate.recur(endDate).every(1).day().fromDate(refDate);
       const nextDates = before ? recurrence.previous(1) : recurrence.next(1);
-      return nextDates[0];
+      return nextDates[0].startOf('day');
     }
     return eventDate;
   }).filter(date => {
@@ -195,7 +195,7 @@ const getEvents = (events) => {
       const nextDate = isConcluded ? untilAt : nextDates[0]
       const startAt = nextDate.local().seconds(startSec).minutes(startMins).hours(startHours).toISOString();
       const endAt = moment(startAt).local().add(duration).toISOString();
-      
+
       return  Object.assign({}, currentEvent, {
         startAt,
         endAt,
