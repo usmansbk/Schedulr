@@ -78,7 +78,7 @@ export default class AppStyles {
       Ongoing: {
         color: colors.green
       },
-      Ended: {
+      Done: {
         color: colors.soft_blue,
       },
       Upcoming: {

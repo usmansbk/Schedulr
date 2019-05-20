@@ -67,7 +67,7 @@ export const getStatus = ({
   const cancelled =  isEventCancelled({ cancelledDates, startAt, isCancelled });
   if (cancelled) return 'Cancelled';
   const isEnded = moment().twix(endAt).isPast();
-  if (isEnded) return 'Ended';
+  if (isEnded) return 'Done';
   const isOngoing = moment(startAt).twix(endAt).isCurrent();
   if (isOngoing) return 'Ongoing';
   return 'Upcoming';
