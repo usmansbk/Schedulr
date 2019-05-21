@@ -218,7 +218,7 @@ export default class List extends React.Component {
 
   render() {
     const { loading, stores } = this.props;
-    const { sections } = this.state;
+    const { sections, loadingMore, loadingPrev } = this.state;
     const styles = stores.appStyles.eventsList;
     
     return (
@@ -233,12 +233,12 @@ export default class List extends React.Component {
         ListHeaderComponent={this._renderHeader}
         ListEmptyComponent={this._renderEmptyList}
         ItemSeparatorComponent={this._renderSeparator}
-        refreshing={loading}
+        refreshing={loading || loadingMore || loadingPrev}
         onRefresh={this._onRefresh}
         refreshControl={
           <RefreshControl
             onRefresh={this._onRefresh}
-            refreshing={loading}
+            refreshing={loading || loadingMore || loadingPrev}
             colors={[stores.themeStore.colors.primary]}
           />
         }
