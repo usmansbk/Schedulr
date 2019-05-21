@@ -101,14 +101,21 @@ export default class List extends React.Component {
       const prevSections = generatePreviousEvents(events, this.state.beforeDate, DAYS_PER_PAGE);
       const sectionLength = prevSections.length;
       const beforeDate = (sectionLength === DAYS_PER_PAGE) && moment(prevSections[0].title);
+      const afterDate = (sectionLength) && moment(prevSections[sectionLength - 1].title);
 
-      this.setState(state => {
-        return ({
-          sections: [...prevSections, ...state.sections],
+      if (sectionLength) {
+        this.setState({
+          sections: prevSections,
           beforeDate,
+          afterDate,
           loadingPrev: false,
         });
-      });
+      } else {
+        this.setState({
+          beforeDate: false,
+          loadingPrev: false
+        });
+      }
     }
   };
 

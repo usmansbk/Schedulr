@@ -99,13 +99,20 @@ export default class List extends React.Component {
       const beforeDate = prevSections[0].title;
       const afterDate = prevSections[DAYS_PER_PAGE - 1].title;
 
-      this.setState({
-        sections: prevSections,
-        beforeDate,
-        afterDate,
-        loadingPrev: false,
-        hasPrev: hasPreviousEvents(events, { beforeDate })
-      });
+      if (prevSections.length) {
+        this.setState({
+          sections: prevSections,
+          beforeDate,
+          afterDate,
+          loadingPrev: false,
+          hasPrev: hasPreviousEvents(events, { beforeDate })
+        });
+      } else {
+        this.setState({
+          loadingPrev: false,
+          hasPrev: false
+        });
+      }
     }
   };
 
