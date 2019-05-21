@@ -101,15 +101,16 @@ export default class List extends React.Component {
       this.setState({ loadingPrev: true });
 
       const { beforeDays } = this.state;
-      this.setState(state => {
-        const prevSections = getPreviousEvents(events, beforeDays, DAYS_PER_PAGE);
-        const beforeNumOfDays = beforeDays + DAYS_PER_PAGE;
-        return ({
-          sections: prevSections.concat(state.sections),
-          beforeDays: beforeNumOfDays,
-          loadingPrev: false,
-          hasPrev: hasPreviousEvents(events, { beforeNumOfDays })
-        });
+      const prevSections = getPreviousEvents(events, beforeDays, DAYS_PER_PAGE);
+      const beforeNumOfDays = beforeDays + DAYS_PER_PAGE;
+      const afterNumOfDays = this.state.afterDays - DAYS_PER_PAGE;
+
+      this.setState({
+        sections: prevSections,
+        beforeDays: beforeNumOfDays,
+        afterDays: afterNumOfDays,
+        loadingPrev: false,
+        hasPrev: hasPreviousEvents(events, { beforeNumOfDays })
       });
     }
   };
@@ -200,7 +201,7 @@ export default class List extends React.Component {
 
   render() {
     const { loading, stores } = this.props;
-    const { sections } = this.state;
+    const { sections, loadingMore, loadingPrev } = this.state;
     const styles = stores.appStyles.eventsList;
     
     return (
@@ -214,12 +215,12 @@ export default class List extends React.Component {
         ListHeaderComponent={this._renderHeader}
         ListEmptyComponent={this._renderEmptyList}
         ItemSeparatorComponent={this._renderSeparator}
-        refreshing={loading}
+        refreshing={loading || loadingMore || loadingPrev}
         onRefresh={this._onRefresh}
         refreshControl={
           <RefreshControl
             onRefresh={this._onRefresh}
-            refreshing={loading}
+            refreshing={loading || loadingMore || loadingPrev}
             colors={[stores.themeStore.colors.primary]}
           />
         }

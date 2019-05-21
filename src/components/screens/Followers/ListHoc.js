@@ -4,6 +4,8 @@ import SimpleToast from 'react-native-simple-toast';
 import List from 'components/lists/Followers';
 import { listBoardFollowers } from 'mygraphql/queries';
 
+const DEFAULT_LIMIT = 15;
+
 export default graphql(gql(listBoardFollowers), {
   alias: 'withBoardFollowers',
   options: props => ({
@@ -15,7 +17,7 @@ export default graphql(gql(listBoardFollowers), {
   }),
   props: ({ data, ownProps }) => ({
     followers: data && data.listFollowers && data.listFollowers.items,
-    hasMore: data && data.listFollowers && data.listFollowers.nextToken,
+    nextToken: data && data.listFollowers && data.listFollowers.nextToken,
     loading: data.loading || data.networkStatus === 4,
     error: data.error,
     onRefresh: async () => {
@@ -25,6 +27,20 @@ export default graphql(gql(listBoardFollowers), {
         SimpleToast.show('Refresh failed', SimpleToast.SHORT);
       }
     },
+    fetchMoreComments: async (nextToken=null, limit=DEFAULT_LIMIT) => data.fetchMore({
+      variables: {
+        nextToken,
+        limit
+      },
+      updateQuery:  (previousResult, { fetchMoreResult }) => {
+        const newComments = (fetchMoreResult && fetchMoreResult.data && fetchMoreResult.listBoardFollowers
+          && data.listBoardFollowers.items);
+        if (newComments) {
+          return 
+        }
+        return previousResult;
+      }
+    }),
     ...ownProps
   })
 })(List);

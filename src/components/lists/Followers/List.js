@@ -60,6 +60,11 @@ class List extends React.Component {
       />
     )
   }
+
+  _onEndReached = () => {
+    
+  };
+
   render() {
     const {
       followers,
@@ -83,6 +88,8 @@ class List extends React.Component {
         data={followers}
         refreshing={loading}
         onRefresh={onRefresh}
+        onEndReachedThreshold={0.5}
+        onEndReached={this._onEndReached}
         refreshControl={
           <RefreshControl
             refreshing={loading}
