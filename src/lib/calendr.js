@@ -25,22 +25,22 @@ function getRepeat(recur) {
   }
 }
 
-function getNextEvents(initialEvents=[], afterDays, daysPerPage) {
+function getNextEvents(initialEvents=[], afterDate, daysPerPage) {
   const sections = [];
   if (initialEvents.length) {
-    for (let i = afterDays; i < afterDays + daysPerPage; i++) {
-      const nextDate = moment().add(i, 'day');
+    for (let i = 1; i <= daysPerPage; i++) {
+      const nextDate = moment(afterDate).add(i, 'day');
       sections.push(getNextDayEvents(initialEvents, nextDate));
     }
   }
   return sections;
 }
 
-function getPreviousEvents(initialEvents=[], beforeDays, daysPerPage) {
+function getPreviousEvents(initialEvents=[], beforeDate, daysPerPage) {
   const sections = [];
   if (initialEvents.length) {
-    for (let i = beforeDays; i < beforeDays + daysPerPage; i++) {
-      const nextDate = moment().add(-(i), 'day');
+    for (let i = 1; i <= daysPerPage; i++) {
+      const nextDate = moment(beforeDate).add(-(i), 'day');
       sections.push(getNextDayEvents(initialEvents, nextDate));
     }
   }
@@ -206,18 +206,16 @@ const getEvents = (events) => {
   });
 };
 
-function hasPreviousEvents(events, { beforeNumOfDays, beforeDate }) {
-  const refDate = beforeNumOfDays ? moment().endOf('day').add(-(beforeNumOfDays), 'days') :
-    moment(beforeDate);
+function hasPreviousEvents(events, { beforeDate }) {
+  const refDate = moment(beforeDate);
   return events.some((event) => {
     const eventDate = moment(event.startAt);
     return eventDate.isSameOrBefore(refDate);
   });
 }
 
-function hasMoreEvents(events, { afterNumOfDays, afterDate }) {
-  const refDate = afterNumOfDays ? moment().startOf('day').add(afterNumOfDays, 'days') :
-    moment(afterDate);
+function hasMoreEvents(events, { afterDate }) {
+  const refDate = moment(afterDate);
   return events.some((event) => {
     const eventDate = moment(event.startAt);
     const isRepeating = getRepeat(event.repeat);

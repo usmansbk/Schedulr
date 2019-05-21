@@ -3,6 +3,7 @@ import { RefreshControl } from 'react-native';
 import { SectionList } from 'react-navigation';
 import sectionListGetItemLayout from 'react-native-section-list-get-item-layout';
 import { inject, observer } from 'mobx-react/native';
+import moment from 'moment';
 import Header from './Header';
 import Footer from './Footer';
 import Empty from './Empty';
@@ -27,9 +28,7 @@ import {
 import { events } from 'lib/constants';
 
 const DAYS_PER_PAGE = 3;
-const INITIAL_BEFOREDAYS = 1;
-const INITIAL_AFTERDAYS = 0;
-const MAX_LENGTH_FOR_RERENDER = 100;
+
 const {
   ITEM_HEIGHT,
   SEPERATOR_HEIGHT,
@@ -45,11 +44,7 @@ export default class List extends React.Component {
   state = {
     loadingMore: false,
     loadingPrev: false,
-    hasPrev: true,
-    hasMore: true,
     sections: [],
-    afterDays: INITIAL_AFTERDAYS,
-    beforeDays: INITIAL_BEFOREDAYS
   };
 
   static defaultProps = {
@@ -100,17 +95,16 @@ export default class List extends React.Component {
     if (this.state.hasPrev) {
       this.setState({ loadingPrev: true });
 
-      const { beforeDays } = this.state;
-      const prevSections = getPreviousEvents(events, beforeDays, DAYS_PER_PAGE);
-      const beforeNumOfDays = beforeDays + DAYS_PER_PAGE;
-      const afterNumOfDays = this.state.afterDays - DAYS_PER_PAGE;
+      const prevSections = getPreviousEvents(events, this.state.beforeDate, DAYS_PER_PAGE);
+      const beforeDate = prevSections[0].title;
+      const afterDate = prevSections[DAYS_PER_PAGE - 1].title;
 
       this.setState({
         sections: prevSections,
-        beforeDays: beforeNumOfDays,
-        afterDays: afterNumOfDays,
+        beforeDate,
+        afterDate,
         loadingPrev: false,
-        hasPrev: hasPreviousEvents(events, { beforeNumOfDays })
+        hasPrev: hasPreviousEvents(events, { beforeDate })
       });
     }
   };
@@ -119,28 +113,30 @@ export default class List extends React.Component {
     if (this.state.hasMore) {
       this.setState({ loadingMore: true });
 
-      const { afterDays } = this.state;
-      this.setState(state => {
-        const afterNumOfDays = afterDays + DAYS_PER_PAGE;
-        const moreSections = getNextEvents(events, afterNumOfDays, DAYS_PER_PAGE);
-        return ({
-          sections: [...state.sections, ...moreSections],
-          afterDays: afterNumOfDays,
-          loadingMore: false,
-          hasMore: hasMoreEvents(events, { afterNumOfDays })
-        })
+      const moreSections = getNextEvents(events, this.state.afterDate, DAYS_PER_PAGE);
+      const afterDate = moreSections[DAYS_PER_PAGE - 1].title;
+      this.setState({
+        sections: [...this.state.sections, ...moreSections],
+        afterDate,
+        loadingMore: false,
+        hasMore: hasMoreEvents(events, { afterDate })
       });
     }
   };
 
   _bootstrap = (events) => {
+    const yesterday = moment().endOf('D').add(-1, 'd').toISOString();
+    const sections = getNextEvents(events, yesterday, DAYS_PER_PAGE);
+    const beforeDate = moment().startOf('D').toISOString();
+    const afterDate = sections[DAYS_PER_PAGE - 1].title;
+
     if (events) {
       this.setState({
-        sections: getNextEvents(events, INITIAL_AFTERDAYS, DAYS_PER_PAGE),
-        afterDays: INITIAL_AFTERDAYS,
-        beforeDays: INITIAL_BEFOREDAYS,
-        hasPrev: hasPreviousEvents(events, { beforeNumOfDays: INITIAL_BEFOREDAYS }),
-        hasMore: hasMoreEvents(events, { afterNumOfDays: INITIAL_AFTERDAYS })
+        sections,
+        afterDate,
+        beforeDate,
+        hasPrev: hasPreviousEvents(events, { beforeDate }),
+        hasMore: hasMoreEvents(events, { afterDate })
       });
     }  
   };
