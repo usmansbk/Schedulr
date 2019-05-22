@@ -4,14 +4,15 @@ import SimpleToast from 'react-native-simple-toast';
 import List from 'components/lists/Followers';
 import { listBoardFollowers } from 'mygraphql/queries';
 
-const DEFAULT_LIMIT = 15;
+const LIMIT = 2;
 
 export default graphql(gql(listBoardFollowers), {
   alias: 'withBoardFollowers',
   options: props => ({
     notifyOnNetworkStatusChange: true,
     variables: {
-      id: props.id
+      id: props.id,
+      limit: LIMIT
     },
     fetchPolicy: 'cache-and-network',
   }),
@@ -27,16 +28,22 @@ export default graphql(gql(listBoardFollowers), {
         SimpleToast.show('Refresh failed', SimpleToast.SHORT);
       }
     },
-    fetchMoreComments: async (nextToken=null, limit=DEFAULT_LIMIT) => data.fetchMore({
+    fetchMoreFollowers: async (nextToken=null, limit=LIMIT) => data.fetchMore({
       variables: {
         nextToken,
         limit
       },
-      updateQuery:  (previousResult, { fetchMoreResult }) => {
-        const newComments = (fetchMoreResult && fetchMoreResult.data && fetchMoreResult.listBoardFollowers
+      updateQuery: (previousResult, { fetchMoreResult }) => {
+        const moreFollowers = (fetchMoreResult && fetchMoreResult.data && fetchMoreResult.listBoardFollowers
           && data.listBoardFollowers.items);
-        if (newComments) {
-          return 
+        if (moreFollowers) {
+          return Object.assign({}, previousResult, {
+            nextToken: fetchMoreResult.data.listFollowers.nextToken,
+            items: [
+              ...previousResult.data.listFollowers.items,
+              ...moreFollowers
+            ]
+          });
         }
         return previousResult;
       }

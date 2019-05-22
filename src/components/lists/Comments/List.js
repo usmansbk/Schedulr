@@ -54,6 +54,10 @@ export default class List extends React.Component {
     nextProps.comments.length !== this.props.comments.length ||
     nextProps.loading !== this.props.loading
   );
+  _onEndReached = async () => {
+    const { nextToken, fetchMoreComments } = this.props;
+    await fetchMoreComments(nextToken);
+  }
 
   render() {
     const {
@@ -85,6 +89,8 @@ export default class List extends React.Component {
             colors={[stores.themeStore.colors.primary]}
           />
         }
+        onEndReachedThreshold={0.5}
+        onEndReached={this._onEndReached}
       />
     )
   }

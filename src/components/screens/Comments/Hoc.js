@@ -8,13 +8,16 @@ import SimpleToast from 'react-native-simple-toast';
 
 const alias = 'withCommentsScreen';
 
+const LIMIT = 3;
+
 export default compose(
   graphql(gql(listEventComments), {
     alias,
     options: props => ({
       notifyOnNetworkStatusChange: true,
       variables: {
-        id: props.navigation.getParam('id')
+        id: props.navigation.getParam('id'),
+        limit: LIMIT
       },
       fetchPolicy: 'cache-and-network',
       onError: () => SimpleToast.show('Failed to fetch comments', SimpleToast.SHORT),
@@ -32,6 +35,28 @@ export default compose(
       },
       comments: data && data.listComments && data.listComments.items && data.listComments.items.sort((a, b) => Date.parse(a.createdAt) - Date.parse(b.createdAt)),
       nextToken: data && data.listComments && data.listComments.nextToken,
+      fetchMoreComments: async (nextToken=null, limit=LIMIT) => data.fetchMore({
+        variables: {
+          nextToken,
+          limit
+        },
+        updateQuery: (previousResult, { fetchMoreResult }) => {
+          const moreComments = (fetchMoreResult && fetchMoreResult.data && fetchMoreResult.listComments
+            && data.listComments.items);
+          console.log(fetchMoreResult);
+          console.log(previousResult);
+          if (moreComments) {
+            return Object.assign({}, previousResult, {
+              nextToken: fetchMoreResult.data.listComments.nextToken,
+              items: [
+                ...previousResult.data.listComments.items,
+                ...moreComments
+              ]
+            });
+          }
+          return previousResult;
+        }
+      }),
       ...ownProps
     })
   }),

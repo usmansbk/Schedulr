@@ -59,7 +59,9 @@ export default class Screen extends React.Component {
       comments,
       stores,
       onRefresh,
-      error
+      error,
+      fetchMoreComments,
+      nextToken
     } = this.props;
     
     const me = stores.me.asJs();
@@ -80,6 +82,8 @@ export default class Screen extends React.Component {
         onSubmit={this._onSubmit}
         onRefresh={onRefresh}
         navigateToProfile={this._navigateToProfile}
+        fetchMoreComments={fetchMoreComments}
+        nextToken={nextToken}
       />
       <DeleteCommentDialog
         id={this.state.id}

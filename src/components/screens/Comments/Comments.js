@@ -40,7 +40,8 @@ export default class Comments extends React.Component {
       handleReply,
       cancelReply,
       navigateToProfile,
-      stores
+      stores,
+      fetchMoreComments,
     } = this.props;
 
     const styles = stores.appStyles.styles;
@@ -65,6 +66,7 @@ export default class Comments extends React.Component {
           handleReply={handleReply}
           onDelete={this._handleDelete}
           navigateToProfile={navigateToProfile}
+          fetchMoreComments={fetchMoreComments}
         />
         <CommentForm
           name={me.name}
