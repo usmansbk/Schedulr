@@ -8,7 +8,7 @@ import SimpleToast from 'react-native-simple-toast';
 
 const alias = 'withCommentsScreen';
 
-const LIMIT = 3;
+const LIMIT = 15;
 
 export default compose(
   graphql(gql(listEventComments), {
@@ -20,7 +20,9 @@ export default compose(
         limit: LIMIT
       },
       fetchPolicy: 'cache-and-network',
-      onError: () => SimpleToast.show('Failed to fetch comments', SimpleToast.SHORT),
+      onError: (e) => {
+        SimpleToast.show('Failed to fetch comments', SimpleToast.SHORT);
+      },
     }),
     props: ({ data, ownProps }) => ({
       eventId: ownProps.navigation.getParam('id'),
@@ -33,7 +35,7 @@ export default compose(
           SimpleToast.show('Refresh failed', SimpleToast.SHORT);
         }
       },
-      comments: data && data.listComments && data.listComments.items && data.listComments.items.sort((a, b) => Date.parse(a.createdAt) - Date.parse(b.createdAt)),
+      comments: data && data.listComments && data.listComments.items && data.listComments.items || [],
       nextToken: data && data.listComments && data.listComments.nextToken,
       fetchMoreComments: async (nextToken=null, limit=LIMIT) => data.fetchMore({
         variables: {
@@ -41,18 +43,19 @@ export default compose(
           limit
         },
         updateQuery: (previousResult, { fetchMoreResult }) => {
-          const moreComments = (fetchMoreResult && fetchMoreResult.data && fetchMoreResult.listComments
-            && data.listComments.items);
-          console.log(fetchMoreResult);
-          console.log(previousResult);
-          if (moreComments) {
-            return Object.assign({}, previousResult, {
-              nextToken: fetchMoreResult.data.listComments.nextToken,
-              items: [
-                ...previousResult.data.listComments.items,
-                ...moreComments
-              ]
-            });
+          const moreComments = fetchMoreResult.listComments && fetchMoreResult.listComments.items;
+          if (fetchMoreResult.listComments.nextToken !== previousResult.listComments.nextToken) {
+            if (moreComments) {
+              return Object.assign({}, previousResult, {
+                listComments: Object.assign({}, previousResult.listComments,  {
+                  nextToken: fetchMoreResult.listComments.nextToken,
+                  items: [
+                    ...previousResult.listComments.items,
+                    ...moreComments
+                  ]
+                })
+              });
+            }
           }
           return previousResult;
         }

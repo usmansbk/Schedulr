@@ -45,7 +45,10 @@ export default class List extends React.Component {
     );
   }
   _renderSeparator = () => <Separator />;
-  _renderFooter = () => <Footer />;
+  _renderFooter = () => <Footer
+    loading={this.props.loading}
+    hasMore={this.props.nextToken}
+    onPress={this._onEndReached}/>;
   _renderEmpty = () => <Empty error={this.props.error} loading={this.props.loading} />;
   scrollDown = () => {
     this._listRef && this._listRef.scrollToEnd();
@@ -56,7 +59,8 @@ export default class List extends React.Component {
   );
   _onEndReached = async () => {
     const { nextToken, fetchMoreComments } = this.props;
-    await fetchMoreComments(nextToken);
+    console.log('fetch more');
+    if (nextToken) await fetchMoreComments(nextToken);
   }
 
   render() {
