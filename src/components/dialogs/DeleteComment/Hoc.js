@@ -18,7 +18,7 @@ export default graphql(gql(deleteComment), {
           const query = gql(listEventComments);
           const data = cache.readQuery({ query, variables: { id: ownProps.eventId } });
           data.listComments.items = data.listComments.items.filter(item => item.id !== deleteComment.id);
-          cache.writeQuery({ query, data });
+          cache.writeQuery({ query, data, variables: { id: ownProps.eventId } });
         }
       },
       optimisticResponse: () => deleteCommentResponse({ id: ownProps.id, eventId: ownProps.eventId }),
