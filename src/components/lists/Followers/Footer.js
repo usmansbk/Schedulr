@@ -8,7 +8,7 @@ import { inject, observer } from 'mobx-react/native';
 import { BULLET } from 'lib/constants';
 
 export default inject('stores')(observer(
-  ({ loading, onPress, stores, hasMore }) => loading ? null : (
+  ({ hide, loading, onPress, stores, hasMore }) => (hide || loading) ? null : (
       <TouchableRipple
         disabled={!hasMore}
         onPress={onPress}

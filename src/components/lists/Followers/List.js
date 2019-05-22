@@ -40,6 +40,7 @@ class List extends React.Component {
   _onPressItem = (id) => this.props.navigation.navigate('UserProfile', { id });
   _keyExtractor = item => String(item.id);
   _renderFooter = () => <Footer
+    hide={!this.props.followers.length}
     loading={this.props.loading}
     hasMore={this.props.hasMore}
     onPress={this._onEndReached}

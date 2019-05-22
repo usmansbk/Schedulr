@@ -46,6 +46,7 @@ export default class List extends React.Component {
   }
   _renderSeparator = () => <Separator />;
   _renderFooter = () => <Footer
+    hide={!this.props.comments.length}
     loading={this.props.loading}
     hasMore={this.props.nextToken}
     onPress={this._onEndReached}/>;

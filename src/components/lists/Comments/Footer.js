@@ -7,7 +7,7 @@ import { View } from 'react-native';
 import { inject, observer } from 'mobx-react/native';
 
 export default inject('stores')(observer(
-  ({ loading, onPress, stores, hasMore }) => loading ? null : (
+  ({ hide, loading, onPress, stores, hasMore }) => (hide || loading) ? null : (
       <TouchableRipple
         disabled={!hasMore}
         onPress={onPress}
