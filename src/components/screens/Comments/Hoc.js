@@ -75,11 +75,9 @@ export default compose(
             const id = ownProps.navigation.getParam('id');
             const query = gql(listEventComments);
             const data = cache.readQuery({ query, variables: { id } });
-            const comment = Object.assign({}, createComment);
-            delete comment.event;
             data.listComments.items = [
+              createComment,
               ...data.listComments.items.filter(item => item.id !== createComment.id),
-              comment
             ];
             cache.writeQuery({ query, data, variables: { id }});
           }

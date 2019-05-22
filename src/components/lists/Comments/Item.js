@@ -31,7 +31,8 @@ export default class Item extends React.Component {
   };
   shouldComponentUpdate = (nextProps) => {
     return (
-      nextProps.content !== this.props.content
+      nextProps.content !== this.props.content ||
+      nextProps.timeAgo !== this.props.timeAgo
     )
   };
 

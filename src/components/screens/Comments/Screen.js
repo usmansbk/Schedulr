@@ -45,7 +45,7 @@ export default class Screen extends React.Component {
       SimpleToast.show(error.message, SimpleToast.SHORT);
     }
     this._cancelReply();
-    this._scrollDown();
+    // this._scrollDown();
   };
   _navigateToProfile = (id) => this.props.navigation.navigate('UserProfile', { id });
 

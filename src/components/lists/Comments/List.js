@@ -54,12 +54,11 @@ export default class List extends React.Component {
     this._listRef && this._listRef.scrollToEnd();
   }
   shouldComponentUpdate = (nextProps) => (
-    nextProps.comments.length !== this.props.comments.length ||
+    nextProps.comments !== this.props.comments ||
     nextProps.loading !== this.props.loading
   );
   _onEndReached = async () => {
     const { nextToken, fetchMoreComments } = this.props;
-    console.log('fetch more');
     if (nextToken) await fetchMoreComments(nextToken);
   }
 
