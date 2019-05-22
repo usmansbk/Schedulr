@@ -25,7 +25,7 @@ class List extends React.Component {
   shouldComponentUpdate = (nextProps) => { 
     return (nextProps.navigation.isFocused &&
       (
-        nextProps.followers.length !== this.props.followers.length ||
+        nextProps.followers !== this.props.followers ||
         nextProps.loading !== this.props.loading
       )
     );
@@ -39,7 +39,11 @@ class List extends React.Component {
   );
   _onPressItem = (id) => this.props.navigation.navigate('UserProfile', { id });
   _keyExtractor = item => String(item.id);
-  _renderFooter = () => <Footer visible={!this.props.hasMore && this.props.followers.length} />;
+  _renderFooter = () => <Footer
+    loading={this.props.loading}
+    hasMore={this.props.hasMore}
+    onPress={this._onEndReached}
+  />;
   _renderSeparator = () => <Separator />;
   _renderEmpty = () => this.props.loading ? null : <Empty
     onRefresh={this.props.onRefresh}
@@ -61,8 +65,9 @@ class List extends React.Component {
     )
   }
 
-  _onEndReached = () => {
-    
+  _onEndReached = async () => {
+    const { nextToken, fetchMoreFollowers } = this.props;
+    if (nextToken) await fetchMoreFollowers(nextToken);
   };
 
   render() {

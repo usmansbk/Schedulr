@@ -4,7 +4,7 @@ import SimpleToast from 'react-native-simple-toast';
 import List from 'components/lists/Followers';
 import { listBoardFollowers } from 'mygraphql/queries';
 
-const LIMIT = 2;
+const LIMIT = 1;
 
 export default graphql(gql(listBoardFollowers), {
   alias: 'withBoardFollowers',
@@ -17,13 +17,13 @@ export default graphql(gql(listBoardFollowers), {
     fetchPolicy: 'cache-and-network',
   }),
   props: ({ data, ownProps }) => ({
-    followers: data && data.listFollowers && data.listFollowers.items,
+    followers: data && data.listFollowers && data.listFollowers.items || [],
     nextToken: data && data.listFollowers && data.listFollowers.nextToken,
     loading: data.loading || data.networkStatus === 4,
     error: data.error,
     onRefresh: async () => {
       try {
-        await data.refetch()
+        await data.refetch();
       } catch(e) {
         SimpleToast.show('Refresh failed', SimpleToast.SHORT);
       }
@@ -34,16 +34,19 @@ export default graphql(gql(listBoardFollowers), {
         limit
       },
       updateQuery: (previousResult, { fetchMoreResult }) => {
-        const moreFollowers = (fetchMoreResult && fetchMoreResult.data && fetchMoreResult.listBoardFollowers
-          && data.listBoardFollowers.items);
-        if (moreFollowers) {
-          return Object.assign({}, previousResult, {
-            nextToken: fetchMoreResult.data.listFollowers.nextToken,
-            items: [
-              ...previousResult.data.listFollowers.items,
-              ...moreFollowers
-            ]
-          });
+        const moreFollowers = fetchMoreResult.listFollowers && fetchMoreResult.listFollowers.items;
+        if (fetchMoreResult.listFollowers.nextToken !== previousResult.listFollowers.nextToken) {
+          if (moreFollowers) {
+            return Object.assign({}, previousResult, {
+              listFollowers: Object.assign({}, previousResult.listFollowers,  {
+                nextToken: fetchMoreResult.listFollowers.nextToken,
+                items: [
+                  ...previousResult.listFollowers.items,
+                  ...moreFollowers
+                ]
+              })
+            });
+          }
         }
         return previousResult;
       }

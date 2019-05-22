@@ -2,8 +2,6 @@ import React from 'react';
 import { Appbar } from 'react-native-paper';
 import { inject, observer } from 'mobx-react/native';
 import List from './ListHoc';
-import styles from 'config/styles';
-import colors from 'config/colors';
 
 export default inject('stores')(observer(
   ({
