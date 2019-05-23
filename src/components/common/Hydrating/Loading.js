@@ -6,17 +6,17 @@ import colors from 'config/colors';
 export default class Loading extends React.Component {
    
   componentDidMount = async () => {
-    changeNavigationBarColor(colors.primary_light, true);
+    // changeNavigationBarColor(colors.bg, true);
   };
 
   render() {
     return (
       <View style={styles.container}>
         <StatusBar
-          backgroundColor={colors.primary_light}
+          backgroundColor={colors.bg}
           barStyle="light-content"
         />
-        <ActivityIndicator size="large" color={colors.white} />
+        <ActivityIndicator size="large" color={colors.primary} />
       </View>
     )
   }
@@ -27,6 +27,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: colors.primary_light
+    backgroundColor: colors.bg
   },
 });

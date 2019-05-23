@@ -53,7 +53,7 @@ export default class Events extends React.Component {
   componentDidMount = async () => {
     const { stores } = this.props;
     const colors = stores.themeStore.colors;
-    changeNavigationBarColor(colors.bg, !stores.settingsStore.dark);
+    changeNavigationBarColor(colors.light_gray_2, !stores.settingsStore.dark);
 
     Linking.addEventListener('url', this.handleOpenURL);
     requestLocationPermission();

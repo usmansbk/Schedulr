@@ -19,6 +19,7 @@ export default class SettingsState {
 
   @action toggleTheme () {
     this.dark = !this.dark;
-    changeNavigationBarColor(this.dark ? dark.bg : light.bg, !this.dark);
+    const colors = this.dark ? dark : light;
+    changeNavigationBarColor(colors.light_gray_2, !this.dark);
   }
 }

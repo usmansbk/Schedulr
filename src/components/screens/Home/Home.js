@@ -49,7 +49,7 @@ const TabBarComponent = inject('stores')(observer(
   (props) => (
     <>
     <StatusBar
-      backgroundColor={props.stores.themeStore.colors.bg}
+      backgroundColor={props.stores.themeStore.colors.light_gray_2}
       barStyle={props.stores.settingsStore.dark ? "light-content" : "dark-content"}
     />
     <BottomTabBar
