@@ -11,7 +11,7 @@ export default class Loading extends React.Component {
     const { stores } = this.props;
     const colors = stores.themeStore.colors;
     try {
-      await changeNavigationBarColor(colors.light_gray_2, !stores.settingsStore.dark);
+      await changeNavigationBarColor(colors.bg, !stores.settingsStore.dark);
     } catch (error) {}
   };
 

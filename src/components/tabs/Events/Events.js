@@ -55,7 +55,7 @@ export default class Events extends React.Component {
     const colors = stores.themeStore.colors;
     Linking.addEventListener('url', this.handleOpenURL);
     try {
-      await changeNavigationBarColor(colors.light_gray_2, !stores.settingsStore.dark);
+      await changeNavigationBarColor(colors.bg, !stores.settingsStore.dark);
       await requestLocationPermission();
     } catch (e) {
       SimpleToast.show(error.message, SimpleToast.SHORT);

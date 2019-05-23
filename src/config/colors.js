@@ -1,5 +1,6 @@
 export const light = {
   tint: '#84939e',
+  nav: '#e3f1fc',
   facebook: '#3b5998',
   google: '#4285F4',
   black: '#212121',
@@ -29,6 +30,7 @@ export const light = {
 }
 
 export const dark = {
+  nav: '#303030',
   tint: '#84939e',
   facebook: '#3b5998',
   google: '#4285F4',

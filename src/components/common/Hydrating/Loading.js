@@ -7,7 +7,7 @@ export default class Loading extends React.Component {
    
   componentDidMount = async () => {
     try {
-      await changeNavigationBarColor(colors.bg, true);
+      await changeNavigationBarColor(colors.bg);
     } catch (error) {}
   };
 

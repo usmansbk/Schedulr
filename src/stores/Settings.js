@@ -21,7 +21,7 @@ export default class SettingsState {
     this.dark = !this.dark;
     const colors = this.dark ? dark : light;
     try {
-      await changeNavigationBarColor(colors.light_gray_2, true);
+      await changeNavigationBarColor(colors.bg, !this.dark);
     } catch (error) {}
   }
 }
