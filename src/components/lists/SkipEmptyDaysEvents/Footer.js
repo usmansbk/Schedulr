@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-  Text,
   TouchableRipple,
   Caption,
 } from 'react-native-paper';

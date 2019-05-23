@@ -1,7 +1,7 @@
 import React from 'react';
 import {
-  Text,
   TouchableRipple,
+  Caption,
 } from 'react-native-paper';
 import { View } from 'react-native';
 import { inject, observer } from 'mobx-react/native';
@@ -14,11 +14,11 @@ export default inject('stores')(observer(
         style={stores.appStyles.eventsList.footerContainer}
       >
         <View style={stores.appStyles.eventsList.footerContent}>
-          <Text style={stores.appStyles.eventsList.footerText}>
+          <Caption style={stores.appStyles.eventsList.footerText}>
             {
               hasMore ? "Load next few days" : "No more events"
             }
-          </Text>
+          </Caption>
         </View>
       </TouchableRipple>
     )
