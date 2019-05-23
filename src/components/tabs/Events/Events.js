@@ -53,10 +53,13 @@ export default class Events extends React.Component {
   componentDidMount = async () => {
     const { stores } = this.props;
     const colors = stores.themeStore.colors;
-    changeNavigationBarColor(colors.light_gray_2, !stores.settingsStore.dark);
-
     Linking.addEventListener('url', this.handleOpenURL);
-    requestLocationPermission();
+    try {
+      await changeNavigationBarColor(colors.light_gray_2, !stores.settingsStore.dark);
+      await requestLocationPermission();
+    } catch (e) {
+      SimpleToast.show(error.message, SimpleToast.SHORT);
+    }
   };
 
   componentWillUnmount = () => {

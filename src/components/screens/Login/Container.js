@@ -17,10 +17,12 @@ export default class LoginScreen extends React.Component {
     // try { await Auth.signOut() } catch (e) {}
   }
 
-  componentDidMount = () => {
+  componentDidMount = async () => {
     const { stores } = this.props;
     const colors = stores.themeStore.colors;
-    changeNavigationBarColor(colors.primary_light, false);
+    try {
+      await changeNavigationBarColor(colors.primary_light, false);
+    } catch (error) {}
   }
 
   _signInAsync = async ({

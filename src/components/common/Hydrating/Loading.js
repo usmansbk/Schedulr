@@ -6,7 +6,9 @@ import colors from 'config/colors';
 export default class Loading extends React.Component {
    
   componentDidMount = async () => {
-    // changeNavigationBarColor(colors.bg, true);
+    try {
+      await changeNavigationBarColor(colors.bg, true);
+    } catch (error) {}
   };
 
   render() {

@@ -1,6 +1,6 @@
 import React from 'react';
-import { View, StyleSheet, StatusBar, ActivityIndicator } from 'react-native';
-// import changeNavigationBarColor from 'react-native-navigation-bar-color';
+import { View, StatusBar, ActivityIndicator } from 'react-native';
+import changeNavigationBarColor from 'react-native-navigation-bar-color';
 import { inject, observer } from 'mobx-react/native';
 
 @inject('stores')
@@ -10,7 +10,9 @@ export default class Loading extends React.Component {
   componentDidMount = async () => {
     const { stores } = this.props;
     const colors = stores.themeStore.colors;
-    changeNavigationBarColor(colors.light_gray_2, !stores.settingsStore.dark);
+    try {
+      await changeNavigationBarColor(colors.light_gray_2, !stores.settingsStore.dark);
+    } catch (error) {}
   };
 
   render() {

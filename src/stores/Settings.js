@@ -17,9 +17,11 @@ export default class SettingsState {
     this[value] = !this[value];
   }
 
-  @action toggleTheme () {
+  @action async toggleTheme () {
     this.dark = !this.dark;
     const colors = this.dark ? dark : light;
-    changeNavigationBarColor(colors.light_gray_2, !this.dark);
+    try {
+      await changeNavigationBarColor(colors.light_gray_2, true);
+    } catch (error) {}
   }
 }
