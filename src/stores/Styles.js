@@ -1324,7 +1324,7 @@ export default class AppStyles {
       header: {
         height: HEADER_HEIGHT,
         backgroundColor: colors.white,
-        marginVertical: 8,
+        marginBottom: 8,
       },
       separator: {
         height: SEPARATOR_HEIGHT,
