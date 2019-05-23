@@ -10,8 +10,10 @@ export default class Loading extends React.Component {
   componentDidMount = async () => {
     const { stores } = this.props;
     const colors = stores.themeStore.colors;
+    const isDark = stores.settingsStore.dark;
+    const navColor = isDark ? colors.light_gray_2 : colors.bg;
     try {
-      await changeNavigationBarColor(colors.bg, !stores.settingsStore.dark);
+      await changeNavigationBarColor(navColor, isDark);
     } catch (error) {}
   };
 
