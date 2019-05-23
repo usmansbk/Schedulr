@@ -4,7 +4,7 @@ import SimpleToast from 'react-native-simple-toast';
 import List from 'components/lists/Followers';
 import { listBoardFollowers } from 'mygraphql/queries';
 
-const LIMIT = 1;
+const LIMIT = 15;
 
 export default graphql(gql(listBoardFollowers), {
   alias: 'withBoardFollowers',
@@ -14,7 +14,8 @@ export default graphql(gql(listBoardFollowers), {
       id: props.id,
       limit: LIMIT
     },
-    fetchPolicy: 'cache-and-network',
+    fetchPolicy: 'network-only',
+    onError: (error) => SimpleToast.show(error.message, SimpleToast.SHORT),
   }),
   props: ({ data, ownProps }) => ({
     followers: data && data.listFollowers && data.listFollowers.items || [],
