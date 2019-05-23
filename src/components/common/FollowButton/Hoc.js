@@ -2,7 +2,7 @@ import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
 import Button from './Button';
 import { followBoard, unfollowBoard } from 'mygraphql/mutations';
-import { listAllBoards } from 'mygraphql/queries';
+import { listAllBoards, listAllEvents } from 'mygraphql/queries';
 import {
   followBoardResponse,
   unfollowBoardResponse
@@ -30,6 +30,9 @@ export default compose(
           }
         },
         optimisticResponse: () => followBoardResponse(ownProps.id),
+        refetchQueries: [
+          { query: gql(listAllEvents) }
+        ]
       }),
       ...ownProps
     })
@@ -51,7 +54,10 @@ export default compose(
             cache.writeQuery({ query, data });
           }
         },
-        optimisticResponse: () => unfollowBoardResponse(ownProps.id)
+        optimisticResponse: () => unfollowBoardResponse(ownProps.id),
+        refetchQueries: [
+          { query: gql(listAllEvents) }
+        ]
       }),
       ...ownProps
     })
