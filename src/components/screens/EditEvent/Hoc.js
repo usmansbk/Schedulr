@@ -37,7 +37,7 @@ export default compose(
   graphql(gql(updateEvent), {
     alias,
     props: ({ mutate, ownProps }) => ({
-      onSubmit: async (input) => await mutate({
+      onSubmit: (input) => mutate({
         variables: {
           input
         },

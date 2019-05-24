@@ -17,7 +17,8 @@ export const buildEventForm = (values, myLocation) => {
     ...values,
     title: values.title.trim(),
     description: values.description.trim(),
-    venue
+    venue,
+    until: values.until || null
   };
   return input;
 };
