@@ -8,7 +8,8 @@ export default class NewBoardScreen extends React.Component {
     try {
       const result = await this.props.onSubmit(input);
       this.props.navigation.replace('BoardEvents', {
-        id: result.data.createBoard.id
+        id: result.data.createBoard.id,
+        cacheFirst: true
       });
     } catch(error) {
       SimpleToast.show('Failed to create calendar: ' + error.message, SimpleToast.SHORT);
