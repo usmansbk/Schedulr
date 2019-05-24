@@ -52,20 +52,24 @@ function getNextDate(events=[], refDate, before) {
   return uniqWith(events.map((currentEvent) => {
     const eventDate = moment(currentEvent.startAt);
     const endDate = moment(currentEvent.endAt);
+    const untilAt = currentEvent.until ? moment(currentEvent.until) : undefined;
+    const isValid = untilAt ? untilAt.isAfter(refDate, 'D') : true;
     const repeat = getRepeat(currentEvent.repeat);
     let recurrence;
-    if (repeat) {
+    if (repeat && isValid) {
       if (repeat === 'weekdays') {
-        recurrence = eventDate.recur().every(weekdays).daysOfWeek();
+        recurrence = eventDate.recur(untilAt).every(weekdays).daysOfWeek();
       } else {
-        recurrence = eventDate.recur().every(1, repeat);
+        recurrence = eventDate.recur(untilAt).every(1, repeat);
       }
       recurrence.fromDate(refDate);
       const nextDates = before ? recurrence.previous(1) : recurrence.next(1);
+      console.log(nextDates);
       return nextDates[0].startOf('day');
     } else if (eventDate.twix(endDate).contains(refDate)) {
-      recurrence = eventDate.recur(endDate).every(1).day().fromDate(refDate);
+      recurrence = eventDate.recur(untilAt).every(1).day().fromDate(refDate);
       const nextDates = before ? recurrence.previous(1) : recurrence.next(1);
+      console.log(nextDates);
       return nextDates[0].startOf('day');
     }
     return eventDate.startOf('day');

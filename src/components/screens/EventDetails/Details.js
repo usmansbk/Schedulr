@@ -18,6 +18,7 @@ export default inject('stores')(observer(
     boardId,
     repeat,
     until,
+    firstAt,
     createdAt,
     updatedAt,
     description,
@@ -73,10 +74,16 @@ export default inject('stores')(observer(
             </View>
             {
               Boolean(until) && (
+                <>
+                <View style={stores.appStyles.eventDetails.item}>
+                  <Text style={stores.appStyles.eventDetails.label}>STARTED</Text>
+                  <Text style={stores.appStyles.eventDetails.value}>{firstAt}</Text>
+                </View>
                 <View style={stores.appStyles.eventDetails.item}>
                   <Text style={stores.appStyles.eventDetails.label}>UNTIL</Text>
                   <Text style={stores.appStyles.eventDetails.value}>{until}</Text>
                 </View>
+                </>
               )
             }
             <View style={stores.appStyles.eventDetails.item}>
