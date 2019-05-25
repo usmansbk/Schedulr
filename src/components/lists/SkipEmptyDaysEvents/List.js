@@ -100,8 +100,8 @@ export default class List extends React.Component {
       this.setState({ loadingPrev: true });
       const prevSections = generatePreviousEvents(events, this.state.beforeDate, DAYS_PER_PAGE);
       const sectionLength = prevSections.length;
-      const beforeDate = (sectionLength === DAYS_PER_PAGE) && moment(prevSections[0].title);
-      const afterDate = (sectionLength) && moment(prevSections[sectionLength - 1].title);
+      const beforeDate = (sectionLength === DAYS_PER_PAGE) && moment(prevSections[0].title).toISOString();
+      const afterDate = (sectionLength) && moment(prevSections[sectionLength - 1].title).toISOString();
 
       if (sectionLength) {
         this.setState({
@@ -124,7 +124,7 @@ export default class List extends React.Component {
       this.setState({ loadingMore: true });
       const moreSections = generateNextEvents(events, this.state.afterDate, DAYS_PER_PAGE);
       const sectionLength = moreSections.length;
-      const afterDate = (sectionLength === DAYS_PER_PAGE) && moment(moreSections[sectionLength - 1].title);
+      const afterDate = (sectionLength === DAYS_PER_PAGE) && moment(moreSections[sectionLength - 1].title).toISOString();
 
       this.setState(state => {
         return ({
@@ -138,14 +138,14 @@ export default class List extends React.Component {
 
   _bootstrap = (events) => {
     if (events) {
-      const yesterday = moment().endOf('D').add(-1, 'd');
+      const yesterday = moment().startOf('D').add(-1, 'd');
       let sections = generateNextEvents(events, yesterday, DAYS_PER_PAGE);
       if (!sections.length && events.length) {
         sections = [{ data: [], title: moment().startOf('D').toISOString() }];
       }
       const sectionLength = sections.length;
-      const afterDate = (sectionLength === DAYS_PER_PAGE) && moment(sections[sectionLength - 1].title);
-      const beforeDate = sectionLength && moment(sections[0].title);
+      const afterDate = (sectionLength === DAYS_PER_PAGE) && moment(sections[sectionLength - 1].title).toISOString();
+      const beforeDate = sectionLength && moment(sections[0].title).toISOString();
       
       this.setState({
         sections,
@@ -165,7 +165,7 @@ export default class List extends React.Component {
   };
 
   componentWillReceiveProps = (nextProps) => {
-    if (nextProps.events !== this.props.events) {
+    if (nextProps.events.length !== this.props.events.length) {
       this._bootstrap(nextProps.events);
     }
   };

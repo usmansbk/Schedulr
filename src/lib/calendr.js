@@ -53,25 +53,29 @@ function getNextDate(events=[], refDate, before) {
     const eventDate = moment(currentEvent.startAt);
     const endDate = moment(currentEvent.endAt);
     const untilAt = currentEvent.until ? moment(currentEvent.until) : undefined;
-    const isValid = untilAt ? untilAt.isAfter(refDate, 'D') : true;
+    const validUntil = untilAt ? untilAt.isSameOrAfter(refDate, 'D') : true;
+    const validStart = eventDate.isBefore(refDate, 'D');
+    const isValid = validStart && validUntil;
     const repeat = getRepeat(currentEvent.repeat);
+    console.log(currentEvent.title, validStart, validUntil);
     let recurrence;
     if (repeat && isValid) {
       if (repeat === 'weekdays') {
-        recurrence = eventDate.recur(untilAt).every(weekdays).daysOfWeek();
+        recurrence = eventDate.recur().every(weekdays).daysOfWeek();
       } else {
-        recurrence = eventDate.recur(untilAt).every(1, repeat);
+        recurrence = eventDate.recur().every(1, repeat);
       }
       recurrence.fromDate(refDate);
       const nextDates = before ? recurrence.previous(1) : recurrence.next(1);
-      console.log(nextDates);
+      // console.log(currentEvent.title, nextDates[0].toISOString());
       return nextDates[0].startOf('day');
     } else if (eventDate.twix(endDate).contains(refDate)) {
-      recurrence = eventDate.recur(untilAt).every(1).day().fromDate(refDate);
+      recurrence = eventDate.recur(endDate).every(1).day().fromDate(refDate);
       const nextDates = before ? recurrence.previous(1) : recurrence.next(1);
-      console.log(nextDates);
+      // console.log(currentEvent.title, nextDates[0].toISOString());
       return nextDates[0].startOf('day');
     }
+    // console.log(currentEvent.title, 'no repeat', eventDate.toISOString());
     return eventDate.startOf('day');
   }).filter(date => {
     if (before) return date.isBefore(refDate, 'day');
@@ -91,9 +95,11 @@ function getNextDate(events=[], refDate, before) {
  */
 function generateNextEvents(events=[], refDate, DAYS_PER_PAGE=3, before) {
   const sections = [];
-  let nextDate = getNextDate(events, refDate, before);
+  console.log('refDate', moment(refDate).toISOString());
+  let nextDate = getNextDate(events, moment(refDate), before);
   if (events.length && nextDate) {
     for (let i = 0; i < DAYS_PER_PAGE; i++) {
+      console.log(i, 'nextDate', nextDate.toISOString());
       sections.push(getNextDayEvents(events, nextDate));
       nextDate = getNextDate(events, nextDate, before);
       if (!nextDate) break;
@@ -110,7 +116,7 @@ function generateNextEvents(events=[], refDate, DAYS_PER_PAGE=3, before) {
  * @returns a SectionListData of events with empty days omitted
  */
 function generatePreviousEvents(events=[], beforeDate, DAYS_PER_PAGE) {
-  return generateNextEvents(events, beforeDate, DAYS_PER_PAGE, true).reverse();
+  return generateNextEvents(events, moment(beforeDate), DAYS_PER_PAGE, true).reverse();
 }
 
 /**
