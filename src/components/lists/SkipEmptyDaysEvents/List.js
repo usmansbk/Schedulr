@@ -138,10 +138,10 @@ export default class List extends React.Component {
 
   _bootstrap = (events) => {
     if (events) {
-      const yesterday = moment().startOf('D').add(-1, 'd');
+      const yesterday = moment().add(-1, 'day').startOf('day').toISOString();
       let sections = generateNextEvents(events, yesterday, DAYS_PER_PAGE);
       if (!sections.length && events.length) {
-        sections = [{ data: [], title: moment().startOf('D').toISOString() }];
+        sections = [{ data: [], title: moment().startOf('day').toISOString() }];
       }
       const sectionLength = sections.length;
       const afterDate = (sectionLength === DAYS_PER_PAGE) && moment(sections[sectionLength - 1].title).toISOString();
