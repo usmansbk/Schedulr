@@ -222,6 +222,7 @@ export default class Form extends React.Component {
               />
               <DateTimeInput
                 label="To"
+                noMin
                 value={values.endAt}
                 disabled={values.allDay}
                 onChangeDate={(date) => setFieldValue('endAt', date)}
