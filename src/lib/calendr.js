@@ -134,7 +134,7 @@ function getNextDayEvents(initialEvents, nextDate) {
   return initialEvents.reduce((accumulator, currentEvent) => {
     const eventDate = moment(currentEvent.startAt);
     const repeat = getRepeat(currentEvent.repeat);
-    const isExtended = eventDate.twix(moment(currentEvent.endAt)).contains(refDate);
+    const isExtended = eventDate.twix(currentEvent.endAt).contains(refDate);
     const isValid = currentEvent.until ? refDate.isSameOrBefore(moment(currentEvent.until), 'day') : true;
 
     if (repeat && !currentEvent.isCancelled && isValid) {
