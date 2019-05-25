@@ -56,11 +56,9 @@ function getPreviousEvents(initialEvents=[], beforeDate, daysPerPage) {
  */
 function generateNextEvents(events=[], refDate, DAYS_PER_PAGE=3, before) {
   const sections = [];
-  console.log('refDate', moment(refDate).toISOString());
   let nextDate = getNextDate(events, moment(refDate), before);
   if (events.length && nextDate) {
     for (let i = 0; i < DAYS_PER_PAGE; i++) {
-      console.log(i, nextDate.toISOString());
       sections.push(getNextDayEvents(events, nextDate));
       nextDate = getNextDate(events, nextDate, before);
       if (!nextDate) break;
@@ -104,11 +102,9 @@ function getNextDate(events=[], refDate, before) {
         return nextDate.startOf('day');
       }
     } else if (eventDate.twix(endDate).contains(refDate)) {
-      // console.log('contains', currentEvent.title, endDate.toISOString())
       recurrence = eventDate.recur(endDate).every(1).day().fromDate(refDate);
       const nextDates = before ? recurrence.previous(1) : recurrence.next(1);
       const nextDate = nextDates[0];
-      console.log('contains', currentEvent.title, nextDate.toISOString());
       return nextDate.startOf('day');
     }
     return eventDate.startOf('day');
@@ -133,11 +129,12 @@ function getNextDayEvents(initialEvents, nextDate) {
 
   return initialEvents.reduce((accumulator, currentEvent) => {
     const eventDate = moment(currentEvent.startAt);
+    const endDate = moment(currentEvent.endAt);
     const repeat = getRepeat(currentEvent.repeat);
-    const isExtended = eventDate.twix(currentEvent.endAt).contains(refDate);
+    const isExtended = eventDate.twix(endDate).contains(refDate);
     const isValid = currentEvent.until ? refDate.isSameOrBefore(moment(currentEvent.until), 'day') : true;
 
-    if (repeat && !currentEvent.isCancelled && isValid) {
+    if ((repeat && !currentEvent.isCancelled && isValid) || isExtended) {
       let recurrence;
       if (repeat === 'weekdays') {
         recurrence = eventDate.recur().every(weekdays).daysOfWeek();
@@ -148,6 +145,8 @@ function getNextDayEvents(initialEvents, nextDate) {
 
         recurrence = eventDate.recur().every(daysOfWeek).daysOfWeek()
           .every(weekOfMonth).weeksOfMonthByDay();
+      } else if (isExtended) {
+        recurrence = eventDate.recur(endDate).every(1).day().fromDate(refDate);
       } else {
         recurrence = eventDate.recur().every(1, repeat);
       }
@@ -171,7 +170,7 @@ function getNextDayEvents(initialEvents, nextDate) {
           endAt
         }));
       }
-    } else if (!repeat && (eventDate.isSame(refDate, 'day') || isExtended)) {
+    } else if (!repeat && eventDate.isSame(refDate, 'day')) {
       accumulator.data.push(currentEvent);
     }
     accumulator.data = sortBy(accumulator.data, 'startAt');
