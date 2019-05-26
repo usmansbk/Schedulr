@@ -108,6 +108,7 @@ export default class List extends React.Component {
         sections,
         afterDate,
         beforeDate,
+        events
       });
     }
   }

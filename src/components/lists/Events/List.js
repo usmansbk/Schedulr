@@ -109,7 +109,8 @@ export default class List extends React.Component {
         afterDate,
         beforeDate,
         hasPrev: hasPreviousEvents(events, beforeDate),
-        hasMore: hasMoreEvents(events, afterDate)
+        hasMore: hasMoreEvents(events, afterDate),
+        events
       });
     }
   }
