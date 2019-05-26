@@ -76,7 +76,6 @@ export default compose(
               query,
               variables: {
                 id,
-                limit: LIMIT
               }
             });
             data.listComments.items = [
@@ -88,12 +87,20 @@ export default compose(
               data,
               variables: {
                 id,
-                limit: LIMIT
               }
             });
           }
         },
-        optimisticResponse: () => createCommentResponse(input, ownProps.navigation.getParam('id'))
+        optimisticResponse: () => createCommentResponse(input, ownProps.navigation.getParam('id')),
+        refetchQueries: [
+          {
+            query: gql(listEventComments),
+            variables: {
+              id: ownProps.navigation.getParam('id'),
+              limit: LIMIT
+            },
+          }
+        ]
       }),
       ...ownProps
     })
