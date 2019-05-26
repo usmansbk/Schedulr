@@ -25,15 +25,9 @@ export default class DeleteEvent extends React.Component {
       onSubmit,
     } = this.props;
     this.setState({ loading: true });
-    try {
-      onSubmit({
-        id
-      });
-      this.props.navigation.pop();
-    } catch (error) {
-      // alert(error.message);
-      this.setState({ loading: false });
-    }
+    onSubmit({ id }).catch(() => {});
+    this.props.navigation.pop();
+    this.setState({ loading: false });
   }
 
   render() {

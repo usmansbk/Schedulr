@@ -39,13 +39,8 @@ export default class Screen extends React.Component {
     };
     
     if (this.state.toCommentId) input.toCommentId = this.state.toCommentId;
-    try {
-      this.props.onSubmit(input);
-    } catch (error) {
-      SimpleToast.show(error.message, SimpleToast.SHORT);
-    }
+    this.props.onSubmit(input).catch(error =>SimpleToast.show(error.message, SimpleToast.SHORT));
     this._cancelReply();
-    // this._scrollDown();
   };
   _navigateToProfile = (id) => this.props.navigation.navigate('UserProfile', { id });
 

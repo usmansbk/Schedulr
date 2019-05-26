@@ -7,7 +7,7 @@ import { deleteCommentResponse } from '../../../helpers/optimisticResponse';
 
 export default graphql(gql(deleteComment), {
   props: ({ mutate, ownProps }) => ({
-    onDelete: async () => await mutate({
+    onDelete: () => mutate({
       variables: {
         input: {
           id: ownProps.id

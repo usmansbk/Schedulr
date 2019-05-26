@@ -7,7 +7,7 @@ import { cancelEventResponse } from 'helpers/optimisticResponse';
 export default graphql(gql(cancelEvent), {
   alias: 'withCancelEventDialog',
   props: ({ mutate, ownProps }) => ({
-    onSubmit: async (input) => await mutate({
+    onSubmit: (input) => mutate({
       variables: {
         input
       },

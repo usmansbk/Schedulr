@@ -25,12 +25,9 @@ export default class CloseBoard extends React.Component {
       handleDismiss,
     } = this.props;
     this.setState({ loading: true });
-    try {
-      onSubmit({ id });
-      handleDismiss();
-    } catch (error) {
-      this.setState({ loading: false });
-    }
+    onSubmit({ id }).catch(() => {});
+    handleDismiss();
+    this.setState({ loading: false });
   }
 
   render() {

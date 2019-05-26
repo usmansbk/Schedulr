@@ -7,7 +7,7 @@ import { openBoardResponse } from 'helpers/optimisticResponse';
 export default graphql(gql(openBoard), {
   alias: 'withOpenBoardDialog',
   props: ({ mutate, ownProps }) => ({
-    onSubmit: async (input) => await mutate({
+    onSubmit: (input) => mutate({
       variables: {
         input
       },

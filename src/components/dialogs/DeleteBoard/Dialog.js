@@ -24,14 +24,9 @@ export default class DeleteBoard extends React.Component {
       onSubmit,
     } = this.props;
     this.setState({ loading: true });
-    try {
-      onSubmit({
-        id
-      });
-      this.props.navigation.popToTop();
-    } catch (error) {
-      this.setState({ loading: false });
-    }
+    onSubmit({ id }).catch(() => {});
+    this.props.navigation.popToTop();
+    this.setState({ loading: false });
   }
 
   render() {

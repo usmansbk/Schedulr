@@ -10,7 +10,7 @@ export default compose(
   graphql(gql(deleteBoard), {
     alias: 'withDeleteBoardDialog',
     props: ({ mutate, ownProps }) => ({
-      onSubmit: async (input) => await mutate({
+      onSubmit: (input) => mutate({
         variables: {
           input
         },

@@ -7,7 +7,7 @@ import { closeBoardResponse } from 'helpers/optimisticResponse';
 export default graphql(gql(closeBoard), {
   alias: 'withCloseBoardDialog',
   props: ({ mutate, ownProps }) => ({
-    onSubmit: async (input) => await mutate({
+    onSubmit: (input) => mutate({
       variables: {
         input
       },

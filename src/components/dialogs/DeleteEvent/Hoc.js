@@ -11,7 +11,7 @@ export default compose(
   graphql(gql(deleteEvent), {
     alias: 'withDeleteEventDialog',
     props: ({ mutate, ownProps }) => ({
-      onSubmit: async (input) => await mutate({
+      onSubmit: (input) => mutate({
         variables: {
           input
         },

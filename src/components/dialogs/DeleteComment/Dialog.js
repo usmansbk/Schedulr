@@ -15,7 +15,7 @@ export default class DeleteComment extends React.Component {
 
   _onDelete = () => {
     this.setState({ loading: true });
-    this.props.onDelete();
+    this.props.onDelete().catch((error) => {});
     this.setState({ loading: false });
     this.props.handleDismiss();
   }

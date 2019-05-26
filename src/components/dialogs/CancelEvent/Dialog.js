@@ -42,16 +42,13 @@ export default class CancelEvent extends React.Component {
       handleDismiss,
     } = this.props;
     this.setState({ loading: true });
-    try {
-      onSubmit({
-        id,
-        option: this.state.checked,
-        date
-      });
-      handleDismiss();
-    } catch (error) {
-      this.setState({ loading: false });
-    }
+    onSubmit({
+      id,
+      option: this.state.checked,
+      date
+    }).catch(() => {});
+    handleDismiss();
+    this.setState({ loading: false });
   }
 
   render() {
