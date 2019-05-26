@@ -8,7 +8,6 @@ import List from 'components/lists/Events';
 import FAB from 'components/common/Fab';
 import NavigationService from 'config/navigation';
 import schdlAll from 'helpers/setReminders';
-import { requestLocationPermission } from 'helpers/permissions';
 
 @inject('stores')
 @observer
@@ -58,8 +57,7 @@ export default class Events extends React.Component {
       const isDark = stores.settingsStore.dark;
       const navColor = isDark ? colors.light_gray_2 : colors.bg;
       await changeNavigationBarColor(navColor, isDark);
-      await requestLocationPermission();
-    } catch (e) {
+    } catch (error) {
       SimpleToast.show(error.message, SimpleToast.SHORT);
     }
   };

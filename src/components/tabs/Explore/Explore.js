@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { TouchableRipple, Searchbar, Text } from 'react-native-paper';
+import { TouchableRipple, Searchbar } from 'react-native-paper';
 import { withCollapsible } from 'react-navigation-collapsible';
 import { FlatList } from 'react-navigation';
 import { Animated } from 'react-native';
@@ -7,6 +7,7 @@ import { inject, observer } from 'mobx-react/native';
 import Empty from './Empty';
 import Item from './Item';
 import colors from 'config/colors';
+import { requestLocationPermission } from 'helpers/permissions';
 
 const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
 
@@ -22,6 +23,14 @@ class ExploreTab extends Component{
   _renderEmptyList = () => <Empty />
 
   renderItem = ({item}) => <Item />
+
+  componentDidMount = async () => {
+    try {
+      await requestLocationPermission();
+    } catch (error) {
+      SimpleToast.show(error.message, SimpleToast.SHORT);
+    }
+  };
 
   render(){
     const { paddingHeight, animatedY, onScroll } = this.props.collapsible;
