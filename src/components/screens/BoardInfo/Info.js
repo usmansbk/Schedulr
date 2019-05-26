@@ -70,6 +70,7 @@ export default class Info extends React.Component {
 
     const adminId = author && author.id;
     const adminName = author && author.name;
+    const isOffline = id[0] === '-';
     const isClosed = status === 'CLOSED';
 
     const appStyles = stores.appStyles.styles;
@@ -99,15 +100,19 @@ export default class Info extends React.Component {
                   <Icon size={24} color={colors.gray} name="more-vert" />
                 </MenuTrigger>
                 <MenuOptions>
-                  <MenuOption value="edit">
-                    <Text style={styles.menuText}>Edit</Text>
-                  </MenuOption>
-                  { !isClosed && (
+                  {
+                    !isOffline && (
+                      <MenuOption value="edit">
+                        <Text style={styles.menuText}>Edit</Text>
+                      </MenuOption>
+                    )
+                  }
+                  { (!isClosed && !isOffline) && (
                     <MenuOption value="close">
                       <Text style={styles.menuText}>Close</Text>
                     </MenuOption>
                   )}
-                  { isClosed && (
+                  { (isClosed && !isOffline) && (
                     <MenuOption value="open">
                       <Text style={styles.menuText}>Open</Text>
                     </MenuOption>

@@ -70,8 +70,8 @@ export default class EventDetails extends React.Component {
     } = event;
     const start = refStartAt || startAt;
     const end = refEndAt || endAt;
-
-    const isValid = isEventValid({ isCancelled, endAt: end, startAt: start, cancelledDates });
+    const isOffline = id[0] === '-';
+    const isValid = isEventValid({ isCancelled, endAt: end, startAt: start, cancelledDates }) && !isOffline;
 
     const colors = stores.themeStore.colors;
     const styles = stores.appStyles.styles;
