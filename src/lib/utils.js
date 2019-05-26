@@ -1,4 +1,5 @@
 import memoize from 'memoize-one';
+import differenceWith from 'lodash.differencewith';
 
 export default sortBoards = memoize((data) => {
   const sorted = data.sort((a, b) => {
@@ -38,3 +39,14 @@ export const sortStarredEvents = memoize((events) => {
   });
   return sorted;
 });
+
+export function eventsDiff(prev, next) {
+  return differenceWith(prev, next, (prevVal, nextVal) => {
+    return (prevVal.title === nextVal.title) &&
+      (prevVal.startAt === nextVal.startAt) &&
+      (prevVal.endAt === nextVal.endAt) &&
+      (prevVal.eventType === nextVal.eventType) &&
+      (prevVal.repeat === nextVal.repeat) &&
+      (prevVal.until === nextVal.until);
+  });
+}

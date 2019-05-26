@@ -18,6 +18,7 @@ import {
   isPast,
   parseRepeat,
 } from 'lib/parseItem';
+import { eventsDiff } from 'lib/utils';
 import { decapitalize } from 'lib/capitalizr';
 import {
   getNextEvents,
@@ -191,7 +192,7 @@ export default class List extends React.Component {
   componentWillReceiveProps = (nextProps) => {
     if (nextProps.events.length !== this.props.events.length) {
       this._bootstrap(nextProps.events);
-    } else {
+    } else if (eventsDiff(this.props.events, nextProps.events).length) {
       this._refreshList(nextProps.events);
     }
   };
