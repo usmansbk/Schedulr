@@ -29,7 +29,7 @@ export default class DeleteEvent extends React.Component {
       onSubmit({
         id
       });
-      this.props.navigation.popToTop();
+      this.props.navigation.pop();
     } catch (error) {
       // alert(error.message);
       this.setState({ loading: false });
