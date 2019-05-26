@@ -2,6 +2,7 @@ import moment from 'moment';
 import 'moment-recur';
 import 'twix';
 import uniqWith from 'lodash.uniqwith';
+import memoize from 'memoize-one';
 import { sortBy } from 'lib/sectionizr';
 
 const DAYS_IN_WEEK = 7;
@@ -25,7 +26,7 @@ function getRepeat(recur) {
   }
 }
 
-function getNextEvents(initialEvents=[], afterDate, daysPerPage) {
+const getNextEvents = memoize((initialEvents=[], afterDate, daysPerPage) => {
   const sections = [];
   if (initialEvents.length) {
     for (let i = 1; i <= daysPerPage; i++) {
@@ -34,9 +35,9 @@ function getNextEvents(initialEvents=[], afterDate, daysPerPage) {
     }
   }
   return sections;
-}
+});
 
-function getPreviousEvents(initialEvents=[], beforeDate, daysPerPage) {
+const getPreviousEvents = memoize((initialEvents=[], beforeDate, daysPerPage) => {
   const sections = [];
   if (initialEvents.length) {
     for (let i = 1; i <= daysPerPage; i++) {
@@ -45,7 +46,7 @@ function getPreviousEvents(initialEvents=[], beforeDate, daysPerPage) {
     }
   }
   return sections.reverse();
-}
+});
 
 /**
  * 
@@ -54,7 +55,7 @@ function getPreviousEvents(initialEvents=[], beforeDate, daysPerPage) {
  * @param { Number } DAYS_PER_PAGE 
  * @returns a SectionListData of events with empty days omitted
  */
-function generateNextEvents(events=[], refDate, DAYS_PER_PAGE=3, before) {
+const generateNextEvents = memoize((events=[], refDate, DAYS_PER_PAGE=3, before) => {
   const sections = [];
   let nextDate = getNextDate(events, moment(refDate), before);
   if (events.length && nextDate) {
@@ -65,7 +66,7 @@ function generateNextEvents(events=[], refDate, DAYS_PER_PAGE=3, before) {
     }
   }
   return sections;
-}
+});
 
 /**
  * 
@@ -116,7 +117,6 @@ function getNextDate(events=[], refDate, before) {
     return a - b;
   }), (a, b) => a.toISOString() === b.toISOString())[0];
 };
-
 
 /**
   * @param { Array } initialEvents - an array of calendar events
@@ -179,9 +179,9 @@ function getNextDayEvents(initialEvents, nextDate) {
     data: [],
     title: refDate.startOf('day').toISOString(),
   });
-}
+};
 
-const getEvents = (events) => {
+function getEvents(events) {
   return events.map((currentEvent) => {
     const eventDate = moment(currentEvent.startAt);
     const repeat = getRepeat(currentEvent.repeat);
@@ -218,15 +218,15 @@ const getEvents = (events) => {
   });
 };
 
-function hasPreviousEvents(events, { beforeDate }) {
+const hasPreviousEvents = memoize((events, { beforeDate }) => {
   const refDate = moment(beforeDate);
   return events.some((event) => {
     const eventDate = moment(event.startAt);
     return eventDate.isSameOrBefore(refDate);
   });
-}
+});
 
-function hasMoreEvents(events, { afterDate }) {
+const hasMoreEvents = memoize((events, { afterDate }) => {
   const refDate = moment(afterDate);
   return events.some((event) => {
     const eventDate = moment(event.startAt);
@@ -234,7 +234,7 @@ function hasMoreEvents(events, { afterDate }) {
     const isValid = event.until ? moment(event.until).isSameOrAfter(refDate) : true;
     return eventDate.isSameOrAfter(refDate) || (isRepeating && isValid);
   });
-}
+});
 
 export {
   getEvents,
