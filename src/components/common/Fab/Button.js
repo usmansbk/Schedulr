@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
   secondary: {
     position: 'absolute',
     margin: 16,
-    right: 0,
+    right: 6,
     bottom: 80,
   }
 })
