@@ -42,8 +42,14 @@ const {
 export default class List extends React.Component {
 
   state = {
+    events: [],
+    previousDate: null,
+    beforeDate: null,
+    afterDate: null,
     loadingMore: false,
     loadingPrev: false,
+    hasMore: null,
+    hasPrev: null,
     sections: [],
   };
 
@@ -59,7 +65,7 @@ export default class List extends React.Component {
     <Header
       hasPrev={this.state.hasPrev}
       loading={this.state.loadingPrev}
-      onPress={this.loadPreviousEvents}
+      onPress={this._onLoadPrevious}
     />
     : null
   );
@@ -90,11 +96,27 @@ export default class List extends React.Component {
     }
   };
   
-  loadPreviousEvents = () => {
-    const { events } = this.props;
+  _refreshList = (events) => {
+    if (this.state.previousDate) {
+      const sections = getNextEvents(events, this.state.previousDate, DAYS_PER_PAGE);
+      const sectionLength = sections.length;
+      const afterDate = (sectionLength === DAYS_PER_PAGE) && moment(sections[sectionLength - 1].title).toISOString();
+      const beforeDate = (sectionLength) && moment(sections[0].title).toISOString();
+      
+      this.setState({
+        sections,
+        afterDate,
+        beforeDate,
+        hasPrev: hasPreviousEvents(events, { beforeDate }),
+        hasMore: hasMoreEvents(events, { afterDate })
+      });
+    }
+  }
+  
+  loadPreviousEvents = (events) => {
     if (this.state.hasPrev) {
       this.setState({ loadingPrev: true });
-
+      const previousDate = this.state.beforeDate;
       const prevSections = getPreviousEvents(events, this.state.beforeDate, DAYS_PER_PAGE);
       if (prevSections.length) {
         const beforeDate = prevSections[0].title;
@@ -106,7 +128,8 @@ export default class List extends React.Component {
           afterDate,
           loadingPrev: false,
           hasPrev: hasPreviousEvents(events, { beforeDate }),
-          hasMore: hasMoreEvents(events, { afterDate })
+          hasMore: hasMoreEvents(events, { afterDate }),
+          previousDate
         });
       } else {
         this.setState({
@@ -120,26 +143,28 @@ export default class List extends React.Component {
   loadMoreEvents = (events=[]) => {
     if (this.state.hasMore) {
       this.setState({ loadingMore: true });
-
+      const previousDate = this.state.afterDate;
       const moreSections = getNextEvents(events, this.state.afterDate, DAYS_PER_PAGE);
       const afterDate = moreSections[DAYS_PER_PAGE - 1].title;
       this.setState({
         sections: [...this.state.sections, ...moreSections],
         afterDate,
         loadingMore: false,
-        hasMore: hasMoreEvents(events, { afterDate })
+        hasMore: hasMoreEvents(events, { afterDate }),
+        previousDate
       });
     }
   };
 
   _bootstrap = (events) => {
     if (events) {
-      const yesterday = moment().endOf('D').add(-1, 'd').toISOString();
+      const yesterday = moment().endOf('day').add(-1, 'day').toISOString();
       const sections = getNextEvents(events, yesterday, DAYS_PER_PAGE);
       if (sections.length) {
-        const beforeDate = moment().startOf('D').toISOString();
+        const beforeDate = moment().startOf('day').toISOString();
         const afterDate = sections[sections.length - 1].title;
         this.setState({
+          events,
           sections,
           afterDate,
           beforeDate,
@@ -151,17 +176,23 @@ export default class List extends React.Component {
   };
 
   _onRefresh = () => {
-    this._bootstrap(this.props.events);
+    this._bootstrap(this.state.events);
     this.props.onRefresh();
   };
+
+  _onLoadPrevious = () => {
+    this.loadPreviousEvents(this.state.events);
+  }
   
   _onEndReached = () => {
-    this.loadMoreEvents(this.props.events);
+    this.loadMoreEvents(this.state.events);
   };
 
   componentWillReceiveProps = (nextProps) => {
     if (nextProps.events.length !== this.props.events.length) {
       this._bootstrap(nextProps.events);
+    } else {
+      this._refreshList(nextProps.events);
     }
   };
 
