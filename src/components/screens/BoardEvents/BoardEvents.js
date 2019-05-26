@@ -7,12 +7,22 @@ import Loading from 'components/common/Loading';
 import Error from 'components/common/Error';
 import { BOARD_CLOSED } from 'lib/constants';
 
+const ABOUT_HALF = 600;
+
 @inject('stores')
 @observer
 export default class BoardEvents extends React.Component {
+  state = {
+    offsetY: 0
+  }
+
   static defaultProps = {
     events: []
   };
+
+  _onScroll = (offsetY) => {
+    this.setState({ offsetY });
+  }
 
   shouldComponentUpdate = (nextProps) => nextProps.isFocused;
 
@@ -80,9 +90,10 @@ export default class BoardEvents extends React.Component {
           navigation={this.props.navigation}
           loading={loadingEvents}
           error={loadingEventsError}
+          handleScroll={this._onScroll}
         />
         {
-          Boolean(events.length) && (
+          Boolean(this.state.offsetY > ABOUT_HALF) && (
             <Fab
               icon="keyboard-arrow-up"
               secondary

@@ -203,8 +203,8 @@ export default class List extends React.Component {
     this._bootstrap(this.props.events);
   };
 
-  onScroll = (handler) => {
-    this.listRef.current.onScroll(handler);
+  _onScroll = (event) => {
+    this.props.handleScroll && this.props.handleScroll(event.nativeEvent.contentOffset.y)
   };
 
   scrollToTop = () => {
@@ -278,6 +278,8 @@ export default class List extends React.Component {
             colors={[stores.themeStore.colors.primary]}
           />
         }
+        scrollEventThrottle={16}
+        onScroll={this._onScroll}
         onEndReachedThreshold={0.5}
         onEndReached={this._onEndReached}
         renderItem={this._renderItem}
