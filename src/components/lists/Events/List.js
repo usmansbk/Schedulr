@@ -108,8 +108,8 @@ export default class List extends React.Component {
         sections,
         afterDate,
         beforeDate,
-        hasPrev: hasPreviousEvents(events, { beforeDate }),
-        hasMore: hasMoreEvents(events, { afterDate })
+        hasPrev: hasPreviousEvents(events, beforeDate),
+        hasMore: hasMoreEvents(events, afterDate)
       });
     }
   }
@@ -128,8 +128,8 @@ export default class List extends React.Component {
           beforeDate,
           afterDate,
           loadingPrev: false,
-          hasPrev: hasPreviousEvents(events, { beforeDate }),
-          hasMore: hasMoreEvents(events, { afterDate }),
+          hasPrev: hasPreviousEvents(events, beforeDate),
+          hasMore: hasMoreEvents(events, afterDate),
           previousDate
         });
       } else {
@@ -151,7 +151,7 @@ export default class List extends React.Component {
         sections: [...this.state.sections, ...moreSections],
         afterDate,
         loadingMore: false,
-        hasMore: hasMoreEvents(events, { afterDate }),
+        hasMore: hasMoreEvents(events, afterDate),
         previousDate
       });
     }
@@ -169,8 +169,8 @@ export default class List extends React.Component {
           sections,
           afterDate,
           beforeDate,
-          hasPrev: hasPreviousEvents(events, { beforeDate }),
-          hasMore: hasMoreEvents(events, { afterDate })
+          hasPrev: hasPreviousEvents(events, beforeDate),
+          hasMore: hasMoreEvents(events, afterDate)
         });
       }
     }  

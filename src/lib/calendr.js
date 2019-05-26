@@ -218,7 +218,7 @@ function getEvents(events) {
   });
 };
 
-const hasPreviousEvents = memoize((events, { beforeDate }) => {
+const hasPreviousEvents = memoize((events, beforeDate) => {
   const refDate = moment(beforeDate);
   return events.some((event) => {
     const eventDate = moment(event.startAt);
@@ -226,7 +226,7 @@ const hasPreviousEvents = memoize((events, { beforeDate }) => {
   });
 });
 
-const hasMoreEvents = memoize((events, { afterDate }) => {
+const hasMoreEvents = memoize((events, afterDate) => {
   const refDate = moment(afterDate);
   return events.some((event) => {
     const eventDate = moment(event.startAt);
