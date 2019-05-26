@@ -134,7 +134,7 @@ const getNextDayEvents = memoize((initialEvents, nextDate) => {
     const isExtended = eventDate.twix(endDate).contains(refDate);
     const isValid = currentEvent.until ? refDate.isSameOrBefore(moment(currentEvent.until), 'day') : true;
 
-    if ((repeat && !currentEvent.isCancelled && isValid) || isExtended) {
+    if (repeat && !currentEvent.isCancelled && isValid) {
       let recurrence;
       if (repeat === 'weekdays') {
         recurrence = eventDate.recur().every(weekdays).daysOfWeek();
@@ -145,8 +145,6 @@ const getNextDayEvents = memoize((initialEvents, nextDate) => {
 
         recurrence = eventDate.recur().every(daysOfWeek).daysOfWeek()
           .every(weekOfMonth).weeksOfMonthByDay();
-      } else if (isExtended) {
-        recurrence = eventDate.recur(endDate).every(1).day().fromDate(refDate);
       } else {
         recurrence = eventDate.recur().every(1, repeat);
       }
@@ -170,7 +168,7 @@ const getNextDayEvents = memoize((initialEvents, nextDate) => {
           endAt
         }));
       }
-    } else if (!repeat && eventDate.isSame(refDate, 'day')) {
+    } else if (!repeat && eventDate.isSame(refDate, 'day') || isExtended) {
       accumulator.data.push(currentEvent);
     }
     accumulator.data = sortBy(accumulator.data, 'startAt');
