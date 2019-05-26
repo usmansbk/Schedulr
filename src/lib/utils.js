@@ -47,6 +47,7 @@ export function eventsDiff(prev, next) {
       (prevVal.endAt === nextVal.endAt) &&
       (prevVal.eventType === nextVal.eventType) &&
       (prevVal.repeat === nextVal.repeat) &&
-      (prevVal.until === nextVal.until);
+      (prevVal.until === nextVal.until) &&
+      (prevVal.id === nextVal.id);
   });
 }

@@ -85,6 +85,7 @@ export default class BoardEvents extends React.Component {
           ref={this._eventsListRef}
           listType="board"
           events={events}
+          navigation={this.props.navigation}
           loading={loadingEvents}
           error={loadingEventsError}
         />
