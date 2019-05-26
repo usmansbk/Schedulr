@@ -43,19 +43,17 @@ export default compose(
           limit
         },
         updateQuery: (previousResult, { fetchMoreResult }) => {
-          const moreComments = fetchMoreResult.listComments && fetchMoreResult.listComments.items;
-          if (fetchMoreResult.listComments.nextToken !== previousResult.listComments.nextToken) {
-            if (moreComments) {
-              return Object.assign({}, previousResult, {
-                listComments: Object.assign({}, previousResult.listComments,  {
-                  nextToken: fetchMoreResult.listComments.nextToken,
-                  items: [
-                    ...previousResult.listComments.items,
-                    ...moreComments
-                  ]
-                })
-              });
-            }
+          if (fetctMoreResult) {
+            const moreComments = fetchMoreResult.listComments && fetchMoreResult.listComments.items;
+            return Object.assign({}, previousResult, {
+              listComments: Object.assign({}, previousResult.listComments,  {
+                nextToken: fetchMoreResult.listComments.nextToken,
+                items: [
+                  ...previousResult.listComments.items,
+                  ...moreComments
+                ]
+              })
+            });
           }
           return previousResult;
         }
@@ -74,12 +72,25 @@ export default compose(
           if (createComment) {
             const id = ownProps.navigation.getParam('id');
             const query = gql(listEventComments);
-            const data = cache.readQuery({ query, variables: { id } });
+            const data = cache.readQuery({
+              query,
+              variables: {
+                id,
+                limit: LIMIT
+              }
+            });
             data.listComments.items = [
               createComment,
               ...data.listComments.items.filter(item => item.id !== createComment.id),
             ];
-            cache.writeQuery({ query, data, variables: { id }});
+            cache.writeQuery({
+              query,
+              data,
+              variables: {
+                id,
+                limit: LIMIT
+              }
+            });
           }
         },
         optimisticResponse: () => createCommentResponse(input, ownProps.navigation.getParam('id'))
