@@ -18,8 +18,11 @@ export default class Comments extends React.Component {
 
   scrollDown = () => this._commentsListRef && this._commentsListRef.wrappedInstance.scrollDown();
 
+  scrollTop = () => this._commentsListRef && this._commentsListRef.wrappedInstance.scrollTop();
+
   _handleSubmit = (message) => {
     if (this.props.onSubmit) this.props.onSubmit(message);
+    this.scrollTop();
   };
 
   _handleDelete = (id) => {
