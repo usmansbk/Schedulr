@@ -35,8 +35,8 @@ export default graphql(gql(listBoardFollowers), {
         limit
       },
       updateQuery: (previousResult, { fetchMoreResult }) => {
-        const moreFollowers = fetchMoreResult.listFollowers && fetchMoreResult.listFollowers.items;
-        if (fetchMoreResult.listFollowers.nextToken !== previousResult.listFollowers.nextToken) {
+        if (fetchMoreResult) {
+          const moreFollowers = fetchMoreResult.listFollowers && fetchMoreResult.listFollowers.items;
           if (moreFollowers) {
             return Object.assign({}, previousResult, {
               listFollowers: Object.assign({}, previousResult.listFollowers,  {

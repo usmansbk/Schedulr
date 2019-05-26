@@ -43,7 +43,7 @@ export default compose(
           limit
         },
         updateQuery: (previousResult, { fetchMoreResult }) => {
-          if (fetctMoreResult) {
+          if (fetchMoreResult) {
             const moreComments = fetchMoreResult.listComments && fetchMoreResult.listComments.items;
             return Object.assign({}, previousResult, {
               listComments: Object.assign({}, previousResult.listComments,  {
