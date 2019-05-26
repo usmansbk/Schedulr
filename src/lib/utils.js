@@ -1,5 +1,5 @@
-import memoize from 'memoize-one';
 import differenceWith from 'lodash.differencewith';
+import memoize from 'lodash.memoize';
 
 export default sortBoards = memoize((data) => {
   const sorted = data.sort((a, b) => {

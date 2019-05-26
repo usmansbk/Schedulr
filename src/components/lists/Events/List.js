@@ -101,8 +101,8 @@ export default class List extends React.Component {
     if (this.state.previousDate) {
       const sections = getNextEvents(events, this.state.previousDate, DAYS_PER_PAGE);
       const sectionLength = sections.length;
-      const afterDate = (sectionLength === DAYS_PER_PAGE) && moment(sections[sectionLength - 1].title).toISOString();
-      const beforeDate = (sectionLength) && moment(sections[0].title).toISOString();
+      const afterDate = (sectionLength === DAYS_PER_PAGE) && moment(sections[sectionLength - 1].title).utc().toISOString();
+      const beforeDate = (sectionLength) && moment(sections[0].title).utc().toISOString();
       
       this.setState({
         sections,
@@ -160,10 +160,10 @@ export default class List extends React.Component {
 
   _bootstrap = (events) => {
     if (events) {
-      const yesterday = moment().endOf('day').add(-1, 'day').toISOString();
+      const yesterday = moment().utc().add(-1, 'day').startOf('day').toISOString();
       const sections = getNextEvents(events, yesterday, DAYS_PER_PAGE);
       if (sections.length) {
-        const beforeDate = moment().startOf('day').toISOString();
+        const beforeDate = moment().utc().startOf('day').toISOString();
         const afterDate = sections[sections.length - 1].title;
         this.setState({
           events,
