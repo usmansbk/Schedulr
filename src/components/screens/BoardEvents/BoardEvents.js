@@ -66,15 +66,6 @@ export default class BoardEvents extends React.Component {
             subtitle={description}
             titleStyle={styles.headerColor}
           />
-          {
-            Boolean(events.length) && (
-              <Appbar.Action
-                icon="keyboard-arrow-up"
-                onPress={this._scrollToTop}
-                color={colors.gray}
-              />
-            )
-          }
           <Appbar.Action
             icon="info-outline"
             onPress={this._navigateToBoardInfo}
@@ -89,6 +80,15 @@ export default class BoardEvents extends React.Component {
           loading={loadingEvents}
           error={loadingEventsError}
         />
+        {
+          Boolean(events.length) && (
+            <Fab
+              icon="keyboard-arrow-up"
+              secondary
+              onPress={this._scrollToTop}
+            />
+          )
+        }
         {
           isAuthor && (status !== BOARD_CLOSED ) && (
             <Fab
