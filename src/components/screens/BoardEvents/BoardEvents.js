@@ -14,11 +14,22 @@ export default class BoardEvents extends React.Component {
     events: []
   };
 
+  shouldComponentUpdate = (nextProps) => nextProps.isFocused;
+
   _eventsListRef = ref => this.eventsListRef = ref;
 
   _scrollToTop = () => {
     this.eventsListRef && this.eventsListRef.wrappedInstance.scrollToTop(); 
   };
+  
+  _navigateToBoardInfo = () => {
+    const id = this.props.board.id;
+    this.props.navigation.navigate('BoardInfo', { id });
+  }
+  _navigateToNewEvent = () => {
+    const boardId = this.props.board.id;
+    this.props.navigation.navigate('NewEvent', { boardId });
+  }
 
   render() {
     const {
@@ -30,8 +41,6 @@ export default class BoardEvents extends React.Component {
       loadingEventsError,
       onPress,
       onRefresh,
-      navigateToBoardInfo,
-      navigateToNewEvent,
       stores
     } = this.props;
     if (loading) return <Loading />;
@@ -68,7 +77,7 @@ export default class BoardEvents extends React.Component {
           }
           <Appbar.Action
             icon="info-outline"
-            onPress={() => navigateToBoardInfo(id)}
+            onPress={this._navigateToBoardInfo}
             color={colors.gray}
           />
         </Appbar.Header>
@@ -76,7 +85,6 @@ export default class BoardEvents extends React.Component {
           ref={this._eventsListRef}
           listType="board"
           events={events}
-          navigation={this.props.navigation}
           loading={loadingEvents}
           error={loadingEventsError}
         />
@@ -84,7 +92,7 @@ export default class BoardEvents extends React.Component {
           isAuthor && (status !== BOARD_CLOSED ) && (
             <Fab
               icon="edit"
-              onPress={() => navigateToNewEvent(id)}
+              onPress={this._navigateToNewEvent}
             />
           )
         }

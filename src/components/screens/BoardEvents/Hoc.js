@@ -1,11 +1,17 @@
 import { graphql, compose } from 'react-apollo';
+import { withNavigationFocus } from 'react-navigation';
 import gql from 'graphql-tag';
 import Screen from './BoardEvents';
-import { getBoard, listAllEvents, listBoardEvents } from 'mygraphql/queries';
+import {
+  getBoard,
+  listAllEvents,
+  listBoardEvents
+} from 'mygraphql/queries';
 
 const alias = 'withBoardEventsContainer';
 
 export default compose(
+  withNavigationFocus,
   graphql(gql(getBoard), {
     alias,
     options: props => ({
