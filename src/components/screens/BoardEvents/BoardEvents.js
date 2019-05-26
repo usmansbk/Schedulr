@@ -56,6 +56,7 @@ export default class BoardEvents extends React.Component {
 
     const styles = stores.appStyles.styles;
     const colors = stores.themeStore.colors;
+    const isOffline = id[0] === '-';
 
     return (
       <>
@@ -90,7 +91,7 @@ export default class BoardEvents extends React.Component {
           )
         }
         {
-          isAuthor && (status !== BOARD_CLOSED ) && (
+          !isOffline && isAuthor && (status !== BOARD_CLOSED ) && (
             <Fab
               icon="edit"
               onPress={this._navigateToNewEvent}
