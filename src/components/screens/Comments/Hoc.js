@@ -37,7 +37,7 @@ export default compose(
       },
       comments: data && data.listComments && data.listComments.items && data.listComments.items || [],
       nextToken: data && data.listComments && data.listComments.nextToken,
-      fetchMoreComments: async (nextToken=null, limit=LIMIT) => data.fetchMore({
+      fetchMoreComments: (nextToken=null, limit=LIMIT) => data.fetchMore({
         variables: {
           nextToken,
           limit

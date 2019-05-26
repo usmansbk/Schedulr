@@ -29,7 +29,7 @@ export default graphql(gql(listBoardFollowers), {
         SimpleToast.show('Refresh failed', SimpleToast.SHORT);
       }
     },
-    fetchMoreFollowers: async (nextToken=null, limit=LIMIT) => data.fetchMore({
+    fetchMoreFollowers: (nextToken=null, limit=LIMIT) => data.fetchMore({
       variables: {
         nextToken,
         limit
