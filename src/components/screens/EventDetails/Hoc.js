@@ -24,8 +24,8 @@ export default graphql(gql(getEvent), {
     onRefresh: async () => {
       try {
         await data.refetch()
-      } catch(e) {
-        SimpleToast.show(e.message, SimpleToast.SHORT);
+      } catch(error) {
+        SimpleToast.show(error.message, SimpleToast.SHORT);
         // Log error if it occurs multiple times
         // Analytics.record({
         //   name: e.name,

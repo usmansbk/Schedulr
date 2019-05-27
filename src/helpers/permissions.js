@@ -14,8 +14,8 @@ async function requestLocationPermission() {
       }
     );
     return granted === PermissionsAndroid.RESULTS.GRANTED;
-  } catch (e) {
-    SimpleToast.show(e.message, SimpleToast.SHORT);
+  } catch (error) {
+    SimpleToast.show(error.message, SimpleToast.SHORT);
     return false;
   }
 }

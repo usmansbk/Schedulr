@@ -133,7 +133,7 @@ export default compose(
       onRefresh: async () => {
         try {
           await data.refetch();
-        } catch(e) {
+        } catch(error) {
           SimpleToast.show('Connection error', SimpleToast.SHORT);
         }
       },

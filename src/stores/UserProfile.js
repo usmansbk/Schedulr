@@ -38,8 +38,8 @@ export default class UserProfile {
         this.email = me.email;
         this.pictureUrl = me.pictureUrl;
       });
-    } catch (e) {
-      SimpleToast.show(e.message, SimpleToast.SHORT);
+    } catch (error) {
+      SimpleToast.show(error.message, SimpleToast.SHORT);
     }
   }
 }

@@ -31,7 +31,7 @@ export default compose(
       onRefresh: async () => {
         try {
           await data.refetch();
-        } catch (e) {
+        } catch (error) {
           SimpleToast.show('Refresh failed', SimpleToast.SHORT);
         }
       },
