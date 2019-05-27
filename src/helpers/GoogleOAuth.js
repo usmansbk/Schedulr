@@ -40,7 +40,7 @@ export default class GoogleOAuth {
             });
           }).catch(error => {
             console.debug('Failed to sign in with Google', error);
-            // rej('Failed to sign in with Google');
+            rej('Failed to sign in with Google');
           });
       } else {
         console.debug('User is not signed in with Google');
