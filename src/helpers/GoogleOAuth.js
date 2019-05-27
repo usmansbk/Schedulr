@@ -19,6 +19,8 @@ export default class GoogleOAuth {
                   token: idToken,
                   expires_at: accessTokenExpirationDate
                 });
+              }).catch((error) => {
+                rej('Failed to sign in with google');
               })
           } else {
             rej('User is not signed in with Google');

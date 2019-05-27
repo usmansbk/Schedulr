@@ -1,5 +1,4 @@
 import React from 'react';
-import { Analytics } from 'aws-amplify';
 import {
   LoginManager,
   GraphRequest,
@@ -50,13 +49,6 @@ export default class Container extends React.Component {
   _responseInfoCallback = async (error, result) => {
     if (error) {
       SimpleToast.show(error.message, SimpleToast.LONG);
-      // Analytics.record({
-      //   name: 'fb_login_error',
-      //   attributes: {
-      //     name: error.name,
-      //     message: error.message
-      //   },
-      // });
     } else if (result) {
       const { email, name, picture } = result;
       return await this.props.onLogin({

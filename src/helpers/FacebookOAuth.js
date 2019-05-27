@@ -1,76 +1,37 @@
-import {
-  ConsoleLogger as Logger,
-} from '../Logger';
-import JS from '../JS';
+// import {
+//   LoginManager,
+//   GraphRequest,
+//   GraphRequestManager,
+//   AccessToken
+// } from 'react-native-fbsdk';
 
-const logger = new Logger('CognitoCredentials');
+// export default class FacebookOAuth {
 
-const waitForInit = new Promise((res, rej) => {
-  if (!JS.browserOrNode().isBrowser) {
-      logger.debug('not in the browser, directly resolved');
-      return res();
-  }
-  const fb = window['FB'];
-  if (fb) {
-      logger.debug('FB SDK already loaded');
-      return res();
-  } else {
-      setTimeout(
-          () => {
-              return res();
-          }, 
-          2000
-      );
-  }
-});
+//   refreshFacebookToken = () => {
+//     return this._refreshFacebookTokenImpl();
+//   }
 
-export default class FacebookOAuth {
-  public initialized = false;
+//   _refreshFacebookTokenImpl = () => {
+//       return new Promise((res, rej) => {
+//           fb.getLoginStatus(
+//               fbResponse => {
+//                   if (!fbResponse || !fbResponse.authResponse) {
+//                       logger.debug('no response from facebook when refreshing the jwt token');
+//                       rej('no response from facebook when refreshing the jwt token');
+//                   }
 
-  constructor() {
-      this.refreshFacebookToken = this.refreshFacebookToken.bind(this);
-      this._refreshFacebookTokenImpl = this._refreshFacebookTokenImpl.bind(this);
-  }
-
-  public async refreshFacebookToken() {
-      if (!this.initialized) {
-          logger.debug('need to wait for the Facebook SDK loaded');
-          await waitForInit;
-          this.initialized = true;
-          logger.debug('finish waiting');
-      }
-
-      return this._refreshFacebookTokenImpl();
-  }
-
-  private _refreshFacebookTokenImpl() {
-      let fb = null;
-      if (JS.browserOrNode().isBrowser) fb = window['FB'];
-      if (!fb) {
-          logger.debug('no fb sdk available');
-          return Promise.reject('no fb sdk available');
-      }
-
-      return new Promise((res, rej) => {
-          fb.getLoginStatus(
-              fbResponse => {
-                  if (!fbResponse || !fbResponse.authResponse) {
-                      logger.debug('no response from facebook when refreshing the jwt token');
-                      rej('no response from facebook when refreshing the jwt token');
-                  }
-
-                  const response = fbResponse.authResponse;
-                  const { accessToken, expiresIn } = response;
-                  const date = new Date();
-                  const expires_at = expiresIn * 1000 + date.getTime();
-                  if (!accessToken) {
-                      logger.debug('the jwtToken is undefined');
-                      rej('the jwtToken is undefined');
-                  }
-                  res({token: accessToken, expires_at });
-              }, 
-              {scope: 'public_profile,email' }
-          );
-      });
-  }
-}
+//                   const response = fbResponse.authResponse;
+//                   const { accessToken, expiresIn } = response;
+//                   const date = new Date();
+//                   const expires_at = expiresIn * 1000 + date.getTime();
+//                   if (!accessToken) {
+//                       logger.debug('the jwtToken is undefined');
+//                       rej('the jwtToken is undefined');
+//                   }
+//                   res({token: accessToken, expires_at });
+//               }, 
+//               {scope: 'public_profile,email' }
+//           );
+//       });
+//   }
+// }
