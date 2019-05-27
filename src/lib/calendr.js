@@ -30,7 +30,7 @@ function getNextEvents(initialEvents=[], afterDate, daysPerPage) {
   const sections = [];
   if (initialEvents.length) {
     for (let i = 1; i <= daysPerPage; i++) {
-      const nextDate = moment(afterDate).add(i, 'day');
+      const nextDate = moment(afterDate).utc().add(i, 'day');
       sections.push(getNextDayEvents(initialEvents, nextDate));
     }
   }
@@ -41,7 +41,7 @@ function getPreviousEvents(initialEvents=[], beforeDate, daysPerPage) {
   const sections = [];
   if (initialEvents.length) {
     for (let i = 1; i <= daysPerPage; i++) {
-      const nextDate = moment(beforeDate).add(-(i), 'day');
+      const nextDate = moment(beforeDate).utc().add(-(i), 'day');
       sections.push(getNextDayEvents(initialEvents, nextDate));
     }
   }
