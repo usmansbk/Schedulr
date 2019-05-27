@@ -49,8 +49,8 @@ const SearchBar = inject('stores')(observer(
       autoFocus
       placeholder="Search for..."
       placeholderTextColor={stores.themeStore.colors.placeholder}
-      value={stores.appState.query}
-      onChangeText={(query) => stores.appState.onChangeText(query)}
+      value={stores.appState.searchText}
+      onChangeText={(value) => stores.appState.onChangeText(value)}
       style={{
         elevation: 0,
         backgroundColor: stores.themeStore.colors.bg,

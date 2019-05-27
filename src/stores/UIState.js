@@ -1,15 +1,19 @@
 import { observable, action } from 'mobx';
-import { persist } from 'mobx-persist';
+import debounce from 'lodash.debounce';
 
 export default class UIState {
   @observable isConnected = false;
+  @observable searchText = '';
   @observable query = '';
+
+  debounceQuery = debounce((val) => this.query = val, 250);
   
   @action toggleConnection (isConnected) {
     this.isConnected = isConnected;
   }
 
-  @action onChangeText (query) {
-    this.query = query;
+  @action onChangeText (searchText) {
+    this.searchText = searchText;
+    this.debounceQuery(searchText);
   }
 }
