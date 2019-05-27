@@ -8,23 +8,31 @@ import { Rehydrated } from 'aws-appsync-react';
 import SplashScreen from 'react-native-splash-screen';
 import { observer } from 'mobx-react/native';
 import 'babel-polyfill';
-import Amplify from 'aws-amplify';
+import Amplify, { Auth } from 'aws-amplify';
 import AppContainer from './src/App';
-import Loading from './src/components/common/Hydrating';
-import NavigationService from './src/config/navigation';
-import config from './src/aws-exports';
-import client from './src/config/client';
-import stores from './src/stores';
-import env from './src/config/env';
+import Loading from 'components/common/Hydrating';
+import NavigationService from 'config/navigation';
+import aws_config from './src/aws-exports';
+import client from 'config/client';
+import stores from 'stores';
+import env from 'config/env';
+import { GoogleOAuth } from 'helpers';
 
 console.disableYellowBox = true;
 
-// window.LOG_LEVEL = 'DEBUG';
+window.LOG_LEVEL = 'DEBUG';
 GoogleSignin.configure({
   webClientId: env.WEB_CLIENT_ID,
   offlineAccess: true
 });
-Amplify.configure(config);
+
+Amplify.configure(aws_config);
+
+Auth.configure({
+  refreshHandlers: {
+    'google': GoogleOAuth.refreshGoogleToken
+  }
+});
 
 @observer
 export default class App extends React.Component {
