@@ -11,7 +11,6 @@ export default class Container extends Component {
   _bootstrapAsync = async () => {
     try {
       const user = await Auth.currentAuthenticatedUser();
-      console.debug('Logged in user', user);
       if (user) this.props.navigation.navigate('App');
       // await Auth.currentAuthenticatedUser();
     } catch (error) {
