@@ -30,7 +30,7 @@ function getNextEvents(initialEvents=[], afterDate, daysPerPage) {
   const sections = [];
   if (initialEvents.length) {
     for (let i = 1; i <= daysPerPage; i++) {
-      const nextDate = moment(afterDate).utc().add(i, 'day');
+      const nextDate = moment(afterDate).add(i, 'day');
       sections.push(getNextDayEvents(initialEvents, nextDate));
     }
   }
@@ -41,7 +41,7 @@ function getPreviousEvents(initialEvents=[], beforeDate, daysPerPage) {
   const sections = [];
   if (initialEvents.length) {
     for (let i = 1; i <= daysPerPage; i++) {
-      const nextDate = moment(beforeDate).utc().add(-(i), 'day');
+      const nextDate = moment(beforeDate).add(-(i), 'day');
       sections.push(getNextDayEvents(initialEvents, nextDate));
     }
   }
@@ -82,9 +82,9 @@ function generatePreviousEvents(events=[], beforeDate, DAYS_PER_PAGE) {
 /* Return next available event date */
 const getNextDate = memoize((events=[], refDate, before) => {
   return uniqWith(events.map((currentEvent) => {
-    const eventDate = moment(currentEvent.startAt).utc();
-    const endDate = moment(currentEvent.endAt).utc();
-    const untilAt = currentEvent.until ? moment(currentEvent.until).utc() : undefined;
+    const eventDate = moment(currentEvent.startAt);
+    const endDate = moment(currentEvent.endAt);
+    const untilAt = currentEvent.until ? moment(currentEvent.until) : undefined;
     const repeat = getRepeat(currentEvent.repeat);
     let recurrence;
     if (repeat) {
@@ -100,13 +100,13 @@ const getNextDate = memoize((events=[], refDate, before) => {
       if (untilAt && nextDate.isAfter(untilAt, 'day')) {
         // do nothing
       } else if (validStart) {
-        return nextDate.startOf('day');
+        return nextDate.local().startOf('day');
       }
     } else if (eventDate.twix(endDate).contains(refDate)) {
       recurrence = eventDate.recur(endDate).every(1).day().fromDate(refDate);
       const nextDates = before ? recurrence.previous(1) : recurrence.next(1);
       const nextDate = nextDates[0];
-      return nextDate.startOf('day');
+      return nextDate.local().startOf('day');
     }
     return eventDate.startOf('day');
   }).filter(date => {
@@ -115,7 +115,7 @@ const getNextDate = memoize((events=[], refDate, before) => {
   }).sort((a, b) => {
     if (before) return -(a - b);
     return a - b;
-  }), (a, b) => a.toISOString() === b.toISOString())[0];
+  }), (a, b) => a.format() === b.format())[0];
 }, (...args) => JSON.stringify(args));
 
 /**
@@ -128,8 +128,8 @@ const getNextDayEvents = memoize((initialEvents, nextDate) => {
   if (nextDate) refDate = moment(nextDate);
 
   return initialEvents.reduce((accumulator, currentEvent) => {
-    const eventDate = moment(currentEvent.startAt).utc();
-    const endDate = moment(currentEvent.endAt).utc();
+    const eventDate = moment(currentEvent.startAt);
+    const endDate = moment(currentEvent.endAt);
     const repeat = getRepeat(currentEvent.repeat);
     const isExtended = eventDate.twix(endDate).contains(refDate);
     const isValid = currentEvent.until ? refDate.isSameOrBefore(moment(currentEvent.until), 'day') : true;
@@ -150,18 +150,18 @@ const getNextDayEvents = memoize((initialEvents, nextDate) => {
       }
       const hasNext = recurrence.matches(refDate);
       if (hasNext) {
-        const start = moment(currentEvent.startAt).utc();
+        const start = moment(currentEvent.startAt);
         const startSec = start.seconds();
         const startMins = start.minutes();
         const startHours = start.hours();
 
-        const end = moment(currentEvent.endAt).utc();
+        const end = moment(currentEvent.endAt);
 
         const duration = Math.abs(moment.duration(start.diff(end)));
 
-        const startAt = refDate.seconds(startSec).minutes(startMins).hours(startHours).toISOString();
+        const startAt = refDate.seconds(startSec).minutes(startMins).hours(startHours).format();
 
-        const endAt = moment(startAt).add(duration).toISOString();
+        const endAt = moment(startAt).add(duration).format();
 
         accumulator.data.push(Object.assign({}, currentEvent, {
           startAt,
@@ -175,7 +175,7 @@ const getNextDayEvents = memoize((initialEvents, nextDate) => {
     return accumulator;
   }, {
     data: [],
-    title: refDate.startOf('day').toISOString(),
+    title: refDate.startOf('day').format(),
   });
 }, (...args) => JSON.stringify(args));
 
@@ -203,8 +203,8 @@ function getEvents(events) {
       const nextDates = recurrence.next(1);
       const isConcluded = untilAt ? moment(startAt).isAfter(untilAt) : false;
       const nextDate = isConcluded ? untilAt : nextDates[0]
-      const startAt = nextDate.local().seconds(startSec).minutes(startMins).hours(startHours).toISOString();
-      const endAt = moment(startAt).local().add(duration).toISOString();
+      const startAt = nextDate.local().seconds(startSec).minutes(startMins).hours(startHours).format();
+      const endAt = moment(startAt).local().add(duration).format();
 
       return  Object.assign({}, currentEvent, {
         startAt,

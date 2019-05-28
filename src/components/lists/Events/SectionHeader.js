@@ -21,7 +21,7 @@ export default class SectionHeader extends React.Component {
     const startMins = now.minutes();
     const startHours = now.hours();
 
-    const targetDate = date.seconds(startSec).minutes(startMins).hours(startHours).toISOString();
+    const targetDate = date.seconds(startSec).minutes(startMins).hours(startHours).format();
 
     this.props.onPress(targetDate);
   }
