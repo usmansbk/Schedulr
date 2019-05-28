@@ -29,7 +29,6 @@ export default class SectionHeader extends React.Component {
   render() {
     const {
       section: { title , data },
-      onPress,
       stores
     } = this.props;
 
