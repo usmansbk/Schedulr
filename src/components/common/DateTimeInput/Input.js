@@ -43,7 +43,7 @@ export default class Input extends React.Component {
       stores
     } = this.props;
 
-    const value = this.props.value || moment().toDate().toISOString();
+    const value = this.props.value || moment().toISOString();
     const styles = stores.appStyles.datePicker;
 
     return (

@@ -54,8 +54,8 @@ export default class Form extends React.Component {
           latitude: null
         }
       },
-      startAt: moment().toDate().toISOString(),
-      endAt: moment().add(2, 'hours').toDate().toISOString(),
+      startAt: moment().toISOString(),
+      endAt: moment().add(2, 'hours').toISOString(),
       allDay: false,
       eventType: eventTypes[0].id,
       repeat: frequency[0].id,
