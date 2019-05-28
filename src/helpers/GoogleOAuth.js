@@ -1,5 +1,5 @@
 import { GoogleSignin } from 'react-native-google-signin';
-import { Logger } from 'aws-amplify';
+import Logger from 'config/logger';
 
 export default class GoogleOAuth {
 
