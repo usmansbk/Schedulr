@@ -55,10 +55,12 @@ export default class List extends React.Component {
     this._listRef && this._listRef.scrollToEnd();
   }
   scrollTop = () => {
-    this._listRef && this._listRef.scrollToIndex({
-      index: 0,
-      viewPosition: 0
-    });
+    if (this.props.comments.length) {
+      this._listRef && this._listRef.scrollToIndex({
+        index: 0,
+        viewPosition: 0
+      });
+    }
   }
   shouldComponentUpdate = (nextProps) => (
     nextProps.comments.length !== this.props.comments.length ||
