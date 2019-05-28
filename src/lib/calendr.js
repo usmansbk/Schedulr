@@ -1,6 +1,5 @@
 import moment from 'moment';
 import 'moment-recur';
-import 'twix';
 import uniqWith from 'lodash.uniqwith';
 import memoize from 'lodash.memoize';
 import { sortBy } from 'lib/sectionizr';
@@ -56,16 +55,16 @@ function getPreviousEvents(initialEvents=[], beforeDate, daysPerPage) {
  * @returns a SectionListData of events with empty days omitted
  */
 function generateNextEvents(events=[], refDate, DAYS_PER_PAGE=3, before=false) {
-  console.log('refDate', before ? 'before' : 'after', '-', refDate);
+  // console.log('refDate', '-', refDate);
   const sections = [];
   let nextDate = getNextDate(events, moment(refDate), before);
-  console.log('Starting nextDate', '-', nextDate && nextDate.format());
+  // console.log('%c nextDate is', 'color: orange', nextDate && nextDate.format());
   if (events.length && nextDate) {
     for (let i = 0; i < DAYS_PER_PAGE; i++) {
-      console.log('[' + i + ']', 'Getting', nextDate.format(), 'events');
+      // console.log('[' + i + ']', 'Getting', nextDate.format(), 'events');
       sections.push(getNextDayEvents(events, nextDate));
       nextDate = getNextDate(events, nextDate, before);
-      console.log(i + '', 'Get next date', before ? 'before' : 'after', '-', nextDate && nextDate.format());
+      // console.log('nextDate is', nextDate && nextDate.format());
       if (!nextDate) break;
     }
   }
@@ -85,7 +84,7 @@ function generatePreviousEvents(events=[], beforeDate, DAYS_PER_PAGE) {
 
 /* Return next available event date */
 const getNextDate = memoize((events=[], refDate, before) => {
-  console.log('Getting next date', before ? 'before' : 'after', '-', refDate.format());
+  // console.log('%c Getting next date', 'color: green', before ? 'before' : 'after', '-', refDate.format());
   return uniqWith(events.map((currentEvent) => {
     const eventDate = moment(currentEvent.startAt);
     const endDate = moment(currentEvent.endAt);
@@ -105,17 +104,18 @@ const getNextDate = memoize((events=[], refDate, before) => {
       if (untilAt && nextDate.isAfter(untilAt, 'day')) {
         // do nothing
       } else if (validStart) {
-        console.log('--validStart', currentEvent.title, nextDate.local().startOf('day').format());
+        // console.log('--validStart', currentEvent.title, nextDate.local().startOf('day').format());
         return nextDate.local().startOf('day');
       }
-    } else if (eventDate.twix(endDate).contains(moment(refDate))) {
+    } else if (moment(refDate).isBetween(eventDate, endDate, null, '[]')) {
       recurrence = eventDate.recur(endDate).every(1).day().fromDate(refDate);
       const nextDates = before ? recurrence.previous(1) : recurrence.next(1);
       const nextDate = nextDates[0];
-      console.log('--',currentEvent.title, '[', eventDate.format(), 'to', endDate.format(), ']', 'contains', nextDate.local().startOf('day').format());
-      return nextDate.local().startOf('day');
+      const shouldReturn = nextDate.isBetween(eventDate, endDate, null, '[]');
+
+      if (shouldReturn) return nextDate.local().startOf('day');
     }
-    console.log('--default', currentEvent.title, eventDate.startOf('day').format());
+    // console.log('--default', currentEvent.title, eventDate.startOf('day').format());
     return eventDate.startOf('day');
   }).filter(date => {
     if (before) return date.isBefore(refDate, 'day');
@@ -132,7 +132,7 @@ const getNextDate = memoize((events=[], refDate, before) => {
   * @return 
   */
 const getNextDayEvents = memoize((initialEvents, nextDate) => {
-  console.log('Next date events -', nextDate.format());
+  // console.log('%c Next date events -', 'color: blue', nextDate.format());
   let refDate = moment();
   if (nextDate) refDate = moment(nextDate);
 
@@ -140,7 +140,7 @@ const getNextDayEvents = memoize((initialEvents, nextDate) => {
     const eventDate = moment(currentEvent.startAt);
     const endDate = moment(currentEvent.endAt);
     const repeat = getRepeat(currentEvent.repeat);
-    const isExtended = eventDate.twix(endDate).contains(refDate);
+    const isExtended = refDate.isBetween(eventDate, endDate, null, '[]');
     const isValid = currentEvent.until ? refDate.isSameOrBefore(moment(currentEvent.until), 'day') : true;
 
     if (repeat && !currentEvent.isCancelled && isValid) {
@@ -171,14 +171,14 @@ const getNextDayEvents = memoize((initialEvents, nextDate) => {
         const startAt = refDate.seconds(startSec).minutes(startMins).hours(startHours).format();
 
         const endAt = moment(startAt).add(duration).format();
-        console.log('-----', currentEvent.title);
+        // console.log('----recurring', currentEvent.title);
         accumulator.data.push(Object.assign({}, currentEvent, {
           startAt,
           endAt
         }));
       }
     } else if (!repeat && eventDate.isSame(refDate, 'day') || isExtended) {
-      console.log('-----', currentEvent.title);
+      // console.log('----isExtended', currentEvent.title);
       accumulator.data.push(currentEvent);
     }
     accumulator.data = sortBy(accumulator.data, 'startAt');
