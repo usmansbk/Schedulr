@@ -1,4 +1,5 @@
 import { GoogleSignin } from 'react-native-google-signin';
+import { Logger } from 'aws-amplify';
 
 export default class GoogleOAuth {
 
@@ -10,7 +11,7 @@ export default class GoogleOAuth {
     return new Promise(async (res, rej) => {
       const isSignedIn = await GoogleSignin.isSignedIn();
       if (isSignedIn) {
-        console.debug('refreshing the google access token');
+        Logger.debug('refreshing the google access token');
         GoogleSignin.signInSilently()
           .then(async (authResponse) => {
             const { idToken, accessTokenExpirationDate } = authResponse;
@@ -19,11 +20,11 @@ export default class GoogleOAuth {
               expires_at: accessTokenExpirationDate
             });
           }).catch(error => {
-            console.debug('Failed to sign in with Google', error);
+            Logger.debug('Failed to sign in with Google', error);
             rej('Failed to sign in with Google');
           });
       } else {
-        console.debug('User is not signed in with Google');
+        Logger.debug('User is not signed in with Google');
         rej('Failed to refresh google token');
       }
     });
