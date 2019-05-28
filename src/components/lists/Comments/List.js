@@ -52,7 +52,9 @@ export default class List extends React.Component {
     onPress={this._onEndReached}/>;
   _renderEmpty = () => <Empty error={this.props.error} loading={this.props.loading} />;
   scrollDown = () => {
-    this._listRef && this._listRef.scrollToEnd();
+    if (this.props.comments.length) {
+      this._listRef && this._listRef.scrollToEnd();
+    }
   }
   scrollTop = () => {
     if (this.props.comments.length) {
@@ -63,7 +65,7 @@ export default class List extends React.Component {
     }
   }
   shouldComponentUpdate = (nextProps) => (
-    nextProps.comments.length !== this.props.comments.length ||
+    nextProps.comments !== this.props.comments ||
     nextProps.loading !== this.props.loading
   );
   _onEndReached = async () => {
