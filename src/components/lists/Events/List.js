@@ -162,7 +162,6 @@ export default class List extends React.Component {
     if (events) {
       const yesterday = moment().add(-1, 'day').startOf('day').format();
       const today = moment().startOf('day').format();
-      console.log(today);
       const sections = getNextEvents(events, yesterday, DAYS_PER_PAGE);
       if (sections.length) {
         const beforeDate = today;
