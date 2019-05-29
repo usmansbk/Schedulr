@@ -26,9 +26,6 @@ export function isEventValid(event) {
   } else if (startAt > endAt) {
     Alert.alert('Duration', INVALID_START);
     validity = false;
-  } else if (endAt < Date.now() ) {
-    Alert.alert('Wrong time', WRONG_TIME);
-    validity = false;
   } else if ((endAt - startAt) < FIVE_MINUTES) {
     Alert.alert('Too short', DURATION_TOO_SHORT);
     validity = false;
