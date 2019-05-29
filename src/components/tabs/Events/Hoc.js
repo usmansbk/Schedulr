@@ -4,7 +4,7 @@ import { withNavigationFocus } from 'react-navigation';
 import gql from 'graphql-tag';
 import Events from './Events';
 import { listAllEvents } from 'mygraphql/queries';
-import Logger, { analytics } from 'config/logger';
+import logger, { analytics } from 'config/logger';
 
 const alias = 'withEventsContainer';
 
@@ -17,12 +17,12 @@ export default compose(
       notifyOnNetworkStatusChange: true,
       onError: error => {
         SimpleToast.show('Failed to fetch updates', SimpleToast.SHORT);
+        logger.debug(error.message);
         analytics({
-          component: alias,
-          logType: 'listAllEventsQuery',
+          name: 'list_all_events',
+          alias,
           error
         });
-        Logger.debug(error.message);
       }
     },
     props: ({ data, ownProps}) => ({
@@ -30,9 +30,7 @@ export default compose(
       events: data && data.listAllEvents && data.listAllEvents.items || [],
       nextToken: data && data.listAllEvents && data.listAllEvents.nextToken,
       error: data.error && !data.listAllEvents,
-      onRefresh: async () => {
-        await data.refetch();
-      },
+      onRefresh: () => data.refetch(),
       ...ownProps
     })
   })

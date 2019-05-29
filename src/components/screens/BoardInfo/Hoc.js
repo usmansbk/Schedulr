@@ -1,7 +1,7 @@
 import { graphql } from 'react-apollo';
 import SimpleToast from 'react-native-simple-toast';
 import gql from 'graphql-tag';
-import { analytics } from 'config/logger';
+import logger, { analytics } from 'config/logger';
 import Info from './Info';
 import { getBoard } from 'mygraphql/queries';
 
@@ -17,9 +17,10 @@ export default graphql(gql(getBoard), {
     fetchPolicy: 'cache-first',
     onError: error => {
       SimpleToast.show('Failed to get calendar', SimpleToast.SHORT);
+      logger.debug(error.message);
       analytics({
-        component: alias,
-        logType: 'getBoardQuery',
+        alias,
+        name: 'get_board_info',
         error
       });
     }

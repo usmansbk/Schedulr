@@ -1,7 +1,7 @@
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import Screen from './Screen';
-import Logger, { analytics } from 'config/logger';
+import logger, { analytics } from 'config/logger';
 import { createBoard } from 'mygraphql/mutations';
 import { listAllBoards } from 'mygraphql/queries';
 import { createBoardResponse } from 'helpers/optimisticResponse';
@@ -14,12 +14,12 @@ export default graphql(gql(createBoard), {
   options: {
     onError: error => {
       SimpleToast.show('Failed to create calendar', SimpleToast.SHORT);
+      logger.debug(error.message);
       analytics({
-        logType: 'createBoardMutation',
-        component: alias,
+        name: 'create_board',
+        alias,
         error
       });
-      Logger.debug(error.message);
     }
   },
   props: ({ mutate, ownProps }) => ({

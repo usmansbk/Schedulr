@@ -4,7 +4,7 @@ import gql from 'graphql-tag';
 import SimpleToast from 'react-native-simple-toast';
 import Screen from './Screen';
 import { getEvent } from 'mygraphql/queries';
-import Logger, { analytics } from 'config/logger';
+import logger, { analytics } from 'config/logger';
 
 const alias = 'withEventDetails';
 
@@ -20,12 +20,12 @@ export default graphql(gql(getEvent), {
     fetchPolicy: 'cache-first',
     onError: error => {
       SimpleToast.show('Failed to get event', SimpleToast.SHORT);
+      logger.debug(error.message);
       analytics({
-        component: alias,
-        logType: 'getEventQuery',
+        alias,
+        name: 'get_event',
         error
       });
-      Logger.debug(error.message);
     }
   })},
   props: ({ data, ownProps }) => ({

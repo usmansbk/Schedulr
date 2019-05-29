@@ -1,7 +1,7 @@
 import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
 import Screen from './Screen';
-import { analytics } from 'config/logger';
+import logger, { analytics } from 'config/logger';
 import { listEventComments } from 'mygraphql/queries';
 import { createComment } from 'mygraphql/mutations';
 import { createCommentResponse } from 'helpers/optimisticResponse';
@@ -22,21 +22,20 @@ export default compose(
       },
       fetchPolicy: 'cache-and-network',
       onError: (error) => {
+        SimpleToast.show('Failed to fetch comments', SimpleToast.SHORT);
+        logger.debug(error.message);
         analytics({
-          logType: 'listEventCommentsQuery',
-          component: alias,
+          name: 'list_comment',
+          alias,
           error
         });
-        SimpleToast.show('Failed to fetch comments', SimpleToast.SHORT);
       },
     }),
     props: ({ data, ownProps }) => ({
       eventId: ownProps.navigation.getParam('id'),
       loading: data.loading || data.networkStatus === 4,
       error: data.error,
-      onRefresh: async () => {
-        await data.refetch();
-      },
+      onRefresh: () => data.refetch(),
       comments: data && data.listComments && data.listComments.items && data.listComments.items || [],
       nextToken: data && data.listComments && data.listComments.nextToken,
       fetchMoreComments: (nextToken=null, limit=LIMIT) => data.fetchMore({
@@ -66,11 +65,15 @@ export default compose(
   graphql(gql(createComment), {
     alias,
     options: {
-      onError: error => analytics({
-        logType: 'createCommentMutation',
-        component: alias,
-        error
-      })
+      onError: error => {
+        SimpleToast.show('Failed to post comment', SimpleToast.SHORT);
+        logger.debug(error.message);
+        analytics({
+          name: 'create_comment',
+          alias,
+          error
+        });
+      }
     },
     props: ({ mutate, ownProps }) => ({
       onSubmit: (input) => mutate({

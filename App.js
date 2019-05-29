@@ -8,7 +8,7 @@ import { Rehydrated } from 'aws-appsync-react';
 import SplashScreen from 'react-native-splash-screen';
 import { observer } from 'mobx-react/native';
 import 'babel-polyfill';
-import Amplify, { Auth } from 'aws-amplify';
+import Amplify, { Auth, Analytics } from 'aws-amplify';
 import AppContainer from './src/App';
 import Loading from 'components/common/Hydrating';
 import NavigationService from 'config/navigation';
@@ -34,6 +34,8 @@ Auth.configure({
     'google': GoogleOAuth.refreshGoogleToken
   }
 });
+
+Analytics.disable();
 
 @observer
 export default class App extends React.Component {

@@ -1,5 +1,6 @@
 import { graphql, compose } from 'react-apollo';
 import { withNavigationFocus } from 'react-navigation';
+import SimpleToast from 'react-native-simple-toast';
 import gql from 'graphql-tag';
 import Screen from './BoardEvents';
 import {
@@ -7,7 +8,7 @@ import {
   listAllEvents,
   listBoardEvents
 } from 'mygraphql/queries';
-import { analytics } from 'config/logger';
+import logger, { analytics } from 'config/logger';
 
 const alias = 'withBoardEventsContainer';
 
@@ -54,11 +55,15 @@ export default compose(
       variables: {
         id: props.id
       },
-      onError: error => analytics({
-        component: alias,
-        logType: 'listBoardEventsQuery',
-        error
-      })
+      onError: error => {
+        SimpleToast.show('Failed to fetch events', SimpleToast.SHORT);
+        logger.debug(error.message);
+        analytics({
+          component: alias,
+          logType: 'listBoardEventsQuery',
+          error
+        });
+      }
     }),
     props: ({ data, ownProps}) => ({
       loadingEvents: data.loading || data.networkStatus === 4,
