@@ -30,7 +30,7 @@ export default graphql(gql(listBoardFollowers), {
   props: ({ data, ownProps }) => ({
     followers: data && data.listFollowers && data.listFollowers.items || [],
     nextToken: data && data.listFollowers && data.listFollowers.nextToken,
-    loading: data.loading || data.networkStatus === 4,
+    loading: data.loading || (data.networkStatus === 4),
     error: data.error,
     onRefresh: async () => {
       try {
