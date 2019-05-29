@@ -160,7 +160,7 @@ export default class List extends React.Component {
 
   _bootstrap = (events) => {
     if (events) {
-      const yesterday = moment().add(-1, 'day').startOf('day').format();
+      const yesterday = moment().subtract(1, 'day').startOf('day').format();
       const today = moment().startOf('day').format();
       const sections = getNextEvents(events, yesterday, DAYS_PER_PAGE);
       if (sections.length) {

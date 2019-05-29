@@ -40,7 +40,7 @@ function getPreviousEvents(initialEvents=[], beforeDate, daysPerPage) {
   const sections = [];
   if (initialEvents.length) {
     for (let i = 1; i <= daysPerPage; i++) {
-      const nextDate = moment(beforeDate).add(-(i), 'day');
+      const nextDate = moment(beforeDate).subtract(i, 'day');
       sections.push(getNextDayEvents(initialEvents, nextDate));
     }
   }
