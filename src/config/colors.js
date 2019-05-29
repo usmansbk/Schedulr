@@ -27,6 +27,7 @@ export const light = {
   success: '#53C41A',
   error: '#FF180B',
   warning: '#FBAD15',
+  image_loading: '#C0DEED'
 }
 
 export const dark = {
@@ -59,6 +60,7 @@ export const dark = {
   success: '#53C41A',
   error: '#FF180B',
   warning: '#FBAD15',
+  image_loading: '#C0DEED'
 };
 
 export default light;
