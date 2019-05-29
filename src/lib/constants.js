@@ -39,7 +39,7 @@ export const starredEvents = {
 export const followers_list = {
   SEPARATOR_HEIGHT : 1,
   ITEM_HEIGHT : 64,
-  AVATAR_SIZE : 48,
+  AVATAR_SIZE : 40,
   FOOTER_HEIGHT : 80,
 }
 
