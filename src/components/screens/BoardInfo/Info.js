@@ -84,13 +84,17 @@ export default class Info extends React.Component {
           <Appbar.Content
             titleStyle={appStyles.headerColor}
           />
-          <Appbar.Action
-            icon="share"
-            onPress={() => handleShare({ name, description, id})}
-            color={colors.gray}
-          />
           {
-            isAuthor && (
+            !isOffline && (
+              <Appbar.Action
+                icon="share"
+                onPress={() => handleShare({ name, description, id})}
+                color={colors.gray}
+              />
+            )
+          }
+          {
+            isAuthor && !isOffline && (
               <Menu onSelect={handleSelectMenu}>
                 <MenuTrigger 
                   customStyles={{
@@ -100,19 +104,15 @@ export default class Info extends React.Component {
                   <Icon size={24} color={colors.gray} name="more-vert" />
                 </MenuTrigger>
                 <MenuOptions>
-                  {
-                    !isOffline && (
-                      <MenuOption value="edit">
-                        <Text style={styles.menuText}>Edit</Text>
-                      </MenuOption>
-                    )
-                  }
-                  { (!isClosed && !isOffline) && (
+                  <MenuOption value="edit">
+                    <Text style={styles.menuText}>Edit</Text>
+                  </MenuOption>
+                  { !isClosed && (
                     <MenuOption value="close">
                       <Text style={styles.menuText}>Close</Text>
                     </MenuOption>
                   )}
-                  { (isClosed && !isOffline) && (
+                  { isClosed && (
                     <MenuOption value="open">
                       <Text style={styles.menuText}>Open</Text>
                     </MenuOption>

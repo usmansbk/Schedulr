@@ -99,7 +99,8 @@ export default class List extends React.Component {
   
   _refreshList = (events) => {
     if (this.state.previousDate) {
-      const sections = getNextEvents(events, this.state.previousDate, DAYS_PER_PAGE);
+      const nextDate = moment(this.state.previousDate).subtract(DAYS_PER_PAGE + 1, 'days').toISOString();
+      const sections = getNextEvents(events, nextDate, DAYS_PER_PAGE);
       const sectionLength = sections.length;
       const afterDate = (sectionLength === DAYS_PER_PAGE) && moment(sections[sectionLength - 1].title).format();
       const beforeDate = (sectionLength) && moment(sections[0].title).format();
@@ -112,6 +113,8 @@ export default class List extends React.Component {
         hasMore: hasMoreEvents(events, afterDate),
         events
       });
+    } else {
+      this._bootstrap(events);
     }
   }
   
@@ -192,9 +195,8 @@ export default class List extends React.Component {
   };
 
   componentWillReceiveProps = (nextProps) => {
-    if (nextProps.events.length !== this.props.events.length) {
-      this._bootstrap(nextProps.events);
-    } else if (eventsDiff(this.props.events, nextProps.events).length) {
+    if ((nextProps.events.length !== this.props.events.length) ||
+        (eventsDiff(this.props.events, nextProps.events).length)) {
       this._refreshList(nextProps.events);
     }
   };

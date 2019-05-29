@@ -82,7 +82,7 @@ export default class EventDetails extends React.Component {
           <Appbar.BackAction color={colors.gray} onPress={handleBack} />
           <Appbar.Content titleStyle={styles.headerColor} />
           {
-            isAuthor && (
+            isAuthor && !isOffline && (
               <>
                 <Appbar.Action
                   icon="delete"
