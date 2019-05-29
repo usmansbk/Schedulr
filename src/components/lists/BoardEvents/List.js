@@ -16,6 +16,7 @@ import { sortEvents } from 'lib/utils';
 import { getEvents } from 'lib/calendr';
 import { decapitalize } from 'lib/capitalizr';
 import { board_events } from 'lib/constants';
+import { eventsDiff } from 'lib/utils';
 
 const {
   ITEM_HEIGHT,
@@ -40,8 +41,8 @@ class List extends Component {
   shouldComponentUpdate = (nextProps) => { 
     return (nextProps.navigation.isFocused &&
       (
-        nextProps.events !== this.props.events ||
-        nextProps.loading !== this.props.loading
+        nextProps.loading !== this.props.loading ||
+        eventsDiff(this.props.events, nextProps.events).length
       )
     );
   };
