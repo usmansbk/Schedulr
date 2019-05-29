@@ -88,9 +88,9 @@ const getNextDate = memoize((events=[], refDate, before) => {
     let recurrence;
     if (repeat) {
       if (repeat === 'weekdays') {
-        recurrence = eventDate.recur(untilAt).every(weekdays).daysOfWeek();
+        recurrence = eventDate.recur().every(weekdays).daysOfWeek();
       } else {
-        recurrence = eventDate.recur(untilAt).every(1, repeat);
+        recurrence = eventDate.recur().every(1, repeat);
       }
       recurrence.fromDate(refDate);
       const nextDates = before ? recurrence.previous(1) : recurrence.next(1);

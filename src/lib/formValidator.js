@@ -5,7 +5,8 @@ import {
   CANT_REPEAT,
   INVALID_START,
   WRONG_TIME,
-  DURATION_TOO_SHORT
+  DURATION_TOO_SHORT,
+  SHORT_UNTIL
 } from './errorMessages';
 
 export const canRepeat = ({ repeat, endAt, startAt }) => {
@@ -16,6 +17,7 @@ export const canRepeat = ({ repeat, endAt, startAt }) => {
 export function isEventValid(event) {
   const startAt = Date.parse(event.startAt);
   const endAt = Date.parse(event.endAt);
+  const untilAt = event.until && Date.parse(event.until);
 
   let validity = true
   if (!canRepeat(event)) {
@@ -29,6 +31,9 @@ export function isEventValid(event) {
     validity = false;
   } else if ((endAt - startAt) < FIVE_MINUTES) {
     Alert.alert('Too short', DURATION_TOO_SHORT);
+    validity = false;
+  } else if (untilAt && (untilAt < endAt)) {
+    Alert.alert("Until date", SHORT_UNTIL);
     validity = false;
   }
   return validity;

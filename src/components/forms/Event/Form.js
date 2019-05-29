@@ -298,6 +298,7 @@ export default class Form extends React.Component {
               {
                 (values.until || (values.repeat !== frequency[0].id && !values.forever)) && (
                   <DateTimeInput
+                    noMin
                     label="Repeat Until"
                     value={values.until}
                     onChangeDate={(date) => setFieldValue('until', date)}
