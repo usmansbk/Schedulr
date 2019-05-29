@@ -254,7 +254,7 @@ export default class Form extends React.Component {
                     setFieldValue('repeat', itemValue);
                     if (values.until) {
                       const recur = getRecurrence(itemValue);
-                      setFieldValue('until', moment(values.startAt).add(2, recur).toISOString());
+                      setFieldValue('until', moment(values.startAt).add(1, recur).toISOString());
                     } else {
                       setFieldValue('forever',  (itemValue !== frequency[0].id));
                     }
