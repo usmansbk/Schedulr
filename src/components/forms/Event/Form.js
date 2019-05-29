@@ -285,8 +285,6 @@ export default class Form extends React.Component {
                       onPress={() => {
                         setFieldValue('forever', !values.forever);
                         if (values.forever) {
-                          setFieldValue('until', moment(values.startAt).add(1, 'year').toISOString());
-                        } else {
                           setFieldValue('until', null);
                         }
                       }}
@@ -296,7 +294,7 @@ export default class Form extends React.Component {
                 )
               }
               {
-                (values.until || (values.repeat !== frequency[0].id && !values.forever)) && (
+                (values.repeat !== frequency[0].id && !values.forever) && (
                   <DateTimeInput
                     noMin
                     label="Repeat Until"
