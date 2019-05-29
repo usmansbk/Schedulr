@@ -26,7 +26,7 @@ export default ({
         name={avatarName}
         src={src}
         size={size}
-        component={(props) => <CachedImage {...props} size={size} />}
+        component={(props) => <CachedImage {...props} size={size} name={avatarName} />}
       />
     </TouchableRipple>
   )

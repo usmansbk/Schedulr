@@ -10,6 +10,7 @@ export default (props) => <CachedImage
   loadingIndicator={LoadingIndicator}
   activityIndicatorProps={{
     size: props.size,
+    name: props.name
   }}
   {...props}
 />;

@@ -1,16 +1,11 @@
 import React from 'react';
-import { View } from 'react-native';
-import colors from 'config/colors';
+import UserAvatar from 'react-native-user-avatar';
 
-export default (props) => {
-  const SIZE = props.size;
-
+export default ({ size, name }) => {
   return (
-    <View style={{
-      backgroundColor: colors.image_loading,
-      borderRadius: SIZE / 2,
-      height: SIZE,
-      width: SIZE
-    }}/>
+    <UserAvatar
+      name={name}
+      size={size}
+    />
   );
 };
