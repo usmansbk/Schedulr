@@ -20,7 +20,7 @@ import { GoogleOAuth } from 'helpers';
 
 console.disableYellowBox = true;
 
-// window.LOG_LEVEL = 'DEBUG';
+window.LOG_LEVEL = 'DEBUG';
 
 GoogleSignin.configure({
   webClientId: env.WEB_CLIENT_ID,

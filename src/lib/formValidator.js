@@ -1,37 +1,42 @@
 import { Alert } from 'react-native';
-import { repeatLength, FIVE_MINUTES } from './time';
-import { ONE_TIME_EVENT } from './constants';
+import moment from 'moment';
+import { repeatLength, FIVE_MINUTES } from 'lib/time';
+import { ONE_TIME_EVENT } from 'lib/constants';
 import {
   CANT_REPEAT,
   INVALID_START,
-  WRONG_TIME,
   DURATION_TOO_SHORT,
   SHORT_UNTIL
-} from './errorMessages';
+} from 'lib/errorMessages';
 
 export const canRepeat = ({ repeat, endAt, startAt }) => {
   if (repeat === ONE_TIME_EVENT ) return true; // One-time event can be repeated
-  const duration = Math.abs(Date.parse(endAt) - Date.parse(startAt));
+  const duration = moment(endAt).diff(moment(startAt));
   return duration < repeatLength(repeat);
 };
 export function isEventValid(event) {
-  const startAt = Date.parse(event.startAt);
-  const endAt = Date.parse(event.endAt);
-  const untilAt = event.until && Date.parse(event.until);
+  const startAt = moment(event.startAt);
+  const endAt = moment(event.endAt);
+  const untilAt = event.until && moment(event.until);
 
   let validity = true
   if (!canRepeat(event)) {
     Alert.alert("Repeat", CANT_REPEAT);
     validity = false;
-  } else if (startAt > endAt) {
+  } else if (startAt.isAfter(endAt)) {
     Alert.alert('Duration', INVALID_START);
     validity = false;
-  } else if ((endAt - startAt) < FIVE_MINUTES) {
+  } else if (endAt.diff(startAt) < FIVE_MINUTES) {
     Alert.alert('Too short', DURATION_TOO_SHORT);
     validity = false;
-  } else if (untilAt && (untilAt < endAt)) {
-    Alert.alert("Until date", SHORT_UNTIL);
-    validity = false;
+  } else if (untilAt) {
+    const rLength = repeatLength(event.repeat);
+    const tail = moment.duration(rLength);
+    const secondTime = endAt.clone().add(tail, 'milliseconds');
+    if (secondTime.isAfter(untilAt)) {
+      Alert.alert("Until date", SHORT_UNTIL);
+      validity = false;
+    }
   }
   return validity;
 }

@@ -5,10 +5,10 @@ import numeral from 'numeral';
 import capitalizr, { decapitalize } from './capitalizr';
 
 export const SECOND = 1000;
-export const ONE_MINUTE = 60 * SECOND;
-export const ONE_HOUR = 60 * ONE_MINUTE;
-export const ONE_DAY = 24 * ONE_HOUR;
-export const ONE_WEEK = 7 * ONE_DAY;
+export const ONE_MINUTE = moment.duration(1, 'minute').asMilliseconds();
+export const ONE_HOUR = moment.duration(1, 'hour').asMilliseconds();
+export const ONE_DAY = moment.duration(1, 'day').asMilliseconds();
+export const ONE_WEEK = moment.duration(1, 'week').asMilliseconds();
 
 export const FIVE_MINUTES = 5 * ONE_MINUTE;
 export const TEN_MINUTES = 2 * FIVE_MINUTES;
@@ -21,10 +21,6 @@ const DAY_FORMAT = 'dddd';
 const NEXT_LAST_FORMAT = 'dddd, Do';
 
 const DAYS_IN_WEEK = 7;
-const TIME_FORMAT = 'hh:mm:ss';
-  
-const dayStart = moment('06:30:00', TIME_FORMAT);
-const dayEnd = moment('19:00:00', TIME_FORMAT);
 
 const headingCalendarFormats = {
   sameDay: '[Today]',
@@ -64,21 +60,8 @@ export const formatDate = (startAt, endAt, allDay) => {
   }); 
 }
 
-const getIteration = (repeat) => {
-  switch(repeat) {
-    case 'DAILY': return 'days';
-    case 'WEEKDAYS': return 'weekdays';
-    case 'WEEKLY': return 'weeks';
-    case 'MONTHLY': return 'months';
-    case 'YEARLY': return 'years';
-    default: return 'hours';
-  }
-}
-
 export const getNextDate = (event) => {
-  const { startAt, endAt, repeat } = event;
-  // const iter = moment(startAt).twix(endAt).iterate(getIteration(repeat));
-  // if (iter.hasNext()) return iter.next().format();
+  const { startAt, endAt } = event;
   return moment(startAt).twix(endAt).format();
 }
 
@@ -123,6 +106,13 @@ export function getRepeatLabel(id, date) {
   }
 }
 
-export function isDayTime() {
-  return moment().isBetween(dayStart, dayEnd);
+export function getRecurrence(repeat) {
+  const val = repeat.toLowerCase();
+  switch (val) {
+    case 'daily': return 'days';
+    case 'weekly': case 'weekdays': return 'weeks';
+    case 'monthly': return 'months';
+    case 'yearly': return 'years';
+    default: return 'seconds';
+  }
 }

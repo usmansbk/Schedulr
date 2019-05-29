@@ -25,7 +25,7 @@ import {
   canRepeat
 } from 'lib/formValidator';
 import { CANT_REPEAT } from 'lib/errorMessages';
-import { getRepeatLabel } from 'lib/time';
+import { getRepeatLabel, getRecurrence } from 'lib/time';
 import formSchema from './schema';
 import eventTypes from './types';
 import frequency from './frequency';
@@ -252,7 +252,12 @@ export default class Form extends React.Component {
                   itemStyle={styles.pickerItem}
                   onValueChange={itemValue => {
                     setFieldValue('repeat', itemValue);
-                    setFieldValue('forever',  (itemValue !== frequency[0].id));
+                    if (values.until) {
+                      const recur = getRecurrence(itemValue);
+                      setFieldValue('until', moment(values.startAt).add(2, recur).toISOString());
+                    } else {
+                      setFieldValue('forever',  (itemValue !== frequency[0].id));
+                    }
                   }}
                 >
                   {
@@ -283,9 +288,14 @@ export default class Form extends React.Component {
                     <RadioButton
                       value='Forever'
                       onPress={() => {
-                        setFieldValue('forever', !values.forever);
-                        if (values.forever) {
+                        const prevValue = values.forever;
+                        const newValue = !prevValue;
+                        setFieldValue('forever', newValue);
+                        if (newValue) {
                           setFieldValue('until', null);
+                        } else {
+                          const recur = getRecurrence(values.repeat);
+                          setFieldValue('until', moment(values.startAt).add(2, recur).toISOString());
                         }
                       }}
                       status={values.forever ? 'checked' : 'unchecked'}
