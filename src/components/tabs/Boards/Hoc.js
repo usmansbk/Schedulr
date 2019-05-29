@@ -13,12 +13,12 @@ export default graphql(gql(listAllBoards), {
     fetchPolicy: 'cache-first',
     notifyOnNetworkStatusChange: true,
     onError: error => {
+      SimpleToast.show('Failed to fetch updates', SimpleToast.SHORT);
       analytics({
         component: alias,
         logType: 'listAllBoardsQuery',
         error
       });
-      SimpleToast.show('Failed to fetch updates', SimpleToast.SHORT);
       Logger.debug(error.message);
     }
   },
@@ -26,14 +26,7 @@ export default graphql(gql(listAllBoards), {
     loading: data.loading || data.networkStatus === 4,
     boards: data && data.listAllBoards && data.listAllBoards.items || [],
     error: data.error && !data.listAllBoards,
-    onRefresh: async () => {
-      try {
-        await data.refetch()
-      } catch(error) {
-        SimpleToast.show('Failed to refresh boards', SimpleToast.SHORT);
-        Logger.debug(error.message);
-      }
-    },
+    onRefresh: async () => await data.refetch(),
     ...ownProps
   })
 })(Boards);

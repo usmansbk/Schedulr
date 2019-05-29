@@ -35,11 +35,7 @@ export default compose(
       loading: data.loading || data.networkStatus === 4,
       error: data.error,
       onRefresh: async () => {
-        try {
-          await data.refetch();
-        } catch (error) {
-          SimpleToast.show('Refresh failed', SimpleToast.SHORT);
-        }
+        await data.refetch();
       },
       comments: data && data.listComments && data.listComments.items && data.listComments.items || [],
       nextToken: data && data.listComments && data.listComments.nextToken,

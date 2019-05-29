@@ -16,12 +16,12 @@ export default compose(
       const id = props.navigation.getParam('id');
       return ({
         onError: error => {
+          SimpleToast.show('Failed to create event', SimpleToast.SHORT);
           analytics({
             component: alias,
             logType: 'getEventQuery',
             error
           });
-          SimpleToast.show('Failed to create event', SimpleToast.SHORT);
           Logger.debug(error.message);
         },
         variables: {

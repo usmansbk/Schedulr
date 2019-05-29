@@ -16,12 +16,12 @@ export default compose(
       fetchPolicy: 'cache-first',
       notifyOnNetworkStatusChange: true,
       onError: error => {
+        SimpleToast.show('Failed to fetch updates', SimpleToast.SHORT);
         analytics({
           component: alias,
           logType: 'listAllEventsQuery',
           error
         });
-        SimpleToast.show('Failed to fetch updates', SimpleToast.SHORT);
         Logger.debug(error.message);
       }
     },
@@ -31,12 +31,7 @@ export default compose(
       nextToken: data && data.listAllEvents && data.listAllEvents.nextToken,
       error: data.error && !data.listAllEvents,
       onRefresh: async () => {
-        try {
-          await data.refetch()
-        } catch(error) {
-          SimpleToast.show('Failed to refresh events', SimpleToast.SHORT);
-          Logger.debug(error.message);
-        }
+        await data.refetch();
       },
       ...ownProps
     })

@@ -15,21 +15,20 @@ export default graphql(gql(getBoard), {
     },
     notifyOnNetworkStatusChange: true,
     fetchPolicy: 'cache-first',
-    onError: error => analytics({
-      component: alias,
-      logType: 'getBoardQuery',
-      error
-    })
+    onError: error => {
+      SimpleToast.show('Failed to get calendar', SimpleToast.SHORT);
+      analytics({
+        component: alias,
+        logType: 'getBoardQuery',
+        error
+      });
+    }
   }),
   props: ({ data, ownProps }) => ({
     loading: data.loading || data.networkStatus === 4,
     error: data.error,
     onRefresh: async () => {
-      try {
-        await data.refetch()
-      } catch(error) {
-        SimpleToast.show('Refresh failed', SimpleToast.SHORT);
-      }
+      await data.refetch();
     },
     board: data && data.getBoard,
     ...ownProps,
