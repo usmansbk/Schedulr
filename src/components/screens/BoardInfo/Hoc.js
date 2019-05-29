@@ -29,7 +29,11 @@ export default graphql(gql(getBoard), {
     loading: data.loading || data.networkStatus === 4,
     error: data.error,
     onRefresh: async () => {
-      await data.refetch();
+      try {
+        await data.refetch();
+      } catch (error) {
+        logger.debug(error.message);
+      }
     },
     board: data && data.getBoard,
     ...ownProps,

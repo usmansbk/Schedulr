@@ -29,7 +29,13 @@ export default graphql(gql(getUser), {
     loading: data.loading,
     refreshing: data.networkStatus === 4,
     error: data.error,
-    onRefresh: () => data.refetch(),
+    onRefresh: async () => {
+      try {
+        await data.refetch();
+      } catch (error) {
+        logger.debug(error.message);
+      }
+    },
     user: data && data.getUser,
     ...ownProps,
   })

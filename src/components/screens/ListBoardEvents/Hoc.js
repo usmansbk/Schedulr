@@ -51,7 +51,7 @@ export default compose(
       },
       onError: error => {
         SimpleToast.show('Connection error', SimpleToast.SHORT);
-        logger.show(error.message);
+        logger.debug(error.message);
         analytics({
           name: 'list_board_events',
           alias,
@@ -62,6 +62,13 @@ export default compose(
     props: ({ data, ownProps}) => ({
       loadingEvents: data.loading || data.networkStatus === 4,
       loadingEventsError: data.error,
+      onRefresh: async () => {
+        try {
+          await data.refetch();
+        } catch (error) {
+          logger.debug(error.message);
+        }
+      },
       events: (
         data && data.listBoardEvents &&
         data.listBoardEvents.events &&

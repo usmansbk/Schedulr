@@ -32,7 +32,11 @@ export default graphql(gql(getEvent), {
     loading: data.loading || data.networkStatus === 4,
     error: data.error,
     onRefresh: async () => {
-      await data.refetch();
+      try {
+        await data.refetch();
+      } catch (error) {
+        logger.debug(error.message);
+      }
     },
     event: data && data.getEvent,
     ...ownProps,

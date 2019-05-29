@@ -32,7 +32,13 @@ export default graphql(gql(listBoardFollowers), {
     nextToken: data && data.listFollowers && data.listFollowers.nextToken,
     loading: data.loading || data.networkStatus === 4,
     error: data.error,
-    onRefresh: () => data.refetch(),
+    onRefresh: async () => {
+      try {
+        await data.refetch();
+      } catch (error) {
+        logger.debug(error.message);
+      }
+    },
     fetchMoreFollowers: (nextToken=null, limit=LIMIT) => data.fetchMore({
       variables: {
         nextToken,

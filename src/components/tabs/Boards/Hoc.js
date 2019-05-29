@@ -26,7 +26,13 @@ export default graphql(gql(listAllBoards), {
     loading: data.loading || data.networkStatus === 4,
     boards: data && data.listAllBoards && data.listAllBoards.items || [],
     error: data.error && !data.listAllBoards,
-    onRefresh: () => data.refetch(),
+    onRefresh: async () => {
+      try {
+        await data.refetch();
+      } catch (error) {
+        logger.debug(error.message);
+      }
+    },
     ...ownProps
   })
 })(Boards);

@@ -35,7 +35,13 @@ export default compose(
       eventId: ownProps.navigation.getParam('id'),
       loading: data.loading || data.networkStatus === 4,
       error: data.error,
-      onRefresh: () => data.refetch(),
+      onRefresh: async () => {
+        try {
+          await data.refetch();
+        } catch (error) {
+          logger.debug(error.message);
+        }
+      },
       comments: data && data.listComments && data.listComments.items && data.listComments.items || [],
       nextToken: data && data.listComments && data.listComments.nextToken,
       fetchMoreComments: (nextToken=null, limit=LIMIT) => data.fetchMore({

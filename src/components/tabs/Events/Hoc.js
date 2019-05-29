@@ -30,7 +30,13 @@ export default compose(
       events: data && data.listAllEvents && data.listAllEvents.items || [],
       nextToken: data && data.listAllEvents && data.listAllEvents.nextToken,
       error: data.error && !data.listAllEvents,
-      onRefresh: () => data.refetch(),
+      onRefresh: async () => {
+        try {
+          await data.refetch();
+        } catch (error) {
+          logger.debug(error.message);
+        }
+      },
       ...ownProps
     })
   })
