@@ -7,6 +7,7 @@ import {
   listAllEvents,
   listBoardEvents
 } from 'mygraphql/queries';
+import { analytics } from 'config/logger';
 
 const alias = 'withBoardEventsContainer';
 
@@ -53,6 +54,11 @@ export default compose(
       variables: {
         id: props.id
       },
+      onError: error => analytics({
+        component: alias,
+        logType: 'listBoardEventsQuery',
+        error
+      })
     }),
     props: ({ data, ownProps}) => ({
       loadingEvents: data.loading || data.networkStatus === 4,

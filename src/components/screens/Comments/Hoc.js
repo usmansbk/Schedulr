@@ -1,6 +1,7 @@
 import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
 import Screen from './Screen';
+import { analytics } from 'config/logger';
 import { listEventComments } from 'mygraphql/queries';
 import { createComment } from 'mygraphql/mutations';
 import { createCommentResponse } from 'helpers/optimisticResponse';
@@ -20,7 +21,12 @@ export default compose(
         limit: LIMIT
       },
       fetchPolicy: 'cache-and-network',
-      onError: (e) => {
+      onError: (error) => {
+        analytics({
+          logType: 'listEventCommentsQuery',
+          component: alias,
+          error
+        });
         SimpleToast.show('Failed to fetch comments', SimpleToast.SHORT);
       },
     }),
@@ -63,6 +69,13 @@ export default compose(
   }),
   graphql(gql(createComment), {
     alias,
+    options: {
+      onError: error => analytics({
+        logType: 'createCommentMutation',
+        component: alias,
+        error
+      })
+    },
     props: ({ mutate, ownProps }) => ({
       onSubmit: (input) => mutate({
         variables: {

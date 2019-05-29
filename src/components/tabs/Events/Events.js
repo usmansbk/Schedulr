@@ -78,8 +78,6 @@ export default class Events extends React.Component {
       stores
     } = this.props;
 
-    if (error) SimpleToast.show('Failed to load events', SimpleToast.SHORT);
-
     return (
       <>
         <List

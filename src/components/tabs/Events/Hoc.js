@@ -1,18 +1,29 @@
 import { graphql, compose } from 'react-apollo';
 import SimpleToast from 'react-native-simple-toast';
-// import { Analytics } from 'aws-amplify';
 import { withNavigationFocus } from 'react-navigation';
 import gql from 'graphql-tag';
 import Events from './Events';
 import { listAllEvents } from 'mygraphql/queries';
+import Logger, { analytics } from 'config/logger';
+
+const alias = 'withEventsContainer';
 
 export default compose(
   withNavigationFocus,
   graphql(gql(listAllEvents), {
-    alias: 'withEventsContainer',
+    alias,
     options: {
       fetchPolicy: 'cache-first',
       notifyOnNetworkStatusChange: true,
+      onError: error => {
+        analytics({
+          component: alias,
+          logType: 'listAllEventsQuery',
+          error
+        });
+        SimpleToast.show('Failed to fetch updates', SimpleToast.SHORT);
+        Logger.debug(error.message);
+      }
     },
     props: ({ data, ownProps}) => ({
       loading: data.loading || data.networkStatus === 4,
@@ -23,15 +34,8 @@ export default compose(
         try {
           await data.refetch()
         } catch(error) {
-          SimpleToast.show(error.message, SimpleToast.SHORT);
-          // Log error if it occurs multiple times
-          // Analytics.record({
-          //   name: e.name,
-          //   attributes: {
-          //     message: e.message,
-          //     component: 'EventsContainer'
-          //   }
-          // })
+          SimpleToast.show('Failed to refresh events', SimpleToast.SHORT);
+          Logger.debug(error.message);
         }
       },
       ...ownProps

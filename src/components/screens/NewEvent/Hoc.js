@@ -2,8 +2,10 @@ import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
 import Screen from './Screen';
 import { createEvent } from 'mygraphql/mutations';
+import Logger, { analytics } from 'config/logger';
 import { listAllEvents, listAllBoards, getEvent } from 'mygraphql/queries';
 import { createEventResponse } from 'helpers/optimisticResponse';
+import SimpleToast from 'react-native-simple-toast';
 
 const alias =  'withNewEventContainer';
 
@@ -13,6 +15,15 @@ export default compose(
     options: props => {
       const id = props.navigation.getParam('id');
       return ({
+        onError: error => {
+          analytics({
+            component: alias,
+            logType: 'getEventQuery',
+            error
+          });
+          SimpleToast.show('Failed to create event', SimpleToast.SHORT);
+          Logger.debug(error.message);
+        },
         variables: {
           id
         },
@@ -31,6 +42,13 @@ export default compose(
   }),
   graphql(gql(createEvent), {
     alias,
+    options: {
+      onError: error => analytics({
+        logType: 'createEventMutation',
+        error,
+        component: alias
+      })
+    },
     props: ({ mutate, ownProps }) => ({
       onSubmit: (input) => mutate({
         variables: {
@@ -56,6 +74,13 @@ export default compose(
     alias,
     options: {
       fetchPolicy: 'cache-only',
+      onError: (error) => {
+        analytics({
+          logType: 'listAllBoardsQuery',
+          component: alias,
+          error
+        });
+      }
     },
     props: ({ data, ownProps }) => {
       const id = ownProps.navigation.getParam('boardId');

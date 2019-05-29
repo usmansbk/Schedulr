@@ -1,15 +1,26 @@
 import { graphql } from 'react-apollo';
 import SimpleToast from 'react-native-simple-toast';
-// import { Analytics } from 'aws-amplify';
 import gql from 'graphql-tag';
 import Boards from './Boards';
 import { listAllBoards } from 'mygraphql/queries';
+import Logger, { analytics } from 'config/logger';
+
+const alias = 'withBoardsContainer';
 
 export default graphql(gql(listAllBoards), {
-  alias: 'withBoardsContainer',
+  alias,
   options: {
     fetchPolicy: 'cache-first',
     notifyOnNetworkStatusChange: true,
+    onError: error => {
+      analytics({
+        component: alias,
+        logType: 'listAllBoardsQuery',
+        error
+      });
+      SimpleToast.show('Failed to fetch updates', SimpleToast.SHORT);
+      Logger.debug(error.message);
+    }
   },
   props: ({ data, ownProps}) => ({
     loading: data.loading || data.networkStatus === 4,
@@ -19,15 +30,8 @@ export default graphql(gql(listAllBoards), {
       try {
         await data.refetch()
       } catch(error) {
-        SimpleToast.show(error.message, SimpleToast.SHORT);
-        // Log error if it occurs multiple times
-        // Analytics.record({
-        //   name: e.name,
-        //   attributes: {
-        //     message: e.message,
-        //     component: 'BoardsContainer'
-        //   }
-        // })
+        SimpleToast.show('Failed to refresh boards', SimpleToast.SHORT);
+        Logger.debug(error.message);
       }
     },
     ...ownProps

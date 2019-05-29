@@ -52,15 +52,15 @@ export default class LoginScreen extends React.Component {
     } catch (error) {
       SimpleToast.show('Login failed: ' + error.message, SimpleToast.SHORT);
       this.setState({ loading: false });
-      // Analytics.record({
-      //   name: 'login_error',
-      //   attributes: {
-      //     errorName: error.name,
-      //     loginProvider: provider,
-      //     errorMessage: error.message,
-      //     component: 'LoginScreenContainer'
-      //   }
-      // });
+      Analytics.record({
+        name: 'login_error',
+        attributes: {
+          errorName: error.name,
+          loginProvider: provider,
+          errorMessage: error.message,
+          component: 'LoginScreenContainer'
+        }
+      });
     }
   };
 
