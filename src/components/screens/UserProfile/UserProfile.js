@@ -7,65 +7,69 @@ import {
 } from 'react-native';
 import { Headline, TouchableRipple } from 'react-native-paper';
 import { CachedImage } from 'react-native-cached-image';
+import { inject, observer } from 'mobx-react/native';
 import UserAvatar from 'components/common/UserAvatar';
 import Loading from 'components/common/Loading';
 import Error from 'components/common/Error';
 import numeral from 'numeral';
 import colors from 'config/colors';
 
-export default ({
-  navigation,
-  loading,
-  error,
-  onRefresh,
-  refreshing,
-  user
-}) => {
-  if (loading && !user) return <Loading />;
-  if (error && !user) return <Error onRefresh={onRefresh} loading={refreshing} />;
-
-  const {
-    id,
-    pictureUrl,
-    name,
-    followingCount=0,
-    createdCount=0
-  } = user;
-
-  return (
-    <ScrollView contentContainerStyle={styles.header}>
-      <CachedImage
-        source={{uri: pictureUrl}}
-        resizeMode="cover"
-        style={styles.backgroundImage}
-      />
-      <View style={styles.image}>
-        <UserAvatar
-          src={pictureUrl}
-          size={AVATAR_HEIGHT}
-          name={name}
+export default inject('stores')(observer(
+  ({
+    navigation,
+    loading,
+    error,
+    onRefresh,
+    refreshing,
+    user,
+    stores
+  }) => {
+    if (loading && !user) return <Loading />;
+    if (error && !user) return <Error onRefresh={onRefresh} loading={refreshing} />;
+  
+    const {
+      id,
+      pictureUrl,
+      name,
+      followingCount=0,
+      createdCount=0
+    } = user;
+  
+    return (
+      <ScrollView contentContainerStyle={styles.header}>
+        <CachedImage
+          source={{uri: pictureUrl}}
+          resizeMode="cover"
+          style={styles.backgroundImage}
         />
-      </View>
-      <Headline style={styles.headline}>{name}</Headline>
-      <TouchableRipple onPress={() => navigation.push('UserBoards', {
-        id,
-        name,
-        profile: navigation.getParam('profile', false)
-      })}>
-        <View style={styles.countRow}>
-          <View style={styles.item}>
-            <Text style={styles.count}>{numeral(followingCount).format('0a')}</Text>
-            <Text style={styles.label}>Following</Text>
-          </View>
-          <View style={styles.item}>
-            <Text style={styles.count}>{numeral(createdCount).format('0a')}</Text>
-            <Text style={styles.label}>Created</Text>
-          </View>
+        <View style={styles.image}>
+          <UserAvatar
+            src={pictureUrl}
+            size={AVATAR_HEIGHT}
+            name={name}
+          />
         </View>
-      </TouchableRipple>
-    </ScrollView>
-  );
-}
+        <Headline style={styles.headline}>{name}</Headline>
+        <TouchableRipple onPress={() => navigation.push('UserBoards', {
+          id,
+          name,
+          profile: stores.me.id === id,
+        })}>
+          <View style={styles.countRow}>
+            <View style={styles.item}>
+              <Text style={styles.count}>{numeral(followingCount).format('0a')}</Text>
+              <Text style={styles.label}>Following</Text>
+            </View>
+            <View style={styles.item}>
+              <Text style={styles.count}>{numeral(createdCount).format('0a')}</Text>
+              <Text style={styles.label}>Created</Text>
+            </View>
+          </View>
+        </TouchableRipple>
+      </ScrollView>
+    );
+  }
+))
 
 const AVATAR_HEIGHT = 120;
 
