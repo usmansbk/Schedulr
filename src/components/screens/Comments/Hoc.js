@@ -1,15 +1,16 @@
 import { graphql, compose } from 'react-apollo';
+import SimpleToast from 'react-native-simple-toast';
 import gql from 'graphql-tag';
 import Screen from './Screen';
 import logger, { analytics } from 'config/logger';
 import { listEventComments } from 'mygraphql/queries';
 import { createComment } from 'mygraphql/mutations';
 import { createCommentResponse } from 'helpers/optimisticResponse';
-import SimpleToast from 'react-native-simple-toast';
+import { COMMENTS_LIMIT } from 'lib/constants';
 
 const alias = 'withCommentsScreen';
 
-const LIMIT = 15;
+const LIMIT = COMMENTS_LIMIT;
 
 export default compose(
   graphql(gql(listEventComments), {

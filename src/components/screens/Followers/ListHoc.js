@@ -4,8 +4,9 @@ import SimpleToast from 'react-native-simple-toast';
 import List from 'components/lists/Followers';
 import { listBoardFollowers } from 'mygraphql/queries';
 import logger, { analytics } from 'config/logger';
+import { COMMENTS_LIMIT } from 'lib/constants';
 
-const LIMIT = 15;
+const LIMIT = COMMENTS_LIMIT;
 const alias = 'withBoardFollowers';
 
 export default graphql(gql(listBoardFollowers), {

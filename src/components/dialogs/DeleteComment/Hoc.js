@@ -3,7 +3,7 @@ import gql from 'graphql-tag';
 import Dialog from './Dialog';
 import { listEventComments } from 'mygraphql/queries';
 import { deleteComment } from 'mygraphql/mutations';
-import { deleteCommentResponse } from '../../../helpers/optimisticResponse';
+import { deleteCommentResponse } from 'helpers/optimisticResponse';
 
 export default graphql(gql(deleteComment), {
   props: ({ mutate, ownProps }) => ({
