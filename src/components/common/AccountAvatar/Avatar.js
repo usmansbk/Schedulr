@@ -12,7 +12,7 @@ class Avatar extends React.Component {
   onPress = () => {
     this.props.navigation.navigate('UserProfile', {
       id: this.props.stores.me.id,
-      profile: true
+      myProfile: true
     })
   }
 

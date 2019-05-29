@@ -53,7 +53,7 @@ export default inject('stores')(observer(
         <TouchableRipple onPress={() => navigation.push('UserBoards', {
           id,
           name,
-          profile: stores.me.id === id,
+          myProfile: stores.me.id === id,
         })}>
           <View style={styles.countRow}>
             <View style={styles.item}>

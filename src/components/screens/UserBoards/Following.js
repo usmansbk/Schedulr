@@ -98,7 +98,7 @@ class FollowingBoards extends Component{
 export default compose(
   graphql(gql(listAllBoards), {
     alias,
-    skip: props => !props.navigation.getParam('profile'),
+    skip: props => !props.navigation.getParam('myProfile'),
     options: {
       fetchPolicy: 'cache-only'
     },
@@ -114,7 +114,7 @@ export default compose(
   }),
   graphql(gql(followingBoardsQuery), {
     alias,
-    skip: props => props.navigation.getParam('profile'),
+    skip: props => props.navigation.getParam('myProfile'),
     options: props => ({
       variables: {
         id: props.navigation.getParam('id')
