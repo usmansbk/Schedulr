@@ -4,15 +4,13 @@ import {
   Text,
   IconButton
 } from 'react-native-paper';
-import { View, InteractionManager } from 'react-native';
+import { View } from 'react-native';
 import { inject, observer } from 'mobx-react/native';
 
 @inject('stores')
 @observer
 export default class IconBagdeButton extends React.Component {
-  _onPress = () => {
-    InteractionManager.runAfterInteractions(this.props.onPress);
-  };
+  _onPress = () => this.props.onPress();
   
   render() {
     const {
