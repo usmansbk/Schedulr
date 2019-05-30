@@ -125,10 +125,14 @@ export default class Form extends React.Component {
           </Appbar.Header>
           <ScrollView
             style={styles.container}
-            refreshControl={<RefreshControl
-            refreshing={false}
-            onRefresh={() => resetForm()}
-          />}>
+            refreshControl={
+              <RefreshControl
+                refreshing={false}
+                onRefresh={() => resetForm()}
+                colors={[stores.themeStore.colors.primary]}
+                progressBackgroundColor={stores.themeStore.colors.bg}
+              />
+            }>
             <View style={styles.form}>
               <TextInput
                 placeholder="Calendar name"

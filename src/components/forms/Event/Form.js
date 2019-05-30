@@ -152,10 +152,14 @@ export default class Form extends React.Component {
             >{ edit ? 'Save' : 'Create'}</Button>
           </Appbar.Header>
           <ScrollView
-            refreshControl={<RefreshControl
-              refreshing={false}
-              onRefresh={() => resetForm()}
-            />}
+            refreshControl={
+              <RefreshControl
+                refreshing={false}
+                onRefresh={() => resetForm()}
+                colors={[stores.themeStore.colors.primary]}
+                progressBackgroundColor={stores.themeStore.colors.bg}
+              />
+            }
             style={styles.container}
           >
             <View style={styles.form}>
