@@ -83,6 +83,7 @@ class List extends Component {
             onRefresh={onRefresh}
             refreshing={loading}
             colors={[colors.primary]}
+            progressBackgroundColor={colors.bg}
           />
         }
         onRefresh={onRefresh}

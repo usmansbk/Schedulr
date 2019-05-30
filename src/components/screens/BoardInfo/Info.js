@@ -126,7 +126,12 @@ export default class Info extends React.Component {
           }
         </Appbar.Header>
         <ScrollView
-          refreshControl={<RefreshControl onRefresh={onRefresh} refreshing={loading} />}
+          refreshControl={<RefreshControl
+            onRefresh={onRefresh}
+            refreshing={loading}
+            color={[colors.primary]}
+            progressBackgroundColor={colors.bg}
+          />}
           style={styles.container}>
           <View style={styles.container}>
             <View style={styles.avatar}>

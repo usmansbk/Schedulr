@@ -86,6 +86,7 @@ class List extends Component {
             onRefresh={onRefresh}
             refreshing={loading}
             colors={[stores.themeStore.colors.primary]}
+            progressBackgroundColor={stores.themeStore.colors.bg}
           />
         }
         onRefresh={onRefresh}

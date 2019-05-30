@@ -101,6 +101,7 @@ class List extends React.Component {
             refreshing={loading}
             onRefresh={onRefresh}
             colors={[stores.themeStore.colors.primary]}
+            progressBackgroundColor={stores.themeStore.colors.bg}
           />
         }
       />

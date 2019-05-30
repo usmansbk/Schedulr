@@ -277,6 +277,7 @@ export default class List extends React.Component {
             onRefresh={this._onRefresh}
             refreshing={loading || loadingMore || loadingPrev}
             colors={[stores.themeStore.colors.primary]}
+            progressBackgroundColor={stores.themeStore.colors.bg}
           />
         }
         scrollEventThrottle={16}
