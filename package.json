@@ -30,6 +30,7 @@
     "react": "16.6.3",
     "react-apollo": "^2.3.2",
     "react-native": "0.58.5",
+    "react-native-actionsheet": "^2.4.2",
     "react-native-cached-image": "^1.4.3",
     "react-native-fbsdk": "^0.8.0",
     "react-native-geolocation-service": "^2.0.0",
