@@ -129,7 +129,7 @@ export default class Info extends React.Component {
           refreshControl={<RefreshControl
             onRefresh={onRefresh}
             refreshing={loading}
-            color={[colors.primary]}
+            colors={[colors.primary]}
             progressBackgroundColor={colors.bg}
           />}
           style={styles.container}>
