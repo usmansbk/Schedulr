@@ -18,7 +18,7 @@ export default ({
     size={size}
     onPress={() => {
       const shareOptions = {
-        title: 'Invite via...',
+        title: 'Share event via...',
         subject: eventType,
         message: `${title}\n${eventType}\n${date}${address ? (' at ' + address) : ''}\n`,
         url: `${env.APP_URL}/event/${id}`
