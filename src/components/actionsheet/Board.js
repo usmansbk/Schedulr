@@ -1,6 +1,8 @@
 import React from 'react';
 import ActionSheet from 'react-native-actionsheet';
 import Share from 'react-native-share';
+import OpenDialog from 'components/dialogs/OpenBoard';
+import CloseDialog from 'components/dialogs/CloseBoard';
 import env from 'config/env';
 
 export default class EventAction extends React.Component {
@@ -26,14 +28,14 @@ export default class EventAction extends React.Component {
   _hideDialog = () => this.setState({ visibleDialog: null });
 
   _handleActionSheet = (index) => {
-    const { isAuthor } = this.props;
+    const { isAuthor, isClosed } = this.props;
     if (isAuthor) {
       switch (index) {
         case 0:
           this._handleShare();
           break;
-        case 2:
-          this.setState({ visibleDialog: 'cancel' });
+        case 1:
+          this.setState({ visibleDialog: isClosed ? 'open' : 'close' });
           break;
       }
     } else {
@@ -46,7 +48,8 @@ export default class EventAction extends React.Component {
   }
 
   render() {
-    const { 
+    const {
+      id,
       title,
       isAuthor,
       isClosed,
@@ -70,6 +73,16 @@ export default class EventAction extends React.Component {
         cancelButtonIndex={cancelButtonIndex}
         destructiveButtonIndex={destructiveButtonIndex}
         onPress={this._handleActionSheet}
+      />
+      <OpenDialog
+        id={id}
+        visible={visibleDialog === 'open' }
+        handleDismiss={this._hideDialog}
+      />
+      <CloseDialog
+        id={id}
+        visible={visibleDialog === 'close' }
+        handleDismiss={this._hideDialog}
       />
       </>
     )
