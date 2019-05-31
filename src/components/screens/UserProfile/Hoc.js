@@ -16,7 +16,6 @@ export default graphql(gql(getUser), {
     notifyOnNetworkStatusChange: true,
     fetchPolicy: 'cache-and-network',
     onError: error => {
-      SimpleToast.show('Connection error', SimpleToast.SHORT);
       logger.debug(error.message);
       analytics({
         name: 'user_profile',
