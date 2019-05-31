@@ -9,6 +9,7 @@ import {
 import { inject, observer } from 'mobx-react/native';
 import Avatar from 'components/common/UserAvatar';
 import Badge from 'components/common/Badge';
+import ActionSheet from 'components/actionsheet/Event';
 import { events } from 'lib/constants';
 
 
@@ -16,6 +17,9 @@ import { events } from 'lib/constants';
 @observer
 export default class Item extends React.Component {
   _onPress = () => this.props.onPressItem(this.props.id, this.props.startAt, this.props.endAt);
+  _showActionSheet = () => {
+    this.ActionSheet && this.ActionSheet.showActionSheet();
+  }
   _navigateToBoard = () => this.props.navigateToBoardEvents(this.props.boardId);
   shouldComponentUpdate = (nextProps) => {
     return (
@@ -37,7 +41,9 @@ export default class Item extends React.Component {
       status,
       eventType,
       pictureUrl,
-      stores
+      stores,
+      isStarred,
+      isAuthor
     } = this.props;
 
     const styles = stores.appStyles.eventsList;
@@ -47,6 +53,7 @@ export default class Item extends React.Component {
       <TouchableRipple
         onPress={this._onPress}
         style={styles.itemContainer}
+        onLongPress={this._showActionSheet}
       >
         <View useNativeDriver style={styles.itemContentSmall}>
           <View style={styles.left}>
@@ -70,6 +77,12 @@ export default class Item extends React.Component {
               <Caption>{duration ? duration + ' ' : ''}{eventType} {repeat}</Caption>
             </View>
           </View>
+          <ActionSheet
+            id={id}
+            isAuthor={isAuthor}
+            isStarred={isStarred}
+            ref={ref => this.ActionSheet = ref}
+          />
         </View>
       </TouchableRipple>
     );

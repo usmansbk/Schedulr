@@ -216,6 +216,8 @@ export default class List extends React.Component {
     repeat,
     board,
     allDay,
+    isStarred,
+    isAuthor
   }}) => (<Item
     id={id}
     title={title}
@@ -225,6 +227,8 @@ export default class List extends React.Component {
     repeat={parseRepeat(repeat)}
     time={getTime({ allDay, startAt, endAt })}
     status={getStatus({ isCancelled, cancelledDates, startAt, endAt})}
+    isStarred={isStarred}
+    isAuthor={isAuthor}
     boardId={board.id}
     duration={getDuration(startAt, endAt, allDay)}
     onPressItem={this._onPressItem}
