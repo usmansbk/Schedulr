@@ -217,6 +217,7 @@ export default class List extends React.Component {
     board,
     allDay,
     isStarred,
+    starsCount,
     isAuthor
   }}) => (<Item
     id={id}
@@ -228,6 +229,7 @@ export default class List extends React.Component {
     time={getTime({ allDay, startAt, endAt })}
     status={getStatus({ isCancelled, cancelledDates, startAt, endAt})}
     isStarred={isStarred}
+    starsCount={starsCount}
     isAuthor={isAuthor}
     boardId={board.id}
     duration={getDuration(startAt, endAt, allDay)}

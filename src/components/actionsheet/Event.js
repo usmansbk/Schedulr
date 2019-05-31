@@ -1,8 +1,13 @@
 import React from 'react';
 import ActionSheet from 'react-native-actionsheet';
+import SimpleToast from 'react-native-simple-toast';
+import gql from 'graphql-tag';
 import DeleteDialog from 'components/dialogs/DeleteEvent';
 import CancelDialog from 'components/dialogs/CancelEvent';
-import { ONE_TIME_EVENT } from 'lib/constants';
+import client from 'config/client';
+import { starEvent, unstarEvent } from 'mygraphql/mutations';
+// import { listAllEvents, getEvent } from 'mygraphql/queries';
+import { toggleStarButton } from 'helpers/optimisticResponse';
 
 export default class EventAction extends React.Component {
   state = {
@@ -13,12 +18,47 @@ export default class EventAction extends React.Component {
     this.actionSheet.show();
   };
 
+  _handleStar = () => {
+    const { isStarred, starsCount, id } = this.props;
+    const input = { id };
+    const prev = { isStarred, starsCount };
+    client.mutate({
+      mutation: gql(isStarred ? unstarEvent : starEvent),
+      variables: {
+        input
+      },
+      optimisticResponse: () => toggleStarButton(input, prev, isStarred ? 'unstarEvent' : 'starEvent'),
+      // update: isStarred ? undefined : (cache, { data: { starEvent } }) => {
+      //   const data = cache.readQuery({ query: gql(listAllEvents) });
+      //   const eventNode = cache.readQuery({
+      //    query: gql(getEvent),
+      //    variables: {
+      //      id
+      //    }
+      //   });
+      //   if (eventNode.getEvent) {
+      //     const event = Object.assign({}, eventNode.getEvent, starEvent);
+      //     data.listAllEvents.items = [
+      //       ...data.listAllEvents.items.filter(item => item.id !== starEvent.id),
+      //       event
+      //     ];
+      //     cache.writeQuery({ query: gql(listAllEvents), data });
+      //   }
+      // },
+    }).catch((error) => {
+      SimpleToast.show('error', error.message);
+    });
+  }
+
   _hideDialog = () => this.setState({ visibleDialog: null });
 
   _handleActionSheet = (index) => {
     const { isAuthor } = this.props;
     if (isAuthor) {
       switch (index) {
+        case 0:
+          this._handleStar();
+          break;
         case 1:
           this.setState({ visibleDialog: 'cancel' });
           break;

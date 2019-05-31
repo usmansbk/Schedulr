@@ -9,7 +9,7 @@ export default compose(
   graphql(gql(starEvent), {
     alias: 'withStarEvent',
     props: ({ mutate, ownProps }) => ({
-      onStarEvent: async (input, prev) => await mutate({
+      onStarEvent: (input, prev) => mutate({
         variables: {
           input
         },
@@ -38,7 +38,7 @@ export default compose(
   graphql(gql(unstarEvent), {
     alias: 'withUnstarEvent',
     props: ({ mutate, ownProps }) => ({
-      onUnstarEvent: async (input, prev) => await mutate({
+      onUnstarEvent: (input, prev) => mutate({
         variables: {
           input
         },

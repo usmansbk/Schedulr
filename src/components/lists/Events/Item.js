@@ -45,7 +45,8 @@ export default class Item extends React.Component {
       pictureUrl,
       stores,
       isStarred,
-      isAuthor
+      isAuthor,
+      starsCount,
     } = this.props;
 
     const styles = stores.appStyles.eventsList;
@@ -86,6 +87,7 @@ export default class Item extends React.Component {
             isStarred={isStarred}
             startAt={startAt}
             isRecurring={repeat}
+            starsCount={starsCount}
             ref={ref => this.ActionSheet = ref}
           />
         </View>
