@@ -18,22 +18,11 @@ import { formatDate } from 'lib/time';
 @observer
 export default class Item extends React.Component {
   _onPress = () => this.props.onPressItem(this.props.id, this.props.startAt, this.props.endAt);
-  _showActionSheet = () => {
+  _onLongPress = () => {
     this.ActionSheet && this.ActionSheet.showActionSheet();
   };
   _navigateToBoard = () => this.props.navigateToBoardEvents(this.props.boardId);
-  _handleEditEvent = () => {
-    const { id, startAt, endAt } = this.props;
-    this.props.navigateToEditEvent({
-      id,
-      refStartAt: startAt,
-      refEndAt: endAt
-    });
-  };
-  _handleNewEvent = () => {
-    const { id } = this.props;
-    this.props.navigateToNewEvent(id);
-  };
+
   shouldComponentUpdate = (nextProps) => {
     return (
       nextProps.title !== this.props.title ||
@@ -73,7 +62,7 @@ export default class Item extends React.Component {
       <TouchableRipple
         onPress={this._onPress}
         style={styles.itemContainer}
-        onLongPress={this._showActionSheet}
+        onLongPress={this._onLongPress}
       >
         <View useNativeDriver style={styles.itemContentSmall}>
           <View style={styles.left}>
@@ -110,8 +99,6 @@ export default class Item extends React.Component {
             isRecurring={repeat}
             starsCount={starsCount}
             ref={ref => this.ActionSheet = ref}
-            onEdit={this._handleEditEvent}
-            onNew={this._handleNewEvent}
           />
         </View>
       </TouchableRipple>
