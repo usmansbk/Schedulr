@@ -12,7 +12,8 @@ export default class EventAction extends React.Component {
     this.actionSheet.show();
   };
 
-  _handleShare = ({ id, name }) => {
+  _handleShare = () => {
+    const { id, name } = this.props;
     const shareOptions = {
       title: 'Share invite link via...',
       subject: 'Follow calendar to see latest events',
@@ -33,15 +34,12 @@ export default class EventAction extends React.Component {
           break;
         case 2:
           this.setState({ visibleDialog: 'cancel' });
-          break;s
+          break;
       }
     } else {
       switch(index) {
         case 0:
           this._handleShare();
-          break;
-        case 1:
-          this._handleStar();
           break;
       }
     }
@@ -51,11 +49,15 @@ export default class EventAction extends React.Component {
     const { 
       title,
       isAuthor,
+      isClosed,
     } = this.props;
     const { visibleDialog } = this.state;
 
     const options = ['Back'];
-    if (isAuthor) options.unshift('Cancel event');
+    options.unshift('Share invite link');
+    if (isAuthor) {
+      options.unshift(isClosed ? 'Open calendar' : 'Close calendar');
+    }
     const cancelButtonIndex = options.length - 1;
     const destructiveButtonIndex = isAuthor ? cancelButtonIndex - 1 : undefined;
 

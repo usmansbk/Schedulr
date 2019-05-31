@@ -36,7 +36,7 @@ export default class Button extends React.Component {
 
     return (
       <IconBadge
-        icon={`star${isStarred ? '' : '-border'}`}
+        icon={`bookmark${isStarred ? '' : '-border'}`}
         onPress={this._onContinue}
         size={size}
         color={isStarred ? activeColor : color}

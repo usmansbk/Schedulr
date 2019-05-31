@@ -65,6 +65,7 @@ export default class Item extends React.Component {
             id={id}
             title={name}
             isAuthor={isAuthor}
+            isClosed={isClosed}
             ref={ref => this.ActionSheet = ref}
           />
         </View>

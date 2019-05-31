@@ -31,7 +31,7 @@ const Home = createMaterialTopTabNavigator({
       } else if (routeName === 'Boards') {
         iconName = 'calendar-multiple';
       } else if (routeName === 'Starred') {
-        iconName = `star`;
+        iconName = `bookmark`;
       }
       return <Icon name={iconName} size={FONT_SIZE} color={tintColor} />
     }
