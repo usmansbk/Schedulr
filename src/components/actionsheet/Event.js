@@ -32,6 +32,7 @@ export default class EventAction extends React.Component {
   render() {
     const { 
       id,
+      title,
       isStarred,
       isAuthor,
       startAt,
@@ -49,6 +50,7 @@ export default class EventAction extends React.Component {
       <>
       <ActionSheet
         ref={ref => this.actionSheet = ref}
+        title={title}
         options={options}
         cancelButtonIndex={cancelButtonIndex}
         destructiveButtonIndex={destructiveButtonIndex}

@@ -81,6 +81,7 @@ export default class Item extends React.Component {
           </View>
           <ActionSheet
             id={id}
+            title={title}
             isAuthor={isAuthor}
             isStarred={isStarred}
             startAt={startAt}
