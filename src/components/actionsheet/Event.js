@@ -3,7 +3,6 @@ import ActionSheet from 'react-native-actionsheet';
 import SimpleToast from 'react-native-simple-toast';
 import Share from 'react-native-share';
 import gql from 'graphql-tag';
-import DeleteDialog from 'components/dialogs/DeleteEvent';
 import CancelDialog from 'components/dialogs/CancelEvent';
 import client from 'config/client';
 import { starEvent, unstarEvent } from 'mygraphql/mutations';
@@ -84,17 +83,8 @@ export default class EventAction extends React.Component {
           this._handleStar();
           break;
         case 2:
-          this.props.onNew();
-          break;
-        case 3:
-          this.props.onEdit();
-          break;
-        case 4:
           this.setState({ visibleDialog: 'cancel' });
-          break;
-        case 5:
-          this.setState({ visibleDialog: 'delete' });
-          break;
+          break;s
       }
     } else {
       switch(index) {
@@ -115,12 +105,12 @@ export default class EventAction extends React.Component {
       isStarred,
       isAuthor,
       startAt,
-      isRecurring
+      isRecurring,
     } = this.props;
     const { visibleDialog } = this.state;
 
     const options = ['Back'];
-    if (isAuthor) options.unshift('New event', 'Edit event', 'Cancel event', 'Delete event');
+    if (isAuthor) options.unshift('Cancel event');
     options.unshift('Share via', isStarred ? 'Unstar event' : 'Star event');
     const cancelButtonIndex = options.length - 1;
     const destructiveButtonIndex = isAuthor ? cancelButtonIndex - 1 : undefined;
@@ -134,11 +124,6 @@ export default class EventAction extends React.Component {
         cancelButtonIndex={cancelButtonIndex}
         destructiveButtonIndex={destructiveButtonIndex}
         onPress={this._handleActionSheet}
-      />
-      <DeleteDialog
-        id={id}
-        visible={visibleDialog === 'delete'}
-        handleDismiss={this._hideDialog}
       />
       <CancelDialog
         id={id}

@@ -89,8 +89,6 @@ export default class List extends React.Component {
     if (this.props.listType === 'board') screen = 'BoardInfo';
     this.props.navigation.navigate(screen, { id, cacheFirst: true })
   };
-  _handleEdit = ({ id, refStartAt, refEndAt }) => this.props.navigation.navigate('EditEvent', { id, refEndAt, refStartAt });
-  _handleRepeat = (id) => this.props.navigation.navigate('NewEvent', { id, isNew: true });
   _onPressSectionHeader = (targetDate) => {
     if (!isPast(targetDate)) {
       this.props.navigation.navigate('NewEvent', {
@@ -241,8 +239,6 @@ export default class List extends React.Component {
     onPressItem={this._onPressItem}
     onPressCommentButton={this._onPressCommentItem}
     navigateToBoardEvents={this._navigateToBoardEvents}
-    navigateToNewEvent={this._handleRepeat}
-    navigateToEditEvent={this._handleEdit}
   />);
 
   _getItemLayout = sectionListGetItemLayout({
