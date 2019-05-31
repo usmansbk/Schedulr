@@ -1,6 +1,7 @@
 import React from 'react';
 import ActionSheet from 'react-native-actionsheet';
 import SimpleToast from 'react-native-simple-toast';
+import Share from 'react-native-share';
 import gql from 'graphql-tag';
 import DeleteDialog from 'components/dialogs/DeleteEvent';
 import CancelDialog from 'components/dialogs/CancelEvent';
@@ -8,6 +9,8 @@ import client from 'config/client';
 import { starEvent, unstarEvent } from 'mygraphql/mutations';
 // import { listAllEvents, getEvent } from 'mygraphql/queries';
 import { toggleStarButton } from 'helpers/optimisticResponse';
+import env from 'config/env';
+
 
 export default class EventAction extends React.Component {
   state = {
@@ -17,6 +20,24 @@ export default class EventAction extends React.Component {
   showActionSheet = () => {
     this.actionSheet.show();
   };
+
+  _handleShare = () => {
+    const {
+      title,
+      eventType,
+      date,
+      address,
+      id
+    } = this.props;
+
+    const shareOptions = {
+      title: 'Invite via...',
+      subject: eventType,
+      message: `${title}\n${eventType}\n${date}${address ? (' at ' + address) : ''}\n`,
+      url: `${env.APP_URL}/event/${id}`
+    };
+    Share.open(shareOptions);
+  }
 
   _handleStar = () => {
     const { isStarred, starsCount, id } = this.props;
@@ -57,13 +78,31 @@ export default class EventAction extends React.Component {
     if (isAuthor) {
       switch (index) {
         case 0:
-          this._handleStar();
+          this._handleShare();
           break;
         case 1:
-          this.setState({ visibleDialog: 'cancel' });
+          this._handleStar();
           break;
         case 2:
+          this.props.onNew();
+          break;
+        case 3:
+          this.props.onEdit();
+          break;
+        case 4:
+          this.setState({ visibleDialog: 'cancel' });
+          break;
+        case 5:
           this.setState({ visibleDialog: 'delete' });
+          break;
+      }
+    } else {
+      switch(index) {
+        case 0:
+          this._handleShare();
+          break;
+        case 1:
+          this._handleStar();
           break;
       }
     }
@@ -81,8 +120,8 @@ export default class EventAction extends React.Component {
     const { visibleDialog } = this.state;
 
     const options = ['Back'];
-    if (isAuthor) options.unshift('Cancel event', 'Delete event');
-    options.unshift(isStarred ? 'Unstar event' : 'Star event');
+    if (isAuthor) options.unshift('New event', 'Edit event', 'Cancel event', 'Delete event');
+    options.unshift('Share via', isStarred ? 'Unstar event' : 'Star event');
     const cancelButtonIndex = options.length - 1;
     const destructiveButtonIndex = isAuthor ? cancelButtonIndex - 1 : undefined;
 
