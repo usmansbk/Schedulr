@@ -18,6 +18,9 @@ import { formatDate } from 'lib/time';
 @observer
 export default class Item extends React.Component {
   _onPress = () => this.props.onPressItem(this.props.id, this.props.startAt, this.props.endAt);
+  _showActionSheet = () => {
+    this.ActionSheet && this.ActionSheet.showActionSheet();
+  };
   _navigateToBoard = () => this.props.navigateToBoardEvents(this.props.boardId);
   _handleEditEvent = () => {
     const { id, startAt, endAt } = this.props;
@@ -37,7 +40,8 @@ export default class Item extends React.Component {
       nextProps.time !== this.props.time ||
       nextProps.status !== this.props.status ||
       nextProps.repeat !== this.props.repeat ||
-      nextProps.eventType !== this.props.eventType
+      nextProps.eventType !== this.props.eventType||
+      nextProps.isStarred !== this.props.isStarred
     );
   }
 
@@ -67,6 +71,7 @@ export default class Item extends React.Component {
     return (
       <TouchableRipple
         onPress={this._onPress}
+        onLongPress={this._showActionSheet}
         style={styles.itemContainer}
       >
         <View useNativeDriver style={styles.itemContentSmall}>
