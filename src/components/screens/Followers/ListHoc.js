@@ -1,9 +1,8 @@
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
-import SimpleToast from 'react-native-simple-toast';
 import List from 'components/lists/Followers';
 import { listBoardFollowers } from 'mygraphql/queries';
-import logger, { analytics } from 'config/logger';
+import logger from 'config/logger';
 import { COMMENTS_LIMIT } from 'lib/constants';
 
 const LIMIT = COMMENTS_LIMIT;
@@ -18,15 +17,6 @@ export default graphql(gql(listBoardFollowers), {
       limit: LIMIT
     },
     fetchPolicy: 'network-only',
-    onError: (error) => {
-      SimpleToast.show('Connection error', SimpleToast.SHORT);
-      logger.debug(error.message);
-      analytics({
-        name: 'list_board_followers',
-        alias,
-        error
-      });
-    },
   }),
   props: ({ data, ownProps }) => ({
     followers: data && data.listFollowers && data.listFollowers.items || [],
