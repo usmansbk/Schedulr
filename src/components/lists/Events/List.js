@@ -213,6 +213,7 @@ export default class List extends React.Component {
     eventType,
     isCancelled,
     cancelledDates,
+    venue,
     startAt,
     endAt,
     repeat,
@@ -235,6 +236,7 @@ export default class List extends React.Component {
     starsCount={starsCount}
     isAuthor={isAuthor}
     boardId={board.id}
+    address={venue && venue.address}
     duration={getDuration(startAt, endAt, allDay)}
     onPressItem={this._onPressItem}
     onPressCommentButton={this._onPressCommentItem}

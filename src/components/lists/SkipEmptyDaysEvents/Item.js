@@ -9,7 +9,9 @@ import {
 import { inject, observer } from 'mobx-react/native';
 import Avatar from 'components/common/UserAvatar';
 import Badge from 'components/common/Badge';
+import ActionSheet from 'components/actionsheet/Event';
 import { events } from 'lib/constants';
+import { formatDate } from 'lib/time';
 
 
 @inject('stores')
@@ -17,6 +19,18 @@ import { events } from 'lib/constants';
 export default class Item extends React.Component {
   _onPress = () => this.props.onPressItem(this.props.id, this.props.startAt, this.props.endAt);
   _navigateToBoard = () => this.props.navigateToBoardEvents(this.props.boardId);
+  _handleEditEvent = () => {
+    const { id, startAt, endAt } = this.props;
+    this.props.navigateToEditEvent({
+      id,
+      refStartAt: startAt,
+      refEndAt: endAt
+    });
+  };
+  _handleNewEvent = () => {
+    const { id } = this.props;
+    this.props.navigateToNewEvent(id);
+  };
   shouldComponentUpdate = (nextProps) => {
     return (
       nextProps.title !== this.props.title ||
@@ -37,7 +51,14 @@ export default class Item extends React.Component {
       status,
       eventType,
       pictureUrl,
-      stores
+      stores, 
+      startAt,
+      endAt,
+      allDay,
+      address,
+      isStarred,
+      isAuthor,
+      starsCount,
     } = this.props;
 
     const styles = stores.appStyles.eventsList;
@@ -69,7 +90,22 @@ export default class Item extends React.Component {
               <Text style={styles.time}>{time}</Text>
               <Caption>{duration ? duration + ' ' : ''}{eventType} {repeat}</Caption>
             </View>
-          </View>
+          </View> 
+          <ActionSheet
+            id={id}
+            title={title}
+            eventType={eventType}
+            date={formatDate(startAt, endAt, allDay)}
+            address={address}
+            isAuthor={isAuthor}
+            isStarred={isStarred}
+            startAt={startAt}
+            isRecurring={repeat}
+            starsCount={starsCount}
+            ref={ref => this.ActionSheet = ref}
+            onEdit={this._handleEditEvent}
+            onNew={this._handleNewEvent}
+          />
         </View>
       </TouchableRipple>
     );
