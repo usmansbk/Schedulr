@@ -38,6 +38,7 @@ export default class Item extends React.Component {
       title,
       repeat,
       time,
+      startAt,
       duration,
       status,
       eventType,
@@ -82,6 +83,8 @@ export default class Item extends React.Component {
             id={id}
             isAuthor={isAuthor}
             isStarred={isStarred}
+            startAt={startAt}
+            isRecurring={repeat}
             ref={ref => this.ActionSheet = ref}
           />
         </View>
