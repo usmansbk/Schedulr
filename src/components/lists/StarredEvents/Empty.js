@@ -10,7 +10,7 @@ export default inject('stores')(observer(
       <View style={stores.appStyles.starredEventsList.empty}>
         <Headline style={stores.appStyles.starredEventsList.emptyTitle}>
         {
-          error ? 'Network error' : `${search ? "No event found" : "You haven't starred any event yet"}`
+          error ? 'Network error' : `${search ? "No event found" : "You haven't bookmarked any event yet"}`
         }
         </Headline>
         {

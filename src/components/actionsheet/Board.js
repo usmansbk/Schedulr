@@ -54,10 +54,10 @@ export default class EventAction extends React.Component {
     const { visibleDialog } = this.state;
 
     const options = ['Back'];
-    options.unshift('Share invite link');
     if (isAuthor) {
       options.unshift(isClosed ? 'Open calendar' : 'Close calendar');
     }
+    options.unshift('Share invite link');
     const cancelButtonIndex = options.length - 1;
     const destructiveButtonIndex = isAuthor ? cancelButtonIndex - 1 : undefined;
 
