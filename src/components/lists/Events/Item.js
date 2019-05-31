@@ -27,7 +27,8 @@ export default class Item extends React.Component {
       nextProps.time !== this.props.time ||
       nextProps.status !== this.props.status ||
       nextProps.repeat !== this.props.repeat ||
-      nextProps.eventType !== this.props.eventType
+      nextProps.eventType !== this.props.eventType ||
+      nextProps.isStarred !== this.props.isStarred
     );
   }
 
