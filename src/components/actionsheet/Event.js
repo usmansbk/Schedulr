@@ -1,8 +1,8 @@
 import React from 'react';
 import { InteractionManager } from 'react-native';
 import ActionSheet from 'react-native-actionsheet';
-import SimpleToast from 'react-native-simple-toast';
 import Share from 'react-native-share';
+import SimpleToast from 'react-native-simple-toast';
 import gql from 'graphql-tag';
 import CancelDialog from 'components/dialogs/CancelEvent';
 import client from 'config/client';
@@ -48,14 +48,14 @@ export default class EventAction extends React.Component {
         input
       },
       optimisticResponse: () => toggleStarButton(input, prev, isStarred ? 'unstarEvent' : 'starEvent'),
-    }).catch((error) => {
+    }).catch(() => {
     });
   }
 
   _hideDialog = () => this.setState({ visibleDialog: null });
 
   _handleActionSheet = (index) => {
-    const { isAuthor } = this.props;
+    const { isAuthor, isValid } = this.props;
     if (isAuthor) {
       switch (index) {
         case 0:
@@ -65,7 +65,11 @@ export default class EventAction extends React.Component {
           InteractionManager.runAfterInteractions(this._handleStar);
           break;
         case 2:
-          this.setState({ visibleDialog: 'cancel' });
+          if (isValid) {
+            this.setState({ visibleDialog: 'cancel' });
+          } else {
+            SimpleToast.show('Event has expired', SimpleToast.SHORT);
+          }
           break;
       }
     } else {
@@ -95,7 +99,7 @@ export default class EventAction extends React.Component {
     if (isAuthor) options.unshift('Cancel event');
     options.unshift('Share via', isStarred ? 'Unstar event' : 'Star event');
     const cancelButtonIndex = options.length - 1;
-    const destructiveButtonIndex = isAuthor ? cancelButtonIndex - 1 : undefined;
+    const destructiveButtonIndex = (isAuthor) ? cancelButtonIndex - 1 : undefined;
 
     return (
       <>

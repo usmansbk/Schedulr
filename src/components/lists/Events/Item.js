@@ -63,6 +63,7 @@ export default class Item extends React.Component {
       isStarred,
       isAuthor,
       starsCount,
+      isValid
     } = this.props;
 
     const styles = stores.appStyles.eventsList;
@@ -104,6 +105,7 @@ export default class Item extends React.Component {
             address={address}
             isAuthor={isAuthor}
             isStarred={isStarred}
+            isValid={isValid}
             startAt={startAt}
             isRecurring={repeat}
             starsCount={starsCount}

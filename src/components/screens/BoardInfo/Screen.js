@@ -12,8 +12,8 @@ export default class Screen extends React.Component {
   _hideDialog = () => this.setState({ visibleDialog: null });
   _handleShare = ({ id, name }) => {
     const shareOptions = {
-      title: 'Invite via...',
-      subject: 'Follow board to see latest events',
+      title: 'Share invite link via...',
+      subject: 'Follow calendar to see latest events',
       message: `Follow "${name}" to see their latest events, receive updates and get reminders.\n`,
       url: `${env.APP_URL}/board/${id}`
     };

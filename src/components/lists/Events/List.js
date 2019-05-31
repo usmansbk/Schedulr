@@ -17,6 +17,7 @@ import {
   getTime,
   isPast,
   parseRepeat,
+  isEventValid
 } from 'lib/parseItem';
 import { eventsDiff } from 'lib/utils';
 import { decapitalize } from 'lib/capitalizr';
@@ -230,6 +231,7 @@ export default class List extends React.Component {
     repeat={parseRepeat(repeat)}
     time={getTime({ allDay, startAt, endAt })}
     status={getStatus({ isCancelled, cancelledDates, startAt, endAt})}
+    isValid={isEventValid({ isCancelled, endAt, startAt, cancelledDates })}
     isStarred={isStarred}
     starsCount={starsCount}
     isAuthor={isAuthor}
