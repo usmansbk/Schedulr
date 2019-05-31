@@ -3,7 +3,6 @@ import ActionSheet from 'react-native-actionsheet';
 import SimpleToast from 'react-native-simple-toast';
 import Share from 'react-native-share';
 import gql from 'graphql-tag';
-import CancelDialog from 'components/dialogs/CancelEvent';
 import client from 'config/client';
 import { starEvent, unstarEvent } from 'mygraphql/mutations';
 // import { listAllEvents, getEvent } from 'mygraphql/queries';
