@@ -197,7 +197,7 @@ export default class List extends React.Component {
   componentWillReceiveProps = (nextProps) => {
     if ((nextProps.events.length !== this.props.events.length) ||
         (eventsDiff(this.props.events, nextProps.events).length)) {
-      this._refreshList(nextProps.events);
+      this._bootstrap(nextProps.events);
     }
   };
 

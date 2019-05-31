@@ -52,6 +52,7 @@ export function eventsDiff(prev, next) {
       (prevVal.until === nextVal.until) &&
       (prevVal.isCancelled === nextVal.isCancelled) &&
       (prevCancelledDates.length === nextCancelledDates.length) &&
+      (prevVal.isStarred === nextVal.isStarred) &&
       (prevVal.id === nextVal.id);
   });
 }
