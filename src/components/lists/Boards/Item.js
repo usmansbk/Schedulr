@@ -21,7 +21,8 @@ export default class Item extends React.Component {
     return (
       this.props.name !== nextProps.name ||
       this.props.description !== nextProps.description ||
-      this.props.isClosed !== nextProps.isClosed
+      this.props.isClosed !== nextProps.isClosed ||
+      this.props.isMuted !== nextProps.isMuted
     );
   };
   

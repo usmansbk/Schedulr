@@ -54,6 +54,7 @@ class List extends Component {
         isPublic={isPublic}
         isClosed={status === 'CLOSED'}
         isAuthor={isAuthor}
+        isMuted={this.props.stores.appState.mutedList.includes(id)}
         isFollowing={isFollowing}
         onPressItem={this._onPressItem}
         navigateToBoardInfo={this._navigateToInfo}
@@ -74,6 +75,7 @@ class List extends Component {
     const data = sortBoards(boards);
     const styles = stores.appStyles.boardsList;
     const colors = stores.themeStore.colors;
+    const mutedList = stores.appState.mutedList;
 
     return (
       <FlatList
@@ -88,6 +90,7 @@ class List extends Component {
         }
         onRefresh={onRefresh}
         style={styles.list}
+        extraData={mutedList.length}
         contentContainerStyle={styles.contentContainer}
         initialNumToRender={7}
         getItemLayout={this._getItemLayout}
