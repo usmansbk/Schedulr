@@ -21,17 +21,23 @@ export default class Item extends React.Component {
   _onLongPress = () => {
     this.ActionSheet && this.ActionSheet.showActionSheet();
   };
+  _onMute = () => {
+    this.props.stores.appState.toggleMute(this.props.id);
+  };
   _navigateToBoard = () => this.props.navigateToBoardEvents(this.props.boardId);
 
   shouldComponentUpdate = (nextProps) => {
-    return (
+    const answer = (
       nextProps.title !== this.props.title ||
       nextProps.time !== this.props.time ||
       nextProps.status !== this.props.status ||
       nextProps.repeat !== this.props.repeat ||
       nextProps.eventType !== this.props.eventType ||
-      nextProps.isStarred !== this.props.isStarred
+      nextProps.isStarred !== this.props.isStarred ||
+      nextProps.isMuted !== this.props.isMuted
     );
+    console.log('shouldComponentUpdate', answer);
+    return answer;
   }
 
   render() {
@@ -51,11 +57,14 @@ export default class Item extends React.Component {
       stores,
       isStarred,
       isAuthor,
+      isMuted,
       starsCount,
       isValid
     } = this.props;
 
     const styles = stores.appStyles.eventsList;
+    // const isMuted = stores.appState.mutedList.includes(id);
+    console.log('Rendering', title);
     
     const isPending = id[0] === '-';
     return (
@@ -97,8 +106,10 @@ export default class Item extends React.Component {
             isValid={isValid}
             startAt={startAt}
             isRecurring={repeat}
+            isMuted={isMuted}
             starsCount={starsCount}
             ref={ref => this.ActionSheet = ref}
+            onMute={this._onMute}
           />
         </View>
       </TouchableRipple>

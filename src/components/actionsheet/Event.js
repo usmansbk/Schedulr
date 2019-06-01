@@ -54,17 +54,22 @@ export default class EventAction extends React.Component {
 
   _hideDialog = () => this.setState({ visibleDialog: null });
 
+  _toggleMute = () => this.props.onMute(this.props.id);
+
   _handleActionSheet = (index) => {
     const { isAuthor, isValid } = this.props;
     if (isAuthor) {
       switch (index) {
         case 0:
-            InteractionManager.runAfterInteractions(this._handleShare);
+          InteractionManager.runAfterInteractions(this._handleShare);
           break;
         case 1:
-          InteractionManager.runAfterInteractions(this._handleStar);
+          InteractionManager.runAfterInteractions(this._toggleMute);
           break;
         case 2:
+          InteractionManager.runAfterInteractions(this._handleStar);
+          break;
+        case 3:
           if (isValid) {
             this.setState({ visibleDialog: 'cancel' });
           } else {
@@ -77,9 +82,12 @@ export default class EventAction extends React.Component {
         case 0:
           this._handleShare();
           break;
-        case 1:
-          this._handleStar();
-          break;
+          case 1:
+            InteractionManager.runAfterInteractions(this._toggleMute);
+            break;
+          case 2:
+            InteractionManager.runAfterInteractions(this._handleStar);
+            break;
       }
     }
   }
@@ -92,12 +100,16 @@ export default class EventAction extends React.Component {
       isAuthor,
       startAt,
       isRecurring,
+      isMuted,
     } = this.props;
     const { visibleDialog } = this.state;
 
     const options = ['Back'];
     if (isAuthor) options.unshift('Cancel event');
-    options.unshift('Share via', isStarred ? 'Remove bookmark' : 'Bookmark event');
+    options.unshift(
+      'Share via',
+      isMuted ? 'Unmute event' : 'Mute event',
+      isStarred ? 'Remove bookmark' : 'Bookmark event');
     const cancelButtonIndex = options.length - 1;
     const destructiveButtonIndex = (isAuthor) ? cancelButtonIndex - 1 : undefined;
 

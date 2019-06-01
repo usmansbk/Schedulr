@@ -19,6 +19,7 @@ const appState = new UIState;
 hydrate('settings', settingsStore);
 hydrate('remindMe', remindMeStore);
 hydrate('me', meStore);
+hydrate('appState', appState);
 
 // Create theme store after hydrating the settings store
 const themeStore = new Theme(settingsStore);

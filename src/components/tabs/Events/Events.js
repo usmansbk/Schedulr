@@ -46,7 +46,10 @@ export default class Events extends React.Component {
   shouldComponentUpdate = (nextProps) => nextProps.isFocused;
   
   componentDidUpdate = () => {
-    InteractionManager.runAfterInteractions(() => schdlAll(this.props.events));
+    const { events, stores } = this.props;
+    InteractionManager.runAfterInteractions(() =>
+      schdlAll(events, stores.appState.mutedList)
+    );
   };
  
   componentDidMount = async () => {
