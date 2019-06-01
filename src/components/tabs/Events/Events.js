@@ -1,5 +1,5 @@
 import React from 'react';
-import { Linking, Platform } from 'react-native';
+import { Linking, Platform, InteractionManager } from 'react-native';
 import SimpleToast from 'react-native-simple-toast';
 import LocalNotifications from 'react-native-push-notification';
 import changeNavigationBarColor from 'react-native-navigation-bar-color';
@@ -46,8 +46,8 @@ export default class Events extends React.Component {
   shouldComponentUpdate = (nextProps) => nextProps.isFocused;
   
   componentDidUpdate = () => {
-    schdlAll(this.props.events);
-  }
+    InteractionManager.runAfterInteractions(() => schdlAll(this.props.events));
+  };
  
   componentDidMount = async () => {
     const { stores } = this.props;
