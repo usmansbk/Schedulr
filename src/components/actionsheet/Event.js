@@ -97,7 +97,7 @@ export default class EventAction extends React.Component {
 
     const options = ['Back'];
     if (isAuthor) options.unshift('Cancel event');
-    options.unshift('Share via', isStarred ? 'Bookmark' : 'Remove bookmark');
+    options.unshift('Share via', isStarred ? 'Remove bookmark' : 'Bookmark event');
     const cancelButtonIndex = options.length - 1;
     const destructiveButtonIndex = (isAuthor) ? cancelButtonIndex - 1 : undefined;
 
