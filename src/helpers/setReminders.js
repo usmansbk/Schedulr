@@ -130,14 +130,17 @@ const schdl = (event, before, settings) => {
   }
 };
 
-const schdlAll = (events) => {
+const schdlAll = (events, mutedList) => {
   InteractionManager.runAfterInteractions(() => {
     PushNotification.cancelAllLocalNotifications();
     const settings = stores.settingsStore;
     const remindMeBefore = stores.remindMeStore;
     if (!settings.disableReminders) {
       events.forEach((event) => {
-        if (settings.starredEventsOnly && !event.isStarred) return;
+        const id = event.id;
+        const boardId = event.board.id;
+        const isMuted = mutedList.includes(id) || mutedList.includes(boardId);
+        if (isMuted || (settings.starredEventsOnly && !event.isStarred)) return;
         switch (event.repeat) {
           case 'MONTH_DAY':
             break;
