@@ -17,6 +17,9 @@ export default class Item extends React.Component {
   _onLongPress = () => {
     this.ActionSheet && this.ActionSheet.showActionSheet();
   };
+  _onMute = () => {
+    this.props.stores.appState.toggleMute(this.props.id);
+  };
   _navigateToInfo = () => this.props.navigateToBoardInfo(this.props.id);
   shouldComponentUpdate = (nextProps) => {
     return (
@@ -41,6 +44,7 @@ export default class Item extends React.Component {
     const isPending = id[0] === '-';
 
     const styles = stores.appStyles.boardsList;
+    console.log('rendering', name);
 
     return (
       <TouchableRipple
@@ -68,9 +72,11 @@ export default class Item extends React.Component {
           <ActionSheet
             id={id}
             title={name}
+            isMuted={isMuted}
             isAuthor={isAuthor}
             isClosed={isClosed}
             ref={ref => this.ActionSheet = ref}
+            onMute={this._onMute}
           />
         </View>
       </TouchableRipple>

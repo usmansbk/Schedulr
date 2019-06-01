@@ -24,6 +24,8 @@ export default class EventAction extends React.Component {
     };
     Share.open(shareOptions);
   };
+  
+  _toggleMute = () => this.props.onMute(this.props.id);
 
   _hideDialog = () => this.setState({ visibleDialog: null });
 
@@ -35,6 +37,9 @@ export default class EventAction extends React.Component {
           this._handleShare();
           break;
         case 1:
+          this._toggleMute();
+          break;
+        case 2:
           this.setState({ visibleDialog: isClosed ? 'open' : 'close' });
           break;
       }
@@ -43,6 +48,9 @@ export default class EventAction extends React.Component {
         case 0:
           this._handleShare();
           break;
+          case 1:
+            this._toggleMute();
+            break;
       }
     }
   }
@@ -53,6 +61,7 @@ export default class EventAction extends React.Component {
       title,
       isAuthor,
       isClosed,
+      isMuted,
     } = this.props;
     const { visibleDialog } = this.state;
 
@@ -60,7 +69,10 @@ export default class EventAction extends React.Component {
     if (isAuthor) {
       options.unshift(isClosed ? 'Open calendar' : 'Close calendar');
     }
-    options.unshift('Share invite link');
+    options.unshift(
+      'Share invite link',
+      isMuted ? 'Unmute events' : 'Mute events',
+    );
     const cancelButtonIndex = options.length - 1;
     const destructiveButtonIndex = isAuthor ? cancelButtonIndex - 1 : undefined;
 
