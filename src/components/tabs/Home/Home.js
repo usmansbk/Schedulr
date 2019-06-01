@@ -23,7 +23,7 @@ const Home = createMaterialTopTabNavigator({
     upperCaseLabel: false,
   },
   defaultNavigationOptions: ({ navigation }) => ({
-    tabBarIcon: ({ tintColor }) => {
+    tabBarIcon: ({ tintColor, focused }) => {
       const { routeName } = navigation.state;
       let iconName;
       if (routeName === 'Events') {
@@ -31,7 +31,7 @@ const Home = createMaterialTopTabNavigator({
       } else if (routeName === 'Boards') {
         iconName = 'calendar-multiple';
       } else if (routeName === 'Starred') {
-        iconName = `bookmark`;
+        iconName = `bookmark${focused ? '' : '-outline'}`;
       }
       return <Icon name={iconName} size={FONT_SIZE} color={tintColor} />
     }
