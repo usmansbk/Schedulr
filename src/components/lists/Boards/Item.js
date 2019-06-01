@@ -44,7 +44,6 @@ export default class Item extends React.Component {
     const isPending = id[0] === '-';
 
     const styles = stores.appStyles.boardsList;
-    console.log('rendering', name);
 
     return (
       <TouchableRipple
