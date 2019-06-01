@@ -17,11 +17,9 @@ export default class UIState {
   @action toggleMute = (id) => {
     const hasId = this.mutedList.includes(id);
     if (hasId) {
-      this.mutedList = this.mutedList.filter(currentId => id === currentId);
-      console.log('unmuted', id);
+      this.mutedList = this.mutedList.filter(currentId => id !== currentId);
     } else {
-      this.mutedList = [...this.mutedList.slice(0), id];
-      console.log('muted', id);
+      this.mutedList.push(id);
     }
   }
 

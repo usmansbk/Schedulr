@@ -29,10 +29,13 @@ const styles = StyleSheet.create({
   Upcoming: {
     backgroundColor: colors.warning,
   },
+  muted: {
+    backgroundColor: colors.tint
+  }
 });
 
-export default ({ status }) => {
-  let statusStyle = styles[status];
+export default ({ status, isMuted }) => {
+  let statusStyle = isMuted ? styles.muted : styles[status];
   return (
     <View
       style={[styles.container, statusStyle]}

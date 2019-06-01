@@ -235,7 +235,10 @@ export default class List extends React.Component {
     isStarred={isStarred}
     starsCount={starsCount}
     isAuthor={isAuthor}
-    isMuted={this.props.stores.appState.mutedList.includes(id)}
+    isMuted={
+      this.props.stores.appState.mutedList.includes(id) ||
+      this.props.stores.appState.mutedList.includes(board.id)
+    }
     boardId={board.id}
     address={venue && venue.address}
     duration={getDuration(startAt, endAt, allDay)}
@@ -256,8 +259,7 @@ export default class List extends React.Component {
     const { loading, stores } = this.props;
     const { sections, loadingMore, loadingPrev } = this.state;
     const styles = stores.appStyles.eventsList;
-    const mutedList = stores.appState.mutedList.slice(0);
-    console.log(mutedList.slice(0));
+    const mutedList = stores.appState.mutedList;
     return (
       <SectionList
         initialNumToRender={0}
@@ -266,7 +268,7 @@ export default class List extends React.Component {
         style={styles.list}
         stickySectionHeadersEnabled
         sections={sections}
-        extraData={mutedList.length}
+        extraData={mutedList}
         ListHeaderComponent={this._renderHeader}
         ListEmptyComponent={this._renderEmptyList}
         ItemSeparatorComponent={this._renderSeparator}

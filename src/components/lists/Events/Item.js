@@ -36,7 +36,6 @@ export default class Item extends React.Component {
       nextProps.isStarred !== this.props.isStarred ||
       nextProps.isMuted !== this.props.isMuted
     );
-    console.log('shouldComponentUpdate', answer);
     return answer;
   }
 
@@ -63,8 +62,6 @@ export default class Item extends React.Component {
     } = this.props;
 
     const styles = stores.appStyles.eventsList;
-    // const isMuted = stores.appState.mutedList.includes(id);
-    console.log('Rendering', title);
     
     const isPending = id[0] === '-';
     return (
@@ -81,7 +78,7 @@ export default class Item extends React.Component {
               src={pictureUrl}
               onPress={this._navigateToBoard}
             />
-            <Badge status={status} />
+            <Badge status={status} isMuted={isMuted} />
           </View>
           <View style={styles.right}>
             <View style={styles.itemBody}>
