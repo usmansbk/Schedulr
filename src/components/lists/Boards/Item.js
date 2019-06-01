@@ -1,6 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 import { TouchableRipple, Text, Caption } from 'react-native-paper';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { inject, observer } from 'mobx-react/native';
 import UserAvatar from 'components/common/UserAvatar';
 import Tag from 'components/common/Tag';
@@ -33,6 +34,7 @@ export default class Item extends React.Component {
       isAuthor,
       description,
       isClosed,
+      isMuted,
       stores
     } = this.props;
     
@@ -55,6 +57,7 @@ export default class Item extends React.Component {
           />
           <View style={styles.itemBody}>
             <View style={styles.nameRow}>
+              { isMuted && <Icon name="volume-mute" size={16} color={stores.themeStore.colors.tint}/> }
               <Text numberOfLines={1} ellipsizeMode="tail" style={isPending ? styles.offlineName : styles.itemName}>{name}</Text>
             </View>
             { Boolean(description) && <Caption numberOfLines={1} ellipsizeMode="tail" style={styles.itemDescription}>{description}</Caption> }
