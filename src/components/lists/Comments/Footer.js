@@ -2,12 +2,15 @@ import React from 'react';
 import {
   TouchableRipple,
   Caption,
+  ActivityIndicator
 } from 'react-native-paper';
 import { View } from 'react-native';
 import { inject, observer } from 'mobx-react/native';
 
 export default inject('stores')(observer(
-  ({ hide, loading, onPress, stores, hasMore }) => (hide || loading) ? null : (
+  ({ hide, loading, onPress, stores, hasMore }) => {
+    if (hide) return null;
+    return (loading) ? <ActivityIndicator animating size="small" /> : (
       <TouchableRipple
         disabled={!hasMore}
         onPress={onPress}
@@ -21,5 +24,6 @@ export default inject('stores')(observer(
           </Caption>
         </View>
       </TouchableRipple>
-    )
+    );
+  }
 ))

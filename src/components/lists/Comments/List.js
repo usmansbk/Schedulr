@@ -10,6 +10,9 @@ import { timeAgo } from 'lib/time';
 @inject('stores')
 @observer
 export default class List extends React.Component {
+  state = {
+    fetchingMore: false
+  }
   static defaultProps = {
     comments: [],
     loading: false,
@@ -47,7 +50,7 @@ export default class List extends React.Component {
   _renderSeparator = () => <Separator />;
   _renderFooter = () => <Footer
     hide={!this.props.comments.length}
-    loading={this.props.loading}
+    loading={this.props.fetchingMore}
     hasMore={this.props.nextToken}
     onPress={this._onEndReached}/>;
   _renderEmpty = () => <Empty error={this.props.error} loading={this.props.loading} />;
@@ -64,13 +67,16 @@ export default class List extends React.Component {
       });
     }
   }
-  shouldComponentUpdate = (nextProps) => (
+  shouldComponentUpdate = (nextProps, nextState) => (
     nextProps.comments !== this.props.comments ||
+    nextState.fetchingMore !== this.props.fetchingMore ||
     nextProps.loading !== this.props.loading
   );
   _onEndReached = async () => {
     const { nextToken, fetchMoreComments, loading } = this.props;
+    this.setState({ fetchingMore: true });
     if (nextToken && !loading) await fetchMoreComments(nextToken);
+    this.setState({ fetchMore: false });
   }
 
   render() {
