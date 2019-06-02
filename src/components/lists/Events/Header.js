@@ -7,7 +7,12 @@ import {
 import { inject, observer } from 'mobx-react/native';
 
 export default inject('stores')(observer(
-  ({ onPress, loading, stores, hasPrev }) => loading ? <ActivityIndicator size="small" animating /> : (
+  ({ onPress, loading, stores, hasPrev }) => loading ? (
+    <ActivityIndicator
+      size="small"
+      animating
+      color={stores.themeStore.colors.primary_light}
+    /> ) : (
     <TouchableRipple
       disabled={!hasPrev}
       onPress={onPress}
