@@ -7,6 +7,7 @@ export default class UIState {
   @observable searchText = '';
   @observable query = '';
   @persist('list') @observable mutedList = [];
+  @persist('list') @observable allowedList = [];
 
   debounceQuery = debounce((val) => this.query = val, 250);
   
@@ -14,10 +15,15 @@ export default class UIState {
     this.isConnected = isConnected;
   }
 
-  @action toggleMute = (id) => {
+  @action toggleMute = (id, isMuted) => {
     const hasId = this.mutedList.includes(id);
+    const isAllowed = this.allowedList.includes(id);
     if (hasId) {
       this.mutedList = this.mutedList.filter(currentId => id !== currentId);
+    } else if (isAllowed && isMuted) {
+      this.allowedList = this.allowedList.filter(currentId => id !== currentId);
+    } else if (isMuted && !isAllowed) {
+      this.allowedList.push(id);
     } else {
       this.mutedList.push(id);
     }

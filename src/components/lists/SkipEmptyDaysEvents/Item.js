@@ -22,7 +22,7 @@ export default class Item extends React.Component {
     this.ActionSheet && this.ActionSheet.showActionSheet();
   };
   _onMute = () => {
-    this.props.stores.appState.toggleMute(this.props.id);
+    this.props.stores.appState.toggleMute(this.props.id, this.props.isMuted);
   };
   _navigateToBoard = () => this.props.navigateToBoardEvents(this.props.boardId);
 
@@ -100,6 +100,7 @@ export default class Item extends React.Component {
             isStarred={isStarred}
             startAt={startAt}
             isRecurring={repeat}
+            isMuted={isMuted}
             starsCount={starsCount}
             ref={ref => this.ActionSheet = ref}
           />

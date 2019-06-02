@@ -48,7 +48,11 @@ export default class Events extends React.Component {
   componentDidUpdate = () => {
     const { events, stores } = this.props;
     InteractionManager.runAfterInteractions(() =>
-      schdlAll(events, stores.appState.mutedList)
+      schdlAll(
+        events,
+        stores.appState.mutedList,
+        stores.appState.allowedList
+      )
     );
   };
  
