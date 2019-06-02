@@ -69,7 +69,7 @@ export default class List extends React.Component {
   }
   shouldComponentUpdate = (nextProps, nextState) => (
     nextProps.comments !== this.props.comments ||
-    nextState.fetchingMore !== this.props.fetchingMore ||
+    nextState.fetchingMore !== this.state.fetchingMore ||
     nextProps.loading !== this.props.loading
   );
   _onEndReached = async () => {
