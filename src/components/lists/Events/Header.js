@@ -1,11 +1,15 @@
 import React from 'react';
-import { TouchableRipple, Text } from 'react-native-paper';
+import {
+  TouchableRipple,
+  Text,
+  ActivityIndicator
+} from 'react-native-paper';
 import { inject, observer } from 'mobx-react/native';
 
 export default inject('stores')(observer(
-  ({ onPress, loading, stores, hasPrev }) => (
+  ({ onPress, loading, stores, hasPrev }) => loading ? <ActivityIndicator size="small" animating /> : (
     <TouchableRipple
-      disabled={loading || !hasPrev}
+      disabled={!hasPrev}
       onPress={onPress}
       style={stores.appStyles.eventsList.header}
     >
