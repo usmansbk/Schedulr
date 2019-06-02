@@ -103,6 +103,7 @@ export default class Item extends React.Component {
             isMuted={isMuted}
             starsCount={starsCount}
             ref={ref => this.ActionSheet = ref}
+            onMute={this._onMute}
           />
         </View>
       </TouchableRipple>
