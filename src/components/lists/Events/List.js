@@ -1,7 +1,6 @@
 import React from 'react';
 import { RefreshControl } from 'react-native';
 import { SectionList } from 'react-navigation';
-import sectionListGetItemLayout from 'react-native-section-list-get-item-layout';
 import { inject, observer } from 'mobx-react/native';
 import moment from 'moment';
 import Header from './Header';
@@ -19,7 +18,7 @@ import {
   parseRepeat,
   isEventValid
 } from 'lib/parseItem';
-import { eventsDiff } from 'lib/utils';
+import { eventsDiff, sectionListGetItemLayout } from 'lib/utils';
 import { decapitalize } from 'lib/capitalizr';
 import {
   getNextEvents,
@@ -33,7 +32,7 @@ const DAYS_PER_PAGE = 3;
 
 const {
   ITEM_HEIGHT,
-  SEPERATOR_HEIGHT,
+  SEPARATOR_HEIGHT,
   SECTION_HEADER_HEIGHT,
   SECTION_FOOTER_HEIGHT,
   HEADER_HEIGHT,
@@ -250,10 +249,11 @@ export default class List extends React.Component {
 
   _getItemLayout = sectionListGetItemLayout({
     getItemHeight: () => ITEM_HEIGHT,
-    getSeparatorHeight: () => SEPERATOR_HEIGHT,
+    getSeparatorHeight: () => SEPARATOR_HEIGHT,
     getSectionHeaderHeight: () => SECTION_HEADER_HEIGHT,
     getSectionFooterHeight: () => SECTION_FOOTER_HEIGHT,
     listHeaderHeight: HEADER_HEIGHT,
+    listFooterHeight: FOOTER_HEIGHT
   });
 
   render() {
@@ -268,8 +268,8 @@ export default class List extends React.Component {
 
     return (
       <SectionList
-        initialNumToRender={0}
-        // getItemLayout={this._getItemLayout}
+        // initialNumToRender={0}
+        getItemLayout={this._getItemLayout}
         contentContainerStyle={styles.contentContainer}
         style={styles.list}
         stickySectionHeadersEnabled
