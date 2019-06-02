@@ -21,6 +21,9 @@ export default class Item extends React.Component {
   _showActionSheet = () => {
     this.ActionSheet && this.ActionSheet.showActionSheet();
   };
+  _onMute = () => {
+    this.props.stores.appState.toggleMute(this.props.id);
+  };
   _navigateToBoard = () => this.props.navigateToBoardEvents(this.props.boardId);
 
   shouldComponentUpdate = (nextProps) => {
@@ -30,7 +33,8 @@ export default class Item extends React.Component {
       nextProps.status !== this.props.status ||
       nextProps.repeat !== this.props.repeat ||
       nextProps.eventType !== this.props.eventType||
-      nextProps.isStarred !== this.props.isStarred
+      nextProps.isStarred !== this.props.isStarred ||
+      nextProps.isMuted !== this.props.isMuted
     );
   }
 
@@ -51,6 +55,7 @@ export default class Item extends React.Component {
       address,
       isStarred,
       isAuthor,
+      isMuted,
       starsCount,
     } = this.props;
 
@@ -71,7 +76,7 @@ export default class Item extends React.Component {
               src={pictureUrl}
               onPress={this._navigateToBoard}
             />
-            <Badge status={status} />
+            <Badge status={status} isMuted={isMuted} />
           </View>
           <View style={styles.right}>
             <View style={styles.itemBody}>
