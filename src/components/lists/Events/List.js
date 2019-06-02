@@ -253,7 +253,7 @@ export default class List extends React.Component {
     getSeparatorHeight: () => SEPERATOR_HEIGHT,
     getSectionHeaderHeight: () => SECTION_HEADER_HEIGHT,
     getSectionFooterHeight: () => SECTION_FOOTER_HEIGHT,
-    listHeaderHeight: () => HEADER_HEIGHT,
+    listHeaderHeight: HEADER_HEIGHT,
   });
 
   render() {
@@ -269,7 +269,7 @@ export default class List extends React.Component {
     return (
       <SectionList
         initialNumToRender={0}
-        getItemLayout={this._getItemLayout}
+        // getItemLayout={this._getItemLayout}
         contentContainerStyle={styles.contentContainer}
         style={styles.list}
         stickySectionHeadersEnabled
