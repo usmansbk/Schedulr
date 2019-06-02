@@ -31,6 +31,7 @@ const {
   SECTION_HEADER_HEIGHT,
   SECTION_FOOTER_HEIGHT,
   HEADER_HEIGHT,
+  FOOTER_HEIGHT
 } = events;
 
 const DAYS_PER_PAGE = 3;
@@ -264,7 +265,7 @@ export default class List extends React.Component {
     listHeaderHeight: HEADER_HEIGHT,
     listFooterHeight: FOOTER_HEIGHT
   });
-  
+
   render() {
     const { loading, stores } = this.props;
     const { sections } = this.state;
@@ -278,7 +279,7 @@ export default class List extends React.Component {
     return (
       <SectionList
         ref={this.listRef}
-        // initialNumToRender={0}
+        initialNumToRender={0}
         getItemLayout={this._getItemLayout}
         contentContainerStyle={styles.contentContainer}
         style={styles.list}

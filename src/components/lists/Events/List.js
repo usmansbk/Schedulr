@@ -36,6 +36,7 @@ const {
   SECTION_HEADER_HEIGHT,
   SECTION_FOOTER_HEIGHT,
   HEADER_HEIGHT,
+  FOOTER_HEIGHT
 } = events;
 
 @inject('stores')
@@ -268,7 +269,7 @@ export default class List extends React.Component {
 
     return (
       <SectionList
-        // initialNumToRender={0}
+        initialNumToRender={0}
         getItemLayout={this._getItemLayout}
         contentContainerStyle={styles.contentContainer}
         style={styles.list}
