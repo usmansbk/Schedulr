@@ -1,5 +1,5 @@
 import React from 'react';
-import { Linking, Platform, InteractionManager } from 'react-native';
+import { Linking, Platform } from 'react-native';
 import SimpleToast from 'react-native-simple-toast';
 import LocalNotifications from 'react-native-push-notification';
 import changeNavigationBarColor from 'react-native-navigation-bar-color';
@@ -47,12 +47,10 @@ export default class Events extends React.Component {
   
   componentDidUpdate = () => {
     const { events, stores } = this.props;
-    InteractionManager.runAfterInteractions(() =>
-      schdlAll(
-        events,
-        stores.appState.mutedList,
-        stores.appState.allowedList
-      )
+    schdlAll(
+      events,
+      stores.appState.mutedList,
+      stores.appState.allowedList
     );
   };
  
