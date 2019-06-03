@@ -6549,6 +6549,11 @@ scheduler@^0.11.0, scheduler@^0.11.2:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
 
+sectionlist-get-itemlayout@^1.0.7:
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/sectionlist-get-itemlayout/-/sectionlist-get-itemlayout-1.0.7.tgz#5564037d61e319b985566bd51174560bba710556"
+  integrity sha512-xcmZZpV0Ik8cLsa2LZnHDOB3VYuXjKDBjmAJqTPSkwftqzPmMKZfQOahs7X10ljNQYu4Lx24S3hoErdH9k+T5A==
+
 "semver@2 || 3 || 4 || 5", semver@^5.0.3, semver@^5.1.0, semver@^5.3.0, semver@^5.4.1, semver@^5.5.0, semver@^5.5.1, semver@^5.6.0:
   version "5.7.0"
   resolved "https://registry.yarnpkg.com/semver/-/semver-5.7.0.tgz#790a7cf6fea5459bac96110b29b60412dc8ff96b"

@@ -3,6 +3,7 @@ import { RefreshControl } from 'react-native';
 import { SectionList } from 'react-navigation';
 import { inject, observer } from 'mobx-react/native';
 import moment from 'moment';
+import sectionListGetItemLayout from 'sectionlist-get-itemlayout';
 import Header from './Header';
 import Footer from './Footer';
 import Empty from './Empty';
@@ -17,7 +18,7 @@ import {
   isPast,
   parseRepeat,
 } from 'lib/parseItem';
-import { eventsDiff, sectionListGetItemLayout} from 'lib/utils';
+import { eventsDiff } from 'lib/utils';
 import { decapitalize } from 'lib/capitalizr';
 import {
   generatePreviousEvents,

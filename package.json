@@ -53,6 +53,7 @@
     "react-navigation": "^3.0.0",
     "react-navigation-collapsible": "^3.0.3",
     "react-navigation-tabs": "^2.1.2",
+    "sectionlist-get-itemlayout": "^1.0.7",
     "shortid": "^2.2.14",
     "twix": "^1.2.1",
     "yup": "^0.26.6"
