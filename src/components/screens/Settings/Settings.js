@@ -120,7 +120,7 @@ export default class Settings extends React.Component {
               </>)
             }
             <List.Item
-              title="Starred events only"
+              title="Bookmarked events only"
               right={() => (
                 <Switch
                   value={starredEventsOnly}
