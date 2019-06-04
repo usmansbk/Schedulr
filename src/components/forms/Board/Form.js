@@ -135,7 +135,7 @@ export default class Form extends React.Component {
             }>
             <View style={styles.form}>
               <TextInput
-                placeholder="Events board name"
+                placeholder="Event board name"
                 label="Name"
                 value={values.name}
                 onChangeText={handleChange('name')}

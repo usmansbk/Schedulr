@@ -13,7 +13,7 @@ export default class Screen extends React.Component {
   _handleShare = ({ id, name }) => {
     const shareOptions = {
       title: 'Share invite link via...',
-      subject: 'Follow events board to get latest events',
+      subject: 'Follow event board to get latest events',
       message: `Follow "${name}" to see their latest events, receive updates and get reminders.\n`,
       url: `${env.APP_URL}/board/${id}`
     };

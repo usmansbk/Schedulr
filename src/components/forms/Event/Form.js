@@ -343,7 +343,7 @@ export default class Form extends React.Component {
                   itemStyle={styles.pickerItem}
                   onValueChange={itemValue => setFieldValue('boardId', itemValue)}
                 >
-                  <Picker.Item label={(boards.length === 0) ? "No events board" : "Select a board"} value="" />
+                  <Picker.Item label={(boards.length === 0) ? "No event board" : "Select a board"} value="" />
                   {
                     boards.map(board => (
                       <Picker.Item key={board.id} label={board.name} value={board.id} />
