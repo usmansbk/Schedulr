@@ -15,7 +15,7 @@ const Tabs = createMaterialTopTabNavigator(
     Events
   },
   {
-    initialRouteName: 'Board',
+    initialRouteName: 'Boards',
     initialLayout: { height: 0, width: Dimensions.get('window').width },
     animationEnabled: true,
     tabBarComponent: props => <TabBarComponent {...props} />,
