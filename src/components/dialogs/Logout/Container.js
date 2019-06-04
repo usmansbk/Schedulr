@@ -7,6 +7,7 @@ import { withNavigation } from 'react-navigation';
 import SimpleToast from 'react-native-simple-toast';
 import Dialog from './Dialog';
 import client from 'config/client';
+import stores from 'stores';
 
 class Container extends React.Component {
   state = {
@@ -20,11 +21,16 @@ class Container extends React.Component {
     await this._googleSignout();
     await this._clearStore();
     await this._purgeAsyncStorage();
+    this._clearMobxStore();
     this.setState({ loading: false });
     this._handleDismiss();
     this.props.navigation.navigate('Auth');
     SimpleToast.show("You've been logged out", SimpleToast.SHORT);
   };
+
+  _clearMobxStore = () => {
+    stores.reset();
+  }
 
   _purgeAsyncStorage = async () => {
     try {

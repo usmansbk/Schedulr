@@ -15,6 +15,14 @@ export default class UIState {
     this.isConnected = isConnected;
   }
 
+  @action reset() {
+    this.isConnected =false;
+    this.searchText = '';
+    this.query = '';
+    this.mutedList = [];
+    this.allowedList = [];
+  }
+
   @action toggleMute = (id, isMuted) => {
     const hasId = this.mutedList.includes(id);
     const isAllowed = this.allowedList.includes(id);

@@ -24,4 +24,15 @@ export default class SettingsState {
       await changeNavigationBarColor(this.dark ? colors.light_gray_2 : colors.bg, !this.dark);
     } catch (error) {}
   }
+
+  @action reset() {
+    this.language = "en_US";
+    this.dark = false;
+    this.sound = true;
+    this.vibrate = true;
+    this.disableReminders = false;
+    this.headsUp = false;
+    this.starredEventsOnly = false;
+    this.disablePushNotifications = false;
+  }
 }

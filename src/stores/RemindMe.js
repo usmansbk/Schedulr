@@ -12,4 +12,14 @@ export default class RemindMe {
   @action toggle(key) {
     this[key] = !this[key];
   }
+
+  @action reset() {
+    this.fiveMin = true;
+    this.tenMin = false;
+    this.fifteenMin = false;
+    this.thirtyMin = false;
+    this.thirtyMin = false;
+    this.oneHour = false;
+    this.oneDay = false;
+  }
 }

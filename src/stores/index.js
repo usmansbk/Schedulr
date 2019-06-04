@@ -1,3 +1,4 @@
+import { action } from 'mobx';
 import { create } from 'mobx-persist';
 import { AsyncStorage  } from 'react-native';
 import Settings from './Settings';
@@ -33,6 +34,13 @@ class RootStore {
     this.me = meStore;
     this.appStyles = appStyles;
     this.appState = appState;
+  }
+
+  @action reset = () => {
+    this.settingsStore.reset();
+    this.remindMeStore.reset();
+    this.me.reset();
+    this.appState.reset();
   }
 }
 

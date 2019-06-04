@@ -22,6 +22,14 @@ export default class UserProfile {
     })
   }
 
+  @action reset() {
+    this.id = null;
+    this.__typename = 'User';
+    this.name = 'Mobx';
+    this.email = "hello@help.com";
+    this.pictureUrl = null;
+  }
+
   @action
   async login(input) {
     try {
