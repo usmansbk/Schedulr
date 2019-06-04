@@ -8,7 +8,7 @@ export default inject('stores')(observer(
     return (
       <View style={stores.appStyles.boardSearch.empty}>
         <Headline style={stores.appStyles.boardSearch.emptyTitle}>What interests you?</Headline>
-        <Caption style={stores.appStyles.boardSearch.paragraph}>Find a group, follow, and get notified on event updates.</Caption>
+        <Caption style={stores.appStyles.boardSearch.paragraph}>Find a board, follow, and get notified on event updates.</Caption>
       </View>
     );
   }

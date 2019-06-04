@@ -167,16 +167,16 @@ export default class Info extends React.Component {
                   style={styles.note}
                   onPress={() => {
                     if (isPublic) {
-                      Alert.alert('Public Group', INFO)
+                      Alert.alert('Public board', INFO)
                     }
                   }}
-                >{ isPublic ? 'Public' : 'Private'} group</Text>
+                >{ isPublic ? 'Public' : 'Private'} board</Text>
               </View>
               {
                 isClosed && (
                   <View style={styles.noteView}>
                     <Icon color={colors.black} name="lock" size={18} />
-                    <Text style={styles.note}>This group is closed</Text>
+                    <Text style={styles.note}>This board is closed</Text>
                   </View>
                 )
               }

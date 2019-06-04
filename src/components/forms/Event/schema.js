@@ -10,5 +10,5 @@ export default Yup.object().shape({
     .trim()
     .max(160, 'Too Long'),
   boardId: Yup.string()
-    .required('Event must belong to a group')
+    .required('Event must belong to a board')
 });

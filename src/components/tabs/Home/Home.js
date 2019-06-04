@@ -29,7 +29,7 @@ const Home = createMaterialTopTabNavigator({
       if (routeName === 'Events') {
         iconName = 'calendar-week-begin'
       } else if (routeName === 'Boards') {
-        iconName = 'calendar-multiple';
+        iconName = 'bulletin-board';
       } else if (routeName === 'Starred') {
         iconName = `bookmark${focused ? '' : '-outline'}`;
       }

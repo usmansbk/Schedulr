@@ -334,16 +334,16 @@ export default class Form extends React.Component {
                 </Picker>
               </View>
               <View style={styles.pickerSpacing}>
-                <Text style={styles.radioText}>Group</Text>
+                <Text style={styles.radioText}>Board</Text>
                 <Picker
-                  prompt="Select a group"
+                  prompt="Select a board"
                   selectedValue={values.boardId}
                   style={styles.picker}
                   enabled={!locked }
                   itemStyle={styles.pickerItem}
                   onValueChange={itemValue => setFieldValue('boardId', itemValue)}
                 >
-                  <Picker.Item label={(boards.length === 0) ? "No group" : "Select a group"} value="" />
+                  <Picker.Item label={(boards.length === 0) ? "No events board" : "Select a board"} value="" />
                   {
                     boards.map(board => (
                       <Picker.Item key={board.id} label={board.name} value={board.id} />

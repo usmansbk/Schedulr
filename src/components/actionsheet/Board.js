@@ -18,7 +18,7 @@ export default class EventAction extends React.Component {
     const { id, name } = this.props;
     const shareOptions = {
       title: 'Share invite link via...',
-      subject: 'Follow group to see latest events',
+      subject: 'Follow board to see latest events',
       message: `Follow "${name}" to see their latest events, receive updates and get reminders.\n`,
       url: `${env.APP_URL}/board/${id}`
     };
@@ -67,7 +67,7 @@ export default class EventAction extends React.Component {
 
     const options = ['Back'];
     if (isAuthor) {
-      options.unshift(isClosed ? 'Open group' : 'Close group');
+      options.unshift(isClosed ? 'Open board' : 'Close board');
     }
     options.unshift(
       'Share invite link',
