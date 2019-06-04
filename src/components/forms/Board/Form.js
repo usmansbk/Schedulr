@@ -175,7 +175,7 @@ export default class Form extends React.Component {
                     type="info"
                     visible={!values.isPublic}
                   >
-                    Invites only.
+                    Private board won't show up in search but can be followed via shared link.
                   </HelperText>
                 )
               }
