@@ -19,6 +19,7 @@ const { AVATAR_SIZE } = starredEvents;
 export default class Item extends React.Component {
   _onPress = () => this.props.onPressItem(this.props.id, this.props.startAt, this.props.endAt);
   _onPressComment = () => this.props.onPressComment(this.props.id, this.props.title, this.props.time);
+  _onPressAvatar = () => this.props.navigateToInfo(this.props.boardId);
   shouldComponentUpdate = (nextProps) => {
     return (
       this.props.title !== nextProps.title ||
@@ -62,6 +63,7 @@ export default class Item extends React.Component {
               size={AVATAR_SIZE}
               name={title}
               src={pictureUrl}
+              onPress={this._onPressAvatar}
             />
           </View>
           <View style={styles.right}>
