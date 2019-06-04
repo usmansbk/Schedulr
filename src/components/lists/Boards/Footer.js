@@ -6,7 +6,7 @@ import { inject, observer } from 'mobx-react/native';
 export default inject('stores')(observer(
   ({ visible, stores }) => visible ? (
     <View style={stores.appStyles.boardsList.footer}>
-      <Caption style={stores.appStyles.boardsList.footerText}>No more calendars</Caption>
+      <Caption style={stores.appStyles.boardsList.footerText}>No more groups</Caption>
     </View>
   ) : null
 ));

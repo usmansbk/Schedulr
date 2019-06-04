@@ -5,8 +5,8 @@ import { inject, observer } from 'mobx-react/native';
 
 export default inject('stores')(observer(
   ({ profile, error, stores }) => {
-    let title = "Follow or create a Calendar";
-    if (profile) title = "No Calendar";
+    let title = "Follow or create a Group";
+    if (profile) title = "No Group";
     if (error) {
       title = "Network error";
     }

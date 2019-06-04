@@ -34,7 +34,7 @@ class List extends React.Component {
         const options = {
           title: 'Invite via...',
           message,
-          subject: 'The Social Calendar',
+          subject: 'The Social Scheduler',
           url
         }
         Share.open(options);

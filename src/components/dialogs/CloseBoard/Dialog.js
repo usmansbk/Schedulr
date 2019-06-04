@@ -45,7 +45,7 @@ export default class CloseBoard extends React.Component {
           onDismiss={handleDismiss}
           style={{backgroundColor: stores.themeStore.colors.bg}}
         >
-          <Dialog.Title>Close calendar?</Dialog.Title>
+          <Dialog.Title>Close group?</Dialog.Title>
           <Dialog.Actions>
             <Button disabled={loading} onPress={handleDismiss}>Dismiss</Button>
             <Button loading={loading} disabled={loading} onPress={this._onContinue}>Continue</Button>

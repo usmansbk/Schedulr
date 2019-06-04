@@ -13,7 +13,7 @@ export default graphql(gql(createBoard), {
   alias,
   options: {
     onError: error => {
-      SimpleToast.show('Failed to create calendar', SimpleToast.SHORT);
+      SimpleToast.show('Failed to create group', SimpleToast.SHORT);
       logger.debug(error.message);
       analytics({
         name: 'create_board',

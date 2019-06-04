@@ -135,7 +135,7 @@ export default class Form extends React.Component {
             }>
             <View style={styles.form}>
               <TextInput
-                placeholder="Calendar name"
+                placeholder="Group name"
                 label="Name"
                 value={values.name}
                 onChangeText={handleChange('name')}

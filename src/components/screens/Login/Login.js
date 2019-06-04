@@ -13,14 +13,14 @@ export default (props) => (
       <Logo />
       <Headline style={styles.h1}>Welcome to Schdlr!</Headline>
       <Caption style={styles.caption}>
-        The Social Calendar
+        The Event scheduler
       </Caption>
       <View style={styles.content}>
         <FBLoginButton disabled={props.loading} onLogin={props.handleLogin} />
         <GLoginButton disabled={props.loading} onLogin={props.handleLogin} />
       </View>
       <Caption style={styles.caption}>
-        Keep your friends and colleagues up to date with the latest events!
+        Share your schedules with friends and colleagues!
       </Caption>
     </View>
 );

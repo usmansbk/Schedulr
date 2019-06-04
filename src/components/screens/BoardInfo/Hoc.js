@@ -16,7 +16,7 @@ export default graphql(gql(getBoard), {
     notifyOnNetworkStatusChange: true,
     fetchPolicy: 'cache-first',
     onError: error => {
-      SimpleToast.show('Failed to get calendar', SimpleToast.SHORT);
+      SimpleToast.show('Failed to get group', SimpleToast.SHORT);
       logger.debug(error.message);
       analytics({
         alias,

@@ -12,7 +12,7 @@ export default class NewBoardScreen extends React.Component {
         cacheFirst: true
       });
     } catch(error) {
-      SimpleToast.show('Failed to create calendar: ' + error.message, SimpleToast.SHORT);
+      SimpleToast.show('Failed to create group: ' + error.message, SimpleToast.SHORT);
     }
   };
 
