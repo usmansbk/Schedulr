@@ -150,11 +150,10 @@ android {
 }
 
 dependencies {
-    implementation project(':lottie-react-native')
     implementation project(':react-native-navigation-bar-color')
     implementation project(':react-native-reanimated')
     implementation project(':react-native-webview')
-    compile(project(':react-native-geolocation-service')) {
+    implementation(project(':react-native-geolocation-service')) {
         exclude group: 'com.google.android.gms', module: 'play-services-location'
     }
     implementation 'com.google.android.gms:play-services-location:16.0.0'
