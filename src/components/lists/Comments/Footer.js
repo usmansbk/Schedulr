@@ -19,7 +19,7 @@ export default inject('stores')(observer(
         <View style={stores.appStyles.eventsList.footerContent}>
           <Caption style={stores.appStyles.eventsList.footerText}>
             {
-              hasMore ? "Load more" : "No more comments"
+              hasMore ? "Load more comments" : "No more comments"
             }
           </Caption>
         </View>
