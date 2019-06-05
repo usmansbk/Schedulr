@@ -1,8 +1,6 @@
 import React from 'react';
 import moment from "moment";
 import isEqual from 'lodash.isequal';
-import Geolocation from 'react-native-geolocation-service';
-import SimpleToast from 'react-native-simple-toast';
 import {
   View,
   Picker,
@@ -32,18 +30,10 @@ import formSchema from './schema';
 import eventTypes from './types';
 import frequency from './frequency';
 import { buildEventForm } from 'helpers/buildForm';
-import { requestLocationPermission } from 'helpers/permissions';
 
 @inject('stores')
 @observer
 export default class Form extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      latitude: null,
-      longitude: null,
-    }
-  }
 
   static defaultProps = {
     initialValues: {
@@ -73,35 +63,8 @@ export default class Form extends React.Component {
   }
 
   componentDidMount = () => {
-    this.getLocation();
-  };
-  
-  getLocation = () => {
-    if (requestLocationPermission()) {
-      Geolocation.getCurrentPosition(
-        (position) => {
-          const {
-            coords: {
-              longitude,
-              latitude
-            }
-          } = position;
-          this.setState({
-            latitude,
-            longitude
-          });
-        },
-        (error) => {
-          SimpleToast.show(error.message, SimpleToast.SHORT);
-        },
-        {
-          enableHighAccuracy: true,
-          timeout: 15000,
-          maximumAge: 10000
-        }
-      )
-    }
-  };
+    InteractionManager.runAfterInteractions(this.props.stores.appState.getLocation);
+  }
 
   render() {
     const {
@@ -124,7 +87,7 @@ export default class Form extends React.Component {
         validationSchema={formSchema}
         onSubmit={async (values, { setSubmitting }) => {
           if (isEventValid(values)) {
-            const input = buildEventForm(values, this.state);
+            const input = buildEventForm(values, stores.apState.location);
             onSubmit && await onSubmit(input);
           }
           setSubmitting(false);
