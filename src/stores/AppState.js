@@ -66,6 +66,7 @@ export default class AppState {
             } = position;
             this.location.longitude = longitude;
             this.location.latitude = latitude;
+            this.getAddress();
           },
           (error) => {
             logger.debug(error);

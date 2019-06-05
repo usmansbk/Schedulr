@@ -92,6 +92,11 @@ export default class Settings extends React.Component {
               )}
             />
             <Divider />
+            <List.Item
+              title="Location"
+              description={stores.appState.address}
+            />
+            <Divider />
           </List.Section>
           <List.Section title="Reminder">
             <List.Item
