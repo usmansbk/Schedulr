@@ -37,6 +37,23 @@ export default class AppState {
       longitude: null
     }
   }
+  
+  @action setLocation(address) {
+    this.address = address;
+    this.location = {
+      latitude: null,
+      longitude: null,
+    };
+    if (address) {
+      Geocoder.geocodeAddress(address)
+        .then(res => {
+          const loc = res[0];
+          const { lat, lng } = loc;
+          this.location.longitude = lng;
+          this.location.latitude = lat;
+        }).catch(err => logger.error(err));
+    }
+  }
 
   @action getAddress = () => {
     if (this.location.longitude && this.location.latitude) {
