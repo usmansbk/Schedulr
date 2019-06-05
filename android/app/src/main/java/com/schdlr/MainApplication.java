@@ -17,7 +17,6 @@ import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 import co.apptailor.googlesignin.RNGoogleSigninPackage;
 import org.devio.rn.splashscreen.SplashScreenReactPackage;
 import cl.json.RNSharePackage;
-import cl.json.ShareApplication;
 import com.dieam.reactnativepushnotification.ReactNativePushNotificationPackage;
 import com.facebook.reactnative.androidsdk.FBSDKPackage;
 import com.RNFetchBlob.RNFetchBlobPackage;
@@ -29,7 +28,7 @@ import com.facebook.soloader.SoLoader;
 import java.util.Arrays;
 import java.util.List;
 
-public class MainApplication extends Application implements ShareApplication, ReactApplication {
+public class MainApplication extends Application implements ReactApplication {
  
   private static CallbackManager mCallbackManager = CallbackManager.Factory.create();
  
@@ -80,8 +79,4 @@ public class MainApplication extends Application implements ShareApplication, Re
     SoLoader.init(this, /* native exopackage */ false);
   }
   
-  @Override
-  public String getFileProviderAuthority() {
-    return  BuildConfig.APPLICATION_ID + ".provider";
-  }
 }
