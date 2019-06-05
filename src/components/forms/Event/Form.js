@@ -14,7 +14,7 @@ import {
   TextInput,
   Text,
   HelperText,
-  RadioButton,
+  Checkbox,
   Appbar,
 } from 'react-native-paper';
 import { Formik } from 'formik';
@@ -233,7 +233,7 @@ export default class Form extends React.Component {
               />
               <View style={styles.radio}>
                 <Text style={styles.radioText}>All-day</Text>
-                <RadioButton
+                <Checkbox
                   value='allDay'
                   onPress={() => {
                     const { allDay } = values;
@@ -289,10 +289,9 @@ export default class Form extends React.Component {
                 (values.repeat !== frequency[0].id) && (
                   <View style={styles.radio}>
                     <Text style={styles.radioText}>Repeat Forever</Text>
-                    <RadioButton
+                    <Checkbox
                       value='Forever'
                       onPress={() => {
-                        alert('works');
                         const prevValue = values.forever;
                         const newValue = !prevValue;
                         setFieldValue('forever', newValue);
