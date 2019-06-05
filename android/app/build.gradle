@@ -101,11 +101,6 @@ def enableProguardInReleaseBuilds = false
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
-
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
     
     packagingOptions {
         pickFirst '**/libjsc.so'
@@ -165,7 +160,6 @@ configurations.all {
 }
 
 dependencies {
-    implementation project(':lottie-react-native')
     implementation project(':react-native-navigation-bar-color')
     implementation project(':react-native-reanimated')
     implementation project(':react-native-geolocation-service')

@@ -6,7 +6,6 @@ import com.facebook.CallbackManager;
 import com.facebook.FacebookSdk;
 
 import com.facebook.react.ReactApplication;
-import com.airbnb.android.react.lottie.LottiePackage;
 import com.thebylito.navigationbarcolor.NavigationBarColorPackage;
 
 import com.swmansion.reanimated.ReanimatedPackage;
@@ -48,7 +47,6 @@ public class MainApplication extends Application implements ShareApplication, Re
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
-            new LottiePackage(),
             new NavigationBarColorPackage(),
             new ReanimatedPackage(),
             new RNFusedLocationPackage(),

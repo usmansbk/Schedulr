@@ -80,7 +80,6 @@
 		895E22EBC8664AF9B88A2BE9 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E1EBB4AFD03241BB84EBB362 /* SimpleLineIcons.ttf */; };
 		288721FB86BF40268B894243 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 66D0295FFB7742E29738439A /* Zocial.ttf */; };
 		41B99D4E5C884F249A9DC567 /* libRNReanimated.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ACFBAE7339D34D4CB633243F /* libRNReanimated.a */; };
-		6462B82983D844F19806E9F1 /* libLottieReactNative.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 24D276E8C32E4492A8C0C288 /* libLottieReactNative.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -405,8 +404,6 @@
 		66D0295FFB7742E29738439A /* Zocial.ttf */ = {isa = PBXFileReference; name = "Zocial.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		883A8907DE1D4A8691DAE15F /* RNReanimated.xcodeproj */ = {isa = PBXFileReference; name = "RNReanimated.xcodeproj"; path = "../node_modules/react-native-reanimated/ios/RNReanimated.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		ACFBAE7339D34D4CB633243F /* libRNReanimated.a */ = {isa = PBXFileReference; name = "libRNReanimated.a"; path = "libRNReanimated.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
-		523FF843E5D9451E84C677C6 /* LottieReactNative.xcodeproj */ = {isa = PBXFileReference; name = "LottieReactNative.xcodeproj"; path = "../node_modules/lottie-react-native/src/ios/LottieReactNative.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		24D276E8C32E4492A8C0C288 /* libLottieReactNative.a */ = {isa = PBXFileReference; name = "libLottieReactNative.a"; path = "libLottieReactNative.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -445,7 +442,6 @@
 				C94F5D4DBB24421485B83857 /* libRNAWSCognito.a in Frameworks */,
 				89C0AB6E19CC4FEBBA76C478 /* libLRDRCTSimpleToast.a in Frameworks */,
 				41B99D4E5C884F249A9DC567 /* libRNReanimated.a in Frameworks */,
-				6462B82983D844F19806E9F1 /* libLottieReactNative.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -648,7 +644,6 @@
 				C8CE1C61B13541F780210E6B /* RNAWSCognito.xcodeproj */,
 				294DE19327ED43CCA0291D60 /* LRDRCTSimpleToast.xcodeproj */,
 				883A8907DE1D4A8691DAE15F /* RNReanimated.xcodeproj */,
-				523FF843E5D9451E84C677C6 /* LottieReactNative.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -1345,7 +1340,6 @@
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Schdlr.app/Schdlr";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1359,7 +1353,6 @@
 					"$(SRCROOT)\..\node_modules\amazon-cognito-identity-js\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-simple-toast\ios\LRDRCTSimpleToast",
 					"$(SRCROOT)\..\node_modules\react-native-reanimated\ios/**",
-					"$(SRCROOT)\..\node_modules\lottie-react-native\src\ios\LottieReactNative",
 				);
 			};
 			name = Debug;
@@ -1381,7 +1374,6 @@
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Schdlr.app/Schdlr";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1395,7 +1387,6 @@
 					"$(SRCROOT)\..\node_modules\amazon-cognito-identity-js\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-simple-toast\ios\LRDRCTSimpleToast",
 					"$(SRCROOT)\..\node_modules\react-native-reanimated\ios/**",
-					"$(SRCROOT)\..\node_modules\lottie-react-native\src\ios\LottieReactNative",
 				);
 			};
 			name = Release;
@@ -1428,7 +1419,6 @@
 					"$(SRCROOT)\..\node_modules\amazon-cognito-identity-js\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-simple-toast\ios\LRDRCTSimpleToast",
 					"$(SRCROOT)\..\node_modules\react-native-reanimated\ios/**",
-					"$(SRCROOT)\..\node_modules\lottie-react-native\src\ios\LottieReactNative",
 				);
 			};
 			name = Debug;
@@ -1460,7 +1450,6 @@
 					"$(SRCROOT)\..\node_modules\amazon-cognito-identity-js\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-simple-toast\ios\LRDRCTSimpleToast",
 					"$(SRCROOT)\..\node_modules\react-native-reanimated\ios/**",
-					"$(SRCROOT)\..\node_modules\lottie-react-native\src\ios\LottieReactNative",
 				);
 			};
 			name = Release;
@@ -1490,7 +1479,6 @@
 				TVOS_DEPLOYMENT_TARGET = 9.2;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1504,7 +1492,6 @@
 					"$(SRCROOT)\..\node_modules\amazon-cognito-identity-js\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-simple-toast\ios\LRDRCTSimpleToast",
 					"$(SRCROOT)\..\node_modules\react-native-reanimated\ios/**",
-					"$(SRCROOT)\..\node_modules\lottie-react-native\src\ios\LottieReactNative",
 				);
 			};
 			name = Debug;
@@ -1534,7 +1521,6 @@
 				TVOS_DEPLOYMENT_TARGET = 9.2;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1548,7 +1534,6 @@
 					"$(SRCROOT)\..\node_modules\amazon-cognito-identity-js\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-simple-toast\ios\LRDRCTSimpleToast",
 					"$(SRCROOT)\..\node_modules\react-native-reanimated\ios/**",
-					"$(SRCROOT)\..\node_modules\lottie-react-native\src\ios\LottieReactNative",
 				);
 			};
 			name = Release;
@@ -1577,7 +1562,6 @@
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1591,7 +1575,6 @@
 					"$(SRCROOT)\..\node_modules\amazon-cognito-identity-js\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-simple-toast\ios\LRDRCTSimpleToast",
 					"$(SRCROOT)\..\node_modules\react-native-reanimated\ios/**",
-					"$(SRCROOT)\..\node_modules\lottie-react-native\src\ios\LottieReactNative",
 				);
 			};
 			name = Debug;
@@ -1620,7 +1603,6 @@
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1634,7 +1616,6 @@
 					"$(SRCROOT)\..\node_modules\amazon-cognito-identity-js\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-simple-toast\ios\LRDRCTSimpleToast",
 					"$(SRCROOT)\..\node_modules\react-native-reanimated\ios/**",
-					"$(SRCROOT)\..\node_modules\lottie-react-native\src\ios\LottieReactNative",
 				);
 			};
 			name = Release;
