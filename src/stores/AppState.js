@@ -4,6 +4,7 @@ import { observable, action } from 'mobx';
 import { persist } from 'mobx-persist';
 import debounce from 'lodash.debounce';
 import { requestLocationPermission } from 'helpers/permissions';
+import logger from 'config/logger';
 
 export default class AppState {
   @observable isConnected = false;
@@ -50,6 +51,7 @@ export default class AppState {
             this.location.latitude = latitude;
           },
           (error) => {
+            logger.debug(error);
             SimpleToast.show(error.message, SimpleToast.SHORT);
           },
           {
