@@ -5,8 +5,6 @@ import {
   RefreshControl,
   InteractionManager
 } from 'react-native';
-import Geolocation from 'react-native-geolocation-service';
-import SimpleToast from 'react-native-simple-toast';
 import isEqual from 'lodash.isequal';
 import {
   Button,
@@ -19,17 +17,11 @@ import {
 import { Formik } from 'formik';
 import { inject, observer } from 'mobx-react';
 import validationSchema from './schema';
-import { requestLocationPermission } from 'helpers/permissions';
 import { buildBoardForm } from 'helpers/buildForm';
 
 @inject('stores')
 @observer
 export default class Form extends React.Component {
-  state = {
-    longitude: null,
-    latitude: null
-  };
-
   static defaultProps = {
     initialValues: {
       name: '',
@@ -43,35 +35,8 @@ export default class Form extends React.Component {
   };
 
   componentDidMount = () => {
-    InteractionManager.runAfterInteractions(this.getLocation);
+    InteractionManager.runAfterInteractions(this.props.stores.appState.getLocation);
   }
-  
-  getLocation = () => {
-    if (requestLocationPermission()) {
-      Geolocation.getCurrentPosition(
-        (position) => {
-          const {
-            coords: {
-              longitude,
-              latitude
-            }
-          } = position;
-          this.setState({
-            latitude,
-            longitude
-          });
-        },
-        (error) => {
-          SimpleToast.show(error.message, SimpleToast.SHORT);
-        },
-        {
-          enableHighAccuracy: true,
-          timeout: 15000,
-          maximumAge: 10000
-        }
-      )
-    }
-  };
 
   render() {
     const {
@@ -90,7 +55,7 @@ export default class Form extends React.Component {
         initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={async (values, { setSubmitting }) => {
-          const input = buildBoardForm (values, this.state);
+          const input = buildBoardForm (values, stores.appState.location);
           onSubmit && await onSubmit(input);
           setSubmitting(false);
         }}

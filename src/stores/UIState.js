@@ -1,6 +1,9 @@
+import Geolocation from 'react-native-geolocation-service';
+import SimpleToast from 'react-native-simple-toast';
 import { observable, action } from 'mobx';
 import { persist } from 'mobx-persist';
 import debounce from 'lodash.debounce';
+import { requestLocationPermission } from 'helpers/permissions';
 
 export default class UIState {
   @observable isConnected = false;
@@ -8,6 +11,10 @@ export default class UIState {
   @observable query = '';
   @persist('list') @observable mutedList = [];
   @persist('list') @observable allowedList = [];
+  @persist('object') @observable location = {
+    longitude: null,
+    latitude: null
+  }
 
   debounceQuery = debounce((val) => this.query = val, 250);
   
@@ -22,6 +29,34 @@ export default class UIState {
     this.mutedList = [];
     this.allowedList = [];
   }
+
+  @action getLocation = () => {
+    const { longitude, latitude } = this.location;
+    if (!(longitude && latitude)) {
+      if (requestLocationPermission()) {
+        Geolocation.getCurrentPosition(
+          (position) => {
+            const {
+              coords: {
+                longitude,
+                latitude
+              }
+            } = position;
+            this.location.longitude = longitude;
+            this.location.latitude = latitude;
+          },
+          (error) => {
+            SimpleToast.show(error.message, SimpleToast.SHORT);
+          },
+          {
+            enableHighAccuracy: true,
+            timeout: 15000,
+            maximumAge: 10000
+          }
+        )
+      }
+    }
+  };
 
   @action toggleMute = (id, isMuted) => {
     const hasId = this.mutedList.includes(id);
