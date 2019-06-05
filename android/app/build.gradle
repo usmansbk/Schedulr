@@ -162,7 +162,6 @@ configurations.all {
 dependencies {
     implementation project(':react-native-navigation-bar-color')
     implementation project(':react-native-reanimated')
-    implementation project(':react-native-webview')
     implementation project(':react-native-geolocation-service')
     implementation project(':amazon-cognito-identity-js')
     implementation project(':react-native-vector-icons')
