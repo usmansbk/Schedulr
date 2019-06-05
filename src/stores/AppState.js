@@ -31,6 +31,7 @@ export default class AppState {
     this.query = '';
     this.mutedList = [];
     this.allowedList = [];
+    this.address = 'Nigeria';
     this.location = {
       latitude: null,
       longitude: null
