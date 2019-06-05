@@ -1,4 +1,5 @@
 import Geolocation from 'react-native-geolocation-service';
+import Geocoder from 'react-native-geocoder';
 import SimpleToast from 'react-native-simple-toast';
 import { observable, action } from 'mobx';
 import { persist } from 'mobx-persist';
@@ -33,6 +34,10 @@ export default class AppState {
       latitude: null,
       longitude: null
     }
+  }
+
+  @action getAddress = () => {
+
   }
 
   @action getLocation = () => {
