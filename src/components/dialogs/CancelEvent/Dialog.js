@@ -3,7 +3,7 @@ import {
   Button,
   Dialog,
   Portal,
-  RadioButton,
+  Checkbox,
   List
 } from 'react-native-paper';
 import { inject, observer } from 'mobx-react';
@@ -73,7 +73,7 @@ export default class CancelEvent extends React.Component {
                 <List.Item
                   title="Only this event"
                   right={() => (
-                    <RadioButton
+                    <Checkbox
                       value="SINGLE"
                       status={ checked === 'SINGLE' ? 'checked' : 'unchecked'}
                       onPress={() => this.setState({ checked: 'SINGLE'})}
@@ -83,7 +83,7 @@ export default class CancelEvent extends React.Component {
                 <List.Item
                   title="All of this event"
                   right={() => (
-                    <RadioButton
+                    <Checkbox
                       value="ALL"
                       status={ checked === 'ALL' ? 'checked' : 'unchecked'}
                       onPress={() => this.setState({ checked: 'ALL'})}
