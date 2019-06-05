@@ -6,6 +6,7 @@ import com.facebook.CallbackManager;
 import com.facebook.FacebookSdk;
 
 import com.facebook.react.ReactApplication;
+import com.devfd.RNGeocoder.RNGeocoderPackage;
 import com.thebylito.navigationbarcolor.NavigationBarColorPackage;
 
 import com.swmansion.reanimated.ReanimatedPackage;
@@ -46,6 +47,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new RNGeocoderPackage(),
             new NavigationBarColorPackage(),
             new ReanimatedPackage(),
             new RNFusedLocationPackage(),
