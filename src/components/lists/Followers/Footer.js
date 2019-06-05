@@ -5,7 +5,6 @@ import {
 } from 'react-native-paper';
 import { View } from 'react-native';
 import { inject, observer } from 'mobx-react';
-import { BULLET } from 'lib/constants';
 
 export default inject('stores')(observer(
   ({ hide, loading, onPress, stores, hasMore }) => (hide || loading) ? null : (
@@ -15,11 +14,13 @@ export default inject('stores')(observer(
         style={stores.appStyles.eventsList.footerContainer}
       >
         <View style={stores.appStyles.eventsList.footerContent}>
-          <Caption style={stores.appStyles.eventsList.footerText}>
-            {
-              hasMore ? "Load more" : BULLET
-            }
-          </Caption>
+          {
+            hasMore && (
+              <Caption style={stores.appStyles.eventsList.footerText}>
+                Load more
+              </Caption>
+            )
+          }
         </View>
       </TouchableRipple>
     )
