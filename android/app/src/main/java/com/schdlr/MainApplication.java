@@ -9,7 +9,7 @@ import com.facebook.react.ReactApplication;
 import com.thebylito.navigationbarcolor.NavigationBarColorPackage;
 
 import com.swmansion.reanimated.ReanimatedPackage;
-import com.reactnativecommunity.webview.RNCWebViewPackage;
+
 import com.agontuk.RNFusedLocation.RNFusedLocationPackage;
 import com.amazonaws.RNAWSCognitoPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
@@ -49,7 +49,6 @@ public class MainApplication extends Application implements ShareApplication, Re
           new MainReactPackage(),
             new NavigationBarColorPackage(),
             new ReanimatedPackage(),
-            new RNCWebViewPackage(),
             new RNFusedLocationPackage(),
             new RNAWSCognitoPackage(),
             new VectorIconsPackage(),

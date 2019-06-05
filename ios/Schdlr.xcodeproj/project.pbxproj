@@ -79,7 +79,6 @@
 		9848D33A799747A9A39587A7 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A3F51679DD9042FB9E70D9F1 /* Octicons.ttf */; };
 		895E22EBC8664AF9B88A2BE9 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E1EBB4AFD03241BB84EBB362 /* SimpleLineIcons.ttf */; };
 		288721FB86BF40268B894243 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 66D0295FFB7742E29738439A /* Zocial.ttf */; };
-		B13722F763954726A9EB9524 /* libRNCWebView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AC7BD4FC84E48FEA1625B0D /* libRNCWebView.a */; };
 		41B99D4E5C884F249A9DC567 /* libRNReanimated.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ACFBAE7339D34D4CB633243F /* libRNReanimated.a */; };
 /* End PBXBuildFile section */
 
@@ -403,8 +402,6 @@
 		A3F51679DD9042FB9E70D9F1 /* Octicons.ttf */ = {isa = PBXFileReference; name = "Octicons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		E1EBB4AFD03241BB84EBB362 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; name = "SimpleLineIcons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		66D0295FFB7742E29738439A /* Zocial.ttf */ = {isa = PBXFileReference; name = "Zocial.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		9B9F759AC6C74D859DAC1D29 /* RNCWebView.xcodeproj */ = {isa = PBXFileReference; name = "RNCWebView.xcodeproj"; path = "../node_modules/react-native-webview/ios/RNCWebView.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		7AC7BD4FC84E48FEA1625B0D /* libRNCWebView.a */ = {isa = PBXFileReference; name = "libRNCWebView.a"; path = "libRNCWebView.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 		883A8907DE1D4A8691DAE15F /* RNReanimated.xcodeproj */ = {isa = PBXFileReference; name = "RNReanimated.xcodeproj"; path = "../node_modules/react-native-reanimated/ios/RNReanimated.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		ACFBAE7339D34D4CB633243F /* libRNReanimated.a */ = {isa = PBXFileReference; name = "libRNReanimated.a"; path = "libRNReanimated.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
@@ -444,7 +441,6 @@
 				BEB1198A694D4EA1867207BF /* libRNVectorIcons.a in Frameworks */,
 				C94F5D4DBB24421485B83857 /* libRNAWSCognito.a in Frameworks */,
 				89C0AB6E19CC4FEBBA76C478 /* libLRDRCTSimpleToast.a in Frameworks */,
-				B13722F763954726A9EB9524 /* libRNCWebView.a in Frameworks */,
 				41B99D4E5C884F249A9DC567 /* libRNReanimated.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -647,7 +643,6 @@
 				F9228160EDB34B3AA32A5A0C /* RNVectorIcons.xcodeproj */,
 				C8CE1C61B13541F780210E6B /* RNAWSCognito.xcodeproj */,
 				294DE19327ED43CCA0291D60 /* LRDRCTSimpleToast.xcodeproj */,
-				9B9F759AC6C74D859DAC1D29 /* RNCWebView.xcodeproj */,
 				883A8907DE1D4A8691DAE15F /* RNReanimated.xcodeproj */,
 			);
 			name = Libraries;
@@ -1357,7 +1352,6 @@
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
 					"$(SRCROOT)\..\node_modules\amazon-cognito-identity-js\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-simple-toast\ios\LRDRCTSimpleToast",
-					"$(SRCROOT)\..\node_modules\react-native-webview\ios",
 					"$(SRCROOT)\..\node_modules\react-native-reanimated\ios/**",
 				);
 			};
@@ -1392,7 +1386,6 @@
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
 					"$(SRCROOT)\..\node_modules\amazon-cognito-identity-js\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-simple-toast\ios\LRDRCTSimpleToast",
-					"$(SRCROOT)\..\node_modules\react-native-webview\ios",
 					"$(SRCROOT)\..\node_modules\react-native-reanimated\ios/**",
 				);
 			};
@@ -1425,7 +1418,6 @@
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
 					"$(SRCROOT)\..\node_modules\amazon-cognito-identity-js\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-simple-toast\ios\LRDRCTSimpleToast",
-					"$(SRCROOT)\..\node_modules\react-native-webview\ios",
 					"$(SRCROOT)\..\node_modules\react-native-reanimated\ios/**",
 				);
 			};
@@ -1457,7 +1449,6 @@
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
 					"$(SRCROOT)\..\node_modules\amazon-cognito-identity-js\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-simple-toast\ios\LRDRCTSimpleToast",
-					"$(SRCROOT)\..\node_modules\react-native-webview\ios",
 					"$(SRCROOT)\..\node_modules\react-native-reanimated\ios/**",
 				);
 			};
@@ -1500,7 +1491,6 @@
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
 					"$(SRCROOT)\..\node_modules\amazon-cognito-identity-js\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-simple-toast\ios\LRDRCTSimpleToast",
-					"$(SRCROOT)\..\node_modules\react-native-webview\ios",
 					"$(SRCROOT)\..\node_modules\react-native-reanimated\ios/**",
 				);
 			};
@@ -1543,7 +1533,6 @@
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
 					"$(SRCROOT)\..\node_modules\amazon-cognito-identity-js\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-simple-toast\ios\LRDRCTSimpleToast",
-					"$(SRCROOT)\..\node_modules\react-native-webview\ios",
 					"$(SRCROOT)\..\node_modules\react-native-reanimated\ios/**",
 				);
 			};
@@ -1585,7 +1574,6 @@
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
 					"$(SRCROOT)\..\node_modules\amazon-cognito-identity-js\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-simple-toast\ios\LRDRCTSimpleToast",
-					"$(SRCROOT)\..\node_modules\react-native-webview\ios",
 					"$(SRCROOT)\..\node_modules\react-native-reanimated\ios/**",
 				);
 			};
@@ -1627,7 +1615,6 @@
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
 					"$(SRCROOT)\..\node_modules\amazon-cognito-identity-js\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-simple-toast\ios\LRDRCTSimpleToast",
-					"$(SRCROOT)\..\node_modules\react-native-webview\ios",
 					"$(SRCROOT)\..\node_modules\react-native-reanimated\ios/**",
 				);
 			};
