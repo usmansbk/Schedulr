@@ -11,9 +11,9 @@ export default class AppState {
   @observable isConnected = false;
   @observable searchText = '';
   @observable query = '';
+  @persist @observable address = 'Nigeria';
   @persist('list') @observable mutedList = [];
   @persist('list') @observable allowedList = [];
-  @persist address = 'Nigeria';
   @persist('object') @observable location = {
     longitude: null,
     latitude: null
