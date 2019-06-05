@@ -746,7 +746,7 @@ export default class AppStyles {
         backgroundColor: colors.light_gray,
       },
       footer: {
-        height: FOOTER_HEIGHT,
+        height: ITEM_HEIGHT,
         justifyContent: 'center',
         alignItems: 'center'
       },
@@ -979,11 +979,9 @@ export default class AppStyles {
     const colors = this.settings.dark ? dark : light;
 
     const {
-      AVATAR_SIZE,
       ITEM_HEIGHT,
       ITEM_HEIGHT_SMALL,
       SEPARATOR_HEIGHT,
-      FOOTER_HEIGHT,
     } = starredEvents;
 
     return StyleSheet.create({
@@ -995,7 +993,7 @@ export default class AppStyles {
         backgroundColor: colors.light_gray,
       },
       footer: {
-        height: FOOTER_HEIGHT,
+        height: ITEM_HEIGHT,
         justifyContent: 'center',
         alignItems: 'center'
       },
@@ -1090,8 +1088,6 @@ export default class AppStyles {
       AVATAR_SIZE,
       ITEM_HEIGHT,
       SEPARATOR_HEIGHT,
-      HEADER_HEIGHT,
-      FOOTER_HEIGHT
     } = boards;
 
     return StyleSheet.create({
@@ -1118,7 +1114,7 @@ export default class AppStyles {
         textAlign: 'center'
       },
       footer: {
-        height: FOOTER_HEIGHT,
+        height: ITEM_HEIGHT,
         justifyContent: 'center',
         alignItems: 'center'
       },
@@ -1176,7 +1172,6 @@ export default class AppStyles {
     const colors = this.settings.dark ? dark : light;
     
     const {
-      AVATAR_SIZE,
       ITEM_HEIGHT,
       ITEM_HEIGHT_SMALL,
       SEPARATOR_HEIGHT,

@@ -1,6 +1,6 @@
 import React from 'react';
 import { View } from 'react-native';
-import { Headline } from 'react-native-paper';
+import { Headline, Paragraph } from 'react-native-paper';
 import { inject, observer } from 'mobx-react';
 
 export default inject('stores')(observer(
@@ -9,8 +9,15 @@ export default inject('stores')(observer(
     return (
       <View style={stores.appStyles.starredEventsList.empty}>
         <Headline style={stores.appStyles.starredEventsList.emptyTitle}>
-          You haven't bookmarked any event yet
+          No event found
         </Headline>
+        {
+          error && (
+            <Paragraph style={stores.appStyles.starredEventsList.paragraph}>
+              Check your internet connection. Pull to refresh.
+            </Paragraph>
+          )
+        }
       </View>
     );  
   }
