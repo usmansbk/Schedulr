@@ -8,6 +8,7 @@ import {
   Picker,
   ScrollView,
   RefreshControl,
+  Alert,
 } from 'react-native';
 import {
   Button,
@@ -16,6 +17,7 @@ import {
   HelperText,
   Checkbox,
   Appbar,
+  IconButton
 } from 'react-native-paper';
 import { Formik } from 'formik';
 import { inject, observer } from 'mobx-react';
@@ -65,9 +67,14 @@ export default class Form extends React.Component {
     }
   }
 
+  _boardHelp = () => {
+    Alert.alert("What is a board",
+    "A board is place you group your events. Users follow boards to keep track of interested events.");
+  }
+
   componentDidMount = () => {
     this.getLocation();
-  }
+  };
   
   getLocation = () => {
     if (requestLocationPermission()) {
@@ -334,7 +341,14 @@ export default class Form extends React.Component {
                 </Picker>
               </View>
               <View style={styles.pickerSpacing}>
-                <Text style={styles.radioText}>Board</Text>
+                <View style={styles.row}>
+                  <Text style={styles.radioText}>Board</Text>
+                  <IconButton
+                    icon="help-outline"
+                    onPress={this._boardHelp}
+                    color={stores.themeStore.colors.primary}
+                  />
+                </View>
                 <Picker
                   prompt="Select a board"
                   selectedValue={values.boardId}

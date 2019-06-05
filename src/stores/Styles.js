@@ -169,6 +169,11 @@ export default class AppStyles {
       container: {
         backgroundColor: colors.bg
       },
+      row: {
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "space-between"
+      },
       form: {
         margin: 16
       },
