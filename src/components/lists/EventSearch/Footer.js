@@ -6,7 +6,7 @@ import { inject, observer } from 'mobx-react';
 export default inject('stores')(observer(
   ({ visible, stores }) => visible ? (
     <View style={stores.appStyles.starredEventsList.footer}>
-      <Caption style={stores.appStyles.starredEventsList.footerText}>No more events</Caption>
+      <Caption style={stores.appStyles.starredEventsList.footerText}>No more result</Caption>
     </View>
   ) : null
 ));
