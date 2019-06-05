@@ -1,4 +1,5 @@
-import { graphql } from 'react-apollo';
+import { graphql, compose } from 'react-apollo';
+import { withNavigationFocus } from 'react-navigation';
 import SimpleToast from 'react-native-simple-toast';
 import gql from 'graphql-tag';
 import Boards from './Boards';
@@ -7,7 +8,9 @@ import logger, { analytics } from 'config/logger';
 
 const alias = 'withBoardsContainer';
 
-export default graphql(gql(listAllBoards), {
+export default compose(
+  withNavigationFocus,
+  graphql(gql(listAllBoards), {
   alias,
   options: {
     fetchPolicy: 'cache-first',
@@ -35,4 +38,4 @@ export default graphql(gql(listAllBoards), {
     },
     ...ownProps
   })
-})(Boards);
+}))(Boards);

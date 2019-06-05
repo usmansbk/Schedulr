@@ -4,9 +4,9 @@ import FAB from 'components/common/Fab';
 
 export default class Boards extends React.Component {
   shouldComponentUpdate = (nextProps) => {
-    return ((nextProps.loading) !== this.props.loading) || (
+    return nextProps.isFocused && (((nextProps.loading) !== this.props.loading) || (
       nextProps.boards !== this.props.boards
-    );
+    ));
   }
   
   render() {
