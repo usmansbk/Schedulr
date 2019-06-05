@@ -7,6 +7,7 @@ import {
   ScrollView,
   RefreshControl,
   Alert,
+  InteractionManager
 } from 'react-native';
 import {
   Button,
