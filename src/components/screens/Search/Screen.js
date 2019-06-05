@@ -5,7 +5,7 @@ import {
   MaterialTopTabBar
 } from 'react-navigation-tabs';
 import { Dimensions } from 'react-native';
-import { inject, observer } from 'mobx-react/native';
+import { inject, observer } from 'mobx-react';
 import Events from './Events';
 import Boards from './Boards';
 

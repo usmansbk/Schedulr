@@ -1,7 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 import { Headline, Paragraph } from 'react-native-paper';
-import { inject, observer } from 'mobx-react/native';
+import { inject, observer } from 'mobx-react';
 
 export default inject('stores')(observer(
   ({ profile, error, stores }) => {

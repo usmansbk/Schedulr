@@ -1,7 +1,7 @@
 import React from 'react';
 import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
-import { inject, observer } from 'mobx-react/native';
+import { inject, observer } from 'mobx-react';
 import List from 'components/lists/BoardSearch';
 import { listAllBoards } from 'mygraphql/queries';
 

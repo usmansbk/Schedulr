@@ -7,7 +7,7 @@ import {
   Headline,
   Button
 } from 'react-native-paper';
-import { inject, observer } from 'mobx-react/native';
+import { inject, observer } from 'mobx-react';
 
 export default inject('stores')(observer(
   ({ onRefresh, loading, stores }) => (

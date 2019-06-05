@@ -5,7 +5,7 @@ import {
   ActivityIndicator
 } from 'react-native-paper';
 import { View } from 'react-native';
-import { inject, observer } from 'mobx-react/native';
+import { inject, observer } from 'mobx-react';
 
 export default inject('stores')(observer(
   ({ hide, loading, onPress, stores, hasMore }) => {

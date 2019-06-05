@@ -3,7 +3,7 @@ import moment from 'moment';
 import DateTimePicker from 'react-native-modal-datetime-picker';
 import { Text } from 'react-native-paper';
 import { View } from 'react-native';
-import { inject, observer } from 'mobx-react/native';
+import { inject, observer } from 'mobx-react';
 import Button from './Picker';
 
 @inject('stores')

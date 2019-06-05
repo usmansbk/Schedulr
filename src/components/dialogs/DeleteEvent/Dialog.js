@@ -4,7 +4,7 @@ import {
   Dialog,
   Portal,
 } from 'react-native-paper';
-import { inject, observer } from 'mobx-react/native';
+import { inject, observer } from 'mobx-react';
 
 @inject('stores')
 @observer

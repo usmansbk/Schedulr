@@ -1,6 +1,6 @@
 import React from 'react';
 import { FlatList } from 'react-navigation';
-import { inject, observer } from 'mobx-react/native';
+import { inject, observer } from 'mobx-react';
 import Empty from './Empty';
 import Footer from './Footer';
 import Item from './Item';

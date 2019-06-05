@@ -21,7 +21,7 @@ import {
 } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Hyperlink from 'react-native-hyperlink';
-import { inject, observer } from 'mobx-react/native';
+import { inject, observer } from 'mobx-react';
 import UserAvater from 'components/common/UserAvatar';
 import FollowButton from 'components/common/FollowButton';
 import Loading from 'components/common/Loading';

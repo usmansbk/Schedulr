@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { RefreshControl } from 'react-native';
 import { withNavigationFocus, FlatList } from 'react-navigation';
-import { inject, observer } from 'mobx-react/native';
+import { inject, observer } from 'mobx-react';
 import Item from './Item';
 import Separator from './Separator';
 import Footer from './Footer';

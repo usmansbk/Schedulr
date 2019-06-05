@@ -17,7 +17,7 @@ import {
   Appbar,
 } from 'react-native-paper';
 import { Formik } from 'formik';
-import { inject, observer } from 'mobx-react/native';
+import { inject, observer } from 'mobx-react';
 import validationSchema from './schema';
 import { requestLocationPermission } from 'helpers/permissions';
 import { buildBoardForm } from 'helpers/buildForm';

@@ -2,7 +2,7 @@ import React from 'react';
 import { FlatList } from 'react-native';
 import { withNavigationFocus } from 'react-navigation';
 import Share from 'react-native-share';
-import { inject, observer } from 'mobx-react/native';
+import { inject, observer } from 'mobx-react';
 import LogoutDialog from 'components/dialogs/Logout';
 import Header from './Header';
 import Footer from './Footer';

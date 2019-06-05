@@ -2,7 +2,7 @@ import React from 'react';
 import { Auth, Analytics } from 'aws-amplify';
 import SimpleToast from 'react-native-simple-toast';
 import changeNavigationBarColor from 'react-native-navigation-bar-color';
-import { inject, observer } from 'mobx-react/native';
+import { inject, observer } from 'mobx-react';
 import client from 'config/client';
 import Login from './Login';
 import Loading from 'components/common/Loading';

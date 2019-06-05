@@ -1,7 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 import { TouchableRipple, Text, Caption } from 'react-native-paper';
-import { inject, observer } from 'mobx-react/native';
+import { inject, observer } from 'mobx-react';
 import UserAvatar from 'components/common/UserAvatar';
 import FollowButton from 'components/common/FollowButton';
 import { board_search } from 'lib/constants';

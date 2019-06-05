@@ -6,7 +6,7 @@ import {
   Headline,
   TouchableRipple
 } from 'react-native-paper';
-import { inject, observer } from 'mobx-react/native';
+import { inject, observer } from 'mobx-react';
 import { getSectionHeaderData } from 'lib/time';
 import { BULLET } from 'lib/constants';
 

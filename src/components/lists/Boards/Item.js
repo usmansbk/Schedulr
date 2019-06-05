@@ -2,7 +2,7 @@ import React from 'react';
 import { View } from 'react-native';
 import { TouchableRipple, Text, Caption } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { inject, observer } from 'mobx-react/native';
+import { inject, observer } from 'mobx-react';
 import UserAvatar from 'components/common/UserAvatar';
 import Tag from 'components/common/Tag';
 import ActionSheet from 'components/actionsheet/Board';

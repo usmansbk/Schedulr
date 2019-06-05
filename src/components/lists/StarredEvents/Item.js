@@ -6,7 +6,7 @@ import {
   Caption,
   Headline,
 } from 'react-native-paper';
-import { inject, observer } from 'mobx-react/native';
+import { inject, observer } from 'mobx-react';
 import Tag from 'components/common/Tag';
 import Avatar from 'components/common/UserAvatar';
 import Actions from 'components/common/Actions';

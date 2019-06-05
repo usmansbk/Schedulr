@@ -2,7 +2,7 @@ import React from 'react';
 import { View } from 'react-native';
 import { Headline, Caption } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import { inject, observer } from 'mobx-react/native';
+import { inject, observer } from 'mobx-react';
 
 export default inject('stores')(observer(
   ({ stores }) => (

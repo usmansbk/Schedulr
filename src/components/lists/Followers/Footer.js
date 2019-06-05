@@ -4,7 +4,7 @@ import {
   Caption,
 } from 'react-native-paper';
 import { View } from 'react-native';
-import { inject, observer } from 'mobx-react/native';
+import { inject, observer } from 'mobx-react';
 import { BULLET } from 'lib/constants';
 
 export default inject('stores')(observer(

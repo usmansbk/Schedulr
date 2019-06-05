@@ -5,7 +5,7 @@ import {
   IconButton
 } from 'react-native-paper';
 import { View } from 'react-native';
-import { inject, observer } from 'mobx-react/native';
+import { inject, observer } from 'mobx-react';
 
 @inject('stores')
 @observer

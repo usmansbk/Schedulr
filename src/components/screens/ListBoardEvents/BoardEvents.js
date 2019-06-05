@@ -1,6 +1,6 @@
 import React from 'react';
 import { Appbar } from 'react-native-paper';
-import { inject, observer } from 'mobx-react/native';
+import { inject, observer } from 'mobx-react';
 import List from 'components/lists/BoardEvents';
 import Loading from 'components/common/Loading';
 import Error from 'components/common/Error';

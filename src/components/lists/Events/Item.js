@@ -6,7 +6,7 @@ import {
   Caption,
   Headline,
 } from 'react-native-paper';
-import { inject, observer } from 'mobx-react/native';
+import { inject, observer } from 'mobx-react';
 import Avatar from 'components/common/UserAvatar';
 import Badge from 'components/common/Badge';
 import ActionSheet from 'components/actionsheet/Event';

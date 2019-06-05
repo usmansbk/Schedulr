@@ -1,7 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 import { withNavigation } from 'react-navigation';
-import { inject, observer } from 'mobx-react/native';
+import { inject, observer } from 'mobx-react';
 import { Text, Caption, TouchableRipple } from 'react-native-paper';
 import UserAvatar from '../UserAvatar';
 import styles from './styles';

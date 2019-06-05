@@ -7,7 +7,7 @@ import {
   IconButton
 } from 'react-native-paper';
 import Hyperlink from 'react-native-hyperlink';
-import { inject, observer } from 'mobx-react/native';
+import { inject, observer } from 'mobx-react';
 import UserAvatar from 'components/common/UserAvatar';
 import { comments_list } from 'lib/constants';
 

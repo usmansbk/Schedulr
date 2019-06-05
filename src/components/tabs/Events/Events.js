@@ -3,7 +3,7 @@ import { Linking, Platform } from 'react-native';
 import SimpleToast from 'react-native-simple-toast';
 import LocalNotifications from 'react-native-push-notification';
 import changeNavigationBarColor from 'react-native-navigation-bar-color';
-import { inject, observer } from 'mobx-react/native';
+import { inject, observer } from 'mobx-react';
 import List from 'components/lists/Events';
 import FAB from 'components/common/Fab';
 import NavigationService from 'config/navigation';

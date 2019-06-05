@@ -4,7 +4,7 @@ import {
   Text,
   ActivityIndicator
 } from 'react-native-paper';
-import { inject, observer } from 'mobx-react/native';
+import { inject, observer } from 'mobx-react';
 
 export default inject('stores')(observer(
   ({ onPress, loading, stores, hasPrev }) => loading ? (

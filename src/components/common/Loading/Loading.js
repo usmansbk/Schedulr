@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, StatusBar, ActivityIndicator } from 'react-native';
 import changeNavigationBarColor from 'react-native-navigation-bar-color';
-import { inject, observer } from 'mobx-react/native';
+import { inject, observer } from 'mobx-react';
 
 @inject('stores')
 @observer

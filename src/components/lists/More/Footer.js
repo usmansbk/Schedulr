@@ -1,6 +1,6 @@
 import React from 'react';
 import { List } from 'react-native-paper';
-import { observer, inject } from 'mobx-react/native';
+import { observer, inject } from 'mobx-react';
 
 export default inject('stores')(observer(
   ({ openDialog, stores }) => (

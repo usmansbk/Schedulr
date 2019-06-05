@@ -2,7 +2,7 @@ import React from 'react';
 import { View, ScrollView } from 'react-native';
 import { Text, Headline, Divider } from 'react-native-paper';
 import Hyperlink from 'react-native-hyperlink';
-import { inject, observer } from 'mobx-react/native';
+import { inject, observer } from 'mobx-react';
 import Actions from 'components/common/Actions';
 import Tag from 'components/common/Tag';
 import { BULLET } from 'lib/constants';

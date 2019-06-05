@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, TouchableRipple } from 'react-native-paper';
-import { inject, observer } from 'mobx-react/native';
+import { inject, observer } from 'mobx-react';
 
 export default inject('stores')(observer(
   (props) => (

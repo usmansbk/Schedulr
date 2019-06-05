@@ -5,7 +5,7 @@ import {
 } from 'react-navigation';
 import { BottomTabBar, createBottomTabNavigator } from 'react-navigation-tabs';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import { inject, observer } from 'mobx-react/native';
+import { inject, observer } from 'mobx-react';
 import MoreRoute from 'components/tabs/More';
 import ExploreTab from 'components/tabs/Explore';
 import HomeRoute from 'components/tabs/Home';

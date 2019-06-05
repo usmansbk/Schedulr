@@ -2,7 +2,7 @@ import React from 'react';
 import moment from 'moment';
 import isEqual from 'lodash.isequal';
 import { Appbar } from 'react-native-paper';
-import { inject, observer } from 'mobx-react/native';
+import { inject, observer } from 'mobx-react';
 import Details from './Details';
 import { formatDate, getRepeatLabel } from 'lib/time';
 import { isEventValid, isEventCancelled, getDuration, getStatus } from 'lib/parseItem';

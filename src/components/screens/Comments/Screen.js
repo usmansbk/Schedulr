@@ -1,6 +1,6 @@
 import React from 'react';
 import SimpleToast from 'react-native-simple-toast';
-import { inject } from 'mobx-react/native';
+import { inject } from 'mobx-react';
 import Comments from './Comments';
 import DeleteCommentDialog from 'components/dialogs/DeleteComment';
 

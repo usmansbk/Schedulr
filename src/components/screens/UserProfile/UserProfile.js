@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 import { Headline, TouchableRipple } from 'react-native-paper';
 import { CachedImage } from 'react-native-cached-image';
-import { inject, observer } from 'mobx-react/native';
+import { inject, observer } from 'mobx-react';
 import UserAvatar from 'components/common/UserAvatar';
 import Loading from 'components/common/Loading';
 import Error from 'components/common/Error';

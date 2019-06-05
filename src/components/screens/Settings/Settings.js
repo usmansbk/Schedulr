@@ -7,7 +7,7 @@ import {
   Divider
 } from 'react-native-paper';
 import SimpleToast from 'react-native-simple-toast';
-import { inject, observer } from 'mobx-react/native';
+import { inject, observer } from 'mobx-react';
 
 @inject("stores")
 @observer

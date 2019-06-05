@@ -1,7 +1,7 @@
 import React from 'react';
 import { RefreshControl } from 'react-native';
 import { SectionList } from 'react-navigation';
-import { inject, observer } from 'mobx-react/native';
+import { inject, observer } from 'mobx-react';
 import moment from 'moment';
 import sectionListGetItemLayout from 'sectionlist-get-itemlayout';
 import Header from './Header';

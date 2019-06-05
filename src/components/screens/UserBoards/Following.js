@@ -3,7 +3,7 @@ import gql from 'graphql-tag';
 import { graphql, compose } from 'react-apollo';
 import { FlatList } from 'react-navigation';
 import SimpleToast from 'react-native-simple-toast';
-import { inject, observer } from 'mobx-react/native';
+import { inject, observer } from 'mobx-react';
 import Loading from 'components/common/Loading';
 import ErrorScreen from 'components/common/Error';
 import Item from 'components/lists/BoardSearch/Item';
