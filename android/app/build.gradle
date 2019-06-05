@@ -160,6 +160,7 @@ configurations.all {
 }
 
 dependencies {
+    implementation project(':lottie-react-native')
     implementation project(':react-native-navigation-bar-color')
     implementation project(':react-native-reanimated')
     implementation project(':react-native-geolocation-service')

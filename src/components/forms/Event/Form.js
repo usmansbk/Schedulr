@@ -292,6 +292,7 @@ export default class Form extends React.Component {
                     <RadioButton
                       value='Forever'
                       onPress={() => {
+                        console.log('onPress');
                         const prevValue = values.forever;
                         const newValue = !prevValue;
                         setFieldValue('forever', newValue);
