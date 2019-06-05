@@ -6,7 +6,7 @@ import RemindMe from './RemindMe';
 import Theme from './Theme';
 import AppStyles from './Styles';
 import UserProfile from './UserProfile';
-import UIState from './UIState';
+import AppState from './AppStatete';
 
 const hydrate = create({
   storage: AsyncStorage
@@ -15,7 +15,7 @@ const hydrate = create({
 const settingsStore = new Settings;
 const remindMeStore = new RemindMe;
 const meStore = new UserProfile;
-const appState = new UIState;
+const appState = new AppState;
 
 hydrate('settings', settingsStore);
 hydrate('remindMe', remindMeStore);

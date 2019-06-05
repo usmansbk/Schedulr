@@ -5,7 +5,7 @@ import { persist } from 'mobx-persist';
 import debounce from 'lodash.debounce';
 import { requestLocationPermission } from 'helpers/permissions';
 
-export default class UIState {
+export default class AppState {
   @observable isConnected = false;
   @observable searchText = '';
   @observable query = '';
@@ -28,11 +28,15 @@ export default class UIState {
     this.query = '';
     this.mutedList = [];
     this.allowedList = [];
+    this.location = {
+      latitude: null,
+      longitude: null
+    }
   }
 
   @action getLocation = () => {
     const { longitude, latitude } = this.location;
-    if (!(longitude && latitude)) {
+    if ((longitude === null) || (latitude === null)) {
       if (requestLocationPermission()) {
         Geolocation.getCurrentPosition(
           (position) => {
