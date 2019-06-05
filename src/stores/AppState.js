@@ -52,7 +52,7 @@ export default class AppState {
           },
           (error) => {
             logger.debug(error);
-            SimpleToast.show(error.message, SimpleToast.SHORT);
+            SimpleToast.show("Failed to use location", SimpleToast.SHORT);
           },
           {
             enableHighAccuracy: true,
