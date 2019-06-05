@@ -13,6 +13,7 @@ export default class AppState {
   @observable query = '';
   @persist('list') @observable mutedList = [];
   @persist('list') @observable allowedList = [];
+  @persist address = 'Nigeria';
   @persist('object') @observable location = {
     longitude: null,
     latitude: null
@@ -37,11 +38,22 @@ export default class AppState {
   }
 
   @action getAddress = () => {
-
+    if (this.location.longitude && this.location.latitude) {
+      const loc =  {
+        lat: this.location.latitude,
+        lng: this.location.longitude
+      };
+      Geocoder.geocodePosition(loc).then(res => {
+        const loc = res[0];
+        const address = `${loc.adminArea} ${loc.country}`;
+        this.address = address;
+      }).catch(err => logger.error(err));
+    }
   }
 
   @action getLocation = () => {
     const { longitude, latitude } = this.location;
+    this.getAddress();
     if ((longitude === null) || (latitude === null)) {
       if (requestLocationPermission()) {
         Geolocation.getCurrentPosition(
