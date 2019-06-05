@@ -7,7 +7,6 @@ import { inject, observer } from 'mobx-react';
 import Empty from './Empty';
 import Item from './Item';
 import colors from 'config/colors';
-import { requestLocationPermission } from 'helpers/permissions';
 
 const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
 
@@ -24,12 +23,8 @@ class ExploreTab extends Component{
 
   renderItem = ({item}) => <Item />
 
-  componentDidMount = async () => {
-    try {
-      await requestLocationPermission();
-    } catch (error) {
-      SimpleToast.show(error.message, SimpleToast.SHORT);
-    }
+  componentDidMount = () => {
+    this.props.stores.appState.getLocation();
   };
 
   render(){
