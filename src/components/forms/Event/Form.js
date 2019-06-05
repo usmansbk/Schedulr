@@ -69,7 +69,7 @@ export default class Form extends React.Component {
 
   _boardHelp = () => {
     Alert.alert("What is a board?",
-    "A board is place you group your events. Users follow boards to keep track of interested events, like Class board, School board etc");
+    "A board is where you post your event. Users follow boards to keep track of interested events, like Class board, School board etc");
   }
 
   componentDidMount = () => {
