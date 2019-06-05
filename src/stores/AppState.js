@@ -38,7 +38,7 @@ export default class AppState {
     }
   }
   
-  @action setLocation(address) {
+  @action setLocation = (address) => {
     this.address = address;
     this.location = {
       latitude: null,
