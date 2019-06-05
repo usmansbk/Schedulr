@@ -63,7 +63,7 @@ export default class AppState {
       };
       Geocoder.geocodePosition(loc).then(res => {
         const loc = res[0];
-        const address = `${loc.adminArea} ${loc.country}`;
+        const address = `${loc.locality} ${loc.country}`;
         this.address = address;
       }).catch(err => logger.error(err));
     }
@@ -71,7 +71,6 @@ export default class AppState {
 
   @action getLocation = () => {
     const { longitude, latitude } = this.location;
-    this.getAddress();
     if ((longitude === null) || (latitude === null)) {
       if (requestLocationPermission()) {
         Geolocation.getCurrentPosition(
