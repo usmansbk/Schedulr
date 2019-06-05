@@ -110,13 +110,25 @@ export default class AppStyles {
         marginVertical: 8,
         fontWeight: 'bold'
       },
-      pickerButton: {
+      dateButton: {
+        flex: 1,
         borderWidth: 1,
-        borderColor: colors.light_gray,
+        borderColor: colors.placeholder,
         height: 48,
         justifyContent: 'center',
         paddingHorizontal: 8,
-        borderRadius: 4,
+        borderTopLeftRadius: 4,
+        borderBottomLeftRadius: 4,
+      },
+      timeButton: {
+        borderWidth: 1,
+        borderColor: colors.placeholder,
+        height: 48,
+        justifyContent: 'center',
+        paddingHorizontal: 8,
+        borderLeftWidth: 0,
+        borderTopRightRadius: 4,
+        borderBottomRightRadius: 4,
       }
     });    
   }
@@ -195,11 +207,13 @@ export default class AppStyles {
         marginRight: 16
       },
       pickerSpacing: {
-        marginVertical: 8
+        marginVertical: 4
       },
       picker: {
         height: 48,
-        color: colors.black
+        color: colors.black,
+        borderWidth: 1,
+        borderColor: colors.gray
       },
       pickerItem: {
         color: colors.black,

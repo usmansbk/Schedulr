@@ -34,6 +34,11 @@ export default class Input extends React.Component {
     this.props.onChangeDate(date);
     this._hidePicker('showTimePicker');
   }
+
+  _showDatePicker = () => this._showPicker('showDatePicker');
+  _showTimePicker = () => this._showPicker('showTimePicker');
+  _hideDatePicker = () => this._hidePicker('showDatePicker');
+  _hideTimePicker = () => this._hidePicker('showTimePicker');
   
   render() {
     const {
@@ -54,14 +59,15 @@ export default class Input extends React.Component {
         <View style={styles.date}>
           <Button
             disabled={disabled}
-            style={styles.button}
-            onPress={() => this._showPicker('showDatePicker')}
+            style={styles.dateButton}
+            onPress={this._showDatePicker}
           >
           {this._formatDate(value)}
           </Button>
           <Button
             disabled={disabled}
-            onPress={() => this._showPicker('showTimePicker')}
+            style={styles.timeButton}
+            onPress={this._showTimePicker}
           >
           {this._formatTime(value)}
           </Button>
@@ -70,7 +76,7 @@ export default class Input extends React.Component {
             date={new Date(value)}
             minimumDate={noMin ? undefined : new Date()}
             isVisible={this.state.showDatePicker}
-            onCancel={() => this._hidePicker('showDatePicker')}
+            onCancel={this._hideDatePicker}
             onConfirm={this._handleConfirmDate}
           />
           <DateTimePicker
@@ -78,7 +84,7 @@ export default class Input extends React.Component {
             date={new Date(value)}
             minimumDate={new Date()}
             isVisible={this.state.showTimePicker}
-            onCancel={() => this._hidePicker('showTimePicker')}
+            onCancel={this._hideTimePicker}
             onConfirm={this._handleConfirmTime}
           />
         </View>
