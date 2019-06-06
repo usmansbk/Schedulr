@@ -117,6 +117,7 @@ export default class AppStyles {
         height: 48,
         justifyContent: 'center',
         paddingHorizontal: 8,
+        borderRightWidth: 0,
         borderTopLeftRadius: 4,
         borderBottomLeftRadius: 4,
       },
