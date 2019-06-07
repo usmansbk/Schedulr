@@ -27,6 +27,7 @@ import {
 } from 'lib/formValidator';
 import { CANT_REPEAT } from 'lib/errorMessages';
 import { getRepeatLabel, getRecurrence } from 'lib/time';
+import { WHAT_IS_A_BOARD } from 'lib/constants';
 import formSchema from './schema';
 import eventTypes from './types';
 import frequency from './frequency';
@@ -59,8 +60,7 @@ export default class Form extends React.Component {
   }
 
   _boardHelp = () => {
-    Alert.alert("What is a board?",
-    "A board is where you post your event. Users follow boards to keep track of interested events, like Class board, School board etc");
+    Alert.alert("What is a board?", WHAT_IS_A_BOARD);
   }
 
   componentDidMount = () => {

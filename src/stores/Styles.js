@@ -171,8 +171,13 @@ export default class AppStyles {
       },
       primary: {
         color: colors.primary
+      },
+      info: {
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
+        paddingVertical: 16
       }
-    });    
+    });
   }
 
   @computed get eventForm () {

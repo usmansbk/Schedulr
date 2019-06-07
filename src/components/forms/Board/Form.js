@@ -3,7 +3,8 @@ import {
   View,
   ScrollView,
   RefreshControl,
-  InteractionManager
+  InteractionManager,
+  Alert
 } from 'react-native';
 import isEqual from 'lodash.isequal';
 import {
@@ -13,11 +14,13 @@ import {
   HelperText,
   Switch,
   Appbar,
+  Caption
 } from 'react-native-paper';
 import { Formik } from 'formik';
 import { inject, observer } from 'mobx-react';
 import validationSchema from './schema';
 import { buildBoardForm } from 'helpers/buildForm';
+import { WHAT_IS_A_BOARD } from 'lib/constants';
 
 @inject('stores')
 @observer
@@ -33,6 +36,10 @@ export default class Form extends React.Component {
       }
     }
   };
+
+  _showInfo = () => {
+    Alert.alert('What is a board?', WHAT_IS_A_BOARD);
+  }
 
   componentDidMount = () => {
     InteractionManager.runAfterInteractions(this.props.stores.appState.getLocation);
@@ -144,6 +151,9 @@ export default class Form extends React.Component {
                   </HelperText>
                 )
               }
+              <View style={styles.info}>
+                <Caption style={styles.primary} onPress={this._showInfo}>What is a board?</Caption>
+              </View>
             </View>
           </ScrollView>
           </>
