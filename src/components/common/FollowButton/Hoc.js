@@ -1,24 +1,29 @@
 import { graphql, compose } from 'react-apollo';
+import SimpleToast from 'react-native-simple-toast';
 import gql from 'graphql-tag';
+import uniqWith from 'lodash.uniqwith';
 import Button from './Button';
 import { followBoard, unfollowBoard } from 'mygraphql/mutations';
-import { listAllBoards, listAllEvents } from 'mygraphql/queries';
+import { listAllBoards, listAllEvents, listBoardEvents } from 'mygraphql/queries';
 import {
   followBoardResponse,
   unfollowBoardResponse
 } from 'helpers/optimisticResponse';
+import client from 'config/client';
+
+const _filter = (a, b) => a.id === b.id;
 
 export default compose(
   graphql(gql(followBoard), {
     alias: 'withFollowBoard',
     props: ({ mutate, ownProps }) => ({
-      onFollowBoard: async () => await mutate({
+      onFollowBoard: () => mutate({
         variables: {
           input: {
             id: ownProps.id
           }
         },
-        update: async (cache, { data: { followBoard } }) => {
+        update: (cache, { data: { followBoard } }) => {
           if (followBoard) {
             const query = gql(listAllBoards);
             const data = cache.readQuery({ query });
@@ -27,12 +32,25 @@ export default compose(
               followBoard
             ];
             cache.writeQuery({ query, data });
+
+            client.query({
+              query: gql(listBoardEvents),
+              variables: {
+                id: followBoard.id
+              }
+            }).then(({ data }) => {
+              const items = data && data.listBoardEvents &&
+                data.listBoardEvents.events &&
+                data.listBoardEvents.events.items || [];
+              const allEventsQuery = gql(listAllEvents);
+              const allEventsData = cache.readQuery({ query: allEventsQuery });
+              allEventsData.listAllEvents.items = uniqWith([...allEventsData.listAllEvents.items, ...items], _filter);
+            }).catch(error => {
+              SimpleToast.show('Failed to get board events. Refresh all events!', SimpleToast.SHORT);
+            });
           }
         },
         optimisticResponse: () => followBoardResponse(ownProps.id),
-        refetchQueries: [
-          { query: gql(listAllEvents) }
-        ]
       }),
       ...ownProps
     })
@@ -52,12 +70,16 @@ export default compose(
             const data = cache.readQuery({ query });
             data.listAllBoards.items = data.listAllBoards.items.filter(item => item.id !== unfollowBoard.id);
             cache.writeQuery({ query, data });
+
+            const allEventsQuery = gql(listAllEvents);
+            const allEventsData = cache.readQuery({ query: allEventsQuery });
+            allEventsData.listAllEvents.items = allEventsData.listAllEvents.items.filter(item => (
+              (item.board.id !== unfollowBoard.id) || item.isStarred
+            ));
+            cache.writeQuery({ query: allEventsQuery, data: allEventsData });
           }
         },
         optimisticResponse: () => unfollowBoardResponse(ownProps.id),
-        refetchQueries: [
-          { query: gql(listAllEvents) }
-        ]
       }),
       ...ownProps
     })
