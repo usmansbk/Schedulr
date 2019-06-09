@@ -13,7 +13,7 @@ export default (props) => (
       <Logo />
       <Headline style={styles.h1}>Welcome to Schdlr!</Headline>
       <Caption style={styles.caption}>
-        The Event scheduler
+        The event scheduler
       </Caption>
       <View style={styles.content}>
         <FBLoginButton disabled={props.loading} onLogin={props.handleLogin} />
