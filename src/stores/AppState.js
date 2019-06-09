@@ -63,7 +63,7 @@ export default class AppState {
       };
       Geocoder.geocodePosition(loc).then(res => {
         const loc = res[0];
-        const address = `${loc.locality} ${loc.country}`;
+        const address = `${loc.locality}, ${loc.country}`;
         this.address = address;
       }).catch(err => logger.error(err));
     }
