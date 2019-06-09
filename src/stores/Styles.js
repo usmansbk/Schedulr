@@ -97,6 +97,7 @@ export default class AppStyles {
 
   @computed get datePicker () {
     const colors = this.settings.dark ? dark : light;
+    const borderWidth = 1 * StyleSheet.hairlineWidth;
 
     return StyleSheet.create({
       date: {
@@ -112,7 +113,7 @@ export default class AppStyles {
       },
       dateButton: {
         flex: 1,
-        borderWidth: 1,
+        borderWidth,
         borderColor: colors.placeholder,
         height: 48,
         justifyContent: 'center',
@@ -122,7 +123,7 @@ export default class AppStyles {
         borderBottomLeftRadius: 4,
       },
       timeButton: {
-        borderWidth: 1,
+        borderWidth,
         borderColor: colors.placeholder,
         height: 48,
         justifyContent: 'center',
