@@ -66,7 +66,11 @@ export default inject('stores')(observer(
             </View>
             <View style={stores.appStyles.eventDetails.item}>
               <Text style={stores.appStyles.eventDetails.label}>BOARD</Text>
-              <Text onPress={() => navigateToBoard(boardId, (isFollowing || isAuthor))} style={[stores.appStyles.eventDetails.value, stores.appStyles.eventDetails.nav]}>{boardName}</Text>
+              <Text
+                ellipsizeMode="tail"
+                numberOfLines={1}
+                onPress={() => navigateToBoard(boardId, (isFollowing || isAuthor))}
+                style={[stores.appStyles.eventDetails.value, stores.appStyles.eventDetails.nav]}>{boardName}</Text>
             </View>
             <View style={stores.appStyles.eventDetails.item}>
               <Text style={stores.appStyles.eventDetails.label}>REPEAT</Text>
