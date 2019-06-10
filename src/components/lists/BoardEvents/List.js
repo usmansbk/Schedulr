@@ -12,7 +12,7 @@ import {
   parseRepeat,
   getStatus
 } from 'lib/parseItem';
-import { sortEvents } from 'lib/utils';
+import { sortStarredEvents } from 'lib/utils';
 import { getEvents } from 'lib/calendr';
 import { decapitalize } from 'lib/capitalizr';
 import { board_events } from 'lib/constants';
@@ -108,7 +108,7 @@ class List extends Component {
         getItemLayout={this._getItemLayout}
         ItemSeparatorComponent={this._renderSeparator}
         keyExtractor={this._keyExtractor}
-        data={sortEvents(getEvents(events))}
+        data={sortStarredEvents(getEvents(events))}
         renderItem={this._renderItem}
         ListEmptyComponent={this._renderEmptyList}
         ListFooterComponent={this._renderFooter}
