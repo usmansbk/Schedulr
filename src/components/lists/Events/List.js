@@ -15,12 +15,12 @@ import {
   getDuration,
   getStatus,
   getTime,
+  getEventType,
   isPast,
   parseRepeat,
   isEventValid
 } from 'lib/parseItem';
 import { eventsDiff } from 'lib/utils';
-import { decapitalize } from 'lib/capitalizr';
 import {
   getNextEvents,
   getPreviousEvents,
@@ -228,7 +228,7 @@ export default class List extends React.Component {
     startAt={startAt}
     endAt={endAt}
     allDay={allDay}
-    eventType={decapitalize(eventType)}
+    eventType={getEventType(eventType)}
     repeat={parseRepeat(repeat)}
     time={getTime({ allDay, startAt, endAt })}
     status={getStatus({ isCancelled, cancelledDates, startAt, endAt})}

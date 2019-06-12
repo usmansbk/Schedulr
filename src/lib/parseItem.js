@@ -11,6 +11,11 @@ export const parseDetails = (event) => {
   return note;
 };
 
+export const getEventType = (eventType) => {
+  if (eventType === 'NORMAL') return '';
+  return decapitalize(eventType);
+}
+
 export const getTime = ({ startAt, endAt, allDay }) => {
   const t = moment(startAt).twix(endAt, allDay);
   const isSameDay = t.isSame('day');

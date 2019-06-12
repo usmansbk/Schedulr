@@ -1,6 +1,6 @@
 export default [
-  { name: 'Lecture', id: 'LECTURE' },
   { name: 'Normal', id: 'EVENT' },
+  { name: 'Lecture', id: 'LECTURE' },
   { name: 'Examination', id: 'EXAMINATION' },
   { name: 'Test', id: 'TEST' },
   { name: 'Task', id: 'TASK' },
@@ -15,6 +15,4 @@ export default [
   { name: 'Competition', id: 'COMPETITION' },
   { name: 'Party', id: 'PARTY' },
   { name: 'Holiday', id: 'HOLIDAY' },
-  { name: 'Fast', id: 'FAST' },
-  { name: 'Worship', id: 'WORSHIP' }
 ];
