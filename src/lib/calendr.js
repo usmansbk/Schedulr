@@ -2,7 +2,7 @@ import moment from 'moment';
 import 'moment-recur';
 import uniqWith from 'lodash.uniqwith';
 import memoize from 'lodash.memoize';
-import { sortBy } from 'lib/sectionizr';
+import { sortBy } from 'lib/utils';
 
 const DAYS_IN_WEEK = 7;
 export const weekdays = [

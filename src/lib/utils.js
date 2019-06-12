@@ -16,6 +16,12 @@ export default sortBoards = memoize((data) => {
   return sorted;
 });
 
+export const sortBy = (arr, key) => {
+  return arr.sort((a, b) => {
+    return Date.parse(a[key]) - Date.parse(b[key]);
+  })
+};
+
 export const sortEvents = memoize((events, reverse) => {
   const sorted = events.sort((a, b) => {
     const reciprocal = reverse ? -1 : 1;
@@ -25,8 +31,8 @@ export const sortEvents = memoize((events, reverse) => {
 });
 
 export const sortStarredEvents = memoize((events) => {
-  const pending = events.filter((a, b) => Date.parse(a.startAt) >= Date.now());
-  const expired = events.filter((a, b) => Date.parse(a.startAt) < Date.now());
+  const pending = events.filter((a, b) => Date.parse(a.endAt) > Date.now());
+  const expired = events.filter((a, b) => Date.parse(a.endAt) < Date.now());
   const sorted = sortEvents(pending).concat(sortEvents(expired, true));
   return sorted;
 });
