@@ -21,6 +21,7 @@ import {
 import { Formik } from 'formik';
 import { inject, observer } from 'mobx-react';
 import DateTimeInput from 'components/common/DateTimeInput';
+import Autocomplete from 'components/common/AutoCompleteInput';
 import {
   isEventValid,
   canRepeat
@@ -290,19 +291,11 @@ export default class Form extends React.Component {
               }
               <View style={styles.pickerSpacing}>
                 <Text style={styles.radioText}>Type</Text>
-                <Picker
-                  prompt="Type"
-                  selectedValue={values.eventType}
-                  style={styles.picker}
-                  itemStyle={styles.pickerItem}
+                <Autocomplete
+                  value={values.eventType}
+                  data={eventTypes}
                   onValueChange={itemValue => setFieldValue('eventType', itemValue)}
-                >
-                  {
-                    eventTypes.map(eventType => (
-                      <Picker.Item key={eventType.id} label={eventType.name} value={eventType.id} />
-                    ))
-                  }
-                </Picker>
+                />
               </View>
               <View style={styles.pickerSpacing}>
                 <View style={styles.row}>
