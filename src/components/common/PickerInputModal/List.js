@@ -46,7 +46,7 @@ export default class List extends React.Component {
       value={item}
       onLongPressItem={this._onLongPressItem}
       onPressItem={this._onPressItem}
-      marked={item === this.props.selectedValue}
+      marked={item.toLowerCase() === this.props.selectedValue.toLowerCase()}
     />
   );
 
