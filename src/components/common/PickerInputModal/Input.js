@@ -44,8 +44,7 @@ export default class Input extends React.Component {
     const styles = stores.appStyles.picker;
     const colors = stores.themeStore.colors;
     const { text } = this.state;
-    const data = stores.appState.eventTypes;
-    // const filteredData = this._filterData(stores.appState.eventTypes);
+    const data = this._filterData(stores.appState.eventTypes);
 
     return (
       <Provider>
