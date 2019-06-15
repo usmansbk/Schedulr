@@ -31,7 +31,7 @@ export default class Input extends React.Component {
       this._hideModal();
     }
   }
-  _filterData = () => this.props.data.filter(item => item.toLowerCase().includes(this.state.text.toLowerCase()));
+  _filterData = (data) => data.filter(item => item.toLowerCase().includes(this.state.text.toLowerCase()));
 
   render() {
     const {
