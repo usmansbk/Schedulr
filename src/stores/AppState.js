@@ -18,6 +18,24 @@ export default class AppState {
     longitude: null,
     latitude: null
   }
+  @persist('list') @observable eventTypes =  [
+    'Normal',
+    'Lecture',
+    'Examination',
+    'Test',
+    'Task',
+    'Meetup',
+    'Hobby',
+    'Studies',
+    'Work',
+    'Sport',
+    'Meeting',
+    'Festival',
+    'Ceremony',
+    'Competition',
+    'Party',
+    'Holiday',
+  ];
 
   debounceQuery = debounce((val) => this.query = val, 250);
   

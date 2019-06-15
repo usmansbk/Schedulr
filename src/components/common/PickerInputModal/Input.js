@@ -38,13 +38,12 @@ export default class Input extends React.Component {
       selectedValue,
       stores,
       visible,
-      data
     } = this.props;
     const styles = stores.appStyles.picker;
     const colors = stores.themeStore.colors;
     const { text } = this.state;
 
-    const filteredData = this._filterData(data);
+    const filteredData = this._filterData(stores.appState.eventTypes);
 
     return (
       <Provider>

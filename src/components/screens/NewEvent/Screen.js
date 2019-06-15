@@ -2,7 +2,6 @@ import React from 'react';
 import SimpleToast from 'react-native-simple-toast';
 import moment from 'moment';
 import Form from 'components/forms/Event';
-import eventTypes from 'components/forms/Event/types';
 import frequency from 'components/forms/Event/frequency';
 import { isPastExact } from 'lib/parseItem';
 import { BOARD_CLOSED } from 'lib/constants';
@@ -79,7 +78,7 @@ export default class NewEventScreen extends React.Component {
       startAt: start,
       endAt: end,
       allDay: Boolean(allDay),
-      eventType: eventType || eventTypes[0],
+      eventType: eventType || 'Normal',
       repeat: repeat || frequency[0].id,
       until,
       forever,

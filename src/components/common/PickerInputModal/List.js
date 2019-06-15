@@ -36,7 +36,6 @@ export default class List extends React.Component {
 
   render() {
     const { data } = this.props;
-
     return (
       <FlatList
         renderItem={this._renderItem}

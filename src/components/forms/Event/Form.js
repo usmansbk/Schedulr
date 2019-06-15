@@ -31,7 +31,6 @@ import { CANT_REPEAT } from 'lib/errorMessages';
 import { getRepeatLabel, getRecurrence } from 'lib/time';
 import { WHAT_IS_A_BOARD } from 'lib/constants';
 import formSchema from './schema';
-import eventTypes from './types';
 import frequency from './frequency';
 import { buildEventForm } from 'helpers/buildForm';
 
@@ -60,7 +59,7 @@ export default class Form extends React.Component {
       startAt: moment().toISOString(),
       endAt: moment().add(2, 'hours').toISOString(),
       allDay: false,
-      eventType: eventTypes[0],
+      eventType: 'Normal',
       repeat: frequency[0].id,
       forever: false,
       until: null,
@@ -345,7 +344,6 @@ export default class Form extends React.Component {
             visible={visible}
             prompt="Type"
             selectedValue={values.eventType}
-            data={eventTypes}
             hideModal={this._hideModal}
             onValueChange={itemValue => setFieldValue('eventType', itemValue)}
           />
