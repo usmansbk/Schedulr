@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlatList } from 'react-native';
+import { FlatList, Alert } from 'react-native';
 import { inject, observer } from 'mobx-react';
 import Item from './Item';
 
@@ -8,9 +8,24 @@ const ITEM_HEIGHT = 48;
 @inject('stores')
 @observer
 export default class List extends React.Component {
+  state = {
+    visible: false
+  }
 
   _onLongPressItem = (id) => {
-    alert('Long press: ' + id)
+    Alert.alert(
+      'Delete type?',
+      id,
+      [
+        {
+          text: 'Yes', onPress: () => this.props.stores.appState.removeCustomType(id),
+        },
+        {
+          text: "No", onPress: () => null
+        }
+      ],
+      { cancelable: true }
+    )
   };
   _onPressItem = (id) => {
     this.props.onValueChange(id);
@@ -33,10 +48,13 @@ export default class List extends React.Component {
       onPressItem={this._onPressItem}
       marked={item === this.props.selectedValue}
     />
-  )
+  );
+
+  _showDialog = () => this.setState({ visible: true });
+  _hideDialog = () => this.setState({ visible: false });
 
   render() {
-    const { data } = this.props;
+    const { data, visible } = this.props;
     return (
       <FlatList
         renderItem={this._renderItem}

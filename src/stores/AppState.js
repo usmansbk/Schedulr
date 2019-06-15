@@ -62,6 +62,10 @@ export default class AppState {
       this.eventTypes.push(eventType);
     }
   }
+
+  @action removeCustomType = (eventType) => {
+    this.eventTypes = this.eventTypes.filter(item => item.toLowerCase() === eventType.toLowerCase());
+  }
   
   @action setLocation = (address) => {
     this.address = address;
