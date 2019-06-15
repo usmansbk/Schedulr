@@ -18,11 +18,10 @@ export default class Input extends React.Component {
   };
 
   _showModal = () => this.setState({ visible: true });
-  _hideModal = () => this.setState({ visible: false });
+  _hideModal = () => this.props.hideModal();
 
   render() {
-    const { selectedValue, stores } = this.props;
-    const { visible } = this.state;
+    const { selectedValue, stores, visible } = this.props;
     const styles = stores.appStyles.picker;
 
     return (
@@ -31,8 +30,11 @@ export default class Input extends React.Component {
           <Modal
             visible={visible}
             onDismiss={this._hideModal}
+            contentContainerStyle={styles.container}
           >
-
+            <Button>
+              Hide
+            </Button>
           </Modal>
         </Portal>
       </Provider>

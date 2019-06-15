@@ -39,6 +39,13 @@ import { buildEventForm } from 'helpers/buildForm';
 @observer
 export default class Form extends React.Component {
 
+  state = {
+    visible: false
+  };
+
+  _showModal = () => this.setState({ visible: true });
+  _hideModal = () => this.setState({ visible: false });
+
   static defaultProps = {
     initialValues: {
       title: '',
@@ -80,6 +87,7 @@ export default class Form extends React.Component {
       isNew,
       stores
     } = this.props;
+    const { visible } = this.state;
 
     const styles = stores.appStyles.eventForm;
     const navButtonColor = stores.themeStore.colors.navButtonColor;
@@ -181,7 +189,10 @@ export default class Form extends React.Component {
               
               <View style={styles.pickerSpacing}>
                 <Text style={styles.radioText}>Event type</Text>
-                <PickerButton value={values.eventType} />
+                <PickerButton
+                  value={values.eventType}
+                  onPress={this._showModal}
+                />
               </View>
 
               <DateTimeInput
@@ -331,9 +342,11 @@ export default class Form extends React.Component {
           </ScrollView>
           
           <PickerInputModal
+            visible={visible}
             prompt="Type"
             selectedValue={values.eventType}
             data={eventTypes}
+            hideModal={this._hideModal}
             onValueChange={itemValue => setFieldValue('eventType', itemValue)}
           />
           </>

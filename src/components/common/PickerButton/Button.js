@@ -12,11 +12,9 @@ export default inject('stores')(observer(({ stores, value, onPress }) => {
   return (    
     <TouchableRipple
       onPress={onPress}
-      style={styles.container}
+      style={styles.button}
     >
-      <View styles={styles.button}>
-        <Text>{value}</Text>
-      </View>
+      <Text>{value}</Text>
     </TouchableRipple>
   )
 }));

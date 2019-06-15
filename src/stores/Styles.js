@@ -100,7 +100,7 @@ export default class AppStyles {
     const borderWidth = 1 * StyleSheet.hairlineWidth;
     
     return StyleSheet.create({
-      container: {
+      button: {
         height: 48,
         justifyContent: 'center',
         paddingHorizontal: 8,
@@ -109,6 +109,10 @@ export default class AppStyles {
         borderRadius: 4,
         borderColor: colors.placeholder
       },
+      container: {
+        backgroundColor: 'white',
+        flex: 1
+      }
     });
   }
 
