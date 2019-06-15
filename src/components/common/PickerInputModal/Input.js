@@ -27,7 +27,8 @@ export default class Input extends React.Component {
   _handleSubmit = () => {
     const { text } = this.state;
     if (text.length <= TYPE_LENGTH) {
-      this.props.onValueChange(this.state.text);
+      this.props.onValueChange(text);
+      this.props.stores.appState.addCustomType(text);
       this._hideModal();
     }
   }
@@ -42,8 +43,8 @@ export default class Input extends React.Component {
     const styles = stores.appStyles.picker;
     const colors = stores.themeStore.colors;
     const { text } = this.state;
-
-    const filteredData = this._filterData(stores.appState.eventTypes);
+    const data = stores.appState.eventTypes;
+    // const filteredData = this._filterData(stores.appState.eventTypes);
 
     return (
       <Provider>
@@ -57,7 +58,7 @@ export default class Input extends React.Component {
             <View style={styles.content}>
               <List
                 selectedValue={selectedValue}
-                data={filteredData}
+                data={data}
                 onValueChange={this._onValueChange}
                 hideModal={this._hideModal}
               />

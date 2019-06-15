@@ -55,6 +55,13 @@ export default class AppState {
       longitude: null
     }
   }
+
+  @action addCustomType = (eventType) => {
+    const hasType = this.eventTypes.findIndex(item => item.toLowerCase() === eventType.toLowerCase());
+    if (hasType === -1) {
+      this.eventTypes.push(eventType);
+    }
+  }
   
   @action setLocation = (address) => {
     this.address = address;
