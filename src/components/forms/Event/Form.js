@@ -16,12 +16,13 @@ import {
   HelperText,
   Checkbox,
   Appbar,
-  IconButton
+  IconButton,
 } from 'react-native-paper';
 import { Formik } from 'formik';
 import { inject, observer } from 'mobx-react';
 import DateTimeInput from 'components/common/DateTimeInput';
-import PickerInput from 'components/common/PickerInput';
+import PickerInputModal from 'components/common/PickerInputModal';
+import PickerButton from 'components/common/PickerButton';
 import {
   isEventValid,
   canRepeat
@@ -177,6 +178,12 @@ export default class Form extends React.Component {
               >
               {errors.location}
               </HelperText>
+              
+              <View style={styles.pickerSpacing}>
+                <Text style={styles.radioText}>Event type</Text>
+                <PickerButton value={values.eventType} />
+              </View>
+
               <DateTimeInput
                 noMin
                 label="From"
@@ -290,15 +297,6 @@ export default class Form extends React.Component {
                 )
               }
               <View style={styles.pickerSpacing}>
-                <Text style={styles.radioText}>Type</Text>
-                <PickerInput
-                  prompt="Type"
-                  selectedValue={values.eventType}
-                  data={eventTypes}
-                  onValueChange={itemValue => setFieldValue('eventType', itemValue)}
-                />
-              </View>
-              <View style={styles.pickerSpacing}>
                 <View style={styles.row}>
                   <Text style={styles.radioText}>Board</Text>
                   <IconButton
@@ -331,6 +329,13 @@ export default class Form extends React.Component {
               </View>
             </View>
           </ScrollView>
+          
+          <PickerInputModal
+            prompt="Type"
+            selectedValue={values.eventType}
+            data={eventTypes}
+            onValueChange={itemValue => setFieldValue('eventType', itemValue)}
+          />
           </>
         )}
       </Formik>

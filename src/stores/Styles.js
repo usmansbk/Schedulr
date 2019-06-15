@@ -95,6 +95,23 @@ export default class AppStyles {
     });
   }
 
+  @computed get picker () {
+    const colors = this.settings.dark ? dark : light;
+    const borderWidth = 1 * StyleSheet.hairlineWidth;
+    
+    return StyleSheet.create({
+      container: {
+        height: 48,
+        justifyContent: 'center',
+        paddingHorizontal: 8,
+        marginTop: 8,
+        borderWidth,
+        borderRadius: 4,
+        borderColor: colors.placeholder
+      },
+    });
+  }
+
   @computed get datePicker () {
     const colors = this.settings.dark ? dark : light;
     const borderWidth = 1 * StyleSheet.hairlineWidth;
