@@ -13,6 +13,7 @@ export default class Item extends React.Component {
   render() {
     const { value, stores, marked } = this.props;
     const styles = stores.appStyles.customTypes;
+    const colors = stores.themeStore.colors;
 
     return  (
       <TouchableRipple
@@ -23,7 +24,7 @@ export default class Item extends React.Component {
         <View style={styles.content}>
           <View style={styles.row}>
             <Text style={styles.text}>{value}</Text>
-            { marked && <Icon name="check" size={20} /> }
+            { marked && <Icon name="check" size={20} color={colors.primary} /> }
           </View>
         </View>
       </TouchableRipple>
