@@ -6,6 +6,7 @@ import { persist } from 'mobx-persist';
 import debounce from 'lodash.debounce';
 import { requestLocationPermission } from 'helpers/permissions';
 import logger from 'config/logger';
+import types from './types';
 
 export default class AppState {
   @observable isConnected = false;
@@ -18,24 +19,7 @@ export default class AppState {
     longitude: null,
     latitude: null
   }
-  @persist('list') @observable eventTypes =  [
-    'Normal',
-    'Lecture',
-    'Examination',
-    'Test',
-    'Task',
-    'Meetup',
-    'Hobby',
-    'Studies',
-    'Work',
-    'Sport',
-    'Meeting',
-    'Festival',
-    'Ceremony',
-    'Competition',
-    'Party',
-    'Holiday',
-  ];
+  @persist('list') @observable eventTypes =  types;
 
   debounceQuery = debounce((val) => this.query = val, 250);
   
@@ -53,7 +37,8 @@ export default class AppState {
     this.location = {
       latitude: null,
       longitude: null
-    }
+    };
+    this.eventTypes = types;
   }
 
   @action addCustomType = (eventType) => {
@@ -64,7 +49,7 @@ export default class AppState {
   }
 
   @action removeCustomType = (eventType) => {
-    this.eventTypes = this.eventTypes.filter(item => item.toLowerCase() === eventType.toLowerCase());
+    this.eventTypes = this.eventTypes.filter(item => item.toLowerCase() !== eventType.toLowerCase());
   }
   
   @action setLocation = (address) => {
