@@ -95,6 +95,23 @@ export default class AppStyles {
     });
   }
 
+  @computed get customTypes () {
+    const colors = this.settings.dark ? dark : light;
+
+    return StyleSheet.create({
+      container: {
+        justifyContent: 'center'
+      },
+      content: {
+        height: 48,
+        justifyContent: 'center'
+      },
+      text: {
+        color: colors.black
+      }
+    });    
+  }
+
   @computed get picker () {
     const colors = this.settings.dark ? dark : light;
     const borderWidth = 1 * StyleSheet.hairlineWidth;
@@ -110,11 +127,15 @@ export default class AppStyles {
         borderColor: colors.placeholder
       },
       container: {
-        backgroundColor: colors.bg,
-        flex: 1
+        flex: 1,
       },
       content: {
         flex: 1,
+        paddingHorizontal: 8,
+        backgroundColor: colors.bg,
+      },
+      placeholder: {
+        color: colors.black
       },
     });
   }
@@ -308,7 +329,6 @@ export default class AppStyles {
     const colors = this.settings.dark ? dark : light;
     
     const {
-      AVATAR_SIZE,
       INPUT_WIDTH
     } = comment_input;
 

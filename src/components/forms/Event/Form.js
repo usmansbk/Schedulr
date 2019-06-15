@@ -188,7 +188,7 @@ export default class Form extends React.Component {
               </HelperText>
               
               <View style={styles.pickerSpacing}>
-                <Text style={styles.radioText}>Event type</Text>
+                <Text style={styles.radioText}>Type</Text>
                 <PickerButton
                   value={values.eventType}
                   onPress={this._showModal}
