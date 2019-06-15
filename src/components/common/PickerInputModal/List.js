@@ -1,8 +1,9 @@
 import React from 'react';
 import { FlatList } from 'react-native';
-import { Divider } from 'react-native-paper';
 import { inject, observer } from 'mobx-react';
 import Item from './Item';
+
+const ITEM_HEIGHT = 48;
 
 @inject('stores')
 @observer
@@ -15,9 +16,16 @@ export default class List extends React.Component {
     this.props.onValueChange(id);
     this.props.hideModal();
   }
+  
+  _getItemLayout = (_, index) => (
+    {
+      length: ITEM_HEIGHT,
+      offset: ITEM_HEIGHT * index,
+      index
+    }
+  );
 
   _keyExtractor = (item) => item;
-  _renderSeparator = () => <Divider />;
   _renderItem = ({ item }) => (
     <Item
       value={item}
@@ -32,10 +40,9 @@ export default class List extends React.Component {
     return (
       <FlatList
         renderItem={this._renderItem}
-        renderSeparator={<Divider />}
         data={data}
         keyExtractor={this._keyExtractor}
-
+        getItemLayout={this._getItemLayout}
       />
     )
   }
