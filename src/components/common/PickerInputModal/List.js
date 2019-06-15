@@ -8,10 +8,6 @@ const ITEM_HEIGHT = 48;
 @inject('stores')
 @observer
 export default class List extends React.Component {
-  state = {
-    visible: false
-  }
-
   _onLongPressItem = (id) => {
     Alert.alert(
       'Delete type?',
@@ -50,11 +46,8 @@ export default class List extends React.Component {
     />
   );
 
-  _showDialog = () => this.setState({ visible: true });
-  _hideDialog = () => this.setState({ visible: false });
-
   render() {
-    const { data, visible } = this.props;
+    const { data } = this.props;
     return (
       <FlatList
         renderItem={this._renderItem}

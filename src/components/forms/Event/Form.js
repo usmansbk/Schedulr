@@ -343,7 +343,7 @@ export default class Form extends React.Component {
           <PickerInputModal
             visible={visible}
             prompt="Type"
-            selectedValue={values.eventType}
+            selectedValue={values.eventType || ''}
             hideModal={this._hideModal}
             onValueChange={itemValue => setFieldValue('eventType', itemValue)}
           />
