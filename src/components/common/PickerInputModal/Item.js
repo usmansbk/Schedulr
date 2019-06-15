@@ -1,5 +1,6 @@
 import React from 'react';
 import { Text, TouchableRipple } from 'react-native-paper';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 import { View } from 'react-native';
 import { inject, observer } from 'mobx-react';
 
@@ -10,7 +11,7 @@ export default class Item extends React.Component {
   _onPress = () => this.props.onPressItem(this.props.value);
 
   render() {
-    const { value, stores } = this.props;
+    const { value, stores, marked } = this.props;
     const styles = stores.appStyles.customTypes;
 
     return  (
@@ -20,7 +21,10 @@ export default class Item extends React.Component {
         onLongPress={this._onLongPress}
       >
         <View style={styles.content}>
-          <Text style={styles.text}>{value}</Text>
+          <View style={styles.row}>
+            <Text style={styles.text}>{value}</Text>
+            { marked && <Icon name="check" size={20} /> }
+          </View>
         </View>
       </TouchableRipple>
     )

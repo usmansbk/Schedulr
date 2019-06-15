@@ -108,6 +108,10 @@ export default class AppStyles {
       },
       text: {
         color: colors.black
+      },
+      row: {
+        flexDirection: 'row',
+        justifyContent: 'space-between'
       }
     });    
   }
