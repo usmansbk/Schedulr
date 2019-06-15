@@ -79,7 +79,7 @@ export default class NewEventScreen extends React.Component {
       startAt: start,
       endAt: end,
       allDay: Boolean(allDay),
-      eventType: eventType || eventTypes[0].id,
+      eventType: eventType || eventTypes[0],
       repeat: repeat || frequency[0].id,
       until,
       forever,

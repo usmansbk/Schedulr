@@ -16,12 +16,11 @@ export default class List extends React.Component {
     this.props.hideModal();
   }
 
-  _keyExtractor = (item) => item.id;
+  _keyExtractor = (item) => item;
   _renderSeparator = () => <Divider />;
   _renderItem = ({ item }) => (
     <Item
-      value={item.name}
-      id={item.id}
+      value={item}
       onLongPressItem={this._onLongPressItem}
       onPressItem={this._onPressItem}
     />

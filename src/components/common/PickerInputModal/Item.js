@@ -6,8 +6,8 @@ import { inject, observer } from 'mobx-react';
 @inject('stores')
 @observer
 export default class Item extends React.Component {
-  _onLongPress = () => this.props.onLongPressItem(this.props.id);
-  _onPress = () => this.props.onPressItem(this.props.id);
+  _onLongPress = () => this.props.onLongPressItem(this.props.value);
+  _onPress = () => this.props.onPressItem(this.props.value);
 
   render() {
     const { value, stores } = this.props;

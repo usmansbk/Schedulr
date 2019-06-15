@@ -28,8 +28,7 @@ export default class Input extends React.Component {
       selectedValue,
       stores,
       visible,
-      data,
-      onChangeValue
+      data
     } = this.props;
     const styles = stores.appStyles.picker;
     const colors = stores.themeStore.colors;

@@ -60,7 +60,7 @@ export default class Form extends React.Component {
       startAt: moment().toISOString(),
       endAt: moment().add(2, 'hours').toISOString(),
       allDay: false,
-      eventType: eventTypes[0].id,
+      eventType: eventTypes[0],
       repeat: frequency[0].id,
       forever: false,
       until: null,
