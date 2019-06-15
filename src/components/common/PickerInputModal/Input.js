@@ -29,6 +29,7 @@ export default class Input extends React.Component {
     if (text.length <= TYPE_LENGTH) {
       this.props.onValueChange(text);
       this.props.stores.appState.addCustomType(text);
+      this.setState({ text: '' });
       this._hideModal();
     }
   }
