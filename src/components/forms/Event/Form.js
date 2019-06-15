@@ -14,9 +14,10 @@ import {
   TextInput,
   Text,
   HelperText,
-  Checkbox,
   Appbar,
   IconButton,
+  Switch,
+  Divider
 } from 'react-native-paper';
 import { Formik } from 'formik';
 import { inject, observer } from 'mobx-react';
@@ -222,9 +223,9 @@ export default class Form extends React.Component {
               />
               <View style={styles.radio}>
                 <Text style={styles.radioText}>All-day</Text>
-                <Checkbox
-                  value='allDay'
-                  onPress={() => {
+                <Switch
+                  value={values.allDay}
+                  onValueChange={() => {
                     const { allDay } = values;
                     setFieldValue('allDay', !allDay);
                     if (!allDay) {
@@ -232,9 +233,9 @@ export default class Form extends React.Component {
                       setFieldValue('endAt', moment(values.startAt).endOf('day').toISOString());
                     }
                   }}
-                  status={values.allDay ? 'checked' : 'unchecked'}
                 />
               </View>
+              <Divider />
               <View style={styles.pickerSpacing}>
                 <Text style={styles.radioText}>Repetition</Text>
                 <Picker
@@ -274,26 +275,29 @@ export default class Form extends React.Component {
                   )
                 }
               </View>
+              <Divider />
               {
                 (values.repeat !== frequency[0].id) && (
-                  <View style={styles.radio}>
-                    <Text style={styles.radioText}>Repeat Forever</Text>
-                    <Checkbox
-                      value='Forever'
-                      onPress={() => {
-                        const prevValue = values.forever;
-                        const newValue = !prevValue;
-                        setFieldValue('forever', newValue);
-                        if (newValue) {
-                          setFieldValue('until', null);
-                        } else {
-                          const recur = getRecurrence(values.repeat);
-                          setFieldValue('until', moment(values.startAt).add(2, recur).toISOString());
-                        }
-                      }}
-                      status={values.forever ? 'checked' : 'unchecked'}
-                    />
-                  </View>
+                  <>
+                    <View style={styles.radio}>
+                      <Text style={styles.radioText}>Repeat Forever</Text>
+                      <Switch
+                        value={values.forever}
+                        onValueChange={() => {
+                          const prevValue = values.forever;
+                          const newValue = !prevValue;
+                          setFieldValue('forever', newValue);
+                          if (newValue) {
+                            setFieldValue('until', null);
+                          } else {
+                            const recur = getRecurrence(values.repeat);
+                            setFieldValue('until', moment(values.startAt).add(2, recur).toISOString());
+                          }
+                        }}
+                      />
+                    </View>
+                    <Divider />
+                  </>
                 )
               }
               {
