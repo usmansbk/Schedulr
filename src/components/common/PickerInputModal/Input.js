@@ -10,6 +10,8 @@ import { View, TextInput } from 'react-native';
 import { inject, observer } from 'mobx-react';
 import List from './List';
 
+const TYPE_LENGTH = 16
+
 @inject('stores')
 @observer
 export default class Input extends React.Component {
@@ -22,6 +24,14 @@ export default class Input extends React.Component {
   _hideModal = () => this.props.hideModal();
   _onChangeText = text => this.setState({ text });
   _onValueChange = (value) => this.props.onValueChange(value);
+  _handleSubmit = () => {
+    const { text } = this.state;
+    if (text.length <= TYPE_LENGTH) {
+      this.props.onValueChange(this.state.text);
+      this._hideModal();
+    }
+  }
+  _filterData = () => this.props.data.filter(item => item.toLowerCase().includes(this.state.text.toLowerCase()));
 
   render() {
     const {
@@ -33,6 +43,8 @@ export default class Input extends React.Component {
     const styles = stores.appStyles.picker;
     const colors = stores.themeStore.colors;
     const { text } = this.state;
+
+    const filteredData = this._filterData(data);
 
     return (
       <Provider>
@@ -46,7 +58,7 @@ export default class Input extends React.Component {
             <View style={styles.content}>
               <List
                 selectedValue={selectedValue}
-                data={data}
+                data={filteredData}
                 onValueChange={this._onValueChange}
                 hideModal={this._hideModal}
               />
@@ -59,10 +71,11 @@ export default class Input extends React.Component {
                 placeholderTextColor={colors.placeholder}
                 value={text}
                 onChangeText={this._onChangeText}
+                onSubmitEditing={this._handleSubmit}
               />
               <HelperText
                 type="error"
-                visible={text.length > 16}
+                visible={text.length > TYPE_LENGTH}
               >
                 Too long
               </HelperText>
