@@ -3,9 +3,8 @@ import {
   Modal,
   Portal,
   Text,
-  Button,
+  TextInput,
   Provider,
-  TouchableRipple
 } from 'react-native-paper';
 import { View } from 'react-native';
 import { inject, observer } from 'mobx-react';
@@ -32,9 +31,12 @@ export default class Input extends React.Component {
             onDismiss={this._hideModal}
             contentContainerStyle={styles.container}
           >
-            <Button>
-              Hide
-            </Button>
+            <View style={styles.content}>
+              <TextInput
+                mode="outlined"
+                style={styles.input}
+              />
+            </View>
           </Modal>
         </Portal>
       </Provider>

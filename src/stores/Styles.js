@@ -110,9 +110,12 @@ export default class AppStyles {
         borderColor: colors.placeholder
       },
       container: {
-        backgroundColor: 'white',
+        backgroundColor: colors.bg,
         flex: 1
-      }
+      },
+      content: {
+        flex: 1,
+      },
     });
   }
 
