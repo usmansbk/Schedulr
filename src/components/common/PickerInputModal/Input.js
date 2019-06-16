@@ -10,7 +10,8 @@ import { View, TextInput } from 'react-native';
 import { inject, observer } from 'mobx-react';
 import List from './List';
 
-const TYPE_LENGTH = 16
+const MAX_LENGTH = 18;
+const MIN_LENGTH = 2
 
 @inject('stores')
 @observer
@@ -28,7 +29,7 @@ export default class Input extends React.Component {
     const { text } = this.state;
     const trimmedText = text.trim();
     const length = trimmedText.length;
-    if (length && length <= TYPE_LENGTH) {
+    if (length >= MIN_LENGTH && length <= MAX_LENGTH) {
       this._onValueChange(trimmedText);
       this.props.stores.appState.addCustomType(trimmedText);
       this.setState({ text: '' });
@@ -47,6 +48,10 @@ export default class Input extends React.Component {
     const colors = stores.themeStore.colors;
     const { text } = this.state;
     const data = this._filterData(stores.appState.eventTypes);
+
+    const length = text.length;
+    const tooShort = length && length < MIN_LENGTH;
+    const tooLong = length > MAX_LENGTH;
 
     return (
       <Provider>
@@ -77,9 +82,9 @@ export default class Input extends React.Component {
               />
               <HelperText
                 type="error"
-                visible={text.length > TYPE_LENGTH}
+                visible={tooLong || tooShort}
               >
-                Too long
+                { tooLong ? 'Too long' : 'Too short'}
               </HelperText>
             </View>
           </Modal>
