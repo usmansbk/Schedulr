@@ -27,7 +27,8 @@ export default class Input extends React.Component {
   _handleSubmit = () => {
     const { text } = this.state;
     const trimmedText = text.trim();
-    if (text.length <= TYPE_LENGTH) {
+    const length = trimmedText.length;
+    if (length && length <= TYPE_LENGTH) {
       this._onValueChange(trimmedText);
       this.props.stores.appState.addCustomType(trimmedText);
       this.setState({ text: '' });
