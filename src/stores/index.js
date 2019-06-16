@@ -16,7 +16,6 @@ const settingsStore = new Settings;
 const remindMeStore = new RemindMe;
 const meStore = new UserProfile;
 const appState = new AppState;
-const snackbar = new Snackbar;
 
 hydrate('settings', settingsStore);
 hydrate('remindMe', remindMeStore);
