@@ -9,7 +9,7 @@ export default inject('stores')(observer(
     return (
       <View style={stores.appStyles.starredEventsList.empty}>
         <Headline style={stores.appStyles.starredEventsList.emptyTitle}>
-          No result
+          No results
         </Headline>
         {
           error && (
