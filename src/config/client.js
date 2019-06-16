@@ -1,15 +1,23 @@
 import AWSAppSyncClient, { createAppSyncLink } from 'aws-appsync';
-import { Auth } from 'aws-amplify';
+import { Auth, Analytics } from 'aws-amplify';
 import { ApolloLink } from 'apollo-link';
 import { onError } from 'apollo-link-error';
 import SimpleToast from 'react-native-simple-toast';
 import aws_config from '../aws-exports';
-import logger, { analytics } from './logger';
+import logger from './logger';
 
 const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors) {
     graphQLErrors.map(error => {
-      analytics('graphQLError', '', error);
+      Analytics.record({
+        name: 'GraphQLError',
+        attributes: {
+          errorName: error.name,
+          errorMessage: error.message,
+          errorLocation: error.locations,
+          errorPath: error.path,
+        }
+      });
       logger.log(error);
     });  
   }
