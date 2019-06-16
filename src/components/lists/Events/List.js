@@ -29,7 +29,7 @@ import {
 } from 'lib/calendr';
 import { events } from 'lib/constants';
 
-const DAYS_PER_PAGE = 3;
+const DAYS_PER_PAGE = 7;
 
 const {
   ITEM_HEIGHT,
