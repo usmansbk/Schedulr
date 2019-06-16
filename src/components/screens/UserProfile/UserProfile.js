@@ -14,16 +14,22 @@ import Error from 'components/common/Error';
 import numeral from 'numeral';
 import colors from 'config/colors';
 
-export default inject('stores')(observer(
-  ({
-    navigation,
-    loading,
-    error,
-    onRefresh,
-    refreshing,
-    user,
-    stores
-  }) => {
+@inject('stores')
+@observer
+export default class UserProfile extends React.Component {
+  componentWillUpdate = (nextProps) => nextProps.navigation.isFocused;
+
+  render() {
+    const {
+      navigation,
+      loading,
+      error,
+      onRefresh,
+      refreshing,
+      user,
+      stores
+    } = this.props;
+
     if (loading && !user) return <Loading />;
     if (error && !user) return <Error onRefresh={onRefresh} loading={refreshing} />;
   
@@ -34,8 +40,8 @@ export default inject('stores')(observer(
       followingCount=0,
       createdCount=0
     } = user;
-  
-    return (
+
+    return  (
       <ScrollView contentContainerStyle={styles.header}>
         <CachedImage
           source={{uri: pictureUrl}}
@@ -69,7 +75,7 @@ export default inject('stores')(observer(
       </ScrollView>
     );
   }
-))
+}
 
 const AVATAR_HEIGHT = 120;
 
