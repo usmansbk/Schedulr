@@ -7,6 +7,7 @@ import Theme from './Theme';
 import AppStyles from './Styles';
 import UserProfile from './UserProfile';
 import AppState from './AppState';
+import Snackbar from './Snackbar';
 
 const hydrate = create({
   storage: AsyncStorage
@@ -16,6 +17,7 @@ const settingsStore = new Settings;
 const remindMeStore = new RemindMe;
 const meStore = new UserProfile;
 const appState = new AppState;
+const snackbar = new Snackbar;
 
 hydrate('settings', settingsStore);
 hydrate('remindMe', remindMeStore);
@@ -34,6 +36,7 @@ class RootStore {
     this.me = meStore;
     this.appStyles = appStyles;
     this.appState = appState;
+    this.snackbar = snackbar;
   }
 
   @action reset = () => {

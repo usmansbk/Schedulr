@@ -5,12 +5,14 @@ import { onError } from 'apollo-link-error';
 import SimpleToast from 'react-native-simple-toast';
 import aws_config from '../aws-exports';
 import logger, { analytics } from './logger';
+import stores from 'stores';
 
 const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors) {
     graphQLErrors.map(error => {
       analytics('graphQLError', '', error);
       logger.log(error);
+      stores.snackbar.handleOpen(error.message);
     });  
   }
   if (networkError) SimpleToast.show('Connection error', SimpleToast.SHORT);
