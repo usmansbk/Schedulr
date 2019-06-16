@@ -2,9 +2,7 @@ import React from 'react';
 import { InteractionManager } from 'react-native';
 import ActionSheet from 'react-native-actionsheet';
 import Share from 'react-native-share';
-import SimpleToast from 'react-native-simple-toast';
 import gql from 'graphql-tag';
-import CancelDialog from 'components/dialogs/CancelEvent';
 import client from 'config/client';
 import { starEvent, unstarEvent } from 'mygraphql/mutations';
 import { toggleStarButton } from 'helpers/optimisticResponse';
@@ -12,10 +10,6 @@ import env from 'config/env';
 
 
 export default class EventAction extends React.Component {
-  state = {
-    visibleDialog: null
-  };
-
   showActionSheet = () => {
     this.actionSheet.show();
   };
@@ -57,64 +51,36 @@ export default class EventAction extends React.Component {
   _toggleMute = () => this.props.onMute(this.props.id);
 
   _handleActionSheet = (index) => {
-    const { isAuthor, isValid } = this.props;
-    if (isAuthor) {
-      switch (index) {
-        case 0:
-          InteractionManager.runAfterInteractions(this._handleShare);
-          break;
-        case 1:
-          InteractionManager.runAfterInteractions(this._toggleMute);
-          break;
-        case 2:
-          InteractionManager.runAfterInteractions(this._handleStar);
-          break;
-        case 3:
-          if (isValid) {
-            this.setState({ visibleDialog: 'cancel' });
-          } else {
-            SimpleToast.show('Event has expired', SimpleToast.SHORT);
-          }
-          break;
-      }
-    } else {
-      switch(index) {
-        case 0:
-          this._handleShare();
-          break;
-          case 1:
-            InteractionManager.runAfterInteractions(this._toggleMute);
-            break;
-          case 2:
-            InteractionManager.runAfterInteractions(this._handleStar);
-            break;
-      }
+    switch (index) {
+      case 0:
+        InteractionManager.runAfterInteractions(this._handleShare);
+        break;
+      case 1:
+        InteractionManager.runAfterInteractions(this._toggleMute);
+        break;
+      case 2:
+        InteractionManager.runAfterInteractions(this._handleStar);
+        break;
     }
   }
 
   render() {
     const { 
-      id,
       title,
       isStarred,
-      isAuthor,
-      startAt,
-      isRecurring,
       isMuted,
     } = this.props;
-    const { visibleDialog } = this.state;
 
     const options = ['Back'];
-    if (isAuthor) options.unshift('Cancel event');
     options.unshift(
       'Share via',
-      isMuted ? 'Unmute event' : 'Mute event',
-      isStarred ? 'Remove bookmark' : 'Bookmark event');
+      isStarred ? 'Remove bookmark' : 'Bookmark event',
+      isMuted ? 'Unmute event' : 'Mute event'
+    );
     const cancelButtonIndex = options.length - 1;
-    const destructiveButtonIndex = (isAuthor) ? cancelButtonIndex - 1 : undefined;
+    const destructiveButtonIndex = cancelButtonIndex - 1;
 
     return (
-      <>
       <ActionSheet
         ref={ref => this.actionSheet = ref}
         title={title}
@@ -123,13 +89,6 @@ export default class EventAction extends React.Component {
         destructiveButtonIndex={destructiveButtonIndex}
         onPress={this._handleActionSheet}
       />
-      <CancelDialog
-        id={id}
-        date={isRecurring ? startAt : null}
-        visible={visibleDialog === 'cancel'}
-        handleDismiss={this._hideDialog}
-      />
-      </>
     )
   }
 
