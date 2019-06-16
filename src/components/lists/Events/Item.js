@@ -98,11 +98,8 @@ export default class Item extends React.Component {
             eventType={eventType}
             date={formatDate(startAt, endAt, allDay)}
             address={address}
-            isAuthor={isAuthor}
             isStarred={isStarred}
-            isValid={isValid}
             startAt={startAt}
-            isRecurring={repeat}
             isMuted={isMuted}
             starsCount={starsCount}
             ref={ref => this.ActionSheet = ref}

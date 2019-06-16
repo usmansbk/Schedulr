@@ -24,7 +24,7 @@ export default class EventAction extends React.Component {
     } = this.props;
 
     const shareOptions = {
-      title: 'Invite via...',
+      title: 'Share invite link via...',
       subject: eventType,
       message: `${title}\n${eventType}\n${date}${address ? (' at ' + address) : ''}\n`,
       url: `${env.APP_URL}/event/${id}`
@@ -56,10 +56,10 @@ export default class EventAction extends React.Component {
         InteractionManager.runAfterInteractions(this._handleShare);
         break;
       case 1:
-        InteractionManager.runAfterInteractions(this._toggleMute);
+        InteractionManager.runAfterInteractions(this._handleStar);
         break;
       case 2:
-        InteractionManager.runAfterInteractions(this._handleStar);
+        InteractionManager.runAfterInteractions(this._toggleMute);
         break;
     }
   }

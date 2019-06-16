@@ -72,8 +72,6 @@ export default class Item extends React.Component {
             id={id}
             title={name}
             isMuted={isMuted}
-            isAuthor={isAuthor}
-            isClosed={isClosed}
             ref={ref => this.ActionSheet = ref}
             onMute={this._onMute}
           />
