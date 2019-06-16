@@ -7,6 +7,8 @@
     "test": "jest"
   },
   "dependencies": {
+    "apollo-link": "^1.2.12",
+    "apollo-link-error": "^1.1.11",
     "aws-amplify": "^1.1.28",
     "aws-appsync": "^1.8.0",
     "aws-appsync-react": "^1.2.8",

@@ -2,7 +2,6 @@ import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import UserProfile from './UserProfile';
 import { getUser } from 'mygraphql/queries';
-import logger from 'config/logger';
 
 const alias = 'withUserProfile';
 
@@ -20,11 +19,7 @@ export default graphql(gql(getUser), {
     refreshing: data.networkStatus === 4,
     error: data.error,
     onRefresh: async () => {
-      try {
-        await data.refetch();
-      } catch (error) {
-        logger.debug(error.message);
-      }
+      await data.refetch();
     },
     user: data && data.getUser,
     ...ownProps,

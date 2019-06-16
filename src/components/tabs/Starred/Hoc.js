@@ -14,13 +14,7 @@ export default compose(
       error: data.error,
       loading: data.loading,
       events: data && data.listAllEvents && data.listAllEvents.items.filter(item => item.isStarred) || [],
-      onRefresh: async () => {
-        try {
-          await data.refetch();
-        } catch (e) {
-
-        }
-      },
+      onRefresh: async () => await data.refetch(),
       ...ownProps
     })
   })

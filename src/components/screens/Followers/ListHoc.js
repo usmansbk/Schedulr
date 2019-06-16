@@ -2,7 +2,6 @@ import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import List from 'components/lists/Followers';
 import { listBoardFollowers } from 'mygraphql/queries';
-import logger from 'config/logger';
 import { COMMENTS_LIMIT } from 'lib/constants';
 
 const LIMIT = COMMENTS_LIMIT;
@@ -24,11 +23,7 @@ export default graphql(gql(listBoardFollowers), {
     loading: data.loading || (data.networkStatus === 4),
     error: data.error,
     onRefresh: async () => {
-      try {
-        await data.refetch();
-      } catch (error) {
-        logger.debug(error.message);
-      }
+      await data.refetch();
     },
     fetchMoreFollowers: (nextToken=null, limit=LIMIT) => data.fetchMore({
       variables: {

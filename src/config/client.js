@@ -1,14 +1,33 @@
-import AWSAppSyncClient from 'aws-appsync';
+import AWSAppSyncClient, { createAppSyncLink } from 'aws-appsync';
 import { Auth } from 'aws-amplify';
+import { ApolloLink } from 'apollo-link';
+import { onError } from 'apollo-link-error';
+import SimpleToast from 'react-native-simple-toast';
 import aws_config from '../aws-exports';
+import logger, { analytics } from './logger';
 
-const client = new AWSAppSyncClient({
+const errorLink = onError(({ graphQLErrors, networkError }) => {
+  if (graphQLErrors) {
+    graphQLErrors.map(({ message, location, path }) => {
+      analytics('graphQLError', '', { message, location, path });
+      logger.log(message, location, path);
+    });  
+  }
+  if (networkError) SimpleToast.show('Connection error', SimpleToast.SHORT);
+});
+
+const appSyncLink = createAppSyncLink({
   url: aws_config.aws_appsync_graphqlEndpoint,
   region: aws_config.aws_appsync_region,
   auth: {
     type: aws_config.aws_appsync_authenticationType,
     credentials: () => Auth.currentCredentials()
   },
+});
+
+const link = ApolloLink.from([errorLink, appSyncLink]);
+
+const client = new AWSAppSyncClient({
   cacheOptions: {
     cacheRedirects: {
       Query: {
@@ -23,7 +42,7 @@ const client = new AWSAppSyncClient({
         )
       },
     }
-  }
-});
+  },
+}, { link });
 
 export default client;

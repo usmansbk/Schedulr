@@ -1,8 +1,6 @@
 import { graphql, compose } from 'react-apollo';
-import SimpleToast from 'react-native-simple-toast';
 import gql from 'graphql-tag';
 import Screen from './Screen';
-import logger, { analytics } from 'config/logger';
 import { listEventComments } from 'mygraphql/queries';
 import { createComment } from 'mygraphql/mutations';
 import { createCommentResponse } from 'helpers/optimisticResponse';
@@ -22,26 +20,13 @@ export default compose(
         limit: LIMIT
       },
       fetchPolicy: 'cache-and-network',
-      onError: (error) => {
-        SimpleToast.show('Failed to fetch comments', SimpleToast.SHORT);
-        logger.debug(error.message);
-        analytics({
-          name: 'list_comment',
-          alias,
-          error
-        });
-      },
     }),
     props: ({ data, ownProps }) => ({
       eventId: ownProps.navigation.getParam('id'),
       loading: data.loading || data.networkStatus === 4,
       error: data.error,
       onRefresh: async () => {
-        try {
-          await data.refetch();
-        } catch (error) {
-          logger.debug(error.message);
-        }
+        await data.refetch();
       },
       comments: data && data.listComments && data.listComments.items && data.listComments.items || [],
       nextToken: data && data.listComments && data.listComments.nextToken,
@@ -71,17 +56,6 @@ export default compose(
   }),
   graphql(gql(createComment), {
     alias,
-    options: {
-      onError: error => {
-        SimpleToast.show('Failed to post comment', SimpleToast.SHORT);
-        logger.debug(error.message);
-        analytics({
-          name: 'create_comment',
-          alias,
-          error
-        });
-      }
-    },
     props: ({ mutate, ownProps }) => ({
       onSubmit: (input) => mutate({
         variables: {

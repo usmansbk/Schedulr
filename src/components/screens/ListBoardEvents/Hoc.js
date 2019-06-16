@@ -1,9 +1,7 @@
 import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
-import SimpleToast from 'react-native-simple-toast';
 import BoardEvents from './BoardEvents';
 import { getBoard, listAllEvents, listBoardEvents } from 'mygraphql/queries';
-import logger, { analytics } from 'config/logger';
 
 const alias = 'withBoardEventsContainer';
 
@@ -49,25 +47,12 @@ export default compose(
       variables: {
         id: props.id
       },
-      onError: error => {
-        SimpleToast.show('Connection error', SimpleToast.SHORT);
-        logger.debug(error.message);
-        analytics({
-          name: 'list_board_events',
-          alias,
-          error
-        });
-      }
     }),
     props: ({ data, ownProps}) => ({
       loadingEvents: data.loading || data.networkStatus === 4,
       loadingEventsError: data.error,
       onRefresh: async () => {
-        try {
-          await data.refetch();
-        } catch (error) {
-          logger.debug(error.message);
-        }
+        await data.refetch();
       },
       events: (
         data && data.listBoardEvents &&
