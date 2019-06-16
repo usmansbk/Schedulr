@@ -7,7 +7,7 @@ export default inject('stores')(observer(
   ({ stores }) => {
     return (
       <View style={stores.appStyles.boardSearch.empty}>
-        <Headline style={stores.appStyles.boardSearch.emptyTitle}>Not found</Headline>
+        <Headline style={stores.appStyles.boardSearch.emptyTitle}>No result</Headline>
       </View>
     );
   }
