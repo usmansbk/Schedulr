@@ -8,9 +8,9 @@ import logger, { analytics } from './logger';
 
 const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors) {
-    graphQLErrors.map(({ message, location, path }) => {
-      analytics('graphQLError', '', { message, location, path });
-      logger.log(message, location, path);
+    graphQLErrors.map(error => {
+      analytics('graphQLError', '', error);
+      logger.log(error);
     });  
   }
   if (networkError) SimpleToast.show('Connection error', SimpleToast.SHORT);

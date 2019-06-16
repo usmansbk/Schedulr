@@ -3,7 +3,6 @@ import { persist } from 'mobx-persist';
 import gql from 'graphql-tag';
 import client from 'config/client';
 import { LoginUser } from 'mygraphql/mutations';
-import SimpleToast from 'react-native-simple-toast';
 
 export default class UserProfile {
   @persist @observable id;
@@ -32,13 +31,13 @@ export default class UserProfile {
 
   @action
   async login(input) {
-    try {
-      const response = await client.mutate({
-        mutation: gql(LoginUser),
-        variables: {
-          input
-        }
-      });
+    const response = await client.mutate({
+      mutation: gql(LoginUser),
+      variables: {
+        input
+      }
+    });
+    if (response && response.data && response.data.loginUser) {
       const me = response.data.loginUser;
       runInAction(() => {
         this.id = me.id;
@@ -46,8 +45,6 @@ export default class UserProfile {
         this.email = me.email;
         this.pictureUrl = me.pictureUrl;
       });
-    } catch (error) {
-      SimpleToast.show(error.message, SimpleToast.SHORT);
     }
   }
 }
