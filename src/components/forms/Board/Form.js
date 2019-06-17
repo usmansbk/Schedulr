@@ -147,7 +147,7 @@ export default class Form extends React.Component {
                     type="info"
                     visible={!values.isPublic}
                   >
-                    Private boards won't show up in search but can be followed via invite link.
+                    This board and it's events won't show up in search but can be followed via invite link.
                   </HelperText>
                 )
               }

@@ -8,6 +8,8 @@ import { listAllBoards } from 'mygraphql/queries';
 @inject('stores')
 @observer
 export default class Boards extends React.Component {
+
+  componentWillMount = () => this.props.stores.appState.onChangeText('');
   
   render() {
     const { stores } = this.props;

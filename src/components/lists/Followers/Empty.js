@@ -1,20 +1,23 @@
 import React from 'react';
 import { View } from 'react-native';
-import { Headline } from 'react-native-paper';
+import { Headline, Paragraph } from 'react-native-paper';
 import { inject, observer } from 'mobx-react';
-import Error from 'components/common/Error';
 
 export default inject('stores')(observer(
-  ({ isAuthor, error, stores }) => {
-    if (error) return <Error />
-    return (
-      <View style={stores.appStyles.followersList.empty}>
-        <Headline style={stores.appStyles.followersList.emptyTitle}>
-          {
-            isAuthor ? "Send invites!" : "Be the first to follow!"
-          }
-        </Headline>
-      </View>
-    );
-  }
+  ({ error, loading, stores }) => loading ? null : (
+    <View style={stores.appStyles.commentsList.empty}>
+      <Headline style={stores.appStyles.commentsList.emptyTitle}>
+        {
+          error ? 'Network error' : 'No followers'
+        }
+      </Headline>
+      {
+        error && (
+          <Paragraph style={stores.appStyles.commentsList.paragraph}>
+            Check your internet connection. Pull to refresh.
+          </Paragraph>
+        )
+      }
+    </View>
+  )
 ));
