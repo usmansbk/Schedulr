@@ -5,6 +5,7 @@ export const ONE_TIME_EVENT_TEXT = 'One-time event';
 export const BULLET = '•';
 export const CIRCLE = '●';
 export const INFO = "This board's content, including its followers and event details, are visible to the public.";
+export const PRIVATE_INFO = "This board's content, including its followers and event details, are not visible to the public. Share invite link to add members.";
 
 export const WHAT_IS_A_BOARD = "A board is where you post your events. Users follow boards to keep track of interested events, like Class board, School board etc.";
 

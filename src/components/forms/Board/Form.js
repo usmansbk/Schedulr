@@ -20,7 +20,7 @@ import { Formik } from 'formik';
 import { inject, observer } from 'mobx-react';
 import validationSchema from './schema';
 import { buildBoardForm } from 'helpers/buildForm';
-import { WHAT_IS_A_BOARD } from 'lib/constants';
+import { WHAT_IS_A_BOARD, PRIVATE_INFO } from 'lib/constants';
 
 @inject('stores')
 @observer
@@ -39,11 +39,18 @@ export default class Form extends React.Component {
 
   _showInfo = () => {
     Alert.alert('What is a board?', WHAT_IS_A_BOARD);
-  }
+  };
+
+  _aboutPrivacy = () => {
+    Alert.alert("Private board", PRIVATE_INFO, [
+      { text: "Don't show again", onPress: () => null },
+      { text: 'Ok', onPress: () => null }
+    ]);
+  };
 
   componentDidMount = () => {
     InteractionManager.runAfterInteractions(this.props.stores.appState.getLocation);
-  }
+  };
 
   render() {
     const {
@@ -138,19 +145,13 @@ export default class Form extends React.Component {
                 <Text style={styles.text}>Private</Text>
                 <Switch
                   value={!values.isPublic}
-                  onValueChange={() => setFieldValue('isPublic', !values.isPublic)}
+                  onValueChange={() => {
+                    const privacy = !values.isPublic;
+                    setFieldValue('isPublic', privacy);
+                    if (!privacy) this._aboutPrivacy();
+                  }}
                 />
               </View>
-              {
-                (!values.isPublic) && (  
-                  <HelperText
-                    type="info"
-                    visible={!values.isPublic}
-                  >
-                    This board and it's events won't show up in search but can be followed via invite link.
-                  </HelperText>
-                )
-              }
               <View style={styles.info}>
                 <Caption style={styles.primary} onPress={this._showInfo}>What is a board?</Caption>
               </View>
