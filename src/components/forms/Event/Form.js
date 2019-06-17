@@ -69,7 +69,18 @@ export default class Form extends React.Component {
   }
 
   _boardHelp = () => {
-    Alert.alert("What is a board?", WHAT_IS_A_BOARD);
+    const newBoard = this.props.newBoard;
+    let buttons = undefined;
+    if (newBoard) {
+      buttons = [
+        {text: "Ok", onPress: () => null },
+        {
+          text: 'Create',
+          onPress: newBoard
+        }
+      ];
+    }
+    Alert.alert("What is a board?", WHAT_IS_A_BOARD, buttons);
   }
 
   componentDidMount = () => {

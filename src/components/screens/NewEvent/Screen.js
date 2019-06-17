@@ -10,6 +10,7 @@ export default class NewEventScreen extends React.Component {
   static defaultProps = {
     boards: []
   };
+  _newBoard = () => this.props.navigation.navigate("NewBoard");
   _handleBack = () => this.props.navigation.goBack();
   _handleSubmit = async (form) => {
       try {
@@ -94,6 +95,7 @@ export default class NewEventScreen extends React.Component {
         boards={this.props.boards.filter(board => board.isAuthor && (board.status !== BOARD_CLOSED) && (board.id[0] !== '-'))}
         handleCancel={this._handleBack}
         onSubmit={this._handleSubmit}
+        newBoard={this._newBoard}
         locked={Boolean(this.props.boardId)}
       />
     )
