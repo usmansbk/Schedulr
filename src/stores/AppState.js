@@ -19,12 +19,20 @@ export default class AppState {
     longitude: null,
     latitude: null
   }
+  @persist('object') @observable prefs = {
+    showPrivateBoardAlert: true,
+  }
   @persist('list') @observable eventTypes =  types;
 
   debounceQuery = debounce((val) => this.query = val, 250);
   
   @action toggleConnection = (isConnected) => {
     this.isConnected = isConnected;
+  }
+
+  @action togglePref = (pref) => {
+    const prevValue = this.prefs[pref];
+    this.prefs[pref] = !prevValue;
   }
 
   @action reset() {
@@ -38,6 +46,9 @@ export default class AppState {
       latitude: null,
       longitude: null
     };
+    this.prefs = {
+      showPrivateBoardAlert: true
+    }
     this.eventTypes = types;
   }
 

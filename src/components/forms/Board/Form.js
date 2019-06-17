@@ -42,10 +42,13 @@ export default class Form extends React.Component {
   };
 
   _aboutPrivacy = () => {
-    Alert.alert("Private board", PRIVATE_INFO, [
-      { text: "Don't show again", onPress: () => null },
-      { text: 'Ok', onPress: () => null }
-    ]);
+    const { stores } = this.props;
+    if (stores.appState.prefs.showPrivateBoardAlert) {
+      Alert.alert("Private board", PRIVATE_INFO, [
+        { text: "Don't show again", onPress: () => stores.appState.togglePref('showPrivateBoardAlert') },
+        { text: 'Ok', onPress: () => null }
+      ]);
+    }
   };
 
   componentDidMount = () => {
