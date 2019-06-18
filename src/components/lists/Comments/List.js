@@ -50,7 +50,7 @@ export default class List extends React.Component {
   _renderSeparator = () => <Separator />;
   _renderFooter = () => <Footer
     hide={!this.props.comments.length}
-    loading={this.props.fetchingMore}
+    loading={this.props.loading}
     hasMore={this.props.nextToken}
     onPress={this._onEndReached}/>;
   _renderEmpty = () => <Empty error={this.props.error} loading={this.props.loading} />;
@@ -74,9 +74,7 @@ export default class List extends React.Component {
   );
   _onEndReached = async () => {
     const { nextToken, fetchMoreComments, loading } = this.props;
-    this.setState({ fetchingMore: true });
     if (nextToken && !loading) await fetchMoreComments(nextToken);
-    this.setState({ fetchMore: false });
   }
 
   render() {
