@@ -1440,7 +1440,7 @@ atob@^2.1.1:
   resolved "https://registry.yarnpkg.com/atob/-/atob-2.1.2.tgz#6d9517eb9e030d2436666651e86bd9f6f13533c9"
   integrity sha512-Wm6ukoaOGJi/73p/cl2GvLjTI5JM1k/O14isD73YML8StrH/7/lRFgmg8nICZgD3bZZvjwCGxtMOD3wWNAu8cg==
 
-aws-amplify@^1.1.28:
+aws-amplify@^1.1.29:
   version "1.1.29"
   resolved "https://registry.yarnpkg.com/aws-amplify/-/aws-amplify-1.1.29.tgz#33306c147e83651147eec8c0ed018521fee0af28"
   integrity sha512-UP0dp/H8SPLmtCi0/9FjLFwcKGvcd+Mzzm0k8ufTkTgBQsfe+zkb+LBXoaP+mjntMTQlBDie0QYfZ6Klf8eHwA==
@@ -1456,17 +1456,17 @@ aws-amplify@^1.1.28:
     "@aws-amplify/ui" "^1.0.20"
     "@aws-amplify/xr" "^0.1.18"
 
-aws-appsync-react@^1.2.8:
-  version "1.2.8"
-  resolved "https://registry.yarnpkg.com/aws-appsync-react/-/aws-appsync-react-1.2.8.tgz#35feeda091d83bf7d91a86d944c176336d908781"
-  integrity sha512-S+YLz+I6Rt1++mqwd1hJeK84ERt0+kvXPE6cG5rmIYkx+BUe6rabE+d91IWkkUtq9HXOxpwHUrOyvCIQmV5OUg==
+aws-appsync-react@^1.2.9:
+  version "1.2.9"
+  resolved "https://registry.yarnpkg.com/aws-appsync-react/-/aws-appsync-react-1.2.9.tgz#5622b43278a27ff51875bbb85020bc48f7ce462d"
+  integrity sha512-/D+aMGPWH2NQpkFC/8g26nqQDVNW+ncC4qHodgPdHfp5h+KlecE9Vgk0ZRJz15Ue/YMlO3IHSUbRxC8/343KDQ==
   dependencies:
     prop-types "^15.6.0"
 
-aws-appsync@^1.8.0:
-  version "1.8.0"
-  resolved "https://registry.yarnpkg.com/aws-appsync/-/aws-appsync-1.8.0.tgz#3418815d4e713656c8caf3bff12219710cc9bdba"
-  integrity sha512-FQIBLC5pAXf5jHdvw8afUJ5iPZjenDf2Kf7aUHJr7Zz42wO6YdS4H2hfAXSZg6rXDHD95+Q669/Dhji4LinChw==
+aws-appsync@^1.8.1:
+  version "1.8.1"
+  resolved "https://registry.yarnpkg.com/aws-appsync/-/aws-appsync-1.8.1.tgz#e206e537574cace638267a0be28f4ad5a4c1a175"
+  integrity sha512-aL49HawoRB+Q7nRcuM6BQgYY7BAJbGIm8ulRdP6MK0AMsLgxSswFYKrFo1t1l+YuXIPxJbi8rnoirV67cXys2Q==
   dependencies:
     "@redux-offline/redux-offline" "2.2.1"
     apollo-cache-inmemory "1.3.10"
@@ -1475,7 +1475,7 @@ aws-appsync@^1.8.0:
     apollo-link-context "1.0.9"
     apollo-link-http "1.3.1"
     apollo-link-retry "2.2.5"
-    aws-sdk "2.329.0"
+    aws-sdk "2.472.0"
     debug "2.6.9"
     graphql "0.13.0"
     redux "^3.7.2"
@@ -1484,10 +1484,10 @@ aws-appsync@^1.8.0:
     url "^0.11.0"
     uuid "3.x"
 
-aws-sdk@2.329.0:
-  version "2.329.0"
-  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.329.0.tgz#616da7ca5e1909e53333148694990e068272150f"
-  integrity sha512-5yti9jyL6QL8CP5LGKX3uyrQcLAvLk6kyMZ749+F68IsutFKi0DaYxjxqx7lqWfzCSH3Z5REJ+XeywJLQ2tqfQ==
+aws-sdk@2.472.0:
+  version "2.472.0"
+  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.472.0.tgz#0da7062299125a85fdea5786d13019d80aac8ee4"
+  integrity sha512-uFatrjfMSwC34VxdG9ollX6K61e+iaoE5ZHQ/OKeSoWx9HXs3AwJqIS90iBLEhaAm2WoTMFYAv0irMC8eMCu3g==
   dependencies:
     buffer "4.9.1"
     events "1.1.1"
@@ -1496,7 +1496,7 @@ aws-sdk@2.329.0:
     querystring "0.2.0"
     sax "1.2.1"
     url "0.10.3"
-    uuid "3.1.0"
+    uuid "3.3.2"
     xml2js "0.4.19"
 
 aws-sdk@2.474.0:
@@ -7367,11 +7367,6 @@ uuid@3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.0.1.tgz#6544bba2dfda8c1cf17e629a3a305e2bb1fee6c1"
   integrity sha1-ZUS7ot/ajBzxfmKaOjBeK7H+5sE=
-
-uuid@3.1.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.1.0.tgz#3dd3d3e790abc24d7b0d3a034ffababe28ebbc04"
-  integrity sha512-DIWtzUkw04M4k3bf1IcpS2tngXEL26YUD2M0tMDUpnUrz2hgzUBlD55a4FjdLGPvfHxS6uluGWvaVEqgBcVa+g==
 
 uuid@3.3.2, uuid@3.x, uuid@^3.2.1, uuid@^3.3.2:
   version "3.3.2"
