@@ -73,11 +73,11 @@ export default class Form extends React.Component {
     let buttons = undefined;
     if (newBoard) {
       buttons = [
-        {text: "Ok", onPress: () => null },
         {
           text: 'Create',
           onPress: newBoard
-        }
+        },
+        {text: "Ok", onPress: () => null }
       ];
     }
     Alert.alert("What is a board?", WHAT_IS_A_BOARD, buttons);
