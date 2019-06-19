@@ -167,10 +167,15 @@ dependencies {
     implementation project(':amazon-cognito-identity-js')
     implementation project(':react-native-vector-icons')
     implementation project(':react-native-gesture-handler')
-    implementation project(":react-native-google-signin")
+    implementation(project(":react-native-google-signin"), {
+        exclude group: "com.google.android.gms"
+    })
     implementation project(':react-native-splash-screen')
     implementation project(':react-native-share')
-    implementation project(':react-native-push-notification')
+    implementation(project(':react-native-push-notification'), {
+        exclude group: "com.google.android.gms"
+        exclude group: "com.google.firebase"
+    })
     implementation 'com.facebook.android:facebook-android-sdk:4.35.0'
     implementation project(':react-native-fbsdk')
     implementation project(':react-native-fetch-blob')
