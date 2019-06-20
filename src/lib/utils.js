@@ -1,19 +1,25 @@
 import differenceWith from 'lodash.differencewith';
 import memoize from 'lodash.memoize';
 
-export default sortBoards = memoize((data) => {
-  const sorted = data.sort((a, b) => {
+function sortList(list) {
+  return list.sort((a, b) => {
     const nameA = a.name.toUpperCase();
     const nameB = b.name.toUpperCase();
-    if (b.status === 'CLOSED' || nameA < nameB) {
+    if (nameA < nameB) {
       return -1;
     }
-    if (a.status === 'CLOSED' || nameA > nameB) {
+    if (nameA > nameB) {
       return 1;
     }
     return 0;
   });
-  return sorted;
+}
+
+export default sortBoards = memoize((data) => {
+  const closed = sortList(data.filter(a => a.status === 'CLOSED'));
+  const opened = sortList(data.filter(a => a.status !== 'CLOSED'));
+
+  return opened.concat(closed);
 });
 
 export const sortBy = (arr, key) => {
