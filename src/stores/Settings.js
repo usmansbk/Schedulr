@@ -1,6 +1,7 @@
 import { observable, action } from 'mobx';
 import { persist } from 'mobx-persist';
 import changeNavigationBarColor from 'react-native-navigation-bar-color';
+import SimpleToast from 'react-native-simple-toast';
 import { dark, light } from 'config/colors';
 
 export default class SettingsState {
@@ -21,6 +22,7 @@ export default class SettingsState {
     this.dark = !this.dark;
     const colors = this.dark ? dark : light;
     try {
+      SimpleToast.show("Applying theme... Wait a sec!", SimpleToast.SHORT);
       await changeNavigationBarColor(this.dark ? colors.light_gray_2 : colors.bg, !this.dark);
     } catch (error) {}
   }
