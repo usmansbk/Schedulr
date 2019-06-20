@@ -1,4 +1,6 @@
 rootProject.name = 'Schdlr'
+include ':@react-native-community_netinfo'
+project(':@react-native-community_netinfo').projectDir = new File(rootProject.projectDir, '../node_modules/@react-native-community/netinfo/android')
 include ':react-native-geocoder'
 project(':react-native-geocoder').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-geocoder/android')
 include ':lottie-react-native'

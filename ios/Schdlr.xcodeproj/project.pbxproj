@@ -81,6 +81,8 @@
 		288721FB86BF40268B894243 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 66D0295FFB7742E29738439A /* Zocial.ttf */; };
 		41B99D4E5C884F249A9DC567 /* libRNReanimated.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ACFBAE7339D34D4CB633243F /* libRNReanimated.a */; };
 		853FA9C4C5684AAC941628E4 /* libRNGeocoder.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A708FA9D2224B62B7CC054D /* libRNGeocoder.a */; };
+		87F1AD958F1740EEA7A62ECD /* libRNCNetInfo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F2D1A67111AF4ECF873BBB67 /* libRNCNetInfo.a */; };
+		D3A5D2D37A3B4EA99B94934A /* libRNCNetInfo-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E8D0424A5B741129AD570A0 /* libRNCNetInfo-tvOS.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -407,6 +409,9 @@
 		ACFBAE7339D34D4CB633243F /* libRNReanimated.a */ = {isa = PBXFileReference; name = "libRNReanimated.a"; path = "libRNReanimated.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 		C587831E8C1D424DA7BAA910 /* RNGeocoder.xcodeproj */ = {isa = PBXFileReference; name = "RNGeocoder.xcodeproj"; path = "../node_modules/react-native-geocoder/ios/RNGeocoder.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		5A708FA9D2224B62B7CC054D /* libRNGeocoder.a */ = {isa = PBXFileReference; name = "libRNGeocoder.a"; path = "libRNGeocoder.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		9A52C1298E72459D9343598B /* RNCNetInfo.xcodeproj */ = {isa = PBXFileReference; name = "RNCNetInfo.xcodeproj"; path = "../node_modules/@react-native-community/netinfo/ios/RNCNetInfo.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		F2D1A67111AF4ECF873BBB67 /* libRNCNetInfo.a */ = {isa = PBXFileReference; name = "libRNCNetInfo.a"; path = "libRNCNetInfo.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		4E8D0424A5B741129AD570A0 /* libRNCNetInfo-tvOS.a */ = {isa = PBXFileReference; name = "libRNCNetInfo-tvOS.a"; path = "libRNCNetInfo-tvOS.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -446,6 +451,7 @@
 				89C0AB6E19CC4FEBBA76C478 /* libLRDRCTSimpleToast.a in Frameworks */,
 				41B99D4E5C884F249A9DC567 /* libRNReanimated.a in Frameworks */,
 				853FA9C4C5684AAC941628E4 /* libRNGeocoder.a in Frameworks */,
+				87F1AD958F1740EEA7A62ECD /* libRNCNetInfo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -465,6 +471,7 @@
 				DEDD2DB80E804129A21AD9AD /* libRNLanguages-tvOS.a in Frameworks */,
 				711D0CD244974D788BAFBDDD /* libRNVectorIcons-tvOS.a in Frameworks */,
 				1996BE2854FF4F5B911BC74A /* libRNCNetInfo-tvOS.a in Frameworks */,
+				D3A5D2D37A3B4EA99B94934A /* libRNCNetInfo-tvOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -649,6 +656,7 @@
 				294DE19327ED43CCA0291D60 /* LRDRCTSimpleToast.xcodeproj */,
 				883A8907DE1D4A8691DAE15F /* RNReanimated.xcodeproj */,
 				C587831E8C1D424DA7BAA910 /* RNGeocoder.xcodeproj */,
+				9A52C1298E72459D9343598B /* RNCNetInfo.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -1346,6 +1354,8 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1360,6 +1370,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-simple-toast\ios\LRDRCTSimpleToast",
 					"$(SRCROOT)\..\node_modules\react-native-reanimated\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-geocoder\ios\RNGeocoder",
+					"$(SRCROOT)\..\node_modules\@react-native-community\netinfo\ios",
 				);
 			};
 			name = Debug;
@@ -1382,6 +1393,8 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1396,6 +1409,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-simple-toast\ios\LRDRCTSimpleToast",
 					"$(SRCROOT)\..\node_modules\react-native-reanimated\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-geocoder\ios\RNGeocoder",
+					"$(SRCROOT)\..\node_modules\@react-native-community\netinfo\ios",
 				);
 			};
 			name = Release;
@@ -1429,6 +1443,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-simple-toast\ios\LRDRCTSimpleToast",
 					"$(SRCROOT)\..\node_modules\react-native-reanimated\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-geocoder\ios\RNGeocoder",
+					"$(SRCROOT)\..\node_modules\@react-native-community\netinfo\ios",
 				);
 			};
 			name = Debug;
@@ -1461,6 +1476,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-simple-toast\ios\LRDRCTSimpleToast",
 					"$(SRCROOT)\..\node_modules\react-native-reanimated\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-geocoder\ios\RNGeocoder",
+					"$(SRCROOT)\..\node_modules\@react-native-community\netinfo\ios",
 				);
 			};
 			name = Release;
@@ -1491,6 +1507,8 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1505,6 +1523,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-simple-toast\ios\LRDRCTSimpleToast",
 					"$(SRCROOT)\..\node_modules\react-native-reanimated\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-geocoder\ios\RNGeocoder",
+					"$(SRCROOT)\..\node_modules\@react-native-community\netinfo\ios",
 				);
 			};
 			name = Debug;
@@ -1535,6 +1554,8 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1549,6 +1570,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-simple-toast\ios\LRDRCTSimpleToast",
 					"$(SRCROOT)\..\node_modules\react-native-reanimated\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-geocoder\ios\RNGeocoder",
+					"$(SRCROOT)\..\node_modules\@react-native-community\netinfo\ios",
 				);
 			};
 			name = Release;
@@ -1578,6 +1600,8 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1592,6 +1616,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-simple-toast\ios\LRDRCTSimpleToast",
 					"$(SRCROOT)\..\node_modules\react-native-reanimated\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-geocoder\ios\RNGeocoder",
+					"$(SRCROOT)\..\node_modules\@react-native-community\netinfo\ios",
 				);
 			};
 			name = Debug;
@@ -1621,6 +1646,8 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1635,6 +1662,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-simple-toast\ios\LRDRCTSimpleToast",
 					"$(SRCROOT)\..\node_modules\react-native-reanimated\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-geocoder\ios\RNGeocoder",
+					"$(SRCROOT)\..\node_modules\@react-native-community\netinfo\ios",
 				);
 			};
 			name = Release;
