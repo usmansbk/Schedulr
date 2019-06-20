@@ -19,6 +19,7 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
         }
       });
       logger.log(error);
+      // SimpleToast.show('Server error', SimpleToast.SHORT);
     });  
   }
   if (networkError) SimpleToast.show('Connection error', SimpleToast.SHORT);

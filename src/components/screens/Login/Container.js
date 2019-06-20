@@ -14,7 +14,7 @@ export default class LoginScreen extends React.Component {
   
   _bootstrap = async () => {
     try { await client.clearStore() } catch (e) {}
-    // try { await Auth.signOut() } catch (e) {}
+    try { await Auth.signOut() } catch (e) {}
   }
 
   componentDidMount = async () => {
