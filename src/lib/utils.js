@@ -5,10 +5,10 @@ export default sortBoards = memoize((data) => {
   const sorted = data.sort((a, b) => {
     const nameA = a.name.toUpperCase();
     const nameB = b.name.toUpperCase();
-    if (nameA < nameB || b.status === 'CLOSED') {
+    if (b.status === 'CLOSED' || nameA < nameB) {
       return -1;
     }
-    if (nameA > nameB || a.status === 'CLOSED') {
+    if (a.status === 'CLOSED' || nameA > nameB) {
       return 1;
     }
     return 0;
