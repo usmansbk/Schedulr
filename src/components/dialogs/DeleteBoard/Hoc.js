@@ -26,13 +26,13 @@ export default compose(
             const query = gql(listAllBoards);
             const data = cache.readQuery({ query });
             data.listAllBoards.items = data.listAllBoards.items.filter(item => item.id !== deleteBoard.id);
-
-            const allEventsQuery = gql(listAllEvents);
-            const allEventsData = cache.readQuery({ query: allEventsQuery });
-            allEventsData.listAllEvents.items = data.listAllEvents.items.filter(item => item.board.id !== deleteBoard.id);
-
             cache.writeQuery({ query, data });
-            cache.writeQuery({ query: allEventsQuery, data: allEventsData });
+
+            const queryAllEvents = gql(listAllEvents);
+            const allEventsData = cache.readQuery({ query: queryAllEvents });
+            allEventsData.listAllEvents.items = allEventsData.listAllEvents.items.filter(item => item.board.id !== deleteBoard.id);
+            cache.writeQuery({ query: queryAllEvents, data: allEventsData });
+
           }
         }
       }),
