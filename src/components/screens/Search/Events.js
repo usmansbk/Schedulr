@@ -27,6 +27,7 @@ export default class Events extends React.Component {
 const ListHoc = compose(
   graphql(gql(listAllEvents), {
     alias: 'withSearchEventsOffline',
+    skip: props => props.isConnected,
     options: {
       fetchPolicy: 'cache-only'
     },

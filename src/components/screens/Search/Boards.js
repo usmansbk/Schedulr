@@ -9,8 +9,8 @@ import { listAllBoards } from 'mygraphql/queries';
 @observer
 export default class Boards extends React.Component {
 
-  componentWillMount = () => this.props.stores.appState.onChangeText('');
-  
+  componentWillUnmount = () => this.props.stores.appState.onChangeText('');
+
   render() {
     const { stores } = this.props;
 
@@ -28,6 +28,7 @@ export default class Boards extends React.Component {
 const ListHoc = compose(
   graphql(gql(listAllBoards), {
     alias: 'withSearchBoardsOffline',
+    skip: props => props.isConnected,
     options: {
       fetchPolicy: 'cache-only'
     },

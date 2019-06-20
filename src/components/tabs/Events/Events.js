@@ -1,5 +1,6 @@
 import React from 'react';
 import { Linking, Platform } from 'react-native';
+import NetInfo from '@react-native-community/netinfo';
 import SimpleToast from 'react-native-simple-toast';
 import LocalNotifications from 'react-native-push-notification';
 import changeNavigationBarColor from 'react-native-navigation-bar-color';
@@ -58,6 +59,11 @@ export default class Events extends React.Component {
     const { stores } = this.props;
     const colors = stores.themeStore.colors;
     Linking.addEventListener('url', this.handleOpenURL);
+    
+    this.unsubscribe = NetInfo.addEventListener(state => {
+      stores.appState.toggleConnection(state.isConnected);
+    });
+  
     try {
       const isDark = stores.settingsStore.dark;
       const navColor = isDark ? colors.light_gray_2 : colors.bg;
@@ -69,6 +75,7 @@ export default class Events extends React.Component {
 
   componentWillUnmount = () => {
     Linking.removeEventListener('url', this.handleOpenURL);
+    this.unsubscribe();
   };
 
   handleOpenURL = event => NavigationService.deepLinkNavigate(event.url);
