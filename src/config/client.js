@@ -22,7 +22,7 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
       // SimpleToast.show('Server error', SimpleToast.SHORT);
     });  
   }
-  if (networkError) SimpleToast.show('Connection error', SimpleToast.SHORT);
+  if (networkError) SimpleToast.show('No connection', SimpleToast.SHORT);
 });
 
 const appSyncLink = createAppSyncLink({
