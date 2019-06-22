@@ -51,8 +51,7 @@ export default class List extends React.Component {
     loadingPrev: false,
     sections: [],
     afterDate: null,
-    beforeDate: null,
-    previousDate: null
+    beforeDate: null
   };
 
   static defaultProps = {
@@ -98,25 +97,8 @@ export default class List extends React.Component {
     }
   };
   
-  _refreshList = (events) => {
-    if (this.state.previousDate) {
-      const sections = generateNextEvents(events, this.state.previousDate, DAYS_PER_PAGE);
-      const sectionLength = sections.length;
-      const afterDate = (sectionLength === DAYS_PER_PAGE) && moment(sections[sectionLength - 1].title).format();
-      const beforeDate = (sectionLength) && moment(sections[0].title).format();
-      
-      this.setState({
-        sections,
-        afterDate,
-        beforeDate,
-        events
-      });
-    }
-  }
-  
   loadPreviousEvents = (events) => {
     if (this.state.beforeDate) {
-      const previousDate = this.state.beforeDate;
       this.setState({ loadingPrev: true });
       const prevSections = generatePreviousEvents(events, this.state.beforeDate, DAYS_PER_PAGE);
       const sectionLength = prevSections.length;
@@ -128,8 +110,7 @@ export default class List extends React.Component {
           sections: prevSections,
           beforeDate,
           afterDate,
-          loadingPrev: false,
-          previousDate
+          loadingPrev: false
         });
       } else {
         this.setState({
@@ -142,7 +123,6 @@ export default class List extends React.Component {
 
   loadMoreEvents = (events=[]) => {  
     if (this.state.afterDate) {
-      const previousDate = this.state.afterDate;
       this.setState({ loadingMore: true });
       const moreSections = generateNextEvents(events, this.state.afterDate, DAYS_PER_PAGE);
       const sectionLength = moreSections.length;
@@ -152,8 +132,7 @@ export default class List extends React.Component {
         return ({
           sections: [...state.sections, ...moreSections],
           afterDate,
-          loadingMore: false,
-          previousDate
+          loadingMore: false
         })
       });
     }
@@ -194,10 +173,9 @@ export default class List extends React.Component {
   }
 
   componentWillReceiveProps = (nextProps) => {
-    if (nextProps.events.length !== this.props.events.length) {
+    if (nextProps.events.length !== this.props.events.length ||
+      (eventsDiff(this.props.events, nextProps.events).length)) {
       this._bootstrap(nextProps.events);
-    } else if (eventsDiff(this.props.events, nextProps.events).length) {
-      this._refreshList(nextProps.events);
     }
   };
 
