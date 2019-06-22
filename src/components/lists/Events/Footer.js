@@ -8,7 +8,9 @@ import { View } from 'react-native';
 import { inject, observer } from 'mobx-react';
 
 export default inject('stores')(observer(
-  ({ loading, onPress, stores, hasMore }) => loading ? (
+  ({ loading, onPress, stores, hasMore, hide }) => {
+    if (hide) return null;
+    return loading ? (
     <ActivityIndicator
       animating
       size="small"
@@ -28,4 +30,5 @@ export default inject('stores')(observer(
         </View>
       </TouchableRipple>
     )
+  }
 ))

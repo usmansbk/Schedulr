@@ -74,6 +74,7 @@ export default class List extends React.Component {
   _renderFooter = () => (
     this.state.sections.length ?
     <Footer
+      hide={(!this.state.afterDate && this.state.sections.length === 1)}
       hasMore={this.state.afterDate}
       onPress={this._onEndReached}
       loading={this.state.loadingMore}
