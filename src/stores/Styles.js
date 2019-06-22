@@ -1294,7 +1294,7 @@ export default class AppStyles {
       footerContent: { flex: 1, justifyContent: 'center', alignItems: 'center' },
       footerText: {
         fontWeight: 'bold',
-        color: colors.gray
+        color: colors.light_gray_3
       },
       offlineTitle: {
         fontSize: 20,
