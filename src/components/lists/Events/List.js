@@ -36,7 +36,7 @@ const {
   FOOTER_HEIGHT
 } = events;
 
-const DAYS_PER_PAGE = 7;
+const DAYS_PER_PAGE = 3;
 
 @inject('stores')
 @observer
