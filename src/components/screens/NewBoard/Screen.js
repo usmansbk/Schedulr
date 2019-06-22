@@ -7,7 +7,7 @@ export default class NewBoardScreen extends React.Component {
   _handleSubmit = async (input) => {
     try {
       const result = await this.props.onSubmit(input);
-      this.props.navigation.replace('BoardEvents', {
+      this.props.navigation.replace('Board', {
         id: result.data.createBoard.id,
         cacheFirst: true
       });

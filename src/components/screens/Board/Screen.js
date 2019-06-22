@@ -1,5 +1,5 @@
 import React from 'react';
-import BoardEvents from './Hoc';
+import Board from './Hoc';
 
 export default class Screen extends React.Component {
   _onBack = () => this.props.navigation.goBack();
@@ -9,7 +9,7 @@ export default class Screen extends React.Component {
     const cacheFirst = this.props.navigation.getParam('cacheFirst');
     
     return (
-      <BoardEvents
+      <Board
         id={id}
         cacheFirst={cacheFirst}
         onPress={this._onBack}

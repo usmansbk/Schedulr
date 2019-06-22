@@ -87,7 +87,7 @@ export default class List extends React.Component {
   _renderSectionFooter = ({ section }) => <SectionFooter section={section} />;
   _onPressItem = (id, refStartAt, refEndAt) => this.props.navigation.navigate('EventDetails', { id, refStartAt, refEndAt });
   _navigateToBoardEvents = (id) => {
-    let screen = 'BoardEvents';
+    let screen = 'Board';
     if (this.props.listType === 'board') screen = 'BoardInfo';
     this.props.navigation.navigate(screen, { id, cacheFirst: true })
   };

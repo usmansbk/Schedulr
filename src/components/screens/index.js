@@ -6,7 +6,7 @@ import NewEvent from './NewEvent';
 import NewBoard from './NewBoard';
 import AuthLoading from './AuthLoading';
 import EventDetails from './EventDetails';
-import BoardEvents from './BoardEvents';
+import Board from './Board';
 import BoardInfo from './BoardInfo';
 import Settings from './Settings';
 import Help from './Help';
@@ -15,7 +15,7 @@ import UserBoards from './UserBoards';
 import Comments from './Comments';
 import Followers from './Followers';
 import SearchScreen from './Search';
-import ListBoardEvents from './ListBoardEvents';
+import BoardEvents from './BoardEvents';
 import WebView from './WebView';
 
 export {
@@ -27,7 +27,7 @@ export {
   NewEvent,
   NewBoard,
   EventDetails,
-  BoardEvents,
+  Board,
   BoardInfo,
   Settings,
   Help,
@@ -36,6 +36,6 @@ export {
   Comments,
   Followers,
   SearchScreen,
-  ListBoardEvents,
+  BoardEvents,
   WebView
 };

@@ -10,7 +10,7 @@ import {
   NewBoard,
   Home,
   EventDetails,
-  BoardEvents,
+  Board,
   BoardInfo,
   Help,
   Settings,
@@ -21,7 +21,7 @@ import {
   EditEvent,
   EditBoard,
   SearchScreen,
-  ListBoardEvents,
+  BoardEvents,
   WebView
 } from 'components/screens';
 import colors from 'config/colors';
@@ -62,14 +62,14 @@ const AppStack = createStackNavigator({
       header: null
     }
   },
-  BoardEvents: {
-    screen: BoardEvents,
+  Board: {
+    screen: Board,
     navigationOptions: {
       header: null
     }
   },
-  ListBoardEvents: {
-    screen: ListBoardEvents,
+  BoardEvents: {
+    screen: BoardEvents,
     navigationOptions: {
       header: null
     }

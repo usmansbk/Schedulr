@@ -31,7 +31,7 @@ class CreatedBoards extends Component{
       index
     }
   );
-  _onPressItem = (id, cacheFirst) => this.props.navigation.push('BoardEvents', { id, cacheFirst });
+  _onPressItem = (id, cacheFirst) => this.props.navigation.push('Board', { id, cacheFirst });
   _navigateToInfo = (id) => this.props.navigation.push('BoardInfo', { id });
   _keyExtractor = (item) => String(item.id);
   _renderSeparator = () => <Separator />;

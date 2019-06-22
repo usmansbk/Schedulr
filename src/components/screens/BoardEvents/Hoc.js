@@ -1,17 +1,11 @@
 import { graphql, compose } from 'react-apollo';
-import { withNavigationFocus } from 'react-navigation';
 import gql from 'graphql-tag';
-import Screen from './BoardEvents';
-import {
-  getBoard,
-  listAllEvents,
-  listBoardEvents
-} from 'mygraphql/queries';
+import BoardEvents from './BoardEvents';
+import { getBoard, listAllEvents, listBoardEvents } from 'mygraphql/queries';
 
 const alias = 'withBoardEventsContainer';
 
 export default compose(
-  withNavigationFocus,
   graphql(gql(getBoard), {
     alias,
     options: props => ({
@@ -57,6 +51,9 @@ export default compose(
     props: ({ data, ownProps}) => ({
       loadingEvents: data.loading || data.networkStatus === 4,
       loadingEventsError: data.error,
+      onRefresh: async () => {
+        await data.refetch();
+      },
       events: (
         data && data.listBoardEvents &&
         data.listBoardEvents.events &&
@@ -65,4 +62,4 @@ export default compose(
       ...ownProps
     }) 
   })
-)(Screen);
+)(BoardEvents);
