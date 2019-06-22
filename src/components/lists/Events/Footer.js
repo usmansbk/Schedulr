@@ -24,7 +24,7 @@ export default inject('stores')(observer(
         <View style={stores.appStyles.eventsList.footerContent}>
           <Caption style={stores.appStyles.eventsList.footerText}>
             {
-              hasMore ? "Load next week" : "No more events"
+              hasMore ? "Load more" : "No more events"
             }
           </Caption>
         </View>
