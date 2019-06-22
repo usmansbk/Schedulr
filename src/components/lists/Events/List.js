@@ -15,9 +15,9 @@ import {
   getDuration,
   getStatus,
   getTime,
-  getEventType,
   isPast,
   parseRepeat,
+  getEventType,
   isEventValid
 } from 'lib/parseItem';
 import { eventsDiff } from 'lib/utils';
@@ -26,8 +26,6 @@ import {
   generateNextEvents,
 } from 'lib/calendr';
 import { events } from 'lib/constants';
-
-const DAYS_PER_PAGE = 7;
 
 const {
   ITEM_HEIGHT,
@@ -38,17 +36,23 @@ const {
   FOOTER_HEIGHT
 } = events;
 
+const DAYS_PER_PAGE = 7;
+
 @inject('stores')
 @observer
 export default class List extends React.Component {
 
+  constructor(props) {
+    super(props);
+    this.listRef = React.createRef();
+  }
   state = {
     events: [],
     loadingMore: false,
     loadingPrev: false,
     sections: [],
     afterDate: null,
-    beforeDate: null,
+    beforeDate: null
   };
 
   static defaultProps = {
@@ -107,7 +111,7 @@ export default class List extends React.Component {
           sections: prevSections,
           beforeDate,
           afterDate,
-          loadingPrev: false,
+          loadingPrev: false
         });
       } else {
         this.setState({
@@ -129,7 +133,7 @@ export default class List extends React.Component {
         return ({
           sections: [...state.sections, ...moreSections],
           afterDate,
-          loadingMore: false,
+          loadingMore: false
         })
       });
     }
@@ -180,16 +184,30 @@ export default class List extends React.Component {
     this._bootstrap(this.props.events);
   };
 
+  _onScroll = (event) => {
+    this.props.handleScroll && this.props.handleScroll(event.nativeEvent.contentOffset.y)
+  };
+
+  scrollToTop = () => {
+    if (this.state.sections.length) {
+      this.listRef.current.scrollToLocation({
+        itemIndex: 0,
+        sectionIndex: 0,
+        viewPosition: SECTION_HEADER_HEIGHT
+      });
+    }
+  };
+
   _renderItem = ({ item: {
     id,
     title,
     eventType,
     isCancelled,
     cancelledDates,
-    venue,
     startAt,
     endAt,
     repeat,
+    venue,
     board,
     allDay,
     isStarred,
@@ -206,6 +224,8 @@ export default class List extends React.Component {
     time={getTime({ allDay, startAt, endAt })}
     status={getStatus({ isCancelled, cancelledDates, startAt, endAt})}
     isValid={isEventValid({ isCancelled, endAt, startAt, cancelledDates })}
+    address={venue && venue.address}
+    boardId={board.id}
     isStarred={isStarred}
     starsCount={starsCount}
     isAuthor={isAuthor}
@@ -214,13 +234,12 @@ export default class List extends React.Component {
       this.props.stores.appState.mutedList.includes(board.id) &&
       !this.props.stores.appState.allowedList.includes(id)
     }
-    boardId={board.id}
-    address={venue && venue.address}
     duration={getDuration(startAt, endAt, allDay)}
     onPressItem={this._onPressItem}
     onPressCommentButton={this._onPressCommentItem}
     navigateToBoardEvents={this._navigateToBoardEvents}
   />);
+
 
   _getItemLayout = sectionListGetItemLayout({
     getItemHeight: () => ITEM_HEIGHT,
@@ -243,6 +262,7 @@ export default class List extends React.Component {
 
     return (
       <SectionList
+        ref={this.listRef}
         initialNumToRender={0}
         getItemLayout={this._getItemLayout}
         contentContainerStyle={styles.contentContainer}
@@ -263,6 +283,8 @@ export default class List extends React.Component {
             progressBackgroundColor={stores.themeStore.colors.bg}
           />
         }
+        scrollEventThrottle={16}
+        onScroll={this._onScroll}
         onEndReachedThreshold={0.5}
         onEndReached={this._onEndReached}
         renderItem={this._renderItem}
