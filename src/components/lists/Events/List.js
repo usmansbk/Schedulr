@@ -25,7 +25,9 @@ import {
   getNextEvents,
   getPreviousEvents,
   hasPreviousEvents,
-  hasMoreEvents
+  hasMoreEvents,
+  generatePreviousEvents,
+  generateNextEvents,
 } from 'lib/calendr';
 import { events } from 'lib/constants';
 
@@ -99,6 +101,92 @@ export default class List extends React.Component {
     }
   };
   
+  loadPreviousEventsHide = (events) => {
+    if (this.state.beforeDate) {
+      const previousDate = this.state.beforeDate;
+      this.setState({ loadingPrev: true });
+      const prevSections = generatePreviousEvents(events, this.state.beforeDate, DAYS_PER_PAGE);
+      const sectionLength = prevSections.length;
+      const beforeDate = (sectionLength === DAYS_PER_PAGE) && moment(prevSections[0].title).format();
+      const afterDate = (sectionLength) && moment(prevSections[sectionLength - 1].title).format();
+
+      if (sectionLength) {
+        this.setState({
+          sections: prevSections,
+          beforeDate,
+          afterDate,
+          loadingPrev: false,
+          previousDate,
+          hasPrev: hasPreviousEvents(events, beforeDate),
+          hasMore: hasMoreEvents(events, afterDate),
+        });
+      } else {
+        this.setState({
+          beforeDate: false,
+          loadingPrev: false
+        });
+      }
+    }
+  };
+
+  loadMoreEventsHide = (events=[]) => {  
+    if (this.state.afterDate) {
+      const previousDate = this.state.afterDate;
+      this.setState({ loadingMore: true });
+      const moreSections = generateNextEvents(events, this.state.afterDate, DAYS_PER_PAGE);
+      const sectionLength = moreSections.length;
+      const afterDate = (sectionLength === DAYS_PER_PAGE) && moment(moreSections[sectionLength - 1].title).format();
+
+      this.setState(state => {
+        return ({
+          sections: [...state.sections, ...moreSections],
+          afterDate,
+          loadingMore: false,
+          hasMore: hasMoreEvents(events, afterDate),
+          previousDate
+        })
+      });
+    }
+  };
+  
+  _bootstrapHide = (events) => {
+    if (events) {
+      const today = moment().startOf('day').format();
+      const yesterday = moment().subtract(1, 'day').startOf('day').format();
+      let sections = generateNextEvents(events, yesterday, DAYS_PER_PAGE);
+      if (!sections.length && events.length) {
+        sections = [{ data: [], title: today }];
+      }
+      const sectionLength = sections.length;
+      const afterDate = (sectionLength === DAYS_PER_PAGE) && moment(sections[sectionLength - 1].title).format();
+      const beforeDate = sectionLength && moment(sections[0].title).format();
+      
+      this.setState({
+        sections,
+        afterDate,
+        beforeDate,
+        events,
+        hasPrev: hasPreviousEvents(events, beforeDate),
+      });
+    }
+  };
+  
+  _refreshListHide = (events) => {
+    if (this.state.previousDate) {
+      const sections = generateNextEvents(events, this.state.previousDate, DAYS_PER_PAGE);
+      const sectionLength = sections.length;
+      const afterDate = (sectionLength === DAYS_PER_PAGE) && moment(sections[sectionLength - 1].title).format();
+      const beforeDate = (sectionLength) && moment(sections[0].title).format();
+      
+      this.setState({
+        sections,
+        afterDate,
+        beforeDate,
+        events
+      });
+    }
+  }
+  
   _refreshList = (events) => {
     if (this.state.previousDate) {
       const nextDate = moment(this.state.previousDate).subtract(DAYS_PER_PAGE + 1, 'days').toISOString();
@@ -162,7 +250,7 @@ export default class List extends React.Component {
       });
     }
   };
-
+  
   _bootstrap = (events) => {
     if (events) {
       const yesterday = moment().subtract(1, 'day').startOf('day').format();
@@ -184,27 +272,48 @@ export default class List extends React.Component {
   };
 
   _onRefresh = () => {
-    this._bootstrap(this.state.events);
+    if (this.props.stores.appState.prefs.showEmptyDays) {
+      this._bootstrap(this.state.events);
+    } else {
+      this._bootstrapHide(this.state.events);
+    }
     this.props.onRefresh();
   };
 
   _onLoadPrevious = () => {
-    this.loadPreviousEvents(this.state.events);
+    if (this.props.stores.appState.prefs.showEmptyDays) {
+      this.loadPreviousEvents(this.state.events);
+    } else {
+      this.loadPreviousEventsHide(this.state.events);
+    }
   }
   
   _onEndReached = () => {
-    this.loadMoreEvents(this.state.events);
+    if (this.props.stores.appState.prefs.showEmptyDays) {
+      this.loadMoreEvents(this.state.events);
+    } else {
+      this.loadMoreEventsHide(this.state.events);
+    }
   };
 
   componentWillReceiveProps = (nextProps) => {
+    const prefChanged = this.props.stores.appState.prefs.showEmptyDays !== nextProps.stores.appState.prefs.showEmptyDays;
     if ((nextProps.events.length !== this.props.events.length) ||
-        (eventsDiff(this.props.events, nextProps.events).length)) {
-      this._bootstrap(nextProps.events);
+        (eventsDiff(this.props.events, nextProps.events).length) || prefChanged) {
+        if (this.props.stores.appState.prefs.showEmptyDays) {
+          this._bootstrap(nextProps.events);
+        } else {
+          this._bootstrapHide(nextProps.events);
+        }
     }
   };
 
   componentDidMount = () => {
-    this._bootstrap(this.props.events);
+    if (this.props.stores.appState.prefs.showEmptyDays) {
+      this._bootstrap(this.props.events);
+    } else {
+      this._bootstrapHide(this.props.events);
+    }
   };
 
   _renderItem = ({ item: {
