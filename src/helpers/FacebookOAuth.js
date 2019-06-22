@@ -1,37 +1,31 @@
-// import {
-//   LoginManager,
-//   GraphRequest,
-//   GraphRequestManager,
-//   AccessToken
-// } from 'react-native-fbsdk';
+import {
+  AccessToken,
+} from 'react-native-fbsdk';
+import logger from 'config/logger';
 
-// export default class FacebookOAuth {
+export default class FacebookOAuth {
 
-//   refreshFacebookToken = () => {
-//     return this._refreshFacebookTokenImpl();
-//   }
+  refreshFacebookToken = () => {
+    return this._refreshFacebookTokenImpl();
+  }
 
-//   _refreshFacebookTokenImpl = () => {
-//       return new Promise((res, rej) => {
-//           fb.getLoginStatus(
-//               fbResponse => {
-//                   if (!fbResponse || !fbResponse.authResponse) {
-//                       logger.debug('no response from facebook when refreshing the jwt token');
-//                       rej('no response from facebook when refreshing the jwt token');
-//                   }
+  _refreshFacebookTokenImpl = () => {
+      return new Promise((res, rej) => {
+        AccessToken.getCurrentAccessToken()
+          .then(response => {
+            const token = response.accessToken;
+            const expires_at = response.expirationTime;
+            if (!token) {
+              logger.debug('the jwtToken is undefined');
+              rej('the jwtToken is undefined');
+            }
 
-//                   const response = fbResponse.authResponse;
-//                   const { accessToken, expiresIn } = response;
-//                   const date = new Date();
-//                   const expires_at = expiresIn * 1000 + date.getTime();
-//                   if (!accessToken) {
-//                       logger.debug('the jwtToken is undefined');
-//                       rej('the jwtToken is undefined');
-//                   }
-//                   res({token: accessToken, expires_at });
-//               }, 
-//               {scope: 'public_profile,email' }
-//           );
-//       });
-//   }
-// }
+            res({ token, expires_at });
+          })
+          .catch(error => {
+              logger.debug('no response from facebook when refreshing the jwt token');
+              rej('no response from facebook when refreshing the jwt token');
+          });
+      });
+  }
+}

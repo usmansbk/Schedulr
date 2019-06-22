@@ -15,7 +15,7 @@ import aws_config from './src/aws-exports';
 import client from 'config/client';
 import stores from 'stores';
 import env from 'config/env';
-import { GoogleOAuth } from 'helpers';
+import { GoogleOAuth, FacebookOAuth } from 'helpers';
 
 console.disableYellowBox = true;
 
@@ -30,7 +30,8 @@ Amplify.configure(aws_config);
 
 Auth.configure({
   refreshHandlers: {
-    'google': GoogleOAuth.refreshGoogleToken
+    'google': GoogleOAuth.refreshGoogleToken,
+    'facebook': FacebookOAuth.refreshFacebookToken,
   }
 });
 
