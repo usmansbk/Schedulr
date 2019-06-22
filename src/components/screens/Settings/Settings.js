@@ -24,10 +24,6 @@ export default class Settings extends React.Component {
     this.props.stores.settingsStore.toggleTheme();
   }
 
-  toggleShowDays = () => {
-    this.props.stores.appState.togglePref('showEmptyDays');
-  }
-
   _handleRemindMeDialog = () => {
     const { openRemindMeDialog, stores } = this.props;
     if (stores.settingsStore.disableReminders) {
@@ -51,7 +47,6 @@ export default class Settings extends React.Component {
       starredEventsOnly,
       disablePushNotifications,
     } = stores.settingsStore;
-    const showEmptyDays = stores.appState.prefs.showEmptyDays;
     const { styles } = stores.appStyles;
     const { colors } = stores.themeStore;
 
@@ -92,16 +87,6 @@ export default class Settings extends React.Component {
                 <Switch
                   value={dark}
                   onValueChange={this.toggleTheme}
-                />
-              )}
-            />
-            <Divider />
-            <List.Item
-              title="Show empty days"
-              right={() => (
-                <Switch
-                  value={showEmptyDays}
-                  onValueChange={this.toggleShowDays}
                 />
               )}
             />
