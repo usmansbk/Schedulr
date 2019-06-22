@@ -17,9 +17,9 @@ import {
   getTime,
   isPast,
   parseRepeat,
+  getEventType,
 } from 'lib/parseItem';
 import { eventsDiff } from 'lib/utils';
-import { decapitalize } from 'lib/capitalizr';
 import {
   generatePreviousEvents,
   generateNextEvents,
@@ -217,14 +217,15 @@ export default class List extends React.Component {
     title={title}
     startAt={startAt}
     endAt={endAt}
-    eventType={decapitalize(eventType)}
+    eventType={getEventType(eventType)}
     repeat={parseRepeat(repeat)}
     time={getTime({ allDay, startAt, endAt })}
     status={getStatus({ isCancelled, cancelledDates, startAt, endAt})}
     address={venue && venue.address}
     boardId={board.id}    isStarred={isStarred}
     starsCount={starsCount}
-    isAuthor={isAuthor}    isMuted={
+    isAuthor={isAuthor}
+    isMuted={
       this.props.stores.appState.mutedList.includes(id) ||
       this.props.stores.appState.mutedList.includes(board.id) &&
       !this.props.stores.appState.allowedList.includes(id)
