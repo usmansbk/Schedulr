@@ -8,7 +8,7 @@ export default inject('stores')(observer(
     if (section.data.length) return null;
     return (
       <View style={stores.appStyles.eventsList.sectionFooter}>
-        <Text style={stores.appStyles.eventsList.footerText}>No events</Text>
+        <Text style={stores.appStyles.eventsList.footerText}>No upcoming events</Text>
       </View>
     );
   }
