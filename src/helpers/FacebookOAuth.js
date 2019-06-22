@@ -11,7 +11,7 @@ export default class FacebookOAuth {
 
   _refreshFacebookTokenImpl = () => {
       return new Promise((res, rej) => {
-        AccessToken.getCurrentAccessToken()
+        AccessToken.refreshCurrentAccessTokenAsync()
           .then(response => {
             const token = response.accessToken;
             const expires_at = response.expirationTime;
