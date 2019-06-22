@@ -297,9 +297,8 @@ export default class List extends React.Component {
   };
 
   componentWillReceiveProps = (nextProps) => {
-    const prefChanged = this.props.stores.appState.prefs.showEmptyDays !== nextProps.stores.appState.prefs.showEmptyDays;
     if ((nextProps.events.length !== this.props.events.length) ||
-        (eventsDiff(this.props.events, nextProps.events).length) || prefChanged) {
+        (eventsDiff(this.props.events, nextProps.events).length)) {
         if (this.props.stores.appState.prefs.showEmptyDays) {
           this._bootstrap(nextProps.events);
         } else {
