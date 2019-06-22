@@ -21,7 +21,7 @@ export default class AppState {
   }
   @persist('object') @observable prefs = {
     showPrivateBoardAlert: true,
-    showEmptyDays: true,
+    showEmptyDays: false,
   }
   @persist('list') @observable eventTypes =  types;
 
@@ -49,7 +49,7 @@ export default class AppState {
     };
     this.prefs = {
       showPrivateBoardAlert: true,
-      showEmptyDays: true
+      showEmptyDays: false
     }
     this.eventTypes = types;
   }
