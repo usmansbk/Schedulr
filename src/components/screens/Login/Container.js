@@ -1,5 +1,5 @@
 import React from 'react';
-import { Auth, Analytics } from 'aws-amplify';
+import { Auth } from 'aws-amplify';
 import SimpleToast from 'react-native-simple-toast';
 import changeNavigationBarColor from 'react-native-navigation-bar-color';
 import { inject, observer } from 'mobx-react';
@@ -52,15 +52,6 @@ export default class LoginScreen extends React.Component {
     } catch (error) {
       SimpleToast.show('Login failed: ' + error.message, SimpleToast.SHORT);
       this.setState({ loading: false });
-      Analytics.record({
-        name: 'login_error',
-        attributes: {
-          errorName: error.name,
-          loginProvider: provider,
-          errorMessage: error.message,
-          component: 'LoginScreenContainer'
-        }
-      });
     }
   };
 

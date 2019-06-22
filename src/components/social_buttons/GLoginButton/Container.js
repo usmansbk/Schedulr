@@ -4,7 +4,6 @@ import {
   statusCodes
 } from 'react-native-google-signin';
 import SimpleToast from 'react-native-simple-toast';
-import { Analytics } from 'aws-amplify';
 import Button from './Button';
 
 export default class Container extends React.Component {
@@ -21,7 +20,6 @@ export default class Container extends React.Component {
         accessTokenExpirationDate,
         user
       } = await GoogleSignin.signIn();
-      // if (!(user && user.name)) throw new Error('Unauthenticated');
       await this.props.onLogin({
         name: user.name,
         email: user.email,
@@ -39,13 +37,6 @@ export default class Container extends React.Component {
         SimpleToast.show("Google Play services not available", SimpleToast.SHORT);
       } else {
         SimpleToast.show("Connection error: " + error.message, SimpleToast.SHORT);
-        // Analytics.record({
-        //   name: 'google_login_error',
-        //   attributes: {
-        //     name: error.name,
-        //     message: error.message
-        //   }
-        // });
       }
       this.setState({ loading: false });
     }
