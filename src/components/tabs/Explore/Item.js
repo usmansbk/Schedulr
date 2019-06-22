@@ -7,7 +7,7 @@ import { inject, observer } from 'mobx-react';
 
 @inject('stores')
 @observer
-export default class Item extends React.PureComponent {
+export default class Item extends React.Component {
   render() {
     const styles = this.props.stores.appStyles.explore;
     

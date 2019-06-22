@@ -19,10 +19,10 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
         }
       });
       logger.log(error);
-      // SimpleToast.show('Server error', SimpleToast.SHORT);
+      SimpleToast.show('Server error: ' + error.message, SimpleToast.SHORT);
     });  
   }
-  if (networkError) SimpleToast.show('No connection', SimpleToast.SHORT);
+  if (networkError) SimpleToast.show('No connection: ' + networkError.message, SimpleToast.SHORT);
 });
 
 const appSyncLink = createAppSyncLink({

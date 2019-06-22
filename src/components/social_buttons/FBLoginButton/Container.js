@@ -16,14 +16,14 @@ export default class Container extends React.Component {
   _signIn = async () => {
     this.setState({ loading: true });
     try {
-      const response = await LoginManager.logInWithReadPermissions(['public_profile', 'email']);
+      const response = await LoginManager.logInWithPermissions(['email']);
       if (response.isCancelled) {
         SimpleToast.show('Login cancelled', SimpleToast.SHORT);
       } else {
         return await this._requestUserInfo();
       }
     } catch (error) {
-      SimpleToast.show('Connection error', SimpleToast.SHORT);
+      SimpleToast.show('Connection error: ' + error.message, SimpleToast.SHORT);
     }
     this.setState({ loading: false });
   };
@@ -34,10 +34,10 @@ export default class Container extends React.Component {
     const infoRequest = new GraphRequest(
       '/me',
       {
-        accessToken: accessData,
+        accessToken: accessData.accessToken,
         parameters: {
           fields: {
-            string: 'id, email, picture.type(large)',
+            string: 'id, email, name, picture.type(large)',
           }
         }
       },
@@ -51,11 +51,14 @@ export default class Container extends React.Component {
       SimpleToast.show(error.message, SimpleToast.LONG);
     } else if (result) {
       const { email, name, picture } = result;
-      return await this.props.onLogin({
-        provider: 'facebook',
-        email,
+      const accessData = await AccessToken.getCurrentAccessToken();
+      await this.props.onLogin({
         name,
-        pictureUrl: picture && picture.data && picture.data.url
+        email,
+        pictureUrl: picture && picture.data && picture.data.url,
+        provider: 'facebook',
+        token: accessData.accessToken,
+        expires_at: accessData.expirationTime
       });
     } else {
       SimpleToast.show('Something went wrong', SimpleToast.SHORT);
