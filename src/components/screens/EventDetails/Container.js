@@ -131,6 +131,7 @@ export default class EventDetails extends React.Component {
             endAt: end
           })}
           startAt={start}
+          weekDay={moment(start).format('dddd')}
           firstAt={moment(startAt).format(DATE_FORMAT)}
           eventType={decapitalize(eventType)}
           address={venue && venue.address}

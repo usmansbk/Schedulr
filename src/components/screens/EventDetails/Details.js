@@ -11,6 +11,7 @@ export default inject('stores')(observer(
   ({
     id,
     title,
+    weekDay,
     date,
     eventType,
     address,
@@ -51,6 +52,7 @@ export default inject('stores')(observer(
               }
             </View> 
             <Headline style={stores.appStyles.eventDetails.title}>{title}</Headline>
+            <Text style={stores.appStyles.eventDetails.date}>{weekDay}</Text>
             <Text style={stores.appStyles.eventDetails.date}>{date}</Text>
             {(duration !== 'A day') && <Text style={stores.appStyles.eventDetails.date}>{duration}</Text>}
           </View>
