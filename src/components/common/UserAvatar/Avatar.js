@@ -1,8 +1,8 @@
 import React from 'react';
 import { TouchableRipple } from 'react-native-paper';
 import UserAvatar from 'react-native-user-avatar';
+import FastImage from 'react-native-fast-image';
 import emojiRegex from 'emoji-regex';
-import CachedImage from './CachedImage';
 
 export default class Avatar extends React.Component {
   constructor(props) {
@@ -22,12 +22,6 @@ export default class Avatar extends React.Component {
   }
   shouldComponentUpdate = (nextProps) => this.props.name !== nextProps.name;
 
-  _renderComponent = (props) => {
-    const { size } = this.props;
-    const { avatarName } = this.state;
-    return <CachedImage {...props} size={size} name={avatarName} />
-  };
-
   render() {
     const {
       src,
@@ -44,6 +38,7 @@ export default class Avatar extends React.Component {
           name={avatarName}
           src={src}
           size={size}
+          component={FastImage}
         />
       </TouchableRipple>
     )
