@@ -1,14 +1,19 @@
 import React from 'react';
 import { View } from 'react-native';
-import { Headline, Paragraph } from 'react-native-paper';
+import { Headline, Paragraph, Caption } from 'react-native-paper';
 import { inject, observer } from 'mobx-react';
 
 export default inject('stores')(observer(
   ({ profile, error, stores }) => {
-    let title = "Follow or create a schedule";
-    if (profile) title = "No schedule";
+    let title = "Your board is empty";
+    let caption = "Follow or create a schedule";
+    if (profile) {
+      title = "No schedule";
+      caption = "";
+    }
     if (error) {
       title = "Network error";
+      caption = "Check your internet connection";
     }
 
     const styles = stores.appStyles.boardsList;
@@ -16,13 +21,7 @@ export default inject('stores')(observer(
     return (
       <View style={styles.empty}>
         <Headline style={styles.emptyTitle}>{title}</Headline>
-      {
-        error && (
-          <Paragraph style={styles.paragraph}>
-            Check your internet connection. Pull to refresh.
-          </Paragraph>
-        )
-      }
+        <Paragraph>{caption}</Paragraph>
       </View>
     );
   }

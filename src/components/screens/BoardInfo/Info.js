@@ -26,7 +26,7 @@ import UserAvater from 'components/common/UserAvatar';
 import FollowButton from 'components/common/FollowButton';
 import Loading from 'components/common/Loading';
 import Error from 'components/common/Error';
-import { board_info, CIRCLE, INFO } from 'lib/constants';
+import { board_info, CIRCLE, INFO, PRIVATE_INFO } from 'lib/constants';
 
 const { AVATAR_SIZE } = board_info;
 
@@ -37,6 +37,16 @@ export default class Info extends React.Component {
     !isEqual(nextProps.board, this.props.board) ||
     nextProps.loading !== this.props.loading
   );
+
+  _aboutPrivacy = () => {
+    const isPublic = this.props.board.isPublic;
+    const title = (isPublic ? "Public" : "Private");
+    const message = (isPublic ? INFO : PRIVATE_INFO);
+
+    Alert.alert(title + " schedule", message);
+  }
+
+
   render() {
     const {
       board,
@@ -165,18 +175,14 @@ export default class Info extends React.Component {
                 <Icon color={colors.black} name="visibility" size={18} />
                 <Text
                   style={styles.note}
-                  onPress={() => {
-                    if (isPublic) {
-                      Alert.alert('Public board', INFO)
-                    }
-                  }}
-                >{ isPublic ? 'Public' : 'Private'} board</Text>
+                  onPress={this._aboutPrivacy}
+                >{ isPublic ? 'Public' : 'Private'} schedule</Text>
               </View>
               {
                 isClosed && (
                   <View style={styles.noteView}>
                     <Icon color={colors.black} name="lock" size={18} />
-                    <Text style={styles.note}>This board is closed</Text>
+                    <Text style={styles.note}>This schedule is closed</Text>
                   </View>
                 )
               }
