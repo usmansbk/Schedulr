@@ -44,7 +44,6 @@ export default class Avatar extends React.Component {
           name={avatarName}
           src={src}
           size={size}
-          component={this._renderComponent}
         />
       </TouchableRipple>
     )

@@ -4,9 +4,9 @@ import {
   StyleSheet,
   ScrollView,
   Text,
+  Image
 } from 'react-native';
 import { Headline, TouchableRipple } from 'react-native-paper';
-import { CachedImage } from 'react-native-cached-image';
 import { inject, observer } from 'mobx-react';
 import UserAvatar from 'components/common/UserAvatar';
 import Loading from 'components/common/Loading';
@@ -43,7 +43,7 @@ export default class UserProfile extends React.Component {
 
     return  (
       <ScrollView contentContainerStyle={styles.header}>
-        <CachedImage
+        <Image
           source={{uri: pictureUrl}}
           resizeMode="cover"
           style={styles.backgroundImage}

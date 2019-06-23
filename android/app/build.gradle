@@ -174,7 +174,6 @@ dependencies {
     implementation project(':react-native-push-notification')
     implementation 'com.facebook.android:facebook-android-sdk:4.35.0'
     implementation project(':react-native-fbsdk')
-    implementation project(':react-native-fetch-blob')
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation 'org.webkit:android-jsc-cppruntime:+'
     // For even older gradle

@@ -21,7 +21,7 @@ import org.devio.rn.splashscreen.SplashScreenReactPackage;
 import cl.json.RNSharePackage;
 import com.dieam.reactnativepushnotification.ReactNativePushNotificationPackage;
 import com.facebook.reactnative.androidsdk.FBSDKPackage;
-import com.RNFetchBlob.RNFetchBlobPackage;
+
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
@@ -60,8 +60,7 @@ public class MainApplication extends Application implements ReactApplication {
             new SplashScreenReactPackage(),
             new RNSharePackage(),
             new ReactNativePushNotificationPackage(),
-            new FBSDKPackage(mCallbackManager),
-            new RNFetchBlobPackage()
+            new FBSDKPackage(mCallbackManager)
       );
     }
 

@@ -1,10 +1,10 @@
 import React from 'react';
-import { CachedImage } from 'react-native-cached-image';
+import { Image } from 'react-native';
 import LoadingIndicator from './Indicator';
 
 const source = require('./img/no_image.jpg');
 
-export default (props) => <CachedImage
+export default (props) => <Image
   defaultSource={source}
   fallbackSource={source}
   loadingIndicator={LoadingIndicator}
