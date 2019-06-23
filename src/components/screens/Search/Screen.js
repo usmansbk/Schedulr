@@ -7,15 +7,15 @@ import {
 import { Dimensions } from 'react-native';
 import { inject, observer } from 'mobx-react';
 import Events from './Events';
-import Boards from './Boards';
+import Schedules from './Boards';
 
 const Tabs = createMaterialTopTabNavigator(
   {
-    Boards,
+    Schedules,
     Events
   },
   {
-    initialRouteName: 'Boards',
+    initialRouteName: 'Schedules',
     initialLayout: { height: 0, width: Dimensions.get('window').width },
     animationEnabled: true,
     tabBarComponent: props => <TabBarComponent {...props} />,
