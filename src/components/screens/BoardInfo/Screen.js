@@ -13,9 +13,9 @@ export default class Screen extends React.Component {
   _handleShare = ({ id, name }) => {
     const shareOptions = {
       title: 'Share invite link via...',
-      subject: 'Follow event board to get latest events',
+      subject: 'Follow schedule to get latest events',
       message: `Follow "${name}" to see their latest events, receive updates and get reminders.\n`,
-      url: `${env.APP_URL}/board/${id}`
+      url: `${env.APP_URL}/schedule/${id}`
     };
     Share.open(shareOptions);
   };

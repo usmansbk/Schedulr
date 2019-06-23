@@ -2,7 +2,6 @@ import React from 'react';
 import { Dimensions } from 'react-native';
 import { Appbar } from 'react-native-paper';
 import { createMaterialTopTabNavigator, MaterialTopTabBar } from 'react-navigation-tabs';
-import { withCollapsibleForTab } from 'react-navigation-collapsible';
 import { inject, observer } from 'mobx-react';
 import Following from './Following';
 import Created from './Created';

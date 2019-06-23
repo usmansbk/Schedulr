@@ -45,7 +45,7 @@ export default class DeleteBoard extends React.Component {
           onDismiss={handleDismiss}
           style={{backgroundColor: stores.themeStore.colors.bg}}
         >
-          <Dialog.Title>Delete board?</Dialog.Title>
+          <Dialog.Title>Delete schedule?</Dialog.Title>
           <Dialog.Actions>
             <Button disabled={loading} onPress={handleDismiss}>Dismiss</Button>
             <Button loading={loading} disabled={loading} onPress={this._onContinue}>Continue</Button>

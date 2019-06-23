@@ -38,13 +38,13 @@ export default class Form extends React.Component {
   };
 
   _showInfo = () => {
-    Alert.alert('What is a board?', WHAT_IS_A_BOARD);
+    Alert.alert('What is a schedule?', WHAT_IS_A_BOARD);
   };
 
   _aboutPrivacy = () => {
     const { stores } = this.props;
     if (stores.appState.prefs.showPrivateBoardAlert) {
-      Alert.alert("Private board", PRIVATE_INFO, [
+      Alert.alert("Private schedule", PRIVATE_INFO, [
         { text: "Don't show again", onPress: () => stores.appState.togglePref('showPrivateBoardAlert') },
         { text: 'Ok', onPress: () => null }
       ]);
@@ -117,7 +117,7 @@ export default class Form extends React.Component {
             }>
             <View style={styles.form}>
               <TextInput
-                placeholder="Event board name"
+                placeholder="Name"
                 label="Name"
                 value={values.name}
                 onChangeText={handleChange('name')}
@@ -156,7 +156,7 @@ export default class Form extends React.Component {
                 />
               </View>
               <View style={styles.info}>
-                <Caption style={styles.primary} onPress={this._showInfo}>What is a board?</Caption>
+                <Caption style={styles.primary} onPress={this._showInfo}>What is a schedule?</Caption>
               </View>
             </View>
           </ScrollView>

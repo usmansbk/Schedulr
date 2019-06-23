@@ -67,7 +67,7 @@ export default inject('stores')(observer(
               <Text style={stores.appStyles.eventDetails.value}>{address || 'No location set'}</Text>
             </View>
             <View style={stores.appStyles.eventDetails.item}>
-              <Text style={stores.appStyles.eventDetails.label}>BOARD</Text>
+              <Text style={stores.appStyles.eventDetails.label}>SCHEDULE</Text>
               <Text
                 ellipsizeMode="tail"
                 numberOfLines={1}

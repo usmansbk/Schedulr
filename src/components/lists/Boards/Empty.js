@@ -5,8 +5,8 @@ import { inject, observer } from 'mobx-react';
 
 export default inject('stores')(observer(
   ({ profile, error, stores }) => {
-    let title = "Follow or create an event board";
-    if (profile) title = "No event board";
+    let title = "Follow or create a schedule";
+    if (profile) title = "No schedule";
     if (error) {
       title = "Network error";
     }
