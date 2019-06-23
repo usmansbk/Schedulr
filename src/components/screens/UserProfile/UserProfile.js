@@ -4,9 +4,9 @@ import {
   StyleSheet,
   ScrollView,
   Text,
-  Image
 } from 'react-native';
 import { Headline, TouchableRipple } from 'react-native-paper';
+import FastImage from 'react-native-fast-image';
 import { inject, observer } from 'mobx-react';
 import UserAvatar from 'components/common/UserAvatar';
 import Loading from 'components/common/Loading';
@@ -43,9 +43,9 @@ export default class UserProfile extends React.Component {
 
     return  (
       <ScrollView contentContainerStyle={styles.header}>
-        <Image
+        <FastImage
           source={{uri: pictureUrl}}
-          resizeMode="cover"
+          resizeMode={FastImage.resizeMode.cover}
           style={styles.backgroundImage}
         />
         <View style={styles.image}>
