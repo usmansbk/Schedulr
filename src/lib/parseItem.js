@@ -12,7 +12,7 @@ export const parseDetails = (event) => {
 };
 
 export const getEventType = (eventType) => {
-  if (eventType === 'EVENT') return '';
+  if (eventType.toLowerCase().trim() === 'Normal') return '';
   return decapitalize(eventType);
 }
 
