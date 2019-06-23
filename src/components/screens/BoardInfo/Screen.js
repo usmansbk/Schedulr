@@ -15,7 +15,7 @@ export default class Screen extends React.Component {
       title: 'Share invite link via...',
       subject: 'Follow schedule to get latest events',
       message: `Follow "${name}" to see their latest events, receive updates and get reminders.\n`,
-      url: `${env.APP_URL}/schedule/${id}`
+      url: `${env.APP_URL}/schdl/${id}`
     };
     Share.open(shareOptions);
   };

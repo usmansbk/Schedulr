@@ -23,7 +23,7 @@ function deepLinkNavigate(url) {
     case 'event':
       navigate('EventDetails', { id });
       break;
-    case 'board':
+    case 'schdl':
       navigate('BoardInfo', { id });
       break;
     default:
