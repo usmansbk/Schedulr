@@ -160,6 +160,7 @@ configurations.all {
 }
 
 dependencies {
+    implementation project(':react-native-fast-image')
     implementation project(':@react-native-community_netinfo')
     implementation project(':react-native-geocoder')
     implementation project(':react-native-navigation-bar-color')
