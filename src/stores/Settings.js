@@ -22,7 +22,7 @@ export default class SettingsState {
     this.dark = !this.dark;
     const colors = this.dark ? dark : light;
     try {
-      SimpleToast.show("Applying theme... Wait a sec!", SimpleToast.SHORT);
+      SimpleToast.show("Applying theme... Just a sec!", SimpleToast.SHORT);
       await changeNavigationBarColor(this.dark ? colors.light_gray_2 : colors.bg, !this.dark);
     } catch (error) {}
   }
