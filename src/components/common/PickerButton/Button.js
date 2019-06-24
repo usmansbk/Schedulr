@@ -3,7 +3,6 @@ import {
   TouchableRipple,
   Text,
 } from 'react-native-paper';
-import { View } from 'react-native';
 import { inject, observer} from 'mobx-react';
 
 export default inject('stores')(observer(({ stores, value, onPress }) => {
