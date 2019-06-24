@@ -197,40 +197,43 @@ export default class Form extends React.Component {
               {errors.location}
               </HelperText>
               
-              <View style={styles.pickerSpacing}>
+              <View style={[styles.pickerSpacing, styles.firstPicker]}>
                 <Text style={styles.radioText}>Type</Text>
                 <PickerButton
                   value={values.eventType}
                   onPress={this._showModal}
                 />
               </View>
-
-              <DateTimeInput
-                noMin
-                label="From"
-                disabled={values.allDay}
-                value={values.startAt}
-                onChangeDate={(date) => {
-                  const prevStartAt = Date.parse(values.startAt);
-                  
-                  setFieldValue('startAt', date);
-                  if (values.allDay) {
-                    setFieldValue('endAt', moment(date).endOf('day').toISOString());
-                  } else {
-                    const prevEndAt = Date.parse(values.endAt);
-                    const prevDuration = Math.abs(prevEndAt - prevStartAt);
-                    const newEnd = moment(date).add(prevDuration, 'milliseconds').toISOString();
-                    setFieldValue('endAt', newEnd);
-                  }
-                }}
-              />
-              <DateTimeInput
-                label="To"
-                noMin
-                value={values.endAt}
-                disabled={values.allDay}
-                onChangeDate={(date) => setFieldValue('endAt', date)}
-              />
+              <View style={styles.pickerSpacing}>
+                <Text style={styles.radioText}>From</Text>
+                <DateTimeInput
+                  noMin
+                  disabled={values.allDay}
+                  value={values.startAt}
+                  onChangeDate={(date) => {
+                    const prevStartAt = Date.parse(values.startAt);
+                    
+                    setFieldValue('startAt', date);
+                    if (values.allDay) {
+                      setFieldValue('endAt', moment(date).endOf('day').toISOString());
+                    } else {
+                      const prevEndAt = Date.parse(values.endAt);
+                      const prevDuration = Math.abs(prevEndAt - prevStartAt);
+                      const newEnd = moment(date).add(prevDuration, 'milliseconds').toISOString();
+                      setFieldValue('endAt', newEnd);
+                    }
+                  }}
+                />
+              </View>
+              <View style={styles.pickerSpacing}>
+                <Text style={styles.radioText}>To</Text>
+                <DateTimeInput
+                  noMin
+                  value={values.endAt}
+                  disabled={values.allDay}
+                  onChangeDate={(date) => setFieldValue('endAt', date)}
+                />
+              </View>
               <View style={styles.radio}>
                 <Text style={styles.radioText}>All-day</Text>
                 <Switch

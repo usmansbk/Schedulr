@@ -260,10 +260,14 @@ export default class AppStyles {
       radioText: {
         fontWeight: 'bold',
         color: colors.primary,
-        marginRight: 16
+        marginRight: 16,
+        marginVertical: 8
+      },
+      firstPicker: {
+        marginTop: 0
       },
       pickerSpacing: {
-        marginVertical: 4
+        marginVertical: 8
       },
       picker: {
         height: 48,

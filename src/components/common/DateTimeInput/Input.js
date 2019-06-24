@@ -53,9 +53,6 @@ export default class Input extends React.Component {
 
     return (
       <View>
-        <Text style={styles.text}>
-          {label}
-        </Text>
         <View style={styles.date}>
           <Button
             disabled={disabled}
