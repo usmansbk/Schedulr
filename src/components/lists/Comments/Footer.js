@@ -10,7 +10,7 @@ import { inject, observer } from 'mobx-react';
 export default inject('stores')(observer(
   ({ hide, loading, onPress, stores, hasMore }) => {
     if (hide) return null;
-    return (loading) ? <ActivityIndicator animating size="small" /> : (
+    return (loading) ? <ActivityIndicator style={{ margin: 8 }} animating size="small" /> : (
       <TouchableRipple
         disabled={!hasMore}
         onPress={onPress}

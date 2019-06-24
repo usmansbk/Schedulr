@@ -11,7 +11,8 @@ import { timeAgo } from 'lib/time';
 @observer
 export default class List extends React.Component {
   state = {
-    fetchingMore: false
+    fetchingMore: false,
+    refreshing: false,
   }
   static defaultProps = {
     comments: [],
@@ -70,20 +71,26 @@ export default class List extends React.Component {
   shouldComponentUpdate = (nextProps, nextState) => (
     nextProps.comments !== this.props.comments ||
     nextState.fetchingMore !== this.state.fetchingMore ||
+    nextState.refreshing !== this.state.refreshing ||
     nextProps.loading !== this.props.loading
   );
   _onEndReached = async () => {
     const { nextToken, fetchMoreComments, loading } = this.props;
     if (nextToken && !loading) await fetchMoreComments(nextToken);
+  };
+  _onRefresh = async () => {
+    this.setState({ refreshing: true });
+    await this.props.onRefresh();
+    this.setState({ refreshing: false });
   }
 
   render() {
     const {
       loading,
       comments,
-      onRefresh,
       stores
     } = this.props;
+    const { refreshing } = this.state;
 
     const styles = stores.appStyles.commentsList;
 
@@ -98,12 +105,12 @@ export default class List extends React.Component {
         ListFooterComponent={this._renderFooter}
         ListEmptyComponent={this._renderEmpty}
         ItemSeparatorComponent={this._renderSeparator}
-        refreshing={loading}
-        onRefresh={onRefresh}
+        refreshing={loading && refreshing}
+        onRefresh={this._onRefresh}
         refreshControl={
           <RefreshControl
-            refreshing={loading}
-            onRefresh={onRefresh}
+            refreshing={loading && refreshing}
+            onRefresh={this._onRefresh}
             colors={[stores.themeStore.colors.primary]}
             progressBackgroundColor={stores.themeStore.colors.bg}
           />
