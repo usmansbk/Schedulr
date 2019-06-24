@@ -323,7 +323,7 @@ export default class Form extends React.Component {
               <View style={styles.pickerSpacing}>
                 <View style={styles.row}>
                   <Text style={styles.radioText}>Schedule</Text>
-                  <Text style={styles.radioText} onPress={this._boardHelp}>help</Text>
+                  <Text style={styles.radioText} onPress={this._boardHelp}>Help</Text>
                 </View>
                 <Picker
                   prompt="Select a schedule"
