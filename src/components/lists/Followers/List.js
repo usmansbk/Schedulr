@@ -16,17 +16,22 @@ const {
 @inject('stores')
 @observer
 class List extends React.Component {
+  state = {
+    fetchingMore: false
+  };
+
   static defaultProps = {
     followers: [],
     loading: false,
     hasMore: false,
     onRefresh: () => null,
   };
-  shouldComponentUpdate = (nextProps) => { 
+  shouldComponentUpdate = (nextProps, nextState) => { 
     return (nextProps.navigation.isFocused &&
       (
         nextProps.followers !== this.props.followers ||
-        nextProps.loading !== this.props.loading
+        nextProps.loading !== this.props.loading ||
+        nextState.fetchingMore !== this.state.fetchingMore
       )
     );
   };
@@ -41,7 +46,7 @@ class List extends React.Component {
   _keyExtractor = item => String(item.id);
   _renderFooter = () => <Footer
     hide={!this.props.followers.length}
-    loading={this.props.loading}
+    loading={this.props.loading && this.state.fetchingMore}
     hasMore={this.props.hasMore}
     onPress={this._onEndReached}
   />;
@@ -67,8 +72,12 @@ class List extends React.Component {
   }
 
   _onEndReached = async () => {
-    const { nextToken, fetchMoreFollowers } = this.props;
-    if (nextToken) await fetchMoreFollowers(nextToken);
+    const { nextToken, fetchMoreFollowers, loading } = this.props;
+    if (nextToken && !loading) {
+      this.setState({ fetchingMore: true });
+      await fetchMoreFollowers(nextToken);
+      this.setState({ fetchingMore: false });
+    }
   };
 
   render() {
@@ -78,6 +87,8 @@ class List extends React.Component {
       onRefresh,
       stores
     } = this.props;
+
+    const { fetchingMore } = this.state;
 
     const styles = stores.appStyles.followersList;
 
@@ -92,13 +103,13 @@ class List extends React.Component {
         ListEmptyComponent={this._renderEmpty}
         getItemLayout={this._getItemLayout}
         data={followers}
-        refreshing={loading}
+        refreshing={loading && !fetchingMore}
         onRefresh={onRefresh}
         onEndReachedThreshold={0.5}
         onEndReached={this._onEndReached}
         refreshControl={
           <RefreshControl
-            refreshing={loading}
+            refreshing={loading && !fetchingMore}
             onRefresh={onRefresh}
             colors={[stores.themeStore.colors.primary]}
             progressBackgroundColor={stores.themeStore.colors.bg}
