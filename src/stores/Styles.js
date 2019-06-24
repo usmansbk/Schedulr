@@ -124,7 +124,6 @@ export default class AppStyles {
         height: 48,
         justifyContent: 'center',
         paddingHorizontal: 8,
-        marginTop: 8,
         borderWidth,
         borderRadius: 4,
         borderColor: colors.placeholder
