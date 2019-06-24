@@ -15,7 +15,6 @@ import {
   Text,
   HelperText,
   Appbar,
-  IconButton,
   Switch,
   Divider
 } from 'react-native-paper';
@@ -324,11 +323,7 @@ export default class Form extends React.Component {
               <View style={styles.pickerSpacing}>
                 <View style={styles.row}>
                   <Text style={styles.radioText}>Schedule</Text>
-                  <IconButton
-                    icon="help-outline"
-                    onPress={this._boardHelp}
-                    color={stores.themeStore.colors.primary}
-                  />
+                  <Text style={styles.radioText} onPress={this._boardHelp}>help</Text>
                 </View>
                 <Picker
                   prompt="Select a schedule"
