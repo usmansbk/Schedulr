@@ -1292,6 +1292,7 @@ export default class AppStyles {
       },
       headerText:{
         color: colors.primary_light,
+        fontWeight: 'bold'
       },
       footerContainer: { height: FOOTER_HEIGHT },
       footerContent: { flex: 1, justifyContent: 'center', alignItems: 'center' },

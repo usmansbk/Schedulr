@@ -1,8 +1,8 @@
 import React from 'react';
 import {
   TouchableRipple,
-  Text,
-  ActivityIndicator
+  ActivityIndicator,
+  Caption
 } from 'react-native-paper';
 import { inject, observer } from 'mobx-react';
 
@@ -18,11 +18,11 @@ export default inject('stores')(observer(
       onPress={onPress}
       style={stores.appStyles.eventsList.header}
     >
-      <Text style={stores.appStyles.eventsList.headerText}>
+      <Caption style={stores.appStyles.eventsList.footerText}>
         {
           hasPrev ? "Load previous" : "No previous events"
         }
-      </Text>
+      </Caption>
     </TouchableRipple>
   )
 ));
