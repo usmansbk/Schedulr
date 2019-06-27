@@ -1,6 +1,6 @@
 import React from 'react';
 import { View } from 'react-native';
-import { Headline, Paragraph, Caption } from 'react-native-paper';
+import { Headline, Caption } from 'react-native-paper';
 import { inject, observer } from 'mobx-react';
 
 export default inject('stores')(observer(
@@ -21,7 +21,7 @@ export default inject('stores')(observer(
     return (
       <View style={styles.empty}>
         <Headline style={styles.emptyTitle}>{title}</Headline>
-        <Paragraph>{caption}</Paragraph>
+        <Caption>{caption}</Caption>
       </View>
     );
   }
