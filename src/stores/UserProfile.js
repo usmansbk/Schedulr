@@ -1,8 +1,5 @@
-import { observable, action, runInAction } from 'mobx';
+import { observable, action } from 'mobx';
 import { persist } from 'mobx-persist';
-import gql from 'graphql-tag';
-import client from 'config/client';
-import { LoginUser } from 'mygraphql/mutations';
 
 export default class UserProfile {
   @persist @observable id;
@@ -29,22 +26,10 @@ export default class UserProfile {
     this.pictureUrl = null;
   }
 
-  @action
-  async login(input) {
-    const response = await client.mutate({
-      mutation: gql(LoginUser),
-      variables: {
-        input
-      }
-    });
-    if (response && response.data && response.data.loginUser) {
-      const me = response.data.loginUser;
-      runInAction(() => {
-        this.id = me.id;
-        this.name = me.name;
-        this.email = me.email;
-        this.pictureUrl = me.pictureUrl;
-      });
-    }
+  @action login(me) {
+    this.id = me.id;
+    this.name = me.name;
+    this.email = me.email;
+    this.pictureUrl = me.pictureUrl;
   }
 }
