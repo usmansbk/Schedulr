@@ -45,13 +45,13 @@ class Container extends React.Component {
         email,
         name: email
       });
-      await this.props.onSubmit({
+      this.props.stores.me.login({
+        id: email,
         name,
         email,
         pictureUrl
       });
-      this.props.stores.me.login({
-        id: email,
+      await this.props.onSubmit({
         name,
         email,
         pictureUrl
