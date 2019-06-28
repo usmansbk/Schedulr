@@ -66,7 +66,7 @@ class Container extends React.Component {
 
   render() {
     return this.state.loading ? ( <Loading />
-    ) : ( <Login handleLogin={this._signInAsync} /> );
+    ) : ( <Login handleLogin={this._signInAsync} loading={this.state.loading} /> );
   }
 }
 
