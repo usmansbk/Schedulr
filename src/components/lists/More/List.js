@@ -19,6 +19,13 @@ class List extends React.Component {
   }
   _openDialog = () => this.setState({ visible: true });
   _hideDialog = () => this.setState({ visible: false });
+  _onPressHeader = () => {
+    const id = this.props.stores.me.id;
+    this.props.navigation.navigate('UserProfile', {
+      id,
+      myProfile: true
+    });
+  };
   _onPressItem = (id) => {
     const { navigation } = this.props;
     switch(id) {
@@ -44,7 +51,7 @@ class List extends React.Component {
     }
   };
   _keyExtractor = (item) => item.id;
-  _renderHeader = () => <Header />;
+  _renderHeader = () => <Header onPress={this._onPressHeader} />;
   _renderFooter = () => <Footer openDialog={this._openDialog} />;
   _renderSeparator = () => <Separator />;
   _renderItem = ({

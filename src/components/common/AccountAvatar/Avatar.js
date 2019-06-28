@@ -1,6 +1,5 @@
 import React from 'react';
 import { View } from 'react-native';
-import { withNavigation } from 'react-navigation';
 import { inject, observer } from 'mobx-react';
 import { Text, Caption, TouchableRipple } from 'react-native-paper';
 import UserAvatar from '../UserAvatar';
@@ -8,12 +7,9 @@ import styles from './styles';
 
 @inject("stores")
 @observer
-class Avatar extends React.Component {
+export default class Avatar extends React.Component {
   onPress = () => {
-    this.props.navigation.navigate('UserProfile', {
-      id: this.props.stores.me.id,
-      myProfile: true
-    })
+    this.props.onPress();
   }
 
   render() {
@@ -47,5 +43,3 @@ class Avatar extends React.Component {
     );
   }
 }
-
-export default withNavigation(Avatar);

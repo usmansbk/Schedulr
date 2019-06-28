@@ -32,6 +32,7 @@ export default class UserProfile extends React.Component {
 
     if (loading && !user) return <Loading />;
     if (error && !user) return <Error onRefresh={onRefresh} loading={refreshing} />;
+    if (!user) return <Error onRefresh={onRefresh} loading={refreshing} />;
   
     const {
       id,
