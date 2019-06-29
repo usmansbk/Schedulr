@@ -5683,6 +5683,13 @@ react-native-hyperlink@^0.0.14:
     linkify-it "^1.2.0"
     mdurl "^1.0.0"
 
+react-native-image-progress@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/react-native-image-progress/-/react-native-image-progress-1.1.1.tgz#95bbe0875c7ebd54286df69cb37b598b94c54eb0"
+  integrity sha512-5rI2UjUo1bJoggU3lZAa+Wv29bm+N322XVR49mxfczfhaOyFdoXMIRgd5x2eXG+RQi9PcLleD6wxVDxGAPPO9Q==
+  dependencies:
+    prop-types "^15.5.10"
+
 react-native-modal-datetime-picker@^7.4.2:
   version "7.4.2"
   resolved "https://registry.yarnpkg.com/react-native-modal-datetime-picker/-/react-native-modal-datetime-picker-7.4.2.tgz#d000c4c9675ca8add779820f2947c814e0aa2e53"
