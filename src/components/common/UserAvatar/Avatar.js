@@ -21,7 +21,7 @@ export default class Avatar extends React.Component {
     }
   }
 
-  _renderImageComponent = (props) => <Image
+  _renderImageComponent = () => <Image
     size={this.props.size}
     uri={this.props.src}
   />;
