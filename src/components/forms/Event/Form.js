@@ -293,7 +293,7 @@ export default class Form extends React.Component {
                 (values.repeat !== frequency[0].id) && (
                   <>
                     <View style={styles.radio}>
-                      <Text style={styles.radioText}>Repeat Forever</Text>
+                      <Text style={styles.radioText}>Repeat forever</Text>
                       <Switch
                         value={values.forever}
                         onValueChange={() => {
@@ -315,6 +315,15 @@ export default class Form extends React.Component {
               }
               {
                 (values.repeat !== frequency[0].id && !values.forever) && (
+                  <View style={styles.pickerSpacing}>
+                    <Text style={styles.radioText}>Repeat until</Text>
+                    <DateTimeInput
+                      noMin
+                      label="Repeat Until"
+                      value={values.until}
+                      onChangeDate={(date) => setFieldValue('until', date)}
+                    />
+                  </View>
                   <DateTimeInput
                     noMin
                     label="Repeat Until"
