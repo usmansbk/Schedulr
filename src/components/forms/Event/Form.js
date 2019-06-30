@@ -319,17 +319,10 @@ export default class Form extends React.Component {
                     <Text style={styles.radioText}>Repeat until</Text>
                     <DateTimeInput
                       noMin
-                      label="Repeat Until"
                       value={values.until}
                       onChangeDate={(date) => setFieldValue('until', date)}
                     />
                   </View>
-                  <DateTimeInput
-                    noMin
-                    label="Repeat Until"
-                    value={values.until}
-                    onChangeDate={(date) => setFieldValue('until', date)}
-                  />
                 )
               }
               <View style={styles.pickerSpacing}>
