@@ -163,7 +163,7 @@ export default class List extends React.Component {
 
   _onRefresh = () => {
     this._bootstrap(this.state.events);
-    this.props.onRefresh();
+    // this.props.onRefresh();
   };
   
   _onEndReached = () => {
