@@ -63,6 +63,12 @@ class FollowingBoards extends Component{
     )
   }
 
+  componentWillMount = () => {
+    if (this.props.navigation.getParam('toCreatedTab')) {
+      this.props.navigation.navigate('Created')
+    }
+  }
+
   render(){
     const {
       loading,

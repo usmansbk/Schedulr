@@ -19,6 +19,31 @@ import colors from 'config/colors';
 export default class UserProfile extends React.Component {
   componentWillUpdate = (nextProps) => nextProps.navigation.isFocused;
 
+  _toFollowingTab = () => {
+    const { user, stores, navigation } = this.props;
+    if (user) {
+      const { id, name } = user; 
+      navigation.push('UserBoards', {
+        id,
+        name,
+        myProfile: stores.me.id === id,
+      });
+    }
+  };
+
+  _toCreatedTab = () => {
+    const { user, stores, navigation } = this.props;
+    if (user) {
+      const { id, name } = user; 
+      navigation.push('UserBoards', {
+        id,
+        name,
+        myProfile: stores.me.id === id,
+        toCreatedTab: true
+      });
+    }
+  };
+
   render() {
     const {
       navigation,
@@ -57,22 +82,20 @@ export default class UserProfile extends React.Component {
           />
         </View>
         <Headline style={styles.headline}>{name}</Headline>
-        <TouchableRipple onPress={() => navigation.push('UserBoards', {
-          id,
-          name,
-          myProfile: stores.me.id === id,
-        })}>
-          <View style={styles.countRow}>
-            <View style={styles.item}>
-              <Text style={styles.count}>{numeral(followingCount).format('0a')}</Text>
-              <Text style={styles.label}>Following</Text>
-            </View>
+        <View style={styles.countRow}>
+          <TouchableRipple onPress={this._toFollowingTab}>
+              <View style={styles.item}>
+                <Text style={styles.count}>{numeral(followingCount).format('0a')}</Text>
+                <Text style={styles.label}>Following</Text>
+              </View>
+          </TouchableRipple>
+          <TouchableRipple onPress={this._toCreatedTab}>
             <View style={styles.item}>
               <Text style={styles.count}>{numeral(createdCount).format('0a')}</Text>
               <Text style={styles.label}>Created</Text>
             </View>
-          </View>
-        </TouchableRipple>
+          </TouchableRipple>
+        </View>
       </ScrollView>
     );
   }
