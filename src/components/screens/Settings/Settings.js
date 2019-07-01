@@ -52,13 +52,13 @@ export default class Settings extends React.Component {
 
     return (
       <>
-        <Appbar.Header style={styles.header} collapsable>
+        <Appbar style={styles.elevatedHeader} collapsable>
           <Appbar.BackAction color={colors.gray} onPress={goBack} />
           <Appbar.Content
             title="Settings"
             titleStyle={styles.headerColor}
           />
-        </Appbar.Header>
+        </Appbar>
         <ScrollView style={styles.bg}>
           <List.Section title="General">
             <List.Item

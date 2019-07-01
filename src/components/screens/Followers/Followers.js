@@ -19,13 +19,13 @@ class Followers extends React.Component {
 
     return  (
       <>
-        <Appbar.Header style={stores.appStyles.styles.elevatedHeader}>
+        <Appbar style={stores.appStyles.styles.elevatedHeader}>
           <Appbar.BackAction onPress={goBack} color={stores.themeStore.colors.gray} />
           <Appbar.Content
             title="Followers"
             titleStyle={stores.appStyles.styles.headerColor}
           />
-        </Appbar.Header>
+        </Appbar>
         <List
           id={id}
           isAuthor={isAuthor}

@@ -70,7 +70,7 @@ export default class Board extends React.Component {
 
     return (
       <>
-        <Appbar.Header style={styles.elevatedHeader} collapsable>
+        <Appbar style={styles.elevatedHeader} collapsable>
           <Appbar.BackAction color={colors.gray} onPress={onPress} />
           <Appbar.Content
             title={name}
@@ -82,7 +82,7 @@ export default class Board extends React.Component {
             onPress={this._navigateToBoardInfo}
             color={colors.gray}
           />
-        </Appbar.Header>
+        </Appbar>
         <List
           ref={this._eventsListRef}
           listType="board"

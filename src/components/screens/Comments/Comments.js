@@ -52,13 +52,13 @@ export default class Comments extends React.Component {
 
     return (
       <>
-        <Appbar.Header style={styles.elevatedHeader}>
+        <Appbar style={styles.elevatedHeader}>
           <Appbar.BackAction onPress={goBack} color={colors.gray} />
           <Appbar.Content
             title={title || 'Comments'}
             titleStyle={styles.headerColor}
           />
-        </Appbar.Header>
+        </Appbar>
         <List
           ref={commentsRef => this._commentsListRef = commentsRef}
           error={error}

@@ -7,13 +7,13 @@ import env from 'config/env';
 export default inject('stores')(observer(
   (props) => (
     <>
-      <Appbar.Header style={props.stores.appStyles.styles.header} collapsable>
+      <Appbar style={props.stores.appStyles.styles.elevatedHeader} collapsable>
         <Appbar.BackAction color={props.stores.themeStore.colors.gray} onPress={props.goBack} />
         <Appbar.Content
           title="Help"
           titleStyle={props.stores.appStyles.styles.headerColor}
         />
-      </Appbar.Header>
+      </Appbar>
       <ScrollView style={props.stores.appStyles.styles.bg}>
         <List.Item
           title="FAQ"

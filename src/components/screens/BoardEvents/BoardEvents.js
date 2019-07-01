@@ -37,14 +37,14 @@ export default class BoardEvents extends React.Component {
 
     return (
       <>
-        <Appbar.Header style={styles.elevatedHeader} collapsable>
+        <Appbar style={styles.elevatedHeader} collapsable>
           <Appbar.BackAction color={colors.gray} onPress={onPress} />
           <Appbar.Content
             title={name}
             subtitle={description}
             titleStyle={styles.headerColor}
           />
-        </Appbar.Header>
+        </Appbar>
         <List
           listType="board"
           events={events}
