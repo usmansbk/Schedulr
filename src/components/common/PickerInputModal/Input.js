@@ -10,7 +10,7 @@ import { View, TextInput } from 'react-native';
 import { inject, observer } from 'mobx-react';
 import List from './List';
 
-const MAX_LENGTH = 18;
+const MAX_LENGTH = 30;
 const MIN_LENGTH = 2
 
 @inject('stores')

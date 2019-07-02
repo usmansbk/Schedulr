@@ -89,7 +89,10 @@ export default class Item extends React.Component {
                 {title}
               </Headline>
               <Text style={styles.time}>{time}</Text>
-              <Caption>{duration ? duration + ' ' : ''}{eventType} {repeat}</Caption>
+              <Caption
+                ellipsizeMode="tail"
+                numberOfLines={1}
+              >{duration ? duration + ' ' : ''}{eventType} {repeat}</Caption>
             </View>
           </View>
           <ActionSheet
