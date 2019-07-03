@@ -1443,7 +1443,7 @@ export default class AppStyles {
         backgroundColor: colors.bg
       },
       titleText: {
-        color: '#757575',
+        color: colors.actionsheetTitleText,
         fontSize: 14
       },
       messageBox: {

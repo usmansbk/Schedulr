@@ -28,7 +28,8 @@ export const light = {
   error: '#FF180B',
   warning: '#FBAD15',
   image_loading: '#C0DEED',
-  actionsheet: '#e5e5e5'
+  actionsheet: '#e5e5e5',
+  actionsheetTitleText: '#757575'
 }
 
 export const dark = {
@@ -62,7 +63,8 @@ export const dark = {
   error: '#FF180B',
   warning: '#FBAD15',
   image_loading: '#C0DEED',
-  actionsheet: '#212121'
+  actionsheet: '#212121',
+  actionsheetTitleText: 'white'
 };
 
 export default light;
