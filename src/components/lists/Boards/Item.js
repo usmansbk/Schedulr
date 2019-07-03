@@ -15,7 +15,7 @@ const { AVATAR_SIZE } = boards
 export default class Item extends React.Component {
   _onPress = () => this.props.onPressItem(this.props.id);
   _onLongPress = () => {
-    this.ActionSheet && this.ActionSheet.showActionSheet();
+    this.ActionSheet && this.ActionSheet.wrappedInstance.showActionSheet();
   };
   _onMute = () => {
     this.props.stores.appState.toggleMute(this.props.id);

@@ -1,8 +1,11 @@
 import React from 'react';
 import ActionSheet from 'react-native-actionsheet';
 import Share from 'react-native-share';
+import { inject, observer } from 'mobx-react';
 import env from 'config/env';
 
+@inject('stores')
+@observer
 export default class EventAction extends React.Component {
   showActionSheet = () => {
     this.actionSheet.show();
@@ -36,6 +39,7 @@ export default class EventAction extends React.Component {
     const {
       title,
       isMuted,
+      stores
     } = this.props;
 
     const options = ['Back'];
@@ -54,6 +58,7 @@ export default class EventAction extends React.Component {
         cancelButtonIndex={cancelButtonIndex}
         destructiveButtonIndex={destructiveButtonIndex}
         onPress={this._handleActionSheet}
+        styles={stores.appStyles.actionsheet}
       />
     )
   }
