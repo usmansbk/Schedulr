@@ -10,7 +10,7 @@ export default inject('stores')(observer(
       <View style={stores.appStyles.boardEvents.empty}>
         <Headline style={stores.appStyles.boardEvents.emptyTitle}>
         {
-          error ? 'Network error' : 'No schedule yet'
+          error ? 'Network error' : 'No event yet'
         }
         </Headline>
         {
