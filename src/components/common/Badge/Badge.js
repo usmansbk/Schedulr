@@ -1,8 +1,7 @@
 import React from 'react';
 import {
   View,
-  StyleSheet,
-  PixelRatio
+  StyleSheet
 } from 'react-native';
 import colors from 'config/colors';
 
@@ -14,7 +13,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 17,
     right: 8,
-    borderWidth: 1 / PixelRatio.get(),
+    borderWidth: 1,
     borderColor: 'white'
   },
   Cancelled: {

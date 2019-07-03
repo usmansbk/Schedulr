@@ -1,12 +1,10 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import { createImageProgress } from 'react-native-image-progress';
 import colors from 'config/colors';
 
 const Image = createImageProgress(FastImage);
 
-const hairlineWidth = StyleSheet.hairlineWidth;
 
 export default class CustomImage extends React.PureComponent {
 
@@ -14,7 +12,7 @@ export default class CustomImage extends React.PureComponent {
     width: this.props.size - 1,
     height: this.props.size - 1,
     borderRadius: (this.props.size - 1) / 2,
-    borderWidth: hairlineWidth,
+    borderWidth: 1,
     borderColor: colors.light_gray_3,
   };
 
