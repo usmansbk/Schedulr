@@ -102,12 +102,12 @@ export default class AppState {
           (position) => {
             const {
               coords: {
-                lon,
-                lat
+                longitude,
+                latitude
               }
             } = position;
-            this.location.lon = lon;
-            this.location.lat = lat;
+            this.location.lon = longitude;
+            this.location.lat = latitude;
             this.getAddress();
           },
           (error) => {
