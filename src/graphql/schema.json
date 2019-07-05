@@ -602,7 +602,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "latitude",
+          "name" : "lat",
           "description" : null,
           "args" : [ ],
           "type" : {
@@ -613,7 +613,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "longitude",
+          "name" : "lon",
           "description" : null,
           "args" : [ ],
           "type" : {
@@ -2071,7 +2071,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "longitude",
+          "name" : "lon",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
@@ -2080,7 +2080,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "latitude",
+          "name" : "lat",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",

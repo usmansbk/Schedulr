@@ -16,8 +16,8 @@ export default class AppState {
   @persist('list') @observable mutedList = [];
   @persist('list') @observable allowedList = [];
   @persist('object') @observable location = {
-    longitude: null,
-    latitude: null
+    lon: null,
+    lat: null
   }
   @persist('object') @observable prefs = {
     showPrivateBoardAlert: true,
@@ -43,8 +43,8 @@ export default class AppState {
     this.allowedList = [];
     this.address = 'Nigeria';
     this.location = {
-      latitude: null,
-      longitude: null
+      lat: null,
+      lon: null
     };
     this.prefs = {
       showPrivateBoardAlert: true,
@@ -66,25 +66,25 @@ export default class AppState {
   @action setLocation = (address) => {
     this.address = address;
     this.location = {
-      latitude: null,
-      longitude: null,
+      lat: null,
+      lon: null,
     };
     if (address) {
       Geocoder.geocodeAddress(address)
         .then(res => {
           const loc = res[0];
           const { lat, lng } = loc;
-          this.location.longitude = lng;
-          this.location.latitude = lat;
+          this.location.lon = lng;
+          this.location.lat = lat;
         }).catch(err => logger.error(err));
     }
   }
 
   @action getAddress = () => {
-    if (this.location.longitude && this.location.latitude) {
+    if (this.location.lon && this.location.lat) {
       const loc =  {
-        lat: this.location.latitude,
-        lng: this.location.longitude
+        lat: this.location.lat,
+        lng: this.location.lon
       };
       Geocoder.geocodePosition(loc).then(res => {
         const loc = res[0];
@@ -95,19 +95,19 @@ export default class AppState {
   }
 
   @action getLocation = () => {
-    const { longitude, latitude } = this.location;
-    if ((longitude === null) || (latitude === null)) {
+    const { lon, lat } = this.location;
+    if ((lon === null) || (lat === null)) {
       if (requestLocationPermission()) {
         Geolocation.getCurrentPosition(
           (position) => {
             const {
               coords: {
-                longitude,
-                latitude
+                lon,
+                lat
               }
             } = position;
-            this.location.longitude = longitude;
-            this.location.latitude = latitude;
+            this.location.lon = lon;
+            this.location.lat = lat;
             this.getAddress();
           },
           (error) => {

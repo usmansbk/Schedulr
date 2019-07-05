@@ -31,8 +31,8 @@ export default class Form extends React.Component {
       description: '',
       isPublic: true,
       location: {
-        latitude: null,
-        longitude: null,
+        lat: null,
+        lon: null,
       }
     }
   };

@@ -135,8 +135,8 @@ export default class EventDetails extends React.Component {
           firstAt={moment(startAt).format(DATE_FORMAT)}
           eventType={decapitalize(eventType)}
           address={venue && venue.address}
-          latitude={venue && venue.location && venue.location.latitude}
-          longitude={venue && venue.location && venue.location.longitude}
+          lat={venue && venue.location && venue.location.lat}
+          lon={venue && venue.location && venue.location.lon}
           boardName={board.name}
           boardId={board.id}
           repeat={getRepeatLabel(repeat, start)}

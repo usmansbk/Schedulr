@@ -41,8 +41,8 @@ export default class NewEventScreen extends React.Component {
     const location = (venue && venue.location) ? {
       ...venue.location
     } : {
-      longitude: null,
-      latitude: null
+      lon: null,
+      lat: null
     };
 
     const targetDate = this.props.navigation.getParam('targetDate', moment().toISOString())

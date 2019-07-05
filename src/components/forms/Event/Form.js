@@ -52,8 +52,8 @@ export default class Form extends React.Component {
       venue: {
         address: '',
         location: {
-          longitude: null,
-          latitude: null
+          lon: null,
+          lat: null
         }
       },
       startAt: moment().toISOString(),
