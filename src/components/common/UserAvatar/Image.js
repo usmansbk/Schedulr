@@ -26,11 +26,11 @@ export default class CustomImage extends React.PureComponent {
     source={require('./img/placeholder.jpg')}
     style={this._style}
     imageStyle={this._imageStyle}
-    resizeMode={FastImage.resizeMode.contain}
+    resizeMode={FastImage.resizeMode.cover}
   />;
 
   render() {
-    const { uri, size } = this.props;
+    const { uri } = this.props;
 
     return (
       <Image
