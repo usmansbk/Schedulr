@@ -8,6 +8,5 @@ export default Yup.object().shape({
     .required('Title is required'),
   description: Yup.string()
     .trim()
-    .max(700, 'Too Long'),
-  boardId: Yup.string()
+    .max(700, 'Too Long')
 });

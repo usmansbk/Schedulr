@@ -55,10 +55,8 @@ export default class Item extends React.Component {
       pictureUrl,
       stores,
       isStarred,
-      isAuthor,
       isMuted,
       starsCount,
-      isValid
     } = this.props;
 
     const styles = stores.appStyles.eventsList;

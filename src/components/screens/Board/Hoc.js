@@ -39,7 +39,7 @@ export default compose(
       loadingEventsError: data.error,
       events: (
         data && data.listAllEvents && data.listAllEvents.items && 
-        data.listAllEvents.items.filter(event => event.board ? (event.board.id === ownProps.id) : true)
+        data.listAllEvents.items.filter(event => event.board && (event.board.id === ownProps.id))
       ),
       ...ownProps
     })
