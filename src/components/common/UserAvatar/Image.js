@@ -1,4 +1,5 @@
 import React from 'react';
+import { View } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import { createImageProgress } from 'react-native-image-progress';
 import colors from 'config/colors';
@@ -20,14 +21,17 @@ export default class CustomImage extends React.PureComponent {
     width: this.props.size - 1,
     height: this.props.size - 1,
     borderRadius: (this.props.size - 1) / 2,
-  }
+  };
 
-  _renderIndicator = () => <FastImage
-    source={require('./img/placeholder.jpg')}
-    style={this._style}
-    imageStyle={this._imageStyle}
-    resizeMode={FastImage.resizeMode.cover}
-  />;
+  _placeholder = {
+    width: this.props.size - 1,
+    height: this.props.size - 1,
+    borderRadius: (this.props.size - 1) / 2,
+    flex: 1,
+    backgroundColor: colors.light_gray
+  };
+
+  _renderPlaceholder = () => <View style={this._placeholder} />;
 
   render() {
     const { uri } = this.props;
@@ -35,7 +39,7 @@ export default class CustomImage extends React.PureComponent {
     return (
       <Image
         source={{ uri }}
-        indicator={this._renderIndicator}
+        indicator={this._renderPlaceholder}
         imageStyle={this._imageStyle}
         style={this._style}
         indicatorProps={{indeterminate: false}}
