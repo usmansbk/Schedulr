@@ -1,5 +1,5 @@
 export const buildEventForm = (values, myLocation) => {
-  let location = (myLocation && myLocation.lat && myLocation.location.lon) ? myLocation : null;
+  let location = (myLocation && myLocation.lat && myLocation.lon) ? myLocation : null;
   const input = {
     ...values,
     title: values.title.trim(),
