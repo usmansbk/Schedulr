@@ -66,7 +66,8 @@ export default class EventDetails extends React.Component {
       commentsCount,
       isAuthor,
       isCancelled,
-      cancelledDates
+      cancelledDates,
+      isPublic
     } = event;
     const start = refStartAt || startAt;
     const end = refEndAt || endAt;
@@ -135,6 +136,7 @@ export default class EventDetails extends React.Component {
           firstAt={moment(startAt).format(DATE_FORMAT)}
           eventType={decapitalize(eventType)}
           address={venue}
+          isPublic={isPublic}
           boardName={board && board.name}
           boardId={board && board.id}
           repeat={getRepeatLabel(repeat, start)}

@@ -30,6 +30,7 @@ export default inject('stores')(observer(
     isStarred,
     isAuthor,
     isFollowing,
+    isPublic,
     starsCount,
     commentsCount,
     navigateToBoard,
@@ -60,7 +61,7 @@ export default inject('stores')(observer(
           <View style={stores.appStyles.eventDetails.body}>
             <View style={stores.appStyles.eventDetails.item}>
               <Text style={stores.appStyles.eventDetails.label}>TYPE</Text>
-              <Text style={stores.appStyles.eventDetails.value}>{eventType}</Text>
+              <Text style={stores.appStyles.eventDetails.value}>{isPublic ? "Public" : "Private"} {BULLET} {eventType}</Text>
             </View>
             <View style={stores.appStyles.eventDetails.item}>
               <Text style={stores.appStyles.eventDetails.label}>VENUE</Text>
