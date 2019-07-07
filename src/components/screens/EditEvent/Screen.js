@@ -43,9 +43,7 @@ export default class EditEventScreen extends React.Component {
     const id = this.props.navigation.getParam('id');
     try {
       await this.props.onSubmit({ id, ...form });
-      this.props.navigation.replace('EventDetails', {
-        id
-      });
+      this.props.navigation.pop()
     } catch (error) {
       SimpleToast.show(error.message, SimpleToast.SHORT)
     }
