@@ -28,7 +28,6 @@ export default class NewEventScreen extends React.Component {
       title,
       description,
       venue,
-      location,
       startAt,
       endAt,
       allDay,
@@ -66,8 +65,7 @@ export default class NewEventScreen extends React.Component {
     return ({
       title: title || '',
       description: description || '',
-      venue: '',
-      location,
+      venue: venue || '',
       startAt: start,
       endAt: end,
       allDay: Boolean(allDay),

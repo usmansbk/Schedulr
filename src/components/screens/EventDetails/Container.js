@@ -52,7 +52,6 @@ export default class EventDetails extends React.Component {
       title,
       eventType,
       venue,
-      location,
       startAt,
       endAt,
       allDay,
@@ -136,8 +135,6 @@ export default class EventDetails extends React.Component {
           firstAt={moment(startAt).format(DATE_FORMAT)}
           eventType={decapitalize(eventType)}
           address={venue}
-          lat={location.lat}
-          lon={location.lon}
           boardName={board.name}
           boardId={board.id}
           repeat={getRepeatLabel(repeat, start)}

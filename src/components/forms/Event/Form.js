@@ -50,10 +50,6 @@ export default class Form extends React.Component {
       title: '',
       description: '',
       venue: '',
-      location: {
-        lon: null,
-        lat: null
-      },
       startAt: moment().toISOString(),
       endAt: moment().add(2, 'hours').toISOString(),
       allDay: false,
@@ -190,9 +186,9 @@ export default class Form extends React.Component {
               />
               <HelperText
                 type="error"
-                visible={errors.location && touched.location}
+                visible={errors.venue && touched.venue}
               >
-              {errors.location}
+              {errors.venue}
               </HelperText>
               
               <View style={[styles.pickerSpacing, styles.firstPicker]}>
