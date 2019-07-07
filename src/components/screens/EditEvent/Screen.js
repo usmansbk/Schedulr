@@ -58,7 +58,7 @@ export default class EditEventScreen extends React.Component {
         initialValues={this._getInitialValues()}
         onSubmit={this._onSubmit}
         edit
-        locked
+        locked={Boolean(board)}
       />
     )
   }

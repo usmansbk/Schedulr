@@ -75,7 +75,7 @@ export default class NewEventScreen extends React.Component {
       repeat: repeat || frequency[0].id,
       until,
       forever,
-      boardId: currentBoard && currentBoard.id || boardId,
+      boardId: boardId,
       isPublic: currentBoard ? currentBoard.isPublic : isPublic
     });
   };
