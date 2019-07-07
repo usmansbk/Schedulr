@@ -138,48 +138,49 @@ export const createCommentResponse = (input, eventId) => {
 
 export const createEventResponse = (input) => {
   const query = gql(getBoardQuery);
+  let board;
 
   try {
     const { getBoard } = getNode(query, input.boardId);
-
-    const newEvent = {
-      __typename: 'Event',
-      id: '-' + shortid.generate(),
-      title: getValue(input.title),
-      description: getValue(input.description),
-      startAt: input.startAt,
-      endAt: input.endAt,
-      venue: getValue(input.venue),
-      allDay: Boolean(input.allDay),
-      repeat: input.repeat,
-      forever: Boolean(input.forever),
-      until: input.until,
-      eventType: input.eventType,
-      isCancelled: false,
-      board: {
-        __typename: 'Board',
-        id: getBoard.id,
-        name: getBoard.name,
-        eventsCount: getBoard.eventsCount + 1,
-        isFollowing: false
-      },
-      cancelledDates: [],
-      starsCount: 0,
-      isStarred: false,
-      isAuthor: true,
-      commentsCount: 0,
-      createdAt: moment().toISOString(),
-      updatedAt: null
+    board = {
+      __typename: 'Board',
+      id: getBoard.id,
+      name: getBoard.name,
+      eventsCount: getBoard.eventsCount + 1,
+      isFollowing: false
     };
-
-    return ({
-      __typename,
-      createEvent: newEvent
-    });
-  } catch(error) {
-    SimpleToast.show(error.message, SimpleToast.LONG);
+  } catch (error) {
+    board = null;
   }
-  return null;
+  const newEvent = {
+    __typename: 'Event',
+    id: '-' + shortid.generate(),
+    title: getValue(input.title),
+    description: getValue(input.description),
+    startAt: input.startAt,
+    endAt: input.endAt,
+    venue: getValue(input.venue),
+    allDay: Boolean(input.allDay),
+    repeat: input.repeat,
+    forever: Boolean(input.forever),
+    until: input.until,
+    eventType: input.eventType,
+    isCancelled: false,
+    isPublic: input.isPublic,
+    board,
+    cancelledDates: [],
+    starsCount: 0,
+    isStarred: false,
+    isAuthor: true,
+    commentsCount: 0,
+    createdAt: moment().toISOString(),
+    updatedAt: null
+  };
+
+  return ({
+    __typename,
+    createEvent: newEvent
+  });
 };
 
 export const createBoardResponse = (input) => {

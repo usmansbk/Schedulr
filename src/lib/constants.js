@@ -8,6 +8,7 @@ export const INFO = "This schedule's content, including its followers and event 
 export const PRIVATE_INFO = "This schedule's content, including its followers and event details, are not visible to the public. Share invite link to add followers.";
 
 export const WHAT_IS_A_BOARD = "A schedule is a plan of things to be done and the time when they will be done. If you're a student, you probably want a class schedule.";
+export const BOARD_TIP = "Consider grouping your events";
 
 export const COMMENTS_LIMIT = 15;
 export const FOLLOWERS_LIMIT = 15;

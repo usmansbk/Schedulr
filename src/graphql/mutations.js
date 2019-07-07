@@ -115,6 +115,7 @@ export const createEvent = `mutation CreateEvent($input: CreateEventInput!) {
     forever
     until
     eventType
+    isPublic
     board {
       id
       name
@@ -143,6 +144,7 @@ export const updateEvent = `mutation UpdateEvent($input: UpdateEventInput!) {
     repeat
     forever
     until
+    isPublic
     eventType
     updatedAt
   }

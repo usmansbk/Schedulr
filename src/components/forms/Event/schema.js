@@ -10,5 +10,4 @@ export default Yup.object().shape({
     .trim()
     .max(700, 'Too Long'),
   boardId: Yup.string()
-    .required('Event must be added to a schedule')
 });

@@ -29,7 +29,7 @@ import {
 } from 'lib/formValidator';
 import { CANT_REPEAT } from 'lib/errorMessages';
 import { getRepeatLabel, getRecurrence } from 'lib/time';
-import { WHAT_IS_A_BOARD } from 'lib/constants';
+import { WHAT_IS_A_BOARD, BOARD_TIP } from 'lib/constants';
 import formSchema from './schema';
 import frequency from './frequency';
 import { buildEventForm } from 'helpers/buildForm';
@@ -58,6 +58,7 @@ export default class Form extends React.Component {
       forever: false,
       until: null,
       boardId: '',
+      isPublic: true
     }
   }
 
@@ -319,6 +320,17 @@ export default class Form extends React.Component {
                   </View>
                 )
               }
+              <View style={styles.radio}>
+                <Text style={styles.radioText}>Public</Text>
+                <Switch
+                  value={values.isPublic}
+                  onValueChange={() => {
+                    const { isPublic } = values;
+                    setFieldValue('isPublic', !isPublic);
+                  }}
+                />
+              </View>
+              <Divider />
               <View style={styles.pickerSpacing}>
                 <View style={styles.row}>
                   <Text style={styles.radioText}>Schedule</Text>
@@ -340,10 +352,10 @@ export default class Form extends React.Component {
                   }
                 </Picker>
                 <HelperText
-                  type="error"
-                  visible={errors.boardId && touched.boardId}
+                  type="info"
+                  visible={!values.boardId}
                 >
-                  {errors.boardId}
+                  {BOARD_TIP}
                 </HelperText>
               </View>
             </View>

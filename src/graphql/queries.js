@@ -87,6 +87,7 @@ export const getEvent = `query GetEvent($id: ID!) {
     forever
     until
     eventType
+    isPublic
     board {
       id
       name
@@ -156,6 +157,7 @@ export const listAllEvents = `query ListAllEvents {
       forever
       until
       eventType
+      isPublic
       board {
         id
         name
@@ -249,6 +251,7 @@ export const listBoardEvents = `query ListBoardEvents($id: ID!, $limit: Int, $ne
         forever
         until
         eventType
+        isPublic
         board {
           id
           name
@@ -297,6 +300,7 @@ export const searchEvent = `query SearchEvent($filter: SearchFilterInput, $limit
       forever
       until
       eventType
+      isPublic
       board {
         id
         name
