@@ -10,13 +10,12 @@ import {
   getDuration,
   getHumanTime,
   parseRepeat,
-  getStatus
+  getStatus,
+  getEventType
 } from 'lib/parseItem';
-import { sortStarredEvents } from 'lib/utils';
+import { sortStarredEvents, eventsDiff } from 'lib/utils';
 import { getEvents } from 'lib/calendr';
-import { decapitalize } from 'lib/capitalizr';
 import { board_events } from 'lib/constants';
-import { eventsDiff } from 'lib/utils';
 
 const {
   ITEM_HEIGHT,
@@ -67,7 +66,7 @@ class List extends Component {
     startAt={startAt}
     endAt={endAt}
     status={getStatus({ isCancelled, cancelledDates, startAt, endAt, isConcluded})}
-    eventType={decapitalize(eventType)}
+    eventType={getEventType(eventType)}
     repeat={parseRepeat(repeat)}
     time={getHumanTime({ allDay, startAt, endAt })}
     boardId={board.id}
