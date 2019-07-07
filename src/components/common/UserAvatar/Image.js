@@ -28,6 +28,7 @@ export default class CustomImage extends React.PureComponent {
     height: this.props.size - 1,
     borderRadius: (this.props.size - 1) / 2,
     flex: 1,
+    alignSelf: 'center',
     backgroundColor: colors.light_gray
   };
 
