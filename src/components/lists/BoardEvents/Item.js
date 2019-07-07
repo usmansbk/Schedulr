@@ -66,7 +66,7 @@ export default class Item extends React.Component {
               <Text style={styles.time}>{time}</Text>
               <Caption numberOfLines={1}
                 ellipsizeMode="tail"
-              >{duration ? duration + ' ' : ''}{eventType} {repeat}</Caption>
+              >{duration ? duration : ''} {eventType} {repeat}</Caption>
               <Tag status={status} /> 
             </View>
           </View>

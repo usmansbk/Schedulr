@@ -92,7 +92,7 @@ export default class Item extends React.Component {
               <Caption
                 ellipsizeMode="tail"
                 numberOfLines={1}
-              >{duration ? duration + ' ' : ''}{eventType} {repeat}</Caption>
+              >{duration ? duration : ''} {eventType} {repeat}</Caption>
             </View>
           </View>
           <ActionSheet
