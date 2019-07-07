@@ -80,28 +80,29 @@ export const deleteCommentResponse = (input) => {
 };
 
 export const deleteEventResponse = (input) => {
+  const data = getNode(gql(getEvent), input.id);
+  const event = data.getEvent;
+  let board;
   try {
-    const data = getNode(gql(getEvent), input.id);
-    const event = data.getEvent;
     const boardData = event.board && getNode(gql(getBoardQuery), event.board.id);
-    const board = boardData.getBoard;
+    board = boardData.getBoard;
     const eventsCount = board.eventsCount;
-    return ({
-      __typename,
-      deleteEvent: {
-        __typename: 'Event',
-        id: input.id,
-        board: {
-          __typename: 'Board',
-          id: board.id,
-          eventsCount: eventsCount > 0 ? eventsCount - 1 : eventsCount
-        }
-      }
-    });  
+    board = {
+      __typename: 'Board',
+      id: board.id,
+      eventsCount: eventsCount > 0 ? eventsCount - 1 : eventsCount
+    }
   } catch(error) {
-    SimpleToast.show(error.message, SimpleToast.LONG);
+    board = null;
   }
-  return null;
+  return ({
+    __typename,
+    deleteEvent: {
+      __typename: 'Event',
+      id: input.id,
+      board
+    }
+  });  
 };
 
 export const createCommentResponse = (input, eventId) => {
