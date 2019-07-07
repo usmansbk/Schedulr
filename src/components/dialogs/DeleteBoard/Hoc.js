@@ -30,9 +30,8 @@ export default compose(
 
             const queryAllEvents = gql(listAllEvents);
             const allEventsData = cache.readQuery({ query: queryAllEvents });
-            allEventsData.listAllEvents.items = allEventsData.listAllEvents.items.filter(item => item.board.id !== deleteBoard.id);
+            allEventsData.listAllEvents.items = allEventsData.listAllEvents.items.filter(item => (item.board && item.board.id) !== deleteBoard.id);
             cache.writeQuery({ query: queryAllEvents, data: allEventsData });
-
           }
         }
       }),

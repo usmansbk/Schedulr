@@ -74,7 +74,7 @@ export default compose(
             const allEventsQuery = gql(listAllEvents);
             const allEventsData = cache.readQuery({ query: allEventsQuery });
             allEventsData.listAllEvents.items = allEventsData.listAllEvents.items.filter(item => (
-              (item.board.id !== unfollowBoard.id) || item.isStarred
+              (item.board && (item.board.id !== unfollowBoard.id)) || item.isStarred
             ));
             cache.writeQuery({ query: allEventsQuery, data: allEventsData });
           }
