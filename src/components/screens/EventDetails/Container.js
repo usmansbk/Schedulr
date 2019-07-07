@@ -135,8 +135,8 @@ export default class EventDetails extends React.Component {
           firstAt={moment(startAt).format(DATE_FORMAT)}
           eventType={decapitalize(eventType)}
           address={venue}
-          boardName={board.name}
-          boardId={board.id}
+          boardName={board && board.name}
+          boardId={board && board.id}
           repeat={getRepeatLabel(repeat, start)}
           until={until && moment(until).format(DATE_FORMAT)}
           createdAt={moment(createdAt).format(DATE_FORMAT)}
@@ -145,7 +145,7 @@ export default class EventDetails extends React.Component {
           isStarred={isStarred}
           starsCount={starsCount}
           commentsCount={commentsCount}
-          isFollowing={board.isFollowing}
+          isFollowing={board && board.isFollowing}
           isAuthor={isAuthor}
           isValid={isValid}
           isCancelled={isEventCancelled({ cancelledDates, isCancelled, startAt: start })}

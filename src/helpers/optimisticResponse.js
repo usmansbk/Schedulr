@@ -83,7 +83,7 @@ export const deleteEventResponse = (input) => {
   try {
     const data = getNode(gql(getEvent), input.id);
     const event = data.getEvent;
-    const boardData = getNode(gql(getBoardQuery), event.board.id);
+    const boardData = event.board && getNode(gql(getBoardQuery), event.board.id);
     const board = boardData.getBoard;
     const eventsCount = board.eventsCount;
     return ({

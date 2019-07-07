@@ -1,4 +1,5 @@
 import { graphql, compose } from 'react-apollo';
+import SimpleToast from 'react-native-simple-toast';
 import { withNavigationFocus } from 'react-navigation';
 import gql from 'graphql-tag';
 import Events from './Events';
@@ -13,6 +14,7 @@ export default compose(
     options: {
       fetchPolicy: 'cache-first',
       notifyOnNetworkStatusChange: true,
+      onError: (error) => SimpleToast.show(error.message, SimpleToast.LONG)
     },
     props: ({ data, ownProps}) => ({
       loading: data.loading || data.networkStatus === 4,

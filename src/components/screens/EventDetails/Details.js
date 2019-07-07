@@ -66,14 +66,18 @@ export default inject('stores')(observer(
               <Text style={stores.appStyles.eventDetails.label}>VENUE</Text>
               <Text style={stores.appStyles.eventDetails.value}>{address || 'No location set'}</Text>
             </View>
-            <View style={stores.appStyles.eventDetails.item}>
-              <Text style={stores.appStyles.eventDetails.label}>SCHEDULE</Text>
-              <Text
-                ellipsizeMode="tail"
-                numberOfLines={1}
-                onPress={() => navigateToBoard(boardId, (isFollowing || isAuthor))}
-                style={[stores.appStyles.eventDetails.value, stores.appStyles.eventDetails.nav]}>{boardName}</Text>
-            </View>
+            {
+              boardId && (
+                <View style={stores.appStyles.eventDetails.item}>
+                  <Text style={stores.appStyles.eventDetails.label}>SCHEDULE</Text>
+                  <Text
+                    ellipsizeMode="tail"
+                    numberOfLines={1}
+                    onPress={boardId && (() => navigateToBoard(boardId, (isFollowing || isAuthor)))}
+                    style={[stores.appStyles.eventDetails.value, stores.appStyles.eventDetails.nav]}>{boardName}</Text>
+                </View>
+              )
+            }
             <View style={stores.appStyles.eventDetails.item}>
               <Text style={stores.appStyles.eventDetails.label}>REPEAT</Text>
               <Text style={stores.appStyles.eventDetails.value}>{repeat}</Text>

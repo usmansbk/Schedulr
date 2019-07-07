@@ -87,9 +87,11 @@ export default class List extends React.Component {
   _renderSectionFooter = ({ section }) => <SectionFooter section={section} />;
   _onPressItem = (id, refStartAt, refEndAt) => this.props.navigation.navigate('EventDetails', { id, refStartAt, refEndAt });
   _navigateToBoardEvents = (id) => {
-    let screen = 'Board';
-    if (this.props.listType === 'board') screen = 'BoardInfo';
-    this.props.navigation.navigate(screen, { id, cacheFirst: true })
+    if (id) {
+      let screen = 'Board';
+      if (this.props.listType === 'board') screen = 'BoardInfo';
+      this.props.navigation.navigate(screen, { id, cacheFirst: true });
+    }
   };
   _onPressSectionHeader = (targetDate) => {
     if (!isPast(targetDate)) {
@@ -226,13 +228,13 @@ export default class List extends React.Component {
     status={getStatus({ isCancelled, cancelledDates, startAt, endAt})}
     isValid={isEventValid({ isCancelled, endAt, startAt, cancelledDates })}
     address={venue}
-    boardId={board.id}
+    boardId={board && board.id}
     isStarred={isStarred}
     starsCount={starsCount}
     isAuthor={isAuthor}
     isMuted={
       this.props.stores.appState.mutedList.includes(id) ||
-      this.props.stores.appState.mutedList.includes(board.id) &&
+      (board && this.props.stores.appState.mutedList.includes(board.id)) &&
       !this.props.stores.appState.allowedList.includes(id)
     }
     duration={getDuration(startAt, endAt, allDay)}
