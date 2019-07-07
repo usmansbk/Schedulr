@@ -23,7 +23,7 @@ export default class NewEventScreen extends React.Component {
       }
   };
   _getInitialValues = () => {
-    const { event={}, boardId } = this.props;
+    const { event={}, boardId, boards } = this.props;
     const {
       title,
       description,
@@ -35,8 +35,10 @@ export default class NewEventScreen extends React.Component {
       repeat,
       until,
       forever,
-      board
+      isPublic
     } = event;
+
+    const currentBoard = boards && boards.find(board => board.id === boardId);
 
     const targetDate = this.props.navigation.getParam('targetDate', moment().toISOString())
     const initialStartAt = moment(targetDate).toISOString();
@@ -73,8 +75,8 @@ export default class NewEventScreen extends React.Component {
       repeat: repeat || frequency[0].id,
       until,
       forever,
-      boardId: board && board.id || boardId,
-      isPublic: board ? board.isPublic : true
+      boardId: currentBoard && currentBoard.id || boardId,
+      isPublic: currentBoard ? currentBoard.isPublic : isPublic
     });
   };
 
