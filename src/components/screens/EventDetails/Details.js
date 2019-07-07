@@ -68,7 +68,7 @@ export default inject('stores')(observer(
               <Text style={stores.appStyles.eventDetails.value}>{address || 'No location set'}</Text>
             </View>
             {
-              Boolean(boardId) && (
+              (Boolean(boardId) && (isFollowing || isAuthor)) && (
                 <View style={stores.appStyles.eventDetails.item}>
                   <Text style={stores.appStyles.eventDetails.label}>SCHEDULE</Text>
                   <Text
