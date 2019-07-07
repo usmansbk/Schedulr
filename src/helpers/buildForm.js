@@ -1,23 +1,10 @@
 export const buildEventForm = (values, myLocation) => {
-  let venue = null;
-  if (values.venue && values.venue.address) {
-    venue = {
-      address: values.venue.address
-    };
-  }
-  if (
-      myLocation &&
-      myLocation.lat &&
-      myLocation.lon
-    ) {
-    venue = venue || {};
-    venue.location = myLocation;
-  }
+  let location = (myLocation && myLocation.lat && myLocation.location.lon) ? myLocation : null;
   const input = {
     ...values,
     title: values.title.trim(),
     description: values.description.trim(),
-    venue,
+    location,
     until: values.until || null
   };
   return input;

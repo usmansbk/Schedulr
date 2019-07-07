@@ -49,12 +49,10 @@ export default class Form extends React.Component {
     initialValues: {
       title: '',
       description: '',
-      venue: {
-        address: '',
-        location: {
-          lon: null,
-          lat: null
-        }
+      venue: '',
+      location: {
+        lon: null,
+        lat: null
       },
       startAt: moment().toISOString(),
       endAt: moment().add(2, 'hours').toISOString(),
@@ -185,9 +183,9 @@ export default class Form extends React.Component {
               <TextInput
                 placeholder="Venue"
                 label="Venue"
-                value={values.venue.address}
-                onChangeText={handleChange('venue.address')}
-                onBlur={handleBlur('venue.address')}
+                value={values.venue}
+                onChangeText={handleChange('venue')}
+                onBlur={handleBlur('venue')}
                 mode="outlined"
               />
               <HelperText

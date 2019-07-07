@@ -106,9 +106,7 @@ export const createEvent = `mutation CreateEvent($input: CreateEventInput!) {
     id
     title
     description
-    venue {
-      address
-    }
+    venue
     startAt
     endAt
     allDay
@@ -138,9 +136,7 @@ export const updateEvent = `mutation UpdateEvent($input: UpdateEventInput!) {
     id
     title
     description
-    venue {
-      address
-    }
+    venue
     startAt
     endAt
     allDay

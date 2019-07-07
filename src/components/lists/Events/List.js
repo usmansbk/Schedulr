@@ -225,7 +225,7 @@ export default class List extends React.Component {
     time={getTime({ allDay, startAt, endAt })}
     status={getStatus({ isCancelled, cancelledDates, startAt, endAt})}
     isValid={isEventValid({ isCancelled, endAt, startAt, cancelledDates })}
-    address={venue && venue.address}
+    address={venue}
     boardId={board.id}
     isStarred={isStarred}
     starsCount={starsCount}

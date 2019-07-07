@@ -70,7 +70,7 @@ class List extends Component {
     time={getHumanTime({ allDay, startAt, endAt })}
     boardId={board.id}
     duration={getDuration(startAt, endAt, allDay)}
-    address={venue && venue.address}
+    address={venue}
     onPressItem={this._onPressItem}
     onPressComment={this._navigateToComments}
     navigateToInfo={this._navigateToInfo}

@@ -14,6 +14,7 @@ export default class EditEventScreen extends React.Component {
       title,
       description,
       venue,
+      location,
       startAt,
       endAt,
       allDay,
@@ -26,12 +27,10 @@ export default class EditEventScreen extends React.Component {
     return ({
       title,
       description: description || '',
-      venue: {
-        address: venue && venue.address || '',
-        location: {
-          lon: venue && venue.location && venue.location.lon,
-          lat: venue && venue.location && venue.location.lat,
-        }
+      venue: '',
+      location: {
+        lon: location.lon,
+        lat: location.lat,
       },
       startAt: refStartAt || startAt,
       endAt: refEndAt || endAt,

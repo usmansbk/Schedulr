@@ -78,9 +78,7 @@ export const getEvent = `query GetEvent($id: ID!) {
     id
     title
     description
-    venue {
-      address
-    }
+    venue
     startAt
     endAt
     allDay
@@ -149,9 +147,7 @@ export const listAllEvents = `query ListAllEvents {
       id
       title
       description
-      venue {
-        address
-      }
+      venue
       startAt
       endAt
       allDay
@@ -244,9 +240,7 @@ export const listBoardEvents = `query ListBoardEvents($id: ID!, $limit: Int, $ne
         id
         title
         description
-        venue {
-          address
-        }
+        venue
         startAt
         endAt
         allDay
@@ -294,9 +288,7 @@ export const searchEvent = `query SearchEvent($filter: SearchFilterInput, $limit
       id
       title
       description
-      venue {
-        address
-      }
+      venue
       startAt
       endAt
       allDay

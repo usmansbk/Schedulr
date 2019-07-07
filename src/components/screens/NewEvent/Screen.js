@@ -28,6 +28,7 @@ export default class NewEventScreen extends React.Component {
       title,
       description,
       venue,
+      location,
       startAt,
       endAt,
       allDay,
@@ -37,13 +38,6 @@ export default class NewEventScreen extends React.Component {
       forever,
       board={}
     } = event;
-
-    const location = (venue && venue.location) ? {
-      ...venue.location
-    } : {
-      lon: null,
-      lat: null
-    };
 
     const targetDate = this.props.navigation.getParam('targetDate', moment().toISOString())
     const initialStartAt = moment(targetDate).toISOString();
@@ -72,10 +66,8 @@ export default class NewEventScreen extends React.Component {
     return ({
       title: title || '',
       description: description || '',
-      venue: {
-        address: venue && venue.address || '',
-        location
-      },
+      venue: '',
+      location,
       startAt: start,
       endAt: end,
       allDay: Boolean(allDay),
