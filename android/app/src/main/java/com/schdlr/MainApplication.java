@@ -6,6 +6,7 @@ import com.facebook.CallbackManager;
 import com.facebook.FacebookSdk;
 
 import com.facebook.react.ReactApplication;
+import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
 import com.dylanvann.fastimage.FastImageViewPackage;
 import com.reactnativecommunity.netinfo.NetInfoPackage;
 import com.devfd.RNGeocoder.RNGeocoderPackage;
@@ -49,6 +50,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new AsyncStoragePackage(),
             new FastImageViewPackage(),
             new NetInfoPackage(),
             new RNGeocoderPackage(),

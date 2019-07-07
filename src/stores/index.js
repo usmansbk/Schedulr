@@ -1,6 +1,6 @@
 import { action } from 'mobx';
 import { create } from 'mobx-persist';
-import { AsyncStorage  } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 import Settings from './Settings';
 import RemindMe from './RemindMe';
 import Theme from './Theme';
