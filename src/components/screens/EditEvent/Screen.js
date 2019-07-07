@@ -41,7 +41,6 @@ export default class EditEventScreen extends React.Component {
   };
   _onSubmit = async (form) => {
     const id = this.props.navigation.getParam('id');
-    delete form.boardId;
     try {
       await this.props.onSubmit({ id, ...form });
       this.props.navigation.pop();
@@ -51,6 +50,8 @@ export default class EditEventScreen extends React.Component {
   };
   
   render() {
+    const { event: { board } } = this.props;
+
     return (
       <Form
         handleCancel={this._handleBack}

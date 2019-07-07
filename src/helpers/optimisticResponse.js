@@ -213,16 +213,34 @@ export const createBoardResponse = (input) => {
   return null;
 };
 
-export const updateEventResponse = (input) => ({
-  __typename,
-  updateEvent: Object.assign({}, input, {
-    __typename: 'Event',
-    title: getValue(input.title),
-    description: getValue(input.description),
-    updatedAt: moment().toISOString(),
-    venue: getValue(input.venue)
-  })
-});
+export const updateEventResponse = (input) => {
+  const query = gql(getBoardQuery);
+  let board;
+  try {
+    const { getBoard } = getNode(query, input.boardId);
+    board = {
+      __typename: 'Board',
+      id: getBoard.id,
+      name: getBoard.name,
+      eventsCount: getBoard.eventsCount + 1,
+      isFollowing: false
+    };
+  } catch (error) {
+    board = null;
+  }
+  delete input.boardId;
+  return ({
+    __typename,
+    updateEvent: Object.assign({}, input, {
+      __typename: 'Event',
+      title: getValue(input.title),
+      description: getValue(input.description),
+      updatedAt: moment().toISOString(),
+      venue: getValue(input.venue),
+      board
+    })
+  });
+}
 
 export const updateBoardResponse = (input) => ({
   __typename,

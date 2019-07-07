@@ -147,6 +147,12 @@ export const updateEvent = `mutation UpdateEvent($input: UpdateEventInput!) {
     isPublic
     eventType
     updatedAt
+    board {
+      id
+      name
+      eventsCount
+      isFollowing
+    }
   }
 }
 `;
