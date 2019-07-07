@@ -35,7 +35,8 @@ export default class NewEventScreen extends React.Component {
       repeat,
       until,
       forever,
-      board={}
+      board,
+      isPublic
     } = event;
 
     const targetDate = this.props.navigation.getParam('targetDate', moment().toISOString())
@@ -73,7 +74,8 @@ export default class NewEventScreen extends React.Component {
       repeat: repeat || frequency[0].id,
       until,
       forever,
-      boardId: board.id || boardId
+      boardId: board && board.id || boardId,
+      isPublic
     });
   };
 

@@ -21,7 +21,8 @@ export default class EditEventScreen extends React.Component {
       repeat,
       until,
       forever,
-      board
+      board,
+      isPublic
     } = event;
     return ({
       title,
@@ -34,7 +35,8 @@ export default class EditEventScreen extends React.Component {
       repeat,
       until,
       forever,
-      boardId: board.id
+      boardId: board && board.id,
+      isPublic
     });
   };
   _onSubmit = async (form) => {
