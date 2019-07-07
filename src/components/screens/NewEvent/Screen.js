@@ -76,7 +76,7 @@ export default class NewEventScreen extends React.Component {
       until,
       forever,
       boardId: boardId,
-      isPublic: currentBoard ? currentBoard.isPublic : isPublic
+      isPublic: currentBoard ? currentBoard.isPublic : Boolean(isPublic)
     });
   };
 

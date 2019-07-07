@@ -228,10 +228,11 @@ export const updateEventResponse = (input) => {
   } catch (error) {
     board = null;
   }
-  delete input.boardId;
+  const inputCopy = {...input};
+  delete inputCopy.boardId;
   return ({
     __typename,
-    updateEvent: Object.assign({}, input, {
+    updateEvent: Object.assign({}, inputCopy, {
       __typename: 'Event',
       title: getValue(input.title),
       description: getValue(input.description),

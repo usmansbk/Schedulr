@@ -36,11 +36,12 @@ export default class EditEventScreen extends React.Component {
       until,
       forever,
       boardId: board && board.id,
-      isPublic
+      isPublic: Boolean(isPublic)
     });
   };
   _onSubmit = async (form) => {
     const id = this.props.navigation.getParam('id');
+    // alert(JSON.stringify(form));
     try {
       await this.props.onSubmit({ id, ...form });
       this.props.navigation.pop();
