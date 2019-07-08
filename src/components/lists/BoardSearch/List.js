@@ -16,6 +16,9 @@ const {
 @inject('stores')
 @observer
 class List extends Component {
+  state = {
+    fetchingMore: false
+  };
   static defaultProps = {
     boards: [],
     loading: false,
@@ -38,6 +41,14 @@ class List extends Component {
   };
   _onPressItem = (id, cacheFirst) => this.props.navigation.navigate('BoardInfo', { id, cacheFirst });
   _keyExtractor = (item) => String(item.id);
+  _onEndReached = async () => {
+    const { fetchMore, loading, from } = this.props;
+    if (!loading && from) {
+      this.setState({ fetchingMore: true });
+      await fetchMore(Number(from));
+      this.setState({ fetchingMore: false });
+    }
+  };
   _renderEmptyList = () => this.props.loading ? null : <Empty />;
   _renderItem = ({item}) => {
     const {
@@ -66,7 +77,12 @@ class List extends Component {
   }
 
   _renderSeparator = () => <Separator />;
-  _renderFooter = () => <Footer visible={this.props.boards.length} />;
+  _renderFooter = () => <Footer
+    visible={this.props.boards.length}
+    loading={this.props.loading && this.state.fetchingMore}
+    onPress={this._onEndReached}
+    hasMore={this.props.from}
+  />;
 
   render() {
     const {
@@ -75,16 +91,17 @@ class List extends Component {
       onRefresh,
       stores
     } = this.props;
+    const { fetchingMore } = this.state;
 
     const styles = stores.appStyles.boardSearch;
 
     return (
       <FlatList
-        refreshing={loading}
+        refreshing={loading && !fetchingMore}
         refreshControl={
           <RefreshControl
             onRefresh={onRefresh}
-            refreshing={loading}
+            refreshing={loading && !fetchingMore}
             colors={[stores.themeStore.colors.primary]}
             progressBackgroundColor={stores.themeStore.colors.bg}
           />

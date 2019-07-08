@@ -1,12 +1,29 @@
 import React from 'react';
+import {
+  TouchableRipple,
+  Caption,
+  ActivityIndicator
+} from 'react-native-paper';
 import { View } from 'react-native';
-import { Caption } from 'react-native-paper';
 import { inject, observer } from 'mobx-react';
 
 export default inject('stores')(observer(
-  ({ visible, stores }) => visible ? (
-    <View style={stores.appStyles.boardSearch.footer}>
-      <Caption style={stores.appStyles.boardSearch.footerText}>No more result</Caption>
-    </View>
-  ) : null
-));
+  ({ visible, loading, onPress, stores, hasMore }) => {
+    if (!visible) return null;
+    return (loading) ? <ActivityIndicator style={{ margin: 8 }} animating size="small" /> : (
+      <TouchableRipple
+        disabled={!hasMore}
+        onPress={onPress}
+        style={stores.appStyles.eventsList.footerContainer}
+      >
+        <View style={stores.appStyles.eventsList.footerContent}>
+          <Caption style={stores.appStyles.eventsList.footerText}>
+            {
+              hasMore ? "Load more" : "No more results"
+            }
+          </Caption>
+        </View>
+      </TouchableRipple>
+    );
+  }
+))

@@ -1,7 +1,7 @@
 import React from 'react';
 import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
-import uniqWith from 'lodash.uniqWith';
+import uniqWith from 'lodash.uniqwith';
 import { inject, observer } from 'mobx-react';
 import List from 'components/lists/BoardSearch';
 import { listAllBoards, searchBoard } from 'mygraphql/queries';
