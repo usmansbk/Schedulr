@@ -5,7 +5,7 @@ import { inject, observer } from 'mobx-react';
 import List from 'components/lists/BoardSearch';
 import { listAllBoards, searchBoard } from 'mygraphql/queries';
 
-const PAGE_SIZE = 20;
+const PAGE_SIZE = 1;
 
 @inject('stores')
 @observer
@@ -60,6 +60,18 @@ const ListHoc = compose(
     props: ({ data, ownProps }) => ({
       loading: data.loading,
       boards: data && data.searchBoard && data.searchBoard.items,
+      from: data && data.searchBoard && data.searchBoard.nextToken,
+      fetchMore: (from, size=PAGE_SIZE) => data.fetchMore({
+        variables: {
+          filter: {
+            query: ownProps.query,
+            location: ownProps.location,
+            distance: '150km'
+          },
+          from,
+          size
+        }
+      }),
       ...ownProps
     })
   })
