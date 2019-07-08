@@ -39,6 +39,10 @@ class List extends Component {
   _navigateToInfo = (id) => this.props.navigation.navigate('BoardInfo', { id });
   _navigateToComments = (id, title, date) => this.props.navigation.navigate('Comments', { id, title, date });
   _keyExtractor = (item) => String(item.id); 
+  _onEndReached = async () => {
+    const { fetchMore, loading, from } = this.props;
+    if (!loading && from) await fetchMore(Number(from));
+  }
 
   _renderItem = ({ item: {
     id,
@@ -113,6 +117,8 @@ class List extends Component {
         renderItem={this._renderItem}
         ListEmptyComponent={this._renderEmptyList}
         ListFooterComponent={this._renderFooter}
+        onEndReachedThreshold={0.5}
+        onEndReached={this._onEndReached}
       />
     )
   }
