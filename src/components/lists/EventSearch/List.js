@@ -91,7 +91,7 @@ class List extends Component {
   _renderSeparator = () => <Separator />;
   _renderFooter = () => <Footer
     visible={this.props.events.length}
-    loading={this.state.fetchingMore}
+    loading={this.props.loading && this.state.fetchingMore}
     onPress={this._onEndReached}
     hasMore={this.props.from}
   />;
