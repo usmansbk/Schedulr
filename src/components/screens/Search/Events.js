@@ -3,7 +3,7 @@ import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
 import { inject, observer } from 'mobx-react';
 import List from 'components/lists/EventSearch';
-import { listAllEvents } from 'mygraphql/queries';
+import { listAllEvents, searchEvent } from 'mygraphql/queries';
 
 @inject('stores')
 @observer
@@ -12,12 +12,13 @@ export default class Events extends React.Component {
   render() {
     const { stores } = this.props;
 
-    const { query, isConnected } = stores.appState;
+    const { query, isConnected, location } = stores.appState;
 
     return (
       <ListHoc
         query={query}
         isConnected={isConnected}
+        location={(location && location.lat) ? location : null}
         search
       />
     );
@@ -37,6 +38,26 @@ const ListHoc = compose(
         item => item.title.toLowerCase().includes(ownProps.query.toLowerCase()) ||
           item.eventType.toLowerCase().includes(ownProps.query.toLowerCase())
       ),
+      ...ownProps
+    })
+  }),
+  graphql(gql(searchEvent), {
+    alias: 'withSearchEventsOnline',
+    skip: props => !props.isConnected || !props.query,
+    options: props => ({
+      fetchPolicy: 'network-only',
+      variables: {
+        filter: {
+          query: props.query,
+          location: props.location,
+          distance: '150km'
+        },
+        size: 20
+      }
+    }),
+    props: ({ data, ownProps }) => ({
+      loading: data.loading,
+      events: data && data.searchEvent && data.searchEvent.items,
       ...ownProps
     })
   })

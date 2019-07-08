@@ -284,8 +284,8 @@ export const listBoardFollowers = `query Followers($id: ID!, $limit: Int, $nextT
   }
 }`
 
-export const searchEvent = `query SearchEvent($filter: SearchFilterInput, $limit: Int, $nextToken: String) {
-  searchEvent(filter: $filter, limit: $limit, nextToken: $nextToken) {
+export const searchEvent = `query SearchEvent($filter: SearchFilterInput, $size: Int, $from: Int) {
+  searchEvent(filter: $filter, size: $size, from: $from) {
     nextToken
     items {
       id
@@ -318,8 +318,8 @@ export const searchEvent = `query SearchEvent($filter: SearchFilterInput, $limit
   }
 }
 `;
-export const searchBoard = `query SearchBoard($filter: SearchFilterInput, $limit: Int, $nextToken: String) {
-  searchBoard(filter: $filter, limit: $limit, nextToken: $nextToken) {
+export const searchBoard = `query SearchBoard($filter: SearchFilterInput, $size: Int, $from: Int) {
+  searchBoard(filter: $filter, size: $size, from: $from) {
     nextToken
     items {
       id
