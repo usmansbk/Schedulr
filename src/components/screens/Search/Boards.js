@@ -6,7 +6,7 @@ import { inject, observer } from 'mobx-react';
 import List from 'components/lists/BoardSearch';
 import { listAllBoards, searchBoard } from 'mygraphql/queries';
 
-const PAGE_SIZE = 20;
+const PAGE_SIZE = 10;
 
 @inject('stores')
 @observer

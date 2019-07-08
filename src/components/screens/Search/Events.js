@@ -6,7 +6,7 @@ import uniqWith from 'lodash.uniqwith';
 import List from 'components/lists/EventSearch';
 import { listAllEvents, searchEvent } from 'mygraphql/queries';
 
-const PAGE_SIZE = 20;
+const PAGE_SIZE = 10;
 
 @inject('stores')
 @observer
