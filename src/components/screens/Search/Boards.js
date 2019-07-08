@@ -3,6 +3,7 @@ import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
 import uniqWith from 'lodash.uniqwith';
 import { inject, observer } from 'mobx-react';
+import sortBoards from 'lib/utils';
 import List from 'components/lists/BoardSearch';
 import { listAllBoards, searchBoard } from 'mygraphql/queries';
 import { SEARCH_PAGE_SIZE, SEARCH_DISTANCE } from 'lib/constants';
@@ -37,9 +38,9 @@ const ListHoc = compose(
     },
     props: ({ data, ownProps }) => ({
       loading: data.loading,
-      boards: data && data.listAllBoards && data.listAllBoards.items.filter(
+      boards: data && data.listAllBoards && sortBoards(data.listAllBoards.items.filter(
         item => item.name.toLowerCase().includes(ownProps.query.toLowerCase())
-      ),
+      )),
       ...ownProps
     })
   }),
@@ -47,7 +48,7 @@ const ListHoc = compose(
     alias: 'withSearchBoardsOnline',
     skip: props => !props.isConnected || !props.query,
     options: props => ({
-      fetchPolicy: 'no-cache',
+      fetchPolicy: 'cache-and-network',
       variables: {
         filter: {
           query: props.query,

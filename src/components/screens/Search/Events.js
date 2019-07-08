@@ -6,6 +6,7 @@ import uniqWith from 'lodash.uniqwith';
 import List from 'components/lists/EventSearch';
 import { listAllEvents, searchEvent } from 'mygraphql/queries';
 import { SEARCH_PAGE_SIZE, SEARCH_DISTANCE } from 'lib/constants';
+import { sortStarredEvents } from 'lib/utils';
 
 @inject('stores')
 @observer
@@ -36,10 +37,10 @@ const ListHoc = compose(
     },
     props: ({ data, ownProps }) => ({
       loading: data.loading,
-      events: data && data.listAllEvents && data.listAllEvents.items.filter(
+      events: data && data.listAllEvents && sortStarredEvents(data.listAllEvents.items.filter(
         item => item.title.toLowerCase().includes(ownProps.query.toLowerCase()) ||
           item.eventType.toLowerCase().includes(ownProps.query.toLowerCase())
-      ),
+      )),
       ...ownProps
     })
   }),
@@ -47,7 +48,7 @@ const ListHoc = compose(
     alias: 'withSearchEventsOnline',
     skip: props => !props.isConnected || !props.query,
     options: props => ({
-      fetchPolicy: 'no-cache',
+      fetchPolicy: 'cache-and-network',
       variables: {
         filter: {
           query: props.query,
