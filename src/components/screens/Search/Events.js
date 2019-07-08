@@ -5,6 +5,8 @@ import { inject, observer } from 'mobx-react';
 import List from 'components/lists/EventSearch';
 import { listAllEvents, searchEvent } from 'mygraphql/queries';
 
+const PAGE_SIZE = 20;
+
 @inject('stores')
 @observer
 export default class Events extends React.Component {
@@ -18,7 +20,7 @@ export default class Events extends React.Component {
       <ListHoc
         query={query}
         isConnected={isConnected}
-        location={(location && location.lat) ? location : null}
+        location={location.lat ? location : null}
         search
       />
     );
@@ -52,7 +54,7 @@ const ListHoc = compose(
           location: props.location,
           distance: '150km'
         },
-        size: 20
+        size: PAGE_SIZE
       }
     }),
     props: ({ data, ownProps }) => ({

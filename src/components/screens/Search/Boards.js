@@ -3,7 +3,9 @@ import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
 import { inject, observer } from 'mobx-react';
 import List from 'components/lists/BoardSearch';
-import { listAllBoards } from 'mygraphql/queries';
+import { listAllBoards, searchBoard } from 'mygraphql/queries';
+
+const PAGE_SIZE = 20;
 
 @inject('stores')
 @observer
@@ -14,12 +16,13 @@ export default class Boards extends React.Component {
   render() {
     const { stores } = this.props;
 
-    const { query, isConnected } = stores.appState;
+    const { query, isConnected, location } = stores.appState;
 
     return (
       <ListHoc
         query={query}
         isConnected={isConnected}
+        location={location.lat ? location : null}
       />
     );
   }
@@ -37,6 +40,26 @@ const ListHoc = compose(
       boards: data && data.listAllBoards && data.listAllBoards.items.filter(
         item => item.name.toLowerCase().includes(ownProps.query.toLowerCase())
       ),
+      ...ownProps
+    })
+  }),
+  graphql(gql(searchBoard), {
+    alias: 'withSearchBoardsOnline',
+    skip: props => !props.isConnected || !props.query,
+    options: props => ({
+      fetchPolicy: 'network-only',
+      variables: {
+        filter: {
+          query: props.query,
+          location: props.location,
+          distance: '150km'
+        },
+        size: PAGE_SIZE
+      }
+    }),
+    props: ({ data, ownProps }) => ({
+      loading: data.loading,
+      boards: data && data.searchBoard && data.searchBoard.items,
       ...ownProps
     })
   })
