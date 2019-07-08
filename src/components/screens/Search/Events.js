@@ -56,7 +56,6 @@ const ListHoc = compose(
         },
         size: PAGE_SIZE
       },
-      onError: error => alert(error.message)
     }),
     props: ({ data, ownProps }) => ({
       loading: data.loading || data.networkStatus === 4,
