@@ -2,6 +2,7 @@ import React from 'react';
 import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
 import { inject, observer } from 'mobx-react';
+import uniqWith from 'lodash.uniqwith';
 import List from 'components/lists/EventSearch';
 import { listAllEvents, searchEvent } from 'mygraphql/queries';
 
@@ -73,10 +74,10 @@ const ListHoc = compose(
             return Object.assign({}, previousResult, {
               searchEvent: Object.assign({}, previousResult.searchEvent,  {
                 nextToken: fetchMoreResult.searchEvent.nextToken,
-                items: [
+                items: uniqWith([
                   ...previousResult.searchEvent.items,
                   ...moreEvents
-                ]
+                ], (a, b) => a.id === b.id)
               })
             });
           }

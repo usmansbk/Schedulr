@@ -1,6 +1,7 @@
 import React from 'react';
 import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
+import uniqWith from 'lodash.uniqWith';
 import { inject, observer } from 'mobx-react';
 import List from 'components/lists/BoardSearch';
 import { listAllBoards, searchBoard } from 'mygraphql/queries';
@@ -61,6 +62,7 @@ const ListHoc = compose(
       loading: data.loading || data.networkStatus === 4,
       boards: data && data.searchBoard && data.searchBoard.items,
       from: data && data.searchBoard && data.searchBoard.nextToken,
+      onRefresh: () => data.refetch(),
       fetchMore: (from, size=PAGE_SIZE) => data.fetchMore({
         variables: {
           filter: {
@@ -70,6 +72,21 @@ const ListHoc = compose(
           },
           from,
           size
+        },
+        updateQuery: (previousResult, { fetchMoreResult }) => {
+          if (fetchMoreResult) {
+            const moreBoards = fetchMoreResult.searchBoard && fetchMoreResult.searchBoard.items;
+            return Object.assign({}, previousResult, {
+              searchBoard: Object.assign({}, previousResult.searchBoard,  {
+                nextToken: fetchMoreResult.searchBoard.nextToken,
+                items: uniqWith([
+                  ...previousResult.searchBoard.items,
+                  ...moreBoards
+                ], (a, b) => a.id === b.id)
+              })
+            });
+          }
+          return previousResult;
         }
       }),
       ...ownProps
