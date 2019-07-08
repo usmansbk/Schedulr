@@ -5,8 +5,7 @@ import uniqWith from 'lodash.uniqwith';
 import { inject, observer } from 'mobx-react';
 import List from 'components/lists/BoardSearch';
 import { listAllBoards, searchBoard } from 'mygraphql/queries';
-
-const PAGE_SIZE = 10;
+import { SEARCH_PAGE_SIZE, SEARCH_DISTANCE } from 'lib/constants';
 
 @inject('stores')
 @observer
@@ -53,9 +52,9 @@ const ListHoc = compose(
         filter: {
           query: props.query,
           location: props.location,
-          distance: '150km'
+          distance: SEARCH_DISTANCE
         },
-        size: PAGE_SIZE
+        size: SEARCH_PAGE_SIZE
       }
     }),
     props: ({ data, ownProps }) => ({
@@ -63,7 +62,7 @@ const ListHoc = compose(
       boards: data && data.searchBoard && data.searchBoard.items,
       from: data && data.searchBoard && data.searchBoard.nextToken,
       onRefresh: () => data.refetch(),
-      fetchMore: (from, size=PAGE_SIZE) => data.fetchMore({
+      fetchMore: (from, size=SEARCH_PAGE_SIZE) => data.fetchMore({
         variables: {
           filter: {
             query: ownProps.query,

@@ -13,6 +13,8 @@ export const BOARD_TIP = "Recommended";
 export const COMMENTS_LIMIT = 15;
 export const FOLLOWERS_LIMIT = 15;
 
+export const SEARCH_PAGE_SIZE = 10;
+export const SEARCH_DISTANCE = '150km';
 
 // list/events
 export const events = {

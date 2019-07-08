@@ -5,8 +5,7 @@ import { inject, observer } from 'mobx-react';
 import uniqWith from 'lodash.uniqwith';
 import List from 'components/lists/EventSearch';
 import { listAllEvents, searchEvent } from 'mygraphql/queries';
-
-const PAGE_SIZE = 10;
+import { SEARCH_PAGE_SIZE, SEARCH_DISTANCE } from 'lib/constants';
 
 @inject('stores')
 @observer
@@ -53,9 +52,9 @@ const ListHoc = compose(
         filter: {
           query: props.query,
           location: props.location,
-          distance: '150km'
+          distance: SEARCH_DISTANCE
         },
-        size: PAGE_SIZE
+        size: SEARCH_PAGE_SIZE
       },
     }),
     props: ({ data, ownProps }) => ({
@@ -63,7 +62,7 @@ const ListHoc = compose(
       events: data && data.searchEvent && data.searchEvent.items,
       from: data && data.searchEvent && data.searchEvent.nextToken,
       onRefresh: () => data.refetch(),
-      fetchMore: (from, size=PAGE_SIZE) => data.fetchMore({
+      fetchMore: (from, size=SEARCH_PAGE_SIZE) => data.fetchMore({
         variables: {
           from,
           size
