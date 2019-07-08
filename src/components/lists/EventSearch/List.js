@@ -13,7 +13,6 @@ import {
   getStatus,
   getEventType
 } from 'lib/parseItem';
-import { sortStarredEvents } from 'lib/utils';
 import { getEvents } from 'lib/calendr';
 import { starredEvents } from 'lib/constants';
 
@@ -127,12 +126,13 @@ class List extends Component {
         getItemLayout={this._getItemLayout}
         ItemSeparatorComponent={this._renderSeparator}
         keyExtractor={this._keyExtractor}
-        data={sortStarredEvents(getEvents(events))}
+        data={getEvents(events)}
         renderItem={this._renderItem}
         ListEmptyComponent={this._renderEmptyList}
         ListFooterComponent={this._renderFooter}
         onEndReachedThreshold={0.5}
         onEndReached={this._onEndReached}
+        keyboardShouldPersistTaps="always"
       />
     )
   }

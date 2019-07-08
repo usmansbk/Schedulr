@@ -100,6 +100,7 @@ class List extends Component {
         renderItem={this._renderItem}
         ListEmptyComponent={this._renderEmptyList}
         ListFooterComponent={this._renderFooter}
+        keyboardShouldPersistTaps="always"
       />
     )
   }
