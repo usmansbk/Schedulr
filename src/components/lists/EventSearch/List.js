@@ -22,6 +22,10 @@ const { ITEM_HEIGHT, SEPARATOR_HEIGHT } = starredEvents;
 @inject('stores')
 @observer
 class List extends Component {
+  state = {
+    fetchingMore: false
+  };
+
   static defaultProps = {
     events: [],
     loading: false,
@@ -41,7 +45,11 @@ class List extends Component {
   _keyExtractor = (item) => String(item.id); 
   _onEndReached = async () => {
     const { fetchMore, loading, from } = this.props;
-    if (!loading && from) await fetchMore(Number(from));
+    if (!loading && from) {
+      this.setState({ fetchingMore: true });
+      await fetchMore(Number(from));
+      this.setState({ fetchingMore: false });
+    }
   }
 
   _renderItem = ({ item: {
@@ -82,7 +90,12 @@ class List extends Component {
 
   _renderEmptyList = () => <Empty search={this.props.search} error={this.props.error} loading={this.props.loading} />;
   _renderSeparator = () => <Separator />;
-  _renderFooter = () => <Footer visible={this.props.events.length} />;
+  _renderFooter = () => <Footer
+    visible={this.props.events.length}
+    loading={this.state.fetchingMore}
+    onPress={this._onEndReached}
+    hasMore={this.props.from}
+  />;
 
   render() {
     const {
@@ -91,17 +104,18 @@ class List extends Component {
       onRefresh,
       stores
     } = this.props;
+    const { fetchingMore } = this.state;
 
     const styles = stores.appStyles.starredEventsList;
     const colors = stores.themeStore.colors;
 
     return (
       <FlatList
-        refreshing={loading}
+        refreshing={loading && !fetchingMore}
         refreshControl={
           <RefreshControl
             onRefresh={onRefresh}
-            refreshing={loading}
+            refreshing={loading && !fetchingMore}
             colors={[colors.primary]}
             progressBackgroundColor={colors.bg}
           />

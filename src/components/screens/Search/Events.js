@@ -55,23 +55,33 @@ const ListHoc = compose(
           distance: '150km'
         },
         size: PAGE_SIZE
-      }
+      },
+      onError: error => alert(error.message)
     }),
     props: ({ data, ownProps }) => ({
-      loading: data.loading,
+      loading: data.loading || data.networkStatus === 4,
       events: data && data.searchEvent && data.searchEvent.items,
       from: data && data.searchEvent && data.searchEvent.nextToken,
+      onRefresh: () => data.refetch(),
       fetchMore: (from, size=PAGE_SIZE) => data.fetchMore({
         variables: {
-          variables: {
-            filter: {
-              query: ownProps.query,
-              location: props.location,
-              distance: '150km'
-            },
-            from,
-            size
+          from,
+          size
+        },
+        updateQuery: (previousResult, { fetchMoreResult }) => {
+          if (fetchMoreResult) {
+            const moreEvents = fetchMoreResult.searchEvent && fetchMoreResult.searchEvent.items;
+            return Object.assign({}, previousResult, {
+              searchEvent: Object.assign({}, previousResult.searchEvent,  {
+                nextToken: fetchMoreResult.searchEvent.nextToken,
+                items: [
+                  ...previousResult.searchEvent.items,
+                  ...moreEvents
+                ]
+              })
+            });
           }
+          return previousResult;
         }
       }),
       ...ownProps

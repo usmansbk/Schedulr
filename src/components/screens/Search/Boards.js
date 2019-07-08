@@ -58,7 +58,7 @@ const ListHoc = compose(
       }
     }),
     props: ({ data, ownProps }) => ({
-      loading: data.loading,
+      loading: data.loading || data.networkStatus === 4,
       boards: data && data.searchBoard && data.searchBoard.items,
       from: data && data.searchBoard && data.searchBoard.nextToken,
       fetchMore: (from, size=PAGE_SIZE) => data.fetchMore({
