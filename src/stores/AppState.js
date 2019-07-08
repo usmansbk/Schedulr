@@ -94,10 +94,11 @@ export default class AppState {
     }
   }
 
-  @action getLocation = () => {
+  @action getLocation = async () => {
     const { lon, lat } = this.location;
     if ((lon === null) || (lat === null)) {
-      if (requestLocationPermission()) {
+      const requestGranted = await requestLocationPermission();
+      if (requestGranted) {
         Geolocation.getCurrentPosition(
           (position) => {
             const {
