@@ -121,18 +121,18 @@ export default class Settings extends React.Component {
                   )}
                 />
                 <Divider />
+                <List.Item
+                  title="Bookmark alarm"
+                  right={() => (
+                    <Switch
+                      value={starredEventsOnly}
+                      onValueChange={() => this.handleValueChange('starredEventsOnly')}
+                    />
+                  )}
+                />
+                <Divider />
               </>)
             }
-            <List.Item
-              title="Bookmark alarm"
-              right={() => (
-                <Switch
-                  value={starredEventsOnly}
-                  onValueChange={() => this.handleValueChange('starredEventsOnly')}
-                />
-              )}
-            />
-            <Divider />
             <List.Item
               title="Remind me"
               right={() => <List.Icon icon="chevron-right" />}
