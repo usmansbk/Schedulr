@@ -34,7 +34,7 @@ const ListHoc = compose(
     alias: 'withSearchBoardsOffline',
     skip: props => props.isConnected,
     options: {
-      fetchPolicy: 'cache-only'
+      fetchPolicy: 'cache-and-network'
     },
     props: ({ data, ownProps }) => ({
       loading: data.loading,
