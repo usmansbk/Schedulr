@@ -15,7 +15,7 @@ export default graphql(gql(listBoardFollowers), {
       id: props.id,
       limit: LIMIT
     },
-    fetchPolicy: 'network-only',
+    fetchPolicy: 'cache-and-network'
   }),
   props: ({ data, ownProps }) => ({
     followers: data && data.listFollowers && data.listFollowers.items || [],
