@@ -4,7 +4,6 @@ import Screen from './Screen';
 import { createEvent } from 'mygraphql/mutations';
 import { listAllEvents, listAllBoards, getEvent } from 'mygraphql/queries';
 import { createEventResponse } from 'helpers/optimisticResponse';
-import SimpleToast from 'react-native-simple-toast';
 
 const alias =  'withNewEventContainer';
 
@@ -32,9 +31,6 @@ export default compose(
   }),
   graphql(gql(createEvent), {
     alias,
-    options: {
-      onError: (error) => SimpleToast.show(error.message, SimpleToast.LONG)
-    },
     props: ({ mutate, ownProps }) => ({
       onSubmit: (input) => mutate({
         variables: {

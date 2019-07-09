@@ -48,7 +48,7 @@ const ListHoc = compose(
     alias: 'withSearchBoardsOnline',
     skip: props => !props.isConnected || !props.query,
     options: props => ({
-      fetchPolicy: 'cache-and-network',
+      fetchPolicy: 'network-only',
       variables: {
         filter: {
           query: props.query,

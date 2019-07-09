@@ -1,6 +1,5 @@
 import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
-// import SimpleToast from 'react-native-simple-toast';
 import Screen from './Screen';
 import { listEventComments } from 'mygraphql/queries';
 import { createComment } from 'mygraphql/mutations';
@@ -21,7 +20,6 @@ export default compose(
         limit: LIMIT
       },
       fetchPolicy: 'cache-and-network',
-      // onError: error => SimpleToast.show(error.message, SimpleToast.LONG)
     }),
     props: ({ data, ownProps }) => ({
       eventId: ownProps.navigation.getParam('id'),
