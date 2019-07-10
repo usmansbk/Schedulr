@@ -14,9 +14,9 @@ import stores from 'stores';
 const __typename = 'Mutation';
 
 export const followBoardResponse = (id) => {
-  const boardNode = getNode(gql(getBoardQuery), id);
-  if (boardNode) {
-    const board = boardNode.getBoard;
+  const boardData = getData(gql(getBoardQuery), id);
+  if (boardData) {
+    const board = boardData.getBoard;
     const count = board.followersCount;
     const isFollowing = board.isFollowing;
     
@@ -32,10 +32,10 @@ export const followBoardResponse = (id) => {
 };
 
 export const unfollowBoardResponse = (id) => {
-  const boardNode = getNode(gql(getBoardQuery), id);
-  if (boardNode) {
-    const count = boardNode.getBoard.followersCount;
-    const isFollowing = boardNode.getBoard.isFollowing;
+  const boardData = getData(gql(getBoardQuery), id);
+  if (boardData) {
+    const count = boardData.getBoard.followersCount;
+    const isFollowing = boardData.getBoard.isFollowing;
   
     return ({
       __typename,
@@ -51,7 +51,7 @@ export const unfollowBoardResponse = (id) => {
 };
 
 export const deleteCommentResponse = (input) => {
-  const data = getNode(gql(getEvent), input.eventId);
+  const data = getData(gql(getEvent), input.eventId);
   if (data) {
     const count = data.getEvent.commentsCount;
   
@@ -73,12 +73,12 @@ export const deleteCommentResponse = (input) => {
 };
 
 export const deleteEventResponse = (input) => {
-  const data = getNode(gql(getEvent), input.id);
+  const data = getData(gql(getEvent), input.id);
   if (data) {
     const event = data.getEvent;
     let board = null;
     if (event.board) {
-      const boardData = getNode(gql(getBoardQuery), event.board.id);
+      const boardData = getData(gql(getBoardQuery), event.board.id);
       board = boardData.getBoard;
       const eventsCount = board.eventsCount;
       board = {
@@ -100,11 +100,11 @@ export const deleteEventResponse = (input) => {
 };
 
 export const createCommentResponse = (input, eventId) => {
-  const eventNode = getNode(gql(getEvent), eventId);
-  const { getUser } = getNode(gql(getUserQuery), stores.me.id);
-  if (eventNode && getUser) {
-    const toCommentNode = input.toCommentId ? getNode(gql(getComment), input.toCommentId) : null;
-    const toComment = toCommentNode && toCommentNode.getComment;
+  const eventData = getData(gql(getEvent), eventId);
+  const userData = getData(gql(getUserQuery), stores.me.id);
+  if (eventData && userData) {
+    const toCommentData = input.toCommentId ? getData(gql(getComment), input.toCommentId) : null;
+    const toComment = toCommentData && toCommentData.getComment;
     const newComment = {
       __typename: 'Comment',
       id: '-' + shortid.generate(),
@@ -115,9 +115,9 @@ export const createCommentResponse = (input, eventId) => {
       event: {
         __typename: 'Event',
         id: eventId,
-        commentsCount: eventNode.getEvent.commentsCount + 1,
+        commentsCount: eventData.getEvent.commentsCount + 1,
       },
-      author: getUser,
+      author: userData.getUser,
       createdAt: moment().toISOString()
     };
     return ({
@@ -132,7 +132,7 @@ export const createEventResponse = (input) => {
   let board = null;
   if (input.boardId) {
     const query = gql(getBoardQuery);
-    const data = getNode(query, input.boardId);
+    const data = getData(query, input.boardId);
     const { getBoard } = data;
     board = {
       __typename: 'Board',
@@ -174,7 +174,7 @@ export const createEventResponse = (input) => {
 };
 
 export const createBoardResponse = (input) => {
-    const data = getNode(gql(getUserQuery), stores.me.id);
+    const data = getData(gql(getUserQuery), stores.me.id);
     if (data) {
       const { getUser } = data;
       const newBoard = {
@@ -204,7 +204,7 @@ export const updateEventResponse = (input) => {
   const query = gql(getBoardQuery);
   let board;
   try {
-    const { getBoard } = getNode(query, input.boardId);
+    const { getBoard } = getData(query, input.boardId);
     board = {
       __typename: 'Board',
       id: getBoard.id,
@@ -243,7 +243,7 @@ export const updateBoardResponse = (input) => ({
 
 export const cancelEventResponse = (input) => {
   const query = gql(getEvent);
-  const data = getNode(query, input.id);
+  const data = getData(query, input.id);
   if (data) {
     const { getEvent } = data;
     const isCancelled =  input.option === 'ALL' ? true : false;
@@ -302,7 +302,7 @@ export const toggleStarButton = (input, prev, action) => {
   });
 }
 
-function getNode(query, id) {
+function getData(query, id) {
   return client.readQuery({
     query,
     variables: {
