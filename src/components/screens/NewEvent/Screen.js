@@ -1,5 +1,4 @@
 import React from 'react';
-import SimpleToast from 'react-native-simple-toast';
 import moment from 'moment';
 import Form from 'components/forms/Event';
 import frequency from 'components/forms/Event/frequency';
@@ -13,14 +12,10 @@ export default class NewEventScreen extends React.Component {
   _newBoard = () => this.props.navigation.navigate("NewBoard");
   _handleBack = () => this.props.navigation.goBack();
   _handleSubmit = async (form) => {
-      try {
-        const result = await this.props.onSubmit(form);
-        this.props.navigation.replace('EventDetails', {
-          id: result.data.createEvent.id
-        });
-      } catch(error) {
-        SimpleToast.show(error.message, SimpleToast.SHORT);
-      }
+    const result = await this.props.onSubmit(form);
+    this.props.navigation.replace('EventDetails', {
+      id: result.data.createEvent.id
+    });
   };
   _getInitialValues = () => {
     const { event={}, boardId, boards } = this.props;

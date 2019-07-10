@@ -1,5 +1,4 @@
 import React from 'react';
-import SimpleToast from 'react-native-simple-toast';
 import { inject } from 'mobx-react';
 import Comments from './Comments';
 import DeleteCommentDialog from 'components/dialogs/DeleteComment';
@@ -39,7 +38,7 @@ export default class Screen extends React.Component {
     };
     
     if (this.state.toCommentId) input.toCommentId = this.state.toCommentId;
-    this.props.onSubmit(input).catch(error =>SimpleToast.show(error.message, SimpleToast.SHORT));
+    this.props.onSubmit(input);
     this._cancelReply();
   };
   _navigateToProfile = (id) => this.props.navigation.navigate('UserProfile', { id });

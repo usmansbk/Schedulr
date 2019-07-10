@@ -1,7 +1,6 @@
 import gql from 'graphql-tag';
 import moment from 'moment';
 import shortid from 'shortid';
-import SimpleToast from 'react-native-simple-toast';
 import { getValue } from 'lib/formValidator';
 import client from '../config/client';
 import {
@@ -15,8 +14,8 @@ import stores from 'stores';
 const __typename = 'Mutation';
 
 export const followBoardResponse = (id) => {
-  try {
-    const boardNode = getNode(gql(getBoardQuery), id);
+  const boardNode = getNode(gql(getBoardQuery), id);
+  if (boardNode) {
     const board = boardNode.getBoard;
     const count = board.followersCount;
     const isFollowing = board.isFollowing;
@@ -28,15 +27,13 @@ export const followBoardResponse = (id) => {
         followersCount: !isFollowing ? (count + 1) : count
       })
     });
-  } catch(error) {
-    SimpleToast.show(error.message, SimpleToast.LONG);
   }
   return null;
 };
 
 export const unfollowBoardResponse = (id) => {
-  try {
-    const boardNode = getNode(gql(getBoardQuery), id);
+  const boardNode = getNode(gql(getBoardQuery), id);
+  if (boardNode) {
     const count = boardNode.getBoard.followersCount;
     const isFollowing = boardNode.getBoard.isFollowing;
   
@@ -49,15 +46,13 @@ export const unfollowBoardResponse = (id) => {
         followersCount: (isFollowing && (count > 0)) ? count - 1 : count
       }
     });
-  } catch (error) {
-    SimpleToast.show(error.message, SimpleToast.LONG);
   }
   return null;
 };
 
 export const deleteCommentResponse = (input) => {
-  try {
-    const data = getNode(gql(getEvent), input.eventId);
+  const data = getNode(gql(getEvent), input.eventId);
+  if (data) {
     const count = data.getEvent.commentsCount;
   
     const deleteComment = {
@@ -73,17 +68,15 @@ export const deleteCommentResponse = (input) => {
       __typename,
       deleteComment
     });
-  } catch (error) {
-    SimpleToast.show(error.message, SimpleToast.LONG); 
   }
   return null;
 };
 
 export const deleteEventResponse = (input) => {
   const data = getNode(gql(getEvent), input.id);
-  const event = data.getEvent;
-  let board;
-  try {
+  if (data) {
+    const event = data.getEvent;
+    let board;
     const boardData = event.board && getNode(gql(getBoardQuery), event.board.id);
     board = boardData.getBoard;
     const eventsCount = board.eventsCount;
@@ -92,24 +85,22 @@ export const deleteEventResponse = (input) => {
       id: board.id,
       eventsCount: eventsCount > 0 ? eventsCount - 1 : eventsCount
     }
-  } catch(error) {
-    board = null;
+    return ({
+      __typename,
+      deleteEvent: {
+        __typename: 'Event',
+        id: input.id,
+        board
+      }
+    }); 
   }
-  return ({
-    __typename,
-    deleteEvent: {
-      __typename: 'Event',
-      id: input.id,
-      board
-    }
-  });  
+  return null;
 };
 
 export const createCommentResponse = (input, eventId) => {
-  try {
-    const eventNode = getNode(gql(getEvent), eventId);
-    const { getUser } = getNode(gql(getUserQuery), stores.me.id);
-
+  const eventNode = getNode(gql(getEvent), eventId);
+  const { getUser } = getNode(gql(getUserQuery), stores.me.id);
+  if (eventNode && getUser) {
     const toCommentNode = input.toCommentId ? getNode(gql(getComment), input.toCommentId) : null;
     const toComment = toCommentNode && toCommentNode.getComment;
     const newComment = {
@@ -131,8 +122,6 @@ export const createCommentResponse = (input, eventId) => {
       __typename,
       createComment: newComment
     });
-  } catch (error) {
-    SimpleToast.show(error.message, SimpleToast.LONG);
   }
   return null;
 }
@@ -140,9 +129,9 @@ export const createCommentResponse = (input, eventId) => {
 export const createEventResponse = (input) => {
   const query = gql(getBoardQuery);
   let board;
-
-  try {
-    const { getBoard } = getNode(query, input.boardId);
+  const data = getNode(query, input.boardId);
+  if (data) {
+    const { getBoard } = data;
     board = {
       __typename: 'Board',
       id: getBoard.id,
@@ -150,66 +139,63 @@ export const createEventResponse = (input) => {
       eventsCount: getBoard.eventsCount + 1,
       isFollowing: false
     };
-  } catch (error) {
-    board = null;
-  }
-  const newEvent = {
-    __typename: 'Event',
-    id: '-' + shortid.generate(),
-    title: getValue(input.title),
-    description: getValue(input.description),
-    startAt: input.startAt,
-    endAt: input.endAt,
-    venue: getValue(input.venue),
-    allDay: Boolean(input.allDay),
-    repeat: input.repeat,
-    forever: Boolean(input.forever),
-    until: input.until,
-    eventType: input.eventType,
-    isCancelled: false,
-    isPublic: input.isPublic,
-    board,
-    cancelledDates: [],
-    starsCount: 0,
-    isStarred: false,
-    isAuthor: true,
-    commentsCount: 0,
-    createdAt: moment().toISOString(),
-    updatedAt: null
-  };
-
-  return ({
-    __typename,
-    createEvent: newEvent
-  });
-};
-
-export const createBoardResponse = (input) => {
-  try {
-    const { getUser } = getNode(gql(getUserQuery), stores.me.id);
-
-    const newBoard = {
-      __typename: 'Board',
+    const newEvent = {
+      __typename: 'Event',
       id: '-' + shortid.generate(),
-      name: getValue(input.name),
+      title: getValue(input.title),
       description: getValue(input.description),
-      status: getValue(input.status),
-      isPublic: Boolean(input.isPublic),
-      isFollowing: false,
+      startAt: input.startAt,
+      endAt: input.endAt,
+      venue: getValue(input.venue),
+      allDay: Boolean(input.allDay),
+      repeat: input.repeat,
+      forever: Boolean(input.forever),
+      until: input.until,
+      eventType: input.eventType,
+      isCancelled: false,
+      isPublic: input.isPublic,
+      board,
+      cancelledDates: [],
+      starsCount: 0,
+      isStarred: false,
       isAuthor: true,
-      author: getUser,
-      eventsCount: 0,
-      followersCount: 0,
+      commentsCount: 0,
       createdAt: moment().toISOString(),
       updatedAt: null
     };
+
     return ({
       __typename,
-      createBoard: newBoard
+      createEvent: newEvent
     });
-  } catch (error) {
-    SimpleToast.show(error.message, SimpleToast.LONG);
   }
+  return null;
+};
+
+export const createBoardResponse = (input) => {
+    const data = getNode(gql(getUserQuery), stores.me.id);
+    if (data) {
+      const { getUser } = data;
+      const newBoard = {
+        __typename: 'Board',
+        id: '-' + shortid.generate(),
+        name: getValue(input.name),
+        description: getValue(input.description),
+        status: getValue(input.status),
+        isPublic: Boolean(input.isPublic),
+        isFollowing: false,
+        isAuthor: true,
+        author: getUser,
+        eventsCount: 0,
+        followersCount: 0,
+        createdAt: moment().toISOString(),
+        updatedAt: null
+      };
+      return ({
+        __typename,
+        createBoard: newBoard
+      });
+    }
   return null;
 };
 
@@ -256,8 +242,9 @@ export const updateBoardResponse = (input) => ({
 
 export const cancelEventResponse = (input) => {
   const query = gql(getEvent);
-  try {
-    const { getEvent } = getNode(query, input.id);
+  const data = getNode(query, input.id);
+  if (data) {
+    const { getEvent } = data;
     const isCancelled =  input.option === 'ALL' ? true : false;
     const cancelledDates = getEvent.cancelledDates || [];
     const updatedAt = isCancelled ? moment().toISOString() : null;
@@ -274,8 +261,6 @@ export const cancelEventResponse = (input) => {
         updatedAt
       }
     });
-  } catch (error) {
-    SimpleToast.show(error.message, SimpleToast.LONG);
   }
   return null;
 };

@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import gql from 'graphql-tag';
 import { graphql, compose } from 'react-apollo';
 import { FlatList } from 'react-navigation';
-import SimpleToast from 'react-native-simple-toast';
 import { inject, observer } from 'mobx-react';
 import Loading from 'components/common/Loading';
 import ErrorScreen from 'components/common/Error';
@@ -136,13 +135,7 @@ export default compose(
         data.followingBoards.followingBoards &&
         data.followingBoards.followingBoards.items
       ),
-      onRefresh: async () => {
-        try {
-          await data.refetch();
-        } catch(error) {
-          SimpleToast.show('Connection error', SimpleToast.SHORT);
-        }
-      },
+      onRefresh: () =>  data.refetch(),
       ...ownProps
     })
   })
