@@ -1,5 +1,4 @@
 import { graphql, compose } from 'react-apollo';
-import SimpleToast from 'react-native-simple-toast';
 import gql from 'graphql-tag';
 import uniqWith from 'lodash.uniqwith';
 import Button from './Button';
@@ -45,8 +44,10 @@ export default compose(
               const allEventsQuery = gql(listAllEvents);
               const allEventsData = cache.readQuery({ query: allEventsQuery });
               allEventsData.listAllEvents.items = uniqWith([...allEventsData.listAllEvents.items, ...items], _filter);
-            }).catch(error => {
-              SimpleToast.show('Failed to get board events. Refresh all events!', SimpleToast.SHORT);
+              cache.writeQuery({
+                query: gql(listAllEvents),
+                data: allEventsData
+              })
             });
           }
         },
@@ -74,7 +75,7 @@ export default compose(
             const allEventsQuery = gql(listAllEvents);
             const allEventsData = cache.readQuery({ query: allEventsQuery });
             allEventsData.listAllEvents.items = allEventsData.listAllEvents.items.filter(item => (
-              (item.board && (item.board.id !== unfollowBoard.id)) || item.isStarred
+              (item.board === null) || (item.board.id !== unfollowBoard.id) || item.isStarred
             ));
             cache.writeQuery({ query: allEventsQuery, data: allEventsData });
           }
