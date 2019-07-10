@@ -76,14 +76,16 @@ export const deleteEventResponse = (input) => {
   const data = getNode(gql(getEvent), input.id);
   if (data) {
     const event = data.getEvent;
-    let board;
-    const boardData = event.board && getNode(gql(getBoardQuery), event.board.id);
-    board = boardData.getBoard;
-    const eventsCount = board.eventsCount;
-    board = {
-      __typename: 'Board',
-      id: board.id,
-      eventsCount: eventsCount > 0 ? eventsCount - 1 : eventsCount
+    let board = null;
+    if (event.board) {
+      const boardData = getNode(gql(getBoardQuery), event.board.id);
+      board = boardData.getBoard;
+      const eventsCount = board.eventsCount;
+      board = {
+        __typename: 'Board',
+        id: board.id,
+        eventsCount: eventsCount > 0 ? eventsCount - 1 : eventsCount
+      }
     }
     return ({
       __typename,
@@ -127,10 +129,10 @@ export const createCommentResponse = (input, eventId) => {
 }
 
 export const createEventResponse = (input) => {
-  const query = gql(getBoardQuery);
-  let board;
-  const data = getNode(query, input.boardId);
-  if (data) {
+  let board = null;
+  if (input.boardId) {
+    const query = gql(getBoardQuery);
+    const data = getNode(query, input.boardId);
     const { getBoard } = data;
     board = {
       __typename: 'Board',
@@ -139,37 +141,36 @@ export const createEventResponse = (input) => {
       eventsCount: getBoard.eventsCount + 1,
       isFollowing: false
     };
-    const newEvent = {
-      __typename: 'Event',
-      id: '-' + shortid.generate(),
-      title: getValue(input.title),
-      description: getValue(input.description),
-      startAt: input.startAt,
-      endAt: input.endAt,
-      venue: getValue(input.venue),
-      allDay: Boolean(input.allDay),
-      repeat: input.repeat,
-      forever: Boolean(input.forever),
-      until: input.until,
-      eventType: input.eventType,
-      isCancelled: false,
-      isPublic: input.isPublic,
-      board,
-      cancelledDates: [],
-      starsCount: 0,
-      isStarred: false,
-      isAuthor: true,
-      commentsCount: 0,
-      createdAt: moment().toISOString(),
-      updatedAt: null
-    };
-
-    return ({
-      __typename,
-      createEvent: newEvent
-    });
   }
-  return null;
+  const newEvent = {
+    __typename: 'Event',
+    id: '-' + shortid.generate(),
+    title: getValue(input.title),
+    description: getValue(input.description),
+    startAt: input.startAt,
+    endAt: input.endAt,
+    venue: getValue(input.venue),
+    allDay: Boolean(input.allDay),
+    repeat: input.repeat,
+    forever: Boolean(input.forever),
+    until: getValue(input.until),
+    eventType: getValue(input.eventType),
+    isCancelled: false,
+    isPublic: Boolean(input.isPublic),
+    board,
+    cancelledDates: [],
+    starsCount: 0,
+    isStarred: false,
+    isAuthor: true,
+    commentsCount: 0,
+    createdAt: moment().toISOString(),
+    updatedAt: null
+  };
+
+  return ({
+    __typename,
+    createEvent: newEvent
+  });
 };
 
 export const createBoardResponse = (input) => {
