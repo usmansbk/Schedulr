@@ -97,31 +97,33 @@ export default class AppState {
   @action getLocation = async () => {
     const { lon, lat } = this.location;
     if ((lon === null) || (lat === null)) {
-      const requestGranted = await requestLocationPermission();
-      if (requestGranted) {
-        Geolocation.getCurrentPosition(
-          (position) => {
-            const {
-              coords: {
-                longitude,
-                latitude
-              }
-            } = position;
-            this.location.lon = longitude;
-            this.location.lat = latitude;
-            this.getAddress();
-          },
-          (error) => {
-            logger.debug(error);
-            SimpleToast.show("Failed to use location", SimpleToast.SHORT);
-          },
-          {
-            enableHighAccuracy: true,
-            timeout: 15000,
-            maximumAge: 10000
-          }
-        )
-      }
+      SimpleToast.show("Getting current location for better experience", SimpleToast.SHORT);
+      requestLocationPermission().then(requestGranted => {
+        if (requestGranted) {
+          Geolocation.getCurrentPosition(
+            (position) => {
+              const {
+                coords: {
+                  longitude,
+                  latitude
+                }
+              } = position;
+              this.location.lon = longitude;
+              this.location.lat = latitude;
+              this.getAddress();
+            },
+            (error) => {
+              logger.debug(error);
+              SimpleToast.show("Failed to use location", SimpleToast.SHORT);
+            },
+            {
+              enableHighAccuracy: true,
+              timeout: 15000,
+              maximumAge: 10000
+            }
+          )
+        }
+      });
     }
   };
 
