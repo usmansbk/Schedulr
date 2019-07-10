@@ -40,7 +40,7 @@ class Container extends React.Component {
 
   _clearStore = async () => {
     try {
-      //await client.cache.reset();
+      client.clearCaches && client.clearCaches();
       await client.clearStore();
     } catch(e) {}
   };
