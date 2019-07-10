@@ -36,7 +36,8 @@ export default class CommentInput extends React.Component {
       pictureUrl,
       name,
       cancelReply,
-      stores
+      stores,
+      disabled
     } = this.props;
     
     const {
@@ -77,12 +78,13 @@ export default class CommentInput extends React.Component {
               onBlur={() => this._onChangeText(message)}
               placeholderTextColor={colors.placeholder}
               style={styles.textInput}
+              disabled={disabled}
             />
           </View>
           <IconButton
             icon="send"
             color={colors.primary}
-            disabled={isSubmitting || !message}
+            disabled={isSubmitting || !message || disabled}
             onPress={this._onSubmit}
             style={styles.right}
           />
