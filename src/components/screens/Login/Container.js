@@ -28,7 +28,9 @@ class Container extends React.Component {
     const colors = stores.themeStore.colors;
     try {
       await changeNavigationBarColor(colors.primary_light, false);
-    } catch (error) {}
+    } catch (error) {
+      SimpleToast.show(error.message, SimpleToast.LONG);
+    }
   }
 
   _signInAsync = async ({
@@ -60,7 +62,7 @@ class Container extends React.Component {
         email,
         pictureUrl
       });
-      this.props.navigation.navigate('AuthLoading');
+      this.props.navigation.navigate('App');
       SimpleToast.show(`Welcome ${name}!`, SimpleToast.SHORT);
     } catch (error) {
       SimpleToast.show('Login failed: ' + error.message, SimpleToast.SHORT);

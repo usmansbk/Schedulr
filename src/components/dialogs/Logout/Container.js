@@ -20,11 +20,11 @@ class Container extends React.Component {
     await this._googleSignout();
     await this._clearStore();
     await this._purgeAsyncStorage();
-    this._clearMobxStore();
     await this._awsSignOut();
     this.setState({ loading: false });
     this._handleDismiss();
     this.props.navigation.navigate('Auth');
+    this._clearMobxStore();
     SimpleToast.show("You've been logged out", SimpleToast.SHORT);
   };
 
