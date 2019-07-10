@@ -2,22 +2,21 @@
 # yarn lockfile v1
 
 
-"@aws-amplify/analytics@^1.2.17":
-  version "1.2.17"
-  resolved "https://registry.yarnpkg.com/@aws-amplify/analytics/-/analytics-1.2.17.tgz#def1036f16665032eea9096cc56dac9663be3798"
-  integrity sha512-yAlDNi0gNc1qUreEAC87NrumixXwHIWXnh7snCrwr6DGLKlKfdRrqq5Arm5MdlrNMVvXGtgJpO4LgSbZPrQDqg==
+"@aws-amplify/analytics@^1.2.18":
+  version "1.2.18"
+  resolved "https://registry.yarnpkg.com/@aws-amplify/analytics/-/analytics-1.2.18.tgz#0f62b5c76e72fff5214589ccf7741401e38bee37"
+  integrity sha512-GfVpkuGOex8H2il0QjSent6OUvOaI7wKFc154TKiawc/g/EBb9qdEaVnW/ZMn0a/iYjE5qXhqzr0aE3BnWlhLw==
   dependencies:
     "@aws-amplify/cache" "^1.0.28"
     "@aws-amplify/core" "^1.0.28"
     uuid "^3.2.1"
-    youtube-iframe "^1.0.3"
 
-"@aws-amplify/api@^1.0.36":
-  version "1.0.36"
-  resolved "https://registry.yarnpkg.com/@aws-amplify/api/-/api-1.0.36.tgz#4f783b95a5e6d0171cfd99dd227677f7bdd38c82"
-  integrity sha512-4lIjO/JoP23/YN6WL0kOfidEVsOd4wNI7QcU5JZDMb4SKr+rWNpEnygWPE1cUElEHxRPO4LXNt3c9okHhCsH2Q==
+"@aws-amplify/api@^1.0.37":
+  version "1.0.37"
+  resolved "https://registry.yarnpkg.com/@aws-amplify/api/-/api-1.0.37.tgz#c95f927c17debdabb52e4bd364bce24ad5b06b76"
+  integrity sha512-/qXtpajnmVRXr1q3LrLUobHzlfXoqkUVXE3YOCNHThzAJ+bq1HwM1IkAAGLOIOl6c9Es73U0AASYl7TRFqBp0A==
   dependencies:
-    "@aws-amplify/auth" "^1.2.25"
+    "@aws-amplify/auth" "^1.2.26"
     "@aws-amplify/cache" "^1.0.28"
     "@aws-amplify/core" "^1.0.28"
     axios "^0.19.0"
@@ -25,10 +24,10 @@
     uuid "^3.2.1"
     zen-observable "^0.8.6"
 
-"@aws-amplify/auth@^1.2.25":
-  version "1.2.25"
-  resolved "https://registry.yarnpkg.com/@aws-amplify/auth/-/auth-1.2.25.tgz#19fb41f4ce5371816be047f944ce32de3a732385"
-  integrity sha512-EInwrm07BNCxnKKRqCAjGU7yrqwoNeSCbymaDp9vxLyNDZwtAl6OOmid7gHTKEl3GHwwhTeloeCAUj1hAMfrIw==
+"@aws-amplify/auth@^1.2.26":
+  version "1.2.26"
+  resolved "https://registry.yarnpkg.com/@aws-amplify/auth/-/auth-1.2.26.tgz#3aa0f110d4ee25444fed8d55be586fef213caba3"
+  integrity sha512-8+e6iDPTdGl+mxEzLycMlXUp2iAqtieDctTZtklAISTRgo5jR53m7O63CZabA1qE5OB3w9VxfTNFsqvMbiZHBQ==
   dependencies:
     "@aws-amplify/cache" "^1.0.28"
     "@aws-amplify/core" "^1.0.28"
@@ -1445,14 +1444,14 @@ atob@^2.1.1:
   resolved "https://registry.yarnpkg.com/atob/-/atob-2.1.2.tgz#6d9517eb9e030d2436666651e86bd9f6f13533c9"
   integrity sha512-Wm6ukoaOGJi/73p/cl2GvLjTI5JM1k/O14isD73YML8StrH/7/lRFgmg8nICZgD3bZZvjwCGxtMOD3wWNAu8cg==
 
-aws-amplify@^1.1.29:
-  version "1.1.29"
-  resolved "https://registry.yarnpkg.com/aws-amplify/-/aws-amplify-1.1.29.tgz#33306c147e83651147eec8c0ed018521fee0af28"
-  integrity sha512-UP0dp/H8SPLmtCi0/9FjLFwcKGvcd+Mzzm0k8ufTkTgBQsfe+zkb+LBXoaP+mjntMTQlBDie0QYfZ6Klf8eHwA==
+aws-amplify@^1.1.30:
+  version "1.1.30"
+  resolved "https://registry.yarnpkg.com/aws-amplify/-/aws-amplify-1.1.30.tgz#abcb82c9b1e4db10b4d1965b3acd7ec52260241b"
+  integrity sha512-gi805ZK7jQshD0sQVhpVpUyi4YbVFdGkV4mXRTG3nFhvUHa4TAOsFu8EUrOlseO/9Qwcxee3l4j1J1vFKgEEJg==
   dependencies:
-    "@aws-amplify/analytics" "^1.2.17"
-    "@aws-amplify/api" "^1.0.36"
-    "@aws-amplify/auth" "^1.2.25"
+    "@aws-amplify/analytics" "^1.2.18"
+    "@aws-amplify/api" "^1.0.37"
+    "@aws-amplify/auth" "^1.2.26"
     "@aws-amplify/cache" "^1.0.28"
     "@aws-amplify/core" "^1.0.28"
     "@aws-amplify/interactions" "^1.0.31"
@@ -5647,10 +5646,10 @@ react-native-animatable@^1.3.1:
   dependencies:
     prop-types "^15.5.10"
 
-react-native-fast-image@^6.1.0:
-  version "6.1.0"
-  resolved "https://registry.yarnpkg.com/react-native-fast-image/-/react-native-fast-image-6.1.0.tgz#2562ed0c62e9c07df2cc275c797ef90e76e987d2"
-  integrity sha512-ZfKNIqqed3AoY/S6ViBNG5PbaKWLHWukY3q6n6z7+CWgtibX+PxYX0rdMNQb+HLd1Sqd4/NsbrtyxCxUhVoA6Q==
+react-native-fast-image@^7.0.2:
+  version "7.0.2"
+  resolved "https://registry.yarnpkg.com/react-native-fast-image/-/react-native-fast-image-7.0.2.tgz#e06b21f42f4a9786eaa86f3db35d919070fb8403"
+  integrity sha512-MfuzJbC0RjYobR2gFCdqe1I7jvNOCfDkjQ7VGOHXniqjohhULMkcWNBE9Umovi9Dx93lJ6t5utcE2wf/09zvlg==
 
 react-native-fbsdk@^0.10.1:
   version "0.10.1"
@@ -7487,11 +7486,6 @@ yargs@^9.0.0:
     which-module "^2.0.0"
     y18n "^3.2.1"
     yargs-parser "^7.0.0"
-
-youtube-iframe@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/youtube-iframe/-/youtube-iframe-1.0.3.tgz#0fcdf4847e60f8dca7ee91d9ecd913655067b35b"
-  integrity sha1-D830hH5g+Nyn7pHZ7NkTZVBns1s=
 
 yup@^0.27.0:
   version "0.27.0"
