@@ -10,7 +10,8 @@ import {
   getDuration,
   getHumanTime,
   parseRepeat,
-  getStatus
+  getStatus,
+  getEventType
 } from 'lib/parseItem';
 import { sortStarredEvents } from 'lib/utils';
 import { decapitalize } from 'lib/capitalizr';
@@ -65,7 +66,7 @@ class List extends Component {
     starsCount={starsCount}
     commentsCount={commentsCount}
     isStarred={isStarred}
-    eventType={decapitalize(eventType)}
+    eventType={getEventType(eventType)}
     repeat={parseRepeat(repeat)}
     time={getHumanTime({ allDay, startAt, endAt })}
     boardId={board && board.id}
