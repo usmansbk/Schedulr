@@ -1,5 +1,5 @@
 export default [
-  'Normal',
+  'Event',
   'Lecture',
   'Examination',
   'Test',
