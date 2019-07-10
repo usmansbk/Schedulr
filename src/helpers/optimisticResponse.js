@@ -103,8 +103,15 @@ export const createCommentResponse = (input, eventId) => {
   const eventData = getData(gql(getEvent), eventId);
   const userData = getData(gql(getUserQuery), stores.me.id);
   if (eventData && userData) {
-    const toCommentData = input.toCommentId ? getData(gql(getComment), input.toCommentId) : null;
-    const toComment = toCommentData && toCommentData.getComment;
+    const toCommentData = input.toCommentId && getData(gql(getComment), input.toCommentId);
+    const toComment = toCommentData ? toCommentData.getComment : null;
+    const { getUser } = userData;
+    const author = {
+      __typename: 'User',
+      id: getUser.id,
+      name: getUser.name,
+      picture: getUser.picture
+    };
     const newComment = {
       __typename: 'Comment',
       id: '-' + shortid.generate(),
@@ -117,7 +124,7 @@ export const createCommentResponse = (input, eventId) => {
         id: eventId,
         commentsCount: eventData.getEvent.commentsCount + 1,
       },
-      author: userData.getUser,
+      author,
       createdAt: moment().toISOString()
     };
     return ({
