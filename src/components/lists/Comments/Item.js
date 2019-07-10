@@ -103,8 +103,8 @@ export default class Item extends React.Component {
             </Hyperlink>
             <View style={styles.footer}>
             <View style={styles.actions}>
-              {isAuthor && <IconButton color={colors.light_red} icon="delete" onPress={this._onDelete} />}
-              <IconButton color={colors.primary} icon="reply" onPress={this._onReply}/>
+              {isAuthor && <IconButton color={colors.light_gray_3} icon="delete" onPress={this._onDelete} />}
+              <IconButton color={colors.light_gray_3} icon="reply" onPress={this._onReply}/>
             </View>
             </View>
           </View>
