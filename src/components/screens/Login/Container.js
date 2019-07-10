@@ -17,9 +17,10 @@ class Container extends React.Component {
   
   _bootstrap = async () => {
     try {
-      client.clearCaches && client.clearCaches();
       await client.clearStore();
-    } catch (e) {}
+    } catch (e) {
+      SimpleToast.show(e.message, SimpleToast.LONG);
+    }
   }
 
   componentDidMount = async () => {

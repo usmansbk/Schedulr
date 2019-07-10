@@ -35,32 +35,41 @@ class Container extends React.Component {
   _purgeAsyncStorage = async () => {
     try {
       await AsyncStorage.clear();
-    } catch(e) {}
+    } catch(e) {
+      SimpleToast.show(e.message, SimpleToast.LONG);
+    }
   }
 
   _clearStore = async () => {
     try {
-      client.clearCaches && client.clearCaches();
       await client.clearStore();
-    } catch(e) {}
+    } catch(e) {
+      SimpleToast.show(e.message, SimpleToast.LONG);
+    }
   };
 
   _awsSignOut = async () => {
     try {
       await Auth.signOut();
-    } catch(e) {}
+    } catch(e) {
+      SimpleToast.show(e.message, SimpleToast.LONG);
+    }
   };
 
   _fbLogout = async () => {
     try {
       await LoginManager.logOut();
-    } catch(e) {}
+    } catch(e) {
+      SimpleToast.show(e.message, SimpleToast.LONG);
+    }
   };
 
   _googleSignout = async () => {
     try {
       await GoogleSignin.signOut();
-    } catch(e) {}
+    } catch(e) {
+      SimpleToast.show(e.message, SimpleToast.LONG);
+    }
   };
 
   _handleDismiss = () => this.props.handleDismiss();
