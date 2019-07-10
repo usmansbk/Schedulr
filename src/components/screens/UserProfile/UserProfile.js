@@ -4,6 +4,7 @@ import {
   StyleSheet,
   ScrollView,
   Text,
+  RefreshControl
 } from 'react-native';
 import { Headline, TouchableRipple } from 'react-native-paper';
 import FastImage from 'react-native-fast-image';
@@ -46,7 +47,6 @@ export default class UserProfile extends React.Component {
 
   render() {
     const {
-      navigation,
       loading,
       error,
       onRefresh,
@@ -60,7 +60,6 @@ export default class UserProfile extends React.Component {
     if (!user) return <Error onRefresh={onRefresh} loading={refreshing} />;
   
     const {
-      id,
       pictureUrl,
       name,
       followingCount=0,
@@ -68,7 +67,16 @@ export default class UserProfile extends React.Component {
     } = user;
 
     return  (
-      <ScrollView contentContainerStyle={styles.header}>
+      <ScrollView
+        refreshControl={
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={onRefresh}
+            colors={[stores.themeStore.colors.primary]}
+            progressBackgroundColor={stores.themeStore.colors.bg}
+          />
+        }
+        contentContainerStyle={styles.header}>
         <FastImage
           source={{uri: pictureUrl}}
           resizeMode={FastImage.resizeMode.cover}

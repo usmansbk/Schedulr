@@ -21,9 +21,7 @@ export default compose(
       loading: data.loading,
       refreshing: data.networkStatus === 4,
       error: data.error,
-      onRefresh: async () => {
-        await data.refetch();
-      },
+      onRefresh: () => data.refetch(),
       user: data && data.getUser,
       ...ownProps,
     })
