@@ -16,7 +16,10 @@ class Container extends React.Component {
   state = { loading: false };
   
   _bootstrap = async () => {
-    try { await client.clearStore() } catch (e) {}
+    try {
+      client.clearCaches && client.clearCaches();
+      await client.clearStore();
+    } catch (e) {}
   }
 
   componentDidMount = async () => {
