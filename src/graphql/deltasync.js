@@ -1,4 +1,4 @@
-export const listAllEvents = `query ListAllEventsDelta($lastSync: AWSTimestamp!) {
+export const listAllEventsDelta = `query ListAllEventsDelta($lastSync: AWSTimestamp!) {
   listAllEventsDelta(lastSync: $lastSync) {
     nextToken
     items {
@@ -34,7 +34,7 @@ export const listAllEvents = `query ListAllEventsDelta($lastSync: AWSTimestamp!)
 }`;
 
 
-export const listAllBoards = `query ListAllBoardsDelta($lastSync: AWSTimestamp!) {
+export const listAllBoardsDelta = `query ListAllBoardsDelta($lastSync: AWSTimestamp!) {
   listAllBoardsDelta(lastSync: $lastSync) {
     nextToken
     items {
