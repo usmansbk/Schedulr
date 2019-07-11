@@ -54,6 +54,15 @@ const appSyncLink = createAppSyncLink({
 const link = ApolloLink.from([errorLink, appSyncLink]);
 
 const client = new AWSAppSyncClient({
+  offlineConfig: {
+    callback: (error) => {
+      if (error) {
+        const { mutation } = error;
+        SimpleToast.show(`Error for ${mutation}`, SimpleToast.LONG);
+        logger.log(error);
+      }
+    }
+  },
   cacheOptions: {
     cacheRedirects: {
       Query: {
