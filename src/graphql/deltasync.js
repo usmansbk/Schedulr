@@ -27,7 +27,8 @@ export const listAllEvents = `query ListAllEventsDelta($lastSync: AWSTimestamp!)
       isAuthor
       commentsCount
       createdAt
-      updatedAt  
+      updatedAt 
+      aws_ds 
     }
   }
 }`;
@@ -56,6 +57,7 @@ export const listAllBoards = `query ListAllBoardsDelta($lastSync: AWSTimestamp!)
       followersCount
       createdAt
       updatedAt
+      aws_ds
     }
   }
 }
