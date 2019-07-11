@@ -12,6 +12,8 @@ import stores from 'stores';
 const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors) {
     graphQLErrors.map(error => {
+      logger.log(error);
+      SimpleToast.show('Server error: ' + error.message, SimpleToast.LONG);
       Analytics.record({
         name: 'GraphQLError',
         attributes: {
@@ -21,8 +23,6 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
           errorPath: error.path,
         }
       });
-      logger.log(error);
-      SimpleToast.show('Server error: ' + error.message, SimpleToast.LONG);
     });  
   }
   if (networkError) SimpleToast.show('No connection', SimpleToast.SHORT);
