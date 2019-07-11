@@ -1,5 +1,5 @@
 export const listAllEvents = `query ListAllEventsDelta($lastSync: AWSTimestamp!) {
-  listAllEvents(lastSync: $lastSync) {
+  listAllEventsDelta(lastSync: $lastSync) {
     nextToken
     items {
       id
