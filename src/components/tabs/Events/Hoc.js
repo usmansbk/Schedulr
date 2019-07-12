@@ -19,9 +19,7 @@ export default compose(
       events: data && data.listAllEvents && data.listAllEvents.items || [],
       nextToken: data && data.listAllEvents && data.listAllEvents.nextToken,
       error: data.error && !data.listAllEvents,
-      onRefresh: async () => {
-        await data.refetch();
-      },
+      onRefresh: () =>  data.refetch(),
       ...ownProps
     })
   })

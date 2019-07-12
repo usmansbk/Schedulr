@@ -42,6 +42,28 @@ export default class Events extends React.Component {
     } catch (error) {
       SimpleToast.show(error.message, SimpleToast.SHORT);
     }
+  };
+
+  _initNetInfo = () => {
+    const { stores } = this.props;
+    Linking.addEventListener('url', this.handleOpenURL);
+    
+    this.unsubscribe = NetInfo.addEventListener(state => {
+      stores.appState.toggleConnection(state.isConnected);
+    });
+  };
+
+  _handleNavBarColor = async () => {
+    const { stores } = this.props;
+    const colors = stores.themeStore.colors;
+
+    try {
+      const isDark = stores.settingsStore.dark;
+      const navColor = isDark ? colors.light_gray_2 : colors.bg;
+      await changeNavigationBarColor(navColor, isDark);
+    } catch (error) {
+      SimpleToast.show(error.message, SimpleToast.SHORT);
+    }
   }
   
   shouldComponentUpdate = (nextProps) => nextProps.isFocused;
@@ -56,21 +78,8 @@ export default class Events extends React.Component {
   };
  
   componentDidMount = async () => {
-    const { stores } = this.props;
-    const colors = stores.themeStore.colors;
-    Linking.addEventListener('url', this.handleOpenURL);
-    
-    this.unsubscribe = NetInfo.addEventListener(state => {
-      stores.appState.toggleConnection(state.isConnected);
-    });
-  
-    try {
-      const isDark = stores.settingsStore.dark;
-      const navColor = isDark ? colors.light_gray_2 : colors.bg;
-      await changeNavigationBarColor(navColor, isDark);
-    } catch (error) {
-      SimpleToast.show(error.message, SimpleToast.SHORT);
-    }
+    this._initNetInfo();
+    await this._handleNavBarColor();
   };
 
   componentWillUnmount = () => {
