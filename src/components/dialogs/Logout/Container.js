@@ -43,6 +43,7 @@ class Container extends React.Component {
   _clearStore = async () => {
     try {
       await client.clearStore();
+      client.cache.reset();
     } catch(e) {
       SimpleToast.show(e.message, SimpleToast.LONG);
     }
