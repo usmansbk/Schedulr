@@ -121,7 +121,7 @@ export default class AppState {
               timeout: 15000,
               maximumAge: 10000
             }
-          )
+          );
         }
       });
     }
