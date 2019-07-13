@@ -1,3 +1,4 @@
+import { Alert } from 'react-native';
 import Geolocation from 'react-native-geolocation-service';
 import Geocoder from 'react-native-geocoder';
 import SimpleToast from 'react-native-simple-toast';
@@ -93,38 +94,49 @@ export default class AppState {
       }).catch(err => logger.error(err));
     }
   }
-
-  @action getLocation = async () => {
+  
+  @action requestLocation() {
     const { lon, lat } = this.location;
     if ((lon === null) || (lat === null)) {
-      SimpleToast.show("Getting current location for better experience", SimpleToast.SHORT);
-      requestLocationPermission().then(requestGranted => {
-        if (requestGranted) {
-          Geolocation.getCurrentPosition(
-            (position) => {
-              const {
-                coords: {
-                  longitude,
-                  latitude
-                }
-              } = position;
-              this.location.lon = longitude;
-              this.location.lat = latitude;
-              this.getAddress();
-            },
-            (error) => {
-              logger.debug(error);
-              SimpleToast.show("Failed to use location", SimpleToast.SHORT);
-            },
-            {
-              enableHighAccuracy: true,
-              timeout: 15000,
-              maximumAge: 10000
-            }
-          );
-        }
-      });
+      Alert.alert(
+        'Location Permission',
+        "Schdlr needs access to your location for better results.",
+        [
+          { text: 'Ask me later' },
+          { text: 'Yes', onPress: async () => await this.getLocation() },
+        ],
+        { cancelable: true }
+      );
     }
+  }
+
+  @action getLocation = async () => {
+    requestLocationPermission().then(requestGranted => {
+      if (requestGranted) {
+        Geolocation.getCurrentPosition(
+          (position) => {
+            const {
+              coords: {
+                longitude,
+                latitude
+              }
+            } = position;
+            this.location.lon = longitude;
+            this.location.lat = latitude;
+            this.getAddress();
+          },
+          (error) => {
+            logger.debug(error);
+            SimpleToast.show("Failed to use location", SimpleToast.SHORT);
+          },
+          {
+            enableHighAccuracy: true,
+            timeout: 15000,
+            maximumAge: 10000
+          }
+        );
+      }
+    });
   };
 
   @action toggleMute = (id, isMuted) => {
