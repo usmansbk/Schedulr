@@ -19,9 +19,7 @@ export default graphql(gql(getEvent), {
   props: ({ data, ownProps }) => ({
     loading: data.loading || data.networkStatus === 4,
     error: data.error,
-    onRefresh: async () => {
-      await data.refetch();
-    },
+    onRefresh: () =>  data.refetch(),
     event: data && data.getEvent,
     ...ownProps,
   })

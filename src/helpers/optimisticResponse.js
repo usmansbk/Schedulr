@@ -146,7 +146,8 @@ export const createEventResponse = (input) => {
       id: getBoard.id,
       name: getBoard.name,
       eventsCount: getBoard.eventsCount + 1,
-      isFollowing: false
+      isFollowing: false,
+      isPublic: Boolean(getBoard.isPublic)
     };
   }
   const newEvent = {
