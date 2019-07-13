@@ -57,6 +57,7 @@ export default class Screen extends React.Component {
           handleRepeat={this._handleRepeat}
           navigateToBoard={this._navigateToBoard}
           navigateToComments={this._navigateToComments}
+          navigateToUser={this._navigateToUser}
         />
         <DeleteDialog
           id={id}

@@ -158,6 +158,7 @@ export default class EventDetails extends React.Component {
           isCancelled={isEventCancelled({ cancelledDates, isCancelled, startAt: start })}
           navigateToBoard={navigateToBoard}
           navigateToComments={navigateToComments}
+          navigateToUser={navigateToUser}
           cardView={cardView}
         />
       </>
