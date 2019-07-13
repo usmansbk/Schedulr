@@ -32,6 +32,7 @@ export default inject('stores')(observer(
     isFollowing,
     isPublic,
     starsCount,
+    publicBoard,
     commentsCount,
     navigateToBoard,
     navigateToComments,
@@ -68,7 +69,7 @@ export default inject('stores')(observer(
               <Text style={stores.appStyles.eventDetails.value}>{address || 'No location set'}</Text>
             </View>
             {
-              (Boolean(boardId) && (isFollowing || isAuthor)) && (
+              (Boolean(boardId) && (isFollowing || isAuthor || publicBoard)) && (
                 <View style={stores.appStyles.eventDetails.item}>
                   <Text style={stores.appStyles.eventDetails.label}>SCHEDULE</Text>
                   <Text

@@ -137,6 +137,7 @@ export default class EventDetails extends React.Component {
           eventType={decapitalize(eventType)}
           address={venue}
           isPublic={isPublic}
+          publicBoard={board && board.isPublic}
           boardName={board && board.name}
           boardId={board && board.id}
           repeat={getRepeatLabel(repeat, start)}

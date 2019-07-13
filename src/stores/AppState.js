@@ -66,10 +66,6 @@ export default class AppState {
   
   @action setLocation = (address) => {
     this.address = address;
-    this.location = {
-      lat: null,
-      lon: null,
-    };
     if (address) {
       Geocoder.geocodeAddress(address)
         .then(res => {
@@ -96,7 +92,7 @@ export default class AppState {
   }
   
   @action requestLocation() {
-    const { lon, lat } = this.location;
+    const { lon, lat } = this.location || {};
     if ((lon === null) || (lat === null)) {
       Alert.alert(
         'Location Permission',
