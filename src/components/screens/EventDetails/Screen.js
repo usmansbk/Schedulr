@@ -15,6 +15,10 @@ export default class Screen extends React.Component {
   _openCancelDialog = () => this.setState({ visibleDialog: 'cancel' });
   _navigateToBoard = (id, cacheFirst) => this.props.navigation.navigate('Board', { id, cacheFirst });
   _navigateToComments = (id, title, date) => this.props.navigation.navigate('Comments', { id, title, date });
+  _navigateToUser = (id, myProfile) => this.props.navigation.navigate('User', {
+    id,
+    myProfile
+  });
   _hideDialog = () => this.setState({ visibleDialog: null });
   
   render() {

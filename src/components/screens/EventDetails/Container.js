@@ -44,6 +44,7 @@ export default class EventDetails extends React.Component {
       handleEdit,
       navigateToBoard,
       navigateToComments,
+      navigateToUser,
       cardView,
       stores
     } = this.props;
@@ -67,7 +68,8 @@ export default class EventDetails extends React.Component {
       isAuthor,
       isCancelled,
       cancelledDates,
-      isPublic
+      isPublic,
+      author
     } = event;
     const start = refStartAt || startAt;
     const end = refEndAt || endAt;
@@ -140,6 +142,8 @@ export default class EventDetails extends React.Component {
           publicBoard={board && board.isPublic}
           boardName={board && board.name}
           boardId={board && board.id}
+          authorId={author.id}
+          authorName={author.name}
           repeat={getRepeatLabel(repeat, start)}
           until={until && moment(until).format(DATE_FORMAT)}
           createdAt={moment(createdAt).format(DATE_FORMAT)}

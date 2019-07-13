@@ -16,6 +16,7 @@ export default inject('stores')(observer(
     eventType,
     address,
     boardName,
+    authorName,
     boardId,
     repeat,
     until,
@@ -29,6 +30,7 @@ export default inject('stores')(observer(
     isCancelled,
     isStarred,
     isAuthor,
+    authorId,
     isFollowing,
     isPublic,
     starsCount,
@@ -36,6 +38,7 @@ export default inject('stores')(observer(
     commentsCount,
     navigateToBoard,
     navigateToComments,
+    navigateToUser,
     cardView,
     stores
   }) => (
@@ -110,6 +113,15 @@ export default inject('stores')(observer(
                 </View>
               )
             }
+            <View style={stores.appStyles.eventDetails.item}>
+              <Text style={stores.appStyles.eventDetails.label}>AUTHOR</Text>
+              <Text
+                style={[stores.appStyles.eventDetails.value, stores.appStyles.eventDetails.nav]}
+                onPress={() => navigateToUser(authorId, stores.me.id === authorId)}
+              >
+              {authorName}
+              </Text>
+            </View>
             <View style={stores.appStyles.eventDetails.item}>
               <Text style={stores.appStyles.eventDetails.label}>DESCRIPTION</Text>
               <Hyperlink linkStyle={stores.appStyles.eventDetails.linkStyle} linkDefault={true}>
