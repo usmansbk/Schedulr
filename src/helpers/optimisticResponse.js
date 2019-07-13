@@ -150,6 +150,8 @@ export const createEventResponse = (input) => {
       isPublic: Boolean(getBoard.isPublic)
     };
   }
+  
+  const { getUser } = getData(gql(getUserQuery), stores.me.id);
   const newEvent = {
     __typename: 'Event',
     id: '-' + shortid.generate(),
@@ -166,6 +168,11 @@ export const createEventResponse = (input) => {
     isCancelled: false,
     isPublic: Boolean(input.isPublic),
     board,
+    author: {
+      __typename: 'User',
+      id: getUser.id,
+      name: getUser.name
+    },
     cancelledDates: [],
     starsCount: 0,
     isStarred: false,
