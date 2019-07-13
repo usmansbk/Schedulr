@@ -7,7 +7,7 @@ import colors from 'config/colors';
 const Image = createImageProgress(FastImage);
 
 
-export default class CustomImage extends React.PureComponent {
+export default class CustomImage extends React.Component {
 
   _imageStyle = {
     width: this.props.size - 1,
@@ -33,6 +33,8 @@ export default class CustomImage extends React.PureComponent {
   };
 
   _renderPlaceholder = () => <View style={this._placeholder} />;
+
+  shouldComponentUpdate = () => false;
 
   render() {
     const { uri } = this.props;
