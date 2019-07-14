@@ -6,11 +6,11 @@ import ErrorScreen from 'components/common/Error';
 
 export default inject('stores')(observer(
   ({ error, loading, stores, onRefresh }) =>{
+    if (loading) return null;
     if (error) return <ErrorScreen
       onRefresh={onRefresh}
       loading={loading}
     />;
-    if (loading) return null;
     return (
       <View style={stores.appStyles.eventsList.empty}>
         <Headline style={stores.appStyles.eventsList.emptyTitle}>
