@@ -18,7 +18,13 @@ export default inject("stores")(observer(
         return {
           fetchPolicy: skipBaseQuery ? 'cache-only' : 'cache-and-network',
           notifyOnNetworkStatusChange: true,
-          onCompleted: () => !skipBaseQuery && props.stores.deltaSync.updateBaseLastSyncTimestamp(),
+          onCompleted: () => {
+            if (skipBaseQuery) {
+              props.stores.deltaSync.updateLastSyncTimestamp();
+            } else {
+              props.stores.deltaSync.updateBaseLastSyncTimestamp();
+            }
+          },
         };
       },
       skip: props => {
@@ -36,38 +42,17 @@ export default inject("stores")(observer(
             lastSync: ownProps.stores.deltaSync.lastSync
           },
           updateQuery: (prev, { fetchMoreResult }) => {
-            if (!fetchMoreResult) return prev;
+            if (!fetchMoreResult.listAllEventsDelta) return prev;
+            const { listAllEventsDelta } = fetchMoreResult;
             return Object.assign({}, prev, {
-              items: [...prev.items, ...fetchMoreResult.items]
+              listAllEvents: Object.assign({}, prev.listAllEvents, {
+                items: [...prev.items, ...listAllEventsDelta.items]
+              })
             });
           }
         }),
         ...ownProps
       })
     }),
-    // graphql(gql(listAllEventsDelta), {
-    //   alias,
-    //   options: props => ({
-    //     fetchPolicy: 'no-cache',
-    //     notifyOnNetworkStatusChange: true,
-    //     variables: {
-    //       lastSync: props.stores.deltaSync.lastSync
-    //     },
-    //     onCompleted: () => props.stores.deltaSync.updateLastSyncTimestamp(),
-    //     update: (cache, data) => {
-    //       SimpleToast.show(`${data}`, SimpleToast.SHORT);
-    //     }
-    //   }),
-    //   skip: props => {
-    //     const skipBaseQuery = props.stores.deltaSync.skipBaseQuery;
-    //     const isFocused = props.navigation.isFocused();
-    //     return !isFocused && !skipBaseQuery;
-    //   },
-    //   props: ({ data, ownProps }) => ({
-    //     refreshing: data.loading || data.networkStatus === 4,
-    //     onRefresh: () => data.refetch(),
-    //     ...ownProps
-    //   })
-    // })
   )(Events)
 ));
