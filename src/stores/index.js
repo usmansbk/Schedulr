@@ -7,6 +7,7 @@ import Theme from './Theme';
 import AppStyles from './Styles';
 import UserProfile from './UserProfile';
 import AppState from './AppState';
+import DeltaSync from './Sync';
 
 const hydrate = create({
   storage: AsyncStorage
@@ -16,11 +17,13 @@ const settingsStore = new Settings;
 const remindMeStore = new RemindMe;
 const meStore = new UserProfile;
 const appState = new AppState;
+const deltaSync = new DeltaSync;
 
 hydrate('settings', settingsStore);
 hydrate('remindMe', remindMeStore);
 hydrate('me', meStore);
 hydrate('appState', appState);
+hydrate('deltaSync', deltaSync);
 
 // Create theme store after hydrating the settings store
 const themeStore = new Theme(settingsStore);
@@ -34,6 +37,7 @@ class RootStore {
     this.me = meStore;
     this.appStyles = appStyles;
     this.appState = appState;
+    this.deltaSync = deltaSync;
   }
 
   @action reset = () => {
@@ -41,6 +45,7 @@ class RootStore {
     this.remindMeStore.reset();
     this.me.reset();
     this.appState.reset();
+    this.deltaSync.reset();
   }
 }
 
