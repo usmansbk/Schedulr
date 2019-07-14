@@ -6,9 +6,9 @@ const DEFAULT_UPPER_BOUND_TIME_MS = 24 * 60 * 60 * 1000;
 const BUFFER_MILLISECONDS = 2000;
 
 export default class DeltaSync {
-  @persist @observable baseLastSyncTimestamp = Date.now();
+  @persist @observable baseLastSyncTimestamp = Date.now() - DEFAULT_UPPER_BOUND_TIME_MS;
   @persist @observable lastSyncTimestamp = Date.now();
-  @persist @observable baseRefreshIntervalInSeconds = DEFAULT_UPPER_BOUND_TIME_MS;
+  @persist @observable baseRefreshIntervalInSeconds = null;
 
   @action updateLastSyncTimestamp() {
     this.lastSyncTimestamp = Date.now() - BUFFER_MILLISECONDS;
@@ -27,10 +27,14 @@ export default class DeltaSync {
   @computed get skipBaseQuery() {
     return (Date.now() - this.baseLastSyncTimestamp) < this.upperBoundTimeMs;
   }
+  
+  @computed get lastSync () {
+    return Math.floor((this.lastSyncTimestamp || baseLastSyncTimestamp) / 1000) || 0;
+  }
 
   @action reset() {
-    this.baseLastSyncTimestamp = Date.now();
+    this.baseLastSyncTimestamp = Date.now() - (DEFAULT_UPPER_BOUND_TIME_MS * 2 );
     this.lastSyncTimestamp = Date.now();
-    this.baseRefreshIntervalInSeconds = DEFAULT_UPPER_BOUND_TIME_MS;
+    this.baseRefreshIntervalInSeconds = null;
   }
 }

@@ -7,7 +7,7 @@ import List from './ListHoc';
 @inject("stores")
 @observer
 class Followers extends React.Component {
-  componentWillUpdate = nextProps => nextProps.navigation.isFocused;
+  componentWillUpdate = nextProps => nextProps.navigation.isFocused();
 
   render() {
     const {

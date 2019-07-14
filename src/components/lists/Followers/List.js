@@ -27,7 +27,7 @@ class List extends React.Component {
     onRefresh: () => null,
   };
   shouldComponentUpdate = (nextProps, nextState) => { 
-    return (nextProps.navigation.isFocused &&
+    return (nextProps.navigation.isFocused() &&
       (
         nextProps.followers !== this.props.followers ||
         nextProps.loading !== this.props.loading ||

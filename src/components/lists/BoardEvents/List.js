@@ -38,7 +38,7 @@ class List extends Component {
     }
   );
   shouldComponentUpdate = (nextProps) => { 
-    return (nextProps.navigation.isFocused &&
+    return (nextProps.navigation.isFocused() &&
       (
         nextProps.loading !== this.props.loading ||
         eventsDiff(this.props.events, nextProps.events).length

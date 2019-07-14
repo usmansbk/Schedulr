@@ -37,7 +37,7 @@ class List extends Component {
       index
     }
   );
-  shouldComponentUpdate = (nextProps) => nextProps.navigation.isFocused;
+  shouldComponentUpdate = (nextProps) => nextProps.navigation.isFocused();
   _onPressItem = (id, refStartAt, refEndAt) => this.props.navigation.navigate('EventDetails', { id, refStartAt, refEndAt });
   _navigateToInfo = (id) => this.props.navigation.navigate('BoardInfo', { id });
   _navigateToComments = (id, title, date) => this.props.navigation.navigate('Comments', { id, title, date });

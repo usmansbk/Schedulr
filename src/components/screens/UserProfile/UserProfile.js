@@ -18,7 +18,7 @@ import colors from 'config/colors';
 @inject('stores')
 @observer
 export default class UserProfile extends React.Component {
-  componentWillUpdate = (nextProps) => nextProps.navigation.isFocused;
+  componentWillUpdate = (nextProps) => nextProps.navigation.isFocused();
 
   _toFollowingTab = () => {
     const { user, stores, navigation } = this.props;

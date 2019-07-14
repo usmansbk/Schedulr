@@ -68,7 +68,7 @@ class List extends React.Component {
       onPressItem={this._onPressItem}
     />
   );
-  shouldComponentUpdate = () => this.props.isFocused;
+  shouldComponentUpdate = () => this.props.isFocused();
 
   render() {
     const { moreList } = this.props.stores.appStyles;

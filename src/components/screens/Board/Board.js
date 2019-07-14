@@ -24,7 +24,7 @@ export default class Board extends React.Component {
     this.setState({ offsetY });
   }
 
-  shouldComponentUpdate = (nextProps) => nextProps.isFocused;
+  shouldComponentUpdate = (nextProps) => nextProps.navigation.isFocused();
 
   _eventsListRef = ref => this.eventsListRef = ref;
 
