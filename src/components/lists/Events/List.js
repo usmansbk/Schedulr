@@ -167,8 +167,7 @@ export default class List extends React.Component {
 
   _onRefresh = () => {
     this._bootstrap(this.state.events);
-    this.props.stores.deltaSync.skipBaseQuery &&
-      this.props.stores.deltaSync.shouldSync && this.props.fetchMore();
+    this.props.stores.deltaSync.skipBaseQuery && this.props.fetchMore();
   };
   
   _onEndReached = () => {
