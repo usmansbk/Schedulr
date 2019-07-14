@@ -19,7 +19,7 @@ export default inject("stores")(observer(
           fetchPolicy: skipBaseQuery ? 'cache-only' : 'cache-and-network',
           notifyOnNetworkStatusChange: true,
           onCompleted: () => {
-            props.stores.deltaSync.updateBaseLastSyncTimestamp();
+            !skipBaseQuery && props.stores.deltaSync.updateBaseLastSyncTimestamp();
           },
         };
       },
