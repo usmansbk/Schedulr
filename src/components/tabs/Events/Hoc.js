@@ -22,6 +22,9 @@ export default inject("stores")(observer(
           onCompleted: () => !skipBaseQuery && props.stores.deltaSync.updateBaseLastSyncTimestamp()
         };
       },
+      skip: props => {
+        return !props.navigation.isFocused();
+      },
       props: ({ data, ownProps}) => ({
         loading: data.loading || data.networkStatus === 4,
         events: data && data.listAllEvents && data.listAllEvents.items || [],
@@ -43,9 +46,9 @@ export default inject("stores")(observer(
       }),
       skip: props => {
         const skipBaseQuery = props.stores.deltaSync.skipBaseQuery;
-        // SimpleToast.show(`${skipBaseQuery ? 'Running' : 'Skipping'} deltaQuery`);
-        SimpleToast.show(`${props.navigation && props.navigation.isFocused()}`);
-        return !skipBaseQuery;
+        const isFocused = props.navigation.isFocused();
+        SimpleToast.show(`${isFocused && skipBaseQuery ? 'Running' : 'Skipping'} deltaQuery`);
+        return !isFocused || !skipBaseQuery;
       },
       props: ({ data, ownProps }) => ({
         refreshing: data.loading || data.networkStatus === 4,
