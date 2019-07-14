@@ -33,7 +33,7 @@ export default class DeltaSync {
   }
 
   @action reset() {
-    this.baseLastSyncTimestamp = Date.now() - (DEFAULT_UPPER_BOUND_TIME_MS * 2 );
+    this.baseLastSyncTimestamp = Date.now() - DEFAULT_UPPER_BOUND_TIME_MS;
     this.lastSyncTimestamp = Date.now();
     this.baseRefreshIntervalInSeconds = null;
   }
