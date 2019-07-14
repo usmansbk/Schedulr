@@ -31,6 +31,15 @@ export default inject("stores")(observer(
         nextToken: data && data.listAllEvents && data.listAllEvents.nextToken,
         error: data.error && !data.listAllEvents,
         onRefreshAll: () =>  data.refetch(),
+        fetchMore: () => data.fetchMore({
+          query: gql(listAllEventsDelta),
+          variables: {
+            lastSync: ownProps.stores.deltaSync.lastSync
+          },
+          updateQuery: () => {
+
+          }
+        }),
         ...ownProps
       })
     }),
