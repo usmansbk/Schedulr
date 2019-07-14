@@ -81,7 +81,11 @@ export default class List extends React.Component {
     />
     : null
   );
-  _renderEmptyList = () => <Empty error={this.props.error} loading={this.props.loading} />;
+  _renderEmptyList = () => <Empty
+    error={this.props.error && !this.state.events.length}
+    loading={this.props.loading}
+    onRefresh={this.props.onRefresh}
+  />;
   _renderSeparator = () => <Separator />;
   _renderSectionHeader = ({ section }) => <SectionHeader onPress={this._onPressSectionHeader} section={section} />;
   _renderSectionFooter = ({ section }) => <SectionFooter section={section} />;
