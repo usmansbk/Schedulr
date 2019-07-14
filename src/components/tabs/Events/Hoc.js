@@ -20,8 +20,6 @@ export default inject("stores")(observer(
           notifyOnNetworkStatusChange: true,
           onCompleted: () => {
             if (skipBaseQuery) {
-              props.stores.deltaSync.updateLastSyncTimestamp();
-            } else {
               props.stores.deltaSync.updateBaseLastSyncTimestamp();
             }
           },
@@ -42,6 +40,7 @@ export default inject("stores")(observer(
             lastSync: ownProps.stores.deltaSync.lastSync
           },
           updateQuery: (prev, { fetchMoreResult }) => {
+            props.stores.deltaSync.updateLastSyncTimestamp();
             if (!fetchMoreResult.listAllEventsDelta) return prev;
             const { listAllEventsDelta } = fetchMoreResult;
             return Object.assign({}, prev, {
