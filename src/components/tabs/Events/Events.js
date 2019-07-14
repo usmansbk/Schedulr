@@ -96,6 +96,7 @@ export default class Events extends React.Component {
       nextToken,
       error,
       onRefresh,
+      fetchMore,
       stores
     } = this.props;
 
@@ -107,6 +108,7 @@ export default class Events extends React.Component {
           navigation={this.props.navigation}
           hasPreviousEvents={Boolean(nextToken)}
           onRefresh={onRefresh}
+          fetchMore={fetchMore}
           error={error}
         />
         <FAB
