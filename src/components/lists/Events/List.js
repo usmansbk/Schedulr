@@ -188,6 +188,8 @@ export default class List extends React.Component {
 
   componentDidMount = () => {
     this._bootstrap(this.props.events);
+    const shouldSync = this.props.stores.deltaSync.shouldSync;
+    shouldSync && this.props.fetchMore();
   };
 
   _onScroll = (event) => {

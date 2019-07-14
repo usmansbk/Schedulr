@@ -18,6 +18,14 @@ export default class DeltaSync {
     this.baseLastSyncTimestamp = Date.now() - BUFFER_MILLISECONDS;
   }
 
+  @computed get shouldSync() {
+    const baseLastSyncTimestamp = this.baseLastSyncTimestamp;
+    const lastSyncTimestamp = this.lastSyncTimestamp;
+
+    return (baseLastSyncTimestamp > lastSyncTimestamp) && (
+      baseLastSyncTimestamp - lastSyncTimestamp) > MIN_UPPER_BOUND_TIME_MS;
+  }
+
   @computed get upperBoundTimeMs() {
     const baseRefreshIntervalInSeconds = this.baseRefreshIntervalInSeconds;
     const upperbound = baseRefreshIntervalInSeconds ? baseRefreshIntervalInSeconds * 1000 : DEFAULT_UPPER_BOUND_TIME_MS;

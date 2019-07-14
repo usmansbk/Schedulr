@@ -10,7 +10,6 @@ import sortBoards from 'lib/utils';
 import { boards } from 'lib/constants';
 
 const {
-  AVATAR_SIZE,
   ITEM_HEIGHT,
   SEPARATOR_HEIGHT,
 } = boards;
