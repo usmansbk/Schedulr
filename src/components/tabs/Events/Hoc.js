@@ -19,9 +19,7 @@ export default inject("stores")(observer(
           fetchPolicy: skipBaseQuery ? 'cache-only' : 'cache-and-network',
           notifyOnNetworkStatusChange: true,
           onCompleted: () => {
-            if (skipBaseQuery) {
-              props.stores.deltaSync.updateBaseLastSyncTimestamp();
-            }
+            props.stores.deltaSync.updateBaseLastSyncTimestamp();
           },
         };
       },
@@ -40,7 +38,7 @@ export default inject("stores")(observer(
             lastSync: ownProps.stores.deltaSync.lastSync
           },
           updateQuery: (prev, { fetchMoreResult }) => {
-            props.stores.deltaSync.updateLastSyncTimestamp();
+            ownProps.stores.deltaSync.updateLastSyncTimestamp();
             if (!fetchMoreResult.listAllEventsDelta) return prev;
             const { listAllEventsDelta } = fetchMoreResult;
             return Object.assign({}, prev, {
