@@ -34,7 +34,7 @@ export default class CustomImage extends React.Component {
 
   _renderPlaceholder = () => <View style={this._placeholder} />;
 
-  shouldComponentUpdate = () => false;
+  shouldComponentUpdate = (nextProps) => (this.props.uri !== nextProps.uri);
 
   render() {
     const { uri } = this.props;
