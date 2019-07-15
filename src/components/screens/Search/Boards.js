@@ -49,6 +49,7 @@ const ListHoc = compose(
     skip: props => !props.isConnected || !props.query,
     options: props => ({
       fetchPolicy: 'network-only',
+      notifyOnNetworkStatusChange: true,
       variables: {
         filter: {
           query: props.query,
