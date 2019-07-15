@@ -1,32 +1,13 @@
 import { graphql, compose } from 'react-apollo';
 import { withNavigationFocus } from 'react-navigation';
 import { inject, observer } from 'mobx-react';
-import moment from 'moment';
 import gql from 'graphql-tag';
 import Events from './Events';
 import { listAllEvents } from 'mygraphql/queries';
 import { listAllEventsDelta } from 'mygraphql/deltasync';
+import { filterEvents } from 'mygraphql/filter';
 
 const alias = 'withEventsContainer';
-
-const intervals = ["DAILY", "WEEKDAYS", "WEEKLY", "MONTHLY", "MONTHLY_DAY", "YEARLY"];
-
-const filter = {
-  "expression":  "#endAt >= :startOfDay OR ( (#repeat IN (:intervals) AND #untilAt >= :startOfDay) OR #forever = :forever ) AND #isCancelled = :isCancelled",
-  "expressionNames": JSON.stringify({
-    "#endAt"       : "endAt",
-    "#repeat"      : "repeat",
-    "#untilAt"     : "untilAt",
-    "#forever"     : "forever",
-    "#isCancelled" : "isCancelled"
-  }),
-  "expressionValues" :  JSON.stringify({
-    ":startOfDay"    : moment().startOf('D').valueOf(),
-    ":intervals"     : `${intervals}`,
-    ":forever"       : true,
-    ":isCancelled"   : false
-  })
-}
 
 export default inject("stores")(observer(
   compose(
@@ -39,7 +20,7 @@ export default inject("stores")(observer(
           fetchPolicy: skipBaseQuery ? 'cache-first' : 'cache-and-network',
           notifyOnNetworkStatusChange: true,
           variables: {
-            filter
+            filter: filterEvents
           },
           onCompleted: () => {
             !skipBaseQuery && props.stores.deltaSync.updateBaseLastSyncTimestamp();

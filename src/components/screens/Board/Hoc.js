@@ -1,12 +1,14 @@
 import { graphql, compose } from 'react-apollo';
 import { withNavigationFocus } from 'react-navigation';
 import gql from 'graphql-tag';
+import moment from 'moment';
 import Screen from './Board';
 import {
   getBoard,
   listAllEvents,
   listBoardEvents
 } from 'mygraphql/queries';
+import { filterEvents } from 'mygraphql/filter';
 
 const alias = 'withBoardEventsContainer';
 
@@ -51,7 +53,8 @@ export default compose(
       fetchPolicy: 'cache-and-network',
       notifyOnNetworkStatusChange: true,
       variables: {
-        id: props.id
+        id: props.id,
+        filter: filterEvents
       },
     }),
     props: ({ data, ownProps}) => ({
