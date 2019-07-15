@@ -65,8 +65,10 @@ export default compose(
         updateQuery: (prev, { fetchMoreResult }) => {
           if (!fetchMoreResult.listBoardEvents) return prev;
           return Object.assign({}, prev, {
-            listBoardEvents: Object.assign(prev.listBoardEvents, fetchMoreResult.listBoardEvents, {
-              items: [...prev.listBoardEvents.items, ...fetchMoreResult.listBoardEvents.items],
+            listBoardEvents: Object.assign({}, prev.listBoardEvents, fetchMoreResult.listBoardEvents, {
+              events: Object.assign({}, prev.listBoardEvents.events, fetchMoreResult.listBoardEvents.events, {
+                items: [...prev.listBoardEvents.events.items, fetchMoreResult.listBoardEvents.events.items]
+              })
             })
           })
         }
