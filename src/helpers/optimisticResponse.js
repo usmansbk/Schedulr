@@ -238,7 +238,7 @@ export const updateEventResponse = (input) => {
       __typename: 'Event',
       title: getValue(input.title),
       description: getValue(input.description),
-      updatedAt: moment().toISOString(),
+      updatedAt: moment().milliseconds(),
       venue: getValue(input.venue),
       board
     })
@@ -263,7 +263,7 @@ export const cancelEventResponse = (input) => {
     const { getEvent } = data;
     const isCancelled =  input.option === 'ALL' ? true : false;
     const cancelledDates = getEvent.cancelledDates || [];
-    const updatedAt = isCancelled ? moment().toISOString() : null;
+    const updatedAt = isCancelled ? moment().milliseconds() : null;
     if (!isCancelled) {
       cancelledDates.push(input.date);
     }

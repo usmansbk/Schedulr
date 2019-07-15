@@ -1,7 +1,6 @@
 import React from 'react';
 import moment from 'moment';
 import DateTimePicker from 'react-native-modal-datetime-picker';
-import { Text } from 'react-native-paper';
 import { View } from 'react-native';
 import { inject, observer } from 'mobx-react';
 import Button from './Picker';
@@ -13,7 +12,7 @@ export default class Input extends React.Component {
   state = {
     showDatePicker: false,
     showTimePicker: false,
-  }
+  };
 
   shouldComponentUpdate = (nextProps, nextState) => (
     (nextProps.value !== this.props.value) ||
@@ -27,13 +26,13 @@ export default class Input extends React.Component {
   _hidePicker = (name) => this.setState({[name]: false});
   _showPicker = (name) => this.setState({[name]: true});
   _handleConfirmDate = (date) => {
-    this.props.onChangeDate(date);
+    this.props.onChangeDate(moment(date).milliseconds());
     this._hidePicker('showDatePicker');
-  }
+  };
   _handleConfirmTime = (date) => {
-    this.props.onChangeDate(date);
+    this.props.onChangeDate(moment(date).milliseconds());
     this._hidePicker('showTimePicker');
-  }
+  };
 
   _showDatePicker = () => this._showPicker('showDatePicker');
   _showTimePicker = () => this._showPicker('showTimePicker');
