@@ -166,7 +166,7 @@ export default class List extends React.Component {
     }
   };
   
-  throttleFetchMore = throttle((skipBaseQuery) => skipBaseQuery && this.props.fetchMore(), 4000);
+  throttleFetchMore = throttle((skipBaseQuery) => skipBaseQuery && this.props.fetchMore(), 60000);
 
   _onRefresh = () => {
     this._bootstrap(this.state.events);
