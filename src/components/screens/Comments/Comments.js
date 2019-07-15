@@ -78,7 +78,7 @@ export default class Comments extends React.Component {
           handleSubmit={this._handleSubmit}
           targetName={targetName}
           cancelReply={cancelReply}
-          disabled={error}
+          disabled={error || (!comments.length && loading)}
         />
       </>
     );
