@@ -50,8 +50,8 @@ export default class Form extends React.Component {
       title: '',
       description: '',
       venue: '',
-      startAt: moment().milliseconds(),
-      endAt: moment().add(2, 'hours').milliseconds(),
+      startAt: moment().valueOf(),
+      endAt: moment().add(2, 'hours').valueOf(),
       allDay: false,
       eventType: 'Normal',
       repeat: frequency[0].id,
@@ -210,11 +210,11 @@ export default class Form extends React.Component {
                     
                     setFieldValue('startAt', date);
                     if (values.allDay) {
-                      setFieldValue('endAt', moment(date).endOf('day').milliseconds());
+                      setFieldValue('endAt', moment(date).endOf('day').valueOf());
                     } else {
                       const prevEndAt = Date.parse(values.endAt);
                       const prevDuration = Math.abs(prevEndAt - prevStartAt);
-                      const newEnd = moment(date).add(prevDuration, 'milliseconds').milliseconds();
+                      const newEnd = moment(date).add(prevDuration, 'valueOf').valueOf();
                       setFieldValue('endAt', newEnd);
                     }
                   }}
@@ -237,8 +237,8 @@ export default class Form extends React.Component {
                     const { allDay } = values;
                     setFieldValue('allDay', !allDay);
                     if (!allDay) {
-                      setFieldValue('startAt', moment(values.startAt).startOf('day').milliseconds());
-                      setFieldValue('endAt', moment(values.startAt).endOf('day').milliseconds());
+                      setFieldValue('startAt', moment(values.startAt).startOf('day').valueOf());
+                      setFieldValue('endAt', moment(values.startAt).endOf('day').valueOf());
                     }
                   }}
                 />
@@ -256,7 +256,7 @@ export default class Form extends React.Component {
                     setFieldValue('repeat', itemValue);
                     if (values.until) {
                       const recur = getRecurrence(itemValue);
-                      setFieldValue('until', moment(values.startAt).add(1, recur).milliseconds());
+                      setFieldValue('until', moment(values.startAt).add(1, recur).valueOf());
                     } else {
                       setFieldValue('forever',  (itemValue !== frequency[0].id));
                     }
@@ -299,7 +299,7 @@ export default class Form extends React.Component {
                             setFieldValue('until', null);
                           } else {
                             const recur = getRecurrence(values.repeat);
-                            setFieldValue('until', moment(values.startAt).add(2, recur).milliseconds());
+                            setFieldValue('until', moment(values.startAt).add(2, recur).valueOf());
                           }
                         }}
                       />

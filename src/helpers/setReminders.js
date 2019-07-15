@@ -194,17 +194,17 @@ function getRepeatType(repeat) {
   }
 }
 
-function getRepeatTime(milliseconds, repeat) {
+function getRepeatTime(valueOf, repeat) {
   let interval;
   switch(repeat) {
     case 'MONTHLY':
-      interval = moment(milliseconds).add(1, 'month');
+      interval = moment(valueOf).add(1, 'month');
       break;
     case 'YEARLY':
-      interval = moment(milliseconds).add(1, 'year');
+      interval = moment(valueOf).add(1, 'year');
       break;
     default:
-      interval = moment(milliseconds).add(15, 'minutes');
+      interval = moment(valueOf).add(15, 'minutes');
       break; 
   }
   return interval.toDate().getTime();

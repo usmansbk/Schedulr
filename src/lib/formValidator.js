@@ -32,7 +32,7 @@ export function isEventValid(event) {
   } else if (untilAt) {
     const rLength = repeatLength(event.repeat);
     const tail = moment.duration(rLength);
-    const secondTime = endAt.clone().add(tail, 'milliseconds');
+    const secondTime = endAt.clone().add(tail, 'valueOf');
     if (secondTime.isAfter(untilAt)) {
       Alert.alert("Until date", SHORT_UNTIL);
       validity = false;

@@ -35,9 +35,9 @@ export default class NewEventScreen extends React.Component {
 
     const currentBoard = boards && boards.find(board => board.id === boardId);
 
-    const targetDate = this.props.navigation.getParam('targetDate', moment().milliseconds())
-    const initialStartAt = moment(targetDate).milliseconds();
-    const initialEndAt = moment(targetDate).add(2, 'hours').milliseconds();
+    const targetDate = this.props.navigation.getParam('targetDate', moment().valueOf())
+    const initialStartAt = moment(targetDate).valueOf();
+    const initialEndAt = moment(targetDate).add(2, 'hours').valueOf();
     let newStart = startAt;
     let newEnd = endAt;
 
@@ -50,11 +50,11 @@ export default class NewEventScreen extends React.Component {
       const startMins = currentStart.minutes();
       const startHours = currentStart.hours();
       
-      newStart = moment().seconds(startSec).minutes(startMins).hours(startHours).milliseconds();
+      newStart = moment().seconds(startSec).minutes(startMins).hours(startHours).valueOf();
       if (isPastExact(newStart)) {
-        newStart = moment(newStart).add(1, 'day').milliseconds();
+        newStart = moment(newStart).add(1, 'day').valueOf();
       }
-      newEnd = moment(newStart).add(duration).milliseconds();
+      newEnd = moment(newStart).add(duration).valueOf();
     }
     const start = newStart || initialStartAt;
     const end = newEnd || initialEndAt;

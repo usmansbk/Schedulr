@@ -21,7 +21,7 @@ const filter = {
     "#isCancelled" : "isCancelled"
   }),
   "expressionValues" :  JSON.stringify({
-    ":startOfDay"    : moment().startOf('D').milliseconds(),
+    ":startOfDay"    : moment().startOf('D').valueOf(),
     ":intervals"     : `${intervals}`,
     ":forever"       : true,
     ":isCancelled"   : false
