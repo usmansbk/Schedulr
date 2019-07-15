@@ -37,7 +37,6 @@ const ListHoc = compose(
       fetchPolicy: 'cache-and-network'
     },
     props: ({ data, ownProps }) => ({
-      loading: data.loading,
       boards: data && data.listAllBoards && sortBoards(data.listAllBoards.items.filter(
         item => item.name.toLowerCase().includes(ownProps.query.toLowerCase())
       )),

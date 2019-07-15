@@ -58,7 +58,7 @@ export default compose(
       onRefresh: () => data.refetch(),
       fetchPastEvents: (nextToken, date) => data.fetchMore({
         variables: {
-          filter: filterPastEvents(date),
+          filter: filterPastEvents(moment()),
           nextToken,
           limit: PAGE_SIZE
         },

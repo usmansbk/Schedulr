@@ -36,7 +36,6 @@ const ListHoc = compose(
       fetchPolicy: 'cache-only'
     },
     props: ({ data, ownProps }) => ({
-      loading: data.loading,
       events: data && data.listAllEvents && sortStarredEvents(data.listAllEvents.items.filter(
         item => item.title.toLowerCase().includes(ownProps.query.toLowerCase()) ||
           item.eventType.toLowerCase().includes(ownProps.query.toLowerCase())
