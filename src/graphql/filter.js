@@ -17,4 +17,16 @@ export const filterEvents = {
     ":forever"       : true,
     ":isCancelled"   : false
   })
-}
+};
+
+export const filterPastEvents = {
+  "expression": "#endAt < :startOfDay OR #isCancelled = :isCancelled",
+  "expressionNames": JSON.stringify({
+    "endAt"        : "endAt",
+    "#isCancelled" : "isCancelled"
+  }),
+  "expressionValues" : JSON.stringify({
+    ":isCancelled"   : true,
+    ":startOfDay"    : moment().startOf('D').valueOf()
+  })
+};

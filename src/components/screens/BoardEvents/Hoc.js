@@ -2,9 +2,11 @@ import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
 import BoardEvents from './BoardEvents';
 import { getBoard, listAllEvents, listBoardEvents } from 'mygraphql/queries';
-import { filterEvents } from 'mygraphql/filter';
+import { filterEvents, filterPastEvents } from 'mygraphql/filter';
 
 const alias = 'withBoardEventsContainer';
+
+const PAGE_SIZE = 21;
 
 export default compose(
   graphql(gql(getBoard), {
@@ -54,6 +56,21 @@ export default compose(
       loadingEvents: data.loading || data.networkStatus === 4,
       loadingEventsError: data.error,
       onRefresh: () => data.refetch(),
+      fetchPastEvents: (nextToken) => data.fetchMore({
+        variables: {
+          filter: filterPastEvents,
+          nextToken,
+          limit: PAGE_SIZE
+        },
+        updateQuery: (prev, { fetchMoreResult }) => {
+          if (!fetchMoreResult.listBoardEvents) return prev;
+          return Object.assign({}, prev, {
+            listBoardEvents: Object.assign(prev.listBoardEvents, fetchMoreResult.listBoardEvents, {
+              items: [...prev.listBoardEvents.items, ...fetchMoreResult.listBoardEvents.items],
+            })
+          })
+        }
+      }),
       events: (
         data && data.listBoardEvents &&
         data.listBoardEvents.events &&
