@@ -12,7 +12,7 @@ export const filterEvents = {
     "#isCancelled" : "isCancelled"
   }),
   "expressionValues" :  JSON.stringify({
-    ":startOfDay"    : moment().startOf('D').valueOf(),
+    ":startOfDay"    : moment().startOf('day').subtract(1, 'day').valueOf(),
     ":intervals"     : `${intervals}`,
     ":forever"       : true,
     ":isCancelled"   : false

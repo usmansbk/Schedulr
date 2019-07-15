@@ -17,8 +17,8 @@ export default class AppState {
   @persist('list') @observable mutedList = [];
   @persist('list') @observable allowedList = [];
   @persist('object') @observable location = {
-    lon: false,
-    lat: false
+    lon: null,
+    lat: null
   };
   @persist('object') @observable prefs = {
     showPrivateBoardAlert: true,
@@ -91,8 +91,8 @@ export default class AppState {
     }
   }
   
-  @action requestLocation() {
-    const { lon, lat } = this.location || {};
+  @action requestLocation = async () => {
+    const { lon, lat } = this.location;
     if (!(lon && lat)){
       Alert.alert(
         'Location Permission',

@@ -23,8 +23,8 @@ class ExploreTab extends Component{
 
   renderItem = ({item}) => <Item />
 
-  componentDidMount = () => {
-    InteractionManager.runAfterInteractions(() => this.props.stores.appState.requestLocation());
+  componentDidMount = async () => {
+    InteractionManager.runAfterInteractions(this.props.stores.appState.requestLocation);
   };
 
   render(){

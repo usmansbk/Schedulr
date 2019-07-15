@@ -77,7 +77,7 @@ export default class Form extends React.Component {
     Alert.alert("What is a plan?", WHAT_IS_A_BOARD, buttons);
   }
 
-  componentDidMount = () => {
+  componentDidMount = async () => {
     InteractionManager.runAfterInteractions(this.props.stores.appState.requestLocation);
   }
 
