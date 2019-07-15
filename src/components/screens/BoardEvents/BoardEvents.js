@@ -50,6 +50,7 @@ export default class BoardEvents extends React.Component {
           events={events}
           loading={loadingEvents}
           error={loadingEventsError}
+          onRefresh={onRefresh}
         />
       </>
     );
