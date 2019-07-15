@@ -24,21 +24,21 @@ export default sortBoards = memoize((data) => {
 
 export const sortBy = (arr, key) => {
   return arr.sort((a, b) => {
-    return Date.parse(a[key]) - Date.parse(b[key]);
+    return a[key] - b[key];
   })
 };
 
 export const sortEvents = memoize((events, reverse) => {
   const sorted = events.sort((a, b) => {
     const reciprocal = reverse ? -1 : 1;
-    return (Date.parse(a.startAt) - Date.parse(b.startAt)) * reciprocal;
+    return (a.startAt - b.startAt) * reciprocal;
   });
   return sorted;
 });
 
 export const sortStarredEvents = memoize((events) => {
-  const pending = events.filter((a, b) => Date.parse(a.endAt) > Date.now());
-  const expired = events.filter((a, b) => Date.parse(a.endAt) < Date.now());
+  const pending = events.filter((a, b) => a.endAt > Date.now());
+  const expired = events.filter((a, b) => a.endAt < Date.now());
   const sorted = sortEvents(pending).concat(sortEvents(expired, true));
   return sorted;
 });

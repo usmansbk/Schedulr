@@ -97,7 +97,7 @@ const schdl = (event, before, settings) => {
     oneDay,
   } = before;
 
-  const start = Date.parse(event.startAt);
+  const start = event.startAt;
   const isStarted = (Date.now() > start);
   const isCancelled = event.isCancelled;
 

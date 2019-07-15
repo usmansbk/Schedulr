@@ -214,7 +214,6 @@ export default class Form extends React.Component {
                       setFieldValue('endAt', moment(date).endOf('day').valueOf());
                     } else {
                       const prevDuration = Math.abs(prevEndAt - prevStartAt);
-                      alert(`${prevStartAt} - ${prevEndAt} -${date} -${prevDuration}`);
                       const newEnd = moment(date).add(prevDuration, 'milliseconds').valueOf();
                       setFieldValue('endAt', newEnd);
                     }
