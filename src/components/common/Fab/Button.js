@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
 })
 
 const Fab = inject('stores')(observer(
-  ({ onPress, label, icon, small, stores, secondary }) => (
+  ({ onPress, label, icon, small, stores, secondary, disabled }) => (
     <FAB
       label={label}
       onPress={onPress}
@@ -32,6 +32,7 @@ const Fab = inject('stores')(observer(
       color="#fff"
       icon={icon}
       small={small || secondary}
+      disabled={disabled}
     />
   )
 ));

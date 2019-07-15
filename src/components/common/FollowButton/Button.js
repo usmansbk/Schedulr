@@ -15,7 +15,8 @@ export default class Button extends React.Component {
   render() {
     const {
       isFollowing,
-      small
+      small,
+      disabled
     } = this.props;
     const label = small ? undefined : (isFollowing ? "Following" : "Follow");
     return (
@@ -24,6 +25,7 @@ export default class Button extends React.Component {
         label={label}
         onPress={this._onPress}
         small={small}
+        disabled={disabled}
       />
     );
   }

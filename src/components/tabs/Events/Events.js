@@ -116,6 +116,7 @@ export default class Events extends React.Component {
             <FAB
               icon="edit"
               onPress={() => this.props.navigation.navigate('NewEvent')}
+              disabled={loading}
             />
           )
         }

@@ -19,6 +19,7 @@ export default class Boards extends React.Component {
         <FAB
           icon="add"
           onPress={() => this.props.navigation.navigate('NewBoard')}
+          disabled={this.props.loading}
         />
       </>
     )

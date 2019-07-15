@@ -17,9 +17,9 @@ export default class AppState {
   @persist('list') @observable mutedList = [];
   @persist('list') @observable allowedList = [];
   @persist('object') @observable location = {
-    lon: null,
-    lat: null
-  }
+    lon: false,
+    lat: false
+  };
   @persist('object') @observable prefs = {
     showPrivateBoardAlert: true,
   }
@@ -101,13 +101,13 @@ export default class AppState {
           { text: 'Ask me later' },
           { text: 'Yes', onPress: async () => await this.getLocation() },
         ],
-        { cancelable: true }
+        { cancelable: false }
       );
     }
   }
 
   @action getLocation = async () => {
-    requestLocationPermission().then(requestGranted => {
+    await requestLocationPermission().then(requestGranted => {
       if (requestGranted) {
         Geolocation.getCurrentPosition(
           (position) => {
