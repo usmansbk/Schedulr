@@ -26,7 +26,10 @@ export default class Avatar extends React.Component {
     uri={this.props.src}
   />;
 
-  shouldComponentUpdate = () => false;
+  shouldComponentUpdate = (nextProps) => {
+    return nextProps.src !== this.props.nextProps ||
+      nextProps.name !== this.props.name;
+  };
 
   render() {
     const {
