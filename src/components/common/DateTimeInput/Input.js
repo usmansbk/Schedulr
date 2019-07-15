@@ -69,16 +69,16 @@ export default class Input extends React.Component {
           </Button>
           <DateTimePicker
             mode="date"
-            date={new Date(value)}
-            minimumDate={noMin ? undefined : new Date()}
+            date={moment(value).toDate()}
+            minimumDate={noMin ? undefined : moment(value).toDate()}
             isVisible={this.state.showDatePicker}
             onCancel={this._hideDatePicker}
             onConfirm={this._handleConfirmDate}
           />
           <DateTimePicker
             mode="time"
-            date={new Date(value)}
-            minimumDate={new Date()}
+            date={moment(value).toDate()}
+            minimumDate={moment(value).toDate()}
             isVisible={this.state.showTimePicker}
             onCancel={this._hideTimePicker}
             onConfirm={this._handleConfirmTime}

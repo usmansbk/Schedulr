@@ -206,15 +206,16 @@ export default class Form extends React.Component {
                   disabled={values.allDay}
                   value={values.startAt}
                   onChangeDate={(date) => {
-                    const prevStartAt = Date.parse(values.startAt);
-                    
+                    const prevStartAt = values.startAt;
+                    const prevEndAt = values.endAt;
+
                     setFieldValue('startAt', date);
                     if (values.allDay) {
                       setFieldValue('endAt', moment(date).endOf('day').valueOf());
                     } else {
-                      const prevEndAt = Date.parse(values.endAt);
                       const prevDuration = Math.abs(prevEndAt - prevStartAt);
-                      const newEnd = moment(date).add(prevDuration, 'valueOf').valueOf();
+                      alert(`${prevStartAt} - ${prevEndAt} -${date} -${prevDuration}`);
+                      const newEnd = moment(date).add(prevDuration, 'milliseconds').valueOf();
                       setFieldValue('endAt', newEnd);
                     }
                   }}
