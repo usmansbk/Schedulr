@@ -67,7 +67,7 @@ export default compose(
           return Object.assign({}, prev, {
             listBoardEvents: Object.assign({}, prev.listBoardEvents, fetchMoreResult.listBoardEvents, {
               events: Object.assign({}, prev.listBoardEvents.events, fetchMoreResult.listBoardEvents.events, {
-                items: [...prev.listBoardEvents.events.items, fetchMoreResult.listBoardEvents.events.items]
+                items: [...prev.listBoardEvents.events.items, ...fetchMoreResult.listBoardEvents.events.items]
               })
             })
           })
