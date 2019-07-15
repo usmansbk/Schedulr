@@ -16,7 +16,7 @@ export default inject("stores")(observer(
       options: props => {
         const skipBaseQuery = props.stores.deltaSync.skipBaseQuery;
         return {
-          fetchPolicy: skipBaseQuery ? 'cache-only' : 'cache-and-network',
+          fetchPolicy: skipBaseQuery ? 'cache-first' : 'cache-and-network',
           notifyOnNetworkStatusChange: true,
           onCompleted: () => {
             !skipBaseQuery && props.stores.deltaSync.updateBaseLastSyncTimestamp();

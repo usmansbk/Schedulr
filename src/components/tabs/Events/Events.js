@@ -111,10 +111,14 @@ export default class Events extends React.Component {
           fetchMore={fetchMore}
           error={error}
         />
-        <FAB
-          icon="edit"
-          onPress={() => this.props.navigation.navigate('NewEvent')}
-        />
+        {
+          !(Boolean(error) && !events.length) && (
+            <FAB
+              icon="edit"
+              onPress={() => this.props.navigation.navigate('NewEvent')}
+            />
+          )
+        }
       </>
     )
   }

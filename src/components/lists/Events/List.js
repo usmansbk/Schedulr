@@ -66,6 +66,7 @@ export default class List extends React.Component {
   _renderHeader = () => (
     this.state.sections.length ?
     <Header
+      hide={this.props.error || !this.state.events.length}
       hasPrev={this.state.beforeDate}
       loading={this.state.loadingPrev}
       onPress={this._onLoadPrevious}
