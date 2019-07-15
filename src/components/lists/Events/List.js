@@ -2,6 +2,7 @@ import React from 'react';
 import { RefreshControl } from 'react-native';
 import { SectionList } from 'react-navigation';
 import { inject, observer } from 'mobx-react';
+import throttle from 'lodash.throttle';
 import moment from 'moment';
 import sectionListGetItemLayout from 'sectionlist-get-itemlayout';
 import Header from './Header';
@@ -164,10 +165,12 @@ export default class List extends React.Component {
       });
     }
   };
+  
+  throttleFetchMore = throttle((skipBaseQuery) => skipBaseQuery && this.props.fetchMore(), 4000);
 
   _onRefresh = () => {
     this._bootstrap(this.state.events);
-    this.props.stores.deltaSync.skipBaseQuery && this.props.fetchMore();
+    this.throttleFetchMore(this.props.stores.deltaSync.skipBaseQuery);
   };
   
   _onEndReached = () => {
