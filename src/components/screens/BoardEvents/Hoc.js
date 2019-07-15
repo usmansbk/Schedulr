@@ -73,11 +73,8 @@ export default compose(
           })
         }
       }),
-      events: (
-        data && data.listBoardEvents &&
-        data.listBoardEvents.events &&
-        data.listBoardEvents.events.items
-      ),
+      events: data && data.listBoardEvents && data.listBoardEvents.events && data.listBoardEvents.events.items,
+      nextToken: data && data.listBoardEvents && data.listBoardEvents.events && data.listBoardEvents.events.nextToken,
       ...ownProps
     }) 
   })
