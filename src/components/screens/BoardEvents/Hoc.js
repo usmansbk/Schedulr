@@ -53,9 +53,7 @@ export default compose(
     props: ({ data, ownProps}) => ({
       loadingEvents: data.loading || data.networkStatus === 4,
       loadingEventsError: data.error,
-      onRefresh: async () => {
-        await data.refetch();
-      },
+      onRefresh: () => data.refetch(),
       events: (
         data && data.listBoardEvents &&
         data.listBoardEvents.events &&

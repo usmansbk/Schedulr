@@ -18,7 +18,7 @@ export default compose(
     loading: data.loading || data.networkStatus === 4,
     boards: data && data.listAllBoards && data.listAllBoards.items || [],
     error: data.error && !data.listAllBoards,
-    onRefresh: async () => await data.refetch(),
+    onRefresh: () => data.refetch(),
     ...ownProps
   })
 }))(Boards);

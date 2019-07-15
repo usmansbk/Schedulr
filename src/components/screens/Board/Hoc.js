@@ -1,7 +1,6 @@
 import { graphql, compose } from 'react-apollo';
 import { withNavigationFocus } from 'react-navigation';
 import gql from 'graphql-tag';
-import moment from 'moment';
 import Screen from './Board';
 import {
   getBoard,
