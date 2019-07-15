@@ -6,7 +6,7 @@ import { inject, observer } from 'mobx-react';
 export default inject('stores')(observer(
   ({ profile, error, stores }) => {
     let title = "Your board is empty";
-    let caption = "Follow or create a schedule";
+    let caption = "Follow or create a plan";
     if (profile) {
       title = "No schedule";
       caption = "";
