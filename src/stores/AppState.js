@@ -96,10 +96,10 @@ export default class AppState {
     if (!(lon && lat)){
       Alert.alert(
         'Location Permission',
-        "Schdlr needs access to your location for better results.",
+        "Schdlr needs access to your location for better experience.",
         [
           { text: 'Ask me later' },
-          { text: 'Yes', onPress: async () => await this.getLocation() },
+          { text: 'Yes', onPress: this.getLocation },
         ],
         { cancelable: false }
       );
