@@ -93,7 +93,7 @@ export default class AppState {
   
   @action requestLocation() {
     const { lon, lat } = this.location || {};
-    if ((lon === null) || (lat === null)) {
+    if (!(lon && lat)){
       Alert.alert(
         'Location Permission',
         "Schdlr needs access to your location for better results.",
