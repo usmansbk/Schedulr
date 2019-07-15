@@ -102,7 +102,7 @@ export default class Board extends React.Component {
           )
         }
         {
-          !isOffline && isAuthor && (status !== BOARD_CLOSED ) && (
+          !(Boolean(error) && events.length) && !isOffline && isAuthor && (status !== BOARD_CLOSED ) && (
             <Fab
               icon="edit"
               onPress={this._navigateToNewEvent}

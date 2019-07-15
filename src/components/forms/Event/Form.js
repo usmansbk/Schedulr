@@ -74,7 +74,7 @@ export default class Form extends React.Component {
         {text: "Ok", onPress: () => null }
       ];
     }
-    Alert.alert("What is a board?", WHAT_IS_A_BOARD, buttons);
+    Alert.alert("What is a plan?", WHAT_IS_A_BOARD, buttons);
   }
 
   componentDidMount = () => {
@@ -333,18 +333,18 @@ export default class Form extends React.Component {
               <Divider />
               <View style={styles.pickerSpacing}>
                 <View style={styles.row}>
-                  <Text style={styles.radioText}>Schedule</Text>
+                  <Text style={styles.radioText}>Plan</Text>
                   <Text style={styles.radioText} onPress={this._boardHelp}>Help</Text>
                 </View>
                 <Picker
-                  prompt="Select a schedule"
+                  prompt="Select a plan"
                   selectedValue={values.boardId}
                   style={styles.picker}
                   enabled={!locked }
                   itemStyle={styles.pickerItem}
                   onValueChange={itemValue => setFieldValue('boardId', itemValue)}
                 >
-                  <Picker.Item label={(boards.length === 0) ? "No schedule" : "Select a schedule"} value="" />
+                  <Picker.Item label={(boards.length === 0) ? "No schedule" : "Add to a plan"} value="" />
                   {
                     boards.map(board => (
                       <Picker.Item key={board.id} label={board.name} value={board.id} />
