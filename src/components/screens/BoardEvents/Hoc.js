@@ -56,9 +56,9 @@ export default compose(
       loadingEvents: data.loading || data.networkStatus === 4,
       loadingEventsError: data.error,
       onRefresh: () => data.refetch(),
-      fetchPastEvents: (nextToken) => data.fetchMore({
+      fetchPastEvents: (nextToken, date) => data.fetchMore({
         variables: {
-          filter: filterPastEvents,
+          filter: filterPastEvents(date),
           nextToken,
           limit: PAGE_SIZE
         },
