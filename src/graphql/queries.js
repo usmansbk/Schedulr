@@ -146,7 +146,7 @@ export const getComment = `query GetComment($id: ID!) {
   }
 }`;
 
-export const listAllEvents = `query ListAllEvents($filter: TableEventFilterInput) {
+export const listAllEvents = `query ListAllEvents($filter: QueryFilterInput) {
   listAllEvents(filter: $filter) @connection(key: "listAllEvents") {
     nextToken
     items {
@@ -243,7 +243,7 @@ export const listAllBoards = `query ListAllBoards {
 }
 `;
 
-export const listBoardEvents = `query ListBoardEvents($id: ID!, $limit: Int, $nextToken: String, $filter: TableEventFilterInput) {
+export const listBoardEvents = `query ListBoardEvents($id: ID!, $limit: Int, $nextToken: String, $filter: QueryFilterInput) {
   listBoardEvents: getBoard(id: $id) {
     id
     events(limit: $limit, nextToken: $nextToken, filter: $filter) {
