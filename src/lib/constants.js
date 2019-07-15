@@ -7,7 +7,7 @@ export const CIRCLE = '●';
 export const INFO = "This schedule's content, including its followers and event details, are visible to the public.";
 export const PRIVATE_INFO = "This schedule's content, including its followers and event details, are not visible to the public. Share invite link to add followers.";
 
-export const WHAT_IS_A_BOARD = "A plan is a group of releted events or tasks. It helps people find their interested events.";
+export const WHAT_IS_A_BOARD = "A plan is a group of related events or tasks. It helps people find their interested events.";
 export const BOARD_TIP = "Recommended";
 
 export const COMMENTS_LIMIT = 15;
