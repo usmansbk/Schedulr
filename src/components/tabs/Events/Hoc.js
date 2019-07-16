@@ -42,14 +42,16 @@ export default inject("stores")(observer(
             lastSync: ownProps.stores.deltaSync.lastSync
           },
           updateQuery: (prev, { fetchMoreResult }) => {
-            ownProps.stores.deltaSync.updateLastSyncTimestamp();
-            if (!fetchMoreResult.listAllEventsDelta) return prev;
-            const { listAllEventsDelta } = fetchMoreResult;
-            return Object.assign({}, prev, {
-              listAllEvents: Object.assign({}, prev.listAllEvents, {
-                items: [...prev.items, ...listAllEventsDelta.items]
-              })
-            });
+            alert(JSON.stringify(fetchMoreResult));
+            return prev;
+            // ownProps.stores.deltaSync.updateLastSyncTimestamp();
+            // if (!fetchMoreResult.listAllEventsDelta) return prev;
+            // const { listAllEventsDelta } = fetchMoreResult;
+            // return Object.assign({}, prev, {
+            //   listAllEvents: Object.assign({}, prev.listAllEvents, {
+            //     items: [...prev.items, ...listAllEventsDelta.items]
+            //   })
+            // });
           }
         }),
         ...ownProps
