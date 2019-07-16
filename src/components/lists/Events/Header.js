@@ -4,10 +4,13 @@ import {
   ActivityIndicator,
   Caption
 } from 'react-native-paper';
+import moment from 'moment';
+import 'twix';
 import { inject, observer } from 'mobx-react';
 
 export default inject('stores')(observer(
   ({ onPress, loading, stores, hasPrev, hide }) => {
+    const headerText = moment(hasPrev).twix(hasPrev, { allDay: true }).format();
     if (hide) return null;
     
     return loading ? (
@@ -23,7 +26,7 @@ export default inject('stores')(observer(
       >
         <Caption style={stores.appStyles.eventsList.footerText}>
           {
-            hasPrev ? "Load previous" : "No previous events"
+            hasPrev ? `Before ${headerText}` : "No previous events"
           }
         </Caption>
       </TouchableRipple>
