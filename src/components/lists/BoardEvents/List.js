@@ -25,6 +25,10 @@ const {
 @inject('stores')
 @observer
 class List extends Component {
+  state = {
+    loadingPrev: false,
+    hasPrev: true
+  };
   static defaultProps = {
     events: [],
     loading: false,
@@ -37,15 +41,18 @@ class List extends Component {
       index
     }
   );
-  shouldComponentUpdate = (nextProps) => { 
+  shouldComponentUpdate = (nextProps, nextState) => { 
     return (nextProps.navigation.isFocused() &&
       (
         nextProps.loading !== this.props.loading ||
-        eventsDiff(this.props.events, nextProps.events).length
+        eventsDiff(this.props.events, nextProps.events).length ||
+        this.state.loadingPrev !== nextState.loadingPrev ||
+        this.state.hasPrev !== nextState.hasPrev
       )
     );
   };
-  _onPressItem = (id, refStartAt, refEndAt) => this.props.navigation.navigate('EventDetails', { id, refStartAt, refEndAt });
+  _onPressItem = (id, refStartAt, refEndAt) => (
+    this.props.navigation.navigate('EventDetails', { id, refStartAt, refEndAt }));
   _keyExtractor = (item) => String(item.id);
 
   _renderItem = ({ item: {
@@ -79,7 +86,18 @@ class List extends Component {
   _renderFooter = () => <Footer
     visible={this.props.events.length}
     onPress={this._fetchPastEvents}
+    loading={this.props.loading && this.state.loadingPrev}
+    hasPrev={this.state.hasPrev}
   />;
+
+  _fetchPastEvents = async () => {
+    const { loading, nextToken, fetchPastEvents } = this.props;
+    if (fetchPastEvents && !loading) {
+      this.setState({ loadingPrev: true });
+      await fetchPastEvents(nextToken);
+      this.setState({ loadingPrev: false });
+    }
+  };
 
   render() {
     const {
@@ -88,17 +106,18 @@ class List extends Component {
       onRefresh,
       stores
     } = this.props;
+    const { loadingPrev } = this.state;
 
     const colors = stores.themeStore.colors;
     const styles = stores.appStyles.boardEvents;
 
     return (
       <FlatList
-        refreshing={loading}
+        refreshing={loading && !loadingPrev}
         refreshControl={
           <RefreshControl
             onRefresh={onRefresh}
-            refreshing={loading}
+            refreshing={loading && !loadingPrev}
             colors={[colors.primary]}
             progressBackgroundColor={colors.bg}
           />

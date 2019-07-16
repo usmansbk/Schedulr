@@ -38,6 +38,23 @@ export default compose(
         data && data.listAllEvents && data.listAllEvents.items && 
         data.listAllEvents.items.filter(event => event.board && (event.board.id === ownProps.id))
       ),
+      fetchPastEvents: (nextToken, date) => data.fetchMore({
+        query: gql(listBoardEvents),
+        variables: {
+          id: ownProps.id,
+          filter: filterPastEvents(date || moment()),
+          nextToken,
+          limit: PAGE_SIZE
+        },
+        updateQuery: (prev, { fetchMoreResult }) => {
+          if (!fetchMoreResult.listBoardEvents) return prev;
+          return Object.assign({}, prev, {
+            listAllEvents: Object.assign({}, prev.listAllEvents, {
+              items: [...prev.listAllEvents.items, ...fetchMoreResult.listBoardEvents.events.items]
+            })
+          })
+        }
+      }),
       ...ownProps
     })
   }),

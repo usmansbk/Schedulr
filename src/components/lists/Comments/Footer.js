@@ -10,18 +10,22 @@ import { inject, observer } from 'mobx-react';
 export default inject('stores')(observer(
   ({ hide, loading, onPress, stores, hasMore }) => {
     if (hide) return null;
-    return (loading) ? <ActivityIndicator style={{ margin: 8 }} animating size="small" /> : (
+    return (
       <TouchableRipple
-        disabled={!hasMore}
+        disabled={!hasMore || loading}
         onPress={onPress}
         style={stores.appStyles.eventsList.footerContainer}
       >
         <View style={stores.appStyles.eventsList.footerContent}>
-          <Caption style={stores.appStyles.eventsList.footerText}>
-            {
-              hasMore ? "Load more comments" : "No more comments"
-            }
-          </Caption>
+        {
+          loading ? <ActivityIndicator  size="small" /> : (
+            <Caption style={stores.appStyles.eventsList.footerText}>
+              {
+                hasMore ? "Load more comments" : "No more comments"
+              }
+            </Caption>
+          )
+        }
         </View>
       </TouchableRipple>
     );

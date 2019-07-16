@@ -10,23 +10,28 @@ import { inject, observer } from 'mobx-react';
 export default inject('stores')(observer(
   ({ loading, onPress, stores, hasPrev, hide }) => {
     if (hide) return null;
-    return loading ? (
-    <ActivityIndicator
-      animating
-      size="small"
-      color={stores.themeStore.colors.primary_light}
-    /> ) : (
+    return (
       <TouchableRipple
-        disabled={!hasPrev}
+        disabled={!hasPrev || loading}
         onPress={onPress}
         style={stores.appStyles.eventsList.footerContainer}
       >
         <View style={stores.appStyles.eventsList.footerContent}>
-          <Caption style={stores.appStyles.eventsList.footerText}>
-            {
-              hasPrev ? "Fetch past events" : "No more events"
-            }
-          </Caption>
+          {
+            loading ? (
+              <ActivityIndicator
+                animating
+                size="small"
+                color={stores.themeStore.colors.primary_light}
+              />
+            ) : (
+              <Caption style={stores.appStyles.eventsList.footerText}>
+                {
+                  hasPrev ? "Fetch past events" : "No more events"
+                }
+              </Caption>
+            )
+          }
         </View>
       </TouchableRipple>
     )
