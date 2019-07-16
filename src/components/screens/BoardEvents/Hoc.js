@@ -46,8 +46,7 @@ export default compose(
         variables: {
           id: ownProps.id,
           filter: filterPastEvents(date),
-          nextToken,
-          limit: PAGE_SIZE
+          nextToken
         },
         updateQuery: (prev, { fetchMoreResult }) => {
           if (!fetchMoreResult.listBoardEvents || !fetchMoreResult.listBoardEvents.events.items.length) {
