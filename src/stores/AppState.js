@@ -123,7 +123,7 @@ export default class AppState {
           },
           (error) => {
             logger.debug(error);
-            SimpleToast.show("Failed to use location", SimpleToast.SHORT);
+            throw error;
           },
           {
             enableHighAccuracy: true,
@@ -132,7 +132,7 @@ export default class AppState {
           }
         );
       }
-    });
+    }).catch(error => SimpleToast.show(error.message));
   };
 
   @action toggleMute = (id, isMuted) => {
