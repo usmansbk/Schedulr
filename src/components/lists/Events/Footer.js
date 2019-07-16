@@ -26,7 +26,7 @@ export default inject('stores')(observer(
         <View style={stores.appStyles.eventsList.footerContent}>
           <Caption style={stores.appStyles.eventsList.footerText}>
             {
-              hasMore ? `After ${moment(hasMore).twix(hasPrev, { allDay: true }).format()}` : "No more events"
+              hasMore ? `After ${moment(hasMore).twix(hasMore, { allDay: true }).format()}` : "No more events"
             }
           </Caption>
         </View>
