@@ -42,7 +42,7 @@ export default compose(
         query: gql(listBoardEvents),
         variables: {
           id: ownProps.id,
-          filter: filterPastEvents(date || moment()),
+          filter: filterPastEvents(date),
           nextToken,
           limit: PAGE_SIZE
         },
