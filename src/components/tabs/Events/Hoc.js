@@ -2,6 +2,7 @@ import { graphql, compose } from 'react-apollo';
 import { withNavigationFocus } from 'react-navigation';
 import { inject, observer } from 'mobx-react';
 import gql from 'graphql-tag';
+import differenceWith from 'lodash.differencewith';
 import Events from './Events';
 import { listAllEvents } from 'mygraphql/queries';
 import { listAllEventsDelta } from 'mygraphql/deltasync';
@@ -43,15 +44,34 @@ export default inject("stores")(observer(
           },
           updateQuery: (prev, { fetchMoreResult: { listAllEventsDelta } }) => {
             ownProps.stores.deltaSync.updateLastSyncTimestamp();
-            alert(JSON.stringify(listAllEventsDelta));
-            return prev;
-            // if (!fetchMoreResult.listAllEventsDelta) return prev;
-            // const { listAllEventsDelta } = fetchMoreResult;
-            // return Object.assign({}, prev, {
-            //   listAllEvents: Object.assign({}, prev.listAllEvents, {
-            //     items: [...prev.items, ...listAllEventsDelta.items]
-            //   })
-            // });
+            if (!listAllEventsDelta || !listAllEventsDelta.items.length) return prev;
+            const { items } = listAllEventsDelta;
+            const { listAllEvents } = prev;
+
+            // get deleted ids
+            const deletedIds = items.filter(item => item.aws_ds === 'DELETE').map(item => item.id);
+
+            // filter deleted items from listAllEvents.items
+            const filteredDeletedItems = listAllEvents.items.filter(item => !deletedIds.includes(item.id));
+
+            // remove aws_ds field from listAllEventsDelta.items
+            const removed_aws_ds_field = filteredDeletedItems.map(item => {
+              const newItem = Object.assign({}, item);
+              delete newItem.aws_ds;
+              return newItem;
+            });
+
+            // get new items in listAllEventsDelta.items
+            const new_items = differenceWith(listAllEvents.items, removed_aws_ds_field, (prev, next) => prev.id === next.id);
+
+            // add new items to listAllEvents.items
+            const added_new_items_to_prev = [...listAllEvents.items, ...new_items];
+            
+            return Object.assign({}, prev, {
+              listAllEvents: Object.assign({}, prev.listAllEvents, {
+                items: added_new_items_to_prev
+              })
+            });
           }
         }),
         ...ownProps
