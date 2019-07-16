@@ -22,6 +22,7 @@ export default class BoardEvents extends React.Component {
       loadingEventsError,
       onPress,
       onRefresh,
+      fetchPastEvents,
       stores
     } = this.props;
     if (loading) return <Loading />;
@@ -51,6 +52,7 @@ export default class BoardEvents extends React.Component {
           loading={loadingEvents}
           error={loadingEventsError}
           onRefresh={onRefresh}
+          fetchPastEvents={fetchPastEvents}
         />
       </>
     );
