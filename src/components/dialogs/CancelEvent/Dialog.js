@@ -6,6 +6,7 @@ import {
   Checkbox,
   List
 } from 'react-native-paper';
+import moment from 'moment';
 import { inject, observer } from 'mobx-react';
 
 @inject('stores')
@@ -45,7 +46,7 @@ export default class CancelEvent extends React.Component {
     onSubmit({
       id,
       option: this.state.checked,
-      date
+      date: date ? moment(date).valueOf() : null
     }).catch(() => {});
     handleDismiss();
     this.setState({ loading: false });

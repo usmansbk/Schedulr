@@ -41,10 +41,10 @@ export default inject("stores")(observer(
           variables: {
             lastSync: ownProps.stores.deltaSync.lastSync
           },
-          updateQuery: (prev, { fetchMoreResult }) => {
-            alert(JSON.stringify(fetchMoreResult));
+          updateQuery: (prev, { fetchMoreResult: { listAllEventsDelta } }) => {
+            ownProps.stores.deltaSync.updateLastSyncTimestamp();
+            alert(JSON.stringify(listAllEventsDelta));
             return prev;
-            // ownProps.stores.deltaSync.updateLastSyncTimestamp();
             // if (!fetchMoreResult.listAllEventsDelta) return prev;
             // const { listAllEventsDelta } = fetchMoreResult;
             // return Object.assign({}, prev, {
