@@ -13,7 +13,7 @@ export default class GoogleOAuth {
       if (isSignedIn) {
         logger.debug('refreshing the google access token');
         GoogleSignin.signInSilently()
-          .then(async (authResponse) => {
+          .then((authResponse) => {
             const { idToken, accessTokenExpirationDate } = authResponse;
             res({
               token: idToken,
