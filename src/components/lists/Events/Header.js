@@ -10,7 +10,6 @@ import { inject, observer } from 'mobx-react';
 
 export default inject('stores')(observer(
   ({ onPress, loading, stores, hasPrev, hide }) => {
-    const headerText = moment(hasPrev).twix(hasPrev, { allDay: true }).format();
     if (hide) return null;
     
     return loading ? (
@@ -26,7 +25,7 @@ export default inject('stores')(observer(
       >
         <Caption style={stores.appStyles.eventsList.footerText}>
           {
-            hasPrev ? `Before ${headerText}` : "No previous events"
+            hasPrev ? `Before ${moment(hasPrev).twix(hasPrev, { allDay: true }).format()}` : "No previous events"
           }
         </Caption>
       </TouchableRipple>

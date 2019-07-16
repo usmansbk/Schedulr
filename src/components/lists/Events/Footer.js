@@ -6,6 +6,8 @@ import {
 } from 'react-native-paper';
 import { View } from 'react-native';
 import { inject, observer } from 'mobx-react';
+import moment from 'moment';
+import 'twix';
 
 export default inject('stores')(observer(
   ({ loading, onPress, stores, hasMore, hide }) => {
@@ -24,7 +26,7 @@ export default inject('stores')(observer(
         <View style={stores.appStyles.eventsList.footerContent}>
           <Caption style={stores.appStyles.eventsList.footerText}>
             {
-              hasMore ? "Load more" : "No more events"
+              hasMore ? `After ${moment(hasMore).twix(hasPrev, { allDay: true }).format()}` : "No more events"
             }
           </Caption>
         </View>
