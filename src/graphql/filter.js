@@ -27,6 +27,6 @@ export const filterPastEvents = (date) => ({
   }),
   "expressionValues" : JSON.stringify({
     ":isCancelled"   : true,
-    ":startOfDay"    : moment().startOf('day').valueOf()
+    ":startOfDay"    : moment(date).startOf('day').valueOf()
   })
 });

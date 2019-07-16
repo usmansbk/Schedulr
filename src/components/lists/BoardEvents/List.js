@@ -13,8 +13,7 @@ import {
   getStatus,
   getEventType
 } from 'lib/parseItem';
-import { sortStarredEvents, eventsDiff } from 'lib/utils';
-import { getEvents } from 'lib/calendr';
+import { eventsDiff } from 'lib/utils';
 import { board_events } from 'lib/constants';
 
 const {
@@ -91,10 +90,12 @@ class List extends Component {
   />;
 
   _fetchPastEvents = async () => {
-    const { loading, nextToken, fetchPastEvents } = this.props;
+    const { loading, nextToken, fetchPastEvents, events } = this.props;
     if (fetchPastEvents && !loading) {
+      const lastEvent = events[events.length - 1];
+      const lastDate = lastEvent && lastEvent.endAt;
       this.setState({ loadingPrev: true });
-      await fetchPastEvents(nextToken);
+      await fetchPastEvents(nextToken, lastDate);
       this.setState({ loadingPrev: false });
     }
   };
@@ -129,7 +130,7 @@ class List extends Component {
         getItemLayout={this._getItemLayout}
         ItemSeparatorComponent={this._renderSeparator}
         keyExtractor={this._keyExtractor}
-        data={sortStarredEvents(getEvents(events))}
+        data={events}
         renderItem={this._renderItem}
         ListEmptyComponent={this._renderEmptyList}
         ListFooterComponent={this._renderFooter}

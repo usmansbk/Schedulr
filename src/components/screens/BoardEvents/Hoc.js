@@ -1,8 +1,11 @@
 import { graphql, compose } from 'react-apollo';
+import SimpleToast from 'react-native-simple-toast';
 import gql from 'graphql-tag';
 import BoardEvents from './BoardEvents';
 import { getBoard, listAllEvents, listBoardEvents } from 'mygraphql/queries';
 import { filterEvents, filterPastEvents } from 'mygraphql/filter';
+import { sortStarredEvents } from 'lib/utils';
+import { getEvents } from 'lib/calendr';
 
 const alias = 'withBoardEventsContainer';
 
@@ -36,7 +39,7 @@ export default compose(
       loadingEventsError: data.error,
       events: (
         data && data.listAllEvents && data.listAllEvents.items && 
-        data.listAllEvents.items.filter(event => event.board && (event.board.id === ownProps.id))
+        sortStarredEvents(getEvents(data.listAllEvents.items.filter(event => event.board && (event.board.id === ownProps.id))))
       ),
       fetchPastEvents: (nextToken, date) => data.fetchMore({
         query: gql(listBoardEvents),
@@ -47,7 +50,10 @@ export default compose(
           limit: PAGE_SIZE
         },
         updateQuery: (prev, { fetchMoreResult }) => {
-          if (!fetchMoreResult.listBoardEvents) return prev;
+          if (!fetchMoreResult.listBoardEvents || !fetchMoreResult.listBoardEvents.events.items.length) {
+            SimpleToast.show("No past events", SimpleToast.SHORT);
+            return prev;
+          }
           return Object.assign({}, prev, {
             listAllEvents: Object.assign({}, prev.listAllEvents, {
               items: [...prev.listAllEvents.items, ...fetchMoreResult.listBoardEvents.events.items]
@@ -90,7 +96,7 @@ export default compose(
           })
         }
       }),
-      events: data && data.listBoardEvents && data.listBoardEvents.events && data.listBoardEvents.events.items,
+      events: data && data.listBoardEvents && data.listBoardEvents.events && sortStarredEvents(getEvents(data.listBoardEvents.events.items)),
       nextToken: data && data.listBoardEvents && data.listBoardEvents.events && data.listBoardEvents.events.nextToken,
       ...ownProps
     }) 
