@@ -86,7 +86,10 @@ export default compose(
           limit: PAGE_SIZE
         },
         updateQuery: (prev, { fetchMoreResult }) => {
-          if (!fetchMoreResult.listBoardEvents) return prev;
+          if (!fetchMoreResult.listBoardEvents || !fetchMoreResult.listBoardEvents.events.items.length) {
+            SimpleToast.show("No past events", SimpleToast.SHORT);
+            return prev;
+          }
           return Object.assign({}, prev, {
             listBoardEvents: Object.assign({}, prev.listBoardEvents, fetchMoreResult.listBoardEvents, {
               events: Object.assign({}, prev.listBoardEvents.events, fetchMoreResult.listBoardEvents.events, {
