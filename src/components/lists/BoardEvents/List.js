@@ -132,6 +132,7 @@ class List extends Component {
         keyExtractor={this._keyExtractor}
         data={events}
         renderItem={this._renderItem}
+        onEndReached={this._fetchPastEvents}
         ListEmptyComponent={this._renderEmptyList}
         ListFooterComponent={this._renderFooter}
       />
