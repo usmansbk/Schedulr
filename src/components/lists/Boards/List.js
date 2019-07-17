@@ -33,9 +33,11 @@ class List extends Component {
   _onPressItem = (id) => this.props.navigation.navigate('Board', { id, cacheFirst: true });
   _navigateToInfo = (id) => this.props.navigation.navigate('BoardInfo', { id });
   _keyExtractor = (item) => String(item.id);
-  _renderEmptyList = () => this.props.loading ? null : <Empty
+  _renderEmptyList = () => <Empty
     error={this.props.error}
     profile={this.props.profile}
+    onRefresh={this.props.onRefresh}
+    loading={this.props.loading}
   />;
   _renderItem = ({item}) => {
     const {
@@ -71,7 +73,7 @@ class List extends Component {
     const {
       boards,
       loading,
-      onRefresh,
+      fetchMore,
       stores
     } = this.props;
     const data = sortBoards(boards);
@@ -84,13 +86,13 @@ class List extends Component {
         refreshing={loading}
         refreshControl={
           <RefreshControl
-            onRefresh={onRefresh}
+            onRefresh={fetchMore}
             refreshing={loading}
             colors={[colors.primary]}
             progressBackgroundColor={colors.bg}
           />
         }
-        onRefresh={onRefresh}
+        onRefresh={fetchMore}
         style={styles.list}
         extraData={mutedList.length}
         contentContainerStyle={styles.contentContainer}

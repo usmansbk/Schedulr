@@ -41,6 +41,7 @@ class RootStore {
     this.appStyles = appStyles;
     this.appState = appState;
     this.deltaSync = deltaSync;
+    this.boardsSync = boardsSync;
   }
 
   @action reset = () => {

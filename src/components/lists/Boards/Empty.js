@@ -2,18 +2,22 @@ import React from 'react';
 import { View } from 'react-native';
 import { Headline, Caption } from 'react-native-paper';
 import { inject, observer } from 'mobx-react';
+import ErrorScreen from 'components/common/Error';
 
 export default inject('stores')(observer(
-  ({ profile, error, stores }) => {
+  ({ profile, error, stores, onRefresh, loading }) => {
+    if (error) {
+      return <ErrorScreen
+        onRefresh={onRefresh}
+        loading={loading}
+      />;
+    }
+
     let title = "Your board is empty";
     let caption = "Follow or create a plan";
     if (profile) {
       title = "No schedule";
       caption = "";
-    }
-    if (error) {
-      title = "Network error";
-      caption = "Check your internet connection";
     }
 
     const styles = stores.appStyles.boardsList;

@@ -14,7 +14,7 @@ export default class Boards extends React.Component {
       onRefresh,
       fetchMore,
       error
-    } = thihs.props;
+    } = this.props;
 
     return (
       <>
