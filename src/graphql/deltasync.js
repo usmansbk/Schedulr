@@ -25,6 +25,10 @@ export const listAllEventsDelta = `query ListAllEventsDelta($lastSync: AWSTimest
       starsCount
       isStarred
       isAuthor
+      author {
+        id
+        name
+      }
       commentsCount
       createdAt
       updatedAt 
