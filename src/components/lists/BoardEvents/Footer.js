@@ -27,7 +27,7 @@ export default inject('stores')(observer(
             ) : (
               <Caption style={stores.appStyles.eventsList.footerText}>
                 {
-                  hasPrev ? "Fetch past events" : "No more events"
+                  hasPrev ? "Load past events" : "No more events"
                 }
               </Caption>
             )
