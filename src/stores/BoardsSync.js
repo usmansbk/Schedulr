@@ -12,12 +12,10 @@ export default class DeltaSync {
 
   @action updateLastSyncTimestamp() {
     this.lastSyncTimestamp = Date.now() - BUFFER_MILLISECONDS;
-    console.log('updateLastSyncTimestamp', this.lastSyncTimestamp);
   }
 
   @action updateBaseLastSyncTimestamp() {
     this.baseLastSyncTimestamp = Date.now() - BUFFER_MILLISECONDS;
-    console.log('updatebaseLastSyncTimestamp', this.baseLastSyncTimestamp);
   }
 
   @computed get shouldSync() {

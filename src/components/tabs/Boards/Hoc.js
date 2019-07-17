@@ -4,7 +4,7 @@ import gql from 'graphql-tag';
 import { inject, observer } from 'mobx-react';
 import Boards from './Boards';
 import { boardsDiff } from 'lib/utils';
-import { listAllBoards } from 'mygraphql/queries';
+import { listAllBoards, listAllEvents } from 'mygraphql/queries';
 import { listAllBoardsDelta } from 'mygraphql/deltasync';
 import client from 'config/client';
 
@@ -42,7 +42,13 @@ export default inject("stores")(observer(
             const { listAllBoards } = prev;
 
             const deleteIds = items.filter(item => item.aws_ds === 'DELETE').map(item => item.id);
-
+            if (deleteIds.length) {
+              const query = gql(listAllEvents);
+              const data = client.readQuery({ query });
+              data.listAllEvents.item = data.listAllEvents.items.filter(item => !deleteIds.includes(item.boardId));
+              client.writeQuery({ query, data });
+            }
+            
             const filter_deleted_items = listAllBoards.items.filter(item => !deleteIds.includes(item.id));
 
             const remove_aws_ds_field = items.map(item => {
