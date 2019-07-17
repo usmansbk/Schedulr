@@ -101,7 +101,7 @@ const schdl = (event, before, settings) => {
   const isStarted = (Date.now() > start);
   const isCancelled = event.isCancelled;
 
-  if (!isStarted && !isCancelled) {
+  if (!(isStarted && isCancelled)) {
     schdlStart(event, settings);
     const distance = start - Date.now();
     if (fiveMin && distance > FIVE_MINUTES) {
@@ -160,13 +160,22 @@ const schdlAll = (events, mutedList, allowedList) => {
 
 function schdlWeekdaysEvent(event, remindMeBefore, settings) {
   const start = moment(event.startAt);
+  const hour = start.hour();
+  const minute = start.minute();
+  const second = start.second();
+
   const end = moment(event.endAt);
   // const duration = Math.abs(moment.duration(start.diff(end)));
   const recurrence = start.recur(end).every(weekdays).daysOfWeek(); // Exclusive operation
   const days = recurrence.next(5);
   days.forEach(nextDay => {
+    nextDay.hour(hour);
+    nextDay.minute(minute);
+    nextDay.second(second);
+
+    console.log(nextDay.toISOString());
     const nextEvent = Object.assign({}, event, {
-      startAt: nextDay.toISOString(),
+      startAt: nextDay.valueOf(),
       // endAt: day.add(duration).toISOString()
     });
     schdl(nextEvent, remindMeBefore, settings);
@@ -194,17 +203,17 @@ function getRepeatType(repeat) {
   }
 }
 
-function getRepeatTime(valueOf, repeat) {
+function getRepeatTime(ms, repeat) {
   let interval;
   switch(repeat) {
     case 'MONTHLY':
-      interval = moment(valueOf).add(1, 'month');
+      interval = moment(ms).add(1, 'month');
       break;
     case 'YEARLY':
-      interval = moment(valueOf).add(1, 'year');
+      interval = moment(ms).add(1, 'year');
       break;
     default:
-      interval = moment(valueOf).add(15, 'minutes');
+      interval = moment(ms).add(15, 'minutes');
       break; 
   }
   return interval.toDate().getTime();
