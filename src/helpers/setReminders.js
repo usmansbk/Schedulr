@@ -64,6 +64,7 @@ const schdlStart = (event, settings) => {
   const { playSound, vibrate } = settings;
   const time = moment(startAt).format('hh:mm a');
   const date = moment(startAt).toDate();
+  console.log(date);
   const message = `${decapitalize(eventType)} - ${time}`;
   const repeatType = getRepeatType(repeat);
   const repeatTime = {};
@@ -101,7 +102,7 @@ const schdl = (event, before, settings) => {
   const isStarted = (Date.now() > start);
   const isCancelled = event.isCancelled;
 
-  if (!(isStarted && isCancelled)) {
+  if (!(isStarted || isCancelled)) {
     schdlStart(event, settings);
     const distance = start - Date.now();
     if (fiveMin && distance > FIVE_MINUTES) {
@@ -172,7 +173,6 @@ function schdlWeekdaysEvent(event, remindMeBefore, settings) {
     nextDay.minute(minute);
     nextDay.second(second);
 
-    console.log(nextDay.toISOString());
     const nextEvent = Object.assign({}, event, {
       startAt: nextDay.valueOf()
     });
