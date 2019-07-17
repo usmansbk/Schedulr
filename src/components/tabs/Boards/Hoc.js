@@ -50,8 +50,8 @@ export default inject("stores")(observer(
               delete newItem.aws_ds;
               return newItem;
             }).filter(item => !deleteIds.includes(item.id));
-            
-            const new_items = boardsDiff(remove_aws_ds_field, filter_deleted_items, (next, prev) => next.id === prev.id);
+
+            const new_items = boardsDiff(remove_aws_ds_field, filter_deleted_items);
 
             const new_items_ids = new_items.map(item => item.id);
 

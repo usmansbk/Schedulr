@@ -62,13 +62,11 @@ export function eventsDiff(prev, next) {
 
 export function boardsDiff(prev, next) {
   return differenceWith(prev, next, (prevVal, nextVal) => {
-    const prevFollowers = prevVal.followers || [];
-    const nextFollowers = nextVal.followers || [];
     return (prevVal.id === nextVal.id) && (prevVal.name === nextVal.name) &&
       (prevVal.status === nextVal.status) &&
       (prevVal.description === nextVal.description) &&
       (prevVal.isPublic === nextVal.isPublic) &&
       (prevVal.eventsCount === nextVal.eventsCount) &&
-      (prevFollowers.length === nextFollowers.length);
+      (prevVal.followersCount === nextVal.followersCount);
   })
 }
