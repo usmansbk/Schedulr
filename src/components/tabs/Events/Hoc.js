@@ -3,7 +3,6 @@ import { withNavigationFocus } from 'react-navigation';
 import { inject, observer } from 'mobx-react';
 import gql from 'graphql-tag';
 import { eventsDiff } from 'lib/utils';
-// import { processNotifications } from 'lib/notifications';
 import Events from './Events';
 import { listAllEvents } from 'mygraphql/queries';
 import { listAllEventsDelta } from 'mygraphql/deltasync';
@@ -46,7 +45,7 @@ export default inject("stores")(observer(
           updateQuery: (prev, { fetchMoreResult: { listAllEventsDelta } }) => {
             if (!(listAllEventsDelta && listAllEventsDelta.items.length)) return prev;
             const { items } = listAllEventsDelta;
-            // processNotifications(items, 'events');
+            // ownprops.stores.notifications.process(items, 'events');
             const { listAllEvents } = prev;
 
             const deleteIds = items.filter(item => item.aws_ds === 'DELETE').map(item => item.id);

@@ -4,7 +4,6 @@ import gql from 'graphql-tag';
 import { inject, observer } from 'mobx-react';
 import Boards from './Boards';
 import { boardsDiff } from 'lib/utils';
-// import { processNotifications } from 'lib/notifications';
 import { listAllBoards, listAllEvents } from 'mygraphql/queries';
 import { listAllBoardsDelta } from 'mygraphql/deltasync';
 import client from 'config/client';
@@ -40,7 +39,7 @@ export default inject("stores")(observer(
           updateQuery: (prev, { fetchMoreResult: { listAllBoardsDelta }}) => {
             if (!(listAllBoardsDelta && listAllBoardsDelta.items.length)) return prev;
             const { items } = listAllBoardsDelta;
-            // processNotifications(items, 'boards);
+            // ownProps.stores.notifications.process(items, 'boards);
 
             const { listAllBoards } = prev;
 
