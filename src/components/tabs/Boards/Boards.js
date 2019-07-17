@@ -6,6 +6,11 @@ export default class Boards extends React.Component {
   shouldComponentUpdate = (nextProps) => {
     return (nextProps.loading !== this.props.loading) || (nextProps.boards !== this.props.boards);
   }
+
+  componentDidMount = () => {
+    if (this.props.stores.boardsSync.skipBaseQuery)
+      this.props.fetchMore();
+  }
   
   render() {
     const {

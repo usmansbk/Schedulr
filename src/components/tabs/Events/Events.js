@@ -79,6 +79,8 @@ export default class Events extends React.Component {
   componentDidMount = async () => {
     this._initNetInfo();
     await this._handleNavBarColor();
+    if (this.props.stores.deltaSync.skipBaseQuery)
+      this.props.fetchMore();
   };
 
   componentWillUnmount = () => {
