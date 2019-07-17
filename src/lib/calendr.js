@@ -120,10 +120,11 @@ const getNextDate = memoize((events=[], refDate, before) => {
 }, (...args) => JSON.stringify(args));
 
 /**
+  * Returns a SectionList item of a day's events 
   * @param { Array } initialEvents - an array of calendar events
   * @param { Date } afterDate - date to start from
   * @return 
-  */
+*/
 const getNextDayEvents = memoize((initialEvents, nextDate) => {
   let refDate = moment();
   if (nextDate) refDate = moment(nextDate);
@@ -132,7 +133,7 @@ const getNextDayEvents = memoize((initialEvents, nextDate) => {
     const eventDate = moment(currentEvent.startAt);
     const endDate = moment(currentEvent.endAt);
     const repeat = getRepeat(currentEvent.repeat);
-    const isExtended = refDate.isBetween(eventDate, endDate, null, '[]');
+    const isExtended = refDate.isBetween(eventDate, endDate, 'D', '[]');
     const isValid = currentEvent.until ? refDate.isSameOrBefore(moment(currentEvent.until), 'day') : true;
 
     if (repeat && !currentEvent.isCancelled && isValid) {
@@ -179,6 +180,7 @@ const getNextDayEvents = memoize((initialEvents, nextDate) => {
   });
 }, (...args) => JSON.stringify(args));
 
+// Returns a flat list of latest events dates
 function getEvents(events) {
   return events.map((currentEvent) => {
     const eventDate = moment(currentEvent.startAt);
