@@ -7,6 +7,7 @@ import {
   TouchableRipple
 } from 'react-native-paper';
 import { inject, observer } from 'mobx-react';
+import moment from 'moment';
 import { getSectionHeaderData } from 'lib/time';
 import { BULLET } from 'lib/constants';
 

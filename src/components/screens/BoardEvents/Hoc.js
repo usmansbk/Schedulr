@@ -2,6 +2,7 @@ import { graphql, compose } from 'react-apollo';
 import SimpleToast from 'react-native-simple-toast';
 import gql from 'graphql-tag';
 import BoardEvents from './BoardEvents';
+import moment from 'moment';
 import { getBoard, listAllEvents, listBoardEvents } from 'mygraphql/queries';
 import { filterEvents, filterPastEvents } from 'mygraphql/filter';
 import { sortStarredEvents } from 'lib/utils';
