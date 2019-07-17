@@ -8,6 +8,7 @@ import AppStyles from './Styles';
 import UserProfile from './UserProfile';
 import AppState from './AppState';
 import DeltaSync from './Sync';
+import BoardsSync from './BoardsSync';
 
 const hydrate = create({
   storage: AsyncStorage
@@ -18,12 +19,14 @@ const remindMeStore = new RemindMe;
 const meStore = new UserProfile;
 const appState = new AppState;
 const deltaSync = new DeltaSync;
+const boardsSync = new BoardsSync;
 
 hydrate('settings', settingsStore);
 hydrate('remindMe', remindMeStore);
 hydrate('me', meStore);
 hydrate('appState', appState);
 hydrate('deltaSync', deltaSync);
+hydrate('boardsSync', boardsSync);
 
 // Create theme store after hydrating the settings store
 const themeStore = new Theme(settingsStore);

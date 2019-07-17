@@ -95,8 +95,7 @@ export default class Events extends React.Component {
       nextToken,
       error,
       onRefresh,
-      fetchMore,
-      stores
+      fetchMore
     } = this.props;
 
     return (

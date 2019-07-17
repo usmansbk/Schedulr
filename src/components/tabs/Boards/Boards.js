@@ -8,19 +8,33 @@ export default class Boards extends React.Component {
   }
   
   render() {
+    const {
+      loading,
+      boards,
+      onRefresh,
+      fetchMore,
+      error
+    } = thihs.props;
+
     return (
       <>
         <List
-          loading={this.props.loading}
-          boards={this.props.boards}
-          onRefresh={this.props.onRefresh}
-          error={this.props.error}
+          loading={loading}
+          boards={boards}
+          onRefresh={onRefresh}
+          fetchMore={fetchMore}
+          error={error}
         />
-        <FAB
-          icon="add"
-          onPress={() => this.props.navigation.navigate('NewBoard')}
-          disabled={this.props.loading && !this.props.boards.length}
-        />
+        {
+          
+          !(Boolean(error) && !boards.length) && (
+            <FAB
+              icon="add"
+              onPress={() => this.props.navigation.navigate('NewBoard')}
+              disabled={this.props.loading && !this.props.boards.length}
+            />
+          )
+        }
       </>
     )
   }
