@@ -43,7 +43,7 @@ export default inject("stores")(observer(
             lastSync: ownProps.stores.deltaSync.lastSync
           },
           updateQuery: (prev, { fetchMoreResult: { listAllEventsDelta } }) => {
-            if (!listAllEventsDelta || !listAllEventsDelta.items.length) return prev;
+            if (!(listAllEventsDelta && listAllEventsDelta.items.length)) return prev;
             const { items } = listAllEventsDelta;
             const { listAllEvents } = prev;
 
@@ -67,7 +67,7 @@ export default inject("stores")(observer(
   
             ownProps.stores.deltaSync.updateLastSyncTimestamp();
             return Object.assign({}, prev, {
-              listAllEvents: Object.assign({}, prev.listAllEvents, {
+              listAllEvents: Object.assign({}, listAllEvents, {
                 items: add_new_items_to_prev
               })
             });

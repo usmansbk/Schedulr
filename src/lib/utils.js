@@ -55,6 +55,20 @@ export function eventsDiff(prev, next) {
       (prevVal.until === nextVal.until) &&
       (prevVal.isCancelled === nextVal.isCancelled) &&
       (prevCancelledDates.length === nextCancelledDates.length) &&
-      (prevVal.isStarred === nextVal.isStarred);
+      (prevVal.isStarred === nextVal.isStarred) &&
+      (prevVal.description === nextVal.description);
   });
+}
+
+export function boardsDiff(prev, next) {
+  return differenceWith(prev, next, (prevVal, nextVal) => {
+    const prevFollowers = prevVal.followers || [];
+    const nextFollowers = nextVal.followers || [];
+    return (prevVal.id === nextVal.id) && (prevVal.name === nextVal.name) &&
+      (prevVal.status === nextVal.status) &&
+      (prevVal.description === nextVal.description) &&
+      (prevVal.isPublic === nextVal.isPublic) &&
+      (prevVal.eventsCount === nextVal.eventsCount) &&
+      (prevFollowers.length === nextFollowers.length);
+  })
 }
