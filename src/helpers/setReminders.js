@@ -165,7 +165,6 @@ function schdlWeekdaysEvent(event, remindMeBefore, settings) {
   const second = start.second();
 
   const end = moment(event.endAt);
-  // const duration = Math.abs(moment.duration(start.diff(end)));
   const recurrence = start.recur(end).every(weekdays).daysOfWeek(); // Exclusive operation
   const days = recurrence.next(5);
   days.forEach(nextDay => {
@@ -175,13 +174,11 @@ function schdlWeekdaysEvent(event, remindMeBefore, settings) {
 
     console.log(nextDay.toISOString());
     const nextEvent = Object.assign({}, event, {
-      startAt: nextDay.valueOf(),
-      // endAt: day.add(duration).toISOString()
+      startAt: nextDay.valueOf()
     });
     schdl(nextEvent, remindMeBefore, settings);
   });
 
-  // 
   const isWeekday = business.isWeekDay(start);
   const isToday = start.isSame(moment(), 'day');
   const isPending = start.twix(end).isFuture();
