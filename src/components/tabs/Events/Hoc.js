@@ -2,7 +2,7 @@ import { graphql, compose } from 'react-apollo';
 import { withNavigationFocus } from 'react-navigation';
 import { inject, observer } from 'mobx-react';
 import gql from 'graphql-tag';
-import differenceWith from 'lodash.differencewith';
+import { eventsDiff } from 'lib/utils';
 import Events from './Events';
 import { listAllEvents } from 'mygraphql/queries';
 import { listAllEventsDelta } from 'mygraphql/deltasync';
@@ -43,33 +43,43 @@ export default inject("stores")(observer(
             lastSync: ownProps.stores.deltaSync.lastSync
           },
           updateQuery: (prev, { fetchMoreResult: { listAllEventsDelta } }) => {
-            ownProps.stores.deltaSync.updateLastSyncTimestamp();
             if (!listAllEventsDelta || !listAllEventsDelta.items.length) return prev;
             const { items } = listAllEventsDelta;
             const { listAllEvents } = prev;
-
             // get deleted ids
-            const deletedIds = items.filter(item => item.aws_ds === 'DELETE').map(item => item.id);
+            const deleteIds = items.filter(item => item.aws_ds === 'DELETE').map(item => item.id);
+            console.log('deleteIds', deleteIds);
 
             // filter deleted items from listAllEvents.items
-            const filteredDeletedItems = listAllEvents.items.filter(item => !deletedIds.includes(item.id));
+            const filter_deleted_items = listAllEvents.items.filter(item => !deleteIds.includes(item.id));
+            console.log('filter_deleted_items', filter_deleted_items);
 
             // remove aws_ds field from listAllEventsDelta.items
-            const removed_aws_ds_field = filteredDeletedItems.map(item => {
+            const remove_aws_ds_field = items.map(item => {
               const newItem = Object.assign({}, item);
               delete newItem.aws_ds;
               return newItem;
             });
+            console.log('remove_aws_ds_field', remove_aws_ds_field);
 
-            // get new items in listAllEventsDelta.items
-            const new_items = differenceWith(listAllEvents.items, removed_aws_ds_field, (prev, next) => prev.id === next.id);
+            // get new items in lfilter_deleted_items
+            const new_items = eventsDiff(remove_aws_ds_field, filter_deleted_items, (next, prev) => next.id === prev.id);
+            console.log('new_items', new_items);
 
-            // add new items to listAllEvents.items
-            const added_new_items_to_prev = [...listAllEvents.items, ...new_items];
-            
+            // get new items ids
+            const new_items_ids = new_items.map(item => item.id);
+
+            // filter changed items from filter_deleted_items
+            const filter_changed_items = filter_deleted_items.filter(item => !new_items_ids.includes(item.id))
+
+            // add new_items to filter_changed_items
+            const add_new_items_to_prev = [...filter_changed_items, ...new_items];
+            console.log('add_new_items_to_prev', add_new_items_to_prev);
+  
+            ownProps.stores.deltaSync.updateLastSyncTimestamp();
             return Object.assign({}, prev, {
               listAllEvents: Object.assign({}, prev.listAllEvents, {
-                items: added_new_items_to_prev
+                items: add_new_items_to_prev
               })
             });
           }

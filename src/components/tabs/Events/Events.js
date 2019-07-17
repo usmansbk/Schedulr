@@ -4,14 +4,11 @@ import NetInfo from '@react-native-community/netinfo';
 import SimpleToast from 'react-native-simple-toast';
 import LocalNotifications from 'react-native-push-notification';
 import changeNavigationBarColor from 'react-native-navigation-bar-color';
-import { inject, observer } from 'mobx-react';
 import List from 'components/lists/Events';
 import FAB from 'components/common/Fab';
 import NavigationService from 'config/navigation';
 import schdlAll from 'helpers/setReminders';
 
-@inject('stores')
-@observer
 export default class Events extends React.Component {
   constructor(props) {
     super(props);

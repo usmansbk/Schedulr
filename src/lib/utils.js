@@ -47,7 +47,7 @@ export function eventsDiff(prev, next) {
   return differenceWith(prev, next, (prevVal, nextVal) => {
     const prevCancelledDates = prevVal.cancelledDates || [];
     const nextCancelledDates = nextVal.cancelledDates || [];
-    return (prevVal.title === nextVal.title) &&
+    return (prevVal.id === nextVal.id) && (prevVal.title === nextVal.title) &&
       (prevVal.startAt === nextVal.startAt) &&
       (prevVal.endAt === nextVal.endAt) &&
       (prevVal.eventType === nextVal.eventType) &&
@@ -55,7 +55,6 @@ export function eventsDiff(prev, next) {
       (prevVal.until === nextVal.until) &&
       (prevVal.isCancelled === nextVal.isCancelled) &&
       (prevCancelledDates.length === nextCancelledDates.length) &&
-      (prevVal.isStarred === nextVal.isStarred) &&
-      (prevVal.id === nextVal.id);
+      (prevVal.isStarred === nextVal.isStarred);
   });
 }
