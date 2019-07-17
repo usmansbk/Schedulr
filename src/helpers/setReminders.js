@@ -64,7 +64,6 @@ const schdlStart = (event, settings) => {
   const { playSound, vibrate } = settings;
   const time = moment(startAt).format('hh:mm a');
   const date = moment(startAt).toDate();
-  console.log(date);
   const message = `${decapitalize(eventType)} - ${time}`;
   const repeatType = getRepeatType(repeat);
   const repeatTime = {};
