@@ -2,7 +2,6 @@ import React from 'react';
 import { View } from 'react-native';
 import {
   TouchableRipple,
-  Headline,
   Caption
 } from 'react-native-paper';
 import { inject, observer } from 'mobx-react';
@@ -28,7 +27,6 @@ export default class Item extends React.Component {
         <View style={styles.itemContent}>
           <UserAvatar src={pictureUrl} name={title} />
           <View style={styles.itemBody}>
-            <Headline style={styles.itemHeadline}>{title}</Headline>
             <Caption style={styles.itemMessage}>{message}</Caption>
             <Caption style={styles.itemTag}>{date}</Caption>
           </View>

@@ -771,7 +771,7 @@ export default class AppStyles {
         backgroundColor: colors.white,
       },
       itemContent: {
-        height: 90,
+        height: 80,
         paddingVertical: 4,
         paddingHorizontal: 8,
         flexDirection: 'row',

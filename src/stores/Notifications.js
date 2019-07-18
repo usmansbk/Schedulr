@@ -66,16 +66,16 @@ const mockNotifications = [
   {
     id: 'xdq2294s9z',
     pictureUrl: null,
-    title: 'Bloomberg cancelled',
-    message: '24/07/2019',
+    title: 'Production',
+    message: 'Bloomberg cancelled',
     date: Date.now(),
     tag: 'Update'
   },
   {
     id: 'xdq2294s9za',
     pictureUrl: null,
-    title: 'Bloomberg cancelled',
-    message: '24/07/2019',
+    title: 'Development',
+    message: 'Bloomberg cancelled',
     date: Date.now(),
     tag: 'Update'
   }
