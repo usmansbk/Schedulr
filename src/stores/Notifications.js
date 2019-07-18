@@ -66,17 +66,66 @@ const mockNotifications = [
   {
     id: 'xdq2294s9z',
     pictureUrl: null,
-    title: 'Production',
-    message: 'Bloomberg cancelled',
+    title: 'Kronos Quartet',
+    message: 'cancelled',
     date: Date.now(),
     tag: 'Update'
   },
   {
     id: 'xdq2294s9za',
     pictureUrl: null,
-    title: 'Development',
-    message: 'Bloomberg cancelled',
+    title: 'Test notification',
+    message: 'details updated',
     date: Date.now(),
     tag: 'Update'
-  }
+  },
+  {
+    id: 'xdq2294s9zaa',
+    pictureUrl: null,
+    title: 'Development',
+    message: 'schedule closed',
+    date: Date.now() - 50000,
+    tag: 'Update'
+  },
+  {
+    id: 'xdqa2294s9zaa',
+    pictureUrl: null,
+    title: 'EEEN509',
+    message: 'deleted',
+    date: Date.now() - 50000000,
+    tag: 'Delete'
+  },
+  {
+    id: 'xdqa2294329zaa',
+    pictureUrl: null,
+    title: 'EEEN513',
+    message: 'time changed',
+    date: Date.now() - 40000000,
+    tag: 'Update'
+  },
+  {
+    id: 'xdqa2294329z7a',
+    pictureUrl: null,
+    title: 'EEEN501',
+    message: 'location changed',
+    date: Date.now() - 30000000,
+    tag: 'Update'
+  },
+  {
+    id: 'xdqa2294329z7akl',
+    pictureUrl: null,
+    title: 'EEEN502',
+    message: 'comments',
+    date: Date.now() - 30000000,
+    count: 132,
+    tag: 'Update'
+  },
+  {
+    id: 'xdq32294s9zaa',
+    pictureUrl: null,
+    title: 'Development',
+    message: 'schedule opened',
+    date: Date.now() + 60000000,
+    tag: 'Update'
+  },
 ];

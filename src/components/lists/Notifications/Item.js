@@ -27,7 +27,7 @@ export default class Item extends React.Component {
         <View style={styles.itemContent}>
           <UserAvatar src={pictureUrl} name={title} />
           <View style={styles.itemBody}>
-            <Caption style={styles.itemMessage}>{message}</Caption>
+            <Caption><Caption style={styles.itemMessage}>{title}</Caption> {message}</Caption>
             <Caption style={styles.itemTag}>{date}</Caption>
           </View>
         </View>
