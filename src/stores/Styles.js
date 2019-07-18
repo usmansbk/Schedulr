@@ -735,7 +735,8 @@ export default class AppStyles {
 
     return StyleSheet.create({
       list: {
-        backgroundColor: colors.light_gray
+        backgroundColor: colors.light_gray,
+        paddingVertical: 8,
       },
       contentContainer: {
         flexGrow: 1,
@@ -766,6 +767,28 @@ export default class AppStyles {
       paragraph: {
         textAlign: 'center'
       },
+      itemContainer: {
+        backgroundColor: colors.white,
+      },
+      itemContent: {
+        height: 90,
+        paddingVertical: 4,
+        paddingHorizontal: 8,
+        flexDirection: 'row',
+        alignItems: 'center',
+      },
+      itemHeadline: {
+        fontSize: 16
+      },
+      itemMessage: {
+        fontWeight: 'bold'
+      },
+      itemBody: {
+        paddingLeft: 8
+      },
+      itemTag: {
+    
+      }
     });
   }
 

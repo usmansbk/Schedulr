@@ -35,7 +35,7 @@ export default class Avatar extends React.Component {
     const {
       src,
       onPress,
-      size,
+      size=48,
       style
     } = this.props;
 

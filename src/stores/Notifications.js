@@ -1,7 +1,9 @@
 import { observable, action, computed } from 'mobx';
+import moment from 'moment';
 
 export default class Notifications {
   @observable items = [...mockNotifications];
+  @observable unprocessed = [[], []];
   @observable read = false;
 
   @computed get hasNotification() {
@@ -30,6 +32,19 @@ export default class Notifications {
     }
   };
 
+  @action addToList = (items, type) => {
+    switch(type) {
+      case 'event': {
+        this.addToList[0].concat(items);
+        break;
+      };
+      case 'board': {
+        this.addToList[1].concat(items);
+        break;
+      }
+    }
+  }
+
   _processEvents = (items) => {
     items.forEach(item => {
       switch(item.aws_ds) {
@@ -51,6 +66,14 @@ export default class Notifications {
 const mockNotifications = [
   {
     id: 'xdq2294s9z',
+    pictureUrl: null,
+    title: 'Bloomberg cancelled',
+    message: '24/07/2019',
+    date: Date.now(),
+    tag: 'Update'
+  },
+  {
+    id: 'xdq2294s9za',
     pictureUrl: null,
     title: 'Bloomberg cancelled',
     message: '24/07/2019',
