@@ -1,10 +1,12 @@
 import React from 'react';
 import { FlatList } from 'react-navigation';
 import { inject, observer } from 'mobx-react';
+import moment from 'moment';
 import Empty from './Empty';
 import Footer from './Footer';
 import Separator from './Separator';
 import Item from './Item';
+import capitalizr from 'lib/capitalizr';
 
 @inject('stores')
 @observer
@@ -29,8 +31,7 @@ export default class List extends React.Component {
     title={title}
     message={message}
     pictureUrl={pictureUrl}
-    date={date}
-    tag={tag}
+    date={capitalizr(moment(date).fromNow())}
   />;
 
   render() {

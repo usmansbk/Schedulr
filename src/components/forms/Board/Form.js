@@ -34,7 +34,7 @@ export default class Form extends React.Component {
   };
 
   _showInfo = () => {
-    Alert.alert('What is a plan?', WHAT_IS_A_BOARD);
+    Alert.alert('What is a schedule?', WHAT_IS_A_BOARD);
   };
 
   _aboutPrivacy = () => {
@@ -152,7 +152,7 @@ export default class Form extends React.Component {
                 />
               </View>
               <View style={styles.info}>
-                <Caption style={styles.primary} onPress={this._showInfo}>What is a plan?</Caption>
+                <Caption style={styles.primary} onPress={this._showInfo}>What is a schedule?</Caption>
               </View>
             </View>
           </ScrollView>

@@ -1,5 +1,4 @@
 import { observable, action, computed } from 'mobx';
-import moment from 'moment';
 
 export default class Notifications {
   @observable items = [...mockNotifications];

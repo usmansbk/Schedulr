@@ -74,7 +74,7 @@ export default class Form extends React.Component {
         {text: "Ok", onPress: () => null }
       ];
     }
-    Alert.alert("What is a plan?", WHAT_IS_A_BOARD, buttons);
+    Alert.alert("What is a schedule?", WHAT_IS_A_BOARD, buttons);
   }
 
   componentDidMount = async () => {

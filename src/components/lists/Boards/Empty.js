@@ -14,7 +14,7 @@ export default inject('stores')(observer(
     }
 
     let title = "Your board is empty";
-    let caption = "Follow or create a plan";
+    let caption = "Follow or create a schedule";
     if (profile) {
       title = "No schedule";
       caption = "";

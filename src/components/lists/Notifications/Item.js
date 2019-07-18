@@ -5,8 +5,8 @@ import {
   Headline,
   Caption
 } from 'react-native-paper';
-import UserAvatar from 'components/common/UserAvatar';
 import { inject, observer } from 'mobx-react';
+import UserAvatar from 'components/common/UserAvatar';
 
 @inject("stores")
 @observer
@@ -16,7 +16,6 @@ export default class Item extends React.Component {
       id,
       title,
       message,
-      tag,
       pictureUrl,
       date,
       stores
@@ -31,7 +30,7 @@ export default class Item extends React.Component {
           <View style={styles.itemBody}>
             <Headline style={styles.itemHeadline}>{title}</Headline>
             <Caption style={styles.itemMessage}>{message}</Caption>
-            <Caption style={styles.itemTag}>{tag} {date}</Caption>
+            <Caption style={styles.itemTag}>{date}</Caption>
           </View>
         </View>
     </TouchableRipple>
