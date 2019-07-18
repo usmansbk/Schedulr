@@ -1,13 +1,35 @@
 import React from 'react';
+import { View, StyleSheet } from 'react-native';
+import { inject, observer } from 'mobx-react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import colors from 'config/colors';
 
-export default ({ hasNotification, color, size }) => {
+export default inject('stores')(observer(({stores, color, size }) => {
   return (
-    <Icon
-      name={`notifications${hasNotification ? '' : '-none'}`}
-      color={hasNotification ? colors.light_red : color}
-      size={size}
-    />
+    <View style={styles.container}>
+      <Icon
+        name='notifications-none'
+        color={color}
+        size={size}
+      />
+      {
+        stores.notifications.hasNotification && <View style={styles.indicator}/>
+      }
+    </View>
   );
-};
+}));
+
+const color = '#1DA1F2';
+
+const styles = StyleSheet.create({
+  indicator: {
+    height: 8,
+    width: 8,
+    borderRadius: 4,
+    position: 'absolute',
+    top: 5,
+    right: 4,
+    borderWidth: 1,
+    borderColor: color,
+    backgroundColor: color,
+  }
+})
