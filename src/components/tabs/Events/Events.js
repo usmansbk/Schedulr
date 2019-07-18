@@ -26,10 +26,10 @@ export default class Events extends React.Component {
         const start = moment(startAt);
         const end = moment(endAt);
         const duration = Math.abs(moment.duration(start.diff(end)));
-        
+
         let refStartAt, refEndAt;
 
-        if (start >= today) {
+        if (start.valueOf() >= today.valueOf()) {
           const hour = start.hours();
           const min = start.minutes();
           const sec = start.seconds();
