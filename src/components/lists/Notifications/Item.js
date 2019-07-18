@@ -10,9 +10,13 @@ import UserAvatar from 'components/common/UserAvatar';
 @inject("stores")
 @observer
 export default class Item extends React.Component {
+
+  _onPressItems = () => {
+
+  };
+
   render() {
     const {
-      id,
       title,
       message,
       pictureUrl,
@@ -23,7 +27,7 @@ export default class Item extends React.Component {
     const styles = stores.appStyles.notifications;
 
     return (
-      <TouchableRipple style={styles.itemContainer}>
+      <TouchableRipple onPress={this._onPressItems} style={styles.itemContainer}>
         <View style={styles.itemContent}>
           <UserAvatar src={pictureUrl} name={title} />
           <View style={styles.itemBody}>

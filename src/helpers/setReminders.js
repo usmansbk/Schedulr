@@ -79,7 +79,8 @@ const schdlStart = (event, settings) => {
     playSound,
     vibrate,
     data: JSON.stringify({
-      id
+      id,
+      startAt
     }),
     repeatType,
     ...repeatTime

@@ -4,6 +4,7 @@ import NetInfo from '@react-native-community/netinfo';
 import SimpleToast from 'react-native-simple-toast';
 import LocalNotifications from 'react-native-push-notification';
 import changeNavigationBarColor from 'react-native-navigation-bar-color';
+import moment from 'moment';
 import List from 'components/lists/Events';
 import FAB from 'components/common/Fab';
 import NavigationService from 'config/navigation';
@@ -20,9 +21,25 @@ export default class Events extends React.Component {
     // Configure notifications for local events reminder
     LocalNotifications.configure({
       onNotification: notification => {
-        const { data: { id } } = notification;
+        const { data: { id, startAt, endAt } } = notification;
+        let today = moment();
+        const start = moment(startAt);
+        const end = moment(endAt);
+        const duration = Math.abs(moment.duration(start.diff(end)));
+        
+        let refStartAt, refEndAt;
 
-        NavigationService.navigate('EventDetails', { id });
+        if (start >= today) {
+          const hour = start.hours();
+          const min = start.minutes();
+          const sec = start.seconds();
+          today.hours(hour);
+          today.minutes(min);
+          today.seconds(sec);
+          refStartAt = start.valueOf();
+          refEndAt = start.clone().add(duration).valueOf();
+        }
+        NavigationService.navigate('EventDetails', { id, refStartAt, refEndAt });
         if (Platform.OS === 'ios') {
           notification.finish(PushNotificationIOS.FetchResult.NoData);
         }
