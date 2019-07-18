@@ -1,13 +1,14 @@
 import { observable, action, computed } from 'mobx';
+import moment from 'moment';
 
 export default class Notifications {
-  @observable items = [...mockNotifications];
+  @observable items = [];
   @observable unprocessedEvents = [];
   @observable unprocessedBoards = [];
   @observable seen = false;
 
   @computed get hasNotification() {
-    return (this.items.length ||
+    return Boolean(this.items.length ||
       this.unprocessedBoards.length ||
       this.unprocessedEvents.length
     ) && !this.seen;
@@ -46,15 +47,35 @@ export default class Notifications {
 
   _processEvents = () => {
     this.unprocessedEvents.forEach(item => {
+      const type = 'Event';
+      const date = moment(item.updatedAt).fromNow();
+      const id = item.id;
+      const title = item.title;
+
       switch(item.aws_ds) {
         case 'CREATE': {
+          const message = `scheduled on ${moment(item.startAt).toDate().toDateString()}`;
+          this.items.push({
+            id,
+            title,
+            message,
+            date,
+            type
+          });
           break;
         };
         case 'UPDATE': {
           break;
         };
         case 'DELETE': {
-          break;
+          const message = "deleted";
+          this.items.push({
+            id,
+            title,
+            message,
+            date,
+            type
+          });
         }
       }
     })

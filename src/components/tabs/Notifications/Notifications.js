@@ -7,7 +7,7 @@ import List from 'components/lists/Notifications';
 @observer
 class Notifications extends React.Component {
   componentDidMount = () => {
-    this.props.stores.notifications.toggleRead();
+    this.props.stores.notifications.process();
   };
 
   shouldComponentUpdate = (nextProps) => {
