@@ -25,11 +25,13 @@ export default class List extends React.Component {
     message,
     pictureUrl,
     date,
+    count,
     tag
   }}) => <Item
     id={id}
     title={title}
     message={message}
+    count={count}
     pictureUrl={pictureUrl}
     date={capitalizr(moment(date).fromNow())}
   />;
