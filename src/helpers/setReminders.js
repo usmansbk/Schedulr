@@ -58,6 +58,7 @@ const schdlStart = (event, settings) => {
     id,
     title,
     startAt,
+    endAt,
     eventType,
     repeat,
   } = event;
@@ -80,7 +81,8 @@ const schdlStart = (event, settings) => {
     vibrate,
     data: JSON.stringify({
       id,
-      startAt
+      startAt,
+      endAt
     }),
     repeatType,
     ...repeatTime
