@@ -2,11 +2,15 @@ import { observable, action, computed } from 'mobx';
 
 export default class Notifications {
   @observable items = [...mockNotifications];
-  @observable unprocessed = [[], []];
+  @observable unprocessedEvents = [];
+  @observable unprocessedBoards = [];
   @observable read = false;
 
   @computed get hasNotification() {
-    return this.items.length && !this.read;
+    return (this.items.length ||
+      this.unprocessedBoards.length ||
+      this.unprocessedEvents.length
+    ) && !this.read;
   }
 
   @action toggleRead = () => {
@@ -17,8 +21,7 @@ export default class Notifications {
     this.items = [];
   };
 
-  @action process = (items, type) => {
-    this.read = false;
+  @action process = () => {
     switch(type) {
       case 'event': {
         this._processEvents(items);
@@ -32,13 +35,14 @@ export default class Notifications {
   };
 
   @action addToList = (items, type) => {
+    this.read = false;
     switch(type) {
       case 'event': {
-        this.addToList[0].concat(items);
+        this.unprocessedEvents.concat(items);
         break;
       };
       case 'board': {
-        this.addToList[1].concat(items);
+        this.unprocessedBoards.concat(items);
         break;
       }
     }
