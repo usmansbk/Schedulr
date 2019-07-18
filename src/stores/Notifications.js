@@ -83,7 +83,7 @@ const mockNotifications = [
     id: 'xdq2294s9zaa',
     pictureUrl: null,
     title: 'Development',
-    message: 'schedule closed',
+    message: 'closed',
     date: Date.now() - 50000,
     tag: 'Update'
   },
@@ -115,8 +115,7 @@ const mockNotifications = [
     id: 'xdqa2294329z7akl',
     pictureUrl: null,
     title: 'EEEN502',
-    message: 'comments',
-    date: Date.now() - 30000000,
+    message: 'has new comments',
     count: 132,
     tag: 'Update'
   },
@@ -124,7 +123,15 @@ const mockNotifications = [
     id: 'xdq32294s9zaa',
     pictureUrl: null,
     title: 'Development',
-    message: 'schedule opened',
+    message: 'opened',
+    date: Date.now() + 60000000,
+    tag: 'Update'
+  },
+  {
+    id: 'xdq32294s9zbaa',
+    pictureUrl: null,
+    title: 'Hello kitty and',
+    message: 'info updated',
     date: Date.now() + 60000000,
     tag: 'Update'
   },
