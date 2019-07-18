@@ -9,6 +9,7 @@ import UserProfile from './UserProfile';
 import AppState from './AppState';
 import DeltaSync from './Sync';
 import BoardsSync from './BoardsSync';
+import Notifications from './Notifications';
 
 const hydrate = create({
   storage: AsyncStorage
@@ -20,6 +21,7 @@ const meStore = new UserProfile;
 const appState = new AppState;
 const deltaSync = new DeltaSync;
 const boardsSync = new BoardsSync;
+const notifications = new Notifications;
 
 hydrate('settings', settingsStore);
 hydrate('remindMe', remindMeStore);
@@ -27,6 +29,7 @@ hydrate('me', meStore);
 hydrate('appState', appState);
 hydrate('deltaSync', deltaSync);
 hydrate('boardsSync', boardsSync);
+hydrate('notifications', notifications);
 
 // Create theme store after hydrating the settings store
 const themeStore = new Theme(settingsStore);
@@ -42,6 +45,7 @@ class RootStore {
     this.appState = appState;
     this.deltaSync = deltaSync;
     this.boardsSync = boardsSync;
+    this.notifications = notifications;
   }
 
   @action reset = () => {

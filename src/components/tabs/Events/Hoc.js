@@ -45,7 +45,7 @@ export default inject("stores")(observer(
           updateQuery: (prev, { fetchMoreResult: { listAllEventsDelta } }) => {
             if (!(listAllEventsDelta && listAllEventsDelta.items.length)) return prev;
             const { items } = listAllEventsDelta;
-            // ownprops.stores.notifications.process(items, 'events');
+            // ownprops.stores.notifications.process(items, 'event');
             const { listAllEvents } = prev;
 
             const deleteIds = items.filter(item => item.aws_ds === 'DELETE').map(item => item.id);
