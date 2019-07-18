@@ -14,7 +14,7 @@ export default class Notifications {
   }
 
   @action toggleRead = () => {
-    this.seen = true;
+    this.seen = !this.seen;
   };
 
   @action reset = () => {
@@ -25,20 +25,12 @@ export default class Notifications {
   };
 
   @action process = () => {
-    switch(type) {
-      case 'event': {
-        this._processEvents();
-        break;
-      };
-      case 'board': {
-        this._processBoards();
-        break;
-      }
-    }
+    this._processEvents();
+    this._processBoards();
+    this.seen = true;
   };
 
   @action addToQueue = (items, type) => {
-    this.seen = false;
     switch(type) {
       case 'event': {
         this.unprocessedEvents.concat(items);
@@ -49,10 +41,11 @@ export default class Notifications {
         break;
       }
     }
-  }
+    this.seen = false;
+  };
 
-  _processEvents = (items) => {
-    items.forEach(item => {
+  _processEvents = () => {
+    this.unprocessedEvents.forEach(item => {
       switch(item.aws_ds) {
         case 'CREATE': {
           break;
@@ -65,6 +58,10 @@ export default class Notifications {
         }
       }
     })
+  };
+
+  _processBoards = () => {
+
   }
 
 }
