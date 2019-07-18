@@ -1,8 +1,17 @@
 import React from 'react';
-import { View } from 'react-native';
-import { Appbar } from 'react-native-paper';
+import { inject, observer } from 'mobx-react';
 import List from 'components/lists/Notifications';
-import styles from 'config/styles';
-import colors from 'config/colors';
 
-export default (props) => <List />;
+@inject('stores')
+@observer
+export default class Notifications extends React.Component {
+  render() {
+    const { stores } = this.props;
+
+    return (
+      <List
+        notifications={stores.notifications.items}
+      />
+    )
+  }
+}

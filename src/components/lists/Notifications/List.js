@@ -8,15 +8,18 @@ import Item from './Item';
 @inject('stores')
 @observer
 export default class List extends React.Component {
-  _renderEmpty = () => <Empty visible />;
-  _renderFooter = () => <Footer />;
+  _renderEmpty = () => <Empty />;
+  _renderFooter = () => <Footer visible={this.props.notifications.length}/>;
   _renderItem = () => <Item />;
+
   render() {
-    const styles = this.props.stores.appStyles.notifications;
+    const { stores, notifications } = this.props;
+
+    const styles = stores.appStyles.notifications;
     
     return (
       <FlatList
-        data={[]}
+        data={notifications}
         style={styles.list}
         contentContainerStyle={styles.contentContainer}
         renderItem={this._renderItem}

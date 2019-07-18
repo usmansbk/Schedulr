@@ -1,21 +1,23 @@
 import { observable, action, computed } from 'mobx';
 
 export default class Notifications {
-  @observable notifications = [1, 2, 3];
+  @observable items = [...mockNotifications];
+  @observable read = false;
 
   @computed get hasNotification() {
-    return this.notifications.length;
+    return this.items.length && !this.read;
   }
 
-  @action toggleNotification = () => {
-    this.hasNotifications = !this.hasNotifications;
+  @action toggleRead = () => {
+    this.read = true;
   };
 
   @action reset = () => {
-    this.notifications = [];
+    this.items = [];
   };
 
   @action process = (items, type) => {
+    this.read = false;
     switch(type) {
       case 'event': {
         this._processEvents(items);
@@ -45,3 +47,14 @@ export default class Notifications {
   }
 
 }
+
+const mockNotifications = [
+  {
+    id: 'xdq2294s9z',
+    pictureUrl: null,
+    title: 'Bloomberg cancelled',
+    message: '24/07/2019',
+    date: Date.now(),
+    tag: 'Update'
+  }
+];
