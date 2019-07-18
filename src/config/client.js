@@ -24,7 +24,7 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
         }
       });
     });  
-  } else if (networkError) SimpleToast.show('No connection', SimpleToast.SHORT);
+  } else if (networkError) SimpleToast.show("You're Offline", SimpleToast.SHORT);
 });
 
 const appSyncLink = createAppSyncLink({
