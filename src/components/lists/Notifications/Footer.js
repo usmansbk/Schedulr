@@ -1,12 +1,12 @@
 import React from 'react';
 import { View } from 'react-native';
-import { Text } from 'react-native-paper';
+import { Caption } from 'react-native-paper';
 import { inject, observer } from 'mobx-react';
 
 export default inject('stores')(observer(
   ({ visible, stores }) => visible ? (
     <View style={stores.appStyles.notifications.footer}>
-      <Text style={stores.appStyles.notifications.footerText}>You've caught up!</Text>
+      <Caption style={stores.appStyles.notifications.footerText}>You've caught up!</Caption>
     </View>
   ) : null
 ));

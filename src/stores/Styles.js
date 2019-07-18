@@ -759,6 +759,10 @@ export default class AppStyles {
         justifyContent: 'center',
         alignItems: 'center'
       },
+      footerText: {
+        fontWeight: 'bold',
+        color: colors.light_gray_3
+      },
       paragraph: {
         textAlign: 'center'
       },
