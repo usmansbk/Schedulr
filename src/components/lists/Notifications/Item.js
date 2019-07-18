@@ -12,7 +12,7 @@ import UserAvatar from 'components/common/UserAvatar';
 export default class Item extends React.Component {
 
   _onPressItems = () => {
-
+    alert('You are upto date');
   };
 
   render() {

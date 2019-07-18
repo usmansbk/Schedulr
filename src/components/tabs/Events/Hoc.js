@@ -45,7 +45,7 @@ export default inject("stores")(observer(
           updateQuery: (prev, { fetchMoreResult: { listAllEventsDelta } }) => {
             if (!(listAllEventsDelta && listAllEventsDelta.items.length)) return prev;
             const { items } = listAllEventsDelta;
-            ownprops.stores.notifications.process(items, 'event');
+            ownprops.stores.notifications.addToQueue(items, 'event');
             
             const { listAllEvents } = prev;
 

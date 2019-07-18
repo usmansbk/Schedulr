@@ -4,38 +4,41 @@ export default class Notifications {
   @observable items = [...mockNotifications];
   @observable unprocessedEvents = [];
   @observable unprocessedBoards = [];
-  @observable read = false;
+  @observable seen = false;
 
   @computed get hasNotification() {
     return (this.items.length ||
       this.unprocessedBoards.length ||
       this.unprocessedEvents.length
-    ) && !this.read;
+    ) && !this.seen;
   }
 
   @action toggleRead = () => {
-    this.read = true;
+    this.seen = true;
   };
 
   @action reset = () => {
     this.items = [];
+    this.unprocessedBoards = [];
+    this.unprocessedBoards = [];
+    this.seen = false;
   };
 
   @action process = () => {
     switch(type) {
       case 'event': {
-        this._processEvents(items);
+        this._processEvents();
         break;
       };
       case 'board': {
-        this._processBoards(items);
+        this._processBoards();
         break;
       }
     }
   };
 
-  @action addToList = (items, type) => {
-    this.read = false;
+  @action addToQueue = (items, type) => {
+    this.seen = false;
     switch(type) {
       case 'event': {
         this.unprocessedEvents.concat(items);

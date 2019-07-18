@@ -39,7 +39,7 @@ export default inject("stores")(observer(
           updateQuery: (prev, { fetchMoreResult: { listAllBoardsDelta }}) => {
             if (!(listAllBoardsDelta && listAllBoardsDelta.items.length)) return prev;
             const { items } = listAllBoardsDelta;
-            ownProps.stores.notifications.process(items, 'board');
+            ownProps.stores.notifications.addToQueue(items, 'board');
 
             const { listAllBoards } = prev;
 
