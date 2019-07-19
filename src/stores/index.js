@@ -54,6 +54,7 @@ class RootStore {
     this.me.reset();
     this.appState.reset();
     this.deltaSync.reset();
+    this.notifications.reset();
   }
 }
 

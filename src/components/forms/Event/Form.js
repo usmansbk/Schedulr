@@ -156,6 +156,7 @@ export default class Form extends React.Component {
                 onChangeText={handleChange('title')}
                 onBlur={handleBlur('title')}
                 mode="outlined"
+                autofocus={isNew}
               />
               <HelperText
                 type="error"
@@ -333,18 +334,18 @@ export default class Form extends React.Component {
               <Divider />
               <View style={styles.pickerSpacing}>
                 <View style={styles.row}>
-                  <Text style={styles.radioText}>Plan</Text>
+                  <Text style={styles.radioText}>Schedule</Text>
                   <Text style={styles.radioText} onPress={this._boardHelp}>Help</Text>
                 </View>
                 <Picker
-                  prompt="Select a plan"
+                  prompt="Select a schedule"
                   selectedValue={values.boardId}
                   style={styles.picker}
                   enabled={!locked }
                   itemStyle={styles.pickerItem}
                   onValueChange={itemValue => setFieldValue('boardId', itemValue)}
                 >
-                  <Picker.Item label={(boards.length === 0) ? "No schedule" : "Add to a plan"} value="" />
+                  <Picker.Item label={(boards.length === 0) ? "No schedule" : "Add to a schedule"} value="" />
                   {
                     boards.map(board => (
                       <Picker.Item key={board.id} label={board.name} value={board.id} />

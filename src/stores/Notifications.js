@@ -1,6 +1,5 @@
 import { observable, action, computed } from 'mobx';
 import { persist } from 'mobx-persist';
-import moment from 'moment';
 
 export default class Notifications {
   @persist("list") @observable items = [];
@@ -49,24 +48,43 @@ export default class Notifications {
   _processEvents = () => {
     this.unprocessedEvents.forEach(item => {
       const type = 'Event';
-      const date = moment(item.timestamp * 1000).fromNow();
+      const date = item.timestamp * 1000;
       const id = item.id;
       const title = item.title;
 
       switch(item.aws_ds) {
         case 'CREATE': {
-          const message = `scheduled on`;
+          const message = `scheduled on `;
           this.items.push({
             id,
             title,
             message,
             date,
-            target: moment(item.startAt).toDate().toDateString(),
+            target: item.startAt,
             type
           });
           break;
         };
         case 'UPDATE': {
+          const message = `details updated`;
+          this.items.push({
+            id,
+            title,
+            message,
+            date,
+            type
+          });
+          break;
+        };
+        case 'COUNT': {
+          const message = `was bookmarked`;
+          this.items.push({
+            id,
+            title,
+            message,
+            date,
+            type
+          });
           break;
         };
         case 'DELETE': {

@@ -69,7 +69,9 @@ class List extends Component {
   _renderSeparator = () => <Separator />;
   _renderFooter = () => <Footer visible={this.props.boards.length} />;
   _onRefresh = () => {
-    if (!this.props.loading && this.props.fetchMore) {
+    if (
+      this.props.stores.appState.isConnected &&
+      !this.props.loading && this.props.fetchMore) {
       this.props.fetchMore();
     }
   }

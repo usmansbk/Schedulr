@@ -171,6 +171,7 @@ export default class List extends React.Component {
 
   _onRefresh = () => {
     this._bootstrap(this.state.events);
+    this.props.stores.appState.isConnected &&
     this.props.fetchMore && !this.props.loading &&
       this.throttleFetchMore(this.props.stores.deltaSync.skipBaseQuery);
   };

@@ -119,6 +119,7 @@ export default class Form extends React.Component {
                 onChangeText={handleChange('name')}
                 onBlur={handleBlur('name')}
                 mode="outlined"
+                autofocus
               />
               <HelperText
                 type="error"

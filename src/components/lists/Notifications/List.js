@@ -1,5 +1,6 @@
 import React from 'react';
 import { FlatList } from 'react-navigation';
+import moment from 'moment';
 import Empty from './Empty';
 import Footer from './Footer';
 import Separator from './Separator';
@@ -29,8 +30,8 @@ export default class List extends React.Component {
     message={message}
     count={count}
     pictureUrl={pictureUrl}
-    date={capitalizr(date)}
-    target={capitalizr(target)}
+    date={capitalizr(`${moment(date).fromNow()}`)}
+    target={target && capitalizr(moment(target).toDate().toDateString())}
   />;
 
   render() {
@@ -40,6 +41,7 @@ export default class List extends React.Component {
       <FlatList
         data={notifications}
         style={styles.list}
+        extraData={moment().valueOf()}
         contentContainerStyle={styles.contentContainer}
         renderItem={this._renderItem}
         ListEmptyComponent={this._renderEmpty}
