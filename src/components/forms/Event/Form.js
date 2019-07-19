@@ -156,7 +156,7 @@ export default class Form extends React.Component {
                 onChangeText={handleChange('title')}
                 onBlur={handleBlur('title')}
                 mode="outlined"
-                autofocus={isNew}
+                autoFocus={isNew}
               />
               <HelperText
                 type="error"
