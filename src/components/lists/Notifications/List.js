@@ -1,14 +1,11 @@
 import React from 'react';
 import { FlatList } from 'react-navigation';
-import { inject, observer } from 'mobx-react';
 import Empty from './Empty';
 import Footer from './Footer';
 import Separator from './Separator';
 import Item from './Item';
 import capitalizr from 'lib/capitalizr';
 
-@inject('stores')
-@observer
 export default class List extends React.Component {
   static defaultProps = {
     notifications: []
@@ -25,7 +22,7 @@ export default class List extends React.Component {
     pictureUrl,
     date,
     count,
-    tag
+    target,
   }}) => <Item
     id={id}
     title={title}
@@ -33,12 +30,11 @@ export default class List extends React.Component {
     count={count}
     pictureUrl={pictureUrl}
     date={capitalizr(date)}
+    target={capitalizr(target)}
   />;
 
   render() {
-    const { stores, notifications } = this.props;
-
-    const styles = stores.appStyles.notifications;
+    const { styles, notifications } = this.props;
     
     return (
       <FlatList

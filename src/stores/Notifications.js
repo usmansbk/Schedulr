@@ -1,11 +1,12 @@
 import { observable, action, computed } from 'mobx';
+import { persist } from 'mobx-persist';
 import moment from 'moment';
 
 export default class Notifications {
-  @observable items = [];
-  @observable unprocessedEvents = [];
-  @observable unprocessedBoards = [];
-  @observable seen = false;
+  @persist("list") @observable items = [];
+  @persist("list") @observable unprocessedEvents = [];
+  @persist("list") @observable unprocessedBoards = [];
+  @persist @observable seen = false;
 
   @computed get hasNotification() {
     return Boolean(this.items.length ||
@@ -34,11 +35,11 @@ export default class Notifications {
   @action addToQueue = (items, type) => {
     switch(type) {
       case 'event': {
-        this.unprocessedEvents.concat(items);
+        this.unprocessedEvents = this.unprocessedEvents.concat(items);
         break;
       };
       case 'board': {
-        this.unprocessedBoards.concat(items);
+        this.unprocessedBoards = this.unprocessedBoards.concat(items);
         break;
       }
     }
@@ -48,18 +49,19 @@ export default class Notifications {
   _processEvents = () => {
     this.unprocessedEvents.forEach(item => {
       const type = 'Event';
-      const date = moment(item.updatedAt).fromNow();
+      const date = moment(item.timestamp * 1000).fromNow();
       const id = item.id;
       const title = item.title;
 
       switch(item.aws_ds) {
         case 'CREATE': {
-          const message = `scheduled on ${moment(item.startAt).toDate().toDateString()}`;
+          const message = `scheduled on`;
           this.items.push({
             id,
             title,
             message,
             date,
+            target: moment(item.startAt).toDate().toDateString(),
             type
           });
           break;
@@ -78,7 +80,8 @@ export default class Notifications {
           });
         }
       }
-    })
+    });
+    this.unprocessedEvents = [];
   };
 
   _processBoards = () => {

@@ -32,7 +32,8 @@ export const listAllEventsDelta = `query ListAllEventsDelta($lastSync: AWSTimest
       commentsCount
       createdAt
       updatedAt 
-      aws_ds 
+      aws_ds
+      timestamp
     }
   }
 }`;
@@ -62,6 +63,7 @@ export const listAllBoardsDelta = `query ListAllBoardsDelta($lastSync: AWSTimest
       createdAt
       updatedAt
       aws_ds
+      timestamp
     }
   }
 }

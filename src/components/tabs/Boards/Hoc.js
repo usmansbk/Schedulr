@@ -56,6 +56,7 @@ export default inject("stores")(observer(
             const remove_aws_ds_field = items.map(item => {
               const newItem = Object.assign({}, item);
               delete newItem.aws_ds;
+              delete newItem.timestamp;
               return newItem;
             }).filter(item => !deleteIds.includes(item.id));
 

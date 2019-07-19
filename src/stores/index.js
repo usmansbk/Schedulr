@@ -29,7 +29,7 @@ hydrate('me', meStore);
 hydrate('appState', appState);
 hydrate('deltaSync', deltaSync);
 hydrate('boardsSync', boardsSync);
-hydrate('notifications', notifications);
+// hydrate('notifications', notifications);
 
 // Create theme store after hydrating the settings store
 const themeStore = new Theme(settingsStore);

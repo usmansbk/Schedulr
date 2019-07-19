@@ -6,6 +6,10 @@ import List from 'components/lists/Notifications';
 @inject('stores')
 @observer
 class Notifications extends React.Component {
+  componentDidUpdate = () => {
+    this.props.stores.notifications.process();
+  }
+  
   componentDidMount = () => {
     this.props.stores.notifications.process();
   };
@@ -20,6 +24,7 @@ class Notifications extends React.Component {
     return (
       <List
         notifications={stores.notifications.items}
+        styles={stores.appStyles.notifications}
       />
     )
   }
