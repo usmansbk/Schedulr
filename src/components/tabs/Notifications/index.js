@@ -1,3 +1,3 @@
-import Notifications from './Notifications';
+import Tabs from './Tabs';
 
-export default Notifications;
+export default Tabs;

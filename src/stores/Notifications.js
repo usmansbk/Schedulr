@@ -52,50 +52,32 @@ export default class Notifications {
       const id = item.id;
       const title = item.title;
 
+      const notif = {
+        type,
+        date,
+        id,
+        title,
+      }
+
       switch(item.aws_ds) {
         case 'CREATE': {
           const message = `scheduled on `;
-          this.items.push({
-            id,
-            title,
-            message,
-            date,
-            target: item.startAt,
-            type
-          });
+          notif.target = item.startAt;
+          notif.message = message;
+          this.items.push(notif);
           break;
         };
         case 'UPDATE': {
           const message = `details updated`;
-          this.items.push({
-            id,
-            title,
-            message,
-            date,
-            type
-          });
-          break;
-        };
-        case 'COUNT': {
-          const message = `was bookmarked`;
-          this.items.push({
-            id,
-            title,
-            message,
-            date,
-            type
-          });
+          notif.message = message;
+          this.items.push(notif);
           break;
         };
         case 'DELETE': {
           const message = "deleted";
-          this.items.push({
-            id,
-            title,
-            message,
-            date,
-            type
-          });
+          notif.message = message;
+          this.items.push(notif);
+          break;
         }
       }
     });

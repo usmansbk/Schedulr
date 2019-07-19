@@ -736,7 +736,7 @@ export default class AppStyles {
     return StyleSheet.create({
       list: {
         backgroundColor: colors.light_gray,
-        paddingVertical: 8,
+        // paddingVertical: 8,
       },
       contentContainer: {
         flexGrow: 1,
