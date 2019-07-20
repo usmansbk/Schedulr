@@ -31,6 +31,7 @@ class Notifications extends React.Component {
       <List
         notifications={stores.notifications.items.sort((a, b) => (b.date - a.date))}
         styles={stores.appStyles.notifications}
+        navigation={this.props.navigation}
       />
       {
         Boolean(stores.notifications.items.length) && (

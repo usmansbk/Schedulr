@@ -19,12 +19,15 @@ export default class Item extends React.Component {
       navigateToEvent,
       navigateToBoard
     } = this.props;
-    switch(type) {
-      case 'Event':
-        navigateToEvent(id, refStartAt, refEndAt);
-        break;
-      case 'Board':
-        break;
+    if (id) {
+      switch(type) {
+        case 'Event':
+          navigateToEvent(id);
+          break;
+        case 'Board':
+          navigateToBoard(id);
+          break;
+      }
     }
   };
 

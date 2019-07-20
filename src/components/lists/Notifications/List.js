@@ -16,6 +16,8 @@ export default class List extends React.Component {
   _renderSeparator = () => <Separator />;
   _keyExtractor = (item) => item.id + item.date;
   _renderFooter = () => <Footer visible={this.props.notifications.length}/>;
+  _navigateToEvent = (id) => this.props.navigation.navigate('EventDetails', { id });
+  _navigateToBoard = (id) => this.props.navigation.navigate('BoardInfo', { id });
   _renderItem = ({ item: {
     id,
     title,
@@ -34,6 +36,8 @@ export default class List extends React.Component {
     pictureUrl={pictureUrl}
     date={capitalizr(`${moment(date).fromNow()}`)}
     target={target && capitalizr(moment(target).toDate().toDateString())}
+    navigateToBoard={this._navigateToBoard}
+    navigateToEvent={this._navigateToEvent}
   />;
 
   render() {

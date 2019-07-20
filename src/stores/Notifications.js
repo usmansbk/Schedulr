@@ -75,7 +75,8 @@ export default class Notifications {
           break;
         };
         case 'DELETE': {
-          const message = `${eventType ? eventType + ' ' : ''} deleted`;
+          const message = `${eventType ? eventType + ' ' : ''}deleted`;
+          delete notif.id;
           notif.message = message;
           this.items.push(notif);
           break;
