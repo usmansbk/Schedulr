@@ -70,9 +70,8 @@ export default class Notifications {
           break;
         };
         case 'UPDATE': {
-          const message = `details updated`;
-          notif.message = message;
-          this.items.push(notif);
+          // const eventChanges = processEventChanges(item, this.prevEvents);
+          // this.items.push(...eventChanges);
           break;
         };
         case 'DELETE': {
