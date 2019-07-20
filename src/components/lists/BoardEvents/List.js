@@ -15,6 +15,7 @@ import {
 } from 'lib/parseItem';
 import { eventsDiff } from 'lib/utils';
 import { board_events } from 'lib/constants';
+import moment from 'moment';
 
 const {
   ITEM_HEIGHT,
@@ -92,7 +93,7 @@ class List extends Component {
     const { loading, nextToken, fetchPastEvents, events } = this.props;
     if (fetchPastEvents && !loading) {
       const lastEvent = events[events.length - 1];
-      const lastDate = lastEvent && lastEvent.startAt;
+      const lastDate = lastEvent && lastEvent.createdAt;
       this.setState({ loadingPrev: true });
       await fetchPastEvents(nextToken, lastDate);
       this.setState({ loadingPrev: false });
