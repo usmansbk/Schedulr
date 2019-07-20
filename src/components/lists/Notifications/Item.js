@@ -33,7 +33,8 @@ export default class Item extends React.Component {
           <UserAvatar src={pictureUrl} name={title} />
           <View style={styles.itemBody}>
             <Caption><Caption style={styles.itemMessage}>{title}</Caption> {message}
-            { Boolean(target) && <Caption style={styles.itemMessage}>{target}</Caption>}</Caption><Caption style={styles.itemTag}>{` ${date}`}</Caption>
+            { Boolean(target) && <Caption style={styles.itemMessage}>{target}</Caption>}</Caption>
+            <Caption style={styles.itemTag}>{date}</Caption>
           </View>
         </View>
     </TouchableRipple>

@@ -32,11 +32,15 @@ class Notifications extends React.Component {
         notifications={stores.notifications.items}
         styles={stores.appStyles.notifications}
       />
-      <Fab
-        small
-        icon="clear-all"
-        onPress={this._onPress}
-      />
+      {
+        Boolean(stores.notifications.items.length) && (
+          <Fab
+            small
+            icon="clear-all"
+            onPress={this._onPress}
+          />
+        )
+      }
       </>
     )
   }
