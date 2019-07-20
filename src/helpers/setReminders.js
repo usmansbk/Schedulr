@@ -24,6 +24,7 @@ const setReminder = (event, before, settings) => {
     id,
     title,
     startAt,
+    endAt,
     eventType,
     repeat,
   } = event;
@@ -45,7 +46,9 @@ const setReminder = (event, before, settings) => {
     playSound: sound,
     vibrate,
     data: JSON.stringify({
-      id
+      id,
+      startAt,
+      endAt
     }),
     repeatType,
     ...repeatTime
