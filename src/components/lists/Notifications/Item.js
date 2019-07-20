@@ -33,8 +33,8 @@ export default class Item extends React.Component {
         <View style={styles.itemContent}>
           <UserAvatar src={pictureUrl} name={title} />
           <View style={styles.itemBody}>
-            <Text ellipsizeMode="tail" numberOfLines={2}><Caption ellipsizeMode="tail" numberOfLines={1} style={styles.itemMessage}>{title}</Caption> {message}
-            { Boolean(target) && <Caption style={styles.itemMessage}>{target}</Caption>}</Text>
+            <Caption ellipsizeMode="tail" numberOfLines={2}><Text ellipsizeMode="tail" numberOfLines={1} style={styles.itemMessage}>{title}</Text> {message}
+            { Boolean(target) && <Caption style={styles.itemMessage}>{target}</Caption>}</Caption>
             <Caption style={styles.itemTag}>{date}</Caption>
           </View>
         </View>

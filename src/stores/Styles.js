@@ -783,7 +783,7 @@ export default class AppStyles {
       },
       itemMessage: {
         fontWeight: 'bold',
-        fontSize: 14
+        fontSize: 12
       },
       itemBody: {
         marginLeft: 8
