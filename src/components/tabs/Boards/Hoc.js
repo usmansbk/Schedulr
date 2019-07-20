@@ -18,8 +18,10 @@ export default inject("stores")(observer(
       alias,
       options: (props) => {
         const skipBaseQuery = props.stores.boardsSync.skipBaseQuery;
+        const isConnected = props.stores.appState.isConnected;
+
         return {
-          fetchPolicy: skipBaseQuery ? 'cache-first' : 'cache-and-network',
+          fetchPolicy: (!skipBaseQuery && isConnected) ? 'cache-and-network' : 'cache-first',
           notifyOnNetworkStatusChange: true,
           onCompleted: () => {
             !skipBaseQuery && props.stores.boardsSync.updateBaseLastSyncTimestamp();

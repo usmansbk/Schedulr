@@ -19,7 +19,7 @@ export default inject("stores")(observer(
         const skipBaseQuery = props.stores.deltaSync.skipBaseQuery;
         const isConnected = props.stores.appState.isConnected;
         return {
-          fetchPolicy: !skipBaseQuery && isConnected ? 'cache-and-network' : 'cache-first',
+          fetchPolicy: (!skipBaseQuery && isConnected) ? 'cache-and-network' : 'cache-first',
           notifyOnNetworkStatusChange: true,
           variables: {
             filter: filterEvents
