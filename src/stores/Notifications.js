@@ -59,7 +59,7 @@ export default class Notifications {
         date,
         id,
         title,
-      }
+      };
 
       switch(item.aws_ds) {
         case 'CREATE': {
