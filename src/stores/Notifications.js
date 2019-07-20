@@ -48,38 +48,40 @@ export default class Notifications {
 
   _processEvents = () => {
     this.unprocessedEvents.forEach(item => {
-      const type = 'Event';
-      const date = item.timestamp * 1000;
-      const id = item.id;
-      const title = item.title;
-      const eventType = decapitalize(item.eventType, true).trim();
-
-      const notif = {
-        type,
-        date,
-        id,
-        title,
-      };
-
-      switch(item.aws_ds) {
-        case 'CREATE': {
-          const message = `${eventType ? eventType + ' ' : ''}scheduled on `;
-          notif.target = item.startAt;
-          notif.message = message;
-          this.items.push(notif);
-          break;
+      if (!item.isAuthor) {
+        const type = 'Event';
+        const date = item.timestamp * 1000;
+        const id = item.id;
+        const title = item.title;
+        const eventType = decapitalize(item.eventType, true).trim();
+  
+        const notif = {
+          type,
+          date,
+          id,
+          title,
         };
-        case 'UPDATE': {
-          // const eventChanges = processEventChanges(item, this.prevEvents);
-          // this.items.push(...eventChanges);
-          break;
-        };
-        case 'DELETE': {
-          const message = `${eventType ? eventType + ' ' : ''}deleted`;
-          delete notif.id;
-          notif.message = message;
-          this.items.push(notif);
-          break;
+  
+        switch(item.aws_ds) {
+          case 'CREATE': {
+            const message = `${eventType ? eventType + ' ' : ''}scheduled on `;
+            notif.target = item.startAt;
+            notif.message = message;
+            this.items.push(notif);
+            break;
+          };
+          case 'UPDATE': {
+            // const eventChanges = processEventChanges(item, this.prevEvents);
+            // this.items.push(...eventChanges);
+            break;
+          };
+          case 'DELETE': {
+            const message = `${eventType ? eventType + ' ' : ''}deleted`;
+            delete notif.id;
+            notif.message = message;
+            this.items.push(notif);
+            break;
+          }
         }
       }
     });
