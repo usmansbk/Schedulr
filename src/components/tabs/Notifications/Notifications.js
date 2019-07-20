@@ -29,7 +29,7 @@ class Notifications extends React.Component {
     return (
       <>
       <List
-        notifications={stores.notifications.items}
+        notifications={stores.notifications.items.sort((a, b) => (a.date - b.date) * -1)}
         styles={stores.appStyles.notifications}
       />
       {
