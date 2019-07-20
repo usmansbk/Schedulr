@@ -2,7 +2,8 @@ import React from 'react';
 import { View } from 'react-native';
 import {
   TouchableRipple,
-  Caption
+  Caption,
+  Text
 } from 'react-native-paper';
 import { inject, observer } from 'mobx-react';
 import UserAvatar from 'components/common/UserAvatar';
@@ -32,8 +33,8 @@ export default class Item extends React.Component {
         <View style={styles.itemContent}>
           <UserAvatar src={pictureUrl} name={title} />
           <View style={styles.itemBody}>
-            <Caption ellipsizeMode="tail" numberOfLines={2}><Caption ellipsizeMode="tail" numberOfLines={1} style={styles.itemMessage}>{title}</Caption> {message}
-            { Boolean(target) && <Caption style={styles.itemMessage}>{target}</Caption>}</Caption>
+            <Text ellipsizeMode="tail" numberOfLines={2}><Caption ellipsizeMode="tail" numberOfLines={1} style={styles.itemMessage}>{title}</Caption> {message}
+            { Boolean(target) && <Caption style={styles.itemMessage}>{target}</Caption>}</Text>
             <Caption style={styles.itemTag}>{date}</Caption>
           </View>
         </View>

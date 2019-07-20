@@ -782,7 +782,8 @@ export default class AppStyles {
         fontSize: 16
       },
       itemMessage: {
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        fontSize: 14
       },
       itemBody: {
         marginLeft: 8
@@ -1322,8 +1323,14 @@ export default class AppStyles {
         color: colors.primary_light,
         fontWeight: 'bold'
       },
-      footerContainer: { height: FOOTER_HEIGHT },
-      footerContent: { flex: 1, justifyContent: 'center', alignItems: 'center' },
+      footerContainer: {
+        height: FOOTER_HEIGHT
+      },
+      footerContent: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
+      },
       footerText: {
         fontWeight: 'bold',
         color: colors.light_gray_3
