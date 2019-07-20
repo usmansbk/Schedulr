@@ -1,5 +1,6 @@
 import { observable, action, computed } from 'mobx';
 import { persist } from 'mobx-persist';
+import { decapitalize } from 'lib/capitalizr';
 
 export default class Notifications {
   @persist("list") @observable items = [];
@@ -51,6 +52,7 @@ export default class Notifications {
       const date = item.timestamp * 1000;
       const id = item.id;
       const title = item.title;
+      const eventType = decapitalize(item.eventType, true).trim();
 
       const notif = {
         type,
@@ -61,7 +63,7 @@ export default class Notifications {
 
       switch(item.aws_ds) {
         case 'CREATE': {
-          const message = `scheduled on `;
+          const message = `${eventType ? eventType + ' ' : ''}scheduled on `;
           notif.target = item.startAt;
           notif.message = message;
           this.items.push(notif);
@@ -74,7 +76,7 @@ export default class Notifications {
           break;
         };
         case 'DELETE': {
-          const message = "deleted";
+          const message = `${eventType ? eventType + ' ' : ''} deleted`;
           notif.message = message;
           this.items.push(notif);
           break;

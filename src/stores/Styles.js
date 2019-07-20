@@ -776,6 +776,7 @@ export default class AppStyles {
         paddingHorizontal: 8,
         flexDirection: 'row',
         alignItems: 'center',
+        maxWidth: 300
       },
       itemHeadline: {
         fontSize: 16
@@ -784,7 +785,7 @@ export default class AppStyles {
         fontWeight: 'bold'
       },
       itemBody: {
-        paddingLeft: 8
+        marginLeft: 8
       },
       itemTag: {
     
