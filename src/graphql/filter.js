@@ -3,7 +3,7 @@ import moment from 'moment';
 const intervals = ["DAILY", "WEEKDAYS", "WEEKLY", "MONTHLY", "MONTHLY_DAY", "YEARLY"];
 
 export const filterEvents = {
-  "expression":  "#endAt >= :startOfDay OR ( #repeat IN (:intervals) AND (#untilAt >= :startOfDay OR #forever = :forever) AND #endAt >= :startOfDay )",
+  "expression":  "#startAt >= :startOfDay OR ( #repeat IN (:intervals) AND (#untilAt >= :startOfDay OR #forever = :forever) AND #startAt >= :startOfDay )",
   "expressionNames": JSON.stringify({
     "#endAt"       : "endAt",
     "#repeat"      : "repeat",
@@ -18,7 +18,7 @@ export const filterEvents = {
 };
 
 export const filterPastEvents = (date) => ({
-  "expression": "#endAt < :startOfDay",
+  "expression": "#startAt < :startOfDay",
   "expressionNames": JSON.stringify({
     "#endAt"        : "endAt"
   }),

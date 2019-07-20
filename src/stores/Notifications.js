@@ -4,6 +4,8 @@ import { decapitalize } from 'lib/capitalizr';
 
 export default class Notifications {
   @persist("list") @observable items = [];
+  @observable prevBoards = [];
+  @observable prevEvents = [];
   @persist("list") @observable unprocessedEvents = [];
   @persist("list") @observable unprocessedBoards = [];
   @persist @observable seen = false;
@@ -32,14 +34,16 @@ export default class Notifications {
     this.seen = true;
   };
 
-  @action addToQueue = (items, type) => {
+  @action addToQueue = (items, type, prevItems) => {
     switch(type) {
       case 'event': {
         this.unprocessedEvents = this.unprocessedEvents.concat(items);
+        this.prevEvents = prevItems;
         break;
       };
       case 'board': {
         this.unprocessedBoards = this.unprocessedBoards.concat(items);
+        this.prevBoardss = prevItems;
         break;
       }
     }
@@ -71,8 +75,8 @@ export default class Notifications {
             break;
           };
           case 'UPDATE': {
-            // const eventChanges = processEventChanges(item, this.prevEvents);
-            // this.items.push(...eventChanges);
+            const eventChanges = this._processEventChanges(item);
+            this.items.push(...eventChanges);
             break;
           };
           case 'DELETE': {
@@ -88,83 +92,12 @@ export default class Notifications {
     this.unprocessedEvents = [];
   };
 
+  _processEventChanges = (item) => {
+
+  };
+
   _processBoards = () => {
 
-  }
+  };
 
 }
-
-const mockNotifications = [
-  {
-    id: 'xdq2294s9z',
-    pictureUrl: null,
-    title: 'Kronos Quartet',
-    message: 'cancelled',
-    date: Date.now(),
-    tag: 'Update'
-  },
-  {
-    id: 'xdq2294s9za',
-    pictureUrl: null,
-    title: 'Test notification',
-    message: 'details updated',
-    date: Date.now(),
-    tag: 'Update'
-  },
-  {
-    id: 'xdq2294s9zaa',
-    pictureUrl: null,
-    title: 'Development',
-    message: 'closed',
-    date: Date.now() - 50000,
-    tag: 'Update'
-  },
-  {
-    id: 'xdqa2294s9zaa',
-    pictureUrl: null,
-    title: 'EEEN509',
-    message: 'deleted',
-    date: Date.now() - 50000000,
-    tag: 'Delete'
-  },
-  {
-    id: 'xdqa2294329zaa',
-    pictureUrl: null,
-    title: 'EEEN513',
-    message: 'time changed',
-    date: Date.now() - 40000000,
-    tag: 'Update'
-  },
-  {
-    id: 'xdqa2294329z7a',
-    pictureUrl: null,
-    title: 'EEEN501',
-    message: 'location changed',
-    date: Date.now() - 30000000,
-    tag: 'Update'
-  },
-  {
-    id: 'xdqa2294329z7akl',
-    pictureUrl: null,
-    title: 'EEEN502',
-    message: 'has new comments',
-    count: 132,
-    tag: 'Update'
-  },
-  {
-    id: 'xdq32294s9zaa',
-    pictureUrl: null,
-    title: 'Development',
-    message: 'opened',
-    date: Date.now() + 60000000,
-    tag: 'Update'
-  },
-  {
-    id: 'xdq32294s9zbaa',
-    pictureUrl: null,
-    title: 'Hello kitty and',
-    message: 'info updated',
-    date: Date.now() + 60000000,
-    tag: 'Update'
-  },
-];
