@@ -14,7 +14,7 @@ export default class List extends React.Component {
 
   _renderEmpty = () => <Empty />;
   _renderSeparator = () => <Separator />;
-  _keyExtractor = (item) => item.id;
+  _keyExtractor = (item) => item.id + item.date;
   _renderFooter = () => <Footer visible={this.props.notifications.length}/>;
   _renderItem = ({ item: {
     id,
