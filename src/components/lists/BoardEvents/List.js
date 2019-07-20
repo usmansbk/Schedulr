@@ -83,7 +83,7 @@ class List extends Component {
   _renderEmptyList = () => <Empty error={this.props.error} loading={this.props.loading} />;
   _renderSeparator = () => <Separator />;
   _renderFooter = () => <Footer
-    visible={this.props.events.length && !this.props.loading}
+    hide={this.props.loading}
     onPress={this._fetchPastEvents}
     loading={this.props.loading && this.state.loadingPrev}
     hasPrev={this.state.hasPrev}
