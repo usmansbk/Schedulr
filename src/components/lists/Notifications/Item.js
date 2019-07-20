@@ -13,7 +13,19 @@ import UserAvatar from 'components/common/UserAvatar';
 export default class Item extends React.Component {
 
   _onPressItems = () => {
-    alert('You are upto date');
+    const {
+      id,
+      type,
+      navigateToEvent,
+      navigateToBoard
+    } = this.props;
+    switch(type) {
+      case 'Event':
+        navigateToEvent(id, refStartAt, refEndAt);
+        break;
+      case 'Board':
+        break;
+    }
   };
 
   render() {

@@ -24,11 +24,13 @@ export default class List extends React.Component {
     date,
     count,
     target,
+    type
   }}) => <Item
     id={id}
     title={title}
     message={message}
     count={count}
+    type={type}
     pictureUrl={pictureUrl}
     date={capitalizr(`${moment(date).fromNow()}`)}
     target={target && capitalizr(moment(target).toDate().toDateString())}
