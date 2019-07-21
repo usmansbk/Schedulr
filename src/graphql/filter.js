@@ -18,9 +18,9 @@ export const filterEvents = {
 };
 
 export const filterPastEvents = (date) => ({
-  "expression": "#startAt < :startOfDay",
+  "expression": "#endAt < :startOfDay",
   "expressionNames": JSON.stringify({
-    "#startAt"        : "startAt"
+    "#endAt"        : "endAt"
   }),
   "expressionValues" : JSON.stringify({
     ":startOfDay"    : moment(date).startOf('day').valueOf()
