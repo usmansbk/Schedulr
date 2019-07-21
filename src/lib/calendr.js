@@ -216,7 +216,10 @@ function getEvents(events) {
         isConcluded
       });
     }
-    return currentEvent;
+    return Object.assign({}, currentEvent, {
+      raw_startAt: currentEvent.startAt,
+      raw_endAt: currentEvent.endAt
+    });
   });
 };
 
