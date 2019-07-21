@@ -20,7 +20,7 @@ export default class List extends React.Component {
 
   _renderEmpty = () => <Empty />;
   _renderSeparator = () => <Separator />;
-  _keyExtractor = (item) => item.id + item.date;
+  _keyExtractor = (item, index) => item.id + item.date + index;
   _renderFooter = () => <Footer visible={this.props.logs.length}/>;
   _navigateToEvent = (id) => this.props.navigation.navigate('EventDetails', { id });
   _navigateToBoard = (id) => this.props.navigation.navigate('BoardInfo', { id });
