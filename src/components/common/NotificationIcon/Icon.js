@@ -12,7 +12,7 @@ export default inject('stores')(observer(({stores, color, size, focused }) => {
         size={size}
       />
       {
-        stores.notifications.hasNotification && <View style={styles.indicator}/>
+        stores.logs.hasNotification && <View style={styles.indicator}/>
       }
     </View>
   );
