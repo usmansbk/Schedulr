@@ -58,6 +58,12 @@ export const board_info = {
   AVATAR_SIZE : 80
 };
 
+// list/notifications_list
+export const notifications_list = {
+  ITEM_HEIGHT: 80,
+  SEPARATOR_HEIGHT: 1
+};
+
 // list/boardEvents
 export const board_events = {
   AVATAR_SIZE : 54,

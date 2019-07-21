@@ -211,6 +211,8 @@ function getEvents(events) {
       return  Object.assign({}, currentEvent, {
         startAt,
         endAt,
+        raw_startAt: currentEvent.startAt,
+        raw_endAt: currentEvent.endAt,
         isConcluded
       });
     }

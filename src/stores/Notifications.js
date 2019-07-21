@@ -38,13 +38,13 @@ export default class Notifications {
     const filtered = items.filter(item => !item.isAuthor);
     switch(type) {
       case 'event': {
-        this.unprocessedEvents = this.unprocessedEvents.concat(filtered);
+        this.unprocessedEvents = this.unprocessedEvents.concat(items);
         this.prevEvents = prevItems;
         break;
       };
       case 'board': {
         this.unprocessedBoards = this.unprocessedBoards.concat(filtered);
-        this.prevBoardss = prevItems;
+        this.prevBoards = prevItems;
         break;
       }
     }
@@ -75,8 +75,9 @@ export default class Notifications {
           break;
         };
         case 'UPDATE': {
-          const eventChanges = this._processEventChanges(item);
-          this.items.push(...eventChanges);
+          const message = this._processEventChanges(item);
+          notif.message = `${message} changed`;
+          this.items.push(notif);
           break;
         };
         case 'DELETE': {
@@ -92,7 +93,16 @@ export default class Notifications {
   };
 
   _processEventChanges = (item) => {
-
+    const changes = [];
+    const prevState = this.prevEvents.find(event => event.id === item.id);
+    if (prevState) {
+      Object.keys(prevState).forEach(key => {
+        if (item[key] !== prevState[key]) {
+          changes.push(key);
+        }
+      });
+    }
+    return changes.join();
   };
 
   _processBoards = () => {
