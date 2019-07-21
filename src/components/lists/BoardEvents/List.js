@@ -93,12 +93,10 @@ class List extends Component {
     if (fetchPastEvents && !loading) {
       const sorted = events.sort((a, b) => a.raw_startAt - b.raw_startAt);
       const lastEvent = sorted[0];
-      if (lastEvent) {
-        const lastDate = lastEvent.raw_startAt;
-        this.setState({ loadingPrev: true });
-        await fetchPastEvents(nextToken, lastDate);
-        this.setState({ loadingPrev: false });
-      }
+      const lastDate = lastEvent && lastEvent.raw_startAt;
+      this.setState({ loadingPrev: true });
+      await fetchPastEvents(nextToken, lastDate);
+      this.setState({ loadingPrev: false });
     }
   };
 
