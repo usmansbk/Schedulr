@@ -59,7 +59,7 @@ export default class List extends React.Component {
     return (
       <FlatList
         data={logs}
-        style={styles.list}
+        style={styles}
         extraData={moment().valueOf()}
         getItemLayout={this._getItemLayout}
         contentContainerStyle={styles.contentContainer}

@@ -30,7 +30,7 @@ class Logs extends React.Component {
       <>
       <List
         logs={stores.logs.items.sort((a, b) => (b.date - a.date))}
-        styles={stores.appStyles.logs}
+        styles={stores.appStyles.notifications}
         navigation={this.props.navigation}
       />
       {

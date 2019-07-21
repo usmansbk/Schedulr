@@ -9,7 +9,7 @@ import UserProfile from './UserProfile';
 import AppState from './AppState';
 import DeltaSync from './Sync';
 import BoardsSync from './BoardsSync';
-import Logs from './Logs';./Logs
+import Logs from './Logs';
 
 const hydrate = create({
   storage: AsyncStorage
