@@ -1,18 +1,18 @@
 import React from 'react';
 import { withNavigationFocus } from 'react-navigation';
 import { inject, observer } from 'mobx-react';
-import List from 'components/lists/Notifications';
+import List from 'components/lists/Logs
 import Fab from 'components/common/Fab';
 
 @inject('stores')
 @observer
-class Notifications extends React.Component {
+class Logs extends React.Component {
   componentDidUpdate = () => {
-    this.props.stores.notifications.process();
+    this.props.stores.logs.process();
   }
   
   componentDidMount = () => {
-    this.props.stores.notifications.process();
+    this.props.stores.logs.process();
   };
 
   shouldComponentUpdate = (nextProps) => {
@@ -20,7 +20,7 @@ class Notifications extends React.Component {
   };
 
   _onPress = () => {
-    this.props.stores.notifications.reset();
+    this.props.stores.logs.reset();
   }
 
   render() {
@@ -29,12 +29,12 @@ class Notifications extends React.Component {
     return (
       <>
       <List
-        notifications={stores.notifications.items.sort((a, b) => (b.date - a.date))}
-        styles={stores.appStyles.notifications}
+        logs={stores.logs.items.sort((a, b) => (b.date - a.date))}
+        styles={stores.appStyles.logs}
         navigation={this.props.navigation}
       />
       {
-        Boolean(stores.notifications.items.length) && (
+        Boolean(stores.logs.items.length) && (
           <Fab
             small
             icon="clear-all"
@@ -47,4 +47,4 @@ class Notifications extends React.Component {
   }
 }
 
-export default withNavigationFocus(Notifications);
+export default withNavigationFocus(Logs);

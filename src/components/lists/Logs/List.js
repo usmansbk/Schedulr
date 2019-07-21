@@ -15,13 +15,13 @@ const {
 
 export default class List extends React.Component {
   static defaultProps = {
-    notifications: []
+    logs: []
   };
 
   _renderEmpty = () => <Empty />;
   _renderSeparator = () => <Separator />;
   _keyExtractor = (item) => item.id + item.date;
-  _renderFooter = () => <Footer visible={this.props.notifications.length}/>;
+  _renderFooter = () => <Footer visible={this.props.logs.length}/>;
   _navigateToEvent = (id) => this.props.navigation.navigate('EventDetails', { id });
   _navigateToBoard = (id) => this.props.navigation.navigate('BoardInfo', { id });
   _getItemLayout = (_, index) => (
@@ -54,11 +54,11 @@ export default class List extends React.Component {
   />;
 
   render() {
-    const { styles, notifications } = this.props;
+    const { styles, logs } = this.props;
     
     return (
       <FlatList
-        data={notifications}
+        data={logs}
         style={styles.list}
         extraData={moment().valueOf()}
         getItemLayout={this._getItemLayout}

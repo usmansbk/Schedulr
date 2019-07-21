@@ -48,7 +48,7 @@ export default inject("stores")(observer(
             const { items } = listAllEventsDelta;
             
             const { listAllEvents } = prev;
-            ownProps.stores.notifications.addToQueue(items, 'event', listAllEvents.items);
+            ownProps.stores.logs.addToQueue(items, 'event', listAllEvents.items);
 
             const deleteIds = items.filter(item => item.aws_ds === 'DELETE').map(item => item.id);
 
