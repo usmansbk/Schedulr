@@ -91,7 +91,7 @@ class List extends Component {
   _fetchPastEvents = async () => {
     const { loading, nextToken, fetchPastEvents, events } = this.props;
     if (fetchPastEvents && !loading) {
-      const lastEvent = events[event.length - 1];
+      const lastEvent = events[events.length - 1];
       const lastDate = lastEvent && lastEvent.raw_endAt;
       this.setState({ loadingPrev: true });
       await fetchPastEvents(nextToken, lastDate);
