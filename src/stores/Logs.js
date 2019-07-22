@@ -98,10 +98,16 @@ export default class Logs {
     const prevState = this.prevEvents.find(event => event.id === item.id);
     if (prevState) {
       Object.keys(prevState).forEach(key => {
-        if (item[key] !== prevState[key]) {
-          changes.push(parseKey(key));
+        const currentVal = item[key];
+        const prevVal = prevState[key];
+        const _type = typeof prevVal === 'number' || typeof prevVal === 'string';
+
+        if (currentVal !== prevVal && _type) {
+          const parsedKey = parseKey(key);
+          if (parsedKey) changes.push(key);
         }
       });
+      if (!changes.length) changes.push("details");
     }
     return changes.join();
   };
@@ -116,7 +122,7 @@ const parseKey = (key) => {
   switch(key) {
     case 'venue': return 'venue';
     case 'startAt':
-    case 'endAt': return 'time';
+    case 'endAt': return 'date';
     default: return '';
   }
 }

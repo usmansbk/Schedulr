@@ -107,7 +107,7 @@ export default compose(
       data: (
         data && data.listAllBoards &&
         data.listAllBoards.items &&
-        data.listAllBoards.items.filter(item => item.isAuthor)
+        data.listAllBoards.items.filter(item => item.isAuthor) || []
       ),
     }),
   }),
@@ -127,7 +127,7 @@ export default compose(
       data: (
         data && data.createdBoards &&
         data.createdBoards.createdBoards &&
-        data.createdBoards.createdBoards.items
+        data.createdBoards.createdBoards.items || []
       ),
       onRefresh: () => data.refetch(),
       ...ownProps

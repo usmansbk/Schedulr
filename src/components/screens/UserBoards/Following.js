@@ -113,7 +113,7 @@ export default compose(
       data: (
         data && data.listAllBoards &&
         data.listAllBoards.items &&
-        data.listAllBoards.items.filter(item => item.isFollowing)
+        data.listAllBoards.items.filter(item => item.isFollowing) || []
       ),
     }),
   }),
@@ -133,7 +133,7 @@ export default compose(
       data: (
         data && data.followingBoards &&
         data.followingBoards.followingBoards &&
-        data.followingBoards.followingBoards.items
+        data.followingBoards.followingBoards.items || []
       ),
       onRefresh: () =>  data.refetch(),
       ...ownProps
