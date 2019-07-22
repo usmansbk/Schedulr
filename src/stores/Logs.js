@@ -107,7 +107,7 @@ export default class Logs {
       })
       if (!changes.length) changes.push(`${item.eventType} details updated`);
     }
-    return `${item.eventType} ${changes.join()} changed`;
+    return `${changes.join()} changed`;
   };
 
   _processBoards = () => {
