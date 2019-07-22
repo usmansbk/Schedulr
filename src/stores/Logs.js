@@ -97,16 +97,14 @@ export default class Logs {
     const changes = [];
     const prevState = this.prevEvents.find(event => event.id === item.id);
     if (prevState) {
-      Object.keys(prevState).forEach(key => {
+      Object.keys(item).forEach(key => {
         const currentVal = item[key];
         const prevVal = prevState[key];
-        const _type = typeof prevVal === 'number' || typeof prevVal === 'string';
-
-        if (currentVal !== prevVal && _type) {
-          const parsedKey = parseKey(key);
-          if (parsedKey) changes.push(key);
+        if ((typeof currentVal !== 'object') && (currentVal !== prevVal)) {
+          if (key === 'venue') changes.push("venue");
+          if (key === "startAt") changes.push("date");
         }
-      });
+      })
       if (!changes.length) changes.push(`${item.eventType} details updated`);
     }
     return `${item.eventType} ${changes.join()} changed`;
@@ -116,13 +114,4 @@ export default class Logs {
 
   };
 
-}
-
-const parseKey = (key) => {
-  switch(key) {
-    case 'venue': return 'venue';
-    case 'startAt':
-    case 'endAt': return 'date';
-    default: return '';
-  }
 }
