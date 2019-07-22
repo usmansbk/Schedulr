@@ -35,15 +35,14 @@ export default class Logs {
   };
 
   @action addToQueue = (items, type, prevItems) => {
-    const filtered = items.filter(item => !item.isAuthor);
     switch(type) {
       case 'event': {
-        this.unprocessedEvents = this.unprocessedEvents.concat(filtered);
+        this.unprocessedEvents = this.unprocessedEvents.concat(items);
         this.prevEvents = prevItems;
         break;
       };
       case 'board': {
-        this.unprocessedBoards = this.unprocessedBoards.concat(filtered);
+        this.unprocessedBoards = this.unprocessedBoards.concat(items);
         this.prevBoards = prevItems;
         break;
       }
@@ -53,39 +52,41 @@ export default class Logs {
 
   _processEvents = () => {
     this.unprocessedEvents.forEach(item => {
-      const type = 'Event';
-      const date = item.timestamp * 1000;
-      const id = item.id;
-      const title = item.title;
-      const eventType = decapitalize(item.eventType, true).trim();
-
-      const notif = {
-        type,
-        date,
-        id,
-        title,
-      };
-
-      switch(item.aws_ds) {
-        case 'CREATE': {
-          const message = `${eventType ? eventType + ' ' : ''}scheduled on `;
-          notif.target = item.startAt;
-          notif.message = message;
-          this.items.push(notif);
-          break;
+      if (!item.isAuthor) {
+        const type = 'Event';
+        const date = item.timestamp * 1000;
+        const id = item.id;
+        const title = item.title;
+        const eventType = decapitalize(item.eventType, true).trim();
+  
+        const notif = {
+          type,
+          date,
+          id,
+          title,
         };
-        case 'UPDATE': {
-          const message = this._processEventChanges(item);
-          notif.message = `${message} changed`;
-          this.items.push(notif);
-          break;
-        };
-        case 'DELETE': {
-          const message = `${eventType ? eventType + ' ' : ''}deleted`;
-          delete notif.id;
-          notif.message = message;
-          this.items.push(notif);
-          break;
+  
+        switch(item.aws_ds) {
+          case 'CREATE': {
+            const message = `${eventType ? eventType + ' ' : ''}scheduled on `;
+            notif.target = item.startAt;
+            notif.message = message;
+            this.items.push(notif);
+            break;
+          };
+          case 'UPDATE': {
+            const message = this._processEventChanges(item);
+            notif.message = `${message} changed`;
+            this.items.push(notif);
+            break;
+          };
+          case 'DELETE': {
+            const message = `${eventType ? eventType + ' ' : ''}deleted`;
+            delete notif.id;
+            notif.message = message;
+            this.items.push(notif);
+            break;
+          }
         }
       }
     });
