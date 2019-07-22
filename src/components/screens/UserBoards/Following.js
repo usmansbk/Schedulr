@@ -77,8 +77,10 @@ class FollowingBoards extends Component{
       stores
     } = this.props;
 
-    if (loading && !data) return <Loading />;
-    if (error && !data) return <ErrorScreen loading={loading} onRefresh={onRefresh} />;
+    if (loading && !data.length) return <Loading />;
+    if (error && !data.length) {
+      return <ErrorScreen loading={loading} onRefresh={onRefresh} />;
+    }
 
     const styles = stores.appStyles.boardsList;
 

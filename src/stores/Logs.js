@@ -76,7 +76,7 @@ export default class Logs {
           };
           case 'UPDATE': {
             const message = this._processEventChanges(item);
-            notif.message = `${message} changed`;
+            notif.message = message;
             this.items.push(notif);
             break;
           };
@@ -107,9 +107,9 @@ export default class Logs {
           if (parsedKey) changes.push(key);
         }
       });
-      if (!changes.length) changes.push("details");
+      if (!changes.length) changes.push(`${item.eventType} details updated`);
     }
-    return changes.join();
+    return `${item.eventType} ${changes.join()} changed`;
   };
 
   _processBoards = () => {
