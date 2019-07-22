@@ -38,7 +38,7 @@ export default class Logs {
     const filtered = items.filter(item => !item.isAuthor);
     switch(type) {
       case 'event': {
-        this.unprocessedEvents = this.unprocessedEvents.concat(items);
+        this.unprocessedEvents = this.unprocessedEvents.concat(filtered);
         this.prevEvents = prevItems;
         break;
       };
@@ -98,7 +98,7 @@ export default class Logs {
     if (prevState) {
       Object.keys(prevState).forEach(key => {
         if (item[key] !== prevState[key]) {
-          changes.push(key);
+          changes.push(parseKey(key));
         }
       });
     }
@@ -109,4 +109,13 @@ export default class Logs {
 
   };
 
+}
+
+const parseKey = (key) => {
+  switch(key) {
+    case 'venue': return 'venue';
+    case 'startAt':
+    case 'endAt': return 'time';
+    default: return '';
+  }
 }
