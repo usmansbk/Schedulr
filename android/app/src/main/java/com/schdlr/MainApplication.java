@@ -6,6 +6,14 @@ import com.facebook.CallbackManager;
 import com.facebook.FacebookSdk;
 
 import com.facebook.react.ReactApplication;
+import com.agontuk.RNFusedLocation.RNFusedLocationPackage;
+import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
+import com.oblador.vectoricons.VectorIconsPackage;
+import org.devio.rn.splashscreen.SplashScreenReactPackage;
+import com.dieam.reactnativepushnotification.ReactNativePushNotificationPackage;
+import com.thebylito.navigationbarcolor.NavigationBarColorPackage;
+import com.devfd.RNGeocoder.RNGeocoderPackage;
+import com.facebook.reactnative.androidsdk.FBSDKPackage;
 
 
 
@@ -50,6 +58,14 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new RNFusedLocationPackage(),
+            new RNGestureHandlerPackage(),
+            new VectorIconsPackage(),
+            new SplashScreenReactPackage(),
+            new ReactNativePushNotificationPackage(),
+            new NavigationBarColorPackage(),
+            new RNGeocoderPackage(),
+            new FBSDKPackage(),
             new RNAWSCognitoPackage()
       );
     }
