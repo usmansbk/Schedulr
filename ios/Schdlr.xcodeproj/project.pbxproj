@@ -63,8 +63,8 @@
 		9A20219AA2A3415FA389684F /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0F448A3A8EA74F40983F8A69 /* SimpleLineIcons.ttf */; };
 		0C93BF648C7245D096CD0510 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8025A4DA66A643EC845423D8 /* Zocial.ttf */; };
 		DF517E509E2E45F180DF8FB5 /* libRNGoogleSignin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FC87C2F5591417E90FDBF4A /* libRNGoogleSignin.a */; };
-		05D6FCFA31814B6C83CC3264 /* libRNGestureHandler.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E0373E89897849E8BE5676FD /* libRNGestureHandler.a */; };
-		51ADE0107B9345F1937F588F /* libRNGestureHandler-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A5B44C41A6E34C7A8DEBA61B /* libRNGestureHandler-tvOS.a */; };
+		DBD5B9FFFD044C5D9558F239 /* libRNGestureHandler.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D5EBD5076D0944938EC88910 /* libRNGestureHandler.a */; };
+		512B7EF3D81C4E5992D115F7 /* libRNGestureHandler-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 26AD96C7664540208F49979A /* libRNGestureHandler-tvOS.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -399,9 +399,9 @@
 		8025A4DA66A643EC845423D8 /* Zocial.ttf */ = {isa = PBXFileReference; name = "Zocial.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		AD67E9A4C2CD4020B9F70FD3 /* RNGoogleSignin.xcodeproj */ = {isa = PBXFileReference; name = "RNGoogleSignin.xcodeproj"; path = "../node_modules/react-native-google-signin/ios/RNGoogleSignin.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		1FC87C2F5591417E90FDBF4A /* libRNGoogleSignin.a */ = {isa = PBXFileReference; name = "libRNGoogleSignin.a"; path = "libRNGoogleSignin.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
-		88CA24BF0A19421887F87BF7 /* RNGestureHandler.xcodeproj */ = {isa = PBXFileReference; name = "RNGestureHandler.xcodeproj"; path = "../node_modules/react-native-gesture-handler/ios/RNGestureHandler.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		E0373E89897849E8BE5676FD /* libRNGestureHandler.a */ = {isa = PBXFileReference; name = "libRNGestureHandler.a"; path = "libRNGestureHandler.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
-		A5B44C41A6E34C7A8DEBA61B /* libRNGestureHandler-tvOS.a */ = {isa = PBXFileReference; name = "libRNGestureHandler-tvOS.a"; path = "libRNGestureHandler-tvOS.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		F067E97F7F3C480DA58C5584 /* RNGestureHandler.xcodeproj */ = {isa = PBXFileReference; name = "RNGestureHandler.xcodeproj"; path = "../node_modules/react-native-gesture-handler/ios/RNGestureHandler.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		D5EBD5076D0944938EC88910 /* libRNGestureHandler.a */ = {isa = PBXFileReference; name = "libRNGestureHandler.a"; path = "libRNGestureHandler.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		26AD96C7664540208F49979A /* libRNGestureHandler-tvOS.a */ = {isa = PBXFileReference; name = "libRNGestureHandler-tvOS.a"; path = "libRNGestureHandler-tvOS.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -437,7 +437,7 @@
 				A648B3BE637D41119A8BAA6D /* libSplashScreen.a in Frameworks */,
 				6956BF4828D64018BBF63824 /* libRNVectorIcons.a in Frameworks */,
 				DF517E509E2E45F180DF8FB5 /* libRNGoogleSignin.a in Frameworks */,
-				05D6FCFA31814B6C83CC3264 /* libRNGestureHandler.a in Frameworks */,
+				DBD5B9FFFD044C5D9558F239 /* libRNGestureHandler.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -463,6 +463,7 @@
 				7472CF28B7BD40F3902DAE66 /* libRNGestureHandler-tvOS.a in Frameworks */,
 				D8B226B831FB4FFABBE83CD3 /* libRNReanimated-tvOS.a in Frameworks */,
 				51ADE0107B9345F1937F588F /* libRNGestureHandler-tvOS.a in Frameworks */,
+				512B7EF3D81C4E5992D115F7 /* libRNGestureHandler-tvOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -643,7 +644,7 @@
 				5A317F2EB5E54D12ADBC0786 /* SplashScreen.xcodeproj */,
 				9187DB1BB7AE4FF59DF6EE44 /* RNVectorIcons.xcodeproj */,
 				AD67E9A4C2CD4020B9F70FD3 /* RNGoogleSignin.xcodeproj */,
-				88CA24BF0A19421887F87BF7 /* RNGestureHandler.xcodeproj */,
+				F067E97F7F3C480DA58C5584 /* RNGestureHandler.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
