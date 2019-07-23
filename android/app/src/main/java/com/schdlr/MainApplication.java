@@ -6,6 +6,7 @@ import com.facebook.CallbackManager;
 import com.facebook.FacebookSdk;
 
 import com.facebook.react.ReactApplication;
+import co.apptailor.googlesignin.RNGoogleSigninPackage;
 import com.agontuk.RNFusedLocation.RNFusedLocationPackage;
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
@@ -58,6 +59,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new RNGoogleSigninPackage(),
             new RNFusedLocationPackage(),
             new RNGestureHandlerPackage(),
             new VectorIconsPackage(),
