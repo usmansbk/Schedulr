@@ -8,7 +8,6 @@ import com.facebook.FacebookSdk;
 import com.facebook.react.ReactApplication;
 import co.apptailor.googlesignin.RNGoogleSigninPackage;
 import com.agontuk.RNFusedLocation.RNFusedLocationPackage;
-import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import org.devio.rn.splashscreen.SplashScreenReactPackage;
 import com.dieam.reactnativepushnotification.ReactNativePushNotificationPackage;
@@ -61,7 +60,6 @@ public class MainApplication extends Application implements ReactApplication {
           new MainReactPackage(),
             new RNGoogleSigninPackage(),
             new RNFusedLocationPackage(),
-            new RNGestureHandlerPackage(),
             new VectorIconsPackage(),
             new SplashScreenReactPackage(),
             new ReactNativePushNotificationPackage(),
