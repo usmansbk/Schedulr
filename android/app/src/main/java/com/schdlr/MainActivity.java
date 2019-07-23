@@ -23,13 +23,6 @@ public class MainActivity extends ReactActivity {
     }
   
     @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        MainApplication.getCallbackManager().onActivityResult(requestCode, resultCode, data);
-    }
-    
-    
-    @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         SplashScreen.show(this);
         super.onCreate(savedInstanceState);
