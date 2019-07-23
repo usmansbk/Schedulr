@@ -160,22 +160,8 @@ configurations.all {
 }
 
 dependencies {
-    implementation project(':@react-native-community_async-storage')
-    implementation project(':react-native-fast-image')
-    implementation project(':@react-native-community_netinfo')
-    implementation project(':react-native-geocoder')
-    implementation project(':react-native-navigation-bar-color')
-    implementation project(':react-native-reanimated')
-    implementation project(':react-native-geolocation-service')
     implementation project(':amazon-cognito-identity-js')
-    implementation project(':react-native-vector-icons')
-    implementation project(':react-native-gesture-handler')
-    implementation project(":react-native-google-signin")
-    implementation project(':react-native-splash-screen')
-    implementation project(':react-native-share')
-    implementation project(':react-native-push-notification')
     implementation 'com.facebook.android:facebook-android-sdk:4.35.0'
-    implementation project(':react-native-fbsdk')
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation 'org.webkit:android-jsc-cppruntime:+'
     // For even older gradle
