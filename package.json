@@ -17,6 +17,7 @@
     "emoji-regex": "^8.0.0",
     "formik": "^1.5.8",
     "graphql-tag": "^2.10.1",
+    "jsc-android": "^241213.1.0",
     "lodash.debounce": "^4.0.8",
     "lodash.differencewith": "^4.5.0",
     "lodash.isequal": "^4.5.0",
@@ -69,7 +70,6 @@
     "babel-plugin-module-resolver": "^3.2.0",
     "babel-plugin-transform-remove-console": "^6.9.4",
     "jest": "^24.8.0",
-    "jsc-android": "^241213.1.0",
     "metro-react-native-babel-preset": "^0.54.1",
     "react-test-renderer": "^16.8.6"
   },
