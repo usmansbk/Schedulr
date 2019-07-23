@@ -5583,10 +5583,9 @@ react-native-fast-image@^7.0.2:
   resolved "https://registry.yarnpkg.com/react-native-fast-image/-/react-native-fast-image-7.0.2.tgz#e06b21f42f4a9786eaa86f3db35d919070fb8403"
   integrity sha512-MfuzJbC0RjYobR2gFCdqe1I7jvNOCfDkjQ7VGOHXniqjohhULMkcWNBE9Umovi9Dx93lJ6t5utcE2wf/09zvlg==
 
-react-native-fbsdk@^0.10.1:
-  version "0.10.1"
-  resolved "https://registry.yarnpkg.com/react-native-fbsdk/-/react-native-fbsdk-0.10.1.tgz#b3ed4237b1322956f2260c716d49c2ce08514741"
-  integrity sha512-/TfpiT7wLdP1ABWk46DhpadbOSXdizWEvrNhLABe+9jK8/ljaCL7nwHj+Xp0Yd6KBnW88in67ukAy2kbfbfZ+A==
+"react-native-fbsdk@git+https://github.com/facebook/react-native-fbsdk.git":
+  version "1.0.0-rc.5"
+  resolved "git+https://github.com/facebook/react-native-fbsdk.git#b1a624bb8453c1fdf6b610a7f91f0178796e71a3"
 
 react-native-geocoder@^0.5.0:
   version "0.5.0"
