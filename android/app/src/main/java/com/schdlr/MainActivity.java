@@ -3,7 +3,8 @@ package com.schdlr;
 import android.content.Intent;
 import com.facebook.react.ReactActivity;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import com.facebook.react.ReactActivityDelegate;
 import com.facebook.react.ReactRootView;
 import com.swmansion.gesturehandler.react.RNGestureHandlerEnabledRootView;
@@ -27,6 +28,7 @@ public class MainActivity extends ReactActivity {
         MainApplication.getCallbackManager().onActivityResult(requestCode, resultCode, data);
     }
     
+    
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         SplashScreen.show(this);
@@ -43,7 +45,7 @@ public class MainActivity extends ReactActivity {
         return new ReactActivityDelegate(this, getMainComponentName()) {
             @Override
             protected ReactRootView createRootView() {
-            return new RNGestureHandlerEnabledRootView(MainActivity.this);
+                return new RNGestureHandlerEnabledRootView(MainActivity.this);
             }
         };
     }
