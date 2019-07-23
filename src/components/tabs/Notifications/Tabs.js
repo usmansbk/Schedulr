@@ -6,7 +6,7 @@ import Logs from './Logs';
 
 const Tabs = createMaterialTopTabNavigator(
   {
-    Logs
+    Notifications: Logs
   },
   {
     initialLayout: { height: 0, width: Dimensions.get('window').width },
