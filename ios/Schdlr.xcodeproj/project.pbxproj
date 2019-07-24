@@ -404,6 +404,7 @@
 				D8B226B831FB4FFABBE83CD3 /* libRNReanimated-tvOS.a in Frameworks */,
 				51ADE0107B9345F1937F588F /* libRNGestureHandler-tvOS.a in Frameworks */,
 				512B7EF3D81C4E5992D115F7 /* libRNGestureHandler-tvOS.a in Frameworks */,
+				675FF8534AA84236829F5848 /* libRNCNetInfo-tvOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
