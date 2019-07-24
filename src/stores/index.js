@@ -11,32 +11,33 @@ import DeltaSync from './Sync';
 import BoardsSync from './BoardsSync';
 import Logs from './Logs';
 
-const hydrate = create({
-  storage: AsyncStorage
-});
-
-const settingsStore = new Settings;
-const remindMeStore = new RemindMe;
-const meStore = new UserProfile;
-const appState = new AppState;
-const deltaSync = new DeltaSync;
-const boardsSync = new BoardsSync;
-const logs = new Logs;
-
-hydrate('settings', settingsStore);
-hydrate('remindMe', remindMeStore);
-hydrate('me', meStore);
-hydrate('appState', appState);
-hydrate('deltaSync', deltaSync);
-hydrate('boardsSync', boardsSync);
-hydrate('logs', logs);
-
-// Create theme store after hydrating the settings store
-const themeStore = new Theme(settingsStore);
-const appStyles = new AppStyles(settingsStore);
-
 class RootStore {
   constructor() {
+    
+    const hydrate = create({
+      storage: AsyncStorage
+    });
+
+    const settingsStore = new Settings;
+    const remindMeStore = new RemindMe;
+    const meStore = new UserProfile;
+    const appState = new AppState;
+    const deltaSync = new DeltaSync;
+    const boardsSync = new BoardsSync;
+    const logs = new Logs;
+    
+    hydrate('settings', settingsStore);
+    hydrate('remindMe', remindMeStore);
+    hydrate('me', meStore);
+    hydrate('appState', appState);
+    hydrate('deltaSync', deltaSync);
+    hydrate('boardsSync', boardsSync);
+    hydrate('logs', logs);
+    
+    // Create theme store after hydrating the settings store
+    const themeStore = new Theme(settingsStore);
+    const appStyles = new AppStyles(settingsStore);
+
     this.settingsStore = settingsStore;
     this.remindMeStore = remindMeStore;
     this.themeStore = themeStore;
