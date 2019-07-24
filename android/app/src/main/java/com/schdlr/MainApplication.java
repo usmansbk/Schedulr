@@ -1,6 +1,10 @@
 package com.schdlr;
 
 import android.app.Application;
+import android.util.Log;
+import com.facebook.react.PackageList;
+import com.facebook.hermes.reactexecutor.HermesExecutorFactory;
+import com.facebook.react.bridge.JavaScriptExecutorFactory;
 
 import com.facebook.react.ReactApplication;
 import com.facebook.reactnative.androidsdk.FBSDKPackage;
@@ -11,7 +15,8 @@ import com.oblador.vectoricons.VectorIconsPackage;
 import org.devio.rn.splashscreen.SplashScreenReactPackage;
 import com.dieam.reactnativepushnotification.ReactNativePushNotificationPackage;
 import com.thebylito.navigationbarcolor.NavigationBarColorPackage;
-import com.devfd.RNGeocoder.RNGeocoderPackage;
+import com.devfd.RNGeocoder.RNGeocoderPackage;
+
 import com.amazonaws.RNAWSCognitoPackage;
 
 import com.facebook.react.ReactNativeHost;
