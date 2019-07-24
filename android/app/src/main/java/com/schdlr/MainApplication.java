@@ -7,24 +7,13 @@ import com.facebook.hermes.reactexecutor.HermesExecutorFactory;
 import com.facebook.react.bridge.JavaScriptExecutorFactory;
 
 import com.facebook.react.ReactApplication;
-import com.facebook.reactnative.androidsdk.FBSDKPackage;
-import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
-import co.apptailor.googlesignin.RNGoogleSigninPackage;
-import com.agontuk.RNFusedLocation.RNFusedLocationPackage;
-import com.oblador.vectoricons.VectorIconsPackage;
-import org.devio.rn.splashscreen.SplashScreenReactPackage;
-import com.dieam.reactnativepushnotification.ReactNativePushNotificationPackage;
-import com.thebylito.navigationbarcolor.NavigationBarColorPackage;
-import com.devfd.RNGeocoder.RNGeocoderPackage;
 
 import com.amazonaws.RNAWSCognitoPackage;
 
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
-import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class MainApplication extends Application implements ReactApplication {
@@ -37,20 +26,11 @@ public class MainApplication extends Application implements ReactApplication {
 
     @Override
     protected List<ReactPackage> getPackages() {
-      return Arrays.<ReactPackage>asList(
-          new MainReactPackage(),
-            new FBSDKPackage(),
-            new RNGestureHandlerPackage(),
-            new RNGoogleSigninPackage(),
-            new RNFusedLocationPackage(),
-            new VectorIconsPackage(),
-            new SplashScreenReactPackage(),
-            new ReactNativePushNotificationPackage(),
-            new NavigationBarColorPackage(),
-            new RNGeocoderPackage(),
-            new FBSDKPackage(),
-            new RNAWSCognitoPackage()
-      );
+
+      @SuppressWarnings("UnnecessaryLocalVariable")
+      List<ReactPackage> packages = new PackageList(this).getPackages();
+      packages.add(new RNAWSCognitoPackage());
+      return packages;
     }
 
     @Override
