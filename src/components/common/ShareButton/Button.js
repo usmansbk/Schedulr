@@ -23,7 +23,9 @@ export default ({
         message: `${title}\n${eventType}\n${date}${address ? (' at ' + address) : ''}\n`,
         url: `${env.APP_URL}/event/${id}`
       };
-      Share.open(shareOptions);
+      Share.open(shareOptions).catch(error => {
+        // Ignore
+      });
     }}
   />
 );

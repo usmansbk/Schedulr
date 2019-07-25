@@ -42,7 +42,9 @@ class List extends React.Component {
           subject: 'The Social Scheduler',
           url
         }
-        Share.open(options);
+        Share.open(options).catch(error => {
+          // Ignore
+        });
         break;
       default:
         break;

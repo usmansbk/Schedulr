@@ -17,7 +17,9 @@ class BoardAction extends React.Component {
       message: `Follow "${name}" to see their latest events, receive updates and get reminders.\n`,
       url: `${env.APP_URL}/board/${id}`
     };
-    Share.open(shareOptions);
+    Share.open(shareOptions).catch(error => {
+      // Ignore
+    });
   };
   
   _toggleMute = () => this.props.onMute(this.props.id);

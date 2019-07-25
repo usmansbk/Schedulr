@@ -8,7 +8,9 @@ export default class Boards extends React.Component {
   }
 
   componentDidMount = () => {
-    if (this.props.stores.boardsSync.skipBaseQuery)
+    if (this.props.stores.boardsSync.skipBaseQuery &&
+      this.props.stores.appState.isConnected
+    )
       this.props.fetchMore();
   }
   

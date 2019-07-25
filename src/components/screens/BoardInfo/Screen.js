@@ -17,7 +17,9 @@ export default class Screen extends React.Component {
       message: `Follow "${name}" to see their latest events, receive updates and get reminders.\n`,
       url: `${env.APP_URL}/schdl/${id}`
     };
-    Share.open(shareOptions);
+    Share.open(shareOptions).catch(error => {
+      // Ignore
+    });
   };
   _handleSelectMenu = (option) => {
     const id = this.props.navigation.getParam('id');
