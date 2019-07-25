@@ -10,8 +10,6 @@ import { LoginUser } from 'mygraphql/mutations';
 import Login from './Login';
 import Loading from 'components/common/Loading';
 
-@inject("stores")
-@observer
 class Container extends React.Component {
   state = { loading: false };
   
@@ -76,6 +74,8 @@ class Container extends React.Component {
   }
 }
 
+const withStore = inject('stores')(observer(Container));
+
 export default graphql(gql(LoginUser), {
   alias: 'withLoginScreen',
   props: ({ mutate, ownProps }) => ({
@@ -86,4 +86,4 @@ export default graphql(gql(LoginUser), {
     }),
     ...ownProps
   })
-})(Container);
+})(withStore);

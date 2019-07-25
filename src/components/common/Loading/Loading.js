@@ -3,9 +3,7 @@ import { View, StatusBar, ActivityIndicator } from 'react-native';
 import changeNavigationBarColor from 'react-native-navigation-bar-color';
 import { inject, observer } from 'mobx-react';
 
-@inject('stores')
-@observer
-export default class Loading extends React.Component {
+class Loading extends React.Component {
    
   componentDidMount = async () => {
     const { stores } = this.props;
@@ -31,3 +29,5 @@ export default class Loading extends React.Component {
     )
   }
 }
+
+export default inject("stores")(observer(Loading));
