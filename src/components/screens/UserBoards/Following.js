@@ -60,7 +60,7 @@ class FollowingBoards extends Component{
     )
   }
 
-  componentWillMount = () => {
+  componentDidMount = () => {
     if (this.props.navigation.getParam('toCreatedTab')) {
       this.props.navigation.navigate('Created')
     }
