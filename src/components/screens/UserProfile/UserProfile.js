@@ -15,9 +15,7 @@ import Error from 'components/common/Error';
 import numeral from 'numeral';
 import colors from 'config/colors';
 
-@inject('stores')
-@observer
-export default class UserProfile extends React.Component {
+class UserProfile extends React.Component {
   componentWillUpdate = (nextProps) => nextProps.navigation.isFocused();
 
   _toFollowingTab = () => {
@@ -108,6 +106,8 @@ export default class UserProfile extends React.Component {
     );
   }
 }
+
+export default inject("stores")(observer(UserProfile));
 
 const AVATAR_HEIGHT = 120;
 

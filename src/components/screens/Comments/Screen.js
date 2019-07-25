@@ -3,8 +3,7 @@ import { inject } from 'mobx-react';
 import Comments from './Comments';
 import DeleteCommentDialog from 'components/dialogs/DeleteComment';
 
-@inject("stores")
-export default class Screen extends React.Component {
+class Screen extends React.Component {
   state = {
     visibleDialog: null,
     id: null,
@@ -89,3 +88,5 @@ export default class Screen extends React.Component {
     )
   }
 }
+
+export default inject("stores")(observer(Screen));

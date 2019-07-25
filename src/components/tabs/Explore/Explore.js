@@ -10,8 +10,6 @@ import colors from 'config/colors';
 
 const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
 
-@inject('stores')
-@observer
 class ExploreTab extends Component{
   static defaultProps = {
     data: [],
@@ -69,6 +67,8 @@ const SearchBar = inject('stores')(observer(
   }
 ));
 
+const withStores = inject("stores")(observer(ExploreTab));
+
 const collapsibleParams = {
   collapsibleComponent: SearchBar,
   collapsibleBackgroundStyle: {
@@ -79,4 +79,4 @@ const collapsibleParams = {
   }
 }
 
-export default withCollapsible(ExploreTab, collapsibleParams);
+export default withCollapsible(withStores, collapsibleParams);

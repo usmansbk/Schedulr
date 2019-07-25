@@ -4,9 +4,7 @@ import { inject, observer } from 'mobx-react';
 import List from 'components/lists/Comments';
 import CommentForm from 'components/forms/Comment';
 
-@inject('stores')
-@observer
-export default class Comments extends React.Component {
+class Comments extends React.Component {
 
   state = {
     id: null
@@ -84,3 +82,5 @@ export default class Comments extends React.Component {
     );
   }
 }
+
+export default inject("stores")(observer(Comments));

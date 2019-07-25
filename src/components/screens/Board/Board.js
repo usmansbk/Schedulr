@@ -9,9 +9,7 @@ import { BOARD_CLOSED } from 'lib/constants';
 
 const ABOUT_HALF = 600;
 
-@inject('stores')
-@observer
-export default class Board extends React.Component {
+class Board extends React.Component {
   state = {
     offsetY: 0
   }
@@ -113,3 +111,5 @@ export default class Board extends React.Component {
     );
   }
 }
+
+export default inject("stores")(observer(Board));

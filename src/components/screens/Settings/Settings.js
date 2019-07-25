@@ -9,9 +9,7 @@ import {
 import SimpleToast from 'react-native-simple-toast';
 import { inject, observer } from 'mobx-react';
 
-@inject("stores")
-@observer
-export default class Settings extends React.Component {
+class Settings extends React.Component {
   static defaultProps = {
     stores: {}
   }
@@ -156,3 +154,5 @@ export default class Settings extends React.Component {
     );
   }
 }
+
+export default inject("stores")(observer(Settings));

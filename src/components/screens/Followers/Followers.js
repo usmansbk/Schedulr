@@ -4,8 +4,6 @@ import { withNavigationFocus } from 'react-navigation';
 import { inject, observer } from 'mobx-react';
 import List from './ListHoc';
 
-@inject("stores")
-@observer
 class Followers extends React.Component {
   componentWillUpdate = nextProps => nextProps.navigation.isFocused();
 
@@ -35,4 +33,6 @@ class Followers extends React.Component {
   }
 }
 
-export default withNavigationFocus(Followers);
+const withStores = inject("stores")(observer(Followers))
+
+export default withNavigationFocus(withStores);

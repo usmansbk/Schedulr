@@ -30,9 +30,7 @@ import { board_info, CIRCLE, INFO, PRIVATE_INFO } from 'lib/constants';
 
 const { AVATAR_SIZE } = board_info;
 
-@inject('stores')
-@observer
-export default class Info extends React.Component {
+class Info extends React.Component {
   shouldComponentUpdate = (nextProps) => (
     !isEqual(nextProps.board, this.props.board) ||
     nextProps.loading !== this.props.loading
@@ -219,3 +217,5 @@ export default class Info extends React.Component {
     );
   }
 }
+
+export default inject('stores')(observer(Info));

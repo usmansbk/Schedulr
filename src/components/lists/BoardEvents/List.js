@@ -138,5 +138,5 @@ class List extends Component {
   }
 }
 
-const withStore = inject("stores")(observer(List));
-export default withNavigationFocus(withStore);
+const withStores = inject("stores")(observer(List));
+export default withNavigationFocus(withStores);

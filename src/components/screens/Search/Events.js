@@ -8,9 +8,7 @@ import { listAllEvents, searchEvent } from 'mygraphql/queries';
 import { SEARCH_PAGE_SIZE, SEARCH_DISTANCE } from 'lib/constants';
 import { sortStarredEvents } from 'lib/utils';
 
-@inject('stores')
-@observer
-export default class Events extends React.Component {
+class Events extends React.Component {
 
   render() {
     const { stores } = this.props;
@@ -88,3 +86,5 @@ const ListHoc = compose(
     })
   })
 )(List);
+
+export default inject("stores")(observer(Events));

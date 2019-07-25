@@ -4,8 +4,6 @@ import { inject, observer } from 'mobx-react';
 import List from 'components/lists/Logs';
 import Fab from 'components/common/Fab';
 
-@inject('stores')
-@observer
 class Logs extends React.Component {
   componentDidUpdate = () => {
     this.props.stores.logs.process();
@@ -47,4 +45,6 @@ class Logs extends React.Component {
   }
 }
 
-export default withNavigationFocus(Logs);
+const withStores = inject("stores")(observer(Logs));
+
+export default withNavigationFocus(withStores);

@@ -5,9 +5,7 @@ import {
 } from 'react-native-paper';
 import { inject, observer } from 'mobx-react';
 
-@inject('stores')
-@observer
-export default class Item extends React.Component {
+class Item extends React.Component {
   render() {
     const styles = this.props.stores.appStyles.explore;
     
@@ -22,3 +20,5 @@ export default class Item extends React.Component {
     )
   }
 }
+
+export default inject("stores")(observer(Item));

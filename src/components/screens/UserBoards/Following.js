@@ -20,8 +20,6 @@ const {
 
 const alias = 'withFollowingBoards';
 
-@inject('stores')
-@observer
 class FollowingBoards extends Component{
   _getItemLayout = (_, index) => (
     {
@@ -102,6 +100,8 @@ class FollowingBoards extends Component{
   }
 }
 
+const withStores = inject("stores")(observer(FollowingBoards));
+
 export default compose(
   graphql(gql(listAllBoards), {
     alias,
@@ -141,4 +141,4 @@ export default compose(
       ...ownProps
     })
   })
-)(FollowingBoards);
+)(withStores);

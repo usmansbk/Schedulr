@@ -5,9 +5,7 @@ import List from 'components/lists/BoardEvents';
 import Loading from 'components/common/Loading';
 import Error from 'components/common/Error';
 
-@inject('stores')
-@observer
-export default class BoardEvents extends React.Component {
+class BoardEvents extends React.Component {
   static defaultProps = {
     events: []
   };
@@ -58,3 +56,5 @@ export default class BoardEvents extends React.Component {
     );
   }
 }
+
+export default inject("stores")(observer(BoardEvents));

@@ -11,9 +11,7 @@ import { ONE_TIME_EVENT } from 'lib/constants';
 
 const DATE_FORMAT = "ddd DD, MMM YYYY, hh:mm a";
 
-@inject('stores')
-@observer
-export default class EventDetails extends React.Component {
+class EventDetails extends React.Component {
   _handleCancel = () => {
     const isRecurring = this.props.event.repeat !== ONE_TIME_EVENT;
     this.props.handleCancel(isRecurring ? this.props.event.startAt : null);
@@ -165,3 +163,5 @@ export default class EventDetails extends React.Component {
     )
   }
 }
+
+export default inject("stores")(observer(EventDetails));

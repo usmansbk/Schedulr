@@ -74,7 +74,7 @@ class Container extends React.Component {
   }
 }
 
-const withStore = inject('stores')(observer(Container));
+const withStores = inject('stores')(observer(Container));
 
 export default graphql(gql(LoginUser), {
   alias: 'withLoginScreen',
@@ -86,4 +86,4 @@ export default graphql(gql(LoginUser), {
     }),
     ...ownProps
   })
-})(withStore);
+})(withStores);

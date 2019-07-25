@@ -8,9 +8,7 @@ import List from 'components/lists/BoardSearch';
 import { listAllBoards, searchBoard } from 'mygraphql/queries';
 import { SEARCH_PAGE_SIZE, SEARCH_DISTANCE } from 'lib/constants';
 
-@inject('stores')
-@observer
-export default class Boards extends React.Component {
+class Boards extends React.Component {
 
   componentWillUnmount = () => this.props.stores.appState.onChangeText('');
 
@@ -93,3 +91,5 @@ const ListHoc = compose(
     })
   })
 )(List);
+
+export default inject("stores")(observer(Boards));
