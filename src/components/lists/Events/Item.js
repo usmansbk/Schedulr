@@ -16,7 +16,7 @@ import { formatDate } from 'lib/time';
 class Item extends React.Component {
   _onPress = () => this.props.onPressItem(this.props.id, this.props.startAt, this.props.endAt);
   _onLongPress = () => {
-    this.ActionSheet && this.ActionSheet.wrappedInstance.showActionSheet();
+    this.ActionSheet && this.ActionSheet.showActionSheet();
   };
   _onMute = () => {
     this.props.stores.appState.toggleMute(this.props.id, this.props.isMuted);

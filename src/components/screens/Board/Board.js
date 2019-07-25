@@ -27,7 +27,7 @@ class Board extends React.Component {
   _eventsListRef = ref => this.eventsListRef = ref;
 
   _scrollToTop = () => {
-    this.eventsListRef && this.eventsListRef.wrappedInstance.scrollToTop(); 
+    this.eventsListRef && this.eventsListRef.scrollToTop();
   };
   
   _navigateToBoardInfo = () => {

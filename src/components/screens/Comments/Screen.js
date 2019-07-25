@@ -21,13 +21,13 @@ export default class Screen extends React.Component {
   });
   _hideDialog = () => this.setState({ visibleDialog: null, id: null });
   _focusCommentInput = () => {
-    this._commentsRef && this._commentsRef.wrappedInstance.focusCommentInput();
+    this._commentsRef && this._commentsRef.focusCommentInput();
   };
   _blurCommentInput = () => {
-    this._commentsRef && this._commentsRef.wrappedInstance.blurCommentInput();
+    this._commentsRef && this._commentsRef.blurCommentInput();
   };
   _scrollDown = () => {
-    this._commentsRef && this._commentsRef.wrappedInstance.scrollDown();
+    this._commentsRef && this._commentsRef.scrollDown();
   }
   _onSubmit = (message) => {
     const input = {

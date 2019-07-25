@@ -10,13 +10,13 @@ class Comments extends React.Component {
     id: null
   }
 
-  focusCommentInput = () => this._inputRef && this._inputRef.wrappedInstance.focusInput();
+  focusCommentInput = () => this._inputRef && this._inputRef.focusInput();
 
-  blurCommentInput = () => this._inputRef && this._inputRef.wrappedInstance.blurInput();
+  blurCommentInput = () => this._inputRef && this._inputRef.blurInput();
 
-  scrollDown = () => this._commentsListRef && this._commentsListRef.wrappedInstance.scrollDown();
+  scrollDown = () => this._commentsListRef && this._commentsListRef.scrollDown();
 
-  scrollTop = () => this._commentsListRef && this._commentsListRef.wrappedInstance.scrollTop();
+  scrollTop = () => this._commentsListRef && this._commentsListRef.scrollTop();
 
   _handleSubmit = (message) => {
     if (this.props.onSubmit) this.props.onSubmit(message);
