@@ -14,7 +14,8 @@ class CancelEvent extends React.Component {
     super(props);
     this.state = {
       checked: Boolean(props.date) ? 'SINGLE' : 'ALL',
-      loading: false
+      loading: false,
+      date: props.date || null
     };
   }
 
@@ -25,12 +26,14 @@ class CancelEvent extends React.Component {
     nextState.loading !== this.state.loading
   );
 
-  componentWillReceiveProps = (nextProps) => {
-    if (nextProps.date !== this.props.date) {
-      this.setState({
+  static getDerivedStateFromProps(props, state) {
+    if (props.date !== state.date) {
+      return {
         checked: Boolean(nextProps.date) ? 'SINGLE' : 'ALL',
-      });
+        date: props.date
+      };
     }
+    return null;
   }
 
   _onContinue = () => {

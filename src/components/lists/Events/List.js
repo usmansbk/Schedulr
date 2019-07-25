@@ -144,7 +144,7 @@ class List extends React.Component {
     }
   };
 
-  _bootstrap = (events) => {
+  _processEvents = (events) => {
     if (events) {
       const today = moment().startOf('day').format();
       const yesterday = moment().subtract(1, 'day').startOf('day').format();
@@ -168,7 +168,7 @@ class List extends React.Component {
   throttleFetchMore = throttle((skipBaseQuery) => skipBaseQuery && this.props.fetchMore(), 60000);
 
   _onRefresh = () => {
-    this._bootstrap(this.state.events);
+    this._processEvents(this.state.events);
     this.props.stores.appState.isConnected &&
     this.props.fetchMore && !this.props.loading &&
       this.throttleFetchMore(this.props.stores.deltaSync.skipBaseQuery);
@@ -182,15 +182,19 @@ class List extends React.Component {
     this.loadPreviousEvents(this.state.events);
   }
 
-  componentWillReceiveProps = (nextProps) => {
-    if (nextProps.events.length !== this.props.events.length ||
-      (eventsDiff(this.props.events, nextProps.events).length)) {
-      this._bootstrap(nextProps.events);
-    }
-  };
 
+  static getDerivedStateFromProps(props, state) {
+    if (props.events.length !== state.events.length ||
+      (eventsDiff(props.events, state.events).length)) {
+      return {
+        events: props.events,
+      };
+    }
+    return null;
+  }
+  
   componentDidMount = () => {
-    this._bootstrap(this.props.events);
+    this._processEvents(this.props.events);
   };
 
   _onScroll = (event) => {
