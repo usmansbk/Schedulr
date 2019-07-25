@@ -10,9 +10,7 @@ import { boards } from 'lib/constants';
 
 const { AVATAR_SIZE } = boards
 
-@inject('stores')
-@observer
-export default class Item extends React.Component {
+class Item extends React.Component {
   _onPress = () => this.props.onPressItem(this.props.id);
   _onLongPress = () => {
     this.ActionSheet && this.ActionSheet.wrappedInstance.showActionSheet();
@@ -80,3 +78,5 @@ export default class Item extends React.Component {
     );
   }
 }
+
+export default inject("stores")(observer(Item));

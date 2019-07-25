@@ -8,9 +8,7 @@ import { board_search } from 'lib/constants';
 
 const { AVATAR_SIZE } = board_search;
 
-@inject('stores')
-@observer
-export default class Item extends React.Component {
+class Item extends React.Component {
   _onPress = () => {
     const cacheFirst = (this.props.isAuthor || this.props.isFollowing);
     this.props.onPressItem(this.props.id, cacheFirst);
@@ -69,3 +67,5 @@ export default class Item extends React.Component {
     );
   }
 }
+
+export default inject("stores")(observer(Item));

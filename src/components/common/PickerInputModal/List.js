@@ -5,9 +5,7 @@ import Item from './Item';
 
 const ITEM_HEIGHT = 48;
 
-@inject('stores')
-@observer
-export default class List extends React.Component {
+class List extends React.Component {
   _onLongPressItem = (id) => {
     Alert.alert(
       'Delete type?',
@@ -58,3 +56,5 @@ export default class List extends React.Component {
     )
   }
 }
+
+export default inject("stores")(observer(List));

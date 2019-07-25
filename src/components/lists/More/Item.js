@@ -2,9 +2,7 @@ import React from 'react';
 import { List } from 'react-native-paper';
 import { inject, observer } from 'mobx-react';
 
-@inject("stores")
-@observer
-export default class Item extends React.Component {
+class Item extends React.Component {
   _onPress = () => this.props.onPressItem(this.props.id);
   shouldComponentUpdate = () => false;
   
@@ -27,3 +25,5 @@ export default class Item extends React.Component {
     );
   }
 }
+
+export default inject("stores")(observer(Item));

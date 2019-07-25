@@ -20,8 +20,6 @@ import { starredEvents } from 'lib/constants';
 
 const { ITEM_HEIGHT, SEPARATOR_HEIGHT } = starredEvents;
 
-@inject('stores')
-@observer
 class List extends Component {
   static defaultProps = {
     events: [],
@@ -119,4 +117,6 @@ class List extends Component {
   }
 }
 
-export default withNavigationFocus(List);
+const withStores = inject("stores")(observer(List));
+
+export default withNavigationFocus(withStores);

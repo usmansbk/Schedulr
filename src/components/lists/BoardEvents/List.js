@@ -21,8 +21,6 @@ const {
   SEPARATOR_HEIGHT
 } = board_events;
 
-@inject('stores')
-@observer
 class List extends Component {
   state = {
     loadingPrev: false,
@@ -140,4 +138,5 @@ class List extends Component {
   }
 }
 
-export default withNavigationFocus(List);
+const withStore = inject("stores")(observer(List));
+export default withNavigationFocus(withStore);

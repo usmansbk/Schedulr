@@ -13,9 +13,7 @@ import List from './List';
 const MAX_LENGTH = 30;
 const MIN_LENGTH = 2
 
-@inject('stores')
-@observer
-export default class Input extends React.Component {
+class Input extends React.Component {
   state = {
     visible: false,
     text: ''
@@ -93,3 +91,5 @@ export default class Input extends React.Component {
     )
   }
 }
+
+export default inject("stores")(observer(Input));

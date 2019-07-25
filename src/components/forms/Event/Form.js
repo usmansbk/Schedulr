@@ -34,9 +34,7 @@ import formSchema from './schema';
 import frequency from './frequency';
 import { buildEventForm } from 'helpers/buildForm';
 
-@inject('stores')
-@observer
-export default class Form extends React.Component {
+class Form extends React.Component {
 
   state = {
     visible: false
@@ -375,3 +373,5 @@ export default class Form extends React.Component {
     );    
   }
 }
+
+export default inject("stores")(observer(Form));

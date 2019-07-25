@@ -7,9 +7,7 @@ import { comment_input } from 'lib/constants';
 
 const { AVATAR_SIZE } = comment_input;
 
-@inject('stores')
-@observer
-export default class CommentInput extends React.Component {
+class CommentInput extends React.Component {
   state = {
     isSubmitting: false,
     message: ''
@@ -93,3 +91,5 @@ export default class CommentInput extends React.Component {
     );
   }
 }
+
+export default inject("stores")(observer(CommentInput));

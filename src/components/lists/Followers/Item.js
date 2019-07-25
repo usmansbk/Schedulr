@@ -7,9 +7,7 @@ import { followers_list } from 'lib/constants';
 
 const { AVATAR_SIZE } = followers_list;
 
-@inject('stores')
-@observer
-export default class Item extends React.Component {
+class Item extends React.Component {
   _onPress = () => this.props.onPressItem(this.props.id);
   shouldComponentUpdate = () => false;
   
@@ -40,3 +38,5 @@ export default class Item extends React.Component {
     )
   }
 }
+
+export default inject("stores")(observer(Item));

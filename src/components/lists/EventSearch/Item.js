@@ -14,9 +14,7 @@ import { starredEvents } from 'lib/constants';
 
 const { AVATAR_SIZE } = starredEvents;
 
-@inject('stores')
-@observer
-export default class Item extends React.Component {
+class Item extends React.Component {
   _onPress = () => this.props.onPressItem(this.props.id, this.props.startAt, this.props.endAt);
   _onPressComment = () => this.props.onPressComment(this.props.id, this.props.title, this.props.time);
   _onPressAvatar = () => {
@@ -99,3 +97,5 @@ export default class Item extends React.Component {
     );
   }
 }
+
+export default inject("stores")(observer(Item));

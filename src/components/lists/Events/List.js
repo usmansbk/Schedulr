@@ -39,9 +39,7 @@ const {
 
 const DAYS_PER_PAGE = 3;
 
-@inject('stores')
-@observer
-export default class List extends React.Component {
+class List extends React.Component {
 
   constructor(props) {
     super(props);
@@ -307,3 +305,5 @@ export default class List extends React.Component {
     );
   }
 }
+
+export default inject("stores")(observer(List));

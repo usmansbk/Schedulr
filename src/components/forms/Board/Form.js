@@ -22,9 +22,7 @@ import validationSchema from './schema';
 import { buildBoardForm } from 'helpers/buildForm';
 import { WHAT_IS_A_BOARD, PRIVATE_INFO } from 'lib/constants';
 
-@inject('stores')
-@observer
-export default class Form extends React.Component {
+class Form extends React.Component {
   static defaultProps = {
     initialValues: {
       name: '',
@@ -163,3 +161,5 @@ export default class Form extends React.Component {
     );
   }
 }
+
+export default inject("stores")(observer(Form));

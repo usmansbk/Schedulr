@@ -11,9 +11,7 @@ import moment from 'moment';
 import { getSectionHeaderData } from 'lib/time';
 import { BULLET } from 'lib/constants';
 
-@inject('stores')
-@observer
-export default class SectionHeader extends React.Component {
+class SectionHeader extends React.Component {
   _onPress = () => {
     const date = moment(this.props.section.title);
     const now = moment();
@@ -59,3 +57,5 @@ export default class SectionHeader extends React.Component {
     )
   }
 }
+
+export default inject("stores")(observer(SectionHeader));

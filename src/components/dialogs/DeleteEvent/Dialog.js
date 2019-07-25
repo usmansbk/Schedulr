@@ -6,9 +6,7 @@ import {
 } from 'react-native-paper';
 import { inject, observer } from 'mobx-react';
 
-@inject('stores')
-@observer
-export default class DeleteEvent extends React.Component {
+class DeleteEvent extends React.Component {
   state = {
     loading: false,
   };
@@ -56,3 +54,5 @@ export default class DeleteEvent extends React.Component {
     )
   }
 }
+
+export default inject("stores")(observer(DeleteEvent));

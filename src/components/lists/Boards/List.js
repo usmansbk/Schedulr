@@ -14,8 +14,6 @@ const {
   SEPARATOR_HEIGHT,
 } = boards;
 
-@inject('stores')
-@observer
 class List extends Component {
   static defaultProps = {
     boards: [],
@@ -115,4 +113,6 @@ class List extends Component {
   }
 }
 
-export default withNavigationFocus(List);
+const withStore = inject("stores")(observer(List));
+
+export default withNavigationFocus(withStore);

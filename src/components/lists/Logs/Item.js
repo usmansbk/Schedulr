@@ -8,9 +8,7 @@ import {
 import { inject, observer } from 'mobx-react';
 import UserAvatar from 'components/common/UserAvatar';
 
-@inject("stores")
-@observer
-export default class Item extends React.Component {
+class Item extends React.Component {
 
   _onPressItems = () => {
     const {
@@ -57,3 +55,5 @@ export default class Item extends React.Component {
     )
   }
 }
+
+export default inject("stores")(observer(Item));

@@ -9,9 +9,7 @@ import { starEvent, unstarEvent } from 'mygraphql/mutations';
 import { toggleStarButton } from 'helpers/optimisticResponse';
 import env from 'config/env';
 
-@inject('stores')
-@observer
-export default class EventAction extends React.Component {
+class EventAction extends React.Component {
   showActionSheet = () => {
     this.actionSheet.show();
   };
@@ -97,3 +95,5 @@ export default class EventAction extends React.Component {
   }
 
 }
+
+export default inject("stores")(observer(EventAction));

@@ -7,9 +7,7 @@ import Empty from './Empty';
 import Separator from './Separator';
 import { timeAgo } from 'lib/time';
 
-@inject('stores')
-@observer
-export default class List extends React.Component {
+class List extends React.Component {
   state = {
     fetchingMore: false,
   }
@@ -121,3 +119,5 @@ export default class List extends React.Component {
     )
   }
 }
+
+export default inject("stores")(observer(List));

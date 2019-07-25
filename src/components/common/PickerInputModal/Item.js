@@ -4,9 +4,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import { View } from 'react-native';
 import { inject, observer } from 'mobx-react';
 
-@inject('stores')
-@observer
-export default class Item extends React.Component {
+class Item extends React.Component {
   _onLongPress = () => this.props.onLongPressItem(this.props.value);
   _onPress = () => this.props.onPressItem(this.props.value);
 
@@ -31,3 +29,5 @@ export default class Item extends React.Component {
     )
   }
 }
+
+export default inject("stores")(observer(Item));

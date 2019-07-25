@@ -8,9 +8,7 @@ import {
 } from 'react-native-paper';
 import { inject, observer } from 'mobx-react';
 
-@inject("stores")
-@observer
-export default class RemindMe extends React.Component {
+class RemindMe extends React.Component {
   static defaultProps = {
     stores: {
       remindMeBefore: {
@@ -119,3 +117,5 @@ export default class RemindMe extends React.Component {
     )
   }
 }
+
+export default inject("stores")(observer(RemindMe));

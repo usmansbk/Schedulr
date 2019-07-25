@@ -5,9 +5,7 @@ import { Text, Caption, TouchableRipple } from 'react-native-paper';
 import UserAvatar from '../UserAvatar';
 import styles from './styles';
 
-@inject("stores")
-@observer
-export default class Avatar extends React.Component {
+class Avatar extends React.Component {
   onPress = () => {
     this.props.onPress();
   }
@@ -43,3 +41,5 @@ export default class Avatar extends React.Component {
     );
   }
 }
+
+export default inject("stores")(observer(Avatar));

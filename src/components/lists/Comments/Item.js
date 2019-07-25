@@ -13,9 +13,7 @@ import { comments_list } from 'lib/constants';
 
 const { AVATAR_SIZE } = comments_list;
 
-@inject('stores')
-@observer
-export default class Item extends React.Component {
+class Item extends React.Component {
   state = {
     showOptions: false
   };
@@ -113,3 +111,5 @@ export default class Item extends React.Component {
     )
   }
 }
+
+export default inject("stores")(observer(Item));

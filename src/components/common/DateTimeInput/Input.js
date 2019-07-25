@@ -5,9 +5,7 @@ import { View } from 'react-native';
 import { inject, observer } from 'mobx-react';
 import Button from './Picker';
 
-@inject('stores')
-@observer
-export default class Input extends React.Component {
+class Input extends React.Component {
 
   state = {
     showDatePicker: false,
@@ -88,3 +86,5 @@ export default class Input extends React.Component {
     );
   }
 }
+
+export default inject("stores")(observer(Input));

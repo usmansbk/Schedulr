@@ -9,9 +9,7 @@ import {
 import moment from 'moment';
 import { inject, observer } from 'mobx-react';
 
-@inject('stores')
-@observer
-export default class CancelEvent extends React.Component {
+class CancelEvent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -103,3 +101,5 @@ export default class CancelEvent extends React.Component {
     )
   }
 }
+
+export default inject("stores")(observer(CancelEvent));

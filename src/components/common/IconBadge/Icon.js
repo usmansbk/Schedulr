@@ -7,9 +7,7 @@ import {
 import { View } from 'react-native';
 import { inject, observer } from 'mobx-react';
 
-@inject('stores')
-@observer
-export default class IconBagdeButton extends React.Component {
+class IconBagdeButton extends React.Component {
   _onPress = () => this.props.onPress();
   
   render() {
@@ -40,3 +38,5 @@ export default class IconBagdeButton extends React.Component {
     )
   }
 }
+
+export default inject("stores")(observer(IconBagdeButton));

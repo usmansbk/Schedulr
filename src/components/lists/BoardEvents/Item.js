@@ -15,9 +15,7 @@ const {
   AVATAR_SIZE,
 } = board_events;
 
-@inject('stores')
-@observer
-export default class Item extends React.Component {
+class Item extends React.Component {
   _onPress = () => this.props.onPressItem(this.props.id, this.props.startAt, this.props.endAt);
   shouldComponentUpdate = (nextProps) => {
     return (
@@ -75,3 +73,5 @@ export default class Item extends React.Component {
     );
   }
 }
+
+export default inject("stores")(observer(Item));

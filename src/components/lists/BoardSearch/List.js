@@ -13,8 +13,6 @@ const {
   SEPARATOR_HEIGHT
 } = board_search;
 
-@inject('stores')
-@observer
 class List extends Component {
   state = {
     fetchingMore: false
@@ -123,4 +121,6 @@ class List extends Component {
   }
 }
 
-export default withNavigationFocus(List);
+const withStore = inject("stores")(observer(List));
+
+export default withNavigationFocus(withStore);

@@ -13,8 +13,6 @@ const {
   SEPARATOR_HEIGHT
 } = followers_list;
 
-@inject('stores')
-@observer
 class List extends React.Component {
   state = {
     fetchingMore: false
@@ -120,4 +118,6 @@ class List extends React.Component {
   }
 }
 
-export default withNavigationFocus(List);
+const withStores = inject("stores")(observer(List));
+
+export default withNavigationFocus(withStores);

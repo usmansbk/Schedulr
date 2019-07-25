@@ -11,8 +11,6 @@ import Separator from './Separator';
 import items from './items';
 import env from 'config/env';
 
-@inject("stores")
-@observer
 class List extends React.Component {
   state = {
     visible: false,
@@ -95,4 +93,6 @@ class List extends React.Component {
   }
 }
 
-export default withNavigationFocus(List);
+const withStores = inject("stores")(observer(List));
+
+export default withNavigationFocus(withStores);
