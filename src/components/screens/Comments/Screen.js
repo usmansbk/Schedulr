@@ -1,9 +1,8 @@
 import React from 'react';
-import { inject, observer } from 'mobx-react';
 import Comments from './Comments';
 import DeleteCommentDialog from 'components/dialogs/DeleteComment';
 
-class Screen extends React.Component {
+export default class Screen extends React.Component {
   state = {
     visibleDialog: null,
     id: null,
@@ -50,19 +49,16 @@ class Screen extends React.Component {
     const {
       loading,
       comments,
-      stores,
       onRefresh,
       error,
       fetchMoreComments,
       nextToken
     } = this.props;
     
-    const me = stores.me.asJs();
     return (
       <>
       <Comments
         loading={loading}
-        me={me}
         title={this.props.navigation.getParam('title')}
         error={Boolean(error)}
         comments={comments}
@@ -88,5 +84,3 @@ class Screen extends React.Component {
     )
   }
 }
-
-export default inject("stores")(observer(Screen));

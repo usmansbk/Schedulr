@@ -33,7 +33,6 @@ class Comments extends React.Component {
       targetName,
       comments,
       nextToken,
-      me,
       error,
       onRefresh,
       goBack,
@@ -47,6 +46,7 @@ class Comments extends React.Component {
 
     const styles = stores.appStyles.styles;
     const colors = stores.themeStore.colors;
+    const me = stores.me.asJs();
 
     return (
       <>
