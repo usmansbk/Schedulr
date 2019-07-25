@@ -1,5 +1,5 @@
 import React from 'react';
-import { inject } from 'mobx-react';
+import { inject, observer } from 'mobx-react';
 import Comments from './Comments';
 import DeleteCommentDialog from 'components/dialogs/DeleteComment';
 
