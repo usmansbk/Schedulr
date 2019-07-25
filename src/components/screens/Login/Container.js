@@ -41,7 +41,7 @@ class Container extends React.Component {
   }) => {
     this.setState({ loading: true });
     try {
-      await this._bootstrap();
+      // await this._bootstrap();
       await Auth.federatedSignIn(provider, {
         token,
         expires_at,

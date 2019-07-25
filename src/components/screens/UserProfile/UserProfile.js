@@ -16,7 +16,7 @@ import numeral from 'numeral';
 import colors from 'config/colors';
 
 class UserProfile extends React.Component {
-  componentWillUpdate = (nextProps) => nextProps.navigation.isFocused();
+  shouldComponentUpdate = (nextProps) => nextProps.navigation.isFocused();
 
   _toFollowingTab = () => {
     const { user, stores, navigation } = this.props;

@@ -5,7 +5,7 @@ import { inject, observer } from 'mobx-react';
 import List from './ListHoc';
 
 class Followers extends React.Component {
-  componentWillUpdate = nextProps => nextProps.navigation.isFocused();
+  shouldComponentUpdate = nextProps => nextProps.navigation.isFocused();
 
   render() {
     const {
