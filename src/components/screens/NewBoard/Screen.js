@@ -5,10 +5,16 @@ export default class NewBoardScreen extends React.Component {
   _handleBack = () => this.props.navigation.goBack();
   _handleSubmit = async (input) => {
     const result = await this.props.onSubmit(input);
-    this.props.navigation.replace('Board', {
-      id: result.data.createBoard.id,
-      cacheFirst: true
-    });
+    const popAfterCreation = await this.props.navigation.getParam('popAfterCreation');
+
+    if (popAfterCreation) {
+      this.props.navigation.pop();
+    } else {
+      this.props.navigation.replace('Board', {
+        id: result.data.createBoard.id,
+        cacheFirst: true
+      });
+    }
   };
 
   render() {

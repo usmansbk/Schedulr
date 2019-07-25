@@ -9,7 +9,7 @@ export default class NewEventScreen extends React.Component {
   static defaultProps = {
     boards: []
   };
-  _newBoard = () => this.props.navigation.navigate("NewBoard");
+  _newBoard = () => this.props.navigation.navigate("NewBoard", { popAfterCreation: true });
   _handleBack = () => this.props.navigation.goBack();
   _handleSubmit = async (form) => {
     const result = await this.props.onSubmit(form);

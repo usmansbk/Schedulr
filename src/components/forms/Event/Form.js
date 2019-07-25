@@ -44,6 +44,7 @@ class Form extends React.Component {
   _hideModal = () => this.setState({ visible: false });
 
   static defaultProps = {
+    boards: [],
     initialValues: {
       title: '',
       description: '',
@@ -62,15 +63,18 @@ class Form extends React.Component {
 
   _boardHelp = () => {
     const newBoard = this.props.newBoard;
-    let buttons = undefined;
+    const hasBoards = this.props.boards.length;
     if (newBoard) {
-      buttons = [
-        {
-          text: 'Create',
-          onPress: newBoard
-        },
-        {text: "Ok", onPress: () => null }
-      ];
+      let buttons = [];
+      if (!hasBoards) {
+        buttons.push(
+          {
+            text: 'Create',
+            onPress: newBoard
+          },
+        );
+      }
+      buttons.push({text: "Ok", onPress: () => null });
     }
     Alert.alert("What is a schedule?", WHAT_IS_A_BOARD, buttons);
   }
@@ -81,7 +85,7 @@ class Form extends React.Component {
 
   render() {
     const {
-      boards=[],
+      boards,
       locked,
       initialValues,
       onSubmit,
