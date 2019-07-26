@@ -79,5 +79,8 @@
   },
   "jest": {
     "preset": "react-native"
+  },
+  "resolutions": {
+    "@redux-offline/redux-offline": "2.5.2-native.0"
   }
 }
