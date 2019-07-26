@@ -79,7 +79,8 @@ import com.android.build.OutputFile
 
 project.ext.react = [
     entryFile: "index.js",
-    enableHermes: true
+    enableHermes: true,
+    hermesCommand: "../../node_modules/hermes-engine/%OS-BIN%/hermes",
 ]
 
 apply from: "../../node_modules/react-native/react.gradle"
@@ -181,7 +182,6 @@ dependencies {
     implementation project(':amazon-cognito-identity-js')
     implementation 'com.facebook.android:facebook-android-sdk:4.35.0'
     implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
     implementation "com.facebook.react:react-native:+"  // From node_modules
     
     if (enableHermes) {
