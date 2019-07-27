@@ -20,7 +20,8 @@ export default class Boards extends React.Component {
       boards,
       onRefresh,
       fetchMore,
-      error
+      error,
+      navigation
     } = this.props;
 
     return (
@@ -37,7 +38,7 @@ export default class Boards extends React.Component {
           !(Boolean(error) && !boards.length) && (
             <FAB
               icon="add"
-              onPress={() => this.props.navigation.navigate('NewBoard')}
+              onPress={() => navigation.navigate('NewBoard')}
               disabled={this.props.loading && !this.props.boards.length}
             />
           )

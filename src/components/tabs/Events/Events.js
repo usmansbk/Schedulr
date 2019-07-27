@@ -116,7 +116,8 @@ export default class Events extends React.Component {
       nextToken,
       error,
       onRefresh,
-      fetchMore
+      fetchMore,
+      navigation
     } = this.props;
 
     return (
@@ -124,7 +125,7 @@ export default class Events extends React.Component {
         <List
           loading={loading}
           events={events}
-          navigation={this.props.navigation}
+          navigation={navigation}
           hasPreviousEvents={Boolean(nextToken)}
           onRefresh={onRefresh}
           fetchMore={fetchMore}
@@ -134,7 +135,7 @@ export default class Events extends React.Component {
           !(Boolean(error) && !events.length) && (
             <FAB
               icon="edit"
-              onPress={() => this.props.navigation.navigate('NewEvent')}
+              onPress={() => navigation.navigate('NewEvent')}
               disabled={loading && !events.length}
             />
           )
