@@ -27,10 +27,11 @@ class CancelEvent extends React.Component {
   );
 
   static getDerivedStateFromProps(props, state) {
-    if (props.date !== state.date) {
+    const { date } = props;
+    if (date !== state.date) {
       return {
-        checked: Boolean(nextProps.date) ? 'SINGLE' : 'ALL',
-        date: props.date
+        checked: Boolean(date) ? 'SINGLE' : 'ALL',
+        date: date
       };
     }
     return null;
