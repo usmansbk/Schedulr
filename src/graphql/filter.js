@@ -1,29 +1,38 @@
 import moment from 'moment';
 
-const intervals = ["DAILY", "WEEKDAYS", "WEEKLY", "MONTHLY", "MONTHLY_DAY", "YEARLY"];
-
 export const filterEvents = {
-  "expression":  "#endAt >= :startOfDay OR ( #repeat IN (:intervals) AND (#untilAt >= :startOfDay OR #forever = :forever) AND #startAt >= :startOfDay )",
+  "expression":  "#endAt >= :startOfDay OR ( #repeat IN (:daily, :weekdays, :weekly, :monthly, :yearly) AND (#untilAt >= :startOfDay OR #forever = :forever))",
   "expressionNames": JSON.stringify({
     "#endAt"       : "endAt",
-    "#startAt"     : "startAt",
     "#repeat"      : "repeat",
     "#untilAt"     : "until",
     "#forever"     : "forever"
   }),
   "expressionValues" :  JSON.stringify({
     ":startOfDay"    : moment().startOf('day').valueOf(),
-    ":intervals"     : `${intervals}`,
-    ":forever"       : true
+    ":forever"       : true,
+    ":daily": "DAILY",
+    ":weekdays": "WEEKDAYS",
+    ":weekly": "WEEKLY",
+    ":monthly": "MONTHLY",
+    ":yearly": "YEARLY"
   })
 };
 
 export const filterPastEvents = (date) => ({
-  "expression": "#startAt < :startOfDay",
+  "expression": "#endAt < :startOfDay AND (#repeat = :never OR (#repeat IN (:daily, :weekdays, :weekly, :monthly, :yearly) AND #untilAt < :startOfDay ) )",
   "expressionNames": JSON.stringify({
-    "#startAt"        : "startAt"
+    "#endAt"        : "endAt",
+    "#repeat"       : "repeat",
+    "#untilAt"      : "until"
   }),
   "expressionValues" : JSON.stringify({
-    ":startOfDay"    : moment(date).startOf('day').valueOf()
+    ":startOfDay"    : moment(date).startOf('day').valueOf(),
+    ":never": "NEVER",
+    ":daily": "DAILY",
+    ":weekdays": "WEEKDAYS",
+    ":weekly": "WEEKLY",
+    ":monthly": "MONTHLY",
+    ":yearly": "YEARLY"
   })
 });
