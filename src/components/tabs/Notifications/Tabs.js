@@ -3,10 +3,12 @@ import { Dimensions } from 'react-native';
 import { createMaterialTopTabNavigator, MaterialTopTabBar } from 'react-navigation-tabs';
 import { inject, observer } from 'mobx-react';
 import Updates from './Updates';
+import Messages from './Messages';
 
 const Tabs = createMaterialTopTabNavigator(
   {
-    Updates
+    Updates,
+    Messages
   },
   {
     initialLayout: { height: 0, width: Dimensions.get('window').width },
