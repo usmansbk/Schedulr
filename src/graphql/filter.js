@@ -6,7 +6,6 @@ export const filterEvents = {
   "expression":  "#endAt >= :startOfDay OR ( #repeat IN (:intervals) AND (#untilAt >= :startOfDay OR #forever = :forever))",
   "expressionNames": JSON.stringify({
     "#endAt"       : "endAt",
-    "#startAt"     : "startAt",
     "#repeat"      : "repeat",
     "#untilAt"     : "untilAt",
     "#forever"     : "forever"
