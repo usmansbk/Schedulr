@@ -2,7 +2,7 @@ import { observable, action, computed } from 'mobx';
 import { persist } from 'mobx-persist';
 import { decapitalize } from 'lib/capitalizr';
 
-export default class Logs {
+export default class Updates {
   @persist("list") @observable items = [];
   @observable prevBoards = [];
   @observable prevEvents = [];

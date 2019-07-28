@@ -43,7 +43,7 @@ export default inject("stores")(observer(
             const { items } = listAllBoardsDelta;
 
             const { listAllBoards } = prev;
-            ownProps.stores.logs.addToQueue(items, 'board', listAllBoards.items);
+            ownProps.stores.updates.addToQueue(items, 'board', listAllBoards.items);
 
             const deleteIds = items.filter(item => item.aws_ds === 'DELETE').map(item => item.id);
             if (deleteIds.length) {
