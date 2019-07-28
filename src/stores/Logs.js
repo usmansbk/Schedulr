@@ -68,7 +68,7 @@ export default class Logs {
 
       switch(item.aws_ds) {
         case 'CREATE': {
-          const message = `${eventType ? eventType + ' ' : ''}scheduled on `;
+          const message = `${eventType ? eventType + ' ' : ''}scheduled for`;
           notif.target = item.startAt;
           notif.message = message;
           this.items.push(notif);
