@@ -26,10 +26,6 @@ import {
 } from 'components/screens';
 import colors from 'config/colors';
 
-/**
- * I don't know why setting common navigationOptions to null headers
- * doesn't work as expected. (x_x)
- */
 const AppStack = createStackNavigator({
   Home,
   EditEvent: {
