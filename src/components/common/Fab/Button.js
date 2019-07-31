@@ -19,22 +19,25 @@ const styles = StyleSheet.create({
 })
 
 const Fab = inject('stores')(observer(
-  ({ onPress, label, icon, small, stores, secondary, disabled }) => (
-    <FAB
-      label={label}
-      onPress={onPress}
-      theme={{
-        colors: {
-          accent: secondary ? stores.themeStore.colors.primary_light : stores.themeStore.colors.primary
-        }
-      }}
-      style={secondary ? styles.secondary : styles.fab}
-      color="#fff"
-      icon={icon}
-      small={small || secondary}
-      disabled={disabled}
-    />
-  )
+  ({ onPress, label, icon, small, stores, secondary, disabled }) => {
+    console.log(onPress && 'fab handler set');
+    return (
+      <FAB
+        label={label}
+        onPress={onPress}
+        theme={{
+          colors: {
+            accent: secondary ? stores.themeStore.colors.primary_light : stores.themeStore.colors.primary
+          }
+        }}
+        style={secondary ? styles.secondary : styles.fab}
+        color="#fff"
+        icon={icon}
+        small={small || secondary}
+        disabled={disabled}
+      />
+    );
+  }
 ));
 
 export default Fab;

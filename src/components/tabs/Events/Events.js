@@ -5,6 +5,7 @@ import SimpleToast from 'react-native-simple-toast';
 import LocalNotifications from 'react-native-push-notification';
 import changeNavigationBarColor from 'react-native-navigation-bar-color';
 import moment from 'moment';
+import { eventsDiff } from 'lib/utils';
 import List from 'components/lists/Events';
 import FAB from 'components/common/Fab';
 import NavigationService from 'config/navigation';
@@ -80,7 +81,15 @@ export default class Events extends React.Component {
     }
   }
   
-  shouldComponentUpdate = (nextProps) => nextProps.navigation.isFocused();
+  shouldComponentUpdate = (nextProps) => {
+    const shouldUpdate =     nextProps.navigation.isFocused() && (
+      nextProps.stores.settingsStore.dark !== this.props.stores.settingsStore.dark ||
+      Boolean(nextProps.loading) !== Boolean(this.props.loading) ||
+      eventsDiff(this.props.events, nextProps.events).length
+    );
+    console.log(shouldUpdate ? 'update' : 'dont update');
+    return Boolean(shouldUpdate);
+  };
   
   componentDidUpdate = () => {
     const { events, stores, loading } = this.props;
@@ -109,9 +118,13 @@ export default class Events extends React.Component {
 
   handleOpenURL = event => NavigationService.deepLinkNavigate(event.url);
 
-  _navigateToNewEvent = () => this.props.navigation.navigate('NewEvent');
+  _navigateToNewEvent = () => {
+    console.log("Pressed button");
+    this.props.navigation.navigate('NewEvent');
+  }
 
   render() {
+    console.log('rendering events tab');
     const {
       loading,
       events,

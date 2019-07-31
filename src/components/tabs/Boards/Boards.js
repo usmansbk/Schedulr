@@ -22,8 +22,7 @@ export default class Boards extends React.Component {
       boards,
       onRefresh,
       fetchMore,
-      error,
-      navigation
+      error
     } = this.props;
 
     return (

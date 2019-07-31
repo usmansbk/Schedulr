@@ -211,6 +211,19 @@ class List extends React.Component {
     this._processEvents(this.props.events);
   };
 
+  
+  shouldComponentUpdate = (nextProps, nextState) => {
+    const shouldUpdate = (
+      nextProps.stores.settingsStore.dark !== this.props.stores.settingsStore.dark ||
+      Boolean(nextProps.loading) !== Boolean(this.props.loading) ||
+      this.state.events !== nextState.events ||
+      this.state.loadingMore !== nextState.loadMore ||
+      this.state.loadingPrev !== nextState.loadingPrev
+    );
+    console.log(shouldUpdate ? 'update list' : 'dont update list');
+    return Boolean(shouldUpdate);
+  };
+
   _onScroll = (event) => {
     this.props.handleScroll && this.props.handleScroll(event.nativeEvent.contentOffset.y)
   };
@@ -286,6 +299,8 @@ class List extends React.Component {
     const allowedList = stores.appState.allowedList;
 
     const extraData = mutedList.length - allowedList.length;
+
+    console.log('rendering events list');
 
     return (
       <SectionList
