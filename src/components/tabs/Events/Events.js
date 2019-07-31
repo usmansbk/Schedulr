@@ -46,7 +46,7 @@ export default class Events extends React.Component {
         }
       }
     });
-  }
+  };
   
   _handleDeeplink = async () => {
     try {
@@ -79,15 +79,13 @@ export default class Events extends React.Component {
     } catch (error) {
       SimpleToast.show(error.message, SimpleToast.SHORT);
     }
-  }
+  };
   
   shouldComponentUpdate = (nextProps) => {
-    const shouldUpdate =     nextProps.navigation.isFocused() && (
-      nextProps.stores.settingsStore.dark !== this.props.stores.settingsStore.dark ||
+    const shouldUpdate = nextProps.navigation.isFocused() && (
       Boolean(nextProps.loading) !== Boolean(this.props.loading) ||
       eventsDiff(this.props.events, nextProps.events).length
     );
-    console.log(shouldUpdate ? 'update' : 'dont update');
     return Boolean(shouldUpdate);
   };
   
@@ -119,12 +117,10 @@ export default class Events extends React.Component {
   handleOpenURL = event => NavigationService.deepLinkNavigate(event.url);
 
   _navigateToNewEvent = () => {
-    console.log("Pressed button");
     this.props.navigation.navigate('NewEvent');
-  }
+  };
 
   render() {
-    console.log('rendering events tab');
     const {
       loading,
       events,

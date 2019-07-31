@@ -220,7 +220,6 @@ class List extends React.Component {
       this.state.loadingMore !== nextState.loadMore ||
       this.state.loadingPrev !== nextState.loadingPrev
     );
-    console.log(shouldUpdate ? 'update list' : 'dont update list');
     return Boolean(shouldUpdate);
   };
 
@@ -299,8 +298,6 @@ class List extends React.Component {
     const allowedList = stores.appState.allowedList;
 
     const extraData = mutedList.length - allowedList.length;
-
-    console.log('rendering events list');
 
     return (
       <SectionList

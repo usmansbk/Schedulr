@@ -3,28 +3,20 @@ import { StyleSheet } from 'react-native';
 import { FAB } from 'react-native-paper';
 import { inject, observer } from 'mobx-react';
 
-const styles = StyleSheet.create({
-  fab: {
-    position: 'absolute',
-    margin: 16,
-    right: 0,
-    bottom: 0,
-  },
-  secondary: {
-    position: 'absolute',
-    margin: 16,
-    right: 6,
-    bottom: 80,
-  }
-})
+class Fab extends React.Component {
+  shouldComponentUpdate = (nextProps) => {
+    const shouldUpdate = nextProps.disabled !== this.props.disabled
+    return shouldUpdate;
+  };
 
-const Fab = inject('stores')(observer(
-  ({ onPress, label, icon, small, stores, secondary, disabled }) => {
-    console.log(onPress && 'fab handler set');
+  _onPress = () => this.props.onPress();
+
+  render() {
+    const { label, icon, small, stores, secondary, disabled } = this.props;
     return (
       <FAB
         label={label}
-        onPress={onPress}
+        onPress={this._onPress}
         theme={{
           colors: {
             accent: secondary ? stores.themeStore.colors.primary_light : stores.themeStore.colors.primary
@@ -38,6 +30,21 @@ const Fab = inject('stores')(observer(
       />
     );
   }
-));
+}
 
-export default Fab;
+const styles = StyleSheet.create({
+  fab: {
+    position: 'absolute',
+    margin: 16,
+    right: 0,
+    bottom: 0,
+  },
+  secondary: {
+    position: 'absolute',
+    margin: 16,
+    right: 6,
+    bottom: 80,
+  }
+});
+
+export default inject("stores")(observer(Fab));
