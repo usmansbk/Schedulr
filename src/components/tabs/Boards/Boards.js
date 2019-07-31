@@ -5,14 +5,16 @@ import FAB from 'components/common/Fab';
 export default class Boards extends React.Component {
   shouldComponentUpdate = (nextProps) => {
     return (nextProps.loading !== this.props.loading) || (nextProps.boards !== this.props.boards);
-  }
+  };
 
   componentDidMount = () => {
     if (this.props.stores.boardsSync.skipBaseQuery &&
       this.props.stores.appState.isConnected
     )
       this.props.fetchMore();
-  }
+  };
+
+  _navigateToNewBoard = () => this.props.navigation.navigate('NewBoard');
   
   render() {
     const {
@@ -38,7 +40,7 @@ export default class Boards extends React.Component {
           !(Boolean(error) && !boards.length) && (
             <FAB
               icon="add"
-              onPress={() => navigation.navigate('NewBoard')}
+              onPress={this._navigateToNewBoard}
               disabled={this.props.loading && !this.props.boards.length}
             />
           )

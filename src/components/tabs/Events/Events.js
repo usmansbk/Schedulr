@@ -109,6 +109,8 @@ export default class Events extends React.Component {
 
   handleOpenURL = event => NavigationService.deepLinkNavigate(event.url);
 
+  _navigateToNewEvent = () => this.props.navigation.navigate('NewEvent');
+
   render() {
     const {
       loading,
@@ -135,7 +137,7 @@ export default class Events extends React.Component {
           !(Boolean(error) && !events.length) && (
             <FAB
               icon="edit"
-              onPress={() => navigation.navigate('NewEvent')}
+              onPress={this._navigateToNewEvent}
               disabled={loading && !events.length}
             />
           )
