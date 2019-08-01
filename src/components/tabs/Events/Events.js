@@ -103,7 +103,6 @@ export default class Events extends React.Component {
   componentDidMount = async () => {
     this._initNetInfo();
     await this._handleNavBarColor();
-    // this.props.deltaSync();
   };
 
   componentWillUnmount = () => {
@@ -124,7 +123,6 @@ export default class Events extends React.Component {
       nextToken,
       error,
       onRefresh,
-      fetchMore,
       navigation
     } = this.props;
 
@@ -136,7 +134,6 @@ export default class Events extends React.Component {
           navigation={navigation}
           hasPreviousEvents={Boolean(nextToken)}
           onRefresh={onRefresh}
-          fetchMore={fetchMore}
           error={error}
         />
         {
