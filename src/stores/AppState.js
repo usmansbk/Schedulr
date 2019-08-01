@@ -107,32 +107,32 @@ export default class AppState {
   }
 
   @action getLocation = async () => {
-    await requestLocationPermission().then(requestGranted => {
-      if (requestGranted) {
-        Geolocation.getCurrentPosition(
-          (position) => {
-            const {
-              coords: {
-                longitude,
-                latitude
-              }
-            } = position;
-            this.location.lon = longitude;
-            this.location.lat = latitude;
-            this.getAddress();
-          },
-          (error) => {
-            logger.debug(error);
-            throw error;
-          },
-          {
-            enableHighAccuracy: true,
-            timeout: 15000,
-            maximumAge: 10000
-          }
-        );
-      }
-    }).catch(error => SimpleToast.show(error.message));
+    const requestGranted = await requestLocationPermission();
+    if (requestGranted) {
+      Geolocation.getCurrentPosition(
+        (position) => {
+          const {
+            coords: {
+              longitude,
+              latitude
+            }
+          } = position;
+          this.location.lon = longitude;
+          this.location.lat = latitude;
+          this.getAddress();
+        },
+        (error) => {
+          logger.debug(error);
+          SimpleToast.show(error.message, SimpleToast.SHORT);
+          // throw error;
+        },
+        {
+          enableHighAccuracy: true,
+          timeout: 15000,
+          maximumAge: 10000
+        }
+      );
+    }
   };
 
   @action toggleMute = (id, isMuted) => {
