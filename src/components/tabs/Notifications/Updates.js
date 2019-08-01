@@ -5,34 +5,26 @@ import List from 'components/lists/Updates';
 import Fab from 'components/common/Fab';
 
 class Updates extends React.Component {
-  componentDidUpdate = () => {
-    this.props.stores.updates.process();
-  }
-  
-  componentDidMount = () => {
-    this.props.stores.updates.process();
-  };
-
   shouldComponentUpdate = (nextProps) => {
     return nextProps.navigation.isFocused();
   };
 
   _onPress = () => {
-    this.props.stores.updates.reset();
+    // clear notifications
   }
 
   render() {
-    const { stores } = this.props;
+    const { stores, navigation, updates=[] } = this.props;
 
     return (
       <>
       <List
-        updates={stores.updates.items.sort((a, b) => (b.date - a.date))}
+        updates={updates}
         styles={stores.appStyles.notifications}
-        navigation={this.props.navigation}
+        navigation={navigation}
       />
       {
-        Boolean(stores.updates.items.length) && (
+        Boolean(updates.length) && (
           <Fab
             small
             icon="clear-all"

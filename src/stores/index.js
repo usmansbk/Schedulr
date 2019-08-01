@@ -8,8 +8,6 @@ import AppStyles from './Styles';
 import UserProfile from './UserProfile';
 import AppState from './AppState';
 import DeltaSync from './Sync';
-import BoardsSync from './BoardsSync';
-import Updates from './Updates';
 
 class RootStore {
   constructor() {
@@ -23,16 +21,12 @@ class RootStore {
     const meStore = new UserProfile;
     const appState = new AppState;
     const deltaSync = new DeltaSync;
-    const boardsSync = new BoardsSync;
-    const updates = new Updates;
     
     hydrate('settings', settingsStore);
     hydrate('remindMe', remindMeStore);
     hydrate('me', meStore);
     hydrate('appState', appState);
     hydrate('deltaSync', deltaSync);
-    hydrate('boardsSync', boardsSync);
-    hydrate('updates', updates);
     
     // Create theme store after hydrating the settings store
     const themeStore = new Theme(settingsStore);
@@ -45,8 +39,6 @@ class RootStore {
     this.appStyles = appStyles;
     this.appState = appState;
     this.deltaSync = deltaSync;
-    this.boardsSync = boardsSync;
-    this.updates = updates;
   }
 
   @action reset = () => {
@@ -55,9 +47,7 @@ class RootStore {
     this.me.reset();
     this.appState.reset();
     this.deltaSync.reset();
-    this.updates.reset();
   }
 }
-
 
 export default new RootStore();
