@@ -66,13 +66,6 @@ class List extends Component {
 
   _renderSeparator = () => <Separator />;
   _renderFooter = () => <Footer visible={this.props.boards.length} />;
-  _onRefresh = () => {
-    if (
-      this.props.stores.appState.isConnected &&
-      !this.props.loading && this.props.fetchMore) {
-      this.props.fetchMore();
-    }
-  }
 
   render() {
     const {
@@ -90,13 +83,11 @@ class List extends Component {
         refreshing={loading}
         refreshControl={
           <RefreshControl
-            onRefresh={this._onRefresh}
             refreshing={loading}
             colors={[colors.primary]}
             progressBackgroundColor={colors.bg}
           />
         }
-        onRefresh={this._onRefresh}
         style={styles.list}
         extraData={mutedList.length}
         contentContainerStyle={styles.contentContainer}
