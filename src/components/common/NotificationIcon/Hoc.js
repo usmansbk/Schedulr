@@ -15,5 +15,5 @@ const BoardsDeltaQuery = gql(listAllBoardsDelta);
 export default inject("stores")(observer(
   compose(
 
-  )
-))(Button)
+  )(Button)
+))
