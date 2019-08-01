@@ -2,7 +2,7 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-export default ({stores, color, size, focused }) => {
+export default ({hasNotification, color, size, focused }) => {
   return (
     <View style={styles.container}>
       <Icon
@@ -11,7 +11,7 @@ export default ({stores, color, size, focused }) => {
         size={size}
       />
       {
-        stores.updates.hasNotification && <View style={styles.indicator}/>
+        hasNotification && <View style={styles.indicator}/>
       }
     </View>
   );
