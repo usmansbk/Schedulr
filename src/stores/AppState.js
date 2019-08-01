@@ -123,7 +123,7 @@ export default class AppState {
         },
         (error) => {
           logger.debug(error);
-          SimpleToast.show(error.message, SimpleToast.SHORT);
+          SimpleToast.show("Failed to get location. Turn off airplane mode.", SimpleToast.SHORT);
           // throw error;
         },
         {
