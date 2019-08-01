@@ -1,9 +1,8 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
-import { inject, observer } from 'mobx-react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-export default inject('stores')(observer(({stores, color, size, focused }) => {
+export default ({stores, color, size, focused }) => {
   return (
     <View style={styles.container}>
       <Icon
@@ -16,7 +15,7 @@ export default inject('stores')(observer(({stores, color, size, focused }) => {
       }
     </View>
   );
-}));
+};
 
 const color = '#1DA1F2';
 
