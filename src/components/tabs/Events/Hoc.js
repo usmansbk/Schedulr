@@ -21,9 +21,7 @@ export default inject("stores")(observer(
           filter: filterEvents
         }
       },
-      skip: props => {
-        return !props.navigation.isFocused();
-      },
+      skip: props => !props.navigation.isFocused(),
       props: ({ data, ownProps}) => ({
         loading: data.loading || data.networkStatus === 4,
         events: data && data.listAllEvents && data.listAllEvents.items || [],
