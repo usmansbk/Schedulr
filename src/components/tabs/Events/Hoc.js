@@ -9,25 +9,20 @@ import { listAllEventsDelta } from 'mygraphql/deltasync';
 import { filterEvents } from 'mygraphql/filter';
 
 const alias = 'withEventsContainer';
+const BaseQuery = gql(listAllEvents);
+const DeltaSyncQuery = gql(listAllEventsDelta);
 
 export default inject("stores")(observer(
   compose(
     withNavigationFocus,
-    graphql(gql(listAllEvents), {
+    graphql(BaseQuery, {
       alias,
-      options: props => {
-        const skipBaseQuery = props.stores.deltaSync.skipBaseQuery;
-        const isConnected = props.stores.appState.isConnected;
-        return {
-          fetchPolicy: (!skipBaseQuery && isConnected) ? 'cache-and-network' : 'cache-first',
-          notifyOnNetworkStatusChange: true,
-          variables: {
-            filter: filterEvents
-          },
-          onCompleted: () => {
-            !skipBaseQuery && props.stores.deltaSync.updateBaseLastSyncTimestamp();
-          },
-        };
+      options: {
+        fetchPolicy: 'cache-first',
+        notifyOnNetworkStatusChange: true,
+        variables: {
+          filter: filterEvents
+        }
       },
       skip: props => {
         return !props.navigation.isFocused();
@@ -39,7 +34,7 @@ export default inject("stores")(observer(
         error: data.error && !data.listAllEvents,
         onRefresh: () =>  data.refetch(),
         fetchMore: () => data.fetchMore({
-          query: gql(listAllEventsDelta),
+          query: DeltaSyncQuery,
           variables: {
             lastSync: ownProps.stores.deltaSync.lastSync
           },

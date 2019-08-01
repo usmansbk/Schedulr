@@ -7,13 +7,6 @@ export default class Boards extends React.Component {
     return (nextProps.loading !== this.props.loading) || (nextProps.boards !== this.props.boards);
   };
 
-  componentDidMount = () => {
-    if (this.props.stores.boardsSync.skipBaseQuery &&
-      this.props.stores.appState.isConnected
-    )
-      this.props.fetchMore();
-  };
-
   _navigateToNewBoard = () => this.props.navigation.navigate('NewBoard');
   
   render() {
@@ -21,7 +14,6 @@ export default class Boards extends React.Component {
       loading,
       boards,
       onRefresh,
-      fetchMore,
       error
     } = this.props;
 
@@ -31,7 +23,6 @@ export default class Boards extends React.Component {
           loading={loading}
           boards={boards}
           onRefresh={onRefresh}
-          fetchMore={fetchMore}
           error={error}
         />
         {

@@ -9,24 +9,17 @@ import { listAllBoardsDelta } from 'mygraphql/deltasync';
 import client from 'config/client';
 
 const alias = 'withBoardsContainer';
+const BaseQuery = gql(listAllBoards);
 
 export default inject("stores")(observer(
   compose(
     withNavigationFocus,
-    graphql(gql(listAllBoards),
+    graphql(BaseQuery,
     {
       alias,
-      options: (props) => {
-        const skipBaseQuery = props.stores.boardsSync.skipBaseQuery;
-        const isConnected = props.stores.appState.isConnected;
-
-        return {
-          fetchPolicy: (!skipBaseQuery && isConnected) ? 'cache-and-network' : 'cache-first',
-          notifyOnNetworkStatusChange: true,
-          onCompleted: () => {
-            !skipBaseQuery && props.stores.boardsSync.updateBaseLastSyncTimestamp();
-          },
-        };
+      options: {
+        fetchPolicy: 'cache-first',
+        notifyOnNetworkStatusChange: true,
       },
       props: ({ data, ownProps}) => ({
         loading: data.loading || data.networkStatus === 4,
