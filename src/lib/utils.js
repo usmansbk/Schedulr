@@ -71,7 +71,7 @@ export function boardsDiff(prev, next) {
   });
 }
 
-export function eventsDiffES(prev, next=[]) {
+export function eventsChanged(prev, next=[]) {
   return !next.every((nextVal, index) => {
     const prevVal = prev[index];
     if (!prevVal) return false;

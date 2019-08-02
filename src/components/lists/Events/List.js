@@ -21,7 +21,7 @@ import {
   getEventType,
   isEventValid
 } from 'lib/parseItem';
-import { eventsDiffES } from 'lib/utils';
+import { eventsChanged } from 'lib/utils';
 import {
   generatePreviousEvents,
   generateNextEvents,
@@ -181,7 +181,7 @@ class List extends React.Component {
 
 
   static getDerivedStateFromProps(props, state) {
-    if (eventsDiffES(state.events, props.events)) {
+    if (eventsChanged(state.events, props.events)) {
       const events = props.events;
       const today = moment().startOf('day').format();
       const yesterday = moment().subtract(1, 'day').startOf('day').format();
