@@ -209,11 +209,11 @@ class List extends React.Component {
 
   
   shouldComponentUpdate = (nextProps, nextState) => {
-    const shouldUpdate = (
+    return (
       Boolean(nextProps.loading) !== Boolean(this.props.loading) ||
-      this.state.sections !== nextState.sections
+      this.state.sections !== nextState.sections ||
+      nextProps.stores.settingsStore.dark
     );
-    return shouldUpdate;
   };
 
   _onScroll = (event) => {

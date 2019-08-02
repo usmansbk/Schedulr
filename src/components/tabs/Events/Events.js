@@ -134,7 +134,6 @@ export default class Events extends React.Component {
             <FAB
               icon="edit"
               onPress={this._navigateToNewEvent}
-              disabled={loading && !events.length}
             />
           )
         }
