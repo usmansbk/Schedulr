@@ -21,7 +21,7 @@ import {
   getEventType,
   isEventValid
 } from 'lib/parseItem';
-import { eventsDiff, eventsDiffES } from 'lib/utils';
+import { eventsDiffES } from 'lib/utils';
 import {
   generatePreviousEvents,
   generateNextEvents,
