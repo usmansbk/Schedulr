@@ -3,9 +3,7 @@ import List from 'components/lists/Boards';
 import FAB from 'components/common/Fab';
 
 export default class Boards extends React.Component {
-  shouldComponentUpdate = (nextProps) => {
-    return (nextProps.loading !== this.props.loading) || (nextProps.boards !== this.props.boards);
-  };
+  shouldComponentUpdate = (nextProps) => nextProps.navigation.isFocused();
 
   _navigateToNewBoard = () => this.props.navigation.navigate('NewBoard');
   
@@ -31,7 +29,6 @@ export default class Boards extends React.Component {
             <FAB
               icon="add"
               onPress={this._navigateToNewBoard}
-              disabled={this.props.loading && !this.props.boards.length}
             />
           )
         }
