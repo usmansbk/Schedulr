@@ -7,7 +7,7 @@ import { inject, observer } from 'mobx-react';
 export default inject('stores')(observer(
   ({ stores }) => (
     <View style={stores.appStyles.notifications.empty}>
-      <Icon name="notifications-active" size={48} color={stores.themeStore.colors.gray} />
+      <Icon name="message" size={48} color={stores.themeStore.colors.gray} />
       <Headline style={stores.appStyles.notifications.emptyTitle}>No new notifications</Headline>
       <Caption style={stores.appStyles.notifications.paragraph}>All caught up!</Caption>
     </View>
