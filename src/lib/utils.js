@@ -70,3 +70,22 @@ export function boardsDiff(prev, next) {
       (prevVal.followersCount === nextVal.followersCount);
   })
 }
+
+export function eventsDiffES(prev, next=[]) {
+  return next.every((nextVal, index) => {
+    const prevVal = prev[index];
+    if (!prevVal) return false;
+    const prevCancelledDates = prevVal.cancelledDates || [];
+    const nextCancelledDates = nextVal.cancelledDates || [];
+    return (prevVal.id === nextVal.id) && (prevVal.title === nextVal.title) &&
+      (prevVal.startAt === nextVal.startAt) &&
+      (prevVal.endAt === nextVal.endAt) &&
+      (prevVal.eventType === nextVal.eventType) &&
+      (prevVal.repeat === nextVal.repeat) &&
+      (prevVal.until === nextVal.until) &&
+      (prevVal.isCancelled === nextVal.isCancelled) &&
+      (prevCancelledDates.length === nextCancelledDates.length) &&
+      (prevVal.isStarred === nextVal.isStarred) &&
+      (prevVal.description === nextVal.description);
+  });
+}

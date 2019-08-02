@@ -4,6 +4,7 @@ import uniqWith from 'lodash.uniqwith';
 import Button from './Button';
 import { followBoard, unfollowBoard } from 'mygraphql/mutations';
 import { listAllBoards, listAllEvents, listBoardEvents } from 'mygraphql/queries';
+import { filterEvents } from 'mygraphql/filter';
 import {
   followBoardResponse,
   unfollowBoardResponse
@@ -35,7 +36,8 @@ export default compose(
             client.query({
               query: gql(listBoardEvents),
               variables: {
-                id: followBoard.id
+                id: followBoard.id,
+                filter: filterEvents
               }
             }).then(({ data }) => {
               const items = data && data.listBoardEvents &&
@@ -47,7 +49,7 @@ export default compose(
               cache.writeQuery({
                 query: gql(listAllEvents),
                 data: allEventsData
-              })
+              });
             });
           }
         },

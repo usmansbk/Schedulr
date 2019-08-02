@@ -5,7 +5,8 @@ import { inject, observer } from 'mobx-react';
 
 class Fab extends React.Component {
   shouldComponentUpdate = (nextProps) => {
-    const shouldUpdate = nextProps.disabled !== this.props.disabled
+    const shouldUpdate = nextProps.disabled !== this.props.disabled ||
+      nextProps.icon !== this.props.icon || nextProps.label !== this.props.label;
     return shouldUpdate;
   };
 

@@ -5,7 +5,7 @@ import SimpleToast from 'react-native-simple-toast';
 import LocalNotifications from 'react-native-push-notification';
 import changeNavigationBarColor from 'react-native-navigation-bar-color';
 import moment from 'moment';
-import { eventsDiff } from 'lib/utils';
+import { eventsDiffES } from 'lib/utils';
 import List from 'components/lists/Events';
 import FAB from 'components/common/Fab';
 import NavigationService from 'config/navigation';
@@ -84,7 +84,7 @@ export default class Events extends React.Component {
   shouldComponentUpdate = (nextProps) => {
     const shouldUpdate = nextProps.navigation.isFocused() && (
       Boolean(nextProps.loading) !== Boolean(this.props.loading) ||
-      eventsDiff(this.props.events, nextProps.events).length
+      eventsDiffES(this.props.events, nextProps.events)
     );
     return Boolean(shouldUpdate);
   };
