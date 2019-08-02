@@ -211,8 +211,7 @@ class List extends React.Component {
   shouldComponentUpdate = (nextProps, nextState) => {
     const shouldUpdate = (
       Boolean(nextProps.loading) !== Boolean(this.props.loading) ||
-      this.state.sections !== nextState.sections ||
-      this.props.stores.settingsStore.dark !== nextProps.stores.settingsStore.dark
+      this.state.sections !== nextState.sections
     );
     return shouldUpdate;
   };
