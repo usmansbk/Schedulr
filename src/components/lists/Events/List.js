@@ -182,7 +182,7 @@ class List extends React.Component {
 
   static getDerivedStateFromProps(props, state) {
     if (props.events.length !== state.events.length ||
-      (eventsDiffES(props.events, state.events))) {
+      (eventsDiffES(state.events, props.events))) {
       const events = props.events;
       const today = moment().startOf('day').format();
       const yesterday = moment().subtract(1, 'day').startOf('day').format();
@@ -212,9 +212,7 @@ class List extends React.Component {
   shouldComponentUpdate = (nextProps, nextState) => {
     const shouldUpdate = (
       Boolean(nextProps.loading) !== Boolean(this.props.loading) ||
-      this.state.events !== nextState.events ||
-      this.state.loadingMore !== nextState.loadMore ||
-      this.state.loadingPrev !== nextState.loadingPrev
+      this.state.sections !== nextState.sections
     );
     return Boolean(shouldUpdate);
   };
