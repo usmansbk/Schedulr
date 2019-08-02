@@ -25,7 +25,7 @@ export default sortBoards = memoize((data) => {
 export const sortBy = (arr, key) => {
   return arr.sort((a, b) => {
     return a[key] - b[key];
-  })
+  });
 };
 
 export const sortEvents = memoize((events, reverse) => {
@@ -68,7 +68,7 @@ export function boardsDiff(prev, next) {
       (prevVal.isPublic === nextVal.isPublic) &&
       (prevVal.eventsCount === nextVal.eventsCount) &&
       (prevVal.followersCount === nextVal.followersCount);
-  })
+  });
 }
 
 export function eventsDiffES(prev, next=[]) {
