@@ -8,7 +8,7 @@ export default inject('stores')(observer(
   ({ stores }) => (
     <View style={stores.appStyles.notifications.empty}>
       <Icon name="message" size={48} color={stores.themeStore.colors.gray} />
-      <Headline style={stores.appStyles.notifications.emptyTitle}>No new message</Headline>
+      <Headline style={stores.appStyles.notifications.emptyTitle}>No messages</Headline>
     </View>
   )
 ));
