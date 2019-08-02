@@ -1,7 +1,7 @@
 import { graphql, compose } from 'react-apollo';
 import { inject, observer } from 'mobx-react';
 import gql from 'graphql-tag';
-import { eventsDiff } from 'lib/utils';
+import { eventsChanged } from 'lib/utils';
 import { listAllEvents, listAllBoards } from 'mygraphql/queries';
 import { listAllEventsDelta, listAllBoardsDelta } from 'mygraphql/deltasync';
 import { filterEvents } from 'mygraphql/filter';

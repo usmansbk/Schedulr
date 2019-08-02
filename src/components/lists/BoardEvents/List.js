@@ -13,7 +13,7 @@ import {
   getStatus,
   getEventType
 } from 'lib/parseItem';
-import { eventsDiff } from 'lib/utils';
+import { eventsChanged } from 'lib/utils';
 import { board_events } from 'lib/constants';
 
 const {
@@ -42,7 +42,7 @@ class List extends Component {
     return (nextProps.navigation.isFocused() &&
       (
         nextProps.loading !== this.props.loading ||
-        eventsDiff(this.props.events, nextProps.events).length ||
+        eventsChanged(this.props.events, nextProps.events) ||
         this.state.loadingPrev !== nextState.loadingPrev ||
         this.state.hasPrev !== nextState.hasPrev
       )
