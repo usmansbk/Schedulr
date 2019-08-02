@@ -72,7 +72,7 @@ export function boardsDiff(prev, next) {
 }
 
 export function eventsDiffES(prev, next=[]) {
-  return next.every((nextVal, index) => {
+  return !next.every((nextVal, index) => {
     const prevVal = prev[index];
     if (!prevVal) return false;
     const prevCancelledDates = prevVal.cancelledDates || [];
