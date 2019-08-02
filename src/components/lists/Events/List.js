@@ -181,8 +181,7 @@ class List extends React.Component {
 
 
   static getDerivedStateFromProps(props, state) {
-    if (props.events.length !== state.events.length ||
-      (eventsDiffES(state.events, props.events))) {
+    if (eventsDiffES(state.events, props.events)) {
       const events = props.events;
       const today = moment().startOf('day').format();
       const yesterday = moment().subtract(1, 'day').startOf('day').format();
