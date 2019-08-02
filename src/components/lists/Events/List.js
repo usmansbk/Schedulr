@@ -213,7 +213,7 @@ class List extends React.Component {
       Boolean(nextProps.loading) !== Boolean(this.props.loading) ||
       this.state.sections !== nextState.sections
     );
-    return Boolean(shouldUpdate);
+    return shouldUpdate;
   };
 
   _onScroll = (event) => {

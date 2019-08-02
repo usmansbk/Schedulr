@@ -1,4 +1,3 @@
-import differenceWith from 'lodash.differencewith';
 import memoize from 'lodash.memoize';
 
 function sortList(list) {
@@ -42,34 +41,6 @@ export const sortStarredEvents = memoize((events) => {
   const sorted = sortEvents(pending).concat(sortEvents(expired, true));
   return sorted;
 });
-
-export function eventsDiff(prev, next) {
-  return differenceWith(prev, next, (prevVal, nextVal) => {
-    const prevCancelledDates = prevVal.cancelledDates || [];
-    const nextCancelledDates = nextVal.cancelledDates || [];
-    return (prevVal.id === nextVal.id) && (prevVal.title === nextVal.title) &&
-      (prevVal.startAt === nextVal.startAt) &&
-      (prevVal.endAt === nextVal.endAt) &&
-      (prevVal.eventType === nextVal.eventType) &&
-      (prevVal.repeat === nextVal.repeat) &&
-      (prevVal.until === nextVal.until) &&
-      (prevVal.isCancelled === nextVal.isCancelled) &&
-      (prevCancelledDates.length === nextCancelledDates.length) &&
-      (prevVal.isStarred === nextVal.isStarred) &&
-      (prevVal.description === nextVal.description);
-  });
-}
-
-export function boardsDiff(prev, next) {
-  return differenceWith(prev, next, (prevVal, nextVal) => {
-    return (prevVal.id === nextVal.id) && (prevVal.name === nextVal.name) &&
-      (prevVal.status === nextVal.status) &&
-      (prevVal.description === nextVal.description) &&
-      (prevVal.isPublic === nextVal.isPublic) &&
-      (prevVal.eventsCount === nextVal.eventsCount) &&
-      (prevVal.followersCount === nextVal.followersCount);
-  });
-}
 
 export function eventsChanged(prev, next=[]) {
   return !next.every((nextVal, index) => {
