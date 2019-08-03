@@ -1,6 +1,7 @@
 import React from 'react';
 import { InteractionManager } from 'react-native';
 import ActionSheet from 'react-native-actionsheet';
+import SimpleToast from 'react-native-simple-toast';
 import Share from 'react-native-share';
 import { inject, observer } from 'mobx-react';
 import gql from 'graphql-tag';
@@ -46,6 +47,7 @@ class EventAction extends React.Component {
       optimisticResponse: () => toggleStarButton(input, prev, isStarred ? 'unstarEvent' : 'starEvent'),
     }).catch(() => {
     });
+    SimpleToast.show(`${isStarred ? "Removed" : "Bookmarked"}`, SimpleToast.SHORT);
   }
 
   _hideDialog = () => this.setState({ visibleDialog: null });
