@@ -56,7 +56,6 @@ class List extends Component {
         isPublic={isPublic}
         isClosed={status === 'CLOSED'}
         isAuthor={isAuthor}
-        isMuted={this.props.stores.appState.mutedList.includes(id)}
         isFollowing={isFollowing}
         onPressItem={this._onPressItem}
         navigateToBoardInfo={this._navigateToInfo}
