@@ -33,7 +33,7 @@ class EventAction extends React.Component {
     Share.open(shareOptions).catch(error => {
       // Ignore
     });
-  }
+  };
 
   _handleStar = () => {
     const { isStarred, starsCount, id } = this.props;
@@ -48,7 +48,7 @@ class EventAction extends React.Component {
     }).catch(() => {
     });
     SimpleToast.show(`${isStarred ? "Removed" : "Bookmarked"}`, SimpleToast.SHORT);
-  }
+  };
 
   _hideDialog = () => this.setState({ visibleDialog: null });
 
@@ -66,7 +66,7 @@ class EventAction extends React.Component {
         InteractionManager.runAfterInteractions(this._toggleMute);
         break;
     }
-  }
+  };
 
   render() {
     const { 
