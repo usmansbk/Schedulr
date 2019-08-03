@@ -19,28 +19,24 @@ class Item extends React.Component {
     this.ActionSheet && this.ActionSheet.showActionSheet();
   };
   _onMute = () => {
-    this.props.toggleIsMuting();
     this.props.stores.appState.toggleMute(this.props.id, this.props.isMuted);
-    this.props.toggleIsMuting();
   };
   _navigateToBoard = () => {
     this.props.boardId ? this.props.navigateToBoardEvents(this.props.boardId) : (
       this._onPress()
     );
-  }
+  };
 
   shouldComponentUpdate = (nextProps) => {
-    const answer = (
+    return (
       nextProps.title !== this.props.title ||
       nextProps.time !== this.props.time ||
       nextProps.status !== this.props.status ||
       nextProps.repeat !== this.props.repeat ||
       nextProps.eventType !== this.props.eventType ||
-      nextProps.isStarred !== this.props.isStarred ||
-      nextProps.isMuted !== this.props.isMuted
+      nextProps.isStarred !== this.props.isStarred
     );
-    return answer;
-  }
+  };
 
   render() {
     const {
@@ -58,11 +54,14 @@ class Item extends React.Component {
       pictureUrl,
       stores,
       isStarred,
-      isMuted,
       starsCount,
+      boardId
     } = this.props;
 
     const styles = stores.appStyles.eventsList;
+    const isMuted = stores.appState.mutedList.includes(id) ||
+    (boardId && stores.appState.mutedList.includes(boardId)) &&
+    !stores.appState.allowedList.includes(id);
     
     const isPending = id[0] === '-';
     return (

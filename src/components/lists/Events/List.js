@@ -51,8 +51,7 @@ class List extends React.Component {
     loadingPrev: false,
     sections: [],
     afterDate: null,
-    beforeDate: null,
-    muting: false
+    beforeDate: null
   };
 
   static defaultProps = {
@@ -180,13 +179,6 @@ class List extends React.Component {
     this.loadPreviousEvents(this.state.events);
   };
 
-  _toggleIsMuting = () => {
-    this.setState((prev) => ({
-      muting: !prev.muting
-    }));
-  }
-
-
   static getDerivedStateFromProps(props, state) {
     if (eventsChanged(state.events, props.events)) {
       const events = props.events;
@@ -218,7 +210,6 @@ class List extends React.Component {
   shouldComponentUpdate = (nextProps, nextState) => {
     return (
       Boolean(nextProps.loading) !== Boolean(this.props.loading) ||
-      nextState.muting !== this.state.muting ||
       this.state.sections !== nextState.sections ||
       nextProps.stores.settingsStore.dark
     );
@@ -269,16 +260,10 @@ class List extends React.Component {
     isStarred={isStarred}
     starsCount={starsCount}
     isAuthor={isAuthor}
-    isMuted={
-      this.props.stores.appState.mutedList.includes(id) ||
-      (board && this.props.stores.appState.mutedList.includes(board.id)) &&
-      !this.props.stores.appState.allowedList.includes(id)
-    }
     duration={getDuration(startAt, endAt, allDay)}
     onPressItem={this._onPressItem}
     onPressCommentButton={this._onPressCommentItem}
     navigateToBoardEvents={this._navigateToBoardEvents}
-    toggleIsMuting={this._toggleIsMuting}
   />);
 
 
