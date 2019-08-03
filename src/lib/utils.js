@@ -43,6 +43,7 @@ export const sortStarredEvents = memoize((events) => {
 });
 
 export function eventsChanged(prev, next=[]) {
+  if (prev.length !== next.length) return true;
   return !next.every((nextVal, index) => {
     const prevVal = prev[index];
     if (!prevVal) return false;

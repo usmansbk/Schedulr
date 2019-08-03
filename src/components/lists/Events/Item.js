@@ -19,7 +19,9 @@ class Item extends React.Component {
     this.ActionSheet && this.ActionSheet.showActionSheet();
   };
   _onMute = () => {
+    this.props.toggleIsMuting();
     this.props.stores.appState.toggleMute(this.props.id, this.props.isMuted);
+    this.props.toggleIsMuting();
   };
   _navigateToBoard = () => {
     this.props.boardId ? this.props.navigateToBoardEvents(this.props.boardId) : (

@@ -51,7 +51,8 @@ class List extends React.Component {
     loadingPrev: false,
     sections: [],
     afterDate: null,
-    beforeDate: null
+    beforeDate: null,
+    muting: false
   };
 
   static defaultProps = {
@@ -177,6 +178,12 @@ class List extends React.Component {
 
   _onLoadPrevious = () => {
     this.loadPreviousEvents(this.state.events);
+  };
+
+  _toggleIsMuting = () => {
+    this.setState((prev) => ({
+      muting: !prev.muting
+    }));
   }
 
 
@@ -211,6 +218,7 @@ class List extends React.Component {
   shouldComponentUpdate = (nextProps, nextState) => {
     return (
       Boolean(nextProps.loading) !== Boolean(this.props.loading) ||
+      nextState.muting !== this.state.muting ||
       this.state.sections !== nextState.sections ||
       nextProps.stores.settingsStore.dark
     );
@@ -270,6 +278,7 @@ class List extends React.Component {
     onPressItem={this._onPressItem}
     onPressCommentButton={this._onPressCommentItem}
     navigateToBoardEvents={this._navigateToBoardEvents}
+    toggleIsMuting={this._toggleIsMuting}
   />);
 
 
