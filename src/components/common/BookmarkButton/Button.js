@@ -8,16 +8,16 @@ export default class Button extends React.Component {
       id,
       isBookmarked,
       bookmarksCount,
-      onUnstarEvent,
+      onUnbookmarkEvent,
       onBookmarkEvent,
-      onUnstarComplete
+      onUnbookmarkComplete
     } = this.props;
     const input = { id };
     const prev = { isBookmarked, bookmarksCount };
     try {
       if (isBookmarked) {
-        if (onUnstarComplete) await onUnstarComplete();
-        await onUnstarEvent(input, prev);
+        if (onUnbookmarkComplete) await onUnbookmarkComplete();
+        await onUnbookmarkEvent(input, prev);
       } else {
         await onBookmarkEvent(input, prev);
       }

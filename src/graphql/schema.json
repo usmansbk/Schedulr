@@ -1641,7 +1641,7 @@
               "name" : null,
               "ofType" : {
                 "kind" : "INPUT_OBJECT",
-                "name" : "UnstarEventInput",
+                "name" : "UnbookmarkEventInput",
                 "ofType" : null
               }
             },
@@ -2282,7 +2282,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "UnstarEventInput",
+        "name" : "UnbookmarkEventInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {

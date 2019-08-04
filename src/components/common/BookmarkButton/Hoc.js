@@ -36,9 +36,9 @@ export default compose(
     }),
   }),
   graphql(gql(unbookmarkEvent), {
-    alias: 'withUnstarEvent',
+    alias: 'withUnbookmarkEvent',
     props: ({ mutate, ownProps }) => ({
-      onUnstarEvent: (input, prev) => mutate({
+      onUnbookmarkEvent: (input, prev) => mutate({
         variables: {
           input
         },
