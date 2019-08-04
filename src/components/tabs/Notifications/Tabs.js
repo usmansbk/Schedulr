@@ -14,7 +14,7 @@ const Tabs = createMaterialTopTabNavigator(
     initialLayout: { height: 0, width: Dimensions.get('window').width },
     tabBarComponent: props => <TabBarComponent {...props} />,
     tabBarOptions: {
-      upperCaseLabel: false,
+      upperCaseLabel: true,
     },
   }
 );
