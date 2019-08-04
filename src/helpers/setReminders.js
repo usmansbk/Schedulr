@@ -144,10 +144,10 @@ const schdlAll = (events, mutedList, allowedList) => {
     if (!settings.disableReminders) {
       events.forEach((event) => {
         const id = event.id;
-        const boardId = event.board && event.board.id;
+        const boardId = event.schedule && event.schedule.id;
         const isMuted = mutedList.includes(id) || (boardId && mutedList.includes(boardId));
         const isAllowed = allowedList.includes(id);
-        if (!isAllowed && isMuted || (settings.starredEventsOnly && !event.isStarred)) return;
+        if (!isAllowed && isMuted || (settings.starredEventsOnly && !event.isBookmarked)) return;
         switch (event.repeat) {
           case 'MONTH_DAY':
             break;

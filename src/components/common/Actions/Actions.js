@@ -12,7 +12,7 @@ const defaultColor = colors.primary_light;
 
 export default class Actions extends React.Component {
   shouldComponentUpdate = (nextProps) => (
-    (this.props.isStarred !== nextProps.isStarred) ||
+    (this.props.isBookmarked !== nextProps.isBookmarked) ||
     (this.props.date !== nextProps.date) ||
     (this.props.title !== nextProps.title) ||
     (this.props.commentsCount !== nextProps.commentsCount) ||
@@ -23,8 +23,8 @@ export default class Actions extends React.Component {
     const {
       date,
       title,
-      isStarred,
-      starsCount,
+      isBookmarked,
+      bookmarksCount,
       commentsCount,
       address,
       eventType,
@@ -38,8 +38,8 @@ export default class Actions extends React.Component {
       <View style={styles.actions}>
         <StarButton
           id={id}
-          isStarred={isStarred}
-          starsCount={starsCount}
+          isBookmarked={isBookmarked}
+          bookmarksCount={bookmarksCount}
           activeColor={defaultColor}
           size={FONT_SIZE}
           color={color}

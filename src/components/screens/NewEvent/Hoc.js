@@ -60,7 +60,7 @@ export default compose(
     props: ({ data, ownProps }) => {
       const id = ownProps.navigation.getParam('boardId');
       return ({
-        boards: data && data.listAllSchedules && data.listAllSchedules.items,
+        schedules: data && data.listAllSchedules && data.listAllSchedules.items,
         boardId: id,
         ...ownProps
       });

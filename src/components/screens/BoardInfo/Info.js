@@ -32,12 +32,12 @@ const { AVATAR_SIZE } = board_info;
 
 class Info extends React.Component {
   shouldComponentUpdate = (nextProps) => (
-    !isEqual(nextProps.board, this.props.board) ||
+    !isEqual(nextProps.schedule, this.props.schedule) ||
     nextProps.loading !== this.props.loading
   );
 
   _aboutPrivacy = () => {
-    const isPublic = this.props.board.isPublic;
+    const isPublic = this.props.schedule.isPublic;
     const title = (isPublic ? "Public" : "Private");
     const message = (isPublic ? INFO : PRIVATE_INFO);
 
@@ -47,7 +47,7 @@ class Info extends React.Component {
 
   render() {
     const {
-      board,
+      schedule,
       loading,
       error,
       goBack,
@@ -59,8 +59,8 @@ class Info extends React.Component {
       navigateToEvents,
       stores
     } = this.props;
-    if (loading && !board) return <Loading />;
-    if (error && !board) return <Error onRefresh={onRefresh} />;
+    if (loading && !schedule) return <Loading />;
+    if (error && !schedule) return <Error onRefresh={onRefresh} />;
 
     const {
       id,
@@ -74,7 +74,7 @@ class Info extends React.Component {
       isPublic,
       isAuthor,
       author,
-    } = board;
+    } = schedule;
 
     const adminId = author && author.id;
     const adminName = author && author.name;

@@ -20,7 +20,7 @@ export default compose(
       });
     },
     props: ({ data, ownProps }) => ({
-      board: data && data.getSchedule,
+      schedule: data && data.getSchedule,
       ...ownProps
     })
   }),

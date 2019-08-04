@@ -35,7 +35,7 @@ const ListHoc = compose(
       fetchPolicy: 'cache-and-network'
     },
     props: ({ data, ownProps }) => ({
-      boards: data && data.listAllSchedules && sortSchedules(data.listAllSchedules.items.filter(
+      schedules: data && data.listAllSchedules && sortSchedules(data.listAllSchedules.items.filter(
         item => item.name.toLowerCase().includes(ownProps.query.toLowerCase())
       )),
       ...ownProps
@@ -58,7 +58,7 @@ const ListHoc = compose(
     }),
     props: ({ data, ownProps }) => ({
       loading: data.loading || data.networkStatus === 4,
-      boards: data && data.searchSchedule && data.searchSchedule.items,
+      schedules: data && data.searchSchedule && data.searchSchedule.items,
       from: data && data.searchSchedule && data.searchSchedule.nextToken,
       onRefresh: () => data.refetch(),
       fetchMore: (from, size=SEARCH_PAGE_SIZE) => data.fetchMore({

@@ -20,7 +20,7 @@ export default inject("stores")(observer(
       },
       props: ({ data, ownProps}) => ({
         loading: data.loading || data.networkStatus === 4,
-        boards: data && data.listAllSchedules && data.listAllSchedules.items || [],
+        schedules: data && data.listAllSchedules && data.listAllSchedules.items || [],
         error: data.error && !data.listAllSchedules,
         onRefresh: () => data.refetch(),
         ...ownProps

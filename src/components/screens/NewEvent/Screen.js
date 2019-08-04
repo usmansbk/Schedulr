@@ -7,7 +7,7 @@ import { BOARD_CLOSED } from 'lib/constants';
 
 export default class NewEventScreen extends React.Component {
   static defaultProps = {
-    boards: []
+    schedules: []
   };
   _newSchedule = () => this.props.navigation.navigate("NewSchedule", { popAfterCreation: true });
   _handleBack = () => this.props.navigation.goBack();
@@ -18,7 +18,7 @@ export default class NewEventScreen extends React.Component {
     });
   };
   _getInitialValues = () => {
-    const { event={}, boardId, boards } = this.props;
+    const { event={}, boardId, schedules } = this.props;
     const {
       title,
       description,
@@ -33,7 +33,7 @@ export default class NewEventScreen extends React.Component {
       isPublic
     } = event;
 
-    const currentSchedule = boards && boards.find(board => board.id === boardId);
+    const currentSchedule = schedules && schedules.find(schedule => schedule.id === boardId);
 
     const targetDate = this.props.navigation.getParam('targetDate', moment().valueOf())
     const initialStartAt = moment(targetDate).valueOf();
@@ -80,7 +80,7 @@ export default class NewEventScreen extends React.Component {
       <Form
         initialValues={this._getInitialValues()}
         isNew={this.props.isNew}
-        boards={this.props.boards.filter(board => board.isAuthor && (board.status !== BOARD_CLOSED) && (board.id[0] !== '-'))}
+        schedules={this.props.schedules.filter(schedule => schedule.isAuthor && (schedule.status !== BOARD_CLOSED) && (schedule.id[0] !== '-'))}
         handleCancel={this._handleBack}
         onSubmit={this._handleSubmit}
         newSchedule={this._newSchedule}

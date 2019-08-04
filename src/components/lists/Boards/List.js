@@ -7,16 +7,16 @@ import Separator from './Separator';
 import Footer from './Footer';
 import Empty from './Empty';
 import sortSchedules from 'lib/utils';
-import { boards } from 'lib/constants';
+import { schedules } from 'lib/constants';
 
 const {
   ITEM_HEIGHT,
   SEPARATOR_HEIGHT,
-} = boards;
+} = schedules;
 
 class List extends Component {
   static defaultProps = {
-    boards: [],
+    schedules: [],
     loading: false,
     onRefresh: () => null
   };
@@ -64,15 +64,15 @@ class List extends Component {
   }
 
   _renderSeparator = () => <Separator />;
-  _renderFooter = () => <Footer visible={this.props.boards.length} />;
+  _renderFooter = () => <Footer visible={this.props.schedules.length} />;
 
   render() {
     const {
-      boards,
+      schedules,
       loading,
       stores
     } = this.props;
-    const data = sortSchedules(boards);
+    const data = sortSchedules(schedules);
     const styles = stores.appStyles.boardsList;
     const colors = stores.themeStore.colors;
     const mutedList = stores.appState.mutedList;

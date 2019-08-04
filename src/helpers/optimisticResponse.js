@@ -16,13 +16,13 @@ const __typename = 'Mutation';
 export const followScheduleResponse = (id) => {
   const boardData = getData(gql(getScheduleQuery), id);
   if (boardData) {
-    const board = boardData.getSchedule;
-    const count = board.followersCount;
-    const isFollowing = board.isFollowing;
+    const schedule = boardData.getSchedule;
+    const count = schedule.followersCount;
+    const isFollowing = schedule.isFollowing;
     
     return ({
       __typename,
-      followSchedule: Object.assign({}, board, {
+      followSchedule: Object.assign({}, schedule, {
         isFollowing: true,
         followersCount: !isFollowing ? (count + 1) : count
       })
@@ -76,14 +76,14 @@ export const deleteEventResponse = (input) => {
   const data = getData(gql(getEvent), input.id);
   if (data) {
     const event = data.getEvent;
-    let board = null;
-    if (event.board) {
-      const boardData = getData(gql(getScheduleQuery), event.board.id);
-      board = boardData.getSchedule;
-      const eventsCount = board.eventsCount;
-      board = {
+    let schedule = null;
+    if (event.schedule) {
+      const boardData = getData(gql(getScheduleQuery), event.schedule.id);
+      schedule = boardData.getSchedule;
+      const eventsCount = schedule.eventsCount;
+      schedule = {
         __typename: 'Schedule',
-        id: board.id,
+        id: schedule.id,
         eventsCount: eventsCount > 0 ? eventsCount - 1 : eventsCount
       }
     }
@@ -92,7 +92,7 @@ export const deleteEventResponse = (input) => {
       deleteEvent: {
         __typename: 'Event',
         id: input.id,
-        board
+        schedule
       }
     }); 
   }
@@ -136,12 +136,12 @@ export const createCommentResponse = (input, eventId) => {
 }
 
 export const createEventResponse = (input) => {
-  let board = null;
+  let schedule = null;
   if (input.boardId) {
     const query = gql(getScheduleQuery);
     const data = getData(query, input.boardId);
     const { getSchedule } = data;
-    board = {
+    schedule = {
       __typename: 'Schedule',
       id: getSchedule.id,
       name: getSchedule.name,
@@ -167,15 +167,15 @@ export const createEventResponse = (input) => {
     eventType: getValue(input.eventType),
     isCancelled: false,
     isPublic: Boolean(input.isPublic),
-    board,
+    schedule,
     author: {
       __typename: 'User',
       id: getUser.id,
       name: getUser.name
     },
     cancelledDates: [],
-    starsCount: 0,
-    isStarred: false,
+    bookmarksCount: 0,
+    isBookmarked: false,
     isAuthor: true,
     commentsCount: 0,
     createdAt: moment().valueOf(),
@@ -217,10 +217,10 @@ export const createScheduleResponse = (input) => {
 
 export const updateEventResponse = (input) => {
   const query = gql(getScheduleQuery);
-  let board;
+  let schedule;
   try {
     const { getSchedule } = getData(query, input.boardId);
-    board = {
+    schedule = {
       __typename: 'Schedule',
       id: getSchedule.id,
       name: getSchedule.name,
@@ -228,7 +228,7 @@ export const updateEventResponse = (input) => {
       isFollowing: false
     };
   } catch (error) {
-    board = null;
+    schedule = null;
   }
   const inputCopy = {...input};
   delete inputCopy.boardId;
@@ -240,7 +240,7 @@ export const updateEventResponse = (input) => {
       description: getValue(input.description),
       updatedAt: moment().valueOf(),
       venue: getValue(input.venue),
-      board
+      schedule
     })
   });
 }
@@ -300,19 +300,19 @@ export const openScheduleResponse = (input) => ({
 });
 
 export const toggleStarButton = (input, prev, action) => {
-  const { starsCount, isStarred } = prev;
-  let newCount = starsCount;
+  const { bookmarksCount, isBookmarked } = prev;
+  let newCount = bookmarksCount;
 
-  if ((starsCount > 0) && (action === 'unstarEvent')) newCount--;
-  else if (action === 'starEvent') newCount++;
+  if ((bookmarksCount > 0) && (action === 'unbookmarkEvent')) newCount--;
+  else if (action === 'bookmarkEvent') newCount++;
 
   return ({
     __typename,
     [action] : {
       __typename: 'Event',
       id: input.id,
-      isStarred: !isStarred,
-      starsCount: newCount
+      isBookmarked: !isBookmarked,
+      bookmarksCount: newCount
     }
   });
 }

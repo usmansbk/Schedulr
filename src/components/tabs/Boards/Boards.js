@@ -10,7 +10,7 @@ export default class Schedules extends React.Component {
   render() {
     const {
       loading,
-      boards,
+      schedules,
       onRefresh,
       error
     } = this.props;
@@ -19,13 +19,13 @@ export default class Schedules extends React.Component {
       <>
         <List
           loading={loading}
-          boards={boards}
+          schedules={schedules}
           onRefresh={onRefresh}
           error={error}
         />
         {
           
-          !(Boolean(error) && !boards.length) && (
+          !(Boolean(error) && !schedules.length) && (
             <FAB
               icon="add"
               onPress={this._navigateToNewSchedule}

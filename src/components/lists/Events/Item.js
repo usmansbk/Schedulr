@@ -34,7 +34,7 @@ class Item extends React.Component {
       nextProps.status !== this.props.status ||
       nextProps.repeat !== this.props.repeat ||
       nextProps.eventType !== this.props.eventType ||
-      nextProps.isStarred !== this.props.isStarred
+      nextProps.isBookmarked !== this.props.isBookmarked
     );
   };
 
@@ -53,8 +53,8 @@ class Item extends React.Component {
       address,
       pictureUrl,
       stores,
-      isStarred,
-      starsCount,
+      isBookmarked,
+      bookmarksCount,
       boardId
     } = this.props;
 
@@ -101,10 +101,10 @@ class Item extends React.Component {
             eventType={eventType}
             date={formatDate(startAt, endAt, allDay)}
             address={address}
-            isStarred={isStarred}
+            isBookmarked={isBookmarked}
             startAt={startAt}
             isMuted={isMuted}
-            starsCount={starsCount}
+            bookmarksCount={bookmarksCount}
             ref={ref => this.ActionSheet = ref}
             onMute={this._onMute}
           />

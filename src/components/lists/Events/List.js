@@ -92,7 +92,7 @@ class List extends React.Component {
   _onPressItem = (id, refStartAt, refEndAt) => this.props.navigation.navigate('EventDetails', { id, refStartAt, refEndAt });
   _navigateToScheduleEvents = (id) => {
     let screen = 'Schedule';
-    if (this.props.listType === 'board') screen = 'ScheduleInfo';
+    if (this.props.listType === 'schedule') screen = 'ScheduleInfo';
     this.props.navigation.navigate(screen, { id, cacheFirst: true });
   };
   _onPressSectionHeader = (targetDate) => {
@@ -239,10 +239,10 @@ class List extends React.Component {
     endAt,
     repeat,
     venue,
-    board,
+    schedule,
     allDay,
-    isStarred,
-    starsCount,
+    isBookmarked,
+    bookmarksCount,
     isAuthor
   }}) => (<Item
     id={id}
@@ -256,9 +256,9 @@ class List extends React.Component {
     status={getStatus({ isCancelled, cancelledDates, startAt, endAt})}
     isValid={isEventValid({ isCancelled, endAt, startAt, cancelledDates })}
     address={venue}
-    boardId={board && board.id}
-    isStarred={isStarred}
-    starsCount={starsCount}
+    boardId={schedule && schedule.id}
+    isBookmarked={isBookmarked}
+    bookmarksCount={bookmarksCount}
     isAuthor={isAuthor}
     duration={getDuration(startAt, endAt, allDay)}
     onPressItem={this._onPressItem}

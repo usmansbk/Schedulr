@@ -28,12 +28,12 @@ export default inject('stores')(observer(
     timeAgo,
     status,
     isCancelled,
-    isStarred,
+    isBookmarked,
     isAuthor,
     authorId,
     isFollowing,
     isPublic,
-    starsCount,
+    bookmarksCount,
     publicSchedule,
     commentsCount,
     navigateToSchedule,
@@ -137,8 +137,8 @@ export default inject('stores')(observer(
         title={title}
         address={address}
         eventType={eventType}
-        isStarred={isStarred}
-        starsCount={starsCount}
+        isBookmarked={isBookmarked}
+        bookmarksCount={bookmarksCount}
         commentsCount={commentsCount}
         date={date}
         navigateToComments={navigateToComments}

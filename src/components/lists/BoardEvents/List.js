@@ -59,7 +59,7 @@ class List extends Component {
     startAt,
     endAt,
     repeat,
-    board,
+    schedule,
     allDay,
     isConcluded,
     isCancelled,
@@ -73,7 +73,7 @@ class List extends Component {
     eventType={getEventType(eventType)}
     repeat={parseRepeat(repeat)}
     time={getHumanTime({ allDay, startAt, endAt })}
-    boardId={board && board.id}
+    boardId={schedule && schedule.id}
     duration={getDuration(startAt, endAt, allDay)}
     onPressItem={this._onPressItem}
   />);

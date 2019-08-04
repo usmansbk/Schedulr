@@ -434,7 +434,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "board",
+          "name" : "schedule",
           "description" : null,
           "args" : [ ],
           "type" : {
@@ -464,7 +464,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "starsCount",
+          "name" : "bookmarksCount",
           "description" : null,
           "args" : [ ],
           "type" : {
@@ -475,7 +475,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "isStarred",
+          "name" : "isBookmarked",
           "description" : null,
           "args" : [ ],
           "type" : {
@@ -1607,7 +1607,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "starEvent",
+          "name" : "bookmarkEvent",
           "description" : null,
           "args" : [ {
             "name" : "input",
@@ -1631,7 +1631,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "unstarEvent",
+          "name" : "unbookmarkEvent",
           "description" : null,
           "args" : [ {
             "name" : "input",

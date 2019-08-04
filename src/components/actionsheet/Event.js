@@ -6,7 +6,7 @@ import Share from 'react-native-share';
 import { inject, observer } from 'mobx-react';
 import gql from 'graphql-tag';
 import client from 'config/client';
-import { starEvent, unstarEvent } from 'mygraphql/mutations';
+import { bookmarkEvent, unbookmarkEvent } from 'mygraphql/mutations';
 import { toggleStarButton } from 'helpers/optimisticResponse';
 import env from 'config/env';
 
@@ -36,18 +36,18 @@ class EventAction extends React.Component {
   };
 
   _handleStar = () => {
-    const { isStarred, starsCount, id } = this.props;
+    const { isBookmarked, bookmarksCount, id } = this.props;
     const input = { id };
-    const prev = { isStarred, starsCount };
+    const prev = { isBookmarked, bookmarksCount };
     client.mutate({
-      mutation: gql(isStarred ? unstarEvent : starEvent),
+      mutation: gql(isBookmarked ? unbookmarkEvent : bookmarkEvent),
       variables: {
         input
       },
-      optimisticResponse: () => toggleStarButton(input, prev, isStarred ? 'unstarEvent' : 'starEvent'),
+      optimisticResponse: () => toggleStarButton(input, prev, isBookmarked ? 'unbookmarkEvent' : 'bookmarkEvent'),
     }).catch(() => {
     });
-    SimpleToast.show(`${isStarred ? "Removed" : "Bookmarked"}`, SimpleToast.SHORT);
+    SimpleToast.show(`${isBookmarked ? "Removed" : "Bookmarked"}`, SimpleToast.SHORT);
   };
 
   _hideDialog = () => this.setState({ visibleDialog: null });
@@ -71,7 +71,7 @@ class EventAction extends React.Component {
   render() {
     const { 
       title,
-      isStarred,
+      isBookmarked,
       isMuted,
       stores
     } = this.props;
@@ -79,7 +79,7 @@ class EventAction extends React.Component {
     const options = ['Back'];
     options.unshift(
       'Share via',
-      isStarred ? 'Remove bookmark' : 'Bookmark',
+      isBookmarked ? 'Remove bookmark' : 'Bookmark',
       isMuted ? 'Unmute' : 'Mute'
     );
     const cancelButtonIndex = options.length - 1;

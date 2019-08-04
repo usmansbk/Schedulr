@@ -13,9 +13,9 @@ class ScheduleAction extends React.Component {
     const { id, name } = this.props;
     const shareOptions = {
       title: 'Share invite link via...',
-      subject: 'Follow board to see latest events',
+      subject: 'Follow schedule to see latest events',
       message: `Follow "${name}" to see their latest events, receive updates and get reminders.\n`,
-      url: `${env.APP_URL}/board/${id}`
+      url: `${env.APP_URL}/schedule/${id}`
     };
     Share.open(shareOptions).catch(error => {
       // Ignore

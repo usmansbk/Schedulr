@@ -54,14 +54,14 @@ class EventDetails extends React.Component {
       startAt,
       endAt,
       allDay,
-      board,
+      schedule,
       repeat,
       until,
       createdAt,
       updatedAt,
       description,
-      isStarred,
-      starsCount,
+      isBookmarked,
+      bookmarksCount,
       commentsCount,
       isAuthor,
       isCancelled,
@@ -137,9 +137,9 @@ class EventDetails extends React.Component {
           eventType={decapitalize(eventType)}
           address={venue}
           isPublic={isPublic}
-          publicSchedule={board && board.isPublic}
-          boardName={board && board.name}
-          boardId={board && board.id}
+          publicSchedule={schedule && schedule.isPublic}
+          boardName={schedule && schedule.name}
+          boardId={schedule && schedule.id}
           authorId={author.id}
           authorName={author.name}
           repeat={getRepeatLabel(repeat, start)}
@@ -147,10 +147,10 @@ class EventDetails extends React.Component {
           createdAt={moment(createdAt).format(DATE_FORMAT)}
           updatedAt={updatedAt && moment(updatedAt).format(DATE_FORMAT)}
           description={description}
-          isStarred={isStarred}
-          starsCount={starsCount}
+          isBookmarked={isBookmarked}
+          bookmarksCount={bookmarksCount}
           commentsCount={commentsCount}
-          isFollowing={board && board.isFollowing}
+          isFollowing={schedule && schedule.isFollowing}
           isAuthor={isAuthor}
           isValid={isValid}
           isCancelled={isEventCancelled({ cancelledDates, isCancelled, startAt: start })}

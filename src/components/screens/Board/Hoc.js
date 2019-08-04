@@ -25,7 +25,7 @@ export default compose(
     props: ({ data, ownProps }) => ({
       error: data.error,
       loading: data.loading || (data.networkStatus === 4),
-      board: data && data.getSchedule,
+      schedule: data && data.getSchedule,
       ...ownProps,
     })
   }),
@@ -40,7 +40,7 @@ export default compose(
       loadingEventsError: data.error,
       events: (
         data && data.listAllEvents && data.listAllEvents.items && 
-        data.listAllEvents.items.filter(event => event.board && (event.board.id === ownProps.id)) || []
+        data.listAllEvents.items.filter(event => event.schedule && (event.schedule.id === ownProps.id)) || []
       ),
       ...ownProps
     })

@@ -13,7 +13,7 @@ export default compose(
     props: ({ data, ownProps }) => ({
       error: data.error,
       loading: data.loading,
-      events: data && data.listAllEvents && data.listAllEvents.items.filter(item => item.isStarred) || [],
+      events: data && data.listAllEvents && data.listAllEvents.items.filter(item => item.isBookmarked) || [],
       onRefresh: async () => await data.refetch(),
       ...ownProps
     })

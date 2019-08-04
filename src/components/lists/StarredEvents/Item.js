@@ -27,7 +27,7 @@ class Item extends React.Component {
       this.props.time !== nextProps.time ||
       this.props.status !== nextProps.status ||
       this.props.eventType !== nextProps.eventType ||
-      this.props.starsCount !== nextProps.starsCount ||
+      this.props.bookmarksCount !== nextProps.bookmarksCount ||
       this.props.commentsCount !== nextProps.commentsCount ||
       this.props.address !== nextProps.address
     );
@@ -43,8 +43,8 @@ class Item extends React.Component {
       duration,
       eventType,
       pictureUrl,
-      isStarred,
-      starsCount,
+      isBookmarked,
+      bookmarksCount,
       commentsCount,
       address,
       stores
@@ -83,8 +83,8 @@ class Item extends React.Component {
               id={id}
               title={title}
               address={address}
-              isStarred={isStarred}
-              starsCount={starsCount}
+              isBookmarked={isBookmarked}
+              bookmarksCount={bookmarksCount}
               commentsCount={commentsCount}
               navigateToComments={this._onPressComment}
               small

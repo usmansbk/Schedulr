@@ -44,7 +44,7 @@ class Form extends React.Component {
   _hideModal = () => this.setState({ visible: false });
 
   static defaultProps = {
-    boards: [],
+    schedules: [],
     initialValues: {
       title: '',
       description: '',
@@ -63,7 +63,7 @@ class Form extends React.Component {
 
   _boardHelp = () => {
     const newSchedule = this.props.newSchedule;
-    const hasSchedules = this.props.boards.length;
+    const hasSchedules = this.props.schedules.length;
     let buttons = [];
     if (newSchedule && !hasSchedules) {
       buttons.push({ text: 'Create', onPress: newSchedule });
@@ -78,7 +78,7 @@ class Form extends React.Component {
 
   render() {
     const {
-      boards,
+      schedules,
       locked,
       initialValues,
       onSubmit,
@@ -340,10 +340,10 @@ class Form extends React.Component {
                   itemStyle={styles.pickerItem}
                   onValueChange={itemValue => setFieldValue('boardId', itemValue)}
                 >
-                  <Picker.Item label={(boards.length === 0) ? "No schedule" : "Add to a schedule"} value="" />
+                  <Picker.Item label={(schedules.length === 0) ? "No schedule" : "Add to a schedule"} value="" />
                   {
-                    boards.map(board => (
-                      <Picker.Item key={board.id} label={board.name} value={board.id} />
+                    schedules.map(schedule => (
+                      <Picker.Item key={schedule.id} label={schedule.name} value={schedule.id} />
                     ))
                   }
                 </Picker>

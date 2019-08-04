@@ -20,7 +20,7 @@ export default class EditEventScreen extends React.Component {
       repeat,
       until,
       forever,
-      board,
+      schedule,
       isPublic
     } = event;
     return ({
@@ -34,7 +34,7 @@ export default class EditEventScreen extends React.Component {
       repeat,
       until,
       forever,
-      boardId: board && board.id,
+      boardId: schedule && schedule.id,
       isPublic: Boolean(isPublic)
     });
   };
@@ -45,16 +45,16 @@ export default class EditEventScreen extends React.Component {
   };
   
   render() {
-    const { event: { board } } = this.props;
+    const { event: { schedule } } = this.props;
 
     return (
       <Form
         handleCancel={this._handleBack}
-        boards={this.props.boards.filter(board => board.isAuthor)}
+        schedules={this.props.schedules.filter(schedule => schedule.isAuthor)}
         initialValues={this._getInitialValues()}
         onSubmit={this._onSubmit}
         edit
-        locked={Boolean(board)}
+        locked={Boolean(schedule)}
       />
     )
   }

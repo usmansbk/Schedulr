@@ -1,20 +1,20 @@
 import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
 import Button from './Button';
-import { starEvent, unstarEvent } from 'mygraphql/mutations';
+import { bookmarkEvent, unbookmarkEvent } from 'mygraphql/mutations';
 import { toggleStarButton } from 'helpers/optimisticResponse';
 import { listAllEvents, getEvent } from 'mygraphql/queries';
 
 export default compose(
-  graphql(gql(starEvent), {
+  graphql(gql(bookmarkEvent), {
     alias: 'withStarEvent',
     props: ({ mutate, ownProps }) => ({
       onStarEvent: (input, prev) => mutate({
         variables: {
           input
         },
-        optimisticResponse: () => toggleStarButton(input, prev, 'starEvent'),
-        update: (cache, { data: { starEvent } }) => {
+        optimisticResponse: () => toggleStarButton(input, prev, 'bookmarkEvent'),
+        update: (cache, { data: { bookmarkEvent } }) => {
           const data = cache.readQuery({ query: gql(listAllEvents) });
           const eventNode = cache.readQuery({
            query: gql(getEvent),
@@ -23,9 +23,9 @@ export default compose(
            }
           });
           if (eventNode.getEvent) {
-            const event = Object.assign({}, eventNode.getEvent, starEvent);
+            const event = Object.assign({}, eventNode.getEvent, bookmarkEvent);
             data.listAllEvents.items = [
-              ...data.listAllEvents.items.filter(item => item.id !== starEvent.id),
+              ...data.listAllEvents.items.filter(item => item.id !== bookmarkEvent.id),
               event
             ];
             cache.writeQuery({ query: gql(listAllEvents), data });
@@ -35,14 +35,14 @@ export default compose(
       ...ownProps
     }),
   }),
-  graphql(gql(unstarEvent), {
+  graphql(gql(unbookmarkEvent), {
     alias: 'withUnstarEvent',
     props: ({ mutate, ownProps }) => ({
       onUnstarEvent: (input, prev) => mutate({
         variables: {
           input
         },
-        optimisticResponse: () => toggleStarButton(input, prev, 'unstarEvent')
+        optimisticResponse: () => toggleStarButton(input, prev, 'unbookmarkEvent')
       }),
       ...ownProps
     }),

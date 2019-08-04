@@ -11,12 +11,12 @@ export default class EditScheduleScreen extends React.Component {
   };
 
   _getInitialValues = () => {
-    const { board } = this.props;
-    if (!board) return undefined;
+    const { schedule } = this.props;
+    if (!schedule) return undefined;
     return ({
-      name: board.name,
-      description: board.description || '',
-      isPublic: Boolean(board.isPublic)
+      name: schedule.name,
+      description: schedule.description || '',
+      isPublic: Boolean(schedule.isPublic)
     });
   };
   

@@ -30,7 +30,7 @@ export default compose(
       fetchPolicy: 'cache-only',
     },
     props: ({ data, ownProps }) => ({
-      boards: data && data.listAllSchedules && data.listAllSchedules.items,
+      schedules: data && data.listAllSchedules && data.listAllSchedules.items,
       ...ownProps
     })
   }),

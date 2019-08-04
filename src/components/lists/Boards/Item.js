@@ -6,9 +6,9 @@ import { inject, observer } from 'mobx-react';
 import UserAvatar from 'components/common/UserAvatar';
 import Tag from 'components/common/Tag';
 import ActionSheet from 'components/actionsheet/Schedule';
-import { boards } from 'lib/constants';
+import { schedules } from 'lib/constants';
 
-const { AVATAR_SIZE } = boards
+const { AVATAR_SIZE } = schedules
 
 class Item extends React.Component {
   _onPress = () => this.props.onPressItem(this.props.id);

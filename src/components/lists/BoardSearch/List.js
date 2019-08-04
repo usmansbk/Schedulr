@@ -18,7 +18,7 @@ class List extends Component {
     fetchingMore: false
   };
   static defaultProps = {
-    boards: [],
+    schedules: [],
     loading: false,
     onRefresh: () => null
   };
@@ -32,7 +32,7 @@ class List extends Component {
   shouldComponentUpdate = (nextProps) => { 
     return (nextProps.navigation.isFocused() &&
       (
-        nextProps.boards !== this.props.boards ||
+        nextProps.schedules !== this.props.schedules ||
         nextProps.loading !== this.props.loading
       )
     );
@@ -76,7 +76,7 @@ class List extends Component {
 
   _renderSeparator = () => <Separator />;
   _renderFooter = () => <Footer
-    visible={this.props.boards.length}
+    visible={this.props.schedules.length}
     loading={this.props.loading && this.state.fetchingMore}
     onPress={this._onEndReached}
     hasMore={this.props.from}
@@ -84,7 +84,7 @@ class List extends Component {
 
   render() {
     const {
-      boards,
+      schedules,
       loading,
       onRefresh,
       stores
@@ -111,7 +111,7 @@ class List extends Component {
         getItemLayout={this._getItemLayout}
         ItemSeparatorComponent={this._renderSeparator}
         keyExtractor={this._keyExtractor}
-        data={boards}
+        data={schedules}
         renderItem={this._renderItem}
         ListEmptyComponent={this._renderEmptyList}
         ListFooterComponent={this._renderFooter}

@@ -31,17 +31,17 @@ class Schedule extends React.Component {
   };
   
   _navigateToScheduleInfo = () => {
-    const id = this.props.board.id;
+    const id = this.props.schedule.id;
     this.props.navigation.navigate('ScheduleInfo', { id });
   }
   _navigateToNewEvent = () => {
-    const boardId = this.props.board.id;
+    const boardId = this.props.schedule.id;
     this.props.navigation.navigate('NewEvent', { boardId });
   }
 
   render() {
     const {
-      board,
+      schedule,
       events,
       error,
       loading,
@@ -52,7 +52,7 @@ class Schedule extends React.Component {
       stores
     } = this.props;
     if (loading) return <Loading />;
-    if (!board && error) return <Error onRefresh={onRefresh} />;
+    if (!schedule && error) return <Error onRefresh={onRefresh} />;
 
     const {
       id,
@@ -60,7 +60,7 @@ class Schedule extends React.Component {
       description,
       isAuthor,
       status
-    } = board;
+    } = schedule;
 
     const styles = stores.appStyles.styles;
     const colors = stores.themeStore.colors;
@@ -83,7 +83,7 @@ class Schedule extends React.Component {
         </Appbar>
         <List
           ref={this._eventsListRef}
-          listType="board"
+          listType="schedule"
           events={events}
           navigation={this.props.navigation}
           loading={loadingEvents}

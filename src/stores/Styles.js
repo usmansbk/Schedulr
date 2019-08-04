@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 import { dark, light } from 'config/colors';
 import {
   events,
-  boards,
+  schedules,
   starredEvents,
   followers_list,
   board_events,
@@ -1189,7 +1189,7 @@ export default class AppStyles {
       AVATAR_SIZE,
       ITEM_HEIGHT,
       SEPARATOR_HEIGHT,
-    } = boards;
+    } = schedules;
 
     return StyleSheet.create({
       list: {

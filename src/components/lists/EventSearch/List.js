@@ -59,25 +59,25 @@ class List extends Component {
     endAt,
     repeat,
     venue,
-    board,
+    schedule,
     allDay,
     isConcluded,
-    starsCount,
+    bookmarksCount,
     commentsCount,
-    isStarred
+    isBookmarked
   }}) => (<Item
     id={id}
     title={title}
     status={getStatus({ isCancelled, cancelledDates, startAt, endAt, isConcluded})}
     startAt={startAt}
     endAt={endAt}
-    starsCount={starsCount}
+    bookmarksCount={bookmarksCount}
     commentsCount={commentsCount}
-    isStarred={isStarred}
+    isBookmarked={isBookmarked}
     eventType={getEventType(eventType)}
     repeat={parseRepeat(repeat)}
     time={getHumanTime({ allDay, startAt, endAt })}
-    boardId={board && board.id}
+    boardId={schedule && schedule.id}
     duration={getDuration(startAt, endAt, allDay)}
     address={venue}
     onPressItem={this._onPressItem}

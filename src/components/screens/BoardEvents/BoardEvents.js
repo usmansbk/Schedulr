@@ -12,7 +12,7 @@ class ScheduleEvents extends React.Component {
 
   render() {
     const {
-      board,
+      schedule,
       events,
       error,
       loading,
@@ -24,12 +24,12 @@ class ScheduleEvents extends React.Component {
       stores
     } = this.props;
     if (loading) return <Loading />;
-    if (!board && error) return <Error onRefresh={onRefresh} />;
+    if (!schedule && error) return <Error onRefresh={onRefresh} />;
 
     const {
       name,
       description,
-    } = board;
+    } = schedule;
 
     const styles = stores.appStyles.styles;
     const colors = stores.themeStore.colors;
@@ -45,7 +45,7 @@ class ScheduleEvents extends React.Component {
           />
         </Appbar>
         <List
-          listType="board"
+          listType="schedule"
           events={events}
           loading={loadingEvents}
           error={loadingEventsError}

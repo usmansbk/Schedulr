@@ -10,13 +10,13 @@ import Separator from 'components/lists/Schedules/Separator';
 import Footer from 'components/lists/Schedules/Footer';
 import Empty from 'components/lists/Schedules/Empty';
 import sortSchedules from 'lib/utils';
-import { boards } from 'lib/constants';
+import { schedules } from 'lib/constants';
 import { followingSchedules as followingSchedulesQuery, listAllSchedules } from 'mygraphql/queries';
 
 const {
   ITEM_HEIGHT,
   SEPARATOR_HEIGHT
-} = boards;
+} = schedules;
 
 const alias = 'withFollowingSchedules';
 

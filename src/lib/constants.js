@@ -28,8 +28,8 @@ export const events = {
   FOOTER_HEIGHT : 80
 };
 
-// list/boards
-export const boards = {
+// list/schedules
+export const schedules = {
   ITEM_HEIGHT : 80,
   SEPARATOR_HEIGHT : 1,
   AVATAR_SIZE : 50,

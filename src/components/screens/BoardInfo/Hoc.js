@@ -20,7 +20,7 @@ export default graphql(gql(getSchedule), {
     onRefresh: async () => {
       await data.refetch();
     },
-    board: data && data.getSchedule,
+    schedule: data && data.getSchedule,
     ...ownProps,
   })
 })(Info)
