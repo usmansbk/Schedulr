@@ -6,11 +6,11 @@ import {
   schedules,
   bookmarkedEvents,
   followers_list,
-  board_events,
+  schedule_events,
   comments_list,
   comment_input,
   event_search,
-  board_search
+  schedule_search
 } from 'lib/constants';
 
 export default class AppStyles {
@@ -182,7 +182,7 @@ export default class AppStyles {
     });    
   }
 
-  @computed get boardForm () {
+  @computed get scheduleForm () {
     const colors = this.settings.dark ? dark : light;
 
     return StyleSheet.create({
@@ -450,7 +450,7 @@ export default class AppStyles {
     });
   }
 
-  @computed get boardInfo () {
+  @computed get scheduleInfo () {
     const colors = this.settings.dark ? dark : light;
 
     return StyleSheet.create({
@@ -546,14 +546,14 @@ export default class AppStyles {
     });
   }
 
-  @computed get boardSearch () {
+  @computed get scheduleSearch () {
     const colors = this.settings.dark ? dark : light;
     const {
       ITEM_HEIGHT,
       SEPARATOR_HEIGHT,
       AVATAR_SIZE,
       FOOTER_HEIGHT,
-    } = board_search;
+    } = schedule_search;
 
     return StyleSheet.create({
       list: {
@@ -724,7 +724,7 @@ export default class AppStyles {
       counts: {
         flexDirection: 'row'
       },
-      boardName: {
+      scheduleName: {
         width: 150
       }
     });
@@ -828,7 +828,7 @@ export default class AppStyles {
     });
   }
 
-  @computed get boardEvents () {
+  @computed get scheduleEvents () {
     const colors = this.settings.dark ? dark : light;
     const {
       AVATAR_SIZE,
@@ -836,7 +836,7 @@ export default class AppStyles {
       ITEM_HEIGHT_SMALL,
       SEPARATOR_HEIGHT,
       FOOTER_HEIGHT,
-    } = board_events;
+    } = schedule_events;
 
     return StyleSheet.create({
       contentContainer: {
@@ -1183,7 +1183,7 @@ export default class AppStyles {
     });
   }
 
-  @computed get boardsList () {
+  @computed get schedulesList () {
     const colors = this.settings.dark ? dark : light;
     const {
       AVATAR_SIZE,

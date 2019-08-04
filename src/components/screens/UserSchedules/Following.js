@@ -80,7 +80,7 @@ class FollowingSchedules extends Component{
       return <ErrorScreen loading={loading} onRefresh={onRefresh} />;
     }
 
-    const styles = stores.appStyles.boardsList;
+    const styles = stores.appStyles.schedulesList;
 
     return (
       <FlatList 
