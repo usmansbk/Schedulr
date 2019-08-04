@@ -2,7 +2,7 @@ import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
 import Button from './Button';
 import { bookmarkEvent, unbookmarkEvent } from 'mygraphql/mutations';
-import { toggleStarButton } from 'helpers/optimisticResponse';
+import { toggleBookmarkButton } from 'helpers/optimisticResponse';
 import { listAllEvents, getEvent } from 'mygraphql/queries';
 
 export default compose(
@@ -13,7 +13,7 @@ export default compose(
         variables: {
           input
         },
-        optimisticResponse: () => toggleStarButton(input, prev, 'bookmarkEvent'),
+        optimisticResponse: () => toggleBookmarkButton(input, prev, 'bookmarkEvent'),
         update: (cache, { data: { bookmarkEvent } }) => {
           const data = cache.readQuery({ query: gql(listAllEvents) });
           const eventNode = cache.readQuery({
@@ -42,7 +42,7 @@ export default compose(
         variables: {
           input
         },
-        optimisticResponse: () => toggleStarButton(input, prev, 'unbookmarkEvent')
+        optimisticResponse: () => toggleBookmarkButton(input, prev, 'unbookmarkEvent')
       }),
       ...ownProps
     }),

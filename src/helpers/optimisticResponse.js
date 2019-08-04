@@ -299,7 +299,7 @@ export const openScheduleResponse = (input) => ({
   })
 });
 
-export const toggleStarButton = (input, prev, action) => {
+export const toggleBookmarkButton = (input, prev, action) => {
   const { bookmarksCount, isBookmarked } = prev;
   let newCount = bookmarksCount;
 

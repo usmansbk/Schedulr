@@ -7,7 +7,7 @@ import { inject, observer } from 'mobx-react';
 import gql from 'graphql-tag';
 import client from 'config/client';
 import { bookmarkEvent, unbookmarkEvent } from 'mygraphql/mutations';
-import { toggleStarButton } from 'helpers/optimisticResponse';
+import { toggleBookmarkButton } from 'helpers/optimisticResponse';
 import env from 'config/env';
 
 class EventAction extends React.Component {
@@ -44,7 +44,7 @@ class EventAction extends React.Component {
       variables: {
         input
       },
-      optimisticResponse: () => toggleStarButton(input, prev, isBookmarked ? 'unbookmarkEvent' : 'bookmarkEvent'),
+      optimisticResponse: () => toggleBookmarkButton(input, prev, isBookmarked ? 'unbookmarkEvent' : 'bookmarkEvent'),
     }).catch(() => {
     });
     SimpleToast.show(`${isBookmarked ? "Removed" : "Bookmarked"}`, SimpleToast.SHORT);
