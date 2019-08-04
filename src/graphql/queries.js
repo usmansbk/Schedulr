@@ -100,8 +100,8 @@ export const getEvent = `query GetEvent($id: ID!) {
       name
     }
     cancelledDates
-    starsCount
-    isStarred
+    bookmarksCount
+    isBookmarked
     isAuthor
     commentsCount
     createdAt
@@ -175,8 +175,8 @@ export const listAllEvents = `query ListAllEvents($filter: QueryFilterInput) {
         name
       }
       cancelledDates
-      starsCount
-      isStarred
+      bookmarksCount
+      isBookmarked
       isAuthor
       commentsCount
       createdAt
@@ -274,8 +274,8 @@ export const listScheduleEvents = `query ListScheduleEvents($id: ID!, $limit: In
           name
         }
         cancelledDates
-        starsCount
-        isStarred
+        bookmarksCount
+        isBookmarked
         isAuthor
         commentsCount
         createdAt
@@ -328,8 +328,8 @@ export const searchEvent = `query SearchEvent($filter: SearchFilterInput, $size:
         name
       }
       cancelledDates
-      starsCount
-      isStarred
+      bookmarksCount
+      isBookmarked
       isAuthor
       commentsCount
       createdAt

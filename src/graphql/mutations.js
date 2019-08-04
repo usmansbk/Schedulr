@@ -127,8 +127,8 @@ export const createEvent = `mutation CreateEvent($input: CreateEventInput!) {
       name
     }
     cancelledDates
-    starsCount
-    isStarred
+    bookmarksCount
+    isBookmarked
     isAuthor
     commentsCount
     createdAt
@@ -182,16 +182,16 @@ export const cancelEvent = `mutation CancelEvent($input: CancelEventInput!) {
 export const bookmarkEvent = `mutation BookmarkEvent($input: BookmarkEventInput!) {
   bookmarkEvent(input: $input) {
     id
-    starsCount
-    isStarred
+    bookmarksCount
+    isBookmarked
   }
 }
 `;
 export const unbookmarkEvent = `mutation UnbookmarkEvent($input: UnbookmarkEventInput!) {
   unbookmarkEvent(input: $input) {
     id
-    starsCount
-    isStarred
+    bookmarksCount
+    isBookmarked
   }
 }
 `;
