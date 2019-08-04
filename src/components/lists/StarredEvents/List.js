@@ -12,13 +12,13 @@ import {
   parseRepeat,
   getStatus,
   getEventType
-} from 'lib/parseItem';
-import { sortBookmarksEvents } from 'lib/utils';
-import { decapitalize } from 'lib/capitalizr';
-import { getEvents } from 'lib/calendr';
-import { starredEvents } from 'lib/constants';
+} from './node_modules/lib/parseItem';
+import { sortBookmarksEvents } from './node_modules/lib/utils';
+import { decapitalize } from './node_modules/lib/capitalizr';
+import { getEvents } from './node_modules/lib/calendr';
+import { bookmarkedEvents } from './node_modules/lib/constants';
 
-const { ITEM_HEIGHT, SEPARATOR_HEIGHT } = starredEvents;
+const { ITEM_HEIGHT, SEPARATOR_HEIGHT } = bookmarkedEvents;
 
 class List extends Component {
   static defaultProps = {
@@ -87,7 +87,7 @@ class List extends Component {
       stores
     } = this.props;
 
-    const styles = stores.appStyles.starredEventsList;
+    const styles = stores.appStyles.bookmarkedEventsList;
     const colors = stores.themeStore.colors;
 
     return (

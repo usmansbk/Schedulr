@@ -42,7 +42,7 @@ class Settings extends React.Component {
       vibrate,
       disableReminders,
       headsUp,
-      starredEventsOnly,
+      bookmarkedEventsOnly,
       disablePushNotifications,
     } = stores.settingsStore;
     const { styles } = stores.appStyles;
@@ -123,8 +123,8 @@ class Settings extends React.Component {
                   title="Bookmark alarm"
                   right={() => (
                     <Switch
-                      value={starredEventsOnly}
-                      onValueChange={() => this.handleValueChange('starredEventsOnly')}
+                      value={bookmarkedEventsOnly}
+                      onValueChange={() => this.handleValueChange('bookmarkedEventsOnly')}
                     />
                   )}
                 />

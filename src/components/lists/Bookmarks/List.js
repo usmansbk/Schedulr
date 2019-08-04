@@ -13,16 +13,14 @@ import {
   getStatus,
   getEventType
 } from 'lib/parseItem';
+import { sortBookmarksEvents } from 'lib/utils';
+import { decapitalize } from 'lib/capitalizr';
 import { getEvents } from 'lib/calendr';
 import { bookmarkedEvents } from 'lib/constants';
 
 const { ITEM_HEIGHT, SEPARATOR_HEIGHT } = bookmarkedEvents;
 
 class List extends Component {
-  state = {
-    fetchingMore: false
-  };
-
   static defaultProps = {
     events: [],
     loading: false,
@@ -40,14 +38,6 @@ class List extends Component {
   _navigateToInfo = (id) => this.props.navigation.navigate('ScheduleInfo', { id });
   _navigateToComments = (id, title, date) => this.props.navigation.navigate('Comments', { id, title, date });
   _keyExtractor = (item) => String(item.id); 
-  _onEndReached = async () => {
-    const { fetchMore, loading, from } = this.props;
-    if (!loading && from) {
-      this.setState({ fetchingMore: true });
-      await fetchMore(Number(from));
-      this.setState({ fetchingMore: false });
-    }
-  }
 
   _renderItem = ({ item: {
     id,
@@ -85,18 +75,9 @@ class List extends Component {
     navigateToInfo={this._navigateToInfo}
   />);
 
-  _renderEmptyList = () => <Empty
-    search={this.props.search}
-    error={this.props.error}
-    loading={this.props.loading}
-  />;
+  _renderEmptyList = () => <Empty search={this.props.search} error={this.props.error} loading={this.props.loading} />;
   _renderSeparator = () => <Separator />;
-  _renderFooter = () => <Footer
-    visible={this.props.events.length}
-    loading={this.props.loading && this.state.fetchingMore}
-    onPress={this._onEndReached}
-    hasMore={this.props.from}
-  />;
+  _renderFooter = () => <Footer visible={this.props.events.length} />;
 
   render() {
     const {
@@ -105,18 +86,17 @@ class List extends Component {
       onRefresh,
       stores
     } = this.props;
-    const { fetchingMore } = this.state;
 
     const styles = stores.appStyles.bookmarkedEventsList;
     const colors = stores.themeStore.colors;
 
     return (
       <FlatList
-        refreshing={loading && !fetchingMore}
+        refreshing={loading}
         refreshControl={
           <RefreshControl
             onRefresh={onRefresh}
-            refreshing={loading && !fetchingMore}
+            refreshing={loading}
             colors={[colors.primary]}
             progressBackgroundColor={colors.bg}
           />
@@ -124,17 +104,14 @@ class List extends Component {
         onRefresh={onRefresh}
         style={styles.list}
         contentContainerStyle={styles.contentContainer}
-        initialNumToRender={0}
+        initialNumToRender={5}
         getItemLayout={this._getItemLayout}
         ItemSeparatorComponent={this._renderSeparator}
         keyExtractor={this._keyExtractor}
-        data={getEvents(events)}
+        data={sortBookmarksEvents(getEvents(events))}
         renderItem={this._renderItem}
         ListEmptyComponent={this._renderEmptyList}
         ListFooterComponent={this._renderFooter}
-        onEndReachedThreshold={0.5}
-        onEndReached={this._onEndReached}
-        keyboardShouldPersistTaps="always"
       />
     )
   }

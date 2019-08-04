@@ -36,8 +36,8 @@ export const schedules = {
   FOOTER_HEIGHT : 80,
 };
 
-// list/starredEvents
-export const starredEvents = {
+// list/bookmarkedEvents
+export const bookmarkedEvents = {
   AVATAR_SIZE : 54,
   ITEM_HEIGHT : 145,
   ITEM_HEIGHT_SMALL : 102,

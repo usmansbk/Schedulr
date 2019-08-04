@@ -7,13 +7,13 @@ export default inject('stores')(observer(
   ({ error, loading, stores }) =>{
     if (loading) return null;
     return (
-      <View style={stores.appStyles.starredEventsList.empty}>
-        <Headline style={stores.appStyles.starredEventsList.emptyTitle}>
+      <View style={stores.appStyles.bookmarkedEventsList.empty}>
+        <Headline style={stores.appStyles.bookmarkedEventsList.emptyTitle}>
           No nearby events
         </Headline>
         {
           error && (
-            <Paragraph style={stores.appStyles.starredEventsList.paragraph}>
+            <Paragraph style={stores.appStyles.bookmarkedEventsList.paragraph}>
               Check your internet connection. Pull to refresh.
             </Paragraph>
           )

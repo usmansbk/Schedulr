@@ -10,9 +10,9 @@ import { inject, observer } from 'mobx-react';
 import Tag from 'components/common/Tag';
 import Avatar from 'components/common/UserAvatar';
 import Actions from 'components/common/Actions';
-import { starredEvents } from 'lib/constants';
+import { bookmarkedEvents } from 'lib/constants';
 
-const { AVATAR_SIZE } = starredEvents;
+const { AVATAR_SIZE } = bookmarkedEvents;
 
 class Item extends React.Component {
   _onPress = () => this.props.onPressItem(this.props.id, this.props.startAt, this.props.endAt);
@@ -50,7 +50,7 @@ class Item extends React.Component {
       stores
     } = this.props;
 
-    const styles = stores.appStyles.starredEventsList;
+    const styles = stores.appStyles.bookmarkedEventsList;
 
 
     return (

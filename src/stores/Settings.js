@@ -11,7 +11,7 @@ export default class SettingsState {
   @persist @observable vibrate = true;
   @persist @observable disableReminders = false;
   @persist @observable headsUp = false;
-  @persist @observable starredEventsOnly = false;
+  @persist @observable bookmarkedEventsOnly = false;
   @persist @observable disablePushNotifications = false;
 
   @action toggle (value) {
@@ -34,7 +34,7 @@ export default class SettingsState {
     this.vibrate = true;
     this.disableReminders = false;
     this.headsUp = false;
-    this.starredEventsOnly = false;
+    this.bookmarkedEventsOnly = false;
     this.disablePushNotifications = false;
   }
 }

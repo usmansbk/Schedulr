@@ -147,7 +147,7 @@ const schdlAll = (events, mutedList, allowedList) => {
         const scheduleId = event.schedule && event.schedule.id;
         const isMuted = mutedList.includes(id) || (scheduleId && mutedList.includes(scheduleId));
         const isAllowed = allowedList.includes(id);
-        if (!isAllowed && isMuted || (settings.starredEventsOnly && !event.isBookmarked)) return;
+        if (!isAllowed && isMuted || (settings.bookmarkedEventsOnly && !event.isBookmarked)) return;
         switch (event.repeat) {
           case 'MONTH_DAY':
             break;

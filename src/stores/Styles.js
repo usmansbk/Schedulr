@@ -4,7 +4,7 @@ import { dark, light } from 'config/colors';
 import {
   events,
   schedules,
-  starredEvents,
+  bookmarkedEvents,
   followers_list,
   board_events,
   comments_list,
@@ -1076,14 +1076,14 @@ export default class AppStyles {
     });
   }
 
-  @computed get starredEventsList () {
+  @computed get bookmarkedEventsList () {
     const colors = this.settings.dark ? dark : light;
 
     const {
       ITEM_HEIGHT,
       ITEM_HEIGHT_SMALL,
       SEPARATOR_HEIGHT,
-    } = starredEvents;
+    } = bookmarkedEvents;
 
     return StyleSheet.create({
       contentContainer: {

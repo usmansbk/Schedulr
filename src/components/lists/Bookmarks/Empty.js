@@ -7,8 +7,8 @@ export default inject('stores')(observer(
   ({ error, loading, stores }) =>{
     if (loading) return null;
     return (
-      <View style={stores.appStyles.starredEventsList.empty}>
-        <Headline style={stores.appStyles.starredEventsList.emptyTitle}>
+      <View style={stores.appStyles.bookmarkedEventsList.empty}>
+        <Headline style={stores.appStyles.bookmarkedEventsList.emptyTitle}>
           You haven't saved any event yet
         </Headline>
       </View>
