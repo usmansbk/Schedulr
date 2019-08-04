@@ -13,7 +13,7 @@ import {
   getStatus,
   getEventType
 } from 'lib/parseItem';
-import { sortBookmarksEvents } from 'lib/utils';
+import { sortBookmarks } from 'lib/utils';
 import { decapitalize } from 'lib/capitalizr';
 import { getEvents } from 'lib/calendr';
 import { bookmarkedEvents } from 'lib/constants';
@@ -108,7 +108,7 @@ class List extends Component {
         getItemLayout={this._getItemLayout}
         ItemSeparatorComponent={this._renderSeparator}
         keyExtractor={this._keyExtractor}
-        data={sortBookmarksEvents(getEvents(events))}
+        data={sortBookmarks(getEvents(events))}
         renderItem={this._renderItem}
         ListEmptyComponent={this._renderEmptyList}
         ListFooterComponent={this._renderFooter}

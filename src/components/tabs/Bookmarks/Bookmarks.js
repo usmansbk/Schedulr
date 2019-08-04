@@ -1,5 +1,5 @@
 import React from 'react';
-import List from 'components/lists/BookmarksEvents';
+import List from 'components/lists/Bookmarks';
 
 export default class Bookmarks extends React.Component {
 

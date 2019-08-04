@@ -35,7 +35,7 @@ export const sortEvents = memoize((events, reverse) => {
   return sorted;
 });
 
-export const sortBookmarksEvents = memoize((events) => {
+export const sortBookmarks = memoize((events) => {
   const pending = events.filter((a, b) => a.endAt > Date.now());
   const expired = events.filter((a, b) => a.endAt < Date.now());
   const sorted = sortEvents(pending).concat(sortEvents(expired, true));
