@@ -25,7 +25,7 @@ export default inject("stores")(observer(
         loading: data.loading || data.networkStatus === 4,
         events: data && data.listAllEvents && data.listAllEvents.items || [],
         nextToken: data && data.listAllEvents && data.listAllEvents.nextToken,
-        error: data.error && !data.listAllEvents,
+        error: data.error,
         onRefresh: () =>  data.refetch(),
         ...ownProps
       })

@@ -130,12 +130,11 @@ export default class Events extends React.Component {
           error={error}
         />
         {
-          !(Boolean(error) && !events.length) && (
+          !Boolean(error) &&
             <FAB
               icon="edit"
               onPress={this._navigateToNewEvent}
             />
-          )
         }
       </>
     )
