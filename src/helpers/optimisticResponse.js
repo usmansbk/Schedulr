@@ -117,7 +117,7 @@ export const createCommentResponse = (input, eventId) => {
       id: '-' + shortid.generate(),
       content: input.content,
       isReply: Boolean(input.toCommentId),
-      isAuthor: true,
+      isOwner: true,
       toComment,
       event: {
         __typename: 'Event',
@@ -176,7 +176,7 @@ export const createEventResponse = (input) => {
     cancelledDates: [],
     bookmarksCount: 0,
     isBookmarked: false,
-    isAuthor: true,
+    isOwner: true,
     commentsCount: 0,
     createdAt: moment().valueOf(),
     updatedAt: null
@@ -200,7 +200,7 @@ export const createScheduleResponse = (input) => {
         status: getValue(input.status),
         isPublic: Boolean(input.isPublic),
         isFollowing: false,
-        isAuthor: true,
+        isOwner: true,
         author: getUser,
         eventsCount: 0,
         followersCount: 0,

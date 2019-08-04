@@ -50,7 +50,7 @@ export default class EditEventScreen extends React.Component {
     return (
       <Form
         handleCancel={this._handleBack}
-        schedules={this.props.schedules.filter(schedule => schedule.isAuthor)}
+        schedules={this.props.schedules.filter(schedule => schedule.isOwner)}
         initialValues={this._getInitialValues()}
         onSubmit={this._onSubmit}
         edit

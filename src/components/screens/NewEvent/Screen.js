@@ -80,7 +80,7 @@ export default class NewEventScreen extends React.Component {
       <Form
         initialValues={this._getInitialValues()}
         isNew={this.props.isNew}
-        schedules={this.props.schedules.filter(schedule => schedule.isAuthor && (schedule.status !== SCHEDULE_CLOSED) && (schedule.id[0] !== '-'))}
+        schedules={this.props.schedules.filter(schedule => schedule.isOwner && (schedule.status !== SCHEDULE_CLOSED) && (schedule.id[0] !== '-'))}
         handleCancel={this._handleBack}
         onSubmit={this._handleSubmit}
         newSchedule={this._newSchedule}

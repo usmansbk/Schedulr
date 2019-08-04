@@ -4,11 +4,11 @@ import Followers from './Followers';
 export default class Screen extends React.Component {
   _goBack = () => this.props.navigation.goBack();
   render() {
-    const isAuthor = this.props.navigation.getParam('isAuthor');
+    const isOwner = this.props.navigation.getParam('isOwner');
     return (
       <Followers
         id={this.props.navigation.getParam('id')}
-        isAuthor={isAuthor}
+        isOwner={isOwner}
         goBack={this._goBack}
       />
     )

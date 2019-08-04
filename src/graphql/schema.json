@@ -486,7 +486,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "isAuthor",
+          "name" : "isOwner",
           "description" : null,
           "args" : [ ],
           "type" : {
@@ -882,7 +882,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "isAuthor",
+          "name" : "isOwner",
           "description" : null,
           "args" : [ ],
           "type" : {
@@ -1186,7 +1186,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "isAuthor",
+          "name" : "isOwner",
           "description" : null,
           "args" : [ ],
           "type" : {

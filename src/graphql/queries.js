@@ -25,7 +25,7 @@ export const followingSchedules = `query FollowingSchedule($id: ID!, $limit: Int
         status
         isPublic
         isFollowing
-        isAuthor
+        isOwner
         author {
           id
           name
@@ -55,7 +55,7 @@ export const createdSchedules = `query FollowingSchedule($id: ID!, $limit: Int, 
         status
         isPublic
         isFollowing
-        isAuthor
+        isOwner
         author {
           id
           name
@@ -102,7 +102,7 @@ export const getEvent = `query GetEvent($id: ID!) {
     cancelledDates
     bookmarksCount
     isBookmarked
-    isAuthor
+    isOwner
     commentsCount
     createdAt
     updatedAt
@@ -118,7 +118,7 @@ export const getSchedule = `query GetSchedule($id: ID!) {
     status
     isPublic
     isFollowing
-    isAuthor
+    isOwner
     author {
       id
       name
@@ -177,7 +177,7 @@ export const listAllEvents = `query ListAllEvents($filter: QueryFilterInput) {
       cancelledDates
       bookmarksCount
       isBookmarked
-      isAuthor
+      isOwner
       commentsCount
       createdAt
       updatedAt  
@@ -204,7 +204,7 @@ export const listEventComments = `query ListEventComments($id: ID!, $limit: Int,
         id
         commentsCount
       }
-      isAuthor
+      isOwner
       author {
         id
         name
@@ -225,7 +225,7 @@ export const listAllSchedules = `query ListAllSchedules {
       status
       isPublic
       isFollowing
-      isAuthor
+      isOwner
       author {
         id
         name
@@ -276,7 +276,7 @@ export const listScheduleEvents = `query ListScheduleEvents($id: ID!, $limit: In
         cancelledDates
         bookmarksCount
         isBookmarked
-        isAuthor
+        isOwner
         commentsCount
         createdAt
         updatedAt  
@@ -330,7 +330,7 @@ export const searchEvent = `query SearchEvent($filter: SearchFilterInput, $size:
       cancelledDates
       bookmarksCount
       isBookmarked
-      isAuthor
+      isOwner
       commentsCount
       createdAt
       updatedAt
@@ -348,7 +348,7 @@ export const searchSchedule = `query SearchSchedule($filter: SearchFilterInput, 
       status
       isPublic
       isFollowing
-      isAuthor
+      isOwner
       author {
         id
         name

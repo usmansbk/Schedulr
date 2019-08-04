@@ -52,7 +52,7 @@ class List extends React.Component {
   _renderEmpty = () => this.props.loading ? null : <Empty
     onRefresh={this.props.onRefresh}
     error={this.props.error}
-    isAuthor={this.props.isAuthor}
+    isOwner={this.props.isOwner}
   />;
   _renderItem = ({item: {
     id,

@@ -11,7 +11,7 @@ class Followers extends React.Component {
     const {
       id,
       goBack,
-      isAuthor,
+      isOwner,
       stores
     } = this.props;
 
@@ -26,7 +26,7 @@ class Followers extends React.Component {
         </Appbar>
         <List
           id={id}
-          isAuthor={isAuthor}
+          isOwner={isOwner}
         />
       </>
     )

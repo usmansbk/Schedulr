@@ -41,7 +41,7 @@ class FollowingSchedules extends Component{
       description,
       isPublic,
       status,
-      isAuthor,
+      isOwner,
       isFollowing
     } = item;
 
@@ -53,7 +53,7 @@ class FollowingSchedules extends Component{
         isPublic={isPublic}
         isFollowing={isFollowing}
         isClosed={status === 'CLOSED'}
-        isAuthor={isAuthor}
+        isOwner={isOwner}
         onPressItem={this._onPressItem}
         navigateToScheduleInfo={this._navigateToInfo}
       />

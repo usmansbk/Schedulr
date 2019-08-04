@@ -41,7 +41,7 @@ class CreatedSchedules extends Component{
       description,
       isPublic,
       status,
-      isAuthor,
+      isOwner,
       isFollowing
     } = item;
 
@@ -52,7 +52,7 @@ class CreatedSchedules extends Component{
         description={description}
         isPublic={isPublic}
         isClosed={status === 'CLOSED'}
-        isAuthor={isAuthor}
+        isOwner={isOwner}
         isFollowing={isFollowing}
         onPressItem={this._onPressItem}
         navigateToScheduleInfo={this._navigateToInfo}
@@ -109,7 +109,7 @@ export default compose(
       data: (
         data && data.listAllSchedules &&
         data.listAllSchedules.items &&
-        data.listAllSchedules.items.filter(item => item.isAuthor) || []
+        data.listAllSchedules.items.filter(item => item.isOwner) || []
       ),
     }),
   }),

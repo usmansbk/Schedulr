@@ -243,7 +243,7 @@ class List extends React.Component {
     allDay,
     isBookmarked,
     bookmarksCount,
-    isAuthor
+    isOwner
   }}) => (<Item
     id={id}
     title={title}
@@ -259,7 +259,7 @@ class List extends React.Component {
     scheduleId={schedule && schedule.id}
     isBookmarked={isBookmarked}
     bookmarksCount={bookmarksCount}
-    isAuthor={isAuthor}
+    isOwner={isOwner}
     duration={getDuration(startAt, endAt, allDay)}
     onPressItem={this._onPressItem}
     onPressCommentButton={this._onPressCommentItem}

@@ -72,7 +72,7 @@ class Info extends React.Component {
       followersCount,
       createdAt,
       isPublic,
-      isAuthor,
+      isOwner,
       author,
     } = schedule;
 
@@ -102,7 +102,7 @@ class Info extends React.Component {
             )
           }
           {
-            isAuthor && !isOffline && (
+            isOwner && !isOffline && (
               <Menu onSelect={handleSelectMenu}>
                 <MenuTrigger 
                   customStyles={{
@@ -154,14 +154,14 @@ class Info extends React.Component {
                 <View style={styles.countRow}>
                   <Text
                     style={styles.count}
-                    onPress={() => navigateToFollowers(id, isAuthor)}
+                    onPress={() => navigateToFollowers(id, isOwner)}
                   >
                     {numeral(followersCount).format('0a')} Follower{followersCount > 1 ? 's' : ''}
                   </Text>
                   <Text style={styles.middot}>{` ${CIRCLE} `}</Text>
                   <Text
                     style={styles.count}
-                    onPress={() => navigateToEvents(id, (isFollowing || isAuthor))}
+                    onPress={() => navigateToEvents(id, (isFollowing || isOwner))}
                   >
                     {numeral(eventsCount).format('0a')} Event{eventsCount > 1 ? 's' : ''}
                   </Text>
@@ -208,7 +208,7 @@ class Info extends React.Component {
           </View>
       </ScrollView>
       {
-        !isAuthor && (<FollowButton
+        !isOwner && (<FollowButton
           isFollowing={isFollowing}
           id={id}
         />)

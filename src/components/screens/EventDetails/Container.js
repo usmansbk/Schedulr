@@ -63,7 +63,7 @@ class EventDetails extends React.Component {
       isBookmarked,
       bookmarksCount,
       commentsCount,
-      isAuthor,
+      isOwner,
       isCancelled,
       cancelledDates,
       isPublic,
@@ -83,7 +83,7 @@ class EventDetails extends React.Component {
           <Appbar.BackAction color={colors.gray} onPress={handleBack} />
           <Appbar.Content titleStyle={styles.headerColor} />
           {
-            isAuthor && !isOffline && (
+            isOwner && !isOffline && (
               <>
                 <Appbar.Action
                   icon="delete"
@@ -151,7 +151,7 @@ class EventDetails extends React.Component {
           bookmarksCount={bookmarksCount}
           commentsCount={commentsCount}
           isFollowing={schedule && schedule.isFollowing}
-          isAuthor={isAuthor}
+          isOwner={isOwner}
           isValid={isValid}
           isCancelled={isEventCancelled({ cancelledDates, isCancelled, startAt: start })}
           navigateToSchedule={navigateToSchedule}

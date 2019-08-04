@@ -21,7 +21,7 @@ class Item extends React.Component {
   _navigateToProfile = () => this.props.navigateToProfile(this.props.authorId);
   _onDelete = () => this.props.onDelete(this.props.id);
   _showOptions = () => {
-    if (this.props.isAuthor) {
+    if (this.props.isOwner) {
       this.setState(prev =>({
         showOptions: !prev.showOptions
       }));
@@ -41,7 +41,7 @@ class Item extends React.Component {
       authorName,
       content,
       timeAgo,
-      isAuthor,
+      isOwner,
       authorPictureUrl,
       toCommentAuthorName,
       toCommentContent,
@@ -101,7 +101,7 @@ class Item extends React.Component {
             </Hyperlink>
             <View style={styles.footer}>
             <View style={styles.actions}>
-              {isAuthor && <IconButton color={colors.light_gray_3} icon="delete" onPress={this._onDelete} />}
+              {isOwner && <IconButton color={colors.light_gray_3} icon="delete" onPress={this._onDelete} />}
               <IconButton color={colors.light_gray_3} icon="reply" onPress={this._onReply}/>
             </View>
             </View>

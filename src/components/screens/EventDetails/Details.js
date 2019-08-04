@@ -29,7 +29,7 @@ export default inject('stores')(observer(
     status,
     isCancelled,
     isBookmarked,
-    isAuthor,
+    isOwner,
     authorId,
     isFollowing,
     isPublic,
@@ -72,13 +72,13 @@ export default inject('stores')(observer(
               <Text style={stores.appStyles.eventDetails.value}>{address || 'No location set'}</Text>
             </View>
             {
-              (Boolean(scheduleId) && (isFollowing || isAuthor || publicSchedule)) && (
+              (Boolean(scheduleId) && (isFollowing || isOwner || publicSchedule)) && (
                 <View style={stores.appStyles.eventDetails.item}>
                   <Text style={stores.appStyles.eventDetails.label}>SCHEDULE</Text>
                   <Text
                     ellipsizeMode="tail"
                     numberOfLines={1}
-                    onPress={scheduleId && (() => navigateToSchedule(scheduleId, (isFollowing || isAuthor)))}
+                    onPress={scheduleId && (() => navigateToSchedule(scheduleId, (isFollowing || isOwner)))}
                     style={[stores.appStyles.eventDetails.value, stores.appStyles.eventDetails.nav]}>{scheduleName}</Text>
                 </View>
               )

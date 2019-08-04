@@ -21,7 +21,7 @@ export const createSchedule = `mutation CreateSchedule($input: CreateScheduleInp
     status
     isPublic
     isFollowing
-    isAuthor
+    isOwner
     author {
       id
       name
@@ -61,7 +61,7 @@ export const followSchedule = `mutation FollowSchedule($input: FollowScheduleInp
     status
     isPublic
     isFollowing
-    isAuthor
+    isOwner
     author {
       id
       name
@@ -129,7 +129,7 @@ export const createEvent = `mutation CreateEvent($input: CreateEventInput!) {
     cancelledDates
     bookmarksCount
     isBookmarked
-    isAuthor
+    isOwner
     commentsCount
     createdAt
     updatedAt
@@ -212,7 +212,7 @@ export const createComment = `mutation CreateComment($input: CreateCommentInput!
       id
       commentsCount
     }
-    isAuthor
+    isOwner
     author {
       id
       name

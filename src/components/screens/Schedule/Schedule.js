@@ -58,7 +58,7 @@ class Schedule extends React.Component {
       id,
       name,
       description,
-      isAuthor,
+      isOwner,
       status
     } = schedule;
 
@@ -100,7 +100,7 @@ class Schedule extends React.Component {
           )
         }
         {
-          !(Boolean(error) && events.length) && !isOffline && isAuthor && (status !== SCHEDULE_CLOSED ) && (
+          !(Boolean(error) && events.length) && !isOffline && isOwner && (status !== SCHEDULE_CLOSED ) && (
             <Fab
               icon="edit"
               onPress={this._navigateToNewEvent}
