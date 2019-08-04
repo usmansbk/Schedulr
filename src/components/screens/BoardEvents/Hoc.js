@@ -1,19 +1,19 @@
 import { graphql, compose } from 'react-apollo';
 import SimpleToast from 'react-native-simple-toast';
 import gql from 'graphql-tag';
-import BoardEvents from './BoardEvents';
+import ScheduleEvents from './ScheduleEvents';
 import moment from 'moment';
-import { getBoard, listAllEvents, listBoardEvents } from 'mygraphql/queries';
+import { getSchedule, listAllEvents, listScheduleEvents } from 'mygraphql/queries';
 import { filterEvents, filterPastEvents } from 'mygraphql/filter';
 import { sortStarredEvents } from 'lib/utils';
 import { getEvents } from 'lib/calendr';
 
-const alias = 'withBoardEventsContainer';
+const alias = 'withScheduleEventsContainer';
 
 const PAGE_SIZE = 21;
 
 export default compose(
-  graphql(gql(getBoard), {
+  graphql(gql(getSchedule), {
     alias,
     options: props => ({
       variables: {
@@ -25,7 +25,7 @@ export default compose(
     props: ({ data, ownProps }) => ({
       error: data.error,
       loading: data.loading || (data.networkStatus === 4),
-      board: data && data.getBoard,
+      board: data && data.getSchedule,
       ...ownProps,
     })
   }),
@@ -43,20 +43,20 @@ export default compose(
         sortStarredEvents(getEvents(data.listAllEvents.items.filter(event => event.board && (event.board.id === ownProps.id))))
       ),
       fetchPastEvents: (nextToken, date) => data.fetchMore({
-        query: gql(listBoardEvents),
+        query: gql(listScheduleEvents),
         variables: {
           id: ownProps.id,
           filter: filterPastEvents(date),
           nextToken
         },
         updateQuery: (prev, { fetchMoreResult }) => {
-          if (!fetchMoreResult.listBoardEvents || !fetchMoreResult.listBoardEvents.events.items.length) {
+          if (!fetchMoreResult.listScheduleEvents || !fetchMoreResult.listScheduleEvents.events.items.length) {
             SimpleToast.show("No past events", SimpleToast.SHORT);
             return prev;
           }
           return Object.assign({}, prev, {
             listAllEvents: Object.assign({}, prev.listAllEvents, {
-              items: [...prev.listAllEvents.items, ...fetchMoreResult.listBoardEvents.events.items]
+              items: [...prev.listAllEvents.items, ...fetchMoreResult.listScheduleEvents.events.items]
             })
           })
         }
@@ -64,7 +64,7 @@ export default compose(
       ...ownProps
     })
   }),
-  graphql(gql(listBoardEvents), {
+  graphql(gql(listScheduleEvents), {
     alias,
     skip: props => props.cacheFirst,
     options: props => ({
@@ -86,22 +86,22 @@ export default compose(
           limit: PAGE_SIZE
         },
         updateQuery: (prev, { fetchMoreResult }) => {
-          if (!fetchMoreResult.listBoardEvents || !fetchMoreResult.listBoardEvents.events.items.length) {
+          if (!fetchMoreResult.listScheduleEvents || !fetchMoreResult.listScheduleEvents.events.items.length) {
             SimpleToast.show("No past events", SimpleToast.SHORT);
             return prev;
           }
           return Object.assign({}, prev, {
-            listBoardEvents: Object.assign({}, prev.listBoardEvents, fetchMoreResult.listBoardEvents, {
-              events: Object.assign({}, prev.listBoardEvents.events, fetchMoreResult.listBoardEvents.events, {
-                items: [...prev.listBoardEvents.events.items, ...fetchMoreResult.listBoardEvents.events.items]
+            listScheduleEvents: Object.assign({}, prev.listScheduleEvents, fetchMoreResult.listScheduleEvents, {
+              events: Object.assign({}, prev.listScheduleEvents.events, fetchMoreResult.listScheduleEvents.events, {
+                items: [...prev.listScheduleEvents.events.items, ...fetchMoreResult.listScheduleEvents.events.items]
               })
             })
           })
         }
       }),
-      events: data && data.listBoardEvents && data.listBoardEvents.events && sortStarredEvents(getEvents(data.listBoardEvents.events.items)),
-      nextToken: data && data.listBoardEvents && data.listBoardEvents.events && data.listBoardEvents.events.nextToken,
+      events: data && data.listScheduleEvents && data.listScheduleEvents.events && sortStarredEvents(getEvents(data.listScheduleEvents.events.items)),
+      nextToken: data && data.listScheduleEvents && data.listScheduleEvents.events && data.listScheduleEvents.events.nextToken,
       ...ownProps
     }) 
   })
-)(BoardEvents);
+)(ScheduleEvents);

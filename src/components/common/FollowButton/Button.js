@@ -5,11 +5,11 @@ export default class Button extends React.Component {
   _onPress = () => {
     const {
       isFollowing,
-      onFollowBoard,
-      onUnfollowBoard
+      onFollowSchedule,
+      onUnfollowSchedule
     } = this.props;
-    if (isFollowing) onUnfollowBoard();
-    else onFollowBoard();
+    if (isFollowing) onUnfollowSchedule();
+    else onFollowSchedule();
   };
 
   render() {

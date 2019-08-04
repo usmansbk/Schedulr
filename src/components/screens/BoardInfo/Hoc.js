@@ -1,11 +1,11 @@
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import Info from './Info';
-import { getBoard } from 'mygraphql/queries';
+import { getSchedule } from 'mygraphql/queries';
 
-const alias = 'withBoardInfoContainer';
+const alias = 'withScheduleInfoContainer';
 
-export default graphql(gql(getBoard), {
+export default graphql(gql(getSchedule), {
   alias,
   options: props => ({
     variables: {
@@ -20,7 +20,7 @@ export default graphql(gql(getBoard), {
     onRefresh: async () => {
       await data.refetch();
     },
-    board: data && data.getBoard,
+    board: data && data.getSchedule,
     ...ownProps,
   })
 })(Info)

@@ -9,7 +9,7 @@ export default class NewEventScreen extends React.Component {
   static defaultProps = {
     boards: []
   };
-  _newBoard = () => this.props.navigation.navigate("NewBoard", { popAfterCreation: true });
+  _newSchedule = () => this.props.navigation.navigate("NewSchedule", { popAfterCreation: true });
   _handleBack = () => this.props.navigation.goBack();
   _handleSubmit = async (form) => {
     const result = await this.props.onSubmit(form);
@@ -33,7 +33,7 @@ export default class NewEventScreen extends React.Component {
       isPublic
     } = event;
 
-    const currentBoard = boards && boards.find(board => board.id === boardId);
+    const currentSchedule = boards && boards.find(board => board.id === boardId);
 
     const targetDate = this.props.navigation.getParam('targetDate', moment().valueOf())
     const initialStartAt = moment(targetDate).valueOf();
@@ -71,7 +71,7 @@ export default class NewEventScreen extends React.Component {
       until,
       forever,
       boardId: boardId,
-      isPublic: currentBoard ? currentBoard.isPublic : Boolean(isPublic)
+      isPublic: currentSchedule ? currentSchedule.isPublic : Boolean(isPublic)
     });
   };
 
@@ -83,7 +83,7 @@ export default class NewEventScreen extends React.Component {
         boards={this.props.boards.filter(board => board.isAuthor && (board.status !== BOARD_CLOSED) && (board.id[0] !== '-'))}
         handleCancel={this._handleBack}
         onSubmit={this._handleSubmit}
-        newBoard={this._newBoard}
+        newSchedule={this._newSchedule}
         locked={Boolean(this.props.boardId)}
       />
     )

@@ -18,7 +18,7 @@ export default class AppStyles {
     this.settings = settingsStore;
   }
 
-  @computed get userBoardsTab () {
+  @computed get userSchedulesTab () {
     const colors = this.settings.dark ? dark : light;
     
     return StyleSheet.create({

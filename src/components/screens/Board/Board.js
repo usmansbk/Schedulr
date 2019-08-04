@@ -9,7 +9,7 @@ import { BOARD_CLOSED } from 'lib/constants';
 
 const ABOUT_HALF = 600;
 
-class Board extends React.Component {
+class Schedule extends React.Component {
   state = {
     offsetY: 0
   }
@@ -30,9 +30,9 @@ class Board extends React.Component {
     this.eventsListRef && this.eventsListRef.scrollToTop();
   };
   
-  _navigateToBoardInfo = () => {
+  _navigateToScheduleInfo = () => {
     const id = this.props.board.id;
-    this.props.navigation.navigate('BoardInfo', { id });
+    this.props.navigation.navigate('ScheduleInfo', { id });
   }
   _navigateToNewEvent = () => {
     const boardId = this.props.board.id;
@@ -77,7 +77,7 @@ class Board extends React.Component {
           />
           <Appbar.Action
             icon="info-outline"
-            onPress={this._navigateToBoardInfo}
+            onPress={this._navigateToScheduleInfo}
             color={colors.gray}
           />
         </Appbar>
@@ -112,4 +112,4 @@ class Board extends React.Component {
   }
 }
 
-export default inject("stores")(observer(Board));
+export default inject("stores")(observer(Schedule));

@@ -1,3 +1,3 @@
-import NewBoard from './Hoc';
+import NewSchedule from './Hoc';
 
-export default NewBoard;
+export default NewSchedule;

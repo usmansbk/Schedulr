@@ -13,7 +13,7 @@ export default class Screen extends React.Component {
   _handleEdit = ({ id }) => this.props.navigation.navigate('EditEvent', { id });
   _handleRepeat = () => this.props.navigation.navigate('NewEvent', { id: this.props.navigation.getParam('id'), isNew: true });
   _openCancelDialog = () => this.setState({ visibleDialog: 'cancel' });
-  _navigateToBoard = (id, cacheFirst) => this.props.navigation.navigate('Board', { id, cacheFirst });
+  _navigateToSchedule = (id, cacheFirst) => this.props.navigation.navigate('Schedule', { id, cacheFirst });
   _navigateToComments = (id, title, date) => this.props.navigation.navigate('Comments', { id, title, date });
   _navigateToUser = (id, myProfile) => this.props.navigation.navigate('UserProfile', {
     id,
@@ -55,7 +55,7 @@ export default class Screen extends React.Component {
           handleCancel={this._openCancelDialog}
           handleEdit={this._handleEdit}
           handleRepeat={this._handleRepeat}
-          navigateToBoard={this._navigateToBoard}
+          navigateToSchedule={this._navigateToSchedule}
           navigateToComments={this._navigateToComments}
           navigateToUser={this._navigateToUser}
         />

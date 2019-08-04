@@ -90,9 +90,9 @@ class List extends React.Component {
   _renderSectionHeader = ({ section }) => <SectionHeader onPress={this._onPressSectionHeader} section={section} />;
   _renderSectionFooter = ({ section }) => <SectionFooter section={section} />;
   _onPressItem = (id, refStartAt, refEndAt) => this.props.navigation.navigate('EventDetails', { id, refStartAt, refEndAt });
-  _navigateToBoardEvents = (id) => {
-    let screen = 'Board';
-    if (this.props.listType === 'board') screen = 'BoardInfo';
+  _navigateToScheduleEvents = (id) => {
+    let screen = 'Schedule';
+    if (this.props.listType === 'board') screen = 'ScheduleInfo';
     this.props.navigation.navigate(screen, { id, cacheFirst: true });
   };
   _onPressSectionHeader = (targetDate) => {
@@ -263,7 +263,7 @@ class List extends React.Component {
     duration={getDuration(startAt, endAt, allDay)}
     onPressItem={this._onPressItem}
     onPressCommentButton={this._onPressCommentItem}
-    navigateToBoardEvents={this._navigateToBoardEvents}
+    navigateToScheduleEvents={this._navigateToScheduleEvents}
   />);
 
 

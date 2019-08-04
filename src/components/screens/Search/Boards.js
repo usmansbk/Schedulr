@@ -3,12 +3,12 @@ import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
 import uniqWith from 'lodash.uniqwith';
 import { inject, observer } from 'mobx-react';
-import sortBoards from 'lib/utils';
-import List from 'components/lists/BoardSearch';
-import { listAllBoards, searchBoard } from 'mygraphql/queries';
+import sortSchedules from 'lib/utils';
+import List from 'components/lists/ScheduleSearch';
+import { listAllSchedules, searchSchedule } from 'mygraphql/queries';
 import { SEARCH_PAGE_SIZE, SEARCH_DISTANCE } from 'lib/constants';
 
-class Boards extends React.Component {
+class Schedules extends React.Component {
 
   componentWillUnmount = () => this.props.stores.appState.onChangeText('');
 
@@ -28,21 +28,21 @@ class Boards extends React.Component {
 }
 
 const ListHoc = compose(
-  graphql(gql(listAllBoards), {
-    alias: 'withSearchBoardsOffline',
+  graphql(gql(listAllSchedules), {
+    alias: 'withSearchSchedulesOffline',
     skip: props => props.isConnected,
     options: {
       fetchPolicy: 'cache-and-network'
     },
     props: ({ data, ownProps }) => ({
-      boards: data && data.listAllBoards && sortBoards(data.listAllBoards.items.filter(
+      boards: data && data.listAllSchedules && sortSchedules(data.listAllSchedules.items.filter(
         item => item.name.toLowerCase().includes(ownProps.query.toLowerCase())
       )),
       ...ownProps
     })
   }),
-  graphql(gql(searchBoard), {
-    alias: 'withSearchBoardsOnline',
+  graphql(gql(searchSchedule), {
+    alias: 'withSearchSchedulesOnline',
     skip: props => !props.isConnected || !props.query,
     options: props => ({
       fetchPolicy: 'network-only',
@@ -58,8 +58,8 @@ const ListHoc = compose(
     }),
     props: ({ data, ownProps }) => ({
       loading: data.loading || data.networkStatus === 4,
-      boards: data && data.searchBoard && data.searchBoard.items,
-      from: data && data.searchBoard && data.searchBoard.nextToken,
+      boards: data && data.searchSchedule && data.searchSchedule.items,
+      from: data && data.searchSchedule && data.searchSchedule.nextToken,
       onRefresh: () => data.refetch(),
       fetchMore: (from, size=SEARCH_PAGE_SIZE) => data.fetchMore({
         variables: {
@@ -73,13 +73,13 @@ const ListHoc = compose(
         },
         updateQuery: (previousResult, { fetchMoreResult }) => {
           if (fetchMoreResult) {
-            const moreBoards = fetchMoreResult.searchBoard && fetchMoreResult.searchBoard.items;
+            const moreSchedules = fetchMoreResult.searchSchedule && fetchMoreResult.searchSchedule.items;
             return Object.assign({}, previousResult, {
-              searchBoard: Object.assign({}, previousResult.searchBoard,  {
-                nextToken: fetchMoreResult.searchBoard.nextToken,
+              searchSchedule: Object.assign({}, previousResult.searchSchedule,  {
+                nextToken: fetchMoreResult.searchSchedule.nextToken,
                 items: uniqWith([
-                  ...previousResult.searchBoard.items,
-                  ...moreBoards
+                  ...previousResult.searchSchedule.items,
+                  ...moreSchedules
                 ], (a, b) => a.id === b.id)
               })
             });
@@ -92,4 +92,4 @@ const ListHoc = compose(
   })
 )(List);
 
-export default inject("stores")(observer(Boards));
+export default inject("stores")(observer(Schedules));

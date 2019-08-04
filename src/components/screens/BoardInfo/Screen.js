@@ -1,9 +1,9 @@
 import React from 'react';
 import Share from 'react-native-share';
-import BoardInfo from './Hoc';
-import DeleteDialog from 'components/dialogs/DeleteBoard';
-import OpenDialog from 'components/dialogs/OpenBoard';
-import CloseDialog from 'components/dialogs/CloseBoard';
+import ScheduleInfo from './Hoc';
+import DeleteDialog from 'components/dialogs/DeleteSchedule';
+import OpenDialog from 'components/dialogs/OpenSchedule';
+import CloseDialog from 'components/dialogs/CloseSchedule';
 import env from 'config/env';
 
 export default class Screen extends React.Component {
@@ -25,7 +25,7 @@ export default class Screen extends React.Component {
     const id = this.props.navigation.getParam('id');
     switch (option) {
       case 'edit':
-        this.props.navigation.navigate('EditBoard', { id });
+        this.props.navigation.navigate('EditSchedule', { id });
         break;
       default:
         this.setState({ visibleDialog: option });
@@ -34,14 +34,14 @@ export default class Screen extends React.Component {
   };
   _navigateToFollowers = (id, isAuthor) => this.props.navigation.navigate('Followers', { id, isAuthor });
   _navigateToProfile = (id) => this.props.navigation.navigate('UserProfile', { id, privacy: 'public' });
-  _navigateToEvents = (id, cacheFirst) => this.props.navigation.navigate('BoardEvents', { id, cacheFirst });
+  _navigateToEvents = (id, cacheFirst) => this.props.navigation.navigate('ScheduleEvents', { id, cacheFirst });
 
   render() {
     const { visibleDialog } = this.state;
     const id = this.props.navigation.getParam('id');
     return (
       <>
-        <BoardInfo
+        <ScheduleInfo
           id={id}
           goBack={this._goBack}
           handleShare={this._handleShare}

@@ -2,11 +2,11 @@ import { graphql, compose } from 'react-apollo';
 import { withNavigationFocus } from 'react-navigation';
 import gql from 'graphql-tag';
 import { inject, observer } from 'mobx-react';
-import Boards from './Boards';
-import { listAllBoards } from 'mygraphql/queries';
+import Schedules from './Schedules';
+import { listAllSchedules } from 'mygraphql/queries';
 
-const alias = 'withBoardsContainer';
-const BaseQuery = gql(listAllBoards);
+const alias = 'withSchedulesContainer';
+const BaseQuery = gql(listAllSchedules);
 
 export default inject("stores")(observer(
   compose(
@@ -20,11 +20,11 @@ export default inject("stores")(observer(
       },
       props: ({ data, ownProps}) => ({
         loading: data.loading || data.networkStatus === 4,
-        boards: data && data.listAllBoards && data.listAllBoards.items || [],
-        error: data.error && !data.listAllBoards,
+        boards: data && data.listAllSchedules && data.listAllSchedules.items || [],
+        error: data.error && !data.listAllSchedules,
         onRefresh: () => data.refetch(),
         ...ownProps
       })
     })
-  )(Boards)
+  )(Schedules)
 ));

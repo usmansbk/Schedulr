@@ -6,7 +6,7 @@ import {
 } from 'react-native-paper';
 import { inject, observer } from 'mobx-react';
 
-class DeleteBoard extends React.Component {
+class DeleteSchedule extends React.Component {
   state = {
     loading: false
   };
@@ -54,4 +54,4 @@ class DeleteBoard extends React.Component {
   }
 }
 
-export default inject("stores")(observer(DeleteBoard));
+export default inject("stores")(observer(DeleteSchedule));

@@ -2,47 +2,47 @@ import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
 import uniqWith from 'lodash.uniqwith';
 import Button from './Button';
-import { followBoard, unfollowBoard } from 'mygraphql/mutations';
-import { listAllBoards, listAllEvents, listBoardEvents } from 'mygraphql/queries';
+import { followSchedule, unfollowSchedule } from 'mygraphql/mutations';
+import { listAllSchedules, listAllEvents, listScheduleEvents } from 'mygraphql/queries';
 import { filterEvents } from 'mygraphql/filter';
 import {
-  followBoardResponse,
-  unfollowBoardResponse
+  followScheduleResponse,
+  unfollowScheduleResponse
 } from 'helpers/optimisticResponse';
 import client from 'config/client';
 
 const _filter = (a, b) => a.id === b.id;
 
 export default compose(
-  graphql(gql(followBoard), {
-    alias: 'withFollowBoard',
+  graphql(gql(followSchedule), {
+    alias: 'withFollowSchedule',
     props: ({ mutate, ownProps }) => ({
-      onFollowBoard: () => mutate({
+      onFollowSchedule: () => mutate({
         variables: {
           input: {
             id: ownProps.id
           }
         },
-        update: (cache, { data: { followBoard } }) => {
-          if (followBoard) {
-            const query = gql(listAllBoards);
+        update: (cache, { data: { followSchedule } }) => {
+          if (followSchedule) {
+            const query = gql(listAllSchedules);
             const data = cache.readQuery({ query });
-            data.listAllBoards.items = [
-              ...data.listAllBoards.items.filter(item => item.id !== followBoard.id),
-              followBoard
+            data.listAllSchedules.items = [
+              ...data.listAllSchedules.items.filter(item => item.id !== followSchedule.id),
+              followSchedule
             ];
             cache.writeQuery({ query, data });
 
             client.query({
-              query: gql(listBoardEvents),
+              query: gql(listScheduleEvents),
               variables: {
-                id: followBoard.id,
+                id: followSchedule.id,
                 filter: filterEvents
               }
             }).then(({ data }) => {
-              const items = data && data.listBoardEvents &&
-                data.listBoardEvents.events &&
-                data.listBoardEvents.events.items || [];
+              const items = data && data.listScheduleEvents &&
+                data.listScheduleEvents.events &&
+                data.listScheduleEvents.events.items || [];
               const allEventsQuery = gql(listAllEvents);
               const allEventsData = cache.readQuery({ query: allEventsQuery });
               allEventsData.listAllEvents.items = uniqWith([...allEventsData.listAllEvents.items, ...items], _filter);
@@ -53,36 +53,36 @@ export default compose(
             });
           }
         },
-        optimisticResponse: () => followBoardResponse(ownProps.id),
+        optimisticResponse: () => followScheduleResponse(ownProps.id),
       }),
       ...ownProps
     })
   }),
-  graphql(gql(unfollowBoard), {
-    alias: 'withUnfollowBoard',
+  graphql(gql(unfollowSchedule), {
+    alias: 'withUnfollowSchedule',
     props: ({ mutate, ownProps }) => ({
-      onUnfollowBoard: async () => await mutate({
+      onUnfollowSchedule: async () => await mutate({
         variables: {
           input: {
             id: ownProps.id
           },
         },
-        update: (cache, { data: { unfollowBoard } }) => {
-          if (unfollowBoard) {
-            const query = gql(listAllBoards);
+        update: (cache, { data: { unfollowSchedule } }) => {
+          if (unfollowSchedule) {
+            const query = gql(listAllSchedules);
             const data = cache.readQuery({ query });
-            data.listAllBoards.items = data.listAllBoards.items.filter(item => item.id !== unfollowBoard.id);
+            data.listAllSchedules.items = data.listAllSchedules.items.filter(item => item.id !== unfollowSchedule.id);
             cache.writeQuery({ query, data });
 
             const allEventsQuery = gql(listAllEvents);
             const allEventsData = cache.readQuery({ query: allEventsQuery });
             allEventsData.listAllEvents.items = allEventsData.listAllEvents.items.filter(item => (
-              (item.board === null) || (item.board.id !== unfollowBoard.id) || item.isStarred
+              (item.board === null) || (item.board.id !== unfollowSchedule.id) || item.isStarred
             ));
             cache.writeQuery({ query: allEventsQuery, data: allEventsData });
           }
         },
-        optimisticResponse: () => unfollowBoardResponse(ownProps.id),
+        optimisticResponse: () => unfollowScheduleResponse(ownProps.id),
       }),
       ...ownProps
     })

@@ -6,7 +6,7 @@ import {
 } from 'react-native-paper';
 import { inject, observer } from 'mobx-react';
 
-class CloseBoard extends React.Component {
+class CloseSchedule extends React.Component {
   state = {
     loading: false
   };
@@ -54,4 +54,4 @@ class CloseBoard extends React.Component {
   }
 }
 
-export default inject("stores")(observer(CloseBoard));
+export default inject("stores")(observer(CloseSchedule));

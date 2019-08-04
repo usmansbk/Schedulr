@@ -1,11 +1,11 @@
 import React from 'react';
 import { Appbar } from 'react-native-paper';
 import { inject, observer } from 'mobx-react';
-import List from 'components/lists/BoardEvents';
+import List from 'components/lists/ScheduleEvents';
 import Loading from 'components/common/Loading';
 import Error from 'components/common/Error';
 
-class BoardEvents extends React.Component {
+class ScheduleEvents extends React.Component {
   static defaultProps = {
     events: []
   };
@@ -57,4 +57,4 @@ class BoardEvents extends React.Component {
   }
 }
 
-export default inject("stores")(observer(BoardEvents));
+export default inject("stores")(observer(ScheduleEvents));

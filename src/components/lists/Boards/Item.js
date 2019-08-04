@@ -5,7 +5,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { inject, observer } from 'mobx-react';
 import UserAvatar from 'components/common/UserAvatar';
 import Tag from 'components/common/Tag';
-import ActionSheet from 'components/actionsheet/Board';
+import ActionSheet from 'components/actionsheet/Schedule';
 import { boards } from 'lib/constants';
 
 const { AVATAR_SIZE } = boards
@@ -18,7 +18,7 @@ class Item extends React.Component {
   _onMute = () => {
     this.props.stores.appState.toggleMute(this.props.id);
   };
-  _navigateToInfo = () => this.props.navigateToBoardInfo(this.props.id);
+  _navigateToInfo = () => this.props.navigateToScheduleInfo(this.props.id);
   shouldComponentUpdate = (nextProps) => {
     return (
       this.props.name !== nextProps.name ||

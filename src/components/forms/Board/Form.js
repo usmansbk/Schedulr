@@ -19,7 +19,7 @@ import {
 import { Formik } from 'formik';
 import { inject, observer } from 'mobx-react';
 import validationSchema from './schema';
-import { buildBoardForm } from 'helpers/buildForm';
+import { buildScheduleForm } from 'helpers/buildForm';
 import { WHAT_IS_A_BOARD, PRIVATE_INFO } from 'lib/constants';
 
 class Form extends React.Component {
@@ -37,9 +37,9 @@ class Form extends React.Component {
 
   _aboutPrivacy = () => {
     const { stores } = this.props;
-    if (stores.appState.prefs.showPrivateBoardAlert) {
+    if (stores.appState.prefs.showPrivateScheduleAlert) {
       Alert.alert("Private schedule", PRIVATE_INFO, [
-        { text: "Don't show again", onPress: () => stores.appState.togglePref('showPrivateBoardAlert') },
+        { text: "Don't show again", onPress: () => stores.appState.togglePref('showPrivateScheduleAlert') },
         { text: 'Ok', onPress: () => null }
       ]);
     }
@@ -66,7 +66,7 @@ class Form extends React.Component {
         initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={async (values, { setSubmitting }) => {
-          const input = buildBoardForm (values, stores.appState.location);
+          const input = buildScheduleForm (values, stores.appState.location);
           onSubmit && await onSubmit(input);
           setSubmitting(false);
         }}

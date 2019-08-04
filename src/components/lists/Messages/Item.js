@@ -15,15 +15,15 @@ class Item extends React.Component {
       id,
       type,
       navigateToEvent,
-      navigateToBoard
+      navigateToSchedule
     } = this.props;
     if (id) {
       switch(type) {
         case 'Event':
           navigateToEvent(id);
           break;
-        case 'Board':
-          navigateToBoard(id);
+        case 'Schedule':
+          navigateToSchedule(id);
           break;
       }
     }

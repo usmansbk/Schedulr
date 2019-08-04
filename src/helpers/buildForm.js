@@ -10,7 +10,7 @@ export const buildEventForm = (values, myLocation) => {
   return input;
 };
 
-export const buildBoardForm = (values, myLocation) => {
+export const buildScheduleForm = (values, myLocation) => {
   const location = (myLocation && myLocation.lat && myLocation.lon) ? myLocation : null;
   const input = {
     ...values,

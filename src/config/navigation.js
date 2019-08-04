@@ -24,7 +24,7 @@ function deepLinkNavigate(url) {
       navigate('EventDetails', { id });
       break;
     case 'schdl':
-      navigate('BoardInfo', { id });
+      navigate('ScheduleInfo', { id });
       break;
     default:
       break;

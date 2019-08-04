@@ -23,7 +23,7 @@ export default class List extends React.Component {
   _keyExtractor = (item, index) => item.id + item.date + index;
   _renderFooter = () => <Footer visible={this.props.updates.length}/>;
   _navigateToEvent = (id) => this.props.navigation.navigate('EventDetails', { id });
-  _navigateToBoard = (id) => this.props.navigation.navigate('BoardInfo', { id });
+  _navigateToSchedule = (id) => this.props.navigation.navigate('ScheduleInfo', { id });
   _getItemLayout = (_, index) => (
     {
       length: ITEM_HEIGHT,
@@ -49,7 +49,7 @@ export default class List extends React.Component {
     pictureUrl={pictureUrl}
     date={capitalizr(`${moment(date).fromNow()}`)}
     target={target && capitalizr(moment(target).toDate().toDateString())}
-    navigateToBoard={this._navigateToBoard}
+    navigateToSchedule={this._navigateToSchedule}
     navigateToEvent={this._navigateToEvent}
   />;
 

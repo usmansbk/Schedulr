@@ -1,17 +1,17 @@
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import Dialog from './Dialog';
-import { closeBoard } from 'mygraphql/mutations';
-import { closeBoardResponse } from 'helpers/optimisticResponse';
+import { closeSchedule } from 'mygraphql/mutations';
+import { closeScheduleResponse } from 'helpers/optimisticResponse';
 
-export default graphql(gql(closeBoard), {
-  alias: 'withCloseBoardDialog',
+export default graphql(gql(closeSchedule), {
+  alias: 'withCloseScheduleDialog',
   props: ({ mutate, ownProps }) => ({
     onSubmit: (input) => mutate({
       variables: {
         input
       },
-      optimisticResponse: () => closeBoardResponse(input)
+      optimisticResponse: () => closeScheduleResponse(input)
     }),
     ...ownProps
   })

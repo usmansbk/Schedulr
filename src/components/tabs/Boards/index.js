@@ -1,3 +1,3 @@
-import Boards from './Hoc';
+import Schedules from './Hoc';
 
-export default Boards;
+export default Schedules;

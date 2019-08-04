@@ -1,41 +1,41 @@
 import Login from './Login';
 import Home from './Home';
 import EditEvent from './EditEvent';
-import EditBoard from './EditBoard';
+import EditSchedule from './EditSchedule';
 import NewEvent from './NewEvent';
-import NewBoard from './NewBoard';
+import NewSchedule from './NewSchedule';
 import AuthLoading from './AuthLoading';
 import EventDetails from './EventDetails';
-import Board from './Board';
-import BoardInfo from './BoardInfo';
+import Schedule from './Schedule';
+import ScheduleInfo from './ScheduleInfo';
 import Settings from './Settings';
 import Help from './Help';
 import UserProfile from './UserProfile';
-import UserBoards from './UserBoards';
+import UserSchedules from './UserSchedules';
 import Comments from './Comments';
 import Followers from './Followers';
 import SearchScreen from './Search';
-import BoardEvents from './BoardEvents';
+import ScheduleEvents from './ScheduleEvents';
 import WebView from './WebView';
 
 export {
   AuthLoading,
   Login,
   Home,
-  EditBoard,
+  EditSchedule,
   EditEvent,
   NewEvent,
-  NewBoard,
+  NewSchedule,
   EventDetails,
-  Board,
-  BoardInfo,
+  Schedule,
+  ScheduleInfo,
   Settings,
   Help,
   UserProfile,
-  UserBoards,
+  UserSchedules,
   Comments,
   Followers,
   SearchScreen,
-  BoardEvents,
+  ScheduleEvents,
   WebView
 };

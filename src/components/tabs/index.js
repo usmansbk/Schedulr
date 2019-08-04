@@ -1,6 +1,6 @@
 import More from './More';
 import Events from './Events';
-import Boards from './Boards';
+import Schedules from './Schedules';
 import Starred from './Starred';
 import Home from './Home';
 import Explore from './Explore';
@@ -9,7 +9,7 @@ import Notifications from './Notifications';
 export {
   More,
   Events,
-  Boards,
+  Schedules,
   Starred,
   Explore,
   Home,

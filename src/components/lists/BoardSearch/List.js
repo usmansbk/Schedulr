@@ -37,7 +37,7 @@ class List extends Component {
       )
     );
   };
-  _onPressItem = (id, cacheFirst) => this.props.navigation.navigate('BoardInfo', { id, cacheFirst });
+  _onPressItem = (id, cacheFirst) => this.props.navigation.navigate('ScheduleInfo', { id, cacheFirst });
   _keyExtractor = (item) => String(item.id);
   _onEndReached = async () => {
     const { fetchMore, loading, from } = this.props;
@@ -69,7 +69,7 @@ class List extends Component {
         isAuthor={isAuthor}
         isFollowing={isFollowing}
         onPressItem={this._onPressItem}
-        navigateToBoardInfo={this._navigateToInfo}
+        navigateToScheduleInfo={this._navigateToInfo}
       />
     )
   }

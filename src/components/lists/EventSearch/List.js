@@ -37,7 +37,7 @@ class List extends Component {
   );
   shouldComponentUpdate = (nextProps) => nextProps.navigation.isFocused();
   _onPressItem = (id, refStartAt, refEndAt) => this.props.navigation.navigate('EventDetails', { id, refStartAt, refEndAt });
-  _navigateToInfo = (id) => this.props.navigation.navigate('BoardInfo', { id });
+  _navigateToInfo = (id) => this.props.navigation.navigate('ScheduleInfo', { id });
   _navigateToComments = (id, title, date) => this.props.navigation.navigate('Comments', { id, title, date });
   _keyExtractor = (item) => String(item.id); 
   _onEndReached = async () => {

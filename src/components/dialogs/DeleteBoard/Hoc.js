@@ -2,13 +2,13 @@ import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
 import { withNavigation } from 'react-navigation';
 import Dialog from './Dialog';
-import { listAllBoards, listAllEvents } from 'mygraphql/queries';
-import { deleteBoard } from 'mygraphql/mutations';
+import { listAllSchedules, listAllEvents } from 'mygraphql/queries';
+import { deleteSchedule } from 'mygraphql/mutations';
 
 export default compose(
   withNavigation,
-  graphql(gql(deleteBoard), {
-    alias: 'withDeleteBoardDialog',
+  graphql(gql(deleteSchedule), {
+    alias: 'withDeleteScheduleDialog',
     props: ({ mutate, ownProps }) => ({
       onSubmit: (input) => mutate({
         variables: {
@@ -16,21 +16,21 @@ export default compose(
         },
         optimisticResponse: () => ({
           __typename: 'Mutation',
-          deleteBoard: {
-            __typename: 'Board',
+          deleteSchedule: {
+            __typename: 'Schedule',
             id: input.id
           }
         }),
-        update: (cache, { data: { deleteBoard } }) => {
-          if (deleteBoard) {
-            const query = gql(listAllBoards);
+        update: (cache, { data: { deleteSchedule } }) => {
+          if (deleteSchedule) {
+            const query = gql(listAllSchedules);
             const data = cache.readQuery({ query });
-            data.listAllBoards.items = data.listAllBoards.items.filter(item => item.id !== deleteBoard.id);
+            data.listAllSchedules.items = data.listAllSchedules.items.filter(item => item.id !== deleteSchedule.id);
             cache.writeQuery({ query, data });
 
             const queryAllEvents = gql(listAllEvents);
             const allEventsData = cache.readQuery({ query: queryAllEvents });
-            allEventsData.listAllEvents.items = allEventsData.listAllEvents.items.filter(item => (item.board && item.board.id) !== deleteBoard.id);
+            allEventsData.listAllEvents.items = allEventsData.listAllEvents.items.filter(item => (item.board && item.board.id) !== deleteSchedule.id);
             cache.writeQuery({ query: queryAllEvents, data: allEventsData });
           }
         }

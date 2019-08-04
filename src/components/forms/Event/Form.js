@@ -62,11 +62,11 @@ class Form extends React.Component {
   }
 
   _boardHelp = () => {
-    const newBoard = this.props.newBoard;
-    const hasBoards = this.props.boards.length;
+    const newSchedule = this.props.newSchedule;
+    const hasSchedules = this.props.boards.length;
     let buttons = [];
-    if (newBoard && !hasBoards) {
-      buttons.push({ text: 'Create', onPress: newBoard });
+    if (newSchedule && !hasSchedules) {
+      buttons.push({ text: 'Create', onPress: newSchedule });
     }
     buttons.push({text: "Ok", onPress: () => null });
     Alert.alert("What is a schedule?", WHAT_IS_A_BOARD, buttons);

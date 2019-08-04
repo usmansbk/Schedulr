@@ -15,7 +15,7 @@ const Tabs = createMaterialTopTabNavigator(
     initialLayout: { height: 0, width: Dimensions.get('window').width },
     navigationOptions: ({ navigation }) => ({
       header: <HeaderComponent
-        title={navigation.getParam('name', 'Boards')}
+        title={navigation.getParam('name', 'Schedules')}
         goBack={() => navigation.goBack()}
       />
     }),
@@ -45,8 +45,8 @@ const TabBarComponent = inject('stores')(observer(
   (props) => <MaterialTopTabBar
     activeTintColor={props.stores.themeStore.colors.primary}
     inactiveTintColor={props.stores.themeStore.colors.tint}
-    indicatorStyle={props.stores.appStyles.userBoardsTab.indicatorStyle}
-    style={props.stores.appStyles.userBoardsTab.barStyle}
+    indicatorStyle={props.stores.appStyles.userSchedulesTab.indicatorStyle}
+    style={props.stores.appStyles.userSchedulesTab.barStyle}
     {...props}
   />
 ));

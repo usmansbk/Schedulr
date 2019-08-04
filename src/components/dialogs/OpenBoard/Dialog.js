@@ -6,7 +6,7 @@ import {
 } from 'react-native-paper';
 import { inject, observer } from 'mobx-react';
 
-class OpenBoard extends React.Component {
+class OpenSchedule extends React.Component {
   state = {
     loading: false
   };
@@ -54,4 +54,4 @@ class OpenBoard extends React.Component {
   }
 }
 
-export default inject("stores")(observer(OpenBoard));
+export default inject("stores")(observer(OpenSchedule));

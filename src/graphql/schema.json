@@ -61,7 +61,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "getBoard",
+          "name" : "getSchedule",
           "description" : null,
           "args" : [ {
             "name" : "id",
@@ -79,13 +79,13 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "Board",
+            "name" : "Schedule",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "listBoards",
+          "name" : "listSchedules",
           "description" : null,
           "args" : [ {
             "name" : "limit",
@@ -108,7 +108,7 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "BoardConnection",
+            "name" : "ScheduleConnection",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -152,7 +152,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "searchBoard",
+          "name" : "searchSchedule",
           "description" : null,
           "args" : [ {
             "name" : "filter",
@@ -184,7 +184,7 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "BoardConnection",
+            "name" : "ScheduleConnection",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -442,7 +442,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "OBJECT",
-              "name" : "Board",
+              "name" : "Schedule",
               "ofType" : null
             }
           },
@@ -805,7 +805,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "OBJECT",
-        "name" : "Board",
+        "name" : "Schedule",
         "description" : null,
         "fields" : [ {
           "name" : "id",
@@ -854,7 +854,7 @@
           "args" : [ ],
           "type" : {
             "kind" : "ENUM",
-            "name" : "BoardStatus",
+            "name" : "ScheduleStatus",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -1009,7 +1009,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "ENUM",
-        "name" : "BoardStatus",
+        "name" : "ScheduleStatus",
         "description" : null,
         "fields" : null,
         "inputFields" : null,
@@ -1259,7 +1259,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "OBJECT",
-        "name" : "BoardConnection",
+        "name" : "ScheduleConnection",
         "description" : null,
         "fields" : [ {
           "name" : "nextToken",
@@ -1281,7 +1281,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "OBJECT",
-              "name" : "Board",
+              "name" : "Schedule",
               "ofType" : null
             }
           },
@@ -1343,7 +1343,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "createBoard",
+          "name" : "createSchedule",
           "description" : null,
           "args" : [ {
             "name" : "input",
@@ -1353,7 +1353,7 @@
               "name" : null,
               "ofType" : {
                 "kind" : "INPUT_OBJECT",
-                "name" : "CreateBoardInput",
+                "name" : "CreateScheduleInput",
                 "ofType" : null
               }
             },
@@ -1361,13 +1361,13 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "Board",
+            "name" : "Schedule",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "updateBoard",
+          "name" : "updateSchedule",
           "description" : null,
           "args" : [ {
             "name" : "input",
@@ -1377,7 +1377,7 @@
               "name" : null,
               "ofType" : {
                 "kind" : "INPUT_OBJECT",
-                "name" : "UpdateBoardInput",
+                "name" : "UpdateScheduleInput",
                 "ofType" : null
               }
             },
@@ -1385,13 +1385,13 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "Board",
+            "name" : "Schedule",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "deleteBoard",
+          "name" : "deleteSchedule",
           "description" : null,
           "args" : [ {
             "name" : "input",
@@ -1401,7 +1401,7 @@
               "name" : null,
               "ofType" : {
                 "kind" : "INPUT_OBJECT",
-                "name" : "DeleteBoardInput",
+                "name" : "DeleteScheduleInput",
                 "ofType" : null
               }
             },
@@ -1409,13 +1409,13 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "Board",
+            "name" : "Schedule",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "followBoard",
+          "name" : "followSchedule",
           "description" : null,
           "args" : [ {
             "name" : "input",
@@ -1425,7 +1425,7 @@
               "name" : null,
               "ofType" : {
                 "kind" : "INPUT_OBJECT",
-                "name" : "FollowBoardInput",
+                "name" : "FollowScheduleInput",
                 "ofType" : null
               }
             },
@@ -1433,13 +1433,13 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "Board",
+            "name" : "Schedule",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "unfollowBoard",
+          "name" : "unfollowSchedule",
           "description" : null,
           "args" : [ {
             "name" : "input",
@@ -1449,7 +1449,7 @@
               "name" : null,
               "ofType" : {
                 "kind" : "INPUT_OBJECT",
-                "name" : "UnfollowBoardInput",
+                "name" : "UnfollowScheduleInput",
                 "ofType" : null
               }
             },
@@ -1457,13 +1457,13 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "Board",
+            "name" : "Schedule",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "closeBoard",
+          "name" : "closeSchedule",
           "description" : null,
           "args" : [ {
             "name" : "input",
@@ -1473,7 +1473,7 @@
               "name" : null,
               "ofType" : {
                 "kind" : "INPUT_OBJECT",
-                "name" : "CloseBoardInput",
+                "name" : "CloseScheduleInput",
                 "ofType" : null
               }
             },
@@ -1481,13 +1481,13 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "Board",
+            "name" : "Schedule",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "openBoard",
+          "name" : "openSchedule",
           "description" : null,
           "args" : [ {
             "name" : "input",
@@ -1497,7 +1497,7 @@
               "name" : null,
               "ofType" : {
                 "kind" : "INPUT_OBJECT",
-                "name" : "OpenBoardInput",
+                "name" : "OpenScheduleInput",
                 "ofType" : null
               }
             },
@@ -1505,7 +1505,7 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "Board",
+            "name" : "Schedule",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -1753,7 +1753,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "CreateBoardInput",
+        "name" : "CreateScheduleInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -1793,7 +1793,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "UpdateBoardInput",
+        "name" : "UpdateScheduleInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -1842,7 +1842,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "DeleteBoardInput",
+        "name" : "DeleteScheduleInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -1864,7 +1864,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "FollowBoardInput",
+        "name" : "FollowScheduleInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -1886,7 +1886,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "UnfollowBoardInput",
+        "name" : "UnfollowScheduleInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -1908,7 +1908,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "CloseBoardInput",
+        "name" : "CloseScheduleInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -1930,7 +1930,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "OpenBoardInput",
+        "name" : "OpenScheduleInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {

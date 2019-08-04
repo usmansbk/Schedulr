@@ -1,7 +1,7 @@
 import React from 'react';
-import Form from 'components/forms/Board';
+import Form from 'components/forms/Schedule';
 
-export default class EditBoardScreen extends React.Component {
+export default class EditScheduleScreen extends React.Component {
   _handleBack = () => this.props.navigation.goBack();
   
   _onSubmit = async (form) => {

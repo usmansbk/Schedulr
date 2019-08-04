@@ -1,14 +1,14 @@
 import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
 import Screen from './Screen';
-import { updateBoard } from 'mygraphql/mutations';
-import { getBoard } from 'mygraphql/queries';
-import { updateBoardResponse } from 'helpers/optimisticResponse';
+import { updateSchedule } from 'mygraphql/mutations';
+import { getSchedule } from 'mygraphql/queries';
+import { updateScheduleResponse } from 'helpers/optimisticResponse';
 
-const alias = 'withEditBoardContainer';
+const alias = 'withEditScheduleContainer';
 
 export default compose(
-  graphql(gql(getBoard), {
+  graphql(gql(getSchedule), {
     alias,
     options: props => {
       const id = props.navigation.getParam('id');
@@ -20,18 +20,18 @@ export default compose(
       });
     },
     props: ({ data, ownProps }) => ({
-      board: data && data.getBoard,
+      board: data && data.getSchedule,
       ...ownProps
     })
   }),
-  graphql(gql(updateBoard), {
+  graphql(gql(updateSchedule), {
     alias,
     props: ({ mutate, ownProps }) => ({
       onSubmit: async (input) => await mutate({
         variables: {
           input
         },
-        optimisticResponse: () => updateBoardResponse(input)
+        optimisticResponse: () => updateScheduleResponse(input)
       }),
       ...ownProps,
     })

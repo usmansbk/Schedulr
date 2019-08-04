@@ -1,7 +1,7 @@
 import React from 'react';
-import Form from 'components/forms/Board';
+import Form from 'components/forms/Schedule';
 
-export default class NewBoardScreen extends React.Component {
+export default class NewScheduleScreen extends React.Component {
   _handleBack = () => this.props.navigation.goBack();
   _handleSubmit = async (input) => {
     const result = await this.props.onSubmit(input);
@@ -10,8 +10,8 @@ export default class NewBoardScreen extends React.Component {
     if (popAfterCreation) {
       this.props.navigation.pop();
     } else {
-      this.props.navigation.replace('Board', {
-        id: result.data.createBoard.id,
+      this.props.navigation.replace('Schedule', {
+        id: result.data.createSchedule.id,
         cacheFirst: true
       });
     }

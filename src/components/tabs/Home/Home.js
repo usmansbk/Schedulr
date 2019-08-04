@@ -4,14 +4,14 @@ import { createMaterialTopTabNavigator, MaterialTopTabBar } from 'react-navigati
 import { inject, observer } from 'mobx-react';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import EventsRoute from '../Events';
-import BoardsRoute from '../Boards';
+import SchedulesRoute from '../Schedules';
 import StarredRoute from '../Starred';
 
 const FONT_SIZE = 24;
 
 const Home = createMaterialTopTabNavigator({
   Events: { screen: EventsRoute },
-  Boards: { screen: BoardsRoute },
+  Schedules: { screen: SchedulesRoute },
   Starred: { screen: StarredRoute },
 }, {
   initialRouteName: 'Events',
@@ -28,7 +28,7 @@ const Home = createMaterialTopTabNavigator({
       let iconName;
       if (routeName === 'Events') {
         iconName = 'calendar-week-begin'
-      } else if (routeName === 'Boards') {
+      } else if (routeName === 'Schedules') {
         iconName = 'bulletin-board';
       } else if (routeName === 'Starred') {
         iconName = `bookmark${focused ? '' : '-outline'}`;

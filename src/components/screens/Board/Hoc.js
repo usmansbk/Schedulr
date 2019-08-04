@@ -1,19 +1,19 @@
 import { graphql, compose } from 'react-apollo';
 import { withNavigationFocus } from 'react-navigation';
 import gql from 'graphql-tag';
-import Screen from './Board';
+import Screen from './Schedule';
 import {
-  getBoard,
+  getSchedule,
   listAllEvents,
-  listBoardEvents
+  listScheduleEvents
 } from 'mygraphql/queries';
 import { filterEvents } from 'mygraphql/filter';
 
-const alias = 'withBoardEventsContainer';
+const alias = 'withScheduleEventsContainer';
 
 export default compose(
   withNavigationFocus,
-  graphql(gql(getBoard), {
+  graphql(gql(getSchedule), {
     alias,
     options: props => ({
       variables: {
@@ -25,7 +25,7 @@ export default compose(
     props: ({ data, ownProps }) => ({
       error: data.error,
       loading: data.loading || (data.networkStatus === 4),
-      board: data && data.getBoard,
+      board: data && data.getSchedule,
       ...ownProps,
     })
   }),
@@ -45,7 +45,7 @@ export default compose(
       ...ownProps
     })
   }),
-  graphql(gql(listBoardEvents), {
+  graphql(gql(listScheduleEvents), {
     alias,
     skip: props => props.cacheFirst,
     options: props => ({
@@ -60,9 +60,9 @@ export default compose(
       loadingEvents: data.loading || data.networkStatus === 4,
       loadingEventsError: data.error,
       events: (
-        data && data.listBoardEvents &&
-        data.listBoardEvents.events &&
-        data.listBoardEvents.events.items || []
+        data && data.listScheduleEvents &&
+        data.listScheduleEvents.events &&
+        data.listScheduleEvents.events.items || []
       ),
       ...ownProps
     }) 

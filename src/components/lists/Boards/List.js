@@ -6,7 +6,7 @@ import Item from './Item';
 import Separator from './Separator';
 import Footer from './Footer';
 import Empty from './Empty';
-import sortBoards from 'lib/utils';
+import sortSchedules from 'lib/utils';
 import { boards } from 'lib/constants';
 
 const {
@@ -28,8 +28,8 @@ class List extends Component {
     }
   );
   shouldComponentUpdate = (nextProps) => nextProps.navigation.isFocused();
-  _onPressItem = (id) => this.props.navigation.navigate('Board', { id, cacheFirst: true });
-  _navigateToInfo = (id) => this.props.navigation.navigate('BoardInfo', { id });
+  _onPressItem = (id) => this.props.navigation.navigate('Schedule', { id, cacheFirst: true });
+  _navigateToInfo = (id) => this.props.navigation.navigate('ScheduleInfo', { id });
   _keyExtractor = (item) => String(item.id);
   _renderEmptyList = () => <Empty
     error={this.props.error}
@@ -58,7 +58,7 @@ class List extends Component {
         isAuthor={isAuthor}
         isFollowing={isFollowing}
         onPressItem={this._onPressItem}
-        navigateToBoardInfo={this._navigateToInfo}
+        navigateToScheduleInfo={this._navigateToInfo}
       />
     )
   }
@@ -72,7 +72,7 @@ class List extends Component {
       loading,
       stores
     } = this.props;
-    const data = sortBoards(boards);
+    const data = sortSchedules(boards);
     const styles = stores.appStyles.boardsList;
     const colors = stores.themeStore.colors;
     const mutedList = stores.appState.mutedList;

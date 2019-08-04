@@ -21,7 +21,7 @@ export default class AppState {
     lat: null
   };
   @persist('object') @observable prefs = {
-    showPrivateBoardAlert: true,
+    showPrivateScheduleAlert: true,
   }
   @persist('list') @observable eventTypes =  types;
 
@@ -48,7 +48,7 @@ export default class AppState {
       lon: null
     };
     this.prefs = {
-      showPrivateBoardAlert: true,
+      showPrivateScheduleAlert: true,
     }
     this.eventTypes = types;
   }

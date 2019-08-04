@@ -7,21 +7,21 @@ import {
   AuthLoading,
   Login,
   NewEvent,
-  NewBoard,
+  NewSchedule,
   Home,
   EventDetails,
-  Board,
-  BoardInfo,
+  Schedule,
+  ScheduleInfo,
   Help,
   Settings,
   UserProfile,
-  UserBoards,
+  UserSchedules,
   Followers,
   Comments,
   EditEvent,
-  EditBoard,
+  EditSchedule,
   SearchScreen,
-  BoardEvents,
+  ScheduleEvents,
   WebView
 } from 'components/screens';
 import colors from 'config/colors';
@@ -34,8 +34,8 @@ const AppStack = createStackNavigator({
       header: null
     }
   },
-  EditBoard: {
-    screen: EditBoard,
+  EditSchedule: {
+    screen: EditSchedule,
     navigationOptions: {
       header: null
     }
@@ -46,8 +46,8 @@ const AppStack = createStackNavigator({
       header: null
     }
   },
-  NewBoard: {
-    screen: NewBoard,
+  NewSchedule: {
+    screen: NewSchedule,
     navigationOptions: {
       header: null
     }
@@ -58,20 +58,20 @@ const AppStack = createStackNavigator({
       header: null
     }
   },
-  Board: {
-    screen: Board,
+  Schedule: {
+    screen: Schedule,
     navigationOptions: {
       header: null
     }
   },
-  BoardEvents: {
-    screen: BoardEvents,
+  ScheduleEvents: {
+    screen: ScheduleEvents,
     navigationOptions: {
       header: null
     }
   },
-  BoardInfo: {
-    screen: BoardInfo,
+  ScheduleInfo: {
+    screen: ScheduleInfo,
     navigationOptions: {
       header: null
     }
@@ -91,8 +91,8 @@ const AppStack = createStackNavigator({
   UserProfile: {
     screen: UserProfile,
   },
-  UserBoards: {
-    screen: UserBoards,
+  UserSchedules: {
+    screen: UserSchedules,
   },
   Comments: {
     screen: Comments,

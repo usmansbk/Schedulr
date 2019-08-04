@@ -56,8 +56,8 @@ const client = new AWSAppSyncClient({
   cacheOptions: {
     cacheRedirects: {
       Query: {
-        getBoard: (_, args, { getCacheKey }) => (
-          getCacheKey({ __typename: 'Board', id: args.id })),
+        getSchedule: (_, args, { getCacheKey }) => (
+          getCacheKey({ __typename: 'Schedule', id: args.id })),
         getEvent: (_, args, { getCacheKey }) => (
           getCacheKey({ __typename: 'Event', id: args.id })),
         getUser: (_, args, { getCacheKey }) => (

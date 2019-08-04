@@ -1,7 +1,7 @@
 import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
 import Screen from './Screen';
-import { getEvent, listAllBoards } from 'mygraphql/queries';
+import { getEvent, listAllSchedules } from 'mygraphql/queries';
 import { updateEvent } from 'mygraphql/mutations';
 import { updateEventResponse } from 'helpers/optimisticResponse';
 
@@ -24,13 +24,13 @@ export default compose(
       ...ownProps
     })
   }),
-  graphql(gql(listAllBoards), {
+  graphql(gql(listAllSchedules), {
     alias,
     options: {
       fetchPolicy: 'cache-only',
     },
     props: ({ data, ownProps }) => ({
-      boards: data && data.listAllBoards && data.listAllBoards.items,
+      boards: data && data.listAllSchedules && data.listAllSchedules.items,
       ...ownProps
     })
   }),

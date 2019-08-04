@@ -40,7 +40,7 @@ class EventDetails extends React.Component {
       handleDelete,
       handleRepeat,
       handleEdit,
-      navigateToBoard,
+      navigateToSchedule,
       navigateToComments,
       navigateToUser,
       cardView,
@@ -137,7 +137,7 @@ class EventDetails extends React.Component {
           eventType={decapitalize(eventType)}
           address={venue}
           isPublic={isPublic}
-          publicBoard={board && board.isPublic}
+          publicSchedule={board && board.isPublic}
           boardName={board && board.name}
           boardId={board && board.id}
           authorId={author.id}
@@ -154,7 +154,7 @@ class EventDetails extends React.Component {
           isAuthor={isAuthor}
           isValid={isValid}
           isCancelled={isEventCancelled({ cancelledDates, isCancelled, startAt: start })}
-          navigateToBoard={navigateToBoard}
+          navigateToSchedule={navigateToSchedule}
           navigateToComments={navigateToComments}
           navigateToUser={navigateToUser}
           cardView={cardView}

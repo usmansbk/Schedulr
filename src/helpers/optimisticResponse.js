@@ -5,7 +5,7 @@ import { getValue } from 'lib/formValidator';
 import client from '../config/client';
 import {
   getEvent,
-  getBoard as getBoardQuery,
+  getSchedule as getScheduleQuery,
   getComment,
   getUser as getUserQuery } from 'mygraphql/queries';
 import { BOARD_CLOSED, BOARD_OPEN } from 'lib/constants';
@@ -13,16 +13,16 @@ import stores from 'stores';
 
 const __typename = 'Mutation';
 
-export const followBoardResponse = (id) => {
-  const boardData = getData(gql(getBoardQuery), id);
+export const followScheduleResponse = (id) => {
+  const boardData = getData(gql(getScheduleQuery), id);
   if (boardData) {
-    const board = boardData.getBoard;
+    const board = boardData.getSchedule;
     const count = board.followersCount;
     const isFollowing = board.isFollowing;
     
     return ({
       __typename,
-      followBoard: Object.assign({}, board, {
+      followSchedule: Object.assign({}, board, {
         isFollowing: true,
         followersCount: !isFollowing ? (count + 1) : count
       })
@@ -31,16 +31,16 @@ export const followBoardResponse = (id) => {
   return null;
 };
 
-export const unfollowBoardResponse = (id) => {
-  const boardData = getData(gql(getBoardQuery), id);
+export const unfollowScheduleResponse = (id) => {
+  const boardData = getData(gql(getScheduleQuery), id);
   if (boardData) {
-    const count = boardData.getBoard.followersCount;
-    const isFollowing = boardData.getBoard.isFollowing;
+    const count = boardData.getSchedule.followersCount;
+    const isFollowing = boardData.getSchedule.isFollowing;
   
     return ({
       __typename,
-      unfollowBoard: {
-        __typename: 'Board',
+      unfollowSchedule: {
+        __typename: 'Schedule',
         id,
         isFollowing: false,
         followersCount: (isFollowing && (count > 0)) ? count - 1 : count
@@ -78,11 +78,11 @@ export const deleteEventResponse = (input) => {
     const event = data.getEvent;
     let board = null;
     if (event.board) {
-      const boardData = getData(gql(getBoardQuery), event.board.id);
-      board = boardData.getBoard;
+      const boardData = getData(gql(getScheduleQuery), event.board.id);
+      board = boardData.getSchedule;
       const eventsCount = board.eventsCount;
       board = {
-        __typename: 'Board',
+        __typename: 'Schedule',
         id: board.id,
         eventsCount: eventsCount > 0 ? eventsCount - 1 : eventsCount
       }
@@ -138,16 +138,16 @@ export const createCommentResponse = (input, eventId) => {
 export const createEventResponse = (input) => {
   let board = null;
   if (input.boardId) {
-    const query = gql(getBoardQuery);
+    const query = gql(getScheduleQuery);
     const data = getData(query, input.boardId);
-    const { getBoard } = data;
+    const { getSchedule } = data;
     board = {
-      __typename: 'Board',
-      id: getBoard.id,
-      name: getBoard.name,
-      eventsCount: getBoard.eventsCount + 1,
+      __typename: 'Schedule',
+      id: getSchedule.id,
+      name: getSchedule.name,
+      eventsCount: getSchedule.eventsCount + 1,
       isFollowing: false,
-      isPublic: Boolean(getBoard.isPublic)
+      isPublic: Boolean(getSchedule.isPublic)
     };
   }
   
@@ -188,12 +188,12 @@ export const createEventResponse = (input) => {
   });
 };
 
-export const createBoardResponse = (input) => {
+export const createScheduleResponse = (input) => {
     const data = getData(gql(getUserQuery), stores.me.id);
     if (data) {
       const { getUser } = data;
-      const newBoard = {
-        __typename: 'Board',
+      const newSchedule = {
+        __typename: 'Schedule',
         id: '-' + shortid.generate(),
         name: getValue(input.name),
         description: getValue(input.description),
@@ -209,22 +209,22 @@ export const createBoardResponse = (input) => {
       };
       return ({
         __typename,
-        createBoard: newBoard
+        createSchedule: newSchedule
       });
     }
   return null;
 };
 
 export const updateEventResponse = (input) => {
-  const query = gql(getBoardQuery);
+  const query = gql(getScheduleQuery);
   let board;
   try {
-    const { getBoard } = getData(query, input.boardId);
+    const { getSchedule } = getData(query, input.boardId);
     board = {
-      __typename: 'Board',
-      id: getBoard.id,
-      name: getBoard.name,
-      eventsCount: getBoard.eventsCount + 1,
+      __typename: 'Schedule',
+      id: getSchedule.id,
+      name: getSchedule.name,
+      eventsCount: getSchedule.eventsCount + 1,
       isFollowing: false
     };
   } catch (error) {
@@ -245,10 +245,10 @@ export const updateEventResponse = (input) => {
   });
 }
 
-export const updateBoardResponse = (input) => ({
+export const updateScheduleResponse = (input) => ({
   __typename,
-  updateBoard: Object.assign({}, input, {
-    __typename: 'Board',
+  updateSchedule: Object.assign({}, input, {
+    __typename: 'Schedule',
     name: getValue(input.name),
     description: getValue(input.description),
     isPublic: Boolean(input.isPublic),
@@ -281,19 +281,19 @@ export const cancelEventResponse = (input) => {
   return null;
 };
 
-export const closeBoardResponse = (input) => ({
+export const closeScheduleResponse = (input) => ({
   __typename,
-  closeBoard: Object.assign({}, input, {
-    __typename: 'Board',
+  closeSchedule: Object.assign({}, input, {
+    __typename: 'Schedule',
     status: BOARD_CLOSED,
     updatedAt: moment().toISOString()
   })
 });
 
-export const openBoardResponse = (input) => ({
+export const openScheduleResponse = (input) => ({
   __typename,
-  openBoard: Object.assign({}, input, {
-    __typename: 'Board',
+  openSchedule: Object.assign({}, input, {
+    __typename: 'Schedule',
     status: BOARD_OPEN,
     updatedAt: moment().toISOString()
   })

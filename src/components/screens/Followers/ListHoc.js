@@ -1,13 +1,13 @@
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import List from 'components/lists/Followers';
-import { listBoardFollowers } from 'mygraphql/queries';
+import { listScheduleFollowers } from 'mygraphql/queries';
 import { COMMENTS_LIMIT } from 'lib/constants';
 
 const LIMIT = COMMENTS_LIMIT;
-const alias = 'withBoardFollowers';
+const alias = 'withScheduleFollowers';
 
-export default graphql(gql(listBoardFollowers), {
+export default graphql(gql(listScheduleFollowers), {
   alias,
   options: props => ({
     notifyOnNetworkStatusChange: true,

@@ -22,7 +22,7 @@ class UserProfile extends React.Component {
     const { user, stores, navigation } = this.props;
     if (user) {
       const { id, name } = user; 
-      navigation.push('UserBoards', {
+      navigation.push('UserSchedules', {
         id,
         name,
         myProfile: stores.me.id === id,
@@ -34,7 +34,7 @@ class UserProfile extends React.Component {
     const { user, stores, navigation } = this.props;
     if (user) {
       const { id, name } = user; 
-      navigation.push('UserBoards', {
+      navigation.push('UserSchedules', {
         id,
         name,
         myProfile: stores.me.id === id,

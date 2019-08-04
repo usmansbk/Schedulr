@@ -4,7 +4,7 @@ import Share from 'react-native-share';
 import { inject, observer } from 'mobx-react';
 import env from 'config/env';
 
-class BoardAction extends React.Component {
+class ScheduleAction extends React.Component {
   showActionSheet = () => {
     this.actionSheet.show();
   };
@@ -65,4 +65,4 @@ class BoardAction extends React.Component {
 
 }
 
-export default inject("stores")(observer(BoardAction));
+export default inject("stores")(observer(ScheduleAction));

@@ -14,7 +14,7 @@ function sortList(list) {
   });
 }
 
-export default sortBoards = memoize((data) => {
+export default sortSchedules = memoize((data) => {
   const closed = sortList(data.filter(a => a.status === 'CLOSED'));
   const opened = sortList(data.filter(a => a.status !== 'CLOSED'));
 
