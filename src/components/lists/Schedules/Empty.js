@@ -13,7 +13,7 @@ export default inject('stores')(observer(
       />;
     }
 
-    let title = "Your schedule is empty";
+    let title = "Your board is empty";
     let caption = "Follow or create a schedule";
     if (profile) {
       title = "No schedule";
