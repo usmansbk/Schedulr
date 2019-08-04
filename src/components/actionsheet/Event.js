@@ -35,7 +35,7 @@ class EventAction extends React.Component {
     });
   };
 
-  _handleStar = () => {
+  _handleBookmark = () => {
     const { isBookmarked, bookmarksCount, id } = this.props;
     const input = { id };
     const prev = { isBookmarked, bookmarksCount };
@@ -60,7 +60,7 @@ class EventAction extends React.Component {
         InteractionManager.runAfterInteractions(this._handleShare);
         break;
       case 1:
-        InteractionManager.runAfterInteractions(this._handleStar);
+        InteractionManager.runAfterInteractions(this._handleBookmark);
         break;
       case 2:
         InteractionManager.runAfterInteractions(this._toggleMute);

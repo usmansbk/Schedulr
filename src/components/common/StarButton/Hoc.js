@@ -7,9 +7,9 @@ import { listAllEvents, getEvent } from 'mygraphql/queries';
 
 export default compose(
   graphql(gql(bookmarkEvent), {
-    alias: 'withStarEvent',
+    alias: 'withBookmarkEvent',
     props: ({ mutate, ownProps }) => ({
-      onStarEvent: (input, prev) => mutate({
+      onBookmarkEvent: (input, prev) => mutate({
         variables: {
           input
         },

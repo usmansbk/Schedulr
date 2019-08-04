@@ -9,7 +9,7 @@ export default class Button extends React.Component {
       isBookmarked,
       bookmarksCount,
       onUnstarEvent,
-      onStarEvent,
+      onBookmarkEvent,
       onUnstarComplete
     } = this.props;
     const input = { id };
@@ -19,7 +19,7 @@ export default class Button extends React.Component {
         if (onUnstarComplete) await onUnstarComplete();
         await onUnstarEvent(input, prev);
       } else {
-        await onStarEvent(input, prev);
+        await onBookmarkEvent(input, prev);
       }
     } catch (error) {
     }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
-import StarButton from '../StarButton';
+import BookmarkButton from '../BookmarkButton';
 import ShareButton from '../ShareButton';
 import LocationButton from '../LocationButton';
 import CommentButton from '../CommentButton';
@@ -36,7 +36,7 @@ export default class Actions extends React.Component {
     const color = dark ? colors.light_gray_3 : defaultColor;
     return (
       <View style={styles.actions}>
-        <StarButton
+        <BookmarkButton
           id={id}
           isBookmarked={isBookmarked}
           bookmarksCount={bookmarksCount}

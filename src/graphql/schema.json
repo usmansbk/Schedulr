@@ -1617,7 +1617,7 @@
               "name" : null,
               "ofType" : {
                 "kind" : "INPUT_OBJECT",
-                "name" : "StarEventInput",
+                "name" : "BookmarkEventInput",
                 "ofType" : null
               }
             },
@@ -2260,7 +2260,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "StarEventInput",
+        "name" : "BookmarkEventInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
