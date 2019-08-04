@@ -9,11 +9,11 @@ import {
 import { inject, observer } from 'mobx-react';
 import Avatar from 'components/common/UserAvatar';
 import Tag from 'components/common/Tag';
-import { board_events } from 'lib/constants';
+import { schedule_events } from 'lib/constants';
 
 const {
   AVATAR_SIZE,
-} = board_events;
+} = schedule_events;
 
 class Item extends React.Component {
   _onPress = () => this.props.onPressItem(this.props.id, this.props.startAt, this.props.endAt);
@@ -38,7 +38,7 @@ class Item extends React.Component {
       stores
     } = this.props;
 
-    const styles = stores.appStyles.boardEvents;
+    const styles = stores.appStyles.scheduleEvents;
 
     return (
       <TouchableRipple

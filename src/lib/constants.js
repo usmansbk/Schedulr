@@ -53,8 +53,8 @@ export const followers_list = {
   FOOTER_HEIGHT : 80,
 }
 
-// screen/boardInfo
-export const board_info = {
+// screen/scheduleInfo
+export const schedule_info = {
   AVATAR_SIZE : 80
 };
 
@@ -64,8 +64,8 @@ export const notifications_list = {
   SEPARATOR_HEIGHT: 1
 };
 
-// list/boardEvents
-export const board_events = {
+// list/scheduleEvents
+export const schedule_events = {
   AVATAR_SIZE : 54,
   ITEM_HEIGHT : 122,
   ITEM_HEIGHT_SMALL : 102,
@@ -91,7 +91,7 @@ export const event_search = {
   AVATAR_SIZE : 48,
 };
 
-export const board_search = {
+export const schedule_search = {
   ITEM_HEIGHT : 80,
   SEPARATOR_HEIGHT : 1,
   AVATAR_SIZE : 50,

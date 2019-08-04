@@ -22,7 +22,7 @@ export default class Bookmarks extends React.Component {
 
     return (
       <List
-        starred
+        bookmarked
         navigation={navigation}
         loading={loading}
         events={events}

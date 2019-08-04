@@ -61,7 +61,7 @@ class Form extends React.Component {
     }
   }
 
-  _boardHelp = () => {
+  _scheduleHelp = () => {
     const newSchedule = this.props.newSchedule;
     const hasSchedules = this.props.schedules.length;
     let buttons = [];
@@ -330,7 +330,7 @@ class Form extends React.Component {
               <View style={styles.pickerSpacing}>
                 <View style={styles.row}>
                   <Text style={styles.radioText}>Schedule</Text>
-                  <Text style={styles.radioText} onPress={this._boardHelp}>Help</Text>
+                  <Text style={styles.radioText} onPress={this._scheduleHelp}>Help</Text>
                 </View>
                 <Picker
                   prompt="Select a schedule"

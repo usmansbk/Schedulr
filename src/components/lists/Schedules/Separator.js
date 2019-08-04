@@ -4,6 +4,6 @@ import { inject, observer } from 'mobx-react';
 
 export default inject('stores')(observer(
   ({ stores }) => (
-    <View style={stores.appStyles.boardsList.separator} />
+    <View style={stores.appStyles.schedulesList.separator} />
   )
 ));

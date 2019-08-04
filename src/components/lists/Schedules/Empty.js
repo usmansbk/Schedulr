@@ -20,7 +20,7 @@ export default inject('stores')(observer(
       caption = "";
     }
 
-    const styles = stores.appStyles.boardsList;
+    const styles = stores.appStyles.schedulesList;
   
     return (
       <View style={styles.empty}>

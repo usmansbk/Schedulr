@@ -14,12 +14,12 @@ import {
   getEventType
 } from 'lib/parseItem';
 import { eventsChanged } from 'lib/utils';
-import { board_events } from 'lib/constants';
+import { schedule_events } from 'lib/constants';
 
 const {
   ITEM_HEIGHT,
   SEPARATOR_HEIGHT
-} = board_events;
+} = schedule_events;
 
 class List extends Component {
   state = {
@@ -108,7 +108,7 @@ class List extends Component {
     const { loadingPrev } = this.state;
 
     const colors = stores.themeStore.colors;
-    const styles = stores.appStyles.boardEvents;
+    const styles = stores.appStyles.scheduleEvents;
 
     return (
       <FlatList

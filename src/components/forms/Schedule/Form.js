@@ -58,7 +58,7 @@ class Form extends React.Component {
       stores
     } = this.props;
 
-    const styles = stores.appStyles.boardForm;
+    const styles = stores.appStyles.scheduleForm;
     const navButtonColor = stores.themeStore.colors.navButtonColor;
     
     return (

@@ -6,12 +6,12 @@ import Item from './Item';
 import Separator from './Separator';
 import Footer from './Footer';
 import Empty from './Empty';
-import { board_search } from 'lib/constants';
+import { schedule_search } from 'lib/constants';
 
 const {
   ITEM_HEIGHT,
   SEPARATOR_HEIGHT
-} = board_search;
+} = schedule_search;
 
 class List extends Component {
   state = {
@@ -91,7 +91,7 @@ class List extends Component {
     } = this.props;
     const { fetchingMore } = this.state;
 
-    const styles = stores.appStyles.boardSearch;
+    const styles = stores.appStyles.scheduleSearch;
 
     return (
       <FlatList

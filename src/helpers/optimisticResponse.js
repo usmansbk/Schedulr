@@ -14,9 +14,9 @@ import stores from 'stores';
 const __typename = 'Mutation';
 
 export const followScheduleResponse = (id) => {
-  const boardData = getData(gql(getScheduleQuery), id);
-  if (boardData) {
-    const schedule = boardData.getSchedule;
+  const scheduleData = getData(gql(getScheduleQuery), id);
+  if (scheduleData) {
+    const schedule = scheduleData.getSchedule;
     const count = schedule.followersCount;
     const isFollowing = schedule.isFollowing;
     
@@ -32,10 +32,10 @@ export const followScheduleResponse = (id) => {
 };
 
 export const unfollowScheduleResponse = (id) => {
-  const boardData = getData(gql(getScheduleQuery), id);
-  if (boardData) {
-    const count = boardData.getSchedule.followersCount;
-    const isFollowing = boardData.getSchedule.isFollowing;
+  const scheduleData = getData(gql(getScheduleQuery), id);
+  if (scheduleData) {
+    const count = scheduleData.getSchedule.followersCount;
+    const isFollowing = scheduleData.getSchedule.isFollowing;
   
     return ({
       __typename,
@@ -78,8 +78,8 @@ export const deleteEventResponse = (input) => {
     const event = data.getEvent;
     let schedule = null;
     if (event.schedule) {
-      const boardData = getData(gql(getScheduleQuery), event.schedule.id);
-      schedule = boardData.getSchedule;
+      const scheduleData = getData(gql(getScheduleQuery), event.schedule.id);
+      schedule = scheduleData.getSchedule;
       const eventsCount = schedule.eventsCount;
       schedule = {
         __typename: 'Schedule',

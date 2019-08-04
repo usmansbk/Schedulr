@@ -26,9 +26,9 @@ import UserAvater from 'components/common/UserAvatar';
 import FollowButton from 'components/common/FollowButton';
 import Loading from 'components/common/Loading';
 import Error from 'components/common/Error';
-import { board_info, CIRCLE, INFO, PRIVATE_INFO } from 'lib/constants';
+import { schedule_info, CIRCLE, INFO, PRIVATE_INFO } from 'lib/constants';
 
-const { AVATAR_SIZE } = board_info;
+const { AVATAR_SIZE } = schedule_info;
 
 class Info extends React.Component {
   shouldComponentUpdate = (nextProps) => (
@@ -82,7 +82,7 @@ class Info extends React.Component {
     const isClosed = status === 'CLOSED';
 
     const appStyles = stores.appStyles.styles;
-    const styles = stores.appStyles.boardInfo;
+    const styles = stores.appStyles.scheduleInfo;
     const colors = stores.themeStore.colors;
 
     return (

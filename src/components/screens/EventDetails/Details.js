@@ -15,7 +15,7 @@ export default inject('stores')(observer(
     date,
     eventType,
     address,
-    boardName,
+    scheduleName,
     authorName,
     scheduleId,
     repeat,
@@ -79,7 +79,7 @@ export default inject('stores')(observer(
                     ellipsizeMode="tail"
                     numberOfLines={1}
                     onPress={scheduleId && (() => navigateToSchedule(scheduleId, (isFollowing || isAuthor)))}
-                    style={[stores.appStyles.eventDetails.value, stores.appStyles.eventDetails.nav]}>{boardName}</Text>
+                    style={[stores.appStyles.eventDetails.value, stores.appStyles.eventDetails.nav]}>{scheduleName}</Text>
                 </View>
               )
             }

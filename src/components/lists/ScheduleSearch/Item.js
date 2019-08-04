@@ -4,9 +4,9 @@ import { TouchableRipple, Text, Caption } from 'react-native-paper';
 import { inject, observer } from 'mobx-react';
 import UserAvatar from 'components/common/UserAvatar';
 import FollowButton from 'components/common/FollowButton';
-import { board_search } from 'lib/constants';
+import { schedule_search } from 'lib/constants';
 
-const { AVATAR_SIZE } = board_search;
+const { AVATAR_SIZE } = schedule_search;
 
 class Item extends React.Component {
   _onPress = () => {
@@ -34,7 +34,7 @@ class Item extends React.Component {
     
     const isPending = id[0] === '-';
 
-    const styles = stores.appStyles.boardSearch;
+    const styles = stores.appStyles.scheduleSearch;
     
     return (
       <TouchableRipple style={styles.itemContainer} onPress={this._onPress}>

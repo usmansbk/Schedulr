@@ -138,7 +138,7 @@ class EventDetails extends React.Component {
           address={venue}
           isPublic={isPublic}
           publicSchedule={schedule && schedule.isPublic}
-          boardName={schedule && schedule.name}
+          scheduleName={schedule && schedule.name}
           scheduleId={schedule && schedule.id}
           authorId={author.id}
           authorName={author.name}

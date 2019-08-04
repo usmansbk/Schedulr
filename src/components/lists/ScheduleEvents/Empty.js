@@ -7,15 +7,15 @@ export default inject('stores')(observer(
   ({ error, loading, stores }) =>{
     if (loading) return null;
     return (
-      <View style={stores.appStyles.boardEvents.empty}>
-        <Headline style={stores.appStyles.boardEvents.emptyTitle}>
+      <View style={stores.appStyles.scheduleEvents.empty}>
+        <Headline style={stores.appStyles.scheduleEvents.emptyTitle}>
         {
           error ? 'Network error' : 'No upcoming events'
         }
         </Headline>
         {
           error && (
-            <Paragraph style={stores.appStyles.boardEvents.paragraph}>
+            <Paragraph style={stores.appStyles.scheduleEvents.paragraph}>
               Check your internet connection. Pull to refresh.
             </Paragraph>
           )

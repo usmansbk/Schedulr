@@ -73,7 +73,7 @@ class List extends Component {
       stores
     } = this.props;
     const data = sortSchedules(schedules);
-    const styles = stores.appStyles.boardsList;
+    const styles = stores.appStyles.schedulesList;
     const colors = stores.themeStore.colors;
     const mutedList = stores.appState.mutedList;
 

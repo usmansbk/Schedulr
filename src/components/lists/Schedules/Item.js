@@ -38,7 +38,7 @@ class Item extends React.Component {
     
     const isPending = id[0] === '-';
     const isMuted= stores.appState.mutedList.includes(id);
-    const styles = stores.appStyles.boardsList;
+    const styles = stores.appStyles.schedulesList;
 
     return (
       <TouchableRipple
