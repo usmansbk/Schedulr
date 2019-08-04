@@ -173,7 +173,7 @@
 						]
 					},
 					"S3DeploymentBucket": "chdlr-20190804032238-deployment",
-					"S3DeploymentRootKey": "amplify-appsync-files/86ca3fbee5d66cd1566b0d64a8acbbfe69116e2e",
+					"S3DeploymentRootKey": "amplify-appsync-files/b428c5f1e00463ee6c024156b51e84d2afd420f5",
 					"env": "NONE"
 				}
 			}

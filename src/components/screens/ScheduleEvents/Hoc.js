@@ -5,7 +5,7 @@ import ScheduleEvents from './ScheduleEvents';
 import moment from 'moment';
 import { getSchedule, listAllEvents, listScheduleEvents } from 'mygraphql/queries';
 import { filterEvents, filterPastEvents } from 'mygraphql/filter';
-import { sortStarredEvents } from 'lib/utils';
+import { sortBookmarksEvents } from 'lib/utils';
 import { getEvents } from 'lib/calendr';
 
 const alias = 'withScheduleEventsContainer';
@@ -40,7 +40,7 @@ export default compose(
       loadingEventsError: data.error,
       events: (
         data && data.listAllEvents && data.listAllEvents.items && 
-        sortStarredEvents(getEvents(data.listAllEvents.items.filter(event => event.schedule && (event.schedule.id === ownProps.id))))
+        sortBookmarksEvents(getEvents(data.listAllEvents.items.filter(event => event.schedule && (event.schedule.id === ownProps.id))))
       ),
       fetchPastEvents: (nextToken, date) => data.fetchMore({
         query: gql(listScheduleEvents),
@@ -99,7 +99,7 @@ export default compose(
           })
         }
       }),
-      events: data && data.listScheduleEvents && data.listScheduleEvents.events && sortStarredEvents(getEvents(data.listScheduleEvents.events.items)),
+      events: data && data.listScheduleEvents && data.listScheduleEvents.events && sortBookmarksEvents(getEvents(data.listScheduleEvents.events.items)),
       nextToken: data && data.listScheduleEvents && data.listScheduleEvents.events && data.listScheduleEvents.events.nextToken,
       ...ownProps
     }) 

@@ -1,7 +1,7 @@
 import React from 'react';
-import List from 'components/lists/StarredEvents';
+import List from 'components/lists/BookmarksEvents';
 
-export default class Starred extends React.Component {
+export default class Bookmarks extends React.Component {
 
   shouldComponentUpdate = (nextProps) => { 
     return (nextProps.navigation.isFocused() &&

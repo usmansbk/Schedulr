@@ -6,7 +6,7 @@ import uniqWith from 'lodash.uniqwith';
 import List from 'components/lists/EventSearch';
 import { listAllEvents, searchEvent } from 'mygraphql/queries';
 import { SEARCH_PAGE_SIZE, SEARCH_DISTANCE } from 'lib/constants';
-import { sortStarredEvents } from 'lib/utils';
+import { sortBookmarksEvents } from 'lib/utils';
 
 class Events extends React.Component {
 
@@ -34,7 +34,7 @@ const ListHoc = compose(
       fetchPolicy: 'cache-only'
     },
     props: ({ data, ownProps }) => ({
-      events: data && data.listAllEvents && sortStarredEvents(data.listAllEvents.items.filter(
+      events: data && data.listAllEvents && sortBookmarksEvents(data.listAllEvents.items.filter(
         item => item.title.toLowerCase().includes(ownProps.query.toLowerCase()) ||
           item.eventType.toLowerCase().includes(ownProps.query.toLowerCase())
       )),
