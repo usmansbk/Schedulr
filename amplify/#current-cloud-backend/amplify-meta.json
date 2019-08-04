@@ -19,7 +19,7 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/chdlr-20190804032238-deployment/amplify-cfn-templates/auth/cognitoff1022f0-cloudformation-template.yml",
 				"logicalId": "authcognitoff1022f0"
 			},
-			"lastPushTimeStamp": "2019-08-04T03:47:24.949Z",
+			"lastPushTimeStamp": "2019-08-04T04:40:21.831Z",
 			"output": {
 				"GoogleWebClient": "915796894963-6566v17dt2cuet54ihj3cem5vod86js3.apps.googleusercontent.com",
 				"AppClientSecret": "1sld6holbpj9j356feo7svfpf50ivlos3cnoa9cohg93ctogrf6b",
@@ -48,8 +48,8 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/chdlr-20190804032238-deployment/amplify-cfn-templates/api/cloudformation-template.json",
 				"logicalId": "apischdlr"
 			},
-			"lastPushTimeStamp": "2019-08-04T03:47:24.945Z",
-			"lastPushDirHash": "w/4gPUvKFLQ4gZ8tKl1Gou4KiAM="
+			"lastPushTimeStamp": "2019-08-04T04:40:21.859Z",
+			"lastPushDirHash": "VOE1rKRKTLo65uNY0mJcF3M1SrQ="
 		}
 	}
 }
