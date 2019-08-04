@@ -13,8 +13,8 @@ export const LoginUser = `mutation LoginUser($input: LoginInput!) {
 }
 `;
 
-export const createBoard = `mutation CreateBoard($input: CreateBoardInput!) {
-  createBoard(input: $input) {
+export const createSchedule = `mutation CreateSchedule($input: CreateScheduleInput!) {
+  createSchedule(input: $input) {
     id
     name
     description
@@ -37,8 +37,8 @@ export const createBoard = `mutation CreateBoard($input: CreateBoardInput!) {
   }
 }
 `;
-export const updateBoard = `mutation UpdateBoard($input: UpdateBoardInput!) {
-  updateBoard(input: $input) {
+export const updateSchedule = `mutation UpdateSchedule($input: UpdateScheduleInput!) {
+  updateSchedule(input: $input) {
     id
     name
     description
@@ -47,14 +47,14 @@ export const updateBoard = `mutation UpdateBoard($input: UpdateBoardInput!) {
   }
 }
 `;
-export const deleteBoard = `mutation DeleteBoard($input: DeleteBoardInput!) {
-  deleteBoard(input: $input) {
+export const deleteSchedule = `mutation DeleteSchedule($input: DeleteScheduleInput!) {
+  deleteSchedule(input: $input) {
     id
   }
 }
 `;
-export const followBoard = `mutation FollowBoard($input: FollowBoardInput!) {
-  followBoard(input: $input) {
+export const followSchedule = `mutation FollowSchedule($input: FollowScheduleInput!) {
+  followSchedule(input: $input) {
     id
     name
     description
@@ -77,24 +77,24 @@ export const followBoard = `mutation FollowBoard($input: FollowBoardInput!) {
   }
 }
 `;
-export const unfollowBoard = `mutation UnfollowBoard($input: UnfollowBoardInput!) {
-  unfollowBoard(input: $input) {
+export const unfollowSchedule = `mutation UnfollowSchedule($input: UnfollowScheduleInput!) {
+  unfollowSchedule(input: $input) {
     id
     isFollowing
     followersCount
   }
 }
 `;
-export const closeBoard = `mutation CloseBoard($input: CloseBoardInput!) {
-  closeBoard(input: $input) {
+export const closeSchedule = `mutation CloseSchedule($input: CloseScheduleInput!) {
+  closeSchedule(input: $input) {
     id
     status
     updatedAt
   }
 }
 `;
-export const openBoard = `mutation OpenBoard($input: OpenBoardInput!) {
-  openBoard(input: $input) {
+export const openSchedule = `mutation OpenSchedule($input: OpenScheduleInput!) {
+  openSchedule(input: $input) {
     id
     status
     updatedAt
@@ -116,7 +116,7 @@ export const createEvent = `mutation CreateEvent($input: CreateEventInput!) {
     until
     eventType
     isPublic
-    board {
+    schedule {
       id
       name
       eventsCount
@@ -151,7 +151,7 @@ export const updateEvent = `mutation UpdateEvent($input: UpdateEventInput!) {
     isPublic
     eventType
     updatedAt
-    board {
+    schedule {
       id
       name
       eventsCount
@@ -163,7 +163,7 @@ export const updateEvent = `mutation UpdateEvent($input: UpdateEventInput!) {
 export const deleteEvent = `mutation DeleteEvent($input: DeleteEventInput!) {
   deleteEvent(input: $input) {
     id
-    board {
+    schedule {
       id
       eventsCount
     }
@@ -179,16 +179,16 @@ export const cancelEvent = `mutation CancelEvent($input: CancelEventInput!) {
   }
 }
 `;
-export const starEvent = `mutation StarEvent($input: StarEventInput!) {
-  starEvent(input: $input) {
+export const bookmarkEvent = `mutation BookmarkEvent($input: BookmarkEventInput!) {
+  bookmarkEvent(input: $input) {
     id
     starsCount
     isStarred
   }
 }
 `;
-export const unstarEvent = `mutation UnstarEvent($input: UnstarEventInput!) {
-  unstarEvent(input: $input) {
+export const unbookmarkEvent = `mutation UnbookmarkEvent($input: UnbookmarkEventInput!) {
+  unbookmarkEvent(input: $input) {
     id
     starsCount
     isStarred

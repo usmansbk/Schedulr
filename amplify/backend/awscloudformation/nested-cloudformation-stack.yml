@@ -84,7 +84,7 @@
 				"TemplateURL": "https://s3.amazonaws.com/chdlr-20190804032238-deployment/amplify-cfn-templates/auth/cognitoff1022f0-cloudformation-template.yml",
 				"Parameters": {
 					"identityPoolName": "schdlrff1022f0_identitypool_ff1022f0",
-					"allowUnauthenticatedIdentities": false,
+					"allowUnauthenticatedIdentities": true,
 					"openIdLambdaRoleName": "cognitoff1022f0_openid_lambda_role",
 					"resourceNameTruncated": "cognitc08666ec",
 					"userPoolName": "schdlrff1022f0_userpool_ff1022f0",
@@ -174,6 +174,33 @@
 					},
 					"S3DeploymentBucket": "chdlr-20190804032238-deployment",
 					"S3DeploymentRootKey": "amplify-appsync-files/86ca3fbee5d66cd1566b0d64a8acbbfe69116e2e",
+					"env": "NONE"
+				}
+			}
+		},
+		"analyticsschdlr": {
+			"Type": "AWS::CloudFormation::Stack",
+			"Properties": {
+				"TemplateURL": "https://s3.amazonaws.com/chdlr-20190804032238-deployment/amplify-cfn-templates/analytics/pinpoint-cloudformation-template.json",
+				"Parameters": {
+					"appName": "schdlr",
+					"roleName": "pinpointLambdaRole1e8f8914",
+					"cloudWatchPolicyName": "cloudWatchPolicy1e8f8914",
+					"pinpointPolicyName": "pinpointPolicy1e8f8914",
+					"authPolicyName": "pinpoint_amplify_1e8f8914",
+					"unauthPolicyName": "pinpoint_amplify_1e8f8914",
+					"authRoleName": {
+						"Ref": "AuthRoleName"
+					},
+					"unauthRoleName": {
+						"Ref": "UnauthRoleName"
+					},
+					"authRoleArn": {
+						"Fn::GetAtt": [
+							"AuthRole",
+							"Arn"
+						]
+					},
 					"env": "NONE"
 				}
 			}

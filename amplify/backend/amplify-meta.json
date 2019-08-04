@@ -19,7 +19,7 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/chdlr-20190804032238-deployment/amplify-cfn-templates/auth/cognitoff1022f0-cloudformation-template.yml",
 				"logicalId": "authcognitoff1022f0"
 			},
-			"lastPushTimeStamp": "2019-08-04T04:40:21.831Z",
+			"lastPushTimeStamp": "2019-08-04T04:48:15.987Z",
 			"output": {
 				"GoogleWebClient": "915796894963-6566v17dt2cuet54ihj3cem5vod86js3.apps.googleusercontent.com",
 				"AppClientSecret": "1sld6holbpj9j356feo7svfpf50ivlos3cnoa9cohg93ctogrf6b",
@@ -31,7 +31,7 @@
 				"IdentityPoolName": "schdlrff1022f0_identitypool_ff1022f0",
 				"UserPoolName": "schdlrff1022f0_userpool_ff1022f0"
 			},
-			"lastPushDirHash": "XQoZAoo38G2PTSEOilSNDwTLL+M=",
+			"lastPushDirHash": "xZUORCGhnwEZIYoBDGE9+waBH0k=",
 			"dependsOn": []
 		}
 	},
@@ -48,8 +48,25 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/chdlr-20190804032238-deployment/amplify-cfn-templates/api/cloudformation-template.json",
 				"logicalId": "apischdlr"
 			},
-			"lastPushTimeStamp": "2019-08-04T04:40:21.859Z",
+			"lastPushTimeStamp": "2019-08-04T04:48:15.983Z",
 			"lastPushDirHash": "VOE1rKRKTLo65uNY0mJcF3M1SrQ="
+		}
+	},
+	"analytics": {
+		"schdlr": {
+			"service": "Pinpoint",
+			"providerPlugin": "awscloudformation",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/chdlr-20190804032238-deployment/amplify-cfn-templates/analytics/pinpoint-cloudformation-template.json",
+				"logicalId": "analyticsschdlr"
+			},
+			"lastPushTimeStamp": "2019-08-04T04:48:15.987Z",
+			"output": {
+				"appName": "schdlr",
+				"Region": "us-east-1",
+				"Id": "51618c5554624f51be8f7f5c94131a6c"
+			},
+			"lastPushDirHash": "RYYX5osOgITjBCLUZR5d0Q0MUmA="
 		}
 	}
 }

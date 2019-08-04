@@ -13,10 +13,10 @@ export const getUser = `query GetUser($id: ID!) {
 }
 `;
 
-export const followingBoards = `query FollowingBoard($id: ID!, $limit: Int, $nextToken: String) {
-  followingBoards: getUser(id: $id) {
+export const followingSchedules = `query FollowingSchedule($id: ID!, $limit: Int, $nextToken: String) {
+  followingSchedules: getUser(id: $id) {
     id
-    followingBoards(limit: $limit, nextToken: $nextToken) {
+    followingSchedules(limit: $limit, nextToken: $nextToken) {
       nextToken
       items {
         id
@@ -43,10 +43,10 @@ export const followingBoards = `query FollowingBoard($id: ID!, $limit: Int, $nex
   }
 }`;
 
-export const createdBoards = `query FollowingBoard($id: ID!, $limit: Int, $nextToken: String) {
-  createdBoards: getUser(id: $id) {
+export const createdSchedules = `query FollowingSchedule($id: ID!, $limit: Int, $nextToken: String) {
+  createdSchedules: getUser(id: $id) {
     id
-    createdBoards(limit: $limit, nextToken: $nextToken) {
+    createdSchedules(limit: $limit, nextToken: $nextToken) {
       nextToken
       items {
         id
@@ -88,7 +88,7 @@ export const getEvent = `query GetEvent($id: ID!) {
     until
     eventType
     isPublic
-    board {
+    schedule {
       id
       name
       eventsCount
@@ -110,8 +110,8 @@ export const getEvent = `query GetEvent($id: ID!) {
 }
 `;
 
-export const getBoard = `query GetBoard($id: ID!) {
-  getBoard(id: $id) {
+export const getSchedule = `query GetSchedule($id: ID!) {
+  getSchedule(id: $id) {
     id
     name
     description
@@ -163,7 +163,7 @@ export const listAllEvents = `query ListAllEvents($filter: QueryFilterInput) {
       until
       eventType
       isPublic
-      board {
+      schedule {
         id
         name
         isFollowing
@@ -215,8 +215,8 @@ export const listEventComments = `query ListEventComments($id: ID!, $limit: Int,
   }
 }`;
 
-export const listAllBoards = `query ListAllBoards {
-  listAllBoards {
+export const listAllSchedules = `query ListAllSchedules {
+  listAllSchedules {
     nextToken
     items {
       id
@@ -243,8 +243,8 @@ export const listAllBoards = `query ListAllBoards {
 }
 `;
 
-export const listBoardEvents = `query ListBoardEvents($id: ID!, $limit: Int, $nextToken: String, $filter: QueryFilterInput) {
-  listBoardEvents: getBoard(id: $id) {
+export const listScheduleEvents = `query ListScheduleEvents($id: ID!, $limit: Int, $nextToken: String, $filter: QueryFilterInput) {
+  listScheduleEvents: getSchedule(id: $id) {
     id
     events(limit: $limit, nextToken: $nextToken, filter: $filter) {
       nextToken
@@ -262,7 +262,7 @@ export const listBoardEvents = `query ListBoardEvents($id: ID!, $limit: Int, $ne
         until
         eventType
         isPublic
-        board {
+        schedule {
           id
           name
           eventsCount
@@ -285,7 +285,7 @@ export const listBoardEvents = `query ListBoardEvents($id: ID!, $limit: Int, $ne
   }
 }`
 
-export const listBoardFollowers = `query Followers($id: ID!, $limit: Int, $nextToken: String) {
+export const listScheduleFollowers = `query Followers($id: ID!, $limit: Int, $nextToken: String) {
   listFollowers(id: $id, limit: $limit, nextToken: $nextToken)  @connection(key: "listFollowers",filter: ["id"])  {
     nextToken
     items {
@@ -316,7 +316,7 @@ export const searchEvent = `query SearchEvent($filter: SearchFilterInput, $size:
       until
       eventType
       isPublic
-      board {
+      schedule {
         id
         name
         eventsCount
@@ -338,8 +338,8 @@ export const searchEvent = `query SearchEvent($filter: SearchFilterInput, $size:
   }
 }
 `;
-export const searchBoard = `query SearchBoard($filter: SearchFilterInput, $size: Int, $from: Int) {
-  searchBoard(filter: $filter, size: $size, from: $from) @connection(key: "searchBoard") {
+export const searchSchedule = `query SearchSchedule($filter: SearchFilterInput, $size: Int, $from: Int) {
+  searchSchedule(filter: $filter, size: $size, from: $from) @connection(key: "searchSchedule") {
     nextToken
     items {
       id
