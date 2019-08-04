@@ -19,7 +19,7 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/chdlr-20190804032238-deployment/amplify-cfn-templates/auth/cognitoff1022f0-cloudformation-template.yml",
 				"logicalId": "authcognitoff1022f0"
 			},
-			"lastPushTimeStamp": "2019-08-04T03:36:00.317Z",
+			"lastPushTimeStamp": "2019-08-04T03:47:24.949Z",
 			"output": {
 				"GoogleWebClient": "915796894963-6566v17dt2cuet54ihj3cem5vod86js3.apps.googleusercontent.com",
 				"AppClientSecret": "1sld6holbpj9j356feo7svfpf50ivlos3cnoa9cohg93ctogrf6b",
@@ -31,7 +31,7 @@
 				"IdentityPoolName": "schdlrff1022f0_identitypool_ff1022f0",
 				"UserPoolName": "schdlrff1022f0_userpool_ff1022f0"
 			},
-			"lastPushDirHash": "K5d+X1Gn1GfTUVBnyTjp84JeyUs=",
+			"lastPushDirHash": "XQoZAoo38G2PTSEOilSNDwTLL+M=",
 			"dependsOn": []
 		}
 	},
@@ -48,7 +48,7 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/chdlr-20190804032238-deployment/amplify-cfn-templates/api/cloudformation-template.json",
 				"logicalId": "apischdlr"
 			},
-			"lastPushTimeStamp": "2019-08-04T03:36:00.317Z",
+			"lastPushTimeStamp": "2019-08-04T03:47:24.945Z",
 			"lastPushDirHash": "w/4gPUvKFLQ4gZ8tKl1Gou4KiAM="
 		}
 	}
