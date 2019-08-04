@@ -22,7 +22,7 @@ class Item extends React.Component {
     this.props.stores.appState.toggleMute(this.props.id, this.props.isMuted);
   };
   _navigateToSchedule = () => {
-    this.props.boardId ? this.props.navigateToScheduleEvents(this.props.boardId) : (
+    this.props.scheduleId ? this.props.navigateToScheduleEvents(this.props.scheduleId) : (
       this._onPress()
     );
   };
@@ -55,12 +55,12 @@ class Item extends React.Component {
       stores,
       isBookmarked,
       bookmarksCount,
-      boardId
+      scheduleId
     } = this.props;
 
     const styles = stores.appStyles.eventsList;
     const isMuted = stores.appState.mutedList.includes(id) ||
-    (boardId && stores.appState.mutedList.includes(boardId)) &&
+    (scheduleId && stores.appState.mutedList.includes(scheduleId)) &&
     !stores.appState.allowedList.includes(id);
     
     const isPending = id[0] === '-';

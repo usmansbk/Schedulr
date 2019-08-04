@@ -137,9 +137,9 @@ export const createCommentResponse = (input, eventId) => {
 
 export const createEventResponse = (input) => {
   let schedule = null;
-  if (input.boardId) {
+  if (input.scheduleId) {
     const query = gql(getScheduleQuery);
-    const data = getData(query, input.boardId);
+    const data = getData(query, input.scheduleId);
     const { getSchedule } = data;
     schedule = {
       __typename: 'Schedule',
@@ -219,7 +219,7 @@ export const updateEventResponse = (input) => {
   const query = gql(getScheduleQuery);
   let schedule;
   try {
-    const { getSchedule } = getData(query, input.boardId);
+    const { getSchedule } = getData(query, input.scheduleId);
     schedule = {
       __typename: 'Schedule',
       id: getSchedule.id,
@@ -231,7 +231,7 @@ export const updateEventResponse = (input) => {
     schedule = null;
   }
   const inputCopy = {...input};
-  delete inputCopy.boardId;
+  delete inputCopy.scheduleId;
   return ({
     __typename,
     updateEvent: Object.assign({}, inputCopy, {

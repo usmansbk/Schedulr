@@ -35,8 +35,8 @@ class Schedule extends React.Component {
     this.props.navigation.navigate('ScheduleInfo', { id });
   }
   _navigateToNewEvent = () => {
-    const boardId = this.props.schedule.id;
-    this.props.navigation.navigate('NewEvent', { boardId });
+    const scheduleId = this.props.schedule.id;
+    this.props.navigation.navigate('NewEvent', { scheduleId });
   }
 
   render() {

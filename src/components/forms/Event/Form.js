@@ -56,7 +56,7 @@ class Form extends React.Component {
       repeat: frequency[0].id,
       forever: false,
       until: null,
-      boardId: '',
+      scheduleId: '',
       isPublic: true
     }
   }
@@ -334,11 +334,11 @@ class Form extends React.Component {
                 </View>
                 <Picker
                   prompt="Select a schedule"
-                  selectedValue={values.boardId}
+                  selectedValue={values.scheduleId}
                   style={styles.picker}
                   enabled={!locked }
                   itemStyle={styles.pickerItem}
-                  onValueChange={itemValue => setFieldValue('boardId', itemValue)}
+                  onValueChange={itemValue => setFieldValue('scheduleId', itemValue)}
                 >
                   <Picker.Item label={(schedules.length === 0) ? "No schedule" : "Add to a schedule"} value="" />
                   {
@@ -349,7 +349,7 @@ class Form extends React.Component {
                 </Picker>
                 <HelperText
                   type="info"
-                  visible={!values.boardId}
+                  visible={!values.scheduleId}
                 >
                   {BOARD_TIP}
                 </HelperText>

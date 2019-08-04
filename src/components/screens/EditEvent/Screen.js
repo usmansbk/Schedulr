@@ -34,7 +34,7 @@ export default class EditEventScreen extends React.Component {
       repeat,
       until,
       forever,
-      boardId: schedule && schedule.id,
+      scheduleId: schedule && schedule.id,
       isPublic: Boolean(isPublic)
     });
   };

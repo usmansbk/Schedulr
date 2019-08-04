@@ -18,8 +18,8 @@ class Item extends React.Component {
   _onPress = () => this.props.onPressItem(this.props.id, this.props.startAt, this.props.endAt);
   _onPressComment = () => this.props.onPressComment(this.props.id, this.props.title, this.props.time);
   _onPressAvatar = () => {
-    const { boardId } = this.props;
-    boardId ? this.props.navigateToInfo(boardId) : this._onPress();
+    const { scheduleId } = this.props;
+    scheduleId ? this.props.navigateToInfo(scheduleId) : this._onPress();
   }
   shouldComponentUpdate = (nextProps) => {
     return (

@@ -256,7 +256,7 @@ class List extends React.Component {
     status={getStatus({ isCancelled, cancelledDates, startAt, endAt})}
     isValid={isEventValid({ isCancelled, endAt, startAt, cancelledDates })}
     address={venue}
-    boardId={schedule && schedule.id}
+    scheduleId={schedule && schedule.id}
     isBookmarked={isBookmarked}
     bookmarksCount={bookmarksCount}
     isAuthor={isAuthor}

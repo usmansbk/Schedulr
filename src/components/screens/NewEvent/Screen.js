@@ -18,7 +18,7 @@ export default class NewEventScreen extends React.Component {
     });
   };
   _getInitialValues = () => {
-    const { event={}, boardId, schedules } = this.props;
+    const { event={}, scheduleId, schedules } = this.props;
     const {
       title,
       description,
@@ -33,7 +33,7 @@ export default class NewEventScreen extends React.Component {
       isPublic
     } = event;
 
-    const currentSchedule = schedules && schedules.find(schedule => schedule.id === boardId);
+    const currentSchedule = schedules && schedules.find(schedule => schedule.id === scheduleId);
 
     const targetDate = this.props.navigation.getParam('targetDate', moment().valueOf())
     const initialStartAt = moment(targetDate).valueOf();
@@ -70,7 +70,7 @@ export default class NewEventScreen extends React.Component {
       repeat: repeat || frequency[0].id,
       until,
       forever,
-      boardId: boardId,
+      scheduleId: scheduleId,
       isPublic: currentSchedule ? currentSchedule.isPublic : Boolean(isPublic)
     });
   };
@@ -84,7 +84,7 @@ export default class NewEventScreen extends React.Component {
         handleCancel={this._handleBack}
         onSubmit={this._handleSubmit}
         newSchedule={this._newSchedule}
-        locked={Boolean(this.props.boardId)}
+        locked={Boolean(this.props.scheduleId)}
       />
     )
   }

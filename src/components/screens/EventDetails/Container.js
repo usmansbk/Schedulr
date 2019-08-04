@@ -139,7 +139,7 @@ class EventDetails extends React.Component {
           isPublic={isPublic}
           publicSchedule={schedule && schedule.isPublic}
           boardName={schedule && schedule.name}
-          boardId={schedule && schedule.id}
+          scheduleId={schedule && schedule.id}
           authorId={author.id}
           authorName={author.name}
           repeat={getRepeatLabel(repeat, start)}

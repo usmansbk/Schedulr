@@ -144,8 +144,8 @@ const schdlAll = (events, mutedList, allowedList) => {
     if (!settings.disableReminders) {
       events.forEach((event) => {
         const id = event.id;
-        const boardId = event.schedule && event.schedule.id;
-        const isMuted = mutedList.includes(id) || (boardId && mutedList.includes(boardId));
+        const scheduleId = event.schedule && event.schedule.id;
+        const isMuted = mutedList.includes(id) || (scheduleId && mutedList.includes(scheduleId));
         const isAllowed = allowedList.includes(id);
         if (!isAllowed && isMuted || (settings.starredEventsOnly && !event.isBookmarked)) return;
         switch (event.repeat) {

@@ -2040,7 +2040,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "boardId",
+          "name" : "scheduleId",
           "description" : null,
           "type" : {
             "kind" : "NON_NULL",

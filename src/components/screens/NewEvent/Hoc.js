@@ -58,10 +58,10 @@ export default compose(
       fetchPolicy: 'cache-only',
     },
     props: ({ data, ownProps }) => {
-      const id = ownProps.navigation.getParam('boardId');
+      const id = ownProps.navigation.getParam('scheduleId');
       return ({
         schedules: data && data.listAllSchedules && data.listAllSchedules.items,
-        boardId: id,
+        scheduleId: id,
         ...ownProps
       });
     }
