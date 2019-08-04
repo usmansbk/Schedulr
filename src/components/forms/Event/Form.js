@@ -29,7 +29,7 @@ import {
 } from 'lib/formValidator';
 import { CANT_REPEAT } from 'lib/errorMessages';
 import { getRepeatLabel, getRecurrence } from 'lib/time';
-import { WHAT_IS_A_BOARD, BOARD_TIP } from 'lib/constants';
+import { WHAT_IS_A_SCHEDULE, SCHEDULE_TIP } from 'lib/constants';
 import formSchema from './schema';
 import frequency from './frequency';
 import { buildEventForm } from 'helpers/buildForm';
@@ -69,7 +69,7 @@ class Form extends React.Component {
       buttons.push({ text: 'Create', onPress: newSchedule });
     }
     buttons.push({text: "Ok", onPress: () => null });
-    Alert.alert("What is a schedule?", WHAT_IS_A_BOARD, buttons);
+    Alert.alert("What is a schedule?", WHAT_IS_A_SCHEDULE, buttons);
   }
 
   componentDidMount = async () => {
@@ -351,7 +351,7 @@ class Form extends React.Component {
                   type="info"
                   visible={!values.scheduleId}
                 >
-                  {BOARD_TIP}
+                  {SCHEDULE_TIP}
                 </HelperText>
               </View>
             </View>

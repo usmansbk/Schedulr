@@ -20,7 +20,7 @@ import { Formik } from 'formik';
 import { inject, observer } from 'mobx-react';
 import validationSchema from './schema';
 import { buildScheduleForm } from 'helpers/buildForm';
-import { WHAT_IS_A_BOARD, PRIVATE_INFO } from 'lib/constants';
+import { WHAT_IS_A_SCHEDULE, PRIVATE_INFO } from 'lib/constants';
 
 class Form extends React.Component {
   static defaultProps = {
@@ -32,7 +32,7 @@ class Form extends React.Component {
   };
 
   _showInfo = () => {
-    Alert.alert('What is a schedule?', WHAT_IS_A_BOARD);
+    Alert.alert('What is a schedule?', WHAT_IS_A_SCHEDULE);
   };
 
   _aboutPrivacy = () => {

@@ -3,7 +3,7 @@ import moment from 'moment';
 import Form from 'components/forms/Event';
 import frequency from 'components/forms/Event/frequency';
 import { isPastExact } from 'lib/parseItem';
-import { BOARD_CLOSED } from 'lib/constants';
+import { SCHEDULE_CLOSED } from 'lib/constants';
 
 export default class NewEventScreen extends React.Component {
   static defaultProps = {
@@ -80,7 +80,7 @@ export default class NewEventScreen extends React.Component {
       <Form
         initialValues={this._getInitialValues()}
         isNew={this.props.isNew}
-        schedules={this.props.schedules.filter(schedule => schedule.isAuthor && (schedule.status !== BOARD_CLOSED) && (schedule.id[0] !== '-'))}
+        schedules={this.props.schedules.filter(schedule => schedule.isAuthor && (schedule.status !== SCHEDULE_CLOSED) && (schedule.id[0] !== '-'))}
         handleCancel={this._handleBack}
         onSubmit={this._handleSubmit}
         newSchedule={this._newSchedule}

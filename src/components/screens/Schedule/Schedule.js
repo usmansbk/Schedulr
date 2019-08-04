@@ -5,7 +5,7 @@ import List from 'components/lists/Events';
 import Fab from 'components/common/Fab';
 import Loading from 'components/common/Loading';
 import Error from 'components/common/Error';
-import { BOARD_CLOSED } from 'lib/constants';
+import { SCHEDULE_CLOSED } from 'lib/constants';
 
 const ABOUT_HALF = 600;
 
@@ -100,7 +100,7 @@ class Schedule extends React.Component {
           )
         }
         {
-          !(Boolean(error) && events.length) && !isOffline && isAuthor && (status !== BOARD_CLOSED ) && (
+          !(Boolean(error) && events.length) && !isOffline && isAuthor && (status !== SCHEDULE_CLOSED ) && (
             <Fab
               icon="edit"
               onPress={this._navigateToNewEvent}
