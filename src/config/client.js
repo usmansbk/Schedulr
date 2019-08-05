@@ -31,7 +31,7 @@ const appSyncLink = createAppSyncLink({
   region: aws_config.aws_appsync_region,
   auth: {
     type: aws_config.aws_appsync_authenticationType,
-    credentials: () => Auth.currentCredentials()
+    jwtToken: async () => (await Auth.currentSession()).getIdToken().getJwtToken(),
   }
 });
 

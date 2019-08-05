@@ -1,5 +1,5 @@
 import React from 'react';
-import { Auth } from 'aws-amplify';
+import { Auth, Hub } from 'aws-amplify';
 import SimpleToast from 'react-native-simple-toast';
 import changeNavigationBarColor from 'react-native-navigation-bar-color';
 import { inject, observer } from 'mobx-react';
@@ -11,6 +11,16 @@ class Container extends React.Component {
   componentDidMount = async () => {
     const { stores } = this.props;
     const colors = stores.themeStore.colors;
+    Hub.listen("auth", async ({ payload: { event, data } }) => {
+      switch(event) {
+        case "signIn":
+          const user = await Auth.currentUserInfo();
+          // const { attributes: { email } } = user;
+          // SimpleToast.show(`Welcome ${name}!`, SimpleToast.SHORT);
+          alert(JSON.stringify(user));
+          break;
+      }
+    });
     try {
       await changeNavigationBarColor(colors.primary_light, false);
     } catch (error) {
@@ -23,7 +33,6 @@ class Container extends React.Component {
       this.setState({ loading: true })
       await Auth.federatedSignIn({ provider });
       this.setState({ loading: false });
-      // SimpleToast.show(`Welcome ${name}!`, SimpleToast.SHORT);
     } catch (error) {
       SimpleToast.show('Login failed: ' + error.message, SimpleToast.SHORT);
     }
@@ -37,8 +46,7 @@ class Container extends React.Component {
   }
 }
 
-const withStores = inject('stores')(observer(Container));
-export default withStores;
+export default inject('stores')(observer(Container));
 
 // export default graphql(gql(LoginUser), {
 //   alias: 'withLoginScreen',
