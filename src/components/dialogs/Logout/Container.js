@@ -1,8 +1,6 @@
 import React from 'react';
 import AsyncStorage from '@react-native-community/async-storage';
 import { Auth } from 'aws-amplify';
-import { LoginManager } from 'react-native-fbsdk';
-import { GoogleSignin } from 'react-native-google-signin';
 import { withNavigation } from 'react-navigation';
 import SimpleToast from 'react-native-simple-toast';
 import Dialog from './Dialog';
@@ -16,9 +14,6 @@ class Container extends React.Component {
 
   _signOut = async () => {
     this.setState({ loading: true });
-    await this._fbLogout();
-    await this._googleSignout();
-    await this._clearStore();
     await this._purgeAsyncStorage();
     await this._awsSignOut();
     this.setState({ loading: false });
@@ -43,7 +38,6 @@ class Container extends React.Component {
   _clearStore = async () => {
     try {
       await client.clearStore();
-      client.cache.reset();
     } catch(e) {
       SimpleToast.show(e.message, SimpleToast.LONG);
     }
@@ -52,22 +46,6 @@ class Container extends React.Component {
   _awsSignOut = async () => {
     try {
       await Auth.signOut();
-    } catch(e) {
-      SimpleToast.show(e.message, SimpleToast.LONG);
-    }
-  };
-
-  _fbLogout = async () => {
-    try {
-      await LoginManager.logOut();
-    } catch(e) {
-      SimpleToast.show(e.message, SimpleToast.LONG);
-    }
-  };
-
-  _googleSignout = async () => {
-    try {
-      await GoogleSignin.signOut();
     } catch(e) {
       SimpleToast.show(e.message, SimpleToast.LONG);
     }

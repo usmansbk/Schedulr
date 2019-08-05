@@ -4,7 +4,6 @@ import SimpleToast from 'react-native-simple-toast';
 import changeNavigationBarColor from 'react-native-navigation-bar-color';
 import { inject, observer } from 'mobx-react';
 import Login from './Login';
-import Loading from 'components/common/Loading';
 
 class Container extends React.Component {
   state = { loading: false };
@@ -20,19 +19,21 @@ class Container extends React.Component {
   }
 
   _signInAsync = async (provider) => {
-    this.setState({ loading: true });
     try {
+      this.setState({ loading: true })
       await Auth.federatedSignIn({ provider });
-      SimpleToast.show(`Welcome ${name}!`, SimpleToast.SHORT);
+      this.setState({ loading: false });
+      // SimpleToast.show(`Welcome ${name}!`, SimpleToast.SHORT);
     } catch (error) {
       SimpleToast.show('Login failed: ' + error.message, SimpleToast.SHORT);
-      this.setState({ loading: false });
     }
   };
 
   render() {
-    return this.state.loading ? ( <Loading />
-    ) : ( <Login handleLogin={this._signInAsync} loading={this.state.loading} /> );
+    return <Login
+      handleLogin={this._signInAsync}
+      loading={this.state.loading}
+    />;
   }
 }
 
