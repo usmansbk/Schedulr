@@ -35,23 +35,7 @@
 			"dependsOn": []
 		}
 	},
-	"api": {
-		"schdlr": {
-			"service": "AppSync",
-			"providerPlugin": "awscloudformation",
-			"output": {
-				"securityType": "AMAZON_COGNITO_USER_POOLS",
-				"GraphQLAPIIdOutput": "cnbdy77rofen7huy3tqphf5oi4",
-				"GraphQLAPIEndpointOutput": "https://g5zu7uosu5gfherxf2ckl3clbi.appsync-api.us-east-1.amazonaws.com/graphql"
-			},
-			"providerMetadata": {
-				"s3TemplateURL": "https://s3.amazonaws.com/chdlr-20190804032238-deployment/amplify-cfn-templates/api/cloudformation-template.json",
-				"logicalId": "apischdlr"
-			},
-			"lastPushTimeStamp": "2019-08-04T05:03:20.012Z",
-			"lastPushDirHash": "Mnfz2dPjkLEngI6iCFtTwyhD55E="
-		}
-	},
+	"api": {},
 	"analytics": {
 		"schdlr": {
 			"service": "Pinpoint",
