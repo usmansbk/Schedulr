@@ -6,6 +6,8 @@ import SimpleToast from 'react-native-simple-toast';
 import aws_config from '../aws-exports';
 import logger from './logger';
 
+Analytics.disable();
+
 const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors) {
     graphQLErrors.map(error => {
