@@ -1,7 +1,6 @@
 import React from 'react';
 import { Provider as PaperProvider } from 'react-native-paper';
 import { MenuProvider } from 'react-native-popup-menu';
-import { GoogleSignin } from 'react-native-google-signin';
 import { ApolloProvider } from 'react-apollo';
 import { Provider as MobxProvider } from 'mobx-react';
 import { Rehydrated } from 'aws-appsync-react';
@@ -19,11 +18,6 @@ import env from 'config/env';
 console.disableYellowBox = true;
 
 // window.LOG_LEVEL = 'DEBUG';
-
-GoogleSignin.configure({
-  webClientId: env.WEB_CLIENT_ID,
-  offlineAccess: true
-});
 
 Amplify.configure(aws_config);
 

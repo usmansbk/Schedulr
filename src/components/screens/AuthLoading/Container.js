@@ -11,8 +11,8 @@ class Container extends Component {
 
   _bootstrapAsync = async () => {
     try {
-      const user = await Auth.currentSession();
-      if (user) this.props.navigation.navigate('App');
+      await Auth.currentAuthenticatedUser();
+      this.props.navigation.navigate('App');
     } catch (error) {
       this.props.navigation.navigate('Auth');
     }
