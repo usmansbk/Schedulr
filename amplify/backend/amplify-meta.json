@@ -1,72 +1,17 @@
 {
-    "providers": {
-        "awscloudformation": {
-            "AuthRoleName": "chdlr-20190804032238-authRole",
-            "UnauthRoleArn": "arn:aws:iam::900820753842:role/chdlr-20190804032238-unauthRole",
-            "AuthRoleArn": "arn:aws:iam::900820753842:role/chdlr-20190804032238-authRole",
-            "Region": "us-east-1",
-            "DeploymentBucketName": "chdlr-20190804032238-deployment",
-            "UnauthRoleName": "chdlr-20190804032238-unauthRole",
-            "StackName": "chdlr-20190804032238",
-            "StackId": "arn:aws:cloudformation:us-east-1:900820753842:stack/chdlr-20190804032238/c50d1220-b65e-11e9-9f8a-12c9298e4208"
-        }
-    },
-    "auth": {
-        "schdlreeeffacceeeffacc": {
-            "service": "Cognito",
-            "providerPlugin": "awscloudformation",
-            "dependsOn": [],
-            "providerMetadata": {
-                "s3TemplateURL": "https://s3.amazonaws.com/chdlr-20190804032238-deployment/amplify-cfn-templates/auth/schdlreeeffacceeeffacc-cloudformation-template.yml",
-                "logicalId": "authschdlreeeffacceeeffacc"
-            },
-            "lastPushTimeStamp": "2019-08-05T19:59:15.040Z",
-            "output": {
-                "GoogleWebClient": "915796894963-6566v17dt2cuet54ihj3cem5vod86js3.apps.googleusercontent.com",
-                "AppClientSecret": "1cvtreecte71fmbep4dlksfe918p714jb6grg5pae15ptulijkvs",
-                "UserPoolId": "us-east-1_AxP4tm7Sj",
-                "AppClientIDWeb": "3fa3ecqh8buqmv74im6ff9le7d",
-                "AppClientID": "u00j01k2pmm32cujp6o3p55ou",
-                "FacebookWebClient": "203644060264792",
-                "IdentityPoolId": "us-east-1:c12037b3-0522-4e81-b8d3-9b163b9a55d0",
-                "IdentityPoolName": "schdlreeeffacc_identitypool_eeeffacc",
-                "UserPoolName": "schdlreeeffacc_userpool_eeeffacc"
-            },
-            "lastPushDirHash": "ecUQwm3y1FMg8srbdGPwqF6Bo80="
-        }
-    },
-    "api": {
-        "schdlr": {
-            "service": "AppSync",
-            "providerPlugin": "awscloudformation",
-            "output": {
-                "securityType": "AMAZON_COGNITO_USER_POOLS",
-                "GraphQLAPIIdOutput": "q3g6qc666ngvbitqynfkdoxmpa",
-                "GraphQLAPIEndpointOutput": "https://bnz6lijdjjhlfgbwdyh4oqvwlu.appsync-api.us-east-1.amazonaws.com/graphql"
-            },
-            "providerMetadata": {
-                "s3TemplateURL": "https://s3.amazonaws.com/chdlr-20190804032238-deployment/amplify-cfn-templates/api/cloudformation-template.json",
-                "logicalId": "apischdlr"
-            },
-            "lastPushTimeStamp": "2019-08-05T19:59:15.201Z",
-            "lastPushDirHash": "7TjpcgbR6rv8CMT5ewHLsAtRlzE="
-        }
-    },
-    "analytics": {
-        "schdlr": {
-            "service": "Pinpoint",
-            "providerPlugin": "awscloudformation",
-            "providerMetadata": {
-                "s3TemplateURL": "https://s3.amazonaws.com/chdlr-20190804032238-deployment/amplify-cfn-templates/analytics/pinpoint-cloudformation-template.json",
-                "logicalId": "analyticsschdlr"
-            },
-            "lastPushTimeStamp": "2019-08-05T06:14:08.273Z",
-            "output": {
-                "appName": "schdlr",
-                "Region": "us-east-1",
-                "Id": "a08247a7fb2645e1a1fd72d2e2a6f5ea"
-            },
-            "lastPushDirHash": "32mYgMCJxGG85XLwidSfXDL6r3A="
-        }
-    }
+	"providers": {
+		"awscloudformation": {
+			"AuthRoleName": "chdlr-20190804032238-authRole",
+			"UnauthRoleArn": "arn:aws:iam::900820753842:role/chdlr-20190804032238-unauthRole",
+			"AuthRoleArn": "arn:aws:iam::900820753842:role/chdlr-20190804032238-authRole",
+			"Region": "us-east-1",
+			"DeploymentBucketName": "chdlr-20190804032238-deployment",
+			"UnauthRoleName": "chdlr-20190804032238-unauthRole",
+			"StackName": "chdlr-20190804032238",
+			"StackId": "arn:aws:cloudformation:us-east-1:900820753842:stack/chdlr-20190804032238/c50d1220-b65e-11e9-9f8a-12c9298e4208"
+		}
+	},
+	"auth": {},
+	"api": {},
+	"analytics": {}
 }
