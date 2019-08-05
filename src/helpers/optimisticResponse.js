@@ -106,7 +106,7 @@ export const createCommentResponse = (input, eventId) => {
     const toCommentData = input.toCommentId && getData(gql(getComment), input.toCommentId);
     const toComment = toCommentData ? toCommentData.getComment : null;
     const { getUser } = userData;
-    const author = {
+    const ownerModel = {
       __typename: 'User',
       id: getUser.id,
       name: getUser.name,
@@ -124,7 +124,7 @@ export const createCommentResponse = (input, eventId) => {
         id: eventId,
         commentsCount: eventData.getEvent.commentsCount + 1,
       },
-      author,
+      ownerModel,
       createdAt: moment().toISOString()
     };
     return ({
@@ -168,7 +168,7 @@ export const createEventResponse = (input) => {
     isCancelled: false,
     isPublic: Boolean(input.isPublic),
     schedule,
-    author: {
+    ownerModel: {
       __typename: 'User',
       id: getUser.id,
       name: getUser.name
@@ -201,7 +201,7 @@ export const createScheduleResponse = (input) => {
         isPublic: Boolean(input.isPublic),
         isFollowing: false,
         isOwner: true,
-        author: getUser,
+        ownerModel: getUser,
         eventsCount: 0,
         followersCount: 0,
         createdAt: moment().toISOString(),
