@@ -84,7 +84,7 @@
 				"TemplateURL": "https://s3.amazonaws.com/chdlr-20190804032238-deployment/amplify-cfn-templates/auth/schdlreeeffacceeeffacc-cloudformation-template.yml",
 				"Parameters": {
 					"identityPoolName": "schdlreeeffacc_identitypool_eeeffacc",
-					"allowUnauthenticatedIdentities": true,
+					"allowUnauthenticatedIdentities": false,
 					"openIdLambdaRoleName": "schdlreeeffacc_openid_lambda_role",
 					"resourceNameTruncated": "schdlreeeffacc",
 					"userPoolName": "schdlreeeffacc_userpool_eeeffacc",
@@ -107,15 +107,12 @@
 					"mfaLambdaRole": "schdlreeeffacc_totp_lambda_role",
 					"userpoolClientLambdaRole": "schdlreeeffacc_userpoolclient_lambda_role",
 					"userpoolClientSetAttributes": false,
-					"useDefault": "manual",
+					"useDefault": "defaultSocial",
 					"authSelections": "identityPoolAndUserPool",
 					"resourceName": "schdlreeeffacceeeffacc",
-					"thirdPartyAuth": true,
-					"authProviders": "graph.facebook.com,accounts.google.com",
 					"usernameAttributes": "email",
 					"triggers": "{}",
-					"hostedUI": false,
-					"selectedParties": "{\"graph.facebook.com\":\"203644060264792\",\"accounts.google.com\":\"915796894963-6566v17dt2cuet54ihj3cem5vod86js3.apps.googleusercontent.com\"}",
+					"hostedUI": true,
 					"authRoleName": {
 						"Ref": "AuthRoleName"
 					},
@@ -139,8 +136,17 @@
 					},
 					"permissions": "",
 					"dependsOn": "",
-					"facebookAppId": "203644060264792",
-					"googleClientId": "915796894963-6566v17dt2cuet54ihj3cem5vod86js3.apps.googleusercontent.com",
+					"hostedUIDomainName": "schdlr",
+					"newCallbackURLs": "schdlr://",
+					"newLogoutURLs": "schdlr://",
+					"authProvidersUserPool": "Facebook,Google",
+					"hostedUIProviderMeta": "[{\"ProviderName\":\"Facebook\",\"authorize_scopes\":\"email,public_profile\",\"AttributeMapping\":{\"email\":\"email\",\"username\":\"id\"}},{\"ProviderName\":\"Google\",\"authorize_scopes\":\"openid email profile\",\"AttributeMapping\":{\"email\":\"email\",\"username\":\"sub\"}}]",
+					"oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"schdlr://\"],\"LogoutURLs\":[\"schdlr://\"]}",
+					"facebookAppIdUserPool": "203644060264792",
+					"facebookAppSecretUserPool": "25160892b72473bfb8e1355da76e7d68",
+					"googleAppIdUserPool": "915796894963-6566v17dt2cuet54ihj3cem5vod86js3.apps.googleusercontent.com",
+					"googleAppSecretUserPool": "IrktlIykRADsWM8q1KxWsmmm",
+					"hostedUIProviderCreds": "[{\"ProviderName\":\"Facebook\",\"client_id\":\"203644060264792\",\"client_secret\":\"25160892b72473bfb8e1355da76e7d68\"},{\"ProviderName\":\"Google\",\"client_id\":\"915796894963-6566v17dt2cuet54ihj3cem5vod86js3.apps.googleusercontent.com\",\"client_secret\":\"IrktlIykRADsWM8q1KxWsmmm\"}]",
 					"env": "NONE"
 				}
 			}
@@ -160,7 +166,7 @@
 						]
 					},
 					"S3DeploymentBucket": "chdlr-20190804032238-deployment",
-					"S3DeploymentRootKey": "amplify-appsync-files/8cdf960721843fc8213f998f78194d342ee49eac",
+					"S3DeploymentRootKey": "amplify-appsync-files/d8be22418153c4eea66ab1bc7d675ed736d39041",
 					"env": "NONE"
 				}
 			}

@@ -15,9 +15,14 @@ import NotificationsIcon from 'components/common/NotificationIcon';
 const FONT_SIZE = 25;
 
 const Home = createBottomTabNavigator({
-  Home: { screen: HomeRoute },
+  Home: {
+    screen: HomeRoute
+  },
   Explore: { screen: ExploreTab },
-  Notifications: { screen: NotificationRoute },
+  Notifications: {
+    screen: NotificationRoute,
+    path: 'notif'
+  },
   More: { screen: MoreRoute }
 }, {
   initialRouteName: 'Home',

@@ -19,26 +19,10 @@ class Container extends React.Component {
     }
   }
 
-  _signInAsync = async ({
-    name,
-    provider
-  }) => {
+  _signInAsync = async (provider) => {
     this.setState({ loading: true });
     try {
-      // await this._bootstrap();
       await Auth.federatedSignIn({ provider });
-      // this.props.stores.me.login({
-      //   id: email,
-      //   name,
-      //   email,
-      //   pictureUrl
-      // });
-      // await this.props.onSubmit({
-      //   name,
-      //   email,
-      //   pictureUrl
-      // });
-      // this.props.navigation.navigate('App');
       SimpleToast.show(`Welcome ${name}!`, SimpleToast.SHORT);
     } catch (error) {
       SimpleToast.show('Login failed: ' + error.message, SimpleToast.SHORT);

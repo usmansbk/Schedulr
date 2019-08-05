@@ -41,6 +41,7 @@ export default class App extends React.Component {
             <Rehydrated loading={<Loading />}>
               <MobxProvider stores={stores}>
                 <AppContainer
+                  uriPrefix={env.uriPrefix}
                   ref={navigatorRef => {
                     NavigationService.setTopLevelNavigator(navigatorRef);
                   }}

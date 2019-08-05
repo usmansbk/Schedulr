@@ -27,7 +27,10 @@ import {
 import colors from 'config/colors';
 
 const AppStack = createStackNavigator({
-  Home,
+  Home: {
+    screen: Home,
+    path: ''
+  },
   EditEvent: {
     screen: EditEvent,
     navigationOptions: {
@@ -54,6 +57,7 @@ const AppStack = createStackNavigator({
   },
   EventDetails: {
     screen: EventDetails,
+    path: 'event/:id',
     navigationOptions: {
       header: null
     }
@@ -72,6 +76,7 @@ const AppStack = createStackNavigator({
   },
   ScheduleInfo: {
     screen: ScheduleInfo,
+    path: 'schdl/:id',
     navigationOptions: {
       header: null
     }
@@ -137,7 +142,10 @@ const AuthStack = createStackNavigator({
 
 const AppNavigator = createSwitchNavigator({
   AuthLoading,
-  App: AppStack,
+  App: {
+    screen: AppStack,
+    path: '',
+  },
   Auth: AuthStack,
 }, {
   initialRouteName: 'AuthLoading',
