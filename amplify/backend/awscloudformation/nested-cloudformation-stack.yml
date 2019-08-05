@@ -84,7 +84,7 @@
 				"TemplateURL": "https://s3.amazonaws.com/chdlr-20190804032238-deployment/amplify-cfn-templates/auth/schdlreeeffacceeeffacc-cloudformation-template.yml",
 				"Parameters": {
 					"identityPoolName": "schdlreeeffacc_identitypool_eeeffacc",
-					"allowUnauthenticatedIdentities": false,
+					"allowUnauthenticatedIdentities": true,
 					"openIdLambdaRoleName": "schdlreeeffacc_openid_lambda_role",
 					"resourceNameTruncated": "schdlreeeffacc",
 					"userPoolName": "schdlreeeffacc_userpool_eeeffacc",
@@ -141,6 +141,33 @@
 					"dependsOn": "",
 					"facebookAppId": "203644060264792",
 					"googleClientId": "915796894963-6566v17dt2cuet54ihj3cem5vod86js3.apps.googleusercontent.com",
+					"env": "NONE"
+				}
+			}
+		},
+		"analyticsschdlr": {
+			"Type": "AWS::CloudFormation::Stack",
+			"Properties": {
+				"TemplateURL": "https://s3.amazonaws.com/chdlr-20190804032238-deployment/amplify-cfn-templates/analytics/pinpoint-cloudformation-template.json",
+				"Parameters": {
+					"appName": "schdlr",
+					"roleName": "pinpointLambdaRole2117ca52",
+					"cloudWatchPolicyName": "cloudWatchPolicy2117ca52",
+					"pinpointPolicyName": "pinpointPolicy2117ca52",
+					"authPolicyName": "pinpoint_amplify_2117ca52",
+					"unauthPolicyName": "pinpoint_amplify_2117ca52",
+					"authRoleName": {
+						"Ref": "AuthRoleName"
+					},
+					"unauthRoleName": {
+						"Ref": "UnauthRoleName"
+					},
+					"authRoleArn": {
+						"Fn::GetAtt": [
+							"AuthRole",
+							"Arn"
+						]
+					},
 					"env": "NONE"
 				}
 			}
