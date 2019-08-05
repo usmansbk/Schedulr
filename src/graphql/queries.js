@@ -1,24 +1,169 @@
-// eslint-disable
+/* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const getUser = `query GetUser($id: ID!) {
-  getUser(id: $id) {
+export const getSchedule = `query GetSchedule($id: ID!) {
+  getSchedule(id: $id) {
     id
     name
-    email
-    pictureUrl
-    followingCount
-    createdCount
+    description
+    status
+    isPublic
+    isFollowing
+    isOwner
+    owner {
+      id
+      name
+      email
+      pictureUrl
+      followingCount
+      createdCount
+      comments {
+        nextToken
+      }
+      events {
+        nextToken
+      }
+      schedules {
+        nextToken
+      }
+      following {
+        nextToken
+      }
+    }
+    eventsCount
+    followersCount
+    followers
+    location {
+      lat
+      lon
+    }
+    events {
+      items {
+        id
+        title
+        description
+        venue
+        startAt
+        endAt
+        allDay
+        isCancelled
+        repeat
+        until
+        forever
+        eventType
+        isPublic
+        cancelledDates
+        bookmarksCount
+        isBookmarked
+        isOwner
+        commentsCount
+      }
+      nextToken
+    }
   }
 }
 `;
-
-export const followingSchedules = `query FollowingSchedule($id: ID!, $limit: Int, $nextToken: String) {
-  followingSchedules: getUser(id: $id) {
+export const listSchedules = `query ListSchedules(
+  $filter: ModelScheduleFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listSchedules(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      name
+      description
+      status
+      isPublic
+      isFollowing
+      isOwner
+      owner {
+        id
+        name
+        email
+        pictureUrl
+        followingCount
+        createdCount
+      }
+      eventsCount
+      followersCount
+      followers
+      location {
+        lat
+        lon
+      }
+      events {
+        nextToken
+      }
+    }
+    nextToken
+  }
+}
+`;
+export const getComment = `query GetComment($id: ID!) {
+  getComment(id: $id) {
     id
-    followingSchedules(limit: $limit, nextToken: $nextToken) {
-      nextToken
-      items {
+    content
+    isReply
+    toComment {
+      id
+      content
+      isReply
+      toComment {
+        id
+        content
+        isReply
+        isOwner
+      }
+      isOwner
+      event {
+        id
+        title
+        description
+        venue
+        startAt
+        endAt
+        allDay
+        isCancelled
+        repeat
+        until
+        forever
+        eventType
+        isPublic
+        cancelledDates
+        bookmarksCount
+        isBookmarked
+        isOwner
+        commentsCount
+      }
+      owner {
+        id
+        name
+        email
+        pictureUrl
+        followingCount
+        createdCount
+      }
+    }
+    isOwner
+    event {
+      id
+      title
+      description
+      venue
+      startAt
+      endAt
+      allDay
+      isCancelled
+      repeat
+      until
+      forever
+      eventType
+      location {
+        lat
+        lon
+      }
+      schedule {
         id
         name
         description
@@ -26,53 +171,101 @@ export const followingSchedules = `query FollowingSchedule($id: ID!, $limit: Int
         isPublic
         isFollowing
         isOwner
-        author {
-          id
-          name
-          email
-          pictureUrl
-          followingCount
-          createdCount
-        }
         eventsCount
         followersCount
-        createdAt
-        updatedAt
+        followers
       }
-    }
-  }
-}`;
-
-export const createdSchedules = `query FollowingSchedule($id: ID!, $limit: Int, $nextToken: String) {
-  createdSchedules: getUser(id: $id) {
-    id
-    createdSchedules(limit: $limit, nextToken: $nextToken) {
-      nextToken
-      items {
+      isPublic
+      cancelledDates
+      bookmarksCount
+      isBookmarked
+      isOwner
+      owner {
         id
         name
-        description
-        status
-        isPublic
-        isFollowing
-        isOwner
-        author {
-          id
-          name
-          email
-          pictureUrl
-          followingCount
-          createdCount
-        }
-        eventsCount
-        followersCount
-        createdAt
-        updatedAt
+        email
+        pictureUrl
+        followingCount
+        createdCount
+      }
+      commentsCount
+      comments {
+        nextToken
+      }
+    }
+    owner {
+      id
+      name
+      email
+      pictureUrl
+      followingCount
+      createdCount
+      comments {
+        nextToken
+      }
+      events {
+        nextToken
+      }
+      schedules {
+        nextToken
+      }
+      following {
+        nextToken
       }
     }
   }
-}`;
-
+}
+`;
+export const listComments = `query ListComments(
+  $filter: ModelCommentFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listComments(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      content
+      isReply
+      toComment {
+        id
+        content
+        isReply
+        isOwner
+      }
+      isOwner
+      event {
+        id
+        title
+        description
+        venue
+        startAt
+        endAt
+        allDay
+        isCancelled
+        repeat
+        until
+        forever
+        eventType
+        isPublic
+        cancelledDates
+        bookmarksCount
+        isBookmarked
+        isOwner
+        commentsCount
+      }
+      owner {
+        id
+        name
+        email
+        pictureUrl
+        followingCount
+        createdCount
+      }
+    }
+    nextToken
+  }
+}
+`;
 export const getEvent = `query GetEvent($id: ID!) {
   getEvent(id: $id) {
     id
@@ -84,71 +277,84 @@ export const getEvent = `query GetEvent($id: ID!) {
     allDay
     isCancelled
     repeat
-    forever
     until
+    forever
     eventType
-    isPublic
+    location {
+      lat
+      lon
+    }
     schedule {
       id
       name
-      eventsCount
-      isFollowing
+      description
+      status
       isPublic
+      isFollowing
+      isOwner
+      owner {
+        id
+        name
+        email
+        pictureUrl
+        followingCount
+        createdCount
+      }
+      eventsCount
+      followersCount
+      followers
+      location {
+        lat
+        lon
+      }
+      events {
+        nextToken
+      }
     }
-    author {
-      id
-      name
-    }
+    isPublic
     cancelledDates
     bookmarksCount
     isBookmarked
     isOwner
-    commentsCount
-    createdAt
-    updatedAt
-  }
-}
-`;
-
-export const getSchedule = `query GetSchedule($id: ID!) {
-  getSchedule(id: $id) {
-    id
-    name
-    description
-    status
-    isPublic
-    isFollowing
-    isOwner
-    author {
+    owner {
       id
       name
       email
       pictureUrl
       followingCount
       createdCount
+      comments {
+        nextToken
+      }
+      events {
+        nextToken
+      }
+      schedules {
+        nextToken
+      }
+      following {
+        nextToken
+      }
     }
-    eventsCount
-    followersCount
-    createdAt
-    updatedAt
+    commentsCount
+    comments {
+      items {
+        id
+        content
+        isReply
+        isOwner
+      }
+      nextToken
+    }
   }
 }
 `;
-
-export const getComment = `query GetComment($id: ID!) {
-  getComment(id: $id) @client {
-    id
-    content
-    author {
-      id
-      name
-    }
-  }
-}`;
-
-export const listAllEvents = `query ListAllEvents($filter: QueryFilterInput) {
-  listAllEvents(filter: $filter) @connection(key: "listAllEvents") {
-    nextToken
+export const listEvents = `query ListEvents(
+  $filter: ModelEventFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listEvents(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
       id
       title
@@ -159,74 +365,31 @@ export const listAllEvents = `query ListAllEvents($filter: QueryFilterInput) {
       allDay
       isCancelled
       repeat
-      forever
       until
+      forever
       eventType
-      isPublic
+      location {
+        lat
+        lon
+      }
       schedule {
         id
         name
-        isFollowing
-        eventsCount
+        description
+        status
         isPublic
+        isFollowing
+        isOwner
+        eventsCount
+        followersCount
+        followers
       }
-      author {
-        id
-        name
-      }
+      isPublic
       cancelledDates
       bookmarksCount
       isBookmarked
       isOwner
-      commentsCount
-      createdAt
-      updatedAt  
-    }
-  }
-}`;
-
-export const listEventComments = `query ListEventComments($id: ID!, $limit: Int, $nextToken: String) {
-  listComments(id: $id, limit: $limit, nextToken: $nextToken) @connection(key: "listComments", filter: ["id"]) {
-    nextToken
-    items {
-      id
-      content
-      isReply
-      toComment {
-        id
-        content
-        author {
-          id
-          name
-        }
-      }
-      event {
-        id
-        commentsCount
-      }
-      isOwner
-      author {
-        id
-        name
-        pictureUrl
-      }
-      createdAt
-    }
-  }
-}`;
-
-export const listAllSchedules = `query ListAllSchedules {
-  listAllSchedules {
-    nextToken
-    items {
-      id
-      name
-      description
-      status
-      isPublic
-      isFollowing
-      isOwner
-      author {
+      owner {
         id
         name
         email
@@ -234,20 +397,33 @@ export const listAllSchedules = `query ListAllSchedules {
         followingCount
         createdCount
       }
-      eventsCount
-      followersCount
-      createdAt
-      updatedAt
+      commentsCount
+      comments {
+        nextToken
+      }
     }
+    nextToken
   }
 }
 `;
-
-export const listScheduleEvents = `query ListScheduleEvents($id: ID!, $limit: Int, $nextToken: String, $filter: QueryFilterInput) {
-  listScheduleEvents: getSchedule(id: $id) {
+export const getUser = `query GetUser($id: ID!) {
+  getUser(id: $id) {
     id
-    events(limit: $limit, nextToken: $nextToken, filter: $filter) {
+    name
+    email
+    pictureUrl
+    followingCount
+    createdCount
+    comments {
+      items {
+        id
+        content
+        isReply
+        isOwner
+      }
       nextToken
+    }
+    events {
       items {
         id
         title
@@ -258,36 +434,57 @@ export const listScheduleEvents = `query ListScheduleEvents($id: ID!, $limit: In
         allDay
         isCancelled
         repeat
-        forever
         until
+        forever
         eventType
         isPublic
-        schedule {
-          id
-          name
-          eventsCount
-          isFollowing
-          isPublic
-        }
-        author {
-          id
-          name
-        }
         cancelledDates
         bookmarksCount
         isBookmarked
         isOwner
         commentsCount
-        createdAt
-        updatedAt  
       }
+      nextToken
+    }
+    schedules {
+      items {
+        id
+        name
+        description
+        status
+        isPublic
+        isFollowing
+        isOwner
+        eventsCount
+        followersCount
+        followers
+      }
+      nextToken
+    }
+    following {
+      items {
+        id
+        name
+        description
+        status
+        isPublic
+        isFollowing
+        isOwner
+        eventsCount
+        followersCount
+        followers
+      }
+      nextToken
     }
   }
-}`
-
-export const listScheduleFollowers = `query Followers($id: ID!, $limit: Int, $nextToken: String) {
-  listFollowers(id: $id, limit: $limit, nextToken: $nextToken)  @connection(key: "listFollowers",filter: ["id"])  {
-    nextToken
+}
+`;
+export const listUsers = `query ListUsers(
+  $filter: ModelUserFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listUsers(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
       id
       name
@@ -295,73 +492,20 @@ export const listScheduleFollowers = `query Followers($id: ID!, $limit: Int, $ne
       pictureUrl
       followingCount
       createdCount
+      comments {
+        nextToken
+      }
+      events {
+        nextToken
+      }
+      schedules {
+        nextToken
+      }
+      following {
+        nextToken
+      }
     }
-  }
-}`
-
-export const searchEvent = `query SearchEvent($filter: SearchFilterInput, $size: Int, $from: Int) {
-  searchEvent(filter: $filter, size: $size, from: $from) @connection(key: "searchEvent") {
     nextToken
-    items {
-      id
-      title
-      description
-      venue
-      startAt
-      endAt
-      allDay
-      isCancelled
-      repeat
-      forever
-      until
-      eventType
-      isPublic
-      schedule {
-        id
-        name
-        eventsCount
-        isFollowing
-        isPublic
-      }
-      author {
-        id
-        name
-      }
-      cancelledDates
-      bookmarksCount
-      isBookmarked
-      isOwner
-      commentsCount
-      createdAt
-      updatedAt
-    }
-  }
-}
-`;
-export const searchSchedule = `query SearchSchedule($filter: SearchFilterInput, $size: Int, $from: Int) {
-  searchSchedule(filter: $filter, size: $size, from: $from) @connection(key: "searchSchedule") {
-    nextToken
-    items {
-      id
-      name
-      description
-      status
-      isPublic
-      isFollowing
-      isOwner
-      author {
-        id
-        name
-        email
-        pictureUrl
-        followingCount
-        createdCount
-      }
-      eventsCount
-      followersCount
-      createdAt
-      updatedAt
-    }
   }
 }
 `;

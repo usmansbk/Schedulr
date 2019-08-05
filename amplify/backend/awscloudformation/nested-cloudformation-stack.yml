@@ -158,6 +158,26 @@
 				}
 			}
 		},
+		"apischdlr": {
+			"Type": "AWS::CloudFormation::Stack",
+			"Properties": {
+				"TemplateURL": "https://s3.amazonaws.com/chdlr-20190804032238-deployment/amplify-cfn-templates/api/cloudformation-template.json",
+				"Parameters": {
+					"AppSyncApiName": "schdlr",
+					"DynamoDBBillingMode": "PAY_PER_REQUEST",
+					"DynamoDBEnableServerSideEncryption": "false",
+					"AuthCognitoUserPoolId": {
+						"Fn::GetAtt": [
+							"authcognitoff1022f0",
+							"Outputs.UserPoolId"
+						]
+					},
+					"S3DeploymentBucket": "chdlr-20190804032238-deployment",
+					"S3DeploymentRootKey": "amplify-appsync-files/62dd39776708bc405cf237429670105999998f9b",
+					"env": "NONE"
+				}
+			}
+		},
 		"analyticsschdlr": {
 			"Type": "AWS::CloudFormation::Stack",
 			"Properties": {
