@@ -15,9 +15,9 @@ class Container extends React.Component {
       switch(event) {
         case "signIn":
           const user = await Auth.currentUserInfo();
-          // const { attributes: { email } } = user;
+          const { attributes: { email } } = user;
           // SimpleToast.show(`Welcome ${name}!`, SimpleToast.SHORT);
-          alert(JSON.stringify(user));
+          alert(email);
           break;
       }
     });

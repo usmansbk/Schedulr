@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, StatusBar } from 'react-native';
-import { Caption, Headline, ActivityIndicator } from 'react-native-paper';
+import { Caption, Headline } from 'react-native-paper';
 import GLoginButton from 'components/social_buttons/GLoginButton';
 import FBLoginButton from 'components/social_buttons/FBLoginButton';
 import Logo from 'components/common/Logo';
@@ -16,14 +16,8 @@ export default (props) => (
         The event scheduler
       </Caption>
       <View style={styles.content}>
-        {
-          props.loading ? <ActivityIndicator animating /> : (
-            <>
-              <FBLoginButton onLogin={props.handleLogin} />
-              <GLoginButton onLogin={props.handleLogin} />
-            </>
-          )
-        }
+        <FBLoginButton disabled={props.loading} onLogin={props.handleLogin} />
+        <GLoginButton disabled={props.loading} onLogin={props.handleLogin} />
       </View>
       <Caption style={styles.caption}>
         Share your schedules with friends and colleagues!

@@ -3,10 +3,18 @@ import Button from './Button';
 
 export default class Container extends React.Component {
 
-  _signIn = () => this.props.onLogin('Google');
+  state = {
+    loading: false
+  };
+
+  _signIn = async () => {
+    this.setState({ loading: true });
+    await this.props.onLogin('Google');
+    this.setState({ loading: false });
+  }
 
   render() {
-    const { loading } = this.props;
+    const { loading } = this.state;
     return (
       <Button
         loading={loading}
