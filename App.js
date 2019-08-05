@@ -11,7 +11,7 @@ import Amplify from 'aws-amplify';
 import AppContainer from './src/App';
 import Loading from 'components/common/Hydrating';
 import NavigationService from 'config/navigation';
-import aws_config from './src/aws-exports';
+import aws_config from './aws-exports';
 import client from 'config/client';
 import stores from 'stores';
 import env from 'config/env';
