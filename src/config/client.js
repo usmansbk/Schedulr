@@ -32,7 +32,8 @@ const appSyncLink = createAppSyncLink({
   auth: {
     type: aws_config.aws_appsync_authenticationType,
     jwtToken: async () => (await Auth.currentSession()).getIdToken().getJwtToken(),
-  }
+  },
+  complexObjectsCredentials: () => Auth.currentCredentials(),
 });
 
 const link = ApolloLink.from([errorLink, appSyncLink]);
