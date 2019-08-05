@@ -11,7 +11,30 @@
 			"StackId": "arn:aws:cloudformation:us-east-1:900820753842:stack/chdlr-20190804032238/c50d1220-b65e-11e9-9f8a-12c9298e4208"
 		}
 	},
-	"auth": {},
+	"auth": {
+		"schdlreeeffacceeeffacc": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": [],
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/chdlr-20190804032238-deployment/amplify-cfn-templates/auth/schdlreeeffacceeeffacc-cloudformation-template.yml",
+				"logicalId": "authschdlreeeffacceeeffacc"
+			},
+			"lastPushTimeStamp": "2019-08-05T05:54:37.013Z",
+			"output": {
+				"GoogleWebClient": "915796894963-6566v17dt2cuet54ihj3cem5vod86js3.apps.googleusercontent.com",
+				"AppClientSecret": "1cvtreecte71fmbep4dlksfe918p714jb6grg5pae15ptulijkvs",
+				"UserPoolId": "us-east-1_AxP4tm7Sj",
+				"AppClientIDWeb": "3fa3ecqh8buqmv74im6ff9le7d",
+				"AppClientID": "u00j01k2pmm32cujp6o3p55ou",
+				"FacebookWebClient": "203644060264792",
+				"IdentityPoolId": "us-east-1:c12037b3-0522-4e81-b8d3-9b163b9a55d0",
+				"IdentityPoolName": "schdlreeeffacc_identitypool_eeeffacc",
+				"UserPoolName": "schdlreeeffacc_userpool_eeeffacc"
+			},
+			"lastPushDirHash": "L+PxqfgWJpZuSE04eeMa1OZcCq4="
+		}
+	},
 	"api": {},
 	"analytics": {}
 }
