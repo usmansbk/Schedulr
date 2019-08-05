@@ -1,8 +1,8 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const onCreateSchedule = `subscription OnCreateSchedule {
-  onCreateSchedule {
+export const createSchedule = `mutation CreateSchedule($input: CreateScheduleInput!) {
+  createSchedule(input: $input) {
     id
     name
     description
@@ -136,8 +136,8 @@ export const onCreateSchedule = `subscription OnCreateSchedule {
   }
 }
 `;
-export const onUpdateSchedule = `subscription OnUpdateSchedule {
-  onUpdateSchedule {
+export const updateSchedule = `mutation UpdateSchedule($input: UpdateScheduleInput!) {
+  updateSchedule(input: $input) {
     id
     name
     description
@@ -271,8 +271,8 @@ export const onUpdateSchedule = `subscription OnUpdateSchedule {
   }
 }
 `;
-export const onDeleteSchedule = `subscription OnDeleteSchedule {
-  onDeleteSchedule {
+export const deleteSchedule = `mutation DeleteSchedule($input: DeleteScheduleInput!) {
+  deleteSchedule(input: $input) {
     id
     name
     description
@@ -406,8 +406,8 @@ export const onDeleteSchedule = `subscription OnDeleteSchedule {
   }
 }
 `;
-export const onCreateComment = `subscription OnCreateComment {
-  onCreateComment {
+export const createComment = `mutation CreateComment($input: CreateCommentInput!) {
+  createComment(input: $input) {
     id
     content
     isReply
@@ -548,8 +548,8 @@ export const onCreateComment = `subscription OnCreateComment {
   }
 }
 `;
-export const onUpdateComment = `subscription OnUpdateComment {
-  onUpdateComment {
+export const updateComment = `mutation UpdateComment($input: UpdateCommentInput!) {
+  updateComment(input: $input) {
     id
     content
     isReply
@@ -690,8 +690,8 @@ export const onUpdateComment = `subscription OnUpdateComment {
   }
 }
 `;
-export const onDeleteComment = `subscription OnDeleteComment {
-  onDeleteComment {
+export const deleteComment = `mutation DeleteComment($input: DeleteCommentInput!) {
+  deleteComment(input: $input) {
     id
     content
     isReply
@@ -832,8 +832,8 @@ export const onDeleteComment = `subscription OnDeleteComment {
   }
 }
 `;
-export const onCreateEvent = `subscription OnCreateEvent {
-  onCreateEvent {
+export const createEvent = `mutation CreateEvent($input: CreateEventInput!) {
+  createEvent(input: $input) {
     id
     title
     description
@@ -988,8 +988,8 @@ export const onCreateEvent = `subscription OnCreateEvent {
   }
 }
 `;
-export const onUpdateEvent = `subscription OnUpdateEvent {
-  onUpdateEvent {
+export const updateEvent = `mutation UpdateEvent($input: UpdateEventInput!) {
+  updateEvent(input: $input) {
     id
     title
     description
@@ -1144,8 +1144,8 @@ export const onUpdateEvent = `subscription OnUpdateEvent {
   }
 }
 `;
-export const onDeleteEvent = `subscription OnDeleteEvent {
-  onDeleteEvent {
+export const deleteEvent = `mutation DeleteEvent($input: DeleteEventInput!) {
+  deleteEvent(input: $input) {
     id
     title
     description
@@ -1300,8 +1300,8 @@ export const onDeleteEvent = `subscription OnDeleteEvent {
   }
 }
 `;
-export const onCreateUser = `subscription OnCreateUser {
-  onCreateUser {
+export const createUser = `mutation CreateUser($input: CreateUserInput!) {
+  createUser(input: $input) {
     id
     name
     email
@@ -1413,8 +1413,8 @@ export const onCreateUser = `subscription OnCreateUser {
   }
 }
 `;
-export const onUpdateUser = `subscription OnUpdateUser {
-  onUpdateUser {
+export const updateUser = `mutation UpdateUser($input: UpdateUserInput!) {
+  updateUser(input: $input) {
     id
     name
     email
@@ -1526,8 +1526,8 @@ export const onUpdateUser = `subscription OnUpdateUser {
   }
 }
 `;
-export const onDeleteUser = `subscription OnDeleteUser {
-  onDeleteUser {
+export const deleteUser = `mutation DeleteUser($input: DeleteUserInput!) {
+  deleteUser(input: $input) {
     id
     name
     email
