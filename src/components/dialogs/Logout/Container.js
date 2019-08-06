@@ -1,6 +1,7 @@
 import React from 'react';
 import AsyncStorage from '@react-native-community/async-storage';
 import { withNavigation } from 'react-navigation';
+import { inject, observer } from 'mobx-react';
 import Dialog from './Dialog';
 
 class Container extends React.Component {
@@ -13,6 +14,7 @@ class Container extends React.Component {
     await this._clearCache();
     this._handleDismiss();
     this.props.navigation.navigate('Auth');
+    this.props.stores.reset();
   };
 
   _clearCache = async () => {
@@ -36,4 +38,6 @@ class Container extends React.Component {
   }
 }
 
-export default withNavigation(Container);
+const withStores = inject("stores")(observer(Container));
+
+export default withNavigation(withStores);
