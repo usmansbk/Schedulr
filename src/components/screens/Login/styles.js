@@ -20,6 +20,6 @@ export default StyleSheet.create({
   },
   caption: {
     textAlign: 'center',
-    color: colors.black
+    color: colors.gray
   }
 });
