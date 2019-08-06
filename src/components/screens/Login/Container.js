@@ -13,6 +13,8 @@ class Container extends React.Component {
       switch(event) {
         case "signIn":
           console.log(data);
+          // do gql logic here
+          this.props.navigation.navigate('App');
           break;
       }
     });

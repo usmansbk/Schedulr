@@ -14,7 +14,7 @@ class Container extends React.Component {
     this.setState({ loading: true });
     await this._clearCache();
     this._handleDismiss();
-    this.props.navigation.navigate('Auth');
+    // this.props.navigation.navigate('Auth');
     this.props.stores.reset();
   };
 

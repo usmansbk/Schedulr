@@ -144,9 +144,12 @@ const AppNavigator = createSwitchNavigator({
   AuthLoading,
   App: {
     screen: AppStack,
-    path: '',
+    path: 'app'
   },
-  Auth: AuthStack,
+  Auth: {
+    screen: AuthStack,
+    path: '',
+  }
 }, {
   initialRouteName: 'AuthLoading',
 });
