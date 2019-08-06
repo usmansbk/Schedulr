@@ -25,7 +25,7 @@ class UserProfile extends React.Component {
       navigation.push('UserSchedules', {
         id,
         name,
-        myProfile: stores.me.id === id,
+        myProfile: stores.appState.userId === id,
       });
     }
   };
@@ -37,7 +37,7 @@ class UserProfile extends React.Component {
       navigation.push('UserSchedules', {
         id,
         name,
-        myProfile: stores.me.id === id,
+        myProfile: stores.appState.userId === id,
         toCreatedTab: true
       });
     }

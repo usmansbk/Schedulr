@@ -101,7 +101,7 @@ export const deleteEventResponse = (input) => {
 
 export const createCommentResponse = (input, eventId) => {
   const eventData = getData(gql(getEvent), eventId);
-  const userData = getData(gql(getUserQuery), stores.me.id);
+  const userData = getData(gql(getUserQuery), stores.appState.userId);
   if (eventData && userData) {
     const toCommentData = input.toCommentId && getData(gql(getComment), input.toCommentId);
     const toComment = toCommentData ? toCommentData.getComment : null;
@@ -151,7 +151,7 @@ export const createEventResponse = (input) => {
     };
   }
   
-  const { getUser } = getData(gql(getUserQuery), stores.me.id);
+  const { getUser } = getData(gql(getUserQuery), stores.appState.userId);
   const newEvent = {
     __typename: 'Event',
     id: '-' + shortid.generate(),
@@ -189,7 +189,7 @@ export const createEventResponse = (input) => {
 };
 
 export const createScheduleResponse = (input) => {
-    const data = getData(gql(getUserQuery), stores.me.id);
+    const data = getData(gql(getUserQuery), stores.appState.userId);
     if (data) {
       const { getUser } = data;
       const newSchedule = {
