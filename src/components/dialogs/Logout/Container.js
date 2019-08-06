@@ -1,5 +1,5 @@
 import React from 'react';
-import { Auth } from 'aws-amplify';
+import { Cache } from 'aws-amplify';
 import { withNavigation } from 'react-navigation';
 import SimpleToast from 'react-native-simple-toast';
 import Dialog from './Dialog';
@@ -14,16 +14,16 @@ class Container extends React.Component {
   _signOut = () => {
     this.setState({ loading: true });
     this._handleDismiss();
-    this.props.navigation.navigate('Auth');
-    this._clearMobxStore();
-    this._clearStore();
-    
     this._awsSignOut();
     this.setState({ loading: false });
+    this.props.navigation.navigate('Auth');
+    this._resetMobxStores();
+    this._clearStore();
+
     SimpleToast.show("You've been logged out", SimpleToast.SHORT);
   };
 
-  _clearMobxStore = () => {
+  _resetMobxStores = () => {
     stores.reset();
   }
 
@@ -36,7 +36,7 @@ class Container extends React.Component {
   };
 
   _awsSignOut = () => {
-    Auth.signOut();
+    Cache.clear();
   };
 
   _handleDismiss = () => this.props.handleDismiss();

@@ -7,6 +7,7 @@ export default class Container extends React.Component {
   state = { loading: false };
 
   componentDidMount = async () => {
+    const { stores } = this.props;
     Hub.listen("auth", async ({ payload: { event, data } }) => {
       switch(event) {
         case "signIn":
@@ -37,15 +38,3 @@ export default class Container extends React.Component {
     />;
   }
 }
-
-// export default graphql(gql(LoginUser), {
-//   alias: 'withLoginScreen',
-//   props: ({ mutate, ownProps }) => ({
-//     onSubmit: (input) => mutate({
-//       variables: {
-//         input
-//       }
-//     }),
-//     ...ownProps
-//   })
-// })(withStores);

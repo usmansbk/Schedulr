@@ -18,7 +18,7 @@ export default (props) => (
         <GLoginButton disabled={props.loading} onLogin={props.handleLogin} />
       </View>
       <Caption style={styles.caption}>
-        Share your schedules with friends and colleagues!
+        Share your schedules!
       </Caption>
     </View>
 );
