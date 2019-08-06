@@ -1,10 +1,10 @@
 // import { graphql, compose } from 'react-apollo';
 // import { withNavigationFocus } from 'react-navigation';
 // import gql from 'graphql-tag';
-// import { inject, observer } from 'mobx-react';
+import { inject, observer } from 'mobx-react';
 import Schedules from './Schedules';
 
-export default Schedules;
+export default inject("stores")(observer(Schedules));
 
 // import { listAllSchedules } from 'mygraphql/queries';
 

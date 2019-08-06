@@ -1,10 +1,10 @@
 // import { graphql, compose } from 'react-apollo';
 // import { withNavigationFocus } from 'react-navigation';
-// import { inject, observer } from 'mobx-react';
+import { inject, observer } from 'mobx-react';
 // import gql from 'graphql-tag';
 import Events from './Events';
 
-export default Events;
+export default inject("stores")(observer(Events));
 
 // import { listAllEvents } from 'mygraphql/queries';
 // import { filterEvents } from 'mygraphql/filter';

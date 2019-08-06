@@ -17,6 +17,10 @@ export default class Events extends React.Component {
     this._handleLocalNotifications();
   }
 
+  static defaultProps = {
+    events: [],
+  };
+  
   _handleLocalNotifications = () => {
     // Configure notifications for local events reminder
     LocalNotifications.configure({
