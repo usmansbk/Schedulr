@@ -29,7 +29,7 @@ export default class AppState {
 
   debounceQuery = debounce((val) => this.query = val, 250);
 
-  @action toggleLoginState = (state) => this.loggingIn = Boolean(state);
+  @action setLoginState = (state) => this.loggingIn = Boolean(state);
   
   @action toggleConnection = (isConnected) => {
     this.isConnected = isConnected;

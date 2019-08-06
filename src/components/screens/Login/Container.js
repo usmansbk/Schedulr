@@ -6,7 +6,6 @@ import changeNavigationBarColor from 'react-native-navigation-bar-color';
 import Login from './Login';
 
 class Container extends React.Component {
-  shouldComponentUpdate = nextProps => nextProps.navigation.isFocused();
 
   componentDidMount = async () => {
       this.props.stores.appState.setLoginState(false);
