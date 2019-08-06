@@ -1,13 +1,17 @@
 import React from 'react';
 import { Auth, Hub } from 'aws-amplify';
 import SimpleToast from 'react-native-simple-toast';
+import changeNavigationBarColor from 'react-native-navigation-bar-color';
 import Login from './Login';
 
 export default class Container extends React.Component {
   state = { loading: false };
 
   componentDidMount = async () => {
-    const { stores } = this.props;
+    try {
+      await changeNavigationBarColor('white');
+    } catch (error) {}
+
     Hub.listen("auth", async ({ payload: { event, data } }) => {
       switch(event) {
         case "signIn":
@@ -19,7 +23,7 @@ export default class Container extends React.Component {
           break;
       }
     });
-  }
+  };
 
   _signInAsync = async (provider) => {
     try {

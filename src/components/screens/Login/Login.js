@@ -1,5 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, StatusBar } from 'react-native';
 import { Caption, Headline } from 'react-native-paper';
 import GLoginButton from 'components/social_buttons/GLoginButton';
 import FBLoginButton from 'components/social_buttons/FBLoginButton';
@@ -8,6 +8,10 @@ import styles from './styles';
 
 export default (props) => (
     <View style={styles.container}>
+      <StatusBar
+        backgroundColor="white"
+        barStyle="dark-content"
+      />
       <Logo />
       <Headline style={styles.h1}>Welcome to Schdlr!</Headline>
       <Caption style={styles.caption}>
