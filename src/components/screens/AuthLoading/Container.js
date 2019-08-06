@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Auth } from 'aws-amplify';
-import { inject, observer } from 'mobx-react';
+import { withAuthenticator } from 'aws-amplify-react-native';
 import Loading from './Loading';
 
 class Container extends Component {
@@ -25,4 +25,4 @@ class Container extends Component {
   }
 }
 
-export default inject("stores")(observer(Container));
+export default withAuthenticator(Container);

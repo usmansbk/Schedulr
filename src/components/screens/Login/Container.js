@@ -14,10 +14,11 @@ class Container extends React.Component {
     Hub.listen("auth", async ({ payload: { event, data } }) => {
       switch(event) {
         case "signIn":
-          const user = await Auth.currentUserInfo();
-          const { attributes: { email } } = user;
+          const user = await Auth.currentAuthenticatedUser();
+          const { signInUserSession: { idToken: { payload } } } = user;
           // SimpleToast.show(`Welcome ${name}!`, SimpleToast.SHORT);
-          alert(email);
+          // alert(`${payload.email} - ${user.username}`);
+          alert(JSON.stringify(user));
           break;
       }
     });
