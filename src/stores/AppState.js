@@ -10,6 +10,7 @@ import logger from 'config/logger';
 import types from './types';
 
 export default class AppState {
+  @persist @observable userId = null;
   @persist @observable loggingIn = false;
 
   @observable isConnected = false;
@@ -28,6 +29,8 @@ export default class AppState {
   @persist('list') @observable eventTypes =  types;
 
   debounceQuery = debounce((val) => this.query = val, 250);
+
+  @action setUserId = id => this.userId = id;
 
   @action setLoginState = (state) => this.loggingIn = Boolean(state);
   

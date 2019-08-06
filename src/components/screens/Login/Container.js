@@ -20,26 +20,19 @@ class Container extends React.Component {
     }
   };
 
-  _authListener = ({ payload: { event, data } }) => {
+  _authListener = async ({ payload: { event } }) => {
     switch(event) {
       case "signIn":
-        // const { signInUserSession : { idToken } }= data;
-        // let pictureUrl;
-        // const { picture, name, email } = payload;
-        // if (picture) {
-        //   if (payload["cognito:username"].startsWith('Facebook')) {
-        //     const json = JSON.parse(picture)
-        //     pictureUrl = json.data.url;
-        //   } else {
-        //     pictureUrl = picture;
-        //   }
-        // }
-        // this.props.stores.me.setProfile({
-        //   picture: pictureUrl,
-        //   name,
-        //   email
-        // });
-        this.props.navigation.navigate('App');
+        try {
+          const user = await Auth.currentAuthenticatedUser();
+          const { signInUserSession : { idToken: { payload } } }= user;
+          const { email } = payload;
+          console.log(email);
+          this.props.stores.appState.setUserId(email);
+          this.props.navigation.navigate('App');
+        } catch(error) {
+          console.log('Sign-In failed');
+        }
         break;
     }
   };

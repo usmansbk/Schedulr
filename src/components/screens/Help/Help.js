@@ -16,11 +16,6 @@ export default inject('stores')(observer(
       </Appbar>
       <ScrollView style={props.stores.appStyles.styles.bg}>
         <List.Item
-          title="FAQ"
-          onPress={() => props.onPressItem('faq')}
-        />
-        <Divider />
-        <List.Item
           title="Contact us"
           description="Questions? Need help"
           onPress={() => props.onPressItem('contact')}
