@@ -1,10 +1,7 @@
 import React from 'react';
-import { Cache } from 'aws-amplify';
 import AsyncStorage from '@react-native-community/async-storage';
 import { withNavigation } from 'react-navigation';
 import Dialog from './Dialog';
-import client from 'config/client';
-import stores from 'stores';
 
 class Container extends React.Component {
   state = {
@@ -13,21 +10,14 @@ class Container extends React.Component {
 
   _signOut = async () => {
     this.setState({ loading: true });
-    this._handleDismiss();
-    await this._clearStore();
     await this._clearCache();
+    this._handleDismiss();
     this.props.navigation.navigate('Auth');
-    stores.reset();
   };
 
   _clearCache = async () => {
-    Cache.clear();
-    await AsyncStorage.clear();
-  };
-
-  _clearStore = async () => {
     try {
-      await client.clearStore();
+      await AsyncStorage.clear();
     } catch(e) {
     }
   };
