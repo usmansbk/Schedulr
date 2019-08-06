@@ -11,7 +11,7 @@ import Footer from 'components/lists/Schedules/Footer';
 import Empty from 'components/lists/Schedules/Empty';
 import sortSchedules from 'lib/utils';
 import { schedules } from 'lib/constants';
-import { followingSchedules as followingSchedulesQuery, listAllSchedules } from 'mygraphql/queries';
+// import { followingSchedules as followingSchedulesQuery, listAllSchedules } from 'mygraphql/queries';
 
 const {
   ITEM_HEIGHT,
@@ -101,44 +101,44 @@ class FollowingSchedules extends Component{
 }
 
 const withStores = inject("stores")(observer(FollowingSchedules));
-
-export default compose(
-  graphql(gql(listAllSchedules), {
-    alias,
-    skip: props => !props.navigation.getParam('myProfile'),
-    options: {
-      fetchPolicy: 'cache-only'
-    },
-    props: ({ data }) => ({
-      loading: data.loading,
-      error: data.error,
-      data: (
-        data && data.listAllSchedules &&
-        data.listAllSchedules.items &&
-        data.listAllSchedules.items.filter(item => item.isFollowing) || []
-      ),
-    }),
-  }),
-  graphql(gql(followingSchedulesQuery), {
-    alias,
-    skip: props => props.navigation.getParam('myProfile'),
-    options: props => ({
-      variables: {
-        id: props.navigation.getParam('id')
-      },
-      fetchPolicy: 'cache-and-network',
-      notifyOnNetworkStatusChange: true,
-    }),
-    props: ({ data, ownProps }) => ({
-      loading: data.loading || data.networkStatus === 4,
-      error: data.error,
-      data: (
-        data && data.followingSchedules &&
-        data.followingSchedules.followingSchedules &&
-        data.followingSchedules.followingSchedules.items || []
-      ),
-      onRefresh: () =>  data.refetch(),
-      ...ownProps
-    })
-  })
-)(withStores);
+export default withStores;
+// export default compose(
+//   graphql(gql(listAllSchedules), {
+//     alias,
+//     skip: props => !props.navigation.getParam('myProfile'),
+//     options: {
+//       fetchPolicy: 'cache-only'
+//     },
+//     props: ({ data }) => ({
+//       loading: data.loading,
+//       error: data.error,
+//       data: (
+//         data && data.listAllSchedules &&
+//         data.listAllSchedules.items &&
+//         data.listAllSchedules.items.filter(item => item.isFollowing) || []
+//       ),
+//     }),
+//   }),
+//   graphql(gql(followingSchedulesQuery), {
+//     alias,
+//     skip: props => props.navigation.getParam('myProfile'),
+//     options: props => ({
+//       variables: {
+//         id: props.navigation.getParam('id')
+//       },
+//       fetchPolicy: 'cache-and-network',
+//       notifyOnNetworkStatusChange: true,
+//     }),
+//     props: ({ data, ownProps }) => ({
+//       loading: data.loading || data.networkStatus === 4,
+//       error: data.error,
+//       data: (
+//         data && data.followingSchedules &&
+//         data.followingSchedules.followingSchedules &&
+//         data.followingSchedules.followingSchedules.items || []
+//       ),
+//       onRefresh: () =>  data.refetch(),
+//       ...ownProps
+//     })
+//   })
+// )(withStores);
