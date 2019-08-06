@@ -1,5 +1,4 @@
 import React from 'react';
-import AsyncStorage from '@react-native-community/async-storage';
 import { Auth } from 'aws-amplify';
 import { withNavigation } from 'react-navigation';
 import SimpleToast from 'react-native-simple-toast';
@@ -12,27 +11,20 @@ class Container extends React.Component {
     loading: false,
   };
 
-  _signOut = async () => {
+  _signOut = () => {
     this.setState({ loading: true });
-    await this._purgeAsyncStorage();
-    await this._awsSignOut();
-    this.setState({ loading: false });
     this._handleDismiss();
     this.props.navigation.navigate('Auth');
     this._clearMobxStore();
+    this._clearStore();
+    
+    this._awsSignOut();
+    this.setState({ loading: false });
     SimpleToast.show("You've been logged out", SimpleToast.SHORT);
   };
 
   _clearMobxStore = () => {
     stores.reset();
-  }
-
-  _purgeAsyncStorage = async () => {
-    try {
-      await AsyncStorage.clear();
-    } catch(e) {
-      SimpleToast.show(e.message, SimpleToast.LONG);
-    }
   }
 
   _clearStore = async () => {
@@ -43,12 +35,8 @@ class Container extends React.Component {
     }
   };
 
-  _awsSignOut = async () => {
-    try {
-      await Auth.signOut();
-    } catch(e) {
-      SimpleToast.show(e.message, SimpleToast.LONG);
-    }
+  _awsSignOut = () => {
+    Auth.signOut();
   };
 
   _handleDismiss = () => this.props.handleDismiss();
