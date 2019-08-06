@@ -12,8 +12,22 @@ class Container extends React.Component {
     Hub.listen("auth", async ({ payload: { event, data } }) => {
       switch(event) {
         case "signIn":
-          console.log(data);
-          // do gql logic here
+          const { signInUserSession : { idToken: { payload } } }= data;
+          // let pictureUrl;
+          // const { picture, name, email } = payload;
+          // if (picture) {
+          //   if (payload["cognito:username"].startsWith('Facebook')) {
+          //     const json = JSON.parse(picture)
+          //     pictureUrl = json.data.url;
+          //   } else {
+          //     pictureUrl = picture;
+          //   }
+          // }
+          // this.props.stores.me.setProfile({
+          //   picture: pictureUrl,
+          //   name,
+          //   email
+          // });
           this.props.navigation.navigate('App');
           break;
       }
@@ -27,8 +41,7 @@ class Container extends React.Component {
   _signInAsync = async (provider) => {
     try {
       this.props.stores.appState.setLoginState(true);
-      const user = await Auth.federatedSignIn({ provider });
-      console.log(user);
+      await Auth.federatedSignIn({ provider });
     } catch (error) {
       this.props.stores.appState.setLoginState(false);
     }
