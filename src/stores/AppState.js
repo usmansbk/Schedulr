@@ -58,6 +58,7 @@ export default class AppState {
     }
     this.eventTypes = types;
     this.loggingIn = false;
+    this.userId = null;
   }
 
   @action addCustomType = (eventType) => {

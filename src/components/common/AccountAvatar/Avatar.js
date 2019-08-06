@@ -1,12 +1,10 @@
 import React from 'react';
 import { View } from 'react-native';
-import { inject, observer } from 'mobx-react';
 import { Text, Caption, TouchableRipple } from 'react-native-paper';
-import { Auth } from 'aws-amplify';
 import UserAvatar from '../UserAvatar';
 import styles from './styles';
 
-class Avatar extends React.Component {
+export default class Avatar extends React.Component {
   state = {
     username: '',
     email: '',
@@ -14,42 +12,20 @@ class Avatar extends React.Component {
     loading: false
   };
 
-  onPress = () => {
-    this.props.onPress();
+  static defaultProps = {
+    username: '',
+    email: '',
+    pictureUrl: null
   };
 
-  async componentDidMount() {
-    this.setState({ loading: true });
-    try {
-      const user = await Auth.currentAuthenticatedUser();
-      const { signInUserSession : { idToken: { payload } } }= user;
-      let pictureUrl;
-      const { picture, name, email } = payload;
-      if (picture) {
-        if (payload["cognito:username"].startsWith('Facebook')) {
-          const json = JSON.parse(picture)
-          pictureUrl = json.data.url;
-        } else {
-          pictureUrl = picture;
-        }
-      }
-      this.setState({
-        name,
-        email,
-        pictureUrl,
-        loading: false
-      });
-    } catch(e) {
-      console.log(e.message);
-    }
-  }
+  onPress = () => this.props.onPress();
 
   render() {
     const {
       name,
       email,
       pictureUrl
-    } = this.state;
+    } = this.props;
 
     return (
       <TouchableRipple
@@ -72,5 +48,3 @@ class Avatar extends React.Component {
     );
   }
 }
-
-export default inject("stores")(observer(Avatar));
