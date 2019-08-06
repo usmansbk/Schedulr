@@ -3,6 +3,7 @@ import { Auth, Hub } from 'aws-amplify';
 import { inject, observer } from 'mobx-react';
 import { withNavigationFocus } from'react-navigation';
 import changeNavigationBarColor from 'react-native-navigation-bar-color';
+import SimpleToast from 'react-native-simple-toast';
 import Login from './Login';
 
 class Container extends React.Component {
@@ -27,11 +28,10 @@ class Container extends React.Component {
           const user = await Auth.currentAuthenticatedUser();
           const { signInUserSession : { idToken: { payload } } }= user;
           const { email } = payload;
-          console.log(email);
           this.props.stores.appState.setUserId(email);
           this.props.navigation.navigate('App');
         } catch(error) {
-          console.log('Sign-In failed');
+          SimpleToast.show("Sign-in failed", SimpleToast.SHORT);
         }
         break;
     }
