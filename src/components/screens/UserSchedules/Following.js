@@ -21,6 +21,9 @@ const {
 const alias = 'withFollowingSchedules';
 
 class FollowingSchedules extends Component{
+  static defaultProps = {
+    data: []
+  };
   _getItemLayout = (_, index) => (
     {
       length: ITEM_HEIGHT,

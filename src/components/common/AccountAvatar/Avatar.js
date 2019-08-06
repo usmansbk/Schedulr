@@ -35,7 +35,7 @@ export default class Avatar extends React.Component {
         <View style={styles.content}>
           <UserAvatar
             size={60}
-            name={'hello'}
+            name={name}
             style={styles.avatar}
             src={pictureUrl}
           />
