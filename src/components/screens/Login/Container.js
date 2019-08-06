@@ -20,7 +20,6 @@ class Container extends React.Component {
     // });
     try {
       await changeNavigationBarColor('white', true);
-      console.log('login color');
     } catch (error) {
     }
   }
