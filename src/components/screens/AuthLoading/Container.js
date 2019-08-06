@@ -13,7 +13,7 @@ export default class Container extends Component {
     }
     
     try {
-      await changeNavigationBarColor('white');
+      await changeNavigationBarColor('white', true);
     } catch (error) {}
   }
 

@@ -13,13 +13,12 @@ export default class Container extends React.Component {
           const user = await Auth.currentAuthenticatedUser();
           const { signInUserSession: { idToken: { payload } } } = user;
           // SimpleToast.show(`Welcome ${name}!`, SimpleToast.SHORT);
-          // alert(`${payload.email} - ${user.username}`);
-          alert(JSON.stringify(user));
+          alert(`${payload.email} - ${user.username}`);
           break;
       }
     });
     try {
-      await changeNavigationBarColor('white');
+      await changeNavigationBarColor('white', true);
     } catch (error) {
     }
   }

@@ -1,15 +1,8 @@
 import React from 'react';
 import { View, StyleSheet, StatusBar, ActivityIndicator } from 'react-native';
-import changeNavigationBarColor from 'react-native-navigation-bar-color';
 import colors from 'config/colors';
 
 export default class Loading extends React.Component {
-   
-  componentDidMount = async () => {
-    try {
-      await changeNavigationBarColor(colors.bg);
-    } catch (error) {}
-  };
 
   render() {
     return (

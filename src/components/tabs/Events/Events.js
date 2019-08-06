@@ -74,7 +74,7 @@ export default class Events extends React.Component {
     try {
       const isDark = stores.settingsStore.dark;
       const navColor = isDark ? colors.light_gray_2 : colors.bg;
-      await changeNavigationBarColor(navColor, isDark);
+      await changeNavigationBarColor(navColor, !isDark);
     } catch (error) {
       SimpleToast.show(error.message, SimpleToast.SHORT);
     }
