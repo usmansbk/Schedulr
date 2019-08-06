@@ -58,7 +58,7 @@ class Avatar extends React.Component {
       >
         <View style={styles.content}>
           <UserAvatar
-            size={80}
+            size={60}
             name={'hello'}
             style={styles.avatar}
             src={pictureUrl}
