@@ -1,22 +1,23 @@
 import React from 'react';
 import { Auth, Hub } from 'aws-amplify';
+import { inject, observer } from 'mobx-react';
 import changeNavigationBarColor from 'react-native-navigation-bar-color';
 import Login from './Login';
 
-export default class Container extends React.Component {
+class Container extends React.Component {
   state = { loading: false };
 
   componentDidMount = async () => {
-    Hub.listen("auth", async ({ payload: { event, data } }) => {
-      switch(event) {
-        case "signIn":
-          const user = await Auth.currentAuthenticatedUser();
-          const { signInUserSession: { idToken: { payload } } } = user;
-          // SimpleToast.show(`Welcome ${name}!`, SimpleToast.SHORT);
-          alert(`${payload.email} - ${user.username}`);
-          break;
-      }
-    });
+    // Hub.listen("auth", async ({ payload: { event, data } }) => {
+    //   switch(event) {
+    //     case "signIn":
+    //       const user = await Auth.currentAuthenticatedUser();
+    //       const { signInUserSession: { idToken: { payload } } } = user;
+    //       // SimpleToast.show(`Welcome ${name}!`, SimpleToast.SHORT);
+    //       alert(`${payload.email} - ${user.username}`);
+    //       break;
+    //   }
+    // });
     try {
       await changeNavigationBarColor('white', true);
     } catch (error) {
@@ -25,10 +26,10 @@ export default class Container extends React.Component {
 
   _signInAsync = async (provider) => {
     try {
-      this.setState({ loading: true })
+      this.props.stores.appState.toggleLoginStatus();
       await Auth.federatedSignIn({ provider });
-      this.setState({ loading: false });
     } catch (error) {
+      this.props.stores.appState.toggleLoginStatus();
     }
   };
 
@@ -39,3 +40,5 @@ export default class Container extends React.Component {
     />;
   }
 }
+
+export default inject("stores")(observer(Container));

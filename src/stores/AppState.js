@@ -10,6 +10,8 @@ import logger from 'config/logger';
 import types from './types';
 
 export default class AppState {
+  @persist @observable loggingIn = false;
+
   @observable isConnected = false;
   @observable searchText = '';
   @observable query = '';
@@ -26,6 +28,8 @@ export default class AppState {
   @persist('list') @observable eventTypes =  types;
 
   debounceQuery = debounce((val) => this.query = val, 250);
+
+  @action toggleLoginStatus = () => this.loggingIn = !this.loggingIn;
   
   @action toggleConnection = (isConnected) => {
     this.isConnected = isConnected;
@@ -51,6 +55,7 @@ export default class AppState {
       showPrivateScheduleAlert: true,
     }
     this.eventTypes = types;
+    this.loggingIn = false;
   }
 
   @action addCustomType = (eventType) => {

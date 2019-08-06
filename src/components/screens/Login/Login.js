@@ -1,12 +1,13 @@
 import React from 'react';
 import { View, StatusBar } from 'react-native';
-import { Caption, Headline } from 'react-native-paper';
+import { Caption, Headline, ActivityIndicator } from 'react-native-paper';
+import { inject, observer } from 'mobx-react';
 import GLoginButton from 'components/social_buttons/GLoginButton';
 import FBLoginButton from 'components/social_buttons/FBLoginButton';
 import Logo from 'components/common/Logo';
 import styles from './styles';
 
-export default (props) => (
+export default inject("stores")(observer((props) => (
     <View style={styles.container}>
       <StatusBar
         backgroundColor="white"
@@ -18,11 +19,17 @@ export default (props) => (
         The event scheduler
       </Caption>
       <View style={styles.content}>
-        <FBLoginButton disabled={props.loading} onLogin={props.handleLogin} />
-        <GLoginButton disabled={props.loading} onLogin={props.handleLogin} />
+        {
+          props.stores.appState.loggingIn ? <ActivityIndicator animating /> : (
+          <>
+            <FBLoginButton disabled={props.loading} onLogin={props.handleLogin} />
+            <GLoginButton disabled={props.loading} onLogin={props.handleLogin} />
+          </>
+          )
+        }
       </View>
       <Caption style={styles.caption}>
         Share your schedules!
       </Caption>
     </View>
-);
+)));
