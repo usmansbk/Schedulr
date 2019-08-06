@@ -1,15 +1,9 @@
 import React, { Component } from 'react';
 import { Auth } from 'aws-amplify';
-import { withAuthenticator } from 'aws-amplify-react-native';
 import Loading from './Loading';
 
-class Container extends Component {
-  constructor(props) {
-    super(props);
-    this._bootstrapAsync();
-  }
-
-  _bootstrapAsync = async () => {
+export default class Container extends Component {
+  componentDidMount = async () => {
     try {
       await Auth.currentAuthenticatedUser();
       this.props.navigation.navigate('App');
@@ -24,5 +18,3 @@ class Container extends Component {
     );
   }
 }
-
-export default withAuthenticator(Container);
