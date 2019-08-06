@@ -5,7 +5,7 @@ import colors from 'config/colors';
 const src = require('./img/logo.png');
 
 export default () => (
-  <View elevation={5} style={styles.iconContainer}>
+  <View elevation={8} style={styles.iconContainer}>
     <Image
       source={src}
       style={styles.logo}
@@ -31,11 +31,11 @@ const styles = StyleSheet.create({
     borderRadius: LENGTH / 2,
     backgroundColor: colors.primary,
     elevation: 8,
-    shadowOpacity: 1.0,
-    shadowRadius: LENGTH / 2,
-    shadowColor: colors.black,
+    shadowOpacity: 0.5,
+    shadowRadius: 6,
+    shadowColor: '#000',
     shadowOffset: {
-      height: LENGTH + 1,
+      height: 4,
       width: 0
     },
     marginBottom: 16
