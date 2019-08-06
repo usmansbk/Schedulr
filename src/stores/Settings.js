@@ -24,6 +24,7 @@ export default class SettingsState {
     try {
       SimpleToast.show("Applying theme... Just a sec!", SimpleToast.SHORT);
       await changeNavigationBarColor(this.dark ? colors.light_gray_2 : colors.bg, !this.dark);
+      console.log('settings color');
     } catch (error) {}
   }
 

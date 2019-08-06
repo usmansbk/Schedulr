@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Auth } from 'aws-amplify';
-import changeNavigationBarColor from 'react-native-navigation-bar-color';
 import Loading from './Loading';
 
 export default class Container extends Component {
@@ -11,10 +10,6 @@ export default class Container extends Component {
     } catch (error) {
       this.props.navigation.navigate('Auth');
     }
-    
-    try {
-      await changeNavigationBarColor('white', true);
-    } catch (error) {}
   }
 
   render() {
