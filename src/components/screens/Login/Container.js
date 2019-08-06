@@ -23,8 +23,7 @@ class Container extends React.Component {
   _authListener = ({ payload: { event, data } }) => {
     switch(event) {
       case "signIn":
-        // const { signInUserSession : { idToken: { payload } } }= data;
-        console.log(data);
+        // const { signInUserSession : { idToken } }= data;
         // let pictureUrl;
         // const { picture, name, email } = payload;
         // if (picture) {
