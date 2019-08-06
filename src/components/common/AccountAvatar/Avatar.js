@@ -2,23 +2,55 @@ import React from 'react';
 import { View } from 'react-native';
 import { inject, observer } from 'mobx-react';
 import { Text, Caption, TouchableRipple } from 'react-native-paper';
+import { Auth } from 'aws-amplify';
 import UserAvatar from '../UserAvatar';
 import styles from './styles';
 
 class Avatar extends React.Component {
+  state = {
+    username: '',
+    email: '',
+    pictureUrl: null,
+    loading: false
+  };
+
   onPress = () => {
     this.props.onPress();
+  };
+
+  async componentDidMount() {
+    this.setState({ loading: true });
+    try {
+      const user = await Auth.currentAuthenticatedUser();
+      const { signInUserSession : { idToken: { payload } } }= user;
+      console.log(payload);
+      let pictureUrl;
+      const { picture, name, email } = payload;
+      if (picture) {
+        if (payload["cognito:username"].startsWith('Facebook')) {
+          const json = JSON.parse(picture)
+          pictureUrl = json.data.url;
+        } else {
+          pictureUrl = picture;
+        }
+      }
+      this.setState({
+        name,
+        email,
+        pictureUrl,
+        loading: false
+      });
+    } catch(e) {
+      console.log(e.message);
+    }
   }
 
   render() {
     const {
-      stores,
-    } = this.props;
-    const {
       name,
       email,
-      pictureUrl,
-    } = stores.me;
+      pictureUrl
+    } = this.state;
 
     return (
       <TouchableRipple
@@ -28,7 +60,7 @@ class Avatar extends React.Component {
         <View style={styles.content}>
           <UserAvatar
             size={80}
-            name={name}
+            name={'hello'}
             style={styles.avatar}
             src={pictureUrl}
           />

@@ -9,7 +9,7 @@ export default class Container extends React.Component {
 
   _signIn = async () => {
     this.setState({ loading: true });
-    await this.props.onLogin('Google');
+    await this.props.onLogin('Facebook');
     this.setState({ loading: false });
   }
 

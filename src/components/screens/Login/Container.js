@@ -9,16 +9,13 @@ class Container extends React.Component {
 
   componentDidMount = async () => {
       this.props.stores.appState.setLoginState(false);
-    // Hub.listen("auth", async ({ payload: { event, data } }) => {
-    //   switch(event) {
-    //     case "signIn":
-    //       const user = await Auth.currentAuthenticatedUser();
-    //       const { signInUserSession: { idToken: { payload } } } = user;
-    //       // SimpleToast.show(`Welcome ${name}!`, SimpleToast.SHORT);
-    //       alert(`${payload.email} - ${user.username}`);
-    //       break;
-    //   }
-    // });
+    Hub.listen("auth", async ({ payload: { event, data } }) => {
+      switch(event) {
+        case "signIn":
+          console.log(data);
+          break;
+      }
+    });
     try {
       await changeNavigationBarColor('white', true);
     } catch (error) {
@@ -28,7 +25,8 @@ class Container extends React.Component {
   _signInAsync = async (provider) => {
     try {
       this.props.stores.appState.setLoginState(true);
-      await Auth.federatedSignIn({ provider });
+      const user = await Auth.federatedSignIn({ provider });
+      console.log(user);
     } catch (error) {
       this.props.stores.appState.setLoginState(false);
     }

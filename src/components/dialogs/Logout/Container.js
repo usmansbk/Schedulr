@@ -1,5 +1,6 @@
 import React from 'react';
 import AsyncStorage from '@react-native-community/async-storage';
+import { Auth } from'aws-amplify';
 import { withNavigation } from 'react-navigation';
 import { inject, observer } from 'mobx-react';
 import Dialog from './Dialog';
@@ -20,6 +21,7 @@ class Container extends React.Component {
   _clearCache = async () => {
     try {
       await AsyncStorage.clear();
+      await Auth.signOut();
     } catch(e) {
     }
   };
