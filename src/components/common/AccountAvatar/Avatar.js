@@ -23,7 +23,6 @@ class Avatar extends React.Component {
     try {
       const user = await Auth.currentAuthenticatedUser();
       const { signInUserSession : { idToken: { payload } } }= user;
-      console.log(payload);
       let pictureUrl;
       const { picture, name, email } = payload;
       if (picture) {

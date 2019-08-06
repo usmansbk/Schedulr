@@ -7,36 +7,43 @@ import Login from './Login';
 
 class Container extends React.Component {
 
+  componentWillUnmount() {
+    Hub.remove('auth', this._authListener);
+  }
+
   componentDidMount = async () => {
-      this.props.stores.appState.setLoginState(false);
-    Hub.listen("auth", async ({ payload: { event, data } }) => {
-      switch(event) {
-        case "signIn":
-          const { signInUserSession : { idToken: { payload } } }= data;
-          // let pictureUrl;
-          // const { picture, name, email } = payload;
-          // if (picture) {
-          //   if (payload["cognito:username"].startsWith('Facebook')) {
-          //     const json = JSON.parse(picture)
-          //     pictureUrl = json.data.url;
-          //   } else {
-          //     pictureUrl = picture;
-          //   }
-          // }
-          // this.props.stores.me.setProfile({
-          //   picture: pictureUrl,
-          //   name,
-          //   email
-          // });
-          this.props.navigation.navigate('App');
-          break;
-      }
-    });
+    this.props.stores.appState.setLoginState(false);
+    Hub.listen('auth', this._authListener);
     try {
       await changeNavigationBarColor('white', true);
     } catch (error) {
     }
-  }
+  };
+
+  _authListener = ({ payload: { event, data } }) => {
+    switch(event) {
+      case "signIn":
+        // const { signInUserSession : { idToken: { payload } } }= data;
+        console.log(data);
+        // let pictureUrl;
+        // const { picture, name, email } = payload;
+        // if (picture) {
+        //   if (payload["cognito:username"].startsWith('Facebook')) {
+        //     const json = JSON.parse(picture)
+        //     pictureUrl = json.data.url;
+        //   } else {
+        //     pictureUrl = picture;
+        //   }
+        // }
+        // this.props.stores.me.setProfile({
+        //   picture: pictureUrl,
+        //   name,
+        //   email
+        // });
+        this.props.navigation.navigate('App');
+        break;
+    }
+  };
 
   _signInAsync = async (provider) => {
     try {

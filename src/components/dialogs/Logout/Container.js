@@ -1,5 +1,6 @@
 import React from 'react';
 import AsyncStorage from '@react-native-community/async-storage';
+import SimpleToast from 'react-native-simple-toast';
 import { Auth } from'aws-amplify';
 import { withNavigation } from 'react-navigation';
 import { inject, observer } from 'mobx-react';
@@ -22,7 +23,8 @@ class Container extends React.Component {
     try {
       await AsyncStorage.clear();
       await Auth.signOut();
-    } catch(e) {
+    } catch(error) {
+      SimpleToast.show(eerror.message, SimpleToast.SHORT);
     }
   };
 
