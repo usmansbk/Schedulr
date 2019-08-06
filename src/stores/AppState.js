@@ -6,7 +6,6 @@ import { observable, action } from 'mobx';
 import { persist } from 'mobx-persist';
 import debounce from 'lodash.debounce';
 import { requestLocationPermission } from 'helpers/permissions';
-import logger from 'config/logger';
 import types from './types';
 
 export default class AppState {
@@ -81,7 +80,7 @@ export default class AppState {
           const { lat, lng } = loc;
           this.location.lon = lng;
           this.location.lat = lat;
-        }).catch(err => logger.error(err));
+        }).catch(err => console.error(err));
     }
   }
 
@@ -95,7 +94,7 @@ export default class AppState {
         const loc = res[0];
         const address = `${loc.locality ? loc.locality + ', ' : ''}${loc.country}`;
         this.address = address;
-      }).catch(err => logger.error(err));
+      }).catch(err => console.error(err));
     }
   }
   
@@ -130,7 +129,7 @@ export default class AppState {
           this.getAddress();
         },
         (error) => {
-          logger.debug(error);
+          console.error(error);
           SimpleToast.show("Failed to get location. Turn off airplane mode.", SimpleToast.SHORT);
           // throw error;
         },

@@ -2,9 +2,13 @@ import React from 'react';
 import { Auth, Hub } from 'aws-amplify';
 import { inject, observer } from 'mobx-react';
 import { withNavigationFocus } from'react-navigation';
+import gql from 'graphql-tag';
 import changeNavigationBarColor from 'react-native-navigation-bar-color';
 import SimpleToast from 'react-native-simple-toast';
 import Login from './Login';
+import { getUser } from 'mygraphql/queries';
+import { createUser } from 'mygraphql/mutations';
+import client from 'config/client';
 
 class Container extends React.Component {
 
@@ -25,13 +29,43 @@ class Container extends React.Component {
     switch(event) {
       case "signIn":
         try {
-          const user = await Auth.currentAuthenticatedUser();
-          const { signInUserSession : { idToken: { payload } } }= user;
-          const { email } = payload;
+          const currentUser = await Auth.currentAuthenticatedUser();
+          const { signInUserSession : { idToken: { payload } } } = currentUser;
+          const { email, name, picture } = payload;
+          let pictureUrl;
+          if (picture) {
+            if (payload["cognito:username"].startsWith('Facebook')) {
+              const json = JSON.parse(picture)
+              pictureUrl = json.data.url;
+            } else {
+              pictureUrl = picture;
+            }
+          }
+          const response = await client.query({
+            query: gql(getUser),
+            variables: {
+              id: email
+            }
+          });
+          const { data } = response;
+          if (!data.getUser) {
+            await client.mutate({
+              mutation: gql(createUser),
+              variables: {
+                input: {
+                  id: email,
+                  name,
+                  email,
+                  pictureUrl
+                }
+              }
+            });
+          }
           this.props.stores.appState.setUserId(email);
           this.props.navigation.navigate('App');
         } catch(error) {
-          SimpleToast.show("Sign-in failed", SimpleToast.SHORT);
+          SimpleToast.show("Sign-in failed", SimpleToast.LONG);
+          console.error(error.message);
         }
         break;
     }
