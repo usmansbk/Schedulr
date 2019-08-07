@@ -139,7 +139,8 @@ const AuthStack = createStackNavigator({
   Login,
   EmailLogin
 }, {
-  headerMode: 'none'
+  headerMode: 'none',
+  initialRouteName: 'Login',
 });
 
 const AppNavigator = createSwitchNavigator({

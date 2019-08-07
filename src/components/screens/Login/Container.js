@@ -93,7 +93,7 @@ class Container extends React.Component {
     }
   };
 
-  _emailSignIn = this.props.navigation.navigate('EmailLogin');
+  _emailSignIn = () => this.props.navigation.navigate('EmailLogin');
 
   render() {
     return <Login
