@@ -93,14 +93,7 @@ class Container extends React.Component {
     }
   };
 
-  _emailSignIn = async () => {
-    try {
-      this.props.stores.appState.setLoginState(true);
-      await Auth.federatedSignIn();
-    } catch (error) {
-      this.props.stores.appState.setLoginState(false);
-    }
-  }
+  _emailSignIn = this.props.navigation.navigate('EmailLogin');
 
   render() {
     return <Login

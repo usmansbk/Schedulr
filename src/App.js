@@ -22,7 +22,8 @@ import {
   EditSchedule,
   SearchScreen,
   ScheduleEvents,
-  WebView
+  WebView,
+  EmailLogin
 } from 'components/screens';
 import colors from 'config/colors';
 
@@ -136,6 +137,7 @@ const AppStack = createStackNavigator({
 
 const AuthStack = createStackNavigator({
   Login,
+  EmailLogin
 }, {
   headerMode: 'none'
 });
