@@ -6,7 +6,8 @@ import {
   Text,
   RefreshControl
 } from 'react-native';
-import { Headline, TouchableRipple } from 'react-native-paper';
+import { Headline, TouchableRipple, IconButton } from 'react-native-paper';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import FastImage from 'react-native-fast-image';
 import { inject, observer } from 'mobx-react';
 import UserAvatar from 'components/common/UserAvatar';
@@ -17,6 +18,9 @@ import colors from 'config/colors';
 
 class UserProfile extends React.Component {
   shouldComponentUpdate = (nextProps) => nextProps.navigation.isFocused();
+
+  _openTwitter = () => console.log('open twitter');
+  _openWhatsApp =() => console.log('open whatsapp');
 
   _toFollowingTab = () => {
     const { user, stores, navigation } = this.props;
@@ -61,7 +65,9 @@ class UserProfile extends React.Component {
       pictureUrl,
       name,
       followingCount=0,
-      createdCount=0
+      createdCount=0,
+      whatsapp,
+      twitter
     } = user;
 
     return  (
@@ -100,6 +106,30 @@ class UserProfile extends React.Component {
               <Text style={styles.count}>{numeral(createdCount).format('0a')}</Text>
               <Text style={styles.label}>Created</Text>
             </View>
+          </TouchableRipple>
+        </View>
+        <View style={styles.contactRow}>
+          <TouchableRipple
+            onPress={this._openTwitter}
+            disabled={!twitter}
+            style={styles.contact}
+          >
+            <Icon
+              name="twitter"
+              size={32}
+              color="#00aced"
+            />
+          </TouchableRipple>
+          <TouchableRipple 
+            onPress={this._openWhatsApp}
+            disabled={!whatsapp}
+            style={styles.contact}
+          >
+            <Icon
+              name="whatsapp"
+              size={32}
+              color="#25d366"
+            />
           </TouchableRipple>
         </View>
       </ScrollView>
@@ -166,5 +196,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: 16
+  },
+  contactRow: {
+    flexDirection: 'row',
+    margin: 16,
+    marginVertical: 32
+  },
+  contact: {
+    padding: 16
   }
 })
