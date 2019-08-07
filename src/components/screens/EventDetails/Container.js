@@ -87,12 +87,20 @@ class EventDetails extends React.Component {
             isOwner && !isOffline && (
               <>
                 <Appbar.Action
-                  icon={() => <Icon size={24} name="trash" />}
+                  icon={() => <Icon
+                    size={24}
+                    name="trash"
+                    color={colors.gray}
+                  />}
                   color={colors.gray}
                   onPress={handleDelete}
                 />
                 <Appbar.Action
-                  icon={() => <Icon size={24} name="copy" />}
+                  icon={() => <Icon
+                    size={24}
+                    name="copy"
+                    color={colors.gray}
+                  />}
                   color={colors.gray}
                   onPress={handleRepeat}
                 />
@@ -100,7 +108,11 @@ class EventDetails extends React.Component {
                   isValid && (
                     <>
                       <Appbar.Action
-                        icon={() => <Icon size={24} name="edit-3" />}
+                        icon={() => <Icon
+                          size={24}
+                          name="edit-3"
+                          color={colors.gray}
+                        />}
                         color={colors.gray}
                         onPress={() => handleEdit({
                           id,
@@ -109,7 +121,11 @@ class EventDetails extends React.Component {
                         })}
                       />
                       <Appbar.Action
-                        icon={() => <Icon size={24} name="x" />}
+                        icon={() => <Icon
+                          size={24}
+                          name="x"
+                          color={colors.gray}
+                        />}
                         color={colors.gray}
                         onPress={this._handleCancel}
                       />

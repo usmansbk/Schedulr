@@ -95,7 +95,11 @@ class Info extends React.Component {
           {
             !isOffline && (
               <Appbar.Action
-                icon={() => <Icon name="share-2" size={24} />}
+                icon={() => <Icon
+                  name="share-2"
+                  size={24}
+                  color={colors.gray}
+                />}
                 onPress={() => handleShare({ name, description, id})}
                 color={colors.gray}
               />
