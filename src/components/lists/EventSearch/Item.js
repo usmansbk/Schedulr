@@ -37,7 +37,7 @@ class Item extends React.Component {
     const {
       id,
       title,
-      repeat,
+      recur,
       time,
       status,
       duration,
@@ -78,7 +78,7 @@ class Item extends React.Component {
               <Text style={styles.time}>{time}</Text>
               <Caption numberOfLines={1}
                 ellipsizeMode="tail"
-              >{duration ? duration + ' ' : ''}{category} {repeat}</Caption>
+              >{duration ? duration + ' ' : ''}{category} {recur}</Caption>
               <Tag status={status} /> 
             </View>
             <Actions

@@ -9,10 +9,10 @@ import {
   SHORT_UNTIL
 } from 'lib/errorMessages';
 
-export const canRepeat = ({ repeat, endAt, startAt }) => {
-  if (repeat === ONE_TIME_EVENT ) return true; // One-time event can be repeated
+export const canRepeat = ({ recur, endAt, startAt }) => {
+  if (recur === ONE_TIME_EVENT ) return true; // One-time event can be repeated
   const duration = moment(endAt).diff(moment(startAt));
-  return duration < repeatLength(repeat);
+  return duration < repeatLength(recur);
 };
 export function isEventValid(event) {
   const startAt = moment(event.startAt);
@@ -30,7 +30,7 @@ export function isEventValid(event) {
     Alert.alert('Too short', DURATION_TOO_SHORT);
     validity = false;
   } else if (untilAt) {
-    const rLength = repeatLength(event.repeat);
+    const rLength = repeatLength(event.recur);
     const tail = moment.duration(rLength);
     const secondTime = endAt.clone().add(tail, 'valueOf');
     if (secondTime.isAfter(untilAt)) {

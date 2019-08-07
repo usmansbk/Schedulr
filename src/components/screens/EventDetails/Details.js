@@ -18,7 +18,7 @@ export default inject('stores')(observer(
     scheduleName,
     authorName,
     scheduleId,
-    repeat,
+    recur,
     until,
     firstAt,
     createdAt,
@@ -85,7 +85,7 @@ export default inject('stores')(observer(
             }
             <View style={stores.appStyles.eventDetails.item}>
               <Text style={stores.appStyles.eventDetails.label}>REPEAT</Text>
-              <Text style={stores.appStyles.eventDetails.value}>{repeat}</Text>
+              <Text style={stores.appStyles.eventDetails.value}>{recur}</Text>
             </View>
             {
               Boolean(until) && (

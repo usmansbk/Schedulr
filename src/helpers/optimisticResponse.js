@@ -161,7 +161,7 @@ export const createEventResponse = (input) => {
     endAt: input.endAt,
     venue: getValue(input.venue),
     allDay: Boolean(input.allDay),
-    repeat: input.repeat,
+    recur: input.recur,
     forever: Boolean(input.forever),
     until: getValue(input.until),
     category: getValue(input.category),

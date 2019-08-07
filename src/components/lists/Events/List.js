@@ -237,7 +237,7 @@ class List extends React.Component {
     cancelledDates,
     startAt,
     endAt,
-    repeat,
+    recur,
     venue,
     schedule,
     allDay,
@@ -251,7 +251,7 @@ class List extends React.Component {
     endAt={endAt}
     allDay={allDay}
     category={getCategory(category)}
-    repeat={parseRepeat(repeat)}
+    recur={parseRepeat(recur)}
     time={getTime({ allDay, startAt, endAt })}
     status={getStatus({ isCancelled, cancelledDates, startAt, endAt})}
     isValid={isEventValid({ isCancelled, endAt, startAt, cancelledDates })}

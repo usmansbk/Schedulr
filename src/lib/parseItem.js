@@ -5,9 +5,9 @@ import { ONE_TIME_EVENT } from './constants';
 
 export const parseDetails = (event) => {
   const category = decapitalize(event.category);
-  const isRecurring = event.repeat !== ONE_TIME_EVENT;
-  const repeat = decapitalize(event.repeat);
-  const note = `${isRecurring ? (repeat + ' ') : ''}${category}`;
+  const isRecurring = event.recur !== ONE_TIME_EVENT;
+  const recur = decapitalize(event.recur);
+  const note = `${isRecurring ? (recur + ' ') : ''}${category}`;
   return note;
 };
 
@@ -82,8 +82,8 @@ export const isEventValid = ({isCancelled, startAt, endAt, cancelledDates }) => 
   return moment().twix(endAt).isCurrent() && !isEventCancelled({ cancelledDates, startAt, isCancelled });
 };
 
-export const parseRepeat = (repeat) => {
-  const val = repeat.toLowerCase();
+export const parseRepeat = (recur) => {
+  const val = recur.toLowerCase();
   switch(val) {
     case 'never': return null;
     case 'daily': return 'daily';
@@ -91,8 +91,8 @@ export const parseRepeat = (repeat) => {
     case 'weekdays': return 'every weekday';
     case 'monthly': case 'monthly_day': return 'monthly';
     case 'yearly': return 'yearly';
-    default: return repeat;
+    default: return recur;
   }
 }
 
-export const isSingle = (repeat) => repeat === ONE_TIME_EVENT;
+export const isSingle = (recur) => recur === ONE_TIME_EVENT;

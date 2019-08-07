@@ -53,7 +53,7 @@ export function eventsChanged(prev, next=[]) {
       (prevVal.startAt === nextVal.startAt) &&
       (prevVal.endAt === nextVal.endAt) &&
       (prevVal.category === nextVal.category) &&
-      (prevVal.repeat === nextVal.repeat) &&
+      (prevVal.recur === nextVal.recur) &&
       (prevVal.until === nextVal.until) &&
       (prevVal.isCancelled === nextVal.isCancelled) &&
       (prevCancelledDates.length === nextCancelledDates.length) &&

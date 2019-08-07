@@ -37,11 +37,11 @@ import { buildEventForm } from 'helpers/buildForm';
 class Form extends React.Component {
 
   state = {
-    visible: false
+    showPicker: false
   };
 
-  _showModal = () => this.setState({ visible: true });
-  _hideModal = () => this.setState({ visible: false });
+  _showModal = () => this.setState({ showPicker: true });
+  _hideModal = () => this.setState({ showPicker: false });
 
   static defaultProps = {
     schedules: [],
@@ -86,7 +86,7 @@ class Form extends React.Component {
       isNew,
       stores
     } = this.props;
-    const { visible } = this.state;
+    const { showPicker } = this.state;
 
     const styles = stores.appStyles.eventForm;
     const navButtonColor = stores.themeStore.colors.navButtonColor;
@@ -355,7 +355,7 @@ class Form extends React.Component {
           </ScrollView>
           
           <PickerInputModal
-            visible={visible}
+            visible={showPicker}
             prompt="Type"
             selectedValue={values.category || ''}
             hideModal={this._hideModal}

@@ -47,7 +47,7 @@ class List extends Component {
     cancelledDates,
     startAt,
     endAt,
-    repeat,
+    recur,
     venue,
     schedule,
     allDay,
@@ -65,7 +65,7 @@ class List extends Component {
     commentsCount={commentsCount}
     isBookmarked={isBookmarked}
     category={getCategory(category)}
-    repeat={parseRepeat(repeat)}
+    recur={parseRepeat(recur)}
     time={getHumanTime({ allDay, startAt, endAt })}
     scheduleId={schedule && schedule.id}
     duration={getDuration(startAt, endAt, allDay)}

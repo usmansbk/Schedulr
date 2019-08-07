@@ -13,7 +13,7 @@ const DATE_FORMAT = "ddd DD, MMM YYYY, hh:mm a";
 
 class EventDetails extends React.Component {
   _handleCancel = () => {
-    const isRecurring = this.props.event.repeat !== ONE_TIME_EVENT;
+    const isRecurring = this.props.event.recur !== ONE_TIME_EVENT;
     this.props.handleCancel(isRecurring ? this.props.event.startAt : null);
   };
   _getDuration = (start, end) => getDuration(start, end);
@@ -55,7 +55,7 @@ class EventDetails extends React.Component {
       endAt,
       allDay,
       schedule,
-      repeat,
+      recur,
       until,
       createdAt,
       updatedAt,
@@ -142,7 +142,7 @@ class EventDetails extends React.Component {
           scheduleId={schedule && schedule.id}
           authorId={author.id}
           authorName={author.name}
-          repeat={getRepeatLabel(repeat, start)}
+          recur={getRepeatLabel(recur, start)}
           until={until && moment(until).format(DATE_FORMAT)}
           createdAt={moment(createdAt).format(DATE_FORMAT)}
           updatedAt={updatedAt && moment(updatedAt).format(DATE_FORMAT)}
