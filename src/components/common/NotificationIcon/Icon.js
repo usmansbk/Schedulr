@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     top: 2,
     right: 2,
     borderWidth: 1,
-    borderColor: color,
+    borderColor: 'white',
     backgroundColor: color,
   }
 })
