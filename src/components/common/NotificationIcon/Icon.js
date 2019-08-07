@@ -11,7 +11,7 @@ export default ({hasNotification, name, color, size }) => {
         size={size}
       />
       {
-        hasNotification && <View style={styles.indicator}/>
+        true && <View style={styles.indicator}/>
       }
     </View>
   );
@@ -25,8 +25,8 @@ const styles = StyleSheet.create({
     width: 8,
     borderRadius: 4,
     position: 'absolute',
-    top: 5,
-    right: 4,
+    top: 2,
+    right: 2,
     borderWidth: 1,
     borderColor: color,
     backgroundColor: color,
