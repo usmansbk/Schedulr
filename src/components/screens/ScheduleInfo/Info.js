@@ -95,7 +95,7 @@ class Info extends React.Component {
           {
             !isOffline && (
               <Appbar.Action
-                icon="share"
+                icon={() => <Icon name="share-2" size={24} />}
                 onPress={() => handleShare({ name, description, id})}
                 color={colors.gray}
               />
@@ -109,7 +109,11 @@ class Info extends React.Component {
                     triggerWrapper: styles.menuButton,
                   }}
                 >
-                  <Icon size={24} color={colors.gray} name="more-vert" />
+                  <Icon
+                    size={24}
+                    color={colors.gray}
+                    name="more-vertical"
+                  />
                 </MenuTrigger>
                 <MenuOptions>
                   <MenuOption value="edit">

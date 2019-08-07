@@ -6,6 +6,7 @@ import {
 } from 'react-navigation-tabs';
 import { Dimensions } from 'react-native';
 import { inject, observer } from 'mobx-react';
+import Icon from 'react-native-vector-icons/Feather';
 import Events from './Events';
 import Schedules from './Schedules';
 
@@ -44,7 +45,7 @@ const TabBarComponent = inject('stores')(observer(
 const SearchBar = inject('stores')(observer(
   ({ navigation, stores }) => (
     <Searchbar
-      icon="arrow-back"
+      icon={() => <Icon name="arrow-left" size={24} />}
       onIconPress={() => navigation.goBack()}
       autoFocus
       placeholder="Search"
