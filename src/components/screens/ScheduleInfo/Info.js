@@ -19,7 +19,7 @@ import {
   Text,
   TouchableRipple
 } from 'react-native-paper';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import Icon from 'react-native-vector-icons/Feather';
 import Hyperlink from 'react-native-hyperlink';
 import { inject, observer } from 'mobx-react';
 import UserAvater from 'components/common/UserAvatar';
@@ -170,7 +170,7 @@ class Info extends React.Component {
             </View>
             <View style={styles.body}>
               <View style={styles.noteView}>
-                <Icon color={colors.black} name="visibility" size={18} />
+                <Icon color={colors.black} name="eye" size={18} />
                 <Text
                   style={styles.note}
                   onPress={this._aboutPrivacy}

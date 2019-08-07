@@ -2,7 +2,7 @@ import React from 'react';
 import { Dimensions } from 'react-native';
 import { createMaterialTopTabNavigator, MaterialTopTabBar } from 'react-navigation-tabs';
 import { inject, observer } from 'mobx-react';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import Icon from 'react-native-vector-icons/Feather';
 import EventsRoute from '../Events';
 import SchedulesRoute from '../Schedules';
 import BookmarksRoute from '../Bookmarks';
@@ -23,15 +23,15 @@ const Home = createMaterialTopTabNavigator({
     upperCaseLabel: false,
   },
   defaultNavigationOptions: ({ navigation }) => ({
-    tabBarIcon: ({ tintColor, focused }) => {
+    tabBarIcon: ({ tintColor }) => {
       const { routeName } = navigation.state;
       let iconName;
       if (routeName === 'Events') {
-        iconName = 'calendar-week-begin'
+        iconName = 'calendar'
       } else if (routeName === 'Schedules') {
-        iconName = 'bulletin-board';
+        iconName = 'trello';
       } else if (routeName === 'Bookmarks') {
-        iconName = `bookmark${focused ? '' : '-outline'}`;
+        iconName = `bookmark`;
       }
       return <Icon name={iconName} size={FONT_SIZE} color={tintColor} />
     }

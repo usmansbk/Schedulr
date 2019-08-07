@@ -1,7 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 import { TouchableRipple, Text, Caption } from 'react-native-paper';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import Icon from 'react-native-vector-icons/Feather';
 import { inject, observer } from 'mobx-react';
 import UserAvatar from 'components/common/UserAvatar';
 import Tag from 'components/common/Tag';
@@ -55,7 +55,7 @@ class Item extends React.Component {
           />
           <View style={styles.itemBody}>
             <View style={styles.nameRow}>
-              { isMuted && <Icon name="volume-mute" size={16} color={stores.themeStore.colors.tint}/> }
+              { isMuted && <Icon name="bell-off" size={16} color={stores.themeStore.colors.tint}/> }
               <Text numberOfLines={1} ellipsizeMode="tail" style={isPending ? styles.offlineName : styles.itemName}>{name}</Text>
             </View>
             { Boolean(description) && <Caption numberOfLines={1} ellipsizeMode="tail" style={styles.itemDescription}>{description}</Caption> }

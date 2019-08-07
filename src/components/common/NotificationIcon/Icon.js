@@ -1,12 +1,12 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import Icon from 'react-native-vector-icons/Feather';
 
-export default ({hasNotification, color, size, focused }) => {
+export default ({hasNotification, name, color, size }) => {
   return (
     <View style={styles.container}>
       <Icon
-        name={`notifications${focused ? '' : '-none'}`}
+        name={name}
         color={color}
         size={size}
       />
