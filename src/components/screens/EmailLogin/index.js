@@ -48,4 +48,6 @@ const signUpConfig = {
   ]
 };
 
-export default withAuthenticator(Loading, { signUpConfig }, null, null, theme);
+const usernameAttributes = 'Email';
+
+export default withAuthenticator(Loading, { signUpConfig, usernameAttributes }, null, null, theme);
