@@ -27,7 +27,7 @@ export default class Actions extends React.Component {
       bookmarksCount,
       commentsCount,
       address,
-      eventType,
+      category,
       id,
       small,
       dark,
@@ -62,7 +62,7 @@ export default class Actions extends React.Component {
               color={color}
               id={id}
               date={date}
-              eventType={eventType}
+              category={category}
               title={title}
               address={address}
               size={FONT_SIZE}

@@ -232,7 +232,7 @@ class List extends React.Component {
   _renderItem = ({ item: {
     id,
     title,
-    eventType,
+    category,
     isCancelled,
     cancelledDates,
     startAt,
@@ -250,7 +250,7 @@ class List extends React.Component {
     startAt={startAt}
     endAt={endAt}
     allDay={allDay}
-    eventType={getEventType(eventType)}
+    category={getEventType(category)}
     repeat={parseRepeat(repeat)}
     time={getTime({ allDay, startAt, endAt })}
     status={getStatus({ isCancelled, cancelledDates, startAt, endAt})}

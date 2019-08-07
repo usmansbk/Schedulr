@@ -23,7 +23,7 @@ class Item extends React.Component {
       nextProps.time !== this.props.time ||
       nextProps.status !== this.props.status ||
       nextProps.repeat !== this.props.repeat ||
-      nextProps.eventType !== this.props.eventType
+      nextProps.category !== this.props.category
     );
   }
   render() {
@@ -32,7 +32,7 @@ class Item extends React.Component {
       repeat,
       time,
       duration,
-      eventType,
+      category,
       pictureUrl,
       status,
       stores
@@ -64,7 +64,7 @@ class Item extends React.Component {
               <Text style={styles.time}>{time}</Text>
               <Caption numberOfLines={1}
                 ellipsizeMode="tail"
-              >{duration ? duration : ''} {eventType} {repeat}</Caption>
+              >{duration ? duration : ''} {category} {repeat}</Caption>
               <Tag status={status} /> 
             </View>
           </View>

@@ -36,7 +36,7 @@ class Events extends React.Component {
 //     props: ({ data, ownProps }) => ({
 //       events: data && data.listAllEvents && sortBookmarks(data.listAllEvents.items.filter(
 //         item => item.title.toLowerCase().includes(ownProps.query.toLowerCase()) ||
-//           item.eventType.toLowerCase().includes(ownProps.query.toLowerCase())
+//           item.category.toLowerCase().includes(ownProps.query.toLowerCase())
 //       )),
 //       ...ownProps
 //     })

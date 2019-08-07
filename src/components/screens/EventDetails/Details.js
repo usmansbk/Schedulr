@@ -13,7 +13,7 @@ export default inject('stores')(observer(
     title,
     weekDay,
     date,
-    eventType,
+    category,
     address,
     scheduleName,
     authorName,
@@ -65,7 +65,7 @@ export default inject('stores')(observer(
           <View style={stores.appStyles.eventDetails.body}>
             <View style={stores.appStyles.eventDetails.item}>
               <Text style={stores.appStyles.eventDetails.label}>TYPE</Text>
-              <Text style={stores.appStyles.eventDetails.value}>{isPublic ? "Public" : "Private"} {BULLET} {eventType}</Text>
+              <Text style={stores.appStyles.eventDetails.value}>{isPublic ? "Public" : "Private"} {BULLET} {category}</Text>
             </View>
             <View style={stores.appStyles.eventDetails.item}>
               <Text style={stores.appStyles.eventDetails.label}>VENUE</Text>
@@ -136,7 +136,7 @@ export default inject('stores')(observer(
         id={id}
         title={title}
         address={address}
-        eventType={eventType}
+        category={category}
         isBookmarked={isBookmarked}
         bookmarksCount={bookmarksCount}
         commentsCount={commentsCount}

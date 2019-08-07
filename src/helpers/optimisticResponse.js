@@ -164,7 +164,7 @@ export const createEventResponse = (input) => {
     repeat: input.repeat,
     forever: Boolean(input.forever),
     until: getValue(input.until),
-    eventType: getValue(input.eventType),
+    category: getValue(input.category),
     isCancelled: false,
     isPublic: Boolean(input.isPublic),
     schedule,

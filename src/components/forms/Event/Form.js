@@ -52,7 +52,7 @@ class Form extends React.Component {
       startAt: moment().valueOf(),
       endAt: moment().add(2, 'hours').valueOf(),
       allDay: false,
-      eventType: 'Normal',
+      category: 'Normal',
       repeat: frequency[0].id,
       forever: false,
       until: null,
@@ -191,7 +191,7 @@ class Form extends React.Component {
               <View style={[styles.pickerSpacing, styles.firstPicker]}>
                 <Text style={styles.radioText}>Type</Text>
                 <PickerButton
-                  value={values.eventType}
+                  value={values.category}
                   onPress={this._showModal}
                 />
               </View>
@@ -360,9 +360,9 @@ class Form extends React.Component {
           <PickerInputModal
             visible={visible}
             prompt="Type"
-            selectedValue={values.eventType || ''}
+            selectedValue={values.category || ''}
             hideModal={this._hideModal}
-            onValueChange={itemValue => setFieldValue('eventType', itemValue)}
+            onValueChange={itemValue => setFieldValue('category', itemValue)}
           />
           </>
         )}

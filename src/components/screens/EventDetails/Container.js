@@ -49,7 +49,7 @@ class EventDetails extends React.Component {
     const {
       id,
       title,
-      eventType,
+      category,
       venue,
       startAt,
       endAt,
@@ -134,7 +134,7 @@ class EventDetails extends React.Component {
           startAt={start}
           weekDay={moment(start).format('dddd')}
           firstAt={moment(startAt).format(DATE_FORMAT)}
-          eventType={decapitalize(eventType)}
+          category={decapitalize(category)}
           address={venue}
           isPublic={isPublic}
           publicSchedule={schedule && schedule.isPublic}

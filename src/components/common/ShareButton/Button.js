@@ -8,7 +8,7 @@ export default ({
   color,
   id,
   title,
-  eventType,
+  category,
   address,
   date,
 }) => (
@@ -19,8 +19,8 @@ export default ({
     onPress={() => {
       const shareOptions = {
         title: 'Share event via...',
-        subject: eventType,
-        message: `${title}\n${eventType}\n${date}${address ? (' at ' + address) : ''}\n`,
+        subject: category,
+        message: `${title}\n${category}\n${date}${address ? (' at ' + address) : ''}\n`,
         url: `${env.APP_URL}/event/${id}`
       };
       Share.open(shareOptions).catch(error => {

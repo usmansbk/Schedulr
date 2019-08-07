@@ -4,16 +4,16 @@ import { decapitalize } from './capitalizr';
 import { ONE_TIME_EVENT } from './constants';
 
 export const parseDetails = (event) => {
-  const eventType = decapitalize(event.eventType);
+  const category = decapitalize(event.category);
   const isRecurring = event.repeat !== ONE_TIME_EVENT;
   const repeat = decapitalize(event.repeat);
-  const note = `${isRecurring ? (repeat + ' ') : ''}${eventType}`;
+  const note = `${isRecurring ? (repeat + ' ') : ''}${category}`;
   return note;
 };
 
-export const getEventType = (eventType) => {
-  if (eventType.toLowerCase().trim() === 'normal') return '';
-  return decapitalize(eventType);
+export const getEventType = (category) => {
+  if (category.toLowerCase().trim() === 'normal') return '';
+  return decapitalize(category);
 }
 
 export const getTime = ({ startAt, endAt, allDay }) => {

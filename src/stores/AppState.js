@@ -61,15 +61,15 @@ export default class AppState {
     this.userId = null;
   }
 
-  @action addCustomType = (eventType) => {
-    const hasType = this.eventTypes.findIndex(item => item.toLowerCase() === eventType.toLowerCase());
+  @action addCustomType = (category) => {
+    const hasType = this.eventTypes.findIndex(item => item.toLowerCase() === category.toLowerCase());
     if (hasType === -1) {
-      this.eventTypes.push(eventType);
+      this.eventTypes.push(category);
     }
   }
 
-  @action removeCustomType = (eventType) => {
-    this.eventTypes = this.eventTypes.filter(item => item.toLowerCase() !== eventType.toLowerCase());
+  @action removeCustomType = (category) => {
+    this.eventTypes = this.eventTypes.filter(item => item.toLowerCase() !== category.toLowerCase());
   }
   
   @action setLocation = (address) => {

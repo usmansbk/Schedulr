@@ -52,7 +52,7 @@ export function eventsChanged(prev, next=[]) {
     return (prevVal.id === nextVal.id) && (prevVal.title === nextVal.title) &&
       (prevVal.startAt === nextVal.startAt) &&
       (prevVal.endAt === nextVal.endAt) &&
-      (prevVal.eventType === nextVal.eventType) &&
+      (prevVal.category === nextVal.category) &&
       (prevVal.repeat === nextVal.repeat) &&
       (prevVal.until === nextVal.until) &&
       (prevVal.isCancelled === nextVal.isCancelled) &&

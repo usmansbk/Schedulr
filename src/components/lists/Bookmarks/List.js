@@ -42,7 +42,7 @@ class List extends Component {
   _renderItem = ({ item: {
     id,
     title,
-    eventType,
+    category,
     isCancelled,
     cancelledDates,
     startAt,
@@ -64,7 +64,7 @@ class List extends Component {
     bookmarksCount={bookmarksCount}
     commentsCount={commentsCount}
     isBookmarked={isBookmarked}
-    eventType={getEventType(eventType)}
+    category={getEventType(category)}
     repeat={parseRepeat(repeat)}
     time={getHumanTime({ allDay, startAt, endAt })}
     scheduleId={schedule && schedule.id}

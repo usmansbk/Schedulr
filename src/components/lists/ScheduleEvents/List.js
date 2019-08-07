@@ -55,7 +55,7 @@ class List extends Component {
   _renderItem = ({ item: {
     id,
     title,
-    eventType,
+    category,
     startAt,
     endAt,
     repeat,
@@ -70,7 +70,7 @@ class List extends Component {
     startAt={startAt}
     endAt={endAt}
     status={getStatus({ isCancelled, cancelledDates, startAt, endAt, isConcluded})}
-    eventType={getEventType(eventType)}
+    category={getEventType(category)}
     repeat={parseRepeat(repeat)}
     time={getHumanTime({ allDay, startAt, endAt })}
     scheduleId={schedule && schedule.id}

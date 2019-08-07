@@ -25,13 +25,13 @@ const setReminder = (event, before, settings) => {
     title,
     startAt,
     endAt,
-    eventType,
+    category,
     repeat,
   } = event;
   const { amount, unit } = before;
   const { sound, vibrate } = settings;
   const date = moment(startAt).subtract(amount, unit).toDate();
-  const message = `${decapitalize(eventType)} in ${moment(startAt).from(date, true)}`;
+  const message = `${decapitalize(category)} in ${moment(startAt).from(date, true)}`;
   const repeatType = getRepeatType(repeat);
   const repeatTime = {};
   if (repeatType === 'time') {
@@ -62,13 +62,13 @@ const schdlStart = (event, settings) => {
     title,
     startAt,
     endAt,
-    eventType,
+    category,
     repeat,
   } = event;
   const { playSound, vibrate } = settings;
   const time = moment(startAt).format('hh:mm a');
   const date = moment(startAt).toDate();
-  const message = `${decapitalize(eventType)} - ${time}`;
+  const message = `${decapitalize(category)} - ${time}`;
   const repeatType = getRepeatType(repeat);
   const repeatTime = {};
   if (repeatType === 'time') {
