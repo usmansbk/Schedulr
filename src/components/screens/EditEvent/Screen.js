@@ -19,7 +19,6 @@ export default class EditEventScreen extends React.Component {
       category,
       recur,
       until,
-      forever,
       schedule,
       isPublic
     } = event;
@@ -33,7 +32,6 @@ export default class EditEventScreen extends React.Component {
       category,
       recur,
       until,
-      forever,
       scheduleId: schedule && schedule.id,
       isPublic: Boolean(isPublic)
     });

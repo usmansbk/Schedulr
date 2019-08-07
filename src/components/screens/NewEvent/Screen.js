@@ -29,7 +29,6 @@ export default class NewEventScreen extends React.Component {
       category,
       recur,
       until,
-      forever,
       isPublic
     } = event;
 
@@ -69,7 +68,6 @@ export default class NewEventScreen extends React.Component {
       category: category || 'Event',
       recur: recur || recurrence[0].id,
       until,
-      forever,
       scheduleId: scheduleId,
       isPublic: currentSchedule ? currentSchedule.isPublic : Boolean(isPublic)
     });
