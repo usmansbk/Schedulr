@@ -1,7 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import Form from 'components/forms/Event';
-import frequency from 'components/forms/Event/frequency';
+import recurrence from 'components/forms/Event/recurrence';
 import { isPastExact } from 'lib/parseItem';
 import { SCHEDULE_CLOSED } from 'lib/constants';
 
@@ -27,7 +27,7 @@ export default class NewEventScreen extends React.Component {
       endAt,
       allDay,
       category,
-      repeat,
+      recur,
       until,
       forever,
       isPublic
@@ -67,7 +67,7 @@ export default class NewEventScreen extends React.Component {
       endAt: end,
       allDay: Boolean(allDay),
       category: category || 'Event',
-      repeat: repeat || frequency[0].id,
+      recur: recur || recurrence[0].id,
       until,
       forever,
       scheduleId: scheduleId,
