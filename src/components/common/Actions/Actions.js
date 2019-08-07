@@ -7,7 +7,7 @@ import CommentButton from '../CommentButton';
 
 import colors from 'config/colors';
 
-const FONT_SIZE = 22;
+const FONT_SIZE = 20;
 const defaultColor = colors.primary_light;
 
 export default class Actions extends React.Component {
