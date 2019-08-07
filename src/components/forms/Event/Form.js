@@ -97,8 +97,8 @@ class Form extends React.Component {
         validationSchema={formSchema}
         onSubmit={async (values, { setSubmitting }) => {
           if (isEventValid(values)) {
-            // const input = buildEventForm(values, stores.appState.location);
-            console.log(values);
+            const input = buildEventForm(values, stores.appState.location);
+            console.log(input);
             // onSubmit && await onSubmit(input);
           }
           setSubmitting(false);
