@@ -3,6 +3,7 @@ import moment from 'moment';
 import isEqual from 'lodash.isequal';
 import { Appbar } from 'react-native-paper';
 import { inject, observer } from 'mobx-react';
+import Icon from 'react-native-vector-icons/Feather';
 import Details from './Details';
 import { formatDate, getRepeatLabel } from 'lib/time';
 import { isEventValid, isEventCancelled, getDuration, getStatus } from 'lib/parseItem';
@@ -86,12 +87,12 @@ class EventDetails extends React.Component {
             isOwner && !isOffline && (
               <>
                 <Appbar.Action
-                  icon="delete"
+                  icon={() => <Icon size={24} name="trash" />}
                   color={colors.gray}
                   onPress={handleDelete}
                 />
                 <Appbar.Action
-                  icon="content-copy"
+                  icon={() => <Icon size={24} name="copy" />}
                   color={colors.gray}
                   onPress={handleRepeat}
                 />
@@ -99,7 +100,7 @@ class EventDetails extends React.Component {
                   isValid && (
                     <>
                       <Appbar.Action
-                        icon="mode-edit"
+                        icon={() => <Icon size={24} name="edit-3" />}
                         color={colors.gray}
                         onPress={() => handleEdit({
                           id,
@@ -108,7 +109,7 @@ class EventDetails extends React.Component {
                         })}
                       />
                       <Appbar.Action
-                        icon="close"
+                        icon={() => <Icon size={24} name="x" />}
                         color={colors.gray}
                         onPress={this._handleCancel}
                       />

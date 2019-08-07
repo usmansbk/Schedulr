@@ -1,6 +1,7 @@
 import React from 'react';
 import Share from 'react-native-share';
 import { IconButton } from 'react-native-paper';
+import Icon from 'react-native-vector-icons/Feather';
 import env from 'config/env';
 
 export default ({
@@ -13,7 +14,7 @@ export default ({
   date,
 }) => (
   <IconButton
-    icon="share"
+    icon={() => <Icon size={size} name="share-2"/>}
     color={color}
     size={size}
     onPress={() => {

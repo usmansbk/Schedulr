@@ -12,11 +12,12 @@ class IconBagdeButton extends React.Component {
   _onPress = () => this.props.onPress();
 
   shouldComponentUpdate = nextProps => nextProps.count !== this.props.count;
+
+  _renderIcon = () => <Icon name={this.props.icon} size={this.props.size} />
   
   render() {
     const {
       color,
-      icon,
       size,
       count,
       stores
@@ -26,7 +27,7 @@ class IconBagdeButton extends React.Component {
       <View style={stores.appStyles.styles.button}>
         <IconButton
           onPress={this._onPress}
-          icon={() => <Icon name={icon} size={size} />}
+          icon={this._renderIcon}
           size={size}
           color={color}
           style={stores.appStyles.styles.iconButton}
