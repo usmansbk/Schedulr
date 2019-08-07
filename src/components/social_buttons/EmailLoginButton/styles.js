@@ -9,7 +9,7 @@ export default StyleSheet.create({
     borderRadius: 2,
     justifyContent:'center',
     margin: 4,
-    backgroundColor: colors.primary
+    backgroundColor: colors.light_gray
   },
   content: {
     marginVertical: 4,
@@ -24,7 +24,7 @@ export default StyleSheet.create({
   },
   text: {
     fontSize: 14,
-    color: '#fff',
+    color: colors.gray,
     marginLeft: 4,
     textAlign: 'center',
     fontWeight: 'bold'
