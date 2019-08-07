@@ -10,6 +10,9 @@ import { getUser } from 'mygraphql/queries';
 import { createUser } from 'mygraphql/mutations';
 import client from 'config/client';
 
+const GET_USER = gql(getUser);
+const CREATE_USER = gql(createUser);
+
 class Container extends React.Component {
 
   componentWillUnmount() {
@@ -42,7 +45,7 @@ class Container extends React.Component {
             }
           }
           const response = await client.query({
-            query: gql(getUser),
+            query: GET_USER,
             variables: {
               id: email
             }
@@ -50,7 +53,7 @@ class Container extends React.Component {
           const { data } = response;
           if (!data.getUser) {
             const result = await client.mutate({
-              mutation: gql(createUser),
+              mutation: CREATE_USER,
               variables: {
                 input: {
                   id: email,
@@ -58,6 +61,16 @@ class Container extends React.Component {
                   email,
                   pictureUrl
                 }
+              }
+            });
+            const user = result.data.createUser;
+            client.writeQuery({
+              query: GET_USER,
+              variables: {
+                id: email
+              },
+              data: {
+                getUser: user
               }
             });
           }
