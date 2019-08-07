@@ -14,12 +14,15 @@ class Container extends React.Component {
     Auth.signOut().then(this.props.stores.reset);
   };
 
+  _handleDimiss = () => this.props.handleDismiss();
+
   render() {
     return (
       <Dialog
         visible={this.props.visible}
         loading={this.state.loading}
         handleLogout={this._signOut}
+        handleDismiss={this._handleDimiss}
       />
     );
   }
