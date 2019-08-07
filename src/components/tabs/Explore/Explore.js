@@ -54,7 +54,7 @@ const SearchBar = inject('stores')(observer(
         onPress={() => navigation.navigate('SearchScreen')}
       >
         <Searchbar
-          icon={() => <Icon name="search" size={24} />}
+          icon={() => <Icon name="search" size={24} color={stores.themeStore.colors.gray} />}
           editable={false}
           collapsable
           placeholder="Search"
