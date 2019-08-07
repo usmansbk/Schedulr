@@ -25,7 +25,7 @@ export default class AppState {
   @persist('object') @observable prefs = {
     showPrivateScheduleAlert: true,
   }
-  @persist('list') @observable eventTypes =  types;
+  @persist('list') @observable categories =  types;
 
   debounceQuery = debounce((val) => this.query = val, 250);
 
@@ -56,20 +56,20 @@ export default class AppState {
     this.prefs = {
       showPrivateScheduleAlert: true,
     }
-    this.eventTypes = types;
+    this.categories = types;
     this.loggingIn = false;
     this.userId = null;
   }
 
   @action addCustomType = (category) => {
-    const hasType = this.eventTypes.findIndex(item => item.toLowerCase() === category.toLowerCase());
+    const hasType = this.categories.findIndex(item => item.toLowerCase() === category.toLowerCase());
     if (hasType === -1) {
-      this.eventTypes.push(category);
+      this.categories.push(category);
     }
   }
 
   @action removeCustomType = (category) => {
-    this.eventTypes = this.eventTypes.filter(item => item.toLowerCase() !== category.toLowerCase());
+    this.categories = this.categories.filter(item => item.toLowerCase() !== category.toLowerCase());
   }
   
   @action setLocation = (address) => {
