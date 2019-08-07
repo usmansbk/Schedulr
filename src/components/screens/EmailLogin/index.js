@@ -39,7 +39,7 @@ const signUpConfig = {
     },
     {
       label: 'Password',
-      placeholder: 'Password',
+      placeholder: '8 characters long',
       key: 'password',
       required: true,
       displayOrder: 3,
