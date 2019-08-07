@@ -11,7 +11,7 @@ export default ({hasNotification, name, color, size }) => {
         size={size}
       />
       {
-        true && <View style={styles.indicator}/>
+        hasNotification && <View style={styles.indicator}/>
       }
     </View>
   );
