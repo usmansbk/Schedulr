@@ -142,7 +142,13 @@ class Settings extends React.Component {
             }
             <List.Item
               title="Remind me"
-              right={() => <List.Icon icon="chevron-right" />}
+              right={() => <List.Icon
+                icon={() => <Icon
+                  name="chevron-right"
+                  color={colors.gray}
+                  size={24}
+                />}
+              />}
               onPress={this._handleRemindMeDialog}
             />
             <Divider />
