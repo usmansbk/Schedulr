@@ -4,13 +4,17 @@ import Loading from 'components/common/Loading';
 
 const theme ={
   ...AmplifyTheme,
-  button:{
+  button: {
     ...AmplifyTheme.button,
     backgroundColor: colors.primary
   },
   sectionFooterLink: {
     ...AmplifyTheme.sectionFooterLink,
     color: colors.primary_light
+  },
+  buttonDisabled: {
+    ...AmplifyTheme.button,
+    backgroundColor: colors.primaryOpaque(0.6)
   }
 };
 

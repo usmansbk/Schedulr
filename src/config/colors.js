@@ -29,7 +29,8 @@ export const light = {
   warning: '#FBAD15',
   image_loading: '#C0DEED',
   actionsheet: '#e5e5e5',
-  actionsheetTitleText: '#757575'
+  actionsheetTitleText: '#757575',
+  primaryOpaque : opacity => `rgba(25, 118, 210, ${opacity})`
 }
 
 export const dark = {
@@ -64,7 +65,8 @@ export const dark = {
   warning: '#FBAD15',
   image_loading: '#C0DEED',
   actionsheet: '#212121',
-  actionsheetTitleText: 'white'
+  actionsheetTitleText: 'white',
+  primaryOpaque : opacity => `rgba(25, 118, 210, ${opacity})`
 };
 
 export default light;
