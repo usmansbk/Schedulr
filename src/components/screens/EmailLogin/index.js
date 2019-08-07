@@ -1,6 +1,6 @@
 import { withAuthenticator, AmplifyTheme } from 'aws-amplify-react-native';
-import Screen from './Screen';
 import colors from 'config/colors';
+import Loading from 'components/common/Loading';
 
 const theme ={
   ...AmplifyTheme,
@@ -14,4 +14,4 @@ const theme ={
   }
 };
 
-export default withAuthenticator(Screen, null, null, null, theme);
+export default withAuthenticator(Loading, null, null, null, theme);
