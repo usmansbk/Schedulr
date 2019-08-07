@@ -81,7 +81,15 @@ class EventDetails extends React.Component {
     return (
       <>
         <Appbar.Header style={styles.header}  collapsable>
-          <Appbar.BackAction color={colors.gray} onPress={handleBack} />
+          <Appbar.Action
+            color={colors.gray}
+            onPress={handleBack}
+            icon={() => <Icon
+              color={colors.gray}
+              size={24}
+              name="arrow-left"
+            />}
+          />
           <Appbar.Content titleStyle={styles.headerColor} />
           {
             isOwner && !isOffline && (

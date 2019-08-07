@@ -1,6 +1,7 @@
 import React from 'react';
 import { ScrollView } from 'react-native';
 import { Appbar, List, Divider } from 'react-native-paper';
+import Icon from 'react-native-vector-icons/Feather';
 import { inject, observer } from 'mobx-react';
 import env from 'config/env';
 
@@ -8,7 +9,15 @@ export default inject('stores')(observer(
   (props) => (
     <>
       <Appbar style={props.stores.appStyles.styles.elevatedHeader} collapsable>
-        <Appbar.BackAction color={props.stores.themeStore.colors.gray} onPress={props.goBack} />
+        <Appbar.Action
+          color={props.stores.themeStore.colors.gray}
+          onPress={props.goBack}
+          icon={() => <Icon
+            name="arrow-left"
+            color={props.stores.themeStore.colors.gray}
+            size={24}
+          />}
+        />
         <Appbar.Content
           title="Help"
           titleStyle={props.stores.appStyles.styles.headerColor}

@@ -88,7 +88,15 @@ class Info extends React.Component {
     return (
       <>
         <Appbar.Header collapsable style={appStyles.header}>
-          <Appbar.BackAction color={colors.gray} onPress={goBack} />
+          <Appbar.Action
+            color={colors.gray}
+            onPress={goBack}
+            icon={() => <Icon
+              name="arrow-left"
+              color={colors.gray}
+              size={24}
+            />}
+          />
           <Appbar.Content
             titleStyle={appStyles.headerColor}
           />

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Dimensions } from 'react-native';
 import { Appbar } from 'react-native-paper';
+import Icon from 'react-native-vector-icons/Feather';
 import { createMaterialTopTabNavigator, MaterialTopTabBar } from 'react-navigation-tabs';
 import { inject, observer } from 'mobx-react';
 import Following from './Following';
@@ -29,9 +30,14 @@ const Tabs = createMaterialTopTabNavigator(
 const HeaderComponent = inject('stores')(observer(
   ({ stores, title, goBack }) => (
     <Appbar.Header style={stores.appStyles.styles.header}>
-      <Appbar.BackAction
+      <Appbar.Action
+        color={stores.themeStore.colors.gray}
         onPress={goBack}
-        color={stores.themeStore.colors.gray} 
+        icon={() => <Icon
+          name="arrow-left"
+          color={stores.themeStore.colors.gray}
+          size={24}
+        />}
       />
       <Appbar.Content
         title={title}

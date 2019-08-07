@@ -7,6 +7,7 @@ import {
   Divider
 } from 'react-native-paper';
 import SimpleToast from 'react-native-simple-toast';
+import Icon from 'react-native-vector-icons/Feather';
 import { inject, observer } from 'mobx-react';
 
 class Settings extends React.Component {
@@ -51,7 +52,15 @@ class Settings extends React.Component {
     return (
       <>
         <Appbar style={styles.elevatedHeader} collapsable>
-          <Appbar.BackAction color={colors.gray} onPress={goBack} />
+          <Appbar.Action
+            color={colors.gray}
+            onPress={goBack}
+            icon={() => <Icon
+              name="arrow-left"
+              color={colors.gray}
+              size={24}
+            />}
+          />
           <Appbar.Content
             title="Settings"
             titleStyle={styles.headerColor}
