@@ -23,6 +23,7 @@ const signUpConfig = {
   signUpFields: [
     {
       label: 'Name',
+      placeholder: 'Name',
       key: 'name',
       required: true,
       displayOrder: 1,
@@ -30,6 +31,7 @@ const signUpConfig = {
     },
     {
       label: 'Email',
+      placeholder: 'Email',
       key: 'email',
       required: true,
       displayOrder: 2,
@@ -37,6 +39,7 @@ const signUpConfig = {
     },
     {
       label: 'Password',
+      placeholder: 'Password',
       key: 'password',
       required: true,
       displayOrder: 3,
