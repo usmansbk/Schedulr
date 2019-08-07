@@ -4,6 +4,7 @@ import { Caption, Headline, ActivityIndicator } from 'react-native-paper';
 import { inject, observer } from 'mobx-react';
 import GLoginButton from 'components/social_buttons/GLoginButton';
 import FBLoginButton from 'components/social_buttons/FBLoginButton';
+import EmailLoginButton from 'components/social_buttons/EmailLoginButton';
 import Logo from 'components/common/Logo';
 import styles from './styles';
 
@@ -24,6 +25,7 @@ export default inject("stores")(observer((props) => (
           <>
             <FBLoginButton disabled={props.loading} onLogin={props.handleLogin} />
             <GLoginButton disabled={props.loading} onLogin={props.handleLogin} />
+            <EmailLoginButton onLogin={props.handleEmailLogin} />
           </>
           )
         }

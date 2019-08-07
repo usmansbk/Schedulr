@@ -49,12 +49,12 @@ class Container extends React.Component {
           });
           const { data } = response;
           if (!data.getUser) {
-            await client.mutate({
+            const result = await client.mutate({
               mutation: gql(createUser),
               variables: {
                 input: {
                   id: email,
-                  name,
+                  name: name || email,
                   email,
                   pictureUrl
                 }
@@ -80,9 +80,19 @@ class Container extends React.Component {
     }
   };
 
+  _emailSignIn = async () => {
+    try {
+      this.props.stores.appState.setLoginState(true);
+      await Auth.federatedSignIn();
+    } catch (error) {
+      this.props.stores.appState.setLoginState(false);
+    }
+  }
+
   render() {
     return <Login
       handleLogin={this._signInAsync}
+      handleEmailLogin={this._emailSignIn}
     />;
   }
 }
