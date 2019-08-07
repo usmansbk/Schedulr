@@ -11,7 +11,7 @@ export const parseDetails = (event) => {
   return note;
 };
 
-export const getEventType = (category) => {
+export const getCategory = (category) => {
   if (category.toLowerCase().trim() === 'normal') return '';
   return decapitalize(category);
 }

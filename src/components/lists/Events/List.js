@@ -18,7 +18,7 @@ import {
   getTime,
   isPast,
   parseRepeat,
-  getEventType,
+  getCategory,
   isEventValid
 } from 'lib/parseItem';
 import { eventsChanged } from 'lib/utils';
@@ -250,7 +250,7 @@ class List extends React.Component {
     startAt={startAt}
     endAt={endAt}
     allDay={allDay}
-    category={getEventType(category)}
+    category={getCategory(category)}
     repeat={parseRepeat(repeat)}
     time={getTime({ allDay, startAt, endAt })}
     status={getStatus({ isCancelled, cancelledDates, startAt, endAt})}

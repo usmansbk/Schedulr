@@ -11,7 +11,7 @@ import {
   getHumanTime,
   parseRepeat,
   getStatus,
-  getEventType
+  getCategory
 } from 'lib/parseItem';
 import { getEvents } from 'lib/calendr';
 import { bookmarkedEvents } from 'lib/constants';
@@ -74,7 +74,7 @@ class List extends Component {
     bookmarksCount={bookmarksCount}
     commentsCount={commentsCount}
     isBookmarked={isBookmarked}
-    category={getEventType(category)}
+    category={getCategory(category)}
     repeat={parseRepeat(repeat)}
     time={getHumanTime({ allDay, startAt, endAt })}
     scheduleId={schedule && schedule.id}
