@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
 import { FAB } from 'react-native-paper';
+import Icon from 'react-native-vector-icons/Feather';
 import { inject, observer } from 'mobx-react';
 
 class Fab extends React.Component {
@@ -10,10 +11,12 @@ class Fab extends React.Component {
     return shouldUpdate;
   };
 
+  _renderIcon = () =>  <Icon size={24} color="white" name={this.props.icon} />
+
   _onPress = () => this.props.onPress();
 
   render() {
-    const { label, icon, small, stores, secondary, disabled } = this.props;
+    const { label, small, stores, secondary, disabled } = this.props;
     return (
       <FAB
         label={label}
@@ -25,7 +28,7 @@ class Fab extends React.Component {
         }}
         style={secondary ? styles.secondary : styles.fab}
         color="#fff"
-        icon={icon}
+        icon={this._renderIcon}
         small={small || secondary}
         disabled={disabled}
       />

@@ -136,7 +136,7 @@ export default class Events extends React.Component {
         {
           !Boolean(error) &&
             <FAB
-              icon="edit"
+              icon="edit-2"
               onPress={this._navigateToNewEvent}
             />
         }
