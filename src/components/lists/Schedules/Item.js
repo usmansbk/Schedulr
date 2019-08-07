@@ -55,7 +55,7 @@ class Item extends React.Component {
           />
           <View style={styles.itemBody}>
             <View style={styles.nameRow}>
-              { isMuted && <Icon name="bell-off" size={16} color={stores.themeStore.colors.tint}/> }
+              { isMuted && <Icon name="volume-x" size={16} color={stores.themeStore.colors.tint}/> }
               <Text numberOfLines={1} ellipsizeMode="tail" style={isPending ? styles.offlineName : styles.itemName}>{name}</Text>
             </View>
             { Boolean(description) && <Caption numberOfLines={1} ellipsizeMode="tail" style={styles.itemDescription}>{description}</Caption> }
