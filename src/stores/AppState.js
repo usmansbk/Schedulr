@@ -6,7 +6,7 @@ import { observable, action } from 'mobx';
 import { persist } from 'mobx-persist';
 import debounce from 'lodash.debounce';
 import { requestLocationPermission } from 'helpers/permissions';
-import types from './types';
+import categories from './eventCategories';
 
 export default class AppState {
   @persist @observable userId = null;
@@ -25,7 +25,7 @@ export default class AppState {
   @persist('object') @observable prefs = {
     showPrivateScheduleAlert: true,
   }
-  @persist('list') @observable categories =  types;
+  @persist('list') @observable categories =  categories;
 
   debounceQuery = debounce((val) => this.query = val, 250);
 
@@ -56,7 +56,7 @@ export default class AppState {
     this.prefs = {
       showPrivateScheduleAlert: true,
     }
-    this.categories = types;
+    this.categories = categories;
     this.loggingIn = false;
     this.userId = null;
   }
