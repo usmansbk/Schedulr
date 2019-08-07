@@ -11,7 +11,7 @@ export default [
   },
   {
     id: 'help',
-    icon: 'help',
+    icon: 'help-circle',
     name: 'Help',
   },
 ];
