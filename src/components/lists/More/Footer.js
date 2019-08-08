@@ -2,6 +2,7 @@ import React from 'react';
 import { List } from 'react-native-paper';
 import { observer, inject } from 'mobx-react';
 import Icon from 'react-native-vector-icons/Feather';
+import { I18n } from 'aws-amplify';
 
 export default inject('stores')(observer(
   ({ openDialog, stores }) => (
@@ -13,7 +14,7 @@ export default inject('stores')(observer(
           name="log-out"
         />}
       />}
-      title="Sign out"
+      title={I18n.get("BUTTON_signout")}
       style={stores.appStyles.moreList.footer}
       onPress={openDialog}
     />

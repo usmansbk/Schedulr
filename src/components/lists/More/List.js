@@ -3,6 +3,7 @@ import { FlatList } from 'react-native';
 import { withNavigationFocus } from 'react-navigation';
 import Share from 'react-native-share';
 import { inject, observer } from 'mobx-react';
+import { I18n } from 'aws-amplify';
 import LogoutDialog from 'components/dialogs/Logout';
 import Header from './Header';
 import Footer from './Footer';
@@ -63,7 +64,7 @@ class List extends React.Component {
   }) => (
     <Item
       id={id}
-      name={name}
+      name={I18n.get(`MORE_${name}`)}
       icon={icon}
       onPressItem={this._onPressItem}
     />

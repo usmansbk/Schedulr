@@ -2,16 +2,16 @@ export default [
   {
     id: 'settings',
     icon: 'settings',
-    name: 'Settings',
+    name: 'settings',
   },
   {
     id: 'invite',
     icon: 'share',
-    name: 'Invite a friend',
+    name: 'inviteAFriend',
   },
   {
     id: 'help',
     icon: 'help-circle',
-    name: 'Help',
+    name: 'help',
   },
 ];
