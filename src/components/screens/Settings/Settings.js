@@ -47,14 +47,17 @@ class Settings extends React.Component {
       disablePushNotifications,
     } = stores.settingsStore;
     const { styles } = stores.appStyles;
-    const { colors } = stores.themeStore;
 
     return (
       <>
         <Appbar style={styles.elevatedHeader} collapsable>
           <Appbar.Action
             onPress={goBack}
-            icon={() => <Icon name="arrow-left" size={24} color={colors.gray} />}
+            icon={() => <Icon
+              name="arrow-left"
+              size={24}
+              color={stores.themeStore.colors.gray}
+            />}
           />
           <Appbar.Content
             title="Settings"
@@ -140,7 +143,7 @@ class Settings extends React.Component {
               right={() => <List.Icon
                 icon={() => <Icon
                   name="chevron-right"
-                  color={colors.gray}
+                  color={stores.themeStore.colors.gray}
                   size={24}
                 />}
               />}
