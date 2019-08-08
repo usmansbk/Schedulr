@@ -9,6 +9,7 @@ import {
 import SimpleToast from 'react-native-simple-toast';
 import Icon from 'react-native-vector-icons/Feather';
 import { inject, observer } from 'mobx-react';
+import { I18n } from 'aws-amplify';
 
 class Settings extends React.Component {
   static defaultProps = {
@@ -42,8 +43,6 @@ class Settings extends React.Component {
       sound,
       vibrate,
       disableReminders,
-      headsUp,
-      bookmarkedEventsOnly,
       disablePushNotifications,
     } = stores.settingsStore;
     const { styles } = stores.appStyles;
@@ -60,14 +59,14 @@ class Settings extends React.Component {
             />}
           />
           <Appbar.Content
-            title="Settings"
+            title={I18n.get("SETTINGS_screenTitle")}
             titleStyle={styles.headerColor}
           />
         </Appbar>
         <ScrollView style={styles.bg}>
-          <List.Section title="General">
+          <List.Section title={I18n.get("SETTINGS_generalSectionTitle")}>
             <List.Item
-              title="Sound"
+              title={I18n.get("SETTINGS_sound")}
               right={() => (
                 <Switch
                   value={sound}
@@ -77,7 +76,7 @@ class Settings extends React.Component {
             />
             <Divider />
             <List.Item
-              title="Vibrate"
+              title={I18n.get("SETTINGS_vibrate")}
               right={() => (
                 <Switch
                   value={vibrate}
@@ -87,7 +86,7 @@ class Settings extends React.Component {
             />
             <Divider />
             <List.Item
-              title="Dark theme"
+              title={I18n.get("SETTINGS_darkTheme")}
               right={() => (
                 <Switch
                   value={dark}
@@ -97,14 +96,14 @@ class Settings extends React.Component {
             />
             <Divider />
             <List.Item
-              title="Location"
+              title={I18n.get("SETTINGS_location")}
               description={stores.appState.address}
             />
             <Divider />
           </List.Section>
-          <List.Section title="Reminder">
+          <List.Section title={I18n.get("SETTINGS_reminderSectionTitle")}>
             <List.Item
-              title="Disable"
+              title={I18n.get("SETTINGS_reminderDisable")}
               right={() => (
                 <Switch
                   value={disableReminders}
@@ -113,33 +112,8 @@ class Settings extends React.Component {
               )}
             />
             <Divider />
-            {
-              false && (
-              <>
-                <List.Item
-                  title="Heads-up"
-                  right={() => (
-                    <Switch
-                      value={headsUp}
-                      onValueChange={() => this.handleValueChange('headsUp')}
-                    />
-                  )}
-                />
-                <Divider />
-                <List.Item
-                  title="Bookmark alarm"
-                  right={() => (
-                    <Switch
-                      value={bookmarkedEventsOnly}
-                      onValueChange={() => this.handleValueChange('bookmarkedEventsOnly')}
-                    />
-                  )}
-                />
-                <Divider />
-              </>)
-            }
             <List.Item
-              title="Remind me"
+              title={I18n.get("SETTINGS_remindMe")}
               right={() => <List.Icon
                 icon={() => <Icon
                   name="chevron-right"
@@ -151,9 +125,9 @@ class Settings extends React.Component {
             />
             <Divider />
           </List.Section>
-          <List.Section title="Push notification">
+          <List.Section title={I18n.get("SETTINGS_pushSectionTitle")}>
             <List.Item
-              title="Disable"
+              title={I18n.get("SETTINGS_pushDisable")}
               right={() => (
                 <Switch
                   value={disablePushNotifications}
