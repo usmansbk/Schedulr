@@ -1141,7 +1141,7 @@
     react-native-safe-area-view "^0.14.1"
     react-native-screens "^1.0.0 || ^1.0.0-alpha"
 
-"@redux-offline/redux-offline@2.2.1", "@redux-offline/redux-offline@2.5.2-native.0":
+"@redux-offline/redux-offline@2.5.2-native.0":
   version "2.5.2-native.0"
   resolved "https://registry.yarnpkg.com/@redux-offline/redux-offline/-/redux-offline-2.5.2-native.0.tgz#e8c3c65038d20df13389a88eb6f4de4248c59cf4"
   integrity sha512-ZRH1E0oz9VAnfBZJsyH8O2D3tjQOd0Yz/piPmRsbE1wuoUb+eVM9SZNQetIdJvqmiNs1n3VDfcEeADEbT2dhyg==
@@ -1731,19 +1731,19 @@ aws-amplify@^1.1.36:
     "@aws-amplify/ui" "^1.0.23"
     "@aws-amplify/xr" "^0.1.22"
 
-aws-appsync-react@^1.2.9:
-  version "1.2.9"
-  resolved "https://registry.yarnpkg.com/aws-appsync-react/-/aws-appsync-react-1.2.9.tgz#5622b43278a27ff51875bbb85020bc48f7ce462d"
-  integrity sha512-/D+aMGPWH2NQpkFC/8g26nqQDVNW+ncC4qHodgPdHfp5h+KlecE9Vgk0ZRJz15Ue/YMlO3IHSUbRxC8/343KDQ==
+aws-appsync-react@1.2.10-unstable-native.0:
+  version "1.2.10-unstable-native.0"
+  resolved "https://registry.yarnpkg.com/aws-appsync-react/-/aws-appsync-react-1.2.10-unstable-native.0.tgz#05da9f21926237729ccb7367fcb81d42634ccb4c"
+  integrity sha512-iNq45Vf0E0sTIYRi1R5R7uxV7CuF57vKsHxyRsbK2XJxbFJczrRQOs2d5fFry2EViG6AmqOpSwjHoVeTHnQ1Bw==
   dependencies:
     prop-types "^15.6.0"
 
-aws-appsync@^1.8.1:
-  version "1.8.1"
-  resolved "https://registry.yarnpkg.com/aws-appsync/-/aws-appsync-1.8.1.tgz#e206e537574cace638267a0be28f4ad5a4c1a175"
-  integrity sha512-aL49HawoRB+Q7nRcuM6BQgYY7BAJbGIm8ulRdP6MK0AMsLgxSswFYKrFo1t1l+YuXIPxJbi8rnoirV67cXys2Q==
+aws-appsync@1.8.2-unstable-native.0:
+  version "1.8.2-unstable-native.0"
+  resolved "https://registry.yarnpkg.com/aws-appsync/-/aws-appsync-1.8.2-unstable-native.0.tgz#96282c177d9723b5f84da865cab971c9b3200f0f"
+  integrity sha512-F274MNkDcB2XTRe/nM+O/k91ceJ4VszztWA6qB3QfhT849EJI4lYyNBp3ifSeAMKNakVaagnExItAfphzrigbA==
   dependencies:
-    "@redux-offline/redux-offline" "2.2.1"
+    "@redux-offline/redux-offline" "2.5.2-native.0"
     apollo-cache-inmemory "1.3.10"
     apollo-client "2.4.6"
     apollo-link "1.2.3"

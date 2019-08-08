@@ -13,8 +13,8 @@
     "apollo-link-error": "^1.1.11",
     "aws-amplify": "^1.1.36",
     "aws-amplify-react-native": "^2.1.16",
-    "aws-appsync": "^1.8.1",
-    "aws-appsync-react": "^1.2.9",
+    "aws-appsync": "1.8.2-unstable-native.0",
+    "aws-appsync-react": "1.2.10-unstable-native.0",
     "emoji-regex": "^8.0.0",
     "formik": "^1.5.8",
     "graphql-tag": "^2.10.1",
@@ -77,8 +77,5 @@
   },
   "jest": {
     "preset": "react-native"
-  },
-  "resolutions": {
-    "@redux-offline/redux-offline": "2.5.2-native.0"
   }
 }
