@@ -52,7 +52,6 @@ models.graphql
 # BUCK
 buck-out/
 \.buckd/
-*.keystore
 
 # fastlane
 #
