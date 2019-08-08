@@ -22,17 +22,17 @@ class Item extends React.Component {
       nextProps.title !== this.props.title ||
       nextProps.time !== this.props.time ||
       nextProps.status !== this.props.status ||
-      nextProps.repeat !== this.props.repeat ||
-      nextProps.eventType !== this.props.eventType
+      nextProps.recur !== this.props.recur ||
+      nextProps.category !== this.props.category
     );
   }
   render() {
     const {
       title,
-      repeat,
+      recur,
       time,
       duration,
-      eventType,
+      category,
       pictureUrl,
       status,
       stores
@@ -64,7 +64,7 @@ class Item extends React.Component {
               <Text style={styles.time}>{time}</Text>
               <Caption numberOfLines={1}
                 ellipsizeMode="tail"
-              >{duration ? duration : ''} {eventType} {repeat}</Caption>
+              >{duration ? duration : ''} {category} {recur}</Caption>
               <Tag status={status} /> 
             </View>
           </View>

@@ -26,7 +26,7 @@ class Item extends React.Component {
       this.props.title !== nextProps.title ||
       this.props.time !== nextProps.time ||
       this.props.status !== nextProps.status ||
-      this.props.eventType !== nextProps.eventType ||
+      this.props.category !== nextProps.category ||
       this.props.bookmarksCount !== nextProps.bookmarksCount ||
       this.props.commentsCount !== nextProps.commentsCount ||
       this.props.address !== nextProps.address
@@ -37,11 +37,11 @@ class Item extends React.Component {
     const {
       id,
       title,
-      repeat,
+      recur,
       time,
       status,
       duration,
-      eventType,
+      category,
       pictureUrl,
       isBookmarked,
       bookmarksCount,
@@ -76,7 +76,7 @@ class Item extends React.Component {
                 {title}
               </Headline>
               <Text style={styles.time}>{time}</Text>
-              <Caption>{duration ? duration + ' ' : ''}{eventType} {repeat}</Caption>
+              <Caption>{duration ? duration + ' ' : ''}{category} {recur}</Caption>
               <Tag status={status} /> 
             </View>
             <Actions

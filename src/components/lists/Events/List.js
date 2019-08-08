@@ -18,7 +18,7 @@ import {
   getTime,
   isPast,
   parseRepeat,
-  getEventType,
+  getCategory,
   isEventValid
 } from 'lib/parseItem';
 import { eventsChanged } from 'lib/utils';
@@ -232,26 +232,26 @@ class List extends React.Component {
   _renderItem = ({ item: {
     id,
     title,
-    eventType,
+    category,
     isCancelled,
     cancelledDates,
     startAt,
     endAt,
-    repeat,
+    recur,
     venue,
     schedule,
     allDay,
     isBookmarked,
     bookmarksCount,
-    isAuthor
+    isOwner
   }}) => (<Item
     id={id}
     title={title}
     startAt={startAt}
     endAt={endAt}
     allDay={allDay}
-    eventType={getEventType(eventType)}
-    repeat={parseRepeat(repeat)}
+    category={getCategory(category)}
+    recur={parseRepeat(recur)}
     time={getTime({ allDay, startAt, endAt })}
     status={getStatus({ isCancelled, cancelledDates, startAt, endAt})}
     isValid={isEventValid({ isCancelled, endAt, startAt, cancelledDates })}
@@ -259,7 +259,7 @@ class List extends React.Component {
     scheduleId={schedule && schedule.id}
     isBookmarked={isBookmarked}
     bookmarksCount={bookmarksCount}
-    isAuthor={isAuthor}
+    isOwner={isOwner}
     duration={getDuration(startAt, endAt, allDay)}
     onPressItem={this._onPressItem}
     onPressCommentButton={this._onPressCommentItem}

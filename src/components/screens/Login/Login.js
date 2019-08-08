@@ -1,26 +1,37 @@
 import React from 'react';
 import { View, StatusBar } from 'react-native';
-import { Caption, Headline } from 'react-native-paper';
+import { Caption, Headline, ActivityIndicator } from 'react-native-paper';
+import { inject, observer } from 'mobx-react';
 import GLoginButton from 'components/social_buttons/GLoginButton';
 import FBLoginButton from 'components/social_buttons/FBLoginButton';
+import EmailLoginButton from 'components/social_buttons/EmailLoginButton';
 import Logo from 'components/common/Logo';
-import colors from 'config/colors';
 import styles from './styles';
 
-export default (props) => (
+export default inject("stores")(observer((props) => (
     <View style={styles.container}>
-      <StatusBar backgroundColor={colors.primary_light} barStyle="light-content"/>
+      <StatusBar
+        backgroundColor="white"
+        barStyle="dark-content"
+      />
       <Logo />
       <Headline style={styles.h1}>Welcome to Schdlr!</Headline>
       <Caption style={styles.caption}>
         The event scheduler
       </Caption>
       <View style={styles.content}>
-        <FBLoginButton disabled={props.loading} onLogin={props.handleLogin} />
-        <GLoginButton disabled={props.loading} onLogin={props.handleLogin} />
+        {
+          props.stores.appState.loggingIn ? <ActivityIndicator animating /> : (
+          <>
+            <FBLoginButton disabled={props.loading} onLogin={props.handleLogin} />
+            <GLoginButton disabled={props.loading} onLogin={props.handleLogin} />
+            <EmailLoginButton onLogin={props.handleEmailLogin} />
+          </>
+          )
+        }
       </View>
       <Caption style={styles.caption}>
-        Share your schedules with friends and colleagues!
+        Share your schedules!
       </Caption>
     </View>
-);
+)));

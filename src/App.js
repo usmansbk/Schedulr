@@ -22,12 +22,16 @@ import {
   EditSchedule,
   SearchScreen,
   ScheduleEvents,
-  WebView
+  WebView,
+  EmailLogin
 } from 'components/screens';
 import colors from 'config/colors';
 
 const AppStack = createStackNavigator({
-  Home,
+  Home: {
+    screen: Home,
+    path: ''
+  },
   EditEvent: {
     screen: EditEvent,
     navigationOptions: {
@@ -54,6 +58,7 @@ const AppStack = createStackNavigator({
   },
   EventDetails: {
     screen: EventDetails,
+    path: 'event/:id',
     navigationOptions: {
       header: null
     }
@@ -72,6 +77,7 @@ const AppStack = createStackNavigator({
   },
   ScheduleInfo: {
     screen: ScheduleInfo,
+    path: 'schdl/:id',
     navigationOptions: {
       header: null
     }
@@ -131,14 +137,22 @@ const AppStack = createStackNavigator({
 
 const AuthStack = createStackNavigator({
   Login,
+  EmailLogin
 }, {
-  headerMode: 'none'
+  headerMode: 'none',
+  initialRouteName: 'Login',
 });
 
 const AppNavigator = createSwitchNavigator({
   AuthLoading,
-  App: AppStack,
-  Auth: AuthStack,
+  App: {
+    screen: AppStack,
+    path: 'app'
+  },
+  Auth: {
+    screen: AuthStack,
+    path: '',
+  }
 }, {
   initialRouteName: 'AuthLoading',
 });

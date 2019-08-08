@@ -2,8 +2,8 @@ import moment from 'moment';
 const date = moment().format('YYYY-MM-DD');
 const url = `https://schdlr.com`;
 const dev = {
+  uriPrefix: 'schdlr://',
   APP_URL: url,
-  IOS_URL: `//:schdlr`,
   PROTOCOL: `http://`,
   DOMAIN: '192.168.43.190:4000',
   PORT: '4000',
@@ -18,8 +18,8 @@ const dev = {
 };
 
 export const prod = {
+  uriPrefix: 'schdlr://',
   APP_URL: url,
-  IOS_URL: `//:schdlr`,
   PROTOCOL: `http://`,
   DOMAIN: '192.168.43.190:4000',
   PORT: '4000',

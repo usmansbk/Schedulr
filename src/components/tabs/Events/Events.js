@@ -17,6 +17,10 @@ export default class Events extends React.Component {
     this._handleLocalNotifications();
   }
 
+  static defaultProps = {
+    events: [],
+  };
+  
   _handleLocalNotifications = () => {
     // Configure notifications for local events reminder
     LocalNotifications.configure({
@@ -74,7 +78,7 @@ export default class Events extends React.Component {
     try {
       const isDark = stores.settingsStore.dark;
       const navColor = isDark ? colors.light_gray_2 : colors.bg;
-      await changeNavigationBarColor(navColor, isDark);
+      await changeNavigationBarColor(navColor, !isDark);
     } catch (error) {
       SimpleToast.show(error.message, SimpleToast.SHORT);
     }
@@ -130,12 +134,11 @@ export default class Events extends React.Component {
           error={error}
         />
         {
-          !(Boolean(error) && !events.length) && (
+          !Boolean(error) &&
             <FAB
-              icon="edit"
+              icon="edit-2"
               onPress={this._navigateToNewEvent}
             />
-          )
         }
       </>
     )

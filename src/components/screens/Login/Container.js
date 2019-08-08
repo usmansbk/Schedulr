@@ -1,89 +1,107 @@
 import React from 'react';
-import { Auth } from 'aws-amplify';
-import SimpleToast from 'react-native-simple-toast';
-import changeNavigationBarColor from 'react-native-navigation-bar-color';
+import { Auth, Hub } from 'aws-amplify';
 import { inject, observer } from 'mobx-react';
+import { withNavigationFocus } from'react-navigation';
 import gql from 'graphql-tag';
-import { graphql } from 'react-apollo';
-import client from 'config/client';
-import { LoginUser } from 'mygraphql/mutations';
+import changeNavigationBarColor from 'react-native-navigation-bar-color';
+import SimpleToast from 'react-native-simple-toast';
 import Login from './Login';
-import Loading from 'components/common/Loading';
+import { getUser } from 'mygraphql/queries';
+import { createUser } from 'mygraphql/mutations';
+import client from 'config/client';
+
+const GET_USER = gql(getUser);
+const CREATE_USER = gql(createUser);
 
 class Container extends React.Component {
-  state = { loading: false };
-  
-  _bootstrap = async () => {
-    try {
-      await client.clearStore();
-    } catch (e) {
-      SimpleToast.show(e.message, SimpleToast.LONG);
-    }
+
+  componentWillUnmount() {
+    Hub.remove('auth', this._authListener);
   }
 
   componentDidMount = async () => {
-    const { stores } = this.props;
-    const colors = stores.themeStore.colors;
+    this.props.stores.appState.setLoginState(false);
+    Hub.listen('auth', this._authListener);
     try {
-      await changeNavigationBarColor(colors.primary_light, false);
+      await changeNavigationBarColor('white', true);
     } catch (error) {
-      SimpleToast.show(error.message, SimpleToast.LONG);
-    }
-  }
-
-  _signInAsync = async ({
-    name,
-    email,
-    pictureUrl,
-    provider,
-    token,
-    expires_at
-  }) => {
-    this.setState({ loading: true });
-    try {
-      // await this._bootstrap();
-      await Auth.federatedSignIn(provider, {
-        token,
-        expires_at,
-      },{
-        email,
-        name: email
-      });
-      this.props.stores.me.login({
-        id: email,
-        name,
-        email,
-        pictureUrl
-      });
-      await this.props.onSubmit({
-        name,
-        email,
-        pictureUrl
-      });
-      this.props.navigation.navigate('App');
-      SimpleToast.show(`Welcome ${name}!`, SimpleToast.SHORT);
-    } catch (error) {
-      SimpleToast.show('Login failed: ' + error.message, SimpleToast.SHORT);
-      this.setState({ loading: false });
     }
   };
 
+  _authListener = async ({ payload: { event } }) => {
+    switch(event) {
+      case "signIn":
+        try {
+          const currentUser = await Auth.currentAuthenticatedUser();
+          const { signInUserSession : { idToken: { payload } } } = currentUser;
+          const { email, name, picture } = payload;
+          let pictureUrl;
+          if (picture) {
+            if (payload["cognito:username"].startsWith('Facebook')) {
+              const json = JSON.parse(picture)
+              pictureUrl = json.data.url;
+            } else {
+              pictureUrl = picture;
+            }
+          }
+          const response = await client.query({
+            query: GET_USER,
+            variables: {
+              email
+            }
+          });
+          const { data } = response;
+          if (!data.getUser) {
+            const result = await client.mutate({
+              mutation: CREATE_USER,
+              variables: {
+                input: {
+                  name: name || email,
+                  email,
+                  pictureUrl: pictureUrl || null
+                }
+              }
+            });
+            const user = result.data.createUser;
+            client.writeQuery({
+              query: GET_USER,
+              variables: {
+                email
+              },
+              data: {
+                getUser: user
+              }
+            });
+          }
+          this.props.stores.appState.setUserId(email);
+          this.props.navigation.navigate('App');
+        } catch(error) {
+          SimpleToast.show("Sign-in failed", SimpleToast.LONG);
+          console.error(error.message);
+        }
+        break;
+    }
+  };
+
+  _signInAsync = async (provider) => {
+    try {
+      this.props.stores.appState.setLoginState(true);
+      await Auth.federatedSignIn({ provider });
+    } catch (error) {
+      this.props.stores.appState.setLoginState(false);
+    }
+  };
+
+  _emailSignIn = () => this.props.navigation.navigate('EmailLogin');
+
   render() {
-    return this.state.loading ? ( <Loading />
-    ) : ( <Login handleLogin={this._signInAsync} loading={this.state.loading} /> );
+    return <Login
+      handleLogin={this._signInAsync}
+      handleEmailLogin={this._emailSignIn}
+    />;
   }
 }
 
-const withStores = inject('stores')(observer(Container));
+const withFocus = withNavigationFocus(Container);
 
-export default graphql(gql(LoginUser), {
-  alias: 'withLoginScreen',
-  props: ({ mutate, ownProps }) => ({
-    onSubmit: (input) => mutate({
-      variables: {
-        input
-      }
-    }),
-    ...ownProps
-  })
-})(withStores);
+export default inject("stores")(observer(withFocus));

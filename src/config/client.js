@@ -2,18 +2,16 @@ import AWSAppSyncClient, { createAppSyncLink } from 'aws-appsync';
 import { Auth, Analytics } from 'aws-amplify';
 import { ApolloLink } from 'apollo-link';
 import { onError } from 'apollo-link-error';
-import { setContext } from 'apollo-link-context';
-import { createHttpLink } from 'apollo-link-http';
 import SimpleToast from 'react-native-simple-toast';
-import aws_config from '../aws-exports';
-import logger from './logger';
-import stores from 'stores';
+import aws_config from '../../aws-exports';
+
+Analytics.disable();
 
 const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors) {
     graphQLErrors.map(error => {
-      logger.log(error);
-      SimpleToast.show('Server error: ' + error.message, SimpleToast.LONG);
+      SimpleToast.show('Server error', SimpleToast.LONG);
+      console.error(error.message);
       Analytics.record({
         name: 'GraphQLError',
         attributes: {
@@ -32,22 +30,9 @@ const appSyncLink = createAppSyncLink({
   region: aws_config.aws_appsync_region,
   auth: {
     type: aws_config.aws_appsync_authenticationType,
-    credentials: () => Auth.currentCredentials()
+    jwtToken: async () => (await Auth.currentSession()).getIdToken().getJwtToken(),
   },
-  resultsFetcherLink: ApolloLink.from([
-    setContext((_, previousContext) => {
-      const username = stores.me.email;
-      return ({
-        headers: {
-          ...previousContext.headers,
-          username
-        }
-      })
-    }),
-    createHttpLink({
-      uri: aws_config.aws_appsync_graphqlEndpoint
-    })
-  ])
+  complexObjectsCredentials: () => Auth.currentCredentials(),
 });
 
 const link = ApolloLink.from([errorLink, appSyncLink]);

@@ -10,7 +10,7 @@ const { AVATAR_SIZE } = schedule_search;
 
 class Item extends React.Component {
   _onPress = () => {
-    const cacheFirst = (this.props.isAuthor || this.props.isFollowing);
+    const cacheFirst = (this.props.isOwner || this.props.isFollowing);
     this.props.onPressItem(this.props.id, cacheFirst);
   };
   shouldComponentUpdate = (nextProps) => {
@@ -26,7 +26,7 @@ class Item extends React.Component {
       id,
       name,
       description,
-      isAuthor,
+      isOwner,
       isClosed,
       isFollowing,
       stores
@@ -54,7 +54,7 @@ class Item extends React.Component {
             </View>
           </View>
           {
-            !isAuthor && (
+            !isOwner && (
               <FollowButton
                 id={id}
                 isFollowing={isFollowing}

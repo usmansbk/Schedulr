@@ -1,6 +1,7 @@
 import React from 'react';
 import { Appbar } from 'react-native-paper';
 import { inject, observer } from 'mobx-react';
+import Icon from 'react-native-vector-icons/Feather';
 import List from 'components/lists/ScheduleEvents';
 import Loading from 'components/common/Loading';
 import Error from 'components/common/Error';
@@ -37,7 +38,14 @@ class ScheduleEvents extends React.Component {
     return (
       <>
         <Appbar style={styles.elevatedHeader} collapsable>
-          <Appbar.BackAction color={colors.gray} onPress={onPress} />
+          <Appbar.Action
+            onPress={onPress}
+            icon={() => <Icon
+              name="arrow-left"
+              color={colors.gray}
+              size={24}
+            />}
+          />
           <Appbar.Content
             title={name}
             subtitle={description}

@@ -4,7 +4,7 @@ import {
   createAppContainer,
 } from 'react-navigation';
 import { BottomTabBar, createBottomTabNavigator } from 'react-navigation-tabs';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import Icon from 'react-native-vector-icons/Feather';
 import { inject, observer } from 'mobx-react';
 import MoreRoute from 'components/tabs/More';
 import ExploreTab from 'components/tabs/Explore';
@@ -15,9 +15,14 @@ import NotificationsIcon from 'components/common/NotificationIcon';
 const FONT_SIZE = 25;
 
 const Home = createBottomTabNavigator({
-  Home: { screen: HomeRoute },
+  Home: {
+    screen: HomeRoute
+  },
   Explore: { screen: ExploreTab },
-  Notifications: { screen: NotificationRoute },
+  Notifications: {
+    screen: NotificationRoute,
+    path: 'notif'
+  },
   More: { screen: MoreRoute }
 }, {
   initialRouteName: 'Home',
@@ -38,7 +43,11 @@ const Home = createBottomTabNavigator({
       } else if (routeName === 'More') {
         iconName = 'menu';
       } else if (routeName === 'Notifications') {
-        return <NotificationsIcon focused={focused} size={FONT_SIZE} color={tintColor} />;
+        return <NotificationsIcon
+          focused={focused}
+          size={FONT_SIZE} color={tintColor}
+          name="bell"
+        />;
       }
       return <Icon name={iconName} size={FONT_SIZE} color={tintColor} />;
     }

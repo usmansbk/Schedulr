@@ -1,6 +1,7 @@
 import React from 'react';
 import { Appbar } from 'react-native-paper';
 import { withNavigationFocus } from 'react-navigation';
+import Icon from 'react-native-vector-icons/Feather';
 import { inject, observer } from 'mobx-react';
 import List from './ListHoc';
 
@@ -11,14 +12,21 @@ class Followers extends React.Component {
     const {
       id,
       goBack,
-      isAuthor,
+      isOwner,
       stores
     } = this.props;
 
     return  (
       <>
         <Appbar style={stores.appStyles.styles.elevatedHeader}>
-          <Appbar.BackAction onPress={goBack} color={stores.themeStore.colors.gray} />
+          <Appbar.Action
+            onPress={goBack}
+            icon={() => <Icon
+              name="arrow-left"
+              color={colors.gray}
+              size={24}
+            />}
+          />
           <Appbar.Content
             title="Followers"
             titleStyle={stores.appStyles.styles.headerColor}
@@ -26,7 +34,7 @@ class Followers extends React.Component {
         </Appbar>
         <List
           id={id}
-          isAuthor={isAuthor}
+          isOwner={isOwner}
         />
       </>
     )

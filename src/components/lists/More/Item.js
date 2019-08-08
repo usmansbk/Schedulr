@@ -1,6 +1,7 @@
 import React from 'react';
 import { List } from 'react-native-paper';
 import { inject, observer } from 'mobx-react';
+import Icon from 'react-native-vector-icons/Feather';
 
 class Item extends React.Component {
   _onPress = () => this.props.onPressItem(this.props.id);
@@ -13,12 +14,18 @@ class Item extends React.Component {
       stores,
     } = this.props;
     const styles = stores.appStyles.moreList;
-    const black = stores.themeStore.colors.black;
+    const color = stores.themeStore.colors.gray;
 
     return (
       <List.Item
         title={name}
-        left={() => <List.Icon color={black} icon={icon} />}
+        left={() => <List.Icon
+          icon={() => <Icon
+            size={24}
+            name={icon}
+            color={color}
+          />}
+        />}
         onPress={this._onPress}
         style={styles.item}
       />

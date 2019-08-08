@@ -11,7 +11,7 @@ const mappings = {
 				analyzer: "autocomplete",
 				search_analyzer: "standard"
 			},
-			eventType: {
+			category: {
 				type: "text",
 				analyzer: "autocomplete",
 				search_analyzer: "standard"
@@ -25,7 +25,7 @@ const mappings = {
 			allDay: {
 			    type: "boolean"
 			},
-			repeat: {
+			recur: {
 			    type: "text"
 			},
 			forever: {

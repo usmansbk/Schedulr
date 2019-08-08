@@ -84,13 +84,13 @@ const getNextDate = memoize((events=[], refDate, before) => {
     const eventDate = moment(currentEvent.startAt);
     const endDate = moment(currentEvent.endAt);
     const untilAt = currentEvent.until ? moment(currentEvent.until) : undefined;
-    const repeat = getRepeat(currentEvent.repeat);
+    const recur = getRepeat(currentEvent.recur);
     let recurrence;
-    if (repeat) {
-      if (repeat === 'weekdays') {
+    if (recur) {
+      if (recur === 'weekdays') {
         recurrence = eventDate.recur().every(weekdays).daysOfWeek();
       } else {
-        recurrence = eventDate.recur().every(1, repeat);
+        recurrence = eventDate.recur().every(1, recur);
       }
       recurrence.fromDate(refDate);
       const nextDates = before ? recurrence.previous(1) : recurrence.next(1);
@@ -132,15 +132,15 @@ const getNextDayEvents = memoize((initialEvents, nextDate) => {
   return initialEvents.reduce((accumulator, currentEvent) => {
     const eventDate = moment(currentEvent.startAt);
     const endDate = moment(currentEvent.endAt);
-    const repeat = getRepeat(currentEvent.repeat);
+    const recur = getRepeat(currentEvent.recur);
     const isExtended = refDate.isBetween(eventDate, endDate, 'D', '[]');
     const isValid = currentEvent.until ? refDate.isSameOrBefore(moment(currentEvent.until), 'day') : true;
 
-    if (repeat && !currentEvent.isCancelled && isValid) {
+    if (recur && !currentEvent.isCancelled && isValid) {
       let recurrence;
-      if (repeat === 'weekdays') {
+      if (recur === 'weekdays') {
         recurrence = eventDate.recur().every(weekdays).daysOfWeek();
-      } else if (repeat === 'month_day') {
+      } else if (recur === 'month_day') {
         const currentDate = eventDate.date();
         const weekOfMonth = Math.ceil(currentDate / DAYS_IN_WEEK) - 1;
         const daysOfWeek = eventDate.valueOf('dddd');
@@ -148,7 +148,7 @@ const getNextDayEvents = memoize((initialEvents, nextDate) => {
         recurrence = eventDate.recur().every(daysOfWeek).daysOfWeek()
           .every(weekOfMonth).weeksOfMonthByDay();
       } else {
-        recurrence = eventDate.recur().every(1, repeat);
+        recurrence = eventDate.recur().every(1, recur);
       }
       const hasNext = recurrence.matches(refDate);
       if (hasNext) {
@@ -169,7 +169,7 @@ const getNextDayEvents = memoize((initialEvents, nextDate) => {
           endAt
         }));
       }
-    } else if (!repeat && eventDate.isSame(refDate, 'day') || isExtended) {
+    } else if (!recur && eventDate.isSame(refDate, 'day') || isExtended) {
       accumulator.data.push(currentEvent);
     }
     accumulator.data = sortBy(accumulator.data, 'startAt');
@@ -184,14 +184,14 @@ const getNextDayEvents = memoize((initialEvents, nextDate) => {
 function getEvents(events) {
   return events.map((currentEvent) => {
     const eventDate = moment(currentEvent.startAt);
-    const repeat = getRepeat(currentEvent.repeat);
+    const recur = getRepeat(currentEvent.recur);
     const untilAt = currentEvent.until ? moment(currentEvent.until) : undefined;
     let recurrence;
-    if (repeat) {
-      if (repeat === 'weekdays') {
+    if (recur) {
+      if (recur === 'weekdays') {
         recurrence = eventDate.recur().every(weekdays).daysOfWeek();
       } else {
-        recurrence = eventDate.recur().every(1, repeat);
+        recurrence = eventDate.recur().every(1, recur);
       }
       recurrence.fromDate(moment().add(-1, 'day')); // it exclusive so minus one day to include today
       const end = moment(currentEvent.endAt);
@@ -235,7 +235,7 @@ const hasMoreEvents = memoize((events, afterDate) => {
   const refDate = moment(afterDate);
   return events.some((event) => {
     const eventDate = moment(event.startAt);
-    const isRepeating = getRepeat(event.repeat);
+    const isRepeating = getRepeat(event.recur);
     const isValid = event.until ? moment(event.until).isSameOrAfter(refDate) : true;
     return eventDate.isSameOrAfter(refDate) || (isRepeating && isValid);
   });

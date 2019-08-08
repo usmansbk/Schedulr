@@ -1,4 +1,5 @@
 import Login from './Login';
+import EmailLogin from './EmailLogin';
 import Home from './Home';
 import EditEvent from './EditEvent';
 import EditSchedule from './EditSchedule';
@@ -37,5 +38,6 @@ export {
   Followers,
   SearchScreen,
   ScheduleEvents,
-  WebView
+  WebView,
+  EmailLogin
 };

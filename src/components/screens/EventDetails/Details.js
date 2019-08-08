@@ -13,12 +13,12 @@ export default inject('stores')(observer(
     title,
     weekDay,
     date,
-    eventType,
+    category,
     address,
     scheduleName,
     authorName,
     scheduleId,
-    repeat,
+    recur,
     until,
     firstAt,
     createdAt,
@@ -29,7 +29,7 @@ export default inject('stores')(observer(
     status,
     isCancelled,
     isBookmarked,
-    isAuthor,
+    isOwner,
     authorId,
     isFollowing,
     isPublic,
@@ -65,27 +65,27 @@ export default inject('stores')(observer(
           <View style={stores.appStyles.eventDetails.body}>
             <View style={stores.appStyles.eventDetails.item}>
               <Text style={stores.appStyles.eventDetails.label}>TYPE</Text>
-              <Text style={stores.appStyles.eventDetails.value}>{isPublic ? "Public" : "Private"} {BULLET} {eventType}</Text>
+              <Text style={stores.appStyles.eventDetails.value}>{isPublic ? "Public" : "Private"} {BULLET} {category}</Text>
             </View>
             <View style={stores.appStyles.eventDetails.item}>
               <Text style={stores.appStyles.eventDetails.label}>VENUE</Text>
               <Text style={stores.appStyles.eventDetails.value}>{address || 'No location set'}</Text>
             </View>
             {
-              (Boolean(scheduleId) && (isFollowing || isAuthor || publicSchedule)) && (
+              (Boolean(scheduleId) && (isFollowing || isOwner || publicSchedule)) && (
                 <View style={stores.appStyles.eventDetails.item}>
                   <Text style={stores.appStyles.eventDetails.label}>SCHEDULE</Text>
                   <Text
                     ellipsizeMode="tail"
                     numberOfLines={1}
-                    onPress={scheduleId && (() => navigateToSchedule(scheduleId, (isFollowing || isAuthor)))}
+                    onPress={scheduleId && (() => navigateToSchedule(scheduleId, (isFollowing || isOwner)))}
                     style={[stores.appStyles.eventDetails.value, stores.appStyles.eventDetails.nav]}>{scheduleName}</Text>
                 </View>
               )
             }
             <View style={stores.appStyles.eventDetails.item}>
               <Text style={stores.appStyles.eventDetails.label}>REPEAT</Text>
-              <Text style={stores.appStyles.eventDetails.value}>{repeat}</Text>
+              <Text style={stores.appStyles.eventDetails.value}>{recur}</Text>
             </View>
             {
               Boolean(until) && (
@@ -117,7 +117,7 @@ export default inject('stores')(observer(
               <Text style={stores.appStyles.eventDetails.label}>AUTHOR</Text>
               <Text
                 style={[stores.appStyles.eventDetails.value, stores.appStyles.eventDetails.nav]}
-                onPress={() => navigateToUser(authorId, stores.me.id === authorId)}
+                onPress={() => navigateToUser(authorId, stores.appState.userId === authorId)}
               >
               {authorName}
               </Text>
@@ -136,7 +136,7 @@ export default inject('stores')(observer(
         id={id}
         title={title}
         address={address}
-        eventType={eventType}
+        category={category}
         isBookmarked={isBookmarked}
         bookmarksCount={bookmarksCount}
         commentsCount={commentsCount}

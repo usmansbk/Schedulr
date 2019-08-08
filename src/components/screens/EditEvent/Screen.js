@@ -16,10 +16,9 @@ export default class EditEventScreen extends React.Component {
       startAt,
       endAt,
       allDay,
-      eventType,
-      repeat,
+      category,
+      recur,
       until,
-      forever,
       schedule,
       isPublic
     } = event;
@@ -30,10 +29,9 @@ export default class EditEventScreen extends React.Component {
       startAt: refStartAt || startAt,
       endAt: refEndAt || endAt,
       allDay: Boolean(allDay),
-      eventType,
-      repeat,
+      category,
+      recur,
       until,
-      forever,
       scheduleId: schedule && schedule.id,
       isPublic: Boolean(isPublic)
     });
@@ -50,7 +48,7 @@ export default class EditEventScreen extends React.Component {
     return (
       <Form
         handleCancel={this._handleBack}
-        schedules={this.props.schedules.filter(schedule => schedule.isAuthor)}
+        schedules={this.props.schedules.filter(schedule => schedule.isOwner)}
         initialValues={this._getInitialValues()}
         onSubmit={this._onSubmit}
         edit

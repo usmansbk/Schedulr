@@ -6,10 +6,12 @@ import { observable, action } from 'mobx';
 import { persist } from 'mobx-persist';
 import debounce from 'lodash.debounce';
 import { requestLocationPermission } from 'helpers/permissions';
-import logger from 'config/logger';
-import types from './types';
+import categories from './eventCategories';
 
 export default class AppState {
+  @persist @observable userId = null;
+  @persist @observable loggingIn = false;
+
   @observable isConnected = false;
   @observable searchText = '';
   @observable query = '';
@@ -23,9 +25,13 @@ export default class AppState {
   @persist('object') @observable prefs = {
     showPrivateScheduleAlert: true,
   }
-  @persist('list') @observable eventTypes =  types;
+  @persist('list') @observable categories =  categories;
 
   debounceQuery = debounce((val) => this.query = val, 250);
+
+  @action setUserId = id => this.userId = id;
+
+  @action setLoginState = (state) => this.loggingIn = Boolean(state);
   
   @action toggleConnection = (isConnected) => {
     this.isConnected = isConnected;
@@ -50,18 +56,20 @@ export default class AppState {
     this.prefs = {
       showPrivateScheduleAlert: true,
     }
-    this.eventTypes = types;
+    this.categories = categories;
+    this.loggingIn = false;
+    this.userId = null;
   }
 
-  @action addCustomType = (eventType) => {
-    const hasType = this.eventTypes.findIndex(item => item.toLowerCase() === eventType.toLowerCase());
+  @action addCustomType = (category) => {
+    const hasType = this.categories.findIndex(item => item.toLowerCase() === category.toLowerCase());
     if (hasType === -1) {
-      this.eventTypes.push(eventType);
+      this.categories.push(category);
     }
   }
 
-  @action removeCustomType = (eventType) => {
-    this.eventTypes = this.eventTypes.filter(item => item.toLowerCase() !== eventType.toLowerCase());
+  @action removeCustomType = (category) => {
+    this.categories = this.categories.filter(item => item.toLowerCase() !== category.toLowerCase());
   }
   
   @action setLocation = (address) => {
@@ -73,7 +81,7 @@ export default class AppState {
           const { lat, lng } = loc;
           this.location.lon = lng;
           this.location.lat = lat;
-        }).catch(err => logger.error(err));
+        }).catch(err => console.error(err));
     }
   }
 
@@ -87,7 +95,7 @@ export default class AppState {
         const loc = res[0];
         const address = `${loc.locality ? loc.locality + ', ' : ''}${loc.country}`;
         this.address = address;
-      }).catch(err => logger.error(err));
+      }).catch(err => console.error(err));
     }
   }
   
@@ -122,7 +130,7 @@ export default class AppState {
           this.getAddress();
         },
         (error) => {
-          logger.debug(error);
+          console.error(error);
           SimpleToast.show("Failed to get location. Turn off airplane mode.", SimpleToast.SHORT);
           // throw error;
         },

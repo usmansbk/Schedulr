@@ -31,17 +31,17 @@ import { CANT_REPEAT } from 'lib/errorMessages';
 import { getRepeatLabel, getRecurrence } from 'lib/time';
 import { WHAT_IS_A_SCHEDULE, SCHEDULE_TIP } from 'lib/constants';
 import formSchema from './schema';
-import frequency from './frequency';
+import recurrence from './recurrence';
 import { buildEventForm } from 'helpers/buildForm';
 
 class Form extends React.Component {
 
   state = {
-    visible: false
+    showPicker: false
   };
 
-  _showModal = () => this.setState({ visible: true });
-  _hideModal = () => this.setState({ visible: false });
+  _showModal = () => this.setState({ showPicker: true });
+  _hideModal = () => this.setState({ showPicker: false });
 
   static defaultProps = {
     schedules: [],
@@ -52,11 +52,10 @@ class Form extends React.Component {
       startAt: moment().valueOf(),
       endAt: moment().add(2, 'hours').valueOf(),
       allDay: false,
-      eventType: 'Normal',
-      repeat: frequency[0].id,
-      forever: false,
+      category: 'Normal',
+      recur: recurrence[0].id,
       until: null,
-      scheduleId: '',
+      // scheduleId: '',
       isPublic: true
     }
   }
@@ -87,7 +86,7 @@ class Form extends React.Component {
       isNew,
       stores
     } = this.props;
-    const { visible } = this.state;
+    const { showPicker } = this.state;
 
     const styles = stores.appStyles.eventForm;
     const navButtonColor = stores.themeStore.colors.navButtonColor;
@@ -99,7 +98,8 @@ class Form extends React.Component {
         onSubmit={async (values, { setSubmitting }) => {
           if (isEventValid(values)) {
             const input = buildEventForm(values, stores.appState.location);
-            onSubmit && await onSubmit(input);
+            console.log(input);
+            // onSubmit && await onSubmit(input);
           }
           setSubmitting(false);
         }}
@@ -191,7 +191,7 @@ class Form extends React.Component {
               <View style={[styles.pickerSpacing, styles.firstPicker]}>
                 <Text style={styles.radioText}>Type</Text>
                 <PickerButton
-                  value={values.eventType}
+                  value={values.category}
                   onPress={this._showModal}
                 />
               </View>
@@ -244,26 +244,26 @@ class Form extends React.Component {
                 <Text style={styles.radioText}>Repetition</Text>
                 <Picker
                   prompt="Repeat"
-                  selectedValue={values.repeat}
+                  selectedValue={values.recur}
                   style={styles.picker}
                   
                   itemStyle={styles.pickerItem}
                   onValueChange={itemValue => {
-                    setFieldValue('repeat', itemValue);
-                    if (values.until) {
+                    setFieldValue('recur', itemValue);
+                    if (itemValue === recurrence[0].id) {
+                      setFieldValue('until', null);
+                    } else if (values.until) {
                       const recur = getRecurrence(itemValue);
                       setFieldValue('until', moment(values.startAt).add(1, recur).valueOf());
-                    } else {
-                      setFieldValue('forever',  (itemValue !== frequency[0].id));
                     }
                   }}
                 >
                   {
-                    frequency.map(freq => (
+                    recurrence.map(recur => (
                       <Picker.Item
-                        key={freq.id}
-                        label={getRepeatLabel(freq.id, values.startAt)}
-                        value={freq.id}
+                        key={recur.id}
+                        label={getRepeatLabel(recur.id, values.startAt)}
+                        value={recur.id}
                       />
                     ))
                   }
@@ -281,20 +281,18 @@ class Form extends React.Component {
               </View>
               <Divider />
               {
-                (values.repeat !== frequency[0].id) && (
+                (values.recur !== recurrence[0].id) && (
                   <>
                     <View style={styles.radio}>
                       <Text style={styles.radioText}>Repeat forever</Text>
                       <Switch
-                        value={values.forever}
+                        value={!Boolean(values.until)}
                         onValueChange={() => {
-                          const prevValue = values.forever;
-                          const newValue = !prevValue;
-                          setFieldValue('forever', newValue);
-                          if (newValue) {
+                          const until = values.until;
+                          if (until) {
                             setFieldValue('until', null);
                           } else {
-                            const recur = getRecurrence(values.repeat);
+                            const recur = getRecurrence(values.recur);
                             setFieldValue('until', moment(values.startAt).add(2, recur).valueOf());
                           }
                         }}
@@ -305,7 +303,7 @@ class Form extends React.Component {
                 )
               }
               {
-                (values.repeat !== frequency[0].id && !values.forever) && (
+                (values.recur !== recurrence[0].id && values.until) && (
                   <View style={styles.pickerSpacing}>
                     <Text style={styles.radioText}>Repeat until</Text>
                     <DateTimeInput
@@ -358,11 +356,11 @@ class Form extends React.Component {
           </ScrollView>
           
           <PickerInputModal
-            visible={visible}
+            visible={showPicker}
             prompt="Type"
-            selectedValue={values.eventType || ''}
+            selectedValue={values.category || ''}
             hideModal={this._hideModal}
-            onValueChange={itemValue => setFieldValue('eventType', itemValue)}
+            onValueChange={itemValue => setFieldValue('category', itemValue)}
           />
           </>
         )}

@@ -40,7 +40,7 @@ export default class Screen extends React.Component {
     if (loading && !event) return <Loading />;
     if (error && !event) return <Error onRefresh={onRefresh} />;
 
-    const isRecurring = event.repeat !== ONE_TIME_EVENT;
+    const isRecurring = event.recur !== ONE_TIME_EVENT;
 
     return (
       <>

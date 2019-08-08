@@ -3,6 +3,7 @@ import { TouchableRipple, Searchbar } from 'react-native-paper';
 import { withCollapsible } from 'react-navigation-collapsible';
 import { FlatList } from 'react-navigation';
 import { Animated, InteractionManager } from 'react-native';
+import Icon from 'react-native-vector-icons/Feather';
 import { inject, observer } from 'mobx-react';
 import Empty from './Empty';
 import Item from './Item';
@@ -53,7 +54,7 @@ const SearchBar = inject('stores')(observer(
         onPress={() => navigation.navigate('SearchScreen')}
       >
         <Searchbar
-          icon="search"
+          icon={() => <Icon name="search" size={24} color={stores.themeStore.colors.gray} />}
           editable={false}
           collapsable
           placeholder="Search"

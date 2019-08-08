@@ -101,12 +101,12 @@ export const deleteEventResponse = (input) => {
 
 export const createCommentResponse = (input, eventId) => {
   const eventData = getData(gql(getEvent), eventId);
-  const userData = getData(gql(getUserQuery), stores.me.id);
+  const userData = getData(gql(getUserQuery), stores.appState.userId);
   if (eventData && userData) {
     const toCommentData = input.toCommentId && getData(gql(getComment), input.toCommentId);
     const toComment = toCommentData ? toCommentData.getComment : null;
     const { getUser } = userData;
-    const author = {
+    const ownerModel = {
       __typename: 'User',
       id: getUser.id,
       name: getUser.name,
@@ -117,14 +117,14 @@ export const createCommentResponse = (input, eventId) => {
       id: '-' + shortid.generate(),
       content: input.content,
       isReply: Boolean(input.toCommentId),
-      isAuthor: true,
+      isOwner: true,
       toComment,
       event: {
         __typename: 'Event',
         id: eventId,
         commentsCount: eventData.getEvent.commentsCount + 1,
       },
-      author,
+      ownerModel,
       createdAt: moment().toISOString()
     };
     return ({
@@ -151,7 +151,7 @@ export const createEventResponse = (input) => {
     };
   }
   
-  const { getUser } = getData(gql(getUserQuery), stores.me.id);
+  const { getUser } = getData(gql(getUserQuery), stores.appState.userId);
   const newEvent = {
     __typename: 'Event',
     id: '-' + shortid.generate(),
@@ -161,14 +161,14 @@ export const createEventResponse = (input) => {
     endAt: input.endAt,
     venue: getValue(input.venue),
     allDay: Boolean(input.allDay),
-    repeat: input.repeat,
+    recur: input.recur,
     forever: Boolean(input.forever),
     until: getValue(input.until),
-    eventType: getValue(input.eventType),
+    category: getValue(input.category),
     isCancelled: false,
     isPublic: Boolean(input.isPublic),
     schedule,
-    author: {
+    ownerModel: {
       __typename: 'User',
       id: getUser.id,
       name: getUser.name
@@ -176,7 +176,7 @@ export const createEventResponse = (input) => {
     cancelledDates: [],
     bookmarksCount: 0,
     isBookmarked: false,
-    isAuthor: true,
+    isOwner: true,
     commentsCount: 0,
     createdAt: moment().valueOf(),
     updatedAt: null
@@ -189,7 +189,7 @@ export const createEventResponse = (input) => {
 };
 
 export const createScheduleResponse = (input) => {
-    const data = getData(gql(getUserQuery), stores.me.id);
+    const data = getData(gql(getUserQuery), stores.appState.userId);
     if (data) {
       const { getUser } = data;
       const newSchedule = {
@@ -200,8 +200,8 @@ export const createScheduleResponse = (input) => {
         status: getValue(input.status),
         isPublic: Boolean(input.isPublic),
         isFollowing: false,
-        isAuthor: true,
-        author: getUser,
+        isOwner: true,
+        ownerModel: getUser,
         eventsCount: 0,
         followersCount: 0,
         createdAt: moment().toISOString(),

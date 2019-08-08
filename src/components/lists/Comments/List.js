@@ -23,7 +23,7 @@ class List extends React.Component {
       author,
       isReply,
       toComment,
-      isAuthor,
+      isOwner,
       createdAt,
     }
   }) => {
@@ -33,7 +33,7 @@ class List extends React.Component {
         authorId={author.id}
         authorName={author.name}
         authorPictureUrl={author.pictureUrl}
-        isAuthor={isAuthor}
+        isOwner={isOwner}
         content={content}
         isToCommentDeleted={isReply && !toComment}
         toCommentAuthorName={toComment && toComment.author.name}

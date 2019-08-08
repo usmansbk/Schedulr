@@ -3,6 +3,7 @@ import moment from 'moment';
 import isEqual from 'lodash.isequal';
 import { Appbar } from 'react-native-paper';
 import { inject, observer } from 'mobx-react';
+import Icon from 'react-native-vector-icons/Feather';
 import Details from './Details';
 import { formatDate, getRepeatLabel } from 'lib/time';
 import { isEventValid, isEventCancelled, getDuration, getStatus } from 'lib/parseItem';
@@ -13,7 +14,7 @@ const DATE_FORMAT = "ddd DD, MMM YYYY, hh:mm a";
 
 class EventDetails extends React.Component {
   _handleCancel = () => {
-    const isRecurring = this.props.event.repeat !== ONE_TIME_EVENT;
+    const isRecurring = this.props.event.recur !== ONE_TIME_EVENT;
     this.props.handleCancel(isRecurring ? this.props.event.startAt : null);
   };
   _getDuration = (start, end) => getDuration(start, end);
@@ -49,13 +50,13 @@ class EventDetails extends React.Component {
     const {
       id,
       title,
-      eventType,
+      category,
       venue,
       startAt,
       endAt,
       allDay,
       schedule,
-      repeat,
+      recur,
       until,
       createdAt,
       updatedAt,
@@ -63,7 +64,7 @@ class EventDetails extends React.Component {
       isBookmarked,
       bookmarksCount,
       commentsCount,
-      isAuthor,
+      isOwner,
       isCancelled,
       cancelledDates,
       isPublic,
@@ -80,27 +81,42 @@ class EventDetails extends React.Component {
     return (
       <>
         <Appbar.Header style={styles.header}  collapsable>
-          <Appbar.BackAction color={colors.gray} onPress={handleBack} />
+          <Appbar.Action
+            onPress={handleBack}
+            icon={() => <Icon
+              color={colors.gray}
+              size={24}
+              name="arrow-left"
+            />}
+          />
           <Appbar.Content titleStyle={styles.headerColor} />
           {
-            isAuthor && !isOffline && (
+            isOwner && !isOffline && (
               <>
                 <Appbar.Action
-                  icon="delete"
-                  color={colors.gray}
+                  icon={() => <Icon
+                    size={24}
+                    name="trash"
+                  />}
                   onPress={handleDelete}
                 />
                 <Appbar.Action
-                  icon="content-copy"
-                  color={colors.gray}
+                  icon={() => <Icon
+                    size={24}
+                    name="copy"
+                    color={colors.gray}
+                  />}
                   onPress={handleRepeat}
                 />
                 {
                   isValid && (
                     <>
                       <Appbar.Action
-                        icon="mode-edit"
-                        color={colors.gray}
+                        icon={() => <Icon
+                          size={24}
+                          name="edit-3"
+                          color={colors.gray}
+                        />}
                         onPress={() => handleEdit({
                           id,
                           refStartAt: start,
@@ -108,8 +124,11 @@ class EventDetails extends React.Component {
                         })}
                       />
                       <Appbar.Action
-                        icon="close"
-                        color={colors.gray}
+                        icon={() => <Icon
+                          size={24}
+                          name="x"
+                          color={colors.gray}
+                        />}
                         onPress={this._handleCancel}
                       />
                     </>
@@ -134,7 +153,7 @@ class EventDetails extends React.Component {
           startAt={start}
           weekDay={moment(start).format('dddd')}
           firstAt={moment(startAt).format(DATE_FORMAT)}
-          eventType={decapitalize(eventType)}
+          category={decapitalize(category)}
           address={venue}
           isPublic={isPublic}
           publicSchedule={schedule && schedule.isPublic}
@@ -142,7 +161,7 @@ class EventDetails extends React.Component {
           scheduleId={schedule && schedule.id}
           authorId={author.id}
           authorName={author.name}
-          repeat={getRepeatLabel(repeat, start)}
+          recur={getRepeatLabel(recur, start)}
           until={until && moment(until).format(DATE_FORMAT)}
           createdAt={moment(createdAt).format(DATE_FORMAT)}
           updatedAt={updatedAt && moment(updatedAt).format(DATE_FORMAT)}
@@ -151,7 +170,7 @@ class EventDetails extends React.Component {
           bookmarksCount={bookmarksCount}
           commentsCount={commentsCount}
           isFollowing={schedule && schedule.isFollowing}
-          isAuthor={isAuthor}
+          isOwner={isOwner}
           isValid={isValid}
           isCancelled={isEventCancelled({ cancelledDates, isCancelled, startAt: start })}
           navigateToSchedule={navigateToSchedule}

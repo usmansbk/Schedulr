@@ -32,8 +32,8 @@ class Item extends React.Component {
       nextProps.title !== this.props.title ||
       nextProps.time !== this.props.time ||
       nextProps.status !== this.props.status ||
-      nextProps.repeat !== this.props.repeat ||
-      nextProps.eventType !== this.props.eventType ||
+      nextProps.recur !== this.props.recur ||
+      nextProps.category !== this.props.category ||
       nextProps.isBookmarked !== this.props.isBookmarked
     );
   };
@@ -42,14 +42,14 @@ class Item extends React.Component {
     const {
       id,
       title,
-      repeat,
+      recur,
       time,
       startAt,
       endAt,
       allDay,
       duration,
       status,
-      eventType,
+      category,
       address,
       pictureUrl,
       stores,
@@ -92,13 +92,13 @@ class Item extends React.Component {
               <Caption
                 ellipsizeMode="tail"
                 numberOfLines={1}
-              >{duration ? duration : ''} {eventType} {repeat}</Caption>
+              >{duration ? duration : ''} {category} {recur}</Caption>
             </View>
           </View>
           <ActionSheet
             id={id}
             title={title}
-            eventType={eventType}
+            category={category}
             date={formatDate(startAt, endAt, allDay)}
             address={address}
             isBookmarked={isBookmarked}

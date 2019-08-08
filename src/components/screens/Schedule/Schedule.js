@@ -1,6 +1,7 @@
 import React from 'react';
 import { Appbar } from 'react-native-paper';
 import { inject, observer } from 'mobx-react';
+import Icon from 'react-native-vector-icons/Feather';
 import List from 'components/lists/Events';
 import Fab from 'components/common/Fab';
 import Loading from 'components/common/Loading';
@@ -58,7 +59,7 @@ class Schedule extends React.Component {
       id,
       name,
       description,
-      isAuthor,
+      isOwner,
       status
     } = schedule;
 
@@ -69,16 +70,26 @@ class Schedule extends React.Component {
     return (
       <>
         <Appbar style={styles.elevatedHeader} collapsable>
-          <Appbar.BackAction color={colors.gray} onPress={onPress} />
+          <Appbar.Action
+            onPress={onPress}
+            icon={() => <Icon
+              name="arrow-left"
+              color={colors.gray}
+              size={24}
+            />}
+          />
           <Appbar.Content
             title={name}
             subtitle={description}
             titleStyle={styles.headerColor}
           />
           <Appbar.Action
-            icon="info-outline"
+            icon={() => <Icon
+              name="info"
+              size={24}
+              color={colors.gray}
+            />}
             onPress={this._navigateToScheduleInfo}
-            color={colors.gray}
           />
         </Appbar>
         <List
@@ -100,7 +111,7 @@ class Schedule extends React.Component {
           )
         }
         {
-          !(Boolean(error) && events.length) && !isOffline && isAuthor && (status !== SCHEDULE_CLOSED ) && (
+          !(Boolean(error) && events.length) && !isOffline && isOwner && (status !== SCHEDULE_CLOSED ) && (
             <Fab
               icon="edit"
               onPress={this._navigateToNewEvent}

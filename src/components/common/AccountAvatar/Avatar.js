@@ -1,24 +1,31 @@
 import React from 'react';
 import { View } from 'react-native';
-import { inject, observer } from 'mobx-react';
 import { Text, Caption, TouchableRipple } from 'react-native-paper';
 import UserAvatar from '../UserAvatar';
 import styles from './styles';
 
-class Avatar extends React.Component {
-  onPress = () => {
-    this.props.onPress();
-  }
+export default class Avatar extends React.Component {
+  state = {
+    username: '',
+    email: '',
+    pictureUrl: null,
+    loading: false
+  };
+
+  static defaultProps = {
+    username: '',
+    email: '',
+    pictureUrl: null
+  };
+
+  onPress = () => this.props.onPress();
 
   render() {
     const {
-      stores,
-    } = this.props;
-    const {
       name,
       email,
-      pictureUrl,
-    } = stores.me;
+      pictureUrl
+    } = this.props;
 
     return (
       <TouchableRipple
@@ -27,7 +34,7 @@ class Avatar extends React.Component {
       >
         <View style={styles.content}>
           <UserAvatar
-            size={80}
+            size={60}
             name={name}
             style={styles.avatar}
             src={pictureUrl}
@@ -41,5 +48,3 @@ class Avatar extends React.Component {
     );
   }
 }
-
-export default inject("stores")(observer(Avatar));

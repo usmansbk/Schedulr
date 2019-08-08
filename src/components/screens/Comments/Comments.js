@@ -1,5 +1,6 @@
 import React from 'react';
 import { Appbar } from 'react-native-paper';
+import Icon from 'react-native-vector-icons/Feather';
 import { inject, observer } from 'mobx-react';
 import List from 'components/lists/Comments';
 import CommentForm from 'components/forms/Comment';
@@ -51,7 +52,15 @@ class Comments extends React.Component {
     return (
       <>
         <Appbar style={styles.elevatedHeader}>
-          <Appbar.BackAction onPress={goBack} color={colors.gray} />
+          <Appbar.Action
+            icon={() => <Icon
+              color={colors.gray}
+              size={24}
+              name="arrow-left"
+            />}
+            onPress={goBack}
+            color={colors.gray}
+          />
           <Appbar.Content
             title={title || 'Comments'}
             titleStyle={styles.headerColor}

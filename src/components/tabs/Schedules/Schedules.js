@@ -24,13 +24,11 @@ export default class Schedules extends React.Component {
           error={error}
         />
         {
-          
-          !(Boolean(error) && !schedules.length) && (
+          !Boolean(error) &&
             <FAB
-              icon="add"
+              icon="plus"
               onPress={this._navigateToNewSchedule}
             />
-          )
         }
       </>
     )

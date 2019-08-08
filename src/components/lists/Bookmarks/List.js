@@ -11,7 +11,7 @@ import {
   getHumanTime,
   parseRepeat,
   getStatus,
-  getEventType
+  getCategory
 } from 'lib/parseItem';
 import { sortBookmarks } from 'lib/utils';
 import { decapitalize } from 'lib/capitalizr';
@@ -42,12 +42,12 @@ class List extends Component {
   _renderItem = ({ item: {
     id,
     title,
-    eventType,
+    category,
     isCancelled,
     cancelledDates,
     startAt,
     endAt,
-    repeat,
+    recur,
     venue,
     schedule,
     allDay,
@@ -64,8 +64,8 @@ class List extends Component {
     bookmarksCount={bookmarksCount}
     commentsCount={commentsCount}
     isBookmarked={isBookmarked}
-    eventType={getEventType(eventType)}
-    repeat={parseRepeat(repeat)}
+    category={getCategory(category)}
+    recur={parseRepeat(recur)}
     time={getHumanTime({ allDay, startAt, endAt })}
     scheduleId={schedule && schedule.id}
     duration={getDuration(startAt, endAt, allDay)}

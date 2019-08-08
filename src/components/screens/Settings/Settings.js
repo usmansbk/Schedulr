@@ -7,6 +7,7 @@ import {
   Divider
 } from 'react-native-paper';
 import SimpleToast from 'react-native-simple-toast';
+import Icon from 'react-native-vector-icons/Feather';
 import { inject, observer } from 'mobx-react';
 
 class Settings extends React.Component {
@@ -46,12 +47,18 @@ class Settings extends React.Component {
       disablePushNotifications,
     } = stores.settingsStore;
     const { styles } = stores.appStyles;
-    const { colors } = stores.themeStore;
 
     return (
       <>
         <Appbar style={styles.elevatedHeader} collapsable>
-          <Appbar.BackAction color={colors.gray} onPress={goBack} />
+          <Appbar.Action
+            onPress={goBack}
+            icon={() => <Icon
+              name="arrow-left"
+              size={24}
+              color={stores.themeStore.colors.gray}
+            />}
+          />
           <Appbar.Content
             title="Settings"
             titleStyle={styles.headerColor}
@@ -133,7 +140,13 @@ class Settings extends React.Component {
             }
             <List.Item
               title="Remind me"
-              right={() => <List.Icon icon="chevron-right" />}
+              right={() => <List.Icon
+                icon={() => <Icon
+                  name="chevron-right"
+                  color={stores.themeStore.colors.gray}
+                  size={24}
+                />}
+              />}
               onPress={this._handleRemindMeDialog}
             />
             <Divider />

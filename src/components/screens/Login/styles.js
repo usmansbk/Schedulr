@@ -7,7 +7,7 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     padding: 32,
-    backgroundColor: colors.primary_light
+    backgroundColor: colors.bg
   },
   content: {
     justifyContent: 'center',
@@ -16,10 +16,10 @@ export default StyleSheet.create({
   },
   h1: {
     fontSize: 27,
-    color: colors.white
+    color: colors.black
   },
   caption: {
     textAlign: 'center',
-    color: colors.white
+    color: colors.gray
   }
 });

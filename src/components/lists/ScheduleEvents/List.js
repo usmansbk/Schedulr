@@ -11,7 +11,7 @@ import {
   getHumanTime,
   parseRepeat,
   getStatus,
-  getEventType
+  getCategory
 } from 'lib/parseItem';
 import { eventsChanged } from 'lib/utils';
 import { schedule_events } from 'lib/constants';
@@ -55,10 +55,10 @@ class List extends Component {
   _renderItem = ({ item: {
     id,
     title,
-    eventType,
+    category,
     startAt,
     endAt,
-    repeat,
+    recur,
     schedule,
     allDay,
     isConcluded,
@@ -70,8 +70,8 @@ class List extends Component {
     startAt={startAt}
     endAt={endAt}
     status={getStatus({ isCancelled, cancelledDates, startAt, endAt, isConcluded})}
-    eventType={getEventType(eventType)}
-    repeat={parseRepeat(repeat)}
+    category={getCategory(category)}
+    recur={parseRepeat(recur)}
     time={getHumanTime({ allDay, startAt, endAt })}
     scheduleId={schedule && schedule.id}
     duration={getDuration(startAt, endAt, allDay)}

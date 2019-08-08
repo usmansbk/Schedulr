@@ -1,7 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import Form from 'components/forms/Event';
-import frequency from 'components/forms/Event/frequency';
+import recurrence from 'components/forms/Event/recurrence';
 import { isPastExact } from 'lib/parseItem';
 import { SCHEDULE_CLOSED } from 'lib/constants';
 
@@ -26,10 +26,9 @@ export default class NewEventScreen extends React.Component {
       startAt,
       endAt,
       allDay,
-      eventType,
-      repeat,
+      category,
+      recur,
       until,
-      forever,
       isPublic
     } = event;
 
@@ -66,10 +65,9 @@ export default class NewEventScreen extends React.Component {
       startAt: start,
       endAt: end,
       allDay: Boolean(allDay),
-      eventType: eventType || 'Event',
-      repeat: repeat || frequency[0].id,
+      category: category || 'Event',
+      recur: recur || recurrence[0].id,
       until,
-      forever,
       scheduleId: scheduleId,
       isPublic: currentSchedule ? currentSchedule.isPublic : Boolean(isPublic)
     });
@@ -80,7 +78,7 @@ export default class NewEventScreen extends React.Component {
       <Form
         initialValues={this._getInitialValues()}
         isNew={this.props.isNew}
-        schedules={this.props.schedules.filter(schedule => schedule.isAuthor && (schedule.status !== SCHEDULE_CLOSED) && (schedule.id[0] !== '-'))}
+        schedules={this.props.schedules.filter(schedule => schedule.isOwner && (schedule.status !== SCHEDULE_CLOSED) && (schedule.id[0] !== '-'))}
         handleCancel={this._handleBack}
         onSubmit={this._handleSubmit}
         newSchedule={this._newSchedule}

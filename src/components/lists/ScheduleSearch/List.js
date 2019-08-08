@@ -56,7 +56,7 @@ class List extends Component {
       isPublic,
       status,
       isFollowing,
-      isAuthor,
+      isOwner,
     } = item;
 
     return (
@@ -66,7 +66,7 @@ class List extends Component {
         description={description}
         isPublic={isPublic}
         isClosed={status === 'CLOSED'}
-        isAuthor={isAuthor}
+        isOwner={isOwner}
         isFollowing={isFollowing}
         onPressItem={this._onPressItem}
         navigateToScheduleInfo={this._navigateToInfo}

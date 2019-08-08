@@ -25,17 +25,17 @@ const setReminder = (event, before, settings) => {
     title,
     startAt,
     endAt,
-    eventType,
-    repeat,
+    category,
+    recur,
   } = event;
   const { amount, unit } = before;
   const { sound, vibrate } = settings;
   const date = moment(startAt).subtract(amount, unit).toDate();
-  const message = `${decapitalize(eventType)} in ${moment(startAt).from(date, true)}`;
-  const repeatType = getRepeatType(repeat);
+  const message = `${decapitalize(category)} in ${moment(startAt).from(date, true)}`;
+  const repeatType = getRepeatType(recur);
   const repeatTime = {};
   if (repeatType === 'time') {
-    repeatTime.repeatTime = getRepeatTime(date.getTime(), repeat);
+    repeatTime.repeatTime = getRepeatTime(date.getTime(), recur);
   }
 
   const notification = {
@@ -62,17 +62,17 @@ const schdlStart = (event, settings) => {
     title,
     startAt,
     endAt,
-    eventType,
-    repeat,
+    category,
+    recur,
   } = event;
   const { playSound, vibrate } = settings;
   const time = moment(startAt).format('hh:mm a');
   const date = moment(startAt).toDate();
-  const message = `${decapitalize(eventType)} - ${time}`;
-  const repeatType = getRepeatType(repeat);
+  const message = `${decapitalize(category)} - ${time}`;
+  const repeatType = getRepeatType(recur);
   const repeatTime = {};
   if (repeatType === 'time') {
-    repeatTime.repeatTime = getRepeatTime(date.getTime(), repeat);
+    repeatTime.repeatTime = getRepeatTime(date.getTime(), recur);
   }
 
   const notification = {
@@ -148,7 +148,7 @@ const schdlAll = (events, mutedList, allowedList) => {
         const isMuted = mutedList.includes(id) || (scheduleId && mutedList.includes(scheduleId));
         const isAllowed = allowedList.includes(id);
         if (!isAllowed && isMuted || (settings.bookmarkedEventsOnly && !event.isBookmarked)) return;
-        switch (event.repeat) {
+        switch (event.recur) {
           case 'MONTH_DAY':
             break;
           case 'WEEKDAYS':
@@ -190,14 +190,14 @@ function schdlWeekdaysEvent(event, remindMeBefore, settings) {
 
   if (isWeekday && isToday && isPending) {
     const todayEvent = Object.assign({}, event, {
-      repeat: 'NEVER'
+      recur: 'NEVER'
     });
     schdl(todayEvent, remindMeBefore, settings);
   }
 }
 
-function getRepeatType(repeat) {
-  switch(repeat) {
+function getRepeatType(recur) {
+  switch(recur) {
     case 'NEVER': return null;
     case 'DAILY': return 'day';
     case 'WEEKLY': case 'WEEKDAYS':  return 'week';
@@ -205,9 +205,9 @@ function getRepeatType(repeat) {
   }
 }
 
-function getRepeatTime(ms, repeat) {
+function getRepeatTime(ms, recur) {
   let interval;
-  switch(repeat) {
+  switch(recur) {
     case 'MONTHLY':
       interval = moment(ms).add(1, 'month');
       break;

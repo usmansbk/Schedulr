@@ -2,6 +2,7 @@ import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
 import { withNavigationFocus } from 'react-navigation';
 import UserProfile from './UserProfile';
+
 import { getUser } from 'mygraphql/queries';
 
 const alias = 'withUserProfile';
@@ -12,7 +13,7 @@ export default compose(
     alias,
     options: props => ({
       variables: {
-        id: props.navigation.getParam('id'),
+        email: props.navigation.getParam('id'),
       },
       notifyOnNetworkStatusChange: true,
       fetchPolicy: 'cache-first',

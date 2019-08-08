@@ -18,7 +18,7 @@ class EventAction extends React.Component {
   _handleShare = () => {
     const {
       title,
-      eventType,
+      category,
       date,
       address,
       id
@@ -26,8 +26,8 @@ class EventAction extends React.Component {
 
     const shareOptions = {
       title: 'Share invite link via...',
-      subject: eventType,
-      message: `${title}\n${eventType}\n${date}${address ? (' at ' + address) : ''}\n`,
+      subject: category,
+      message: `${title}\n${category}\n${date}${address ? (' at ' + address) : ''}\n`,
       url: `${env.APP_URL}/event/${id}`
     };
     Share.open(shareOptions).catch(error => {

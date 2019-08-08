@@ -9,7 +9,7 @@ export default inject('stores')(observer(
     return (
       <View style={stores.appStyles.bookmarkedEventsList.empty}>
         <Headline style={stores.appStyles.bookmarkedEventsList.emptyTitle}>
-          You haven't saved any event yet
+          You haven't saved any events yet
         </Headline>
       </View>
     );  

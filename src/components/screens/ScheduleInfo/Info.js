@@ -19,7 +19,7 @@ import {
   Text,
   TouchableRipple
 } from 'react-native-paper';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import Icon from 'react-native-vector-icons/Feather';
 import Hyperlink from 'react-native-hyperlink';
 import { inject, observer } from 'mobx-react';
 import UserAvater from 'components/common/UserAvatar';
@@ -72,7 +72,7 @@ class Info extends React.Component {
       followersCount,
       createdAt,
       isPublic,
-      isAuthor,
+      isOwner,
       author,
     } = schedule;
 
@@ -88,28 +88,42 @@ class Info extends React.Component {
     return (
       <>
         <Appbar.Header collapsable style={appStyles.header}>
-          <Appbar.BackAction color={colors.gray} onPress={goBack} />
+          <Appbar.Action
+            onPress={goBack}
+            icon={() => <Icon
+              name="arrow-left"
+              color={colors.gray}
+              size={24}
+            />}
+          />
           <Appbar.Content
             titleStyle={appStyles.headerColor}
           />
           {
             !isOffline && (
               <Appbar.Action
-                icon="share"
+                icon={() => <Icon
+                  name="share-2"
+                  size={24}
+                  color={colors.gray}
+                />}
                 onPress={() => handleShare({ name, description, id})}
-                color={colors.gray}
               />
             )
           }
           {
-            isAuthor && !isOffline && (
+            isOwner && !isOffline && (
               <Menu onSelect={handleSelectMenu}>
                 <MenuTrigger 
                   customStyles={{
                     triggerWrapper: styles.menuButton,
                   }}
                 >
-                  <Icon size={24} color={colors.gray} name="more-vert" />
+                  <Icon
+                    size={24}
+                    color={colors.gray}
+                    name="more-vertical"
+                  />
                 </MenuTrigger>
                 <MenuOptions>
                   <MenuOption value="edit">
@@ -154,14 +168,14 @@ class Info extends React.Component {
                 <View style={styles.countRow}>
                   <Text
                     style={styles.count}
-                    onPress={() => navigateToFollowers(id, isAuthor)}
+                    onPress={() => navigateToFollowers(id, isOwner)}
                   >
                     {numeral(followersCount).format('0a')} Follower{followersCount > 1 ? 's' : ''}
                   </Text>
                   <Text style={styles.middot}>{` ${CIRCLE} `}</Text>
                   <Text
                     style={styles.count}
-                    onPress={() => navigateToEvents(id, (isFollowing || isAuthor))}
+                    onPress={() => navigateToEvents(id, (isFollowing || isOwner))}
                   >
                     {numeral(eventsCount).format('0a')} Event{eventsCount > 1 ? 's' : ''}
                   </Text>
@@ -170,7 +184,7 @@ class Info extends React.Component {
             </View>
             <View style={styles.body}>
               <View style={styles.noteView}>
-                <Icon color={colors.black} name="visibility" size={18} />
+                <Icon color={colors.black} name="eye" size={18} />
                 <Text
                   style={styles.note}
                   onPress={this._aboutPrivacy}
@@ -208,7 +222,7 @@ class Info extends React.Component {
           </View>
       </ScrollView>
       {
-        !isAuthor && (<FollowButton
+        !isOwner && (<FollowButton
           isFollowing={isFollowing}
           id={id}
         />)

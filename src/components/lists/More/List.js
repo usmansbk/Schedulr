@@ -18,7 +18,7 @@ class List extends React.Component {
   _openDialog = () => this.setState({ visible: true });
   _hideDialog = () => this.setState({ visible: false });
   _onPressHeader = () => {
-    const id = this.props.stores.me.id;
+    const id = this.props.stores.appState.userId;
     this.props.navigation.navigate('UserProfile', {
       id,
       myProfile: true
@@ -68,7 +68,7 @@ class List extends React.Component {
       onPressItem={this._onPressItem}
     />
   );
-  shouldComponentUpdate = () => this.props.navigation.isFocused();
+  // shouldComponentUpdate = (nextProps) => nextProps.navigation.isFocused();
 
   render() {
     const { moreList } = this.props.stores.appStyles;
