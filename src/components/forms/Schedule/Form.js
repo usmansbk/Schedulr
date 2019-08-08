@@ -18,9 +18,9 @@ import {
 } from 'react-native-paper';
 import { Formik } from 'formik';
 import { inject, observer } from 'mobx-react';
+import { I18n } from 'aws-amplify';
 import validationSchema from './schema';
 import { buildScheduleForm } from 'helpers/buildForm';
-import { WHAT_IS_A_SCHEDULE, PRIVATE_INFO } from 'lib/constants';
 
 class Form extends React.Component {
   static defaultProps = {
@@ -32,15 +32,15 @@ class Form extends React.Component {
   };
 
   _showInfo = () => {
-    Alert.alert('What is a schedule?', WHAT_IS_A_SCHEDULE);
+    Alert.alert(I18n.get("ALERT_whatIsASchedule"), I18n.get("ALERT_whatIsAScheduleA"));
   };
 
   _aboutPrivacy = () => {
     const { stores } = this.props;
     if (stores.appState.prefs.showPrivateScheduleAlert) {
-      Alert.alert("Private schedule", PRIVATE_INFO, [
-        { text: "Don't show again", onPress: () => stores.appState.togglePref('showPrivateScheduleAlert') },
-        { text: 'Ok', onPress: () => null }
+      Alert.alert(I18n.get("ALERT_privateSchedule"), I18n.get("ALERT_privateScheduleA"), [
+        { text: I18n.get("BUTTON_dontShowAgain"), onPress: () => stores.appState.togglePref('showPrivateScheduleAlert') },
+        { text: I18n.get("BUTTON_ok"), onPress: () => null }
       ]);
     }
   };
@@ -97,7 +97,7 @@ class Form extends React.Component {
               mode="outlined"
               color={navButtonColor}
               onPress={submitForm}
-            >{ edit ? 'Save' : 'Create'}</Button>
+            >{ edit ? I18n.get("BUTTON_save") : I18n.get("BUTTON_create")}</Button>
           </Appbar.Header>
           <ScrollView
             style={styles.container}
@@ -111,8 +111,8 @@ class Form extends React.Component {
             }>
             <View style={styles.form}>
               <TextInput
-                placeholder="Name"
-                label="Name"
+                placeholder={I18n.get("SCHEDULE_FORM_name")}
+                label={I18n.get("SCHEDULE_FORM_name")}
                 value={values.name}
                 onChangeText={handleChange('name')}
                 onBlur={handleBlur('name')}
@@ -123,11 +123,11 @@ class Form extends React.Component {
                 type="error"
                 visible={errors.name && touched.name}
               >
-              {errors.name}
+              {errors.name && I18n.get(`HELPER_TEXT_${errors.name}`)}
               </HelperText>
               <TextInput
-                placeholder="Description"
-                label="Description"
+                placeholder={I18n.get("SCHEDULE_FORM_description")}
+                label={I18n.get("SCHEDULE_FORM_description")}
                 value={values.description}
                 onChangeText={handleChange('description')}
                 onBlur={handleBlur('description')}
@@ -137,10 +137,10 @@ class Form extends React.Component {
                 type="error"
                 visible={errors.description && touched.description}
               >
-              {errors.description}
+              {errors.description && I18n.get(`HELPER_TEXT_${errors.description}`)}
               </HelperText>
               <View style={styles.switchButton}>
-                <Text style={styles.text}>Private</Text>
+                <Text style={styles.text}>{I18n.get("SCHEDULE_FORM_private")}</Text>
                 <Switch
                   value={!values.isPublic}
                   onValueChange={() => {

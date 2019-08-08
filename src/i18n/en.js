@@ -68,8 +68,44 @@ export default {
   BUTTON_create: "CREATE",
   BUTTON_save: "SAVE",
   BUTTON_signout: "Sign out",
+  BUTTON_ok: "Ok",
+  BUTTON_help: "Help",
+  BUTTON_dontShowAgain: "Don't show again",
+
+  ALERT_whatIsASchedule: "What is a schedule?",
+  ALERT_whatIsAScheduleA: "A schedule is a group of related events. It helps people find their interested events.",
+  ALERT_privateSchedule: "Private schedule",
+  ALERT_privateScheduleA: "This schedule's content, including its followers and event details, are not visible to the public. Share invite link to add followers.",
 
   SHARE_inviteAFriendTitle: "Invite via...",
 
-  TOAST_enableReminder: "Enable reminder!"
+  TOAST_enableReminder: "Enable reminder!",
+
+  EVENT_FORM_title: "Title",
+  EVENT_FORM_description: "Description",
+  EVENT_FORM_venue: "Venue",
+  EVENT_FORM_category: "Type",
+  EVENT_FORM_from: "From",
+  EVENT_FORM_to: "To",
+  EVENT_FORM_allDay: "All-day",
+  EVENT_FORM_repetition: "Repetition",
+  EVENT_FORM_public: "Public",
+  EVENT_FORM_schedule: "Schedule",
+  EVENT_FORM_repeat: "Repeat",
+  EVENT_FORM_repeatForever: "Repeat forever",
+  EVENT_FORM_repeatUntil: "Repeat until",
+  EVENT_FORM_selectASchedule: "Select a schedule",
+  EVENT_FORM_noSchedule: "No schedule",
+  EVENT_FORM_addToASchedule: "Add to a schedule",
+
+  SCHEDULE_FORM_name: "Name",
+  SCHEDULE_FORM_description: "Description",
+  SCHEDULE_FORM_private: "Private",
+
+  HELPER_TEXT_titleIsRequired: "Title is required",
+  HELPER_TEXT_nameIsRequired: "Name is required",
+  HELPER_TEXT_tooShort: "Too short",
+  HELPER_TEXT_tooLong: "Too long",
+  HELPER_TEXT_recommended: "Recommended",
+  HELPER_TEXT_invalidDatesAndRecur: "Event's duration should be shorter than repeat frequency",
 };

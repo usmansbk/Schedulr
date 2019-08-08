@@ -20,6 +20,7 @@ import {
 } from 'react-native-paper';
 import { Formik } from 'formik';
 import { inject, observer } from 'mobx-react';
+import { I18n } from 'aws-amplify';
 import DateTimeInput from 'components/common/DateTimeInput';
 import PickerInputModal from 'components/common/PickerInputModal';
 import PickerButton from 'components/common/PickerButton';
@@ -27,9 +28,7 @@ import {
   isEventValid,
   canRepeat
 } from 'lib/formValidator';
-import { CANT_REPEAT } from 'lib/errorMessages';
 import { getRepeatLabel, getRecurrence } from 'lib/time';
-import { WHAT_IS_A_SCHEDULE, SCHEDULE_TIP } from 'lib/constants';
 import formSchema from './schema';
 import recurrence from './recurrence';
 import { buildEventForm } from 'helpers/buildForm';
@@ -65,10 +64,10 @@ class Form extends React.Component {
     const hasSchedules = this.props.schedules.length;
     let buttons = [];
     if (newSchedule && !hasSchedules) {
-      buttons.push({ text: 'Create', onPress: newSchedule });
+      buttons.push({ text: I18n.get("BUTTON_create"), onPress: newSchedule });
     }
-    buttons.push({text: "Ok", onPress: () => null });
-    Alert.alert("What is a schedule?", WHAT_IS_A_SCHEDULE, buttons);
+    buttons.push({text: I18n.get("BUTTON_ok"), onPress: () => null });
+    Alert.alert(I18n.get("ALERT_whatIsASchedule"), I18n.get("ALERT_whatIsAScheduleA"), buttons);
   }
 
   componentDidMount = async () => {
@@ -123,14 +122,14 @@ class Form extends React.Component {
               mode="outlined"
               onPress={handleCancel}
               color={navButtonColor}
-            >Cancel</Button>
+            >{I18n.get("BUTTON_cancel")}</Button>
             <Button
               loading={isSubmitting}
               disabled={!isNew && (!isValid || isSubmitting || isEqual(initialValues, values))}
               mode="outlined"
               color={navButtonColor}
               onPress={submitForm}
-            >{ edit ? 'Save' : 'Create'}</Button>
+            >{ edit ? I18n.get("BUTTON_save") : I18n.get("BUTTON_create")}</Button>
           </Appbar.Header>
           <ScrollView
             refreshControl={
@@ -145,8 +144,8 @@ class Form extends React.Component {
           >
             <View style={styles.form}>
               <TextInput
-                placeholder="Title"
-                label="Title"
+                placeholder={I18n.get("EVENT_FORM_title")}
+                label={I18n.get("EVENT_FORM_title")}
                 value={values.title}
                 onChangeText={handleChange('title')}
                 onBlur={handleBlur('title')}
@@ -157,11 +156,11 @@ class Form extends React.Component {
                 type="error"
                 visible={errors.title && touched.title}
               >
-              {errors.title}
+              {errors.title && I18n.get(`HELPER_TEXT_${errors.title}`)}
               </HelperText>
               <TextInput
-                placeholder="Description"
-                label="Description"
+                placeholder={I18n.get("EVENT_FORM_description")}
+                label={I18n.get("EVENT_FORM_description")}
                 value={values.description}
                 onChangeText={handleChange('description')}
                 onBlur={handleBlur('description')}
@@ -171,11 +170,11 @@ class Form extends React.Component {
                 type="error"
                 visible={errors.description && touched.description}
               >
-              {errors.description}
+              {errors.description && I18n.get(`HELPER_TEXT_${errors.description}`)}
               </HelperText>
               <TextInput
-                placeholder="Venue"
-                label="Venue"
+                placeholder={I18n.get("EVENT_FORM_venue")}
+                label={I18n.get("EVENT_FORM_venue")}
                 value={values.venue}
                 onChangeText={handleChange('venue')}
                 onBlur={handleBlur('venue')}
@@ -185,18 +184,18 @@ class Form extends React.Component {
                 type="error"
                 visible={errors.venue && touched.venue}
               >
-              {errors.venue}
+              {errors.venue && I18n.get(`HELPER_TEXT_${errors.venue}`)}
               </HelperText>
               
               <View style={[styles.pickerSpacing, styles.firstPicker]}>
-                <Text style={styles.radioText}>Type</Text>
+                <Text style={styles.radioText}>{I18n.get("EVENT_FORM_category")}</Text>
                 <PickerButton
                   value={values.category}
                   onPress={this._showModal}
                 />
               </View>
               <View style={styles.pickerSpacing}>
-                <Text style={styles.radioText}>From</Text>
+                <Text style={styles.radioText}>{I18n.get("EVENT_FORM_from")}</Text>
                 <DateTimeInput
                   noMin
                   disabled={values.allDay}
@@ -217,7 +216,7 @@ class Form extends React.Component {
                 />
               </View>
               <View style={styles.pickerSpacing}>
-                <Text style={styles.radioText}>To</Text>
+                <Text style={styles.radioText}>{I18n.get("EVENT_FORM_to")}</Text>
                 <DateTimeInput
                   noMin
                   value={values.endAt}
@@ -226,7 +225,7 @@ class Form extends React.Component {
                 />
               </View>
               <View style={styles.radio}>
-                <Text style={styles.radioText}>All-day</Text>
+                <Text style={styles.radioText}>{I18n.get("EVENT_FORM_allDay")}</Text>
                 <Switch
                   value={values.allDay}
                   onValueChange={() => {
@@ -241,9 +240,9 @@ class Form extends React.Component {
               </View>
               <Divider />
               <View style={styles.pickerSpacing}>
-                <Text style={styles.radioText}>Repetition</Text>
+                <Text style={styles.radioText}>{I18n.get("EVENT_FORM_repetition")}</Text>
                 <Picker
-                  prompt="Repeat"
+                  prompt={I18n.get("EVENT_FORM_repeat")}
                   selectedValue={values.recur}
                   style={styles.picker}
                   
@@ -274,7 +273,7 @@ class Form extends React.Component {
                       type="error"
                       visible={true}
                     >
-                      {CANT_REPEAT}
+                      {I18n.get("HELPER_TEXT_invalidDatesAndRecur")}
                     </HelperText>
                   )
                 }
@@ -284,7 +283,7 @@ class Form extends React.Component {
                 (values.recur !== recurrence[0].id) && (
                   <>
                     <View style={styles.radio}>
-                      <Text style={styles.radioText}>Repeat forever</Text>
+                      <Text style={styles.radioText}>{I18n.get("EVENT_FORM_repeatForever")}</Text>
                       <Switch
                         value={!Boolean(values.until)}
                         onValueChange={() => {
@@ -305,7 +304,7 @@ class Form extends React.Component {
               {
                 (values.recur !== recurrence[0].id && values.until) && (
                   <View style={styles.pickerSpacing}>
-                    <Text style={styles.radioText}>Repeat until</Text>
+                    <Text style={styles.radioText}>{I18n.get("EVENT_FORM_repeatUntil")}</Text>
                     <DateTimeInput
                       noMin
                       value={values.until}
@@ -315,7 +314,7 @@ class Form extends React.Component {
                 )
               }
               <View style={styles.radio}>
-                <Text style={styles.radioText}>Public</Text>
+                <Text style={styles.radioText}>{I18n.get("EVENT_FORM_public")}</Text>
                 <Switch
                   value={values.isPublic}
                   onValueChange={() => {
@@ -327,18 +326,18 @@ class Form extends React.Component {
               <Divider />
               <View style={styles.pickerSpacing}>
                 <View style={styles.row}>
-                  <Text style={styles.radioText}>Schedule</Text>
-                  <Text style={styles.radioText} onPress={this._scheduleHelp}>Help</Text>
+                  <Text style={styles.radioText}>{I18n.get("EVENT_FORM_schedule")}</Text>
+                  <Text style={styles.radioText} onPress={this._scheduleHelp}>{I18n.get("BUTTON_help")}</Text>
                 </View>
                 <Picker
-                  prompt="Select a schedule"
+                  prompt={I18n.get("EVENT_FORM_selectASchedule")}
                   selectedValue={values.scheduleId}
                   style={styles.picker}
                   enabled={!locked }
                   itemStyle={styles.pickerItem}
                   onValueChange={itemValue => setFieldValue('scheduleId', itemValue)}
                 >
-                  <Picker.Item label={(schedules.length === 0) ? "No schedule" : "Add to a schedule"} value="" />
+                  <Picker.Item label={(schedules.length === 0) ? I18n.get("EVENT_FORM_noSchedule") : I18n.get("EVENT_FORM_addToASchedule")} value="" />
                   {
                     schedules.map(schedule => (
                       <Picker.Item key={schedule.id} label={schedule.name} value={schedule.id} />
@@ -349,7 +348,7 @@ class Form extends React.Component {
                   type="info"
                   visible={!values.scheduleId}
                 >
-                  {SCHEDULE_TIP}
+                  {I18n.get("HELPER_TEXT_recommended")}
                 </HelperText>
               </View>
             </View>
@@ -357,7 +356,7 @@ class Form extends React.Component {
           
           <PickerInputModal
             visible={showPicker}
-            prompt="Type"
+            prompt={I18n.get("EVENT_FORM_category")}
             selectedValue={values.category || ''}
             hideModal={this._hideModal}
             onValueChange={itemValue => setFieldValue('category', itemValue)}
