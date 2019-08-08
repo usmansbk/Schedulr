@@ -7,6 +7,7 @@ import {
 import { Dimensions } from 'react-native';
 import { inject, observer } from 'mobx-react';
 import Icon from 'react-native-vector-icons/Feather';
+import { I18n } from 'aws-amplify';
 import Events from './Events';
 import Schedules from './Schedules';
 
@@ -52,7 +53,7 @@ const SearchBar = inject('stores')(observer(
       />}
       onIconPress={() => navigation.goBack()}
       autoFocus
-      placeholder="Search"
+      placeholder={I18n.get("SEARCH_inputPlaceholder")}
       placeholderTextColor={stores.themeStore.colors.placeholder}
       value={stores.appState.searchText}
       onChangeText={(value) => stores.appState.onChangeText(value)}

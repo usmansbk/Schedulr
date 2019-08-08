@@ -4,6 +4,8 @@ export default {
   BOARD_emptyList: "Your board is empty",
   BOARD_emptyListCaption: "Follow or create a schedule",
 
+  PROFILE_boardEmptyList: "No schedule",
+
   BOOKMARKS_emptyList: "You haven't saved any events yet",
 
   MORE_settings: "Settings",
