@@ -42,7 +42,7 @@ class Info extends React.Component {
     const title = I18n.get(`SCHEDULE_FORM_${isPublic ? "public" : "private"}`);
     const message = I18n.get(`ALERT_${isPublic ? 'public' : 'private'}ScheduleA`);
 
-    Alert.alert(title + " schedule", message);
+    Alert.alert(title, message);
   }
 
 
@@ -128,20 +128,20 @@ class Info extends React.Component {
                 </MenuTrigger>
                 <MenuOptions>
                   <MenuOption value="edit">
-                    <Text style={styles.menuText}>Edit</Text>
+                    <Text style={styles.menuText}>{I18n.get("MENU_edit")}</Text>
                   </MenuOption>
                   { !isClosed && (
                     <MenuOption value="close">
-                      <Text style={styles.menuText}>Close</Text>
+                      <Text style={styles.menuText}>{I18n.get("MENU_close")}</Text>
                     </MenuOption>
                   )}
                   { isClosed && (
                     <MenuOption value="open">
-                      <Text style={styles.menuText}>Open</Text>
+                      <Text style={styles.menuText}>{I18n.get("MENU_open")}</Text>
                     </MenuOption>
                   )}
                   <MenuOption value="delete">
-                    <Text style={styles.menuText}>Delete</Text>
+                    <Text style={styles.menuText}>{I18n.get("MENU_delete")}</Text>
                   </MenuOption>
                 </MenuOptions>
               </Menu>
@@ -171,14 +171,14 @@ class Info extends React.Component {
                     style={styles.count}
                     onPress={() => navigateToFollowers(id, isOwner)}
                   >
-                    {numeral(followersCount).format('0a')} Follower{followersCount > 1 ? 's' : ''}
+                    {numeral(followersCount).format('0a')} {I18n.get(`SCHEDULE_followerCount${followersCount > 1 ? 's' : ''}`)}
                   </Text>
                   <Text style={styles.middot}>{` ${CIRCLE} `}</Text>
                   <Text
                     style={styles.count}
                     onPress={() => navigateToEvents(id, (isFollowing || isOwner))}
                   >
-                    {numeral(eventsCount).format('0a')} Event{eventsCount > 1 ? 's' : ''}
+                    {numeral(eventsCount).format('0a')} {I18n.get(`SCHEDULE_eventsCount${eventsCount > 1 ? 's' : ''}`)}
                   </Text>
                 </View>
               </View>
@@ -189,26 +189,26 @@ class Info extends React.Component {
                 <Text
                   style={styles.note}
                   onPress={this._aboutPrivacy}
-                >{ isPublic ? 'Public' : 'Private'} schedule</Text>
+                >{I18n.get(`SCHEDULE_FORM_${ isPublic ? 'public' : 'private'}`)} {I18n.get("SCHEDULE")}</Text>
               </View>
               {
                 isClosed && (
                   <View style={styles.noteView}>
                     <Icon color={colors.black} name="lock" size={18} />
-                    <Text style={styles.note}>This schedule is closed</Text>
+                    <Text style={styles.note}>{I18n.get("SCHEDULE_thisScheduleIsClosed")}</Text>
                   </View>
                 )
               }
               <View style={styles.date}>
                 <Text style={styles.byLine}>
-                  Created on <Text style={styles.adminName}>{moment(createdAt).toDate().toDateString()}</Text>
+                  {I18n.get("SCHEDULE_createdOn")} <Text style={styles.adminName}>{moment(createdAt).toDate().toDateString()}</Text>
                 </Text>
               </View>
               <TouchableRipple onPress={() => navigateToProfile(adminId)}>
                 <View style={styles.admin} >
                   <UserAvater size={32} name={adminName} src={author.pictureUrl}/>
                   <Text style={styles.byLine}>
-                    by <Text style={styles.adminName}>{adminName}</Text>
+                    {I18n.get("SCHEDULE_by")} <Text style={styles.adminName}>{adminName}</Text>
                   </Text>
                 </View>
               </TouchableRipple>

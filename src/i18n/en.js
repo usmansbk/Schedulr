@@ -79,6 +79,8 @@ export default {
   ALERT_publicScheduleA: "This schedule's content, including its followers and event details, are visible to the public.",
 
   SHARE_inviteAFriendTitle: "Invite via...",
+  SHARE_SCHEDULE_inviteTitle: "Share invite link via...",
+  SHARE_SCHEDULE_subject: "Follow schedule to get latest events",
 
   TOAST_enableReminder: "Enable reminder!",
 
@@ -99,10 +101,19 @@ export default {
   EVENT_FORM_noSchedule: "No schedule",
   EVENT_FORM_addToASchedule: "Add to a schedule",
 
+  SCHEDULE: "schedule",
   SCHEDULE_FORM_name: "Name",
   SCHEDULE_FORM_description: "Description",
   SCHEDULE_FORM_private: "Private",
   SCHEDULE_FORM_public: "Public",
+
+  SCHEDULE_followerCount: "Follower",
+  SCHEDULE_followerCounts: "Followers",
+  SCHEDULE_eventsCount: "Event",
+  SCHEDULE_eventsCounts: "Events",
+  SCHEDULE_thisScheduleIsClosed: "This schedule is closed",
+  SCHEDULE_createdOn: "Created on",
+  SCHEDULE_by: "by",
 
   HELPER_TEXT_titleIsRequired: "Title is required",
   HELPER_TEXT_nameIsRequired: "Name is required",
@@ -110,4 +121,9 @@ export default {
   HELPER_TEXT_tooLong: "Too long",
   HELPER_TEXT_recommended: "Recommended",
   HELPER_TEXT_invalidDatesAndRecur: "Event's duration should be shorter than repeat frequency",
+
+  MENU_edit: "Edit",
+  MENU_close: "Close",
+  MENU_open: "Close",
+  MENU_delete: "Delete"
 };
