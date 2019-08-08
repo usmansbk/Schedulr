@@ -19,7 +19,13 @@ class Item extends React.Component {
     return (
       <List.Item
         title={name}
-        left={() => <List.Icon icon={() => <Icon size={24} name={icon} color={color} />} />}
+        left={() => <List.Icon
+          icon={() => <Icon
+            size={24}
+            name={icon}
+            color={color}
+          />}
+        />}
         onPress={this._onPress}
         style={styles.item}
       />

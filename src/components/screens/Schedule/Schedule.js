@@ -85,7 +85,11 @@ class Schedule extends React.Component {
             titleStyle={styles.headerColor}
           />
           <Appbar.Action
-            icon="info-outline"
+            icon={() => <Icon
+              name="info"
+              size={24}
+              color={colors.gray}
+            />}
             onPress={this._navigateToScheduleInfo}
             color={colors.gray}
           />

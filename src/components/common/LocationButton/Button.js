@@ -10,7 +10,11 @@ export default ({
 }) => (
   <IconButton
     disabled={!address}
-    icon={() => <Icon name="map-pin" size={size} />}
+    icon={() => <Icon
+      name="map-pin"
+      size={size}
+      color={color}
+    />}
     color={color}
     size={size}
     onPress={createOpenLink({
