@@ -1,7 +1,4 @@
-export const SCHEDULE_CLOSED = 'CLOSED';
-export const SCHEDULE_OPEN = 'OPEN';
 export const ONE_TIME_EVENT = 'NEVER';
-export const ONE_TIME_EVENT_TEXT = 'One-time event';
 export const BULLET = '•';
 export const CIRCLE = '●';
 

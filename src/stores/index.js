@@ -17,15 +17,16 @@ class RootStore {
 
     const settingsStore = new Settings;
     const remindMeStore = new RemindMe;
-    const appState = new AppState;
     const deltaSync = new DeltaSync;
     
     hydrate('settings', settingsStore);
     hydrate('remindMe', remindMeStore);
-    hydrate('appState', appState);
     hydrate('deltaSync', deltaSync);
     
     // Create theme store after hydrating the settings store
+    const appState = new AppState(settingsStore);
+    hydrate('appState', appState);
+    
     const themeStore = new Theme(settingsStore);
     const appStyles = new AppStyles(settingsStore);
 

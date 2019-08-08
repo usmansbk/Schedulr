@@ -1,7 +1,7 @@
 import moment from 'moment';
 import 'twix';
 import twitter from 'moment-twitter';
-import numeral from 'numeral';
+import { I18n } from 'aws-amplify';
 import capitalizr, { decapitalize } from './capitalizr';
 
 export const SECOND = 1000;
@@ -19,8 +19,6 @@ export const FORTY_FIVE_MINUTES = 3 * FIFTEEN_MINUTES;
 const DATE_FORMAT = 'MMMM DD, YYYY';
 const DAY_FORMAT = 'dddd';
 const NEXT_LAST_FORMAT = 'dddd, Do';
-
-const DAYS_IN_WEEK = 7;
 
 const headingCalendarFormats = {
   sameDay: '[Today]',
@@ -45,7 +43,7 @@ export const repeatLength = (recur) => {
     case 'DAILY': return ONE_DAY;
     case 'WEEKDAYS': return ONE_DAY;
     case 'WEEKLY': return ONE_WEEK;
-    case 'MONTHLY': case 'MONTHLY_DAY': return moment().daysInMonth() * ONE_DAY;
+    case 'MONTHLY': return moment().daysInMonth() * ONE_DAY;
     case 'YEARLY': return moment().weeksInYear() * ONE_WEEK;
     default: return 0;
   }
@@ -54,7 +52,7 @@ export const repeatLength = (recur) => {
 export const formatDate = (startAt, endAt, allDay) => {
   return moment(startAt).twix(endAt, allDay).format({
     explicitAllDay: true,
-    allDay: 'All day',
+    allDay: I18n.get("EVENT_ITEM_allDay"),
     implicitMinutes: false,
     groupMeridiems: false
   }); 
@@ -84,24 +82,14 @@ export const getSectionHeaderData = (date) => {
   };
 };
 
-function getMonthlyDay(date) {
-  const d = moment(date);
-  const currentDate = d.date();
-  const week = Math.ceil(currentDate / DAYS_IN_WEEK);
-  const order = numeral(week).format('0o');
-  const dayInWeek = d.format('dddd');
-  return `Monthly (${order} ${dayInWeek} of every month)`;
-}
-
 export function getRepeatLabel(id, date) {
   const val = id.toLowerCase();
   switch(val) {
-    case 'never': return 'One-time event';
-    case 'weekly': return `Weekly (every ${moment(date).format('dddd')})`;
-    case 'weekdays': return 'Weekdays (Mon - Fri)';
-    case 'monthly_day': return getMonthlyDay(date);
-    case 'monthly': return `Monthly (on the same day)`;
-    case 'yearly': return `Yearly (every ${moment(date).format('Do MMMM')})`;
+    case 'never': return I18n.get(`RECUR_${val}`);
+    case 'weekly': return I18n.get(`RECUR_${val}`)(moment(date).format('dddd'));
+    case 'weekdays': return I18n.get(`RECUR_${val}`);
+    case 'monthly': return I18n.get(`RECUR_${val}`);
+    case 'yearly': return I18n.get(`RECUR_${val}`)(moment(date).format('Do MMMM'));
     default: return decapitalize(id);
   }
 }

@@ -4,11 +4,15 @@ import Geocoder from 'react-native-geocoder';
 import SimpleToast from 'react-native-simple-toast';
 import { observable, action } from 'mobx';
 import { persist } from 'mobx-persist';
+import { I18n } from 'aws-amplify';
 import debounce from 'lodash.debounce';
 import { requestLocationPermission } from 'helpers/permissions';
-import categories from './eventCategories';
+import categories from 'i18n/categories';
 
 export default class AppState {
+  constructor(settingsStore) {
+    this.settings = settingsStore;
+  }
   @persist @observable userId = null;
   @persist @observable loggingIn = false;
 
@@ -25,7 +29,7 @@ export default class AppState {
   @persist('object') @observable prefs = {
     showPrivateScheduleAlert: true,
   }
-  @persist('list') @observable categories =  categories;
+  @persist('list') @observable categories =  categories(this.settings.language);
 
   debounceQuery = debounce((val) => this.query = val, 250);
 
@@ -56,7 +60,7 @@ export default class AppState {
     this.prefs = {
       showPrivateScheduleAlert: true,
     }
-    this.categories = categories;
+    this.categories = categories(this.settingsStore.language);
     this.loggingIn = false;
     this.userId = null;
   }
@@ -103,11 +107,11 @@ export default class AppState {
     const { lon, lat } = this.location;
     if (!(lon && lat)){
       Alert.alert(
-        'Location Permission',
-        "Schdlr needs access to your location for better experience.",
+        I18n.get("ALERT_permissionLocationTitle"),
+        I18n.get("ALERT_permissionLocationMessage"),
         [
-          { text: 'Ask me later' },
-          { text: 'Yes', onPress: this.getLocation },
+          { text: I18n.get("BUTTON_askMeLater") },
+          { text: I18n.get("BUTTON_yes"), onPress: this.getLocation },
         ],
         { cancelable: false }
       );
@@ -131,7 +135,7 @@ export default class AppState {
         },
         (error) => {
           console.error(error);
-          SimpleToast.show("Failed to get location. Turn off airplane mode.", SimpleToast.SHORT);
+          SimpleToast.show(I18n.get("TOAST_locationError"), SimpleToast.SHORT);
           // throw error;
         },
         {

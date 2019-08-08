@@ -8,7 +8,6 @@ import {
   getSchedule as getScheduleQuery,
   getComment,
   getUser as getUserQuery } from 'mygraphql/queries';
-import { SCHEDULE_CLOSED, SCHEDULE_OPEN } from 'lib/constants';
 import stores from 'stores';
 
 const __typename = 'Mutation';
@@ -285,7 +284,7 @@ export const closeScheduleResponse = (input) => ({
   __typename,
   closeSchedule: Object.assign({}, input, {
     __typename: 'Schedule',
-    status: SCHEDULE_CLOSED,
+    status: 'CLOSED',
     updatedAt: moment().toISOString()
   })
 });
@@ -294,7 +293,7 @@ export const openScheduleResponse = (input) => ({
   __typename,
   openSchedule: Object.assign({}, input, {
     __typename: 'Schedule',
-    status: SCHEDULE_OPEN,
+    status: 'OPEN',
     updatedAt: moment().toISOString()
   })
 });

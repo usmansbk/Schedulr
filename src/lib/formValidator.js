@@ -1,13 +1,8 @@
 import { Alert } from 'react-native';
 import moment from 'moment';
+import { I18n } from 'aws-amplify';
 import { repeatLength, FIVE_MINUTES } from 'lib/time';
 import { ONE_TIME_EVENT } from 'lib/constants';
-import {
-  CANT_REPEAT,
-  INVALID_START,
-  DURATION_TOO_SHORT,
-  SHORT_UNTIL
-} from 'lib/errorMessages';
 
 export const canRepeat = ({ recur, endAt, startAt }) => {
   if (recur === ONE_TIME_EVENT ) return true; // One-time event can be repeated
@@ -21,20 +16,20 @@ export function isEventValid(event) {
 
   let validity = true
   if (!canRepeat(event)) {
-    Alert.alert("Repeat", CANT_REPEAT);
+    Alert.alert(I18n.get("ALERT_repeat"), I18n.get("ALERT_cantRepeat"));
     validity = false;
   } else if (startAt.isAfter(endAt)) {
-    Alert.alert('Duration', INVALID_START);
+    Alert.alert(I18n.get("ALERT_duration"), I18n.get("ALERT_invalidStart"));
     validity = false;
   } else if (endAt.diff(startAt) < FIVE_MINUTES) {
-    Alert.alert('Too short', DURATION_TOO_SHORT);
+    Alert.alert(I18n.get("ALERT_tooShort"), I18n.get("ALERT_durationTooShort"));
     validity = false;
   } else if (untilAt) {
     const rLength = repeatLength(event.recur);
     const tail = moment.duration(rLength);
     const secondTime = endAt.clone().add(tail, 'valueOf');
     if (secondTime.isAfter(untilAt)) {
-      Alert.alert("Until date", SHORT_UNTIL);
+      Alert.alert(I18n.get("ALERT_until"), I18n.get("ALERT_shortUntil"));
       validity = false;
     }
   }

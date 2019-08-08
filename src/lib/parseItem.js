@@ -1,5 +1,6 @@
 import moment from 'moment';
 import 'twix';
+import { I18n } from 'aws-amplify';
 import { decapitalize } from './capitalizr';
 import { ONE_TIME_EVENT } from './constants';
 
@@ -21,7 +22,7 @@ export const getTime = ({ startAt, endAt, allDay }) => {
   const isSameDay = t.isSame('day');
   return t.format({
     hideDate: true && isSameDay,
-    allDay: 'All day',
+    allDay: I18n.get("EVENT_ITEM_allDay"),
     explicitAllDay: true,
     implicitMinutes: false,
     groupMeridiems: false
@@ -68,14 +69,14 @@ export const getStatus = ({
   endAt,
   isConcluded
 }) => {
-  if (isConcluded) return 'Concluded';
+  if (isConcluded) return I18n.get("STATUS_concluded");
   const cancelled =  isEventCancelled({ cancelledDates, startAt, isCancelled });
-  if (cancelled) return 'Cancelled';
+  if (cancelled) return I18n.get("STATUS_cancelled");
   const isEnded = moment().twix(endAt).isPast();
-  if (isEnded) return 'Done';
+  if (isEnded) return I18n.get("STATUS_done");
   const isOngoing = moment(startAt).twix(endAt).isCurrent();
-  if (isOngoing) return 'Ongoing';
-  return 'Upcoming';
+  if (isOngoing) return I18n.get('STATUS_ongoing');
+  return I18n.get("STATUS_upcoming");
 }
 
 export const isEventValid = ({isCancelled, startAt, endAt, cancelledDates }) => {

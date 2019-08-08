@@ -1,4 +1,4 @@
-export default [
+const en = [
   'Event',
   'Lecture',
   'Examination',
@@ -16,3 +16,13 @@ export default [
   'Party',
   'Holiday',
 ];
+
+const translations = {
+  en
+};
+
+export default (lang) => {
+  const translation = translations[lang];
+  if (translation) return translation;
+  return en;
+};

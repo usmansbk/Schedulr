@@ -71,18 +71,32 @@ export default {
   BUTTON_ok: "Ok",
   BUTTON_help: "Help",
   BUTTON_dontShowAgain: "Don't show again",
+  BUTTON_askMeLater: "Ask me later",
+  BUTTON_yes: "Yes",
 
+  ALERT_repeat: "Repeat",
+  ALERT_duration: "Duration",
+  ALERT_tooShort: "Too short",
+  ALERT_until: "Until date",
+  ALERT_cantRepeat: "Event should end in a future date",
+  ALERT_invalidStart: "End date should be greater than start date",
+  ALERT_durationTooShort: "Event should be at least five minutes long",
+  ALERT_shortUntil: "Event should happen at least twice before final date",
   ALERT_whatIsASchedule: "What is a schedule?",
   ALERT_whatIsAScheduleA: "A schedule is a group of related events. It helps people find their interested events.",
   ALERT_privateSchedule: "Private schedule",
   ALERT_privateScheduleA: "This schedule's content, including its followers and event details, are not visible to the public. Share invite link to add followers.",
   ALERT_publicScheduleA: "This schedule's content, including its followers and event details, are visible to the public.",
+  ALERT_permissionLocationTitle: "Location Permission",
+  ALERT_permissionLocationMessage: "Schdlr needs access to your location for better experience.",
+
 
   SHARE_inviteAFriendTitle: "Invite via...",
   SHARE_SCHEDULE_inviteTitle: "Share invite link via...",
   SHARE_SCHEDULE_subject: "Follow schedule to get latest events",
 
   TOAST_enableReminder: "Enable reminder!",
+  TOAST_locationError: "Failed to get location. Turn off airplane mode.",
 
   EVENT_FORM_title: "Title",
   EVENT_FORM_description: "Description",
@@ -100,6 +114,8 @@ export default {
   EVENT_FORM_selectASchedule: "Select a schedule",
   EVENT_FORM_noSchedule: "No schedule",
   EVENT_FORM_addToASchedule: "Add to a schedule",
+
+  EVENT_ITEM_allDay: "All day",
 
   SCHEDULE: "schedule",
   SCHEDULE_FORM_name: "Name",
@@ -124,6 +140,19 @@ export default {
 
   MENU_edit: "Edit",
   MENU_close: "Close",
-  MENU_open: "Close",
-  MENU_delete: "Delete"
+  MENU_open: "Open",
+  MENU_delete: "Delete",
+
+  RECUR_never: "One-time event",
+  RECUR_daily: "Daily",
+  RECUR_weekly: day => `Weekly (every ${day})`,
+  RECUR_weekdays: "Weekdays (Mon - Fri)",
+  RECUR_monthly: "Monthly (on the same day)",
+  RECUR_yearly: date => `Yearly ( every ${date})`,
+
+  STATUS_concluded: "Concluded",
+  STATUS_ongoing: "Ongoing",
+  STATUS_done: "Done",
+  STATUS_cancelled: "Cancelled",
+  STATUS_upcoming: "Upcoming",
 };
