@@ -29,7 +29,6 @@ class IconBagdeButton extends React.Component {
           onPress={this._onPress}
           icon={this._renderIcon}
           size={size}
-          color={color}
           style={stores.appStyles.styles.iconButton}
           animated
         />

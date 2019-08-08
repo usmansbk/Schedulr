@@ -14,8 +14,11 @@ export default ({
   date,
 }) => (
   <IconButton
-    icon={() => <Icon size={size} name="share-2"/>}
-    color={color}
+    icon={() => <Icon
+      size={size}
+      name="share-2"
+      color={color}
+    />}
     size={size}
     onPress={() => {
       const shareOptions = {

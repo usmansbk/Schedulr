@@ -15,7 +15,6 @@ export default ({
       size={size}
       color={color}
     />}
-    color={color}
     size={size}
     onPress={createOpenLink({
       query: address,
