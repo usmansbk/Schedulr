@@ -8,6 +8,7 @@ import {
 } from 'react-native-paper';
 import { inject, observer } from 'mobx-react';
 import moment from 'moment';
+import { I18n } from 'aws-amplify';
 import { getSectionHeaderData } from 'lib/time';
 import { BULLET } from 'lib/constants';
 
@@ -39,7 +40,7 @@ class SectionHeader extends React.Component {
       time = timeAgo;
     }
     if (count > 1) {
-      itemsCount = `${count} events ${time ? BULLET : ''} `;
+      itemsCount = `${I18n.get("EVENTS_SECTION_ITEM_COUNT")(count)} ${time ? BULLET : ''} `;
     }
 
     const styles = stores.appStyles.eventsList;

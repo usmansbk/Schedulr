@@ -1,5 +1,11 @@
 export default {
   EVENTS_emptyList: "No upcoming events",
+  EVENTS_SECTIONLIST_after: date => `After ${date}`,
+  EVENTS_SECTIONLIST_noMoreEvents: () => "No more events",
+  EVENTS_SECTIONLIST_before: date => `Before ${date}`,
+  EVENTS_SECTIONLIST_noPrevEvents: () => "No previous events",
+  EVENTS_SECTION_FOOTER: "No upcoming events",
+  EVENTS_SECTION_ITEM_COUNT: count => count ? `${count} events` : '',
   
   BOARD_emptyList: "Your board is empty",
   BOARD_emptyListCaption: "Follow or create a schedule",
@@ -155,4 +161,6 @@ export default {
   STATUS_done: "Done",
   STATUS_cancelled: "Cancelled",
   STATUS_upcoming: "Upcoming",
+
+  ERROR_noInternetConnection: "Check your internet connection. Pull to refresh",
 };

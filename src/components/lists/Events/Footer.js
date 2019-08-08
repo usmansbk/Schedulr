@@ -8,6 +8,7 @@ import { View } from 'react-native';
 import { inject, observer } from 'mobx-react';
 import moment from 'moment';
 import 'twix';
+import { I18n } from 'aws-amplify';
 
 export default inject('stores')(observer(
   ({ loading, onPress, stores, hasMore, hide }) => {
@@ -26,7 +27,7 @@ export default inject('stores')(observer(
         <View style={stores.appStyles.eventsList.footerContent}>
           <Caption style={stores.appStyles.eventsList.footerText}>
             {
-              hasMore ? `After ${moment(hasMore).twix(hasMore, { allDay: true }).format()}` : "No more events"
+             I18n.get(`EVENTS_SECTIONLIST_${hasMore ? 'after' : 'noMoreEvents'}`)(moment(hasMore).twix(hasMore, { allDay: true }).format())
             }
           </Caption>
         </View>

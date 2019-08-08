@@ -20,7 +20,7 @@ export default inject('stores')(observer(
         {
           error && (
             <Paragraph style={stores.appStyles.eventsList.paragraph}>
-              Check your internet connection. Pull to refresh.
+              {I18n.get("ERROR_noInternetConnection")}
             </Paragraph>
           )
         }

@@ -7,6 +7,7 @@ import {
 import moment from 'moment';
 import 'twix';
 import { inject, observer } from 'mobx-react';
+import { I18n } from 'aws-amplify';
 
 export default inject('stores')(observer(
   ({ onPress, loading, stores, hasPrev, hide }) => {
@@ -25,7 +26,7 @@ export default inject('stores')(observer(
       >
         <Caption style={stores.appStyles.eventsList.footerText}>
           {
-            hasPrev ? `Before ${moment(hasPrev).twix(hasPrev, { allDay: true }).format()}` : "No previous events"
+             I18n.get(`EVENTS_SECTIONLIST_${hasPrev ? 'before' : 'noPrevEvents'}`)(moment(hasPrev).twix(hasPrev, { allDay: true }).format())
           }
         </Caption>
       </TouchableRipple>
