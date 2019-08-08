@@ -20,7 +20,6 @@ class Followers extends React.Component {
       <>
         <Appbar style={stores.appStyles.styles.elevatedHeader}>
           <Appbar.Action
-            color={colors.gray}
             onPress={goBack}
             icon={() => <Icon
               name="arrow-left"

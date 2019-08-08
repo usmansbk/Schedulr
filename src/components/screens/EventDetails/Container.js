@@ -82,7 +82,6 @@ class EventDetails extends React.Component {
       <>
         <Appbar.Header style={styles.header}  collapsable>
           <Appbar.Action
-            color={colors.gray}
             onPress={handleBack}
             icon={() => <Icon
               color={colors.gray}
@@ -98,9 +97,7 @@ class EventDetails extends React.Component {
                   icon={() => <Icon
                     size={24}
                     name="trash"
-                    color={colors.gray}
                   />}
-                  color={colors.gray}
                   onPress={handleDelete}
                 />
                 <Appbar.Action
@@ -109,7 +106,6 @@ class EventDetails extends React.Component {
                     name="copy"
                     color={colors.gray}
                   />}
-                  color={colors.gray}
                   onPress={handleRepeat}
                 />
                 {
@@ -121,7 +117,6 @@ class EventDetails extends React.Component {
                           name="edit-3"
                           color={colors.gray}
                         />}
-                        color={colors.gray}
                         onPress={() => handleEdit({
                           id,
                           refStartAt: start,
@@ -134,7 +129,6 @@ class EventDetails extends React.Component {
                           name="x"
                           color={colors.gray}
                         />}
-                        color={colors.gray}
                         onPress={this._handleCancel}
                       />
                     </>

@@ -39,7 +39,6 @@ class ScheduleEvents extends React.Component {
       <>
         <Appbar style={styles.elevatedHeader} collapsable>
           <Appbar.Action
-            color={colors.gray}
             onPress={onPress}
             icon={() => <Icon
               name="arrow-left"

@@ -31,7 +31,6 @@ const HeaderComponent = inject('stores')(observer(
   ({ stores, title, goBack }) => (
     <Appbar.Header style={stores.appStyles.styles.header}>
       <Appbar.Action
-        color={stores.themeStore.colors.gray}
         onPress={goBack}
         icon={() => <Icon
           name="arrow-left"

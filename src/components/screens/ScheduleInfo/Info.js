@@ -89,7 +89,6 @@ class Info extends React.Component {
       <>
         <Appbar.Header collapsable style={appStyles.header}>
           <Appbar.Action
-            color={colors.gray}
             onPress={goBack}
             icon={() => <Icon
               name="arrow-left"
@@ -109,7 +108,6 @@ class Info extends React.Component {
                   color={colors.gray}
                 />}
                 onPress={() => handleShare({ name, description, id})}
-                color={colors.gray}
               />
             )
           }

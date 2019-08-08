@@ -71,7 +71,6 @@ class Schedule extends React.Component {
       <>
         <Appbar style={styles.elevatedHeader} collapsable>
           <Appbar.Action
-            color={colors.gray}
             onPress={onPress}
             icon={() => <Icon
               name="arrow-left"
@@ -91,7 +90,6 @@ class Schedule extends React.Component {
               color={colors.gray}
             />}
             onPress={this._navigateToScheduleInfo}
-            color={colors.gray}
           />
         </Appbar>
         <List
