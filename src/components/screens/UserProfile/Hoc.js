@@ -1,4 +1,5 @@
-import { graphql, compose } from 'react-apollo';
+import { graphql } from 'react-apollo';
+import compose from 'recompose/compose';
 import gql from 'graphql-tag';
 import { withNavigationFocus } from 'react-navigation';
 import UserProfile from './UserProfile';
