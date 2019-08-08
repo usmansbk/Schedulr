@@ -45,7 +45,6 @@ yarn-error.log
 #
 amplify/
 resolvers/
-*/aws-exports.js
 schema.graphql
 models.graphql
 *.vtl
@@ -80,5 +79,4 @@ amplify/backend/awscloudformation
 build/
 dist/
 node_modules/
-aws-exports.js
 awsconfiguration.json
