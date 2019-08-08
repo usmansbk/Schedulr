@@ -3,8 +3,8 @@
 
 export const createUser = `mutation CreateUser($input: CreateUserInput!) {
   createUser(input: $input) {
-    name
     email
+    name
     pictureUrl
     website
   }
@@ -12,8 +12,8 @@ export const createUser = `mutation CreateUser($input: CreateUserInput!) {
 `;
 export const updateUser = `mutation UpdateUser($input: UpdateUserInput!) {
   updateUser(input: $input) {
-    name
     email
+    name
     pictureUrl
     website
   }
@@ -21,8 +21,8 @@ export const updateUser = `mutation UpdateUser($input: UpdateUserInput!) {
 `;
 export const deleteUser = `mutation DeleteUser($input: DeleteUserInput!) {
   deleteUser(input: $input) {
-    name
     email
+    name
     pictureUrl
     website
   }

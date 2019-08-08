@@ -19,7 +19,10 @@ const awsmobile = {
         "redirectSignOut": "schdlr://",
         "responseType": "code"
     },
-    "federationTarget": "COGNITO_USER_POOLS"
+    "federationTarget": "COGNITO_USER_POOLS",
+    "aws_appsync_graphqlEndpoint": "https://ic4arvyxqjavzmax5vvu7gfrfa.appsync-api.us-east-1.amazonaws.com/graphql",
+    "aws_appsync_region": "us-east-1",
+    "aws_appsync_authenticationType": "AMAZON_COGNITO_USER_POOLS"
 };
 
 

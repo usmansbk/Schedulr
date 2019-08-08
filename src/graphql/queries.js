@@ -1,17 +1,17 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const getUser = `query GetUser($email: AWSEmail!) {
+export const getUser = `query GetUser($email: String!) {
   getUser(email: $email) {
-    name
     email
+    name
     pictureUrl
     website
   }
 }
 `;
 export const listUsers = `query ListUsers(
-  $email: AWSEmail
+  $email: String
   $filter: ModelUserFilterInput
   $limit: Int
   $nextToken: String
@@ -23,8 +23,8 @@ export const listUsers = `query ListUsers(
     nextToken: $nextToken
   ) {
     items {
-      name
       email
+      name
       pictureUrl
       website
     }
