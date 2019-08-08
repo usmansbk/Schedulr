@@ -10,12 +10,11 @@ export default inject("stores")(observer(
     {
       options: props => ({
         variables: {
-          id: props.stores.appState.userId
+          email: props.stores.appState.userId
         },
         fetchPolicy: 'cache-only'
       }),
       props: ({ data: { getUser={} }, ownProps }) => ({
-        id: getUser.id,
         name: getUser.name,
         email: getUser.email,
         pictureUrl: getUser.pictureUrl,

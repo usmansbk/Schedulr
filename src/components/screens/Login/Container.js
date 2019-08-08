@@ -58,7 +58,7 @@ class Container extends React.Component {
                 input: {
                   name: name || email,
                   email,
-                  pictureUrl
+                  pictureUrl: pictureUrl || null
                 }
               }
             });
