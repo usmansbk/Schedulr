@@ -13,7 +13,7 @@ export default compose(
     alias,
     options: props => ({
       variables: {
-        id: props.navigation.getParam('id'),
+        email: props.navigation.getParam('id'),
       },
       notifyOnNetworkStatusChange: true,
       fetchPolicy: 'cache-first',
