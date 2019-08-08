@@ -3,28 +3,28 @@
 
 export const createUser = `mutation CreateUser($input: CreateUserInput!) {
   createUser(input: $input) {
-    id
     name
     email
     pictureUrl
+    website
   }
 }
 `;
 export const updateUser = `mutation UpdateUser($input: UpdateUserInput!) {
   updateUser(input: $input) {
-    id
     name
     email
     pictureUrl
+    website
   }
 }
 `;
 export const deleteUser = `mutation DeleteUser($input: DeleteUserInput!) {
   deleteUser(input: $input) {
-    id
     name
     email
     pictureUrl
+    website
   }
 }
 `;
