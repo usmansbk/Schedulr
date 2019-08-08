@@ -6,6 +6,7 @@ import {
   Portal,
 } from 'react-native-paper';
 import { inject, observer } from 'mobx-react';
+import { I18n } from 'aws-amplify';
 
 export default inject('stores')(observer(
   ({
@@ -22,13 +23,13 @@ export default inject('stores')(observer(
         visible={visible}
         onDismiss={handleDismiss}
       >
-        <Dialog.Title>Sign out?</Dialog.Title>
+        <Dialog.Title>{I18n.get("SIGN_OUT_title")}</Dialog.Title>
         <Dialog.Content>
-          <Paragraph>Will clear data</Paragraph>
+          <Paragraph>{I18n.get("SIGN_OUT_message")}</Paragraph>
         </Dialog.Content>
         <Dialog.Actions>
-          <Button disabled={loading} onPress={handleDismiss}>Dismiss</Button>
-          <Button loading={loading} disabled={loading} onPress={handleLogout}>Continue</Button>
+          <Button disabled={loading} onPress={handleDismiss}>{I18n.get("BUTTON_dismiss")}</Button>
+          <Button loading={loading} disabled={loading} onPress={handleLogout}>{I18n.get("BUTTON_continue")}</Button>
         </Dialog.Actions>
       </Dialog>
     </Portal>

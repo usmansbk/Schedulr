@@ -79,6 +79,9 @@ export default {
   BUTTON_dontShowAgain: "Don't show again",
   BUTTON_askMeLater: "Ask me later",
   BUTTON_yes: "Yes",
+  BUTTON_dismiss: "Dismiss",
+  BUTTON_continue: "Continue",
+  BUTTON_done: "Done",
 
   ALERT_repeat: "Repeat",
   ALERT_duration: "Duration",

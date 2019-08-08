@@ -7,6 +7,7 @@ import {
   Switch
 } from 'react-native-paper';
 import { inject, observer } from 'mobx-react';
+import { I18n } from 'aws-amplify';
 
 class RemindMe extends React.Component {
   static defaultProps = {
@@ -52,10 +53,10 @@ class RemindMe extends React.Component {
           onDismiss={hideDialog}
           style={{backgroundColor: colors.bg}}
         >
-          <Dialog.Title>Remind me</Dialog.Title>
+          <Dialog.Title>{I18n.get("REMIND_ME_title")}</Dialog.Title>
           <Dialog.Content>
             <List.Item
-              title="5 minutes before"
+              title={I18n.get("REMIND_ME_five")}
               right={() => (
                 <Switch
                   value={fiveMin}
@@ -64,7 +65,7 @@ class RemindMe extends React.Component {
               )}
             />
             <List.Item
-              title="10 minutes before"
+              title={I18n.get("REMIND_ME_ten")}
               right={() => (
                 <Switch
                   value={tenMin}
@@ -73,7 +74,7 @@ class RemindMe extends React.Component {
               )}
             />
             <List.Item
-              title="15 minutes before"
+              title={I18n.get("REMIND_ME_fifteen")}
               right={() => (
                 <Switch
                   value={fifteenMin}
@@ -82,7 +83,7 @@ class RemindMe extends React.Component {
               )}
             />
             <List.Item
-              title="30 minutes before"
+              title={I18n.get("REMIND_ME_thirty")}
               right={() => (
                 <Switch
                   value={thirtyMin}
@@ -91,7 +92,7 @@ class RemindMe extends React.Component {
               )}
             />
             <List.Item
-              title="1 hour before"
+              title={I18n.get("REMIND_ME_oneHour")}
               right={() => (
                 <Switch
                   value={oneHour}
@@ -100,7 +101,7 @@ class RemindMe extends React.Component {
               )}
             />
             <List.Item
-              title="1 day before"
+              title={I18n.get("REMIND_ME_oneDay")}
               right={() => (
                 <Switch
                   value={oneDay}
@@ -110,7 +111,7 @@ class RemindMe extends React.Component {
             />
           </Dialog.Content>
           <Dialog.Actions>
-            <Button onPress={hideDialog}>Done</Button>
+            <Button onPress={hideDialog}>{I18n.get("BUTTON_done")}</Button>
           </Dialog.Actions>
         </Dialog>
       </Portal>
