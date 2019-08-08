@@ -5,6 +5,8 @@ export default {
   BOARD_emptyListCaption: "Follow or create a schedule",
 
   PROFILE_boardEmptyList: "No schedule",
+  PROFILE_followingLabel: "Following",
+  PROFILE_createdLabel: "Created",
 
   BOOKMARKS_emptyList: "You haven't saved any events yet",
 

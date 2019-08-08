@@ -3,12 +3,19 @@ import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
 import uniqWith from 'lodash.uniqwith';
 import { inject, observer } from 'mobx-react';
+import { I18n } from 'aws-amplify';
 import sortSchedules from 'lib/utils';
 import List from 'components/lists/ScheduleSearch';
 // import { listAllSchedules, searchSchedule } from 'mygraphql/queries';
 import { SEARCH_PAGE_SIZE, SEARCH_DISTANCE } from 'lib/constants';
 
 class Schedules extends React.Component {
+
+  static navigationOptions() {
+    return {
+      tabBarLabel: I18n.get("SEARCH_schedulesTabLabel")
+    };
+  }
 
   componentWillUnmount = () => this.props.stores.appState.onChangeText('');
 

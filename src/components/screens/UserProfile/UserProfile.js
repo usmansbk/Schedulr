@@ -9,10 +9,11 @@ import {
 import { Headline, TouchableRipple } from 'react-native-paper';
 import FastImage from 'react-native-fast-image';
 import { inject, observer } from 'mobx-react';
+import numeral from 'numeral';
+import { I18n } from 'aws-amplify';
 import UserAvatar from 'components/common/UserAvatar';
 import Loading from 'components/common/Loading';
 import Error from 'components/common/Error';
-import numeral from 'numeral';
 import colors from 'config/colors';
 
 class UserProfile extends React.Component {
@@ -92,13 +93,13 @@ class UserProfile extends React.Component {
           <TouchableRipple onPress={this._toFollowingTab}>
               <View style={styles.item}>
                 <Text style={styles.count}>{numeral(followingCount).format('0a')}</Text>
-                <Text style={styles.label}>Following</Text>
+                <Text style={styles.label}>{I18n.get("PROFILE_followingLabel")}</Text>
               </View>
           </TouchableRipple>
           <TouchableRipple onPress={this._toCreatedTab}>
             <View style={styles.item}>
               <Text style={styles.count}>{numeral(createdCount).format('0a')}</Text>
-              <Text style={styles.label}>Created</Text>
+              <Text style={styles.label}>{I18n.get("PROFILE_createdLabel")}</Text>
             </View>
           </TouchableRipple>
         </View>

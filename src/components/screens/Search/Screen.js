@@ -1,5 +1,5 @@
 import React from 'react';
-import { Searchbar } from 'react-native-paper';
+import { Searchbar, Text } from 'react-native-paper';
 import {
   createMaterialTopTabNavigator,
   MaterialTopTabBar
@@ -23,13 +23,16 @@ const Tabs = createMaterialTopTabNavigator(
     tabBarComponent: props => <TabBarComponent {...props} />,
     tabBarOptions: {
       upperCaseLabel: false,
+      labelStyle: {
+        fontWeight: 'bold'
+      }
     },
     navigationOptions: ({ navigation }) => {
       return ({
         header: <SearchBar navigation={navigation} />
       })
     },
-    lazy: true
+    lazy: true,
   }
 );
 const TabBarComponent = inject('stores')(observer(

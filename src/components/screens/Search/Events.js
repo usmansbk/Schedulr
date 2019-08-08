@@ -2,6 +2,7 @@ import React from 'react';
 import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
 import { inject, observer } from 'mobx-react';
+import { I18n } from 'aws-amplify';
 import uniqWith from 'lodash.uniqwith';
 import List from 'components/lists/EventSearch';
 // import { listAllEvents, searchEvent } from 'mygraphql/queries';
@@ -9,6 +10,12 @@ import { SEARCH_PAGE_SIZE, SEARCH_DISTANCE } from 'lib/constants';
 import { sortBookmarks } from 'lib/utils';
 
 class Events extends React.Component {
+
+  static navigationOptions() {
+    return {
+      tabBarLabel: I18n.get("SEARCH_eventsTabLabel")
+    };
+  }
 
   render() {
     const { stores } = this.props;

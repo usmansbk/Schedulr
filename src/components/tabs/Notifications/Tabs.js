@@ -15,6 +15,9 @@ const Tabs = createMaterialTopTabNavigator(
     tabBarComponent: props => <TabBarComponent {...props} />,
     tabBarOptions: {
       upperCaseLabel: true,
+      labelStyle: {
+        fontWeight: 'bold'
+      }
     },
   }
 );
