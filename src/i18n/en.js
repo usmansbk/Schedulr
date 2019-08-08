@@ -67,5 +67,9 @@ export default {
   BUTTON_cancel: "CANCEL",
   BUTTON_create: "CREATE",
   BUTTON_save: "SAVE",
-  BUTTON_signout: "Sign out"
+  BUTTON_signout: "Sign out",
+
+  SHARE_inviteAFriendTitle: "Invite via...",
+
+  TOAST_enableReminder: "Enable reminder!"
 };

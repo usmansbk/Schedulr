@@ -2,6 +2,7 @@ import React from 'react';
 import Share from 'react-native-share';
 import { IconButton } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/Feather';
+import { I18n } from 'aws-amplify';
 import env from 'config/env';
 
 export default ({
@@ -22,9 +23,9 @@ export default ({
     size={size}
     onPress={() => {
       const shareOptions = {
-        title: 'Share event via...',
+        title: I18n.get("TOAST_inviteAFriendViaTitle"),
         subject: category,
-        message: `${title}\n${category}\n${date}${address ? (' at ' + address) : ''}\n`,
+        message: `${title}\n${category}\n${date}${address ? ('\n' + address) : ''}\n`,
         url: `${env.APP_URL}/event/${id}`
       };
       Share.open(shareOptions).catch(error => {

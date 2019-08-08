@@ -27,7 +27,7 @@ class Settings extends React.Component {
   _handleRemindMeDialog = () => {
     const { openRemindMeDialog, stores } = this.props;
     if (stores.settingsStore.disableReminders) {
-      SimpleToast.show('Enable reminder!', SimpleToast.SHORT);
+      SimpleToast.show(I18n.get("TOAST_enableReminder"), SimpleToast.SHORT);
     } else {
       openRemindMeDialog();
     }
