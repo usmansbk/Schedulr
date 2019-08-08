@@ -22,11 +22,12 @@ import {
 import Icon from 'react-native-vector-icons/Feather';
 import Hyperlink from 'react-native-hyperlink';
 import { inject, observer } from 'mobx-react';
+import { I18n } from 'aws-amplify';
 import UserAvater from 'components/common/UserAvatar';
 import FollowButton from 'components/common/FollowButton';
 import Loading from 'components/common/Loading';
 import Error from 'components/common/Error';
-import { schedule_info, CIRCLE, INFO, PRIVATE_INFO } from 'lib/constants';
+import { schedule_info, CIRCLE } from 'lib/constants';
 
 const { AVATAR_SIZE } = schedule_info;
 
@@ -38,8 +39,8 @@ class Info extends React.Component {
 
   _aboutPrivacy = () => {
     const isPublic = this.props.schedule.isPublic;
-    const title = (isPublic ? "Public" : "Private");
-    const message = (isPublic ? INFO : PRIVATE_INFO);
+    const title = I18n.get(`SCHEDULE_FORM_${isPublic ? "public" : "private"}`);
+    const message = I18n.get(`ALERT_${isPublic ? 'public' : 'private'}ScheduleA`);
 
     Alert.alert(title + " schedule", message);
   }

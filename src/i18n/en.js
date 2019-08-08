@@ -76,6 +76,7 @@ export default {
   ALERT_whatIsAScheduleA: "A schedule is a group of related events. It helps people find their interested events.",
   ALERT_privateSchedule: "Private schedule",
   ALERT_privateScheduleA: "This schedule's content, including its followers and event details, are not visible to the public. Share invite link to add followers.",
+  ALERT_publicScheduleA: "This schedule's content, including its followers and event details, are visible to the public.",
 
   SHARE_inviteAFriendTitle: "Invite via...",
 
@@ -101,6 +102,7 @@ export default {
   SCHEDULE_FORM_name: "Name",
   SCHEDULE_FORM_description: "Description",
   SCHEDULE_FORM_private: "Private",
+  SCHEDULE_FORM_public: "Public",
 
   HELPER_TEXT_titleIsRequired: "Title is required",
   HELPER_TEXT_nameIsRequired: "Name is required",

@@ -4,8 +4,6 @@ export const ONE_TIME_EVENT = 'NEVER';
 export const ONE_TIME_EVENT_TEXT = 'One-time event';
 export const BULLET = '•';
 export const CIRCLE = '●';
-export const INFO = "This schedule's content, including its followers and event details, are visible to the public.";
-export const PRIVATE_INFO = "This schedule's content, including its followers and event details, are not visible to the public. Share invite link to add followers.";
 
 export const COMMENTS_LIMIT = 15;
 export const FOLLOWERS_LIMIT = 15;
