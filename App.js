@@ -14,6 +14,7 @@ import aws_config from './aws-exports';
 import client from 'config/client';
 import stores from 'stores';
 import env from 'config/env';
+import i18n from 'config/i18n';
 
 console.disableYellowBox = true;
 
@@ -25,6 +26,7 @@ Amplify.configure(aws_config);
 export default class App extends React.Component {
   componentDidMount = () => {
     SplashScreen.hide();
+    i18n(stores.settingsStore.language);
   }
 
   render() {

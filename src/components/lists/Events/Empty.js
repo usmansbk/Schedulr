@@ -1,5 +1,6 @@
 import React from 'react';
 import { View } from 'react-native';
+import { I18n } from 'aws-amplify';
 import { Headline, Paragraph } from 'react-native-paper';
 import { inject, observer } from 'mobx-react';
 import ErrorScreen from 'components/common/Error';
@@ -14,7 +15,7 @@ export default inject('stores')(observer(
     return (
       <View style={stores.appStyles.eventsList.empty}>
         <Headline style={stores.appStyles.eventsList.emptyTitle}>
-          No upcoming events
+          {I18n.get("EVENTS_emptyList")}
         </Headline>
         {
           error && (

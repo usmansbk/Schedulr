@@ -5,7 +5,7 @@ import SimpleToast from 'react-native-simple-toast';
 import { dark, light } from 'config/colors';
 
 export default class SettingsState {
-  @persist @observable language = "en_US";
+  @persist @observable language = "en";
   @persist @observable dark = false;
   @persist @observable sound = true;
   @persist @observable vibrate = true;
@@ -28,7 +28,7 @@ export default class SettingsState {
   }
 
   @action reset() {
-    this.language = "en_US";
+    this.language = "en";
     this.dark = false;
     this.sound = true;
     this.vibrate = true;
