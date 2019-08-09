@@ -35,12 +35,12 @@ export default class Avatar extends React.Component {
         <View style={styles.content}>
           <UserAvatar
             size={60}
-            name={name}
+            name={name || email}
             style={styles.avatar}
             src={pictureUrl}
           />
           <View style={styles.text}>
-            <Text numberOfLines={1} ellipsizeMode="tail" style={styles.name}>{name}</Text>
+            { name && <Text numberOfLines={1} ellipsizeMode="tail" style={styles.name}>{name}</Text>}
             <Caption numberOfLines={1} ellipsizeMode="tail" >{email}</Caption>
           </View>
         </View>

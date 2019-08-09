@@ -56,9 +56,9 @@ class Container extends React.Component {
               mutation: CREATE_USER,
               variables: {
                 input: {
-                  name: name || email,
+                  name,
                   email,
-                  pictureUrl: pictureUrl || null
+                  pictureUrl
                 }
               }
             });
