@@ -3,6 +3,7 @@ import { View, ScrollView } from 'react-native';
 import { Text, Headline, Divider } from 'react-native-paper';
 import Hyperlink from 'react-native-hyperlink';
 import { inject, observer } from 'mobx-react';
+import { I18n } from 'aws-amplify';
 import Actions from 'components/common/Actions';
 import Tag from 'components/common/Tag';
 import { BULLET } from 'lib/constants';
@@ -64,17 +65,17 @@ export default inject('stores')(observer(
           <Divider />
           <View style={stores.appStyles.eventDetails.body}>
             <View style={stores.appStyles.eventDetails.item}>
-              <Text style={stores.appStyles.eventDetails.label}>TYPE</Text>
-              <Text style={stores.appStyles.eventDetails.value}>{isPublic ? "Public" : "Private"} {BULLET} {category}</Text>
+              <Text style={stores.appStyles.eventDetails.label}>{I18n.get("TYPE")}</Text>
+              <Text style={stores.appStyles.eventDetails.value}>{isPublic ? I18n.get("Public") : I18n.get("Private")} {BULLET} {category}</Text>
             </View>
             <View style={stores.appStyles.eventDetails.item}>
-              <Text style={stores.appStyles.eventDetails.label}>VENUE</Text>
-              <Text style={stores.appStyles.eventDetails.value}>{address || 'No location set'}</Text>
+              <Text style={stores.appStyles.eventDetails.label}>{I18n.get("VENUE")}</Text>
+              <Text style={stores.appStyles.eventDetails.value}>{address || I18n.get("No location set")}</Text>
             </View>
             {
               (Boolean(scheduleId) && (isFollowing || isOwner || publicSchedule)) && (
                 <View style={stores.appStyles.eventDetails.item}>
-                  <Text style={stores.appStyles.eventDetails.label}>SCHEDULE</Text>
+                  <Text style={stores.appStyles.eventDetails.label}>{I18n.get("SCHEDULE")}</Text>
                   <Text
                     ellipsizeMode="tail"
                     numberOfLines={1}
@@ -84,37 +85,37 @@ export default inject('stores')(observer(
               )
             }
             <View style={stores.appStyles.eventDetails.item}>
-              <Text style={stores.appStyles.eventDetails.label}>REPEAT</Text>
+              <Text style={stores.appStyles.eventDetails.label}>{I18n.get("REPEAT")}</Text>
               <Text style={stores.appStyles.eventDetails.value}>{recur}</Text>
             </View>
             {
               Boolean(until) && (
                 <>
                 <View style={stores.appStyles.eventDetails.item}>
-                  <Text style={stores.appStyles.eventDetails.label}>STARTED</Text>
+                  <Text style={stores.appStyles.eventDetails.label}>{I18n.get("STARTED")}</Text>
                   <Text style={stores.appStyles.eventDetails.value}>{firstAt}</Text>
                 </View>
                 <View style={stores.appStyles.eventDetails.item}>
-                  <Text style={stores.appStyles.eventDetails.label}>UNTIL</Text>
+                  <Text style={stores.appStyles.eventDetails.label}>{I18n.get("UNTIL")}</Text>
                   <Text style={stores.appStyles.eventDetails.value}>{until}</Text>
                 </View>
                 </>
               )
             }
             <View style={stores.appStyles.eventDetails.item}>
-              <Text style={stores.appStyles.eventDetails.label}>CREATED</Text>
+              <Text style={stores.appStyles.eventDetails.label}>{I18n.get("CREATED")}</Text>
               <Text style={stores.appStyles.eventDetails.value}>{createdAt}</Text>
             </View>
             {
               Boolean(updatedAt) && (
                 <View style={stores.appStyles.eventDetails.item}>
-                  <Text style={stores.appStyles.eventDetails.label}>EDITED</Text>
+                  <Text style={stores.appStyles.eventDetails.label}>{I18n.get("EDITED")}</Text>
                   <Text style={stores.appStyles.eventDetails.value}>{updatedAt}</Text>
                 </View>
               )
             }
             <View style={stores.appStyles.eventDetails.item}>
-              <Text style={stores.appStyles.eventDetails.label}>AUTHOR</Text>
+              <Text style={stores.appStyles.eventDetails.label}>{I18n.get("AUTHOR")}</Text>
               <Text
                 style={[stores.appStyles.eventDetails.value, stores.appStyles.eventDetails.nav]}
                 onPress={() => navigateToUser(authorId, stores.appState.userId === authorId)}
@@ -123,9 +124,9 @@ export default inject('stores')(observer(
               </Text>
             </View>
             <View style={stores.appStyles.eventDetails.item}>
-              <Text style={stores.appStyles.eventDetails.label}>DESCRIPTION</Text>
+              <Text style={stores.appStyles.eventDetails.label}>{I18n.get("DESCRIPTION")}</Text>
               <Hyperlink linkStyle={stores.appStyles.eventDetails.linkStyle} linkDefault={true}>
-                <Text style={stores.appStyles.eventDetails.value}>{description || 'No description'}</Text>
+                <Text style={stores.appStyles.eventDetails.value}>{description || I18n.get("No description")}</Text>
               </Hyperlink>
             </View>
           </View>

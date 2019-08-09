@@ -90,13 +90,15 @@ class Form extends React.Component {
               mode="outlined"
               color={navButtonColor}
               onPress={handleCancel}
-            >Cancel</Button>
+              uppercase
+            >{I18n.get("BUTTON_cancel")}</Button>
             <Button
               loading={isSubmitting}
               disabled={!isValid || isSubmitting || isEqual(initialValues, values)}
               mode="outlined"
               color={navButtonColor}
               onPress={submitForm}
+              uppercase
             >{ edit ? I18n.get("BUTTON_save") : I18n.get("BUTTON_create")}</Button>
           </Appbar.Header>
           <ScrollView

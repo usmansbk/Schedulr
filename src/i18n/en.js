@@ -81,9 +81,9 @@ export default {
   HELP_terms: "Terms and Privacy Policy",
   HELP_appVersion: "App version",
 
-  BUTTON_cancel: "CANCEL",
-  BUTTON_create: "CREATE",
-  BUTTON_save: "SAVE",
+  BUTTON_cancel: "cancel",
+  BUTTON_create: "create",
+  BUTTON_save: "save",
   BUTTON_signout: "Sign out",
   BUTTON_ok: "Ok",
   BUTTON_help: "Help",
@@ -190,4 +190,6 @@ export default {
   ERROR_noInternetConnection: "Check your internet connection. Pull to refresh",
   ERROR_somethingWentWrong: "Something went wrong. Please try again",
   ERROR_networkError: "Network error",
+
+  PLACEHOLDER_aboutThisEvent: "About this event...",
 };

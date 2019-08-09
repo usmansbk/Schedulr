@@ -2,6 +2,7 @@ import React from 'react';
 import { View, TextInput } from 'react-native';
 import { IconButton, Text, Button } from 'react-native-paper';
 import { inject, observer } from 'mobx-react';
+import { I18n } from 'aws-amplify';
 import UserAvatar from 'components/common/UserAvatar';
 import { comment_input } from 'lib/constants';
 
@@ -57,7 +58,7 @@ class CommentInput extends React.Component {
                 style={styles.alertTitle}
               >Replying <Text style={styles.targetName}>{targetName}</Text>
               </Text>
-              <Button compact mode="text" onPress={cancelReply}>Cancel</Button>
+              <Button compact mode="text" onPress={cancelReply}>{I18n.get("BUTTON_cancel")}</Button>
             </View>
           )
         }
@@ -70,7 +71,7 @@ class CommentInput extends React.Component {
           <View style={styles.input}>
             <TextInput
               ref={textInputRef => this._textInputRef = textInputRef}
-              placeholder="About this event..."
+              placeholder={I18n.get("PLACEHOLDER_aboutThisEvent")}
               value={message}
               onChangeText={this._onChangeText}
               onBlur={() => this._onChangeText(message)}
