@@ -2,6 +2,7 @@ import React from 'react';
 import { Appbar } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/Feather';
 import { inject, observer } from 'mobx-react';
+import { I18n } from 'aws-amplify';
 import List from 'components/lists/Comments';
 import CommentForm from 'components/forms/Comment';
 
@@ -62,7 +63,7 @@ class Comments extends React.Component {
             color={colors.gray}
           />
           <Appbar.Content
-            title={title || 'Comments'}
+            title={title || I18n.get('COMMENTS')}
             titleStyle={styles.headerColor}
           />
         </Appbar>

@@ -2,6 +2,7 @@ import React from 'react';
 import { View } from 'react-native';
 import { Headline, Paragraph } from 'react-native-paper';
 import { inject, observer } from 'mobx-react';
+import { I18n } from 'aws-amplify';
 
 export default inject('stores')(observer(
   ({ error, loading, stores }) =>{
@@ -9,12 +10,12 @@ export default inject('stores')(observer(
     return (
       <View style={stores.appStyles.bookmarkedEventsList.empty}>
         <Headline style={stores.appStyles.bookmarkedEventsList.emptyTitle}>
-          No nearby events
+          { I18n.get("SEARCH_eventsEmptyList")}
         </Headline>
         {
           error && (
             <Paragraph style={stores.appStyles.bookmarkedEventsList.paragraph}>
-              Check your internet connection. Pull to refresh.
+              { I18n.get("ERROR_noInternetConnection")}
             </Paragraph>
           )
         }

@@ -6,6 +6,7 @@ import {
 } from 'react-native-paper';
 import { View } from 'react-native';
 import { inject, observer } from 'mobx-react';
+import { I18n } from 'aws-amplify';
 
 export default inject('stores')(observer(
   ({ visible, loading, onPress, stores, hasMore }) => {
@@ -19,7 +20,7 @@ export default inject('stores')(observer(
         <View style={stores.appStyles.eventsList.footerContent}>
           <Caption style={stores.appStyles.eventsList.footerText}>
             {
-              hasMore ? "Load more" : "No more results"
+              hasMore ? I18n.get("SEARCH_loadMore") : I18n.get("SEARCH_noMoreResults")
             }
           </Caption>
         </View>

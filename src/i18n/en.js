@@ -1,4 +1,12 @@
 export default {
+  COMMENTS: 'Comments',
+  COMMENTS_emptyList: "No comments",
+  COMMENTS_loadMore: "Load more comments",
+  COMMENTS_noMoreComments: "No more comments",
+
+  FOLLOWERS_emptyList: "No followers",
+  FOLLOWERS_loadMore: "Load more",
+
   EVENTS_emptyList: "No upcoming events",
   EVENTS_SECTIONLIST_after: date => `After ${date}`,
   EVENTS_SECTIONLIST_noMoreEvents: () => "No more events",
@@ -29,6 +37,8 @@ export default {
   SEARCH_eventsTabLabel: "Events",
   SEARCH_schedulesEmptyList: "No results",
   SEARCH_eventsEmptyList: "No nearby events",
+  SEARCH_loadMore: "Load more",
+  SEARCH_noMoreResults: "No more results",
 
   NOTIFICATIONS_updatesTabLabel: "UPDATES",
   NOTIFICATIONS_messagesTabLabel: "MESSAGES",
@@ -141,6 +151,10 @@ export default {
   SCHEDULE_thisScheduleIsClosed: "This schedule is closed",
   SCHEDULE_createdOn: "Created on",
   SCHEDULE_by: "by",
+  
+  SCHEDULES_noUpcomingEvents: "No upcoming events",
+  SCHEDULES_loadPastEvents: "Load past events",
+  SCHEDULES_noMoreEvents: "No more events",
 
   HELPER_TEXT_titleIsRequired: "Title is required",
   HELPER_TEXT_nameIsRequired: "Name is required",
@@ -169,4 +183,5 @@ export default {
 
   ERROR_noInternetConnection: "Check your internet connection. Pull to refresh",
   ERROR_somethingWentWrong: "Something went wrong. Please try again",
+  ERROR_networkError: "Network error",
 };

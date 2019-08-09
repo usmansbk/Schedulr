@@ -2,6 +2,7 @@ import React from 'react';
 import { View } from 'react-native';
 import { Headline } from 'react-native-paper';
 import { inject, observer } from 'mobx-react';
+import { I18n } from 'aws-amplify';
 import ErrorScreen from 'components/common/Error';
 
 export default inject('stores')(observer(
@@ -14,7 +15,7 @@ export default inject('stores')(observer(
     return (
       <View style={stores.appStyles.eventsList.empty}>
         <Headline style={stores.appStyles.eventsList.emptyTitle}>
-          No followers
+          { I18n.get("FOLLOWERS_emptyList")}
         </Headline>
       </View>
     );  

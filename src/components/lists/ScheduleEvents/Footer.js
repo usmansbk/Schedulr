@@ -6,6 +6,7 @@ import {
 } from 'react-native-paper';
 import { View } from 'react-native';
 import { inject, observer } from 'mobx-react';
+import { I18n } from 'aws-amplify';
 
 export default inject('stores')(observer(
   ({ loading, onPress, stores, hasPrev, hide }) => {
@@ -27,7 +28,7 @@ export default inject('stores')(observer(
             ) : (
               <Caption style={stores.appStyles.eventsList.footerText}>
                 {
-                  hasPrev ? "Load past events" : "No more events"
+                  hasPrev ? I18n.get("SCHEDULES_loadPastEvents") : I18n.get("SCHEDULES_noMoreEvents")
                 }
               </Caption>
             )
