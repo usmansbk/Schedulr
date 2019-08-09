@@ -7,12 +7,13 @@ import {
   Button
 } from 'react-native-paper';
 import { inject, observer } from 'mobx-react';
+import { I18n } from 'aws-amplify';
 
 export default inject('stores')(observer(
   ({ onRefresh, loading, stores }) => (
     <View style={stores.appStyles.error.container}>
       <Headline style={stores.appStyles.error.headline}>
-        Something went wrong. Please try again
+        { I18n.get("ERROR_somethingWentWrong")}
       </Headline>
       {
         onRefresh && (
@@ -23,7 +24,7 @@ export default inject('stores')(observer(
               mode="outlined"
               loading={loading}
             >
-            { loading ? "Loading..." : "Try again" }
+            { loading ? I18n.get("BUTTON_loading") : I18n.get("BUTTON_tryAgain") }
             </Button>
           </View>
         )

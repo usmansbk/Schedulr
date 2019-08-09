@@ -82,6 +82,8 @@ export default {
   BUTTON_dismiss: "Dismiss",
   BUTTON_continue: "Continue",
   BUTTON_done: "Done",
+  BUTTON_loading: "Loading...",
+  BUTTON_tryAgain: "Try again",
 
   ALERT_repeat: "Repeat",
   ALERT_duration: "Duration",
@@ -166,4 +168,5 @@ export default {
   STATUS_upcoming: "Upcoming",
 
   ERROR_noInternetConnection: "Check your internet connection. Pull to refresh",
+  ERROR_somethingWentWrong: "Something went wrong. Please try again",
 };
