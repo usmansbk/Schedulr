@@ -45,6 +45,7 @@ export default {
   NOTIFICATIONS_emptyUpdatesList: "No new notifications",
   NOTIFICATIONS_emptyUpdatesListCaption: "All caught up!",
   NOTIFICATIONS_emptyMessagesList: "No messages",
+  NOTIFICATIONS_allCaughtUp: "You are all caught up!",
 
   SETTINGS_screenTitle: "Settings",
   SETTINGS_generalSectionTitle: "General",
