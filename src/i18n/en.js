@@ -95,6 +95,11 @@ export default {
   BUTTON_done: "Done",
   BUTTON_loading: "Loading...",
   BUTTON_tryAgain: "Try again",
+  BUTTON_continueWithEmail: "Continue with email",
+  BUTTON_continueWithGoogle: "Continue with Google",
+  BUTTON_continueWithFacebook: "Continue with Facebook",
+  BUTTON_loggingIn: "Logging in...",
+  BUTTON_signingIn: "Signing in...",
 
   ALERT_repeat: "Repeat",
   ALERT_duration: "Duration",

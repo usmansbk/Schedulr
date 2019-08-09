@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Image, Text } from 'react-native';
 import { TouchableRipple } from 'react-native-paper';
+import { I18n } from 'aws-amplify';
 import styles from './styles';
 
 export default ({ disabled, loading, onPress }) => (
@@ -13,7 +14,7 @@ export default ({ disabled, loading, onPress }) => (
       <Image style={styles.logo} source={require('./img/logo.png')} />
       <Text
         style={styles.text}>{
-          loading ? 'Signing in...' : 'Continue with Google'
+          loading ? I18n.get("BUTTON_signingIn") : I18n.get("BUTTON_continueWithGoogle")
         }</Text>
     </View>
   </TouchableRipple>

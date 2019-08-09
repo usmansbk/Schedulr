@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Image, Text } from 'react-native';
 import { TouchableRipple } from 'react-native-paper';
+import { I18n } from 'aws-amplify';
 import styles from './styles';
 
 export default ({ disabled, loading, onPress }) => (
@@ -14,7 +15,7 @@ export default ({ disabled, loading, onPress }) => (
       <Text
         style={styles.text}>
       {
-        loading ? 'Logging in...' : 'Continue with Facebook'
+        loading ? I18n.get("BUTTON_loggingIn") : I18n.get("BUTTON_continueWithFacebook")
       }</Text>
     </View>
   </TouchableRipple>
