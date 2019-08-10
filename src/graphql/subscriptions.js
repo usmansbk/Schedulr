@@ -1,8 +1,8 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const updateBookmarksCount = `mutation UpdateBookmarksCount($input: UpdateCountInput!) {
-  updateBookmarksCount(input: $input) {
+export const onCreateEvent = `subscription OnCreateEvent {
+  onCreateEvent {
     id
     title
     description
@@ -88,8 +88,8 @@ export const updateBookmarksCount = `mutation UpdateBookmarksCount($input: Updat
   }
 }
 `;
-export const updateCommentsCount = `mutation UpdateCommentsCount($input: UpdateCountInput!) {
-  updateCommentsCount(input: $input) {
+export const onUpdateEvent = `subscription OnUpdateEvent {
+  onUpdateEvent {
     id
     title
     description
@@ -175,286 +175,8 @@ export const updateCommentsCount = `mutation UpdateCommentsCount($input: UpdateC
   }
 }
 `;
-export const updateEventsCount = `mutation UpdateEventsCount($input: UpdateCountInput!) {
-  updateEventsCount(input: $input) {
-    id
-    name
-    description
-    isPublic
-    isOwner
-    status
-    events {
-      items {
-        id
-        title
-        description
-        venue
-        category
-        startAt
-        endAt
-        allDay
-        recurrence
-        until
-        isPublic
-        isOwner
-        commentsCount
-        bookmarksCount
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
-    author {
-      email
-      name
-      pictureUrl
-      website
-      created {
-        nextToken
-      }
-      following {
-        nextToken
-      }
-      bookmarks {
-        nextToken
-      }
-      me
-      followingCount
-      createdCount
-      createdAt
-      updatedAt
-    }
-    followers {
-      items {
-        id
-        createdAt
-      }
-      nextToken
-    }
-    followersCount
-    eventsCount
-    createdAt
-    updatedAt
-  }
-}
-`;
-export const updateFollowingCount = `mutation UpdateFollowingCount($input: UpdateCountInput!) {
-  updateFollowingCount(input: $input) {
-    email
-    name
-    pictureUrl
-    website
-    created {
-      items {
-        id
-        name
-        description
-        isPublic
-        isOwner
-        status
-        followersCount
-        eventsCount
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
-    following {
-      items {
-        id
-        createdAt
-      }
-      nextToken
-    }
-    bookmarks {
-      items {
-        id
-        createdAt
-      }
-      nextToken
-    }
-    me
-    followingCount
-    createdCount
-    createdAt
-    updatedAt
-  }
-}
-`;
-export const updateCreatedCount = `mutation UpdateCreatedCount($input: UpdateCountInput!) {
-  updateCreatedCount(input: $input) {
-    email
-    name
-    pictureUrl
-    website
-    created {
-      items {
-        id
-        name
-        description
-        isPublic
-        isOwner
-        status
-        followersCount
-        eventsCount
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
-    following {
-      items {
-        id
-        createdAt
-      }
-      nextToken
-    }
-    bookmarks {
-      items {
-        id
-        createdAt
-      }
-      nextToken
-    }
-    me
-    followingCount
-    createdCount
-    createdAt
-    updatedAt
-  }
-}
-`;
-export const createUser = `mutation CreateUser($input: CreateUserInput!) {
-  createUser(input: $input) {
-    email
-    name
-    pictureUrl
-    website
-    created {
-      items {
-        id
-        name
-        description
-        isPublic
-        isOwner
-        status
-        followersCount
-        eventsCount
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
-    following {
-      items {
-        id
-        createdAt
-      }
-      nextToken
-    }
-    bookmarks {
-      items {
-        id
-        createdAt
-      }
-      nextToken
-    }
-    me
-    followingCount
-    createdCount
-    createdAt
-    updatedAt
-  }
-}
-`;
-export const updateUser = `mutation UpdateUser($input: UpdateUserInput!) {
-  updateUser(input: $input) {
-    email
-    name
-    pictureUrl
-    website
-    created {
-      items {
-        id
-        name
-        description
-        isPublic
-        isOwner
-        status
-        followersCount
-        eventsCount
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
-    following {
-      items {
-        id
-        createdAt
-      }
-      nextToken
-    }
-    bookmarks {
-      items {
-        id
-        createdAt
-      }
-      nextToken
-    }
-    me
-    followingCount
-    createdCount
-    createdAt
-    updatedAt
-  }
-}
-`;
-export const deleteUser = `mutation DeleteUser($input: DeleteUserInput!) {
-  deleteUser(input: $input) {
-    email
-    name
-    pictureUrl
-    website
-    created {
-      items {
-        id
-        name
-        description
-        isPublic
-        isOwner
-        status
-        followersCount
-        eventsCount
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
-    following {
-      items {
-        id
-        createdAt
-      }
-      nextToken
-    }
-    bookmarks {
-      items {
-        id
-        createdAt
-      }
-      nextToken
-    }
-    me
-    followingCount
-    createdCount
-    createdAt
-    updatedAt
-  }
-}
-`;
-export const createEvent = `mutation CreateEvent($input: CreateEventInput!) {
-  createEvent(input: $input) {
+export const onDeleteEvent = `subscription OnDeleteEvent {
+  onDeleteEvent {
     id
     title
     description
@@ -540,182 +262,8 @@ export const createEvent = `mutation CreateEvent($input: CreateEventInput!) {
   }
 }
 `;
-export const updateEvent = `mutation UpdateEvent($input: UpdateEventInput!) {
-  updateEvent(input: $input) {
-    id
-    title
-    description
-    venue
-    category
-    startAt
-    endAt
-    allDay
-    recurrence
-    until
-    isPublic
-    isOwner
-    author {
-      email
-      name
-      pictureUrl
-      website
-      created {
-        nextToken
-      }
-      following {
-        nextToken
-      }
-      bookmarks {
-        nextToken
-      }
-      me
-      followingCount
-      createdCount
-      createdAt
-      updatedAt
-    }
-    schedule {
-      id
-      name
-      description
-      isPublic
-      isOwner
-      status
-      events {
-        nextToken
-      }
-      author {
-        email
-        name
-        pictureUrl
-        website
-        me
-        followingCount
-        createdCount
-        createdAt
-        updatedAt
-      }
-      followers {
-        nextToken
-      }
-      followersCount
-      eventsCount
-      createdAt
-      updatedAt
-    }
-    comments {
-      items {
-        id
-        content
-        isOwner
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
-    bookmarks {
-      items {
-        id
-        createdAt
-      }
-      nextToken
-    }
-    commentsCount
-    bookmarksCount
-    createdAt
-    updatedAt
-  }
-}
-`;
-export const deleteEvent = `mutation DeleteEvent($input: DeleteEventInput!) {
-  deleteEvent(input: $input) {
-    id
-    title
-    description
-    venue
-    category
-    startAt
-    endAt
-    allDay
-    recurrence
-    until
-    isPublic
-    isOwner
-    author {
-      email
-      name
-      pictureUrl
-      website
-      created {
-        nextToken
-      }
-      following {
-        nextToken
-      }
-      bookmarks {
-        nextToken
-      }
-      me
-      followingCount
-      createdCount
-      createdAt
-      updatedAt
-    }
-    schedule {
-      id
-      name
-      description
-      isPublic
-      isOwner
-      status
-      events {
-        nextToken
-      }
-      author {
-        email
-        name
-        pictureUrl
-        website
-        me
-        followingCount
-        createdCount
-        createdAt
-        updatedAt
-      }
-      followers {
-        nextToken
-      }
-      followersCount
-      eventsCount
-      createdAt
-      updatedAt
-    }
-    comments {
-      items {
-        id
-        content
-        isOwner
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
-    bookmarks {
-      items {
-        id
-        createdAt
-      }
-      nextToken
-    }
-    commentsCount
-    bookmarksCount
-    createdAt
-    updatedAt
-  }
-}
-`;
-export const createBookmark = `mutation CreateBookmark($input: CreateBookmarkInput!) {
-  createBookmark(input: $input) {
+export const onCreateBookmark = `subscription OnCreateBookmark {
+  onCreateBookmark {
     id
     event {
       id
@@ -788,8 +336,8 @@ export const createBookmark = `mutation CreateBookmark($input: CreateBookmarkInp
   }
 }
 `;
-export const updateBookmark = `mutation UpdateBookmark($input: UpdateBookmarkInput!) {
-  updateBookmark(input: $input) {
+export const onUpdateBookmark = `subscription OnUpdateBookmark {
+  onUpdateBookmark {
     id
     event {
       id
@@ -862,8 +410,8 @@ export const updateBookmark = `mutation UpdateBookmark($input: UpdateBookmarkInp
   }
 }
 `;
-export const deleteBookmark = `mutation DeleteBookmark($input: DeleteBookmarkInput!) {
-  deleteBookmark(input: $input) {
+export const onDeleteBookmark = `subscription OnDeleteBookmark {
+  onDeleteBookmark {
     id
     event {
       id
@@ -936,8 +484,8 @@ export const deleteBookmark = `mutation DeleteBookmark($input: DeleteBookmarkInp
   }
 }
 `;
-export const createSchedule = `mutation CreateSchedule($input: CreateScheduleInput!) {
-  createSchedule(input: $input) {
+export const onCreateSchedule = `subscription OnCreateSchedule {
+  onCreateSchedule {
     id
     name
     description
@@ -999,8 +547,8 @@ export const createSchedule = `mutation CreateSchedule($input: CreateScheduleInp
   }
 }
 `;
-export const updateSchedule = `mutation UpdateSchedule($input: UpdateScheduleInput!) {
-  updateSchedule(input: $input) {
+export const onUpdateSchedule = `subscription OnUpdateSchedule {
+  onUpdateSchedule {
     id
     name
     description
@@ -1062,8 +610,8 @@ export const updateSchedule = `mutation UpdateSchedule($input: UpdateScheduleInp
   }
 }
 `;
-export const deleteSchedule = `mutation DeleteSchedule($input: DeleteScheduleInput!) {
-  deleteSchedule(input: $input) {
+export const onDeleteSchedule = `subscription OnDeleteSchedule {
+  onDeleteSchedule {
     id
     name
     description
@@ -1125,8 +673,8 @@ export const deleteSchedule = `mutation DeleteSchedule($input: DeleteScheduleInp
   }
 }
 `;
-export const createFollow = `mutation CreateFollow($input: CreateFollowInput!) {
-  createFollow(input: $input) {
+export const onCreateFollow = `subscription OnCreateFollow {
+  onCreateFollow {
     id
     user {
       email
@@ -1181,8 +729,8 @@ export const createFollow = `mutation CreateFollow($input: CreateFollowInput!) {
   }
 }
 `;
-export const updateFollow = `mutation UpdateFollow($input: UpdateFollowInput!) {
-  updateFollow(input: $input) {
+export const onUpdateFollow = `subscription OnUpdateFollow {
+  onUpdateFollow {
     id
     user {
       email
@@ -1237,8 +785,8 @@ export const updateFollow = `mutation UpdateFollow($input: UpdateFollowInput!) {
   }
 }
 `;
-export const deleteFollow = `mutation DeleteFollow($input: DeleteFollowInput!) {
-  deleteFollow(input: $input) {
+export const onDeleteFollow = `subscription OnDeleteFollow {
+  onDeleteFollow {
     id
     user {
       email
@@ -1293,8 +841,8 @@ export const deleteFollow = `mutation DeleteFollow($input: DeleteFollowInput!) {
   }
 }
 `;
-export const createComment = `mutation CreateComment($input: CreateCommentInput!) {
-  createComment(input: $input) {
+export const onCreateComment = `subscription OnCreateComment {
+  onCreateComment {
     id
     content
     to {
@@ -1426,8 +974,8 @@ export const createComment = `mutation CreateComment($input: CreateCommentInput!
   }
 }
 `;
-export const updateComment = `mutation UpdateComment($input: UpdateCommentInput!) {
-  updateComment(input: $input) {
+export const onUpdateComment = `subscription OnUpdateComment {
+  onUpdateComment {
     id
     content
     to {
@@ -1559,8 +1107,8 @@ export const updateComment = `mutation UpdateComment($input: UpdateCommentInput!
   }
 }
 `;
-export const deleteComment = `mutation DeleteComment($input: DeleteCommentInput!) {
-  deleteComment(input: $input) {
+export const onDeleteComment = `subscription OnDeleteComment {
+  onDeleteComment {
     id
     content
     to {
