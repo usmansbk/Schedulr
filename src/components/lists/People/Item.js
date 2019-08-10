@@ -2,57 +2,99 @@ import React from 'react';
 import { View } from 'react-native';
 import {
   TouchableRipple,
+  Text,
   Caption,
-  Text
+  Headline,
 } from 'react-native-paper';
 import { inject, observer } from 'mobx-react';
-import UserAvatar from 'components/common/UserAvatar';
+import Tag from 'components/common/Tag';
+import Avatar from 'components/common/UserAvatar';
+import Actions from 'components/common/Actions';
+import { bookmarkedEvents } from 'lib/constants';
+
+const { AVATAR_SIZE } = bookmarkedEvents;
 
 class Item extends React.Component {
-
-  _onPressItems = () => {
-    const {
-      id,
-      type,
-      navigateToEvent,
-      navigateToSchedule
-    } = this.props;
-    if (id) {
-      switch(type) {
-        case 'Event':
-          navigateToEvent(id);
-          break;
-        case 'Schedule':
-          navigateToSchedule(id);
-          break;
-      }
-    }
-  };
+  _onPress = () => this.props.onPressItem(this.props.id, this.props.startAt, this.props.endAt);
+  _onPressComment = () => this.props.onPressComment(this.props.id, this.props.title, this.props.time);
+  _onPressAvatar = () => {
+    const { scheduleId } = this.props;
+    scheduleId ? this.props.navigateToInfo(scheduleId) : this._onPress();
+  }
+  shouldComponentUpdate = (nextProps) => {
+    return (
+      this.props.title !== nextProps.title ||
+      this.props.time !== nextProps.time ||
+      this.props.status !== nextProps.status ||
+      this.props.category !== nextProps.category ||
+      this.props.bookmarksCount !== nextProps.bookmarksCount ||
+      this.props.commentsCount !== nextProps.commentsCount ||
+      this.props.address !== nextProps.address
+    );
+  }
 
   render() {
     const {
+      id,
       title,
-      message,
+      recur,
+      time,
+      status,
+      duration,
+      category,
       pictureUrl,
-      date,
-      target,
+      isBookmarked,
+      bookmarksCount,
+      commentsCount,
+      address,
       stores
     } = this.props;
 
-    const styles = stores.appStyles.notifications;
+    const styles = stores.appStyles.bookmarkedEventsList;
+
 
     return (
-      <TouchableRipple onPress={this._onPressItems} style={styles.itemContainer}>
-        <View style={styles.itemContent}>
-          <UserAvatar src={pictureUrl} name={title} />
-          <View style={styles.itemBody}>
-            <Caption ellipsizeMode="tail" numberOfLines={2}><Text ellipsizeMode="tail" numberOfLines={1} style={styles.itemMessage}>{title}</Text> {message}
-            { Boolean(target) && <Caption style={styles.itemMessage}>{target}</Caption>}</Caption>
-            <Caption style={styles.itemTag}>{date}</Caption>
+      <TouchableRipple
+        onPress={this._onPress}
+        style={styles.itemContainer}
+      >
+        <View useNativeDriver style={styles.itemContent}>
+          <View style={styles.left}>
+            <Avatar
+              size={AVATAR_SIZE}
+              name={title}
+              src={pictureUrl}
+              onPress={this._onPressAvatar}
+            />
+          </View>
+          <View style={styles.right}>
+            <View style={styles.itemBody}>
+              <Headline
+                style={styles.itemHeadline}
+                numberOfLines={1}
+                ellipsizeMode="tail">
+                {title}
+              </Headline>
+              <Text style={styles.time}>{time}</Text>
+              <Caption numberOfLines={1}
+                ellipsizeMode="tail"
+              >{duration ? duration + ' ' : ''}{category} {recur}</Caption>
+              <Tag status={status} /> 
+            </View>
+            <Actions
+              id={id}
+              title={title}
+              address={address}
+              isBookmarked={isBookmarked}
+              bookmarksCount={bookmarksCount}
+              commentsCount={commentsCount}
+              navigateToComments={this._onPressComment}
+              small
+            />
           </View>
         </View>
-    </TouchableRipple>
-    )
+      </TouchableRipple>
+    );
   }
 }
 

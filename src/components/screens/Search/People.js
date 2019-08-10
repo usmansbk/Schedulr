@@ -4,12 +4,12 @@ import gql from 'graphql-tag';
 import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
 import uniqWith from 'lodash.uniqwith';
-import List from 'components/lists/EventSearch';
+import List from 'components/lists/People';
 // import { listAllEvents, searchEvent } from 'mygraphql/queries';
 import { SEARCH_PAGE_SIZE, SEARCH_DISTANCE } from 'lib/constants';
 import { sortBookmarks } from 'lib/utils';
 
-class Events extends React.Component {
+class People extends React.Component {
 
   static navigationOptions() {
     return {
@@ -95,4 +95,4 @@ class Events extends React.Component {
 // )(List);
 const ListHoc = List;
 
-export default inject("stores")(observer(Events));
+export default inject("stores")(observer(People));
