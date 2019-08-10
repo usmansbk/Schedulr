@@ -35,6 +35,8 @@ export default {
   SEARCH_inputPlaceholder: "Search",
   SEARCH_schedulesTabLabel: "Schedules",
   SEARCH_eventsTabLabel: "Events",
+  SEARCH_peopleTabLabel: "People",
+  SEARCH_peopleEmptyList: "No results",
   SEARCH_schedulesEmptyList: "No results",
   SEARCH_eventsEmptyList: "No nearby events",
   SEARCH_loadMore: "Load more",
