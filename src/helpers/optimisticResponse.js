@@ -105,7 +105,7 @@ export const createCommentResponse = (input, eventId) => {
     const toCommentData = input.toCommentId && getData(gql(getComment), input.toCommentId);
     const toComment = toCommentData ? toCommentData.getComment : null;
     const { getUser } = userData;
-    const ownerModel = {
+    const author = {
       __typename: 'User',
       id: getUser.id,
       name: getUser.name,
@@ -123,7 +123,7 @@ export const createCommentResponse = (input, eventId) => {
         id: eventId,
         commentsCount: eventData.getEvent.commentsCount + 1,
       },
-      ownerModel,
+      author,
       createdAt: moment().toISOString()
     };
     return ({
@@ -136,17 +136,14 @@ export const createCommentResponse = (input, eventId) => {
 
 export const createEventResponse = (input) => {
   let schedule = null;
-  if (input.scheduleId) {
+  if (input.eventScheduleId) {
     const query = gql(getScheduleQuery);
-    const data = getData(query, input.scheduleId);
+    const data = getData(query, input.eventScheduleId);
     const { getSchedule } = data;
     schedule = {
       __typename: 'Schedule',
       id: getSchedule.id,
-      name: getSchedule.name,
-      eventsCount: getSchedule.eventsCount + 1,
-      isFollowing: false,
-      isPublic: Boolean(getSchedule.isPublic)
+      name: getSchedule.name
     };
   }
   
@@ -160,24 +157,22 @@ export const createEventResponse = (input) => {
     endAt: input.endAt,
     venue: getValue(input.venue),
     allDay: Boolean(input.allDay),
-    recur: input.recur,
-    forever: Boolean(input.forever),
+    recurrence: input.recurrence,
     until: getValue(input.until),
     category: getValue(input.category),
     isCancelled: false,
     isPublic: Boolean(input.isPublic),
     schedule,
-    ownerModel: {
+    author: {
       __typename: 'User',
       id: getUser.id,
       name: getUser.name
     },
     cancelledDates: [],
     bookmarksCount: 0,
-    isBookmarked: false,
     isOwner: true,
     commentsCount: 0,
-    createdAt: moment().valueOf(),
+    createdAt: moment().toISOString(),
     updatedAt: null
   };
 
@@ -200,7 +195,7 @@ export const createScheduleResponse = (input) => {
         isPublic: Boolean(input.isPublic),
         isFollowing: false,
         isOwner: true,
-        ownerModel: getUser,
+        author: getUser,
         eventsCount: 0,
         followersCount: 0,
         createdAt: moment().toISOString(),

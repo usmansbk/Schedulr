@@ -46,8 +46,8 @@ class Form extends React.Component {
     schedules: [], 
     initialValues: {
       title: '',
-      description: '',
-      venue: '',
+      description: null,
+      venue: null,
       startAt: moment().valueOf(),
       endAt: moment().add(2, 'hours').valueOf(),
       allDay: false,

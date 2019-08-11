@@ -1,7 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import Form from 'components/forms/Event';
-import recurrence from 'components/forms/Event/recurrence';
+import recurrences from 'components/forms/Event/recurrence';
 import { isPastExact } from 'lib/parseItem';
 
 export default class NewEventScreen extends React.Component {
@@ -17,7 +17,7 @@ export default class NewEventScreen extends React.Component {
     });
   };
   _getInitialValues = () => {
-    const { event={}, scheduleId, schedules } = this.props;
+    const { event={}, eventScheduleId, schedules } = this.props;
     const {
       title,
       description,
@@ -26,7 +26,7 @@ export default class NewEventScreen extends React.Component {
       endAt,
       allDay,
       category,
-      recur,
+      recurrence,
       until,
       isPublic
     } = event;
@@ -58,16 +58,16 @@ export default class NewEventScreen extends React.Component {
     const end = newEnd || initialEndAt;
 
     return ({
-      title: title || '',
-      description: description || '',
-      venue: venue || '',
+      title,
+      description,
+      venue,
       startAt: start,
       endAt: end,
-      allDay: Boolean(allDay),
+      allDay,
       category: category || 'Event',
-      recur: recur || recurrence[0].id,
+      recurrence: recurrence || recurrences[0].id,
       until,
-      scheduleId: scheduleId,
+      eventScheduleId: eventScheduleId,
       isPublic: currentSchedule ? currentSchedule.isPublic : Boolean(isPublic)
     });
   };

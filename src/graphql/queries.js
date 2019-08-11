@@ -8,35 +8,6 @@ export const getUser = `query GetUser($id: ID!) {
     name
     pictureUrl
     website
-    created {
-      items {
-        id
-        name
-        description
-        isPublic
-        isOwner
-        status
-        followersCount
-        eventsCount
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
-    following {
-      items {
-        id
-        createdAt
-      }
-      nextToken
-    }
-    bookmarks {
-      items {
-        id
-        createdAt
-      }
-      nextToken
-    }
     me
     followingCount
     createdCount
@@ -59,73 +30,16 @@ export const getEvent = `query GetEvent($id: ID!) {
     until
     isPublic
     isOwner
+    isCancelled
+    cancelledDates
     author {
       id
-      email
       name
-      pictureUrl
-      website
-      created {
-        nextToken
-      }
-      following {
-        nextToken
-      }
-      bookmarks {
-        nextToken
-      }
       me
-      followingCount
-      createdCount
-      createdAt
-      updatedAt
     }
     schedule {
       id
       name
-      description
-      isPublic
-      isOwner
-      status
-      events {
-        nextToken
-      }
-      author {
-        id
-        email
-        name
-        pictureUrl
-        website
-        me
-        followingCount
-        createdCount
-        createdAt
-        updatedAt
-      }
-      followers {
-        nextToken
-      }
-      followersCount
-      eventsCount
-      createdAt
-      updatedAt
-    }
-    comments {
-      items {
-        id
-        content
-        isOwner
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
-    bookmarks {
-      items {
-        id
-        createdAt
-      }
-      nextToken
     }
     commentsCount
     bookmarksCount
@@ -142,54 +56,11 @@ export const getSchedule = `query GetSchedule($id: ID!) {
     isPublic
     isOwner
     status
-    events {
-      items {
-        id
-        title
-        description
-        venue
-        category
-        startAt
-        endAt
-        allDay
-        recurrence
-        until
-        isPublic
-        isOwner
-        commentsCount
-        bookmarksCount
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
     author {
       id
-      email
       name
       pictureUrl
-      website
-      created {
-        nextToken
-      }
-      following {
-        nextToken
-      }
-      bookmarks {
-        nextToken
-      }
       me
-      followingCount
-      createdCount
-      createdAt
-      updatedAt
-    }
-    followers {
-      items {
-        id
-        createdAt
-      }
-      nextToken
     }
     followersCount
     eventsCount

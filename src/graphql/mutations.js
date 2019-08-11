@@ -479,71 +479,13 @@ export const createEvent = `mutation CreateEvent($input: CreateEventInput!) {
     isOwner
     author {
       id
-      email
       name
-      pictureUrl
-      website
-      created {
-        nextToken
-      }
-      following {
-        nextToken
-      }
-      bookmarks {
-        nextToken
-      }
       me
-      followingCount
-      createdCount
-      createdAt
-      updatedAt
     }
     schedule {
       id
       name
-      description
-      isPublic
-      isOwner
-      status
-      events {
-        nextToken
-      }
-      author {
-        id
-        email
-        name
-        pictureUrl
-        website
-        me
-        followingCount
-        createdCount
-        createdAt
-        updatedAt
-      }
-      followers {
-        nextToken
-      }
-      followersCount
       eventsCount
-      createdAt
-      updatedAt
-    }
-    comments {
-      items {
-        id
-        content
-        isOwner
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
-    bookmarks {
-      items {
-        id
-        createdAt
-      }
-      nextToken
     }
     commentsCount
     bookmarksCount
