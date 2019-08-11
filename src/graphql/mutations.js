@@ -16,6 +16,7 @@ export const updateBookmarksCount = `mutation UpdateBookmarksCount($input: Updat
     isPublic
     isOwner
     author {
+      id
       email
       name
       pictureUrl
@@ -46,6 +47,7 @@ export const updateBookmarksCount = `mutation UpdateBookmarksCount($input: Updat
         nextToken
       }
       author {
+        id
         email
         name
         pictureUrl
@@ -103,6 +105,7 @@ export const updateCommentsCount = `mutation UpdateCommentsCount($input: UpdateC
     isPublic
     isOwner
     author {
+      id
       email
       name
       pictureUrl
@@ -133,6 +136,7 @@ export const updateCommentsCount = `mutation UpdateCommentsCount($input: UpdateC
         nextToken
       }
       author {
+        id
         email
         name
         pictureUrl
@@ -205,6 +209,7 @@ export const updateEventsCount = `mutation UpdateEventsCount($input: UpdateCount
       nextToken
     }
     author {
+      id
       email
       name
       pictureUrl
@@ -240,6 +245,7 @@ export const updateEventsCount = `mutation UpdateEventsCount($input: UpdateCount
 `;
 export const updateFollowingCount = `mutation UpdateFollowingCount($input: UpdateCountInput!) {
   updateFollowingCount(input: $input) {
+    id
     email
     name
     pictureUrl
@@ -283,6 +289,7 @@ export const updateFollowingCount = `mutation UpdateFollowingCount($input: Updat
 `;
 export const updateCreatedCount = `mutation UpdateCreatedCount($input: UpdateCountInput!) {
   updateCreatedCount(input: $input) {
+    id
     email
     name
     pictureUrl
@@ -326,6 +333,7 @@ export const updateCreatedCount = `mutation UpdateCreatedCount($input: UpdateCou
 `;
 export const createUser = `mutation CreateUser($input: CreateUserInput!) {
   createUser(input: $input) {
+    id
     email
     name
     pictureUrl
@@ -369,6 +377,7 @@ export const createUser = `mutation CreateUser($input: CreateUserInput!) {
 `;
 export const updateUser = `mutation UpdateUser($input: UpdateUserInput!) {
   updateUser(input: $input) {
+    id
     email
     name
     pictureUrl
@@ -412,6 +421,7 @@ export const updateUser = `mutation UpdateUser($input: UpdateUserInput!) {
 `;
 export const deleteUser = `mutation DeleteUser($input: DeleteUserInput!) {
   deleteUser(input: $input) {
+    id
     email
     name
     pictureUrl
@@ -468,6 +478,7 @@ export const createEvent = `mutation CreateEvent($input: CreateEventInput!) {
     isPublic
     isOwner
     author {
+      id
       email
       name
       pictureUrl
@@ -498,6 +509,7 @@ export const createEvent = `mutation CreateEvent($input: CreateEventInput!) {
         nextToken
       }
       author {
+        id
         email
         name
         pictureUrl
@@ -555,6 +567,7 @@ export const updateEvent = `mutation UpdateEvent($input: UpdateEventInput!) {
     isPublic
     isOwner
     author {
+      id
       email
       name
       pictureUrl
@@ -585,6 +598,7 @@ export const updateEvent = `mutation UpdateEvent($input: UpdateEventInput!) {
         nextToken
       }
       author {
+        id
         email
         name
         pictureUrl
@@ -642,6 +656,7 @@ export const deleteEvent = `mutation DeleteEvent($input: DeleteEventInput!) {
     isPublic
     isOwner
     author {
+      id
       email
       name
       pictureUrl
@@ -672,6 +687,7 @@ export const deleteEvent = `mutation DeleteEvent($input: DeleteEventInput!) {
         nextToken
       }
       author {
+        id
         email
         name
         pictureUrl
@@ -731,6 +747,7 @@ export const createBookmark = `mutation CreateBookmark($input: CreateBookmarkInp
       isPublic
       isOwner
       author {
+        id
         email
         name
         pictureUrl
@@ -765,6 +782,7 @@ export const createBookmark = `mutation CreateBookmark($input: CreateBookmarkInp
       updatedAt
     }
     user {
+      id
       email
       name
       pictureUrl
@@ -805,6 +823,7 @@ export const updateBookmark = `mutation UpdateBookmark($input: UpdateBookmarkInp
       isPublic
       isOwner
       author {
+        id
         email
         name
         pictureUrl
@@ -839,6 +858,7 @@ export const updateBookmark = `mutation UpdateBookmark($input: UpdateBookmarkInp
       updatedAt
     }
     user {
+      id
       email
       name
       pictureUrl
@@ -879,6 +899,7 @@ export const deleteBookmark = `mutation DeleteBookmark($input: DeleteBookmarkInp
       isPublic
       isOwner
       author {
+        id
         email
         name
         pictureUrl
@@ -913,6 +934,7 @@ export const deleteBookmark = `mutation DeleteBookmark($input: DeleteBookmarkInp
       updatedAt
     }
     user {
+      id
       email
       name
       pictureUrl
@@ -966,6 +988,7 @@ export const createSchedule = `mutation CreateSchedule($input: CreateScheduleInp
       nextToken
     }
     author {
+      id
       email
       name
       pictureUrl
@@ -1029,6 +1052,7 @@ export const updateSchedule = `mutation UpdateSchedule($input: UpdateScheduleInp
       nextToken
     }
     author {
+      id
       email
       name
       pictureUrl
@@ -1092,6 +1116,7 @@ export const deleteSchedule = `mutation DeleteSchedule($input: DeleteScheduleInp
       nextToken
     }
     author {
+      id
       email
       name
       pictureUrl
@@ -1129,6 +1154,7 @@ export const createFollow = `mutation CreateFollow($input: CreateFollowInput!) {
   createFollow(input: $input) {
     id
     user {
+      id
       email
       name
       pictureUrl
@@ -1159,6 +1185,7 @@ export const createFollow = `mutation CreateFollow($input: CreateFollowInput!) {
         nextToken
       }
       author {
+        id
         email
         name
         pictureUrl
@@ -1185,6 +1212,7 @@ export const updateFollow = `mutation UpdateFollow($input: UpdateFollowInput!) {
   updateFollow(input: $input) {
     id
     user {
+      id
       email
       name
       pictureUrl
@@ -1215,6 +1243,7 @@ export const updateFollow = `mutation UpdateFollow($input: UpdateFollowInput!) {
         nextToken
       }
       author {
+        id
         email
         name
         pictureUrl
@@ -1241,6 +1270,7 @@ export const deleteFollow = `mutation DeleteFollow($input: DeleteFollowInput!) {
   deleteFollow(input: $input) {
     id
     user {
+      id
       email
       name
       pictureUrl
@@ -1271,6 +1301,7 @@ export const deleteFollow = `mutation DeleteFollow($input: DeleteFollowInput!) {
         nextToken
       }
       author {
+        id
         email
         name
         pictureUrl
@@ -1311,6 +1342,7 @@ export const createComment = `mutation CreateComment($input: CreateCommentInput!
         nextToken
       }
       author {
+        id
         email
         name
         pictureUrl
@@ -1354,6 +1386,7 @@ export const createComment = `mutation CreateComment($input: CreateCommentInput!
       nextToken
     }
     author {
+      id
       email
       name
       pictureUrl
@@ -1388,6 +1421,7 @@ export const createComment = `mutation CreateComment($input: CreateCommentInput!
       isPublic
       isOwner
       author {
+        id
         email
         name
         pictureUrl
@@ -1444,6 +1478,7 @@ export const updateComment = `mutation UpdateComment($input: UpdateCommentInput!
         nextToken
       }
       author {
+        id
         email
         name
         pictureUrl
@@ -1487,6 +1522,7 @@ export const updateComment = `mutation UpdateComment($input: UpdateCommentInput!
       nextToken
     }
     author {
+      id
       email
       name
       pictureUrl
@@ -1521,6 +1557,7 @@ export const updateComment = `mutation UpdateComment($input: UpdateCommentInput!
       isPublic
       isOwner
       author {
+        id
         email
         name
         pictureUrl
@@ -1577,6 +1614,7 @@ export const deleteComment = `mutation DeleteComment($input: DeleteCommentInput!
         nextToken
       }
       author {
+        id
         email
         name
         pictureUrl
@@ -1620,6 +1658,7 @@ export const deleteComment = `mutation DeleteComment($input: DeleteCommentInput!
       nextToken
     }
     author {
+      id
       email
       name
       pictureUrl
@@ -1654,6 +1693,7 @@ export const deleteComment = `mutation DeleteComment($input: DeleteCommentInput!
       isPublic
       isOwner
       author {
+        id
         email
         name
         pictureUrl

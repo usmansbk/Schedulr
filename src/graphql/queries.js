@@ -3,6 +3,7 @@
 
 export const getUser = `query GetUser($email: String!) {
   getUser(email: $email) {
+    id
     email
     name
     pictureUrl
@@ -59,6 +60,7 @@ export const getEvent = `query GetEvent($id: ID!) {
     isPublic
     isOwner
     author {
+      id
       email
       name
       pictureUrl
@@ -89,6 +91,7 @@ export const getEvent = `query GetEvent($id: ID!) {
         nextToken
       }
       author {
+        id
         email
         name
         pictureUrl
@@ -161,6 +164,7 @@ export const getSchedule = `query GetSchedule($id: ID!) {
       nextToken
     }
     author {
+      id
       email
       name
       pictureUrl

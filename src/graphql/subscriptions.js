@@ -16,6 +16,7 @@ export const onCreateEvent = `subscription OnCreateEvent {
     isPublic
     isOwner
     author {
+      id
       email
       name
       pictureUrl
@@ -46,6 +47,7 @@ export const onCreateEvent = `subscription OnCreateEvent {
         nextToken
       }
       author {
+        id
         email
         name
         pictureUrl
@@ -103,6 +105,7 @@ export const onUpdateEvent = `subscription OnUpdateEvent {
     isPublic
     isOwner
     author {
+      id
       email
       name
       pictureUrl
@@ -133,6 +136,7 @@ export const onUpdateEvent = `subscription OnUpdateEvent {
         nextToken
       }
       author {
+        id
         email
         name
         pictureUrl
@@ -190,6 +194,7 @@ export const onDeleteEvent = `subscription OnDeleteEvent {
     isPublic
     isOwner
     author {
+      id
       email
       name
       pictureUrl
@@ -220,6 +225,7 @@ export const onDeleteEvent = `subscription OnDeleteEvent {
         nextToken
       }
       author {
+        id
         email
         name
         pictureUrl
@@ -279,6 +285,7 @@ export const onCreateBookmark = `subscription OnCreateBookmark {
       isPublic
       isOwner
       author {
+        id
         email
         name
         pictureUrl
@@ -313,6 +320,7 @@ export const onCreateBookmark = `subscription OnCreateBookmark {
       updatedAt
     }
     user {
+      id
       email
       name
       pictureUrl
@@ -353,6 +361,7 @@ export const onUpdateBookmark = `subscription OnUpdateBookmark {
       isPublic
       isOwner
       author {
+        id
         email
         name
         pictureUrl
@@ -387,6 +396,7 @@ export const onUpdateBookmark = `subscription OnUpdateBookmark {
       updatedAt
     }
     user {
+      id
       email
       name
       pictureUrl
@@ -427,6 +437,7 @@ export const onDeleteBookmark = `subscription OnDeleteBookmark {
       isPublic
       isOwner
       author {
+        id
         email
         name
         pictureUrl
@@ -461,6 +472,7 @@ export const onDeleteBookmark = `subscription OnDeleteBookmark {
       updatedAt
     }
     user {
+      id
       email
       name
       pictureUrl
@@ -514,6 +526,7 @@ export const onCreateSchedule = `subscription OnCreateSchedule {
       nextToken
     }
     author {
+      id
       email
       name
       pictureUrl
@@ -577,6 +590,7 @@ export const onUpdateSchedule = `subscription OnUpdateSchedule {
       nextToken
     }
     author {
+      id
       email
       name
       pictureUrl
@@ -640,6 +654,7 @@ export const onDeleteSchedule = `subscription OnDeleteSchedule {
       nextToken
     }
     author {
+      id
       email
       name
       pictureUrl
@@ -677,6 +692,7 @@ export const onCreateFollow = `subscription OnCreateFollow {
   onCreateFollow {
     id
     user {
+      id
       email
       name
       pictureUrl
@@ -707,6 +723,7 @@ export const onCreateFollow = `subscription OnCreateFollow {
         nextToken
       }
       author {
+        id
         email
         name
         pictureUrl
@@ -733,6 +750,7 @@ export const onUpdateFollow = `subscription OnUpdateFollow {
   onUpdateFollow {
     id
     user {
+      id
       email
       name
       pictureUrl
@@ -763,6 +781,7 @@ export const onUpdateFollow = `subscription OnUpdateFollow {
         nextToken
       }
       author {
+        id
         email
         name
         pictureUrl
@@ -789,6 +808,7 @@ export const onDeleteFollow = `subscription OnDeleteFollow {
   onDeleteFollow {
     id
     user {
+      id
       email
       name
       pictureUrl
@@ -819,6 +839,7 @@ export const onDeleteFollow = `subscription OnDeleteFollow {
         nextToken
       }
       author {
+        id
         email
         name
         pictureUrl
@@ -859,6 +880,7 @@ export const onCreateComment = `subscription OnCreateComment {
         nextToken
       }
       author {
+        id
         email
         name
         pictureUrl
@@ -902,6 +924,7 @@ export const onCreateComment = `subscription OnCreateComment {
       nextToken
     }
     author {
+      id
       email
       name
       pictureUrl
@@ -936,6 +959,7 @@ export const onCreateComment = `subscription OnCreateComment {
       isPublic
       isOwner
       author {
+        id
         email
         name
         pictureUrl
@@ -992,6 +1016,7 @@ export const onUpdateComment = `subscription OnUpdateComment {
         nextToken
       }
       author {
+        id
         email
         name
         pictureUrl
@@ -1035,6 +1060,7 @@ export const onUpdateComment = `subscription OnUpdateComment {
       nextToken
     }
     author {
+      id
       email
       name
       pictureUrl
@@ -1069,6 +1095,7 @@ export const onUpdateComment = `subscription OnUpdateComment {
       isPublic
       isOwner
       author {
+        id
         email
         name
         pictureUrl
@@ -1125,6 +1152,7 @@ export const onDeleteComment = `subscription OnDeleteComment {
         nextToken
       }
       author {
+        id
         email
         name
         pictureUrl
@@ -1168,6 +1196,7 @@ export const onDeleteComment = `subscription OnDeleteComment {
       nextToken
     }
     author {
+      id
       email
       name
       pictureUrl
@@ -1202,6 +1231,7 @@ export const onDeleteComment = `subscription OnDeleteComment {
       isPublic
       isOwner
       author {
+        id
         email
         name
         pictureUrl
