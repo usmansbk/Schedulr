@@ -3,7 +3,7 @@
 import List from 'components/lists/Followers';
 
 export default List;
-// import { listScheduleFollowers } from 'mygraphql/queries';
+// import { listScheduleFollowers } from 'api/queries';
 // import { COMMENTS_LIMIT } from 'lib/constants';
 
 // const LIMIT = COMMENTS_LIMIT;

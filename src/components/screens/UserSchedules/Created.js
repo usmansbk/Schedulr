@@ -12,7 +12,7 @@ import Footer from 'components/lists/Schedules/Footer';
 import Empty from 'components/lists/Schedules/Empty';
 import sortSchedules from 'lib/utils';
 import { schedules } from 'lib/constants';
-// import { createdSchedules as createdSchedulesQuery, listAllSchedules } from 'mygraphql/queries';
+// import { createdSchedules as createdSchedulesQuery, listAllSchedules } from 'api/queries';
 
 const {
   ITEM_HEIGHT,

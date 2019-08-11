@@ -8,7 +8,7 @@
       "alias": {
         "components": "./src/components",
         "config": "./src/config",
-        "mygraphql": "./src/graphql",
+        "api": "./src/graphql",
         "helpers": "./src/helpers",
         "lib": "./src/lib",
         "stores": "./src/stores"

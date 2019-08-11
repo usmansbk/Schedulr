@@ -2,8 +2,8 @@
 // import gql from 'graphql-tag';
 import Dialog from './Dialog';
 export default Dialog;
-// import { listEventComments } from 'mygraphql/queries';
-// import { deleteComment } from 'mygraphql/mutations';
+// import { listEventComments } from 'api/queries';
+// import { deleteComment } from 'api/mutations';
 // import { deleteCommentResponse } from 'helpers/optimisticResponse';
 
 // export default graphql(gql(deleteComment), {

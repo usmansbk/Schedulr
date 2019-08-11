@@ -4,9 +4,9 @@
 import Button from './Button';
 
 export default Button;
-// import { followSchedule, unfollowSchedule } from 'mygraphql/mutations';
-// import { listAllSchedules, listAllEvents, listScheduleEvents } from 'mygraphql/queries';
-// import { filterEvents } from 'mygraphql/filter';
+// import { followSchedule, unfollowSchedule } from 'api/mutations';
+// import { listAllSchedules, listAllEvents, listScheduleEvents } from 'api/queries';
+// import { filterEvents } from 'api/filter';
 // import {
 //   followScheduleResponse,
 //   unfollowScheduleResponse

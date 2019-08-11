@@ -3,8 +3,8 @@
 import Screen from './Screen';
 
 export default Screen;
-// import { createSchedule } from 'mygraphql/mutations';
-// import { listAllSchedules } from 'mygraphql/queries';
+// import { createSchedule } from 'api/mutations';
+// import { listAllSchedules } from 'api/queries';
 // import { createScheduleResponse } from 'helpers/optimisticResponse';
 
 // const alias =  'withNewScheduleContainer';

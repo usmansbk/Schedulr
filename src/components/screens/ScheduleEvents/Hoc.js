@@ -4,8 +4,8 @@
 import ScheduleEvents from './ScheduleEvents';
 export default ScheduleEvents;
 // import moment from 'moment';
-// import { getSchedule, listAllEvents, listScheduleEvents } from 'mygraphql/queries';
-// import { filterEvents, filterPastEvents } from 'mygraphql/filter';
+// import { getSchedule, listAllEvents, listScheduleEvents } from 'api/queries';
+// import { filterEvents, filterPastEvents } from 'api/filter';
 // import { sortBookmarks } from 'lib/utils';
 // import { getEvents } from 'lib/calendr';
 

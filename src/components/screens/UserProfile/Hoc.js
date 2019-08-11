@@ -2,8 +2,7 @@ import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
 import { withNavigationFocus } from 'react-navigation';
 import UserProfile from './UserProfile';
-
-import { getUser } from 'mygraphql/queries';
+import { getUser } from 'api/queries';
 
 const alias = 'withUserProfile';
 

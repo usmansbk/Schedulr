@@ -3,8 +3,8 @@
 // import { withNavigation } from 'react-navigation';
 import Dialog from './Dialog';
 export default Dialog;
-// import { listAllEvents } from 'mygraphql/queries';
-// import { deleteEvent } from 'mygraphql/mutations';
+// import { listAllEvents } from 'api/queries';
+// import { deleteEvent } from 'api/mutations';
 // import { deleteEventResponse } from 'helpers/optimisticResponse';
 
 // export default compose(

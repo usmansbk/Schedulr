@@ -7,7 +7,7 @@ import {
   getEvent,
   getSchedule as getScheduleQuery,
   getComment,
-  getUser as getUserQuery } from 'mygraphql/queries';
+  getUser as getUserQuery } from 'api/queries';
 import stores from 'stores';
 
 const __typename = 'Mutation';

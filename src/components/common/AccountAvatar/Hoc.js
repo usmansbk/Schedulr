@@ -1,7 +1,7 @@
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import { inject, observer } from 'mobx-react';
-import { getUser } from 'mygraphql/queries';
+import { getUser } from 'api/queries';
 import Avatar from './Avatar';
 
 export default inject("stores")(observer(

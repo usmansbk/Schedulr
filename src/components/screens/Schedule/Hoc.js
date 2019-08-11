@@ -7,8 +7,8 @@ export default Screen;
 //   getSchedule,
 //   listAllEvents,
 //   listScheduleEvents
-// } from 'mygraphql/queries';
-// import { filterEvents } from 'mygraphql/filter';
+// } from 'api/queries';
+// import { filterEvents } from 'api/filter';
 
 // const alias = 'withScheduleEventsContainer';
 

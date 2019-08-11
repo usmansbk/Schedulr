@@ -2,7 +2,7 @@
 // import gql from 'graphql-tag';
 import Dialog from './Dialog';
 export default Dialog;
-// import { openSchedule } from 'mygraphql/mutations';
+// import { openSchedule } from 'api/mutations';
 // import { openScheduleResponse } from 'helpers/optimisticResponse';
 
 // export default graphql(gql(openSchedule), {

@@ -6,7 +6,7 @@ import Share from 'react-native-share';
 import { inject, observer } from 'mobx-react';
 import gql from 'graphql-tag';
 import client from 'config/client';
-import { bookmarkEvent, unbookmarkEvent } from 'mygraphql/mutations';
+import { bookmarkEvent, unbookmarkEvent } from 'api/mutations';
 import { toggleBookmarkButton } from 'helpers/optimisticResponse';
 import env from 'config/env';
 

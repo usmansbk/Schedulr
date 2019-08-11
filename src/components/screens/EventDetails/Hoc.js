@@ -3,7 +3,7 @@
 import Screen from './Screen';
 
 export default Screen;
-// import { getEvent } from 'mygraphql/queries';
+// import { getEvent } from 'api/queries';
 
 // const alias = 'withEventDetails';
 

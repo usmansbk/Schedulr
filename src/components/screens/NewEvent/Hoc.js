@@ -3,8 +3,8 @@
 import Screen from './Screen';
 
 export default Screen;
-// import { createEvent } from 'mygraphql/mutations';
-// import { listAllEvents, listAllSchedules, getEvent } from 'mygraphql/queries';
+// import { createEvent } from 'api/mutations';
+// import { listAllEvents, listAllSchedules, getEvent } from 'api/queries';
 // import { createEventResponse } from 'helpers/optimisticResponse';
 
 // const alias =  'withNewEventContainer';

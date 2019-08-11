@@ -1,9 +1,9 @@
 import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
 import Button from './Button';
-// import { bookmarkEvent, unbookmarkEvent } from 'mygraphql/mutations';
+// import { bookmarkEvent, unbookmarkEvent } from 'api/mutations';
 // import { toggleBookmarkButton } from 'helpers/optimisticResponse';
-// import { listAllEvents, getEvent } from 'mygraphql/queries';
+// import { listAllEvents, getEvent } from 'api/queries';
 
 export default Button;
 

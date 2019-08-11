@@ -2,7 +2,7 @@
 // import gql from 'graphql-tag';
 import Dialog from './Dialog';
 export default Dialog;
-// import { cancelEvent } from 'mygraphql/mutations';
+// import { cancelEvent } from 'api/mutations';
 // import { cancelEventResponse } from 'helpers/optimisticResponse';
 
 // export default graphql(gql(cancelEvent), {

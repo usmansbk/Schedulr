@@ -5,7 +5,7 @@ import Bookmarks from './Bookmarks';
 
 export default Bookmarks;
 
-// import { listAllEvents } from 'mygraphql/queries';
+// import { listAllEvents } from 'api/queries';
 
 // export default compose(
 //   withNavigationFocus,

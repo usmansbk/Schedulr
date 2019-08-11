@@ -6,8 +6,8 @@ import Events from './Events';
 
 export default inject("stores")(observer(Events));
 
-// import { listAllEvents } from 'mygraphql/queries';
-// import { filterEvents } from 'mygraphql/filter';
+// import { listAllEvents } from 'api/queries';
+// import { filterEvents } from 'api/filter';
 
 // const alias = 'withEventsContainer';
 // const BaseQuery = gql(listAllEvents);

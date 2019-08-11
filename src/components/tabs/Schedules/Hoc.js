@@ -6,7 +6,7 @@ import Schedules from './Schedules';
 
 export default inject("stores")(observer(Schedules));
 
-// import { listAllSchedules } from 'mygraphql/queries';
+// import { listAllSchedules } from 'api/queries';
 
 // const alias = 'withSchedulesContainer';
 // const BaseQuery = gql(listAllSchedules);

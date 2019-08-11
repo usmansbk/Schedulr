@@ -5,7 +5,7 @@ import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
 import uniqWith from 'lodash.uniqwith';
 import List from 'components/lists/EventSearch';
-// import { listAllEvents, searchEvent } from 'mygraphql/queries';
+// import { listAllEvents, searchEvent } from 'api/queries';
 import { SEARCH_PAGE_SIZE, SEARCH_DISTANCE } from 'lib/constants';
 import { sortBookmarks } from 'lib/utils';
 

@@ -6,8 +6,8 @@ import gql from 'graphql-tag';
 import changeNavigationBarColor from 'react-native-navigation-bar-color';
 import SimpleToast from 'react-native-simple-toast';
 import Login from './Login';
-import { getUser } from 'mygraphql/queries';
-import { createUser } from 'mygraphql/mutations';
+import { getUser } from 'api/queries';
+import { createUser } from 'api/mutations';
 import client from 'config/client';
 
 const GET_USER = gql(getUser);

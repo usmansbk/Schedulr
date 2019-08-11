@@ -2,7 +2,7 @@
 // import gql from 'graphql-tag';
 import Info from './Info';
 export default Info;
-// import { getSchedule } from 'mygraphql/queries';
+// import { getSchedule } from 'api/queries';
 
 // const alias = 'withScheduleInfoContainer';
 

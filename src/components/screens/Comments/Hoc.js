@@ -3,8 +3,8 @@
 import Screen from './Screen';
 
 export default Screen;
-// import { listEventComments } from 'mygraphql/queries';
-// import { createComment } from 'mygraphql/mutations';
+// import { listEventComments } from 'api/queries';
+// import { createComment } from 'api/mutations';
 // import { createCommentResponse } from 'helpers/optimisticResponse';
 // import { COMMENTS_LIMIT } from 'lib/constants';
 
