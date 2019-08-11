@@ -86,7 +86,7 @@ class CommentInput extends React.Component {
                name="plane"
                size={24}
                color={props.color}
-             /}
+             />}
             color={colors.primary}
             disabled={isSubmitting || !message || disabled}
             onPress={this._onSubmit}
