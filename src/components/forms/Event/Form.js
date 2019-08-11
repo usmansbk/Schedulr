@@ -332,11 +332,11 @@ class Form extends React.Component {
                 </View>
                 <Picker
                   prompt={I18n.get("EVENT_FORM_selectASchedule")}
-                  selectedValue={values.scheduleId}
+                  selectedValue={values.eventScheduleId}
                   style={styles.picker}
                   enabled={!locked }
                   itemStyle={styles.pickerItem}
-                  onValueChange={itemValue => setFieldValue('scheduleId', itemValue)}
+                  onValueChange={itemValue => setFieldValue('eventScheduleId', itemValue)}
                 >
                   <Picker.Item label={(schedules.length === 0) ? I18n.get("EVENT_FORM_noSchedule") : I18n.get("EVENT_FORM_addToASchedule")} value="" />
                   {
@@ -347,9 +347,9 @@ class Form extends React.Component {
                 </Picker>
                 <HelperText
                   type="info"
-                  visible={!values.scheduleId}
+                  visible={errors.eventScheduleId && touched.eventScheduleId}
                 >
-                  {I18n.get("HELPER_TEXT_recommended")}
+                  {errors.eventScheduleId && I18n.get(`HELPER_TEXT_required`)}
                 </HelperText>
               </View>
             </View>

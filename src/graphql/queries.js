@@ -69,3 +69,39 @@ export const getSchedule = `query GetSchedule($id: ID!) {
   }
 }
 `;
+export const getUserData = `query GetUserData($id: ID!) {
+  getUserData: getUser(id: $id) {
+    id
+    created {
+      items {
+        id
+        name
+        events {
+          id
+          title
+        }
+      }
+      nextToken
+    }
+    following {
+      items {
+        schedule {
+          events {
+            id
+            title
+          }
+        }
+      }
+      nextToken
+    }
+    bookmarks {
+      items {
+        event {
+          id
+          title
+        }
+      }
+      nextToken
+    }
+  }
+}`

@@ -120,9 +120,12 @@ export default class Events extends React.Component {
       nextToken,
       error,
       onRefresh,
-      navigation
+      navigation,
+      data
     } = this.props;
 
+    console.log(data);
+    
     return (
       <>
         <List

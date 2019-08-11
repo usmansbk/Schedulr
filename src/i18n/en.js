@@ -146,7 +146,7 @@ export default {
 
   EVENT_ITEM_allDay: "All day",
 
-  SCHEDULE: "schedule",
+  SCHEDULE: "SCHEDULE",
   SCHEDULE_FORM_name: "Name",
   SCHEDULE_FORM_description: "Description",
   SCHEDULE_FORM_private: "Private",
