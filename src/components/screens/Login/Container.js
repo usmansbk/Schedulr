@@ -47,7 +47,7 @@ class Container extends React.Component {
           const response = await client.query({
             query: GET_USER,
             variables: {
-              email
+              id: email
             }
           });
           const { data } = response;
@@ -66,7 +66,7 @@ class Container extends React.Component {
             client.writeQuery({
               query: GET_USER,
               variables: {
-                email
+                id: email
               },
               data: {
                 getUser: user

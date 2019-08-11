@@ -10,7 +10,7 @@ export default inject("stores")(observer(
     {
       options: props => ({
         variables: {
-          email: props.stores.appState.userId
+          id: props.stores.appState.userId
         },
         fetchPolicy: 'cache-only'
       }),
