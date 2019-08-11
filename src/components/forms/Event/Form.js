@@ -97,8 +97,7 @@ class Form extends React.Component {
         onSubmit={async (values, { setSubmitting }) => {
           if (isEventValid(values)) {
             const input = buildEventForm(values, stores.appState.location);
-            console.log(input);
-            // onSubmit && await onSubmit(input);
+            onSubmit && await onSubmit(input);
           }
           setSubmitting(false);
         }}

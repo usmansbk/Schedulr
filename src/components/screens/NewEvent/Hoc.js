@@ -39,17 +39,17 @@ export default compose(
           input
         },
         // optimisticResponse: () => createEventResponse(input),
-        update: (cache, { data: { createEvent } }) => {
-          if (createEvent) {
-            const query = gql(listAllEvents);
-            const data = cache.readQuery({ query });
-            data.listAllEvents.items = [
-              ...data.listAllEvents.items.filter(item => item.id !== createEvent.id),
-              createEvent
-            ];
-            cache.writeQuery({ query, data });
-          }
-        }
+        // update: (cache, { data: { createEvent } }) => {
+        //   if (createEvent) {
+        //     const query = gql(listAllEvents);
+        //     const data = cache.readQuery({ query });
+        //     data.listAllEvents.items = [
+        //       ...data.listAllEvents.items.filter(item => item.id !== createEvent.id),
+        //       createEvent
+        //     ];
+        //     cache.writeQuery({ query, data });
+        //   }
+        // }
       }),
       ...ownProps
     })
