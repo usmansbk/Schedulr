@@ -67,7 +67,7 @@ export default class NewEventScreen extends React.Component {
       category: category || 'Event',
       recurrence: recurrence || recurrences[0].id,
       until,
-      eventScheduleId: eventScheduleId || "6b8fd855-1e25-4b19-8ec3-e3ca76f6d718",
+      eventScheduleId: eventScheduleId,
       isPublic: currentSchedule ? currentSchedule.isPublic : Boolean(isPublic)
     });
   };

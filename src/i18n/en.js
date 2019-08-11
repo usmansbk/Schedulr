@@ -169,6 +169,7 @@ export default {
   HELPER_TEXT_tooShort: "Too short",
   HELPER_TEXT_tooLong: "Too long",
   HELPER_TEXT_recommended: "Recommended",
+  HELPER_TEXT_required: "Required",
   HELPER_TEXT_invalidDatesAndRecur: "Event's duration should be shorter than repeat frequency",
 
   MENU_edit: "Edit",
