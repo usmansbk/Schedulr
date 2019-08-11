@@ -8,7 +8,5 @@ export default Yup.object().shape({
     .required('titleIsRequired'),
   description: Yup.string()
     .trim()
-    .max(700, 'tooLong'),
-  eventScheduleId: Yup.string()
-    .required()
+    .max(700, 'tooLong')
 });
