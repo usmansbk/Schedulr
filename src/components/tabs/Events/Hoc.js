@@ -15,7 +15,7 @@ export default inject("stores")(observer(
     graphql(BaseQuery, {
       alias,
       options: props => ({
-        fetchPolicy: 'cache-first',
+        fetchPolicy: 'cache-and-network',
         notifyOnNetworkStatusChange: true,
         variables: {
           id: props.stores.appState.userId

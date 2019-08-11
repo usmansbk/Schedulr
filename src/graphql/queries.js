@@ -77,8 +77,11 @@ export const getUserData = `query GetUserData($id: ID!) {
         id
         name
         events {
-          id
-          title
+          items {
+            id
+            title
+          }
+          nextToken
         }
       }
       nextToken
@@ -87,8 +90,11 @@ export const getUserData = `query GetUserData($id: ID!) {
       items {
         schedule {
           events {
-            id
-            title
+            items {
+              id
+              title
+            }
+            nextToken
           }
         }
       }
