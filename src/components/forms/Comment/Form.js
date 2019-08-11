@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, TextInput } from 'react-native';
 import { IconButton, Text, Button } from 'react-native-paper';
+import Icon from 'react-native-vector-icons/Feather';
 import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
 import UserAvatar from 'components/common/UserAvatar';
@@ -81,7 +82,11 @@ class CommentInput extends React.Component {
             />
           </View>
           <IconButton
-            icon="send"
+            icon={(props) => <Icon
+               name="plane"
+               size={24}
+               color={props.color}
+             /}
             color={colors.primary}
             disabled={isSubmitting || !message || disabled}
             onPress={this._onSubmit}

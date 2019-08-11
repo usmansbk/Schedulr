@@ -43,7 +43,7 @@ class Form extends React.Component {
   _hideModal = () => this.setState({ showPicker: false });
 
   static defaultProps = {
-    schedules: [],
+    schedules: [], 
     initialValues: {
       title: '',
       description: '',
@@ -52,9 +52,9 @@ class Form extends React.Component {
       endAt: moment().add(2, 'hours').valueOf(),
       allDay: false,
       category: 'Normal',
-      recur: recurrence[0].id,
+      recurrence: recurrence[0].id,
       until: null,
-      // scheduleId: '',
+      eventScheduleId: null,
       isPublic: true
     }
   }
@@ -137,7 +137,7 @@ class Form extends React.Component {
             refreshControl={
               <RefreshControl
                 refreshing={false}
-                onRefresh={() => resetForm()}
+                onRefresh={resetForm}
                 colors={[stores.themeStore.colors.primary]}
                 progressBackgroundColor={stores.themeStore.colors.bg}
               />
@@ -245,17 +245,17 @@ class Form extends React.Component {
                 <Text style={styles.radioText}>{I18n.get("EVENT_FORM_repetition")}</Text>
                 <Picker
                   prompt={I18n.get("EVENT_FORM_repeat")}
-                  selectedValue={values.recur}
+                  selectedValue={values.recurrence}
                   style={styles.picker}
                   
                   itemStyle={styles.pickerItem}
                   onValueChange={itemValue => {
-                    setFieldValue('recur', itemValue);
+                    setFieldValue('recurrence', itemValue);
                     if (itemValue === recurrence[0].id) {
                       setFieldValue('until', null);
                     } else if (values.until) {
-                      const recur = getRecurrence(itemValue);
-                      setFieldValue('until', moment(values.startAt).add(1, recur).valueOf());
+                      const unit = getRecurrence(itemValue);
+                      setFieldValue('until', moment(values.startAt).add(1, unit).valueOf());
                     }
                   }}
                 >
@@ -282,7 +282,7 @@ class Form extends React.Component {
               </View>
               <Divider />
               {
-                (values.recur !== recurrence[0].id) && (
+                (values.recurrence !== recurrence[0].id) && (
                   <>
                     <View style={styles.radio}>
                       <Text style={styles.radioText}>{I18n.get("EVENT_FORM_repeatForever")}</Text>
@@ -293,8 +293,8 @@ class Form extends React.Component {
                           if (until) {
                             setFieldValue('until', null);
                           } else {
-                            const recur = getRecurrence(values.recur);
-                            setFieldValue('until', moment(values.startAt).add(2, recur).valueOf());
+                            const unit = getRecurrence(values.recurrence);
+                            setFieldValue('until', moment(values.startAt).add(2, unit).valueOf());
                           }
                         }}
                       />
@@ -304,7 +304,7 @@ class Form extends React.Component {
                 )
               }
               {
-                (values.recur !== recurrence[0].id && values.until) && (
+                (values.recurrence !== recurrence[0].id && values.until) && (
                   <View style={styles.pickerSpacing}>
                     <Text style={styles.radioText}>{I18n.get("EVENT_FORM_repeatUntil")}</Text>
                     <DateTimeInput
