@@ -1,34 +1,34 @@
-// import { graphql } from 'react-apollo';
-// import gql from 'graphql-tag';
+import { graphql } from 'react-apollo';
+import gql from 'graphql-tag';
 import Screen from './Screen';
 
-export default Screen;
-// import { createSchedule } from 'api/mutations';
+// export default Screen;
+import { createSchedule } from 'api/mutations';
 // import { listAllSchedules } from 'api/queries';
 // import { createScheduleResponse } from 'helpers/optimisticResponse';
 
-// const alias =  'withNewScheduleContainer';
+const alias =  'withNewScheduleContainer';
 
-// export default graphql(gql(createSchedule), {
-//   alias,
-//   props: ({ mutate, ownProps }) => ({
-//     onSubmit: async (input) =>  await mutate({
-//       variables: {
-//         input
-//       },
-//       optimisticResponse: () => createScheduleResponse(input),
-//       update: (cache, { data: { createSchedule } }) => {
-//         if (createSchedule) {
-//           const query = gql(listAllSchedules);
-//           const data = cache.readQuery({ query });
-//           data.listAllSchedules.items = [
-//             ...data.listAllSchedules.items.filter(item => item.id !== createSchedule.id),
-//             createSchedule
-//           ];
-//           cache.writeQuery({ query, data });
-//         }
-//       }
-//     }),
-//     ...ownProps
-//   })
-// })(Screen);
+export default graphql(gql(createSchedule), {
+  alias,
+  props: ({ mutate, ownProps }) => ({
+    onSubmit: async (input) =>  await mutate({
+      variables: {
+        input
+      },
+      // optimisticResponse: () => createScheduleResponse(input),
+      // update: (cache, { data: { createSchedule } }) => {
+      //   if (createSchedule) {
+      //     const query = gql(listAllSchedules);
+      //     const data = cache.readQuery({ query });
+      //     data.listAllSchedules.items = [
+      //       ...data.listAllSchedules.items.filter(item => item.id !== createSchedule.id),
+      //       createSchedule
+      //     ];
+      //     cache.writeQuery({ query, data });
+      //   }
+      // }
+    }),
+    ...ownProps
+  })
+})(Screen);
