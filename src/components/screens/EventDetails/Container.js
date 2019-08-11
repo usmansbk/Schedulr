@@ -14,7 +14,7 @@ const DATE_FORMAT = "ddd DD, MMM YYYY, hh:mm a";
 
 class EventDetails extends React.Component {
   _handleCancel = () => {
-    const isRecurring = this.props.event.recur !== ONE_TIME_EVENT;
+    const isRecurring = this.props.event.recurrence !== ONE_TIME_EVENT;
     this.props.handleCancel(isRecurring ? this.props.event.startAt : null);
   };
   _getDuration = (start, end) => getDuration(start, end);
@@ -47,6 +47,7 @@ class EventDetails extends React.Component {
       cardView,
       stores
     } = this.props;
+    console.log(event);
     const {
       id,
       title,
@@ -56,7 +57,7 @@ class EventDetails extends React.Component {
       endAt,
       allDay,
       schedule,
-      recur,
+      recurrence,
       until,
       createdAt,
       updatedAt,
@@ -73,7 +74,7 @@ class EventDetails extends React.Component {
     const start = refStartAt || startAt;
     const end = refEndAt || endAt;
     const isOffline = id[0] === '-';
-    const isValid = isEventValid({ isCancelled, endAt: end, startAt: start, cancelledDates }) && !isOffline;
+    const isValid = isEventValid({ isCancelled, endAt: end, startAt: start, cancelledDates: cancelledDates || [] }) && !isOffline;
 
     const colors = stores.themeStore.colors;
     const styles = stores.appStyles.styles;
@@ -146,7 +147,7 @@ class EventDetails extends React.Component {
           timeAgo={this._getStartAgo(start, end)}
           status={getStatus({
             isCancelled,
-            cancelledDates,
+            cancelledDates: cancelledDates || [],
             startAt: start,
             endAt: end
           })}
@@ -161,18 +162,18 @@ class EventDetails extends React.Component {
           scheduleId={schedule && schedule.id}
           authorId={author.id}
           authorName={author.name}
-          recur={getRepeatLabel(recur, start)}
+          recurrence={getRepeatLabel(recurrence, start)}
           until={until && moment(until).format(DATE_FORMAT)}
           createdAt={moment(createdAt).format(DATE_FORMAT)}
-          updatedAt={updatedAt && moment(updatedAt).format(DATE_FORMAT)}
+          updatedAt={(updatedAt !== createdAt) && moment(updatedAt).format(DATE_FORMAT)}
           description={description}
           isBookmarked={isBookmarked}
-          bookmarksCount={bookmarksCount}
-          commentsCount={commentsCount}
+          bookmarksCount={bookmarksCount || 0}
+          commentsCount={commentsCount || 0}
           isFollowing={schedule && schedule.isFollowing}
           isOwner={isOwner}
           isValid={isValid}
-          isCancelled={isEventCancelled({ cancelledDates, isCancelled, startAt: start })}
+          isCancelled={isEventCancelled({ cancelledDates: cancelledDates || [], isCancelled, startAt: start })}
           navigateToSchedule={navigateToSchedule}
           navigateToComments={navigateToComments}
           navigateToUser={navigateToUser}

@@ -7,8 +7,8 @@ import CommentButton from '../CommentButton';
 
 import colors from 'config/colors';
 
-const FONT_SIZE = 20;
-const defaultColor = colors.primary_light;
+const FONT_SIZE = 22;
+const defaultColor = colors.gray;
 
 export default class Actions extends React.Component {
   shouldComponentUpdate = (nextProps) => (
@@ -40,7 +40,7 @@ export default class Actions extends React.Component {
           id={id}
           isBookmarked={isBookmarked}
           bookmarksCount={bookmarksCount}
-          activeColor={defaultColor}
+          activeColor={colors.primary_light}
           size={FONT_SIZE}
           color={color}
           small={small}
@@ -55,6 +55,7 @@ export default class Actions extends React.Component {
         <LocationButton
           address={address}
           color={color}
+          size={FONT_SIZE}
         />
         {
           small ? null : (

@@ -13,11 +13,14 @@ class IconBagdeButton extends React.Component {
 
   shouldComponentUpdate = nextProps => nextProps.count !== this.props.count;
 
-  _renderIcon = () => <Icon name={this.props.icon} size={this.props.size} color={this.props.color} />
+  _renderIcon = () => <Icon
+    name={this.props.icon}
+    size={this.props.size}
+    color={this.props.color}
+  />;
   
   render() {
     const {
-      color,
       size,
       count,
       stores

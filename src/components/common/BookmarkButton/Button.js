@@ -36,11 +36,11 @@ export default class Button extends React.Component {
 
     return (
       <IconBadge
-        icon={`bookmark${isBookmarked ? '' : '-border'}`}
+        icon="bookmark"
         onPress={this._onContinue}
         size={size}
-        color={isBookmarked ? activeColor : color}
         count={bookmarksCount}
+        color={isBookmarked ? activeColor : color}
       />
     );
   }

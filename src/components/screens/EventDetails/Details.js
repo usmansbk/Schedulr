@@ -19,7 +19,7 @@ export default inject('stores')(observer(
     scheduleName,
     authorName,
     scheduleId,
-    recur,
+    recurrence,
     until,
     firstAt,
     createdAt,
@@ -86,7 +86,7 @@ export default inject('stores')(observer(
             }
             <View style={stores.appStyles.eventDetails.item}>
               <Text style={stores.appStyles.eventDetails.label}>{I18n.get("REPEAT")}</Text>
-              <Text style={stores.appStyles.eventDetails.value}>{recur}</Text>
+              <Text style={stores.appStyles.eventDetails.value}>{recurrence}</Text>
             </View>
             {
               Boolean(until) && (
