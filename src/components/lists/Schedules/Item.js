@@ -59,7 +59,7 @@ class Item extends React.Component {
                   name="volume-x"
                   size={18}
                   style={styles.muteIcon}
-                  color={stores.themeStore.colors.tint}
+                  color={stores.themeStore.colors.light_red}
                 />
               }
               <Text numberOfLines={1} ellipsizeMode="tail" style={isPending ? styles.offlineName : styles.itemName}>{name}</Text>

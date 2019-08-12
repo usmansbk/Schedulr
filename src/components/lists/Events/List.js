@@ -206,14 +206,6 @@ class List extends React.Component {
     this._processEvents(this.props.events);
   };
 
-  
-  shouldComponentUpdate = (nextProps, nextState) => {
-    return (
-      Boolean(nextProps.loading) !== Boolean(this.props.loading) ||
-      this.state.sections !== nextState.sections
-    );
-  };
-
   _onScroll = (event) => {
     this.props.handleScroll && this.props.handleScroll(event.nativeEvent.contentOffset.y)
   };
@@ -266,11 +258,7 @@ class List extends React.Component {
     })}
     address={venue}
     isMuted={
-      this.props.stores.appState.mutedList.includes(id) ||
-      (
-        !this.props.stores.appState.allowedList.includes(id) &&
-        this.props.stores.appState.mutedList.includes(schedule.id)
-      )
+      this.props.stores.appState.mutedList.includes(id)
     }
     eventScheduleId={schedule && schedule.id}
     isBookmarked={isBookmarked}
@@ -305,9 +293,7 @@ class List extends React.Component {
         style={stores.appStyles.eventsList.list}
         stickySectionHeadersEnabled
         sections={sections}
-        extraData={
-          stores.appState.allowedList.length + stores.appState.mutedList.length
-        }
+        extraData={stores.appState.mutedList.length}
         ListHeaderComponent={this._renderHeader}
         ListEmptyComponent={this._renderEmptyList}
         ItemSeparatorComponent={this._renderSeparator}

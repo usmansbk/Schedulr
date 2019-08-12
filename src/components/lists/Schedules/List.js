@@ -73,8 +73,6 @@ class List extends Component {
       stores
     } = this.props;
     const data = sortSchedules(schedules);
-    const styles = stores.appStyles.schedulesList;
-    const colors = stores.themeStore.colors;
     const mutedList = stores.appState.mutedList;
 
     return (
@@ -83,13 +81,13 @@ class List extends Component {
         refreshControl={
           <RefreshControl
             refreshing={loading}
-            colors={[colors.primary]}
-            progressBackgroundColor={colors.bg}
+            colors={[stores.themeStore.colors.primary]}
+            progressBackgroundColor={stores.themeStore.colors.bg}
           />
         }
-        style={styles.list}
+        style={stores.appStyles.schedulesList.list}
         extraData={mutedList.length}
-        contentContainerStyle={styles.contentContainer}
+        contentContainerStyle={stores.appStyles.schedulesList.contentContainer}
         initialNumToRender={7}
         getItemLayout={this._getItemLayout}
         ItemSeparatorComponent={this._renderSeparator}

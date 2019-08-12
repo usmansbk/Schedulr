@@ -147,24 +147,11 @@ export default class AppState {
     }
   };
 
-  @action toggleMute = (id, isMuted) => {
-    const inMuteList = this.mutedList.includes(id);
+  @action toggleMute = (mutedId, isMuted) => {
     if (isMuted) {
-      // Unmute
-      if (inMuteList) {
-        // Remove from mute list
-        this.mutedList = this.mutedList.filter(currentId => currentId !== id);
-      } else {
-        // Add event to allowed list
-        this.allowedList.push(id);
-      }
+      this.mutedList = this.mutedList.filter(id => id !== mutedId);
     } else {
-      // Mute
-      this.mutedList.push(id);
-      const inAllowedList = this.allowedList.includes(id);
-      if (inAllowedList) {
-        this.allowedList = this.allowedList.filter(currentId => currentId !== id);
-      }
+      this.mutedList.push(mutedId);
     }
   };
 
