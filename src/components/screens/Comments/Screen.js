@@ -6,18 +6,18 @@ export default class Screen extends React.Component {
   state = {
     visibleDialog: null,
     id: null,
-    toCommentId: null,
+    commentToId: null,
     targetName: null,
   }
   _goBack = () => this.props.navigation.goBack();
   _onDelete = (id) => this._openDialog(id, 'delete');
-  _onReply = (toCommentId, targetName) => this.setState({ toCommentId, targetName }, this._focusCommentInput);
-  _cancelReply = () => this.setState({ toCommentId: null, targetName: null }, this._blurCommentInput);
+  _onReply = (commentToId, targetName) => this.setState({ commentToId, targetName }, this._focusCommentInput);
+  _cancelReply = () => this.setState({ commentToId: null, targetName: null }, this._blurCommentInput);
   _openDialog = (id, visibleDialog) => this.setState({
     visibleDialog,
     id,
     targetName: null,
-    toCommentId: null
+    commentToId: null
   });
   _hideDialog = () => this.setState({ visibleDialog: null, id: null });
   _focusCommentInput = () => {
@@ -32,10 +32,10 @@ export default class Screen extends React.Component {
   _onSubmit = (message) => {
     const input = {
       content: message,
-      eventId: this.props.eventId
+      commentEventId: this.props.commentEventId
     };
     
-    if (this.state.toCommentId) input.toCommentId = this.state.toCommentId;
+    if (this.state.commentToId) input.commentToId = this.state.commentToId;
     this.props.onSubmit && this.props.onSubmit(input);
     this._cancelReply();
   };
@@ -49,12 +49,15 @@ export default class Screen extends React.Component {
     const {
       loading,
       comments,
+      data,
       onRefresh,
       error,
       fetchMoreComments,
       nextToken,
       user
     } = this.props;
+
+    console.log(data);
     
     return (
       <>
@@ -80,7 +83,7 @@ export default class Screen extends React.Component {
       />
       <DeleteCommentDialog
         id={this.state.id}
-        eventId={this.props.eventId}
+        commentEventId={this.props.commentEventId}
         visible={visibleDialog === 'delete'}
         handleDismiss={this._hideDialog}
       />

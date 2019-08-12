@@ -59,7 +59,6 @@ class Item extends React.Component {
     } = this.props;
 
     const styles = stores.appStyles.eventsList;
-    console.log(title);
     
     const isPending = id[0] === '-';
     return (

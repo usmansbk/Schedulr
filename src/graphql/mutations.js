@@ -975,130 +975,21 @@ export const createComment = `mutation CreateComment($input: CreateCommentInput!
     to {
       id
       content
-      to {
-        id
-        content
-        isOwner
-        createdAt
-        updatedAt
-      }
-      replies {
-        nextToken
-      }
       author {
         id
-        email
         name
         pictureUrl
-        website
         me
-        followingCount
-        createdCount
-        createdAt
-        updatedAt
       }
       isOwner
-      event {
-        id
-        title
-        description
-        venue
-        category
-        startAt
-        endAt
-        allDay
-        recurrence
-        until
-        isPublic
-        isOwner
-        commentsCount
-        bookmarksCount
-        createdAt
-        updatedAt
-      }
-      createdAt
-      updatedAt
-    }
-    replies {
-      items {
-        id
-        content
-        isOwner
-        createdAt
-        updatedAt
-      }
-      nextToken
     }
     author {
       id
-      email
       name
       pictureUrl
-      website
-      created {
-        nextToken
-      }
-      following {
-        nextToken
-      }
-      bookmarks {
-        nextToken
-      }
       me
-      followingCount
-      createdCount
-      createdAt
-      updatedAt
     }
     isOwner
-    event {
-      id
-      title
-      description
-      venue
-      category
-      startAt
-      endAt
-      allDay
-      recurrence
-      until
-      isPublic
-      isOwner
-      author {
-        id
-        email
-        name
-        pictureUrl
-        website
-        me
-        followingCount
-        createdCount
-        createdAt
-        updatedAt
-      }
-      schedule {
-        id
-        name
-        description
-        isPublic
-        isOwner
-        status
-        followersCount
-        eventsCount
-        createdAt
-        updatedAt
-      }
-      comments {
-        nextToken
-      }
-      bookmarks {
-        nextToken
-      }
-      commentsCount
-      bookmarksCount
-      createdAt
-      updatedAt
-    }
     createdAt
     updatedAt
   }

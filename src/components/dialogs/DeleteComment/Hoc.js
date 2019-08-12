@@ -17,12 +17,12 @@ export default Dialog;
 //       update: (cache, { data: { deleteComment } }) => {
 //         if (deleteComment) {
 //           const query = gql(listEventComments);
-//           const data = cache.readQuery({ query, variables: { id: ownProps.eventId } });
+//           const data = cache.readQuery({ query, variables: { id: ownProps.commentEventId } });
 //           data.listComments.items = data.listComments.items.filter(item => item.id !== deleteComment.id);
-//           cache.writeQuery({ query, data, variables: { id: ownProps.eventId } });
+//           cache.writeQuery({ query, data, variables: { id: ownProps.commentEventId } });
 //         }
 //       },
-//       optimisticResponse: () => deleteCommentResponse({ id: ownProps.id, eventId: ownProps.eventId }),
+//       optimisticResponse: () => deleteCommentResponse({ id: ownProps.id, commentEventId: ownProps.commentEventId }),
 //     }),
 //     ...ownProps
 //   })
