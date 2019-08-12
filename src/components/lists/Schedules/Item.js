@@ -23,7 +23,8 @@ class Item extends React.Component {
     return (
       this.props.name !== nextProps.name ||
       this.props.description !== nextProps.description ||
-      this.props.isClosed !== nextProps.isClosed
+      this.props.isClosed !== nextProps.isClosed ||
+      this.props.isMuted !== nextProps.isMuted
     );
   };
   
@@ -33,11 +34,11 @@ class Item extends React.Component {
       name,
       description,
       isClosed,
-      stores
+      stores,
+      isMuted
     } = this.props;
     
     const isPending = id[0] === '-';
-    const isMuted= stores.appState.mutedList.includes(id);
     const styles = stores.appStyles.schedulesList;
 
     return (

@@ -77,7 +77,7 @@ export default {
   SIGN_OUT_message: "Will clear data",
 
   HELP_title: "Help",
-  HELP_contactUs: "Contact us",
+  HELP_contactUs: "Contact developer",
   HELP_contactUsSubtitle: "Questions? Need help",
   HELP_copyRight: "Copyright information",
   HELP_terms: "Terms and Privacy Policy",

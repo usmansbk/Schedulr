@@ -55,6 +55,7 @@ class List extends Component {
         description={description}
         isPublic={isPublic}
         isClosed={status === SCHEDULE_CLOSED}
+        isMuted={this.props.stores.appState.mutedSchedules.includes(id)}
         isOwner={isOwner}
         isFollowing={isFollowing}
         onPressItem={this._onPressItem}

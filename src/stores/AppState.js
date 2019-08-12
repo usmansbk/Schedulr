@@ -21,6 +21,7 @@ export default class AppState {
   @observable query = '';
   @persist @observable address = 'Nigeria';
   @persist('list') @observable mutedEvents = [];
+  @persist('list') @observable mutedSchedules = [];
   @persist('list') @observable allowedList = [];
   @persist('object') @observable location = {
     lon: null,
@@ -52,6 +53,7 @@ export default class AppState {
     this.query = '';
     this.mutedEvents = [];
     this.allowedList = [];
+    this.mutedSchedules = [];
     this.address = 'Nigeria';
     this.location = {
       lat: null,
