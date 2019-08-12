@@ -132,6 +132,31 @@ export const getUserData = `query GetUserData($id: ID!) {
             items {
               id
               title
+              description
+              venue
+              category
+              startAt
+              endAt
+              allDay
+              recurrence
+              until
+              isPublic
+              isOwner
+              isCancelled
+              cancelledDates
+              author {
+                id
+                name
+                me
+              }
+              schedule {
+                id
+                name
+              }
+              commentsCount
+              bookmarksCount
+              createdAt
+              updatedAt
             }
             nextToken
           }
@@ -144,6 +169,31 @@ export const getUserData = `query GetUserData($id: ID!) {
         event {
           id
           title
+          description
+          venue
+          category
+          startAt
+          endAt
+          allDay
+          recurrence
+          until
+          isPublic
+          isOwner
+          isCancelled
+          cancelledDates
+          author {
+            id
+            name
+            me
+          }
+          schedule {
+            id
+            name
+          }
+          commentsCount
+          bookmarksCount
+          createdAt
+          updatedAt
         }
       }
       nextToken
