@@ -3,7 +3,7 @@ import gql from 'graphql-tag';
 import { inject, observer } from 'mobx-react';
 import { getUser, getEventComments } from 'api/queries';
 import { createComment } from 'api/mutations';
-import Screen from './Screen';
+import Container from './Container';
 // import { createCommentResponse } from 'helpers/optimisticResponse';
 // import { COMMENTS_LIMIT } from 'lib/constants';
 
@@ -12,7 +12,7 @@ import Screen from './Screen';
 export default inject("stores")(observer(
   compose(
     graphql(gql(getUser), {
-      alias: 'withCommentsUserScreen',
+      alias: 'withCommentsUserScreenContainer',
       options: props => ({
         fetchPolicy: 'cache-only',
         variables: {
@@ -26,7 +26,7 @@ export default inject("stores")(observer(
       })
     }),
     graphql(gql(createComment), {
-      alias: 'withCreateCommentScreen',
+      alias: 'withCreateCommentScreenContainer',
       props: ({ mutate, ownProps }) => ({
         onSubmit: (input) => mutate({
           variables: {
@@ -37,7 +37,7 @@ export default inject("stores")(observer(
       })
     }),
     graphql(gql(getEventComments), {
-      alias: 'withGetEventCommentsScreen',
+      alias: 'withGetEventCommentsScreenContainer',
       options: props => ({
         fetchPolicy: 'cache-and-network',
         notifyOnNetworkStatusChange: true,
@@ -52,5 +52,5 @@ export default inject("stores")(observer(
         ...ownProps
       })
     })
-  )(Screen)
+  )(Container)
 ));

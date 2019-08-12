@@ -1,93 +1,101 @@
 import React from 'react';
-import Comments from './Comments';
-import DeleteCommentDialog from 'components/dialogs/DeleteComment';
+import { Appbar } from 'react-native-paper';
+import Icon from 'react-native-vector-icons/Feather';
+import { inject, observer } from 'mobx-react';
+import { I18n } from 'aws-amplify';
+import List from 'components/lists/Comments';
+import CommentForm from 'components/forms/Comment';
 
-export default class Screen extends React.Component {
+class Screen extends React.Component {
+
   state = {
-    visibleDialog: null,
-    id: null,
-    commentToId: null,
-    targetName: null,
+    id: null
+  };
+
+  static defaultProps = {
+    comments: []
+  };
+
+  focusCommentInput = () => this._inputRef && this._inputRef.focusInput();
+
+  blurCommentInput = () => this._inputRef && this._inputRef.blurInput();
+
+  scrollDown = () => this._commentsListRef && this._commentsListRef.scrollDown();
+
+  scrollTop = () => this._commentsListRef && this._commentsListRef.scrollTop();
+
+  _handleSubmit = (message) => {
+    this.props.onSubmit(message);
+    this.scrollTop();
+  };
+
+  _handleDelete = (id) => {
+    this.props.handleDelete(id);
   }
-  _goBack = () => this.props.navigation.goBack();
-  _onDelete = (id) => this._openDialog(id, 'delete');
-  _onReply = (commentToId, targetName) => this.setState({ commentToId, targetName }, this._focusCommentInput);
-  _cancelReply = () => this.setState({ commentToId: null, targetName: null }, this._blurCommentInput);
-  _openDialog = (id, visibleDialog) => this.setState({
-    visibleDialog,
-    id,
-    targetName: null,
-    commentToId: null
-  });
-  _hideDialog = () => this.setState({ visibleDialog: null, id: null });
-  _focusCommentInput = () => {
-    this._commentsRef && this._commentsRef.focusCommentInput();
-  };
-  _blurCommentInput = () => {
-    this._commentsRef && this._commentsRef.blurCommentInput();
-  };
-  _scrollDown = () => {
-    this._commentsRef && this._commentsRef.scrollDown();
-  }
-  _onSubmit = (message) => {
-    const input = {
-      content: message,
-      commentEventId: this.props.commentEventId
-    };
-    
-    if (this.state.commentToId) input.commentToId = this.state.commentToId;
-    this.props.onSubmit && this.props.onSubmit(input);
-    this._cancelReply();
-  };
-  _navigateToProfile = (id) => this.props.navigation.navigate('UserProfile', { id });
 
   render() {
     const {
-      visibleDialog,
-      targetName
-    } = this.state;
-    const {
       loading,
+      userName,
+      userPictureUrl,
+      targetName,
       comments,
-      data,
-      onRefresh,
-      error,
-      fetchMoreComments,
       nextToken,
-      user
+      error,
+      onRefresh,
+      goBack,
+      title,
+      handleReply,
+      cancelReply,
+      navigateToProfile,
+      stores,
+      fetchMoreComments,
     } = this.props;
 
-    console.log(data);
-    
+    const styles = stores.appStyles.styles;
+    const colors = stores.themeStore.colors;
+
     return (
       <>
-      <Comments
-        loading={loading}
-        title={this.props.navigation.getParam('title')}
-        error={Boolean(error)}
-        comments={comments}
-        userName={user.name}
-        userPictureUrl={user.pictureUrl}
-        userId={user.id}
-        ref={commentsRef => this._commentsRef = commentsRef}
-        targetName={targetName}
-        goBack={this._goBack}
-        handleDelete={this._onDelete}
-        handleReply={this._onReply}
-        cancelReply={this._cancelReply}
-        onSubmit={this._onSubmit}
-        onRefresh={onRefresh}
-        navigateToProfile={this._navigateToProfile}
-        fetchMoreComments={fetchMoreComments}
-        nextToken={nextToken}
-      />
-      <DeleteCommentDialog
-        id={this.state.id}
-        commentEventId={this.props.commentEventId}
-        visible={visibleDialog === 'delete'}
-        handleDismiss={this._hideDialog}
-      />
+        <Appbar style={styles.elevatedHeader}>
+          <Appbar.Action
+            icon={() => <Icon
+              color={colors.gray}
+              size={24}
+              name="arrow-left"
+            />}
+            onPress={goBack}
+            color={colors.gray}
+          />
+          <Appbar.Content
+            title={title || I18n.get('COMMENTS')}
+            titleStyle={styles.headerColor}
+          />
+        </Appbar>
+        <List
+          ref={commentsRef => this._commentsListRef = commentsRef}
+          error={error}
+          loading={loading}
+          comments={comments}
+          nextToken={nextToken}
+          onRefresh={onRefresh}
+          handleReply={handleReply}
+          onDelete={this._handleDelete}
+          navigateToProfile={navigateToProfile}
+          fetchMoreComments={fetchMoreComments}
+        />
+        <CommentForm
+          name={userName}
+          pictureUrl={userPictureUrl}
+          ref={inputRef => this._inputRef = inputRef}
+          handleSubmit={this._handleSubmit}
+          targetName={targetName}
+          cancelReply={cancelReply}
+          disabled={error || (!comments.length && loading)}
+        />
       </>
-    )
+    );
   }
 }
+
+export default inject("stores")(observer(Screen));
