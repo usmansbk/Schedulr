@@ -9,7 +9,7 @@ import Loading from 'components/common/Loading';
 import Error from 'components/common/Error';
 import { SCHEDULE_CLOSED } from 'lib/constants';
 
-const ABOUT_HALF = Dimensions.get('window').height / 2;
+const HEIGHT = Dimensions.get('window').height / 2;
 
 class Schedule extends React.Component {
   state = {
@@ -96,7 +96,7 @@ class Schedule extends React.Component {
           handleScroll={this._onScroll}
         />
         {
-          Boolean(this.state.offsetY > ABOUT_HALF) && (
+          Boolean(this.state.offsetY > HEIGHT) && (
             <Fab
               icon="chevron-up"
               secondary
