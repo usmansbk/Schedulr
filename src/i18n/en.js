@@ -172,6 +172,7 @@ export default {
   HELPER_TEXT_recommended: "Recommended",
   HELPER_TEXT_required: "Required",
   HELPER_TEXT_invalidDatesAndRecur: "Event's duration should be shorter than repeat frequency",
+  HELPER_TEXT_description: "",
 
   MENU_edit: "Edit",
   MENU_close: "Close",

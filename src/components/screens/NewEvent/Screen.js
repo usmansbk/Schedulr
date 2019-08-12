@@ -70,8 +70,8 @@ export default class NewEventScreen extends React.Component {
 
     return ({
       title,
-      description,
-      venue,
+      description: description || '',
+      venue: venue || '',
       startAt: start,
       endAt: end,
       allDay,
