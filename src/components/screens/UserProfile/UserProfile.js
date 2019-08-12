@@ -20,25 +20,23 @@ class UserProfile extends React.Component {
   shouldComponentUpdate = (nextProps) => nextProps.navigation.isFocused();
 
   _toFollowingTab = () => {
-    const { user, stores, navigation } = this.props;
+    const { user, navigation } = this.props;
     if (user) {
       const { id, name } = user; 
       navigation.push('UserSchedules', {
         id,
         name,
-        myProfile: stores.appState.userId === id,
       });
     }
   };
 
   _toCreatedTab = () => {
-    const { user, stores, navigation } = this.props;
+    const { user, navigation } = this.props;
     if (user) {
       const { id, name } = user; 
       navigation.push('UserSchedules', {
         id,
         name,
-        myProfile: stores.appState.userId === id,
         toCreatedTab: true
       });
     }

@@ -113,14 +113,15 @@ export default inject('stores')(observer(
         fetchPolicy: 'cache-first',
         notifyOnNetworkStatusChange: true,
         variables: {
-          id: props.stores.appState.userId
+          id: props.navigation.getParam('id')
         }
       }),
-      props: ({ data }) => ({
+      props: ({ data, ownProps }) => ({
         loading: data.loading || data.networkStatus === 4,
         error: data.error,
         data: (data && data.getUserSchedules &&
           data.getUserSchedules.created && data.getUserSchedules.created.items),
+        ...ownProps
       }),
     }),
   )(CreatedSchedules)
