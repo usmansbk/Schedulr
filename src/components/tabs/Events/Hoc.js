@@ -23,7 +23,7 @@ export default inject("stores")(observer(
       }),
       props: ({ data, ownProps}) => ({
         loading: data.loading || data.networkStatus === 4,
-        data: data.getUserData,
+        data: data && data.getUserData,
         error: data.error,
         onRefresh: () =>  data.refetch(),
         ...ownProps

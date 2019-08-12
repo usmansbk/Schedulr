@@ -47,7 +47,6 @@ class EventDetails extends React.Component {
       cardView,
       stores
     } = this.props;
-    console.log(event);
     const {
       id,
       title,

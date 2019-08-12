@@ -1,33 +1,32 @@
-// import { graphql, compose } from 'react-apollo';
-// import { withNavigationFocus } from 'react-navigation';
-// import gql from 'graphql-tag';
+import { graphql, compose } from 'react-apollo';
+import { withNavigationFocus } from 'react-navigation';
+import gql from 'graphql-tag';
 import { inject, observer } from 'mobx-react';
 import Schedules from './Schedules';
+import { getUserData } from 'api/queries';
 
-export default inject("stores")(observer(Schedules));
+// export default inject("stores")(observer(Schedules));
 
-// import { listAllSchedules } from 'api/queries';
 
-// const alias = 'withSchedulesContainer';
-// const BaseQuery = gql(listAllSchedules);
+const alias = 'withSchedulesContainer';
+const BaseQuery = gql(getUserData);
 
-// export default inject("stores")(observer(
-//   compose(
-//     withNavigationFocus,
-//     graphql(BaseQuery,
-//     {
-//       alias,
-//       options: {
-//         fetchPolicy: 'cache-first',
-//         notifyOnNetworkStatusChange: true,
-//       },
-//       props: ({ data, ownProps}) => ({
-//         loading: data.loading || data.networkStatus === 4,
-//         schedules: data && data.listAllSchedules && data.listAllSchedules.items || [],
-//         error: data.error,
-//         onRefresh: () => data.refetch(),
-//         ...ownProps
-//       })
-//     })
-//   )(Schedules)
-// ));
+export default inject("stores")(observer(
+  compose(
+    withNavigationFocus,
+    graphql(BaseQuery,
+    {
+      alias,
+      options: props => ({
+        fetchPolicy: 'cache-only',
+        variables : {
+          id: props.stores.appState.userId
+        }
+      }),
+      props: ({ data, ownProps}) => ({
+        data: data && data.getUserData,
+        ...ownProps
+      })
+    })
+  )(Schedules)
+));
