@@ -266,7 +266,7 @@ class List extends React.Component {
       cancelledDates: cancelledDates || []
     })}
     address={venue}
-    scheduleId={schedule && schedule.id}
+    eventScheduleId={schedule && schedule.id}
     isBookmarked={isBookmarked}
     bookmarksCount={bookmarksCount}
     isOwner={isOwner}
@@ -294,7 +294,7 @@ class List extends React.Component {
     const mutedList = stores.appState.mutedList;
     const allowedList = stores.appState.allowedList;
 
-    const extraData = mutedList.length - allowedList.length;
+    const extraData = mutedList.length + allowedList.length;
 
     return (
       <SectionList
