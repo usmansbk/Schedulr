@@ -6,13 +6,14 @@ import List from 'components/lists/Events';
 import Fab from 'components/common/Fab';
 import Loading from 'components/common/Loading';
 import Error from 'components/common/Error';
+import { SCHEDULE_CLOSED } from 'lib/constants';
 
 const ABOUT_HALF = 600;
 
 class Schedule extends React.Component {
   state = {
     offsetY: 0
-  }
+  };
 
   static defaultProps = {
     events: []
@@ -34,6 +35,7 @@ class Schedule extends React.Component {
     const id = this.props.schedule.id;
     this.props.navigation.navigate('ScheduleInfo', { id });
   };
+
   _navigateToNewEvent = () => {
     const scheduleId = this.props.schedule.id;
     this.props.navigation.navigate('NewEvent', { scheduleId });
@@ -94,8 +96,6 @@ class Schedule extends React.Component {
           listType="schedule"
           events={events.items}
           navigation={this.props.navigation}
-          loading={loadingEvents}
-          error={loadingEventsError}
           handleScroll={this._onScroll}
         />
         {
@@ -108,7 +108,7 @@ class Schedule extends React.Component {
           )
         }
         {
-          !(Boolean(error) && this.events.length) && !isOffline && isOwner && (status !== 'CLOSED' ) && (
+          !(Boolean(error) && this.events.length) && !isOffline && isOwner && (status !== SCHEDULE_CLOSED ) && (
             <Fab
               icon="edit-2"
               onPress={this._navigateToNewEvent}

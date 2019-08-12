@@ -2,6 +2,9 @@ export const ONE_TIME_EVENT = 'NEVER';
 export const BULLET = '•';
 export const CIRCLE = '●';
 
+export const SCHEDULE_CLOSED = 'CLOSED';
+export const SCHEDULE_OPEN = 'OPEN';
+
 export const COMMENTS_LIMIT = 15;
 export const FOLLOWERS_LIMIT = 15;
 
