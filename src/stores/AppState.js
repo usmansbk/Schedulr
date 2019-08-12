@@ -157,6 +157,14 @@ export default class AppState {
     }
   };
 
+  @action toggleMuteSchedule = (mutedId, isMuted) => {
+    if (isMuted) {
+      this.mutedSchedules = this.mutedSchedules.filter(id => id !== mutedId);
+    } else {
+      this.mutedSchedules.push(mutedId);
+    }
+  }
+
   @action clearMutedList = () => {
     this.mutedEvents = [];
   };

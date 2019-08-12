@@ -16,7 +16,7 @@ class Item extends React.Component {
     this.ActionSheet && this.ActionSheet.showActionSheet();
   };
   _onMute = () => {
-    this.props.stores.appState.toggleMute(this.props.id);
+    this.props.stores.appState.toggleMuteSchedule(this.props.id, this.props.isMuted);
   };
   _navigateToInfo = () => this.props.navigateToScheduleInfo(this.props.id);
   shouldComponentUpdate = (nextProps) => {
