@@ -338,40 +338,8 @@ export const createUser = `mutation CreateUser($input: CreateUserInput!) {
     name
     pictureUrl
     website
-    created {
-      items {
-        id
-        name
-        description
-        isPublic
-        isOwner
-        status
-        followersCount
-        eventsCount
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
-    following {
-      items {
-        id
-        createdAt
-      }
-      nextToken
-    }
-    bookmarks {
-      items {
-        id
-        createdAt
-      }
-      nextToken
-    }
     me
-    followingCount
-    createdCount
     createdAt
-    updatedAt
   }
 }
 `;
@@ -382,39 +350,7 @@ export const updateUser = `mutation UpdateUser($input: UpdateUserInput!) {
     name
     pictureUrl
     website
-    created {
-      items {
-        id
-        name
-        description
-        isPublic
-        isOwner
-        status
-        followersCount
-        eventsCount
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
-    following {
-      items {
-        id
-        createdAt
-      }
-      nextToken
-    }
-    bookmarks {
-      items {
-        id
-        createdAt
-      }
-      nextToken
-    }
     me
-    followingCount
-    createdCount
-    createdAt
     updatedAt
   }
 }
@@ -422,44 +358,21 @@ export const updateUser = `mutation UpdateUser($input: UpdateUserInput!) {
 export const deleteUser = `mutation DeleteUser($input: DeleteUserInput!) {
   deleteUser(input: $input) {
     id
-    email
-    name
-    pictureUrl
-    website
     created {
       items {
         id
-        name
-        description
-        isPublic
-        isOwner
-        status
-        followersCount
-        eventsCount
-        createdAt
-        updatedAt
       }
-      nextToken
     }
     following {
       items {
         id
-        createdAt
       }
-      nextToken
     }
     bookmarks {
       items {
         id
-        createdAt
       }
-      nextToken
     }
-    me
-    followingCount
-    createdCount
-    createdAt
-    updatedAt
   }
 }
 `;
@@ -514,89 +427,19 @@ export const updateEvent = `mutation UpdateEvent($input: UpdateEventInput!) {
 export const deleteEvent = `mutation DeleteEvent($input: DeleteEventInput!) {
   deleteEvent(input: $input) {
     id
-    title
-    description
-    venue
-    category
-    startAt
-    endAt
-    allDay
-    recurrence
-    until
-    isPublic
-    isOwner
-    author {
-      id
-      email
-      name
-      pictureUrl
-      website
-      created {
-        nextToken
-      }
-      following {
-        nextToken
-      }
-      bookmarks {
-        nextToken
-      }
-      me
-      followingCount
-      createdCount
-      createdAt
-      updatedAt
-    }
     schedule {
       id
-      name
-      description
-      isPublic
-      isOwner
-      status
-      events {
-        nextToken
-      }
-      author {
-        id
-        email
-        name
-        pictureUrl
-        website
-        me
-        followingCount
-        createdCount
-        createdAt
-        updatedAt
-      }
-      followers {
-        nextToken
-      }
-      followersCount
-      eventsCount
-      createdAt
-      updatedAt
     }
     comments {
       items {
         id
-        content
-        isOwner
-        createdAt
-        updatedAt
       }
-      nextToken
     }
     bookmarks {
       items {
         id
-        createdAt
       }
-      nextToken
     }
-    commentsCount
-    bookmarksCount
-    createdAt
-    updatedAt
   }
 }
 `;
@@ -838,8 +681,6 @@ export const createSchedule = `mutation CreateSchedule($input: CreateScheduleInp
     status
     author {
       id
-      name
-      pictureUrl
       me
     }
     events {
@@ -874,10 +715,6 @@ export const createSchedule = `mutation CreateSchedule($input: CreateScheduleInp
       }
       nextToken
     }
-    followersCount
-    eventsCount
-    createdAt
-    updatedAt
   }
 }
 `;
