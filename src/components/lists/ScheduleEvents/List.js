@@ -58,7 +58,7 @@ class List extends Component {
     category,
     startAt,
     endAt,
-    recur,
+    recurrence,
     schedule,
     allDay,
     isConcluded,
@@ -69,9 +69,13 @@ class List extends Component {
     title={title}
     startAt={startAt}
     endAt={endAt}
-    status={getStatus({ isCancelled, cancelledDates, startAt, endAt, isConcluded})}
+    status={getStatus({
+      isCancelled,
+      cancelledDates: cancelledDates || [],
+      startAt, endAt, isConcluded
+    })}
     category={getCategory(category)}
-    recur={parseRepeat(recur)}
+    recurrence={parseRepeat(recurrence)}
     time={getHumanTime({ allDay, startAt, endAt })}
     scheduleId={schedule && schedule.id}
     duration={getDuration(startAt, endAt, allDay)}

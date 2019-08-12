@@ -1,35 +1,40 @@
 import React from 'react';
 import { Appbar } from 'react-native-paper';
-import { inject, observer } from 'mobx-react';
+import { sortBookmarks } from 'lib/utils';
+import { getEvents } from 'lib/calendr';
 import Icon from 'react-native-vector-icons/Feather';
 import List from 'components/lists/ScheduleEvents';
 import Loading from 'components/common/Loading';
 import Error from 'components/common/Error';
 
-class ScheduleEvents extends React.Component {
-  static defaultProps = {
-    events: []
-  };
+export default class ScheduleEvents extends React.Component {
+
+  get events() {
+    const { schedule } = this.props;
+    if (!schedule) return [];
+    const { events } = schedule;
+    return sortBookmarks(getEvents(events.items));
+  }
 
   render() {
     const {
       schedule,
-      events,
       error,
       loading,
-      loadingEvents,
-      loadingEventsError,
       onPress,
       onRefresh,
       fetchPastEvents,
-      stores
+      stores,
+      id
     } = this.props;
-    if (loading) return <Loading />;
+
+    if (loading && !schedule) return <Loading />;
     if (!schedule && error) return <Error onRefresh={onRefresh} />;
 
+    console.log(schedule);
     const {
       name,
-      description,
+      description
     } = schedule;
 
     const styles = stores.appStyles.styles;
@@ -54,9 +59,9 @@ class ScheduleEvents extends React.Component {
         </Appbar>
         <List
           listType="schedule"
-          events={events}
-          loading={loadingEvents}
-          error={loadingEventsError}
+          events={this.events}
+          loading={loading}
+          error={error}
           onRefresh={onRefresh}
           fetchPastEvents={fetchPastEvents}
         />
@@ -64,5 +69,3 @@ class ScheduleEvents extends React.Component {
     );
   }
 }
-
-export default inject("stores")(observer(ScheduleEvents));

@@ -47,8 +47,8 @@ class Schedule extends React.Component {
       onRefresh,
       stores
     } = this.props;
-    if (loading) return <Loading />;
-    if (!schedule && error) return <Error onRefresh={onRefresh} />;
+    if (loading && !schedule) return <Loading />;
+    if (error && !schedule) return <Error onRefresh={onRefresh} />;
 
     const {
       id,
