@@ -24,7 +24,6 @@ export default inject("stores")(observer(
       props: ({ data, ownProps }) => ({
         event: data && data.getEvent,
         isNew: ownProps.navigation.getParam('isNew'),
-        scheduleId: ownProps.navigation.getParam('scheduleId'),
         ...ownProps
       }),
       skip: props => {

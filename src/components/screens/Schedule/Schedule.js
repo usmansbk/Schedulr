@@ -122,7 +122,7 @@ class Schedule extends React.Component {
         {
           !(Boolean(error) && this.events.length) && !isOffline && isOwner && (status !== 'CLOSED' ) && (
             <Fab
-              icon="edit"
+              icon="edit-2"
               onPress={this._navigateToNewEvent}
             />
           )

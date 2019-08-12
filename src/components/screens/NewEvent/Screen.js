@@ -26,7 +26,8 @@ export default class NewEventScreen extends React.Component {
   }
   
   _getInitialValues = () => {
-    const { event={}, scheduleId } = this.props;
+    const { event={}, navigation } = this.props;
+    const scheduleId = navigation.getParam("scheduleId");
     const {
       title,
       description,
@@ -44,7 +45,7 @@ export default class NewEventScreen extends React.Component {
     const targetScheduleId = scheduleId || (schedule && schedule.id);
     const currentSchedule = this.schedules && this.schedules.find(schedule => schedule.id === targetScheduleId);
 
-    const targetDate = this.props.navigation.getParam('targetDate', moment().valueOf())
+    const targetDate = navigation.getParam('targetDate', moment().valueOf())
     const initialStartAt = moment(targetDate).valueOf();
     const initialEndAt = moment(targetDate).add(2, 'hours').valueOf();
     let newStart = startAt;

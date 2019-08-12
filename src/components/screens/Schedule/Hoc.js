@@ -24,22 +24,6 @@ export default compose(
       ...ownProps,
     })
   }),
-//   graphql(gql(listAllEvents), {
-//     alias,
-//     skip: props => !props.cacheFirst,
-//     options: {
-//       fetchPolicy: 'cache-only',
-//     },
-//     props: ({ data, ownProps}) => ({
-//       loadingEvents: data.loading,
-//       loadingEventsError: data.error,
-//       events: (
-//         data && data.listAllEvents && data.listAllEvents.items && 
-//         data.listAllEvents.items.filter(event => event.schedule && (event.schedule.id === ownProps.id)) || []
-//       ),
-//       ...ownProps
-//     })
-//   }),
 //   graphql(gql(listScheduleEvents), {
 //     alias,
 //     skip: props => props.cacheFirst,
