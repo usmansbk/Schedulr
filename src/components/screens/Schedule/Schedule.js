@@ -6,7 +6,6 @@ import List from 'components/lists/Events';
 import Fab from 'components/common/Fab';
 import Loading from 'components/common/Loading';
 import Error from 'components/common/Error';
-import { SCHEDULE_CLOSED } from 'lib/constants';
 import client from 'config/client';
 import { getScheduleEvents } from 'api/fragments';
 
@@ -121,7 +120,7 @@ class Schedule extends React.Component {
           )
         }
         {
-          !(Boolean(error) && this.events.length) && !isOffline && isOwner && (status !== SCHEDULE_CLOSED ) && (
+          !(Boolean(error) && this.events.length) && !isOffline && isOwner && (status !== 'CLOSED' ) && (
             <Fab
               icon="edit"
               onPress={this._navigateToNewEvent}
