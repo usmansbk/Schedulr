@@ -22,7 +22,7 @@ export default class AppState {
   @persist @observable address = 'Nigeria';
   @persist('list') @observable mutedEvents = [];
   @persist('list') @observable mutedSchedules = [];
-  @persist('list') @observable allowedList = [];
+  @persist('list') @observable allowedEvents = [];
   @persist('object') @observable location = {
     lon: null,
     lat: null
@@ -30,7 +30,7 @@ export default class AppState {
   @persist('object') @observable prefs = {
     showPrivateScheduleAlert: true,
   };
-  
+
   @persist('list') @observable categories =  categories(this.settings.language);
 
   debounceQuery = debounce((val) => this.query = val, 250);
@@ -53,7 +53,7 @@ export default class AppState {
     this.searchText = '';
     this.query = '';
     this.mutedEvents = [];
-    this.allowedList = [];
+    this.allowedEvents = [];
     this.mutedSchedules = [];
     this.address = 'Nigeria';
     this.location = {
@@ -150,11 +150,17 @@ export default class AppState {
     }
   };
 
-  @action toggleMute = (mutedId, isMuted) => {
+  @action toggleMute = (id, isMuted) => {
     if (isMuted) {
-      this.mutedEvents = this.mutedEvents.filter(id => id !== mutedId);
+      const inMutedList = this.mutedEvents.includes(id);
+      if (inMutedList) {
+        this.mutedEvents = this.mutedEvents.filter(currentId => currentId !== id);
+      } else {
+        this.allowedEvents.push(id);
+      }
     } else {
-      this.mutedEvents.push(mutedId);
+      this.mutedEvents.push(id);
+      this.allowedEvents = this.allowedEvents.filter(currentId => currentId !== id);
     }
   };
 

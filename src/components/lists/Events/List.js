@@ -258,7 +258,9 @@ class List extends React.Component {
     })}
     address={venue}
     isMuted={
-      this.props.stores.appState.mutedEvents.includes(id)
+      this.props.stores.appState.mutedEvents.includes(id) ||
+      (!this.props.stores.appState.allowedEvents.includes(id) &&
+      this.props.stores.appState.mutedSchedules.includes(schedule.id))
     }
     eventScheduleId={schedule && schedule.id}
     isBookmarked={isBookmarked}
@@ -293,7 +295,11 @@ class List extends React.Component {
         style={stores.appStyles.eventsList.list}
         stickySectionHeadersEnabled
         sections={sections}
-        extraData={stores.appState.mutedEvents.length}
+        extraData={
+          stores.appState.mutedEvents.length +
+          stores.appState.mutedSchedules.length +
+          stores.appState.allowedEvents.length
+        }
         ListHeaderComponent={this._renderHeader}
         ListEmptyComponent={this._renderEmptyList}
         ItemSeparatorComponent={this._renderSeparator}

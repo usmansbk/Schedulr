@@ -91,7 +91,7 @@ export default class Events extends React.Component {
       schdlAll(
         this.events,
         stores.appState.mutedEvents,
-        stores.appState.allowedList
+        stores.appState.allowedEvents
       );
     }
   };
