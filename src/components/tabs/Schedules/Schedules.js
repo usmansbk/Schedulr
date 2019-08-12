@@ -2,50 +2,37 @@ import React from 'react';
 import List from 'components/lists/Schedules';
 import FAB from 'components/common/Fab';
 
+function getFields(schedule) {
+  return {
+    id: schedule.id,
+    name: schedule.name,
+    status: schedule.status,
+    isPublic: schedule.isPublic,
+    isOwner: schedule.isOwner
+  };
+}
+
 export default class Schedules extends React.Component {
   state = {
     schedules: []
   };
 
-  _extractSchedules = (data) => {
-    console.log('data');
-    const { created, following } = data;
+  get schedules() {
+    const { created, following } = this.props.data;
     let schedules = [];
-    schedules = schedules.concat(created.items.map(schedule => ({
-      id: schedule.id,
-      name: schedule.name,
-      status: schedule.status,
-      isPublic: schedule.isPublic,
-      isOwner: schedule.isOwner
-    })));
-    console.log(schedules)
-    this.setState({
-      schedules
-    });
+    schedules = schedules.concat(created.items.map(getFields))
+      .concat(following.items.map(item => getFields(item.schedule)));
+    return schedules;
   }
-
-  componentDidMount = () => {
-    const { data } = this.props;
-    if (data) {
-      this._extractSchedules(data);
-    }
-  };
 
   shouldComponentUpdate = (nextProps) => nextProps.navigation.isFocused();
 
   _navigateToNewSchedule = () => this.props.navigation.navigate('NewSchedule');
   
   render() {
-    const {
-      loading
-    } = this.props;
-
     return (
       <>
-        <List
-          loading={loading}
-          schedules={this.state.schedules}
-        />
+        <List schedules={this.schedules} />
         <FAB
           icon="plus"
           onPress={this._navigateToNewSchedule}
