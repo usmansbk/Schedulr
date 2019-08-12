@@ -13,8 +13,8 @@ export const weekdays = [
   "Friday"
 ];
 
-function getRepeat(recur) {
-  switch (recur) {
+function getInterval(recurrence) {
+  switch (recurrence) {
     case 'DAILY': return 'days';
     case 'WEEKDAYS': return 'weekdays';
     case 'WEEKLY':  return 'weeks';
@@ -84,13 +84,13 @@ const getNextDate = memoize((events=[], refDate, before) => {
     const eventDate = moment(currentEvent.startAt);
     const endDate = moment(currentEvent.endAt);
     const untilAt = currentEvent.until ? moment(currentEvent.until) : undefined;
-    const recur = getRepeat(currentEvent.recur);
+    const interval = getInterval(currentEvent.recurrence);
     let recurrence;
-    if (recur) {
-      if (recur === 'weekdays') {
+    if (interval) {
+      if (interval === 'weekdays') {
         recurrence = eventDate.recur().every(weekdays).daysOfWeek();
       } else {
-        recurrence = eventDate.recur().every(1, recur);
+        recurrence = eventDate.recur().every(1, interval);
       }
       recurrence.fromDate(refDate);
       const nextDates = before ? recurrence.previous(1) : recurrence.next(1);
@@ -132,15 +132,15 @@ const getNextDayEvents = memoize((initialEvents, nextDate) => {
   return initialEvents.reduce((accumulator, currentEvent) => {
     const eventDate = moment(currentEvent.startAt);
     const endDate = moment(currentEvent.endAt);
-    const recur = getRepeat(currentEvent.recur);
+    const interval = getInterval(currentEvent.recurrence);
     const isExtended = refDate.isBetween(eventDate, endDate, 'D', '[]');
     const isValid = currentEvent.until ? refDate.isSameOrBefore(moment(currentEvent.until), 'day') : true;
 
-    if (recur && !currentEvent.isCancelled && isValid) {
+    if (interval && !currentEvent.isCancelled && isValid) {
       let recurrence;
-      if (recur === 'weekdays') {
+      if (interval === 'weekdays') {
         recurrence = eventDate.recur().every(weekdays).daysOfWeek();
-      } else if (recur === 'month_day') {
+      } else if (recurrence === 'month_day') {
         const currentDate = eventDate.date();
         const weekOfMonth = Math.ceil(currentDate / DAYS_IN_WEEK) - 1;
         const daysOfWeek = eventDate.valueOf('dddd');
@@ -148,7 +148,7 @@ const getNextDayEvents = memoize((initialEvents, nextDate) => {
         recurrence = eventDate.recur().every(daysOfWeek).daysOfWeek()
           .every(weekOfMonth).weeksOfMonthByDay();
       } else {
-        recurrence = eventDate.recur().every(1, recur);
+        recurrence = eventDate.recur().every(1, interval);
       }
       const hasNext = recurrence.matches(refDate);
       if (hasNext) {
@@ -169,7 +169,7 @@ const getNextDayEvents = memoize((initialEvents, nextDate) => {
           endAt
         }));
       }
-    } else if (!recur && eventDate.isSame(refDate, 'day') || isExtended) {
+    } else if (!interval && eventDate.isSame(refDate, 'day') || isExtended) {
       accumulator.data.push(currentEvent);
     }
     accumulator.data = sortBy(accumulator.data, 'startAt');
@@ -184,14 +184,14 @@ const getNextDayEvents = memoize((initialEvents, nextDate) => {
 function getEvents(events) {
   return events.map((currentEvent) => {
     const eventDate = moment(currentEvent.startAt);
-    const recur = getRepeat(currentEvent.recur);
+    const interval = getInterval(currentEvent.recurrence);
     const untilAt = currentEvent.until ? moment(currentEvent.until) : undefined;
     let recurrence;
-    if (recur) {
-      if (recur === 'weekdays') {
+    if (recurrence) {
+      if (interval === 'weekdays') {
         recurrence = eventDate.recur().every(weekdays).daysOfWeek();
       } else {
-        recurrence = eventDate.recur().every(1, recur);
+        recurrence = eventDate.recur().every(1, interval);
       }
       recurrence.fromDate(moment().add(-1, 'day')); // it exclusive so minus one day to include today
       const end = moment(currentEvent.endAt);
@@ -235,9 +235,9 @@ const hasMoreEvents = memoize((events, afterDate) => {
   const refDate = moment(afterDate);
   return events.some((event) => {
     const eventDate = moment(event.startAt);
-    const isRepeating = getRepeat(event.recur);
+    const interval = getInterval(event.recurrence);
     const isValid = event.until ? moment(event.until).isSameOrAfter(refDate) : true;
-    return eventDate.isSameOrAfter(refDate) || (isRepeating && isValid);
+    return eventDate.isSameOrAfter(refDate) || (interval && isValid);
   });
 }, (...args) => JSON.stringify(args));
 
