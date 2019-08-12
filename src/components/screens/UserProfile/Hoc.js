@@ -15,7 +15,7 @@ export default compose(
         id: props.navigation.getParam('id'),
       },
       notifyOnNetworkStatusChange: true,
-      fetchPolicy: 'cache-first',
+      fetchPolicy: 'cache-and-network',
     }),
     props: ({ data, ownProps }) => ({
       loading: data.loading,
