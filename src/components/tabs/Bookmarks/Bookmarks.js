@@ -4,7 +4,7 @@ import List from 'components/lists/Bookmarks';
 export default class Bookmarks extends React.Component {
 
   shouldComponentUpdate = (nextProps) => { 
-    return (nextProps.navigation.isFocused();
+    return nextProps.navigation.isFocused();
   };
   
   render() {
