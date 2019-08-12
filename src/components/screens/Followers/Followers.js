@@ -24,7 +24,7 @@ class Followers extends React.Component {
             onPress={goBack}
             icon={() => <Icon
               name="arrow-left"
-              color={colors.gray}
+              color={stores.themeStore.colors.gray}
               size={24}
             />}
           />
