@@ -253,8 +253,18 @@ class List extends React.Component {
     category={getCategory(category)}
     recurrence={parseRepeat(recurrence)}
     time={getTime({ allDay, startAt, endAt })}
-    status={getStatus({ isCancelled, cancelledDates: [], startAt, endAt})}
-    isValid={isEventValid({ isCancelled, endAt, startAt, cancelledDates: [] })}
+    status={getStatus({
+      isCancelled,
+      cancelledDates: cancelledDates || [],
+      startAt,
+      endAt
+    })}
+    isValid={isEventValid({
+      isCancelled,
+      endAt,
+      startAt,
+      cancelledDates: cancelledDates || []
+    })}
     address={venue}
     scheduleId={schedule && schedule.id}
     isBookmarked={isBookmarked}
