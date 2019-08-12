@@ -16,6 +16,7 @@ export default class Schedules extends React.Component {
 
   _getSchedules = memoize(
     (data) => {
+      if (!data) return [];
       const { created, following } = data;
       return created.items.map(this._getFields)
         .concat(following.items.map(item => this._getFields(item.schedule)));

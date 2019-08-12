@@ -115,7 +115,7 @@ export default class Events extends React.Component {
   _getEvents = memoize(
     (data) => {
       let events = [];
-      if (!data) return null;
+      if (!data) return events;
     
       const { created, following, bookmarks } = data;
     
