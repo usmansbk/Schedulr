@@ -7,6 +7,8 @@ import Fab from 'components/common/Fab';
 import Loading from 'components/common/Loading';
 import Error from 'components/common/Error';
 import { SCHEDULE_CLOSED } from 'lib/constants';
+import client from 'config/client';
+import { getScheduleEvents } from 'api/fragments';
 
 const ABOUT_HALF = 600;
 
@@ -21,7 +23,7 @@ class Schedule extends React.Component {
 
   _onScroll = (offsetY) => {
     this.setState({ offsetY });
-  }
+  };
 
   shouldComponentUpdate = (nextProps) => nextProps.navigation.isFocused();
 
@@ -34,16 +36,24 @@ class Schedule extends React.Component {
   _navigateToScheduleInfo = () => {
     const id = this.props.schedule.id;
     this.props.navigation.navigate('ScheduleInfo', { id });
-  }
+  };
   _navigateToNewEvent = () => {
     const scheduleId = this.props.schedule.id;
     this.props.navigation.navigate('NewEvent', { scheduleId });
+  };
+
+  get events() {
+    // console.log(client.cache);
+    const data = client.readFragment({
+      fragment: getScheduleEvents,
+      id: `Schedule:${this.props.schedule.id}`
+    });
+    return data && data.events && data.events.items || [];
   }
 
   render() {
     const {
       schedule,
-      events,
       error,
       loading,
       loadingEvents,
@@ -95,7 +105,7 @@ class Schedule extends React.Component {
         <List
           ref={this._eventsListRef}
           listType="schedule"
-          events={events}
+          events={this.events}
           navigation={this.props.navigation}
           loading={loadingEvents}
           error={loadingEventsError}
@@ -104,14 +114,14 @@ class Schedule extends React.Component {
         {
           Boolean(this.state.offsetY > ABOUT_HALF) && (
             <Fab
-              icon="keyboard-arrow-up"
+              icon="chevron-up"
               secondary
               onPress={this._scrollToTop}
             />
           )
         }
         {
-          !(Boolean(error) && events.length) && !isOffline && isOwner && (status !== SCHEDULE_CLOSED ) && (
+          !(Boolean(error) && this.events.length) && !isOffline && isOwner && (status !== SCHEDULE_CLOSED ) && (
             <Fab
               icon="edit"
               onPress={this._navigateToNewEvent}

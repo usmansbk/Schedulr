@@ -1,35 +1,29 @@
-// import { graphql, compose } from 'react-apollo';
-// import { withNavigationFocus } from 'react-navigation';
-// import gql from 'graphql-tag';
+import { graphql, compose } from 'react-apollo';
+import { withNavigationFocus } from 'react-navigation';
+import gql from 'graphql-tag';
 import Screen from './Schedule';
-export default Screen;
-// import {
-//   getSchedule,
-//   listAllEvents,
-//   listScheduleEvents
-// } from 'api/queries';
-// import { filterEvents } from 'api/filter';
+import { getSchedule } from 'api/queries';
 
-// const alias = 'withScheduleEventsContainer';
+const alias = 'withScheduleEventsContainer';
 
-// export default compose(
-//   withNavigationFocus,
-//   graphql(gql(getSchedule), {
-//     alias,
-//     options: props => ({
-//       variables: {
-//         id: props.id,
-//       },
-//       fetchPolicy: 'cache-first',
-//       notifyOnNetworkStatusChange: true,
-//     }),
-//     props: ({ data, ownProps }) => ({
-//       error: data.error,
-//       loading: data.loading || (data.networkStatus === 4),
-//       schedule: data && data.getSchedule,
-//       ...ownProps,
-//     })
-//   }),
+export default compose(
+  withNavigationFocus,
+  graphql(gql(getSchedule), {
+    alias,
+    options: props => ({
+      variables: {
+        id: props.id,
+      },
+      fetchPolicy: 'cache-first',
+      notifyOnNetworkStatusChange: true,
+    }),
+    props: ({ data, ownProps }) => ({
+      error: data.error,
+      loading: data.loading || (data.networkStatus === 4),
+      schedule: data && data.getSchedule,
+      ...ownProps,
+    })
+  }),
 //   graphql(gql(listAllEvents), {
 //     alias,
 //     skip: props => !props.cacheFirst,
@@ -68,4 +62,4 @@ export default Screen;
 //       ...ownProps
 //     }) 
 //   })
-// )(Screen);
+)(Screen);
