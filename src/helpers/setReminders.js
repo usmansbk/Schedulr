@@ -26,16 +26,16 @@ const setReminder = (event, before, settings) => {
     startAt,
     endAt,
     category,
-    recur,
+    recurrence,
   } = event;
   const { amount, unit } = before;
   const { sound, vibrate } = settings;
   const date = moment(startAt).subtract(amount, unit).toDate();
   const message = `${decapitalize(category)} in ${moment(startAt).from(date, true)}`;
-  const repeatType = getRepeatType(recur);
+  const repeatType = getRepeatType(recurrence);
   const repeatTime = {};
   if (repeatType === 'time') {
-    repeatTime.repeatTime = getRepeatTime(date.getTime(), recur);
+    repeatTime.repeatTime = getRepeatTime(date.getTime(), recurrence);
   }
 
   const notification = {
@@ -63,16 +63,16 @@ const schdlStart = (event, settings) => {
     startAt,
     endAt,
     category,
-    recur,
+    recurrence,
   } = event;
   const { playSound, vibrate } = settings;
   const time = moment(startAt).format('hh:mm a');
   const date = moment(startAt).toDate();
   const message = `${decapitalize(category)} - ${time}`;
-  const repeatType = getRepeatType(recur);
+  const repeatType = getRepeatType(recurrence);
   const repeatTime = {};
   if (repeatType === 'time') {
-    repeatTime.repeatTime = getRepeatTime(date.getTime(), recur);
+    repeatTime.repeatTime = getRepeatTime(date.getTime(), recurrence);
   }
 
   const notification = {
@@ -148,7 +148,7 @@ const schdlAll = (events, mutedList, allowedList) => {
         const isMuted = mutedList.includes(id) || (scheduleId && mutedList.includes(scheduleId));
         const isAllowed = allowedList.includes(id);
         if (!isAllowed && isMuted || (settings.bookmarkedEventsOnly && !event.isBookmarked)) return;
-        switch (event.recur) {
+        switch (event.recurrence) {
           case 'MONTH_DAY':
             break;
           case 'WEEKDAYS':
@@ -171,7 +171,7 @@ function schdlWeekdaysEvent(event, remindMeBefore, settings) {
   const second = start.second();
 
   const end = moment(event.endAt);
-  const recurrence = start.recur(end).every(weekdays).daysOfWeek(); // Exclusive operation
+  const recurrence = start.recurrence(end).every(weekdays).daysOfWeek(); // Exclusive operation
   const days = recurrence.next(5);
   days.forEach(nextDay => {
     nextDay.hour(hour);
@@ -190,14 +190,14 @@ function schdlWeekdaysEvent(event, remindMeBefore, settings) {
 
   if (isWeekday && isToday && isPending) {
     const todayEvent = Object.assign({}, event, {
-      recur: 'NEVER'
+      recurrence: 'NEVER'
     });
     schdl(todayEvent, remindMeBefore, settings);
   }
 }
 
-function getRepeatType(recur) {
-  switch(recur) {
+function getRepeatType(recurrence) {
+  switch(recurrence) {
     case 'NEVER': return null;
     case 'DAILY': return 'day';
     case 'WEEKLY': case 'WEEKDAYS':  return 'week';
@@ -205,9 +205,9 @@ function getRepeatType(recur) {
   }
 }
 
-function getRepeatTime(ms, recur) {
+function getRepeatTime(ms, recurrence) {
   let interval;
-  switch(recur) {
+  switch(recurrence) {
     case 'MONTHLY':
       interval = moment(ms).add(1, 'month');
       break;
