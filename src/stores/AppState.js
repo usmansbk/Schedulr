@@ -29,7 +29,8 @@ export default class AppState {
   };
   @persist('object') @observable prefs = {
     showPrivateScheduleAlert: true,
-  }
+  };
+  
   @persist('list') @observable categories =  categories(this.settings.language);
 
   debounceQuery = debounce((val) => this.query = val, 250);
@@ -40,12 +41,12 @@ export default class AppState {
   
   @action toggleConnection = (isConnected) => {
     this.isConnected = isConnected;
-  }
+  };
 
   @action togglePref = (pref) => {
     const prevValue = this.prefs[pref];
     this.prefs[pref] = !prevValue;
-  }
+  };
 
   @action reset() {
     this.isConnected =false;
@@ -72,11 +73,11 @@ export default class AppState {
     if (hasType === -1) {
       this.categories.push(category);
     }
-  }
+  };
 
   @action removeCustomType = (category) => {
     this.categories = this.categories.filter(item => item.toLowerCase() !== category.toLowerCase());
-  }
+  };
   
   @action setLocation = (address) => {
     this.address = address;
@@ -89,7 +90,7 @@ export default class AppState {
           this.location.lat = lat;
         }).catch(err => console.error(err));
     }
-  }
+  };
 
   @action getAddress = () => {
     if (this.location.lon && this.location.lat) {
@@ -103,7 +104,7 @@ export default class AppState {
         this.address = address;
       }).catch(err => console.error(err));
     }
-  }
+  };
   
   @action requestLocation = async () => {
     const { lon, lat } = this.location;
@@ -118,7 +119,7 @@ export default class AppState {
         { cancelable: false }
       );
     }
-  }
+  };
 
   @action getLocation = async () => {
     const requestGranted = await requestLocationPermission();
@@ -163,7 +164,7 @@ export default class AppState {
     } else {
       this.mutedSchedules.push(mutedId);
     }
-  }
+  };
 
   @action clearMutedList = () => {
     this.mutedEvents = [];
