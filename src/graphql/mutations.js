@@ -875,58 +875,6 @@ export const updateSchedule = `mutation UpdateSchedule($input: UpdateScheduleInp
     isPublic
     isOwner
     status
-    events {
-      items {
-        id
-        title
-        description
-        venue
-        category
-        startAt
-        endAt
-        allDay
-        recurrence
-        until
-        isPublic
-        isOwner
-        commentsCount
-        bookmarksCount
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
-    author {
-      id
-      email
-      name
-      pictureUrl
-      website
-      created {
-        nextToken
-      }
-      following {
-        nextToken
-      }
-      bookmarks {
-        nextToken
-      }
-      me
-      followingCount
-      createdCount
-      createdAt
-      updatedAt
-    }
-    followers {
-      items {
-        id
-        createdAt
-      }
-      nextToken
-    }
-    followersCount
-    eventsCount
-    createdAt
     updatedAt
   }
 }
