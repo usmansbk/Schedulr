@@ -1255,7 +1255,7 @@ export default class AppStyles {
       },
       nameRow: {
         flexDirection: 'row',
-        justifyContent: 'space-between',
+        justifyContent: 'center',
         alignItems: 'flex-start'
       },
       itemFooter: {
@@ -1266,6 +1266,9 @@ export default class AppStyles {
       paragraph: {
         textAlign: 'center'
       },
+      muteIcon: {
+        marginRight: 4
+      }
     });
   }
 
