@@ -5,6 +5,7 @@ import SimpleToast from 'react-native-simple-toast';
 import LocalNotifications from 'react-native-push-notification';
 import changeNavigationBarColor from 'react-native-navigation-bar-color';
 import moment from 'moment';
+import memoize from 'memoize-one';
 import List from 'components/lists/Events';
 import FAB from 'components/common/Fab';
 import NavigationService from 'config/navigation';
@@ -84,7 +85,10 @@ export default class Events extends React.Component {
     }
   };
   
-  shouldComponentUpdate = (nextProps) => nextProps.navigation.isFocused() && this.props.loading !== nextProps.loading;
+  shouldComponentUpdate = (nextProps) => {
+    console.log(nextProps.data === this.props.data);
+    return nextProps.navigation.isFocused() && this.props.loading !== nextProps.loading;
+  }
   
   componentDidUpdate = () => {
     const { events, stores, loading } = this.props;
@@ -113,27 +117,41 @@ export default class Events extends React.Component {
     this.props.navigation.navigate('NewEvent');
   };
 
+  _getEvents = memoize(
+    (data) => {
+      let events = [];
+      if (!data) return null;
+    
+      const { created, following, bookmarks } = data;
+    
+      created.items.forEach(schedule => {
+        events = events.concat(schedule.events.items);
+      });
+      following.items.forEach(schedule => {
+        events = events.concat(schedule.events.items);
+      });
+      return events;
+    }
+  );
+
+  get events() {
+    return this._getEvents(this.props.data);
+  }
+
   render() {
     const {
       loading,
-      events,
-      nextToken,
       error,
       onRefresh,
       navigation,
-      data
     } = this.props;
 
-    console.log(data);
-    const extractedEvents = extractEvents(data);
-    console.log(extractedEvents)
     return (
       <>
         <List
           loading={loading}
-          events={extractedEvents || events}
+          events={this.events}
           navigation={navigation}
-          hasPreviousEvents={Boolean(nextToken)}
           onRefresh={onRefresh}
           error={error}
         />
@@ -147,16 +165,4 @@ export default class Events extends React.Component {
       </>
     )
   }
-}
-
-function extractEvents(data) {
-  let events = [];
-  if (!data) return null;
-
-  const { created } = data;
-
-  created.items.forEach(schedule => {
-    events = events.concat(schedule.events.items);
-  });
-  return events;
 }

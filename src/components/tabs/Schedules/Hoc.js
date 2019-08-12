@@ -5,9 +5,6 @@ import { inject, observer } from 'mobx-react';
 import Schedules from './Schedules';
 import { getUserData } from 'api/queries';
 
-// export default inject("stores")(observer(Schedules));
-
-
 const alias = 'withSchedulesContainer';
 const BaseQuery = gql(getUserData);
 
