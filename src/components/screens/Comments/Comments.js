@@ -25,7 +25,7 @@ class Comments extends React.Component {
   scrollTop = () => this._commentsListRef && this._commentsListRef.scrollTop();
 
   _handleSubmit = (message) => {
-    if (this.props.onSubmit) this.props.onSubmit(message);
+    this.props.onSubmit(message);
     this.scrollTop();
   };
 
