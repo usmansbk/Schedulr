@@ -1,5 +1,7 @@
 import React from 'react';
 import Form from 'components/forms/Event';
+import { getUserSchedules } from 'api/fragments';
+import client from 'config/client';
 
 export default class EditEventScreen extends React.Component {
   _handleBack = () => this.props.navigation.goBack();
@@ -17,7 +19,7 @@ export default class EditEventScreen extends React.Component {
       endAt,
       allDay,
       category,
-      recur,
+      recurrence,
       until,
       schedule,
       isPublic
@@ -30,17 +32,27 @@ export default class EditEventScreen extends React.Component {
       endAt: refEndAt || endAt,
       allDay: Boolean(allDay),
       category,
-      recur,
+      recurrence,
       until,
-      scheduleId: schedule && schedule.id,
+      eventScheduleId: schedule && schedule.id,
       isPublic: Boolean(isPublic)
     });
   };
+  
   _onSubmit = async (form) => {
     const id = this.props.navigation.getParam('id');
     await this.props.onSubmit({ id, ...form });
     this.props.navigation.pop();
   };
+  
+  get schedules() {
+    // console.log(client.cache);
+    const data = client.readFragment({
+      fragment: getUserSchedules,
+      id: `User:${this.props.stores.appState.userId}`
+    });
+    return (data && data.created && data.created.items) || [];
+  }
   
   render() {
     const { event: { schedule } } = this.props;
@@ -48,7 +60,7 @@ export default class EditEventScreen extends React.Component {
     return (
       <Form
         handleCancel={this._handleBack}
-        schedules={this.props.schedules.filter(schedule => schedule.isOwner)}
+        schedules={this.schedules}
         initialValues={this._getInitialValues()}
         onSubmit={this._onSubmit}
         edit

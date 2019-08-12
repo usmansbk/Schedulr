@@ -55,19 +55,5 @@ export default inject("stores")(observer(
         ...ownProps
       })
     }),
-    //   graphql(gql(listAllSchedules), {
-    //     alias,
-    //     options: {
-    //       fetchPolicy: 'cache-only',
-    //     },
-    //     props: ({ data, ownProps }) => {
-    //       const id = ownProps.navigation.getParam('scheduleId');
-    //       return ({
-    //         schedules: data && data.listAllSchedules && data.listAllSchedules.items,
-    //         scheduleId: id,
-    //         ...ownProps
-    //       });
-    //     }
-      // })
     )(Screen)
 ));
