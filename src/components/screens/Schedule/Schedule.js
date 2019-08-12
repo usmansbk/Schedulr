@@ -16,10 +16,6 @@ class Schedule extends React.Component {
     offsetY: 0
   };
 
-  static defaultProps = {
-    events: []
-  };
-
   _onScroll = (offsetY) => {
     this.setState({ offsetY });
   };
