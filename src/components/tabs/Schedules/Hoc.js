@@ -2,16 +2,15 @@ import { graphql, compose } from 'react-apollo';
 import { withNavigationFocus } from 'react-navigation';
 import gql from 'graphql-tag';
 import { inject, observer } from 'mobx-react';
-import Schedules from './Schedules';
 import { getUserData } from 'api/queries';
+import Schedules from './Schedules';
 
 const alias = 'withSchedulesContainer';
-const BaseQuery = gql(getUserData);
 
 export default inject("stores")(observer(
   compose(
     withNavigationFocus,
-    graphql(BaseQuery,
+    graphql(gql(getUserData),
     {
       alias,
       options: props => ({

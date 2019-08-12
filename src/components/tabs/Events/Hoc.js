@@ -2,17 +2,15 @@ import { graphql, compose } from 'react-apollo';
 import { withNavigationFocus } from 'react-navigation';
 import { inject, observer } from 'mobx-react';
 import gql from 'graphql-tag';
+import { getUserData } from 'api/queries';
 import Events from './Events';
 
-import { getUserData } from 'api/queries';
-
 const alias = 'withEventsContainer';
-const BaseQuery = gql(getUserData);
 
 export default inject("stores")(observer(
   compose(
     withNavigationFocus,
-    graphql(BaseQuery, {
+    graphql(gql(getUserData), {
       alias,
       options: props => ({
         fetchPolicy: 'cache-and-network',

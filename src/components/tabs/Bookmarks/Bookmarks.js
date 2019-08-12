@@ -4,12 +4,7 @@ import List from 'components/lists/Bookmarks';
 export default class Bookmarks extends React.Component {
 
   shouldComponentUpdate = (nextProps) => { 
-    return (nextProps.navigation.isFocused() &&
-      (
-        nextProps.events !== this.props.events ||
-        nextProps.loading !== this.props.loading
-      )
-    );
+    return (nextProps.navigation.isFocused();
   };
   
   render() {
@@ -22,7 +17,6 @@ export default class Bookmarks extends React.Component {
 
     return (
       <List
-        bookmarked
         navigation={navigation}
         loading={loading}
         events={events}

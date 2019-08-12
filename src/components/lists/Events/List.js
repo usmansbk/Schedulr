@@ -93,7 +93,7 @@ class List extends React.Component {
   _navigateToScheduleEvents = (id) => {
     let screen = 'Schedule';
     if (this.props.listType === 'schedule') screen = 'ScheduleInfo';
-    this.props.navigation.navigate(screen, { id, cacheFirst: true });
+    this.props.navigation.navigate(screen, { id });
   };
   _onPressSectionHeader = (targetDate) => {
     if (!isPast(targetDate)) {

@@ -23,11 +23,11 @@ import Icon from 'react-native-vector-icons/Feather';
 import Hyperlink from 'react-native-hyperlink';
 import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
+import { schedule_info, CIRCLE } from 'lib/constants';
 import UserAvater from 'components/common/UserAvatar';
 import FollowButton from 'components/common/FollowButton';
 import Loading from 'components/common/Loading';
 import Error from 'components/common/Error';
-import { schedule_info, CIRCLE } from 'lib/constants';
 
 const { AVATAR_SIZE } = schedule_info;
 
@@ -43,7 +43,7 @@ class Info extends React.Component {
     const message = I18n.get(`ALERT_${isPublic ? 'public' : 'private'}ScheduleA`);
 
     Alert.alert(title, message);
-  }
+  };
 
 
   render() {
@@ -60,6 +60,7 @@ class Info extends React.Component {
       navigateToEvents,
       stores
     } = this.props;
+    
     if (loading && !schedule) return <Loading />;
     if (error && !schedule) return <Error onRefresh={onRefresh} />;
 

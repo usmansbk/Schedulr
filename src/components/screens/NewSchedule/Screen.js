@@ -11,8 +11,7 @@ export default class NewScheduleScreen extends React.Component {
       this.props.navigation.pop();
     } else {
       this.props.navigation.replace('Schedule', {
-        id: result.data.createSchedule.id,
-        cacheFirst: true
+        id: result.data.createSchedule.id
       });
     }
   };

@@ -10,8 +10,7 @@ const { AVATAR_SIZE } = schedule_search;
 
 class Item extends React.Component {
   _onPress = () => {
-    const cacheFirst = (this.props.isOwner || this.props.isFollowing);
-    this.props.onPressItem(this.props.id, cacheFirst);
+    this.props.onPressItem(this.props.id);
   };
   shouldComponentUpdate = (nextProps) => {
     return (

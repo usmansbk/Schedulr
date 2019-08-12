@@ -1,8 +1,6 @@
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import Screen from './Screen';
-
-// export default Screen;
 import { createSchedule } from 'api/mutations';
 // import { listAllSchedules } from 'api/queries';
 // import { createScheduleResponse } from 'helpers/optimisticResponse';

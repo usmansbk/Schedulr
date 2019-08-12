@@ -83,7 +83,7 @@ export default class Events extends React.Component {
   
   shouldComponentUpdate = (nextProps) => {
     return nextProps.navigation.isFocused();
-  }
+  };
   
   componentDidUpdate = () => {
     const { stores, loading } = this.props;
@@ -112,6 +112,8 @@ export default class Events extends React.Component {
     this.props.navigation.navigate('NewEvent');
   };
 
+  _onRefresh = () => this.props.onRefresh();
+
   _getEvents = memoize(
     (data) => {
       let events = [];
@@ -137,7 +139,6 @@ export default class Events extends React.Component {
     const {
       loading,
       error,
-      onRefresh,
       navigation,
     } = this.props;
 
@@ -147,16 +148,13 @@ export default class Events extends React.Component {
           loading={loading}
           events={this.events}
           navigation={navigation}
-          onRefresh={onRefresh}
+          onRefresh={this._onRefresh}
           error={error}
         />
-        {
-          !Boolean(error) &&
-            <FAB
-              icon="edit-2"
-              onPress={this._navigateToNewEvent}
-            />
-        }
+        <FAB
+          icon="edit-2"
+          onPress={this._navigateToNewEvent}
+        />
       </>
     )
   }

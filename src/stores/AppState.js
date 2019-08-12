@@ -148,22 +148,29 @@ export default class AppState {
   };
 
   @action toggleMute = (id, isMuted) => {
-    const hasId = this.mutedList.includes(id);
-    const isAllowed = this.allowedList.includes(id);
-    if (hasId) {
-      this.mutedList = this.mutedList.filter(currentId => id !== currentId);
-    } else if (isAllowed && isMuted) {
-      this.allowedList = this.allowedList.filter(currentId => id !== currentId);
-    } else if (isMuted && !isAllowed) {
-      this.allowedList.push(id);
+    const inMuteList = this.mutedList.includes(id);
+    if (isMuted) {
+      // Unmute
+      if (inMuteList) {
+        // Remove from mute list
+        this.mutedList = this.mutedList.filter(currentId => currentId !== id);
+      } else {
+        // Add event to allowed list
+        this.allowedList.push(id);
+      }
     } else {
+      // Mute
       this.mutedList.push(id);
+      const inAllowedList = this.allowedList.includes(id);
+      if (inAllowedList) {
+        this.allowedList = this.allowedList.filter(currentId => currentId !== id);
+      }
     }
-  }
+  };
 
   @action clearMutedList = () => {
     this.mutedList = [];
-  }
+  };
 
   @action onChangeText (searchText) {
     this.searchText = searchText;

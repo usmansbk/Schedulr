@@ -5,10 +5,10 @@ import { withNavigationFocus } from'react-navigation';
 import gql from 'graphql-tag';
 import changeNavigationBarColor from 'react-native-navigation-bar-color';
 import SimpleToast from 'react-native-simple-toast';
-import Login from './Login';
 import { getUser } from 'api/queries';
 import { createUser } from 'api/mutations';
 import client from 'config/client';
+import Login from './Login';
 
 const GET_USER = gql(getUser);
 const CREATE_USER = gql(createUser);
@@ -76,6 +76,7 @@ class Container extends React.Component {
           this.props.stores.appState.setUserId(email);
           this.props.navigation.navigate('App');
         } catch(error) {
+          this.props.stores.appState.setLoginState(false);
           SimpleToast.show("Sign-in failed", SimpleToast.LONG);
           console.error(error.message);
         }
