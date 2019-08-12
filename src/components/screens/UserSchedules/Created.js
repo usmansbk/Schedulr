@@ -12,7 +12,7 @@ import Footer from 'components/lists/Schedules/Footer';
 import Empty from 'components/lists/Schedules/Empty';
 import sortSchedules from 'lib/utils';
 import { schedules } from 'lib/constants';
-// import { createdSchedules as createdSchedulesQuery, listAllSchedules } from 'api/queries';
+import { getUserSchedules } from 'api/queries';
 
 const {
   ITEM_HEIGHT,
@@ -79,7 +79,7 @@ class CreatedSchedules extends Component{
       data,
       stores
     } = this.props;
-    
+
     if (loading && !data.length) return <Loading />;
     if (error && !data.length) {
       return <ErrorScreen loading={loading} onRefresh={onRefresh} />;
@@ -105,45 +105,23 @@ class CreatedSchedules extends Component{
   }
 }
 
-const withStores = inject("stores")(observer(CreatedSchedules));
-export default withStores;
-// export default compose(
-//   graphql(gql(listAllSchedules), {
-//     alias,
-//     skip: props => !props.navigation.getParam('myProfile'),
-//     options: {
-//       fetchPolicy: 'cache-only'
-//     },
-//     props: ({ data }) => ({
-//       loading: data.loading,
-//       error: data.error,
-//       data: (
-//         data && data.listAllSchedules &&
-//         data.listAllSchedules.items &&
-//         data.listAllSchedules.items.filter(item => item.isOwner) || []
-//       ),
-//     }),
-//   }),
-//   graphql(gql(createdSchedulesQuery), {
-//     alias,
-//     skip: props => props.navigation.getParam('myProfile'),
-//     options: props => ({
-//       variables: {
-//         id: props.navigation.getParam('id')
-//       },
-//       fetchPolicy: 'cache-and-network',
-//       notifyOnNetworkStatusChange: true,
-//     }),
-//     props: ({ data, ownProps }) => ({
-//       loading: data.loading || data.networkStatus === 4,
-//       error: data.error,
-//       data: (
-//         data && data.createdSchedules &&
-//         data.createdSchedules.createdSchedules &&
-//         data.createdSchedules.createdSchedules.items || []
-//       ),
-//       onRefresh: () => data.refetch(),
-//       ...ownProps
-//     })
-//   })
-// )(withStores);
+export default inject('stores')(observer(
+  compose(
+    graphql(gql(getUserSchedules), {
+      alias,
+      options: props => ({
+        fetchPolicy: 'cache-first',
+        notifyOnNetworkStatusChange: true,
+        variables: {
+          id: props.stores.appState.userId
+        }
+      }),
+      props: ({ data }) => ({
+        loading: data.loading || data.networkStatus === 4,
+        error: data.error,
+        data: (data && data.getUserSchedules &&
+          data.getUserSchedules.created && data.getUserSchedules.created.items),
+      }),
+    }),
+  )(CreatedSchedules)
+));

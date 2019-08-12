@@ -122,6 +122,55 @@ export const getScheduleWithEvents = `query GetScheduleWithEvents($id: ID!) {
   }
 }
 `;
+export const getUserSchedules = `query GetUserSchedules($id: ID!) {
+  getUserSchedules: getUser(id: $id) {
+    id
+    created {
+      items {
+        id
+        name
+        description
+        isPublic
+        isOwner
+        status
+        author {
+          id
+          name
+          pictureUrl
+          me
+        }
+        followersCount
+        eventsCount
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    following {
+      items {
+        schedule {
+          id
+          name
+          description
+          isPublic
+          isOwner
+          status
+          author {
+            id
+            name
+            pictureUrl
+            me
+          }
+          followersCount
+          eventsCount
+          createdAt
+          updatedAt
+        }
+      }
+      nextToken
+    }
+  }
+}`;
 export const getUserData = `query GetUserData($id: ID!) {
   getUserData: getUser(id: $id) {
     id
