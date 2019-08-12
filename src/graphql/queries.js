@@ -48,8 +48,9 @@ export const getEvent = `query GetEvent($id: ID!) {
   }
 }
 `;
-export const getEventComments = `query GetComments($id: ID!) {
+export const getEventComments = `query GetEventComments($id: ID!) {
   getEventComments: getEvent(id: $id) {
+    id
     comments {
       items {
         id
@@ -59,6 +60,7 @@ export const getEventComments = `query GetComments($id: ID!) {
           id
           content
           author {
+            id
             name
           }
         }
