@@ -82,14 +82,8 @@ export const getUserData = `query GetUserData($id: ID!) {
         status
         author {
           id
-          name
-          pictureUrl
           me
         }
-        followersCount
-        eventsCount
-        createdAt
-        updatedAt
         events {
           items {
             id

@@ -34,7 +34,6 @@ export const getScheduleEvents = gql`
         cancelledDates
         schedule {
           id
-          name
         }
       }
       nextToken
