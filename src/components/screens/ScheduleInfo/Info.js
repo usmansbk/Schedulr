@@ -189,7 +189,7 @@ class Info extends React.Component {
                 <Text
                   style={styles.note}
                   onPress={this._aboutPrivacy}
-                >{I18n.get(`SCHEDULE_FORM_${ isPublic ? 'public' : 'private'}`)} {I18n.get("SCHEDULE")}</Text>
+                >{I18n.get(`SCHEDULE_${ isPublic ? 'public' : 'private'}`)}</Text>
               </View>
               {
                 isClosed && (
