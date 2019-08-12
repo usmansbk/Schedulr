@@ -48,6 +48,24 @@ export const getEvent = `query GetEvent($id: ID!) {
   }
 }
 `;
+export const getEventComments = `query GetComments($id: ID!) {
+  getEventComments: getEvent(id: $id) {
+    id
+    commentsCount
+    comments {
+      items {
+        id
+        content
+        author {
+          id
+          name
+          pictureUrl
+        }
+      }
+      nextToken
+    }
+  }
+}`;
 export const getSchedule = `query GetSchedule($id: ID!) {
   getSchedule(id: $id) {
     id

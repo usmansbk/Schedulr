@@ -52,7 +52,8 @@ export default class Screen extends React.Component {
       onRefresh,
       error,
       fetchMoreComments,
-      nextToken
+      nextToken,
+      user
     } = this.props;
     
     return (
@@ -62,6 +63,9 @@ export default class Screen extends React.Component {
         title={this.props.navigation.getParam('title')}
         error={Boolean(error)}
         comments={comments}
+        userName={user.name}
+        userPictureUrl={user.pictureUrl}
+        userId={user.id}
         ref={commentsRef => this._commentsRef = commentsRef}
         targetName={targetName}
         goBack={this._goBack}

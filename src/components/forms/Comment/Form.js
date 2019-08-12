@@ -15,6 +15,11 @@ class CommentInput extends React.Component {
     message: ''
   };
 
+  static defaultProps = {
+    name: 'hello',
+    pictureUrl: null
+  };
+
   _onSubmit = () => {
     this.setState({ isSubmitting: true });
     this.props.handleSubmit(this.state.message);
@@ -83,7 +88,7 @@ class CommentInput extends React.Component {
           </View>
           <IconButton
             icon={(props) => <Icon
-               name="plane"
+               name="feather"
                size={24}
                color={props.color}
              />}

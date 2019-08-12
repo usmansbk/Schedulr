@@ -10,7 +10,11 @@ class Comments extends React.Component {
 
   state = {
     id: null
-  }
+  };
+
+  static defaultProps = {
+    comments: []
+  };
 
   focusCommentInput = () => this._inputRef && this._inputRef.focusInput();
 
@@ -32,6 +36,9 @@ class Comments extends React.Component {
   render() {
     const {
       loading,
+      userName,
+      userPictureUrl,
+      userId,
       targetName,
       comments,
       nextToken,
@@ -48,7 +55,6 @@ class Comments extends React.Component {
 
     const styles = stores.appStyles.styles;
     const colors = stores.themeStore.colors;
-    const me = stores.me.asJs();
 
     return (
       <>
@@ -80,8 +86,8 @@ class Comments extends React.Component {
           fetchMoreComments={fetchMoreComments}
         />
         <CommentForm
-          name={me.name}
-          pictureUrl={me.pictureUrl}
+          name={userName}
+          pictureUrl={userPictureUrl}
           ref={inputRef => this._inputRef = inputRef}
           handleSubmit={this._handleSubmit}
           targetName={targetName}
