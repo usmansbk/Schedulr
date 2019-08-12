@@ -207,12 +207,12 @@ class List extends React.Component {
   };
 
   
-  // shouldComponentUpdate = (nextProps, nextState) => {
-  //   return (
-  //     Boolean(nextProps.loading) !== Boolean(this.props.loading) ||
-  //     this.state.sections !== nextState.sections
-  //   );
-  // };
+  shouldComponentUpdate = (nextProps, nextState) => {
+    return (
+      Boolean(nextProps.loading) !== Boolean(this.props.loading) ||
+      this.state.sections !== nextState.sections
+    );
+  };
 
   _onScroll = (event) => {
     this.props.handleScroll && this.props.handleScroll(event.nativeEvent.contentOffset.y)
