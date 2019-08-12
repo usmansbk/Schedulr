@@ -62,9 +62,15 @@ class Item extends React.Component {
                   color={stores.themeStore.colors.light_red}
                 />
               }
-              <Text numberOfLines={1} ellipsizeMode="tail" style={isPending ? styles.offlineName : styles.itemName}>{name}</Text>
+              <Text
+                numberOfLines={1}
+                ellipsizeMode="tail"
+                style={isPending ? styles.offlineName : styles.itemName}>{name}</Text>
             </View>
-            { Boolean(description) && <Caption numberOfLines={1} ellipsizeMode="tail" style={styles.itemDescription}>{description}</Caption> }
+            { Boolean(description) && <Caption
+              numberOfLines={1}
+              ellipsizeMode="tail"
+              style={styles.itemDescription}>{description}</Caption> }
             <View style={styles.itemFooter}>
               { isClosed && <Tag status="Closed" /> }
             </View>

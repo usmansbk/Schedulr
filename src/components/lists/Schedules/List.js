@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { RefreshControl } from 'react-native';
-import { withNavigationFocus, FlatList } from 'react-navigation';
+import { withNavigation, FlatList } from 'react-navigation';
 import { inject, observer } from 'mobx-react';
 import Item from './Item';
 import Separator from './Separator';
@@ -27,7 +27,7 @@ class List extends Component {
       index
     }
   );
-  shouldComponentUpdate = (nextProps) => nextProps.navigation.isFocused();
+
   _onPressItem = (id) => this.props.navigation.navigate('Schedule', { id });
   _navigateToInfo = (id) => this.props.navigation.navigate('ScheduleInfo', { id });
   _keyExtractor = (item) => String(item.id);
@@ -73,8 +73,7 @@ class List extends Component {
       stores
     } = this.props;
     const data = sortSchedules(schedules);
-    const mutedList = stores.appState.mutedList;
-
+    
     return (
       <FlatList
         refreshing={loading}
@@ -86,7 +85,7 @@ class List extends Component {
           />
         }
         style={stores.appStyles.schedulesList.list}
-        extraData={mutedList.length}
+        extraData={stores.appState.mutedSchedules}
         contentContainerStyle={stores.appStyles.schedulesList.contentContainer}
         initialNumToRender={7}
         getItemLayout={this._getItemLayout}
@@ -103,4 +102,4 @@ class List extends Component {
 
 const withStores = inject("stores")(observer(List));
 
-export default withNavigationFocus(withStores);
+export default withNavigation(withStores);

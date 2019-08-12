@@ -20,7 +20,7 @@ export default class AppState {
   @observable searchText = '';
   @observable query = '';
   @persist @observable address = 'Nigeria';
-  @persist('list') @observable mutedList = [];
+  @persist('list') @observable mutedEvents = [];
   @persist('list') @observable allowedList = [];
   @persist('object') @observable location = {
     lon: null,
@@ -50,7 +50,7 @@ export default class AppState {
     this.isConnected =false;
     this.searchText = '';
     this.query = '';
-    this.mutedList = [];
+    this.mutedEvents = [];
     this.allowedList = [];
     this.address = 'Nigeria';
     this.location = {
@@ -149,14 +149,14 @@ export default class AppState {
 
   @action toggleMute = (mutedId, isMuted) => {
     if (isMuted) {
-      this.mutedList = this.mutedList.filter(id => id !== mutedId);
+      this.mutedEvents = this.mutedEvents.filter(id => id !== mutedId);
     } else {
-      this.mutedList.push(mutedId);
+      this.mutedEvents.push(mutedId);
     }
   };
 
   @action clearMutedList = () => {
-    this.mutedList = [];
+    this.mutedEvents = [];
   };
 
   @action onChangeText (searchText) {
