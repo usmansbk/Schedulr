@@ -21,10 +21,7 @@ const {
 } = schedules;
 
 class FollowingSchedules extends Component{
-  static defaultProps = {
-    data: []
-  };
-  
+
   static navigationOptions() {
     return {
       tabBarLabel: I18n.get("PROFILE_followingLabel")
@@ -79,8 +76,7 @@ class FollowingSchedules extends Component{
   get data() {
     const data = this.props.data;
     if (!data) return [];
-    const { following } = data;
-    return following.items.map(follow => follow.schedule);
+    return data.items.map(follow => follow.schedule);
   }
 
   render(){
@@ -132,7 +128,7 @@ export default inject("stores")(observer(
       props: ({ data, ownProps }) => ({
         loading: data.loading,
         error: data.error,
-        data: data && data.getUserSchedules,
+        data: data && data.getUserSchedules && data.getUserSchedules.following,
         ...ownProps
       }),
     }),
