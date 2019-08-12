@@ -7,7 +7,7 @@ import Separator from './Separator';
 import Footer from './Footer';
 import Empty from './Empty';
 import sortSchedules from 'lib/utils';
-import { schedules } from 'lib/constants';
+import { schedules, SCHEDULE_CLOSED } from 'lib/constants';
 
 const {
   ITEM_HEIGHT,
@@ -28,7 +28,7 @@ class List extends Component {
     }
   );
   shouldComponentUpdate = (nextProps) => nextProps.navigation.isFocused();
-  _onPressItem = (id) => this.props.navigation.navigate('Schedule', { id, cacheFirst: true });
+  _onPressItem = (id) => this.props.navigation.navigate('Schedule', { id });
   _navigateToInfo = (id) => this.props.navigation.navigate('ScheduleInfo', { id });
   _keyExtractor = (item) => String(item.id);
   _renderEmptyList = () => <Empty
@@ -54,7 +54,7 @@ class List extends Component {
         name={name}
         description={description}
         isPublic={isPublic}
-        isClosed={status === 'CLOSED'}
+        isClosed={status === SCHEDULE_CLOSED}
         isOwner={isOwner}
         isFollowing={isFollowing}
         onPressItem={this._onPressItem}

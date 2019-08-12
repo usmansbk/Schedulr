@@ -1,4 +1,5 @@
 import React from 'react';
+import { Dimensions } from 'react-native';
 import { Appbar } from 'react-native-paper';
 import { inject, observer } from 'mobx-react';
 import Icon from 'react-native-vector-icons/Feather';
@@ -8,7 +9,7 @@ import Loading from 'components/common/Loading';
 import Error from 'components/common/Error';
 import { SCHEDULE_CLOSED } from 'lib/constants';
 
-const ABOUT_HALF = 600;
+const ABOUT_HALF = Dimensions.get('window').height / 2;
 
 class Schedule extends React.Component {
   state = {
