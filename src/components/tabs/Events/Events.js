@@ -86,7 +86,6 @@ export default class Events extends React.Component {
   };
   
   shouldComponentUpdate = (nextProps) => {
-    console.log(nextProps.data === this.props.data);
     return nextProps.navigation.isFocused() && this.props.loading !== nextProps.loading;
   }
   

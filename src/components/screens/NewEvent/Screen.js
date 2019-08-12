@@ -3,11 +3,10 @@ import moment from 'moment';
 import Form from 'components/forms/Event';
 import recurrences from 'components/forms/Event/recurrence';
 import { isPastExact } from 'lib/parseItem';
+import { getUserSchedules } from 'api/fragments';
+import client from 'config/client';
 
 export default class NewEventScreen extends React.Component {
-  static defaultProps = {
-    schedules: []
-  };
   _newSchedule = () => this.props.navigation.navigate("NewSchedule", { popAfterCreation: true });
   _handleBack = () => this.props.navigation.goBack();
   _handleSubmit = async (form) => {
@@ -16,8 +15,18 @@ export default class NewEventScreen extends React.Component {
       id: result.data.createEvent.id
     });
   };
+
+  get schedules() {
+    // console.log(client.cache);
+    const data = client.readFragment({
+      fragment: getUserSchedules,
+      id: "User:usmansbk@gmail.com"
+    });
+    return (data && data.created && data.created.items) || []
+  }
+  
   _getInitialValues = () => {
-    const { event={}, eventScheduleId, schedules } = this.props;
+    const { event={}, eventScheduleId } = this.props;
     const {
       title,
       description,
@@ -31,7 +40,7 @@ export default class NewEventScreen extends React.Component {
       isPublic
     } = event;
 
-    const currentSchedule = schedules && schedules.find(schedule => schedule.id === scheduleId);
+    const currentSchedule = this.schedules && this.schedules.find(schedule => schedule.id === eventScheduleId);
 
     const targetDate = this.props.navigation.getParam('targetDate', moment().valueOf())
     const initialStartAt = moment(targetDate).valueOf();
@@ -67,7 +76,7 @@ export default class NewEventScreen extends React.Component {
       category: category || 'Event',
       recurrence: recurrence || recurrences[0].id,
       until,
-      eventScheduleId: eventScheduleId || "6b8fd855-1e25-4b19-8ec3-e3ca76f6d718",
+      eventScheduleId,
       isPublic: currentSchedule ? currentSchedule.isPublic : Boolean(isPublic)
     });
   };
@@ -77,7 +86,7 @@ export default class NewEventScreen extends React.Component {
       <Form
         initialValues={this._getInitialValues()}
         isNew={this.props.isNew}
-        schedules={this.props.schedules.filter(schedule => schedule.isOwner && (schedule.status !== 'CLOSED') && (schedule.id[0] !== '-'))}
+        schedules={this.schedules.filter(schedule => (schedule.status !== 'CLOSED') && (schedule.id[0] !== '-'))}
         handleCancel={this._handleBack}
         onSubmit={this._handleSubmit}
         newSchedule={this._newSchedule}

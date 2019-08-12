@@ -1,10 +1,7 @@
 import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
 import Screen from './Screen';
-
-// export default Screen;
 import { createEvent } from 'api/mutations';
-// import { listAllEvents, listAllSchedules, getEvent } from 'api/queries';
 // import { createEventResponse } from 'helpers/optimisticResponse';
 
 const alias =  'withNewEventContainer';
@@ -51,6 +48,9 @@ export default compose(
         //   }
         // }
       }),
+      getSchedules: () => {
+
+      },
       ...ownProps
     })
   }),
