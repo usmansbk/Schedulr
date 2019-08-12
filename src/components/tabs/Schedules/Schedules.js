@@ -9,6 +9,7 @@ export default class Schedules extends React.Component {
     id: schedule.id,
     name: schedule.name,
     status: schedule.status,
+    description: schedule.description,
     isPublic: schedule.isPublic,
     isOwner: schedule.isOwner
   });

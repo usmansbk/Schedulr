@@ -32,19 +32,10 @@ export const getScheduleEvents = gql`
         isOwner
         isCancelled
         cancelledDates
-        author {
-          id
-          name
-          me
-        }
         schedule {
           id
           name
         }
-        commentsCount
-        bookmarksCount
-        createdAt
-        updatedAt
       }
       nextToken
     }

@@ -76,6 +76,20 @@ export const getUserData = `query GetUserData($id: ID!) {
       items {
         id
         name
+        description
+        isPublic
+        isOwner
+        status
+        author {
+          id
+          name
+          pictureUrl
+          me
+        }
+        followersCount
+        eventsCount
+        createdAt
+        updatedAt
         events {
           items {
             id

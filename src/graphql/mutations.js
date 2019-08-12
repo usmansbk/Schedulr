@@ -838,15 +838,41 @@ export const createSchedule = `mutation CreateSchedule($input: CreateScheduleInp
     status
     author {
       id
-      email
       name
       pictureUrl
-      website
       me
-      followingCount
-      createdCount
-      createdAt
-      updatedAt
+    }
+    events {
+      items {
+        id
+        title
+        description
+        venue
+        category
+        startAt
+        endAt
+        allDay
+        recurrence
+        until
+        isPublic
+        isOwner
+        isCancelled
+        cancelledDates
+        author {
+          id
+          name
+          me
+        }
+        schedule {
+          id
+          name
+        }
+        commentsCount
+        bookmarksCount
+        createdAt
+        updatedAt
+      }
+      nextToken
     }
     followersCount
     eventsCount
