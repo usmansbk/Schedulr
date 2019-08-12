@@ -1,4 +1,4 @@
-export const buildEventForm = (values, myLocation) => {
+export const validateEventForm = (values, myLocation) => {
   // let location = (myLocation && myLocation.lat && myLocation.lon) ? myLocation : null;
   let temp = Object.assign({}, values);
   Object.keys(temp).forEach(key => {
@@ -15,7 +15,7 @@ export const buildEventForm = (values, myLocation) => {
   return temp;
 };
 
-export const buildScheduleForm = (values, myLocation) => {
+export const validateScheduleForm = (values, myLocation) => {
   // const location = (myLocation && myLocation.lat && myLocation.lon) ? myLocation : null;
   let temp = Object.assign({}, values);
   Object.keys(temp).forEach(key => {
