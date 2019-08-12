@@ -69,6 +69,59 @@ export const getSchedule = `query GetSchedule($id: ID!) {
   }
 }
 `;
+export const getScheduleWithEvents = `query GetScheduleWithEvents($id: ID!) {
+  getSchedule(id: $id) {
+    id
+    name
+    description
+    isPublic
+    isOwner
+    status
+    author {
+      id
+      name
+      pictureUrl
+      me
+    }
+    events {
+      items {
+        id
+        title
+        description
+        venue
+        category
+        startAt
+        endAt
+        allDay
+        recurrence
+        until
+        isPublic
+        isOwner
+        isCancelled
+        cancelledDates
+        author {
+          id
+          name
+          me
+        }
+        schedule {
+          id
+          name
+        }
+        commentsCount
+        bookmarksCount
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    followersCount
+    eventsCount
+    createdAt
+    updatedAt
+  }
+}
+`;
 export const getUserData = `query GetUserData($id: ID!) {
   getUserData: getUser(id: $id) {
     id

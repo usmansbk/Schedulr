@@ -6,8 +6,6 @@ import List from 'components/lists/Events';
 import Fab from 'components/common/Fab';
 import Loading from 'components/common/Loading';
 import Error from 'components/common/Error';
-import client from 'config/client';
-import { getScheduleEvents } from 'api/fragments';
 
 const ABOUT_HALF = 600;
 
@@ -41,22 +39,11 @@ class Schedule extends React.Component {
     this.props.navigation.navigate('NewEvent', { scheduleId });
   };
 
-  get events() {
-    // console.log(client.cache);
-    const data = client.readFragment({
-      fragment: getScheduleEvents,
-      id: `Schedule:${this.props.schedule.id}`
-    });
-    return data && data.events && data.events.items || [];
-  }
-
   render() {
     const {
       schedule,
       error,
       loading,
-      loadingEvents,
-      loadingEventsError,
       onPress,
       onRefresh,
       stores
@@ -69,7 +56,8 @@ class Schedule extends React.Component {
       name,
       description,
       isOwner,
-      status
+      status,
+      events,
     } = schedule;
 
     const styles = stores.appStyles.styles;
@@ -104,7 +92,7 @@ class Schedule extends React.Component {
         <List
           ref={this._eventsListRef}
           listType="schedule"
-          events={this.events}
+          events={events.items}
           navigation={this.props.navigation}
           loading={loadingEvents}
           error={loadingEventsError}
