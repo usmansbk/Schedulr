@@ -20,13 +20,13 @@ export default class NewEventScreen extends React.Component {
     // console.log(client.cache);
     const data = client.readFragment({
       fragment: getUserSchedules,
-      id: "User:usmansbk@gmail.com"
+      id: `User:${this.props.stores.appState.userId}`
     });
-    return (data && data.created && data.created.items) || []
+    return (data && data.created && data.created.items) || [];
   }
   
   _getInitialValues = () => {
-    const { event={}, eventScheduleId } = this.props;
+    const { event={}, scheduleId } = this.props;
     const {
       title,
       description,
@@ -37,10 +37,12 @@ export default class NewEventScreen extends React.Component {
       category,
       recurrence,
       until,
-      isPublic
+      isPublic,
+      schedule,
     } = event;
 
-    const currentSchedule = this.schedules && this.schedules.find(schedule => schedule.id === eventScheduleId);
+    const targetScheduleId = scheduleId || (schedule && schedule.id);
+    const currentSchedule = this.schedules && this.schedules.find(schedule => schedule.id === targetScheduleId);
 
     const targetDate = this.props.navigation.getParam('targetDate', moment().valueOf())
     const initialStartAt = moment(targetDate).valueOf();
@@ -76,7 +78,7 @@ export default class NewEventScreen extends React.Component {
       category: category || 'Event',
       recurrence: recurrence || recurrences[0].id,
       until,
-      eventScheduleId,
+      eventScheduleId: targetScheduleId,
       isPublic: currentSchedule ? currentSchedule.isPublic : Boolean(isPublic)
     });
   };
