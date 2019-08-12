@@ -187,7 +187,7 @@ function getEvents(events) {
     const interval = getInterval(currentEvent.recurrence);
     const untilAt = currentEvent.until ? moment(currentEvent.until) : undefined;
     let recurrence;
-    if (recurrence) {
+    if (interval) {
       if (interval === 'weekdays') {
         recurrence = eventDate.recur().every(weekdays).daysOfWeek();
       } else {

@@ -12,10 +12,6 @@ class Screen extends React.Component {
     id: null
   };
 
-  static defaultProps = {
-    comments: []
-  };
-
   focusCommentInput = () => this._inputRef && this._inputRef.focusInput();
 
   blurCommentInput = () => this._inputRef && this._inputRef.blurInput();

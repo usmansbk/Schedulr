@@ -4,10 +4,6 @@ import { inject, observer } from 'mobx-react';
 import { getUser, getEventComments } from 'api/queries';
 import { createComment } from 'api/mutations';
 import Container from './Container';
-// import { createCommentResponse } from 'helpers/optimisticResponse';
-// import { COMMENTS_LIMIT } from 'lib/constants';
-
-// const LIMIT = COMMENTS_LIMIT;
 
 export default inject("stores")(observer(
   compose(
@@ -43,7 +39,8 @@ export default inject("stores")(observer(
         notifyOnNetworkStatusChange: true,
         variables: {
           id: props.navigation.getParam('id')
-        }
+        },
+        onError: error => console.log(error)
       }),
       props: ({ data, ownProps }) => ({
         loading: data.loading || data.networkStatus === 4,

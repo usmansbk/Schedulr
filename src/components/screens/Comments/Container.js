@@ -1,5 +1,5 @@
 import React from 'react';
-import Comments from './Comments';
+import Screen from './Screen';
 import DeleteCommentDialog from 'components/dialogs/DeleteComment';
 
 export default class Container extends React.Component {
@@ -41,6 +41,14 @@ export default class Container extends React.Component {
   };
   _navigateToProfile = (id) => this.props.navigation.navigate('UserProfile', { id });
 
+  get comments() {
+    const { data } = this.props;
+    console.log(data);
+    if (!data) return [];
+    const { comments } = data;
+    return comments.items;
+  }
+
   render() {
     const {
       visibleDialog,
@@ -48,24 +56,20 @@ export default class Container extends React.Component {
     } = this.state;
     const {
       loading,
-      comments,
-      data,
       onRefresh,
       error,
       fetchMoreComments,
       nextToken,
       user
     } = this.props;
-
-    console.log(data);
     
     return (
       <>
-      <Comments
+      <Screen
         loading={loading}
         title={this.props.navigation.getParam('title')}
         error={Boolean(error)}
-        comments={comments}
+        comments={this.comments}
         userName={user.name}
         userPictureUrl={user.pictureUrl}
         userId={user.id}

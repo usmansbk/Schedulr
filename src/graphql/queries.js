@@ -50,17 +50,24 @@ export const getEvent = `query GetEvent($id: ID!) {
 `;
 export const getEventComments = `query GetComments($id: ID!) {
   getEventComments: getEvent(id: $id) {
-    id
-    commentsCount
     comments {
       items {
         id
         content
+        isOwner
+        to {
+          id
+          content
+          author {
+            name
+          }
+        }
         author {
           id
           name
           pictureUrl
         }
+        createdAt
       }
       nextToken
     }

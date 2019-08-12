@@ -21,8 +21,7 @@ class List extends React.Component {
       id,
       content,
       author,
-      isReply,
-      toComment,
+      to,
       isOwner,
       createdAt,
     }
@@ -35,9 +34,8 @@ class List extends React.Component {
         authorPictureUrl={author.pictureUrl}
         isOwner={isOwner}
         content={content}
-        isToCommentDeleted={isReply && !toComment}
-        toCommentAuthorName={toComment && toComment.author.name}
-        toCommentContent={toComment && toComment.content}
+        toCommentAuthorName={to && to.author.name}
+        toCommentContent={to && to.content}
         timeAgo={timeAgo(createdAt)}
         navigateToProfile={this.props.navigateToProfile}
         onDelete={this.props.onDelete}

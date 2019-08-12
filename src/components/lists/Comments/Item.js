@@ -8,6 +8,7 @@ import {
 } from 'react-native-paper';
 import Hyperlink from 'react-native-hyperlink';
 import { inject, observer } from 'mobx-react';
+import Icon from 'react-native-vector-icons/Feather';
 import UserAvatar from 'components/common/UserAvatar';
 import { comments_list } from 'lib/constants';
 
@@ -75,23 +76,16 @@ class Item extends React.Component {
             <Caption>{isPending ? 'pending' : timeAgo}</Caption>
           </View>
           {
-            isToCommentDeleted ? (
+            Boolean(toCommentContent) && (
               <View style={styles.replyBox}>
-                <Caption style={styles.replyName}>Replying to deleted comment</Caption>
+                <Caption
+                  numberOfLines={1}
+                  ellipsizeMode="tail"
+                  style={styles.replyName}
+                >{toCommentAuthorName}</Caption>
+                <Caption numberOfLines={4} ellipsizeMode="tail">{toCommentContent}</Caption>
               </View>
-            ) : (
-            <>{
-              Boolean(toCommentContent) && (
-                <View style={styles.replyBox}>
-                  <Caption
-                    numberOfLines={1}
-                    ellipsizeMode="tail"
-                    style={styles.replyName}
-                  >{toCommentAuthorName}</Caption>
-                  <Caption numberOfLines={4} ellipsizeMode="tail">{toCommentContent}</Caption>
-                </View>
-              )}
-            </>)
+            )
           }
           <View style={styles.itemContent}>  
             <Hyperlink linkStyle={styles.linkStyle} linkDefault={true}>
@@ -101,8 +95,23 @@ class Item extends React.Component {
             </Hyperlink>
             <View style={styles.footer}>
             <View style={styles.actions}>
-              {isOwner && <IconButton color={colors.light_gray_3} icon="delete" onPress={this._onDelete} />}
-              <IconButton color={colors.light_gray_3} icon="reply" onPress={this._onReply}/>
+              {isOwner && <IconButton
+                color={colors.light_gray_3}
+                icon={() => <Icon
+                  size={20}
+                  name="trash-2"
+                  color={colors.light_gray_3}
+                />}
+                onPress={this._onDelete}
+              />}
+              <IconButton
+                icon={() => <Icon
+                  size={20}
+                  name="feather"
+                  color={colors.light_gray_3}
+                />}
+                onPress={this._onReply}
+              />
             </View>
             </View>
           </View>
