@@ -79,7 +79,7 @@ export default inject('stores')(observer(
                   <Text
                     ellipsizeMode="tail"
                     numberOfLines={1}
-                    onPress={scheduleId && (() => navigateToSchedule(scheduleId, (isFollowing || isOwner)))}
+                    onPress={scheduleId && (() => navigateToSchedule(scheduleId))}
                     style={[stores.appStyles.eventDetails.value, stores.appStyles.eventDetails.nav]}>{scheduleName}</Text>
                 </View>
               )
