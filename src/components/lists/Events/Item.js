@@ -34,7 +34,7 @@ class Item extends React.Component {
       nextProps.status !== this.props.status ||
       nextProps.recurrence !== this.props.recurrence ||
       nextProps.category !== this.props.category ||
-      nextProps.isBookmarked !== this.props.isBookmarked
+      nextProps.isMuted !== this.props.isMuted
     );
   };
 
@@ -53,15 +53,13 @@ class Item extends React.Component {
       address,
       pictureUrl,
       stores,
+      isMuted,
       isBookmarked,
       bookmarksCount,
-      eventScheduleId
     } = this.props;
 
     const styles = stores.appStyles.eventsList;
-    const isMuted = stores.appState.mutedList.includes(id) ||
-    (eventScheduleId && stores.appState.mutedList.includes(eventScheduleId)) &&
-    !stores.appState.allowedList.includes(id);
+    console.log(isMuted, title);
     
     const isPending = id[0] === '-';
     return (

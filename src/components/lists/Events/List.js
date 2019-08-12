@@ -207,13 +207,12 @@ class List extends React.Component {
   };
 
   
-  shouldComponentUpdate = (nextProps, nextState) => {
-    return (
-      Boolean(nextProps.loading) !== Boolean(this.props.loading) ||
-      this.state.sections !== nextState.sections ||
-      nextProps.stores.settingsStore.dark
-    );
-  };
+  // shouldComponentUpdate = (nextProps, nextState) => {
+  //   return (
+  //     Boolean(nextProps.loading) !== Boolean(this.props.loading) ||
+  //     this.state.sections !== nextState.sections
+  //   );
+  // };
 
   _onScroll = (event) => {
     this.props.handleScroll && this.props.handleScroll(event.nativeEvent.contentOffset.y)
@@ -243,7 +242,7 @@ class List extends React.Component {
     allDay,
     isBookmarked,
     bookmarksCount,
-    isOwner
+    isOwner,
   }}) => (<Item
     id={id}
     title={title}
@@ -266,6 +265,13 @@ class List extends React.Component {
       cancelledDates: cancelledDates || []
     })}
     address={venue}
+    isMuted={
+      this.props.stores.appState.mutedList.includes(id) ||
+      (
+        !this.props.stores.appState.allowedList.includes(id) &&
+        this.props.stores.appState.mutedList.includes(schedule.id)
+      )
+    }
     eventScheduleId={schedule && schedule.id}
     isBookmarked={isBookmarked}
     bookmarksCount={bookmarksCount}
@@ -289,23 +295,19 @@ class List extends React.Component {
   render() {
     const { loading, stores } = this.props;
     const { sections } = this.state;
-    const styles = stores.appStyles.eventsList;
-
-    const mutedList = stores.appState.mutedList;
-    const allowedList = stores.appState.allowedList;
-
-    const extraData = mutedList.length + allowedList.length;
-
+  
     return (
       <SectionList
         ref={this.listRef}
         initialNumToRender={0}
         getItemLayout={this._getItemLayout}
-        contentContainerStyle={styles.contentContainer}
-        style={styles.list}
+        contentContainerStyle={stores.appStyles.eventsList.contentContainer}
+        style={stores.appStyles.eventsList.list}
         stickySectionHeadersEnabled
         sections={sections}
-        extraData={extraData}
+        extraData={
+          stores.appState.allowedList.length + stores.appState.mutedList.length
+        }
         ListHeaderComponent={this._renderHeader}
         ListEmptyComponent={this._renderEmptyList}
         ItemSeparatorComponent={this._renderSeparator}
