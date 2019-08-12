@@ -507,18 +507,6 @@ export const updateEvent = `mutation UpdateEvent($input: UpdateEventInput!) {
     until
     isPublic
     isOwner
-    author {
-      id
-      name
-      me
-    }
-    schedule {
-      id
-      name
-    }
-    commentsCount
-    bookmarksCount
-    createdAt
     updatedAt
   }
 }
