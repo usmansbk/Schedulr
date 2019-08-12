@@ -346,7 +346,7 @@ class Form extends React.Component {
                   }
                 </Picker>
                 <HelperText
-                  type="info"
+                  type="error"
                   visible={errors.eventScheduleId && touched.eventScheduleId}
                 >
                 {errors.eventScheduleId && I18n.get(`HELPER_TEXT_required`)}
