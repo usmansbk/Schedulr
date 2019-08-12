@@ -98,6 +98,7 @@ class EventDetails extends React.Component {
                   icon={() => <Icon
                     size={24}
                     name="trash"
+                    color={colors.gray}
                   />}
                   onPress={handleDelete}
                 />

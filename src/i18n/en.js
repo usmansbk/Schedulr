@@ -123,6 +123,7 @@ export default {
   SHARE_inviteAFriendTitle: "Invite via...",
   SHARE_SCHEDULE_inviteTitle: "Share invite link via...",
   SHARE_SCHEDULE_subject: "Follow schedule to get latest events",
+  SHARE_EVENT_inviteTitle: "Share event via...",
 
   TOAST_enableReminder: "Enable reminder!",
   TOAST_locationError: "Failed to get location. Turn off airplane mode.",

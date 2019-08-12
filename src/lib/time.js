@@ -94,7 +94,7 @@ export function getRepeatLabel(id, date) {
   }
 }
 
-export function getRecurrence(recur) {
+export function getTimeUnit(recur) {
   const val = recur.toLowerCase();
   switch (val) {
     case 'daily': return 'days';

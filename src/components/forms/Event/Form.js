@@ -28,7 +28,7 @@ import {
   isEventValid,
   canRepeat
 } from 'lib/formValidator';
-import { getRepeatLabel, getRecurrence } from 'lib/time';
+import { getRepeatLabel, getTimeUnit } from 'lib/time';
 import formSchema from './schema';
 import recurrence from './recurrence';
 import { buildEventForm } from 'helpers/buildForm';
@@ -253,7 +253,7 @@ class Form extends React.Component {
                     if (itemValue === recurrence[0].id) {
                       setFieldValue('until', null);
                     } else if (values.until) {
-                      const unit = getRecurrence(itemValue);
+                      const unit = getTimeUnit(itemValue);
                       setFieldValue('until', moment(values.startAt).add(1, unit).valueOf());
                     }
                   }}
@@ -292,7 +292,7 @@ class Form extends React.Component {
                           if (until) {
                             setFieldValue('until', null);
                           } else {
-                            const unit = getRecurrence(values.recurrence);
+                            const unit = getTimeUnit(values.recurrence);
                             setFieldValue('until', moment(values.startAt).add(2, unit).valueOf());
                           }
                         }}

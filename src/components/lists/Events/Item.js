@@ -22,7 +22,7 @@ class Item extends React.Component {
     this.props.stores.appState.toggleMute(this.props.id, this.props.isMuted);
   };
   _navigateToSchedule = () => {
-    this.props.scheduleId ? this.props.navigateToScheduleEvents(this.props.scheduleId) : (
+    this.props.eventScheduleId ? this.props.navigateToScheduleEvents(this.props.eventScheduleId) : (
       this._onPress()
     );
   };
@@ -32,7 +32,7 @@ class Item extends React.Component {
       nextProps.title !== this.props.title ||
       nextProps.time !== this.props.time ||
       nextProps.status !== this.props.status ||
-      nextProps.recur !== this.props.recur ||
+      nextProps.recurrence !== this.props.recurrence ||
       nextProps.category !== this.props.category ||
       nextProps.isBookmarked !== this.props.isBookmarked
     );
@@ -42,7 +42,7 @@ class Item extends React.Component {
     const {
       id,
       title,
-      recur,
+      recurrence,
       time,
       startAt,
       endAt,
@@ -55,12 +55,12 @@ class Item extends React.Component {
       stores,
       isBookmarked,
       bookmarksCount,
-      scheduleId
+      eventScheduleId
     } = this.props;
 
     const styles = stores.appStyles.eventsList;
     const isMuted = stores.appState.mutedList.includes(id) ||
-    (scheduleId && stores.appState.mutedList.includes(scheduleId)) &&
+    (eventScheduleId && stores.appState.mutedList.includes(eventScheduleId)) &&
     !stores.appState.allowedList.includes(id);
     
     const isPending = id[0] === '-';
@@ -92,7 +92,7 @@ class Item extends React.Component {
               <Caption
                 ellipsizeMode="tail"
                 numberOfLines={1}
-              >{duration ? duration : ''} {category} {recur}</Caption>
+              >{duration ? duration : ''} {category} {recurrence}</Caption>
             </View>
           </View>
           <ActionSheet

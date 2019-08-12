@@ -23,7 +23,7 @@ export default ({
     size={size}
     onPress={() => {
       const shareOptions = {
-        title: I18n.get("TOAST_inviteAFriendViaTitle"),
+        title: I18n.get("SHARE_EVENT_inviteTitle"),
         subject: category,
         message: `${title}\n${category}\n${date}${address ? ('\n' + address) : ''}\n`,
         url: `${env.APP_URL}/event/${id}`

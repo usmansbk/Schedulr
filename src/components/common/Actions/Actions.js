@@ -4,11 +4,9 @@ import BookmarkButton from '../BookmarkButton';
 import ShareButton from '../ShareButton';
 import LocationButton from '../LocationButton';
 import CommentButton from '../CommentButton';
-
 import colors from 'config/colors';
 
 const FONT_SIZE = 22;
-const defaultColor = colors.gray;
 
 export default class Actions extends React.Component {
   shouldComponentUpdate = (nextProps) => (
@@ -32,8 +30,9 @@ export default class Actions extends React.Component {
       small,
       dark,
       navigateToComments,
+      color,
     } = this.props;
-    const color = dark ? colors.light_gray_3 : defaultColor;
+
     return (
       <View style={styles.actions}>
         <BookmarkButton

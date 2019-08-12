@@ -84,7 +84,7 @@ export default class Events extends React.Component {
     }
   };
   
-  shouldComponentUpdate = (nextProps) => nextProps.navigation.isFocused();
+  shouldComponentUpdate = (nextProps) => nextProps.navigation.isFocused() && this.props.loading !== nextProps.loading;
   
   componentDidUpdate = () => {
     const { events, stores, loading } = this.props;
@@ -125,12 +125,13 @@ export default class Events extends React.Component {
     } = this.props;
 
     console.log(data);
-    
+    const extractedEvents = extractEvents(data);
+    console.log(extractedEvents)
     return (
       <>
         <List
           loading={loading}
-          events={events}
+          events={extractedEvents || events}
           navigation={navigation}
           hasPreviousEvents={Boolean(nextToken)}
           onRefresh={onRefresh}
@@ -148,3 +149,14 @@ export default class Events extends React.Component {
   }
 }
 
+function extractEvents(data) {
+  let events = [];
+  if (!data) return null;
+
+  const { created } = data;
+
+  created.items.forEach(schedule => {
+    events = events.concat(schedule.events.items);
+  });
+  return events;
+}
