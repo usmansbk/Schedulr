@@ -92,7 +92,6 @@ export default class Events extends React.Component {
   componentDidUpdate = () => {
     const { stores, loading } = this.props;
     if (!loading) {
-      // TO-DO memoized events
       schdlAll(
         this.events,
         stores.appState.mutedList,
