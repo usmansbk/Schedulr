@@ -10,14 +10,14 @@ import { I18n } from 'aws-amplify';
 class DeleteComment extends React.Component {
   state = {
     loading: false
-  }
+  };
 
   _onDelete = () => {
     this.setState({ loading: true });
-    this.props.onDelete().catch((error) => {});
+    this.props.onDelete();
     this.setState({ loading: false });
     this.props.handleDismiss();
-  }
+  };
   
   render() {
     const {

@@ -23,7 +23,7 @@ class DeleteSchedule extends React.Component {
       onSubmit,
     } = this.props;
     this.setState({ loading: true });
-    onSubmit({ id }).catch(() => {});
+    onSubmit && onSubmit({ id });
     this.props.navigation.popToTop();
     this.setState({ loading: false });
   }

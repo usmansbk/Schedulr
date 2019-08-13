@@ -24,10 +24,10 @@ class DeleteEvent extends React.Component {
       onSubmit,
     } = this.props;
     this.setState({ loading: true });
-    onSubmit({ id }).catch(() => {});
+    onSubmit && onSubmit({ id });
     this.props.navigation.pop();
     this.setState({ loading: false });
-  }
+  };
 
   render() {
     const {
