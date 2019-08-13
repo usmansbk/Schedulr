@@ -29,7 +29,6 @@ export default inject('stores')(observer(
     timeAgo,
     status,
     isCancelled,
-    isBookmarked,
     isOwner,
     authorId,
     isFollowing,
@@ -138,7 +137,7 @@ export default inject('stores')(observer(
         title={title}
         address={address}
         category={category}
-        isBookmarked={isBookmarked}
+        isBookmarked={stores.appState.isBookmarked(id)}
         bookmarksCount={bookmarksCount}
         commentsCount={commentsCount}
         color={stores.themeStore.colors.gray}

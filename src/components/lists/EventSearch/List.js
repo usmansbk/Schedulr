@@ -64,7 +64,6 @@ class List extends Component {
     isConcluded,
     bookmarksCount,
     commentsCount,
-    isBookmarked
   }}) => (<Item
     id={id}
     title={title}
@@ -77,7 +76,7 @@ class List extends Component {
     endAt={endAt}
     bookmarksCount={bookmarksCount}
     commentsCount={commentsCount}
-    isBookmarked={isBookmarked}
+    isBookmarked={this.props.stores.appState.isBookmarked(id)}
     category={getCategory(category)}
     recurrence={parseRepeat(recurrence)}
     time={getHumanTime({ allDay, startAt, endAt })}
