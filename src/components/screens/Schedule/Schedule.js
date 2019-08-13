@@ -1,33 +1,17 @@
 import React from 'react';
-import { Dimensions } from 'react-native';
 import { Appbar } from 'react-native-paper';
 import { inject, observer } from 'mobx-react';
 import Icon from 'react-native-vector-icons/Feather';
-import List from 'components/lists/Events';
 import Fab from 'components/common/Fab';
 import Loading from 'components/common/Loading';
 import Error from 'components/common/Error';
 import { SCHEDULE_CLOSED } from 'lib/constants';
-
-const HEIGHT = Dimensions.get('window').height / 2;
+import List from './ListHoc';
 
 class Schedule extends React.Component {
-  state = {
-    offsetY: 0
-  };
-
-  _onScroll = (offsetY) => {
-    this.setState({ offsetY });
-  };
 
   shouldComponentUpdate = (nextProps) => nextProps.navigation.isFocused();
 
-  _eventsListRef = ref => this.eventsListRef = ref;
-
-  _scrollToTop = () => {
-    this.eventsListRef && this.eventsListRef.scrollToTop();
-  };
-  
   _navigateToScheduleInfo = () => {
     const id = this.props.schedule.id;
     this.props.navigation.navigate('ScheduleInfo', { id });
@@ -45,6 +29,7 @@ class Schedule extends React.Component {
       loading,
       onPress,
       onRefresh,
+      navigation,
       stores
     } = this.props;
     if (loading && !schedule) return <Loading />;
@@ -56,12 +41,10 @@ class Schedule extends React.Component {
       description,
       isOwner,
       status,
-      events,
     } = schedule;
 
     const styles = stores.appStyles.styles;
     const colors = stores.themeStore.colors;
-    const isOffline = id[0] === '-';
 
     return (
       <>
@@ -89,23 +72,11 @@ class Schedule extends React.Component {
           />
         </Appbar>
         <List
-          ref={this._eventsListRef}
-          listType="schedule"
-          events={events.items}
-          navigation={this.props.navigation}
-          handleScroll={this._onScroll}
+          id={id}
+          navigation={navigation}
         />
         {
-          Boolean(this.state.offsetY > HEIGHT) && (
-            <Fab
-              icon="chevron-up"
-              secondary
-              onPress={this._scrollToTop}
-            />
-          )
-        }
-        {
-          !(Boolean(error) && this.events.length) && !isOffline && isOwner && (status !== SCHEDULE_CLOSED ) && (
+          !(Boolean(error) && this.events.length) && isOwner && (status !== SCHEDULE_CLOSED ) && (
             <Fab
               icon="edit-2"
               onPress={this._navigateToNewEvent}

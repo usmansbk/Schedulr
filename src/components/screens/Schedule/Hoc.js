@@ -2,13 +2,13 @@ import { graphql, compose } from 'react-apollo';
 import { withNavigationFocus } from 'react-navigation';
 import gql from 'graphql-tag';
 import Screen from './Schedule';
-import { getScheduleWithEvents } from 'api/queries';
+import { getSchedule } from 'api/queries';
 
-const alias = 'withScheduleEventsContainer';
+const alias = 'withScheduleContainer';
 
 export default compose(
   withNavigationFocus,
-  graphql(gql(getScheduleWithEvents), {
+  graphql(gql(getSchedule), {
     alias,
     options: props => ({
       fetchPolicy: 'cache-first',
@@ -20,6 +20,7 @@ export default compose(
     props: ({ data, ownProps}) => ({
       loading: data.loading || data.networkStatus === 4,
       error: data.error,
+      onRefresh: () => data.refetch(),
       schedule: data && data.getSchedule,
       ...ownProps
     }) 

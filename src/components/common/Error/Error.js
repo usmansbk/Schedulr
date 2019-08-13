@@ -22,7 +22,7 @@ export default inject('stores')(observer(
             <Button
               icon={(props) => <Icon
                 name="refresh-cw"
-                size={24}
+                size={20}
                 color={props.color}
               />}
               onPress={onRefresh}
