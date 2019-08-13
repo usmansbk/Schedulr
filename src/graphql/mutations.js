@@ -338,7 +338,6 @@ export const createUser = `mutation CreateUser($input: CreateUserInput!) {
     name
     pictureUrl
     website
-    me
     createdAt
   }
 }
@@ -350,7 +349,6 @@ export const updateUser = `mutation UpdateUser($input: UpdateUserInput!) {
     name
     pictureUrl
     website
-    me
     updatedAt
   }
 }
@@ -393,7 +391,6 @@ export const createEvent = `mutation CreateEvent($input: CreateEventInput!) {
     author {
       id
       name
-      me
     }
     schedule {
       id
@@ -668,8 +665,13 @@ export const createSchedule = `mutation CreateSchedule($input: CreateScheduleInp
     status
     author {
       id
-      me
+      name
+      pictureUrl
     }
+    followersCount
+    eventsCount
+    createdAt
+    updatedAt
     events {
       items {
         id
@@ -689,7 +691,6 @@ export const createSchedule = `mutation CreateSchedule($input: CreateScheduleInp
         author {
           id
           name
-          me
         }
         schedule {
           id
@@ -901,26 +902,21 @@ export const createComment = `mutation CreateComment($input: CreateCommentInput!
   createComment(input: $input) {
     id
     content
+    isOwner
     to {
       id
       content
       author {
         id
         name
-        pictureUrl
-        me
       }
-      isOwner
     }
     author {
       id
       name
       pictureUrl
-      me
     }
-    isOwner
     createdAt
-    updatedAt
   }
 }
 `;

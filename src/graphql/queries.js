@@ -8,7 +8,6 @@ export const getUser = `query GetUser($id: ID!) {
     name
     pictureUrl
     website
-    me
     followingCount
     createdCount
     createdAt
@@ -35,7 +34,6 @@ export const getEvent = `query GetEvent($id: ID!) {
     author {
       id
       name
-      me
     }
     schedule {
       id
@@ -87,7 +85,6 @@ export const getSchedule = `query GetSchedule($id: ID!) {
       id
       name
       pictureUrl
-      me
     }
     followersCount
     eventsCount
@@ -108,7 +105,6 @@ export const getScheduleWithEvents = `query GetScheduleWithEvents($id: ID!) {
       id
       name
       pictureUrl
-      me
     }
     events {
       items {
@@ -129,7 +125,6 @@ export const getScheduleWithEvents = `query GetScheduleWithEvents($id: ID!) {
         author {
           id
           name
-          me
         }
         schedule {
           id
@@ -164,7 +159,6 @@ export const getUserSchedules = `query GetUserSchedules($id: ID!) {
           id
           name
           pictureUrl
-          me
         }
         followersCount
         eventsCount
@@ -186,7 +180,6 @@ export const getUserSchedules = `query GetUserSchedules($id: ID!) {
             id
             name
             pictureUrl
-            me
           }
           followersCount
           eventsCount
@@ -213,7 +206,6 @@ export const getUserData = `query GetUserData($id: ID!) {
           id
           name
           pictureUrl
-          me
         }
         followersCount
         eventsCount
@@ -238,7 +230,6 @@ export const getUserData = `query GetUserData($id: ID!) {
             author {
               id
               name
-              me
             }
             schedule {
               id
@@ -276,7 +267,6 @@ export const getUserData = `query GetUserData($id: ID!) {
               author {
                 id
                 name
-                me
               }
               schedule {
                 id
@@ -313,7 +303,6 @@ export const getUserData = `query GetUserData($id: ID!) {
           author {
             id
             name
-            me
           }
           schedule {
             id
