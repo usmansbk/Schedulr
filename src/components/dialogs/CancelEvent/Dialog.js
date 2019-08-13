@@ -7,7 +7,6 @@ import {
   RadioButton,
   Text
 } from 'react-native-paper';
-import moment from 'moment';
 import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
 import { SINGLE_EVENT, ALL_EVENTS } from 'lib/constants';
