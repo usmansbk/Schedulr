@@ -1,5 +1,5 @@
 import { computed } from 'mobx';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 import { dark, light } from 'config/colors';
 import {
   events,
@@ -8,10 +8,11 @@ import {
   followers_list,
   schedule_events,
   comments_list,
-  comment_input,
   event_search,
   schedule_search
 } from 'lib/constants';
+
+const WIDTH = Dimensions.get('window').width;
 
 export default class AppStyles {
   constructor(settingsStore) {
@@ -334,10 +335,6 @@ export default class AppStyles {
 
   @computed get commentInput () {
     const colors = this.settings.dark ? dark : light;
-    
-    const {
-      INPUT_WIDTH
-    } = comment_input;
 
     return StyleSheet.create({
       container: {
@@ -346,7 +343,8 @@ export default class AppStyles {
         flexDirection: 'row',
         alignItems: 'center',
         paddingHorizontal: 8,
-        backgroundColor: colors.bg
+        backgroundColor: colors.bg,
+        maxWidth: WIDTH
       },
       placeholder: {
         color: colors.black
@@ -357,14 +355,12 @@ export default class AppStyles {
       right: {
         justifyContent: 'center',
         alignItems: 'center',
-        marginRight: 4
       },
       avatar: {
         paddingRight: 4
       },
       input: {
-        maxWidth: INPUT_WIDTH,
-        minWidth: INPUT_WIDTH
+        flex: 1
       },
       alert: {
         flexDirection: 'row',
@@ -640,7 +636,6 @@ export default class AppStyles {
     const {
       ITEM_HEIGHT,
       SEPARATOR_HEIGHT,
-      AVATAR_SIZE
     } = event_search;
 
     return StyleSheet.create({
@@ -831,11 +826,8 @@ export default class AppStyles {
   @computed get scheduleEvents () {
     const colors = this.settings.dark ? dark : light;
     const {
-      AVATAR_SIZE,
       ITEM_HEIGHT,
-      ITEM_HEIGHT_SMALL,
       SEPARATOR_HEIGHT,
-      FOOTER_HEIGHT,
     } = schedule_events;
 
     return StyleSheet.create({
