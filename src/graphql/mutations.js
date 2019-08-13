@@ -108,6 +108,22 @@ export const createBookmark = `mutation CreateBookmark($input: CreateBookmarkInp
       schedule {
         id
         name
+        description
+        isPublic
+        isOwner
+        status
+        author {
+          id
+          name
+          website
+          pictureUrl
+          createdCount
+          followingCount
+        }
+        followersCount
+        eventsCount
+        createdAt
+        updatedAt
       }
       commentsCount
       bookmarksCount
@@ -139,9 +155,7 @@ export const createSchedule = `mutation CreateSchedule($input: CreateScheduleInp
     author {
       id
       name
-      pictureUrl
       createdCount
-      followingCount
     }
     followersCount
     eventsCount
@@ -216,6 +230,7 @@ export const createFollow = `mutation CreateFollow($input: CreateFollowInput!) {
         id
         name
         pictureUrl
+        website
         createdCount
         followingCount
       }

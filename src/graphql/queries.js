@@ -89,6 +89,9 @@ export const getSchedule = `query GetSchedule($id: ID!) {
       id
       name
       pictureUrl
+      website
+      createdCount
+      followingCount
     }
     followersCount
     eventsCount
@@ -249,9 +252,7 @@ export const getUserData = `query GetUserData($id: ID!) {
         author {
           id
           name
-          pictureUrl
           createdCount
-          followingCount
         }
         followersCount
         eventsCount
@@ -306,6 +307,7 @@ export const getUserData = `query GetUserData($id: ID!) {
             id
             name
             pictureUrl
+            website
             createdCount
             followingCount
           }
@@ -373,6 +375,22 @@ export const getUserData = `query GetUserData($id: ID!) {
           schedule {
             id
             name
+            description
+            isPublic
+            isOwner
+            status
+            author {
+              id
+              name
+              pictureUrl
+              website
+              createdCount
+              followingCount
+            }
+            followersCount
+            eventsCount
+            createdAt
+            updatedAt
           }
           commentsCount
           bookmarksCount
