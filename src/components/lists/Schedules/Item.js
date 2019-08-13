@@ -38,7 +38,6 @@ class Item extends React.Component {
       isMuted
     } = this.props;
     
-    const isPending = id[0] === '-';
     const styles = stores.appStyles.schedulesList;
 
     return (
@@ -66,7 +65,7 @@ class Item extends React.Component {
               <Text
                 numberOfLines={1}
                 ellipsizeMode="tail"
-                style={isPending ? styles.offlineName : styles.itemName}>{name}</Text>
+                style={styles.itemName}>{name}</Text>
             </View>
             { Boolean(description) && <Caption
               numberOfLines={1}

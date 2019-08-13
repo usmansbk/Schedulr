@@ -100,19 +100,9 @@ export const getSchedule = `query GetSchedule($id: ID!) {
   }
 }
 `;
-export const getScheduleWithEvents = `query GetScheduleWithEvents($id: ID!) {
-  getSchedule(id: $id) {
+export const getScheduleEvents = `query GetScheduleWithEvents($id: ID!) {
+  getScheduleEvents: getSchedule(id: $id) {
     id
-    name
-    description
-    isPublic
-    isOwner
-    status
-    author {
-      id
-      name
-      pictureUrl
-    }
     events {
       items {
         id
@@ -144,10 +134,6 @@ export const getScheduleWithEvents = `query GetScheduleWithEvents($id: ID!) {
       }
       nextToken
     }
-    followersCount
-    eventsCount
-    createdAt
-    updatedAt
   }
 }
 `;

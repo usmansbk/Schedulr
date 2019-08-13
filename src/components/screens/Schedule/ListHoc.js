@@ -2,7 +2,7 @@ import React from 'react';
 import { Dimensions } from 'react-native';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
-import { getScheduleWithEvents } from 'api/queries';
+import { getScheduleEvents } from 'api/queries';
 import List from 'components/lists/Events';
 import Fab from 'components/common/Fab';
 
@@ -57,7 +57,7 @@ class ListHoc extends React.Component {
   }
 }
 
-export default graphql(gql(getScheduleWithEvents), {
+export default graphql(gql(getScheduleEvents), {
   alias,
   options: props => ({
     fetchPolicy: 'cache-first',
@@ -70,7 +70,7 @@ export default graphql(gql(getScheduleWithEvents), {
     loading: data.loading || data.networkStatus === 4,
     error: data.error,
     onRefresh: () => data.refetch(),
-    events: data && data.getSchedule && data.getSchedule.events.items,
+    events: data && data.getScheduleEvents && data.getScheduleEvents.events.items,
     ...ownProps
   }) 
 })(ListHoc);

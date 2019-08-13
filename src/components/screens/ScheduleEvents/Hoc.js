@@ -1,13 +1,13 @@
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import { inject, observer } from 'mobx-react';
-import { getScheduleWithEvents } from 'api/queries';
+import { getSchedule } from 'api/queries';
 import ScheduleEvents from './ScheduleEvents';
 
 const alias = 'withScheduleEventsContainer';
 
 export default inject("stores")(observer(
-  graphql(gql(getScheduleWithEvents), {
+  graphql(gql(getSchedule), {
     alias,
     options: props => ({
       variables: {
@@ -19,6 +19,7 @@ export default inject("stores")(observer(
     props: ({ data, ownProps }) => ({
       error: data.error,
       loading: data.loading || (data.networkStatus === 4),
+      onRefresh: () => data.refetch(),
       schedule: data && data.getSchedule,
       ...ownProps,
     })

@@ -1,20 +1,11 @@
 import React from 'react';
 import { Appbar } from 'react-native-paper';
-import { sortBookmarks } from 'lib/utils';
-import { getEvents } from 'lib/calendr';
 import Icon from 'react-native-vector-icons/Feather';
-import List from 'components/lists/ScheduleEvents';
 import Loading from 'components/common/Loading';
 import Error from 'components/common/Error';
+import List from './ListHoc';
 
 export default class ScheduleEvents extends React.Component {
-
-  get events() {
-    const { schedule } = this.props;
-    if (!schedule) return [];
-    const { events } = schedule;
-    return sortBookmarks(getEvents(events.items));
-  }
 
   render() {
     const {
@@ -23,14 +14,14 @@ export default class ScheduleEvents extends React.Component {
       loading,
       onPress,
       onRefresh,
-      fetchPastEvents,
-      stores
+      stores,
     } = this.props;
 
     if (loading && !schedule) return <Loading />;
     if (!schedule && error) return <Error onRefresh={onRefresh} />;
 
     const {
+      id,
       name,
       description
     } = schedule;
@@ -56,12 +47,7 @@ export default class ScheduleEvents extends React.Component {
           />
         </Appbar>
         <List
-          listType="schedule"
-          events={this.events}
-          loading={loading}
-          error={error}
-          onRefresh={onRefresh}
-          fetchPastEvents={fetchPastEvents}
+          id={id}
         />
       </>
     );

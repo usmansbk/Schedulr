@@ -60,7 +60,6 @@ class Item extends React.Component {
 
     const styles = stores.appStyles.eventsList;
     
-    const isPending = id[0] === '-';
     return (
       <TouchableRipple
         onPress={this._onPress}
@@ -80,7 +79,7 @@ class Item extends React.Component {
           <View style={styles.right}>
             <View style={styles.itemBody}>
               <Headline
-                style={isPending ? styles.offlineTitle : styles.itemHeadline}
+                style={styles.itemHeadline}
                 numberOfLines={1}
                 ellipsizeMode="tail">
                 {title}
