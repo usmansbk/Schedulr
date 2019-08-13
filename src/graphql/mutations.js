@@ -307,7 +307,7 @@ export const createComment = `mutation CreateComment($input: CreateCommentInput!
     }
     event {
       id
-      eventsCount
+      commentsCount
     }
     createdAt
   }
