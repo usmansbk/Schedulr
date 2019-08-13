@@ -52,7 +52,6 @@ class Item extends React.Component {
 
     const styles = stores.appStyles.bookmarkedEventsList;
 
-
     return (
       <TouchableRipple
         onPress={this._onPress}
@@ -88,6 +87,7 @@ class Item extends React.Component {
               commentsCount={commentsCount}
               color={stores.themeStore.colors.light_gray_3}
               navigateToComments={this._onPressComment}
+              size={20}
               small
             />
           </View>

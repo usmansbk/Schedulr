@@ -6,8 +6,11 @@ import { observable, action } from 'mobx';
 import { persist } from 'mobx-persist';
 import { I18n } from 'aws-amplify';
 import debounce from 'lodash.debounce';
+import memoize from 'memoize-one';
 import { requestLocationPermission } from 'helpers/permissions';
 import categories from 'i18n/categories';
+import client from 'config/client';
+import { getBookmarks } from 'api/fragments';
 
 export default class AppState {
   constructor(settingsStore) {
@@ -179,5 +182,20 @@ export default class AppState {
   @action onChangeText (searchText) {
     this.searchText = searchText;
     this.debounceQuery(searchText);
+  }
+
+  getBookmarkIds = memoize(
+    (data) => data.bookmarks.items.map(
+      item => item.event.id
+    )
+  );
+
+  isBookmarked(id) {
+    const data = client.readFragment({
+      fragment: getBookmarks,
+      id: `User:${this.userId}`
+    });
+    const ids = this.getBookmarkIds(data);
+    return ids.includes(id);
   }
 }

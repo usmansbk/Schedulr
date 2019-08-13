@@ -46,6 +46,9 @@ export const getBookmarks = gql`
     bookmarks {
       items {
         id
+        event {
+          id
+        }
       }
     }
   }

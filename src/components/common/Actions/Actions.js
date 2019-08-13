@@ -6,7 +6,7 @@ import LocationButton from '../LocationButton';
 import CommentButton from '../CommentButton';
 import colors from 'config/colors';
 
-const FONT_SIZE = 22;
+const DEFAULT_FONT_SIZE = 22;
 
 export default class Actions extends React.Component {
   shouldComponentUpdate = (nextProps) => (
@@ -31,8 +31,10 @@ export default class Actions extends React.Component {
       small,
       navigateToComments,
       color,
+      size
     } = this.props;
-
+    
+    const FONT_SIZE = size || DEFAULT_FONT_SIZE;
     return (
       <View style={styles.actions}>
         <BookmarkButton

@@ -8,7 +8,6 @@ export default class Button extends React.Component {
       id,
       stores,
       isBookmarked,
-      bookmarksCount,
       onUnbookmarkEvent,
       onBookmarkEvent,
       // onUnbookmarkComplete
@@ -17,7 +16,6 @@ export default class Button extends React.Component {
       id: `${stores.appState.userId}-${id}`,
       bookmarkEventId: id,
     };
-    const prev = { isBookmarked, bookmarksCount };
     try {
       if (isBookmarked) {
         if (onUnbookmarkComplete) await onUnbookmarkComplete();
@@ -32,11 +30,12 @@ export default class Button extends React.Component {
 
   render() {
     const {
+      id,
       color,
       size,
       activeColor,
-      isBookmarked,
       bookmarksCount,
+      stores,
     } = this.props;
 
     return (
@@ -45,7 +44,7 @@ export default class Button extends React.Component {
         onPress={this._onContinue}
         size={size}
         count={bookmarksCount}
-        color={isBookmarked ? activeColor : color}
+        color={stores.appState.isBookmarked(id) ? activeColor : color}
       />
     );
   }
