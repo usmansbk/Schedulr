@@ -1,10 +1,11 @@
 import React from 'react';
+import { View, StyleSheet } from 'react-native';
 import {
   Button,
   Dialog,
   Portal,
   RadioButton,
-  List
+  Text
 } from 'react-native-paper';
 import moment from 'moment';
 import { inject, observer } from 'mobx-react';
@@ -12,14 +13,10 @@ import { I18n } from 'aws-amplify';
 import { SINGLE_EVENT, ALL_EVENTS } from 'lib/constants';
 
 class CancelEvent extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      checked: Boolean(props.date) ? SINGLE_EVENT : ALL_EVENTS,
-      loading: false,
-      date: props.date || null
-    };
-  }
+  state = {
+    checked: SINGLE_EVENT,
+    loading: false,
+  };
 
   shouldComponentUpdate = (nextProps, nextState) => (
     nextProps.visible !== this.props.visible ||
@@ -27,17 +24,6 @@ class CancelEvent extends React.Component {
     nextState.checked !== this.state.checked ||
     nextState.loading !== this.state.loading
   );
-
-  static getDerivedStateFromProps(props, state) {
-    const { date } = props;
-    if (date !== state.date) {
-      return {
-        checked: Boolean(date) ? SINGLE_EVENT : ALL_EVENTS,
-        date: date
-      };
-    }
-    return null;
-  }
 
   _onContinue = () => {
     const {
@@ -54,13 +40,16 @@ class CancelEvent extends React.Component {
     }).catch(() => {});
     handleDismiss();
     this.setState({ loading: false });
-  }
+  };
+
+  _handleDismiss = () => this.props.handleDismiss();
+
+  _toggleButton = checked => this.setState({ checked });
 
   render() {
     const {
       date,
       visible,
-      handleDismiss,
       stores
     } = this.props;
     const { checked, loading } = this.state;
@@ -68,38 +57,28 @@ class CancelEvent extends React.Component {
       <Portal>
         <Dialog
           visible={visible}
-          onDismiss={handleDismiss}
+          onDismiss={this._handleDismiss}
           style={{backgroundColor: stores.themeStore.colors.bg}}
         >
           <Dialog.Title>{I18n.get("DIALOG_cancelEvent")}</Dialog.Title>
           {
             Boolean(date) && (
               <Dialog.Content>
-                <List.Item
-                  title={I18n.get("DIALOG_onlyThisEvent")}
-                  right={() => (
-                    <RadioButton
-                      value={SINGLE_EVENT}
-                      status={ checked === SINGLE_EVENT ? 'checked' : 'unchecked'}
-                      onPress={() => this.setState({ checked: SINGLE_EVENT })}
-                    />
-                  )}
-                />
-                <List.Item
-                  title={I18n.get("DIALOG_allOfThisEvent")}
-                  right={() => (
-                    <RadioButton
-                      value={ALL_EVENTS}
-                      status={ checked === ALL_EVENTS ? 'checked' : 'unchecked'}
-                      onPress={() => this.setState({ checked: ALL_EVENTS})}
-                    />
-                  )}
-                />
+                <RadioButton.Group onValueChange={this._toggleButton} value={checked}>
+                  <View style={styles.row}>
+                    <Text>{I18n.get("DIALOG_onlyThisEvent")}</Text>
+                    <RadioButton value={SINGLE_EVENT} />
+                  </View>
+                  <View style={styles.row}>
+                    <Text>{I18n.get("DIALOG_allOfThisEvent")}</Text>
+                    <RadioButton value={ALL_EVENTS} />
+                  </View>
+                </RadioButton.Group>
               </Dialog.Content>
             )
           }
           <Dialog.Actions>
-            <Button disabled={loading} onPress={handleDismiss}>{I18n.get("BUTTON_dismiss")}</Button>
+            <Button disabled={loading} onPress={this._handleDismiss}>{I18n.get("BUTTON_dismiss")}</Button>
             <Button disabled={loading} loading={loading} onPress={this._onContinue}>{I18n.get("BUTTON_continue")}</Button>
           </Dialog.Actions>
         </Dialog>
@@ -107,5 +86,13 @@ class CancelEvent extends React.Component {
     )
   }
 }
+
+const styles = StyleSheet.create({
+  row: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginVertical: 16
+  }
+});
 
 export default inject("stores")(observer(CancelEvent));
