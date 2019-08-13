@@ -6,6 +6,7 @@ import {
 } from 'react-native-paper';
 import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
+import { SCHEDULE_OPEN } from 'lib/constants';
 
 class OpenSchedule extends React.Component {
   state = {
@@ -24,10 +25,10 @@ class OpenSchedule extends React.Component {
       handleDismiss
     } = this.props;
     this.setState({ loading: true });
-    onSubmit({ id }).catch(() => {});
+    onSubmit({ id, status: SCHEDULE_OPEN });
     handleDismiss();
     this.setState({ loading: false });
-  }
+  };
 
   render() {
     const {

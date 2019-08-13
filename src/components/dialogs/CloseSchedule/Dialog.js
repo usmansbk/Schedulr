@@ -6,6 +6,7 @@ import {
 } from 'react-native-paper';
 import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
+import { SCHEDULE_CLOSED } from 'lib/constants';
 
 class CloseSchedule extends React.Component {
   state = {
@@ -24,7 +25,7 @@ class CloseSchedule extends React.Component {
       handleDismiss,
     } = this.props;
     this.setState({ loading: true });
-    onSubmit({ id }).catch(() => {});
+    onSubmit({ id, status: SCHEDULE_CLOSED }).catch(() => {});
     handleDismiss();
     this.setState({ loading: false });
   }
