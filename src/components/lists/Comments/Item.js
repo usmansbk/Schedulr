@@ -46,9 +46,10 @@ class Item extends React.Component {
       authorPictureUrl,
       toCommentAuthorName,
       toCommentContent,
-      isToCommentDeleted,
       stores
     } = this.props;
+
+    console.log('render', id);
 
     const styles = stores.appStyles.commentsList;
     const colors = stores.themeStore.colors;

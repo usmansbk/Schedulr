@@ -44,8 +44,8 @@ export default {
 
   NOTIFICATIONS_updatesTabLabel: "UPDATES",
   NOTIFICATIONS_messagesTabLabel: "MESSAGES",
-  NOTIFICATIONS_emptyUpdatesList: "No new notifications",
-  NOTIFICATIONS_emptyUpdatesListCaption: "All caught up!",
+  NOTIFICATIONS_emptyUpdatesList: "Stay tuned!",
+  NOTIFICATIONS_emptyUpdatesListCaption: "Important updates and announcements will appear here",
   NOTIFICATIONS_emptyMessagesList: "No messages",
   NOTIFICATIONS_allCaughtUp: "You are all caught up!",
 
@@ -199,4 +199,6 @@ export default {
   ERROR_networkError: "Network error",
 
   PLACEHOLDER_aboutThisEvent: "About this event...",
+
+  WARNING_dontMissOut: "Don't miss out!"
 };

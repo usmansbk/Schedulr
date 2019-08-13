@@ -43,7 +43,6 @@ export default class Container extends React.Component {
 
   get comments() {
     const { data } = this.props;
-    console.log(data);
     if (!data) return [];
     const { comments } = data;
     return comments.items;

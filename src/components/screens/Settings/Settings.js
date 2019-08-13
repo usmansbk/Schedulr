@@ -104,6 +104,7 @@ class Settings extends React.Component {
           <List.Section title={I18n.get("SETTINGS_reminderSectionTitle")}>
             <List.Item
               title={I18n.get("SETTINGS_reminderDisable")}
+              description={I18n.get("WARNING_dontMissOut")}
               right={() => (
                 <Switch
                   value={disableReminders}
