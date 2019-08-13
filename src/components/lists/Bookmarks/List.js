@@ -14,7 +14,6 @@ import {
   getCategory
 } from 'lib/parseItem';
 import { sortBookmarks } from 'lib/utils';
-import { decapitalize } from 'lib/capitalizr';
 import { getEvents } from 'lib/calendr';
 import { bookmarkedEvents } from 'lib/constants';
 
@@ -53,21 +52,24 @@ class List extends Component {
     allDay,
     isConcluded,
     bookmarksCount,
-    commentsCount,
-    isBookmarked
+    commentsCount
   }}) => (<Item
     id={id}
     title={title}
-    status={getStatus({ isCancelled, cancelledDates, startAt, endAt, isConcluded})}
+    status={getStatus({
+      isCancelled,
+      cancelledDates: cancelledDates || [],
+      startAt, endAt, isConcluded
+    })}
     startAt={startAt}
     endAt={endAt}
     bookmarksCount={bookmarksCount}
     commentsCount={commentsCount}
-    isBookmarked={isBookmarked}
+    isBookmarked
     category={getCategory(category)}
     recur={parseRepeat(recur)}
     time={getHumanTime({ allDay, startAt, endAt })}
-    scheduleId={schedule && schedule.id}
+    eventScheduleId={schedule && schedule.id}
     duration={getDuration(startAt, endAt, allDay)}
     address={venue}
     onPressItem={this._onPressItem}

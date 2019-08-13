@@ -144,6 +144,45 @@ export const getScheduleWithEvents = `query GetScheduleWithEvents($id: ID!) {
   }
 }
 `;
+export const getUserBookmarks = `query GetBookmarks($id: ID!) {
+  getUserBookmarks: getUser(id: $id) {
+    id
+    bookmarks {
+      items {
+        id
+        event {
+          id
+          title
+          description
+          venue
+          category
+          startAt
+          endAt
+          allDay
+          recurrence
+          until
+          isPublic
+          isOwner
+          isCancelled
+          cancelledDates
+          author {
+            id
+            name
+          }
+          schedule {
+            id
+            name
+          }
+          commentsCount
+          bookmarksCount
+          createdAt
+          updatedAt
+        }
+      }
+      nextToken
+    }
+  }
+}`;
 export const getUserSchedules = `query GetUserSchedules($id: ID!) {
   getUserSchedules: getUser(id: $id) {
     id
@@ -169,6 +208,7 @@ export const getUserSchedules = `query GetUserSchedules($id: ID!) {
     }
     following {
       items {
+        id
         schedule {
           id
           name
@@ -285,6 +325,7 @@ export const getUserData = `query GetUserData($id: ID!) {
     }
     bookmarks {
       items {
+        id
         event {
           id
           title

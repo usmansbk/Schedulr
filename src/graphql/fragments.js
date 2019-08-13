@@ -43,6 +43,10 @@ export const getScheduleEvents = gql`
 
 export const getBookmarks = gql`
   fragment myBookmarks on User {
-    id
+    bookmarks {
+      items {
+        id
+      }
+    }
   }
 `;
