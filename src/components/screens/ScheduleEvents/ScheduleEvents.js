@@ -31,7 +31,6 @@ export default class ScheduleEvents extends React.Component {
     if (loading && !schedule) return <Loading />;
     if (!schedule && error) return <Error onRefresh={onRefresh} />;
 
-    console.log(schedule);
     const {
       name,
       description
