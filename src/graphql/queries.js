@@ -38,6 +38,8 @@ export const getEvent = `query GetEvent($id: ID!) {
     schedule {
       id
       name
+      eventsCount
+      followersCount
     }
     commentsCount
     bookmarksCount
@@ -66,6 +68,10 @@ export const getEventComments = `query GetEventComments($id: ID!) {
           id
           name
           pictureUrl
+        }
+        event {
+          id
+          commentsCount
         }
         createdAt
       }
@@ -129,6 +135,8 @@ export const getScheduleWithEvents = `query GetScheduleWithEvents($id: ID!) {
         schedule {
           id
           name
+          eventsCount
+          followersCount
         }
         commentsCount
         bookmarksCount
@@ -172,6 +180,8 @@ export const getUserBookmarks = `query GetBookmarks($id: ID!) {
           schedule {
             id
             name
+            eventsCount
+            followersCount
           }
           commentsCount
           bookmarksCount
@@ -274,6 +284,8 @@ export const getUserData = `query GetUserData($id: ID!) {
             schedule {
               id
               name
+              eventsCount
+              followersCount
             }
             commentsCount
             bookmarksCount
@@ -286,7 +298,9 @@ export const getUserData = `query GetUserData($id: ID!) {
       nextToken
     }
     following {
+      nextToken
       items {
+        id
         schedule {
           id
           name
@@ -299,11 +313,8 @@ export const getUserData = `query GetUserData($id: ID!) {
             name
             pictureUrl
           }
-          followersCount
-          eventsCount
-          createdAt
-          updatedAt
           events {
+            nextToken
             items {
               id
               title
@@ -326,17 +337,22 @@ export const getUserData = `query GetUserData($id: ID!) {
               schedule {
                 id
                 name
+                eventsCount
+                followersCount
               }
               commentsCount
               bookmarksCount
               createdAt
               updatedAt
             }
-            nextToken
           }
+          followersCount
+          eventsCount
+          createdAt
+          updatedAt
         }
+        createdAt
       }
-      nextToken
     }
     bookmarks {
       items {
@@ -363,6 +379,8 @@ export const getUserData = `query GetUserData($id: ID!) {
           schedule {
             id
             name
+            eventsCount
+            followersCount
           }
           commentsCount
           bookmarksCount

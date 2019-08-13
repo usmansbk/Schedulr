@@ -1,5 +1,4 @@
 /* eslint-disable */
-// this is an auto generated file. This will be overwritten
 
 export const createUser = `mutation CreateUser($input: CreateUserInput!) {
   createUser(input: $input) {
@@ -20,27 +19,6 @@ export const updateUser = `mutation UpdateUser($input: UpdateUserInput!) {
     pictureUrl
     website
     updatedAt
-  }
-}
-`;
-export const deleteUser = `mutation DeleteUser($input: DeleteUserInput!) {
-  deleteUser(input: $input) {
-    id
-    created {
-      items {
-        id
-      }
-    }
-    following {
-      items {
-        id
-      }
-    }
-    bookmarks {
-      items {
-        id
-      }
-    }
   }
 }
 `;
@@ -129,6 +107,8 @@ export const createBookmark = `mutation CreateBookmark($input: CreateBookmarkInp
       schedule {
         id
         name
+        eventsCount
+        followersCount
       }
       commentsCount
       bookmarksCount
@@ -190,6 +170,8 @@ export const createSchedule = `mutation CreateSchedule($input: CreateScheduleInp
         schedule {
           id
           name
+          eventsCount
+          followersCount
         }
         commentsCount
         bookmarksCount
@@ -257,6 +239,8 @@ export const createFollow = `mutation CreateFollow($input: CreateFollowInput!) {
           schedule {
             id
             name
+            eventsCount
+            followersCount
           }
           commentsCount
           bookmarksCount
