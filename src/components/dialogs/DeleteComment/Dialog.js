@@ -34,10 +34,10 @@ class DeleteComment extends React.Component {
           style={{backgroundColor: stores.themeStore.colors.bg}}
           onDismiss={handleDismiss}
         >
-          <Dialog.Title>Delete comment?</Dialog.Title>
+          <Dialog.Title>{I18n.get("DIALOG_deleteComment")}</Dialog.Title>
           <Dialog.Actions>
-            <Button disabled={loading} onPress={handleDismiss}>Dismiss</Button>
-            <Button loading={loading} disabled={loading} onPress={this._onDelete}>Continue</Button>
+            <Button disabled={loading} onPress={handleDismiss}>{I18n.get("BUTTON_dismiss")}</Button>
+            <Button loading={loading} disabled={loading} onPress={this._onDelete}>{I18n.get("BUTTON_continue")}</Button>
           </Dialog.Actions>
         </Dialog>
       </Portal>

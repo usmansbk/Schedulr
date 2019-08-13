@@ -44,10 +44,10 @@ class CloseSchedule extends React.Component {
           onDismiss={handleDismiss}
           style={{backgroundColor: stores.themeStore.colors.bg}}
         >
-          <Dialog.Title>Close schedule?</Dialog.Title>
+          <Dialog.Title>{I18n.get("DIALOG_closeSchedule")}</Dialog.Title>
           <Dialog.Actions>
-            <Button disabled={loading} onPress={handleDismiss}>Dismiss</Button>
-            <Button loading={loading} disabled={loading} onPress={this._onContinue}>Continue</Button>
+            <Button disabled={loading} onPress={handleDismiss}>{I18n.get("BUTTON_dismiss")}</Button>
+            <Button loading={loading} disabled={loading} onPress={this._onContinue}>{I18n.get("BUTTON_continue")}</Button>
           </Dialog.Actions>
         </Dialog>
       </Portal>

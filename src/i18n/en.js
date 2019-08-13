@@ -205,4 +205,9 @@ export default {
   DIALOG_cancelEvent: "Cancel event?",
   DIALOG_onlyThisEvent: "Only this event?",
   DIALOG_allOfThisEvent: "All of this event",
+  DIALOG_closeSchedule: "Close schedule?",
+  DIALOG_deleteComment: "Delete comment?",
+  DIALOG_deleteEvent: "Delete event?",
+  DIALOG_deleteSchedule: "Delete schedule?",
+  DIALOG_openSchedule: "Open schedule?",
 };

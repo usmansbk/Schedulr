@@ -3,7 +3,7 @@ import {
   Button,
   Dialog,
   Portal,
-  Checkbox,
+  RadioButton,
   List
 } from 'react-native-paper';
 import moment from 'moment';
@@ -78,7 +78,7 @@ class CancelEvent extends React.Component {
                 <List.Item
                   title={I18n.get("DIALOG_onlyThisEvent")}
                   right={() => (
-                    <Checkbox
+                    <RadioButton
                       value={SINGLE_EVENT}
                       status={ checked === SINGLE_EVENT ? 'checked' : 'unchecked'}
                       onPress={() => this.setState({ checked: SINGLE_EVENT })}
@@ -88,7 +88,7 @@ class CancelEvent extends React.Component {
                 <List.Item
                   title={I18n.get("DIALOG_allOfThisEvent")}
                   right={() => (
-                    <Checkbox
+                    <RadioButton
                       value={ALL_EVENTS}
                       status={ checked === ALL_EVENTS ? 'checked' : 'unchecked'}
                       onPress={() => this.setState({ checked: ALL_EVENTS})}
