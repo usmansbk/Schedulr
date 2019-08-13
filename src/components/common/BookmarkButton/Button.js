@@ -10,7 +10,7 @@ export default class Button extends React.Component {
       isBookmarked,
       onUnbookmarkEvent,
       onBookmarkEvent,
-      // onUnbookmarkComplete
+      onUnbookmarkComplete
     } = this.props;
     const input = {
       id: `${stores.appState.userId}-${id}`,
