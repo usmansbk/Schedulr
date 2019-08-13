@@ -30,14 +30,21 @@ class CancelEvent extends React.Component {
       id,
       date,
       onSubmit,
+      cancelledDates,
       handleDismiss,
     } = this.props;
     this.setState({ loading: true });
-    onSubmit({
-      id,
-      option: this.state.checked,
-      date: date ? moment(date).valueOf() : null
-    }).catch(() => {});
+    const input = {id};
+    const { checked } = this.state;
+    if (checked === ALL_EVENTS) {
+      input.isCancelled = true;
+    } else {
+      input.cancelledDates = Array.from(new Set([
+        ...cancelledDates,
+        date
+      ]));
+    }
+    onSubmit(input);
     handleDismiss();
     this.setState({ loading: false });
   };

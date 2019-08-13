@@ -388,6 +388,8 @@ export const createEvent = `mutation CreateEvent($input: CreateEventInput!) {
     until
     isPublic
     isOwner
+    isCancelled
+    cancelledDates
     author {
       id
       name
@@ -417,6 +419,8 @@ export const updateEvent = `mutation UpdateEvent($input: UpdateEventInput!) {
     until
     isPublic
     isOwner
+    isCancelled
+    cancelledDates
     updatedAt
   }
 }
