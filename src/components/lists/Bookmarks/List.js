@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { RefreshControl } from 'react-native';
-import { withNavigationFocus, FlatList } from 'react-navigation';
+import { FlatList } from 'react-navigation';
 import { inject, observer } from 'mobx-react';
 import Item from './Item';
 import Separator from './Separator';
@@ -32,7 +32,7 @@ class List extends Component {
       index
     }
   );
-  shouldComponentUpdate = (nextProps) => nextProps.navigation.isFocused();
+
   _onPressItem = (id, refStartAt, refEndAt) => this.props.navigation.navigate('EventDetails', { id, refStartAt, refEndAt });
   _navigateToInfo = (id) => this.props.navigation.navigate('ScheduleInfo', { id });
   _navigateToComments = (id, title, date) => this.props.navigation.navigate('Comments', { id, title, date });
@@ -46,7 +46,7 @@ class List extends Component {
     cancelledDates,
     startAt,
     endAt,
-    recur,
+    recurrence,
     venue,
     schedule,
     allDay,
@@ -65,9 +65,8 @@ class List extends Component {
     endAt={endAt}
     bookmarksCount={bookmarksCount}
     commentsCount={commentsCount}
-    isBookmarked
     category={getCategory(category)}
-    recur={parseRepeat(recur)}
+    recurrence={parseRepeat(recurrence)}
     time={getHumanTime({ allDay, startAt, endAt })}
     eventScheduleId={schedule && schedule.id}
     duration={getDuration(startAt, endAt, allDay)}
@@ -89,9 +88,6 @@ class List extends Component {
       stores
     } = this.props;
 
-    const styles = stores.appStyles.bookmarkedEventsList;
-    const colors = stores.themeStore.colors;
-
     return (
       <FlatList
         refreshing={loading}
@@ -99,13 +95,13 @@ class List extends Component {
           <RefreshControl
             onRefresh={onRefresh}
             refreshing={loading}
-            colors={[colors.primary]}
-            progressBackgroundColor={colors.bg}
+            colors={[stores.themeStore.colors.primary]}
+            progressBackgroundColor={stores.themeStore.colors.bg}
           />
         }
         onRefresh={onRefresh}
-        style={styles.list}
-        contentContainerStyle={styles.contentContainer}
+        style={stores.appStyles.bookmarkedEventsList.list}
+        contentContainerStyle={stores.appStyles.bookmarkedEventsList.contentContainer}
         initialNumToRender={5}
         getItemLayout={this._getItemLayout}
         ItemSeparatorComponent={this._renderSeparator}
@@ -119,6 +115,4 @@ class List extends Component {
   }
 }
 
-const withStores = inject("stores")(observer(List));
-
-export default withNavigationFocus(withStores);
+export default inject("stores")(observer(List));

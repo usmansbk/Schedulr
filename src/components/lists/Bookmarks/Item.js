@@ -18,8 +18,8 @@ class Item extends React.Component {
   _onPress = () => this.props.onPressItem(this.props.id, this.props.startAt, this.props.endAt);
   _onPressComment = () => this.props.onPressComment(this.props.id, this.props.title, this.props.time);
   _onPressAvatar = () => {
-    const { scheduleId } = this.props;
-    scheduleId ? this.props.navigateToInfo(scheduleId) : this._onPress();
+    const { eventScheduleId } = this.props;
+    eventScheduleId ? this.props.navigateToInfo(eventScheduleId) : this._onPress();
   };
   shouldComponentUpdate = (nextProps) => {
     return (
@@ -37,7 +37,7 @@ class Item extends React.Component {
     const {
       id,
       title,
-      recur,
+      recurrence,
       time,
       status,
       duration,
@@ -76,7 +76,7 @@ class Item extends React.Component {
                 {title}
               </Headline>
               <Text style={styles.time}>{time}</Text>
-              <Caption>{duration ? duration + ' ' : ''}{category} {recur}</Caption>
+              <Caption>{duration ? duration + ' ' : ''}{category} {recurrence}</Caption>
               <Tag status={status} /> 
             </View>
             <Actions
@@ -86,6 +86,7 @@ class Item extends React.Component {
               isBookmarked={isBookmarked}
               bookmarksCount={bookmarksCount}
               commentsCount={commentsCount}
+              color={stores.themeStore.colors.light_gray_3}
               navigateToComments={this._onPressComment}
               small
             />
