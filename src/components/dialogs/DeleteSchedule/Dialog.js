@@ -5,6 +5,7 @@ import {
   Portal
 } from 'react-native-paper';
 import { inject, observer } from 'mobx-react';
+import { I18n } from 'aws-amplify';
 
 class DeleteSchedule extends React.Component {
   state = {

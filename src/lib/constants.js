@@ -2,6 +2,9 @@ export const ONE_TIME_EVENT = 'NEVER';
 export const BULLET = '•';
 export const CIRCLE = '●';
 
+export const SINGLE_EVENT = 'SINGLE';
+export const ALL_EVENTS = 'ALL';
+
 export const SCHEDULE_CLOSED = 'CLOSED';
 export const SCHEDULE_OPEN = 'OPEN';
 

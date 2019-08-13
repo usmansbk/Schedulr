@@ -200,5 +200,9 @@ export default {
 
   PLACEHOLDER_aboutThisEvent: "About this event...",
 
-  WARNING_dontMissOut: "Don't miss out!"
+  WARNING_dontMissOut: "Don't miss out!",
+
+  DIALOG_cancelEvent: "Cancel event?",
+  DIALOG_onlyThisEvent: "Only this event?",
+  DIALOG_allOfThisEvent: "All of this event",
 };
