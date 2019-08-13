@@ -9,15 +9,21 @@ import colors from 'config/colors';
 const DEFAULT_FONT_SIZE = 22;
 
 export default class Actions extends React.Component {
+
   shouldComponentUpdate = (nextProps) => (
-    (this.props.isBookmarked !== nextProps.isBookmarked) ||
     (this.props.date !== nextProps.date) ||
     (this.props.title !== nextProps.title) ||
     (this.props.commentsCount !== nextProps.commentsCount) ||
+    (this.props.bookmarksCount !== nextProps.bookmarksCount) ||
     (this.props.address !== nextProps.address) ||
     (this.props.color !== nextProps.color)
   );
-  
+
+  _onPressCommentButton = () => {
+    const { id, title, navigateToComments } = this.props;
+    navigateToComments(id, title);
+  };
+
   render() {
     const {
       date,
@@ -29,7 +35,6 @@ export default class Actions extends React.Component {
       category,
       id,
       small,
-      navigateToComments,
       color,
       size
     } = this.props;
@@ -51,7 +56,7 @@ export default class Actions extends React.Component {
           commentsCount={commentsCount}
           size={FONT_SIZE}
           color={color}
-          onPress={() => navigateToComments(id, title)}
+          onPress={this._onPressCommentButton}
         />
         <LocationButton
           address={address}
@@ -59,7 +64,7 @@ export default class Actions extends React.Component {
           size={FONT_SIZE}
         />
         {
-          small ? null : (
+          !small && (
             <ShareButton
               color={color}
               id={id}

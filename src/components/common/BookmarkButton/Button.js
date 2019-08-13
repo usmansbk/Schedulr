@@ -3,7 +3,7 @@ import IconBadge from '../IconBadge';
 
 export default class Button extends React.Component {
 
-  _onContinue = async () => {
+  _onPress = async () => {
     const {
       id,
       stores,
@@ -13,12 +13,12 @@ export default class Button extends React.Component {
     } = this.props;
     const input = {
       id: `${stores.appState.userId}-${id}`,
-      bookmarkEventId: id,
     };
     try {
       if (isBookmarked) {
         await removeBookmark(input);
       } else {
+        input.bookmarkEventId = id,
         await bookmarkEvent(input);
       }
     } catch (error) {
@@ -28,21 +28,20 @@ export default class Button extends React.Component {
 
   render() {
     const {
-      id,
       color,
       size,
       activeColor,
       bookmarksCount,
-      stores,
+      isBookmarked,
     } = this.props;
 
     return (
       <IconBadge
         icon="bookmark"
-        onPress={this._onContinue}
+        onPress={this._onPress}
         size={size}
         count={bookmarksCount}
-        color={stores.appState.isBookmarked(id) ? activeColor : color}
+        color={isBookmarked ? activeColor : color}
       />
     );
   }

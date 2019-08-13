@@ -63,6 +63,7 @@ class List extends Component {
     })}
     startAt={startAt}
     endAt={endAt}
+    isBookmarked={this.props.stores.appState.isBookmarked(id)}
     bookmarksCount={bookmarksCount}
     commentsCount={commentsCount}
     category={getCategory(category)}

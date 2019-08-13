@@ -6,9 +6,9 @@ import { ONE_TIME_EVENT } from './constants';
 
 export const parseDetails = (event) => {
   const category = decapitalize(event.category);
-  const isRecurring = event.recur !== ONE_TIME_EVENT;
-  const recur = decapitalize(event.recur);
-  const note = `${isRecurring ? (recur + ' ') : ''}${category}`;
+  const isRecurring = event.recurrence !== ONE_TIME_EVENT;
+  const recurrence = decapitalize(event.recurrence);
+  const note = `${isRecurring ? (recurrence + ' ') : ''}${category}`;
   return note;
 };
 
@@ -46,7 +46,9 @@ export const isStarted = ({ isCancelled, startAt, endAt }) => {
   return (!isCancelled && t.isCurrent());
 };
 
-export const isToday = ({ startAt, endAt, isCancelled, cancelledDates }) => {
+export const isToday = (event) => {
+  const { startAt, endAt, isCancelled } = event;
+  const cancelledDates = event.cancelledDates || [];
   return (
     moment(startAt).twix(endAt).isSame('day') ||
     moment(startAt).twix(endAt).isCurrent() ||
@@ -60,7 +62,11 @@ export const getDuration = (startAt, endAt, allDay) => {
   return decapitalize(t.humanizeLength());
 };
 
-export const isEventCancelled = ({ cancelledDates=[], startAt, isCancelled }) => isCancelled || cancelledDates.includes(startAt);
+export const isEventCancelled = (event) => {
+  const { startAt, isCancelled } = event;
+  const cancelledDates = event.cancelledDates || [];
+  return isCancelled || cancelledDates.includes(startAt);
+}
 
 export const getStatus = ({
   isCancelled,
@@ -79,12 +85,14 @@ export const getStatus = ({
   return I18n.get("STATUS_upcoming");
 }
 
-export const isEventValid = ({isCancelled, startAt, endAt, cancelledDates }) => {
+export const isEventValid = (event) => {
+  const { isCancelled, startAt, endAt } = event;
+  const cancelledDates = event.cancelledDates;
   return moment().twix(endAt).isCurrent() && !isEventCancelled({ cancelledDates, startAt, isCancelled });
 };
 
-export const parseRepeat = (recur) => {
-  const val = recur.toLowerCase();
+export const parseRepeat = (recurrence) => {
+  const val = recurrence.toLowerCase();
   switch(val) {
     case 'never': return null;
     case 'daily': return 'daily';
@@ -92,8 +100,6 @@ export const parseRepeat = (recur) => {
     case 'weekdays': return 'every weekday';
     case 'monthly': case 'monthly_day': return 'monthly';
     case 'yearly': return 'yearly';
-    default: return recur;
+    default: return recurrence;
   }
 }
-
-export const isSingle = (recur) => recur === ONE_TIME_EVENT;

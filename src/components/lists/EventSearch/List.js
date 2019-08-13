@@ -57,7 +57,7 @@ class List extends Component {
     cancelledDates,
     startAt,
     endAt,
-    recur,
+    recurrence,
     venue,
     schedule,
     allDay,
@@ -68,14 +68,18 @@ class List extends Component {
   }}) => (<Item
     id={id}
     title={title}
-    status={getStatus({ isCancelled, cancelledDates, startAt, endAt, isConcluded})}
+    status={getStatus({
+      isCancelled,
+      cancelledDates,
+      startAt, endAt, isConcluded
+    })}
     startAt={startAt}
     endAt={endAt}
     bookmarksCount={bookmarksCount}
     commentsCount={commentsCount}
     isBookmarked={isBookmarked}
     category={getCategory(category)}
-    recur={parseRepeat(recur)}
+    recurrence={parseRepeat(recurrence)}
     time={getHumanTime({ allDay, startAt, endAt })}
     scheduleId={schedule && schedule.id}
     duration={getDuration(startAt, endAt, allDay)}

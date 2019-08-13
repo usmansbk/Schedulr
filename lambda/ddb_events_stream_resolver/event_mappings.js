@@ -25,7 +25,7 @@ const mappings = {
 			allDay: {
 			    type: "boolean"
 			},
-			recur: {
+			recurrence: {
 			    type: "text"
 			},
 			forever: {

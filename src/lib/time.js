@@ -38,8 +38,8 @@ const subheadingCalendarFormats = {
   sameElse: DAY_FORMAT
 };
 
-export const repeatLength = (recur) => {
-  switch(recur) {
+export const repeatLength = (recurrence) => {
+  switch(recurrence) {
     case 'DAILY': return ONE_DAY;
     case 'WEEKDAYS': return ONE_DAY;
     case 'WEEKLY': return ONE_WEEK;
@@ -94,8 +94,8 @@ export function getRepeatLabel(id, date) {
   }
 }
 
-export function getTimeUnit(recur) {
-  const val = recur.toLowerCase();
+export function getTimeUnit(recurrence) {
+  const val = recurrence.toLowerCase();
   switch (val) {
     case 'daily': return 'days';
     case 'weekly': case 'weekdays': return 'weeks';
