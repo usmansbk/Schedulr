@@ -2,20 +2,11 @@ import moment from 'moment';
 import 'twix';
 import { I18n } from 'aws-amplify';
 import { decapitalize } from './capitalizr';
-import { ONE_TIME_EVENT } from './constants';
-
-export const parseDetails = (event) => {
-  const category = decapitalize(event.category);
-  const isRecurring = event.recurrence !== ONE_TIME_EVENT;
-  const recurrence = decapitalize(event.recurrence);
-  const note = `${isRecurring ? (recurrence + ' ') : ''}${category}`;
-  return note;
-};
 
 export const getCategory = (category) => {
   if (category.toLowerCase().trim() === 'normal') return '';
   return decapitalize(category);
-}
+};
 
 export const getTime = ({ startAt, endAt, allDay }) => {
   const t = moment(startAt).twix(endAt, allDay);
@@ -32,12 +23,12 @@ export const getTime = ({ startAt, endAt, allDay }) => {
 export const getHumanTime = ({ startAt, endAt, allDay }) => {
   const t = moment(startAt).twix(endAt, allDay).format();
   return t;
-}
+};
 
 export const isPast = (date) => {
   const d = moment(date).endOf('day');
   return moment().twix(d).isPast();
-}
+};
 
 export const isPastExact = date => moment().twix(date).isPast();
 
@@ -54,7 +45,7 @@ export const isToday = (event) => {
     moment(startAt).twix(endAt).isCurrent() ||
     isCancelled || cancelledDates.includes(startAt)
   );
-}
+};
 
 export const getDuration = (startAt, endAt, allDay) => {
   if (allDay) return null;
@@ -83,11 +74,11 @@ export const getStatus = ({
   const isOngoing = moment(startAt).twix(endAt).isCurrent();
   if (isOngoing) return I18n.get('STATUS_ongoing');
   return I18n.get("STATUS_upcoming");
-}
+};
 
 export const isEventValid = (event) => {
   const { isCancelled, startAt, endAt } = event;
-  const cancelledDates = event.cancelledDates;
+  const cancelledDates = event.cancelledDates || [];
   return moment().twix(endAt).isCurrent() && !isEventCancelled({ cancelledDates, startAt, isCancelled });
 };
 
@@ -102,4 +93,4 @@ export const parseRepeat = (recurrence) => {
     case 'yearly': return 'yearly';
     default: return recurrence;
   }
-}
+};

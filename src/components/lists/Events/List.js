@@ -225,7 +225,7 @@ class List extends React.Component {
     title,
     category,
     isCancelled,
-    cancelledDates = [],
+    cancelledDates,
     startAt,
     endAt,
     recurrence,
@@ -246,7 +246,7 @@ class List extends React.Component {
     time={getTime({ allDay, startAt, endAt })}
     status={getStatus({
       isCancelled,
-      cancelledDates: cancelledDates || [],
+      cancelledDates,
       startAt,
       endAt
     })}
@@ -254,7 +254,7 @@ class List extends React.Component {
       isCancelled,
       endAt,
       startAt,
-      cancelledDates: cancelledDates || []
+      cancelledDates
     })}
     address={venue}
     isMuted={

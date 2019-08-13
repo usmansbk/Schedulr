@@ -73,7 +73,11 @@ class EventDetails extends React.Component {
     const start = refStartAt || startAt;
     const end = refEndAt || endAt;
     const isOffline = id[0] === '-';
-    const isValid = isEventValid({ isCancelled, endAt: end, startAt: start, cancelledDates: cancelledDates || [] }) && !isOffline;
+    const isValid = isEventValid({
+      isCancelled, endAt: end,
+      startAt: start,
+      cancelledDates
+    }) && !isOffline;
 
     const colors = stores.themeStore.colors;
     const styles = stores.appStyles.styles;
@@ -147,7 +151,7 @@ class EventDetails extends React.Component {
           timeAgo={this._getStartAgo(start, end)}
           status={getStatus({
             isCancelled,
-            cancelledDates: cancelledDates || [],
+            cancelledDates,
             startAt: start,
             endAt: end
           })}
@@ -173,7 +177,7 @@ class EventDetails extends React.Component {
           isFollowing={schedule && schedule.isFollowing}
           isOwner={isOwner}
           isValid={isValid}
-          isCancelled={isEventCancelled({ cancelledDates: cancelledDates || [], isCancelled, startAt: start })}
+          isCancelled={isEventCancelled({ cancelledDates, isCancelled, startAt: start })}
           navigateToSchedule={navigateToSchedule}
           navigateToComments={navigateToComments}
           navigateToUser={navigateToUser}

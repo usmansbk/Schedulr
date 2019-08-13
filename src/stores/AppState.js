@@ -184,11 +184,9 @@ export default class AppState {
     this.debounceQuery(searchText);
   }
 
-  getBookmarkIds = memoize(
-    (data) => data.bookmarks.items.map(
+  getBookmarkIds = (data) => data.bookmarks.items.map(
       item => item.event.id
-    )
-  );
+    );
 
   isBookmarked(id) {
     const data = client.readFragment({

@@ -71,7 +71,7 @@ class List extends Component {
     endAt={endAt}
     status={getStatus({
       isCancelled,
-      cancelledDates: cancelledDates || [],
+      cancelledDates,
       startAt, endAt, isConcluded
     })}
     category={getCategory(category)}
