@@ -23,7 +23,8 @@ class IconBagdeButton extends React.Component {
     const {
       size,
       count,
-      stores
+      stores,
+      color
     } = this.props;
 
     return  (
@@ -37,7 +38,12 @@ class IconBagdeButton extends React.Component {
         />
         {
           Boolean(count) && (
-            <Text style={stores.appStyles.styles.badge}>
+            <Text style={[
+              stores.appStyles.styles.badge,
+              {
+                color
+              }
+            ]}>
               {count && numeral(count).format('0a')}
             </Text>
           )

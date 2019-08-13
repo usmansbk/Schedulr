@@ -42,6 +42,7 @@ export default class Button extends React.Component {
         size={size}
         count={bookmarksCount}
         color={isBookmarked ? activeColor : color}
+        activeColor={isBookmarked ? activeColor : color}
       />
     );
   }
