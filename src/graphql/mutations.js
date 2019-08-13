@@ -67,7 +67,6 @@ export const updateEvent = `mutation UpdateEvent($input: UpdateEventInput!) {
     recurrence
     until
     isPublic
-    isOwner
     isCancelled
     cancelledDates
     updatedAt
@@ -100,6 +99,8 @@ export const createBookmark = `mutation CreateBookmark($input: CreateBookmarkInp
       until
       isPublic
       isOwner
+      isCancelled
+      cancelledDates
       author {
         id
         name
@@ -107,8 +108,6 @@ export const createBookmark = `mutation CreateBookmark($input: CreateBookmarkInp
       schedule {
         id
         name
-        eventsCount
-        followersCount
       }
       commentsCount
       bookmarksCount
@@ -142,6 +141,7 @@ export const createSchedule = `mutation CreateSchedule($input: CreateScheduleInp
       name
       pictureUrl
       createdCount
+      followingCount
     }
     followersCount
     eventsCount
@@ -170,8 +170,6 @@ export const createSchedule = `mutation CreateSchedule($input: CreateScheduleInp
         schedule {
           id
           name
-          eventsCount
-          followersCount
         }
         commentsCount
         bookmarksCount
@@ -215,6 +213,13 @@ export const createFollow = `mutation CreateFollow($input: CreateFollowInput!) {
       isPublic
       isOwner
       status
+      author {
+        id
+        name
+        pictureUrl
+        createdCount
+        followingCount
+      }
       events {
         nextToken
         items {
@@ -239,8 +244,6 @@ export const createFollow = `mutation CreateFollow($input: CreateFollowInput!) {
           schedule {
             id
             name
-            eventsCount
-            followersCount
           }
           commentsCount
           bookmarksCount
