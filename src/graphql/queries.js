@@ -288,6 +288,21 @@ export const getUserData = `query GetUserData($id: ID!) {
     following {
       items {
         schedule {
+          id
+          name
+          description
+          isPublic
+          isOwner
+          status
+          author {
+            id
+            name
+            pictureUrl
+          }
+          followersCount
+          eventsCount
+          createdAt
+          updatedAt
           events {
             items {
               id
