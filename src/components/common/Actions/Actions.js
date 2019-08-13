@@ -29,7 +29,6 @@ export default class Actions extends React.Component {
       category,
       id,
       small,
-      dark,
       navigateToComments,
       color,
     } = this.props;
