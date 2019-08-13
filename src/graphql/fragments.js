@@ -53,3 +53,15 @@ export const getBookmarks = gql`
     }
   }
 `;
+
+export const getFollowing = gql`
+  fragment myFollowing on User {
+    following {
+      items {
+        schedule {
+          id
+        }
+      }
+    }
+  }
+`;
