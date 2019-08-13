@@ -9,7 +9,7 @@ export default inject("stores")(observer(
     graphql(gql(createBookmark), {
       alias: 'withBookmarkEvent',
       props: ({ mutate, ownProps }) => ({
-        onBookmarkEvent: (input) => mutate({
+        bookmarkEvent: (input) => mutate({
           variables: {
             input
           },
@@ -20,7 +20,7 @@ export default inject("stores")(observer(
     graphql(gql(deleteBookmark), {
       alias: 'withUnbookmarkEvent',
       props: ({ mutate, ownProps }) => ({
-        onUnbookmarkEvent: (input) => mutate({
+        removeBookmark: (input) => mutate({
           variables: {
             input
           },

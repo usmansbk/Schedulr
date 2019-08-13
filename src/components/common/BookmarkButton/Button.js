@@ -8,8 +8,8 @@ export default class Button extends React.Component {
       id,
       stores,
       isBookmarked,
-      onUnbookmarkEvent,
-      onBookmarkEvent,
+      removeBookmark,
+      bookmarkEvent,
     } = this.props;
     const input = {
       id: `${stores.appState.userId}-${id}`,
@@ -17,9 +17,9 @@ export default class Button extends React.Component {
     };
     try {
       if (isBookmarked) {
-        await onUnbookmarkEvent(input);
+        await removeBookmark(input);
       } else {
-        await onBookmarkEvent(input);
+        await bookmarkEvent(input);
       }
     } catch (error) {
       console.log(error);
