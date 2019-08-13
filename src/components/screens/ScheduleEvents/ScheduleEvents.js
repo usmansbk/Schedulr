@@ -24,8 +24,7 @@ export default class ScheduleEvents extends React.Component {
       onPress,
       onRefresh,
       fetchPastEvents,
-      stores,
-      id
+      stores
     } = this.props;
 
     if (loading && !schedule) return <Loading />;
