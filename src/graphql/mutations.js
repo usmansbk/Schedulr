@@ -187,7 +187,6 @@ export const updateSchedule = `mutation UpdateSchedule($input: UpdateScheduleInp
     name
     description
     isPublic
-    isOwner
     status
     updatedAt
   }
