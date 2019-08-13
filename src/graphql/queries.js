@@ -354,6 +354,7 @@ export const getUserData = `query GetUserData($id: ID!) {
           createdAt
           updatedAt
         }
+        createdAt
       }
       nextToken
     }

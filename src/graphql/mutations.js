@@ -449,57 +449,14 @@ export const createBookmark = `mutation CreateBookmark($input: CreateBookmarkInp
       isOwner
       author {
         id
-        email
         name
-        pictureUrl
-        website
-        me
-        followingCount
-        createdCount
-        createdAt
-        updatedAt
       }
       schedule {
         id
         name
-        description
-        isPublic
-        isOwner
-        status
-        followersCount
-        eventsCount
-        createdAt
-        updatedAt
-      }
-      comments {
-        nextToken
-      }
-      bookmarks {
-        nextToken
       }
       commentsCount
       bookmarksCount
-      createdAt
-      updatedAt
-    }
-    user {
-      id
-      email
-      name
-      pictureUrl
-      website
-      created {
-        nextToken
-      }
-      following {
-        nextToken
-      }
-      bookmarks {
-        nextToken
-      }
-      me
-      followingCount
-      createdCount
       createdAt
       updatedAt
     }
@@ -586,76 +543,6 @@ export const updateBookmark = `mutation UpdateBookmark($input: UpdateBookmarkInp
 export const deleteBookmark = `mutation DeleteBookmark($input: DeleteBookmarkInput!) {
   deleteBookmark(input: $input) {
     id
-    event {
-      id
-      title
-      description
-      venue
-      category
-      startAt
-      endAt
-      allDay
-      recurrence
-      until
-      isPublic
-      isOwner
-      author {
-        id
-        email
-        name
-        pictureUrl
-        website
-        me
-        followingCount
-        createdCount
-        createdAt
-        updatedAt
-      }
-      schedule {
-        id
-        name
-        description
-        isPublic
-        isOwner
-        status
-        followersCount
-        eventsCount
-        createdAt
-        updatedAt
-      }
-      comments {
-        nextToken
-      }
-      bookmarks {
-        nextToken
-      }
-      commentsCount
-      bookmarksCount
-      createdAt
-      updatedAt
-    }
-    user {
-      id
-      email
-      name
-      pictureUrl
-      website
-      created {
-        nextToken
-      }
-      following {
-        nextToken
-      }
-      bookmarks {
-        nextToken
-      }
-      me
-      followingCount
-      createdCount
-      createdAt
-      updatedAt
-    }
-    createdAt
   }
 }
 `;
