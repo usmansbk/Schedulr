@@ -25,28 +25,6 @@ function getInterval(recurrence) {
   }
 }
 
-function getNextEvents(initialEvents=[], afterDate, daysPerPage) {
-  const sections = [];
-  if (initialEvents.length) {
-    for (let i = 1; i <= daysPerPage; i++) {
-      const nextDate = moment(afterDate).add(i, 'day');
-      sections.push(getNextDayEvents(initialEvents, nextDate));
-    }
-  }
-  return sections;
-}
-
-function getPreviousEvents(initialEvents=[], beforeDate, daysPerPage) {
-  const sections = [];
-  if (initialEvents.length) {
-    for (let i = 1; i <= daysPerPage; i++) {
-      const nextDate = moment(beforeDate).subtract(i, 'day');
-      sections.push(getNextDayEvents(initialEvents, nextDate));
-    }
-  }
-  return sections.reverse();
-}
-
 /**
  * 
  * @param { Array } events 
@@ -85,8 +63,9 @@ const getNextDate = memoize((events=[], refDate, before) => {
     const endDate = moment(currentEvent.endAt);
     const untilAt = currentEvent.until ? moment(currentEvent.until) : undefined;
     const interval = getInterval(currentEvent.recurrence);
+    const isValid = !currentEvent.isCancelled;
     let recurrence;
-    if (interval) {
+    if (interval && isValid) {
       if (interval === 'weekdays') {
         recurrence = eventDate.recur().every(weekdays).daysOfWeek();
       } else {
@@ -101,7 +80,7 @@ const getNextDate = memoize((events=[], refDate, before) => {
       } else if (validStart) {
         return nextDate.local().startOf('day');
       }
-    } else if (moment(refDate).isBetween(eventDate, endDate, null, '[]')) {
+    } else if (isValid && moment(refDate).isBetween(eventDate, endDate, null, '[]')) {
       recurrence = eventDate.recur(endDate).every(1).day().fromDate(refDate);
       const nextDates = before ? recurrence.previous(1) : recurrence.next(1);
       const nextDate = nextDates[0];
@@ -236,16 +215,14 @@ const hasMoreEvents = memoize((events, afterDate) => {
   return events.some((event) => {
     const eventDate = moment(event.startAt);
     const interval = getInterval(event.recurrence);
-    const isValid = event.until ? moment(event.until).isSameOrAfter(refDate) : true;
-    return eventDate.isSameOrAfter(refDate) || (interval && isValid);
+    const isValid = !event.isCancelled && (interval && event.until ? moment(event.until).isSameOrAfter(refDate) : true);
+    return eventDate.isSameOrAfter(refDate) || isValid;
   });
 }, (...args) => JSON.stringify(args));
 
 export {
   getEvents,
-  getNextEvents,
   getNextDate,
-  getPreviousEvents,
   hasPreviousEvents,
   hasMoreEvents,
   generateNextEvents,
