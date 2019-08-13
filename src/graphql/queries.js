@@ -38,8 +38,6 @@ export const getEvent = `query GetEvent($id: ID!) {
     schedule {
       id
       name
-      eventsCount
-      followersCount
     }
     commentsCount
     bookmarksCount
@@ -135,8 +133,6 @@ export const getScheduleWithEvents = `query GetScheduleWithEvents($id: ID!) {
         schedule {
           id
           name
-          eventsCount
-          followersCount
         }
         commentsCount
         bookmarksCount
@@ -180,8 +176,6 @@ export const getUserBookmarks = `query GetBookmarks($id: ID!) {
           schedule {
             id
             name
-            eventsCount
-            followersCount
           }
           commentsCount
           bookmarksCount
