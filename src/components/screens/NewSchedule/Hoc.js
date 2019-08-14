@@ -1,5 +1,7 @@
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
+import shortid from 'shortid';
+import { inject, observer } from 'mobx-react';
 import Screen from './Screen';
 import { createSchedule } from 'api/mutations';
 // import { listAllSchedules } from 'api/queries';
@@ -7,26 +9,19 @@ import { createSchedule } from 'api/mutations';
 
 const alias =  'withNewScheduleContainer';
 
-export default graphql(gql(createSchedule), {
-  alias,
-  props: ({ mutate, ownProps }) => ({
-    onSubmit: async (input) =>  await mutate({
-      variables: {
-        input
-      },
-      // optimisticResponse: () => createScheduleResponse(input),
-      // update: (cache, { data: { createSchedule } }) => {
-      //   if (createSchedule) {
-      //     const query = gql(listAllSchedules);
-      //     const data = cache.readQuery({ query });
-      //     data.listAllSchedules.items = [
-      //       ...data.listAllSchedules.items.filter(item => item.id !== createSchedule.id),
-      //       createSchedule
-      //     ];
-      //     cache.writeQuery({ query, data });
-      //   }
-      // }
-    }),
-    ...ownProps
-  })
-})(Screen);
+export default inject("stores")(observer(
+  graphql(gql(createSchedule), {
+    alias,
+    props: ({ mutate, ownProps }) => ({
+      onSubmit: (input) => mutate({
+        variables: {
+          input: {
+            id: `${ownProps.stores.appState.userId}-${shortid.generate()}`,
+            ...input
+          }
+        },
+      }),
+      ...ownProps
+    })
+  })(Screen)
+));

@@ -1,5 +1,6 @@
 import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
+import shortid from 'shortid';
 import { inject, observer } from 'mobx-react';
 import Screen from './Screen';
 import { createEvent } from 'api/mutations';
@@ -36,7 +37,10 @@ export default inject("stores")(observer(
       props: ({ mutate, ownProps }) => ({
         onSubmit: (input) => mutate({
           variables: {
-            input
+            input: {
+              id: `${ownProps.stores.appState.userId}-${shortid.generate()}`,
+              ...input
+            }
           },
           // optimisticResponse: () => createEventResponse(input),
           // update: (cache, { data: { createEvent } }) => {
