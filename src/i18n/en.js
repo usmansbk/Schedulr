@@ -207,6 +207,7 @@ export default {
 
   PLACEHOLDER_aboutThisEvent: "About this event...",
   PLACEHOLDER_normal: "Normal",
+  PLACEHOLDER_addYourWebsite: "Add your website",
 
   WARNING_dontMissOut: "Don't miss out!",
 

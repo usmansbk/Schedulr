@@ -18,6 +18,7 @@ import Followers from './Followers';
 import SearchScreen from './Search';
 import ScheduleEvents from './ScheduleEvents';
 import WebView from './WebView';
+import EditProfile from './EditProfile';
 
 export {
   AuthLoading,
@@ -39,5 +40,6 @@ export {
   SearchScreen,
   ScheduleEvents,
   WebView,
-  EmailLogin
+  EmailLogin,
+  EditProfile
 };

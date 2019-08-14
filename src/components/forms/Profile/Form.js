@@ -103,19 +103,13 @@ class Form extends React.Component {
               {errors.name && I18n.get(`HELPER_TEXT_${errors.name}`)}
               </HelperText>
               <TextInput
-                placeholder={I18n.get("PROFILE_FORM_website")}
+                placeholder={I18n.get("PLACEHOLDER_addYourWebsite")}
                 label={I18n.get("PROFILE_FORM_website")}
                 value={values.website}
                 onChangeText={handleChange('website')}
                 onBlur={handleBlur('website')}
                 mode="outlined"
               />
-              <HelperText
-                type="error"
-                visible={errors.website && touched.website}
-              >
-              {errors.website && I18n.get(`HELPER_TEXT_${errors.website}`)}
-              </HelperText>
             </View>
           </ScrollView>
           </>

@@ -6,5 +6,4 @@ export default Yup.object().shape({
     .min(2, 'tooShort')
     .max(50, 'tooLong')
     .required('nameIsRequired'),
-  website: Yup.string().trim()
 });

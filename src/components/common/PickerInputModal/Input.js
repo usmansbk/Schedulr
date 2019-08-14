@@ -14,10 +14,13 @@ const MAX_LENGTH = 30;
 const MIN_LENGTH = 2
 
 class Input extends React.Component {
-  state = {
-    visible: false,
-    text: ''
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      visible: false,
+      text: props.selectedValue
+    }
+  }
 
   _showModal = () => this.setState({ visible: true });
   _hideModal = () => this.props.hideModal();
@@ -31,6 +34,9 @@ class Input extends React.Component {
       this._onValueChange(trimmedText);
       this.props.stores.appState.addCustomType(trimmedText);
       this.setState({ text: '' });
+      this._hideModal();
+    } else {
+      this._onValueChange(null);
       this._hideModal();
     }
   }
