@@ -4,14 +4,11 @@ import { inject, observer } from 'mobx-react';
 import Screen from './Screen';
 import { createEvent } from 'api/mutations';
 import { getEvent } from 'api/queries';
-// import { createEventResponse } from 'helpers/optimisticResponse';
-
-const alias =  'withNewEventContainer';
 
 export default inject("stores")(observer(
   compose(
     graphql(gql(getEvent), {
-      alias,
+      alias: 'withNewEventContainer',
       options: props => {
         const id = props.navigation.getParam('id');
         return ({

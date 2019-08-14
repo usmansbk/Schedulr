@@ -3,8 +3,6 @@ import gql from 'graphql-tag';
 import { inject, observer } from 'mobx-react';
 import Screen from './Screen';
 import { createSchedule } from 'api/mutations';
-// import { listAllSchedules } from 'api/queries';
-// import { createScheduleResponse } from 'helpers/optimisticResponse';
 
 const alias =  'withNewScheduleContainer';
 
