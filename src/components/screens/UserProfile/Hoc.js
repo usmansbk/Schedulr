@@ -8,7 +8,7 @@ const alias = 'withUserProfile';
 
 export default compose(
   withNavigationFocus,
-  graphql(gql(getUser), {
+  graphql(gql(getProfile), {
     alias,
     options: props => ({
       variables: {

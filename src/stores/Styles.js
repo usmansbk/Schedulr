@@ -833,6 +833,7 @@ export default class AppStyles {
     return StyleSheet.create({
       contentContainer: {
         backgroundColor: colors.light_gray,
+        marginTop: 1,
         flexGrow: 1
       },
       list: {
@@ -1080,6 +1081,7 @@ export default class AppStyles {
     return StyleSheet.create({
       contentContainer: {
         backgroundColor: colors.light_gray,
+        marginTop: 1,
         flexGrow: 1
       },
       list: {
@@ -1190,6 +1192,7 @@ export default class AppStyles {
       },
       contentContainer: {
         flexGrow: 1,
+        marginTop: 1,
         backgroundColor: colors.light_gray
       },
       separator: {
@@ -1280,6 +1283,7 @@ export default class AppStyles {
     return StyleSheet.create({
       contentContainer: {
         backgroundColor: colors.light_gray,
+        marginTop: 1,
         flexGrow: 1
       },
       list: {
@@ -1312,7 +1316,7 @@ export default class AppStyles {
         height: HEADER_HEIGHT,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: colors.bg
+        backgroundColor: colors.white,
       },
       headerText:{
         color: colors.primary_light,
