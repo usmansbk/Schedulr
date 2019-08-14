@@ -7,6 +7,7 @@ import recurrences from 'components/forms/Event/recurrence';
 import { isPastExact } from 'lib/parseItem';
 import { getUserSchedules } from 'api/fragments';
 import client from 'config/client';
+import { SCHEDULE_CLOSED } from "lib/constants";
 
 export default class NewEventScreen extends React.Component {
   _newSchedule = () => this.props.navigation.navigate("NewSchedule", { popAfterCreation: true });
@@ -36,7 +37,6 @@ export default class NewEventScreen extends React.Component {
   
   _getInitialValues = () => {
     const { event={}, navigation } = this.props;
-    const scheduleId = navigation.getParam("scheduleId");
     const {
       title,
       description,
@@ -51,8 +51,8 @@ export default class NewEventScreen extends React.Component {
       schedule,
     } = event;
 
-    const targetScheduleId = scheduleId || (schedule && schedule.id);
-    const currentSchedule = this.schedules && this.schedules.find(schedule => schedule.id === targetScheduleId);
+    const eventScheduleId = navigation.getParam("eventScheduleId", schedule && schedule.id);
+    const currentSchedule = this.schedules && this.schedules.find(schedule => schedule.id === eventScheduleId);
 
     const targetDate = navigation.getParam('targetDate', moment().valueOf())
     const initialStartAt = moment(targetDate).valueOf();
@@ -85,10 +85,10 @@ export default class NewEventScreen extends React.Component {
       startAt: start,
       endAt: end,
       allDay,
-      category: category || 'Event',
+      category,
       recurrence: recurrence || recurrences[0].id,
       until,
-      eventScheduleId: targetScheduleId,
+      eventScheduleId,
       isPublic: currentSchedule ? currentSchedule.isPublic : Boolean(isPublic)
     });
   };
@@ -98,7 +98,7 @@ export default class NewEventScreen extends React.Component {
       <Form
         initialValues={this._getInitialValues()}
         isNew={this.props.isNew}
-        schedules={this.schedules.filter(schedule => (schedule.status !== 'CLOSED') && (schedule.id[0] !== '-'))}
+        schedules={this.schedules.filter(schedule => (schedule.status !== SCHEDULE_CLOSED))}
         handleCancel={this._handleBack}
         onSubmit={this._handleSubmit}
         newSchedule={this._newSchedule}
