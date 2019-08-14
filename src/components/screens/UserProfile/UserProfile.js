@@ -97,7 +97,7 @@ class UserProfile extends React.Component {
             name={name}
           />
         </View>
-        <Headline style={styles.headline}>{name}</Headline>
+        <Headline numberOfLines={2} ellipsizeMode="tail" style={styles.headline}>{name}</Headline>
         <View style={styles.countRow}>
           <TouchableRipple onPress={this._toFollowingTab}>
               <View style={styles.item}>
