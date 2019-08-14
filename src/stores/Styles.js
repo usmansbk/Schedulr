@@ -940,6 +940,7 @@ export default class AppStyles {
       },
       contentContainer: {
         flexGrow: 1,
+        margin: 1,
         backgroundColor: colors.light_gray
       },
       itemContainer: {
