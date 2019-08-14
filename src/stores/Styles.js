@@ -24,7 +24,7 @@ export default class AppStyles {
     
     return StyleSheet.create({
       barStyle: {
-        elevation: 4,
+        elevation: 0,
         backgroundColor: colors.bg,
         borderTopWidth: 0
       },
@@ -42,7 +42,7 @@ export default class AppStyles {
         flex: 1
       },
       barStyle: {
-        elevation: 4,
+        elevation: 0,
         backgroundColor: colors.bg,
       },
       indicatorStyle: {
@@ -1289,7 +1289,6 @@ export default class AppStyles {
         backgroundColor: colors.light_gray_2,
         padding: 5,
         paddingLeft: 16,
-        elevation: 2,
         height: SECTION_HEADER_HEIGHT
       },
       sectionHeading: {
@@ -1312,7 +1311,8 @@ export default class AppStyles {
       header:{
         height: HEADER_HEIGHT,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        backgroundColor: colors.bg
       },
       headerText:{
         color: colors.primary_light,
@@ -1533,8 +1533,8 @@ export default class AppStyles {
         elevation: 0,
         backgroundColor: colors.bg,
       },
-      elevatedHeader: {
-        elevation: 4,
+      header: {
+        elevation: 0,
         backgroundColor: colors.bg,
       },
       headerColor: {

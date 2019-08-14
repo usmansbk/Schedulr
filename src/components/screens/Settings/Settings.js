@@ -49,7 +49,7 @@ class Settings extends React.Component {
 
     return (
       <>
-        <Appbar style={styles.elevatedHeader} collapsable>
+        <Appbar style={styles.header} collapsable>
           <Appbar.Action
             onPress={goBack}
             icon={() => <Icon

@@ -9,7 +9,7 @@ import env from 'config/env';
 export default inject('stores')(observer(
   (props) => (
     <>
-      <Appbar style={props.stores.appStyles.styles.elevatedHeader} collapsable>
+      <Appbar.Header style={props.stores.appStyles.styles.header} collapsable>
         <Appbar.Action
           onPress={props.goBack}
           icon={() => <Icon
@@ -22,7 +22,7 @@ export default inject('stores')(observer(
           title={I18n.get("HELP_title")}
           titleStyle={props.stores.appStyles.styles.headerColor}
         />
-      </Appbar>
+      </Appbar.Header>
       <ScrollView style={props.stores.appStyles.styles.bg}>
         <List.Item
           title={I18n.get("HELP_contactUs")}

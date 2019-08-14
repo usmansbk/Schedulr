@@ -60,7 +60,8 @@ const SearchBar = inject('stores')(observer(
           placeholder="Search"
           theme={{ roundness: 0 }}
           style={{
-            backgroundColor: stores.themeStore.colors.bg
+            backgroundColor: stores.themeStore.colors.bg,
+            elevation: 0
           }}
         />
       </TouchableRipple>

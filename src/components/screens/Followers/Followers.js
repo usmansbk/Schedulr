@@ -19,7 +19,7 @@ class Followers extends React.Component {
 
     return  (
       <>
-        <Appbar style={stores.appStyles.styles.elevatedHeader}>
+        <Appbar style={stores.appStyles.styles.header}>
           <Appbar.Action
             onPress={goBack}
             icon={() => <Icon

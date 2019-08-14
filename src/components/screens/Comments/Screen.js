@@ -53,7 +53,7 @@ class Screen extends React.Component {
 
     return (
       <>
-        <Appbar style={styles.elevatedHeader}>
+        <Appbar.Header style={styles.header}>
           <Appbar.Action
             icon={() => <Icon
               color={colors.gray}
@@ -67,7 +67,7 @@ class Screen extends React.Component {
             title={title || I18n.get('COMMENTS')}
             titleStyle={styles.headerColor}
           />
-        </Appbar>
+        </Appbar.Header>
         <List
           ref={commentsRef => this._commentsListRef = commentsRef}
           error={error}

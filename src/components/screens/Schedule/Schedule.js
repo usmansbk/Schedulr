@@ -48,7 +48,7 @@ class Schedule extends React.Component {
 
     return (
       <>
-        <Appbar style={styles.elevatedHeader} collapsable>
+        <Appbar.Header style={styles.header} collapsable>
           <Appbar.Action
             onPress={onPress}
             icon={() => <Icon
@@ -70,7 +70,7 @@ class Schedule extends React.Component {
             />}
             onPress={this._navigateToScheduleInfo}
           />
-        </Appbar>
+        </Appbar.Header>
         <List
           id={id}
           navigation={navigation}
