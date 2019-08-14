@@ -87,7 +87,7 @@ class Item extends React.Component {
               commentsCount={commentsCount}
               color={stores.themeStore.colors.light_gray_3}
               navigateToComments={this._onPressComment}
-              size={20}
+              size={18}
               small
             />
           </View>

@@ -89,6 +89,7 @@ class Item extends React.Component {
               bookmarksCount={bookmarksCount}
               commentsCount={commentsCount}
               navigateToComments={this._onPressComment}
+              size={18}
               small
             />
           </View>
