@@ -130,6 +130,9 @@ export default {
   TOAST_enableReminder: "Enable reminder!",
   TOAST_locationError: "Failed to get location. Turn off airplane mode.",
 
+  PROFILE_FORM_name: "Name",
+  PROFILE_FORM_website: "Website",
+
   EVENT_FORM_title: "Title",
   EVENT_FORM_description: "Description",
   EVENT_FORM_venue: "Venue",
@@ -177,6 +180,8 @@ export default {
   HELPER_TEXT_required: "Required",
   HELPER_TEXT_invalidDatesAndRecur: "Event's duration should be shorter than repeat frequency",
   HELPER_TEXT_description: "Too long",
+  HELPER_TEXT_nameIsRequired: "Name is required",
+  HELPER_TEXT_website: "Invalid string",
 
   MENU_edit: "Edit",
   MENU_close: "Close",

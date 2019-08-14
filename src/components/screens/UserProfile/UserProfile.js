@@ -6,8 +6,15 @@ import {
   Text,
   RefreshControl
 } from 'react-native';
-import { Headline, TouchableRipple } from 'react-native-paper';
+import {
+  Headline,
+  TouchableRipple,
+  IconButton,
+  Button,
+  FAB
+} from 'react-native-paper';
 import FastImage from 'react-native-fast-image';
+import Icon from 'react-native-vector-icons/Feather';
 import { inject, observer } from 'mobx-react';
 import numeral from 'numeral';
 import { I18n } from 'aws-amplify';
@@ -42,6 +49,8 @@ class UserProfile extends React.Component {
     }
   };
 
+  _editProfile = () => this.props.navigation.navigate('EditProfile');
+
   render() {
     const {
       loading,
@@ -58,7 +67,9 @@ class UserProfile extends React.Component {
   
     const {
       pictureUrl,
+      me,
       name,
+      website,
       followingCount=0,
       createdCount=0
     } = user;
@@ -101,6 +112,30 @@ class UserProfile extends React.Component {
             </View>
           </TouchableRipple>
         </View>
+        {
+          website && (
+            <View style={styles.link}>
+              <IconButton
+                icon={() => <Icon
+                  name="link"
+                  size={28}
+                  color={colors.white}
+                />}
+              />
+            </View>
+          )
+        }
+        {
+          me && (
+            <View style={styles.link}>
+              <FAB
+                label="Edit profile"
+                color={colors.white}
+                onPress={this._editProfile}
+              />
+            </View>
+          )
+        }
       </ScrollView>
     );
   }
@@ -165,5 +200,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: 16
+  },
+  link: {
+    marginVertical: 32
   }
 })

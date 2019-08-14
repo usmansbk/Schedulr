@@ -5,6 +5,7 @@ export const getUser = `query GetUser($id: ID!) {
   getUser(id: $id) {
     id
     email
+    me
     name
     pictureUrl
     website
@@ -21,6 +22,7 @@ export const getProfile = `query GetProfile($id: ID!) {
     name
     pictureUrl
     website
+    me
     followingCount
     createdCount
     createdAt
@@ -102,6 +104,7 @@ export const getSchedule = `query GetSchedule($id: ID!) {
       name
       pictureUrl
       website
+      me
       createdCount
       followingCount
     }
@@ -306,6 +309,7 @@ export const getUserData = `query GetUserData($id: ID!) {
             name
             pictureUrl
             website
+            me
             createdCount
             followingCount
           }
@@ -382,6 +386,7 @@ export const getUserData = `query GetUserData($id: ID!) {
               name
               pictureUrl
               website
+              me
               createdCount
               followingCount
             }
