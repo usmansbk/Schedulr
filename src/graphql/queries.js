@@ -15,6 +15,18 @@ export const getUser = `query GetUser($id: ID!) {
   }
 }
 `;
+export const getProfile = `query GetProfile($id: ID!) {
+  getProfile: getUser(id: $id) {
+    id
+    name
+    pictureUrl
+    website
+    followingCount
+    createdCount
+    createdAt
+    updatedAt
+  }
+}`;
 export const getEvent = `query GetEvent($id: ID!) {
   getEvent(id: $id) {
     id

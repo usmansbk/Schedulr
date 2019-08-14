@@ -1,7 +1,7 @@
 import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
 import { withNavigationFocus } from 'react-navigation';
-import { getUser } from 'api/queries';
+import { getProfile } from 'api/queries';
 import UserProfile from './UserProfile';
 
 const alias = 'withUserProfile';
@@ -22,7 +22,7 @@ export default compose(
       refreshing: data.networkStatus === 4,
       error: data.error,
       onRefresh: () => data.refetch(),
-      user: data && data.getUser,
+      user: data && data.getProfile,
       ...ownProps,
     })
   })

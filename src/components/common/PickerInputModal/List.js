@@ -1,6 +1,7 @@
 import React from 'react';
 import { FlatList, Alert } from 'react-native';
 import { inject, observer } from 'mobx-react';
+import { I18n } from 'aws-amplify';
 import Item from './Item';
 
 const ITEM_HEIGHT = 48;
@@ -8,14 +9,14 @@ const ITEM_HEIGHT = 48;
 class List extends React.Component {
   _onLongPressItem = (id) => {
     Alert.alert(
-      'Delete type?',
+      I18n.get('ALERT_deleteType'),
       id,
       [
         {
-          text: 'Yes', onPress: () => this.props.stores.appState.removeCustomType(id),
+          text: I18n.get('BUTTON_yes'), onPress: () => this.props.stores.appState.removeCustomType(id),
         },
         {
-          text: "No", onPress: () => null
+          text: I18n.get("BUTTON_no"), onPress: () => null
         }
       ],
       { cancelable: true }

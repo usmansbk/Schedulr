@@ -92,6 +92,7 @@ export default {
   BUTTON_dontShowAgain: "Don't show again",
   BUTTON_askMeLater: "Ask me later",
   BUTTON_yes: "Yes",
+  BUTTON_no: "No",
   BUTTON_dismiss: "Dismiss",
   BUTTON_continue: "Continue",
   BUTTON_done: "Done",
@@ -118,6 +119,7 @@ export default {
   ALERT_publicScheduleA: "This schedule's content, including its followers and event details, are visible to the public.",
   ALERT_permissionLocationTitle: "Location Permission",
   ALERT_permissionLocationMessage: "Schdlr needs access to your location for better experience.",
+  ALERT_deleteType: "Delete type?",
 
 
   SHARE_inviteAFriendTitle: "Invite via...",
@@ -199,6 +201,7 @@ export default {
   ERROR_networkError: "Network error",
 
   PLACEHOLDER_aboutThisEvent: "About this event...",
+  PLACEHOLDER_normal: "Normal",
 
   WARNING_dontMissOut: "Don't miss out!",
 
