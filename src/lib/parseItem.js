@@ -4,6 +4,7 @@ import { I18n } from 'aws-amplify';
 import { decapitalize } from './capitalizr';
 
 export const getCategory = (category) => {
+  if (!category) return '';
   if (category.toLowerCase().trim() === 'normal') return '';
   return decapitalize(category);
 };

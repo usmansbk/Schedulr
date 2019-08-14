@@ -65,7 +65,7 @@ export default inject('stores')(observer(
           <View style={stores.appStyles.eventDetails.body}>
             <View style={stores.appStyles.eventDetails.item}>
               <Text style={stores.appStyles.eventDetails.label}>{I18n.get("TYPE")}</Text>
-              <Text style={stores.appStyles.eventDetails.value}>{isPublic ? I18n.get("Public") : I18n.get("Private")} {BULLET} {category}</Text>
+              <Text style={stores.appStyles.eventDetails.value}>{I18n.get(isPublic ? "Public" : "Private")}{category && ` ${BULLET} ${category}`}</Text>
             </View>
             <View style={stores.appStyles.eventDetails.item}>
               <Text style={stores.appStyles.eventDetails.label}>{I18n.get("VENUE")}</Text>
