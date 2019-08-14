@@ -1,6 +1,6 @@
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
-import shortid from 'shortid';
+import uuid from 'uuid/v5';
 import { inject, observer } from 'mobx-react';
 import Screen from './Screen';
 import { createSchedule } from 'api/mutations';
@@ -16,7 +16,7 @@ export default inject("stores")(observer(
       onSubmit: (input) => mutate({
         variables: {
           input: {
-            id: `${ownProps.stores.appState.userId}-${shortid.generate()}`,
+            id: `${uuid(ownProps.stores.appState.userId, uuid.DNS)}`,
             ...input
           }
         },
