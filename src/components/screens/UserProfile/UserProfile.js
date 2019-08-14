@@ -9,12 +9,12 @@ import {
 import {
   Headline,
   TouchableRipple,
-  IconButton,
-  Button,
-  FAB
+  FAB,
+  Caption
 } from 'react-native-paper';
 import FastImage from 'react-native-fast-image';
 import Icon from 'react-native-vector-icons/Feather';
+import Hyperlink from 'react-native-hyperlink';
 import { inject, observer } from 'mobx-react';
 import numeral from 'numeral';
 import { I18n } from 'aws-amplify';
@@ -115,13 +115,10 @@ class UserProfile extends React.Component {
         {
           website && (
             <View style={styles.link}>
-              <IconButton
-                icon={() => <Icon
-                  name="link"
-                  size={28}
-                  color={colors.white}
-                />}
-              />
+              <Icon style={styles.linkIcon} name="link" color={colors.white} />
+              <Hyperlink linkStyle={styles.linkStyle} linkDefault={true}>
+                <Caption numberOfLines={1} ellipsizeMode="tail">{website}</Caption>
+              </Hyperlink>
             </View>
           )
         }
@@ -202,6 +199,15 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16
   },
   link: {
-    marginVertical: 32
+    marginVertical: 32,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  linkStyle: {
+    color: colors.primary_light,
+  },
+  linkIcon: {
+    paddingRight: 8
   }
 })
