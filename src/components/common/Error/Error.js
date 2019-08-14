@@ -22,11 +22,11 @@ export default inject('stores')(observer(
             <Button
               icon={(props) => <Icon
                 name="refresh-cw"
-                size={20}
+                size={16}
                 color={props.color}
               />}
               onPress={onRefresh}
-              mode="outlined"
+              mode="text"
               loading={loading}
             >
             { loading ? I18n.get("BUTTON_loading") : I18n.get("BUTTON_tryAgain") }
