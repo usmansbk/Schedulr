@@ -1,5 +1,7 @@
 import React from 'react';
 import moment from 'moment';
+import uuidv5 from 'uuid/v5';
+import uuidv4 from 'uuid/v4';
 import Form from 'components/forms/Event';
 import recurrences from 'components/forms/Event/recurrence';
 import { isPastExact } from 'lib/parseItem';
@@ -10,7 +12,14 @@ export default class NewEventScreen extends React.Component {
   _newSchedule = () => this.props.navigation.navigate("NewSchedule", { popAfterCreation: true });
   _handleBack = () => this.props.navigation.goBack();
   _handleSubmit = async (form) => {
-    const result = await this.props.onSubmit(form);
+    const hash = uuidv5(this.props.stores.appState.userId, uuidv5.DNS);
+    const sort = uuidv4();
+    const id = `${hash}-${sort}`;
+    const input = {
+      id,
+      ...form
+    };
+    const result = await this.props.onSubmit(input);
     this.props.navigation.replace('EventDetails', {
       id: result.data.createEvent.id
     });

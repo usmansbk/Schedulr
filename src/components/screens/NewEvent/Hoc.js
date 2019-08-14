@@ -1,6 +1,5 @@
 import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
-import uuid from 'uuid/v5';
 import { inject, observer } from 'mobx-react';
 import Screen from './Screen';
 import { createEvent } from 'api/mutations';
@@ -33,30 +32,15 @@ export default inject("stores")(observer(
       }
     }),
     graphql(gql(createEvent), {
-      alias,
+      alias: 'withCreateEventScreen',
       props: ({ mutate, ownProps }) => ({
         onSubmit: (input) => mutate({
           variables: {
-            input: {
-              id: `${uuid(ownProps.stores.appState.userId, uuid.DNS)}`,
-              ...input
-            }
+            input
           },
-          // optimisticResponse: () => createEventResponse(input),
-          // update: (cache, { data: { createEvent } }) => {
-          //   if (createEvent) {
-          //     const query = gql(listAllEvents);
-          //     const data = cache.readQuery({ query });
-          //     data.listAllEvents.items = [
-          //       ...data.listAllEvents.items.filter(item => item.id !== createEvent.id),
-          //       createEvent
-          //     ];
-          //     cache.writeQuery({ query, data });
-          //   }
-          // }
         }),
         ...ownProps
       })
-    }),
-    )(Screen)
+    })
+  )(Screen)
 ));
