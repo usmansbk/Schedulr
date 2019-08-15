@@ -337,6 +337,11 @@ export const getUserData = `query GetUserData($id: ID!) {
             id
             name
             pictureUrl
+            avatar {
+              key
+              bucket
+              region
+            }
             website
             me
             createdCount
