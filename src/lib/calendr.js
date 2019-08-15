@@ -61,7 +61,7 @@ const getNextDate = memoize((events=[], refDate, before) => {
   return uniqWith(events.map((currentEvent) => {
     const eventDate = moment(currentEvent.startAt);
     const endDate = moment(currentEvent.endAt);
-    const untilAt = currentEvent.until ? moment(currentEvent.until) : undefined;
+    const untilAt = currentEvent.until ? moment(currentEvent.until).endOf('day') : undefined;
     const interval = getInterval(currentEvent.recurrence);
     const isValid = !currentEvent.isCancelled;
     let recurrence;
