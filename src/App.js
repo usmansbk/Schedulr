@@ -22,9 +22,9 @@ import {
   EditSchedule,
   SearchScreen,
   ScheduleEvents,
-  WebView,
   EmailLogin,
-  EditProfile
+  EditProfile,
+  ImageViewer
 } from 'components/screens';
 import colors from 'config/colors';
 
@@ -122,8 +122,8 @@ const AppStack = createStackNavigator({
   SearchScreen: {
     screen: SearchScreen,
   },
-  WebView: {
-    screen: WebView,
+  ImageViewer: {
+    screen: ImageViewer,
     navigationOptions: {
       header: null
     }
