@@ -11,12 +11,11 @@ const imageRequest = (key, size) => {
   const path = `public/${key}`;
 
   switch(size) {
-    case 60: {
-      width = size;
-      height = size;
-      break;
-    };
-    case 320: {
+    case 60:
+      case  320:
+      case 90:
+      case 400:
+    {
       width = size;
       height = size;
       break;
@@ -41,4 +40,6 @@ const imageRequest = (key, size) => {
   });
 };
 
-export default getImageUrl = (key, size) => `${CloudFrontUrl}/${btoa(imageRequest(key, size))}`;
+export default getImageUrl = (s3Object, size) => (
+  `${CloudFrontUrl}/${btoa(imageRequest(s3Object.key, size))}`
+);

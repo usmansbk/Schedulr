@@ -212,7 +212,7 @@ export default {
   PLACEHOLDER_addYourWebsite: "Add your website",
 
   WARNING_dontMissOut: "Don't miss out!",
-  WARNING_fileTooLarge: "File is larger than 1MB",
+  WARNING_fileTooLarge: "File is too large",
 
   DIALOG_cancelEvent: "Cancel event?",
   DIALOG_onlyThisEvent: "Only this event?",

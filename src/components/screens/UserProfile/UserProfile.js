@@ -79,8 +79,8 @@ class UserProfile extends React.Component {
       createdCount=0
     } = user;
 
-    const uriSmall = avatar ? getImageUrl(avatar.key, 100) : pictureUrl;
-    const uriBig = avatar ? getImageUrl(avatar.key, 320) : pictureUrl;
+    const uriSmall = avatar ? getImageUrl(avatar) : pictureUrl;
+    const uriBig = avatar ? getImageUrl(avatar, 400) : pictureUrl;
 
     return  (
       <ScrollView

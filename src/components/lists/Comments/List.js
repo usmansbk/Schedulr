@@ -6,6 +6,7 @@ import Footer from './Footer';
 import Empty from './Empty';
 import Separator from './Separator';
 import { timeAgo } from 'lib/time';
+import getImageUrl from 'helpers/getImageUrl';
 
 class List extends React.Component {
   state = {
@@ -31,7 +32,7 @@ class List extends React.Component {
         id={id}
         authorId={author.id}
         authorName={author.name}
-        authorPictureUrl={author.pictureUrl}
+        authorPictureUrl={author.avatar ? getImageUrl(author.avatar) : author.pictureUrl}
         isOwner={isOwner}
         content={content}
         toCommentAuthorName={to && to.author.name}

@@ -61,6 +61,8 @@ export default class Container extends React.Component {
       nextToken,
       user
     } = this.props;
+
+    const uri = user.avatar ? getImageUrl(user.avatar) : user.pictureUrl;
     
     return (
       <>
@@ -70,7 +72,7 @@ export default class Container extends React.Component {
         error={Boolean(error)}
         comments={this.comments}
         userName={user.name}
-        userPictureUrl={user.pictureUrl}
+        userPictureUrl={uri}
         userId={user.id}
         ref={commentsRef => this._commentsRef = commentsRef}
         targetName={targetName}

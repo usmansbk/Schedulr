@@ -23,7 +23,8 @@ import Icon from 'react-native-vector-icons/Feather';
 import Hyperlink from 'react-native-hyperlink';
 import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
-import { schedule_info, CIRCLE } from 'lib/constants';
+import { schedule_info, CIRCLE, SCHEDULE_CLOSED } from 'lib/constants';
+import getImageUrl from 'helpers/getImageUrl';
 import UserAvater from 'components/common/UserAvatar';
 import FollowButton from 'components/common/FollowButton';
 import Loading from 'components/common/Loading';
@@ -80,8 +81,8 @@ class Info extends React.Component {
 
     const adminId = author && author.id;
     const adminName = author && author.name;
-    const isOffline = id[0] === '-';
-    const isClosed = status === 'CLOSED';
+    const isClosed = status === SCHEDULE_CLOSED;
+    const pictureUrl = author.avatar ? getImageUrl(author.avatar) : author.pictureUrl;
 
     const appStyles = stores.appStyles.styles;
     const styles = stores.appStyles.scheduleInfo;
@@ -101,20 +102,16 @@ class Info extends React.Component {
           <Appbar.Content
             titleStyle={appStyles.headerColor}
           />
+          <Appbar.Action
+            icon={() => <Icon
+              name="share-2"
+              size={24}
+              color={colors.gray}
+            />}
+            onPress={() => handleShare({ name, description, id})}
+          />
           {
-            !isOffline && (
-              <Appbar.Action
-                icon={() => <Icon
-                  name="share-2"
-                  size={24}
-                  color={colors.gray}
-                />}
-                onPress={() => handleShare({ name, description, id})}
-              />
-            )
-          }
-          {
-            isOwner && !isOffline && (
+            isOwner && (
               <Menu onSelect={handleSelectMenu}>
                 <MenuTrigger 
                   customStyles={{
@@ -207,7 +204,7 @@ class Info extends React.Component {
               </View>
               <TouchableRipple onPress={() => navigateToProfile(adminId)}>
                 <View style={styles.admin} >
-                  <UserAvater size={32} name={adminName} src={author.pictureUrl}/>
+                  <UserAvater size={32} name={adminName} src={pictureUrl}/>
                   <Text style={styles.byLine}>
                     {I18n.get("SCHEDULE_by")} <Text style={styles.adminName}>{adminName}</Text>
                   </Text>

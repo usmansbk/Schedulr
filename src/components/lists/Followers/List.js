@@ -3,6 +3,7 @@ import { FlatList, RefreshControl } from 'react-native';
 import { withNavigationFocus } from 'react-navigation';
 import { inject, observer } from 'mobx-react';
 import { followers_list } from 'lib/constants';
+import getImageUrl from 'helpers/getImageUrl';
 import Footer from './Footer';
 import Item from './Item';
 import Separator from './Separator';
@@ -57,13 +58,14 @@ class List extends React.Component {
   _renderItem = ({item: {
     id,
     name,
+    avatar,
     pictureUrl
   }}) => {
     return (
       <Item
         id={id}
         name={name}
-        pictureUrl={pictureUrl}
+        pictureUrl={avatar ? getImageUrl(avatar) : pictureUrl}
         onPressItem={this._onPressItem}
       />
     )

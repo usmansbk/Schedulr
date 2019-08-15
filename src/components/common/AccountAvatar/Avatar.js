@@ -29,7 +29,7 @@ export default class Avatar extends React.Component {
       avatar
     } = this.props;
 
-    const uri = avatar ? getImageUrl(avatar.key) : pictureUrl;
+    const uri = avatar ? getImageUrl(avatar) : pictureUrl;
 
     return (
       <TouchableRipple
