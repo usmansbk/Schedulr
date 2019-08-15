@@ -26,6 +26,10 @@ import colors from 'config/colors';
 class UserProfile extends React.Component {
   shouldComponentUpdate = (nextProps) => nextProps.navigation.isFocused();
 
+  _showPicture = () => this.props.navigation.navigate('AvatarViewer', {
+    id: this.props.user.id,
+  });
+
   _toFollowingTab = () => {
     const { user, navigation } = this.props;
     if (user) {
@@ -95,6 +99,7 @@ class UserProfile extends React.Component {
             src={pictureUrl}
             size={AVATAR_HEIGHT}
             name={name}
+            onPress={this._showPicture}
           />
         </View>
         <Headline numberOfLines={2} ellipsizeMode="tail" style={styles.headline}>{name}</Headline>

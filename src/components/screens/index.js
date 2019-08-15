@@ -17,9 +17,8 @@ import Comments from './Comments';
 import Followers from './Followers';
 import SearchScreen from './Search';
 import ScheduleEvents from './ScheduleEvents';
-import WebView from './WebView';
 import EditProfile from './EditProfile';
-import ImageViewer from './ImageViewer';
+import ImageViewer from '../common/ImageViewer';
 
 export {
   AuthLoading,
@@ -40,7 +39,6 @@ export {
   Followers,
   SearchScreen,
   ScheduleEvents,
-  WebView,
   EmailLogin,
   EditProfile,
   ImageViewer

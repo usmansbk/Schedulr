@@ -5,7 +5,7 @@ import { View } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 
 export default ({goBack, title, uploadPhoto, uri }) => (
-  <View>
+  <View style={{ flex: 1 }}>
     <Appbar.Header>
       <Appbar.Action
         icon={({color, size}) => <Icon
