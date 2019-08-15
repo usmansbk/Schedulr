@@ -18,7 +18,7 @@ import Followers from './Followers';
 import SearchScreen from './Search';
 import ScheduleEvents from './ScheduleEvents';
 import EditProfile from './EditProfile';
-import ImageViewer from '../common/ImageViewer';
+import AvatarViewer from './AvatarViewer';
 
 export {
   AuthLoading,
@@ -41,5 +41,5 @@ export {
   ScheduleEvents,
   EmailLogin,
   EditProfile,
-  ImageViewer
+  AvatarViewer
 };

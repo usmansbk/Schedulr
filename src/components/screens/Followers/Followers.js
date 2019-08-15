@@ -21,11 +21,13 @@ class Followers extends React.Component {
       <>
         <Appbar style={stores.appStyles.styles.header}>
           <Appbar.Action
+            color={stores.themeStore.colors.gray}
+            size={24}
             onPress={goBack}
-            icon={() => <Icon
+            icon={({ color, size }) => <Icon
               name="arrow-left"
-              color={stores.themeStore.colors.gray}
-              size={24}
+              color={color}
+              size={size}
             />}
           />
           <Appbar.Content

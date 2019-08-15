@@ -2,7 +2,7 @@ import React from 'react';
 import Screen from './Screen';
 
 export default class ImageViewerContainer extends React.Component {
-  _goBack = () => this.props.navigation.goBack();
+  _goBack = () => this.props.goBack;
   _uploadPhoto = () => console.log('wip');
 
   render() {
