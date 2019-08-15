@@ -18,6 +18,7 @@ export default inject("stores")(observer(
         name: getUser.name,
         email: getUser.email,
         pictureUrl: getUser.pictureUrl,
+        avatar: getUser.avatar,
         ...ownProps
       })
     }

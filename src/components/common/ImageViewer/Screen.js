@@ -7,7 +7,7 @@ import Icon from 'react-native-vector-icons/Feather';
 import Loading from '../Loading';
 
 export default inject("stores")(observer(
-  ({prevS3Object, goBack, title, uploadPhoto, deletePhoto, uri, stores, me, loading }) => (
+  ({s3Object, goBack, title, uploadPhoto, deletePhoto, uri, stores, me, loading }) => (
     <View style={{ flex: 1, backgroundColor: stores.themeStore.colors.bg }}>
       <Appbar.Header style={stores.appStyles.styles.header}>
         <Appbar.Action
@@ -27,7 +27,7 @@ export default inject("stores")(observer(
           me && (
             <>
             {
-              Boolean(prevS3Object) && (
+              Boolean(s3Object) && (
                 <Appbar.Action
                   color={stores.themeStore.colors.gray}
                   icon={({ color, size }) => <Icon

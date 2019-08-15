@@ -16,11 +16,8 @@ export default class AvatarViewer extends React.Component {
 
   _uploadImage = async (avatar) => {
     const { user: { id }, uploadPhoto } = this.props;
-    const { key, bucket, region } = avatar;
-    const pictureUrl = `https://${bucket}.s3.${region}.amazonaws.com/public/${key}`;
     const input = {
       id,
-      pictureUrl,
       avatar
     };
     await uploadPhoto(input);
@@ -37,8 +34,9 @@ export default class AvatarViewer extends React.Component {
         goBack={this._goBack}
         onUploadPhoto={this._uploadImage}
         onRemovePhoto={this._removeImage}
+        folder="profile_image"
         me={me}
-        prevS3Object={avatar}
+        s3Object={avatar}
       />
     );
   }

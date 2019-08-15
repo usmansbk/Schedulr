@@ -18,6 +18,7 @@ import Hyperlink from 'react-native-hyperlink';
 import { inject, observer } from 'mobx-react';
 import numeral from 'numeral';
 import { I18n } from 'aws-amplify';
+import getImageUrl from 'helpers/getImageUrl';
 import UserAvatar from 'components/common/UserAvatar';
 import Loading from 'components/common/Loading';
 import Error from 'components/common/Error';
@@ -70,12 +71,16 @@ class UserProfile extends React.Component {
   
     const {
       pictureUrl,
+      avatar,
       me,
       name,
       website,
       followingCount=0,
       createdCount=0
     } = user;
+
+    const uriSmall = avatar ? getImageUrl(avatar.key, 100) : pictureUrl;
+    const uriBig = avatar ? getImageUrl(avatar.key, 320) : pictureUrl;
 
     return  (
       <ScrollView
@@ -89,14 +94,14 @@ class UserProfile extends React.Component {
         }
         contentContainerStyle={styles.header}>
         <FastImage
-          source={{uri: pictureUrl}}
+          source={{uri: uriSmall}}
           resizeMode={FastImage.resizeMode.cover}
           style={styles.backgroundImage}
           blurRadius={1}
         />
         <View style={styles.image}>
           <UserAvatar
-            src={pictureUrl}
+            src={uriBig}
             size={AVATAR_HEIGHT}
             name={name}
             onPress={this._showPicture}

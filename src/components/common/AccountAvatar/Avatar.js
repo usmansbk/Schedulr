@@ -1,6 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 import { Text, Caption, TouchableRipple } from 'react-native-paper';
+import getImageUrl from 'helpers/getImageUrl';
 import UserAvatar from '../UserAvatar';
 import styles from './styles';
 
@@ -24,8 +25,11 @@ export default class Avatar extends React.Component {
     const {
       name,
       email,
-      pictureUrl
+      pictureUrl,
+      avatar
     } = this.props;
+
+    const uri = avatar ? getImageUrl(avatar.key) : pictureUrl;
 
     return (
       <TouchableRipple
@@ -37,7 +41,7 @@ export default class Avatar extends React.Component {
             size={60}
             name={name || email}
             style={styles.avatar}
-            src={pictureUrl}
+            src={uri}
           />
           <View style={styles.text}>
             { name && <Text numberOfLines={1} ellipsizeMode="tail" style={styles.name}>{name}</Text>}

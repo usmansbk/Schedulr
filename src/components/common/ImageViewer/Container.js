@@ -5,6 +5,7 @@ import { Alert } from 'react-native';
 import uuid from'uuid/v4';
 import { Storage, I18n } from 'aws-amplify';
 import config from 'aws_config';
+import getImageUrl from 'helpers/getImageUrl';
 import Screen from './Screen';
 
 const {
@@ -12,8 +13,8 @@ const {
   aws_user_files_s3_bucket_region: region
 } = config;
 
-const MAX_FILE_SIZE = 1024 * 1000;
-const EPSILON = 1024 * 10;
+const MAX_FILE_SIZE = 1024 * 2000;
+const EPSILON = 1024 * 100;
 
 export default class ImageViewerContainer extends React.Component {
   state = {
@@ -21,14 +22,14 @@ export default class ImageViewerContainer extends React.Component {
   };
 
   componentDidMount = () => {
-    const { prevS3Object, uri } = this.props;
-    if (!(prevS3Object || uri)) SimpleToast.show(I18n.get("TOAST_noImageFound"), SimpleToast.SHORT);
+    const { s3Object, uri } = this.props;
+    if (!(s3Object || uri)) SimpleToast.show(I18n.get("TOAST_noImageFound"), SimpleToast.SHORT);
   };
 
   _goBack = () => this.props.goBack();
 
   _removePhoto = async () => {
-    const { onRemovePhoto, prevS3Object } = this.props;
+    const { onRemovePhoto, s3Object } = this.props;
     Alert.alert(
       I18n.get("ALERT_deleteImage"),
       '',
@@ -38,9 +39,9 @@ export default class ImageViewerContainer extends React.Component {
           text: I18n.get("BUTTON_continue"),
           onPress: async () => {
             this.setState({ loading: true });
-            if (prevS3Object) {
+            if (s3Object) {
               try {
-                await Storage.remove(prevS3Object.key);
+                await Storage.remove(s3Object.key);
               } catch(error) {
                 SimpleToast.show(error.message, SimpleToast.SHORT);
               }
@@ -58,7 +59,7 @@ export default class ImageViewerContainer extends React.Component {
   };
 
   _uploadPhoto = () => {
-    const { onUploadPhoto, prevS3Object } = this.props;
+    const { onUploadPhoto, s3Object, folder="public" } = this.props;
     ImagePicker.showImagePicker(null, async (response) => {
       if (response.error) {
         SimpleToast.show(response.error.message, SimpleToast.SHORT);
@@ -70,7 +71,7 @@ export default class ImageViewerContainer extends React.Component {
           console.log(response);
         } else {
           try {
-            const key = `${uuid()}${fileName}`;
+            const key = `${folder}/${uuid()}${fileName}`;
             const fileForUpload = {
               key,
               bucket,
@@ -81,7 +82,7 @@ export default class ImageViewerContainer extends React.Component {
               const fetchResponse = await fetch(uri);
               const blob = await fetchResponse.blob();
               this.setState({ loading: true });
-              if (prevS3Object) await Storage.remove(prevS3Object.key);
+              if (s3Object) await Storage.remove(s3Object.key);
               await Storage.put(key, blob, {
                 contentType: type
               });
@@ -98,18 +99,20 @@ export default class ImageViewerContainer extends React.Component {
   };
 
   render() {
-    const { title, uri, me, prevS3Object } = this.props;
+    const { title, uri, me, s3Object } = this.props;
+
+    const url = s3Object ? getImageUrl(s3Object.key, 320) : uri;
 
     return (
       <Screen
         loading={this.state.loading}
         goBack={this._goBack}
         title={title}
-        uri={uri}
+        uri={url}
         uploadPhoto={this._uploadPhoto}
         deletePhoto={this._removePhoto}
         me={me}
-        prevS3Object={prevS3Object}
+        s3Object={s3Object}
       />
     );
   }
