@@ -28,11 +28,6 @@ export const getProfile = `query GetProfile($id: ID!) {
     pictureUrl
     website
     me
-    avatar {
-      key
-      bucket
-      region
-    }
     followingCount
     createdCount
     createdAt
@@ -90,11 +85,6 @@ export const getEventComments = `query GetEventComments($id: ID!) {
           id
           name
           pictureUrl
-          avatar {
-            key
-            bucket
-            region
-          }
         }
         event {
           id
@@ -118,11 +108,6 @@ export const getSchedule = `query GetSchedule($id: ID!) {
       id
       name
       pictureUrl
-      avatar {
-        key
-        bucket
-        region
-      }
       website
       me
       createdCount
@@ -226,11 +211,6 @@ export const getUserSchedules = `query GetUserSchedules($id: ID!) {
           id
           name
           pictureUrl
-          avatar {
-            key
-            bucket
-            region
-          }
         }
         followersCount
         eventsCount
@@ -253,11 +233,6 @@ export const getUserSchedules = `query GetUserSchedules($id: ID!) {
             id
             name
             pictureUrl
-            avatar {
-              key
-              bucket
-              region
-            }
           }
           followersCount
           eventsCount
@@ -338,11 +313,6 @@ export const getUserData = `query GetUserData($id: ID!) {
             id
             name
             pictureUrl
-            avatar {
-              key
-              bucket
-              region
-            }
             website
             me
             createdCount
@@ -420,11 +390,6 @@ export const getUserData = `query GetUserData($id: ID!) {
               id
               name
               pictureUrl
-              avatar {
-                key
-                bucket
-                region
-              }
               website
               me
               createdCount

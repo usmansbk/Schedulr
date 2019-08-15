@@ -13,27 +13,7 @@ const {
 
 export default class ImageViewerContainer extends React.Component {
   state = {
-    loading: false,
-    uri: null
-  };
-
-  componentDidMount = async () => {
-    const { s3, uri } = this.props;
-    if(s3) {
-      try {
-        // const result = await Storage.get(s3.key, { level: 'public', download: true });
-        const result = await Storage.get(s3.key);
-        console.log(result);
-        this.setState({
-          uri: result
-        });
-        console.log(result);
-      } catch(error) {
-        console.error(error);
-      }
-    } else {
-      this.setState({ uri });
-    }
+    loading: false
   };
 
   _goBack = () => this.props.goBack();
@@ -45,7 +25,7 @@ export default class ImageViewerContainer extends React.Component {
         console.error(response.error);
       } else {
         const { type, uri, fileName } = response;
-
+        
         try {
           const key = `${uuid()}${fileName}`;
           const fileForUpload = {
@@ -54,17 +34,19 @@ export default class ImageViewerContainer extends React.Component {
             region
           };
 
-          const fetchResponse = await fetch(uri);
-          const blob = await fetchResponse.blob();
-          this.setState({ loading: true });
-          if (s3) {
-            await Storage.remove(s3.key);
+          if (uri) {
+            const fetchResponse = await fetch(uri);
+            const blob = await fetchResponse.blob();
+            this.setState({ loading: true });
+            if (s3) {
+              await Storage.remove(s3.key);
+            }
+            await Storage.put(key, blob, {
+              contentType: type
+            });
+            await uploadPhoto(fileForUpload);
+            this.setState({ loading: false });
           }
-          await Storage.put(key, blob, {
-            contentType: type
-          });
-          await uploadPhoto(fileForUpload);
-          this.setState({ loading: false });
         } catch (error) {
           console.error(error);
           SimpleToast.show(error.message, SimpleToast.SHORT);
@@ -74,14 +56,14 @@ export default class ImageViewerContainer extends React.Component {
   };
 
   render() {
-    const { title, me, loading } = this.props;
+    const { title, uri, me } = this.props;
 
     return (
       <Screen
-        loading={this.state.loading || loading}
+        loading={this.state.loading}
         goBack={this._goBack}
         title={title}
-        uri={this.state.uri}
+        uri={uri}
         uploadPhoto={this._uploadPhoto}
         me={me}
       />
