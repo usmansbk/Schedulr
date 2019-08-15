@@ -30,7 +30,6 @@ export default class ImageViewerContainer extends React.Component {
           id
         }
       });
-      console.log(avatar);
       s3 = avatar;
     }
     ImagePicker.showImagePicker(null, async (response) => {

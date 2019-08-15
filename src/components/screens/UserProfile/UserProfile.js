@@ -92,6 +92,7 @@ class UserProfile extends React.Component {
           source={{uri: pictureUrl}}
           resizeMode={FastImage.resizeMode.cover}
           style={styles.backgroundImage}
+          blurRadius={1}
         />
         <View style={styles.image}>
           <UserAvatar
