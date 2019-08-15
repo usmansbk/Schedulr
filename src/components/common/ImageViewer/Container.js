@@ -1,6 +1,7 @@
 import React from 'react';
 import ImagePicker from 'react-native-image-picker';
 import SimpleToast from 'react-native-simple-toast';
+import { Alert } from 'react-native';
 import uuid from'uuid/v4';
 import gql from 'graphql-tag';
 import { Storage, I18n } from 'aws-amplify';
@@ -23,18 +24,12 @@ export default class ImageViewerContainer extends React.Component {
   };
 
   _goBack = () => this.props.goBack();
+
+  _deletePhoto = async () => {
+  };
+
   _uploadPhoto = () => {
     const { uploadPhoto, me, id } = this.props;
-    let s3;
-    if (me) {
-      const { getUser: { avatar } } = client.readQuery({
-        query: gql(getUser),
-        variables: {
-          id
-        }
-      });
-      s3 = avatar;
-    }
     ImagePicker.showImagePicker(null, async (response) => {
       if (response.error) {
         SimpleToast.show(response.error.message, SimpleToast.SHORT);
@@ -57,9 +52,6 @@ export default class ImageViewerContainer extends React.Component {
               const fetchResponse = await fetch(uri);
               const blob = await fetchResponse.blob();
               this.setState({ loading: true });
-              if (s3) {
-                await Storage.remove(s3.key);
-              }
               await Storage.put(key, blob, {
                 contentType: type
               });
@@ -85,6 +77,7 @@ export default class ImageViewerContainer extends React.Component {
         title={title}
         uri={uri}
         uploadPhoto={this._uploadPhoto}
+        deletePhoto={this._deletePhoto}
         me={me}
       />
     );
