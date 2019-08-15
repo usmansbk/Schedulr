@@ -32,15 +32,19 @@ export default class ImageViewerContainer extends React.Component {
         {
           text: I18n.get("BUTTON_continue"),
           onPress: async () => {
+            this.setState({ loading: true });
             if (prevS3Object) {
               try {
-                this.setState({ loading: true });
                 await Storage.remove(prevS3Object.key);
               } catch(error) {
                 SimpleToast.show(error.message, SimpleToast.SHORT);
               }
+            }
+            try {
               await onRemovePhoto();
               this.setState({ loading: false });
+            } catch (error) {
+              console.error(error);
             }
           }
         }
@@ -89,7 +93,7 @@ export default class ImageViewerContainer extends React.Component {
   };
 
   render() {
-    const { title, uri, me } = this.props;
+    const { title, uri, me, prevS3Object } = this.props;
 
     return (
       <Screen
@@ -100,6 +104,7 @@ export default class ImageViewerContainer extends React.Component {
         uploadPhoto={this._uploadPhoto}
         deletePhoto={this._removePhoto}
         me={me}
+        prevS3Object={prevS3Object}
       />
     );
   }

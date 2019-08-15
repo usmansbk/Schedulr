@@ -5,7 +5,7 @@ export default class AvatarViewer extends React.Component {
   _goBack = () => this.props.navigation.goBack();
 
   _removeImage = async () => {
-    const { uploadPhoto } = this.props;
+    const { uploadPhoto, user: { id } } = this.props;
     const input = {
       id,
       pictureUrl: null,
@@ -28,7 +28,7 @@ export default class AvatarViewer extends React.Component {
 
   render() {
     const { user: {id, name, me, pictureUrl, avatar } } = this.props;
-
+    
     return (
       <Viewer
         id={id}

@@ -25,6 +25,7 @@ export const getProfile = `query GetProfile($id: ID!) {
   getProfile: getUser(id: $id) {
     id
     name
+    pictureUrl
     avatar {
       key
       bucket
