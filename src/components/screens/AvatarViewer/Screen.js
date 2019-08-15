@@ -3,13 +3,21 @@ import Viewer from 'components/common/ImageViewer';
 
 export default class AvatarViewer extends React.Component {
   _goBack = () => this.props.navigation.goBack();
-  _uploadImage = () => console.log('upload');
+  _uploadImage = async (fileForUpload) => {
+    const { id, uploadPhoto } = this.props;
+    const input = {
+      id,
+      avatar: fileForUpload
+    };
+    await uploadPhoto(input);
+  };
 
   render() {
-    const { user: { name, me, pictureUrl } } = this.props;
-    console.log(name, me, pictureUrl);
+    const { user: {id, name, me, pictureUrl, avatar } } = this.props;
+    console.log('result', avatar);
     return (
       <Viewer
+        id={id}
         title={name}
         uri={pictureUrl}
         goBack={this._goBack}

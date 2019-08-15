@@ -4,9 +4,10 @@ import { Appbar } from 'react-native-paper';
 import { View } from 'react-native';
 import { inject, observer } from 'mobx-react';
 import Icon from 'react-native-vector-icons/Feather';
+import Loading from '../Loading';
 
 export default inject("stores")(observer(
-  ({goBack, title, uploadPhoto, uri, stores, me }) => (
+  ({goBack, title, uploadPhoto, uri, stores, me, loading }) => (
     <View style={{ flex: 1, backgroundColor: stores.themeStore.colors.bg }}>
       <Appbar.Header style={stores.appStyles.styles.header}>
         <Appbar.Action
@@ -36,11 +37,15 @@ export default inject("stores")(observer(
           )
         }
       </Appbar.Header>
-      <PhotoView
-        source={{uri}}
-        androidScaleType="fitCenter"
-        style={{flex: 1}}
-      />
+      {
+        loading ? <Loading /> : (
+          <PhotoView
+            source={{uri}}
+            androidScaleType="fitCenter"
+            style={{flex: 1}}
+          />
+        )
+      }
     </View>
   )
 ));

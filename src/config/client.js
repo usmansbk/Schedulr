@@ -3,7 +3,7 @@ import { Auth, Analytics } from 'aws-amplify';
 import { ApolloLink } from 'apollo-link';
 import { onError } from 'apollo-link-error';
 import SimpleToast from 'react-native-simple-toast';
-import aws_config from '../../aws-exports';
+import aws_config from 'aws_config';
 
 Analytics.disable();
 

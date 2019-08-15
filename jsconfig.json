@@ -9,7 +9,8 @@
       "api/*": ["src/graphql/*"],
       "helpers/*": ["src/helpers/*"],
       "lib/*": ["src/lib"],
-      "stores/*": ["src/stores"]
+      "stores/*": ["src/stores"],
+      "aws_config": ["./aws-exports"]
     }
   }
 }
