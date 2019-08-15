@@ -13,6 +13,7 @@ const imageRequest = (key, bucket, size) => {
       case  320:
       case 90:
       case 400:
+      case 512:
     {
       width = size;
       height = size;
