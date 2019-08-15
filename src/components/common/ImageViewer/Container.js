@@ -20,11 +20,17 @@ export default class ImageViewerContainer extends React.Component {
   componentDidMount = async () => {
     const { s3, uri } = this.props;
     if(s3) {
-      const result = await Storage.get(s3.key);
-      this.setState({
-        uri: result
-      });
-      console.log(result);
+      try {
+        // const result = await Storage.get(s3.key, { level: 'public', download: true });
+        const result = await Storage.get(s3.key);
+        console.log(result);
+        this.setState({
+          uri: result
+        });
+        console.log(result);
+      } catch(error) {
+        console.error(error);
+      }
     } else {
       this.setState({ uri });
     }
