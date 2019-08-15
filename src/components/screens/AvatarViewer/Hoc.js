@@ -1,7 +1,7 @@
 import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
 import { getProfile } from 'api/queries';
-import { updateProfile } from 'api/mutations';
+import { updateUser } from 'api/mutations';
 import Screen from './Screen';
 
 const alias = 'withAvatarViewer';
@@ -25,7 +25,7 @@ export default compose(
       ...ownProps,
     }),
   }),
-  graphql(gql(updateProfile), {
+  graphql(gql(updateUser), {
     alias,
     props: ({ mutate, ownProps }) => ({
       uploadPhoto: (input) => mutate({
