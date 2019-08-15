@@ -2,8 +2,11 @@ import React from 'react';
 import ImagePicker from 'react-native-image-picker';
 import SimpleToast from 'react-native-simple-toast';
 import uuid from'uuid/v4';
+import gql from 'graphql-tag';
 import { Storage } from 'aws-amplify';
 import config from 'aws_config';
+import client from 'config/client';
+import { getUser } from 'api/queries';
 import Screen from './Screen';
 
 const {
@@ -18,7 +21,18 @@ export default class ImageViewerContainer extends React.Component {
 
   _goBack = () => this.props.goBack();
   _uploadPhoto = () => {
-    const { uploadPhoto, s3 } = this.props;
+    const { uploadPhoto, me, id } = this.props;
+    let s3;
+    if (me) {
+      const { getUser: { avatar } } = client.readQuery({
+        query: gql(getUser),
+        variables: {
+          id
+        }
+      });
+      console.log(avatar);
+      s3 = avatar;
+    }
     ImagePicker.showImagePicker(null, async (response) => {
       if (response.error) {
         SimpleToast.show(response.error.message, SimpleToast.SHORT);

@@ -24,7 +24,6 @@ import Error from 'components/common/Error';
 import colors from 'config/colors';
 
 class UserProfile extends React.Component {
-  shouldComponentUpdate = (nextProps) => nextProps.navigation.isFocused();
 
   _showPicture = () => this.props.navigation.navigate('AvatarViewer', {
     id: this.props.user.id,
