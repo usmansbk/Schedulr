@@ -126,6 +126,11 @@ export const createBookmark = `mutation CreateBookmark($input: CreateBookmarkInp
           name
           website
           pictureUrl
+          avatar {
+            key
+            bucket
+            region
+          }
           createdCount
           followingCount
         }
@@ -239,6 +244,11 @@ export const createFollow = `mutation CreateFollow($input: CreateFollowInput!) {
         id
         name
         pictureUrl
+        avatar {
+          key
+          bucket
+          region
+        }
         website
         createdCount
         followingCount
@@ -314,6 +324,11 @@ export const createComment = `mutation CreateComment($input: CreateCommentInput!
       id
       name
       pictureUrl
+      avatar {
+        key
+        bucket
+        region
+      }
     }
     event {
       id

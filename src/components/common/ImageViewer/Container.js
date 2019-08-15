@@ -1,13 +1,9 @@
 import React from 'react';
 import ImagePicker from 'react-native-image-picker';
 import SimpleToast from 'react-native-simple-toast';
-import { Alert } from 'react-native';
 import uuid from'uuid/v4';
-import gql from 'graphql-tag';
 import { Storage, I18n } from 'aws-amplify';
 import config from 'aws_config';
-import client from 'config/client';
-import { getUser } from 'api/queries';
 import Screen from './Screen';
 
 const {
@@ -29,7 +25,7 @@ export default class ImageViewerContainer extends React.Component {
   };
 
   _uploadPhoto = () => {
-    const { uploadPhoto, me, id } = this.props;
+    const { uploadPhoto, id, prevS3Object } = this.props;
     ImagePicker.showImagePicker(null, async (response) => {
       if (response.error) {
         SimpleToast.show(response.error.message, SimpleToast.SHORT);
@@ -52,6 +48,7 @@ export default class ImageViewerContainer extends React.Component {
               const fetchResponse = await fetch(uri);
               const blob = await fetchResponse.blob();
               this.setState({ loading: true });
+              if (prevS3Object) await Storage.remove(prevS3Object.key);
               await Storage.put(key, blob, {
                 contentType: type
               });
