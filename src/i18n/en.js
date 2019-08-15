@@ -130,6 +130,7 @@ export default {
 
   TOAST_enableReminder: "Enable reminder!",
   TOAST_locationError: "Failed to get location. Turn off airplane mode.",
+  TOAST_noImageFound: "No image found",
 
   PROFILE_FORM_name: "Name",
   PROFILE_FORM_website: "Website",
