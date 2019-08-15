@@ -14,7 +14,7 @@ export default class AvatarViewer extends React.Component {
 
   render() {
     const { user: {id, name, me, pictureUrl, avatar } } = this.props;
-    console.log('result', avatar);
+
     return (
       <Viewer
         id={id}
@@ -22,6 +22,7 @@ export default class AvatarViewer extends React.Component {
         uri={pictureUrl}
         goBack={this._goBack}
         uploadPhoto={this._uploadImage}
+        s3={avatar}
         me={me}
       />
     );

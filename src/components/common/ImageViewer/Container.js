@@ -13,12 +13,26 @@ const {
 
 export default class ImageViewerContainer extends React.Component {
   state = {
-    loading: false
+    loading: false,
+    uri: null
+  };
+
+  componentDidMount = async () => {
+    const { s3, uri } = this.props;
+    if(s3) {
+      const result = await Storage.get(s3.key);
+      this.setState({
+        uri: result
+      });
+      console.log(result);
+    } else {
+      this.setState({ uri });
+    }
   };
 
   _goBack = () => this.props.goBack();
   _uploadPhoto = () => {
-    const { uploadPhoto } = this.props;
+    const { uploadPhoto, s3 } = this.props;
     ImagePicker.showImagePicker(null, async (response) => {
       if (response.error) {
         SimpleToast.show(response.error.message, SimpleToast.SHORT);
@@ -37,6 +51,9 @@ export default class ImageViewerContainer extends React.Component {
           const fetchResponse = await fetch(uri);
           const blob = await fetchResponse.blob();
           this.setState({ loading: true });
+          if (s3) {
+            await Storage.remove(s3.key);
+          }
           await Storage.put(key, blob, {
             contentType: type
           });
@@ -51,14 +68,14 @@ export default class ImageViewerContainer extends React.Component {
   };
 
   render() {
-    const { title, uri, me, loading } = this.props;
+    const { title, me, loading } = this.props;
 
     return (
       <Screen
         loading={this.state.loading || loading}
         goBack={this._goBack}
         title={title}
-        uri={uri}
+        uri={this.state.uri}
         uploadPhoto={this._uploadPhoto}
         me={me}
       />
