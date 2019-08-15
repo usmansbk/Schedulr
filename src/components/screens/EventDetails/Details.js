@@ -141,6 +141,7 @@ export default inject('stores')(observer(
         bookmarksCount={bookmarksCount}
         commentsCount={commentsCount}
         color={stores.themeStore.colors.gray}
+        activeColor={stores.themeStore.colors.like}
         date={date}
         navigateToComments={navigateToComments}
       />

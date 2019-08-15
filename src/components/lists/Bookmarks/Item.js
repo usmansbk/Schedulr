@@ -86,6 +86,7 @@ class Item extends React.Component {
               bookmarksCount={bookmarksCount}
               commentsCount={commentsCount}
               color={stores.themeStore.colors.light_gray_3}
+              activeColor={stores.themeStore.colors.like}
               navigateToComments={this._onPressComment}
               size={18}
               small

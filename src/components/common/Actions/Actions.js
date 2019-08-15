@@ -4,7 +4,6 @@ import BookmarkButton from '../BookmarkButton';
 import ShareButton from '../ShareButton';
 import LocationButton from '../LocationButton';
 import CommentButton from '../CommentButton';
-import colors from 'config/colors';
 
 const DEFAULT_FONT_SIZE = 22;
 
@@ -16,7 +15,8 @@ export default class Actions extends React.Component {
     (this.props.commentsCount !== nextProps.commentsCount) ||
     (this.props.bookmarksCount !== nextProps.bookmarksCount) ||
     (this.props.address !== nextProps.address) ||
-    (this.props.color !== nextProps.color)
+    (this.props.color !== nextProps.color) ||
+    (this.props.activeColor !== nextProps.activeColor)
   );
 
   _onPressCommentButton = () => {
@@ -36,6 +36,7 @@ export default class Actions extends React.Component {
       id,
       small,
       color,
+      activeColor,
       size
     } = this.props;
     
@@ -46,7 +47,7 @@ export default class Actions extends React.Component {
           id={id}
           isBookmarked={isBookmarked}
           bookmarksCount={bookmarksCount}
-          activeColor={colors.primary_light}
+          activeColor={activeColor}
           size={FONT_SIZE}
           color={color}
           small={small}
