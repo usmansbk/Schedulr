@@ -121,7 +121,7 @@ export default {
   ALERT_permissionLocationTitle: "Location Permission",
   ALERT_permissionLocationMessage: "Schdlr needs access to your location for better experience.",
   ALERT_deleteType: "Delete type?",
-
+  ALERT_deleteImage: "Delete image?",
 
   SHARE_inviteAFriendTitle: "Invite via...",
   SHARE_SCHEDULE_inviteTitle: "Share invite link via...",

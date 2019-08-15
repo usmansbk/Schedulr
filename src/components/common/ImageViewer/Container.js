@@ -1,6 +1,7 @@
 import React from 'react';
 import ImagePicker from 'react-native-image-picker';
 import SimpleToast from 'react-native-simple-toast';
+import { Alert } from 'react-native';
 import uuid from'uuid/v4';
 import { Storage, I18n } from 'aws-amplify';
 import config from 'aws_config';
@@ -21,11 +22,34 @@ export default class ImageViewerContainer extends React.Component {
 
   _goBack = () => this.props.goBack();
 
-  _deletePhoto = async () => {
+  _removePhoto = async () => {
+    const { onRemovePhoto, prevS3Object } = this.props;
+    Alert.alert(
+      I18n.get("ALERT_deleteImage"),
+      '',
+      [
+        {text: I18n.get("BUTTON_dismiss"), onPress: () => null },
+        {
+          text: I18n.get("BUTTON_continue"),
+          onPress: async () => {
+            if (prevS3Object) {
+              try {
+                this.setState({ loading: true });
+                await Storage.remove(prevS3Object.key);
+              } catch(error) {
+                SimpleToast.show(error.message, SimpleToast.SHORT);
+              }
+              await onRemovePhoto();
+              this.setState({ loading: false });
+            }
+          }
+        }
+      ]
+    )
   };
 
   _uploadPhoto = () => {
-    const { uploadPhoto, id, prevS3Object } = this.props;
+    const { onUploadPhoto, prevS3Object } = this.props;
     ImagePicker.showImagePicker(null, async (response) => {
       if (response.error) {
         SimpleToast.show(response.error.message, SimpleToast.SHORT);
@@ -52,7 +76,7 @@ export default class ImageViewerContainer extends React.Component {
               await Storage.put(key, blob, {
                 contentType: type
               });
-              await uploadPhoto(fileForUpload);
+              await onUploadPhoto(fileForUpload);
               this.setState({ loading: false });
             }
           } catch (error) {
@@ -74,7 +98,7 @@ export default class ImageViewerContainer extends React.Component {
         title={title}
         uri={uri}
         uploadPhoto={this._uploadPhoto}
-        deletePhoto={this._deletePhoto}
+        deletePhoto={this._removePhoto}
         me={me}
       />
     );

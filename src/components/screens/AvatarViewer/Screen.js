@@ -3,6 +3,17 @@ import Viewer from 'components/common/ImageViewer';
 
 export default class AvatarViewer extends React.Component {
   _goBack = () => this.props.navigation.goBack();
+
+  _removeImage = async () => {
+    const { uploadPhoto } = this.props;
+    const input = {
+      id,
+      pictureUrl: null,
+      avatar: null
+    };
+    await uploadPhoto(input);
+  };
+
   _uploadImage = async (avatar) => {
     const { user: { id }, uploadPhoto } = this.props;
     const { key, bucket, region } = avatar;
@@ -24,7 +35,8 @@ export default class AvatarViewer extends React.Component {
         title={name}
         uri={pictureUrl}
         goBack={this._goBack}
-        uploadPhoto={this._uploadImage}
+        onUploadPhoto={this._uploadImage}
+        onRemovePhoto={this._removeImage}
         me={me}
         prevS3Object={avatar}
       />
