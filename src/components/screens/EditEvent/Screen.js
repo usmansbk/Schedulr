@@ -46,7 +46,6 @@ export default class EditEventScreen extends React.Component {
   };
   
   get schedules() {
-    // console.log(client.cache);
     const data = client.readFragment({
       fragment: getUserSchedules,
       id: `User:${this.props.stores.appState.userId}`

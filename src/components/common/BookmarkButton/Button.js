@@ -22,7 +22,7 @@ export default class Button extends React.Component {
         await bookmarkEvent(input);
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 

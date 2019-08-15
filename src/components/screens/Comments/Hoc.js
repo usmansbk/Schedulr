@@ -40,7 +40,7 @@ export default inject("stores")(observer(
         variables: {
           id: props.navigation.getParam('id')
         },
-        onError: error => console.log(error)
+        onError: error => console.error(error)
       }),
       props: ({ data, ownProps }) => ({
         loading: data.loading || data.networkStatus === 4,

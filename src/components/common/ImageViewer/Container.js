@@ -68,7 +68,6 @@ export default class ImageViewerContainer extends React.Component {
         const { type, uri, fileName, fileSize } = response;
         if (fileSize > (MAX_FILE_SIZE + EPSILON)) {
           SimpleToast.show(I18n.get("WARNING_fileTooLarge"), SimpleToast.SHORT);
-          console.log(response);
         } else {
           try {
             const key = `${folder}/${uuid()}${fileName}`;
