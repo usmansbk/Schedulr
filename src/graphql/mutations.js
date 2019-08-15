@@ -9,7 +9,6 @@ export const createUser = `mutation CreateUser($input: CreateUserInput!) {
     avatar {
       key
       bucket
-      region
     }
     website
     createdAt
@@ -24,7 +23,6 @@ export const updateUser = `mutation UpdateUser($input: UpdateUserInput!) {
     avatar {
       key
       bucket
-      region
     }
     website
     updatedAt
@@ -129,7 +127,6 @@ export const createBookmark = `mutation CreateBookmark($input: CreateBookmarkInp
           avatar {
             key
             bucket
-            region
           }
           createdCount
           followingCount
@@ -247,7 +244,6 @@ export const createFollow = `mutation CreateFollow($input: CreateFollowInput!) {
         avatar {
           key
           bucket
-          region
         }
         website
         createdCount
@@ -327,7 +323,6 @@ export const createComment = `mutation CreateComment($input: CreateCommentInput!
       avatar {
         key
         bucket
-        region
       }
     }
     event {

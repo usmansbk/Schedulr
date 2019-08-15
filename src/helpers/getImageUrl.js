@@ -1,10 +1,8 @@
-import aws_config from 'aws_config';
 import env from 'config/env';
 
-const { aws_user_files_s3_bucket: bucket } = aws_config;
 const { CloudFrontUrl } = env;
 
-const imageRequest = (key, size) => {
+const imageRequest = (key, bucket, size) => {
   let width;
   let height;
   
@@ -40,6 +38,6 @@ const imageRequest = (key, size) => {
   });
 };
 
-export default getImageUrl = (s3Object, size) => (
-  `${CloudFrontUrl}/${btoa(imageRequest(s3Object.key, size))}`
+export default getImageUrl = ({ bucket, key }, size) => (
+  `${CloudFrontUrl}/${btoa(imageRequest(key, bucket, size))}`
 );

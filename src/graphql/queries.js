@@ -11,7 +11,6 @@ export const getUser = `query GetUser($id: ID!) {
     avatar {
       key
       bucket
-      region
     }
     website
     followingCount
@@ -29,7 +28,6 @@ export const getProfile = `query GetProfile($id: ID!) {
     avatar {
       key
       bucket
-      region
     }
     website
     me
@@ -93,7 +91,6 @@ export const getEventComments = `query GetEventComments($id: ID!) {
           avatar {
             key
             bucket
-            region
           }
         }
         event {
@@ -121,7 +118,6 @@ export const getSchedule = `query GetSchedule($id: ID!) {
       avatar {
         key
         bucket
-        region
       }
       website
       me
@@ -229,7 +225,6 @@ export const getUserSchedules = `query GetUserSchedules($id: ID!) {
           avatar {
             key
             bucket
-            region
           }
         }
         followersCount
@@ -256,7 +251,7 @@ export const getUserSchedules = `query GetUserSchedules($id: ID!) {
             avatar {
               key
               bucket
-              region
+
             }
           }
           followersCount
@@ -341,7 +336,7 @@ export const getUserData = `query GetUserData($id: ID!) {
             avatar {
               key
               bucket
-              region
+
             }
             website
             me
@@ -423,7 +418,7 @@ export const getUserData = `query GetUserData($id: ID!) {
               avatar {
                 key
                 bucket
-                region
+  
               }
               website
               me
