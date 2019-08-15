@@ -88,7 +88,7 @@ class Form extends React.Component {
     const { showPicker } = this.state;
 
     const styles = stores.appStyles.eventForm;
-    const navButtonColor = stores.themeStore.colors.navButtonColor;
+    const navButtonColor = stores.themeStore.colors.primary;
 
     return (
       <Formik

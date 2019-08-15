@@ -210,7 +210,7 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   linkStyle: {
-    color: colors.primary_light,
+    color: colors.link,
   },
   linkIcon: {
     paddingRight: 8

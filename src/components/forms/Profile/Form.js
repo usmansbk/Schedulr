@@ -35,7 +35,7 @@ class Form extends React.Component {
     } = this.props;
 
     const styles = stores.appStyles.eventForm;
-    const navButtonColor = stores.themeStore.colors.navButtonColor;
+    const navButtonColor = stores.themeStore.colors.primary;
 
     return (
       <Formik
