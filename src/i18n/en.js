@@ -103,6 +103,7 @@ export default {
   BUTTON_continueWithFacebook: "Continue with Facebook",
   BUTTON_loggingIn: "Logging in...",
   BUTTON_signingIn: "Signing in...",
+  BUTTON_editProfile: "Edit details",
 
   ALERT_repeat: "Repeat",
   ALERT_duration: "Duration",

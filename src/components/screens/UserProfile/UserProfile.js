@@ -126,7 +126,7 @@ class UserProfile extends React.Component {
           me && (
             <View style={styles.link}>
               <FAB
-                label="Edit profile"
+                label={I18n.get("BUTTON_editProfile")}
                 color={colors.white}
                 onPress={this._editProfile}
               />
