@@ -3,7 +3,7 @@ import ImagePicker from 'react-native-image-picker';
 import SimpleToast from 'react-native-simple-toast';
 import uuid from'uuid/v4';
 import gql from 'graphql-tag';
-import { Storage } from 'aws-amplify';
+import { Storage, I18n } from 'aws-amplify';
 import config from 'aws_config';
 import client from 'config/client';
 import { getUser } from 'api/queries';
@@ -13,6 +13,9 @@ const {
   aws_user_files_s3_bucket: bucket,
   aws_user_files_s3_bucket_region: region
 } = config;
+
+const MAX_FILE_SIZE = 1024 * 1000;
+const EPSILON = 1024 * 10;
 
 export default class ImageViewerContainer extends React.Component {
   state = {
@@ -37,32 +40,36 @@ export default class ImageViewerContainer extends React.Component {
         SimpleToast.show(response.error.message, SimpleToast.SHORT);
         console.error(response.error);
       } else {
-        const { type, uri, fileName } = response;
-        
-        try {
-          const key = `${uuid()}${fileName}`;
-          const fileForUpload = {
-            key,
-            bucket,
-            region
-          };
-
-          if (uri) {
-            const fetchResponse = await fetch(uri);
-            const blob = await fetchResponse.blob();
-            this.setState({ loading: true });
-            if (s3) {
-              await Storage.remove(s3.key);
+        const { type, uri, fileName, fileSize } = response;
+        if (fileSize > (MAX_FILE_SIZE + EPSILON)) {
+          SimpleToast.show(I18n.get("WARNING_fileTooLarge"), SimpleToast.SHORT);
+          console.log(response);
+        } else {
+          try {
+            const key = `${uuid()}${fileName}`;
+            const fileForUpload = {
+              key,
+              bucket,
+              region
+            };
+  
+            if (uri) {
+              const fetchResponse = await fetch(uri);
+              const blob = await fetchResponse.blob();
+              this.setState({ loading: true });
+              if (s3) {
+                await Storage.remove(s3.key);
+              }
+              await Storage.put(key, blob, {
+                contentType: type
+              });
+              await uploadPhoto(fileForUpload);
+              this.setState({ loading: false });
             }
-            await Storage.put(key, blob, {
-              contentType: type
-            });
-            await uploadPhoto(fileForUpload);
-            this.setState({ loading: false });
+          } catch (error) {
+            console.error(error);
+            SimpleToast.show(error.message, SimpleToast.SHORT);
           }
-        } catch (error) {
-          console.error(error);
-          SimpleToast.show(error.message, SimpleToast.SHORT);
         }
       }
     })
