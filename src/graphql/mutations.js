@@ -45,6 +45,10 @@ export const createEvent = `mutation CreateEvent($input: CreateEventInput!) {
     isOwner
     isCancelled
     cancelledDates
+    banner {
+      bucket
+      key
+    }
     author {
       id
       name
@@ -76,6 +80,10 @@ export const updateEvent = `mutation UpdateEvent($input: UpdateEventInput!) {
     isPublic
     isCancelled
     cancelledDates
+    banner {
+      bucket
+      key
+    }
     updatedAt
   }
 }
@@ -108,6 +116,10 @@ export const createBookmark = `mutation CreateBookmark($input: CreateBookmarkInp
       isOwner
       isCancelled
       cancelledDates
+      banner {
+        bucket
+        key
+      }
       author {
         id
         name
@@ -119,6 +131,10 @@ export const createBookmark = `mutation CreateBookmark($input: CreateBookmarkInp
         isPublic
         isOwner
         status
+        avatar {
+          key
+          bucket
+        }
         author {
           id
           name
@@ -163,6 +179,10 @@ export const createSchedule = `mutation CreateSchedule($input: CreateScheduleInp
     isPublic
     isOwner
     status
+    avatar {
+      key
+      bucket
+    }
     author {
       id
       name
@@ -188,6 +208,10 @@ export const createSchedule = `mutation CreateSchedule($input: CreateScheduleInp
         isOwner
         isCancelled
         cancelledDates
+        banner {
+          bucket
+          key
+        }
         author {
           id
           name
@@ -214,6 +238,10 @@ export const updateSchedule = `mutation UpdateSchedule($input: UpdateScheduleInp
     isPublic
     status
     updatedAt
+    avatar {
+      key
+      bucket
+    }
   }
 }
 `;
@@ -237,6 +265,10 @@ export const createFollow = `mutation CreateFollow($input: CreateFollowInput!) {
       isPublic
       isOwner
       status
+      avatar {
+        key
+        bucket
+      }
       author {
         id
         name
@@ -266,6 +298,10 @@ export const createFollow = `mutation CreateFollow($input: CreateFollowInput!) {
           isOwner
           isCancelled
           cancelledDates
+          banner {
+            bucket
+            key
+          }
           author {
             id
             name

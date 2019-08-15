@@ -53,6 +53,10 @@ export const getEvent = `query GetEvent($id: ID!) {
     isOwner
     isCancelled
     cancelledDates
+    banner {
+      bucket
+      key
+    }
     author {
       id
       name
@@ -124,6 +128,10 @@ export const getSchedule = `query GetSchedule($id: ID!) {
       createdCount
       followingCount
     }
+    avatar {
+      key
+      bucket
+    }
     followersCount
     eventsCount
     createdAt
@@ -150,6 +158,10 @@ export const getScheduleEvents = `query GetScheduleWithEvents($id: ID!) {
         isOwner
         isCancelled
         cancelledDates
+        banner {
+          bucket
+          key
+        }
         author {
           id
           name
@@ -189,6 +201,10 @@ export const getUserBookmarks = `query GetBookmarks($id: ID!) {
           isOwner
           isCancelled
           cancelledDates
+          banner {
+            bucket
+            key
+          }
           author {
             id
             name
@@ -218,6 +234,10 @@ export const getUserSchedules = `query GetUserSchedules($id: ID!) {
         isPublic
         isOwner
         status
+        avatar {
+          key
+          bucket
+        }
         author {
           id
           name
@@ -244,6 +264,10 @@ export const getUserSchedules = `query GetUserSchedules($id: ID!) {
           isPublic
           isOwner
           status
+          avatar {
+            key
+            bucket
+          }
           author {
             id
             name
@@ -275,6 +299,10 @@ export const getUserData = `query GetUserData($id: ID!) {
         isPublic
         isOwner
         status
+        avatar {
+          key
+          bucket
+        }
         author {
           id
           name
@@ -300,6 +328,10 @@ export const getUserData = `query GetUserData($id: ID!) {
             isOwner
             isCancelled
             cancelledDates
+            banner {
+              bucket
+              key
+            }
             author {
               id
               name
@@ -329,6 +361,10 @@ export const getUserData = `query GetUserData($id: ID!) {
           isPublic
           isOwner
           status
+          avatar {
+            key
+            bucket
+          }
           author {
             id
             name
@@ -336,7 +372,6 @@ export const getUserData = `query GetUserData($id: ID!) {
             avatar {
               key
               bucket
-
             }
             website
             me
@@ -360,6 +395,10 @@ export const getUserData = `query GetUserData($id: ID!) {
               isOwner
               isCancelled
               cancelledDates
+              banner {
+                bucket
+                key
+              }
               author {
                 id
                 name
@@ -400,6 +439,10 @@ export const getUserData = `query GetUserData($id: ID!) {
           isOwner
           isCancelled
           cancelledDates
+          banner {
+            bucket
+            key
+          }
           author {
             id
             name
@@ -411,6 +454,10 @@ export const getUserData = `query GetUserData($id: ID!) {
             isPublic
             isOwner
             status
+            avatar {
+              key
+              bucket
+            }
             author {
               id
               name
@@ -418,7 +465,6 @@ export const getUserData = `query GetUserData($id: ID!) {
               avatar {
                 key
                 bucket
-  
               }
               website
               me
