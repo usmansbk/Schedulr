@@ -15,10 +15,7 @@ export default class Screen extends React.Component {
   _navigateToSchedule = (id) => this.props.navigation.navigate('Schedule', { id });
   _navigateToComments = (id, title, date) => this.props.navigation.navigate('Comments', { id, title, date });
   _navigateToUser = (id) => this.props.navigation.navigate('UserProfile', { id });
-  _navigateToBanner = (id) => {
-    console.log(id);
-    this.props.navigation.navigate('Banner', { id });
-  };
+  _navigateToBanner = (id) => this.props.navigation.navigate('Banner', { id });
 
   _openDeleteDialog = () => this.setState({ visibleDialog: 'delete' });
   _openCancelDialog = () => this.setState({ visibleDialog: 'cancel' });

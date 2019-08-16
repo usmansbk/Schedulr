@@ -19,6 +19,7 @@ import SearchScreen from './Search';
 import ScheduleEvents from './ScheduleEvents';
 import EditProfile from './EditProfile';
 import AvatarViewer from './AvatarViewer';
+import Banner from './Banner';
 
 export {
   AuthLoading,
@@ -41,5 +42,6 @@ export {
   ScheduleEvents,
   EmailLogin,
   EditProfile,
-  AvatarViewer
+  AvatarViewer,
+  Banner
 };

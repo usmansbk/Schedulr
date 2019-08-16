@@ -24,7 +24,8 @@ import {
   ScheduleEvents,
   EmailLogin,
   EditProfile,
-  AvatarViewer
+  AvatarViewer,
+  Banner
 } from 'components/screens';
 import colors from 'config/colors';
 
@@ -124,6 +125,12 @@ const AppStack = createStackNavigator({
   },
   AvatarViewer: {
     screen: AvatarViewer,
+    navigationOptions: {
+      header: null
+    }
+  },
+  Banner: {
+    screen: Banner,
     navigationOptions: {
       header: null
     }
