@@ -7,6 +7,7 @@ export const createUser = `mutation CreateUser($input: CreateUserInput!) {
     name
     pictureUrl
     avatar {
+      id
       key
       bucket
     }
@@ -21,6 +22,7 @@ export const updateUser = `mutation UpdateUser($input: UpdateUserInput!) {
     name
     pictureUrl
     avatar {
+      id
       key
       bucket
     }
@@ -46,6 +48,7 @@ export const createEvent = `mutation CreateEvent($input: CreateEventInput!) {
     isCancelled
     cancelledDates
     banner {
+      id
       bucket
       key
     }
@@ -81,6 +84,7 @@ export const updateEvent = `mutation UpdateEvent($input: UpdateEventInput!) {
     isCancelled
     cancelledDates
     banner {
+      id
       bucket
       key
     }
@@ -117,6 +121,7 @@ export const createBookmark = `mutation CreateBookmark($input: CreateBookmarkInp
       isCancelled
       cancelledDates
       banner {
+        id
         bucket
         key
       }
@@ -127,30 +132,6 @@ export const createBookmark = `mutation CreateBookmark($input: CreateBookmarkInp
       schedule {
         id
         name
-        description
-        isPublic
-        isOwner
-        status
-        avatar {
-          key
-          bucket
-        }
-        author {
-          id
-          name
-          website
-          pictureUrl
-          avatar {
-            key
-            bucket
-          }
-          createdCount
-          followingCount
-        }
-        followersCount
-        eventsCount
-        createdAt
-        updatedAt
       }
       commentsCount
       bookmarksCount
@@ -179,7 +160,8 @@ export const createSchedule = `mutation CreateSchedule($input: CreateScheduleInp
     isPublic
     isOwner
     status
-    avatar {
+    picture {
+      id
       key
       bucket
     }
@@ -209,6 +191,7 @@ export const createSchedule = `mutation CreateSchedule($input: CreateScheduleInp
         isCancelled
         cancelledDates
         banner {
+          id
           bucket
           key
         }
@@ -238,7 +221,8 @@ export const updateSchedule = `mutation UpdateSchedule($input: UpdateScheduleInp
     isPublic
     status
     updatedAt
-    avatar {
+    picture {
+      id
       key
       bucket
     }
@@ -265,7 +249,8 @@ export const createFollow = `mutation CreateFollow($input: CreateFollowInput!) {
       isPublic
       isOwner
       status
-      avatar {
+      picture {
+        id
         key
         bucket
       }
@@ -274,6 +259,7 @@ export const createFollow = `mutation CreateFollow($input: CreateFollowInput!) {
         name
         pictureUrl
         avatar {
+          id
           key
           bucket
         }
@@ -299,6 +285,7 @@ export const createFollow = `mutation CreateFollow($input: CreateFollowInput!) {
           isCancelled
           cancelledDates
           banner {
+            id
             bucket
             key
           }
@@ -357,6 +344,7 @@ export const createComment = `mutation CreateComment($input: CreateCommentInput!
       name
       pictureUrl
       avatar {
+        id
         key
         bucket
       }

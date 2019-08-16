@@ -202,29 +202,9 @@ function getEvents(events) {
   });
 };
 
-const hasPreviousEvents = memoize((events, beforeDate) => {
-  const refDate = moment(beforeDate);
-  return events.some((event) => {
-    const eventDate = moment(event.startAt);
-    return eventDate.isSameOrBefore(refDate);
-  });
-}, (...args) => JSON.stringify(args));
-
-const hasMoreEvents = memoize((events, afterDate) => {
-  const refDate = moment(afterDate);
-  return events.some((event) => {
-    const eventDate = moment(event.startAt);
-    const interval = getInterval(event.recurrence);
-    const isValid = !event.isCancelled && (interval && event.until ? moment(event.until).isSameOrAfter(refDate) : true);
-    return eventDate.isSameOrAfter(refDate) || isValid;
-  });
-}, (...args) => JSON.stringify(args));
-
 export {
   getEvents,
   getNextDate,
-  hasPreviousEvents,
-  hasMoreEvents,
   generateNextEvents,
   generatePreviousEvents
 }

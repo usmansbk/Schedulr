@@ -2,7 +2,6 @@ import React from 'react';
 import ImagePicker from 'react-native-image-picker';
 import SimpleToast from 'react-native-simple-toast';
 import { Alert } from 'react-native';
-import uuid from'uuid/v4';
 import { Storage, I18n } from 'aws-amplify';
 import config from 'aws_config';
 import getImageUrl from 'helpers/getImageUrl';
@@ -59,7 +58,7 @@ export default class ImageViewerContainer extends React.Component {
   };
 
   _uploadPhoto = () => {
-    const { onUploadPhoto, s3Object, folder="public" } = this.props;
+    const { id, onUploadPhoto, s3Object, folder="public" } = this.props;
     ImagePicker.showImagePicker(null, async (response) => {
       if (response.error) {
         SimpleToast.show(response.error.message, SimpleToast.SHORT);
@@ -70,8 +69,9 @@ export default class ImageViewerContainer extends React.Component {
           SimpleToast.show(I18n.get("WARNING_fileTooLarge"), SimpleToast.SHORT);
         } else {
           try {
-            const key = `${folder}/${uuid()}${fileName}`;
+            const key = `${folder}/${id}${fileName}`;
             const fileForUpload = {
+              id,
               key,
               bucket,
               region

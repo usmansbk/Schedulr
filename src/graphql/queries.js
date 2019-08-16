@@ -9,6 +9,7 @@ export const getUser = `query GetUser($id: ID!) {
     name
     pictureUrl
     avatar {
+      id
       key
       bucket
     }
@@ -26,6 +27,7 @@ export const getProfile = `query GetProfile($id: ID!) {
     name
     pictureUrl
     avatar {
+      id
       key
       bucket
     }
@@ -54,6 +56,7 @@ export const getEvent = `query GetEvent($id: ID!) {
     isCancelled
     cancelledDates
     banner {
+      id
       bucket
       key
     }
@@ -93,6 +96,7 @@ export const getEventComments = `query GetEventComments($id: ID!) {
           name
           pictureUrl
           avatar {
+            id
             key
             bucket
           }
@@ -120,6 +124,7 @@ export const getSchedule = `query GetSchedule($id: ID!) {
       name
       pictureUrl
       avatar {
+        id
         key
         bucket
       }
@@ -128,7 +133,8 @@ export const getSchedule = `query GetSchedule($id: ID!) {
       createdCount
       followingCount
     }
-    avatar {
+    picture {
+      id
       key
       bucket
     }
@@ -159,6 +165,7 @@ export const getScheduleEvents = `query GetScheduleWithEvents($id: ID!) {
         isCancelled
         cancelledDates
         banner {
+          id
           bucket
           key
         }
@@ -202,6 +209,7 @@ export const getUserBookmarks = `query GetBookmarks($id: ID!) {
           isCancelled
           cancelledDates
           banner {
+            id
             bucket
             key
           }
@@ -234,7 +242,8 @@ export const getUserSchedules = `query GetUserSchedules($id: ID!) {
         isPublic
         isOwner
         status
-        avatar {
+        picture {
+          id
           key
           bucket
         }
@@ -243,6 +252,7 @@ export const getUserSchedules = `query GetUserSchedules($id: ID!) {
           name
           pictureUrl
           avatar {
+            id
             key
             bucket
           }
@@ -264,7 +274,8 @@ export const getUserSchedules = `query GetUserSchedules($id: ID!) {
           isPublic
           isOwner
           status
-          avatar {
+          picture {
+            id
             key
             bucket
           }
@@ -273,9 +284,9 @@ export const getUserSchedules = `query GetUserSchedules($id: ID!) {
             name
             pictureUrl
             avatar {
+              id
               key
               bucket
-
             }
           }
           followersCount
@@ -299,7 +310,8 @@ export const getUserData = `query GetUserData($id: ID!) {
         isPublic
         isOwner
         status
-        avatar {
+        picture {
+          id
           key
           bucket
         }
@@ -329,6 +341,7 @@ export const getUserData = `query GetUserData($id: ID!) {
             isCancelled
             cancelledDates
             banner {
+              id
               bucket
               key
             }
@@ -361,7 +374,8 @@ export const getUserData = `query GetUserData($id: ID!) {
           isPublic
           isOwner
           status
-          avatar {
+          picture {
+            id
             key
             bucket
           }
@@ -370,6 +384,7 @@ export const getUserData = `query GetUserData($id: ID!) {
             name
             pictureUrl
             avatar {
+              id
               key
               bucket
             }
@@ -396,6 +411,7 @@ export const getUserData = `query GetUserData($id: ID!) {
               isCancelled
               cancelledDates
               banner {
+                id
                 bucket
                 key
               }
@@ -440,6 +456,7 @@ export const getUserData = `query GetUserData($id: ID!) {
           isCancelled
           cancelledDates
           banner {
+            id
             bucket
             key
           }
@@ -450,31 +467,6 @@ export const getUserData = `query GetUserData($id: ID!) {
           schedule {
             id
             name
-            description
-            isPublic
-            isOwner
-            status
-            avatar {
-              key
-              bucket
-            }
-            author {
-              id
-              name
-              pictureUrl
-              avatar {
-                key
-                bucket
-              }
-              website
-              me
-              createdCount
-              followingCount
-            }
-            followersCount
-            eventsCount
-            createdAt
-            updatedAt
           }
           commentsCount
           bookmarksCount

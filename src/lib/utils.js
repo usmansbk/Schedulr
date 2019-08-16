@@ -1,4 +1,5 @@
 import memoize from 'lodash.memoize';
+import emojiRegex from 'emoji-regex';
 
 function sortList(list) {
   return list.sort((a, b) => {
@@ -58,6 +59,20 @@ export function eventsChanged(prev, next=[]) {
       (prevVal.isCancelled === nextVal.isCancelled) &&
       (prevCancelledDates.length === nextCancelledDates.length) &&
       (prevVal.isBookmarked === nextVal.isBookmarked) &&
-      (prevVal.description === nextVal.description);
+      (prevVal.description === nextVal.description) &&
+      (prevVal.banner === nextVal.banner);
   });
+}
+
+export function getInitials(name) {
+  if (!name) return '🐱‍👤';
+  const emojiMatch = emojiRegex().exec(name);
+  let avatarName;
+  if (emojiMatch) {
+    avatarName = emojiMatch[0];
+  } else {
+    const [ first, second ] = name.split(' ');
+    avatarName = `${first} ${second ? second : ''}`;
+  }
+  return avatarName;
 }
