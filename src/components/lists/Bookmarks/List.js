@@ -35,7 +35,7 @@ class List extends Component {
   );
 
   _onPressItem = (id, refStartAt, refEndAt) => this.props.navigation.navigate('EventDetails', { id, refStartAt, refEndAt });
-  _navigateToInfo = (id) => this.props.navigation.navigate('ScheduleInfo', { id });
+  _navigateToBanner = (id) => this.props.navigation.navigate('Banner', { id });
   _navigateToComments = (id, title, date) => this.props.navigation.navigate('Comments', { id, title, date });
   _keyExtractor = (item) => String(item.id); 
 
@@ -77,7 +77,7 @@ class List extends Component {
     address={venue}
     onPressItem={this._onPressItem}
     onPressComment={this._navigateToComments}
-    navigateToInfo={this._navigateToInfo}
+    navigateToBanner={this._navigateToBanner}
   />);
 
   _renderEmptyList = () => <Empty search={this.props.search} error={this.props.error} loading={this.props.loading} />;

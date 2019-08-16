@@ -17,10 +17,7 @@ const { AVATAR_SIZE } = bookmarkedEvents;
 class Item extends React.Component {
   _onPress = () => this.props.onPressItem(this.props.id, this.props.startAt, this.props.endAt);
   _onPressComment = () => this.props.onPressComment(this.props.id, this.props.title, this.props.time);
-  _onPressAvatar = () => {
-    const { eventScheduleId } = this.props;
-    eventScheduleId ? this.props.navigateToInfo(eventScheduleId) : this._onPress();
-  };
+  _onPressAvatar = () => this.props.navigateToBanner(this.props.id);
   shouldComponentUpdate = (nextProps) => {
     return (
       this.props.title !== nextProps.title ||
@@ -29,7 +26,8 @@ class Item extends React.Component {
       this.props.category !== nextProps.category ||
       this.props.bookmarksCount !== nextProps.bookmarksCount ||
       this.props.commentsCount !== nextProps.commentsCount ||
-      this.props.address !== nextProps.address
+      this.props.address !== nextProps.address ||
+      this.props.pictureUrl !== nextProps.pictureUrl
     );
   }
 
