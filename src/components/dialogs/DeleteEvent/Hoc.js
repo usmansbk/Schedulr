@@ -3,6 +3,7 @@ import gql from 'graphql-tag';
 import { withNavigation } from 'react-navigation';
 import Dialog from './Dialog';
 import { deleteEvent } from 'api/mutations';
+import updateApolloCache from 'helpers/updateApolloCache';
 // import { deleteEventResponse } from 'helpers/optimisticResponse';
 
 export default compose(
@@ -14,6 +15,9 @@ export default compose(
         variables: {
           input
         },
+        update: (cache, { data: { deleteEvent } }) => deleteEvent && (
+          updateApolloCache(cache, deleteEvent, "DELETE")
+        )
       }),
       ...ownProps
     })

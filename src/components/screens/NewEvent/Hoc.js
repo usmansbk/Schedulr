@@ -4,6 +4,7 @@ import { inject, observer } from 'mobx-react';
 import Screen from './Screen';
 import { createEvent } from 'api/mutations';
 import { getEvent } from 'api/queries';
+import updateApolloCache from 'helpers/updateApolloCache';
 
 export default inject("stores")(observer(
   compose(
@@ -35,6 +36,8 @@ export default inject("stores")(observer(
           variables: {
             input
           },
+          update: (cache, { data: { createEvent } }) => createEvent && (
+            updateApolloCache(cache, createEvent, "ADD")),
         }),
         ...ownProps
       })
