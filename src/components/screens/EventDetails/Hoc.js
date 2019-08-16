@@ -1,7 +1,6 @@
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import Screen from './Screen';
-
 import { getEvent } from 'api/queries';
 
 const alias = 'withEventDetails';

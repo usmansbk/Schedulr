@@ -10,6 +10,7 @@ export default class ImageIcon extends React.Component {
 
     if (banner) {
       const uri= getImageUrl(banner);
+      console.log('return', uri);
       component = (
         <UserAvatar
           size={30}

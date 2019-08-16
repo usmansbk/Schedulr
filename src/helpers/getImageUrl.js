@@ -2,7 +2,7 @@ import env from 'config/env';
 
 const { CloudFrontUrl } = env;
 
-const imageRequest = (key, bucket, size) => {
+const imageRequest = (key, bucket, size, fit) => {
   let width;
   let height;
   
@@ -33,12 +33,12 @@ const imageRequest = (key, bucket, size) => {
       resize: {
         width,
         height,
-        fit: "cover"
+        fit: fit || "cover"
       }
     }
   });
 };
 
-export default getImageUrl = ({ bucket, key }, size) => (
-  `${CloudFrontUrl}/${btoa(imageRequest(key, bucket, size))}`
+export default getImageUrl = ({ bucket, key }, size, fit) => (
+  `${CloudFrontUrl}/${btoa(imageRequest(key, bucket, size, fit))}`
 );

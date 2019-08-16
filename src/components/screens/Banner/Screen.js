@@ -35,6 +35,7 @@ export default class AvatarViewer extends React.Component {
         folder="banner"
         me={isOwner}
         s3Object={banner}
+        fit="contain"
       />
     );
   }
