@@ -10,7 +10,7 @@ import memoize from 'memoize-one';
 import { requestLocationPermission } from 'helpers/permissions';
 import categories from 'i18n/categories';
 import client from 'config/client';
-import { getBookmarks } from 'api/fragments';
+import { getBookmarks, getFollowing } from 'api/fragments';
 
 export default class AppState {
   constructor(settingsStore) {
@@ -188,12 +188,25 @@ export default class AppState {
       item => item.event.id
     ));
 
+  getFollowingIds = memoize((data) => data.following.items.filter(item => Boolean(item.schedule)).map(
+    item => item.schedule.id
+  ));
+
   isBookmarked(id) {
     const data = client.readFragment({
       fragment: getBookmarks,
       id: `User:${this.userId}`
     });
     const ids = this.getBookmarkIds(data);
+    return ids.includes(id);
+  }
+
+  isFollowing(id) {
+    const data = client.readFragment({
+      fragment: getFollowing,
+      id: `User:${this.userId}`
+    });
+    const ids = this.getFollowingIds(data);
     return ids.includes(id);
   }
 }
