@@ -9,16 +9,16 @@ import { ONE_TIME_EVENT } from 'lib/constants';
 export default class Screen extends React.Component {
   state = { visibleDialog: null };
   _goBack = () => this.props.navigation.goBack();
-  _openDeleteDialog = () => this.setState({ visibleDialog: 'delete' });
-  _handleEdit = ({ id }) => this.props.navigation.navigate('EditEvent', { id });
-  _handleRepeat = () => this.props.navigation.navigate('NewEvent', { id: this.props.navigation.getParam('id'), isNew: true });
-  _openCancelDialog = () => this.setState({ visibleDialog: 'cancel' });
+
+  _navigateToRepeat = () => this.props.navigation.navigate('NewEvent', { id: this.props.navigation.getParam('id'), isNew: true });
+  _navigateToEdit = ({ id }) => this.props.navigation.navigate('EditEvent', { id });
   _navigateToSchedule = (id) => this.props.navigation.navigate('Schedule', { id });
   _navigateToComments = (id, title, date) => this.props.navigation.navigate('Comments', { id, title, date });
-  _navigateToUser = (id, myProfile) => this.props.navigation.navigate('UserProfile', {
-    id,
-    myProfile
-  });
+  _navigateToUser = (id) => this.props.navigation.navigate('UserProfile', { id });
+  _navigateToBanner = (id) => this.props.navigate.navigate('Banner', { id });
+
+  _openDeleteDialog = () => this.setState({ visibleDialog: 'delete' });
+  _openCancelDialog = () => this.setState({ visibleDialog: 'cancel' });
   _hideDialog = () => this.setState({ visibleDialog: null });
   
   render() {
@@ -53,10 +53,11 @@ export default class Screen extends React.Component {
           handleBack={this._goBack}
           handleDelete={this._openDeleteDialog}
           handleCancel={this._openCancelDialog}
-          handleEdit={this._handleEdit}
-          handleRepeat={this._handleRepeat}
+          handleEdit={this._navigateToEdit}
+          handleRepeat={this._navigateToRepeat}
           navigateToSchedule={this._navigateToSchedule}
           navigateToComments={this._navigateToComments}
+          navigateToBanner={this._navigateToBanner}
           navigateToUser={this._navigateToUser}
         />
         <DeleteDialog

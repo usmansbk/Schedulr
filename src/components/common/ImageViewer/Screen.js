@@ -31,7 +31,7 @@ export default inject("stores")(observer(
                 <Appbar.Action
                   color={stores.themeStore.colors.gray}
                   icon={({ color, size }) => <Icon
-                    name="trash"
+                    name="trash-2"
                     onPress={deletePhoto}
                     size={size}
                     color={color}

@@ -118,7 +118,7 @@ export default inject('stores')(observer(
               <Text style={stores.appStyles.eventDetails.label}>{I18n.get("AUTHOR")}</Text>
               <Text
                 style={[stores.appStyles.eventDetails.value, stores.appStyles.eventDetails.nav]}
-                onPress={() => navigateToUser(authorId, stores.appState.userId === authorId)}
+                onPress={() => navigateToUser(authorId)}
               >
               {authorName}
               </Text>
