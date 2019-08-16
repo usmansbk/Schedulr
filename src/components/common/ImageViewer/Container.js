@@ -71,7 +71,6 @@ export default class ImageViewerContainer extends React.Component {
           try {
             const key = `${folder}/${id}${fileName}`;
             const fileForUpload = {
-              id,
               key,
               bucket,
               region

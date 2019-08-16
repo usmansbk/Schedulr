@@ -27,7 +27,6 @@ import {
   generateNextEvents,
 } from 'lib/calendr';
 import { events } from 'lib/constants';
-import getImageUrl from 'helpers/getImageUrl';
 
 const {
   ITEM_HEIGHT,
@@ -230,7 +229,6 @@ class List extends React.Component {
     startAt,
     endAt,
     recurrence,
-    banner,
     venue,
     schedule,
     allDay,
@@ -243,7 +241,6 @@ class List extends React.Component {
     startAt={startAt}
     endAt={endAt}
     allDay={allDay}
-    pictureUrl={banner && getImageUrl(banner)}
     category={getCategory(category)}
     recurrence={parseRepeat(recurrence)}
     time={getTime({ allDay, startAt, endAt })}

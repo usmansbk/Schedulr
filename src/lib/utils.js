@@ -59,8 +59,7 @@ export function eventsChanged(prev, next=[]) {
       (prevVal.isCancelled === nextVal.isCancelled) &&
       (prevCancelledDates.length === nextCancelledDates.length) &&
       (prevVal.isBookmarked === nextVal.isBookmarked) &&
-      (prevVal.description === nextVal.description) &&
-      (prevVal.banner === nextVal.banner);
+      (prevVal.description === nextVal.description)
   });
 }
 
