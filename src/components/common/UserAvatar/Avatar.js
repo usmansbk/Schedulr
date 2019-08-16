@@ -23,8 +23,6 @@ export default class Avatar extends React.Component {
       style,
       name
     } = this.props;
-
-    const { avatarName } = this.state;
   
     return (
       <TouchableRipple onPress={onPress} style={style}>
