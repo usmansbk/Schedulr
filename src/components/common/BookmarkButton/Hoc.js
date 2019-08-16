@@ -2,6 +2,7 @@ import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
 import { inject, observer } from 'mobx-react';
 import { createBookmark, deleteBookmark } from 'api/mutations';
+import updateApolloCache from 'helpers/updateApolloCache';
 import Button from './Button';
 
 export default inject("stores")(observer(
@@ -13,6 +14,9 @@ export default inject("stores")(observer(
           variables: {
             input
           },
+          update: (cache, { data: { createBookmark } }) => createBookmark && (
+            updateApolloCache(cache, createBookmark, "ADD")
+          )
         }),
         ...ownProps
       }),
@@ -24,6 +28,9 @@ export default inject("stores")(observer(
           variables: {
             input
           },
+          update: (cache, { data: { deleteBookmark } }) => deleteBookmark && (
+            updateApolloCache(cache, deleteBookmark, "DELETE")
+          )
         }),
         ...ownProps
       }),

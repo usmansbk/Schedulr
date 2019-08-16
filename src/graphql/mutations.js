@@ -133,7 +133,6 @@ export const createBookmark = `mutation CreateBookmark($input: CreateBookmarkInp
       createdAt
       updatedAt
     }
-    createdAt
   }
 }
 `;
@@ -143,6 +142,9 @@ export const deleteBookmark = `mutation DeleteBookmark($input: DeleteBookmarkInp
     event {
       id
       bookmarksCount
+      author {
+        id
+      }
     }
   }
 }

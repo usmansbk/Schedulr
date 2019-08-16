@@ -3,6 +3,7 @@ import gql from 'graphql-tag';
 import { withNavigation } from 'react-navigation';
 import Dialog from './Dialog';
 import { deleteSchedule } from 'api/mutations';
+import updateApolloCache from 'helpers/updateApolloCache';
 
 export default compose(
   withNavigation,
@@ -13,6 +14,9 @@ export default compose(
         variables: {
           input
         },
+        update: (cache, { data: { deleteSchedule } }) => deleteSchedule && (
+          updateApolloCache(cache, deleteSchedule, "DELETE")
+        )
       }),
       ...ownProps
     })

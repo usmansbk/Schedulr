@@ -1,7 +1,9 @@
 import gql from 'graphql-tag';
 import {
-  getScheduleEvents
+  getScheduleEvents,
+  getUserData,
 } from 'api/queries';
+import stores from 'stores';
 
 const EVENT_TYPE = 'Event';
 const SCHEDULE_TYPE = 'Schedule';
@@ -9,23 +11,30 @@ const COMMENT_TYPE = 'Comment';
 const BOOKMARK_TYPE = 'Bookmark';
 const FOLLOW_TYPE = 'Follow';
 
-function updateEvents(cache, event, operationType) {
-  const query = gql(getScheduleEvents);
-  const id = event.schedule.id;
+function updateData({
+  cache,
+  cacheUpdateQuery,
+  idField,
+  rootField,
+  updatedItem,
+  operationType,
+  id
+}) {
+  const query = gql(cacheUpdateQuery);
   const data = cache.readQuery({
     query,
     variables: {
       id
     }
   });
-  const { items } = data.getScheduleEvents.events;
-  const removeDuplicate = items.filter(item => item.id !== event.id);
-  switch(operationType.toLowerCase()) {
-    case 'add':
-      data.getScheduleEvents.events.items = [...removeDuplicate, event];
+  const { items } = data[rootField][idField];
+  const removeDuplicate = items.filter(item => item.id !== updatedItem.id);
+  switch (operationType) {
+    case 'ADD':
+      data[rootField][idField].items = [...removeDuplicate, updatedItem];
       break;
-    case 'delete':
-      data.getScheduleEvents.events.items = removeDuplicate;
+    case 'DELETE':
+      data[rootField][idField].items = removeDuplicate;
       break;
   }
   cache.writeQuery({
@@ -37,15 +46,7 @@ function updateEvents(cache, event, operationType) {
   });
 }
 
-function updateSchedules(cache, result, operationType) {
-
-}
-
 function updateComments(cache, result, operationType) {
-
-}
-
-function updateBookmarks(cache, result, operationType) {
 
 }
 
@@ -56,16 +57,40 @@ function updateFollows(cache, result, operationType) {
 export default function(cache, result, operationType) {
   switch(result.__typename) {
     case EVENT_TYPE:
-      updateEvents(cache, result, operationType);
+      updateData({
+        cache,
+        operationType,
+        updatedItem: result,
+        idField: 'events',
+        rootField: 'getScheduleEvents',
+        id: result.schedule.id,
+        cacheUpdateQuery: getScheduleEvents
+      });
       break;
     case SCHEDULE_TYPE:
-      updateSchedules(cache, result, operationType);
+      updateData({
+        cache,
+        operationType,
+        updatedItem: result,
+        rootField: 'getUserData',
+        idField: 'created',
+        id: stores.appState.userId,
+        cacheUpdateQuery: getUserData
+      });
+      break;
+    case BOOKMARK_TYPE:
+      updateData({
+        cache,
+        operationType,
+        updatedItem: result,
+        rootField: 'getUserData',
+        idField: 'bookmarks',
+        id: stores.appState.userId,
+        cacheUpdateQuery: getUserData
+      });
       break;
     case COMMENT_TYPE:
       updateComments(cache, result, operationType);
-      break;
-    case BOOKMARK_TYPE:
-      updateBookmarks(cache, result, operationType);
       break;
     case FOLLOW_TYPE:
       updateFollows(cache, result, operationType);

@@ -1,8 +1,9 @@
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import { inject, observer } from 'mobx-react';
-import Screen from './Screen';
 import { createSchedule } from 'api/mutations';
+import updateApolloCache from 'helpers/updateApolloCache';
+import Screen from './Screen';
 
 const alias =  'withNewScheduleContainer';
 
@@ -14,6 +15,9 @@ export default inject("stores")(observer(
         variables: {
           input
         },
+        update: (cache, { data: { createSchedule } }) => createSchedule && (
+          updateApolloCache(cache, createSchedule, 'ADD')
+        )
       }),
       ...ownProps
     })
