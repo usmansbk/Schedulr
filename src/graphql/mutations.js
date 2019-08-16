@@ -374,7 +374,7 @@ export const deleteComment = `mutation DeleteComment($input: DeleteCommentInput!
     id
     event {
       id
-      eventsCount
+      commentsCount
     }
   }
 }
