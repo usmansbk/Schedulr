@@ -11,6 +11,7 @@ import capitalizr, {decapitalize} from 'lib/capitalizr';
 import { ONE_TIME_EVENT } from 'lib/constants';
 
 const DATE_FORMAT = "ddd DD, MMM YYYY, hh:mm a";
+const FONT_SIZE = 24;
 
 class EventDetails extends React.Component {
   _handleCancel = () => {
@@ -68,16 +69,16 @@ class EventDetails extends React.Component {
       isCancelled,
       cancelledDates,
       isPublic,
+      banner,
       author
     } = event;
     const start = refStartAt || startAt;
     const end = refEndAt || endAt;
-    const isOffline = id[0] === '-';
     const isValid = isEventValid({
       isCancelled, endAt: end,
       startAt: start,
       cancelledDates
-    }) && !isOffline;
+    });
 
     const colors = stores.themeStore.colors;
     const styles = stores.appStyles.styles;
@@ -89,27 +90,44 @@ class EventDetails extends React.Component {
             onPress={handleBack}
             icon={() => <Icon
               color={colors.gray}
-              size={24}
+              size={FONT_SIZE}
               name="arrow-left"
             />}
           />
+          {
+            (banner || isOwner) && (
+              <Appbar.Action
+                size={FONT_SIZE}
+                color={colors.gray}
+                icon={({ size, color }) => <Icon
+                  name="image"
+                  size={size}
+                  color={color}
+                />}
+              />
+            )
+          }
           <Appbar.Content titleStyle={styles.headerColor} />
           {
-            isOwner && !isOffline && (
+            isOwner && (
               <>
                 <Appbar.Action
-                  icon={() => <Icon
-                    size={24}
-                    name="trash"
-                    color={colors.gray}
+                  size={FONT_SIZE}
+                  color={colors.gray}
+                  icon={({ size, color }) => <Icon
+                    name="trash-2"
+                    size={size}
+                    color={color}
                   />}
                   onPress={handleDelete}
                 />
                 <Appbar.Action
-                  icon={() => <Icon
-                    size={24}
+                  size={FONT_SIZE}
+                  color={colors.gray}
+                  icon={({ color, size }) => <Icon
+                    size={size}
                     name="copy"
-                    color={colors.gray}
+                    color={color}
                   />}
                   onPress={handleRepeat}
                 />
@@ -117,10 +135,12 @@ class EventDetails extends React.Component {
                   isValid && (
                     <>
                       <Appbar.Action
-                        icon={() => <Icon
-                          size={24}
+                        size={FONT_SIZE}
+                        color={colors.gray}
+                        icon={({ color, size }) => <Icon
+                          size={size}
                           name="edit-3"
-                          color={colors.gray}
+                          color={color}
                         />}
                         onPress={() => handleEdit({
                           id,
@@ -129,10 +149,12 @@ class EventDetails extends React.Component {
                         })}
                       />
                       <Appbar.Action
-                        icon={() => <Icon
-                          size={24}
+                        size={FONT_SIZE}
+                        color={colors.gray}
+                        icon={({ color, size }) => <Icon
                           name="x"
-                          color={colors.gray}
+                          color={color}
+                          size={size}
                         />}
                         onPress={this._handleCancel}
                       />
@@ -175,6 +197,7 @@ class EventDetails extends React.Component {
           bookmarksCount={bookmarksCount || 0}
           commentsCount={commentsCount || 0}
           isFollowing={schedule && schedule.isFollowing}
+          banner={banner}
           isOwner={isOwner}
           isValid={isValid}
           isCancelled={isEventCancelled({ cancelledDates, isCancelled, startAt: start })}
