@@ -12,6 +12,7 @@ import Badge from 'components/common/Badge';
 import ActionSheet from 'components/actionsheet/Event';
 import { events } from 'lib/constants';
 import { formatDate } from 'lib/time';
+import capitalize from 'lib/capitalizr'
 
 class Item extends React.Component {
   _onPress = () => this.props.onPressItem(this.props.id, this.props.startAt, this.props.endAt);
@@ -84,7 +85,9 @@ class Item extends React.Component {
               <Caption
                 ellipsizeMode="tail"
                 numberOfLines={1}
-              >{duration ? duration : ''} {category} {recurrence}</Caption>
+              >{
+                allDay ? (`${capitalize(recurrence)} ${category}`) : (`${duration} ${category} ${recurrence}`)
+              }</Caption>
             </View>
           </View>
           <ActionSheet
