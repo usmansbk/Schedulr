@@ -58,7 +58,7 @@ export default inject("stores")(observer(
             source={{uri}}
             androidScaleType="fitCenter"
             style={{flex: 1}}
-            loadingIndicatorSource={Loading}
+            loadingIndicatorSource={require('./img/placeholder.png')}
           />
         )
       }

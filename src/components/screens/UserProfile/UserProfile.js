@@ -81,7 +81,7 @@ class UserProfile extends React.Component {
 
     const uriSmall = avatar ? getImageUrl(avatar) : pictureUrl;
     const uriBig = avatar ? getImageUrl(avatar, 400) : pictureUrl;
-    console.log(avatar);
+    
     return  (
       <ScrollView
         refreshControl={
