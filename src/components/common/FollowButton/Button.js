@@ -7,10 +7,9 @@ export default class Button extends React.Component {
       id,
       stores,
       follow,
-      unfollow
+      unfollow,
+      isFollowing,
     } = this.props;
-    const isFollowing = stores.appState.isFollowing(id);
-    
     const input = {
       id: `${stores.appState.userId}-${id}`,
     };
