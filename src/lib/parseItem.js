@@ -1,7 +1,7 @@
 import moment from 'moment';
 import 'twix';
 import { I18n } from 'aws-amplify';
-import { decapitalize } from './capitalizr';
+import capitalize, { decapitalize } from './capitalizr';
 
 export const getCategory = (category) => {
   if (!category) return '';
@@ -86,7 +86,7 @@ export const isEventValid = (event) => {
 export const parseRepeat = (recurrence) => {
   const val = recurrence.toLowerCase();
   switch(val) {
-    case 'never': return null;
+    case 'never': return '';
     case 'daily': return 'daily';
     case 'weekly': return 'weekly';
     case 'weekdays': return 'every weekday';
@@ -104,5 +104,5 @@ export const captionDetails = ({
 }) => {
   const validCategory = category ? ' ' + category : '';
   return allDay ? (`${capitalize(recurrence)}${validCategory}`) : (
-    `${duration}${validCategory} ${recurrence}`);
-}
+    `${duration}${validCategory}${recurrence ? ' ' + recurrence : ''}`);
+};
