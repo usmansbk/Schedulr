@@ -27,6 +27,7 @@ import {
   generateNextEvents,
 } from 'lib/calendr';
 import { events } from 'lib/constants';
+import getImageUrl from 'helpers/getImageUrl';
 
 const {
   ITEM_HEIGHT,
@@ -90,11 +91,7 @@ class List extends React.Component {
   _renderSectionHeader = ({ section }) => <SectionHeader onPress={this._onPressSectionHeader} section={section} />;
   _renderSectionFooter = ({ section }) => <SectionFooter section={section} />;
   _onPressItem = (id, refStartAt, refEndAt) => this.props.navigation.navigate('EventDetails', { id, refStartAt, refEndAt });
-  _navigateToScheduleEvents = (id) => {
-    let screen = 'Schedule';
-    if (this.props.listType === 'schedule') screen = 'ScheduleInfo';
-    this.props.navigation.navigate(screen, { id });
-  };
+  _navigateToBanner = (id) => this.props.navigation.navigate('Banner', { id });
   _onPressSectionHeader = (targetDate) => {
     if (!isPast(targetDate)) {
       this.props.navigation.navigate('NewEvent', {
@@ -229,6 +226,7 @@ class List extends React.Component {
     startAt,
     endAt,
     recurrence,
+    banner,
     venue,
     schedule,
     allDay,
@@ -241,6 +239,7 @@ class List extends React.Component {
     startAt={startAt}
     endAt={endAt}
     allDay={allDay}
+    pictureUrl={banner && getImageUrl(banner)}
     category={getCategory(category)}
     recurrence={parseRepeat(recurrence)}
     time={getTime({ allDay, startAt, endAt })}
@@ -269,7 +268,7 @@ class List extends React.Component {
     duration={getDuration(startAt, endAt, allDay)}
     onPressItem={this._onPressItem}
     onPressCommentButton={this._onPressCommentItem}
-    navigateToScheduleEvents={this._navigateToScheduleEvents}
+    navigateToBanner={this._navigateToBanner}
   />);
 
 

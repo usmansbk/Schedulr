@@ -21,11 +21,7 @@ class Item extends React.Component {
   _onMute = () => {
     this.props.stores.appState.toggleMute(this.props.id, this.props.isMuted);
   };
-  _navigateToSchedule = () => {
-    this.props.eventScheduleId ? this.props.navigateToScheduleEvents(this.props.eventScheduleId) : (
-      this._onPress()
-    );
-  };
+  _navigateToBanner = () => this.props.navigateToBanner(this.props.id);
 
   shouldComponentUpdate = (nextProps) => {
     return (
@@ -72,7 +68,7 @@ class Item extends React.Component {
               size={events.AVATAR_SIZE}
               name={title}
               src={pictureUrl}
-              onPress={this._navigateToSchedule}
+              onPress={this._navigateToBanner}
             />
             <Badge status={status} isMuted={isMuted} />
           </View>
