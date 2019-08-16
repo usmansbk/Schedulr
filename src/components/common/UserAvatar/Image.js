@@ -38,7 +38,7 @@ export default class CustomImage extends React.Component {
 
   render() {
     const { uri } = this.props;
-
+    
     return (
       <Image
         source={{ uri }}

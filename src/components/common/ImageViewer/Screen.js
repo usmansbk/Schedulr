@@ -42,7 +42,7 @@ export default inject("stores")(observer(
             <Appbar.Action
               color={stores.themeStore.colors.gray}
               icon={({ color, size }) => <Icon
-                name="image"
+                name="camera"
                 onPress={uploadPhoto}
                 size={size}
                 color={color}
