@@ -32,7 +32,7 @@ class EventDetails extends React.Component {
     return capitalizr(timeAgo);
   };
   
-//  shouldComponentUpdate = (nextProps) => !isEqual(nextProps.event, this.props.event);
+ shouldComponentUpdate = (nextProps) => !isEqual(nextProps.event, this.props.event);
 
   render() {
     const {
@@ -103,7 +103,7 @@ class EventDetails extends React.Component {
                 color={colors.gray}
                 icon={({ size, color }) => <ImageIcon
                   name="image"
-                  size={24}
+                  size={size}
                   color={color}
                   banner={banner}
                 />}

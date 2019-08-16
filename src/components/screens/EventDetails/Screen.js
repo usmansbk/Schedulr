@@ -41,7 +41,7 @@ export default class Screen extends React.Component {
     if (error && !event) return <Error onRefresh={onRefresh} />;
 
     const isRecurring = event.recurrence !== ONE_TIME_EVENT;
-
+    
     return (
       <>
         <Details

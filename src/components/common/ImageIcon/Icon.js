@@ -5,7 +5,7 @@ import getImageUrl from 'helpers/getImageUrl';
 
 export default class ImageIcon extends React.Component {
   render() {
-    const { banner=true, color, size, name } = this.props;
+    const { banner, color, size, name } = this.props;
     let component = null;
 
     if (banner) {
