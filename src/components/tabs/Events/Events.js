@@ -120,13 +120,13 @@ export default class Events extends React.Component {
       if (!data) return events;
     
       const { created, following, bookmarks } = data;
-    
+
       created.items.forEach(schedule => {
         events = events.concat(schedule.events.items);
       });
-      following.items.forEach(schedule => {
-        events = events.concat(schedule.events.items);
-      });
+      // following.items.filter(item => item.schedule).forEach(schedule => {
+      //   events = events.concat(schedule.events.items);
+      // });
       return events;
     }
   );

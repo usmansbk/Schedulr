@@ -10,7 +10,7 @@ export default class Schedules extends React.Component {
       if (!data) return [];
       const { created, following } = data;
       return created.items
-        .concat(following.items.map(item => item.schedule));
+        .concat(following.items.filter(item => Boolean(item.schedule)).map(item => item.schedule));
     }
   );
 

@@ -184,7 +184,7 @@ export default class AppState {
     this.debounceQuery(searchText);
   }
 
-  getBookmarkIds = memoize((data) => data.bookmarks.items.map(
+  getBookmarkIds = memoize((data) => data.bookmarks.items.filter(item => Boolean(item.event)).map(
       item => item.event.id
     ));
 

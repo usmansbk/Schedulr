@@ -13,7 +13,7 @@ export default inject("stores")(observer(
     graphql(gql(getUserData), {
       alias,
       options: props => ({
-        fetchPolicy: 'cache-first',
+        fetchPolicy: 'cache-and-network',
         notifyOnNetworkStatusChange: true,
         variables: {
           id: props.stores.appState.userId
