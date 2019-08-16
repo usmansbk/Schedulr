@@ -5,7 +5,7 @@ import {
   Portal,
 } from 'react-native-paper';
 import { inject, observer } from 'mobx-react';
-import { I18n } from 'aws-amplify';
+import { I18n, Storage } from 'aws-amplify';
 
 class DeleteEvent extends React.Component {
   state = {
@@ -18,12 +18,18 @@ class DeleteEvent extends React.Component {
     nextState.loading !== this.state.loading
   );
 
-  _onContinue = () => {
+  _onContinue = async () => {
     const {
       id,
+      banner,
       onSubmit,
     } = this.props;
     this.setState({ loading: true });
+    try {
+      if (banner) await Storage.remove(banner.key).catch();
+    } catch (error) {
+      console.error(error);
+    }
     onSubmit && onSubmit({ id });
     this.props.navigation.pop();
     this.setState({ loading: false });

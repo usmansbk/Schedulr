@@ -55,7 +55,7 @@ export default inject("stores")(observer(
       {
         loading ? <Loading /> : (
           <PhotoView
-            source={{uri}}
+            source={uri ? {uri} : require('./img/placeholder.png')}
             androidScaleType="fitCenter"
             style={{flex: 1}}
             loadingIndicatorSource={require('./img/placeholder.png')}

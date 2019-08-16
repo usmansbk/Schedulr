@@ -9,7 +9,9 @@ const { AVATAR_SIZE } = followers_list;
 
 class Item extends React.Component {
   _onPress = () => this.props.onPressItem(this.props.id);
-  shouldComponentUpdate = () => false;
+  shouldComponentUpdate = (nextProps) => this.props.name !== nextProps.name || (
+    this.props.pictureUrl !== nextProps.pictureUrl
+  );
   
   render() {
     const {

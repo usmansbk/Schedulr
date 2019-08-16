@@ -32,7 +32,8 @@ class Item extends React.Component {
     return (
       nextProps.content !== this.props.content ||
       nextProps.timeAgo !== this.props.timeAgo ||
-      nextProps.toCommentContent !== this.props.toCommentContent
+      nextProps.toCommentContent !== this.props.toCommentContent ||
+      nextProps.authorPictureUrl !== this.props.authorPictureUrl
     )
   };
 

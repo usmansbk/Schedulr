@@ -100,8 +100,8 @@ export default class ImageViewerContainer extends React.Component {
   render() {
     const { title, uri, me, s3Object } = this.props;
 
-    const url = s3Object ? getImageUrl(s3Object, 400) : uri;
-
+    const url = s3Object ? getImageUrl(s3Object, 512) : uri;
+    
     return (
       <Screen
         loading={this.state.loading}

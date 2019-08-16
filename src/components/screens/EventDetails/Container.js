@@ -32,7 +32,7 @@ class EventDetails extends React.Component {
     return capitalizr(timeAgo);
   };
   
- shouldComponentUpdate = (nextProps) => !isEqual(nextProps.event, this.props.event);
+//  shouldComponentUpdate = (nextProps) => !isEqual(nextProps.event, this.props.event);
 
   render() {
     const {

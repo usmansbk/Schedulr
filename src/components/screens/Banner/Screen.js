@@ -8,7 +8,7 @@ export default class AvatarViewer extends React.Component {
     const { uploadPhoto, event: { id } } = this.props;
     const input = {
       id,
-      avatar: null
+      banner: null
     };
     await uploadPhoto(input);
   };
