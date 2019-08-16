@@ -142,9 +142,6 @@ export const deleteBookmark = `mutation DeleteBookmark($input: DeleteBookmarkInp
     event {
       id
       bookmarksCount
-      author {
-        id
-      }
     }
   }
 }
@@ -299,7 +296,6 @@ export const createFollow = `mutation CreateFollow($input: CreateFollowInput!) {
       createdAt
       updatedAt
     }
-    createdAt
   }
 }
 `;

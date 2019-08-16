@@ -417,7 +417,6 @@ export const getUserData = `query GetUserData($id: ID!) {
           createdAt
           updatedAt
         }
-        createdAt
       }
     }
     bookmarks {
@@ -455,7 +454,6 @@ export const getUserData = `query GetUserData($id: ID!) {
           createdAt
           updatedAt
         }
-        createdAt
       }
       nextToken
     }
