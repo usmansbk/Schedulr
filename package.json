@@ -15,6 +15,7 @@
     "aws-amplify-react-native": "^2.1.16",
     "aws-appsync": "1.8.2-unstable-native.0",
     "aws-appsync-react": "1.2.10-unstable-native.0",
+    "btoa": "^1.2.1",
     "emoji-regex": "^8.0.0",
     "formik": "^1.5.8",
     "graphql-tag": "^2.10.1",

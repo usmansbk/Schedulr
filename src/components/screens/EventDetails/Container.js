@@ -4,12 +4,13 @@ import isEqual from 'lodash.isequal';
 import { Appbar } from 'react-native-paper';
 import { inject, observer } from 'mobx-react';
 import Icon from 'react-native-vector-icons/Feather';
-import ImageIcon from 'components/common/ImageIcon';
+import UserAvatar from 'components/common/UserAvatar';
 import Details from './Details';
 import { formatDate, getRepeatLabel } from 'lib/time';
 import { isEventValid, isEventCancelled, getDuration, getStatus } from 'lib/parseItem';
 import capitalizr, {decapitalize} from 'lib/capitalizr';
 import { ONE_TIME_EVENT } from 'lib/constants';
+import getImageUrl from 'helpers/getImageUrl';
 
 const DATE_FORMAT = "ddd DD, MMM YYYY, hh:mm a";
 const FONT_SIZE = 24;
@@ -84,33 +85,31 @@ class EventDetails extends React.Component {
 
     const colors = stores.themeStore.colors;
     const styles = stores.appStyles.styles;
+    const pictureUrl = banner && getImageUrl(banner);
     
     return (
       <>
-        <Appbar.Header style={styles.header}  collapsable>
+        <Appbar.Header style={styles.header} collapsable>
           <Appbar.Action
             onPress={handleBack}
-            icon={() => <Icon
-              color={colors.gray}
-              size={FONT_SIZE}
+            color={colors.gray}
+            size={FONT_SIZE}
+            icon={({ color, size }) => <Icon
               name="arrow-left"
+              color={color}
+              size={size}
             />}
           />
-          {
-            (banner || isOwner) && (
-              <Appbar.Action
-                size={FONT_SIZE}
-                color={colors.gray}
-                icon={({ size, color }) => <ImageIcon
-                  name="image"
-                  size={size}
-                  color={color}
-                  banner={banner}
-                />}
-                onPress={() => navigateToBanner(id)}
-              />
-            )
-          }
+          <Appbar.Action
+            key={pictureUrl}
+            size={32}
+            icon={({ size }) => <UserAvatar
+              name={title}
+              size={size}
+              src={pictureUrl}
+            />}
+            onPress={() => navigateToBanner(id)}
+          />
           <Appbar.Content titleStyle={styles.headerColor} />
           {
             isOwner && (

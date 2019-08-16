@@ -1,3 +1,4 @@
+import btoa from 'btoa';
 import env from 'config/env';
 
 const { CloudFrontUrl } = env;
