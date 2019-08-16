@@ -40,7 +40,7 @@ export default class ImageViewerContainer extends React.Component {
             this.setState({ loading: true });
             if (s3Object) {
               try {
-                await Storage.remove(s3Object.key);
+                await Storage.remove(s3Object.key).catch();
               } catch(error) {
                 SimpleToast.show(error.message, SimpleToast.SHORT);
               }
@@ -80,10 +80,10 @@ export default class ImageViewerContainer extends React.Component {
               const fetchResponse = await fetch(uri);
               const blob = await fetchResponse.blob();
               this.setState({ loading: true });
-              if (s3Object) await Storage.remove(s3Object.key);
+              if (s3Object) await Storage.remove(s3Object.key).catch();
               await Storage.put(key, blob, {
                 contentType: type
-              });
+              }).catch();
               await onUploadPhoto(fileForUpload);
               this.setState({ loading: false });
             }
