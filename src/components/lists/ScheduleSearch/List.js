@@ -6,7 +6,7 @@ import Item from './Item';
 import Separator from './Separator';
 import Footer from './Footer';
 import Empty from './Empty';
-import { schedule_search } from 'lib/constants';
+import { schedule_search, SCHEDULE_CLOSED } from 'lib/constants';
 import getImageUrl from 'helpers/getImageUrl';
 
 const {
@@ -57,7 +57,6 @@ class List extends Component {
       picture,
       isPublic,
       status,
-      isFollowing,
       isOwner,
     } = item;
 
@@ -68,9 +67,9 @@ class List extends Component {
         description={description}
         pictureUrl={picture && getImageUrl(picture)}
         isPublic={isPublic}
-        isClosed={status === 'CLOSED'}
+        isClosed={status === SCHEDULE_CLOSED}
         isOwner={isOwner}
-        isFollowing={isFollowing}
+        isFollowing={this.props.appState.isFollowing(id)}
         onPressItem={this._onPressItem}
         navigateToScheduleInfo={this._navigateToInfo}
       />

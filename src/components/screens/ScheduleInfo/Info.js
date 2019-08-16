@@ -72,7 +72,6 @@ class Info extends React.Component {
       description,
       status,
       picture,
-      isFollowing,
       eventsCount,
       followersCount,
       createdAt,
@@ -81,8 +80,8 @@ class Info extends React.Component {
       author,
     } = schedule;
 
-    const adminId = author && author.id;
-    const adminName = author && author.name;
+    const ownerId = author && author.id;
+    const ownerName = author && author.name;
     const isClosed = status === SCHEDULE_CLOSED;
     const pictureUrl = author.avatar ? getImageUrl(author.avatar) : author.pictureUrl;
 
@@ -206,11 +205,11 @@ class Info extends React.Component {
                   {I18n.get("SCHEDULE_createdOn")} <Text style={styles.adminName}>{moment(createdAt).toDate().toDateString()}</Text>
                 </Text>
               </View>
-              <TouchableRipple onPress={() => navigateToProfile(adminId)}>
+              <TouchableRipple onPress={() => navigateToProfile(ownerId)}>
                 <View style={styles.admin} >
-                  <UserAvater size={32} name={adminName} src={pictureUrl}/>
+                  <UserAvater size={32} name={ownerName} src={pictureUrl}/>
                   <Text style={styles.byLine}>
-                    {I18n.get("SCHEDULE_by")} <Text style={styles.adminName}>{adminName}</Text>
+                    {I18n.get("SCHEDULE_by")} <Text style={styles.adminName}>{ownerName}</Text>
                   </Text>
                 </View>
               </TouchableRipple>
@@ -226,7 +225,6 @@ class Info extends React.Component {
       </ScrollView>
       {
         !isOwner && (<FollowButton
-          isFollowing={isFollowing}
           id={id}
         />)
       }

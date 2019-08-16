@@ -10,6 +10,7 @@ import { inject, observer } from 'mobx-react';
 import Avatar from 'components/common/UserAvatar';
 import Tag from 'components/common/Tag';
 import { schedule_events } from 'lib/constants';
+import { captionDetails } from 'lib/parseItem';
 
 const {
   AVATAR_SIZE,
@@ -29,6 +30,7 @@ class Item extends React.Component {
   render() {
     const {
       title,
+      allDay,
       recurrence,
       time,
       duration,
@@ -39,6 +41,7 @@ class Item extends React.Component {
     } = this.props;
 
     const styles = stores.appStyles.scheduleEvents;
+    const caption = captionDetails({ allDay, category, duration, recurrence });
 
     return (
       <TouchableRipple
@@ -64,7 +67,7 @@ class Item extends React.Component {
               <Text style={styles.time}>{time}</Text>
               <Caption numberOfLines={1}
                 ellipsizeMode="tail"
-              >{duration ? duration : ''} {category} {recurrence}</Caption>
+              >{caption}</Caption>
               <Tag status={status} /> 
             </View>
           </View>

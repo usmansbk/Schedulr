@@ -4,12 +4,22 @@ import Fab from '../Fab';
 export default class Button extends React.Component {
   _onPress = () => {
     const {
-      isFollowing,
-      onFollowSchedule,
-      onUnfollowSchedule
+      id,
+      stores,
+      follow,
+      unfollow
     } = this.props;
-    if (isFollowing) onUnfollowSchedule();
-    else onFollowSchedule();
+    const isFollowing = stores.appState.isFollowing(id);
+    
+    const input = {
+      id: `${stores.appState.userId}-${id}`,
+    };
+    if (isFollowing) {
+      unfollow(input);
+    } else {
+      input.followScheduleId = id;
+      follow(input);
+    }
   };
 
   render() {

@@ -77,6 +77,7 @@ class List extends Component {
       cancelledDates,
       startAt, endAt, isConcluded
     })}
+    allDay={allDay}
     category={getCategory(category)}
     recurrence={parseRepeat(recurrence)}
     time={getHumanTime({ allDay, startAt, endAt })}
