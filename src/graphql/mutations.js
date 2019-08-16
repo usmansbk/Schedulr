@@ -7,7 +7,6 @@ export const createUser = `mutation CreateUser($input: CreateUserInput!) {
     name
     pictureUrl
     avatar {
-      id
       key
       bucket
     }
@@ -22,7 +21,6 @@ export const updateUser = `mutation UpdateUser($input: UpdateUserInput!) {
     name
     pictureUrl
     avatar {
-      id
       key
       bucket
     }
@@ -48,7 +46,6 @@ export const createEvent = `mutation CreateEvent($input: CreateEventInput!) {
     isCancelled
     cancelledDates
     banner {
-      id
       bucket
       key
     }
@@ -84,7 +81,6 @@ export const updateEvent = `mutation UpdateEvent($input: UpdateEventInput!) {
     isCancelled
     cancelledDates
     banner {
-      id
       bucket
       key
     }
@@ -121,7 +117,6 @@ export const createBookmark = `mutation CreateBookmark($input: CreateBookmarkInp
       isCancelled
       cancelledDates
       banner {
-        id
         bucket
         key
       }
@@ -161,7 +156,6 @@ export const createSchedule = `mutation CreateSchedule($input: CreateScheduleInp
     isOwner
     status
     picture {
-      id
       key
       bucket
     }
@@ -191,7 +185,6 @@ export const createSchedule = `mutation CreateSchedule($input: CreateScheduleInp
         isCancelled
         cancelledDates
         banner {
-          id
           bucket
           key
         }
@@ -222,7 +215,6 @@ export const updateSchedule = `mutation UpdateSchedule($input: UpdateScheduleInp
     status
     updatedAt
     picture {
-      id
       key
       bucket
     }
@@ -250,7 +242,6 @@ export const createFollow = `mutation CreateFollow($input: CreateFollowInput!) {
       isOwner
       status
       picture {
-        id
         key
         bucket
       }
@@ -259,7 +250,6 @@ export const createFollow = `mutation CreateFollow($input: CreateFollowInput!) {
         name
         pictureUrl
         avatar {
-          id
           key
           bucket
         }
@@ -285,7 +275,6 @@ export const createFollow = `mutation CreateFollow($input: CreateFollowInput!) {
           isCancelled
           cancelledDates
           banner {
-            id
             bucket
             key
           }
@@ -344,7 +333,6 @@ export const createComment = `mutation CreateComment($input: CreateCommentInput!
       name
       pictureUrl
       avatar {
-        id
         key
         bucket
       }

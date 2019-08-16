@@ -9,7 +9,6 @@ export const getUser = `query GetUser($id: ID!) {
     name
     pictureUrl
     avatar {
-      id
       key
       bucket
     }
@@ -27,7 +26,6 @@ export const getProfile = `query GetProfile($id: ID!) {
     name
     pictureUrl
     avatar {
-      id
       key
       bucket
     }
@@ -56,7 +54,6 @@ export const getEvent = `query GetEvent($id: ID!) {
     isCancelled
     cancelledDates
     banner {
-      id
       bucket
       key
     }
@@ -96,7 +93,6 @@ export const getEventComments = `query GetEventComments($id: ID!) {
           name
           pictureUrl
           avatar {
-            id
             key
             bucket
           }
@@ -124,7 +120,6 @@ export const getSchedule = `query GetSchedule($id: ID!) {
       name
       pictureUrl
       avatar {
-        id
         key
         bucket
       }
@@ -134,7 +129,6 @@ export const getSchedule = `query GetSchedule($id: ID!) {
       followingCount
     }
     picture {
-      id
       key
       bucket
     }
@@ -165,7 +159,6 @@ export const getScheduleEvents = `query GetScheduleWithEvents($id: ID!) {
         isCancelled
         cancelledDates
         banner {
-          id
           bucket
           key
         }
@@ -209,7 +202,6 @@ export const getUserBookmarks = `query GetBookmarks($id: ID!) {
           isCancelled
           cancelledDates
           banner {
-            id
             bucket
             key
           }
@@ -243,7 +235,6 @@ export const getUserSchedules = `query GetUserSchedules($id: ID!) {
         isOwner
         status
         picture {
-          id
           key
           bucket
         }
@@ -252,7 +243,6 @@ export const getUserSchedules = `query GetUserSchedules($id: ID!) {
           name
           pictureUrl
           avatar {
-            id
             key
             bucket
           }
@@ -275,7 +265,6 @@ export const getUserSchedules = `query GetUserSchedules($id: ID!) {
           isOwner
           status
           picture {
-            id
             key
             bucket
           }
@@ -284,7 +273,6 @@ export const getUserSchedules = `query GetUserSchedules($id: ID!) {
             name
             pictureUrl
             avatar {
-              id
               key
               bucket
             }
@@ -311,7 +299,6 @@ export const getUserData = `query GetUserData($id: ID!) {
         isOwner
         status
         picture {
-          id
           key
           bucket
         }
@@ -341,7 +328,6 @@ export const getUserData = `query GetUserData($id: ID!) {
             isCancelled
             cancelledDates
             banner {
-              id
               bucket
               key
             }
@@ -375,7 +361,6 @@ export const getUserData = `query GetUserData($id: ID!) {
           isOwner
           status
           picture {
-            id
             key
             bucket
           }
@@ -384,7 +369,6 @@ export const getUserData = `query GetUserData($id: ID!) {
             name
             pictureUrl
             avatar {
-              id
               key
               bucket
             }
@@ -411,7 +395,6 @@ export const getUserData = `query GetUserData($id: ID!) {
               isCancelled
               cancelledDates
               banner {
-                id
                 bucket
                 key
               }
@@ -456,7 +439,6 @@ export const getUserData = `query GetUserData($id: ID!) {
           isCancelled
           cancelledDates
           banner {
-            id
             bucket
             key
           }
