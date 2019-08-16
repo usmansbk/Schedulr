@@ -16,6 +16,7 @@ import {
 import { sortBookmarks } from 'lib/utils';
 import { getEvents } from 'lib/calendr';
 import { bookmarkedEvents } from 'lib/constants';
+import getImageUrl from 'helpers/getImageUrl';
 
 const { ITEM_HEIGHT, SEPARATOR_HEIGHT } = bookmarkedEvents;
 
@@ -44,6 +45,7 @@ class List extends Component {
     category,
     isCancelled,
     cancelledDates,
+    banner,
     startAt,
     endAt,
     recurrence,
@@ -63,6 +65,7 @@ class List extends Component {
     })}
     startAt={startAt}
     endAt={endAt}
+    pictureUrl={banner && getImageUrl(banner)}
     isBookmarked={this.props.stores.appState.isBookmarked(id)}
     bookmarksCount={bookmarksCount}
     commentsCount={commentsCount}

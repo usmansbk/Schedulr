@@ -25,6 +25,7 @@ class Item extends React.Component {
       id,
       name,
       description,
+      pictureUrl,
       isOwner,
       isClosed,
       isFollowing,
@@ -42,6 +43,7 @@ class Item extends React.Component {
             size={AVATAR_SIZE}
             name={name}
             style={styles.itemAvatar}
+            src={pictureUrl}
           />
           <View style={styles.itemBody}>
             <View style={styles.nameRow}>

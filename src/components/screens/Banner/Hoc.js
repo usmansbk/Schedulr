@@ -13,14 +13,9 @@ export default compose(
       variables: {
         id: props.navigation.getParam('id'),
       },
-      notifyOnNetworkStatusChange: true,
-      fetchPolicy: 'cache-first',
+      fetchPolicy: 'cache-only',
     }),
     props: ({ data, ownProps }) => ({
-      loading: data.loading,
-      refreshing: data.networkStatus === 4,
-      error: data.error,
-      onRefresh: () => data.refetch(),
       event: data && data.getEvent,
       ...ownProps,
     }),

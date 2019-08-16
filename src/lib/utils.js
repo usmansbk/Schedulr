@@ -48,9 +48,11 @@ export function eventsChanged(prev, next=[]) {
   return !next.every((nextVal, index) => {
     const prevVal = prev[index];
     if (!prevVal) return false;
+    const prevBanner = prevVal.banner || {};
+    const nextBanner = nextVal.banner || {};
     const prevCancelledDates = prevVal.cancelledDates || [];
     const nextCancelledDates = nextVal.cancelledDates || [];
-    return (prevVal.id === nextVal.id) && (prevVal.title === nextVal.title) &&
+    return (prevVal.title === nextVal.title) &&
       (prevVal.startAt === nextVal.startAt) &&
       (prevVal.endAt === nextVal.endAt) &&
       (prevVal.category === nextVal.category) &&
@@ -58,8 +60,8 @@ export function eventsChanged(prev, next=[]) {
       (prevVal.until === nextVal.until) &&
       (prevVal.isCancelled === nextVal.isCancelled) &&
       (prevCancelledDates.length === nextCancelledDates.length) &&
-      (prevVal.isBookmarked === nextVal.isBookmarked) &&
-      (prevVal.description === nextVal.description)
+      (prevVal.description === nextVal.description) &&
+      (prevBanner.key === nextBanner.key)
   });
 }
 

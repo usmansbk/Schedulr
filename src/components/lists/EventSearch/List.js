@@ -15,6 +15,7 @@ import {
 } from 'lib/parseItem';
 import { getEvents } from 'lib/calendr';
 import { bookmarkedEvents } from 'lib/constants';
+import getImageUrl from 'helpers/getImageUrl';
 
 const { ITEM_HEIGHT, SEPARATOR_HEIGHT } = bookmarkedEvents;
 
@@ -55,6 +56,7 @@ class List extends Component {
     category,
     isCancelled,
     cancelledDates,
+    banner,
     startAt,
     endAt,
     recurrence,
@@ -72,6 +74,7 @@ class List extends Component {
       cancelledDates,
       startAt, endAt, isConcluded
     })}
+    pictureUrl={banner && getImageUrl(banner)}
     startAt={startAt}
     endAt={endAt}
     bookmarksCount={bookmarksCount}

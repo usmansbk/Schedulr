@@ -7,6 +7,7 @@ import Separator from './Separator';
 import Footer from './Footer';
 import Empty from './Empty';
 import { schedule_search } from 'lib/constants';
+import getImageUrl from 'helpers/getImageUrl';
 
 const {
   ITEM_HEIGHT,
@@ -53,6 +54,7 @@ class List extends Component {
       id,
       name,
       description,
+      picture,
       isPublic,
       status,
       isFollowing,
@@ -64,6 +66,7 @@ class List extends Component {
         id={id}
         name={name}
         description={description}
+        pictureUrl={picture && getImageUrl(picture)}
         isPublic={isPublic}
         isClosed={status === 'CLOSED'}
         isOwner={isOwner}

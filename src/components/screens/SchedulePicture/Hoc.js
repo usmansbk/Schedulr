@@ -1,13 +1,13 @@
 import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
-import { getProfile } from 'api/queries';
-import { updateUser } from 'api/mutations';
+import { getSchedule } from 'api/queries';
+import { updateSchedule } from 'api/mutations';
 import Screen from './Screen';
 
-const alias = 'withAvatarViewer';
+const alias = 'withSchedulePictureViewer';
 
 export default compose(
-  graphql(gql(getProfile), {
+  graphql(gql(getSchedule), {
     alias,
     options: props => ({
       variables: {
@@ -16,11 +16,11 @@ export default compose(
       fetchPolicy: 'cache-only',
     }),
     props: ({ data, ownProps }) => ({
-      user: data && data.getProfile,
+      schedule: data && data.getSchedule,
       ...ownProps,
     }),
   }),
-  graphql(gql(updateUser), {
+  graphql(gql(updateSchedule), {
     alias,
     props: ({ mutate, ownProps }) => ({
       uploadPhoto: (input) => mutate({

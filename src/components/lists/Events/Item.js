@@ -31,7 +31,8 @@ class Item extends React.Component {
       nextProps.status !== this.props.status ||
       nextProps.recurrence !== this.props.recurrence ||
       nextProps.category !== this.props.category ||
-      nextProps.isMuted !== this.props.isMuted
+      nextProps.isMuted !== this.props.isMuted ||
+      nextProps.pictureUrl !== this.props.pictureUrl
     );
   };
 

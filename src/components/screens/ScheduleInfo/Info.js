@@ -59,6 +59,7 @@ class Info extends React.Component {
       navigateToFollowers,
       navigateToProfile,
       navigateToEvents,
+      navigateToPicture,
       stores
     } = this.props;
     
@@ -70,6 +71,7 @@ class Info extends React.Component {
       name,
       description,
       status,
+      picture,
       isFollowing,
       eventsCount,
       followersCount,
@@ -160,6 +162,8 @@ class Info extends React.Component {
               <UserAvater
                 name={name}
                 size={AVATAR_SIZE}
+                src={picture && getImageUrl(picture)}
+                onPress={() => navigateToPicture(id)}
               />
               </View>
               <View style={styles.right}>

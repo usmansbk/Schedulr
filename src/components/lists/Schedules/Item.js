@@ -33,6 +33,7 @@ class Item extends React.Component {
       id,
       name,
       description,
+      pictureUrl,
       isClosed,
       stores,
       isMuted
@@ -50,6 +51,7 @@ class Item extends React.Component {
           <UserAvatar
             onPress={this._navigateToInfo}
             size={AVATAR_SIZE}
+            src={pictureUrl}
             name={name}
             style={styles.itemAvatar}
           />

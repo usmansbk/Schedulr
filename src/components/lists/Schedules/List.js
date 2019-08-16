@@ -8,6 +8,7 @@ import Footer from './Footer';
 import Empty from './Empty';
 import sortSchedules from 'lib/utils';
 import { schedules, SCHEDULE_CLOSED } from 'lib/constants';
+import getImageUrl from 'helpers/getImageUrl';
 
 const {
   ITEM_HEIGHT,
@@ -42,6 +43,7 @@ class List extends Component {
       id,
       name,
       description,
+      picture,
       isPublic,
       status,
       isOwner,
@@ -54,6 +56,7 @@ class List extends Component {
         name={name}
         description={description}
         isPublic={isPublic}
+        pictureUrl={picture && getImageUrl(picture)}
         isClosed={status === SCHEDULE_CLOSED}
         isMuted={this.props.stores.appState.mutedSchedules.includes(id)}
         isOwner={isOwner}

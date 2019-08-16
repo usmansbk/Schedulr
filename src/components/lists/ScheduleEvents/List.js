@@ -15,6 +15,7 @@ import {
 } from 'lib/parseItem';
 import { eventsChanged } from 'lib/utils';
 import { schedule_events } from 'lib/constants';
+import getImageUrl from 'helpers/getImageUrl';
 
 const {
   ITEM_HEIGHT,
@@ -61,6 +62,7 @@ class List extends Component {
     recurrence,
     schedule,
     allDay,
+    banner,
     isConcluded,
     isCancelled,
     cancelledDates,
@@ -69,6 +71,7 @@ class List extends Component {
     title={title}
     startAt={startAt}
     endAt={endAt}
+    pictureUrl={banner && getImageUrl(banner)}
     status={getStatus({
       isCancelled,
       cancelledDates,
