@@ -12,7 +12,7 @@ import Badge from 'components/common/Badge';
 import ActionSheet from 'components/actionsheet/Event';
 import { events } from 'lib/constants';
 import { formatDate } from 'lib/time';
-import capitalize from 'lib/capitalizr'
+import { captionDetails } from 'lib/parseItem';
 
 class Item extends React.Component {
   _onPress = () => this.props.onPressItem(this.props.id, this.props.startAt, this.props.endAt);
@@ -57,6 +57,12 @@ class Item extends React.Component {
     } = this.props;
 
     const styles = stores.appStyles.eventsList;
+    const caption = captionDetails({
+      allDay,
+      recurrence,
+      category,
+      duration,
+    });
     
     return (
       <TouchableRipple
@@ -83,12 +89,7 @@ class Item extends React.Component {
                 {title}
               </Headline>
               <Text style={styles.time}>{time}</Text>
-              <Caption
-                ellipsizeMode="tail"
-                numberOfLines={1}
-              >{
-                allDay ? (`${capitalize(recurrence)} ${category}`) : (`${duration} ${category} ${recurrence}`)
-              }</Caption>
+              <Caption ellipsizeMode="tail" numberOfLines={1}>{caption}</Caption>
             </View>
           </View>
           <ActionSheet

@@ -95,3 +95,14 @@ export const parseRepeat = (recurrence) => {
     default: return recurrence;
   }
 };
+
+export const captionDetails = ({
+  allDay,
+  recurrence,
+  category,
+  duration
+}) => {
+  const validCategory = category ? ' ' + category : '';
+  return allDay ? (`${capitalize(recurrence)}${validCategory}`) : (
+    `${duration}${validCategory} ${recurrence}`);
+}
