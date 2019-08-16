@@ -4,6 +4,7 @@ import isEqual from 'lodash.isequal';
 import { Appbar } from 'react-native-paper';
 import { inject, observer } from 'mobx-react';
 import Icon from 'react-native-vector-icons/Feather';
+import ImageIcon from 'components/common/ImageIcon';
 import Details from './Details';
 import { formatDate, getRepeatLabel } from 'lib/time';
 import { isEventValid, isEventCancelled, getDuration, getStatus } from 'lib/parseItem';
@@ -45,6 +46,7 @@ class EventDetails extends React.Component {
       navigateToSchedule,
       navigateToComments,
       navigateToUser,
+      navigateToBanner,
       cardView,
       stores
     } = this.props;
@@ -99,11 +101,13 @@ class EventDetails extends React.Component {
               <Appbar.Action
                 size={FONT_SIZE}
                 color={colors.gray}
-                icon={({ size, color }) => <Icon
+                icon={({ size, color }) => <ImageIcon
                   name="image"
-                  size={size}
+                  size={24}
                   color={color}
+                  banner={banner}
                 />}
+                onPress={() => navigateToBanner(id)}
               />
             )
           }

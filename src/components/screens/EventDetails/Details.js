@@ -32,7 +32,6 @@ export default inject('stores')(observer(
     isOwner,
     authorId,
     isFollowing,
-    banner,
     isPublic,
     bookmarksCount,
     publicSchedule,

@@ -81,7 +81,7 @@ class UserProfile extends React.Component {
 
     const uriSmall = avatar ? getImageUrl(avatar) : pictureUrl;
     const uriBig = avatar ? getImageUrl(avatar, 400) : pictureUrl;
-
+    console.log(avatar);
     return  (
       <ScrollView
         refreshControl={
@@ -97,7 +97,6 @@ class UserProfile extends React.Component {
           source={{uri: uriSmall}}
           resizeMode={FastImage.resizeMode.cover}
           style={styles.backgroundImage}
-          blurRadius={1}
         />
         <View style={styles.image}>
           <UserAvatar
