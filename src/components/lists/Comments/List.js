@@ -64,11 +64,7 @@ class List extends React.Component {
       });
     }
   }
-  shouldComponentUpdate = (nextProps, nextState) => (
-    nextProps.comments !== this.props.comments ||
-    nextState.fetchingMore !== this.state.fetchingMore ||
-    nextProps.loading !== this.props.loading
-  );
+  
   _onEndReached = async () => {
     const { nextToken, fetchMoreComments, loading } = this.props;
     if (nextToken && !loading) {
