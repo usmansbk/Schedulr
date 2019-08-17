@@ -23,12 +23,7 @@ function updateData({
 }) {
   if (!updatedItem) return;
   const query = gql(cacheUpdateQuery);
-  const data = cache.readQuery({
-    query,
-    variables: {
-      id
-    }
-  });
+  const data = cache.readQuery({ query, variables: { id } });
   const { items } = data[rootField][idField];
   const removeDuplicate = items.filter(item => item.id !== updatedItem.id);
   let newItems;
@@ -44,13 +39,7 @@ function updateData({
       })
     })
   });
-  cache.writeQuery({
-    query,
-    variables: {
-      id
-    },
-    data: newData
-  });
+  cache.writeQuery({ query, variables: { id }, data: newData });
 }
 
 export default function(cache, result, operationType) {
