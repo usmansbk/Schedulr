@@ -54,7 +54,7 @@ export default class Container extends React.Component {
       visibleDialog,
       targetName
     } = this.state;
-    console.log('render');
+    
     const {
       loading,
       onRefresh,
