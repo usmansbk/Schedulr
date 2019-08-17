@@ -1,5 +1,4 @@
 import React from 'react';
-import memoize from 'memoize-one';
 import List from 'components/lists/Bookmarks';
 
 export default class Bookmarks extends React.Component {

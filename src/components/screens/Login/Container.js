@@ -2,12 +2,12 @@ import React from 'react';
 import { Auth, Hub } from 'aws-amplify';
 import { inject, observer } from 'mobx-react';
 import { withNavigationFocus } from'react-navigation';
+import { withApollo } from 'react-apollo';
 import gql from 'graphql-tag';
 import changeNavigationBarColor from 'react-native-navigation-bar-color';
 import SimpleToast from 'react-native-simple-toast';
 import { getUser } from 'api/queries';
 import { createUser } from 'api/mutations';
-import client from 'config/client';
 import Login from './Login';
 
 const GET_USER = gql(getUser);
@@ -29,6 +29,7 @@ class Container extends React.Component {
   };
 
   _authListener = async ({ payload: { event } }) => {
+    const { client } = this.props;
     switch(event) {
       case "signIn":
         try {
@@ -103,6 +104,7 @@ class Container extends React.Component {
   }
 }
 
-const withFocus = withNavigationFocus(Container);
+const withApolloClient = withApollo(Container);
+const withFocus = withNavigationFocus(withApolloClient);
 
 export default inject("stores")(observer(withFocus));

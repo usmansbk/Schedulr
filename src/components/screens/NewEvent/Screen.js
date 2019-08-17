@@ -2,14 +2,14 @@ import React from 'react';
 import moment from 'moment';
 import uuidv5 from 'uuid/v5';
 import uuidv4 from 'uuid/v4';
+import { withApollo } from 'react-apollo';
 import Form from 'components/forms/Event';
 import recurrences from 'components/forms/Event/recurrence';
 import { isPastExact } from 'lib/parseItem';
 import { getUserSchedules } from 'api/fragments';
-import client from 'config/client';
 import { SCHEDULE_CLOSED } from "lib/constants";
 
-export default class NewEventScreen extends React.Component {
+class NewEventScreen extends React.Component {
   _newSchedule = () => this.props.navigation.navigate("NewSchedule", { popAfterCreation: true });
   _handleBack = () => this.props.navigation.goBack();
   _handleSubmit = async (form) => {
@@ -27,7 +27,7 @@ export default class NewEventScreen extends React.Component {
   };
 
   get schedules() {
-    const data = client.readFragment({
+    const data = this.props.client.readFragment({
       fragment: getUserSchedules,
       id: `User:${this.props.stores.appState.userId}`
     });
@@ -106,3 +106,5 @@ export default class NewEventScreen extends React.Component {
     )
   }
 }
+
+export default withApollo(NewEventScreen);

@@ -1,9 +1,9 @@
 import React from 'react';
+import { withApollo } from 'react-apollo';
 import Form from 'components/forms/Event';
 import { getUserSchedules } from 'api/fragments';
-import client from 'config/client';
 
-export default class EditEventScreen extends React.Component {
+class EditEventScreen extends React.Component {
   _handleBack = () => this.props.navigation.goBack();
   _getInitialValues = () => {
     const { event } = this.props;
@@ -46,7 +46,7 @@ export default class EditEventScreen extends React.Component {
   };
   
   get schedules() {
-    const data = client.readFragment({
+    const data = this.props.client.readFragment({
       fragment: getUserSchedules,
       id: `User:${this.props.stores.appState.userId}`
     });
@@ -68,3 +68,5 @@ export default class EditEventScreen extends React.Component {
     )
   }
 }
+
+export default withApollo(EditEventScreen);

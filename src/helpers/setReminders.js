@@ -175,12 +175,14 @@ const schdlAll = (events, mutedList, allowedList) => {
 
 function schdlWeekdaysEvent(event, remindMeBefore, settings) {
   const start = moment(event.startAt);
+  // const duration = start.subtract(moment(event.endAt));
+  
   const hour = start.hour();
   const minute = start.minute();
   const second = start.second();
 
   const end = moment(event.endAt);
-  const recurrence = start.recurrence(end).every(weekdays).daysOfWeek(); // Exclusive operation
+  const recurrence = start.recur(end).every(weekdays).daysOfWeek(); // Exclusive operation
   const days = recurrence.next(5);
   days.forEach(nextDay => {
     nextDay.hour(hour);
