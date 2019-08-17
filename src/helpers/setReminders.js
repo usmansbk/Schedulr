@@ -19,6 +19,11 @@ import colors from 'config/colors';
 
 const color = colors.primary_light;
 
+function getReminderMessage({ category, startAt, date }) {
+  const validCategory = category ? decapitalize(category) + ' ' : '';
+  return `${validCategory}${moment(startAt).from(date)}`;
+}
+
 const setReminder = (event, before, settings) => {
   const {
     id,
@@ -31,7 +36,11 @@ const setReminder = (event, before, settings) => {
   const { amount, unit } = before;
   const { sound, vibrate } = settings;
   const date = moment(startAt).subtract(amount, unit).toDate();
-  const message = `${decapitalize(category)} in ${moment(startAt).from(date, true)}`;
+  const message = getReminderMessage({
+    category,
+    startAt,
+    date
+  });
   const repeatType = getRepeatType(recurrence);
   const repeatTime = {};
   if (repeatType === 'time') {

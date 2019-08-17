@@ -34,7 +34,6 @@ class IconBagdeButton extends React.Component {
           icon={this._renderIcon}
           size={size}
           style={stores.appStyles.styles.iconButton}
-          animated
         />
         {
           Boolean(count) && (
