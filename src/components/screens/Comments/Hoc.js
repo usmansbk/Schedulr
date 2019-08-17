@@ -22,20 +22,6 @@ export default inject("stores")(observer(
         ...ownProps
       })
     }),
-    graphql(gql(createComment), {
-      alias: 'withCreateCommentScreenContainer',
-      props: ({ mutate, ownProps }) => ({
-        onSubmit: (input) => mutate({
-          variables: {
-            input
-          },
-          update: (cache, { data: { createComment } }) => createComment && (
-            updateApolloCache(cache, createComment, "ADD")
-          )
-        }),
-        ...ownProps
-      })
-    }),
     graphql(gql(getEventComments), {
       alias: 'withGetEventCommentsScreenContainer',
       options: props => ({
@@ -52,6 +38,20 @@ export default inject("stores")(observer(
         comments: data && data.getEventComments && data.getEventComments.comments.items || [],
         ...ownProps
       })
-    })
+    }),
+    graphql(gql(createComment), {
+      alias: 'withCreateCommentScreenContainer',
+      props: ({ mutate, ownProps }) => ({
+        onSubmit: (input) => mutate({
+          variables: {
+            input
+          },
+          update: (cache, { data: { createComment } }) => createComment && (
+            updateApolloCache(cache, createComment, "ADD")
+          ),
+        }),
+        ...ownProps
+      })
+    }),
   )(Container)
 ));
