@@ -45,7 +45,8 @@ export default class Container extends React.Component {
     return (
       this.props.comments.length !== nextProps.comments.length ||
       this.props.loading !== nextProps.loading ||
-      this.state.visibleDialog !== nextState.visibleDialog
+      this.state.visibleDialog !== nextState.visibleDialog ||
+      this.state.commentToId !== nextState.commentToId
     );
   }
 
