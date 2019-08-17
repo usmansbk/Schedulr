@@ -41,11 +41,20 @@ export default class Container extends React.Component {
   };
   _navigateToProfile = (id) => this.props.navigation.navigate('UserProfile', { id });
 
+  shouldComponentUpdate = (nextProps, nextState) => {
+    return (
+      this.props.comments.length !== nextProps.comments.length ||
+      this.props.loading !== nextProps.loading ||
+      this.state.visibleDialog !== nextState.visibleDialog
+    );
+  }
+
   render() {
     const {
       visibleDialog,
       targetName
     } = this.state;
+    console.log('render');
     const {
       loading,
       onRefresh,
