@@ -1,5 +1,6 @@
 import gql from 'graphql-tag';
 import moment from 'moment';
+import uuid from 'uuid/v4';
 import stores from "stores";
 import client from 'config/client';
 
@@ -16,7 +17,6 @@ export default function buildOptimisticResponse({
   responseType,
   operationType
 }) {
-  if (!body) return null;
   const body = buildResponseBody(input, responseType, operationType);
   return {
     __typename,
@@ -43,22 +43,16 @@ function buildCreateResponse(input, typename) {
   switch (typename) {
     case EVENT_TYPE:
       return createEvent(input, typename);
-      break;
     case SCHEDULE_TYPE:
       return createSchedule(input, typename);
-      break;
     case COMMENT_TYPE:
-      // return buildCreateComment(input, typename);
-      break;
+      return createComment(input, typename);
     case BOOKMARK_TYPE:
       // return buildCreateBookmark(input, typename);
-      break;
     case FOLLOW_TYPE:
       // return buildCreateFollow(input, typename);
-      break;
     default:
       return null;
-      break;
   }
 }
 
@@ -66,22 +60,16 @@ function buildDeleteResponse(input, typename) {
   switch (typename) {
     case EVENT_TYPE:
       return deleteEvent(input, typename);
-      break;
     case SCHEDULE_TYPE:
       return deleteSchedule(input, typename);
-      break;
     case COMMENT_TYPE:
-      // return buildDeleteComment(input, typename);
-      break;
+      return deleteComment(input, typename);
     case BOOKMARK_TYPE:
       // return buildDeleteBookmark(input, typename);
-      break;
     case FOLLOW_TYPE:
       // return buildDeleteFollow(input, typename);
-      break;
     default:
       return null;
-      break;
   }
 }
 
@@ -89,15 +77,14 @@ function buildUpdateResponse(input, typename) {
   switch (typename) {
     case EVENT_TYPE:
       return updateEvent(input, typename);
-      break;
     case SCHEDULE_TYPE:
       return updateSchedule(input, typename);
-      break;
     default:
       return null;
-      break;
   }
 }
+
+// *************************** CREATE *******************************
 
 function createEvent(input, typename) {
   const author = client.readFragment({
@@ -141,58 +128,6 @@ function createEvent(input, typename) {
   return event;
 }
 
-function updateEvent(input, typename) {
-  const event = client.readFragment({
-    fragment: gql`fragment updateEventDetails on Event {
-      id
-      title
-      description
-      venue
-      category
-      startAt
-      endAt
-      allDay
-      recurrence
-      until
-      isPublic
-      isOwner
-      isCancelled
-      cancelledDates
-      banner {
-        key
-        bucket
-      }
-      commentsCount
-      bookmarksCount
-      updatedAt
-    }`,
-    id: `${typename}:${input.id}`
-  });
-  const updatedEvent = Object.assign({}, event, input, {
-    updatedAt: moment().toISOString()
-  });
-  delete updatedEvent.eventScheduleId;
-  return updatedEvent;
-}
-
-function deleteEvent(input, typename) {
-  const event = client.readFragment({
-    fragment: gql`fragment deleteEventDetails on Event {
-      id
-      schedule {
-        id
-        eventsCount
-      }
-    }`,
-    id: `${typename}:${input.id}`
-  });
-  const count = event.schedule.eventsCount;
-  if ((typeof count === 'number') && count > 0) {
-    event.schedule.eventsCount = count - 1;
-  }
-  return event;
-}
-
 function createSchedule(input, typename) {
   const author = client.readFragment({
     fragment: gql`fragment createScheduleAuthor on User {
@@ -231,6 +166,63 @@ function createSchedule(input, typename) {
   return schedule;
 }
 
+function createComment(input, typename) {
+  const author = client.readFragment({
+    fragment: gql`fragment createCommentAuthor on User {
+      id
+      name
+      pictureUrl
+      avatar {
+        key
+        bucket
+      }
+    }`,
+    id: `User:${stores.appState.userId}`
+  });
+  const event = client.readFragment({
+    fragment: gql`fragment createCommentEvent on Event {
+      id
+      commentsCount
+    }`,
+    id: `Event:${input.commentEventId}`
+  });
+  let to = null;
+  if (input.commentToId) {
+    to = client.readFragment({
+      fragment: gql`fragment toComment on Comment {    
+        id
+        content
+        author {
+          id
+          name
+        }
+      }`,
+      id: `${typename}:${input.commentToId}`
+    });
+  }
+
+  const count = event.commentsCount;
+  if (typeof count === 'number') {
+    event.commentsCount = count + 1;
+  } else {
+    event.commentsCount = 1;
+  }
+  
+  const comment = {
+    id: '-' + uuid(),
+    content: input.content,
+    isOwner: true,
+    to,
+    author,
+    event,
+    createdAt: moment().toISOString(),
+    __typename: typename
+  };
+  return comment;
+}
+
+// ********************** DELETE *******************************
+
 function deleteSchedule(input, typename) {
   const schedule = client.readFragment({
     fragment: gql`fragment deleteScheduleDetails on Schedule {
@@ -248,6 +240,44 @@ function deleteSchedule(input, typename) {
   }
   return schedule;
 }
+
+function deleteEvent(input, typename) {
+  const event = client.readFragment({
+    fragment: gql`fragment deleteEventDetails on Event {
+      id
+      schedule {
+        id
+        eventsCount
+      }
+    }`,
+    id: `${typename}:${input.id}`
+  });
+  const count = event.schedule.eventsCount;
+  if ((typeof count === 'number') && count > 0) {
+    event.schedule.eventsCount = count - 1;
+  }
+  return event;
+}
+
+function deleteComment(input, typename) {
+  const comment = client.readFragment({
+    fragment: gql`fragment deleteCommentDetails on Comment {
+      id
+      event {
+        id
+        commentsCount
+      }
+    }`,
+    id: `${typename}:${input.id}`
+  });
+  const count = comment.event.commentsCount;
+  if (typeof count === 'number' && count > 0) {
+    comment.event.commentsCount = count - 1;
+  }
+  return comment;
+}
+
+// ********************* UPDATES **********************
 
 function updateSchedule(input, typename) {
   const schedule = client.readFragment({
@@ -271,34 +301,40 @@ function updateSchedule(input, typename) {
   return updatedSchedule;
 }
 
-// Create Comment
-          // optimisticResponse: {
-          //   __typename: 'Mutation',
-          //   createComment: {
-          //     id: "f22b82f1-bd08-400b-b930-06adabf2d5b1",
-          //     content: "God bless",
-          //     isOwner: true,
-          //     to: null,
-          //     author: {
-          //       id: "usmansbk@gmail.com",
-          //       name: "Usman Suleiman Babakolo",
-          //       pictureUrl:null,
-          //       avatar: {
-          //         key: "profile_image/usmansbk@gmail.com10219539.jpeg",
-          //         bucket: "schdlre4a77eacabcb468f9af1f2063df20dd7-dev",
-          //         __typename:"S3Object"
-          //       },
-          //       __typename: "User"
-          //     },
-          //     event: {
-          //       id: "f3564d7f-dd1b-5000-8d63-2b207ce87580-2ced63e3-b636-4a8e-b2c6-651dad1932ad",
-          //       commentsCount: 1,
-          //       __typename: "Event"
-          //     },
-          //     createdAt: "2019-08-17T10:50:01.389Z",
-          //     __typename: "Comment"
-          //   }
-          // }
+function updateEvent(input, typename) {
+  const event = client.readFragment({
+    fragment: gql`fragment updateEventDetails on Event {
+      id
+      title
+      description
+      venue
+      category
+      startAt
+      endAt
+      allDay
+      recurrence
+      until
+      isPublic
+      isOwner
+      isCancelled
+      cancelledDates
+      banner {
+        key
+        bucket
+      }
+      commentsCount
+      bookmarksCount
+      updatedAt
+    }`,
+    id: `${typename}:${input.id}`
+  });
+  const updatedEvent = Object.assign({}, event, input, {
+    updatedAt: moment().toISOString()
+  });
+  delete updatedEvent.eventScheduleId;
+  return updatedEvent;
+}
+
 // Create bookmark
           // optimisticResponse: {
           //   __typename: 'Mutation',
@@ -351,19 +387,5 @@ function updateSchedule(input, typename) {
           //       "__typename": "Event"
           //     },
           //     "__typename": "Bookmark"
-          //   }
-          // }
-
-// Delete comment
-          // optimisticResponse: {
-          //  __typename: 'Mutation',
-          //  deleteComment: {
-          //     id: "b21b5828-4abf-46b1-badf-06c667c44005",
-          //     event: {
-          //       id: "f3564d7f-dd1b-5000-8d63-2b207ce87580-fdedd8e6-efef-4f3e-bd83-c9d9da0a834d",
-          //       commentsCount: 1,
-          //       __typename: "Event"
-          //     },
-          //     __typename: "Comment"
           //   }
           // }

@@ -5,6 +5,7 @@ import { getUser, getEventComments } from 'api/queries';
 import { createComment } from 'api/mutations';
 import updateApolloCache from 'helpers/updateApolloCache';
 import Container from './Container';
+import buildOptimisticResponse from 'helpers/optimisticResponse';
 
 export default inject("stores")(observer(
   compose(
@@ -49,6 +50,12 @@ export default inject("stores")(observer(
           update: (cache, { data: { createComment } }) => (
             updateApolloCache(cache, createComment, "ADD")
           ),
+          optimisticResponse: buildOptimisticResponse({
+            input,
+            mutationName: 'createComment',
+            responseType: 'Comment',
+            operationType: 'ADD'
+          })
         }),
         ...ownProps
       })
