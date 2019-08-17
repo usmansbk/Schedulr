@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { RefreshControl } from 'react-native';
 import { withNavigation, FlatList } from 'react-navigation';
 import { inject, observer } from 'mobx-react';
 import Item from './Item';
@@ -73,21 +72,12 @@ class List extends Component {
   render() {
     const {
       schedules,
-      loading,
       stores
     } = this.props;
     const data = sortSchedules(schedules);
     
     return (
       <FlatList
-        refreshing={loading}
-        refreshControl={
-          <RefreshControl
-            refreshing={loading}
-            colors={[stores.themeStore.colors.primary]}
-            progressBackgroundColor={stores.themeStore.colors.bg}
-          />
-        }
         style={stores.appStyles.schedulesList.list}
         extraData={stores.appState.mutedSchedules.length}
         contentContainerStyle={stores.appStyles.schedulesList.contentContainer}

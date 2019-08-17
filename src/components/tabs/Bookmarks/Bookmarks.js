@@ -1,4 +1,5 @@
 import React from 'react';
+import memoize from 'memoize-one';
 import List from 'components/lists/Bookmarks';
 
 export default class Bookmarks extends React.Component {
@@ -7,12 +8,16 @@ export default class Bookmarks extends React.Component {
     return nextProps.navigation.isFocused();
   };
 
-  _getEvents =data => data.bookmarks.items.filter(item => Boolean(item.event)).map(item => item.event);
+  _getEvents = memoize(
+    data => {
+      const { bookmarks } = data;
+      if (!bookmarks) return [];
+      return bookmarks.items.filter(item => Boolean(item.event)).map(item => item.event)
+    }
+  );
 
   get events() {
-    const { data } = this.props;
-    if (!data) return [];
-    return this._getEvents(data);
+    return this._getEvents(this.props.data);
   }
   
   render() {

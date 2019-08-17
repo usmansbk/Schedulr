@@ -55,7 +55,7 @@ class Item extends React.Component {
       isBookmarked,
       bookmarksCount,
     } = this.props;
-
+    
     const styles = stores.appStyles.eventsList;
     const caption = captionDetails({
       allDay,

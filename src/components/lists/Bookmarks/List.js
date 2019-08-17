@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { RefreshControl } from 'react-native';
 import { FlatList } from 'react-navigation';
 import { inject, observer } from 'mobx-react';
 import Item from './Item';
@@ -87,23 +86,11 @@ class List extends Component {
   render() {
     const {
       events,
-      loading,
-      onRefresh,
       stores
     } = this.props;
-
+    
     return (
       <FlatList
-        refreshing={loading}
-        refreshControl={
-          <RefreshControl
-            onRefresh={onRefresh}
-            refreshing={loading}
-            colors={[stores.themeStore.colors.primary]}
-            progressBackgroundColor={stores.themeStore.colors.bg}
-          />
-        }
-        onRefresh={onRefresh}
         style={stores.appStyles.bookmarkedEventsList.list}
         contentContainerStyle={stores.appStyles.bookmarkedEventsList.contentContainer}
         initialNumToRender={5}

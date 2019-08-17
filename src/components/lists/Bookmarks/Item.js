@@ -47,7 +47,7 @@ class Item extends React.Component {
       address,
       stores
     } = this.props;
-
+    
     const styles = stores.appStyles.bookmarkedEventsList;
 
     return (
