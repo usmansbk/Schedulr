@@ -21,7 +21,6 @@ function updateData({
   operationType,
   id
 }) {
-  if (!updatedItem) return;
   console.log(updatedItem);
   const query = gql(cacheUpdateQuery);
   const data = cache.readQuery({ query, variables: { id } });
@@ -44,6 +43,7 @@ function updateData({
 }
 
 export default function(cache, result, operationType) {
+  if (!result) return;
   switch(result.__typename) {
     case EVENT_TYPE:
       updateData({

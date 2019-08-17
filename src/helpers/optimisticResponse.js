@@ -16,8 +16,8 @@ export default function buildOptimisticResponse({
   responseType,
   operationType
 }) {
-  const body = buildResponseBody(input, responseType, operationType);
   if (!body) return null;
+  const body = buildResponseBody(input, responseType, operationType);
   return {
     __typename,
     [mutationName] : {
@@ -45,7 +45,7 @@ function buildCreateResponse(input, typename) {
       return createEvent(input, typename);
       break;
     case SCHEDULE_TYPE:
-      // return buildCreateSchedule(input, typename);
+      return createSchedule(input, typename);
       break;
     case COMMENT_TYPE:
       // return buildCreateComment(input, typename);
@@ -68,7 +68,7 @@ function buildDeleteResponse(input, typename) {
       return deleteEvent(input, typename);
       break;
     case SCHEDULE_TYPE:
-      // return buildDeleteSchedule(input, typename);
+      return deleteSchedule(input, typename);
       break;
     case COMMENT_TYPE:
       // return buildDeleteComment(input, typename);
@@ -91,7 +91,7 @@ function buildUpdateResponse(input, typename) {
       return updateEvent(input, typename);
       break;
     case SCHEDULE_TYPE:
-      // return updateSchedule(input, typename);
+      return updateSchedule(input, typename);
       break;
     default:
       return null;
@@ -115,8 +115,11 @@ function createEvent(input, typename) {
     }`,
     id: `Schedule:${input.eventScheduleId}`
   });
-  if (typeof schedule.eventsCount === 'number') {
-    schedule.eventsCount += 1;
+  const count = schedule.eventsCount;
+  if (typeof count === 'number') {
+    schedule.eventsCount = count + 1;
+  } else {
+    schedule.eventsCount = 1;
   }
   const createdAt = moment().toISOString();
 
@@ -165,7 +168,9 @@ function updateEvent(input, typename) {
     }`,
     id: `${typename}:${input.id}`
   });
-  const updatedEvent = Object.assign({}, event, input);
+  const updatedEvent = Object.assign({}, event, input, {
+    updatedAt: moment().toISOString()
+  });
   delete updatedEvent.eventScheduleId;
   return updatedEvent;
 }
@@ -181,46 +186,90 @@ function deleteEvent(input, typename) {
     }`,
     id: `${typename}:${input.id}`
   });
-  
-  if ((typeof event.schedule.eventsCount === 'number') &&
-    event.schedule.eventsCount > 0
-  ) {
-    event.schedule.eventsCount -= 1;
+  const count = event.schedule.eventsCount;
+  if ((typeof count === 'number') && count > 0) {
+    event.schedule.eventsCount = count - 1;
   }
   return event;
 }
 
-// Create schedule
-          // optimisticResponse: {
-          //  __typename: 'Mutation',
-          //  createSchedule: {
-          //     "id": "f3564d7f-dd1b-5000-8d63-2b207ce87580-3da1831b-9931-4411-9b1d-7f8dc1701ab6",
-          //     "name": "Created",
-          //     "description": null,
-          //     "isPublic": true,
-          //     "isOwner": true,
-          //     "status": null,
-          //     "picture": null,
-          //     "author": {
-          //       "id": "usmansbk@gmail.com",
-          //       "name": "Usman Suleiman Babakolo",
-          //       "createdCount": 4,
-          //       "__typename": "User"
-          //     },
-          //     "followersCount": 0,
-          //     "eventsCount": 0,
-          //     "createdAt": "2019-08-17T13:27:17.363Z",
-          //     "updatedAt": "2019-08-17T13:27:17.363Z",
-          //     "events": {
-          //       "items": [
-                  
-          //       ],
-          //       "nextToken": null,
-          //       "__typename": "ModelEventConnection"
-          //     },
-          //     "__typename": "Schedule"
-          //   }
-          // }
+function createSchedule(input, typename) {
+  const author = client.readFragment({
+    fragment: gql`fragment createScheduleAuthor on User {
+      id
+      name
+      createdCount
+    }`,
+    id: `User:${stores.appState.userId}`
+  });
+  const count = author.createdCount;
+  if (typeof count === 'number') {
+    author.createdCount = count + 1;
+  } else {
+    author.createdCount = 1;
+  }
+  const events = {
+    items: [],
+    nextToken: null,
+    __typename: "ModelEventConnection"
+  };
+  const createdAt = moment().toISOString();
+
+  const schedule  = {
+    __typename: typename,
+    ...input,
+    isOwner: true,
+    status: null,
+    picture: null,
+    author,
+    followersCount: 0,
+    eventsCount: 0,
+    createdAt,
+    updatedAt: createdAt,
+    events,
+  };
+  return schedule;
+}
+
+function deleteSchedule(input, typename) {
+  const schedule = client.readFragment({
+    fragment: gql`fragment deleteScheduleDetails on Schedule {
+      id
+      author {
+        id
+        createdCount
+      }
+    }`,
+    id: `${typename}:${input.id}`
+  });
+  const count = schedule.author.createdCount;
+  if (typeof count === 'number' && count > 0) {
+    schedule.author.createdCount = count - 1;
+  }
+  return schedule;
+}
+
+function updateSchedule(input, typename) {
+  const schedule = client.readFragment({
+    fragment: gql`fragment updateScheduleDetails on Schedule {
+      id
+      name
+      description
+      isPublic
+      status
+      updatedAt
+      picture {
+        key
+        bucket
+      }
+    }`,
+    id: `${typename}:${input.id}`
+  });
+  const updatedSchedule = Object.assign({}, schedule, input, {
+    updatedAt: moment().toISOString()
+  });
+  return updatedSchedule;
+}
 
 // Create Comment
           // optimisticResponse: {
@@ -316,19 +365,5 @@ function deleteEvent(input, typename) {
           //       __typename: "Event"
           //     },
           //     __typename: "Comment"
-          //   }
-          // }
-
-// Delete schedule
-          // optimisticResponse: {
-          //   __typename: 'Mutation',
-          //   deleteSchedule: {
-          //     "id": "f3564d7f-dd1b-5000-8d63-2b207ce87580-3da1831b-9931-4411-9b1d-7f8dc1701ab6",
-          //     "author": {
-          //       "id": "usmansbk@gmail.com",
-          //       "createdCount": 3,
-          //       "__typename": "User"
-          //     },
-          //     "__typename": "Schedule"
           //   }
           // }

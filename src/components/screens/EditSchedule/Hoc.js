@@ -3,7 +3,7 @@ import gql from 'graphql-tag';
 import Screen from './Screen';
 import { updateSchedule } from 'api/mutations';
 import { getSchedule } from 'api/queries';
-// import { updateScheduleResponse } from 'helpers/optimisticResponse';
+import buildOptimisticResponse from 'helpers/optimisticResponse';
 
 const alias = 'withEditScheduleContainer';
 
@@ -27,11 +27,16 @@ export default compose(
   graphql(gql(updateSchedule), {
     alias,
     props: ({ mutate, ownProps }) => ({
-      onSubmit: async (input) => await mutate({
+      onSubmit: (input) => mutate({
         variables: {
           input
         },
-//         optimisticResponse: () => updateScheduleResponse(input)
+        optimisticResponse: buildOptimisticResponse({
+          input,
+          mutationName: 'updateSchedule',
+          responseType: 'Schedule',
+          operationType: 'UPDATE'
+        })
       }),
       ...ownProps,
     })

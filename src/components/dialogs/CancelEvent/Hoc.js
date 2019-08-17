@@ -3,7 +3,7 @@ import gql from 'graphql-tag';
 import Dialog from './Dialog';
 import { updateEvent } from 'api/mutations';
 import { getEvent } from 'api/queries';
-// import { cancelEventResponse } from 'helpers/optimisticResponse';
+import buildOptimisticResponse from 'helpers/optimisticResponse';
 
 export default compose(
   graphql(gql(updateEvent), {
@@ -13,7 +13,12 @@ export default compose(
         variables: {
           input
         },
-        // optimisticResponse: () => cancelEventResponse(input)
+        optimisticResponse: buildOptimisticResponse({
+          input,
+          mutationName: 'updateEvent',
+          operationType: 'UPDATE',
+          responseType: 'Event'
+        })
       }),
       ...ownProps
     })

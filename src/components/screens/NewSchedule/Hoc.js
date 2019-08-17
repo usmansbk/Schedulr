@@ -4,6 +4,7 @@ import { inject, observer } from 'mobx-react';
 import { createSchedule } from 'api/mutations';
 import updateApolloCache from 'helpers/updateApolloCache';
 import Screen from './Screen';
+import buildOptimisticResponse from 'helpers/optimisticResponse';
 
 const alias =  'withNewScheduleContainer';
 
@@ -17,7 +18,13 @@ export default inject("stores")(observer(
         },
         update: (cache, { data: { createSchedule } }) => (
           updateApolloCache(cache, createSchedule, 'ADD')
-        )
+        ),
+        optimisticResponse: buildOptimisticResponse({
+          input,
+          mutationName: 'createSchedule',
+          operationType: 'ADD',
+          responseType: 'Schedule'
+        })
       }),
       ...ownProps
     })
