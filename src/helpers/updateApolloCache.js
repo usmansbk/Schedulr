@@ -21,6 +21,7 @@ function updateData({
   operationType,
   id
 }) {
+  if (!updatedItem) return;
   const query = gql(cacheUpdateQuery);
   const data = cache.readQuery({
     query,

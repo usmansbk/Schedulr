@@ -15,7 +15,7 @@ export default compose(
         variables: {
           input
         },
-        update: (cache, { data: { deleteEvent } }) => deleteEvent && (
+        update: (cache, { data: { deleteEvent } }) => (
           updateApolloCache(cache, deleteEvent, "DELETE")
         )
       }),

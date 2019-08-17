@@ -46,7 +46,7 @@ export default inject("stores")(observer(
           variables: {
             input
           },
-          update: (cache, { data: { createComment } }) => createComment && (
+          update: (cache, { data: { createComment } }) => (
             updateApolloCache(cache, createComment, "ADD")
           ),
         }),

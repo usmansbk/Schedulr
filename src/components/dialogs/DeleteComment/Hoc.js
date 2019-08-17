@@ -12,7 +12,7 @@ export default graphql(gql(deleteComment), {
           id: ownProps.id
         }
       },
-      update: (cache, { data: { deleteComment } }) => deleteComment && (
+      update: (cache, { data: { deleteComment } }) => (
         updateApolloCache(cache, deleteComment, "DELETE")
       )
     }),

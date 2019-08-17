@@ -15,7 +15,7 @@ export default inject("stores")(observer(
         variables: {
           input
         },
-        update: (cache, { data: { createSchedule } }) => createSchedule && (
+        update: (cache, { data: { createSchedule } }) => (
           updateApolloCache(cache, createSchedule, 'ADD')
         )
       }),

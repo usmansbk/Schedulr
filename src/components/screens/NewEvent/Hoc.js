@@ -36,8 +36,9 @@ export default inject("stores")(observer(
           variables: {
             input
           },
-          update: (cache, { data: { createEvent } }) => createEvent && (
-            updateApolloCache(cache, createEvent, "ADD")),
+          update: (cache, { data: { createEvent } }) => (
+            updateApolloCache(cache, createEvent, "ADD")
+          ),
         }),
         ...ownProps
       })

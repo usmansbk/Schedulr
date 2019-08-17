@@ -14,7 +14,7 @@ export default compose(
         variables: {
           input
         },
-        update: (cache, { data: { deleteSchedule } }) => deleteSchedule && (
+        update: (cache, { data: { deleteSchedule } }) => (
           updateApolloCache(cache, deleteSchedule, "DELETE")
         )
       }),
