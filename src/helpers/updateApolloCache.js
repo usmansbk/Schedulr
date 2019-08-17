@@ -2,6 +2,7 @@ import gql from 'graphql-tag';
 import {
   getScheduleEvents,
   getUserData,
+  getEventComments
 } from 'api/queries';
 import stores from 'stores';
 
@@ -46,14 +47,6 @@ function updateData({
   });
 }
 
-function updateComments(cache, result, operationType) {
-
-}
-
-function updateFollows(cache, result, operationType) {
-
-} 
-
 export default function(cache, result, operationType) {
   switch(result.__typename) {
     case EVENT_TYPE:
@@ -90,10 +83,26 @@ export default function(cache, result, operationType) {
       });
       break;
     case COMMENT_TYPE:
-      updateComments(cache, result, operationType);
+      updateData({
+        cache,
+        operationType,
+        updatedItem: result,
+        rootField: 'getEventComments',
+        idField: 'comments',
+        id: result.event.id,
+        cacheUpdateQuery: getEventComments
+      });
       break;
     case FOLLOW_TYPE:
-      updateFollows(cache, result, operationType);
+      updateData({
+        cache,
+        operationType,
+        updatedItem: result,
+        rootField: 'getUserData',
+        idField: 'following',
+        id: stores.appState.userId,
+        cacheUpdateQuery: getUserData
+      });
       break;
   }
 }

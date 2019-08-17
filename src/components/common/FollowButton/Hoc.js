@@ -2,6 +2,7 @@ import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
 import { inject, observer } from 'mobx-react';
 import { createFollow, deleteFollow } from 'api/mutations';
+import updateApolloCache from 'helpers/updateApolloCache';
 import Button from './Button';
 
 export default inject("stores")(observer(
@@ -13,7 +14,10 @@ export default inject("stores")(observer(
         follow: (input) => mutate({
           variables: {
             input
-          }
+          },
+          update: (cache, { data: { createFollow } }) => createFollow && (
+            updateApolloCache(cache, createFollow, "ADD")
+          )
         })
       })
     }),
@@ -24,7 +28,10 @@ export default inject("stores")(observer(
         unfollow: (input) => mutate({
           variables: {
             input
-          }
+          },
+          update: (cache, { data: { deleteFollow } }) => deleteFollow && (
+            updateApolloCache(cache, deleteFollow, "DELETE")
+          )
         })
       })
     })

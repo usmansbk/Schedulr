@@ -4,6 +4,7 @@ import { inject, observer } from 'mobx-react';
 import { getUser, getEventComments } from 'api/queries';
 import { createComment } from 'api/mutations';
 import Container from './Container';
+import updateApolloCache from 'helpers/updateApolloCache';
 
 export default inject("stores")(observer(
   compose(
@@ -27,7 +28,10 @@ export default inject("stores")(observer(
         onSubmit: (input) => mutate({
           variables: {
             input
-          }
+          },
+          update: (cache, { data: { createComment } }) => createComment && (
+            updateApolloCache(cache, createComment, "ADD")
+          )
         }),
         ...ownProps
       })
