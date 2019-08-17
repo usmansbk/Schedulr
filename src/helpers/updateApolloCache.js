@@ -30,20 +30,25 @@ function updateData({
   });
   const { items } = data[rootField][idField];
   const removeDuplicate = items.filter(item => item.id !== updatedItem.id);
-  switch (operationType) {
-    case 'ADD':
-      data[rootField][idField].items = [...removeDuplicate, updatedItem];
-      break;
-    case 'DELETE':
-      data[rootField][idField].items = removeDuplicate;
-      break;
+  let newItems;
+  if (operationType === 'ADD') {
+    newItems = [...removeDuplicate, updatedItem];
+  } else {
+    newItems = removeDuplicate;
   }
+  const newData = Object.assign({}, data, {
+    [rootField]: Object.assign({}, data[rootField], {
+      [idField]: Object.assign({}, data[rootField][idField], {
+        items: newItems
+      })
+    })
+  });
   cache.writeQuery({
     query,
     variables: {
       id
     },
-    data
+    data: newData
   });
 }
 

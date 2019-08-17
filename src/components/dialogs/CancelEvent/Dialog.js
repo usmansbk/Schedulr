@@ -35,10 +35,11 @@ class CancelEvent extends React.Component {
     this.setState({ loading: true });
     const input = {id};
     const { checked } = this.state;
-    if (checked === ALL_EVENTS) {
+    if ((checked === ALL_EVENTS) || !date) {
       input.isCancelled = true;
       input.cancelledDates = null;
     } else {
+      console.log(input);
       input.cancelledDates = Array.from(new Set([
         ...cancelledDates,
         date
