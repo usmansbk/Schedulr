@@ -8,10 +8,10 @@ export default class Bookmarks extends React.Component {
     return nextProps.navigation.isFocused();
   };
 
-  _getEvents = memoize(
-    data => {
+  _getEvents = (
+    (data) => {
+      if (!data) return [];
       const { bookmarks } = data;
-      if (!bookmarks) return [];
       return bookmarks.items.filter(item => Boolean(item.event)).map(item => item.event)
     }
   );

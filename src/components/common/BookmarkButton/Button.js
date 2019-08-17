@@ -35,12 +35,14 @@ export default class Button extends React.Component {
       isBookmarked,
     } = this.props;
 
+    const count = (isBookmarked && (bookmarksCount > 1)) ? bookmarksCount : 0;
+
     return (
       <IconBadge
         icon="bookmark"
         onPress={this._onPress}
         size={size}
-        count={bookmarksCount}
+        count={count}
         color={isBookmarked ? activeColor : color}
         activeColor={isBookmarked ? activeColor : color}
       />
