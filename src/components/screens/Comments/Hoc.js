@@ -3,8 +3,8 @@ import gql from 'graphql-tag';
 import { inject, observer } from 'mobx-react';
 import { getUser, getEventComments } from 'api/queries';
 import { createComment } from 'api/mutations';
-import Container from './Container';
 import updateApolloCache from 'helpers/updateApolloCache';
+import Container from './Container';
 
 export default inject("stores")(observer(
   compose(
