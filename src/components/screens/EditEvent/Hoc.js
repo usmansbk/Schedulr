@@ -4,7 +4,7 @@ import { inject, observer } from 'mobx-react';
 import Screen from './Screen';
 import { getEvent } from 'api/queries';
 import { updateEvent } from 'api/mutations';
-// import { updateEventResponse } from 'helpers/optimisticResponse';
+import buildOptimisticResponse from 'helpers/optimisticResponse';
 
 const alias = 'withEditEventContainer';
 
@@ -33,7 +33,12 @@ export default inject('stores')(observer(
           variables: {
             input
           },
-          // optimisticResponse: () => updateEventResponse(input)
+          optimisticResponse: buildOptimisticResponse({
+            input,
+            mutationName: 'updateEvent',
+            operationType: 'UPDATE',
+            responseType: 'Event',
+          })
         }),
         ...ownProps,
       })

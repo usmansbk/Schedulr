@@ -20,9 +20,9 @@ class NewEventScreen extends React.Component {
       id,
       ...form
     };
-    const result = await this.props.onSubmit(input);
+    await this.props.onSubmit(input);
     this.props.navigation.replace('EventDetails', {
-      id: result.data.createEvent.id
+      id
     });
   };
 

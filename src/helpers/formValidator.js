@@ -1,5 +1,5 @@
-export const validateProfileForm = (values) => {
-  let temp = Object.assign({}, values);
+export default function validateForm(data) {
+  let temp = Object.assign({}, data);
   Object.keys(temp).forEach(key => {
     const value = temp[key];
     if (typeof value === 'string') {
@@ -9,41 +9,9 @@ export const validateProfileForm = (values) => {
       } else {
         temp[key] = trimmed;
       }
-    } 
+    } else if (value === undefined) {
+      temp[key] = null;
+    }
   });
   return temp;
 }
-
-export const validateEventForm = (values, myLocation) => {
-  // let location = (myLocation && myLocation.lat && myLocation.lon) ? myLocation : null;
-  let temp = Object.assign({}, values);
-  Object.keys(temp).forEach(key => {
-    const value = temp[key];
-    if (typeof value === 'string') {
-      const trimmed = value.trim();
-      if (!trimmed) {
-        temp[key] = null;
-      } else {
-        temp[key] = trimmed;
-      }
-    } 
-  });
-  return temp;
-};
-
-export const validateScheduleForm = (values, myLocation) => {
-  // const location = (myLocation && myLocation.lat && myLocation.lon) ? myLocation : null;
-  let temp = Object.assign({}, values);
-  Object.keys(temp).forEach(key => {
-    const value = temp[key];
-    if (typeof value === 'string') {
-      const trimmed = value.trim();
-      if (!trimmed) {
-        temp[key] = null;
-      } else {
-        temp[key] = trimmed;
-      }
-    } 
-  });
-  return temp;
-};

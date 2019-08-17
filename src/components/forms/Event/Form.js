@@ -31,7 +31,7 @@ import {
 import { getRepeatLabel, getTimeUnit } from 'lib/time';
 import formSchema from './schema';
 import recurrence from './recurrence';
-import { validateEventForm } from 'helpers/formValidator';
+import validateForm from 'helpers/formValidator';
 
 class Form extends React.Component {
 
@@ -96,7 +96,7 @@ class Form extends React.Component {
         validationSchema={formSchema}
         onSubmit={async (values, { setSubmitting }) => {
           if (isEventValid(values)) {
-            const input = validateEventForm(values, stores.appState.location);
+            const input = validateForm(values, stores.appState.location);
             onSubmit && await onSubmit(input);
           }
           setSubmitting(false);

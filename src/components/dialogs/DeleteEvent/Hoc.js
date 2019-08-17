@@ -4,7 +4,7 @@ import { withNavigation } from 'react-navigation';
 import Dialog from './Dialog';
 import { deleteEvent } from 'api/mutations';
 import updateApolloCache from 'helpers/updateApolloCache';
-// import { deleteEventResponse } from 'helpers/optimisticResponse';
+import buildOptimisticResponse from 'helpers/optimisticResponse';
 
 export default compose(
   withNavigation,
@@ -17,7 +17,13 @@ export default compose(
         },
         update: (cache, { data: { deleteEvent } }) => (
           updateApolloCache(cache, deleteEvent, "DELETE")
-        )
+        ),
+        optimisticResponse: buildOptimisticResponse({
+          input,
+          mutationName: 'deleteEvent',
+          operationType: 'DELETE',
+          responseType: 'Event'
+        })
       }),
       ...ownProps
     })

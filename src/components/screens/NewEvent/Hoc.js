@@ -5,6 +5,7 @@ import Screen from './Screen';
 import { createEvent } from 'api/mutations';
 import { getEvent } from 'api/queries';
 import updateApolloCache from 'helpers/updateApolloCache';
+import buildOptimisticResponse from 'helpers/optimisticResponse';
 
 export default inject("stores")(observer(
   compose(
@@ -39,6 +40,12 @@ export default inject("stores")(observer(
           update: (cache, { data: { createEvent } }) => (
             updateApolloCache(cache, createEvent, "ADD")
           ),
+          optimisticResponse: buildOptimisticResponse({
+            input,
+            operationType: "ADD",
+            responseType: "Event",
+            mutationName: "createEvent"
+          })
         }),
         ...ownProps
       })

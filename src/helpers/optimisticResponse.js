@@ -1,3 +1,195 @@
+import gql from 'graphql-tag';
+import moment from 'moment';
+import stores from "stores";
+import client from 'config/client';
+
+const __typename = 'Mutation';
+const EVENT_TYPE = 'Event';
+const SCHEDULE_TYPE = 'Schedule';
+const BOOKMARK_TYPE = 'Bookmark';
+const COMMENT_TYPE = 'Comment';
+const FOLLOW_TYPE = 'Follow';
+
+export default function buildOptimisticResponse({
+  input,
+  mutationName,
+  responseType,
+  operationType
+}) {
+  const body = buildResponseBody(input, responseType, operationType);
+  if (!body) return null;
+  return {
+    __typename,
+    [mutationName] : {
+      __typename: responseType,
+      ...body
+    }
+  }
+}
+
+function buildResponseBody(input, typename, operationType) {
+  if (operationType === 'ADD') {
+    return buildCreateResponse(input, typename);
+  } else {
+    if (operationType === 'DELETE') {
+      return buildDeleteResponse(input, typename);
+    } else {
+      return buildUpdateResponse(input, typename);
+    }
+  }
+}
+
+function buildCreateResponse(input, typename) {
+  switch (typename) {
+    case EVENT_TYPE:
+      return createEvent(input, typename);
+      break;
+    case SCHEDULE_TYPE:
+      // return buildCreateSchedule(input, typename);
+      break;
+    case COMMENT_TYPE:
+      // return buildCreateComment(input, typename);
+      break;
+    case BOOKMARK_TYPE:
+      // return buildCreateBookmark(input, typename);
+      break;
+    case FOLLOW_TYPE:
+      // return buildCreateFollow(input, typename);
+      break;
+    default:
+      return null;
+      break;
+  }
+}
+
+function buildDeleteResponse(input, typename) {
+  switch (typename) {
+    case EVENT_TYPE:
+      return deleteEvent(input, typename);
+      break;
+    case SCHEDULE_TYPE:
+      // return buildDeleteSchedule(input, typename);
+      break;
+    case COMMENT_TYPE:
+      // return buildDeleteComment(input, typename);
+      break;
+    case BOOKMARK_TYPE:
+      // return buildDeleteBookmark(input, typename);
+      break;
+    case FOLLOW_TYPE:
+      // return buildDeleteFollow(input, typename);
+      break;
+    default:
+      return null;
+      break;
+  }
+}
+
+function buildUpdateResponse(input, typename) {
+  switch (typename) {
+    case EVENT_TYPE:
+      return updateEvent(input, typename);
+      break;
+    case SCHEDULE_TYPE:
+      // return updateSchedule(input, typename);
+      break;
+    default:
+      return null;
+      break;
+  }
+}
+
+function createEvent(input, typename) {
+  const author = client.readFragment({
+    fragment: gql`fragment createEventAuthor on User {
+      id
+      name
+    }`,
+    id: `User:${stores.appState.userId}`
+  });
+  const schedule = client.readFragment({
+    fragment: gql`fragment createEventSchedule on Schedule {
+      id
+      name
+      eventsCount
+    }`,
+    id: `Schedule:${input.eventScheduleId}`
+  });
+  if (typeof schedule.eventsCount === 'number') {
+    schedule.eventsCount += 1;
+  }
+  const createdAt = moment().toISOString();
+
+  const event = {
+    __typename: typename,
+    ...input,
+    isCancelled: null,
+    isOwner: true,
+    cancelledDates: null,
+    banner: null,
+    author,
+    schedule,
+    bookmarksCount: 0,
+    commentsCount: 0,
+    createdAt,
+    updatedAt: createdAt,
+  };
+  delete event.eventScheduleId;
+  return event;
+}
+
+function updateEvent(input, typename) {
+  const event = client.readFragment({
+    fragment: gql`fragment updateEventDetails on Event {
+      id
+      title
+      description
+      venue
+      category
+      startAt
+      endAt
+      allDay
+      recurrence
+      until
+      isPublic
+      isOwner
+      isCancelled
+      cancelledDates
+      banner {
+        key
+        bucket
+      }
+      commentsCount
+      bookmarksCount
+      updatedAt
+    }`,
+    id: `${typename}:${input.id}`
+  });
+  const updatedEvent = Object.assign({}, event, input);
+  delete updatedEvent.eventScheduleId;
+  return updatedEvent;
+}
+
+function deleteEvent(input, typename) {
+  const event = client.readFragment({
+    fragment: gql`fragment deleteEventDetails on Event {
+      id
+      schedule {
+        id
+        eventsCount
+      }
+    }`,
+    id: `${typename}:${input.id}`
+  });
+  
+  if ((typeof event.schedule.eventsCount === 'number') &&
+    event.schedule.eventsCount > 0
+  ) {
+    event.schedule.eventsCount -= 1;
+  }
+  return event;
+}
+
 // Create schedule
           // optimisticResponse: {
           //  __typename: 'Mutation',
@@ -58,45 +250,6 @@
           //     __typename: "Comment"
           //   }
           // }
-
-// Create Event
-          // optimisticResponse: {
-          //   __typename: 'Mutation',
-          //   createEvent:           {
-          //     id: "f3564d7f-dd1b-5000-8d63-2b207ce87580-fdedd8e6-efef-4f3e-bd83-c9d9da0a834d",
-          //     title: "Mongolia you",
-          //     description: null,
-          //     venue: null,
-          //     category: null,
-          //     startAt: 1566040800000,
-          //     endAt: 1566048000000,
-          //     allDay: null,
-          //     recurrence: "NEVER",
-          //     until: null,
-          //     isPublic: false,
-          //     isOwner: true,
-          //     isCancelled: null,
-          //     cancelledDates: null,
-          //     banner: null,
-          //     author: {
-          //       id: "usmansbk@gmail.com",
-          //       name: "Usman Suleiman Babakolo",
-          //       __typename: "User"
-          //     },
-          //     schedule: {
-          //       id: "f3564d7f-dd1b-5000-8d63-2b207ce87580-6209eb54-646b-4a38-803b-16b3da427216",
-          //       name: "Mix well I think",
-          //       eventsCount: 2,
-          //       __typename: "Schedule"
-          //     },
-          //     commentsCount: 0,
-          //     bookmarksCount: 0,
-          //     createdAt: "2019-08-17T11:04:03.208Z",
-          //     updatedAt: "2019-08-17T11:04:03.208Z",
-          //     __typename: "Event"
-          //   }
-          // }
-
 // Create bookmark
           // optimisticResponse: {
           //   __typename: 'Mutation',
@@ -149,20 +302,6 @@
           //       "__typename": "Event"
           //     },
           //     "__typename": "Bookmark"
-          //   }
-          // }
-
-// Delete event
-          // optimisticResponse: {
-          //   __typename: 'Mutation',
-          //   deleteEvent: {
-          //     "id": "f3564d7f-dd1b-5000-8d63-2b207ce87580-fdedd8e6-efef-4f3e-bd83-c9d9da0a834d",
-          //     "schedule": {
-          //       "id": "f3564d7f-dd1b-5000-8d63-2b207ce87580-6209eb54-646b-4a38-803b-16b3da427216",
-          //       "eventsCount": 1,
-          //       "__typename": "Schedule"
-          //     },
-          //     "__typename": "Event"
           //   }
           // }
 

@@ -20,7 +20,7 @@ import { Formik } from 'formik';
 import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
 import validationSchema from './schema';
-import { validateScheduleForm } from 'helpers/formValidator';
+import validateForm from 'helpers/formValidator';
 
 class Form extends React.Component {
   static defaultProps = {
@@ -66,7 +66,7 @@ class Form extends React.Component {
         initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={async (values, { setSubmitting }) => {
-          const input = validateScheduleForm (values, stores.appState.location);
+          const input = validateForm(values, stores.appState.location);
           onSubmit && await onSubmit(input);
           setSubmitting(false);
         }}

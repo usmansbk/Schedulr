@@ -22,6 +22,7 @@ function updateData({
   id
 }) {
   if (!updatedItem) return;
+  console.log(updatedItem);
   const query = gql(cacheUpdateQuery);
   const data = cache.readQuery({ query, variables: { id } });
   const { items } = data[rootField][idField];
