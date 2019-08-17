@@ -49,7 +49,7 @@ export default inject("stores")(observer(
       props: ({ data, ownProps }) => ({
         loading: data.loading || data.networkStatus === 4,
         error: data.error,
-        data: data && data.getEventComments,
+        comments: data && data.getEventComments && data.getEventComments.comments.items || [],
         ...ownProps
       })
     })

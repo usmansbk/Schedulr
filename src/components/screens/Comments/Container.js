@@ -41,13 +41,6 @@ export default class Container extends React.Component {
   };
   _navigateToProfile = (id) => this.props.navigation.navigate('UserProfile', { id });
 
-  get comments() {
-    const { data } = this.props;
-    if (!data) return [];
-    const { comments } = data;
-    return comments.items;
-  }
-
   render() {
     const {
       visibleDialog,
@@ -59,7 +52,8 @@ export default class Container extends React.Component {
       error,
       fetchMoreComments,
       nextToken,
-      user
+      user,
+      comments
     } = this.props;
 
     const uri = user.avatar ? getImageUrl(user.avatar) : user.pictureUrl;
@@ -70,7 +64,7 @@ export default class Container extends React.Component {
         loading={loading}
         title={this.props.navigation.getParam('title')}
         error={Boolean(error)}
-        comments={this.comments}
+        comments={comments}
         userName={user.name}
         userPictureUrl={uri}
         userId={user.id}
