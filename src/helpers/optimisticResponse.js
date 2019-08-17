@@ -48,7 +48,7 @@ function buildCreateResponse(input, typename) {
     case COMMENT_TYPE:
       return createComment(input, typename);
     case BOOKMARK_TYPE:
-      // return buildCreateBookmark(input, typename);
+      return createBookmark(input, typename);
     case FOLLOW_TYPE:
       // return buildCreateFollow(input, typename);
     default:
@@ -65,7 +65,7 @@ function buildDeleteResponse(input, typename) {
     case COMMENT_TYPE:
       return deleteComment(input, typename);
     case BOOKMARK_TYPE:
-      // return buildDeleteBookmark(input, typename);
+      return deleteBookmark(input, typename);
     case FOLLOW_TYPE:
       // return buildDeleteFollow(input, typename);
     default:
@@ -221,6 +221,50 @@ function createComment(input, typename) {
   return comment;
 }
 
+function createBookmark(input, typename) {
+  const event = client.readFragment({
+    fragment: gql`fragment bookmarkEvent on Event {
+      id
+      title
+      description
+      venue
+      category
+      startAt
+      endAt
+      allDay
+      recurrence
+      until
+      isPublic
+      isOwner
+      isCancelled
+      cancelledDates
+      banner {
+        bucket
+        key
+      }
+      author {
+        id
+        name
+      }
+      schedule {
+        id
+        name
+      }
+      commentsCount
+      bookmarksCount
+      createdAt
+      updatedAt
+    }`,
+    id: `Event:${input.bookmarkEventId}`
+  });
+  const bookmark = {
+    __typename: typename,
+    id: input.id,
+    event,
+  };
+  return bookmark;
+}
+
 // ********************** DELETE *******************************
 
 function deleteSchedule(input, typename) {
@@ -275,6 +319,24 @@ function deleteComment(input, typename) {
     comment.event.commentsCount = count - 1;
   }
   return comment;
+}
+
+function deleteBookmark(input, typename) {
+  const bookmark = client.readFragment({
+    fragment: gql`fragment deleteBookmark on Bookmark {
+      id
+      event {
+        id
+        bookmarksCount
+      }
+    }`,
+    id: `${typename}:${input.id}`
+  });
+  const count = bookmark.event.bookmarksCount;
+  if (typeof count === 'number' && count > 0) {
+    bookmark.event.bookmarksCount = count - 1;
+  }
+  return bookmark;
 }
 
 // ********************* UPDATES **********************
@@ -334,58 +396,3 @@ function updateEvent(input, typename) {
   delete updatedEvent.eventScheduleId;
   return updatedEvent;
 }
-
-// Create bookmark
-          // optimisticResponse: {
-          //   __typename: 'Mutation',
-          //   createBookmark: {
-          //     "id": "usmansbk@gmail.com-f3564d7f-dd1b-5000-8d63-2b207ce87580-fdedd8e6-efef-4f3e-bd83-c9d9da0a834d",
-          //     "event": {
-          //       "id": "f3564d7f-dd1b-5000-8d63-2b207ce87580-fdedd8e6-efef-4f3e-bd83-c9d9da0a834d",
-          //       "title": "Mongolia you",
-          //       "description": null,
-          //       "venue": null,
-          //       "category": null,
-          //       "startAt": 1566041520000,
-          //       "endAt": 1566048720000,
-          //       "allDay": false,
-          //       "recurrence": "NEVER",
-          //       "until": null,
-          //       "isPublic": false,
-          //       "isOwner": true,
-          //       "isCancelled": null,
-          //       "cancelledDates": null,
-          //       "banner": null,
-          //       "author": {
-          //         "id": "usmansbk@gmail.com",
-          //         "name": "Usman Suleiman Babakolo",
-          //         "__typename": "User"
-          //       },
-          //       "schedule": {
-          //         "id": "f3564d7f-dd1b-5000-8d63-2b207ce87580-6209eb54-646b-4a38-803b-16b3da427216",
-          //         "name": "Mix well I think",
-          //         "__typename": "Schedule"
-          //       },
-          //       "commentsCount": 2,
-          //       "bookmarksCount": 1,
-          //       "createdAt": "2019-08-17T11:04:03.208Z",
-          //       "updatedAt": "2019-08-17T11:29:25.344Z",
-          //       "__typename": "Event"
-          //     },
-          //     "__typename": "Bookmark"
-          //   }
-          // }
-
-// Delete bookmark
-          // optimisticResponse: {
-          //   __typename: 'Mutation',
-          //   deleteBookmark: {
-          //     "id": "usmansbk@gmail.com-f3564d7f-dd1b-5000-8d63-2b207ce87580-fdedd8e6-efef-4f3e-bd83-c9d9da0a834d",
-          //     "event": {
-          //       "id": "f3564d7f-dd1b-5000-8d63-2b207ce87580-fdedd8e6-efef-4f3e-bd83-c9d9da0a834d",
-          //       "bookmarksCount": 0,
-          //       "__typename": "Event"
-          //     },
-          //     "__typename": "Bookmark"
-          //   }
-          // }

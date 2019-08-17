@@ -4,6 +4,7 @@ import { inject, observer } from 'mobx-react';
 import { createBookmark, deleteBookmark } from 'api/mutations';
 import updateApolloCache from 'helpers/updateApolloCache';
 import Button from './Button';
+import buildOptimisticResponse from 'helpers/optimisticResponse';
 
 export default inject("stores")(observer(
   compose(
@@ -16,7 +17,13 @@ export default inject("stores")(observer(
           },
           update: (cache, { data: { createBookmark } }) => createBookmark && (
             updateApolloCache(cache, createBookmark, "ADD")
-          )
+          ),
+          optimisticResponse: buildOptimisticResponse({
+            input,
+            mutationName: 'createBookmark',
+            responseType: 'Bookmark',
+            operationType: 'ADD'
+          })
         }),
         ...ownProps
       }),
@@ -30,7 +37,13 @@ export default inject("stores")(observer(
           },
           update: (cache, { data: { deleteBookmark } }) => deleteBookmark && (
             updateApolloCache(cache, deleteBookmark, "DELETE")
-          )
+          ),
+          optimisticResponse: buildOptimisticResponse({
+            input,
+            mutationName: 'deleteBookmark',
+            responseType: 'Bookmark',
+            operationType: 'DELETE'
+          })
         }),
         ...ownProps
       }),
