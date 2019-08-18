@@ -3,8 +3,8 @@ import gql from 'graphql-tag';
 import { inject, observer } from 'mobx-react';
 import { createBookmark, deleteBookmark } from 'api/mutations';
 import updateApolloCache from 'helpers/updateApolloCache';
-import Button from './Button';
 import buildOptimisticResponse from 'helpers/optimisticResponse';
+import Button from './Button';
 
 export default inject("stores")(observer(
   compose(

@@ -52,6 +52,7 @@ export const getEvent = `query GetEvent($id: ID!) {
     isPublic
     isOwner
     isCancelled
+    isBookmarked
     cancelledDates
     banner {
       bucket
@@ -114,6 +115,7 @@ export const getSchedule = `query GetSchedule($id: ID!) {
     description
     isPublic
     isOwner
+    isFollowing
     status
     author {
       id
@@ -157,6 +159,7 @@ export const getScheduleEvents = `query GetScheduleWithEvents($id: ID!) {
         isPublic
         isOwner
         isCancelled
+        isBookmarked
         cancelledDates
         banner {
           bucket
@@ -200,6 +203,7 @@ export const getUserBookmarks = `query GetBookmarks($id: ID!) {
           isPublic
           isOwner
           isCancelled
+          isBookmarked
           cancelledDates
           banner {
             bucket
@@ -233,6 +237,7 @@ export const getUserSchedules = `query GetUserSchedules($id: ID!) {
         description
         isPublic
         isOwner
+        isFollowing
         status
         picture {
           key
@@ -263,6 +268,7 @@ export const getUserSchedules = `query GetUserSchedules($id: ID!) {
           description
           isPublic
           isOwner
+          isFollowing
           status
           picture {
             key
@@ -297,6 +303,7 @@ export const getUserData = `query GetUserData($id: ID!) {
         description
         isPublic
         isOwner
+        isFollowing
         status
         picture {
           key
@@ -326,6 +333,7 @@ export const getUserData = `query GetUserData($id: ID!) {
             isPublic
             isOwner
             isCancelled
+            isBookmarked
             cancelledDates
             banner {
               bucket
@@ -359,6 +367,7 @@ export const getUserData = `query GetUserData($id: ID!) {
           description
           isPublic
           isOwner
+          isFollowing
           status
           picture {
             key
@@ -393,6 +402,7 @@ export const getUserData = `query GetUserData($id: ID!) {
               isPublic
               isOwner
               isCancelled
+              isBookmarked
               cancelledDates
               banner {
                 bucket
@@ -436,6 +446,7 @@ export const getUserData = `query GetUserData($id: ID!) {
           isPublic
           isOwner
           isCancelled
+          isBookmarked
           cancelledDates
           banner {
             bucket

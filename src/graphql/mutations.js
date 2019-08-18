@@ -44,6 +44,7 @@ export const createEvent = `mutation CreateEvent($input: CreateEventInput!) {
     isPublic
     isOwner
     isCancelled
+    isBookmarked
     cancelledDates
     banner {
       bucket
@@ -115,6 +116,7 @@ export const createBookmark = `mutation CreateBookmark($input: CreateBookmarkInp
       isPublic
       isOwner
       isCancelled
+      isBookmarked
       cancelledDates
       banner {
         bucket
@@ -142,6 +144,7 @@ export const deleteBookmark = `mutation DeleteBookmark($input: DeleteBookmarkInp
     event {
       id
       bookmarksCount
+      isBookmarked
     }
   }
 }
@@ -153,6 +156,7 @@ export const createSchedule = `mutation CreateSchedule($input: CreateScheduleInp
     description
     isPublic
     isOwner
+    isFollowing
     status
     picture {
       key
@@ -182,6 +186,7 @@ export const createSchedule = `mutation CreateSchedule($input: CreateScheduleInp
         isPublic
         isOwner
         isCancelled
+        isBookmarked
         cancelledDates
         banner {
           bucket
@@ -239,6 +244,7 @@ export const createFollow = `mutation CreateFollow($input: CreateFollowInput!) {
       description
       isPublic
       isOwner
+      isFollowing
       status
       picture {
         key
@@ -272,6 +278,7 @@ export const createFollow = `mutation CreateFollow($input: CreateFollowInput!) {
           isPublic
           isOwner
           isCancelled
+          isBookmarked
           cancelledDates
           banner {
             bucket
@@ -309,6 +316,7 @@ export const deleteFollow = `mutation DeleteFollow($input: DeleteFollowInput!) {
     schedule {
       id
       followersCount
+      isFollowing
     }
   }
 }

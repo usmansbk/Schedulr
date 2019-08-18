@@ -115,6 +115,7 @@ function createEvent(input, typename) {
     ...input,
     isCancelled: null,
     isOwner: true,
+    isBookmarked: false,
     cancelledDates: null,
     banner: null,
     author,
@@ -154,6 +155,7 @@ function createSchedule(input, typename) {
     __typename: typename,
     ...input,
     isOwner: true,
+    isFollowing: false,
     status: null,
     picture: null,
     author,
@@ -237,6 +239,7 @@ function createBookmark(input, typename) {
       isPublic
       isOwner
       isCancelled
+      isBookmarked
       cancelledDates
       banner {
         bucket
@@ -257,6 +260,7 @@ function createBookmark(input, typename) {
     }`,
     id: `Event:${input.bookmarkEventId}`
   });
+  const event.isBookmarked = true;
   const bookmark = {
     __typename: typename,
     id: input.id,
@@ -328,10 +332,12 @@ function deleteBookmark(input, typename) {
       event {
         id
         bookmarksCount
+        isBookmarked
       }
     }`,
     id: `${typename}:${input.id}`
   });
+  bookmark.event.isBookmarked = null;
   const count = bookmark.event.bookmarksCount;
   if (typeof count === 'number' && count > 0) {
     bookmark.event.bookmarksCount = count - 1;
