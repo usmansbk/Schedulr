@@ -11,7 +11,7 @@ import NavigationService from 'config/navigation';
 import Events from './Hoc';
 
 /**
- * This is component abstract app functionality from 
+ * This component abstract's app functionality from 
  * graphql queries.
  */
 class Container extends React.Component {
