@@ -30,7 +30,6 @@ class Item extends React.Component {
   };
   shouldComponentUpdate = (nextProps) => {
     return (
-      nextProps.id !== this.props.id ||
       nextProps.content !== this.props.content ||
       nextProps.timeAgo !== this.props.timeAgo ||
       nextProps.toCommentContent !== this.props.toCommentContent ||
@@ -54,8 +53,6 @@ class Item extends React.Component {
     const styles = stores.appStyles.commentsList;
     const colors = stores.themeStore.colors;
 
-    const isPending = id[0] === '-';
-
     return (
       <View style={styles.itemContainer}>
         <View style={styles.itemLeft}>
@@ -74,7 +71,7 @@ class Item extends React.Component {
               style={styles.authorName}
               onPress={this._navigateToProfile}
             >{authorName}</Text>
-            <Caption>{isPending ? 'pending' : timeAgo}</Caption>
+            <Caption>{timeAgo}</Caption>
           </View>
           {
             Boolean(toCommentContent) && (
