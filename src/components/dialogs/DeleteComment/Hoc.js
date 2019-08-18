@@ -2,8 +2,9 @@ import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import { deleteComment } from 'api/mutations';
 import updateApolloCache from 'helpers/updateApolloCache';
-import Dialog from './Dialog';
 import buildOptimisticResponse from 'helpers/optimisticResponse';
+import { DELETE } from 'lib/constants';
+import Dialog from './Dialog';
 
 export default graphql(gql(deleteComment), {
   props: ({ mutate, ownProps }) => ({
@@ -20,7 +21,7 @@ export default graphql(gql(deleteComment), {
         input: { id: ownProps.id },
         mutationName: 'deleteComment',
         responseType: 'Comment',
-        operationType: 'DELETE'
+        operationType: DELETE
       })
     }),
     ...ownProps

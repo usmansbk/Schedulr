@@ -14,6 +14,11 @@ export const FOLLOWERS_LIMIT = 15;
 export const SEARCH_PAGE_SIZE = 10;
 export const SEARCH_DISTANCE = '150km';
 
+// Operations
+export const ADD = 'ADD';
+export const UPDATE = 'UPDATE';
+export const DELETE = 'DELETE';
+
 // list/events
 export const events = {
   AVATAR_SIZE : 54,

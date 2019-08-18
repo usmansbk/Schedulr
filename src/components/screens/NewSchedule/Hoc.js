@@ -5,6 +5,7 @@ import { createSchedule } from 'api/mutations';
 import updateApolloCache from 'helpers/updateApolloCache';
 import Screen from './Screen';
 import buildOptimisticResponse from 'helpers/optimisticResponse';
+import { ADD } from 'lib/constants';
 
 const alias =  'withNewScheduleContainer';
 
@@ -17,12 +18,12 @@ export default inject("stores")(observer(
           input
         },
         update: (cache, { data: { createSchedule } }) => (
-          updateApolloCache(cache, createSchedule, 'ADD')
+          updateApolloCache(cache, createSchedule, ADD)
         ),
         optimisticResponse: buildOptimisticResponse({
           input,
           mutationName: 'createSchedule',
-          operationType: 'ADD',
+          operationType: ADD,
           responseType: 'Schedule'
         })
       }),

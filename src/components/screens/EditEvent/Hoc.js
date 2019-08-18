@@ -5,6 +5,7 @@ import Screen from './Screen';
 import { getEvent } from 'api/queries';
 import { updateEvent } from 'api/mutations';
 import buildOptimisticResponse from 'helpers/optimisticResponse';
+import { UPDATE } from 'lib/constants';
 
 const alias = 'withEditEventContainer';
 
@@ -36,7 +37,7 @@ export default inject('stores')(observer(
           optimisticResponse: buildOptimisticResponse({
             input,
             mutationName: 'updateEvent',
-            operationType: 'UPDATE',
+            operationType: UPDATE,
             responseType: 'Event',
           })
         }),

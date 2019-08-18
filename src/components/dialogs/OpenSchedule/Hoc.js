@@ -3,6 +3,7 @@ import gql from 'graphql-tag';
 import Dialog from './Dialog';
 import { updateSchedule } from 'api/mutations';
 import buildOptimisticResponse from 'helpers/optimisticResponse';
+import { UPDATE } from 'lib/constants';
 
 export default graphql(gql(updateSchedule), {
   alias: 'withOpenScheduleDialog',
@@ -14,7 +15,7 @@ export default graphql(gql(updateSchedule), {
       optimisticResponse: buildOptimisticResponse({
         input,
         mutationName: 'updateSchedule',
-        operationType: 'UPDATE',
+        operationType: UPDATE,
         responseType: 'Schedule'
       })
     }),

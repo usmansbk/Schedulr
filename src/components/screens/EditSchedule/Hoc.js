@@ -4,6 +4,7 @@ import Screen from './Screen';
 import { updateSchedule } from 'api/mutations';
 import { getSchedule } from 'api/queries';
 import buildOptimisticResponse from 'helpers/optimisticResponse';
+import { UPDATE } from 'lib/constants';
 
 const alias = 'withEditScheduleContainer';
 
@@ -35,7 +36,7 @@ export default compose(
           input,
           mutationName: 'updateSchedule',
           responseType: 'Schedule',
-          operationType: 'UPDATE'
+          operationType: UPDATE
         })
       }),
       ...ownProps,

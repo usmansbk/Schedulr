@@ -4,6 +4,7 @@ import { inject, observer } from 'mobx-react';
 import { createFollow, deleteFollow } from 'api/mutations';
 import updateApolloCache from 'helpers/updateApolloCache';
 import Button from './Button';
+import { ADD, DELETE } from 'lib/constants';
 
 export default inject("stores")(observer(
   compose(
@@ -16,7 +17,7 @@ export default inject("stores")(observer(
             input
           },
           update: (cache, { data: { createFollow } }) => createFollow && (
-            updateApolloCache(cache, createFollow, "ADD")
+            updateApolloCache(cache, createFollow, ADD)
           )
         })
       })
@@ -30,7 +31,7 @@ export default inject("stores")(observer(
             input
           },
           update: (cache, { data: { deleteFollow } }) => deleteFollow && (
-            updateApolloCache(cache, deleteFollow, "DELETE")
+            updateApolloCache(cache, deleteFollow, DELETE)
           )
         })
       })
