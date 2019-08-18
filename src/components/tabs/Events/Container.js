@@ -11,8 +11,8 @@ import NavigationService from 'config/navigation';
 import Events from './Hoc';
 
 /**
- * This component handles the Base and Delta query,
- * local reminder notifications and the rest...
+ * This is component abstract app functionality from 
+ * graphql queries.
  */
 class Container extends React.Component {
   constructor(props) {
