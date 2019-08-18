@@ -2,7 +2,7 @@ import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import Dialog from './Dialog';
 import { updateSchedule } from 'api/mutations';
-// import { openScheduleResponse } from 'helpers/optimisticResponse';
+import buildOptimisticResponse from 'helpers/optimisticResponse';
 
 export default graphql(gql(updateSchedule), {
   alias: 'withOpenScheduleDialog',
@@ -11,7 +11,12 @@ export default graphql(gql(updateSchedule), {
       variables: {
         input
       },
-      // optimisticResponse: () => openScheduleResponse(input)
+      optimisticResponse: buildOptimisticResponse({
+        input,
+        mutationName: 'updateSchedule',
+        operationType: 'UPDATE',
+        responseType: 'Schedule'
+      })
     }),
     ...ownProps
   })
