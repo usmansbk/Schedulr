@@ -275,7 +275,6 @@ function createBookmark(input, typename) {
     id: input.id,
     event,
   };
-  console.log(bookmark);
   return bookmark;
 }
 
@@ -357,8 +356,6 @@ function deleteBookmark(input, typename) {
     id: input.id,
     event
   };
-  console.log(bookmark);
-
   return bookmark;
 }
 
