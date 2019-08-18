@@ -6,11 +6,8 @@ import { observable, action } from 'mobx';
 import { persist } from 'mobx-persist';
 import { I18n } from 'aws-amplify';
 import debounce from 'lodash.debounce';
-import memoize from 'memoize-one';
 import { requestLocationPermission } from 'helpers/permissions';
 import categories from 'i18n/categories';
-import client from 'config/client';
-import { getBookmarks, getFollowing } from 'api/fragments';
 
 export default class AppState {
   constructor(settingsStore) {
@@ -182,31 +179,5 @@ export default class AppState {
   @action onChangeText (searchText) {
     this.searchText = searchText;
     this.debounceQuery(searchText);
-  }
-
-  getBookmarkIds = memoize((data) => data.bookmarks.items.filter(item => Boolean(item.event)).map(
-      item => item.event.id
-    ));
-
-  getFollowingIds = memoize((data) => data.following.items.filter(item => Boolean(item.schedule)).map(
-    item => item.schedule.id
-  ));
-
-  isBookmarked(id) {
-    const data = client.readFragment({
-      fragment: getBookmarks,
-      id: `User:${this.userId}`
-    });
-    const ids = this.getBookmarkIds(data);
-    return ids.includes(id);
-  }
-
-  isFollowing(id) {
-    const data = client.readFragment({
-      fragment: getFollowing,
-      id: `User:${this.userId}`
-    });
-    const ids = this.getFollowingIds(data);
-    return ids.includes(id);
   }
 }

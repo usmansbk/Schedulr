@@ -261,6 +261,12 @@ function createBookmark(input, typename) {
     id: `Event:${input.bookmarkEventId}`
   });
   event.isBookmarked = true;
+  const count = event.bookmarksCount;
+  if (typeof count === 'number') {
+    event.bookmarksCount = count + 1;
+  } else {
+    event.bookmarksCount = 1;
+  }
   const bookmark = {
     __typename: typename,
     id: input.id,

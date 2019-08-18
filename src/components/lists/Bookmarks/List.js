@@ -52,6 +52,7 @@ class List extends Component {
     schedule,
     allDay,
     isConcluded,
+    isBookmarked,
     bookmarksCount,
     commentsCount
   }}) => (<Item
@@ -65,7 +66,7 @@ class List extends Component {
     startAt={startAt}
     endAt={endAt}
     pictureUrl={banner && getImageUrl(banner)}
-    isBookmarked={this.props.stores.appState.isBookmarked(id)}
+    isBookmarked={isBookmarked}
     bookmarksCount={bookmarksCount}
     commentsCount={commentsCount}
     category={getCategory(category)}
