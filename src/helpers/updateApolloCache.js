@@ -5,6 +5,7 @@ import {
   getEventComments
 } from 'api/queries';
 import stores from 'stores';
+import { ADD } from 'lib/constants';
 
 const EVENT_TYPE = 'Event';
 const SCHEDULE_TYPE = 'Schedule';
@@ -26,7 +27,7 @@ function updateData({
   const { items } = data[rootField][idField];
   const removeDuplicate = items.filter(item => item.id !== updatedItem.id);
   let newItems;
-  if (operationType === 'ADD') {
+  if (operationType === ADD) {
     newItems = [...removeDuplicate, updatedItem];
   } else {
     newItems = removeDuplicate;

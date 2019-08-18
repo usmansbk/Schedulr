@@ -3,6 +3,7 @@ import moment from 'moment';
 import uuid from 'uuid/v4';
 import stores from "stores";
 import client from 'config/client';
+import { ADD, DELETE } from 'lib/constants';
 
 const __typename = 'Mutation';
 const EVENT_TYPE = 'Event';
@@ -28,10 +29,10 @@ export default function buildOptimisticResponse({
 }
 
 function buildResponseBody(input, typename, operationType) {
-  if (operationType === 'ADD') {
+  if (operationType === ADD) {
     return buildCreateResponse(input, typename);
   } else {
-    if (operationType === 'DELETE') {
+    if (operationType === DELETE) {
       return buildDeleteResponse(input, typename);
     } else {
       return buildUpdateResponse(input, typename);
