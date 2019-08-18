@@ -2,21 +2,6 @@ import React from 'react';
 import IconBadge from '../IconBadge';
 
 export default class Button extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isBookmarked: props.isBookmarked
-    };
-  }
-
-  static getDerivedStateFromProps(props, state) {
-    if (props.isBookmarked !== state.isBookmarked) {
-      return {
-        isBookmarked: props.isBookmarked
-      }
-    }
-    return null;
-  }
 
   shouldComponentUpdate = (nextProps) => {
     return nextProps.isBookmarked !== this.props.isBookmarked
@@ -49,10 +34,10 @@ export default class Button extends React.Component {
     const {
       color,
       size,
+      isBookmarked,
       activeColor,
       bookmarksCount
     } = this.props;
-    const { isBookmarked } = this.state;
 
     const count = (isBookmarked && (bookmarksCount > 1)) ? bookmarksCount : 0;
 

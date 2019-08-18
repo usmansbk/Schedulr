@@ -13,7 +13,7 @@ export default class Actions extends React.Component {
     (this.props.date !== nextProps.date) ||
     (this.props.title !== nextProps.title) ||
     (this.props.commentsCount !== nextProps.commentsCount) ||
-    (this.props.bookmarksCount !== nextProps.bookmarksCount) ||
+    (this.props.isBookmarked !== nextProps.isBookmarked) ||
     (this.props.address !== nextProps.address) ||
     (this.props.color !== nextProps.color) ||
     (this.props.activeColor !== nextProps.activeColor)
