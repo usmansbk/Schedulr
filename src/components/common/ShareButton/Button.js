@@ -25,7 +25,7 @@ export default ({
       const shareOptions = {
         title: I18n.get("SHARE_EVENT_inviteTitle"),
         subject: category,
-        message: `${title}\n${category}\n${date}${address ? ('\n' + address) : ''}\n`,
+        message: `${title}\n${category ? category + '\n' : ''}${date}${address ? ('\n' + address) : ''}\n\n`,
         url: `${env.APP_URL}/event/${id}`
       };
       Share.open(shareOptions).catch(error => {

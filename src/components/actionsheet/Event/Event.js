@@ -3,6 +3,7 @@ import { InteractionManager } from 'react-native';
 import ActionSheet from 'react-native-actionsheet';
 import SimpleToast from 'react-native-simple-toast';
 import Share from 'react-native-share';
+import { I18n } from 'aws-amplify';
 import { inject, observer } from 'mobx-react';
 import env from 'config/env';
 
@@ -21,9 +22,9 @@ class EventAction extends React.Component {
     } = this.props;
 
     const shareOptions = {
-      title: 'Share invite link via...',
+      title: I18n.get("SHARE_EVENT_inviteTitle"),
       subject: category,
-      message: `${title}\n${category}\n${date}${address ? (' at ' + address) : ''}\n`,
+      message: `${title}\n${category ? category + '\n' : ''}${date}${address ? ('\n' + address) : ''}\n\n`,
       url: `${env.APP_URL}/event/${id}`
     };
     Share.open(shareOptions).catch(error => {

@@ -15,3 +15,11 @@ export default function validateForm(data) {
   });
   return temp;
 }
+
+export function validateLocation({ lat, lon }) {
+  if (!(lat && lon)) return null;
+  return {
+    lon,
+    lat
+  };
+}

@@ -127,6 +127,7 @@ function createEvent(input, typename) {
     updatedAt: createdAt,
   };
   delete event.eventScheduleId;
+  delete event.location;
   return event;
 }
 
@@ -166,6 +167,7 @@ function createSchedule(input, typename) {
     updatedAt: createdAt,
     events,
   };
+  delete schedule.location;
   return schedule;
 }
 
