@@ -1,3 +1,3 @@
-import Events from './Hoc';
+import Events from './Container';
 
 export default Events;
