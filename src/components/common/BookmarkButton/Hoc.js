@@ -32,7 +32,7 @@ export default inject("stores")(observer(
     graphql(gql(deleteBookmark), {
       alias: 'withRemoveBookmarkEvent',
       props: ({ mutate, ownProps }) => ({
-        removeBookmark: (input) => mutate({
+        removeBookmark: (input, id) => mutate({
           variables: {
             input
           },
@@ -40,7 +40,10 @@ export default inject("stores")(observer(
             updateApolloCache(cache, deleteBookmark, DELETE)
           ),
           optimisticResponse: buildOptimisticResponse({
-            input,
+            input: {
+              ...input,
+              bookmarkEventId: id
+            },
             mutationName: 'deleteBookmark',
             responseType: 'Bookmark',
             operationType: DELETE

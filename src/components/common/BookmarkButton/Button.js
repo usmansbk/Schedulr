@@ -20,7 +20,7 @@ export default class Button extends React.Component {
     };
     try {
       if (isBookmarked) {
-        await removeBookmark(input);
+        await removeBookmark(input, id);
       } else {
         input.bookmarkEventId = id,
         await bookmarkEvent(input);

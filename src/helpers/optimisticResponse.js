@@ -335,23 +335,27 @@ function deleteComment(input, typename) {
 }
 
 function deleteBookmark(input, typename) {
-  const bookmark = client.readFragment({
-    fragment: gql`fragment deleteBookmark on Bookmark {
+  const event = client.readFragment({
+    fragment: gql`fragment deleteBookmarkEvent on Event {
       id
-      event {
-        id
-        bookmarksCount
-        isBookmarked
-      }
+      isBookmarked
+      bookmarksCount
     }`,
-    id: `${typename}:${input.id}`
+    id: `Event:${input.bookmarkEventId}`
   });
-  bookmark.event.isBookmarked = null;
-  const count = bookmark.event.bookmarksCount;
-  if (typeof count === 'number' && count > 0) {
-    bookmark.event.bookmarksCount = count - 1;
+
+  if (event) {
+    event.isBookmarked = null;
+    const count = event.bookmarksCount;
+    if (typeof count === 'number' && count > 0) {
+      event.bookmarksCount = count - 1;
+    }
   }
-  return bookmark;
+  return {
+    __typename: typename,
+    id: input.id,
+    event
+  };
 }
 
 // ********************* UPDATES **********************
