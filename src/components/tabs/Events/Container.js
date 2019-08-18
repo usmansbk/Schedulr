@@ -8,8 +8,6 @@ import moment from 'moment';
 import { withApollo } from 'react-apollo';
 import { inject, observer } from 'mobx-react';
 import NavigationService from 'config/navigation';
-import gql from 'graphql-tag';
-import { getUserData } from 'api/queries';
 import Events from './Hoc';
 
 /**
@@ -88,34 +86,8 @@ class Container extends React.Component {
     });
   };
 
-  _handleSync = () => {
-    const { client, stores } = this.props;
-    client.hydrated().then(() => {
-      try {
-        console.log('handle sync', stores.appState.userId);
-        client.sync({
-          baseQuery: {
-            query: gql(getUserData),
-            variables: {
-              id: stores.appState.userId
-            }
-          },
-          deltaQuery: {
-            query: gql(getUserData),
-            variables: {
-              id: stores.appState.userId
-            }
-          }
-        });
-      } catch (error) {
-        console.error(error);
-      }
-    })
-  }
-
   componentDidMount = async () => {
     this._initNetInfo();
-    // this._handleSync();
     await this._handleNavBarColor();
   };
 

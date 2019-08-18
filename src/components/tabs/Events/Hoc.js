@@ -12,7 +12,7 @@ export default (
     graphql(gql(getUserData), {
       alias,
       options: props => ({
-        fetchPolicy: 'cache-only',
+        fetchPolicy: 'cache-first',
         variables: {
           id: props.id
         }

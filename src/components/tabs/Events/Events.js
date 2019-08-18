@@ -5,6 +5,10 @@ import FAB from 'components/common/Fab';
 import schdlAll from 'helpers/setReminders';
 
 export default class Events extends React.Component {
+  static defaultProps = {
+    mutedEvents: [],
+    allowedEvents: []
+  }
 
   shouldComponentUpdate = (nextProps) => {
     return nextProps.navigation.isFocused();
