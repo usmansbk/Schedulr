@@ -291,9 +291,11 @@ function deleteSchedule(input, typename) {
     }`,
     id: `${typename}:${input.id}`
   });
-  const count = schedule.author.createdCount;
-  if (typeof count === 'number' && count > 0) {
-    schedule.author.createdCount = count - 1;
+  if (schedule) {
+    const count = schedule.author.createdCount;
+    if (typeof count === 'number' && count > 0) {
+      schedule.author.createdCount = count - 1;
+    }
   }
   return schedule;
 }
@@ -309,9 +311,11 @@ function deleteEvent(input, typename) {
     }`,
     id: `${typename}:${input.id}`
   });
-  const count = event.schedule.eventsCount;
-  if ((typeof count === 'number') && count > 0) {
-    event.schedule.eventsCount = count - 1;
+  if (event){
+    const count = event.schedule.eventsCount;
+    if ((typeof count === 'number') && count > 0) {
+      event.schedule.eventsCount = count - 1;
+    }
   }
   return event;
 }
@@ -327,9 +331,11 @@ function deleteComment(input, typename) {
     }`,
     id: `${typename}:${input.id}`
   });
-  const count = comment.event.commentsCount;
-  if (typeof count === 'number' && count > 0) {
-    comment.event.commentsCount = count - 1;
+  if (comment) {
+    const count = comment.event.commentsCount;
+    if (typeof count === 'number' && count > 0) {
+      comment.event.commentsCount = count - 1;
+    }
   }
   return comment;
 }
