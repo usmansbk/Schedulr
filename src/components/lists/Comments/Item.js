@@ -39,7 +39,6 @@ class Item extends React.Component {
 
   render() {
     const {
-      id,
       authorName,
       content,
       timeAgo,
