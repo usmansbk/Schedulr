@@ -77,6 +77,7 @@ class Info extends React.Component {
       createdAt,
       isPublic,
       isOwner,
+      isFollowing,
       author,
     } = schedule;
 
@@ -84,7 +85,6 @@ class Info extends React.Component {
     const ownerName = author && author.name;
     const isClosed = status === SCHEDULE_CLOSED;
     const pictureUrl = author.avatar ? getImageUrl(author.avatar) : author.pictureUrl;
-    const isFollowing = stores.appState.isFollowing(id);
 
     const appStyles = stores.appStyles.styles;
     const styles = stores.appStyles.scheduleInfo;

@@ -4,10 +4,6 @@ import ActionSheet from 'react-native-actionsheet';
 import SimpleToast from 'react-native-simple-toast';
 import Share from 'react-native-share';
 import { inject, observer } from 'mobx-react';
-import gql from 'graphql-tag';
-import client from 'config/client';
-import { bookmarkEvent, unbookmarkEvent } from 'api/mutations';
-import { toggleBookmarkButton } from 'helpers/optimisticResponse';
 import env from 'config/env';
 
 class EventAction extends React.Component {
@@ -35,19 +31,28 @@ class EventAction extends React.Component {
     });
   };
 
-  _handleBookmark = () => {
-    const { isBookmarked, bookmarksCount, id } = this.props;
-    const input = { id };
-    const prev = { isBookmarked, bookmarksCount };
-    client.mutate({
-      mutation: gql(isBookmarked ? unbookmarkEvent : bookmarkEvent),
-      variables: {
-        input
-      },
-      optimisticResponse: () => toggleBookmarkButton(input, prev, isBookmarked ? 'unbookmarkEvent' : 'bookmarkEvent'),
-    }).catch(() => {
-    });
-    SimpleToast.show(`${isBookmarked ? "Removed" : "Bookmarked"}`, SimpleToast.SHORT);
+  _handleBookmark = async () => {
+    const {
+      id,
+      stores,
+      isBookmarked,
+      removeBookmark,
+      bookmarkEvent,
+    } = this.props;
+    const input = {
+      id: `${stores.appState.userId}-${id}`,
+    };
+    SimpleToast.show(`${isBookmarked ? "Removed" : "Saved"}`, SimpleToast.SHORT);
+    try {
+      if (isBookmarked) {
+        await removeBookmark(input);
+      } else {
+        input.bookmarkEventId = id,
+        await bookmarkEvent(input);
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   _hideDialog = () => this.setState({ visibleDialog: null });

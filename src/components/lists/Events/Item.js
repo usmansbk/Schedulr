@@ -17,7 +17,8 @@ import { captionDetails } from 'lib/parseItem';
 class Item extends React.Component {
   _onPress = () => this.props.onPressItem(this.props.id, this.props.startAt, this.props.endAt);
   _onLongPress = () => {
-    this.ActionSheet && this.ActionSheet.showActionSheet();
+    this.ActionSheet &&
+      this.ActionSheet.getWrappedInstance().wrappedInstance.showActionSheet();
   };
   _onMute = () => {
     this.props.stores.appState.toggleMute(this.props.id, this.props.isMuted);
@@ -32,7 +33,8 @@ class Item extends React.Component {
       nextProps.recurrence !== this.props.recurrence ||
       nextProps.category !== this.props.category ||
       nextProps.isMuted !== this.props.isMuted ||
-      nextProps.pictureUrl !== this.props.pictureUrl
+      nextProps.pictureUrl !== this.props.pictureUrl ||
+      nextProps.isBookmarked !== this.props.isBookmarked
     );
   };
 
