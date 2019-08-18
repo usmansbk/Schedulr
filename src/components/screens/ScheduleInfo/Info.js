@@ -187,7 +187,11 @@ class Info extends React.Component {
             </View>
             <View style={styles.body}>
               <View style={styles.noteView}>
-                <Icon color={colors.black} name="eye" size={18} />
+                <Icon
+                  color={colors.black}
+                  name={`eye${isPublic ? '' : '-off'}`}
+                  size={18}
+                />
                 <Text
                   style={styles.note}
                   onPress={this._aboutPrivacy}
@@ -196,7 +200,7 @@ class Info extends React.Component {
               {
                 isClosed && (
                   <View style={styles.noteView}>
-                    <Icon color={colors.black} name="lock" size={18} />
+                    <Icon color={colors.black} name="slash" size={18} />
                     <Text style={styles.note}>{I18n.get("SCHEDULE_thisScheduleIsClosed")}</Text>
                   </View>
                 )

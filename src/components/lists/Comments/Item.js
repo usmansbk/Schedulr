@@ -30,6 +30,7 @@ class Item extends React.Component {
   };
   shouldComponentUpdate = (nextProps) => {
     return (
+      nextProps.id !== this.props.id ||
       nextProps.content !== this.props.content ||
       nextProps.timeAgo !== this.props.timeAgo ||
       nextProps.toCommentContent !== this.props.toCommentContent ||
