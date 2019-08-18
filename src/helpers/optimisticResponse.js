@@ -260,7 +260,7 @@ function createBookmark(input, typename) {
     }`,
     id: `Event:${input.bookmarkEventId}`
   });
-  const event.isBookmarked = true;
+  event.isBookmarked = true;
   const bookmark = {
     __typename: typename,
     id: input.id,
