@@ -228,7 +228,7 @@ function createComment(input, typename) {
 
 function createBookmark(input, typename) {
   const event = client.readFragment({
-    fragment: gql`fragment bookmarkEvent on Event {
+    fragment: gql`fragment bookmarkEventDetails on Event {
       id
       title
       description
@@ -263,18 +263,19 @@ function createBookmark(input, typename) {
     }`,
     id: `Event:${input.bookmarkEventId}`
   });
-  event.isBookmarked = true;
   const count = event.bookmarksCount;
-  if (typeof count === 'number') {
+  if (!event.isBookmarked && (typeof count === 'number')) {
     event.bookmarksCount = count + 1;
   } else {
     event.bookmarksCount = 1;
   }
+  event.isBookmarked = true;
   const bookmark = {
     __typename: typename,
     id: input.id,
     event,
   };
+  console.log(bookmark);
   return bookmark;
 }
 
@@ -345,17 +346,20 @@ function deleteBookmark(input, typename) {
   });
 
   if (event) {
-    event.isBookmarked = null;
     const count = event.bookmarksCount;
-    if (typeof count === 'number' && count > 0) {
+    if (event.isBookmarked && (typeof count === 'number' && count > 0)) {
       event.bookmarksCount = count - 1;
     }
+    event.isBookmarked = null;
   }
-  return {
+  const bookmark = {
     __typename: typename,
     id: input.id,
     event
   };
+  console.log(bookmark);
+
+  return bookmark;
 }
 
 // ********************* UPDATES **********************
