@@ -206,6 +206,8 @@ export default {
   ERROR_noInternetConnection: "Check your internet connection. Pull to refresh",
   ERROR_somethingWentWrong: "Something went wrong. Please try again",
   ERROR_networkError: "Network error",
+  ERROR_serverError: "Oop! My fault",
+  ERROR_noConnection: "No connection",
 
   PLACEHOLDER_aboutThisEvent: "About this event...",
   PLACEHOLDER_normal: "Normal",

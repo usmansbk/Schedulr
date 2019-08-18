@@ -1,5 +1,5 @@
 import AWSAppSyncClient, { createAppSyncLink } from 'aws-appsync';
-import { Auth, Analytics } from 'aws-amplify';
+import { Auth, Analytics, I18n } from 'aws-amplify';
 import { ApolloLink } from 'apollo-link';
 import { onError } from 'apollo-link-error';
 import SimpleToast from 'react-native-simple-toast';
@@ -10,7 +10,7 @@ Analytics.disable();
 const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors) {
     graphQLErrors.map(error => {
-      SimpleToast.show('Server error', SimpleToast.LONG);
+      SimpleToast.show(I18n.get('ERROR_serverError'), SimpleToast.LONG);
       console.error(error.message);
       Analytics.record({
         name: 'GraphQLError',
@@ -22,7 +22,7 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
         }
       });
     });  
-  } else if (networkError) SimpleToast.show("No connection", SimpleToast.SHORT);
+  } else if (networkError) SimpleToast.show(I18n.get("ERROR_noConnection"), SimpleToast.SHORT);
 });
 
 const appSyncLink = createAppSyncLink({
@@ -53,6 +53,14 @@ const client = new AWSAppSyncClient({
       },
     }
   },
+  offlineConfig: {
+    callback: (error) => {
+      if (error) {
+        SimpleToast.show(error.message, SimpleToast.SHORT);
+        console.error(error);
+      }
+    }
+  }
 }, { link });
 
 export default client;
