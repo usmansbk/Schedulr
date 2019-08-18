@@ -51,11 +51,12 @@ const TabBarComponent = inject('stores')(observer(
 const SearchBar = inject('stores')(observer(
   ({ navigation, stores }) => (
     <Searchbar
-      icon={() => <Icon
+      icon={({ size, color }) => <Icon
         name="arrow-left"
-        size={24}
-        color={stores.themeStore.colors.gray}
+        size={size}
+        color={color}
       />}
+      clearIcon={({size, color }) => <Icon name="x" size={size} color={color}  />}
       onIconPress={() => navigation.goBack()}
       autoFocus
       placeholder={I18n.get("SEARCH_inputPlaceholder")}

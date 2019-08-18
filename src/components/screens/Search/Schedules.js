@@ -1,13 +1,17 @@
 import React from 'react';
 import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
-import uniqWith from 'lodash.uniqwith';
 import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
 import sortSchedules from 'lib/utils';
 import List from 'components/lists/ScheduleSearch';
-// import { listAllSchedules, searchSchedule } from 'api/queries';
-import { SEARCH_PAGE_SIZE, SEARCH_DISTANCE } from 'lib/constants';
+import { getUserSchedules } from 'api/queries';
+
+function mergeSchedules(data, query) {
+  const { created, following } = data;
+  const s = created.items.concat(following.items);
+  return sortSchedules(s.filter(item => item.name.toLowerCase().includes(query.toLowerCase())));
+}
 
 class Schedules extends React.Component {
 
@@ -22,11 +26,12 @@ class Schedules extends React.Component {
   render() {
     const { stores } = this.props;
 
-    const { query, isConnected, location } = stores.appState;
+    const { query, isConnected, location, userId } = stores.appState;
 
     return (
       <ListHoc
         query={query}
+        id={userId}
         isConnected={isConnected}
         location={location.lat ? location : null}
       />
@@ -34,70 +39,21 @@ class Schedules extends React.Component {
   }
 }
 
-// const ListHoc = compose(
-//   graphql(gql(listAllSchedules), {
-//     alias: 'withSearchSchedulesOffline',
-//     skip: props => props.isConnected,
-//     options: {
-//       fetchPolicy: 'cache-and-network'
-//     },
-//     props: ({ data, ownProps }) => ({
-//       schedules: data && data.listAllSchedules && sortSchedules(data.listAllSchedules.items.filter(
-//         item => item.name.toLowerCase().includes(ownProps.query.toLowerCase())
-//       )),
-//       ...ownProps
-//     })
-//   }),
-//   graphql(gql(searchSchedule), {
-//     alias: 'withSearchSchedulesOnline',
-//     skip: props => !props.isConnected || !props.query,
-//     options: props => ({
-//       fetchPolicy: 'network-only',
-//       notifyOnNetworkStatusChange: true,
-//       variables: {
-//         filter: {
-//           query: props.query,
-//           location: props.location,
-//           distance: SEARCH_DISTANCE
-//         },
-//         size: SEARCH_PAGE_SIZE
-//       }
-//     }),
-//     props: ({ data, ownProps }) => ({
-//       loading: data.loading || data.networkStatus === 4,
-//       schedules: data && data.searchSchedule && data.searchSchedule.items,
-//       from: data && data.searchSchedule && data.searchSchedule.nextToken,
-//       onRefresh: () => data.refetch(),
-//       fetchMore: (from, size=SEARCH_PAGE_SIZE) => data.fetchMore({
-//         variables: {
-//           filter: {
-//             query: ownProps.query,
-//             location: ownProps.location,
-//             distance: '150km'
-//           },
-//           from,
-//           size
-//         },
-//         updateQuery: (previousResult, { fetchMoreResult }) => {
-//           if (fetchMoreResult) {
-//             const moreSchedules = fetchMoreResult.searchSchedule && fetchMoreResult.searchSchedule.items;
-//             return Object.assign({}, previousResult, {
-//               searchSchedule: Object.assign({}, previousResult.searchSchedule,  {
-//                 nextToken: fetchMoreResult.searchSchedule.nextToken,
-//                 items: uniqWith([
-//                   ...previousResult.searchSchedule.items,
-//                   ...moreSchedules
-//                 ], (a, b) => a.id === b.id)
-//               })
-//             });
-//           }
-//           return previousResult;
-//         }
-//       }),
-//       ...ownProps
-//     })
-//   })
-// )(List);
-const ListHoc = List;
+const ListHoc = compose(
+  graphql(gql(getUserSchedules), {
+    alias: 'withSearchSchedulesOffline',
+    skip: props => props.isConnected,
+    options: props => ({
+      fetchPolicy: 'cache-only',
+      variables: {
+        id: props.id
+      }
+    }),
+    props: ({ data, ownProps }) => ({
+      schedules: data && data.getUserSchedules && mergeSchedules(data.getUserSchedules, ownProps.query),
+      ...ownProps
+    })
+  }),
+)(List);
 
 export default inject("stores")(observer(Schedules));

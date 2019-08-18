@@ -11,6 +11,7 @@ import Tag from 'components/common/Tag';
 import Avatar from 'components/common/UserAvatar';
 import Actions from 'components/common/Actions';
 import { bookmarkedEvents } from 'lib/constants';
+import { captionDetails } from 'lib/parseItem';
 
 const { AVATAR_SIZE } = bookmarkedEvents;
 
@@ -27,7 +28,7 @@ class Item extends React.Component {
       this.props.time !== nextProps.time ||
       this.props.status !== nextProps.status ||
       this.props.category !== nextProps.category ||
-      this.props.bookmarksCount !== nextProps.bookmarksCount ||
+      this.props.isBookmarked !== nextProps.isBookmarked ||
       this.props.commentsCount !== nextProps.commentsCount ||
       this.props.address !== nextProps.address
     );
@@ -40,6 +41,7 @@ class Item extends React.Component {
       recurrence,
       time,
       status,
+      allDay,
       duration,
       category,
       pictureUrl,
@@ -51,7 +53,12 @@ class Item extends React.Component {
     } = this.props;
 
     const styles = stores.appStyles.bookmarkedEventsList;
-
+    const caption = captionDetails({
+      allDay,
+      recurrence,
+      category,
+      duration,
+    });
 
     return (
       <TouchableRipple
@@ -78,7 +85,7 @@ class Item extends React.Component {
               <Text style={styles.time}>{time}</Text>
               <Caption numberOfLines={1}
                 ellipsizeMode="tail"
-              >{duration ? duration + ' ' : ''}{category} {recurrence}</Caption>
+              >{caption}</Caption>
               <Tag status={status} /> 
             </View>
             <Actions
@@ -88,6 +95,8 @@ class Item extends React.Component {
               isBookmarked={isBookmarked}
               bookmarksCount={bookmarksCount}
               commentsCount={commentsCount}
+              color={stores.themeStore.colors.light_gray_3}
+              activeColor={stores.themeStore.colors.like}
               navigateToComments={this._onPressComment}
               size={18}
               small
