@@ -1,25 +1,18 @@
 import React from 'react';
-import Share from 'react-native-share';
-import { I18n } from 'aws-amplify';
 import ScheduleInfo from './Hoc';
 import DeleteDialog from 'components/dialogs/DeleteSchedule';
 import OpenDialog from 'components/dialogs/OpenSchedule';
 import CloseDialog from 'components/dialogs/CloseSchedule';
-import env from 'config/env';
+import { handleShareSchedule } from 'helpers/share';
 
 export default class Screen extends React.Component {
   state = { visibleDialog: null };
   _goBack = () => this.props.navigation.goBack();
   _hideDialog = () => this.setState({ visibleDialog: null });
   _handleShare = ({ id, name }) => {
-    const shareOptions = {
-      title: I18n.get("SHARE_SCHEDULE_inviteTitle"),
-      subject: I18n.get("SHARE_SCHEDULE_subject"),
-      message: `Follow "${name}" to see their latest events, receive updates and get reminders.\n`,
-      url: `${env.APP_URL}/schdl/${id}`
-    };
-    Share.open(shareOptions).catch(error => {
-      // Ignore
+    handleShareSchedule({
+      id,
+      name,
     });
   };
   _handleSelectMenu = (option) => {

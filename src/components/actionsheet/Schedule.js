@@ -1,8 +1,8 @@
 import React from 'react';
 import ActionSheet from 'react-native-actionsheet';
-import Share from 'react-native-share';
 import { inject, observer } from 'mobx-react';
-import env from 'config/env';
+import { I18n } from 'aws-amplify';
+import { handleShareSchedule } from 'helpers/share';
 
 class ScheduleAction extends React.Component {
   showActionSheet = () => {
@@ -11,14 +11,9 @@ class ScheduleAction extends React.Component {
 
   _handleShare = () => {
     const { id, name } = this.props;
-    const shareOptions = {
-      title: 'Share invite link via...',
-      subject: 'Follow schedule to see latest events',
-      message: `Follow "${name}" to see their latest events, receive updates and get reminders.\n`,
-      url: `${env.APP_URL}/schedule/${id}`
-    };
-    Share.open(shareOptions).catch(error => {
-      // Ignore
+    handleShareSchedule({
+      id,
+      name,
     });
   };
   
@@ -42,10 +37,10 @@ class ScheduleAction extends React.Component {
       stores
     } = this.props;
 
-    const options = ['Back'];
+    const options = [I18n.get('BUTTON_back')];
     options.unshift(
-      'Share invite link',
-      isMuted ? 'Unmute events' : 'Mute events'
+      I18n.get('BUTTON_shareInviteLink'),
+      I18n.get(`BUTTON_${isMuted ? 'unmuteEvents' : 'muteEvents'}`)
     );
     const cancelButtonIndex = options.length - 1;
     const destructiveButtonIndex = cancelButtonIndex - 1;

@@ -31,7 +31,7 @@ import {
 import { getRepeatLabel, getTimeUnit } from 'lib/time';
 import formSchema from './schema';
 import recurrence from './recurrence';
-import validateForm, { validateLocation } from 'helpers/formValidator';
+import buildForm, { getLocation } from 'helpers/buildForm';
 
 class Form extends React.Component {
 
@@ -96,8 +96,8 @@ class Form extends React.Component {
         validationSchema={formSchema}
         onSubmit={async (values, { setSubmitting }) => {
           if (isEventValid(values)) {
-            const location = validateLocation(stores.appState.location);
-            const input = validateForm(values);
+            const location = getLocation(stores.appState.location);
+            const input = buildForm(values);
             input.location = location;
             onSubmit && await onSubmit(input);
           }

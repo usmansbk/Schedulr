@@ -2,10 +2,9 @@ import React from 'react';
 import { InteractionManager } from 'react-native';
 import ActionSheet from 'react-native-actionsheet';
 import SimpleToast from 'react-native-simple-toast';
-import Share from 'react-native-share';
 import { I18n } from 'aws-amplify';
 import { inject, observer } from 'mobx-react';
-import env from 'config/env';
+import handleShareEvent from 'helpers/share';
 
 class EventAction extends React.Component {
   showActionSheet = () => {
@@ -20,15 +19,12 @@ class EventAction extends React.Component {
       address,
       id
     } = this.props;
-
-    const shareOptions = {
-      title: I18n.get("SHARE_EVENT_inviteTitle"),
-      subject: category,
-      message: `${title}\n${category ? category + '\n' : ''}${date}${address ? ('\n' + address) : ''}\n\n`,
-      url: `${env.APP_URL}/event/${id}`
-    };
-    Share.open(shareOptions).catch(error => {
-      // Ignore
+    handleShareEvent({
+      id,
+      title,
+      category,
+      date,
+      address
     });
   };
 
@@ -43,7 +39,7 @@ class EventAction extends React.Component {
     const input = {
       id: `${stores.appState.userId}-${id}`,
     };
-    SimpleToast.show(`${isBookmarked ? "Removed" : "Saved"}`, SimpleToast.SHORT);
+    SimpleToast.show(I18n.get(`TOAST_${isBookmarked ? "removed" : "saved"}`), SimpleToast.SHORT);
     try {
       if (isBookmarked) {
         await removeBookmark(input);
@@ -82,11 +78,11 @@ class EventAction extends React.Component {
       stores
     } = this.props;
 
-    const options = ['Back'];
+    const options = [I18n.get('BUTTON_back')];
     options.unshift(
-      'Share via',
-      isBookmarked ? 'Remove bookmark' : 'Bookmark',
-      isMuted ? 'Unmute' : 'Mute'
+      I18n.get('BUTTON_shareVia'),
+      isBookmarked ? I18n.get('BUTTON_removeBookmark') : I18n.get('BUTTON_bookmark'),
+      isMuted ? I18n.get('BUTTON_unmute') : I18n.get('BUTTON_mute')
     );
     const cancelButtonIndex = options.length - 1;
     const destructiveButtonIndex = cancelButtonIndex - 1;

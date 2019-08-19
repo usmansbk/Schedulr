@@ -1,4 +1,4 @@
-export default function validateForm(data) {
+export default function buildForm(data) {
   let temp = Object.assign({}, data);
   Object.keys(temp).forEach(key => {
     const value = temp[key];
@@ -16,7 +16,7 @@ export default function validateForm(data) {
   return temp;
 }
 
-export function validateLocation({ lat, lon }) {
+export function getLocation({ lat, lon }) {
   if (!(lat && lon)) return null;
   return {
     lon,

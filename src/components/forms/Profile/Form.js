@@ -14,7 +14,7 @@ import {
 import { Formik } from 'formik';
 import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
-import vaidateForm from 'helpers/formValidator';
+import buildForm from 'helpers/buildForm';
 import formSchema from './schema';
 
 class Form extends React.Component {
@@ -42,7 +42,7 @@ class Form extends React.Component {
         initialValues={initialValues}
         validationSchema={formSchema}
         onSubmit={async (values, { setSubmitting }) => {
-          onSubmit && await onSubmit(validateForm(values));
+          onSubmit && await onSubmit(buildForm(values));
           setSubmitting(false);
         }}
       >
