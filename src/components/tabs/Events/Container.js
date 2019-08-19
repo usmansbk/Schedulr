@@ -128,7 +128,9 @@ class Container extends React.Component {
   };
 
   componentDidMount = async () => {
-    this._handleDeltaSync();
+    if (!global.HermesInternal) {
+      this._handleDeltaSync();
+    }
     this._initNetInfo();
     await this._handleNavBarColor();
   };
