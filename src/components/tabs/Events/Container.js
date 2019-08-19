@@ -10,6 +10,7 @@ import { inject, observer } from 'mobx-react';
 import NavigationService from 'config/navigation';
 import { getUserData } from 'api/queries';
 import gql from 'graphql-tag';
+import updateBaseCache, { updateDeltaCache } from 'helpers/deltaSync';
 import Events from './Hoc';
 
 const BaseQuery = gql(getUserData);
@@ -63,42 +64,29 @@ class Container extends React.Component {
       stores.appState.subscription = client.sync({
         baseQuery: {
           query: BaseQuery,
-          variables: {
-            id
-          },
-          update: (cache, result) => {
-            if (result && result.data) {
-              const { data } = result;
-              cache.writeQuery({
-                query: BaseQuery,
-                variables: {
-                  id
-                },
-                data
-              });
-              stores.appState.setSync(false);
-            }
-          }
+          variables: { id },
+          update: (cache, result) => (
+            updateBaseCache({
+              cache,
+              result,
+              variables: { id },
+              cacheUpdateQuery: BaseQuery,
+              stores
+            })
+          )
         },
         deltaQuery: {
           query: DeltaQuery,
-          variables: {
-            id
-          },
-          update: (cache, result) => {
-            console.log('delta', result);
-            if (result && result.data) {
-              const { data } = result;
-              cache.writeQuery({
-                query: BaseQuery,
-                variables: {
-                  id
-                },
-                data
-              });
-              stores.appState.setSync(false);
-            }
-          }
+          variables: { id },
+          update: (cache, result) => (
+            updateDeltaCache({
+              cache,
+              result,
+              variables: { id },
+              cacheUpdateQuery: DeltaQuery,
+              stores
+            })
+          )
         }
       });
     });
