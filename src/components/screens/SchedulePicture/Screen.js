@@ -1,5 +1,7 @@
 import React from 'react';
+import { I18n } from 'aws-amplify';
 import Viewer from 'components/common/ImageViewer';
+import Error from 'components/common/Error';
 
 export default class AvatarViewer extends React.Component {
   _goBack = () => this.props.navigation.goBack();
@@ -23,8 +25,12 @@ export default class AvatarViewer extends React.Component {
   };
 
   render() {
-    const { schedule: {id, name, isOwner, picture } } = this.props;
-    
+    const { schedule } = this.props;
+    if (!schedule) return <Error
+      message={I18n.get("ERROR_itemMayHaveBeenDeletedContactOwner")}
+    />;
+    const {id, name, isOwner, picture } = schedule;
+
     return (
       <Viewer
         id={id}
