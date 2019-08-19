@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { RefreshControl } from 'react-native';
 import { withNavigation, FlatList } from 'react-navigation';
 import { inject, observer } from 'mobx-react';
 import Item from './Item';
@@ -82,6 +83,14 @@ class List extends Component {
         extraData={stores.appState.mutedSchedules.length}
         contentContainerStyle={stores.appStyles.schedulesList.contentContainer}
         initialNumToRender={7}
+        refreshing={stores.appState.isSync}
+        refreshControl={
+          <RefreshControl
+            refreshing={stores.appState.isSync}
+            colors={[stores.themeStore.colors.primary]}
+            progressBackgroundColor={stores.themeStore.colors.bg}
+          />
+        }
         getItemLayout={this._getItemLayout}
         ItemSeparatorComponent={this._renderSeparator}
         keyExtractor={this._keyExtractor}

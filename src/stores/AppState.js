@@ -15,7 +15,7 @@ export default class AppState {
   }
   @persist @observable userId = null;
   @persist @observable loggingIn = false;
-
+  subscription = null;  // DeltaSync subscription
   @observable isSync = false;
   @observable isConnected = false;
   @observable searchText = '';

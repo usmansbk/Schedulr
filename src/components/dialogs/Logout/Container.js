@@ -11,9 +11,14 @@ class Container extends React.Component {
   };
 
   _signOut = async () => {
+    const { stores } = this.props;
     this.setState({ loading: true });
     await this.props.client.clearStore();
     this.props.client.cache.reset();
+    if (stores.appState.subscription) {
+      stores.appState.subscription.unsubscribe();
+    }
+
     Auth.signOut().then(() => {
       this.props.navigation.navigate('Auth');
       this.props.stores.reset();

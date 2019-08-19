@@ -13,10 +13,10 @@ import gql from 'graphql-tag';
 import Events from './Hoc';
 
 const BaseQuery = gql(getUserData);
+const DeltaQuery = gql(getUserData);
 
 /**
- * This component abstract's app functionality from 
- * graphql queries.
+ * This component handles Local Notifications and DeltaSync
  */
 class Container extends React.Component {
   constructor(props) {
@@ -60,7 +60,7 @@ class Container extends React.Component {
     const id = stores.appState.userId;
     stores.appState.setSync(true);
     client.hydrated().then(() => {
-      client.sync({
+      stores.appState.subscription = client.sync({
         baseQuery: {
           query: BaseQuery,
           variables: {
@@ -81,7 +81,7 @@ class Container extends React.Component {
           }
         },
         deltaQuery: {
-          query: BaseQuery,
+          query: DeltaQuery,
           variables: {
             id
           },
