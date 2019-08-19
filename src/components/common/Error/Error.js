@@ -11,10 +11,10 @@ import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
 
 export default inject('stores')(observer(
-  ({ onRefresh, loading, stores }) => (
+  ({ onRefresh, message, loading, stores }) => (
     <View style={stores.appStyles.error.container}>
       <Headline style={stores.appStyles.error.headline}>
-        { I18n.get("ERROR_somethingWentWrong")}
+        { message ? message : I18n.get("ERROR_somethingWentWrong")}
       </Headline>
       {
         onRefresh && (

@@ -5,6 +5,7 @@ import CancelDialog from 'components/dialogs/CancelEvent';
 import Loading from 'components/common/Loading';
 import Error from 'components/common/Error';
 import { ONE_TIME_EVENT } from 'lib/constants';
+import { I18n } from 'aws-amplify';
 
 export default class Screen extends React.Component {
   state = { visibleDialog: null };
@@ -39,6 +40,9 @@ export default class Screen extends React.Component {
 
     if (loading && !event) return <Loading />;
     if (error && !event) return <Error onRefresh={onRefresh} />;
+    if (!event) return <Error
+      message={I18n.get("ERROR_itemMayHaveBeenDeletedContactOwner")}
+    />
 
     const isRecurring = event.recurrence !== ONE_TIME_EVENT;
     

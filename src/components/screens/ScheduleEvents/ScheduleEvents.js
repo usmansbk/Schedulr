@@ -1,5 +1,6 @@
 import React from 'react';
 import { Appbar } from 'react-native-paper';
+import { I18n } from 'aws-amplify';
 import Icon from 'react-native-vector-icons/Feather';
 import Loading from 'components/common/Loading';
 import Error from 'components/common/Error';
@@ -19,6 +20,9 @@ export default class ScheduleEvents extends React.Component {
 
     if (loading && !schedule) return <Loading />;
     if (!schedule && error) return <Error onRefresh={onRefresh} />;
+    if (!schedule) return <Error
+      message={I18n.get("ERROR_itemMayHaveBeenDeletedContactOwner")}
+    />;
 
     const {
       id,
