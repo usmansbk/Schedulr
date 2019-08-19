@@ -46,7 +46,7 @@ class NewEventScreen extends React.Component {
       category,
       recurrence,
       until,
-      isPublic,
+      isPublic=true,
       schedule,
     } = event;
 
