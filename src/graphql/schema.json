@@ -760,6 +760,17 @@
           },
           "isDeprecated" : false,
           "deprecationReason" : null
+        }, {
+          "name" : "aws_ds",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "ENUM",
+            "name" : "DeltaAction",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null
         } ],
         "inputFields" : null,
         "interfaces" : [ ],
@@ -1208,6 +1219,17 @@
           "type" : {
             "kind" : "SCALAR",
             "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        }, {
+          "name" : "aws_ds",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "ENUM",
+            "name" : "DeltaAction",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -2090,6 +2112,20 @@
         "enumValues" : null,
         "possibleTypes" : null
       }, {
+        "kind" : "ENUM",
+        "name" : "DeltaAction",
+        "description" : null,
+        "fields" : null,
+        "inputFields" : null,
+        "interfaces" : null,
+        "enumValues" : [ {
+          "name" : "DELETE",
+          "description" : null,
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        } ],
+        "possibleTypes" : null
+      }, {
         "kind" : "INPUT_OBJECT",
         "name" : "ModelEventFilterInput",
         "description" : null,
@@ -2266,6 +2302,15 @@
           },
           "defaultValue" : null
         }, {
+          "name" : "aws_ds",
+          "description" : null,
+          "type" : {
+            "kind" : "INPUT_OBJECT",
+            "name" : "ModelDeltaActionFilterInput",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
           "name" : "and",
           "description" : null,
           "type" : {
@@ -2418,6 +2463,33 @@
           "type" : {
             "kind" : "ENUM",
             "name" : "Recurrence",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        } ],
+        "interfaces" : null,
+        "enumValues" : null,
+        "possibleTypes" : null
+      }, {
+        "kind" : "INPUT_OBJECT",
+        "name" : "ModelDeltaActionFilterInput",
+        "description" : null,
+        "fields" : null,
+        "inputFields" : [ {
+          "name" : "eq",
+          "description" : null,
+          "type" : {
+            "kind" : "ENUM",
+            "name" : "DeltaAction",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "ne",
+          "description" : null,
+          "type" : {
+            "kind" : "ENUM",
+            "name" : "DeltaAction",
             "ofType" : null
           },
           "defaultValue" : null
@@ -2680,6 +2752,15 @@
           "type" : {
             "kind" : "INPUT_OBJECT",
             "name" : "ModelStringFilterInput",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "aws_ds",
+          "description" : null,
+          "type" : {
+            "kind" : "INPUT_OBJECT",
+            "name" : "ModelDeltaActionFilterInput",
             "ofType" : null
           },
           "defaultValue" : null
@@ -3695,6 +3776,15 @@
           },
           "defaultValue" : null
         }, {
+          "name" : "aws_ds",
+          "description" : null,
+          "type" : {
+            "kind" : "ENUM",
+            "name" : "DeltaAction",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
           "name" : "eventAuthorId",
           "description" : null,
           "type" : {
@@ -3950,6 +4040,15 @@
           "type" : {
             "kind" : "SCALAR",
             "name" : "String",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "aws_ds",
+          "description" : null,
+          "type" : {
+            "kind" : "ENUM",
+            "name" : "DeltaAction",
             "ofType" : null
           },
           "defaultValue" : null
@@ -4232,6 +4331,15 @@
           },
           "defaultValue" : null
         }, {
+          "name" : "aws_ds",
+          "description" : null,
+          "type" : {
+            "kind" : "ENUM",
+            "name" : "DeltaAction",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
           "name" : "scheduleAuthorId",
           "description" : null,
           "type" : {
@@ -4367,6 +4475,15 @@
           "type" : {
             "kind" : "SCALAR",
             "name" : "String",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "aws_ds",
+          "description" : null,
+          "type" : {
+            "kind" : "ENUM",
+            "name" : "DeltaAction",
             "ofType" : null
           },
           "defaultValue" : null
@@ -5908,14 +6025,6 @@
         "onFragment" : false,
         "onField" : false
       }, {
-        "name" : "aws_api_key",
-        "description" : "Tells the service this field/object has access authorized by an API key.",
-        "locations" : [ "OBJECT", "FIELD_DEFINITION" ],
-        "args" : [ ],
-        "onOperation" : false,
-        "onFragment" : false,
-        "onField" : false
-      }, {
         "name" : "deprecated",
         "description" : null,
         "locations" : [ "FIELD_DEFINITION", "ENUM_VALUE" ],
@@ -5929,6 +6038,14 @@
           },
           "defaultValue" : "\"No longer supported\""
         } ],
+        "onOperation" : false,
+        "onFragment" : false,
+        "onField" : false
+      }, {
+        "name" : "aws_api_key",
+        "description" : "Tells the service this field/object has access authorized by an API key.",
+        "locations" : [ "OBJECT", "FIELD_DEFINITION" ],
+        "args" : [ ],
         "onOperation" : false,
         "onFragment" : false,
         "onField" : false
