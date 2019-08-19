@@ -20,7 +20,7 @@ import { Formik } from 'formik';
 import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
 import validationSchema from './schema';
-import buildForm, { getLocation } from 'helpers/formValidator';
+import buildForm, { getLocation } from 'helpers/buildForm';
 
 class Form extends React.Component {
   static defaultProps = {
