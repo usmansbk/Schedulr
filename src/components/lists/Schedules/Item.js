@@ -24,7 +24,8 @@ class Item extends React.Component {
       this.props.name !== nextProps.name ||
       this.props.description !== nextProps.description ||
       this.props.isClosed !== nextProps.isClosed ||
-      this.props.isMuted !== nextProps.isMuted
+      this.props.isMuted !== nextProps.isMuted ||
+      this.props.pictureUrl !== nextProps.pictureUrl
     );
   };
   

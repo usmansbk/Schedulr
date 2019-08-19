@@ -102,7 +102,7 @@ class Container extends React.Component {
         }
       });
     });
-  }
+  };
   
   _handleNavBarColor = async () => {
     const { stores } = this.props;
@@ -153,7 +153,6 @@ class Container extends React.Component {
   render() {
     const { stores } = this.props;
     
-
     return <Events
       id={stores.appState.userId}
       mutedEvents={stores.appState.mutedEvents}

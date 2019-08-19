@@ -17,7 +17,8 @@ class Item extends React.Component {
       this.props.name !== nextProps.name ||
       this.props.description !== nextProps.description ||
       this.props.isClosed !== nextProps.isClosed ||
-      this.props.isFollowing !== nextProps.isFollowing
+      this.props.isFollowing !== nextProps.isFollowing ||
+      this.props.pictureUrl !== nextProps.pictureUrl
     );
   };
   render() {
