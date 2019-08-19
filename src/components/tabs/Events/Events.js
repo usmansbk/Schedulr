@@ -52,17 +52,11 @@ export default class Events extends React.Component {
   }
 
   render() {
-    const {
-      navigation,
-      loading,
-    } = this.props;
-
     return (
       <>
         <List
-          loading={loading}
           events={this.events}
-          navigation={navigation}
+          navigation={this.props.navigation}
           onRefresh={this._onRefresh}
         />
         <FAB

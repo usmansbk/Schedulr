@@ -16,6 +16,7 @@ export default class AppState {
   @persist @observable userId = null;
   @persist @observable loggingIn = false;
 
+  @observable isSync = false;
   @observable isConnected = false;
   @observable searchText = '';
   @observable query = '';
@@ -36,7 +37,7 @@ export default class AppState {
   debounceQuery = debounce((val) => this.query = val, 250);
 
   @action setUserId = id => this.userId = id;
-
+  @action setSync = (isSync) => this.isSync = isSync;
   @action setLoginState = (state) => this.loggingIn = Boolean(state);
   
   @action toggleConnection = (isConnected) => {

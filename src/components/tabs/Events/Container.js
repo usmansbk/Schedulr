@@ -8,7 +8,11 @@ import moment from 'moment';
 import { withApollo } from 'react-apollo';
 import { inject, observer } from 'mobx-react';
 import NavigationService from 'config/navigation';
+import { getUserData } from 'api/queries';
+import gql from 'graphql-tag';
 import Events from './Hoc';
+
+const BaseQuery = gql(getUserData);
 
 /**
  * This component abstract's app functionality from 
@@ -50,6 +54,55 @@ class Container extends React.Component {
       }
     });
   };
+
+  _handleDeltaSync = () => {
+    const { client, stores } = this.props;
+    const id = stores.appState.userId;
+    stores.appState.setSync(true);
+    client.hydrated().then(() => {
+      client.sync({
+        baseQuery: {
+          query: BaseQuery,
+          variables: {
+            id
+          },
+          update: (cache, result) => {
+            if (result && result.data) {
+              const { data } = result;
+              cache.writeQuery({
+                query: BaseQuery,
+                variables: {
+                  id
+                },
+                data
+              });
+              stores.appState.setSync(false);
+            }
+          }
+        },
+        deltaQuery: {
+          query: BaseQuery,
+          variables: {
+            id
+          },
+          update: (cache, result) => {
+            console.log('delta', result);
+            if (result && result.data) {
+              const { data } = result;
+              cache.writeQuery({
+                query: BaseQuery,
+                variables: {
+                  id
+                },
+                data
+              });
+              stores.appState.setSync(false);
+            }
+          }
+        }
+      });
+    });
+  }
   
   _handleNavBarColor = async () => {
     const { stores } = this.props;
@@ -87,6 +140,7 @@ class Container extends React.Component {
   };
 
   componentDidMount = async () => {
+    this._handleDeltaSync();
     this._initNetInfo();
     await this._handleNavBarColor();
   };
@@ -98,6 +152,8 @@ class Container extends React.Component {
 
   render() {
     const { stores } = this.props;
+    
+
     return <Events
       id={stores.appState.userId}
       mutedEvents={stores.appState.mutedEvents}

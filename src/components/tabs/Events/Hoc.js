@@ -12,13 +12,12 @@ export default (
     graphql(gql(getUserData), {
       alias,
       options: props => ({
-        fetchPolicy: 'cache-first',
+        fetchPolicy: 'cache-only',
         variables: {
           id: props.id
         }
       }),
       props: ({ data, ownProps}) => ({
-        loading: data && data.loading,
         data: data && data.getUserData,
         ...ownProps
       })
