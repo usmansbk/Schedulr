@@ -14,7 +14,7 @@ export default class Button extends React.Component {
       id: `${stores.appState.userId}-${id}`,
     };
     if (isFollowing) {
-      unfollow(input);
+      unfollow(input, id);
     } else {
       input.followScheduleId = id;
       follow(input);

@@ -282,6 +282,9 @@ export const getUserSchedules = `query GetUserSchedules($id: ID!) {
               key
               bucket
             }
+            website
+            createdCount
+            followingCount
           }
           followersCount
           eventsCount

@@ -3,8 +3,9 @@ import gql from 'graphql-tag';
 import { inject, observer } from 'mobx-react';
 import { createFollow, deleteFollow } from 'api/mutations';
 import updateApolloCache from 'helpers/updateApolloCache';
-import Button from './Button';
+import buildOptimisticResponse from 'helpers/optimisticResponse';
 import { ADD, DELETE } from 'lib/constants';
+import Button from './Button';
 
 export default inject("stores")(observer(
   compose(
@@ -18,7 +19,13 @@ export default inject("stores")(observer(
           },
           update: (cache, { data: { createFollow } }) => createFollow && (
             updateApolloCache(cache, createFollow, ADD)
-          )
+          ),
+          optimisticResponse: buildOptimisticResponse({
+            input,
+            mutationName: 'createFollow',
+            operationType: ADD,
+            responseType: 'Follow'
+          })
         })
       })
     }),
@@ -26,13 +33,22 @@ export default inject("stores")(observer(
       alias: 'withDeleteFollow',
       props: ({ mutate, ownProps }) => ({
         ...ownProps,
-        unfollow: (input) => mutate({
+        unfollow: (input, id) => mutate({
           variables: {
             input
           },
           update: (cache, { data: { deleteFollow } }) => deleteFollow && (
             updateApolloCache(cache, deleteFollow, DELETE)
-          )
+          ),
+          optimisticResponse: buildOptimisticResponse({
+            input: {
+              ...input,
+              followScheduleId: id
+            },
+            mutationName: 'deleteFollow',
+            operationType: DELETE,
+            responseType: 'Follow'
+          })
         })
       })
     })

@@ -12,6 +12,12 @@ const BOOKMARK_TYPE = 'Bookmark';
 const COMMENT_TYPE = 'Comment';
 const FOLLOW_TYPE = 'Follow';
 
+const eventConnection = {
+  items: [],
+  nextToken: null,
+  __typename: "ModelEventConnection"
+};
+
 export default function buildOptimisticResponse({
   input,
   mutationName,
@@ -51,7 +57,7 @@ function buildCreateResponse(input, typename) {
     case BOOKMARK_TYPE:
       return createBookmark(input, typename);
     case FOLLOW_TYPE:
-      // return buildCreateFollow(input, typename);
+      return createFollow(input, typename);
     default:
       return null;
   }
@@ -68,7 +74,7 @@ function buildDeleteResponse(input, typename) {
     case BOOKMARK_TYPE:
       return deleteBookmark(input, typename);
     case FOLLOW_TYPE:
-      // return buildDeleteFollow(input, typename);
+      return deleteFollow(input, typename);
     default:
       return null;
   }
@@ -146,11 +152,6 @@ function createSchedule(input, typename) {
   } else {
     author.createdCount = 1;
   }
-  const events = {
-    items: [],
-    nextToken: null,
-    __typename: "ModelEventConnection"
-  };
   const createdAt = moment().toISOString();
 
   const schedule  = {
@@ -165,7 +166,7 @@ function createSchedule(input, typename) {
     eventsCount: 0,
     createdAt,
     updatedAt: createdAt,
-    events,
+    events: eventConnection,
   };
   delete schedule.location;
   return schedule;
@@ -278,6 +279,50 @@ function createBookmark(input, typename) {
   return bookmark;
 }
 
+function createFollow(input, typename) {
+  const schedule = client.readFragment({
+    fragment: gql`fragment followScheduleDetails on Schedule {
+      id
+      name
+      description
+      isPublic
+      isOwner
+      isFollowing
+      status
+      picture {
+        key
+        bucket
+      }
+      author {
+        id
+        name
+        pictureUrl
+        avatar {
+          key
+          bucket
+        }
+        website
+        createdCount
+        followingCount
+      }
+      followersCount
+      eventsCount
+      createdAt
+      updatedAt
+    }`,
+    id: `Schedule:${input.followScheduleId}`
+  });
+  const optimisticSchedule = Object.assign({}, schedule, {
+    events: eventConnection
+  })
+  const follow = {
+    __typename: typename,
+    id: input.id,
+    schedule: optimisticSchedule
+  };
+  return follow;
+}
+
 // ********************** DELETE *******************************
 
 function deleteSchedule(input, typename) {
@@ -357,6 +402,42 @@ function deleteBookmark(input, typename) {
     event
   };
   return bookmark;
+}
+
+function deleteFollow(input, typename) {
+  const schedule = client.readFragment({
+    fragment: gql`fragment followScheduleDetails on Schedule {
+      id
+      followersCount
+      isFollowing
+    }`,
+    id: `Schedule:${input.followScheduleId}`
+  });
+  if (schedule) {
+    const count = schedule.followersCount;
+    if (schedule.isFollowing && (typeof count === 'number' && count > 0)) {
+      schedule.followersCount = count - 1;
+    }
+    schedule.isFollowing = null;
+  }
+  const user = client.readFragment({
+    fragment: gql`fragment followUserDetails on User {
+      id
+      followingCount
+    }`,
+    id: `User:${stores.appState.userId}`
+  });
+  const { followingCount } = user
+  if (typeof followingCount === 'number' && followingCount > 0) {
+    user.followingCount -= 1;
+  }
+  const deletedFollow = {
+    id: input.id,
+    user,
+    schedule,
+    __typename: typename
+  };
+  return deletedFollow;
 }
 
 // ********************* UPDATES **********************
