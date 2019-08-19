@@ -180,6 +180,7 @@ export default {
   SCHEDULE_thisScheduleIsClosed: "This schedule is closed",
   SCHEDULE_createdOn: "Created on",
   SCHEDULE_by: "by",
+  SCHEDULE_whatIsASchedule: "What is a schedule?",
   
   SCHEDULES_noUpcomingEvents: "No upcoming events",
   SCHEDULES_loadPastEvents: "Load past events",

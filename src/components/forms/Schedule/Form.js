@@ -155,7 +155,7 @@ class Form extends React.Component {
                 />
               </View>
               <View style={styles.info}>
-                <Caption style={styles.primary} onPress={this._showInfo}>What is a schedule?</Caption>
+                <Caption style={styles.primary} onPress={this._showInfo}>{I18n.get("SCHEDULE_whatIsASchedule")}</Caption>
               </View>
             </View>
           </ScrollView>
