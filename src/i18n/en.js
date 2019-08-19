@@ -135,6 +135,7 @@ export default {
   SHARE_inviteAFriendTitle: "Invite via...",
   SHARE_SCHEDULE_inviteTitle: "Share invite link via...",
   SHARE_SCHEDULE_subject: "Follow schedule to get latest events",
+  SHARE_SCHEDULE_message: name => `Follow "${name}" to see their latest events, receive updates and get reminders.\n`,
   SHARE_EVENT_inviteTitle: "Share event via...",
 
   TOAST_enableReminder: "Enable reminder!",

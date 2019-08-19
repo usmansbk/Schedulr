@@ -12,7 +12,7 @@ export default class Screen extends React.Component {
   _handleShare = ({ id, name }) => {
     handleShareSchedule({
       id,
-      name,
+      title: name,
     });
   };
   _handleSelectMenu = (option) => {

@@ -10,10 +10,10 @@ class ScheduleAction extends React.Component {
   };
 
   _handleShare = () => {
-    const { id, name } = this.props;
+    const { id, title } = this.props;
     handleShareSchedule({
       id,
-      name,
+      title,
     });
   };
   

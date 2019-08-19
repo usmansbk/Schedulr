@@ -22,12 +22,12 @@ export default function handleShareEvent({
 
 export function handleShareSchedule({
 	id,
-	name
+	title
 }) {
     const shareOptions = {
       title: I18n.get("SHARE_SCHEDULE_inviteTitle"),
       subject: I18n.get("SHARE_SCHEDULE_subject"),
-      message: `Follow "${name}" to see their latest events, receive updates and get reminders.\n`,
+      message: I18n.get("SHARE_SCHEDULE_message")(title),
       url: `${env.APP_URL}/schdl/${id}`
     };
     Share.open(shareOptions).catch(error => {
