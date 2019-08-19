@@ -41,7 +41,9 @@ export default class Screen extends React.Component {
     if (loading && !event) return <Loading />;
     if (error && !event) return <Error onRefresh={onRefresh} />;
     if (!event) return <Error
-      message={I18n.get("ERROR_itemMayHaveBeenDeletedContactOwner")}
+      icon="meh"
+      message={I18n.get("ERROR_404")}
+      caption={I18n.get("ERROR_404_caption")}
     />
 
     const isRecurring = event.recurrence !== ONE_TIME_EVENT;

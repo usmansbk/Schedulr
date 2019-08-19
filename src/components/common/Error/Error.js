@@ -4,18 +4,25 @@ import {
 } from 'react-native';
 import {
   Headline,
-  Button
+  Button,
+  Caption
 } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/Feather';
 import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
 
 export default inject('stores')(observer(
-  ({ onRefresh, message, loading, stores }) => (
+  ({ onRefresh, message, caption, loading, stores, icon }) => (
     <View style={stores.appStyles.error.container}>
+      {
+        icon && <Icon name={icon} size={64} color={stores.themeStore.colors.gray} />
+      }
       <Headline style={stores.appStyles.error.headline}>
         { message ? message : I18n.get("ERROR_somethingWentWrong")}
       </Headline>
+      {
+        caption && <Caption>{caption}</Caption>
+      }
       {
         onRefresh && (
           <View style={stores.appStyles.error.content}>

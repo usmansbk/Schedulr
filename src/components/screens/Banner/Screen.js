@@ -27,7 +27,9 @@ export default class AvatarViewer extends React.Component {
   render() {
     const { event } = this.props;
     if (!event) return <Error
-      message={I18n.get("ERROR_itemMayHaveBeenDeletedContactOwner")}
+      icon="meh"
+      message={I18n.get("ERROR_404")}
+      caption={I18n.get("ERROR_404_caption")}
     />;
 
     const {id, title, isOwner, banner } = event;

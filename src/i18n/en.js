@@ -208,7 +208,8 @@ export default {
   ERROR_networkError: "Network error",
   ERROR_serverError: "Oop! My fault",
   ERROR_noConnection: "No connection",
-  ERROR_itemMayHaveBeenDeletedContactOwner: "This item has been deleted!",
+  ERROR_404: "Not found",
+  ERROR_404_caption: "Item may have been deleted",
 
   PLACEHOLDER_aboutThisEvent: "About this event...",
   PLACEHOLDER_normal: "Normal",
