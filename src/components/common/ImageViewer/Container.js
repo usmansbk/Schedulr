@@ -49,7 +49,7 @@ export default class ImageViewerContainer extends React.Component {
               await onRemovePhoto();
               this.setState({ loading: false });
             } catch (error) {
-              console.error(error);
+              console.log(error);
             }
           }
         }
@@ -62,7 +62,7 @@ export default class ImageViewerContainer extends React.Component {
     ImagePicker.showImagePicker(null, async (response) => {
       if (response.error) {
         SimpleToast.show(response.error.message, SimpleToast.SHORT);
-        console.error(response.error);
+        console.log(response.error);
       } else {
         const { type, uri, fileName, fileSize } = response;
         if (fileSize > (MAX_FILE_SIZE + EPSILON)) {
@@ -88,7 +88,7 @@ export default class ImageViewerContainer extends React.Component {
               this.setState({ loading: false });
             }
           } catch (error) {
-            console.error(error);
+            console.log(error);
             SimpleToast.show(error.message, SimpleToast.SHORT);
           }
         }

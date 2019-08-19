@@ -28,7 +28,7 @@ class DeleteEvent extends React.Component {
     try {
       if (banner) await Storage.remove(banner.key).catch();
     } catch (error) {
-      console.error(error);
+      console.log(error);
     }
     onSubmit && onSubmit({ id });
     this.props.navigation.pop();

@@ -25,7 +25,7 @@ export default class Screen extends React.Component {
         break;
     }
     Linking.openURL(url)
-      .catch(error => console.error(error));
+      .catch(error => console.log(error));
   };
 
   render() {

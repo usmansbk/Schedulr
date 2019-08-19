@@ -11,7 +11,7 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors) {
     graphQLErrors.map(error => {
       SimpleToast.show(I18n.get('ERROR_serverError'), SimpleToast.LONG);
-      console.error(error.message);
+      console.log(error.message);
       Analytics.record({
         name: 'GraphQLError',
         attributes: {
@@ -57,7 +57,7 @@ const client = new AWSAppSyncClient({
     callback: (error) => {
       if (error) {
         SimpleToast.show(error.message, SimpleToast.SHORT);
-        console.error(error);
+        console.log(error);
       }
     }
   }

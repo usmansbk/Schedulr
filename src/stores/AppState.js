@@ -88,7 +88,7 @@ export default class AppState {
           const { lat, lng } = loc;
           this.location.lon = lng;
           this.location.lat = lat;
-        }).catch(err => console.error(err));
+        }).catch(err => console.log(err));
     }
   };
 
@@ -102,7 +102,7 @@ export default class AppState {
         const loc = res[0];
         const address = `${loc.locality ? loc.locality + ', ' : ''}${loc.country}`;
         this.address = address;
-      }).catch(err => console.error(err));
+      }).catch(err => console.log(err));
     }
   };
   
@@ -137,7 +137,7 @@ export default class AppState {
           this.getAddress();
         },
         (error) => {
-          console.error(error);
+          console.log(error);
           SimpleToast.show(I18n.get("TOAST_locationError"), SimpleToast.SHORT);
           // throw error;
         },

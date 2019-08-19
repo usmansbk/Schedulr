@@ -79,7 +79,7 @@ class Container extends React.Component {
         } catch(error) {
           this.props.stores.appState.setLoginState(false);
           SimpleToast.show("Sign-in failed", SimpleToast.LONG);
-          console.error(error.message);
+          console.log(error.message);
         }
         break;
     }
