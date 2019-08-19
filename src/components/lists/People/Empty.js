@@ -10,7 +10,7 @@ export default inject('stores')(observer(
     return (
       <View style={stores.appStyles.bookmarkedEventsList.empty}>
         <Headline style={stores.appStyles.bookmarkedEventsList.emptyTitle}>
-          { I18n.get("SEARCH_peopleEmptyList")}
+          { I18n.get("SEARCH_emptyList")}
         </Headline>
         {
           error && (

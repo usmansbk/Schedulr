@@ -8,7 +8,7 @@ export default inject('stores')(observer(
   ({ stores }) => {
     return (
       <View style={stores.appStyles.scheduleSearch.empty}>
-        <Headline style={stores.appStyles.scheduleSearch.emptyTitle}>{I18n.get("SEARCH_schedulesEmptyList")}</Headline>
+        <Headline style={stores.appStyles.scheduleSearch.emptyTitle}>{I18n.get("SEARCH_emptyList")}</Headline>
       </View>
     );
   }
