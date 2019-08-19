@@ -315,6 +315,24 @@ function createFollow(input, typename) {
   const optimisticSchedule = Object.assign({}, schedule, {
     events: eventConnection
   })
+  //=========== Update user following count ======================
+  const userId = stores.appState.userId;
+  const userFragment = gql`fragment currentUser on User {
+    id
+    followingCount
+  }`;
+  const currentUser = client.readFragment({
+    fragment: userFragment,
+    id: `User:${userId}`
+  });
+  if (typeof currentUser.followingCount === 'number') currentUser.followingCount += 1;
+  client.writeFragment({
+    fragment: userFragment,
+    id: `User:${userId}`,
+    data: currentUser
+  });
+  // ==============================================================
+
   const follow = {
     __typename: typename,
     id: input.id,
