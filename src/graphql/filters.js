@@ -3,42 +3,60 @@ import moment from "moment";
 export const baseEventsFilter = timestamp => {
 	const lastSync = moment().toISOString();
 	return {
-		and: [
+		or: [
 			{
-				until: {
-					eq: null
+				endAt: {
+					ge: lastSync
 				}
 			},
-			{
-				or: [
+			{	
+				and: [
 					{
-						recurrence: {
-							eq: 'DAILY'
-						}
+						or: [
+							{
+								recurrence: {
+									eq: 'DAILY'
+								}
+							},
+							{
+								recurrence: {
+									eq: 'WEEKLY'
+								}
+							},
+							{
+								recurrence: {
+									eq: 'WEEKDAYS'
+								}
+							},
+							{
+								recurrence: {
+									eq: 'MONTHLY'
+								}
+							},
+							{
+								recurrence: {
+									eq: 'YEARLY'
+								}
+							},
+						]
 					},
 					{
-						recurrence: {
-							eq: 'WEEKLY'
-						}
-					},
-					{
-						recurrence: {
-							eq: 'WEEKDAYS'
-						}
-					},
-					{
-						recurrence: {
-							eq: 'MONTHLY'
-						}
-					},
-					{
-						recurrence: {
-							eq: 'YEARLY'
-						}
-					},
+						or: [
+							{
+								until: {
+									eq: null
+								}
+							},
+							{
+								until: {
+									ge: lastSync
+								}
+							}
+						]
+					}
 				]
 			}
-		]
+		],
 	}
 };
 

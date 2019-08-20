@@ -60,19 +60,21 @@ class Container extends React.Component {
   _handleDeltaSync = () => {
     const { client, stores } = this.props;
     const id = stores.appState.userId;
+    const filter = baseEventsFilter();
     stores.appState.setSync(true);
     client.hydrated().then(() => {
       stores.appState.subscription = client.sync({
         baseQuery: {
           query: BaseQuery,
-          variables: { id,
-            // filter: baseEventsFilter()
+          variables: {
+            id,
+            filter
           },
           update: (cache, result) => (
             updateBaseCache({
               cache,
               result,
-              variables: { id },
+              variables: { id, filter },
               cacheUpdateQuery: BaseQuery,
               stores
             })
@@ -80,14 +82,15 @@ class Container extends React.Component {
         },
         deltaQuery: {
           query: DeltaQuery,
-          variables: { id,
-            // filter: baseEventsFilter()
+          variables: {
+            id,
+            filter
           },
           update: (cache, result) => (
             updateDeltaCache({
               cache,
               result,
-              variables: { id },
+              variables: { id, filter },
               cacheUpdateQuery: DeltaQuery,
               stores
             })

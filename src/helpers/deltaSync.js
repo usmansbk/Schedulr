@@ -14,8 +14,8 @@ export default function updateBaseCache({
       variables,
       data
     });
-    stores.appState.setSync(false);
   }
+  stores.appState.setSync(false);
 }
 
 export function updateDeltaCache({
@@ -34,6 +34,6 @@ export function updateDeltaCache({
       variables,
       data
     });
-    stores.appState.setSync(false);
   }
+  stores.appState.setSync(false);
 }
