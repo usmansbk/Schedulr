@@ -21,6 +21,8 @@ export default class AppState {
   @observable query = '';
 
   @persist @observable address = 'Nigeria';
+  @persist @observable lastSyncTimestamp = null;
+
   @persist('list') @observable mutedEvents = [];
   @persist('list') @observable mutedSchedules = [];
   @persist('list') @observable allowedEvents = [];
@@ -37,7 +39,7 @@ export default class AppState {
   debounceQuery = debounce(val => this.query = val, 250);
 
   @action setUserId = id => this.userId = id;
-  @action setSync = isSync => this.isSync = isSync;
+  @action setLastSyncTimestamp = timestamp => this.lastSyncTimestamp = timestamp;
   @action setLoginState = state => this.loggingIn = Boolean(state); 
   @action toggleConnection = isConnected => this.isConnected = isConnected;
   @action togglePref = (pref) => {

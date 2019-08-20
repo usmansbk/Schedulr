@@ -1,16 +1,21 @@
 import { graphql, compose } from 'react-apollo';
-import { withNavigationFocus } from 'react-navigation';
 import gql from 'graphql-tag';
-import { getUserData } from 'api/queries';
-import { baseEventsFilter } from 'api/filters';
+import moment from 'moment';
+import { inject, observer } from 'mobx-react';
+import { withNavigationFocus } from 'react-navigation';
+import { getUserData, getUserDelta } from 'api/queries';
+import { baseEventsFilter, deltaEventsFilter } from 'api/filters';
+import updateBaseCache from 'helpers/deltaSync';
 import Events from './Events';
 
 const alias = 'withEventsContainer';
+const BaseQuery = gql(getUserData);
+const DeltaQuery = gql(getUserDelta);
 
-export default (
+export default inject("stores")(observer(
   compose(
     withNavigationFocus,
-    graphql(gql(getUserData), {
+    graphql(BaseQuery, {
       alias,
       options: props => ({
         fetchPolicy: 'cache-first',
@@ -24,8 +29,27 @@ export default (
         loading: data && data.loading || data.networkStatus === 4,
         data: data && data.getUserData,
         onRefresh: () => data.refetch(),
+        fetchMore: () => {
+          const lastSyncTimestamp = ownProps.stores.appState.lastSyncTimestamp || moment().toISOString();
+
+          data.fetchMore({
+            query: DeltaQuery,
+            variables:{
+              id: ownProps.id,
+              filter: deltaEventsFilter(lastSyncTimestamp)
+            },
+            updateQuery: (prev, { fetchMoreResult }) => (
+              updateBaseCache({
+                prev,
+                result: fetchMoreResult,
+                lastSyncTimestamp,
+                stores: ownProps.stores
+              })
+            )
+          })
+        },
         ...ownProps
       })
     }),
   )(Events)
-);
+));

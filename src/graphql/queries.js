@@ -473,3 +473,154 @@ export const getUserData = `query GetUserData($id: ID!, $filter: ModelEventFilte
     }
   }
 }`
+
+export const getUserDelta = `query GetUserDelta($id: ID!, $filter: ModelEventFilterInput) {
+  getUserDelta: getUser(id: $id) {
+    id
+    created {
+      items {
+        id
+        followersCount
+        events(filter: $filter) @connection(key: "events") {
+          items {
+            id
+            title
+            description
+            venue
+            category
+            startAt
+            endAt
+            allDay
+            recurrence
+            until
+            isPublic
+            isOwner
+            isCancelled
+            isBookmarked
+            cancelledDates
+            banner {
+              bucket
+              key
+            }
+            author {
+              id
+              name
+            }
+            schedule {
+              id
+              name
+            }
+            commentsCount
+            bookmarksCount
+            createdAt
+            updatedAt
+          }
+        }
+      }
+    }
+    following {
+      items {
+        id
+        schedule {
+          id
+          name
+          description
+          isPublic
+          status
+          picture {
+            key
+            bucket
+          }
+          author {
+            id
+            name
+            pictureUrl
+            avatar {
+              key
+              bucket
+            }
+            website
+            createdCount
+            followingCount
+          }
+          events @connection(key: "events") {
+            items {
+              id
+              title
+              description
+              venue
+              category
+              startAt
+              endAt
+              allDay
+              recurrence
+              until
+              isPublic
+              isOwner
+              isCancelled
+              isBookmarked
+              cancelledDates
+              banner {
+                bucket
+                key
+              }
+              author {
+                id
+                name
+              }
+              schedule {
+                id
+                name
+              }
+              commentsCount
+              bookmarksCount
+              createdAt
+              updatedAt
+            }
+          }
+          followersCount
+          eventsCount
+          updatedAt
+        }
+      }
+    }
+    bookmarks {
+      items {
+        id
+        event {
+          id
+          title
+          description
+          venue
+          category
+          startAt
+          endAt
+          allDay
+          recurrence
+          until
+          isPublic
+          isOwner
+          isCancelled
+          isBookmarked
+          cancelledDates
+          banner {
+            bucket
+            key
+          }
+          author {
+            id
+            name
+          }
+          schedule {
+            id
+            name
+          }
+          commentsCount
+          bookmarksCount
+          createdAt
+          updatedAt
+        }
+      }
+    }
+  }
+}`

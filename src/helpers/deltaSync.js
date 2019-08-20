@@ -1,32 +1,25 @@
-export default function updateBaseCache({
-  cache,
-  result,
-  cacheUpdateQuery,
-  variables,
-}) {
-  console.log('using base query helper');
-  if (result && result.data) {
-    const { data } = result;
-    cache.writeQuery({
-      query: cacheUpdateQuery,
-      variables,
-      data
-    });
-  }
-}
+import moment from 'moment';
+const DEFAULT_UPPER_BOUND_TIME_MS = 2000;
 
-export function updateDeltaCache({
-  cache,
+export default function updateBaseCache({
+  prev,
   result,
-  cacheUpdateQuery,
-  variables,
+  stores,
+  lastSyncTimestamp,
 }) {
-  if (result && result.data) {
-    const { data } = result;
-    cache.writeQuery({
-      query: cacheUpdateQuery,
-      variables,
-      data
-    });
-  }
+  if (!result) return prev;
+  console.log('update base query helper');
+  console.log(prev, result);
+
+  // if (result && result.data) {
+  //   const { data } = result;
+  //   cache.writeQuery({
+  //     query: cacheUpdateQuery,
+  //     data
+  //   });
+  // }
+  
+  const timestamp = moment.now() - DEFAULT_UPPER_BOUND_TIME_MS;
+  console.log(timestamp);
+  stores.appState.setLastSyncTimestamp(timestamp)
 }

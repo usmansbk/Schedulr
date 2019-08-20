@@ -10,6 +10,10 @@ export default class Events extends React.Component {
     allowedEvents: []
   }
 
+  componentDidMount = () => {
+    this.props.fetchMore();
+  }
+
   shouldComponentUpdate = (nextProps) => {
     return nextProps.navigation.isFocused();
   };
@@ -60,6 +64,7 @@ export default class Events extends React.Component {
           events={this.events}
           navigation={this.props.navigation}
           onRefresh={this._onRefresh}
+          loading={this.props.loading}
         />
         <FAB
           icon="edit-2"
