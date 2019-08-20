@@ -117,7 +117,6 @@ const schdl = (event, before, settings) => {
 
   if (!(isStarted || isCancelled)) {
     schdlStart(event, settings);
-    console.log(moment.now());
     const distance = moment(start).valueOf() - moment.now();
     if (fiveMin && distance > FIVE_MINUTES) {
       setReminder(event, { amount: 5, unit: 'minutes' }, settings);
