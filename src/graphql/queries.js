@@ -296,7 +296,7 @@ export const getUserSchedules = `query GetUserSchedules($id: ID!) {
     }
   }
 }`;
-export const getUserData = `query GetUserData($id: ID!) {
+export const getUserData = `query GetUserData($id: ID!, $filter: ModelEventFilterInput) {
   getUserData: getUser(id: $id) {
     id
     created {
@@ -321,7 +321,7 @@ export const getUserData = `query GetUserData($id: ID!) {
         eventsCount
         createdAt
         updatedAt
-        events {
+        events(filter: $filter) @connection(key: "events") {
           items {
             id
             title

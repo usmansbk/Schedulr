@@ -9,6 +9,7 @@ import { withApollo } from 'react-apollo';
 import { inject, observer } from 'mobx-react';
 import NavigationService from 'config/navigation';
 import { getUserData } from 'api/queries';
+import { baseEventsFilter } from 'api/filters';
 import gql from 'graphql-tag';
 import updateBaseCache, { updateDeltaCache } from 'helpers/deltaSync';
 import Events from './Hoc';
@@ -64,7 +65,9 @@ class Container extends React.Component {
       stores.appState.subscription = client.sync({
         baseQuery: {
           query: BaseQuery,
-          variables: { id },
+          variables: { id,
+            // filter: baseEventsFilter()
+          },
           update: (cache, result) => (
             updateBaseCache({
               cache,
@@ -77,7 +80,9 @@ class Container extends React.Component {
         },
         deltaQuery: {
           query: DeltaQuery,
-          variables: { id },
+          variables: { id,
+            // filter: baseEventsFilter()
+          },
           update: (cache, result) => (
             updateDeltaCache({
               cache,

@@ -5,7 +5,8 @@ export default function updateBaseCache({
   variables,
   stores
 }) {
-  console.log('using base query helper');
+  console.log(cache);
+  console.log('using base query helper', result);
   if (result && result.data) {
     const { data } = result;
     cache.writeQuery({
