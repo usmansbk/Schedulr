@@ -1,5 +1,4 @@
 import React from 'react';
-import gql from 'graphql-tag';
 import NetInfo from '@react-native-community/netinfo';
 import LocalNotifications from 'react-native-push-notification';
 import SimpleToast from 'react-native-simple-toast';
@@ -9,7 +8,6 @@ import moment from 'moment';
 import { withApollo } from 'react-apollo';
 import { inject, observer } from 'mobx-react';
 import NavigationService from 'config/navigation';
-import { getUserData } from 'api/queries';
 import Events from './Hoc';
 
 /**
