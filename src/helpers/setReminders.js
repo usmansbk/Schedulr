@@ -83,7 +83,6 @@ const schdlStart = (event, settings) => {
   if (repeatType === 'time') {
     repeatTime.repeatTime = getRepeatTime(date.getTime(), recurrence);
   }
-
   const notification = {
     title,
     date,
@@ -99,7 +98,6 @@ const schdlStart = (event, settings) => {
     repeatType,
     ...repeatTime
   };
-  console.log(notification);
   PushNotification.localNotificationSchedule(notification);
 };
 
@@ -114,12 +112,13 @@ const schdl = (event, before, settings) => {
   } = before;
 
   const start = event.startAt;
-  const isStarted = (Date.now() > start);
+  const isStarted = (moment() > moment(start));
   const isCancelled = event.isCancelled;
 
   if (!(isStarted || isCancelled)) {
     schdlStart(event, settings);
-    const distance = start - Date.now();
+    console.log(moment.now());
+    const distance = moment(start).valueOf() - moment.now();
     if (fiveMin && distance > FIVE_MINUTES) {
       setReminder(event, { amount: 5, unit: 'minutes' }, settings);
     }

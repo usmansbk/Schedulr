@@ -1,5 +1,6 @@
 import memoize from 'lodash.memoize';
 import emojiRegex from 'emoji-regex';
+import moment from 'moment';
 
 function sortList(list) {
   return list.sort((a, b) => {
@@ -37,8 +38,8 @@ export const sortEvents = memoize((events, reverse) => {
 });
 
 export const sortBookmarks = memoize((events) => {
-  const pending = events.filter(a => a.endAt > Date.now());
-  const expired = events.filter(a => a.endAt < Date.now());
+  const pending = events.filter(a => moment(a.endAt) > moment());
+  const expired = events.filter(a => moment(a.endAt) < moment());
   const sorted = sortEvents(pending).concat(sortEvents(expired, true));
   return sorted;
 });

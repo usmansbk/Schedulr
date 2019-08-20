@@ -76,7 +76,6 @@ class NewEventScreen extends React.Component {
     }
     const start = newStart || initialStartAt;
     const end = newEnd || initialEndAt;
-    console.log(start, end);
 
     return ({
       title,
