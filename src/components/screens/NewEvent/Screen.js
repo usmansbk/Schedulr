@@ -53,9 +53,9 @@ class NewEventScreen extends React.Component {
     const eventScheduleId = navigation.getParam("eventScheduleId", schedule && schedule.id);
     const currentSchedule = this.schedules && this.schedules.find(schedule => schedule.id === eventScheduleId);
 
-    const targetDate = navigation.getParam('targetDate', moment().valueOf())
-    const initialStartAt = moment(targetDate).valueOf();
-    const initialEndAt = moment(targetDate).add(2, 'hours').valueOf();
+    const targetDate = navigation.getParam('targetDate', moment().toISOString())
+    const initialStartAt = moment(targetDate).toISOString();
+    const initialEndAt = moment(targetDate).add(2, 'hours').toISOString();
     let newStart = startAt;
     let newEnd = endAt;
 
@@ -68,14 +68,15 @@ class NewEventScreen extends React.Component {
       const startMins = currentStart.minutes();
       const startHours = currentStart.hours();
       
-      newStart = moment().seconds(startSec).minutes(startMins).hours(startHours).valueOf();
+      newStart = moment().seconds(startSec).minutes(startMins).hours(startHours).toISOString();
       if (isPastExact(newStart)) {
-        newStart = moment(newStart).add(1, 'day').valueOf();
+        newStart = moment(newStart).add(1, 'day').toISOString();
       }
-      newEnd = moment(newStart).add(duration).valueOf();
+      newEnd = moment(newStart).add(duration).toISOString();
     }
     const start = newStart || initialStartAt;
     const end = newEnd || initialEndAt;
+    console.log(start, end);
 
     return ({
       title,

@@ -27,7 +27,7 @@ export function isEventValid(event) {
   } else if (untilAt) {
     const rLength = repeatLength(event.recurrence);
     const tail = moment.duration(rLength);
-    const secondTime = endAt.clone().add(tail, 'valueOf');
+    const secondTime = endAt.clone().add(tail, 'ms');
     if (secondTime.isAfter(untilAt)) {
       Alert.alert(I18n.get("ALERT_until"), I18n.get("ALERT_shortUntil"));
       validity = false;

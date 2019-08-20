@@ -39,15 +39,15 @@ class Container extends React.Component {
 
         let refStartAt, refEndAt;
 
-        if (start.valueOf() >= today.valueOf()) {
+        if (start >= today) {
           const hour = start.hours();
           const min = start.minutes();
           const sec = start.seconds();
           today.hours(hour);
           today.minutes(min);
           today.seconds(sec);
-          refStartAt = start.valueOf();
-          refEndAt = start.clone().add(duration).valueOf();
+          refStartAt = start.toISOString();
+          refEndAt = start.clone().add(duration).toISOString();
         }
         NavigationService.navigate('EventDetails', { id, refStartAt, refEndAt });
         if (Platform.OS === 'ios') {

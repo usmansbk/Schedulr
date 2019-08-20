@@ -99,6 +99,7 @@ const schdlStart = (event, settings) => {
     repeatType,
     ...repeatTime
   };
+  console.log(notification);
   PushNotification.localNotificationSchedule(notification);
 };
 
@@ -158,8 +159,6 @@ const schdlAll = (events, mutedList, allowedList) => {
         const isAllowed = allowedList.includes(id);
         if (!isAllowed && isMuted || (settings.bookmarkedEventsOnly && !event.isBookmarked)) return;
         switch (event.recurrence) {
-          case 'MONTH_DAY':
-            break;
           case 'WEEKDAYS':
             schdlWeekdaysEvent(event, remindMeBefore, settings);
             break;
@@ -189,9 +188,9 @@ function schdlWeekdaysEvent(event, remindMeBefore, settings) {
     nextDay.minute(minute);
     nextDay.second(second);
 
-    const endAt = nextDay.clone().add(duration).valueOf();
+    const endAt = nextDay.clone().add(duration).toISOString();
     const nextEvent = Object.assign({}, event, {
-      startAt: nextDay.valueOf(),
+      startAt: nextDay.toISOString(),
       endAt
     });
     schdl(nextEvent, remindMeBefore, settings);

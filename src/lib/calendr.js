@@ -95,7 +95,7 @@ const getNextDate = memoize((events=[], refDate, before) => {
   }).sort((a, b) => {
     if (before) return -(a - b);
     return a - b;
-  }), (a, b) => a.valueOf() === b.valueOf())[0];
+  }), (a, b) => a.toISOString() === b.toISOString())[0];
 }, (...args) => JSON.stringify(args));
 
 /**
@@ -119,13 +119,6 @@ const getNextDayEvents = memoize((initialEvents, nextDate) => {
       let recurrence;
       if (interval === 'weekdays') {
         recurrence = eventDate.recur().every(weekdays).daysOfWeek();
-      } else if (recurrence === 'month_day') {
-        const currentDate = eventDate.date();
-        const weekOfMonth = Math.ceil(currentDate / DAYS_IN_WEEK) - 1;
-        const daysOfWeek = eventDate.valueOf('dddd');
-
-        recurrence = eventDate.recur().every(daysOfWeek).daysOfWeek()
-          .every(weekOfMonth).weeksOfMonthByDay();
       } else {
         recurrence = eventDate.recur().every(1, interval);
       }
@@ -140,9 +133,9 @@ const getNextDayEvents = memoize((initialEvents, nextDate) => {
 
         const duration = Math.abs(moment.duration(start.diff(end)));
 
-        const startAt = refDate.seconds(startSec).minutes(startMins).hours(startHours).valueOf();
+        const startAt = refDate.seconds(startSec).minutes(startMins).hours(startHours).toISOString();
 
-        const endAt = moment(startAt).add(duration).valueOf();
+        const endAt = moment(startAt).add(duration).toISOString();
         accumulator.data.push(Object.assign({}, currentEvent, {
           startAt,
           endAt
@@ -155,7 +148,7 @@ const getNextDayEvents = memoize((initialEvents, nextDate) => {
     return accumulator;
   }, {
     data: [],
-    title: refDate.startOf('day').valueOf(),
+    title: refDate.startOf('day').toISOString(),
   });
 }, (...args) => JSON.stringify(args));
 
@@ -184,8 +177,8 @@ function getEvents(events) {
       const nextDates = recurrence.next(1);
       const isConcluded = untilAt ? moment(startAt).isAfter(untilAt) : false;
       const nextDate = isConcluded ? untilAt : nextDates[0]
-      const startAt = nextDate.local().seconds(startSec).minutes(startMins).hours(startHours).valueOf();
-      const endAt = moment(startAt).local().add(duration).valueOf();
+      const startAt = nextDate.local().seconds(startSec).minutes(startMins).hours(startHours).toISOString();
+      const endAt = moment(startAt).local().add(duration).toISOString();
 
       return  Object.assign({}, currentEvent, {
         startAt,

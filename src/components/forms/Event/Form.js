@@ -48,8 +48,8 @@ class Form extends React.Component {
       title: '',
       description: null,
       venue: null,
-      startAt: moment().valueOf(),
-      endAt: moment().add(2, 'hours').valueOf(),
+      startAt: moment().toISOString(),
+      endAt: moment().add(2, 'hours').toISOString(),
       allDay: false,
       category: 'Normal',
       recurrence: recurrence[0].id,
@@ -208,10 +208,10 @@ class Form extends React.Component {
 
                     setFieldValue('startAt', date);
                     if (values.allDay) {
-                      setFieldValue('endAt', moment(date).endOf('day').valueOf());
+                      setFieldValue('endAt', moment(date).endOf('day').toISOString());
                     } else {
                       const prevDuration = Math.abs(prevEndAt - prevStartAt);
-                      const newEnd = moment(date).add(prevDuration, 'milliseconds').valueOf();
+                      const newEnd = moment(date).add(prevDuration, 'milliseconds').toISOString();
                       setFieldValue('endAt', newEnd);
                     }
                   }}
@@ -234,8 +234,8 @@ class Form extends React.Component {
                     const { allDay } = values;
                     setFieldValue('allDay', !allDay);
                     if (!allDay) {
-                      setFieldValue('startAt', moment(values.startAt).startOf('day').valueOf());
-                      setFieldValue('endAt', moment(values.startAt).endOf('day').valueOf());
+                      setFieldValue('startAt', moment(values.startAt).startOf('day').toISOString());
+                      setFieldValue('endAt', moment(values.startAt).endOf('day').toISOString());
                     }
                   }}
                 />
@@ -255,7 +255,7 @@ class Form extends React.Component {
                       setFieldValue('until', null);
                     } else if (values.until) {
                       const unit = getTimeUnit(itemValue);
-                      setFieldValue('until', moment(values.startAt).add(1, unit).valueOf());
+                      setFieldValue('until', moment(values.startAt).add(1, unit).toISOString());
                     }
                   }}
                 >
@@ -294,7 +294,7 @@ class Form extends React.Component {
                             setFieldValue('until', null);
                           } else {
                             const unit = getTimeUnit(values.recurrence);
-                            setFieldValue('until', moment(values.startAt).add(2, unit).valueOf());
+                            setFieldValue('until', moment(values.startAt).add(2, unit).toISOString());
                           }
                         }}
                       />

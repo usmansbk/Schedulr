@@ -24,11 +24,11 @@ class Input extends React.Component {
   _hidePicker = (name) => this.setState({[name]: false});
   _showPicker = (name) => this.setState({[name]: true});
   _handleConfirmDate = (date) => {
-    this.props.onChangeDate(moment(date).valueOf());
+    this.props.onChangeDate(moment(date).toISOString());
     this._hidePicker('showDatePicker');
   };
   _handleConfirmTime = (date) => {
-    this.props.onChangeDate(moment(date).valueOf());
+    this.props.onChangeDate(moment(date).toISOString());
     this._hidePicker('showTimePicker');
   };
 
@@ -45,7 +45,7 @@ class Input extends React.Component {
       stores
     } = this.props;
 
-    const value = this.props.value || moment().valueOf();
+    const value = this.props.value || moment().toISOString();
     const styles = stores.appStyles.datePicker;
 
     return (
