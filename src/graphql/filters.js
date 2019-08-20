@@ -1,7 +1,12 @@
-import moment from "moment";
+export const deltaEventsFilter = lastSync => {
+	return {
+		updatedAt: {
+			gt: lastSync
+		}
+	}
+};
 
-export const baseEventsFilter = timestamp => {
-	const lastSync = moment().toISOString();
+export const baseEventsFilter = lastSync => {
 	return {
 		or: [
 			{

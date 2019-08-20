@@ -282,7 +282,7 @@ class List extends React.Component {
   });
 
   render() {
-    const { stores } = this.props;
+    const { stores, loading } = this.props;
     const { sections } = this.state;
   
     return (
@@ -302,12 +302,12 @@ class List extends React.Component {
         ListHeaderComponent={this._renderHeader}
         ListEmptyComponent={this._renderEmptyList}
         ItemSeparatorComponent={this._renderSeparator}
-        refreshing={stores.appState.isSync}
+        refreshing={loading}
         onRefresh={this._onRefresh}
         refreshControl={
           <RefreshControl
             onRefresh={this._onRefresh}
-            refreshing={stores.appState.isSync}
+            refreshing={loading}
             colors={[stores.themeStore.colors.primary]}
             progressBackgroundColor={stores.themeStore.colors.bg}
           />

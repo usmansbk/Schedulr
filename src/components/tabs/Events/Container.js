@@ -1,4 +1,5 @@
 import React from 'react';
+import gql from 'graphql-tag';
 import NetInfo from '@react-native-community/netinfo';
 import LocalNotifications from 'react-native-push-notification';
 import SimpleToast from 'react-native-simple-toast';
@@ -9,13 +10,7 @@ import { withApollo } from 'react-apollo';
 import { inject, observer } from 'mobx-react';
 import NavigationService from 'config/navigation';
 import { getUserData } from 'api/queries';
-import { baseEventsFilter } from 'api/filters';
-import gql from 'graphql-tag';
-import updateBaseCache, { updateDeltaCache } from 'helpers/deltaSync';
 import Events from './Hoc';
-
-const BaseQuery = gql(getUserData);
-const DeltaQuery = gql(getUserData);
 
 /**
  * This component handles Local Notifications and DeltaSync
@@ -56,49 +51,6 @@ class Container extends React.Component {
       }
     });
   };
-
-  _handleDeltaSync = () => {
-    const { client, stores } = this.props;
-    const id = stores.appState.userId;
-    const filter = baseEventsFilter();
-    stores.appState.setSync(true);
-    client.hydrated().then(() => {
-      stores.appState.subscription = client.sync({
-        baseQuery: {
-          query: BaseQuery,
-          variables: {
-            id,
-            filter
-          },
-          update: (cache, result) => (
-            updateBaseCache({
-              cache,
-              result,
-              variables: { id, filter },
-              cacheUpdateQuery: BaseQuery,
-              stores
-            })
-          )
-        },
-        deltaQuery: {
-          query: DeltaQuery,
-          variables: {
-            id,
-            filter
-          },
-          update: (cache, result) => (
-            updateDeltaCache({
-              cache,
-              result,
-              variables: { id, filter },
-              cacheUpdateQuery: DeltaQuery,
-              stores
-            })
-          )
-        }
-      });
-    });
-  };
   
   _handleNavBarColor = async () => {
     const { stores } = this.props;
@@ -136,9 +88,6 @@ class Container extends React.Component {
   };
 
   componentDidMount = async () => {
-    if (!global.HermesInternal) {
-      this._handleDeltaSync();
-    }
     this._initNetInfo();
     await this._handleNavBarColor();
   };

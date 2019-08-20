@@ -3,10 +3,8 @@ export default function updateBaseCache({
   result,
   cacheUpdateQuery,
   variables,
-  stores
 }) {
-  console.log(cache);
-  console.log('using base query helper', result);
+  console.log('using base query helper');
   if (result && result.data) {
     const { data } = result;
     cache.writeQuery({
@@ -15,7 +13,6 @@ export default function updateBaseCache({
       data
     });
   }
-  stores.appState.setSync(false);
 }
 
 export function updateDeltaCache({
@@ -23,10 +20,7 @@ export function updateDeltaCache({
   result,
   cacheUpdateQuery,
   variables,
-  stores
 }) {
-  console.log('using delta query helper');
-  console.log('delta', result);
   if (result && result.data) {
     const { data } = result;
     cache.writeQuery({
@@ -35,5 +29,4 @@ export function updateDeltaCache({
       data
     });
   }
-  stores.appState.setSync(false);
 }

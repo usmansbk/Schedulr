@@ -27,6 +27,8 @@ export default class Events extends React.Component {
     this.props.navigation.navigate('NewEvent');
   };
 
+  _onRefresh = () => this.props.onRefresh && this.props.onRefresh();
+  
   _getEvents = memoize(
     (data) => {
       let events = [];

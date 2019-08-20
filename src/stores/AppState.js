@@ -20,6 +20,7 @@ export default class AppState {
   @observable isConnected = false;
   @observable searchText = '';
   @observable query = '';
+
   @persist @observable address = 'Nigeria';
   @persist('list') @observable mutedEvents = [];
   @persist('list') @observable mutedSchedules = [];
@@ -34,16 +35,12 @@ export default class AppState {
 
   @persist('list') @observable categories =  categories(this.settings.language);
 
-  debounceQuery = debounce((val) => this.query = val, 250);
+  debounceQuery = debounce(val => this.query = val, 250);
 
   @action setUserId = id => this.userId = id;
-  @action setSync = (isSync) => this.isSync = isSync;
-  @action setLoginState = (state) => this.loggingIn = Boolean(state);
-  
-  @action toggleConnection = (isConnected) => {
-    this.isConnected = isConnected;
-  };
-
+  @action setSync = isSync => this.isSync = isSync;
+  @action setLoginState = state => this.loggingIn = Boolean(state); 
+  @action toggleConnection = isConnected => this.isConnected = isConnected;
   @action togglePref = (pref) => {
     const prevValue = this.prefs[pref];
     this.prefs[pref] = !prevValue;
