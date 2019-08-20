@@ -16,7 +16,7 @@ class Updates extends React.Component {
   shouldComponentUpdate = (nextProps) => {
     return nextProps.navigation.isFocused();
   };
-
+  
   _onPress = () => {
     // clear notifications
   }
