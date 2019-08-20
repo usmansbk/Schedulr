@@ -5,7 +5,6 @@ import SimpleToast from 'react-native-simple-toast';
 import { Linking, Platform } from 'react-native';
 import changeNavigationBarColor from 'react-native-navigation-bar-color';
 import moment from 'moment';
-import { withApollo } from 'react-apollo';
 import { inject, observer } from 'mobx-react';
 import NavigationService from 'config/navigation';
 import Events from './Hoc';
@@ -106,4 +105,4 @@ class Container extends React.Component {
   }
 }
 
-export default inject("stores")(observer(withApollo(Container)));
+export default inject("stores")(observer(Container));
