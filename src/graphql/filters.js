@@ -1,4 +1,8 @@
-export const deltaEventsFilter = lastSync => {
+import moment from 'moment';
+
+export const deltaEventsFilter = timestamp => {
+	const time = timestamp ? moment(timestamp) : moment();
+	const lastSync = time.toISOString();
 	return {
 		updatedAt: {
 			gt: lastSync
@@ -6,12 +10,13 @@ export const deltaEventsFilter = lastSync => {
 	}
 };
 
-export const baseEventsFilter = lastSync => {
+export const baseEventsFilter = () => {
+	const now = moment().toISOString();
 	return {
 		or: [
 			{
 				endAt: {
-					ge: lastSync
+					ge: now
 				}
 			},
 			{	
@@ -54,7 +59,7 @@ export const baseEventsFilter = lastSync => {
 							},
 							{
 								until: {
-									ge: lastSync
+									ge: now
 								}
 							}
 						]

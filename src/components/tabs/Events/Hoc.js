@@ -1,6 +1,5 @@
 import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
-import moment from 'moment';
 import { inject, observer } from 'mobx-react';
 import { withNavigationFocus } from 'react-navigation';
 import { getUserData, getUserDelta } from 'api/queries';
@@ -22,7 +21,7 @@ export default inject("stores")(observer(
         notifyOnNetworkStatusChange: true,
         variables: {
           id: props.id,
-          filter: baseEventsFilter(moment().toISOString())
+          filter: baseEventsFilter(Date.now())
         }
       }),
       props: ({ data, ownProps}) => ({
@@ -30,7 +29,7 @@ export default inject("stores")(observer(
         data: data && data.getUserData,
         onRefresh: () => data.refetch(),
         fetchMore: () => {
-          const lastSyncTimestamp = ownProps.stores.appState.lastSyncTimestamp || moment().toISOString();
+          const lastSyncTimestamp = ownProps.stores.appState.lastSyncTimestamp;
 
           data.fetchMore({
             query: DeltaQuery,

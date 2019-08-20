@@ -13,6 +13,9 @@ export default class AppState {
   constructor(settingsStore) {
     this.settings = settingsStore;
   }
+  
+  debounceQuery = debounce(val => this.query = val, 250);
+
   @persist @observable userId = null;
   @persist @observable loggingIn = false;
   @observable isSync = false;
@@ -36,10 +39,8 @@ export default class AppState {
 
   @persist('list') @observable categories =  categories(this.settings.language);
 
-  debounceQuery = debounce(val => this.query = val, 250);
-
   @action setUserId = id => this.userId = id;
-  @action setLastSyncTimestamp = timestamp => this.lastSyncTimestamp = timestamp;
+  @action updateLastSyncTimestamp = timestamp => this.lastSyncTimestamp = timestamp;
   @action setLoginState = state => this.loggingIn = Boolean(state); 
   @action toggleConnection = isConnected => this.isConnected = isConnected;
   @action togglePref = (pref) => {
@@ -65,6 +66,7 @@ export default class AppState {
     this.categories = categories(this.settingsStore.language);
     this.loggingIn = false;
     this.userId = null;
+    this.lastSyncTimestamp = null;
   }
 
   @action addCustomType = (category) => {

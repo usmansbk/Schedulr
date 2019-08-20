@@ -1,5 +1,5 @@
 import moment from 'moment';
-const DEFAULT_UPPER_BOUND_TIME_MS = 2000;
+const BUFFER_MILLISECONDS = 2000;
 
 export default function updateBaseCache({
   prev,
@@ -19,7 +19,6 @@ export default function updateBaseCache({
   //   });
   // }
   
-  const timestamp = moment.now() - DEFAULT_UPPER_BOUND_TIME_MS;
-  console.log(timestamp);
-  stores.appState.setLastSyncTimestamp(timestamp)
+  const timestamp = moment.now() - BUFFER_MILLISECONDS;
+  stores.appState.updateLastSyncTimestamp(timestamp);
 }
