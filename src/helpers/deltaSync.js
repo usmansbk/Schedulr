@@ -30,7 +30,21 @@ function mergeChanges(prevData, newData) {
 }
 
 function updateBookmarks(prev, bookmarks) {
-
+	const { items } = bookmarks;
+	const newItems = [...prev.items];
+	items.forEach(bookmark => {
+		const { event } = bookmark;
+		if (!event) return bookmark;
+		const index = newItems.findIndex(prevBookmark => prevBookmark.id === bookmark.id);
+		if (index === -1) {
+			newItems.push(bookmark);
+		} else {
+			newItems[index] = bookmark;
+		}
+	});
+	return Object.assign({}, bookmarks, {
+		items: newItems
+	});
 }
 
 function updateFollowing(prev, following) {
@@ -45,7 +59,7 @@ function updateFollowing(prev, following) {
 			const { schedule: prevSchedule } = prevFollow;
 			const { events: prevEvents } = prevSchedule;
 
-			const newItems = prevEvents.items;
+			const newItems = [...prevEvents.items];
 			events.items.forEach((item) => {
 				const index = newItems.findIndex(prevItem => prevItem.id === item.id);
 				if (index === -1) {
