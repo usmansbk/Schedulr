@@ -220,7 +220,7 @@ export default {
   ERROR_serverError: "Oop! My fault",
   ERROR_noConnection: "No connection",
   ERROR_404: "Not found",
-  ERROR_404_caption: "Item may have been removed",
+  ERROR_404_caption: "Item may have been deleted",
 
   PLACEHOLDER_aboutThisEvent: "About this event...",
   PLACEHOLDER_normal: "Normal",
