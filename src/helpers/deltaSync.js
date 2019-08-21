@@ -6,7 +6,6 @@ export default function updateBaseCache({
   fetchMoreResult,
   stores,
 }) {
-  console.log(prev, fetchMoreResult);
   const lastSyncTimestamp = moment.now() - BUFFER_MILLISECONDS;
   stores.appState.updateLastSyncTimestamp(lastSyncTimestamp);
 
