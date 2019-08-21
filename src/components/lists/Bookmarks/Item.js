@@ -7,7 +7,7 @@ import {
   Headline,
 } from 'react-native-paper';
 import { inject, observer } from 'mobx-react';
-import Tag from 'components/common/Tag';
+import Badge from 'components/common/Badge';
 import Avatar from 'components/common/UserAvatar';
 import Actions from 'components/common/Actions';
 import { bookmarkedEvents } from 'lib/constants';
@@ -63,6 +63,7 @@ class Item extends React.Component {
               src={pictureUrl}
               onPress={this._onPressAvatar}
             />
+            <Badge status={status}/>
           </View>
           <View style={styles.right}>
             <View style={styles.itemBody}>
@@ -74,7 +75,6 @@ class Item extends React.Component {
               </Headline>
               <Text style={styles.time}>{time}</Text>
               <Caption>{duration ? duration + ' ' : ''}{category} {recurrence}</Caption>
-              <Tag status={status} /> 
             </View>
             <Actions
               id={id}

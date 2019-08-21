@@ -42,7 +42,7 @@ export const schedules = {
 // list/bookmarkedEvents
 export const bookmarkedEvents = {
   AVATAR_SIZE : 54,
-  ITEM_HEIGHT : 145,
+  ITEM_HEIGHT : 136,
   ITEM_HEIGHT_SMALL : 102,
   SEPARATOR_HEIGHT : 1,
   FOOTER_HEIGHT : 80,
