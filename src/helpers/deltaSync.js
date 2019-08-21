@@ -8,9 +8,8 @@ export default function updateBaseCache({
 }) {
   const lastSyncTimestamp = moment.now() - BUFFER_MILLISECONDS;
   stores.appState.updateLastSyncTimestamp(lastSyncTimestamp);
-
   if (!fetchMoreResult) return prev;
-  return mergeChanges(prev, fetchMoreResult);
+	return mergeChanges(prev, fetchMoreResult);
 }
 
 function mergeChanges(prevData, newData) {
