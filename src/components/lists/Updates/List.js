@@ -5,8 +5,8 @@ import Empty from './Empty';
 import Footer from './Footer';
 import Separator from './Separator';
 import Item from './Item';
-import capitalizr from 'lib/capitalizr';
 import { notifications_list } from 'lib/constants';
+import getImageUrl from 'helpers/getImageUrl';
 
 const {
   ITEM_HEIGHT,
@@ -15,7 +15,22 @@ const {
 
 export default class List extends React.Component {
   static defaultProps = {
-    updates: []
+    updates: [
+      {
+        id: '1',
+        subject: 'EEEN502',
+        message: 'cancelled',
+        topic: '',
+        date: moment().subtract(1, 'day').format()
+      },
+      {
+        id: '2',
+        subject: 'EEEN503',
+        message: 'scheduled for',
+        topic: 'Aug 20th',
+        date: moment().format()
+      },
+    ]
   };
 
   _renderEmpty = () => <Empty />;
@@ -33,22 +48,20 @@ export default class List extends React.Component {
   );
   _renderItem = ({ item: {
     id,
-    title,
+    subject,
     message,
-    pictureUrl,
-    date,
-    count,
-    target,
+    image,
+    timestamp,
+    topic,
     type
   }}) => <Item
     id={id}
-    title={title}
+    subject={subject}
     message={message}
-    count={count}
+    topic={topic}
     type={type}
-    pictureUrl={pictureUrl}
-    date={capitalizr(`${moment(date).fromNow()}`)}
-    target={target && capitalizr(moment(target).toDate().toDateString())}
+    pictureUrl={image && getImageUrl(image)}
+    date={moment().fromNow()}
     navigateToSchedule={this._navigateToSchedule}
     navigateToEvent={this._navigateToEvent}
   />;
@@ -60,7 +73,7 @@ export default class List extends React.Component {
       <FlatList
         data={updates}
         style={styles}
-        extraData={moment().toISOString()}
+        extraData={moment().format('mm')}
         getItemLayout={this._getItemLayout}
         contentContainerStyle={styles.contentContainer}
         renderItem={this._renderItem}

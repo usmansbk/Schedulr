@@ -3,7 +3,6 @@ import { withNavigationFocus } from 'react-navigation';
 import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
 import List from 'components/lists/Updates';
-import Fab from 'components/common/Fab';
 
 class Updates extends React.Component {
 
@@ -17,30 +16,14 @@ class Updates extends React.Component {
     return nextProps.navigation.isFocused();
   };
   
-  _onPress = () => {
-    // clear notifications
-  }
-
   render() {
-    const { stores, navigation, updates=[] } = this.props;
+    const { stores, navigation, updates } = this.props;
 
     return (
-      <>
       <List
-        updates={updates}
         styles={stores.appStyles.notifications}
         navigation={navigation}
       />
-      {
-        Boolean(updates.length) && (
-          <Fab
-            small
-            icon="clear-all"
-            onPress={this._onPress}
-          />
-        )
-      }
-      </>
     )
   }
 }

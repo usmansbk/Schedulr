@@ -773,18 +773,11 @@ export default class AppStyles {
         alignItems: 'center',
         maxWidth: 300
       },
-      itemHeadline: {
-        fontSize: 16
-      },
-      itemMessage: {
-        fontWeight: 'bold',
-        fontSize: 12
-      },
       itemBody: {
         marginLeft: 8
       },
-      itemTag: {
-    
+      boldText: {
+        fontWeight: 'bold',
       }
     });
   }

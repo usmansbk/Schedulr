@@ -31,11 +31,11 @@ class Item extends React.Component {
 
   render() {
     const {
-      title,
+      subject,
       message,
       pictureUrl,
       date,
-      target,
+      topic,
       stores
     } = this.props;
 
@@ -44,10 +44,13 @@ class Item extends React.Component {
     return (
       <TouchableRipple onPress={this._onPressItems} style={styles.itemContainer}>
         <View style={styles.itemContent}>
-          <UserAvatar src={pictureUrl} name={title} />
+          <UserAvatar src={pictureUrl} name={subject} size={32} />
           <View style={styles.itemBody}>
-            <Caption ellipsizeMode="tail" numberOfLines={2}><Text ellipsizeMode="tail" numberOfLines={1} style={styles.itemMessage}>{title}</Text> {message}
-            { Boolean(target) && <Caption style={styles.itemMessage}>{target}</Caption>}</Caption>
+            <Text ellipsizeMode="tail" numberOfLines={2}>
+              <Caption style={styles.boldText}>{subject}</Caption>{' '}
+              <Caption>{message}</Caption>{' '}
+              <Caption style={styles.boldText}>{topic}</Caption>
+            </Text>
             <Caption style={styles.itemTag}>{date}</Caption>
           </View>
         </View>
