@@ -10,7 +10,7 @@ import NavigationService from 'config/navigation';
 import Events from './Hoc';
 
 /**
- * This component handles Local Notifications and DeltaSync
+ * This component handles Local Notifications
  */
 class Container extends React.Component {
   constructor(props) {

@@ -5,7 +5,7 @@ import FAB from 'components/common/Fab';
 
 export default class Schedules extends React.Component {
 
-  _getSchedules = memoize(
+  _mergeAllSchedules = memoize(
     (data) => {
       if (!data) return [];
       const { created, following } = data;
@@ -15,7 +15,7 @@ export default class Schedules extends React.Component {
   );
 
   get schedules() {
-    return this._getSchedules(this.props.data)
+    return this._mergeAllSchedules(this.props.data)
   }
 
   shouldComponentUpdate = (nextProps) => nextProps.navigation.isFocused();

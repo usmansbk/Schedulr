@@ -33,7 +33,7 @@ export default class Events extends React.Component {
 
   _onRefresh = () => this.props.onRefresh && this.props.onRefresh();
   
-  _getEvents = memoize(
+  _mergeAllEvents = memoize(
     (data) => {
       let events = [];
       if (!data) return events;
@@ -54,7 +54,7 @@ export default class Events extends React.Component {
   );
 
   get events() {
-    return this._getEvents(this.props.data);
+    return this._mergeAllEvents(this.props.data);
   }
 
   render() {

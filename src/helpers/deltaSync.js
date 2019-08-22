@@ -6,25 +6,25 @@ export default function updateBaseCache({
   fetchMoreResult,
   stores,
 }) {
-  const lastSyncTimestamp = moment.now() - BUFFER_MILLISECONDS;
-  stores.appState.updateLastSyncTimestamp(lastSyncTimestamp);
-  if (!fetchMoreResult) return prev;
+  	const lastSyncTimestamp = moment.now() - BUFFER_MILLISECONDS;
+  	stores.appState.updateLastSyncTimestamp(lastSyncTimestamp);
+  	if (!fetchMoreResult) return prev;
 	return mergeChanges(prev, fetchMoreResult);
 }
 
 function mergeChanges(prevData, newData) {
-  const { getUserDelta: { following, bookmarks } } = newData;
-  const { getUserData } = prevData;
+ 	const { getUserDelta: { following, bookmarks } } = newData;
+ 	const { getUserData } = prevData;
 
-  const updatedFollowing = updateFollowing(getUserData.following, following);
-  const updatedBookmarks = updateBookmarks(getUserData.bookmarks, bookmarks);
+ 	const updatedFollowing = updateFollowing(getUserData.following, following);
+	const updatedBookmarks = updateBookmarks(getUserData.bookmarks, bookmarks);
 
-  return Object.assign({}, prevData, {
-  	getUserData: Object.assign({}, getUserData, {
-  		following: updatedFollowing,
-  		bookmarks: updatedBookmarks
-  	})
-  });
+	return Object.assign({}, prevData, {
+		getUserData: Object.assign({}, getUserData, {
+			following: updatedFollowing,
+			bookmarks: updatedBookmarks
+		})
+	});
 }
 
 function updateBookmarks(prev, bookmarks) {
