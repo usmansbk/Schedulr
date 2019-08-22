@@ -21,14 +21,14 @@ export default class List extends React.Component {
         subject: 'EEEN502',
         message: 'cancelled',
         topic: '',
-        date: moment().subtract(1, 'day').format()
+        timestamp: moment.now(),
       },
       {
         id: '2',
         subject: 'EEEN503',
         message: 'scheduled for',
         topic: 'Aug 20th',
-        date: moment().format()
+        timestamp: moment.now(),
       },
     ]
   };
@@ -61,7 +61,7 @@ export default class List extends React.Component {
     topic={topic}
     type={type}
     pictureUrl={image && getImageUrl(image)}
-    date={moment().fromNow()}
+    date={moment(timestamp).fromNow()}
     navigateToSchedule={this._navigateToSchedule}
     navigateToEvent={this._navigateToEvent}
   />;
