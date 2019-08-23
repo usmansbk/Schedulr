@@ -76,7 +76,7 @@ export const getEvent = `query GetEvent($id: ID!) {
 export const getEventComments = `query GetEventComments($id: ID!) {
   getEventComments: getEvent(id: $id) {
     id
-    comments {
+    comments(sortDirection: DESC) @connection(key: "comments") {
       items {
         id
         content
