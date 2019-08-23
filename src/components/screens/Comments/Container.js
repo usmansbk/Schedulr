@@ -74,7 +74,7 @@ export default class Container extends React.Component {
         loading={loading}
         title={this.props.navigation.getParam('title')}
         error={Boolean(error)}
-        comments={comments.reverse()}
+        comments={comments.sort((a, b) => Date.parse(a.createdAt) - Date.parse(b.createdAt))}
         userName={user.name}
         userPictureUrl={uri}
         userId={user.id}
