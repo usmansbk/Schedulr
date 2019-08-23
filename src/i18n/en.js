@@ -7,7 +7,7 @@ export default {
   FOLLOWERS_emptyList: "No followers",
   FOLLOWERS_loadMore: "Load more",
 
-  EVENTS_emptyList: "No upcoming Events",
+  EVENTS_emptyList: "No upcoming events",
   EVENTS_SECTIONLIST_after: date => `After ${date}`,
   EVENTS_SECTIONLIST_noMoreEvents: () => "No more events",
   EVENTS_SECTIONLIST_before: date => `Before ${date}`,
