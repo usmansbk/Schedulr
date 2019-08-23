@@ -213,6 +213,7 @@ export default {
   STATUS_done: "Done",
   STATUS_cancelled: "Cancelled",
   STATUS_upcoming: "Upcoming",
+  STATUS_closed: "Closed",
 
   ERROR_noInternetConnection: "Check your internet connection. Pull to refresh",
   ERROR_somethingWentWrong: "Something went wrong. Please try again",
