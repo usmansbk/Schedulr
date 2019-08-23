@@ -6,6 +6,7 @@ import Footer from './Footer';
 import Separator from './Separator';
 import Item from './Item';
 import { notifications_list } from 'lib/constants';
+import { timeAgo } from 'lib/time';
 import getImageUrl from 'helpers/getImageUrl';
 
 const {
@@ -27,7 +28,7 @@ export default class List extends React.Component {
         id: '2',
         subject: 'EEEN503',
         message: 'scheduled for',
-        topic: 'Aug 20th',
+        topic: 'August 20th',
         timestamp: moment.now(),
       },
     ]
@@ -61,7 +62,7 @@ export default class List extends React.Component {
     topic={topic}
     type={type}
     pictureUrl={image && getImageUrl(image)}
-    date={moment(timestamp).fromNow()}
+    date={timeAgo(timestamp)}
     navigateToSchedule={this._navigateToSchedule}
     navigateToEvent={this._navigateToEvent}
   />;

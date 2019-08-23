@@ -48,8 +48,8 @@ class Item extends React.Component {
           <View style={styles.itemBody}>
             <Text ellipsizeMode="tail" numberOfLines={2}>
               <Caption style={styles.boldText}>{subject}</Caption>{' '}
-              <Caption>{message}</Caption>{' '}
-              <Caption style={styles.boldText}>{topic}</Caption>
+              <Caption>{message}</Caption>
+              <Caption style={styles.boldText}>{topic ? ' ' + topic : ''}.</Caption>
             </Text>
             <Caption style={styles.itemTag}>{date}</Caption>
           </View>
