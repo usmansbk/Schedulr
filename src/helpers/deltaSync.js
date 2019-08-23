@@ -32,7 +32,7 @@ function updateBookmarks(prev, bookmarks) {
 	const newItems = [...prev.items];
 	items.forEach(bookmark => {
 		const { event } = bookmark;
-		if (!event) return bookmark;
+		if (!event || event.isOwner) return bookmark;
 		const index = newItems.findIndex(prevBookmark => prevBookmark.id === bookmark.id);
 		if (index === -1) {
 			newItems.push(bookmark);
