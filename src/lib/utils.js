@@ -1,6 +1,7 @@
 import memoize from 'lodash.memoize';
 import emojiRegex from 'emoji-regex';
 import moment from 'moment';
+import { SCHEDULE_CLOSED } from 'lib/constants';
 
 function sortList(list) {
   return list.sort((a, b) => {
@@ -17,8 +18,8 @@ function sortList(list) {
 }
 
 export default sortSchedules = memoize((data) => {
-  const closed = sortList(data.filter(a => a.status === 'CLOSED'));
-  const opened = sortList(data.filter(a => a.status !== 'CLOSED'));
+  const closed = sortList(data.filter(a => a.status === SCHEDULE_CLOSED));
+  const opened = sortList(data.filter(a => a.status !== SCHEDULE_CLOSED));
 
   return opened.concat(closed);
 });
