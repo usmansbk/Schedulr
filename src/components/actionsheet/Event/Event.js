@@ -42,7 +42,7 @@ class EventAction extends React.Component {
     SimpleToast.show(I18n.get(`TOAST_${isBookmarked ? "removed" : "saved"}`), SimpleToast.SHORT);
     try {
       if (isBookmarked) {
-        await removeBookmark(input);
+        await removeBookmark(input, id);
       } else {
         input.bookmarkEventId = id,
         await bookmarkEvent(input);

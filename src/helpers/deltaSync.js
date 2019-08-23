@@ -13,9 +13,12 @@ export default function updateBaseCache({
 }
 
 function mergeChanges(prevData, newData) {
- 	const { getUserDelta: { following, bookmarks } } = newData;
+ 	const { getUserDelta } = newData;
  	const { getUserData } = prevData;
 
+	if (!getUserDelta) return prevData;
+	
+	const { following, bookmarks } = getUserDelta;
  	const updatedFollowing = updateFollowing(getUserData.following, following);
 	const updatedBookmarks = updateBookmarks(getUserData.bookmarks, bookmarks);
 

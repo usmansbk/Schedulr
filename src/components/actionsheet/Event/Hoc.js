@@ -17,7 +17,7 @@ export default inject("stores")(observer(
           variables: {
             input
           },
-          update: (cache, { data: { createBookmark } }) => createBookmark && (
+          update: (cache, { data: { createBookmark } }) => (
             updateApolloCache(cache, createBookmark, ADD)
           ),
           optimisticResponse: buildOptimisticResponse({
@@ -34,15 +34,18 @@ export default inject("stores")(observer(
       alias: 'withRemoveBookmarkEvent',
       withRef: true,
       props: ({ mutate, ownProps }) => ({
-        removeBookmark: (input) => mutate({
+        removeBookmark: (input, bookmarkEventId) => mutate({
           variables: {
             input
           },
-          update: (cache, { data: { deleteBookmark } }) => deleteBookmark && (
+          update: (cache, { data: { deleteBookmark } }) => (
             updateApolloCache(cache, deleteBookmark, DELETE)
           ),
           optimisticResponse: buildOptimisticResponse({
-            input,
+            input: {
+              ...input,
+              bookmarkEventId
+            },
             mutationName: 'deleteBookmark',
             responseType: 'Bookmark',
             operationType: DELETE
