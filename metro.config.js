@@ -4,6 +4,7 @@
  *
  * @format
  */
+const blacklist = require('metro').createBlacklist;
 
 module.exports = {
   transformer: {
@@ -13,5 +14,7 @@ module.exports = {
         inlineRequires: false,
       },
     }),
-  },
+  },  resolver: {
+  blacklistRE: blacklist([/amplify//\#current-cloud-backend\/.*/])
+}
 };
