@@ -15,6 +15,6 @@ module.exports = {
       },
     }),
   },  resolver: {
-  blacklistRE: blacklist([/amplify//\#current-cloud-backend\/.*/])
+  blacklistRE: blacklist([/#current-cloud-backend\/.*/])
 }
 };
