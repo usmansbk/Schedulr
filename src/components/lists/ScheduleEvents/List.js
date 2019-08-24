@@ -91,7 +91,8 @@ class List extends Component {
   _renderFooter = () => <Footer
     onPress={this._fetchPastEvents}
     loading={this.props.loading && this.state.loadingPrev}
-    hasPrev={this.state.hasPrev}
+    hasPrev={this.props.eventsCount - this.props.events.length}
+    hide={!this.props.eventsCount}
   />;
 
   _fetchPastEvents = async () => {

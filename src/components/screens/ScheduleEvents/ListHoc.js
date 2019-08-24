@@ -19,11 +19,13 @@ class ListHoc extends React.Component {
       loading,
       error,
       events,
+      eventsCount
     } = this.props;
 
     return <List
             listType="schedule"
             events={events}
+            eventsCount={eventsCount}
             loading={loading}
             error={error}
             onRefresh={this._onRefresh}

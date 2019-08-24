@@ -29,7 +29,8 @@ export default class ScheduleEvents extends React.Component {
     const {
       id,
       name,
-      description
+      description,
+      eventsCount
     } = schedule;
 
     const styles = stores.appStyles.styles;
@@ -54,6 +55,7 @@ export default class ScheduleEvents extends React.Component {
         </Appbar>
         <List
           id={id}
+          eventsCount={eventsCount}
         />
       </>
     );
