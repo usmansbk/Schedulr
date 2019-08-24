@@ -103,6 +103,7 @@ export const captionDetails = ({
   duration
 }) => {
   const validCategory = category ? ' ' + category : '';
-  return allDay ? (`${capitalize(recurrence)}${validCategory}`) : (
+  const caption = allDay ? (`${capitalize(recurrence)}${validCategory}`) : (
     `${duration}${validCategory}${recurrence ? ' ' + recurrence : ''}`);
+  return caption.trim();
 };
