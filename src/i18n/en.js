@@ -182,7 +182,7 @@ export default {
   SCHEDULE_whatIsASchedule: "What is a schedule?",
   
   SCHEDULES_noUpcomingEvents: "No upcoming events",
-  SCHEDULES_loadPastEvents: "Load past events",
+  SCHEDULES_loadPastEvents: count => `Load (${count}) past events`,
   SCHEDULES_noMoreEvents: "No more events",
 
   HELPER_TEXT_titleIsRequired: "Title is required",

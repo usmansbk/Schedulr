@@ -28,7 +28,7 @@ export default inject('stores')(observer(
             ) : (
               <Caption style={stores.appStyles.eventsList.footerText}>
                 {
-                  hasPrev ? I18n.get("SCHEDULES_loadPastEvents") : I18n.get("SCHEDULES_noMoreEvents")
+                  hasPrev ? I18n.get("SCHEDULES_loadPastEvents")(hasPrev) : I18n.get("SCHEDULES_noMoreEvents")
                 }
               </Caption>
             )

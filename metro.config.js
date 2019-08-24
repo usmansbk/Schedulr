@@ -14,7 +14,8 @@ module.exports = {
         inlineRequires: false,
       },
     }),
-  },  resolver: {
-  blacklistRE: blacklist([/#current-cloud-backend\/.*/])
-}
+  },
+  resolver: {
+  	blacklistRE: blacklist([/#current-cloud-backend\/.*/])
+  }
 };
