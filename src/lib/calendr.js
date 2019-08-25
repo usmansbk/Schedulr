@@ -3,9 +3,7 @@ import 'moment-recur';
 import uniqWith from 'lodash.uniqwith';
 import memoize from 'lodash.memoize';
 import { sortBy } from 'lib/utils';
-import { isWeekday } from 'lib/time';
 
-const DAYS_IN_WEEK = 7;
 export const weekdays = [
   "Monday",
   "Tuesday",
