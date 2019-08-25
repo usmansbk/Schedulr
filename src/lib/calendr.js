@@ -3,6 +3,7 @@ import 'moment-recur';
 import uniqWith from 'lodash.uniqwith';
 import memoize from 'lodash.memoize';
 import { sortBy } from 'lib/utils';
+import { isWeekday } from 'lib/time';
 
 const DAYS_IN_WEEK = 7;
 export const weekdays = [
@@ -19,7 +20,6 @@ function getInterval(recurrence) {
     case 'WEEKDAYS': return 'weekdays';
     case 'WEEKLY':  return 'weeks';
     case 'MONTHLY': return 'months';
-    case 'MONTHLY_DAY': return 'month_day';
     case 'YEARLY': return 'years';
     default: return null;
   }
@@ -79,6 +79,9 @@ const getNextDate = memoize((events=[], refDate, before) => {
         // do nothing
       } else if (validStart) {
         return nextDate.local().startOf('day');
+      } else if (interval === 'weekdays') {
+        // Prevent weekends
+        return null;
       }
     } else if (isValid && moment(refDate).isBetween(eventDate, endDate, null, '[]')) {
       recurrence = eventDate.recur(endDate).every(1).day().fromDate(refDate);
@@ -90,6 +93,7 @@ const getNextDate = memoize((events=[], refDate, before) => {
     }
     return eventDate.startOf('day');
   }).filter(date => {
+    if (!date) return false;
     if (before) return date.isBefore(refDate, 'day');
     return date.isAfter(refDate, 'day');
   }).sort((a, b) => {
