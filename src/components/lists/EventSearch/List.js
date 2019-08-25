@@ -13,7 +13,6 @@ import {
   getStatus,
   getCategory
 } from 'lib/parseItem';
-import { getEvents } from 'lib/calendr';
 import { bookmarkedEvents } from 'lib/constants';
 import getImageUrl from 'helpers/getImageUrl';
 
@@ -135,7 +134,7 @@ class List extends Component {
         getItemLayout={this._getItemLayout}
         ItemSeparatorComponent={this._renderSeparator}
         keyExtractor={this._keyExtractor}
-        data={getEvents(events)}
+        data={events}
         renderItem={this._renderItem}
         ListEmptyComponent={this._renderEmptyList}
         ListFooterComponent={this._renderFooter}

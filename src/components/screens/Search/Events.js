@@ -4,6 +4,7 @@ import gql from 'graphql-tag';
 import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
 import List from 'components/lists/EventSearch';
+import { getEvents } from 'lib/calendr';
 import { getUserData } from 'api/queries';
 import { sortBookmarks } from 'lib/utils';
 
@@ -22,9 +23,9 @@ function mergeEvents(data, query) {
     events.push(bookmark.event);
   });
   
-  return sortBookmarks(events.filter(
+  return sortBookmarks(getEvents(events.filter(
     item => item.title.toLowerCase().includes(query.toLowerCase()) ||
-     (item.category && item.category.toLowerCase().includes(query.toLowerCase()))));
+     (item.category && item.category.toLowerCase().includes(query.toLowerCase())))));
 }
 
 class Events extends React.Component {
