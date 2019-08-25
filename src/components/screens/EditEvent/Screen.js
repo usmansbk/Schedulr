@@ -21,6 +21,7 @@ class EditEventScreen extends React.Component {
       category,
       recurrence,
       until,
+      forever,
       schedule,
       isPublic
     } = event;
@@ -34,6 +35,7 @@ class EditEventScreen extends React.Component {
       category,
       recurrence,
       until,
+      forever: forever !== undefined ? forever : true,
       eventScheduleId: schedule && schedule.id,
       isPublic: Boolean(isPublic)
     });

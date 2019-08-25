@@ -28,6 +28,7 @@ export const getScheduleEvents = gql`
         allDay
         recurrence
         until
+        forever
         isPublic
         isOwner
         isCancelled

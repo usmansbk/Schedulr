@@ -46,6 +46,7 @@ class NewEventScreen extends React.Component {
       category,
       recurrence,
       until,
+      forever,
       isPublic=true,
       schedule,
     } = event;
@@ -87,6 +88,7 @@ class NewEventScreen extends React.Component {
       category,
       recurrence: recurrence || recurrences[0].id,
       until,
+      forever: forever !== undefined ? forever : true,
       eventScheduleId,
       isPublic: currentSchedule ? currentSchedule.isPublic : Boolean(isPublic)
     });

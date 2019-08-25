@@ -54,6 +54,7 @@ class Form extends React.Component {
       category: 'Normal',
       recurrence: recurrence[0].id,
       until: null,
+      forever: false,
       eventScheduleId: null,
       isPublic: true
     }
@@ -99,6 +100,7 @@ class Form extends React.Component {
             const location = getLocation(stores.appState.location);
             const input = buildForm(values);
             input.location = location;
+            console.log(input);
             onSubmit && await onSubmit(input);
           }
           setSubmitting(false);
@@ -253,6 +255,7 @@ class Form extends React.Component {
                     setFieldValue('recurrence', itemValue);
                     if (itemValue === recurrence[0].id) {
                       setFieldValue('until', null);
+                      setFieldValue('forever', false);
                     } else if (values.until) {
                       const unit = getTimeUnit(itemValue);
                       setFieldValue('until', moment(values.startAt).add(1, unit).toISOString());
@@ -287,15 +290,16 @@ class Form extends React.Component {
                     <View style={styles.radio}>
                       <Text style={styles.radioText}>{I18n.get("EVENT_FORM_repeatForever")}</Text>
                       <Switch
-                        value={!Boolean(values.until)}
+                        value={values.forever}
                         onValueChange={() => {
-                          const until = values.until;
-                          if (until) {
+                          const forever = values.forever;
+                          if (!forever) {
                             setFieldValue('until', null);
                           } else {
                             const unit = getTimeUnit(values.recurrence);
                             setFieldValue('until', moment(values.startAt).add(2, unit).toISOString());
                           }
+                          setFieldValue('forever', !forever);
                         }}
                       />
                     </View>
@@ -304,7 +308,7 @@ class Form extends React.Component {
                 )
               }
               {
-                (values.recurrence !== recurrence[0].id && values.until) && (
+                (values.recurrence !== recurrence[0].id && !values.forever) && (
                   <View style={styles.pickerSpacing}>
                     <Text style={styles.radioText}>{I18n.get("EVENT_FORM_repeatUntil")}</Text>
                     <DateTimeInput

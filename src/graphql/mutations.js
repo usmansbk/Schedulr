@@ -41,6 +41,7 @@ export const createEvent = `mutation CreateEvent($input: CreateEventInput!) {
     allDay
     recurrence
     until
+    forever
     isPublic
     isOwner
     isCancelled
@@ -78,6 +79,7 @@ export const updateEvent = `mutation UpdateEvent($input: UpdateEventInput!) {
     allDay
     recurrence
     until
+    forever
     isPublic
     isCancelled
     cancelledDates
@@ -113,6 +115,7 @@ export const createBookmark = `mutation CreateBookmark($input: CreateBookmarkInp
       allDay
       recurrence
       until
+      forever
       isPublic
       isOwner
       isCancelled
@@ -183,6 +186,7 @@ export const createSchedule = `mutation CreateSchedule($input: CreateScheduleInp
         allDay
         recurrence
         until
+        forever
         isPublic
         isOwner
         isCancelled
@@ -275,6 +279,7 @@ export const createFollow = `mutation CreateFollow($input: CreateFollowInput!) {
           allDay
           recurrence
           until
+          forever
           isPublic
           isOwner
           isCancelled

@@ -49,6 +49,7 @@ export const getEvent = `query GetEvent($id: ID!) {
     allDay
     recurrence
     until
+    forever
     isPublic
     isOwner
     isCancelled
@@ -156,6 +157,7 @@ export const getScheduleEvents = `query GetScheduleWithEvents($id: ID!) {
         allDay
         recurrence
         until
+        forever
         isPublic
         isOwner
         isCancelled
@@ -200,6 +202,7 @@ export const getUserBookmarks = `query GetBookmarks($id: ID!) {
           allDay
           recurrence
           until
+          forever
           isPublic
           isOwner
           isCancelled
@@ -333,6 +336,7 @@ export const getUserData = `query GetUserData($id: ID!, $filter: ModelEventFilte
             allDay
             recurrence
             until
+            forever
             isPublic
             isOwner
             isCancelled
@@ -402,6 +406,7 @@ export const getUserData = `query GetUserData($id: ID!, $filter: ModelEventFilte
               allDay
               recurrence
               until
+              forever
               isPublic
               isOwner
               isCancelled
@@ -446,6 +451,7 @@ export const getUserData = `query GetUserData($id: ID!, $filter: ModelEventFilte
           allDay
           recurrence
           until
+          forever
           isPublic
           isOwner
           isCancelled
@@ -514,6 +520,7 @@ export const getUserDelta = `query GetUserDelta($id: ID!, $filter: ModelEventFil
               allDay
               recurrence
               until
+              forever
               isPublic
               isOwner
               isCancelled
@@ -557,6 +564,7 @@ export const getUserDelta = `query GetUserDelta($id: ID!, $filter: ModelEventFil
           allDay
           recurrence
           until
+          forever
           isPublic
           isOwner
           isCancelled

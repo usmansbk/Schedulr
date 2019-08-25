@@ -53,8 +53,8 @@ export const baseEventsFilter = () => {
 					{
 						or: [
 							{
-								until: {
-									eq: null
+								forever: {
+									eq: true
 								}
 							},
 							{
