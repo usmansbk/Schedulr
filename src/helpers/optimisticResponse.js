@@ -240,6 +240,7 @@ function createBookmark(input, typename) {
       allDay
       recurrence
       until
+      forever
       isPublic
       isOwner
       isCancelled
@@ -499,6 +500,7 @@ function updateEvent(input, typename) {
       allDay
       recurrence
       until
+      forever
       isPublic
       isOwner
       isCancelled

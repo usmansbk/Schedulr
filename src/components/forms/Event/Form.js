@@ -100,7 +100,6 @@ class Form extends React.Component {
             const location = getLocation(stores.appState.location);
             const input = buildForm(values);
             input.location = location;
-            console.log(input);
             onSubmit && await onSubmit(input);
           }
           setSubmitting(false);
