@@ -4,6 +4,7 @@ export const createUser = `mutation CreateUser($input: CreateUserInput!) {
   createUser(input: $input) {
     id
     email
+    me
     name
     pictureUrl
     avatar {
@@ -11,7 +12,10 @@ export const createUser = `mutation CreateUser($input: CreateUserInput!) {
       bucket
     }
     website
+    followingCount
+    createdCount
     createdAt
+    updatedAt
   }
 }
 `;
