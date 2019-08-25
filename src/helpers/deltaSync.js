@@ -16,7 +16,7 @@ function mergeChanges(prevData, newData) {
  	const { getUserDelta } = newData;
  	const { getUserData } = prevData;
 
-	if (!getUserDelta) return prevData;
+	if (!(getUserDelta && getUserData)) return prevData;
 	
 	const { following, bookmarks } = getUserDelta;
  	const updatedFollowing = updateFollowing(getUserData.following, following);
