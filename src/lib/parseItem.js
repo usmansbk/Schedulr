@@ -49,7 +49,7 @@ export const isToday = (event) => {
 };
 
 export const getDuration = (startAt, endAt, allDay) => {
-  if (allDay) return null;
+  if (allDay) return '';
   const t = moment(startAt).twix(endAt);
   return decapitalize(t.humanizeLength());
 };

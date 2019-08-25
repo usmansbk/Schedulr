@@ -48,6 +48,16 @@ export const bookmarkedEvents = {
   FOOTER_HEIGHT : 80,
 }
 
+// list/bookmarkedEvents
+export const searchEvents = {
+  AVATAR_SIZE : 54,
+  ITEM_HEIGHT : 148,
+  ITEM_HEIGHT_SMALL : 102,
+  SEPARATOR_HEIGHT : 1,
+  FOOTER_HEIGHT : 80,
+}
+
+
 // list/followers
 export const followers_list = {
   SEPARATOR_HEIGHT : 1,

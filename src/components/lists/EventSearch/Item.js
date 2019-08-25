@@ -52,7 +52,7 @@ class Item extends React.Component {
       stores
     } = this.props;
 
-    const styles = stores.appStyles.bookmarkedEventsList;
+    const styles = stores.appStyles.searchEventsList;
     const caption = captionDetails({
       allDay,
       recurrence,

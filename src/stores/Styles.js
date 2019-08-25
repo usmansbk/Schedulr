@@ -4,6 +4,7 @@ import { dark, light } from 'config/colors';
 import {
   events,
   schedules,
+  searchEvents,
   bookmarkedEvents,
   followers_list,
   schedule_events,
@@ -1071,6 +1072,113 @@ export default class AppStyles {
       ITEM_HEIGHT_SMALL,
       SEPARATOR_HEIGHT,
     } = bookmarkedEvents;
+
+    return StyleSheet.create({
+      contentContainer: {
+        backgroundColor: colors.light_gray,
+        marginTop: 1,
+        flexGrow: 1
+      },
+      list: {
+        backgroundColor: colors.light_gray,
+      },
+      footer: {
+        height: ITEM_HEIGHT,
+        justifyContent: 'center',
+        alignItems: 'center'
+      },
+      footerText: {
+        fontWeight: 'bold',
+        color: colors.light_gray_3
+      },
+      offlineTitle: {
+        fontSize: 20,
+        fontFamily: 'sans-serif-bold',
+        color: colors.gray,
+      },
+      empty: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingHorizontal: 30
+      },
+      emptyTitle: {
+        fontSize: 25,
+        color: colors.light_gray_3,
+        textAlign: 'center'
+      },
+      separator: {
+        height: SEPARATOR_HEIGHT,
+      },
+      itemContainer: {
+        backgroundColor: colors.white,
+      },
+      itemContentSmall: {
+        paddingTop: 4,
+        height: ITEM_HEIGHT_SMALL,
+        flexDirection: 'row',
+        paddingHorizontal: 8,
+      },
+      itemContent: {
+        paddingTop: 4,
+        height: ITEM_HEIGHT,
+        flexDirection: 'row',
+        paddingHorizontal: 8,
+      },
+      itemBody: {
+        paddingTop: 4,
+        marginLeft: 8,
+        flex: 1,
+      },
+      itemHeadline: {
+        fontSize: 20,
+        fontFamily: 'sans-serif-bold',
+      },
+      itemNote: {
+        fontSize: 16,
+        color: colors.gray,
+        width: 200
+      },
+      left: {
+        paddingTop: 16
+      },
+      right: {
+        justifyContent: 'space-between',
+        flex: 1
+      },
+      cancelled: {
+        fontSize: 16,
+        color: colors.light_red
+      },
+      time: {
+        fontFamily: 'sans-serif-medium',
+        fontSize: 14,
+        color: colors.gray
+      },
+      status: {
+        color: colors.gray,
+        fontFamily: 'sans-serif-bold'
+      },
+      duration: {
+        fontFamily: 'sans-serif-bold',
+        color: colors.gray,
+      },
+      durationRow: {
+        flexDirection: 'row'
+      },
+      paragraph: {
+        textAlign: 'center'
+      },
+    });
+  }
+  @computed get searchEventsList () {
+    const colors = this.settings.dark ? dark : light;
+
+    const {
+      ITEM_HEIGHT,
+      ITEM_HEIGHT_SMALL,
+      SEPARATOR_HEIGHT,
+    } = searchEvents;
 
     return StyleSheet.create({
       contentContainer: {
