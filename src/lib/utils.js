@@ -26,12 +26,12 @@ export default sortSchedules = memoize((data) => {
 
 export const sortBy = (arr, key) => {
   return arr.sort((a, b) => {
-    return Date.parse(a[key]) - Date.parse(b[key]);
+    return moment(a[key]) - moment(b[key]);
   });
 };
 
 export const sortEvents = memoize((events, reverse) => {
-  const sorted = events.sort((a, b) => Date.parse(a.startAt) - Date.parse(b.startAt));
+  const sorted = events.sort((a, b) => moment(a.startAt) - moment(b.startAt));
   if (reverse) return sorted.reverse();
   return sorted;
 });
