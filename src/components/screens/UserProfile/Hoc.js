@@ -1,11 +1,11 @@
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
-import { getProfile } from 'api/queries';
+import { getUser } from 'api/queries';
 import UserProfile from './UserProfile';
 
 const alias = 'withUserProfile';
 
-export default graphql(gql(getProfile), {
+export default graphql(gql(getUser), {
   alias,
   options: props => ({
     variables: {
@@ -19,7 +19,7 @@ export default graphql(gql(getProfile), {
     refreshing: data.networkStatus === 4,
     error: data.error,
     onRefresh: () => data.refetch(),
-    user: data && data.getProfile,
+    user: data && data.getUser,
     ...ownProps,
   })
 })(UserProfile)

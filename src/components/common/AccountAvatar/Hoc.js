@@ -1,12 +1,12 @@
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import { inject, observer } from 'mobx-react';
-import { getUser } from 'api/queries';
+import { me } from 'api/queries';
 import Avatar from './Avatar';
 
 export default inject("stores")(observer(
   graphql(
-    gql(getUser),
+    gql(me),
     {
       options: props => ({
         variables: {
@@ -14,11 +14,11 @@ export default inject("stores")(observer(
         },
         fetchPolicy: 'cache-only'
       }),
-      props: ({ data: { getUser={} }, ownProps }) => ({
-        name: getUser.name,
-        email: getUser.email,
-        pictureUrl: getUser.pictureUrl,
-        avatar: getUser.avatar,
+      props: ({ data: { me={} }, ownProps }) => ({
+        name: me.name,
+        email: me.email,
+        pictureUrl: me.pictureUrl,
+        avatar: me.avatar,
         ...ownProps
       })
     }

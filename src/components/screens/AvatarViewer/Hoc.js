@@ -1,13 +1,13 @@
 import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
-import { getProfile } from 'api/queries';
+import { getUser } from 'api/queries';
 import { updateUser } from 'api/mutations';
 import Screen from './Screen';
 
 const alias = 'withAvatarViewer';
 
 export default compose(
-  graphql(gql(getProfile), {
+  graphql(gql(getUser), {
     alias,
     options: props => ({
       variables: {
@@ -16,7 +16,7 @@ export default compose(
       fetchPolicy: 'cache-only',
     }),
     props: ({ data, ownProps }) => ({
-      user: data && data.getProfile,
+      user: data && data.getUser,
       ...ownProps,
     }),
   }),

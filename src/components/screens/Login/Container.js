@@ -6,11 +6,11 @@ import { withApollo } from 'react-apollo';
 import gql from 'graphql-tag';
 import changeNavigationBarColor from 'react-native-navigation-bar-color';
 import SimpleToast from 'react-native-simple-toast';
-import { getUser } from 'api/queries';
+import { me } from 'api/queries';
 import { createUser } from 'api/mutations';
 import Login from './Login';
 
-const GET_USER = gql(getUser);
+const GET_USER = gql(me);
 const CREATE_USER = gql(createUser);
 
 class Container extends React.Component {
@@ -52,7 +52,7 @@ class Container extends React.Component {
             }
           });
           const { data } = response;
-          if (!data.getUser) {
+          if (!data.me) {
             const result = await client.mutate({
               mutation: CREATE_USER,
               variables: {
@@ -70,7 +70,7 @@ class Container extends React.Component {
                 id: email
               },
               data: {
-                getUser: user
+                me: user
               }
             });
           }

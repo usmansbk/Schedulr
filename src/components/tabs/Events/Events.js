@@ -43,8 +43,8 @@ export default class Events extends React.Component {
       created.items.forEach(schedule => {
         events = events.concat(schedule.events.items);
       });
-      following.items.filter(item => Boolean(item.schedule)).forEach(schedule => {
-        events = events.concat(schedule.events.items);
+      following.items.filter(item => Boolean(item.schedule)).forEach(follow => {
+        events = events.concat(follow.schedule.events.items);
       });
       bookmarks.items.filter(item => Boolean(item.event) && !item.event.isOwner).forEach(bookmark => {
         events.push(bookmark.event);

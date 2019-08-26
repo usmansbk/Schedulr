@@ -2,14 +2,14 @@ import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
 import { inject, observer } from 'mobx-react';
 import Screen from './Screen';
-import { getProfile } from 'api/queries';
+import { me } from 'api/queries';
 import { updateUser } from 'api/mutations';
 
 const alias = 'withEditProfileContainer';
 
 export default inject('stores')(observer(
   compose(
-    graphql(gql(getProfile), {
+    graphql(gql(me), {
       alias,
       options: props => {
         const id = props.stores.appState.userId;
@@ -21,7 +21,7 @@ export default inject('stores')(observer(
         });
       },
       props: ({ data, ownProps }) => ({
-        user: data && data.getProfile,
+        user: data && data.me,
         ...ownProps
       })
     }),

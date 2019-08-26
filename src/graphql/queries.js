@@ -1,11 +1,10 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
-
-export const getUser = `query GetUser($id: ID!) {
-  getUser(id: $id) {
+export const me = `query GetUser($id: ID!) {
+  me: getUser(id: $id) {
     id
-    email
     me
+    email
     name
     pictureUrl
     avatar {
@@ -20,9 +19,11 @@ export const getUser = `query GetUser($id: ID!) {
   }
 }
 `;
-export const getProfile = `query GetProfile($id: ID!) {
-  getProfile: getUser(id: $id) {
+
+export const getUser = `query GetUser($id: ID!) {
+  getUser(id: $id) {
     id
+    me
     name
     pictureUrl
     avatar {
@@ -30,13 +31,11 @@ export const getProfile = `query GetProfile($id: ID!) {
       bucket
     }
     website
-    me
     followingCount
     createdCount
-    createdAt
-    updatedAt
   }
-}`;
+}
+`;
 export const getEvent = `query GetEvent($id: ID!) {
   getEvent(id: $id) {
     id
