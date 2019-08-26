@@ -3,11 +3,9 @@ import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
 import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
-import uniqWith from 'lodash.uniqwith';
 import List from 'components/lists/People';
 // import { listAllEvents, searchEvent } from 'api/queries';
 import { SEARCH_PAGE_SIZE, SEARCH_DISTANCE } from 'lib/constants';
-import { sortBookmarks } from 'lib/utils';
 
 class People extends React.Component {
 
