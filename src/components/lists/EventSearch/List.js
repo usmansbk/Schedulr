@@ -74,6 +74,7 @@ class List extends Component {
       cancelledDates,
       startAt, endAt, isConcluded
     })}
+    allDay={allDay}
     pictureUrl={banner && getImageUrl(banner)}
     startAt={startAt}
     endAt={endAt}

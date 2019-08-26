@@ -11,6 +11,7 @@ import Badge from 'components/common/Badge';
 import Avatar from 'components/common/UserAvatar';
 import Actions from 'components/common/Actions';
 import { bookmarkedEvents } from 'lib/constants';
+import { captionDetails } from 'lib/parseItem';
 
 const { AVATAR_SIZE } = bookmarkedEvents;
 
@@ -35,6 +36,7 @@ class Item extends React.Component {
     const {
       id,
       title,
+      allDay,
       recurrence,
       time,
       status,
@@ -49,6 +51,12 @@ class Item extends React.Component {
     } = this.props;
     
     const styles = stores.appStyles.bookmarkedEventsList;
+    const caption = captionDetails({
+      allDay,
+      recurrence,
+      category,
+      duration
+    });
 
     return (
       <TouchableRipple
@@ -74,7 +82,7 @@ class Item extends React.Component {
                 {title}
               </Headline>
               <Text style={styles.time}>{time}</Text>
-              <Caption>{duration ? duration + ' ' : ''}{category} {recurrence}</Caption>
+              <Caption>{caption}</Caption>
             </View>
             <Actions
               id={id}

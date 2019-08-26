@@ -43,6 +43,7 @@ class List extends Component {
     title,
     category,
     isCancelled,
+    allDay,
     cancelledDates,
     banner,
     startAt,
@@ -50,7 +51,6 @@ class List extends Component {
     recurrence,
     venue,
     schedule,
-    allDay,
     isConcluded,
     isBookmarked,
     bookmarksCount,
@@ -65,6 +65,7 @@ class List extends Component {
     })}
     startAt={startAt}
     endAt={endAt}
+    allDay={allDay}
     pictureUrl={banner && getImageUrl(banner)}
     isBookmarked={isBookmarked}
     bookmarksCount={bookmarksCount}
