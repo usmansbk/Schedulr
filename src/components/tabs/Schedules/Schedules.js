@@ -2,17 +2,11 @@ import React from 'react';
 import memoize from 'memoize-one';
 import List from 'components/lists/Schedules';
 import FAB from 'components/common/Fab';
+import { mergeSchedules } from 'lib/utils';
 
 export default class Schedules extends React.Component {
 
-  _mergeAllSchedules = memoize(
-    (data) => {
-      if (!data) return [];
-      const { created, following } = data;
-      return created.items
-        .concat(following.items.filter(item => Boolean(item.schedule)).map(item => item.schedule));
-    }
-  );
+  _mergeAllSchedules = memoize(mergeSchedules);
 
   get schedules() {
     return this._mergeAllSchedules(this.props.data)

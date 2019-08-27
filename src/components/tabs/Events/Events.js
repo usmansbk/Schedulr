@@ -3,6 +3,7 @@ import memoize from 'memoize-one';
 import List from 'components/lists/Events';
 import FAB from 'components/common/Fab';
 import schdlAll from 'helpers/setReminders';
+import { mergeEvents } from 'lib/utils';
 
 export default class Events extends React.Component {
   static defaultProps = {
@@ -33,25 +34,7 @@ export default class Events extends React.Component {
 
   _onRefresh = () => this.props.onRefresh && this.props.onRefresh();
   
-  _mergeAllEvents = memoize(
-    (data) => {
-      let events = [];
-      if (!data) return events;
-    
-      const { created, following, bookmarks } = data;
-
-      created.items.forEach(schedule => {
-        events = events.concat(schedule.events.items);
-      });
-      following.items.filter(item => Boolean(item.schedule)).forEach(follow => {
-        events = events.concat(follow.schedule.events.items.filter(event => !event.isBookmarked));
-      });
-      bookmarks.items.filter(item => Boolean(item.event) && !item.event.isOwner).forEach(bookmark => {
-        events.push(bookmark.event);
-      });
-      return events;
-    }
-  );
+  _mergeAllEvents = memoize(mergeEvents);
 
   get events() {
     return this._mergeAllEvents(this.props.data);

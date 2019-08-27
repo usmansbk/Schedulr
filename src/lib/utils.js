@@ -78,3 +78,61 @@ export function getInitials(name) {
   }
   return avatarName;
 }
+
+export function mergeEvents(data) {
+  let allEvents = [];
+
+  if (!data) return allEvents;
+
+  const { created, following, bookmarks } = data;
+  
+  if (created) {
+    // extract events from created schedules
+    created.items.forEach(schedule => {
+      allEvents = allEvents.concat(schedule.events.items);
+    });
+  }
+
+  if (following) {
+    // extract events from following schedules
+    following.items.forEach(follow => {
+      const { schedule } = follow;
+      if (schedule) {
+        // remove bookmarks to prevent duplicates
+        const events = schedule.events.items.filter(item => !item.isBookmarked);
+        allEvents = allEvents.concat(events);
+      }
+    });
+  }
+
+  if (bookmarks) {
+    // extract events from bookmarks
+    bookmarks.items.forEach(bookmark => {
+      const { event } = bookmark;
+      if (event && !event.isOwner) { // don't duplicate events from created schedules
+        allEvents.push(event);
+      }
+    });
+  }
+  return allEvents;
+}
+
+export function mergeSchedules(data) {
+  let allSchedules = [];
+  
+  if (!data) return allSchedules;
+
+  const { created, following } = data;
+
+  // extract created schedules
+  if (created) {
+    allSchedules = allSchedules.concat(created.items);
+  }
+
+  // extract following schedules
+  if (following) {
+    const followingSchedules = following.items.map(follow => follow.schedule).filter(schedule => Boolean(schedule));
+    allSchedules = allSchedules.concat(followingSchedules);
+  }
+  return allSchedules;
+}

@@ -70,5 +70,72 @@ export const baseEventsFilter = () => {
 	}
 };
 
-// updatedAt >= lastSync OR
-// recurrence in [DAILY, WEEKLY, WEEKDAYS, MONTYLY, YEARLY] AND (until == null OR until >= lastSync)
+export const searchUserFilter = (query) => {
+	return {
+		name: {
+			matchPhrasePrefix: query
+		}
+	};
+};
+
+export const searchScheduleFilter = (query) => {
+	return {
+		and: [
+			{
+				isPublic: {
+					ne: false
+				}
+			},
+			{
+				or: [
+					{
+						name: {
+							matchPhrasePrefix: query
+						}
+					},
+					{
+						description: {
+							matchPhrasePrefix: query
+						}
+					}
+				]
+			}
+		]
+	};
+};
+
+export const searchEventFilter = (query) => {
+	return {
+		and: [
+			{
+				isPublic: {
+					ne: false
+				}
+			},
+			{
+				or: [
+					{
+						title: {
+							matchPhrasePrefix: query
+						}
+					},
+					{
+						venue:  {
+							matchPhrasePrefix: query
+						},
+					},
+					{
+						category:  {
+							matchPhrasePrefix: query
+						},
+					},
+					{
+						description:  {
+							matchPhrasePrefix: query
+						},
+					}
+				]
+			}
+		]
+	};
+};

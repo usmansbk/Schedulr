@@ -5,24 +5,11 @@ import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
 import List from 'components/lists/EventSearch';
 import { getEvents } from 'lib/calendr';
-import { getUserData } from 'api/queries';
-import { sortBookmarks } from 'lib/utils';
+import { getUserData, searchEvents } from 'api/queries';
+import { searchEventFilter } from 'api/filters';
+import { sortBookmarks, mergeEvents } from 'lib/utils';
 
-function mergeEvents(data, query) {
-  let events = [];
-  if (!data) return events;
-  const { created, following, bookmarks } = data;
-  created.items.forEach(schedule => {
-    events = events.concat(schedule.events.items);
-  });
-  following.items.filter(item => Boolean(item.schedule)).forEach(schedule => {
-    events = events.concat(schedule.events.items);
-  });
-  
-  bookmarks.items.filter(item => Boolean(item.event) && !item.event.isOwner).forEach(bookmark => {
-    events.push(bookmark.event);
-  });
-  
+function filterEvents(events, query) {
   return sortBookmarks(getEvents(events.filter(
     item => item.title.toLowerCase().includes(query.toLowerCase()) ||
      (item.category && item.category.toLowerCase().includes(query.toLowerCase())))));
@@ -64,10 +51,27 @@ const ListHoc = compose(
       }
     }),
     props: ({ data, ownProps }) => ({
-      events: data && data.getUserData && mergeEvents(data.getUserData, ownProps.query),
+      events: data && data.getUserData && filterEvents(mergeEvents(data.getUserData), ownProps.query),
       ...ownProps
     })
   }),
+  graphql(gql(searchEvents), {
+    alias: 'withSearchEventsOnline',
+    skip: props => !props.isConnected,
+    options: props => ({
+      notifyOnNetworkStatusChange: true,
+      fetchPolicy: 'cache-and-network',
+      variables: {
+        filter: searchEventFilter(props.query)
+      }
+    }),
+    props: ({ data, ownProps }) => ({
+      loading: data && data.loading || data.networkStatus === 4,
+      events: data && data.searchEvents && getEvents(data.searchEvents.items) || [],
+      nextToken: data && data.searchEvents && data.searchEvents.nextToken,
+      ...ownProps
+    })
+  })
 )(List);
 
 export default inject("stores")(observer(Events));

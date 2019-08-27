@@ -3,14 +3,15 @@ import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
 import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
-import sortSchedules from 'lib/utils';
+import sortSchedules, { mergeSchedules } from 'lib/utils';
 import List from 'components/lists/ScheduleSearch';
-import { getUserSchedules } from 'api/queries';
+import { getUserSchedules, searchSchedules } from 'api/queries';
+import { searchScheduleFilter } from 'api/filters';
 
-function mergeSchedules(data, query) {
-  const { created, following } = data;
-  const s = created.items.concat(following.items);
-  return sortSchedules(s.filter(item => item.name.toLowerCase().includes(query.toLowerCase())));
+function filterSchedules(schedules, query) {
+  return sortSchedules(schedules.filter(
+    item => item.name.toLowerCase().includes(query.toLowerCase())
+  ));
 }
 
 class Schedules extends React.Component {
@@ -50,10 +51,27 @@ const ListHoc = compose(
       }
     }),
     props: ({ data, ownProps }) => ({
-      schedules: data && data.getUserSchedules && mergeSchedules(data.getUserSchedules, ownProps.query),
+      schedules: data && data.getUserSchedules && filterSchedules(mergeSchedules(data.getUserSchedules), ownProps.query),
       ...ownProps
     })
   }),
+  graphql(gql(searchSchedules), {
+    alias: 'withSearchSchedulesOnline',
+    skip: props => !props.isConnected,
+    options: props => ({
+      fetchPolicy: 'cache-and-network',
+      notifyOnNetworkStatusChange: true,
+      variables: {
+        filter: searchScheduleFilter(props.query),
+      }
+    }),
+    props: ({ data, ownProps }) => ({
+      schedules: data && data.searchSchedules && data.searchSchedules.items || [],
+      loading: data && data.loading || data.networkStatus === 4,
+      nextToken: data && data.searchSchedules && data.searchSchedules.nextToken,
+      ...ownProps
+    })
+  })
 )(List);
 
 export default inject("stores")(observer(Schedules));
