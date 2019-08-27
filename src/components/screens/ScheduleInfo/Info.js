@@ -236,6 +236,7 @@ class Info extends React.Component {
       {
         !isOwner && (<FollowButton
           id={id}
+          name={name}
           isFollowing={isFollowing}
         />)
       }

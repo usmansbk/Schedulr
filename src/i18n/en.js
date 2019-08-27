@@ -81,7 +81,7 @@ export default {
   HELP_terms: "Terms and Privacy Policy",
   HELP_appVersion: "App version",
 
-  BUTTON_cancel: "cancel",
+  BUTTON_cancel: "Cancel",
   BUTTON_create: "create",
   BUTTON_save: "save",
   BUTTON_signout: "Sign out",
@@ -111,6 +111,7 @@ export default {
   BUTTON_unmute: "Unmute",
   BUTTON_unmuteEvents: "Unmute events",
   BUTTON_back: "Back",
+  BUTTON_unfollow: "Unfollow",
 
   ALERT_repeat: "Repeat",
   ALERT_duration: "Duration",
@@ -129,6 +130,8 @@ export default {
   ALERT_permissionLocationMessage: "Schdlr needs access to your location for better experience.",
   ALERT_deleteType: "Delete type?",
   ALERT_deleteImage: "Delete image?",
+  ALERT_unfollow: name => `Unfollow ${name}`,
+  ALERT_unfollowMessage: 'Their events will no long show up in your calendar.',
 
   SHARE_inviteAFriendTitle: "Invite via...",
   SHARE_SCHEDULE_inviteTitle: "Share invite link via...",
