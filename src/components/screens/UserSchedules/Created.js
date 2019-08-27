@@ -123,7 +123,7 @@ export default inject('stores')(observer(
         loading: data.loading || data.networkStatus === 4,
         error: data.error,
         data: (data && data.getUserSchedules &&
-          data.getUserSchedules.created && data.getUserSchedules.created.items),
+          data.getUserSchedules.created && data.getUserSchedules.created.items || []),
         ...ownProps
       }),
     }),

@@ -131,7 +131,7 @@ export default inject("stores")(observer(
       props: ({ data, ownProps }) => ({
         loading: data.loading,
         error: data.error,
-        data: data && data.getUserSchedules && data.getUserSchedules.following,
+        data: data && data.getUserSchedules && data.getUserSchedules.following || [],
         ...ownProps
       }),
     }),
