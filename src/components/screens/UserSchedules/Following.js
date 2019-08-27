@@ -135,12 +135,13 @@ export default inject("stores")(observer(
       alias,
       options: props => ({
         fetchPolicy: 'cache-first',
+        notifyOnNetworkStatusChange: true,
         variables: {
           id: props.navigation.getParam('id')
         }
       }),
       props: ({ data, ownProps }) => ({
-        loading: data.loading,
+        loading: data.loading || data.networkStatus === 4,
         error: data.error,
         onRefresh: () => data.refetch(),
         following: (data && data.getUserSchedules &&
