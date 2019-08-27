@@ -1,7 +1,6 @@
 import React from 'react';
 import { Dimensions, StatusBar } from 'react-native';
 import {
-  createAppContainer,
   createBottomTabNavigator,
   BottomTabBar
 } from 'react-navigation';
@@ -72,4 +71,4 @@ const TabBarComponent = inject('stores')(observer(
   )
 ));
 
-export default createAppContainer(Home);
+export default Home;
