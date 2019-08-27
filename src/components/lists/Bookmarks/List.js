@@ -45,6 +45,8 @@ class List extends Component {
     isCancelled,
     allDay,
     cancelledDates,
+    isPublic,
+    isOwner,
     banner,
     startAt,
     endAt,
@@ -68,6 +70,7 @@ class List extends Component {
     allDay={allDay}
     pictureUrl={banner && getImageUrl(banner)}
     isBookmarked={isBookmarked}
+    isAuth={isPublic || isOwner || (schedule && schedule.isFollowing)}
     bookmarksCount={bookmarksCount}
     commentsCount={commentsCount}
     category={getCategory(category)}

@@ -32,7 +32,7 @@ export default inject('stores')(observer(
     isBookmarked,
     isOwner,
     authorId,
-    isFollowing,
+    isAuth,
     isPublic,
     bookmarksCount,
     commentsCount,
@@ -72,7 +72,7 @@ export default inject('stores')(observer(
               <Text style={stores.appStyles.eventDetails.value}>{address || I18n.get("No location set")}</Text>
             </View>
             {
-              (isPublic || isFollowing || isOwner) && (
+              (isAuth) && (
                 <View style={stores.appStyles.eventDetails.item}>
                   <Text style={stores.appStyles.eventDetails.label}>{I18n.get("SCHEDULE")}</Text>
                   <Text
@@ -135,6 +135,7 @@ export default inject('stores')(observer(
       <Actions
         id={id}
         title={title}
+        isAuth={isAuth}
         address={address}
         category={category}
         isBookmarked={isBookmarked}

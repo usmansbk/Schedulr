@@ -86,6 +86,9 @@ class EventDetails extends React.Component {
     const colors = stores.themeStore.colors;
     const styles = stores.appStyles.styles;
     const pictureUrl = banner && getImageUrl(banner);
+    const isFollowing = schedule && schedule.isFollowing;
+
+    const isAuth = isPublic || isFollowing || isOwner;
     
     return (
       <>
@@ -199,7 +202,7 @@ class EventDetails extends React.Component {
           isBookmarked={isBookmarked}
           bookmarksCount={bookmarksCount || 0}
           commentsCount={commentsCount || 0}
-          isFollowing={schedule && schedule.isFollowing}
+          isAuth={isAuth}
           banner={banner}
           isOwner={isOwner}
           isValid={isValid}

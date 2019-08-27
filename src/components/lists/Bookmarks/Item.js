@@ -44,6 +44,7 @@ class Item extends React.Component {
       category,
       pictureUrl,
       isBookmarked,
+      isAuth,
       bookmarksCount,
       commentsCount,
       address,
@@ -89,6 +90,7 @@ class Item extends React.Component {
               title={title}
               address={address}
               isBookmarked={isBookmarked}
+              isAuth={isAuth}
               bookmarksCount={bookmarksCount}
               commentsCount={commentsCount}
               color={stores.themeStore.colors.light_gray_3}
