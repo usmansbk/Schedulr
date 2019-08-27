@@ -72,18 +72,14 @@ export default inject('stores')(observer(
               <Text style={stores.appStyles.eventDetails.label}>{I18n.get("VENUE")}</Text>
               <Text style={stores.appStyles.eventDetails.value}>{address || I18n.get("No location set")}</Text>
             </View>
-            {
-              (Boolean(scheduleId) && (isFollowing || isOwner || publicSchedule)) && (
-                <View style={stores.appStyles.eventDetails.item}>
-                  <Text style={stores.appStyles.eventDetails.label}>{I18n.get("SCHEDULE")}</Text>
-                  <Text
-                    ellipsizeMode="tail"
-                    numberOfLines={1}
-                    onPress={scheduleId && (() => navigateToSchedule(scheduleId))}
-                    style={[stores.appStyles.eventDetails.value, stores.appStyles.eventDetails.nav]}>{scheduleName}</Text>
-                </View>
-              )
-            }
+            <View style={stores.appStyles.eventDetails.item}>
+              <Text style={stores.appStyles.eventDetails.label}>{I18n.get("SCHEDULE")}</Text>
+              <Text
+                ellipsizeMode="tail"
+                numberOfLines={1}
+                onPress={scheduleId && (() => navigateToSchedule(scheduleId))}
+                style={[stores.appStyles.eventDetails.value, stores.appStyles.eventDetails.nav]}>{scheduleName}</Text>
+            </View>
             <View style={stores.appStyles.eventDetails.item}>
               <Text style={stores.appStyles.eventDetails.label}>{I18n.get("REPEAT")}</Text>
               <Text style={stores.appStyles.eventDetails.value}>{recurrence}</Text>
