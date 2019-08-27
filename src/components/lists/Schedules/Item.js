@@ -25,7 +25,8 @@ class Item extends React.Component {
       this.props.description !== nextProps.description ||
       this.props.isClosed !== nextProps.isClosed ||
       this.props.isMuted !== nextProps.isMuted ||
-      this.props.pictureUrl !== nextProps.pictureUrl
+      this.props.pictureUrl !== nextProps.pictureUrl ||
+      this.props.isPublic !== nextProps.isPublic
     );
   };
   
@@ -36,6 +37,7 @@ class Item extends React.Component {
       description,
       pictureUrl,
       isClosed,
+      isPublic,
       stores,
       isMuted
     } = this.props;
@@ -56,6 +58,14 @@ class Item extends React.Component {
             name={name}
             style={styles.itemAvatar}
           />
+          {
+            !isPublic && <Icon
+              style={styles.privateIcon}
+              name="eye-off"
+              size={16}
+              color={stores.themeStore.colors.light_gray_3}
+            />
+          }
           <View style={styles.itemBody}>
             <View style={styles.nameRow}>
               { isMuted && <Icon

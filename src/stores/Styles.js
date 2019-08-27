@@ -1365,6 +1365,12 @@ export default class AppStyles {
       },
       muteIcon: {
         marginRight: 4
+      },
+      privateIcon: {
+        borderRadius: 5,
+        position: 'absolute',
+        top: 17,
+        right: 17,
       }
     });
   }
