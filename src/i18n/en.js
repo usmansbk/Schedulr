@@ -130,7 +130,7 @@ export default {
   ALERT_permissionLocationMessage: "Schdlr needs access to your location for better experience.",
   ALERT_deleteType: "Delete type?",
   ALERT_deleteImage: "Delete image?",
-  ALERT_unfollow: name => `Unfollow ${name}`,
+  ALERT_unfollow: name => `Unfollow ${name}?`,
   ALERT_unfollowMessage: 'Their events will no long show up in your calendar.',
 
   SHARE_inviteAFriendTitle: "Invite via...",
