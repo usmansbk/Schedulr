@@ -5,6 +5,7 @@ import gql from 'graphql-tag';
 import { getScheduleEvents } from 'api/queries';
 import List from 'components/lists/Events';
 import Fab from 'components/common/Fab';
+import { baseEventsFilter } from 'graphql/filters';
 
 const HEIGHT = Dimensions.get('window').height / 2;
 const alias = 'withScheduleEventsContainer';
@@ -63,7 +64,8 @@ export default graphql(gql(getScheduleEvents), {
     fetchPolicy: 'cache-first',
     notifyOnNetworkStatusChange: true,
     variables: {
-      id: props.id
+      id: props.id,
+      filter: baseEventsFilter(),
     },
   }),
   props: ({ data, ownProps}) => ({
