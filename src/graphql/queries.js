@@ -489,6 +489,7 @@ export const getUserDelta = `query GetUserDelta($id: ID!, $filter: ModelEventFil
           id
           name
           description
+          isFollowing
           isPublic
           status
           picture {

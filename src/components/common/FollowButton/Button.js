@@ -14,12 +14,11 @@ export default class Button extends React.Component {
       id: `${stores.appState.userId}-${id}`,
     };
     if (isFollowing) {
-      // unfollow(input, id);
+      unfollow(input, id);
     } else {
       input.followScheduleId = id;
-      // follow(input);
+      follow(input);
     }
-    console.log(input);
   };
 
   render() {

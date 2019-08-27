@@ -313,7 +313,15 @@ function createFollow(input, typename) {
     }`,
     id: `Schedule:${input.followScheduleId}`
   });
+  if (!schedule.isFollowing) {
+    if (typeof schedule.followersCount === 'number') {
+      schedule.followersCount += 1;
+    } else {
+      schedule.followersCount = 1;
+    }
+  }
   const optimisticSchedule = Object.assign({}, schedule, {
+    isFollowing: true,
     events: eventConnection
   })
   //=========== Update user following count ======================
