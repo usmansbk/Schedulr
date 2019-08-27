@@ -6,14 +6,7 @@ import Item from './Item';
 import Separator from './Separator';
 import Footer from './Footer';
 import Empty from './Empty';
-import {
-  getDuration,
-  getHumanTime,
-  parseRepeat,
-  getStatus,
-  getCategory
-} from 'lib/parseItem';
-import { getEvents } from 'lib/calendr';
+import getImageUrl from 'helpers/getImageUrl';
 import { bookmarkedEvents } from 'lib/constants';
 
 const { ITEM_HEIGHT, SEPARATOR_HEIGHT } = bookmarkedEvents;
@@ -24,7 +17,7 @@ class List extends Component {
   };
 
   static defaultProps = {
-    events: [],
+    people: [],
     loading: false,
     onRefresh: () => null
   };
@@ -36,53 +29,27 @@ class List extends Component {
     }
   );
   shouldComponentUpdate = (nextProps) => nextProps.navigation.isFocused();
-  _onPressItem = (id, refStartAt, refEndAt) => this.props.navigation.navigate('EventDetails', { id, refStartAt, refEndAt });
-  _navigateToInfo = (id) => this.props.navigation.navigate('ScheduleInfo', { id });
-  _navigateToComments = (id, title, date) => this.props.navigation.navigate('Comments', { id, title, date });
+  _navigateToProfile = (id) => this.props.navigation.navigate('UserProfile', { id });
   _keyExtractor = (item) => String(item.id); 
   _onEndReached = async () => {
-    const { fetchMore, loading, from } = this.props;
-    if (!loading && from) {
+    const { fetchMore, loading, nextToken } = this.props;
+    if (!loading && nextToken) {
       this.setState({ fetchingMore: true });
-      await fetchMore(Number(from));
+      await fetchMore(Number(nextToken));
       this.setState({ fetchingMore: false });
     }
   }
 
   _renderItem = ({ item: {
     id,
-    title,
-    category,
-    isCancelled,
-    cancelledDates,
-    startAt,
-    endAt,
-    recurrence,
-    venue,
-    schedule,
-    allDay,
-    isConcluded,
-    bookmarksCount,
-    commentsCount,
-    isBookmarked
+    name,
+    pictureUrl,
+    avatar
   }}) => (<Item
     id={id}
-    title={title}
-    status={getStatus({ isCancelled, cancelledDates, startAt, endAt, isConcluded})}
-    startAt={startAt}
-    endAt={endAt}
-    bookmarksCount={bookmarksCount}
-    commentsCount={commentsCount}
-    isBookmarked={isBookmarked}
-    category={getCategory(category)}
-    recurrence={parseRepeat(recurrence)}
-    time={getHumanTime({ allDay, startAt, endAt })}
-    scheduleId={schedule && schedule.id}
-    duration={getDuration(startAt, endAt, allDay)}
-    address={venue}
-    onPressItem={this._onPressItem}
-    onPressComment={this._navigateToComments}
-    navigateToInfo={this._navigateToInfo}
+    name={name}
+    pictureUrl={avatar ? getImageUrl(avatar) : pictureUrl}
+    navigateToProfile={this._navigateToProfile}
   />);
 
   _renderEmptyList = () => <Empty
@@ -92,7 +59,7 @@ class List extends Component {
   />;
   _renderSeparator = () => <Separator />;
   _renderFooter = () => <Footer
-    visible={this.props.events.length}
+    visible={this.props.people.length}
     loading={this.props.loading && this.state.fetchingMore}
     onPress={this._onEndReached}
     hasMore={this.props.from}
@@ -100,11 +67,12 @@ class List extends Component {
 
   render() {
     const {
-      events,
+      people,
       loading,
       onRefresh,
       stores
     } = this.props;
+    console.log(people)
     const { fetchingMore } = this.state;
 
     const styles = stores.appStyles.bookmarkedEventsList;
@@ -128,7 +96,7 @@ class List extends Component {
         getItemLayout={this._getItemLayout}
         ItemSeparatorComponent={this._renderSeparator}
         keyExtractor={this._keyExtractor}
-        data={getEvents(events)}
+        data={people}
         renderItem={this._renderItem}
         ListEmptyComponent={this._renderEmptyList}
         ListFooterComponent={this._renderFooter}
