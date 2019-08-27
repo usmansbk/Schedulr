@@ -1,12 +1,6 @@
-import { Alert } from 'react-native';
-import Geolocation from 'react-native-geolocation-service';
-import Geocoder from 'react-native-geocoder';
-import SimpleToast from 'react-native-simple-toast';
 import { observable, action } from 'mobx';
 import { persist } from 'mobx-persist';
-import { I18n } from 'aws-amplify';
 import debounce from 'lodash.debounce';
-import { requestLocationPermission } from 'helpers/permissions';
 import categories from 'i18n/categories';
 
 export default class AppState {
@@ -22,17 +16,13 @@ export default class AppState {
   @observable isConnected = false;
   @observable searchText = '';
   @observable query = '';
+  @persist @observable location = null;
 
-  @persist @observable address = 'Nigeria';
   @persist @observable lastSyncTimestamp = null;
 
   @persist('list') @observable mutedEvents = [];
   @persist('list') @observable mutedSchedules = [];
   @persist('list') @observable allowedEvents = [];
-  @persist('object') @observable location = {
-    lon: null,
-    lat: null
-  };
   @persist('object') @observable prefs = {
     showPrivateScheduleAlert: true,
   };
@@ -55,11 +45,7 @@ export default class AppState {
     this.mutedEvents = [];
     this.allowedEvents = [];
     this.mutedSchedules = [];
-    this.address = 'Nigeria';
-    this.location = {
-      lat: null,
-      lon: null
-    };
+    this.location = null;
     this.prefs = {
       showPrivateScheduleAlert: true,
     }
@@ -78,77 +64,6 @@ export default class AppState {
 
   @action removeCustomType = (category) => {
     this.categories = this.categories.filter(item => item.toLowerCase() !== category.toLowerCase());
-  };
-  
-  @action setLocation = (address) => {
-    this.address = address;
-    if (address) {
-      Geocoder.geocodeAddress(address)
-        .then(res => {
-          const loc = res[0];
-          const { lat, lng } = loc;
-          this.location.lon = lng;
-          this.location.lat = lat;
-        }).catch(err => console.log(err));
-    }
-  };
-
-  @action getAddress = () => {
-    if (this.location.lon && this.location.lat) {
-      const loc =  {
-        lat: this.location.lat,
-        lng: this.location.lon
-      };
-      Geocoder.geocodePosition(loc).then(res => {
-        const loc = res[0];
-        const address = `${loc.locality ? loc.locality + ', ' : ''}${loc.country}`;
-        this.address = address;
-      }).catch(err => console.log(err));
-    }
-  };
-  
-  @action requestLocation = async () => {
-    const { lon, lat } = this.location;
-    if (!(lon && lat)){
-      Alert.alert(
-        I18n.get("ALERT_permissionLocationTitle"),
-        I18n.get("ALERT_permissionLocationMessage"),
-        [
-          { text: I18n.get("BUTTON_askMeLater") },
-          { text: I18n.get("BUTTON_yes"), onPress: this.getLocation },
-        ],
-        { cancelable: false }
-      );
-    }
-  };
-
-  @action getLocation = async () => {
-    const requestGranted = await requestLocationPermission();
-    if (requestGranted) {
-      Geolocation.getCurrentPosition(
-        (position) => {
-          const {
-            coords: {
-              longitude,
-              latitude
-            }
-          } = position;
-          this.location.lon = longitude;
-          this.location.lat = latitude;
-          this.getAddress();
-        },
-        (error) => {
-          console.log(error);
-          SimpleToast.show(I18n.get("TOAST_locationError"), SimpleToast.SHORT);
-          // throw error;
-        },
-        {
-          enableHighAccuracy: true,
-          timeout: 15000,
-          maximumAge: 10000
-        }
-      );
-    }
   };
 
   @action toggleMute = (id, isMuted) => {

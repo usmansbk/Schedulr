@@ -95,11 +95,6 @@ class Settings extends React.Component {
               )}
             />
             <Divider />
-            <List.Item
-              title={I18n.get("SETTINGS_location")}
-              description={stores.appState.address}
-            />
-            <Divider />
           </List.Section>
           <List.Section title={I18n.get("SETTINGS_reminderSectionTitle")}>
             <List.Item

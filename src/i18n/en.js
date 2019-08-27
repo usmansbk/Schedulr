@@ -148,6 +148,7 @@ export default {
 
   PROFILE_FORM_name: "Name",
   PROFILE_FORM_website: "Website",
+  PROFILE_FORM_location: "Location",
   PROFILE_joined: date => `Joined ${date}`,
 
   EVENT_FORM_title: "Title",

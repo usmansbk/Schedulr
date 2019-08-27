@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { TouchableRipple, Searchbar } from 'react-native-paper';
 import { withCollapsible } from 'react-navigation-collapsible';
 import { FlatList } from 'react-navigation';
-import { Animated, InteractionManager } from 'react-native';
+import { Animated } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import { inject, observer } from 'mobx-react';
 import Empty from './Empty';
@@ -21,10 +21,6 @@ class ExploreTab extends Component{
   _renderEmptyList = () => <Empty />
 
   renderItem = ({item}) => <Item />
-
-  componentDidMount = async () => {
-    InteractionManager.runAfterInteractions(this.props.stores.appState.requestLocation);
-  };
 
   render(){
     const { paddingHeight, animatedY, onScroll } = this.props.collapsible;

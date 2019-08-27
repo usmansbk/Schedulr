@@ -7,7 +7,6 @@ import {
   ScrollView,
   RefreshControl,
   Alert,
-  InteractionManager
 } from 'react-native';
 import {
   Button,
@@ -71,10 +70,6 @@ class Form extends React.Component {
     Alert.alert(I18n.get("ALERT_whatIsASchedule"), I18n.get("ALERT_whatIsAScheduleA"), buttons);
   }
 
-  componentDidMount = async () => {
-    InteractionManager.runAfterInteractions(this.props.stores.appState.requestLocation);
-  }
-
   render() {
     const {
       schedules,
@@ -97,9 +92,8 @@ class Form extends React.Component {
         validationSchema={formSchema}
         onSubmit={async (values, { setSubmitting }) => {
           if (isEventValid(values)) {
-            const location = getLocation(stores.appState.location);
             const input = buildForm(values);
-            input.location = location;
+            input.location = stores.appState.location;
             onSubmit && await onSubmit(input);
           }
           setSubmitting(false);

@@ -3,7 +3,6 @@ import {
   View,
   ScrollView,
   RefreshControl,
-  InteractionManager,
   Alert
 } from 'react-native';
 import isEqual from 'lodash.isequal';
@@ -27,6 +26,7 @@ class Form extends React.Component {
     initialValues: {
       name: '',
       description: '',
+      location: null,
       isPublic: true,
     }
   };
@@ -43,10 +43,6 @@ class Form extends React.Component {
         { text: I18n.get("BUTTON_ok"), onPress: () => null }
       ]);
     }
-  };
-
-  componentDidMount = () => {
-    InteractionManager.runAfterInteractions(this.props.stores.appState.requestLocation);
   };
 
   render() {
@@ -66,9 +62,8 @@ class Form extends React.Component {
         initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={async (values, { setSubmitting }) => {
-          const location = getLocation(stores.appState.location);
           const input = buildForm(values);
-          input.location = location;
+          input.location = stores.appState.location;
           onSubmit && await onSubmit(input);
           setSubmitting(false);
         }}
