@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
+import { RefreshControl } from 'react-native';
 import gql from 'graphql-tag';
 import { graphql, compose } from 'react-apollo';
 import { FlatList } from 'react-navigation';
 import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
 import Loading from 'components/common/Loading';
-import ErrorScreen from 'components/common/Error';
 import Item from 'components/lists/ScheduleSearch/Item';
 import Separator from 'components/lists/Schedules/Separator';
 import Footer from 'components/lists/Schedules/Footer';
@@ -24,10 +24,7 @@ const {
 const alias = 'withUserSchedules';
 
 class CreatedSchedules extends Component{
-  static defaultProps = {
-    data: []
-  };
-  
+
   static navigationOptions() {
     return {
       tabBarLabel: I18n.get("PROFILE_createdLabel")
@@ -45,8 +42,13 @@ class CreatedSchedules extends Component{
   _navigateToInfo = (id) => this.props.navigation.push('ScheduleInfo', { id });
   _keyExtractor = (item) => String(item.id);
   _renderSeparator = () => <Separator />;
-  _renderFooter = () => <Footer visible={this.props.data.length} />;
-  _renderEmptyList = () => this.props.loading ? null : <Empty profile />;
+  _renderFooter = () => <Footer visible={this.props.schedules.length} />;
+  _renderEmptyList = () => this.props.loading ? null : <Empty
+    profile
+    error={this.props.error}
+    loading={this.props.loading}
+    onRefresh={this.props.onRefresh}
+  />;
   _renderItem = ({item}) => {
     const {
       id,
@@ -78,23 +80,19 @@ class CreatedSchedules extends Component{
   render(){
     const {
       loading,
-      error,
       onRefresh,
-      data,
+      schedules,
       stores
     } = this.props;
 
-    if (loading && !data.length) return <Loading />;
-    if (error && !data.length) {
-      return <ErrorScreen loading={loading} onRefresh={onRefresh} />;
-    }
+    if (loading && !schedules.length) return <Loading />;
 
     const styles = stores.appStyles.schedulesList;
 
     return (
       <FlatList 
         style={styles.list}
-        data={sortSchedules(data)}
+        data={sortSchedules(schedules)}
         renderItem={this._renderItem}
         contentContainerStyle={styles.contentContainer}
         initialNumToRender={7}
@@ -104,6 +102,16 @@ class CreatedSchedules extends Component{
         ListEmptyComponent={this._renderEmptyList}
         ListFooterComponent={this._renderFooter}
         keyboardShouldPersistTaps="always"
+        refreshing={loading}
+        onRefresh={onRefresh}
+        refreshControl={
+          <RefreshControl
+            onRefresh={onRefresh}
+            refreshing={loading}
+            colors={[stores.themeStore.colors.primary]}
+            progressBackgroundColor={stores.themeStore.colors.bg}
+          />
+        }
       />
     )
   }
@@ -123,8 +131,9 @@ export default inject('stores')(observer(
       props: ({ data, ownProps }) => ({
         loading: data.loading || data.networkStatus === 4,
         error: data.error,
-        data: (data && data.getUserSchedules &&
-          data.getUserSchedules.created && data.getUserSchedules.created.items || []),
+        onRefresh: () => data.refetch(),
+        schedules: (data && data.getUserSchedules &&
+          data.getUserSchedules.created && data.getUserSchedules.created.items) || [],
         ...ownProps
       }),
     }),
