@@ -594,7 +594,7 @@ export const getUserDelta = `query GetUserDelta($id: ID!, $filter: ModelEventFil
 export const listFollowers = `query GetScheduleFollowers($id: ID!, $limit: Int, $nextToken: String) {
   listFollowers: getSchedule(id: $id) {
     id
-    followers(limit: $limit, nextToken: $nextToken) @connection(key: "followers") {
+    followers(limit: $limit, nextToken: $nextToken, sortDirection: DESC) @connection(key: "followers") {
       items {
         id
         user {
