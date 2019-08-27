@@ -12,6 +12,7 @@ export const me = `query GetUser($id: ID!) {
       bucket
     }
     website
+    location
     followingCount
     createdCount
     createdAt
@@ -31,6 +32,7 @@ export const getUser = `query GetUser($id: ID!) {
       bucket
     }
     website
+    location
     followingCount
     createdCount
     createdAt
@@ -128,6 +130,7 @@ export const getSchedule = `query GetSchedule($id: ID!) {
         bucket
       }
       website
+      location
       me
       createdCount
       followingCount
@@ -293,6 +296,7 @@ export const getUserSchedules = `query GetUserSchedules($id: ID!) {
               bucket
             }
             website
+            location
             createdCount
             followingCount
             createdAt
@@ -398,6 +402,7 @@ export const getUserData = `query GetUserData($id: ID!, $filter: ModelEventFilte
               bucket
             }
             website
+            location
             me
             createdCount
             followingCount
@@ -518,6 +523,7 @@ export const getUserDelta = `query GetUserDelta($id: ID!, $filter: ModelEventFil
               bucket
             }
             website
+            location
             createdCount
             followingCount
             createdAt
@@ -623,6 +629,7 @@ export const listFollowers = `query GetScheduleFollowers($id: ID!, $limit: Int, 
             bucket
           }
           website
+          location
           followingCount
           createdCount
           createdAt
@@ -692,6 +699,7 @@ export const searchSchedules = `query SearchSchedules($filter: SearchableSchedul
           bucket
         }
         website
+        location
         me
         createdCount
         followingCount
@@ -720,6 +728,7 @@ export const searchPeople = `query SearchPeople($filter: SearchableUserFilterInp
         bucket
       }
       website
+      location
       me
       createdCount
       followingCount

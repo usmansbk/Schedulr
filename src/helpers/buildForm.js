@@ -15,11 +15,3 @@ export default function buildForm(data) {
   });
   return temp;
 }
-
-export function getLocation({ lat, lon }) {
-  if (!(lat && lon)) return null;
-  return {
-    lon,
-    lat
-  };
-}

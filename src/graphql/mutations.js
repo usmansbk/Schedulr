@@ -12,6 +12,7 @@ export const createUser = `mutation CreateUser($input: CreateUserInput!) {
       bucket
     }
     website
+    location
     followingCount
     createdCount
     createdAt
@@ -29,6 +30,7 @@ export const updateUser = `mutation UpdateUser($input: UpdateUserInput!) {
       bucket
     }
     website
+    location
     updatedAt
   }
 }
@@ -268,6 +270,7 @@ export const createFollow = `mutation CreateFollow($input: CreateFollowInput!, $
           key
           bucket
         }
+        location
         website
         createdCount
         followingCount
