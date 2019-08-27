@@ -125,7 +125,7 @@ class UserProfile extends React.Component {
           </TouchableRipple>
         </View>
         <View style={styles.link}>
-          <Icon size={16} name="calendar" color={colors.white} />
+          <Icon size={16} style={styles.linkIcon} name="calendar" color={colors.white} />
           <Caption style={styles.label}>{I18n.get("PROFILE_joined")(date)}</Caption>
         </View>
         {
@@ -215,7 +215,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16
   },
   link: {
-    marginVertical: 32,
+    marginVertical: 16,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center'
