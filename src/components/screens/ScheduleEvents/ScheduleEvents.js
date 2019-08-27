@@ -30,11 +30,16 @@ export default class ScheduleEvents extends React.Component {
       id,
       name,
       description,
+      isFollowing,
+      isPublic,
+      isOwner,
       eventsCount
     } = schedule;
 
     const styles = stores.appStyles.styles;
     const colors = stores.themeStore.colors;
+
+    const isAuth = isPublic || isOwner || isFollowing;
 
     return (
       <>
@@ -56,6 +61,7 @@ export default class ScheduleEvents extends React.Component {
         <List
           id={id}
           eventsCount={eventsCount}
+          isAuth={isAuth}
         />
       </>
     );

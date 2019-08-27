@@ -94,6 +94,7 @@ class Info extends React.Component {
     const appStyles = stores.appStyles.styles;
     const styles = stores.appStyles.scheduleInfo;
     const colors = stores.themeStore.colors;
+    const isAuth = (isPublic || isFollowing) && !isOwner;
 
     return (
       <>
@@ -234,7 +235,7 @@ class Info extends React.Component {
           </View>
       </ScrollView>
       {
-        !isOwner && (<FollowButton
+        isAuth && (<FollowButton
           id={id}
           name={name}
           isFollowing={isFollowing}

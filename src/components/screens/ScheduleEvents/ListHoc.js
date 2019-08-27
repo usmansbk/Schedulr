@@ -45,6 +45,7 @@ export default graphql(gql(getScheduleEvents), {
       filter: baseEventsFilter()
     },
   }),
+  skip: props => !props.isAuth,
   props: ({ data, ownProps}) => ({
     loading: data.loading || data.networkStatus === 4,
     error: data.error,

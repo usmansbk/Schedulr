@@ -27,6 +27,7 @@ class Item extends React.Component {
       name,
       description,
       pictureUrl,
+      isPublic,
       isOwner,
       isClosed,
       isFollowing,
@@ -34,6 +35,7 @@ class Item extends React.Component {
     } = this.props;
 
     const styles = stores.appStyles.scheduleSearch;
+    const isAuth = (isPublic || isFollowing) && !isOwner;
     
     return (
       <TouchableRipple style={styles.itemContainer} onPress={this._onPress}>
@@ -54,7 +56,7 @@ class Item extends React.Component {
             </View>
           </View>
           {
-            !isOwner && (
+            isOwner && (
               <FollowButton
                 id={id}
                 name={name}

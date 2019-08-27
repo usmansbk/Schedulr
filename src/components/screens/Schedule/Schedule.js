@@ -40,11 +40,14 @@ class Schedule extends React.Component {
       name,
       description,
       isOwner,
+      isFollowing,
+      isPublic,
       status,
     } = schedule;
 
     const styles = stores.appStyles.styles;
     const colors = stores.themeStore.colors;
+    const isAuth = isPublic || isOwner || isFollowing;
 
     return (
       <>
@@ -74,6 +77,7 @@ class Schedule extends React.Component {
         <List
           id={id}
           navigation={navigation}
+          isAuth={isAuth}
         />
         {
           !(Boolean(error) && this.events.length) && isOwner && (status !== SCHEDULE_CLOSED ) && (
