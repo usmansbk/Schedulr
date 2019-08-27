@@ -1,6 +1,6 @@
 import React from 'react';
-import { View } from 'react-native';
-import { Text, TouchableRipple } from 'react-native-paper';
+import { View, } from 'react-native';
+import { Text, TouchableRipple, Caption } from 'react-native-paper';
 import { inject, observer } from 'mobx-react';
 import UserAvatar from 'components/common/UserAvatar';
 import { followers_list } from 'lib/constants';
@@ -17,7 +17,8 @@ class Item extends React.Component {
     const {
       name,
       pictureUrl,
-      stores
+      stores,
+      joined
     } = this.props;
     
     const styles = stores.appStyles.followersList;
@@ -34,6 +35,7 @@ class Item extends React.Component {
           </View>
           <View style={styles.itemRight}>
             <Text numberOfLines={1} ellipsizeMode="tail" style={styles.itemText}>{name}</Text>
+            <Caption>{joined}</Caption>
           </View>
         </View>
       </TouchableRipple>

@@ -2,6 +2,7 @@ import React from 'react';
 import { FlatList, RefreshControl } from 'react-native';
 import { withNavigationFocus } from 'react-navigation';
 import { inject, observer } from 'mobx-react';
+import moment from 'moment';
 import { followers_list } from 'lib/constants';
 import getImageUrl from 'helpers/getImageUrl';
 import Footer from './Footer';
@@ -56,16 +57,20 @@ class List extends React.Component {
     isOwner={this.props.isOwner}
   />;
   _renderItem = ({item: {
-    id,
-    name,
-    avatar,
-    pictureUrl
+    user: {
+      id,
+      name,
+      avatar,
+      pictureUrl
+    },
+    createdAt
   }}) => {
     return (
       <Item
         id={id}
         name={name}
         pictureUrl={avatar ? getImageUrl(avatar) : pictureUrl}
+        joined={moment(createdAt).fromNow()}
         onPressItem={this._onPressItem}
       />
     )

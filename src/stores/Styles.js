@@ -1032,7 +1032,7 @@ export default class AppStyles {
       },
       itemRight: {
         justifyContent: 'center',
-        alignItems: 'center',
+        // alignItems: 'center',
         marginLeft: 8
       },
       itemText: {

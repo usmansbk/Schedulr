@@ -590,4 +590,29 @@ export const getUserDelta = `query GetUserDelta($id: ID!, $filter: ModelEventFil
       }
     }
   }
+}`;
+export const listFollowers = `query GetScheduleFollowers($id: ID!, $limit: Int, $nextToken: String) {
+  listFollowers: getSchedule(id: $id) {
+    id
+    followers(limit: $limit, nextToken: $nextToken) @connection(key: "followers") {
+      items {
+        id
+        user {
+          id
+          me
+          name
+          pictureUrl
+          avatar {
+            key
+            bucket
+          }
+          website
+          followingCount
+          createdCount
+        }
+        createdAt
+      }
+      nextToken
+    }
+  }
 }`
