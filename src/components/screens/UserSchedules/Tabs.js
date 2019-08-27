@@ -2,7 +2,7 @@ import React from 'react';
 import { Dimensions } from 'react-native';
 import { Appbar } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/Feather';
-import { createMaterialTopTabNavigator, MaterialTopTabBar } from 'react-navigation-tabs';
+import { createMaterialTopTabNavigator, MaterialTopTabBar } from 'react-navigation';
 import { inject, observer } from 'mobx-react';
 import Following from './Following';
 import Created from './Created';

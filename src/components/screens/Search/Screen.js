@@ -1,9 +1,9 @@
 import React from 'react';
-import { Searchbar, Text } from 'react-native-paper';
+import { Searchbar } from 'react-native-paper';
 import {
   createMaterialTopTabNavigator,
   MaterialTopTabBar
-} from 'react-navigation-tabs';
+} from 'react-navigation';
 import { Dimensions } from 'react-native';
 import { inject, observer } from 'mobx-react';
 import Icon from 'react-native-vector-icons/Feather';

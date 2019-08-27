@@ -1,6 +1,6 @@
 import React from 'react';
 import { Dimensions } from 'react-native';
-import { createMaterialTopTabNavigator, MaterialTopTabBar } from 'react-navigation-tabs';
+import { createMaterialTopTabNavigator, MaterialTopTabBar } from 'react-navigation';
 import { inject, observer } from 'mobx-react';
 import Updates from './Updates';
 import Messages from './Messages';
