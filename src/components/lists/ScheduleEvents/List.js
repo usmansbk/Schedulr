@@ -86,13 +86,17 @@ class List extends Component {
     onPressItem={this._onPressItem}
   />);
 
-  _renderEmptyList = () => <Empty error={this.props.error} loading={this.props.loading} />;
+  _renderEmptyList = () => <Empty
+    error={this.props.error}
+    loading={this.props.loading}
+    isAuth={this.props.isAuth}
+  />;
   _renderSeparator = () => <Separator />;
   _renderFooter = () => <Footer
     onPress={this._fetchPastEvents}
     loading={this.props.loading && this.state.loadingPrev}
     hasPrev={this.props.eventsCount - this.props.events.length}
-    hide={!this.props.eventsCount}
+    hide={!(this.props.eventsCount && this.props.isAuth)}
   />;
 
   _fetchPastEvents = async () => {

@@ -20,6 +20,7 @@ class ListHoc extends React.Component {
       loading,
       error,
       events,
+      isAuth,
       eventsCount
     } = this.props;
 
@@ -31,6 +32,7 @@ class ListHoc extends React.Component {
             error={error}
             onRefresh={this._onRefresh}
             fetchPastEvents={this._fetchPastEvents}
+            isAuth={isAuth}
           /> 
   }
 }

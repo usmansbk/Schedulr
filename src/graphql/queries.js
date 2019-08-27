@@ -147,6 +147,9 @@ export const getSchedule = `query GetSchedule($id: ID!) {
 export const getScheduleEvents = `query GetScheduleWithEvents($id: ID!, $filter: ModelEventFilterInput) {
   getScheduleEvents: getSchedule(id: $id) {
     id
+    isFollowing
+    isOwner
+    isPublic
     events(filter: $filter) @connection(key: "events") {
       items {
         id

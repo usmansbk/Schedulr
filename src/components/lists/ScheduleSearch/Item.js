@@ -56,7 +56,7 @@ class Item extends React.Component {
             </View>
           </View>
           {
-            isOwner && (
+            isAuth && (
               <FollowButton
                 id={id}
                 name={name}

@@ -21,6 +21,7 @@ export default {
   PROFILE_boardEmptyList: "No schedule",
   PROFILE_followingLabel: "Following",
   PROFILE_createdLabel: "Created",
+  PROFILE_notVisibleToPublic: "Events not visible to public",
 
   BOOKMARKS_emptyList: "You haven't saved any events yet",
 
