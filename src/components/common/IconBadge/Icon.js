@@ -26,7 +26,8 @@ class IconBagdeButton extends React.Component {
       size,
       count,
       stores,
-      color
+      color,
+      disabled
     } = this.props;
 
     return  (
@@ -36,6 +37,7 @@ class IconBagdeButton extends React.Component {
           icon={this._renderIcon}
           size={size}
           style={stores.appStyles.styles.iconButton}
+          disabled={disabled}
         />
         {
           Boolean(count) && (

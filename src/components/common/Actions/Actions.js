@@ -53,17 +53,14 @@ export default class Actions extends React.Component {
           color={color}
           small={small}
         />
-        {
-          isAuth && (
-            <CommentButton
-              id={id}
-              commentsCount={commentsCount}
-              size={FONT_SIZE}
-              color={color}
-              onPress={this._onPressCommentButton}
-            />
-          )
-        }
+        <CommentButton
+          id={id}
+          commentsCount={commentsCount}
+          size={FONT_SIZE}
+          color={color}
+          disabled={!isAuth}
+          onPress={this._onPressCommentButton}
+        />
         <LocationButton
           address={address}
           color={color}
