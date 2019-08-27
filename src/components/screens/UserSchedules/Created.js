@@ -14,6 +14,7 @@ import sortSchedules from 'lib/utils';
 import { schedules } from 'lib/constants';
 import { getUserSchedules } from 'api/queries';
 import getImageUrl from 'helpers/getImageUrl';
+import { SCHEDULE_CLOSED } from 'lib/constants';
 
 const {
   ITEM_HEIGHT,
@@ -65,7 +66,7 @@ class CreatedSchedules extends Component{
         description={description}
         pictureUrl={picture && getImageUrl(picture)}
         isPublic={isPublic}
-        isClosed={status === 'CLOSED'}
+        isClosed={status === SCHEDULE_CLOSED}
         isOwner={isOwner}
         isFollowing={isFollowing}
         onPressItem={this._onPressItem}
