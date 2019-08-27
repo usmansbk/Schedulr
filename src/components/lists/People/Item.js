@@ -8,7 +8,7 @@ import { followers_list } from 'lib/constants';
 const { AVATAR_SIZE } = followers_list;
 
 class Item extends React.Component {
-  _onPress = () => this.props.onPressItem(this.props.id);
+  _onPress = () => this.props.navigateToProfile(this.props.id);
   shouldComponentUpdate = (nextProps) => this.props.name !== nextProps.name || (
     this.props.pictureUrl !== nextProps.pictureUrl
   );
