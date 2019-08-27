@@ -101,13 +101,17 @@ function createEvent(input, typename) {
     }`,
     id: `User:${stores.appState.userId}`
   });
+  // ================= Update schedule events count =======================
+  
+  const scheduleFragment = gql`fragment createEventSchedule on Schedule {
+    id
+    name
+    eventsCount
+  }`;
+  const fragmentId = `Schedule:${input.eventScheduleId}`;
   const schedule = client.readFragment({
-    fragment: gql`fragment createEventSchedule on Schedule {
-      id
-      name
-      eventsCount
-    }`,
-    id: `Schedule:${input.eventScheduleId}`
+    fragment: scheduleFragment,
+    id: fragmentId
   });
   const count = schedule.eventsCount;
   if (typeof count === 'number') {
@@ -115,6 +119,13 @@ function createEvent(input, typename) {
   } else {
     schedule.eventsCount = 1;
   }
+  client.writeFragment({
+    fragment: scheduleFragment,
+    id: fragmentId,
+    data: schedule
+  });
+  // ======================================================================
+
   const createdAt = moment().toISOString();
 
   const event = {
@@ -126,7 +137,12 @@ function createEvent(input, typename) {
     cancelledDates: null,
     banner: null,
     author,
-    schedule,
+    schedule: {
+      __typename: 'Schedule',
+      id: schedule.id,
+      name: schedule.name,
+      isFollowing: false
+    },
     bookmarksCount: 0,
     commentsCount: 0,
     createdAt,
@@ -257,6 +273,7 @@ function createBookmark(input, typename) {
       schedule {
         id
         name
+        isFollowing
       }
       commentsCount
       bookmarksCount

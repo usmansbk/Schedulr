@@ -62,7 +62,7 @@ export const createEvent = `mutation CreateEvent($input: CreateEventInput!) {
     schedule {
       id
       name
-      eventsCount
+      isFollowing
     }
     commentsCount
     bookmarksCount
@@ -136,6 +136,7 @@ export const createBookmark = `mutation CreateBookmark($input: CreateBookmarkInp
       schedule {
         id
         name
+        isFollowing
       }
       commentsCount
       bookmarksCount
@@ -207,6 +208,7 @@ export const createSchedule = `mutation CreateSchedule($input: CreateScheduleInp
         schedule {
           id
           name
+          isFollowing
         }
         commentsCount
         bookmarksCount
@@ -301,6 +303,7 @@ export const createFollow = `mutation CreateFollow($input: CreateFollowInput!, $
           schedule {
             id
             name
+            isFollowing
           }
           commentsCount
           bookmarksCount

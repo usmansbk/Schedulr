@@ -66,6 +66,7 @@ export const getEvent = `query GetEvent($id: ID!) {
     schedule {
       id
       name
+      isFollowing
     }
     commentsCount
     bookmarksCount
@@ -175,6 +176,7 @@ export const getScheduleEvents = `query GetScheduleWithEvents($id: ID!, $filter:
         schedule {
           id
           name
+          isFollowing
         }
         commentsCount
         bookmarksCount
@@ -220,6 +222,7 @@ export const getUserBookmarks = `query GetBookmarks($id: ID!) {
           schedule {
             id
             name
+            isFollowing
           }
           commentsCount
           bookmarksCount
@@ -355,6 +358,7 @@ export const getUserData = `query GetUserData($id: ID!, $filter: ModelEventFilte
             schedule {
               id
               name
+              isFollowing
             }
             commentsCount
             bookmarksCount
@@ -426,6 +430,7 @@ export const getUserData = `query GetUserData($id: ID!, $filter: ModelEventFilte
               schedule {
                 id
                 name
+                isFollowing
               }
               commentsCount
               bookmarksCount
@@ -471,6 +476,7 @@ export const getUserData = `query GetUserData($id: ID!, $filter: ModelEventFilte
           schedule {
             id
             name
+            isFollowing
           }
           commentsCount
           bookmarksCount
@@ -542,6 +548,7 @@ export const getUserDelta = `query GetUserDelta($id: ID!, $filter: ModelEventFil
               schedule {
                 id
                 name
+                isFollowing
               }
               commentsCount
               bookmarksCount
@@ -586,6 +593,7 @@ export const getUserDelta = `query GetUserDelta($id: ID!, $filter: ModelEventFil
           schedule {
             id
             name
+            isFollowing
           }
           commentsCount
           bookmarksCount
@@ -652,6 +660,7 @@ export const searchEvents = `query SearchEvents($filter: SearchableEventFilterIn
       schedule {
         id
         name
+        isFollowing
       }
       commentsCount
       bookmarksCount
