@@ -33,6 +33,7 @@ export const getUser = `query GetUser($id: ID!) {
     website
     followingCount
     createdCount
+    createdAt
   }
 }
 `;
@@ -129,6 +130,7 @@ export const getSchedule = `query GetSchedule($id: ID!) {
       me
       createdCount
       followingCount
+      createdAt
     }
     picture {
       key
@@ -287,6 +289,7 @@ export const getUserSchedules = `query GetUserSchedules($id: ID!) {
             website
             createdCount
             followingCount
+            createdAt
           }
           followersCount
           eventsCount
@@ -391,6 +394,7 @@ export const getUserData = `query GetUserData($id: ID!, $filter: ModelEventFilte
             me
             createdCount
             followingCount
+            createdAt
           }
           events {
             nextToken
@@ -507,6 +511,7 @@ export const getUserDelta = `query GetUserDelta($id: ID!, $filter: ModelEventFil
             website
             createdCount
             followingCount
+            createdAt
           }
           events(filter: $filter) @connection(key: "events") {
             items {
@@ -609,6 +614,7 @@ export const listFollowers = `query GetScheduleFollowers($id: ID!, $limit: Int, 
           website
           followingCount
           createdCount
+          createdAt
         }
         createdAt
       }

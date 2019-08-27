@@ -305,6 +305,7 @@ function createFollow(input, typename) {
         website
         createdCount
         followingCount
+        createdAt
       }
       followersCount
       eventsCount

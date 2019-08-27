@@ -269,6 +269,7 @@ export const createFollow = `mutation CreateFollow($input: CreateFollowInput!) {
         website
         createdCount
         followingCount
+        createdAt
       }
       events {
         nextToken

@@ -17,6 +17,7 @@ import Icon from 'react-native-vector-icons/Feather';
 import Hyperlink from 'react-native-hyperlink';
 import { inject, observer } from 'mobx-react';
 import numeral from 'numeral';
+import moment from 'moment';
 import { I18n } from 'aws-amplify';
 import getImageUrl from 'helpers/getImageUrl';
 import UserAvatar from 'components/common/UserAvatar';
@@ -75,12 +76,14 @@ class UserProfile extends React.Component {
       me,
       name,
       website,
+      createdAt,
       followingCount=0,
       createdCount=0
     } = user;
 
     const uriSmall = avatar ? getImageUrl(avatar) : pictureUrl;
     const uriBig = avatar ? getImageUrl(avatar, 400) : pictureUrl;
+    const date = moment(createdAt).format('MMMM YYYY');
     
     return  (
       <ScrollView
@@ -121,12 +124,16 @@ class UserProfile extends React.Component {
             </View>
           </TouchableRipple>
         </View>
+        <View style={styles.link}>
+          <Icon size={16} name="calendar" color={colors.white} />
+          <Caption style={styles.label}>{I18n.get("PROFILE_joined")(date)}</Caption>
+        </View>
         {
           website && (
             <View style={styles.link}>
-              <Icon style={styles.linkIcon} name="link" color={colors.white} />
+              <Icon size={16} style={styles.linkIcon} name="link" color={colors.white} />
               <Hyperlink linkStyle={styles.linkStyle} linkDefault={true}>
-                <Caption numberOfLines={1} ellipsizeMode="tail">{website}</Caption>
+                <Caption style={styles.label} numberOfLines={1} ellipsizeMode="tail">{website}</Caption>
               </Hyperlink>
             </View>
           )
