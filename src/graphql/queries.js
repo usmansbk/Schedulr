@@ -143,10 +143,10 @@ export const getSchedule = `query GetSchedule($id: ID!) {
   }
 }
 `;
-export const getScheduleEvents = `query GetScheduleWithEvents($id: ID!) {
+export const getScheduleEvents = `query GetScheduleWithEvents($id: ID!, $filter: ModelEventFilterInput) {
   getScheduleEvents: getSchedule(id: $id) {
     id
-    events {
+    events(filter: $filter) @connection(key: "events") {
       items {
         id
         title
@@ -620,5 +620,80 @@ export const listFollowers = `query GetScheduleFollowers($id: ID!, $limit: Int, 
       }
       nextToken
     }
+  }
+}`;
+export const searchEvents = `query SearchEvents($filter: SearchableEventFilterInput!, $limit: Int, $nextToken: Int) {
+  searchEvents(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      title
+      description
+      venue
+      category
+      startAt
+      endAt
+      allDay
+      recurrence
+      until
+      forever
+      isPublic
+      isOwner
+      isCancelled
+      isBookmarked
+      cancelledDates
+      banner {
+        bucket
+        key
+      }
+      author {
+        id
+        name
+      }
+      schedule {
+        id
+        name
+      }
+      commentsCount
+      bookmarksCount
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}`;
+export const searchSchedules = `query SearchSchedules($filter: SearchableScheduleFilterInput!, $limit: Int, $nextToken: Int) {
+  searchSchedules(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      name
+      description
+      isPublic
+      isOwner
+      isFollowing
+      status
+      author {
+        id
+        name
+        pictureUrl
+        avatar {
+          key
+          bucket
+        }
+        website
+        me
+        createdCount
+        followingCount
+        createdAt
+      }
+      picture {
+        key
+        bucket
+      }
+      followersCount
+      eventsCount
+      createdAt
+      updatedAt
+    }
+    nextToken
   }
 }`

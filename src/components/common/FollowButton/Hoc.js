@@ -6,6 +6,7 @@ import updateApolloCache from 'helpers/updateApolloCache';
 import buildOptimisticResponse from 'helpers/optimisticResponse';
 import { ADD, DELETE } from 'lib/constants';
 import Button from './Button';
+import { baseEventsFilter } from 'graphql/filters';
 
 export default inject("stores")(observer(
   compose(
@@ -15,7 +16,8 @@ export default inject("stores")(observer(
         ...ownProps,
         follow: (input) => mutate({
           variables: {
-            input
+            input,
+            filter: baseEventsFilter()
           },
           update: (cache, { data: { createFollow } }) => createFollow && (
             updateApolloCache(cache, createFollow, ADD)

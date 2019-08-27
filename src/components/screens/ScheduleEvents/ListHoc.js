@@ -5,6 +5,7 @@ import { getScheduleEvents } from 'api/queries';
 import { sortBookmarks } from 'lib/utils';
 import { getEvents } from 'lib/calendr';
 import List from 'components/lists/ScheduleEvents';
+import { baseEventsFilter } from 'graphql/filters';
 
 const alias = 'withScheduleEventsContainer';
 
@@ -40,7 +41,8 @@ export default graphql(gql(getScheduleEvents), {
     fetchPolicy: 'cache-first',
     notifyOnNetworkStatusChange: true,
     variables: {
-      id: props.id
+      id: props.id,
+      filter: baseEventsFilter()
     },
   }),
   props: ({ data, ownProps}) => ({

@@ -243,7 +243,7 @@ export const deleteSchedule = `mutation DeleteSchedule($input: DeleteScheduleInp
   }
 }
 `;
-export const createFollow = `mutation CreateFollow($input: CreateFollowInput!) {
+export const createFollow = `mutation CreateFollow($input: CreateFollowInput!, $filter: ModelEventFilterInput) {
   createFollow(input: $input) {
     id
     schedule {
@@ -271,7 +271,7 @@ export const createFollow = `mutation CreateFollow($input: CreateFollowInput!) {
         followingCount
         createdAt
       }
-      events {
+      events(filter: $filter) @connection(key: "events") {
         nextToken
         items {
           id
