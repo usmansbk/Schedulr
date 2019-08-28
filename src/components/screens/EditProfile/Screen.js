@@ -10,10 +10,12 @@ export default class EditProfileScreen extends React.Component {
     const {
       name,
       website,
+      location
     } = user;
     return ({
       name,
       website: website || '',
+      location: location || ''
     });
   };
   

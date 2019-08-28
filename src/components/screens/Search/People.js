@@ -25,7 +25,7 @@ class People extends React.Component {
       <ListHoc
         query={query}
         isConnected={isConnected}
-        location={location.lat ? location : null}
+        location={location}
         search
       />
     );

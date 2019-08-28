@@ -34,7 +34,7 @@ class Schedules extends React.Component {
         query={query}
         id={userId}
         isConnected={isConnected}
-        location={location.lat ? location : null}
+        location={location}
       />
     );
   }

@@ -76,6 +76,7 @@ class UserProfile extends React.Component {
       me,
       name,
       website,
+      location,
       createdAt,
       followingCount=0,
       createdCount=0
@@ -127,11 +128,21 @@ class UserProfile extends React.Component {
         <View style={styles.link}>
           <Icon size={16} style={styles.linkIcon} name="calendar" color={colors.white} />
           <Caption style={styles.label}>{I18n.get("PROFILE_joined")(date)}</Caption>
-        </View>
+        </View>   
+        {
+          location && (
+            <View style={styles.link}>
+              <Icon size={16} style={styles.linkIcon} name="map-pin" color={colors.white} />
+              <Hyperlink linkStyle={styles.linkStyle} linkDefault={true}>
+                <Caption style={styles.label} numberOfLines={1} ellipsizeMode="tail">{location}</Caption>
+              </Hyperlink>
+            </View>
+          )
+        }
         {
           website && (
             <View style={styles.link}>
-              <Icon size={16} style={styles.linkIcon} name="link" color={colors.white} />
+              <Icon size={16} style={styles.linkIcon} name="link-2" color={colors.white} />
               <Hyperlink linkStyle={styles.linkStyle} linkDefault={true}>
                 <Caption style={styles.label} numberOfLines={1} ellipsizeMode="tail">{website}</Caption>
               </Hyperlink>
