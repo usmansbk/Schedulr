@@ -153,7 +153,7 @@ export const getScheduleEvents = `query GetScheduleWithEvents($id: ID!, $limit: 
     isFollowing
     isOwner
     isPublic
-    events(filter: $filter, nextToken: $nextToken, limit: $limit) @connection(key: "events") {
+    events(filter: $filter, nextToken: $nextToken, limit: $limit, sortDirection: ASC) @connection(key: "events") {
       items {
         id
         title
