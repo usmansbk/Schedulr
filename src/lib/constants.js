@@ -1,3 +1,7 @@
+import { Dimensions } from 'react-native';
+
+export const WIDTH = Dimensions.get('window').width;
+
 export const ONE_TIME_EVENT = 'NEVER';
 export const BULLET = '•';
 export const CIRCLE = '●';

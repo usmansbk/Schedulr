@@ -96,21 +96,23 @@ class UserProfile extends React.Component {
             progressBackgroundColor={stores.themeStore.colors.bg}
           />
         }
-        contentContainerStyle={styles.header}>
-        <FastImage
-          source={{uri: uriSmall}}
-          resizeMode={FastImage.resizeMode.cover}
-          style={styles.backgroundImage}
-        />
-        <View style={styles.image}>
-          <UserAvatar
-            src={uriBig}
-            size={AVATAR_HEIGHT}
-            name={name}
-            onPress={this._showPicture}
-          />
+        contentContainerStyle={styles.container}>
+        <View style={styles.header}>  
+          <FastImage
+            source={{uri: uriSmall}}
+            resizeMode={FastImage.resizeMode.cover}
+            style={styles.backgroundImage}
+          />  
+          <View style={styles.image}> 
+            <UserAvatar
+              src={uriBig}
+              size={AVATAR_HEIGHT}
+              name={name}
+              onPress={this._showPicture}
+            />
+          </View>
+          <Headline numberOfLines={2} ellipsizeMode="tail" style={styles.headline}>{name}</Headline>
         </View>
-        <Headline numberOfLines={2} ellipsizeMode="tail" style={styles.headline}>{name}</Headline>
         <View style={styles.countRow}>
           <TouchableRipple onPress={this._toFollowingTab}>
               <View style={styles.item}>

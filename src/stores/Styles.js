@@ -1,5 +1,5 @@
 import { computed } from 'mobx';
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { dark, light } from 'config/colors';
 import {
   events,
@@ -10,10 +10,9 @@ import {
   schedule_events,
   comments_list,
   event_search,
-  schedule_search
+  schedule_search,
+  WIDTH
 } from 'lib/constants';
-
-const WIDTH = Dimensions.get('window').width;
 
 export default class AppStyles {
   constructor(settingsStore) {
@@ -1664,13 +1663,20 @@ export default class AppStyles {
     const colors = this.settings.dark ? dark : light;
 
     const AVATAR_HEIGHT = 120;
+    const HEADER_HEIGHT = 220;
+
     return StyleSheet.create({
-      header: {
+      container: {
         width: '100%',
         height: '100%',
+        backgroundColor: colors.white
+      },
+      header: {
+        width: '100%',
+        height: HEADER_HEIGHT,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: colors.white
+        backgroundColor: '#303030'
       },
       avatar: {
         width: AVATAR_HEIGHT,
@@ -1689,7 +1695,7 @@ export default class AppStyles {
       backgroundImage: {
         position: 'absolute',
         width: '100%',
-        height: 180,
+        height: HEADER_HEIGHT,
         top: 0,
         left: 0,
         opacity: 0.5
@@ -1698,7 +1704,8 @@ export default class AppStyles {
         fontWeight: 'bold',
         fontFamily: 'sans-serif-bold',
         textAlign: 'center',
-        color: colors.black
+        color: 'white',
+        paddingBottom: 10
       },
       count: {
         color: colors.black,

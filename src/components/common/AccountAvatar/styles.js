@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 export default StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: 24
+    paddingHorizontal: 24,
   },
   content: {
     flex: 1,
@@ -15,6 +15,7 @@ export default StyleSheet.create({
   },
   name: {
     fontFamily: 'sans-serif-bold',
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    maxWidth: 250,
   }
 });
