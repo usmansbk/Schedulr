@@ -14,6 +14,7 @@ import {
 import FastImage from 'react-native-fast-image';
 import Icon from 'react-native-vector-icons/Feather';
 import Hyperlink from 'react-native-hyperlink';
+import { createOpenLink } from 'react-native-open-maps';
 import { inject, observer } from 'mobx-react';
 import numeral from 'numeral';
 import moment from 'moment';
@@ -133,12 +134,12 @@ class UserProfile extends React.Component {
         </View>   
         {
           location && (
-            <View style={styles.link}>
-              <Icon size={16} style={styles.linkIcon} name="map-pin" color={stores.themeStore.colors.black} />
-              <Hyperlink linkStyle={styles.linkStyle} linkDefault={true}>
+            <TouchableRipple onPress={createOpenLink({query: location})}>          
+              <View style={styles.link}>
+                <Icon size={16} style={styles.linkIcon} name="map-pin" color={stores.themeStore.colors.black} />
                 <Caption style={styles.label} numberOfLines={1} ellipsizeMode="tail">{location}</Caption>
-              </Hyperlink>
-            </View>
+              </View>
+            </TouchableRipple>
           )
         }
         {

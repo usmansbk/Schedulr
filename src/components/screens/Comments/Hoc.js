@@ -52,8 +52,8 @@ export default inject("stores")(observer(
             })
           )
         }),
-        comments: data && data.getEventComments && data.getEventComments.comments.items || [],
-        nextToken: data && data.getEventComments && data.getEventComments.comments.nextToken,
+        comments: (data && data.getEventComments && data.getEventComments.comments && data.getEventComments.comments.items) || [],
+        nextToken: data && data.getEventComments && data.getEventComments.comments && data.getEventComments.comments.nextToken,
         ...ownProps
       })
     }),

@@ -331,6 +331,54 @@ function createFollow(input, typename) {
     }`,
     id: `Schedule:${input.followScheduleId}`
   });
+  // Check and read preloaded schedule events
+  const eventConnectionFragment = client.readFragment({
+    fragment: gql`fragment followingScheduleEvents on Schedule {
+      id
+      events {
+        items {
+          id
+          title
+          description
+          venue
+          category
+          startAt
+          endAt
+          allDay
+          recurrence
+          until
+          forever
+          isPublic
+          isOwner
+          isCancelled
+          isBookmarked
+          cancelledDates
+          banner {
+            bucket
+            key
+          }
+          author {
+            id
+            name
+          }
+          schedule {
+            id
+            name
+            isFollowing
+          }
+          commentsCount
+          bookmarksCount
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+    }`,
+    id: `Schedule:${input.followScheduleId}`
+  });
+
+  const scheduleEventsConnection = eventConnectionFragment ? eventConnectionFragment.events : eventConnection;
+
   if (!schedule.isFollowing) {
     if (typeof schedule.followersCount === 'number') {
       schedule.followersCount += 1;
@@ -340,8 +388,8 @@ function createFollow(input, typename) {
   }
   const optimisticSchedule = Object.assign({}, schedule, {
     isFollowing: true,
-    events: eventConnection
-  })
+    events: scheduleEventsConnection
+  });
   //=========== Update user following count ======================
   const userId = stores.appState.userId;
   const userFragment = gql`fragment currentUser on User {

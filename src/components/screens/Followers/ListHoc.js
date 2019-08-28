@@ -18,9 +18,9 @@ export default graphql(gql(listFollowers), {
     fetchPolicy: 'cache-and-network'
   }),
   props: ({ data, ownProps }) => ({
-    followers: data && data.listFollowers && data.listFollowers.followers.items || [],
+    followers: (data && data.listFollowers && data.listFollowers.followers.items) || [],
     nextToken: data && data.listFollowers && data.listFollowers.followers.nextToken,
-    loading: data.loading || (data.networkStatus === 4),
+    loading: data && data.loading || (data.networkStatus === 4),
     error: data.error,
     onRefresh: () => data.refetch(),
     fetchMore: (nextToken) => data.fetchMore({
