@@ -34,7 +34,7 @@ class ListHoc extends React.Component {
             onRefresh={this._onRefresh}
             fetchPastEvents={this._fetchPastEvents}
             isAuth={isAuth}
-          /> 
+          />;
   }
 }
 
