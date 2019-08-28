@@ -3,6 +3,7 @@ import gql from 'graphql-tag';
 import List from 'components/lists/Followers';
 import { listFollowers } from 'api/queries';
 import { PAGINATION_LIMIT } from 'lib/constants';
+import updateQuery from 'helpers/updateQuery';
 
 const alias = 'withScheduleFollowers';
 
@@ -26,7 +27,12 @@ export default graphql(gql(listFollowers), {
       variables: {
         nextToken
       },
-      updateQuery: (prev, { fetchMoreResult }) => {},
+      updateQuery: (prev, { fetchMoreResult }) => (
+        updateQuery({
+          prev,
+          fetchMoreResult
+        })
+      ),
     }),
     ...ownProps
   })

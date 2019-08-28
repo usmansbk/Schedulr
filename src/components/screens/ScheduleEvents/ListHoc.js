@@ -7,6 +7,7 @@ import { getEvents } from 'lib/calendr';
 import List from 'components/lists/ScheduleEvents';
 import { baseEventsFilter, pastEventsFilter } from 'graphql/filters';
 import { PAGINATION_LIMIT } from 'lib/constants';
+import updateQuery from 'helpers/updateQuery';
 
 const alias = 'withScheduleEventsContainer';
 
@@ -58,10 +59,12 @@ export default graphql(gql(getScheduleEvents), {
         limit: PAGINATION_LIMIT,
         filter: pastEventsFilter(nextToken)
       },
-      updateQuery: (prev, { fetchMoreResult }) => {
-
-        console.log(fetchMoreResult);
-      }
+      updateQuery: (prev, { fetchMoreResult }) => (
+        updateQuery({
+          prev,
+          fetchMoreResult
+        })
+      )
     }),
     events: data && data.getScheduleEvents && sortBookmarks(getEvents(data.getScheduleEvents.events.items)),
     ...ownProps

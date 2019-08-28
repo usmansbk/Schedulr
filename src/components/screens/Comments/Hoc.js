@@ -7,6 +7,7 @@ import updateApolloCache from 'helpers/updateApolloCache';
 import Container from './Container';
 import buildOptimisticResponse from 'helpers/optimisticResponse';
 import { ADD, PAGINATION_LIMIT } from 'lib/constants';
+import updateQuery from 'helpers/updateQuery';
 
 export default inject("stores")(observer(
   compose(
@@ -42,7 +43,12 @@ export default inject("stores")(observer(
           variables: {
             nextToken
           },
-          updateQuery: (prev, { fetchMoreResult }) => {}
+          updateQuery: (prev, { fetchMoreResult }) => (
+            updateQuery({
+              prev,
+              fetchMoreResult
+            })
+          )
         }),
         comments: data && data.getEventComments && data.getEventComments.comments.items || [],
         ...ownProps

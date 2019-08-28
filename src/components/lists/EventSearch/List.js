@@ -41,10 +41,10 @@ class List extends Component {
   _navigateToComments = (id, title, date) => this.props.navigation.navigate('Comments', { id, title, date });
   _keyExtractor = (item) => String(item.id); 
   _onEndReached = async () => {
-    const { fetchMore, loading, from } = this.props;
-    if (!loading && from) {
+    const { fetchMore, loading, nextToken } = this.props;
+    if (!loading && nextToken) {
       this.setState({ fetchingMore: true });
-      await fetchMore(Number(from));
+      await fetchMore(Number(nextToken));
       this.setState({ fetchingMore: false });
     }
   }

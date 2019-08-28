@@ -1,12 +1,13 @@
 import React from 'react';
-import { graphql, compose } from 'react-apollo';
+import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
 import List from 'components/lists/People';
 import { searchPeople } from 'api/queries';
-import { SEARCH_PAGE_SIZE, SEARCH_DISTANCE } from 'lib/constants';
+import { PAGINATION_LIMIT } from 'lib/constants';
 import { searchUserFilter } from 'graphql/filters';
+import updateQuery from 'helpers/updateQuery';
 
 class People extends React.Component {
 
@@ -39,14 +40,26 @@ const ListHoc = graphql(gql(searchPeople), {
     notifyOnNetworkStatusChange: true,
     fetchPolicy: 'cache-and-network',
     variables: {
-      filter: searchUserFilter(props.query)
+      filter: searchUserFilter(props.query),
+      limit: PAGINATION_LIMIT
     }
   }),
   props: ({ data, ownProps }) => ({
     loading: data.loading || data.networkStatus === 4,
     people: (data && data.searchUsers && data.searchUsers.items) || [],
-    nextToken: data && data.searchPeople && data.searchPeople.nextToken,
+    nextToken: data && data.searchUsers && data.searchUsers.nextToken,
     onRefresh: () => data.refetch(),
+    fetchMore: nextToken => data.fetchMore({
+      variables: {
+        nextToken
+      },
+      updateQuery: (prev, { fetchMoreResult }) => (
+        updateQuery({
+          prev,
+          fetchMoreResult
+        })
+      )
+    }),
     ...ownProps
   })
 })(List);

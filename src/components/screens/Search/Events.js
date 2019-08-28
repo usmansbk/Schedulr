@@ -8,6 +8,8 @@ import { getEvents } from 'lib/calendr';
 import { getUserData, searchEvents } from 'api/queries';
 import { searchEventFilter } from 'api/filters';
 import { sortBookmarks, mergeEvents } from 'lib/utils';
+import { PAGINATION_LIMIT } from 'lib/constants';
+import updateQuery from 'helpers/updateQuery';
 
 function filterEvents(events, query) {
   return sortBookmarks(getEvents(events.filter(
@@ -62,13 +64,25 @@ const ListHoc = compose(
       notifyOnNetworkStatusChange: true,
       fetchPolicy: 'cache-and-network',
       variables: {
-        filter: searchEventFilter(props.query)
+        filter: searchEventFilter(props.query),
+        limit: PAGINATION_LIMIT
       }
     }),
     props: ({ data, ownProps }) => ({
       loading: data && data.loading || data.networkStatus === 4,
       events: data && data.searchEvents && getEvents(data.searchEvents.items) || [],
       nextToken: data && data.searchEvents && data.searchEvents.nextToken,
+      fetchMore: (nextToken) => data.fetchMore({
+        variables: {
+          nextToken
+        },
+        updateQuery: (prev, { fetchMoreResult }) => (
+          updateQuery({
+            prev,
+            fetchMoreResult
+          })
+        )
+      }),
       ...ownProps
     })
   })

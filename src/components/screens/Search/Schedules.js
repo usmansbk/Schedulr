@@ -7,6 +7,8 @@ import sortSchedules, { mergeSchedules } from 'lib/utils';
 import List from 'components/lists/ScheduleSearch';
 import { getUserSchedules, searchSchedules } from 'api/queries';
 import { searchScheduleFilter } from 'api/filters';
+import { PAGINATION_LIMIT } from "lib/constants";
+import updateQuery from 'helpers/updateQuery';
 
 function filterSchedules(schedules, query) {
   return sortSchedules(schedules.filter(
@@ -63,12 +65,24 @@ const ListHoc = compose(
       notifyOnNetworkStatusChange: true,
       variables: {
         filter: searchScheduleFilter(props.query),
+        limit: PAGINATION_LIMIT
       }
     }),
     props: ({ data, ownProps }) => ({
-      schedules: data && data.searchSchedules && data.searchSchedules.items || [],
       loading: data && data.loading || data.networkStatus === 4,
+      schedules: data && data.searchSchedules && data.searchSchedules.items || [],
       nextToken: data && data.searchSchedules && data.searchSchedules.nextToken,
+      fetchMore: nextToken => data.fetchMore({
+        variables: {
+          nextToken
+        },
+        updateQuery: (prev, { fetchMoreResult }) => (
+          updateQuery({
+            prev,
+            fetchMoreResult
+          })
+        ),
+      }),
       ...ownProps
     })
   })
