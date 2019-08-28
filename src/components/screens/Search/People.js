@@ -5,7 +5,7 @@ import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
 import List from 'components/lists/People';
 import { searchPeople } from 'api/queries';
-import { PAGINATION_LIMIT } from 'lib/constants';
+import { SEARCH_LIMIT } from 'lib/constants';
 import { searchUserFilter } from 'graphql/filters';
 import updateQuery from 'helpers/updateQuery';
 
@@ -41,7 +41,7 @@ const ListHoc = graphql(gql(searchPeople), {
     fetchPolicy: 'cache-and-network',
     variables: {
       filter: searchUserFilter(props.query),
-      limit: PAGINATION_LIMIT
+      limit: SEARCH_LIMIT
     }
   }),
   props: ({ data, ownProps }) => ({

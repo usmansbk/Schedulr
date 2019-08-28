@@ -7,9 +7,8 @@ import List from 'components/lists/EventSearch';
 import { getEvents } from 'lib/calendr';
 import { getUserData, searchEvents } from 'api/queries';
 import { searchEventFilter } from 'api/filters';
-import { sort } from 'api/sort';
 import { sortBookmarks, mergeEvents } from 'lib/utils';
-import { PAGINATION_LIMIT } from 'lib/constants';
+import { SEARCH_LIMIT } from 'lib/constants';
 import updateQuery from 'helpers/updateQuery';
 
 function filterEvents(events, query) {
@@ -66,7 +65,7 @@ const ListHoc = compose(
       fetchPolicy: 'cache-and-network',
       variables: {
         filter: searchEventFilter(props.query),
-        limit: PAGINATION_LIMIT
+        limit: SEARCH_LIMIT
       }
     }),
     props: ({ data, ownProps }) => ({

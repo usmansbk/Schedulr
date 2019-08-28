@@ -13,6 +13,7 @@ export const SCHEDULE_CLOSED = 'CLOSED';
 export const SCHEDULE_OPEN = 'OPEN';
 
 export const PAGINATION_LIMIT = 5;
+export const SEARCH_LIMIT = 50;
 
 // Operations
 export const ADD = 'ADD';

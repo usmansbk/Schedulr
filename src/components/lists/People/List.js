@@ -99,8 +99,6 @@ class List extends Component {
         renderItem={this._renderItem}
         ListEmptyComponent={this._renderEmptyList}
         ListFooterComponent={this._renderFooter}
-        onEndReachedThreshold={0.5}
-        onEndReached={this._onEndReached}
         keyboardShouldPersistTaps="always"
       />
     )

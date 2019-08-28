@@ -42,7 +42,7 @@ class List extends Component {
   _keyExtractor = (item) => String(item.id); 
   _onEndReached = async () => {
     const { fetchMore, loading, nextToken } = this.props;
-    if (false && !loading && nextToken) {
+    if (!loading && nextToken) {
       this.setState({ fetchingMore: true });
       await fetchMore(Number(nextToken));
       this.setState({ fetchingMore: false });
@@ -117,6 +117,7 @@ class List extends Component {
       stores
     } = this.props;
     const { fetchingMore } = this.state;
+    console.log(nextToken);
 
     const styles = stores.appStyles.bookmarkedEventsList;
     const colors = stores.themeStore.colors;
@@ -143,8 +144,6 @@ class List extends Component {
         renderItem={this._renderItem}
         ListEmptyComponent={this._renderEmptyList}
         ListFooterComponent={this._renderFooter}
-        onEndReachedThreshold={0.5}
-        onEndReached={this._onEndReached}
         keyboardShouldPersistTaps="always"
       />
     )
