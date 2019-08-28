@@ -379,6 +379,7 @@ function createFollow(input, typename) {
 
   let scheduleEventsConnection = eventConnection;
 
+  // Update event items schedule isFollowing field to true
   if (scheduleEvents) {
     const { events: { items } } = scheduleEvents;
     scheduleEvents.events.items = items.map(event => Object.assign({}, event, {
@@ -388,6 +389,7 @@ function createFollow(input, typename) {
     }));
     scheduleEventsConnection = scheduleEvents.events;
   }
+  // ********************************************************
 
   if (!schedule.isFollowing) {
     if (typeof schedule.followersCount === 'number') {
