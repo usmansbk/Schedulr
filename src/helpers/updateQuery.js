@@ -4,9 +4,6 @@ export default function({
   rootField,
   connectionField,
 }) {
-  console.log(prev);
-  console.log(fetchMoreResult);
-
   const itemsField = 'items';
   if (!fetchMoreResult) return prev;
 

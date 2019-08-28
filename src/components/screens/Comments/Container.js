@@ -60,7 +60,7 @@ export default class Container extends React.Component {
       loading,
       onRefresh,
       error,
-      fetchMoreComments,
+      fetchMore,
       nextToken,
       user,
       comments
@@ -87,7 +87,7 @@ export default class Container extends React.Component {
         onSubmit={this._onSubmit}
         onRefresh={onRefresh}
         navigateToProfile={this._navigateToProfile}
-        fetchMoreComments={fetchMoreComments}
+        fetchMoreComments={fetchMore}
         nextToken={nextToken}
       />
       <DeleteCommentDialog
