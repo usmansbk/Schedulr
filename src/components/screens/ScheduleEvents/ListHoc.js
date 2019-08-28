@@ -57,7 +57,8 @@ export default graphql(gql(getScheduleEvents), {
     fetchMore: (nextToken) => data.fetchMore({
       variables: {
         limit: PAGINATION_LIMIT,
-        filter: pastEventsFilter(nextToken)
+        nextToken,
+        filter: pastEventsFilter()
       },
       updateQuery: (prev, { fetchMoreResult }) => (
         updateQuery({
@@ -67,6 +68,7 @@ export default graphql(gql(getScheduleEvents), {
       )
     }),
     events: data && data.getScheduleEvents && sortBookmarks(getEvents(data.getScheduleEvents.events.items)),
+    nextToken: data && data.getScheduleEvents && data.getScheduleEvents.events.nextToken,
     ...ownProps
   }) 
 })(ListHoc);

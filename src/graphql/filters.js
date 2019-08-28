@@ -1,7 +1,7 @@
 import moment from 'moment';
 
-export const pastEventsFilter = timestamp => {
-	const time = timestamp || moment().toISOString();
+export const pastEventsFilter = () => {
+	const time = moment().toISOString();
 	return {
 		or: [
 			{
