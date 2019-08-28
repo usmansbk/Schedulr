@@ -1670,7 +1670,7 @@ export default class AppStyles {
         height: '100%',
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: colors.black_2
+        backgroundColor: colors.white
       },
       avatar: {
         width: AVATAR_HEIGHT,
