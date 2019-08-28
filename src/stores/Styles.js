@@ -1374,6 +1374,7 @@ export default class AppStyles {
       }
     });
   }
+  
 
   @computed get eventsList () {
     const colors = this.settings.dark ? dark : light;
@@ -1656,5 +1657,83 @@ export default class AppStyles {
         backgroundColor: colors.bg
       }
     });    
+  }
+
+  @computed get profile() {
+    
+    const colors = this.settings.dark ? dark : light;
+
+    const AVATAR_HEIGHT = 120;
+    return StyleSheet.create({
+      header: {
+        width: '100%',
+        height: '100%',
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: colors.black_2
+      },
+      avatar: {
+        width: AVATAR_HEIGHT,
+        height: AVATAR_HEIGHT,
+      },
+      image: {
+        width: AVATAR_HEIGHT,
+        height: AVATAR_HEIGHT,
+        borderRadius: AVATAR_HEIGHT / 2,
+        borderWidth: 4,
+        borderColor: colors.white,
+        alignItems: 'center',
+        justifyContent: 'center',
+        overflow: 'hidden'
+      },
+      backgroundImage: {
+        position: 'absolute',
+        width: '100%',
+        height: 180,
+        top: 0,
+        left: 0,
+        opacity: 0.5
+      },
+      headline: {
+        fontWeight: 'bold',
+        fontFamily: 'sans-serif-bold',
+        textAlign: 'center',
+        color: colors.black
+      },
+      count: {
+        color: colors.black,
+        fontWeight: 'bold',
+        fontSize: 25,
+        marginTop: 8,
+        marginBottom: 4
+      },
+      label: {
+        color: colors.black,
+        fontSize: 16,
+      },
+      countRow: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-evenly',
+        // backgroundColor: 'blue'
+      },
+      item: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingHorizontal: 16
+      },
+      link: {
+        marginVertical: 16,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center'
+      },
+      linkStyle: {
+        color: colors.link,
+      },
+      linkIcon: {
+        paddingRight: 8
+      }
+    })
   }
 }

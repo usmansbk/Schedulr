@@ -1,7 +1,6 @@
 import React from 'react';
 import {
   View,
-  StyleSheet,
   ScrollView,
   Text,
   RefreshControl
@@ -85,6 +84,7 @@ class UserProfile extends React.Component {
     const uriSmall = avatar ? getImageUrl(avatar) : pictureUrl;
     const uriBig = avatar ? getImageUrl(avatar, 400) : pictureUrl;
     const date = moment(createdAt).format('MMMM YYYY');
+    const styles = stores.appStyles.profile;
     
     return  (
       <ScrollView
@@ -126,13 +126,13 @@ class UserProfile extends React.Component {
           </TouchableRipple>
         </View>
         <View style={styles.link}>
-          <Icon size={16} style={styles.linkIcon} name="calendar" color={colors.white} />
+          <Icon size={16} style={styles.linkIcon} name="calendar" color={stores.themeStore.colors.black} />
           <Caption style={styles.label}>{I18n.get("PROFILE_joined")(date)}</Caption>
         </View>   
         {
           location && (
             <View style={styles.link}>
-              <Icon size={16} style={styles.linkIcon} name="map-pin" color={colors.white} />
+              <Icon size={16} style={styles.linkIcon} name="map-pin" color={stores.themeStore.colors.black} />
               <Hyperlink linkStyle={styles.linkStyle} linkDefault={true}>
                 <Caption style={styles.label} numberOfLines={1} ellipsizeMode="tail">{location}</Caption>
               </Hyperlink>
@@ -142,7 +142,7 @@ class UserProfile extends React.Component {
         {
           website && (
             <View style={styles.link}>
-              <Icon size={16} style={styles.linkIcon} name="link-2" color={colors.white} />
+              <Icon size={16} style={styles.linkIcon} name="link-2" color={stores.themeStore.colors.black} />
               <Hyperlink linkStyle={styles.linkStyle} linkDefault={true}>
                 <Caption style={styles.label} numberOfLines={1} ellipsizeMode="tail">{website}</Caption>
               </Hyperlink>
@@ -168,73 +168,3 @@ class UserProfile extends React.Component {
 export default inject("stores")(observer(UserProfile));
 
 const AVATAR_HEIGHT = 120;
-
-const styles = StyleSheet.create({
-  header: {
-    width: '100%',
-    height: '100%',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#303030'
-  },
-  avatar: {
-    width: AVATAR_HEIGHT,
-    height: AVATAR_HEIGHT,
-  },
-  image: {
-    width: AVATAR_HEIGHT,
-    height: AVATAR_HEIGHT,
-    borderRadius: AVATAR_HEIGHT / 2,
-    borderWidth: 4,
-    borderColor: colors.white,
-    alignItems: 'center',
-    justifyContent: 'center',
-    overflow: 'hidden'
-  },
-  backgroundImage: {
-    position: 'absolute',
-    width: '100%',
-    height: '100%',
-    opacity: 0.5
-  },
-  headline: {
-    fontWeight: 'bold',
-    fontFamily: 'sans-serif-bold',
-    textAlign: 'center',
-    color: colors.white
-  },
-  count: {
-    color: colors.white,
-    fontWeight: 'bold',
-    fontSize: 25,
-    marginTop: 8,
-    marginBottom: 4
-  },
-  label: {
-    color: colors.white,
-    fontSize: 16,
-  },
-  countRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-evenly',
-    // backgroundColor: 'blue'
-  },
-  item: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingHorizontal: 16
-  },
-  link: {
-    marginVertical: 16,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  linkStyle: {
-    color: colors.link,
-  },
-  linkIcon: {
-    paddingRight: 8
-  }
-})
