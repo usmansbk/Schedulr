@@ -75,7 +75,7 @@ class List extends Component {
         navigateToScheduleInfo={this._navigateToInfo}
       />
     )
-  }
+  };
 
   _renderSeparator = () => <Separator />;
   _renderFooter = () => <Footer

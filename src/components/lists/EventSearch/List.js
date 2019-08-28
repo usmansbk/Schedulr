@@ -47,7 +47,7 @@ class List extends Component {
       await fetchMore(Number(nextToken));
       this.setState({ fetchingMore: false });
     }
-  }
+  };
 
   _renderItem = ({ item: {
     id,
