@@ -66,12 +66,14 @@ export default graphql(gql(getScheduleEvents), {
       updateQuery: (prev, { fetchMoreResult }) => (
         updateQuery({
           prev,
-          fetchMoreResult
+          fetchMoreResult,
+          rootField: 'getScheduleEvents',
+          connectionField: 'events'
         })
       )
     }),
-    events: data && data.getScheduleEvents && sortBookmarks(getEvents(data.getScheduleEvents.events.items)),
-    nextToken: data && data.getScheduleEvents && data.getScheduleEvents.events.nextToken,
+    events: data && data.getScheduleEvents && data.getScheduleEvents.events && sortBookmarks(getEvents(data.getScheduleEvents.events.items)),
+    nextToken: data && data.getScheduleEvents && data.getScheduleEvents.events && data.getScheduleEvents.events.nextToken,
     ...ownProps
   }) 
 })(ListHoc);

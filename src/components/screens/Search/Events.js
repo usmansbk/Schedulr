@@ -7,6 +7,7 @@ import List from 'components/lists/EventSearch';
 import { getEvents } from 'lib/calendr';
 import { getUserData, searchEvents } from 'api/queries';
 import { searchEventFilter } from 'api/filters';
+import { sort } from 'api/sort';
 import { sortBookmarks, mergeEvents } from 'lib/utils';
 import { PAGINATION_LIMIT } from 'lib/constants';
 import updateQuery from 'helpers/updateQuery';
@@ -79,7 +80,8 @@ const ListHoc = compose(
         updateQuery: (prev, { fetchMoreResult }) => (
           updateQuery({
             prev,
-            fetchMoreResult
+            fetchMoreResult,
+            rootField: 'searchEvents'
           })
         )
       }),

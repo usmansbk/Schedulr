@@ -79,7 +79,8 @@ const ListHoc = compose(
         updateQuery: (prev, { fetchMoreResult }) => (
           updateQuery({
             prev,
-            fetchMoreResult
+            fetchMoreResult,
+            rootField: 'searchSchedules'
           })
         ),
       }),

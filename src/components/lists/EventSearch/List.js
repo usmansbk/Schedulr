@@ -42,7 +42,7 @@ class List extends Component {
   _keyExtractor = (item) => String(item.id); 
   _onEndReached = async () => {
     const { fetchMore, loading, nextToken } = this.props;
-    if (!loading && nextToken) {
+    if (false && !loading && nextToken) {
       this.setState({ fetchingMore: true });
       await fetchMore(Number(nextToken));
       this.setState({ fetchingMore: false });
@@ -111,6 +111,7 @@ class List extends Component {
   render() {
     const {
       events,
+      nextToken,
       loading,
       onRefresh,
       stores

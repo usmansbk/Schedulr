@@ -56,7 +56,8 @@ const ListHoc = graphql(gql(searchPeople), {
       updateQuery: (prev, { fetchMoreResult }) => (
         updateQuery({
           prev,
-          fetchMoreResult
+          fetchMoreResult,
+          rootField: 'searchUsers'
         })
       )
     }),

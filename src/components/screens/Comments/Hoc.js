@@ -46,7 +46,9 @@ export default inject("stores")(observer(
           updateQuery: (prev, { fetchMoreResult }) => (
             updateQuery({
               prev,
-              fetchMoreResult
+              fetchMoreResult,
+              rootField: 'getEventComments',
+              connectionField: 'comments'
             })
           )
         }),

@@ -640,8 +640,8 @@ export const listFollowers = `query GetScheduleFollowers($id: ID!, $limit: Int, 
     }
   }
 }`;
-export const searchEvents = `query SearchEvents($filter: SearchableEventFilterInput!, $limit: Int, $nextToken: Int) {
-  searchEvents(filter: $filter, limit: $limit, nextToken: $nextToken) @connection(key: "searchEvents") {
+export const searchEvents = `query SearchEvents($filter: SearchableEventFilterInput!, $limit: Int, $nextToken: Int, $sort: SearchableEventSortInput) {
+  searchEvents(filter: $filter, limit: $limit, nextToken: $nextToken, sort: $sort) @connection(key: "searchEvents") {
     items {
       id
       title
@@ -680,8 +680,8 @@ export const searchEvents = `query SearchEvents($filter: SearchableEventFilterIn
     nextToken
   }
 }`;
-export const searchSchedules = `query SearchSchedules($filter: SearchableScheduleFilterInput!, $limit: Int, $nextToken: Int) {
-  searchSchedules(filter: $filter, limit: $limit, nextToken: $nextToken) @connection(key: "searchSchedules") {
+export const searchSchedules = `query SearchSchedules($filter: SearchableScheduleFilterInput!, $limit: Int, $nextToken: Int, $sort: SearchableScheduleSortInput) {
+  searchSchedules(filter: $filter, limit: $limit, nextToken: $nextToken, sort: $sort) @connection(key: "searchSchedules") {
     items {
       id
       name
@@ -717,8 +717,8 @@ export const searchSchedules = `query SearchSchedules($filter: SearchableSchedul
     nextToken
   }
 }`;
-export const searchPeople = `query SearchPeople($filter: SearchableUserFilterInput!, $limit: Int, $nextToken: Int) {
-  searchUsers(filter: $filter, limit: $limit, nextToken: $nextToken) @connection(key: "searchPeople") {
+export const searchPeople = `query SearchPeople($filter: SearchableUserFilterInput!, $limit: Int, $nextToken: Int, $sort: SearchableUserSortInput) {
+  searchUsers(filter: $filter, limit: $limit, nextToken: $nextToken, sort: $sort) @connection(key: "searchPeople") {
     items {
       id
       name

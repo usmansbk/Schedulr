@@ -30,7 +30,9 @@ export default graphql(gql(listFollowers), {
       updateQuery: (prev, { fetchMoreResult }) => (
         updateQuery({
           prev,
-          fetchMoreResult
+          fetchMoreResult,
+          rootField: 'listFollowers',
+          connectionField: 'followers'
         })
       ),
     }),
