@@ -12,7 +12,7 @@ export const ALL_EVENTS = 'ALL';
 export const SCHEDULE_CLOSED = 'CLOSED';
 export const SCHEDULE_OPEN = 'OPEN';
 
-export const PAGINATION_LIMIT = 20;
+export const PAGINATION_LIMIT = 5;
 export const COMMENTS_LIMIT = 15;
 export const FOLLOWERS_LIMIT = 15;
 

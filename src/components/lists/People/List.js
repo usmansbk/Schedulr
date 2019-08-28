@@ -72,7 +72,6 @@ class List extends Component {
       onRefresh,
       stores
     } = this.props;
-    console.log(people)
     const { fetchingMore } = this.state;
 
     const styles = stores.appStyles.bookmarkedEventsList;
