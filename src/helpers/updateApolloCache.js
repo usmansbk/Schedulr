@@ -16,7 +16,7 @@ const FOLLOW_TYPE = 'Follow';
 function updateData({
   cache,
   cacheUpdateQuery,
-  idField,
+  connectionField,
   rootField,
   updatedItem,
   operationType,
@@ -24,7 +24,7 @@ function updateData({
 }) {
   const query = gql(cacheUpdateQuery);
   const data = cache.readQuery({ query, variables: { id } });
-  const { items } = data[rootField][idField];
+  const { items } = data[rootField][connectionField];
   const removeDuplicate = items.filter(item => item.id !== updatedItem.id);
   let newItems;
   if (operationType === ADD) {
@@ -34,7 +34,7 @@ function updateData({
   }
   const newData = Object.assign({}, data, {
     [rootField]: Object.assign({}, data[rootField], {
-      [idField]: Object.assign({}, data[rootField][idField], {
+      [connectionField]: Object.assign({}, data[rootField][connectionField], {
         items: newItems
       })
     })
@@ -50,7 +50,7 @@ export default function(cache, result, operationType) {
         cache,
         operationType,
         updatedItem: result,
-        idField: 'events',
+        connectionField: 'events',
         rootField: 'getScheduleEvents',
         id: result.schedule.id,
         cacheUpdateQuery: getScheduleEvents
@@ -62,7 +62,7 @@ export default function(cache, result, operationType) {
         operationType,
         updatedItem: result,
         rootField: 'getUserData',
-        idField: 'created',
+        connectionField: 'created',
         id: stores.appState.userId,
         cacheUpdateQuery: getUserData
       });
@@ -73,7 +73,7 @@ export default function(cache, result, operationType) {
         operationType,
         updatedItem: result,
         rootField: 'getUserData',
-        idField: 'bookmarks',
+        connectionField: 'bookmarks',
         id: stores.appState.userId,
         cacheUpdateQuery: getUserData
       });
@@ -84,7 +84,7 @@ export default function(cache, result, operationType) {
         operationType,
         updatedItem: result,
         rootField: 'getEventComments',
-        idField: 'comments',
+        connectionField: 'comments',
         id: result.event.id,
         cacheUpdateQuery: getEventComments
       });
@@ -95,7 +95,7 @@ export default function(cache, result, operationType) {
         operationType,
         updatedItem: result,
         rootField: 'getUserData',
-        idField: 'following',
+        connectionField: 'following',
         id: stores.appState.userId,
         cacheUpdateQuery: getUserData
       });

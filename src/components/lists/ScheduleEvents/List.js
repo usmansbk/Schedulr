@@ -24,8 +24,7 @@ const {
 
 class List extends Component {
   state = {
-    loadingPrev: false,
-    hasPrev: true
+    loadingPrev: false
   };
   static defaultProps = {
     events: [],
@@ -44,8 +43,7 @@ class List extends Component {
       (
         nextProps.loading !== this.props.loading ||
         eventsChanged(this.props.events, nextProps.events) ||
-        this.state.loadingPrev !== nextState.loadingPrev ||
-        this.state.hasPrev !== nextState.hasPrev
+        this.state.loadingPrev !== nextState.loadingPrev
       )
     );
   };
@@ -95,13 +93,13 @@ class List extends Component {
   _renderFooter = () => <Footer
     onPress={this._fetchPastEvents}
     loading={this.props.loading && this.state.loadingPrev}
-    hasPrev={this.props.eventsCount - this.props.events.length}
+    hasPrev={this.props.pastEventsCount}
     hide={!(this.props.eventsCount && this.props.isAuth)}
   />;
 
   _fetchPastEvents = async () => {
-    const { loading, fetchPastEvents, nextToken } = this.props;
-    if (fetchPastEvents && !loading) {
+    const { loading, fetchPastEvents, nextToken, pastEventsCount } = this.props;
+    if (fetchPastEvents && !loading && pastEventsCount) {
       this.setState({ loadingPrev: true });
       await fetchPastEvents(nextToken);
       this.setState({ loadingPrev: false });

@@ -25,10 +25,13 @@ class ListHoc extends React.Component {
       eventsCount
     } = this.props;
 
+    const pastEventsCount = eventsCount - events.length;
+
     return <List
             listType="schedule"
             events={events}
             eventsCount={eventsCount}
+            pastEventsCount={pastEventsCount}
             loading={loading}
             error={error}
             onRefresh={this._onRefresh}
