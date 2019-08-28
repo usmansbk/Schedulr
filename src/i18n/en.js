@@ -125,7 +125,7 @@ export default {
   ALERT_whatIsASchedule: "What is a schedule?",
   ALERT_whatIsAScheduleA: "A schedule is a group of related events. It helps people find their interested events.",
   ALERT_privateSchedule: "Private schedule",
-  ALERT_privateScheduleA: "This schedule's content, including its followers and event details, are not visible to the public. Share invite link to add followers.",
+  ALERT_privateScheduleA: "This schedule's events are not visible to the public.",
   ALERT_publicScheduleA: "This schedule's content, including its followers and event details, are visible to the public.",
   ALERT_permissionLocationTitle: "Location Permission",
   ALERT_permissionLocationMessage: "Schdlr needs access to your location for better experience.",
