@@ -77,10 +77,10 @@ export const getEvent = `query GetEvent($id: ID!) {
   }
 }
 `;
-export const getEventComments = `query GetEventComments($id: ID!) {
+export const getEventComments = `query GetEventComments($id: ID!, $limit: Int, $nextToken: String) {
   getEventComments: getEvent(id: $id) {
     id
-    comments(sortDirection: DESC) @connection(key: "comments") {
+    comments(sortDirection: DESC, limit: $limit, nextToken: $nextToken) @connection(key: "comments") {
       items {
         id
         content
@@ -147,13 +147,13 @@ export const getSchedule = `query GetSchedule($id: ID!) {
   }
 }
 `;
-export const getScheduleEvents = `query GetScheduleWithEvents($id: ID!, $filter: ModelEventFilterInput) {
+export const getScheduleEvents = `query GetScheduleWithEvents($id: ID!, $filter: ModelEventFilterInput, $nextToken: String) {
   getScheduleEvents: getSchedule(id: $id) {
     id
     isFollowing
     isOwner
     isPublic
-    events(filter: $filter) @connection(key: "events") {
+    events(filter: $filter, nextToken: $nextToken) @connection(key: "events") {
       items {
         id
         title

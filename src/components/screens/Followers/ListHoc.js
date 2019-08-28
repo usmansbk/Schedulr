@@ -2,9 +2,8 @@ import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import List from 'components/lists/Followers';
 import { listFollowers } from 'api/queries';
-import { COMMENTS_LIMIT } from 'lib/constants';
+import { PAGINATION_LIMIT } from 'lib/constants';
 
-const LIMIT = COMMENTS_LIMIT;
 const alias = 'withScheduleFollowers';
 
 export default graphql(gql(listFollowers), {
@@ -12,7 +11,8 @@ export default graphql(gql(listFollowers), {
   options: props => ({
     notifyOnNetworkStatusChange: true,
     variables: {
-      id: props.id
+      id: props.id,
+      limit: PAGINATION_LIMIT
     },
     fetchPolicy: 'cache-and-network'
   }),
@@ -22,6 +22,12 @@ export default graphql(gql(listFollowers), {
     loading: data.loading || (data.networkStatus === 4),
     error: data.error,
     onRefresh: () => data.refetch(),
+    fetchMore: (nextToken) => data.fetchMore({
+      variables: {
+        nextToken
+      },
+      updateQuery: (prev, { fetchMoreResult }) => {},
+    }),
     ...ownProps
   })
 })(List);

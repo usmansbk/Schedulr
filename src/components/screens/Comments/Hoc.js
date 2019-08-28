@@ -6,7 +6,7 @@ import { createComment } from 'api/mutations';
 import updateApolloCache from 'helpers/updateApolloCache';
 import Container from './Container';
 import buildOptimisticResponse from 'helpers/optimisticResponse';
-import { ADD } from 'lib/constants';
+import { ADD, PAGINATION_LIMIT } from 'lib/constants';
 
 export default inject("stores")(observer(
   compose(
@@ -30,13 +30,20 @@ export default inject("stores")(observer(
         fetchPolicy: 'cache-and-network',
         notifyOnNetworkStatusChange: true,
         variables: {
-          id: props.navigation.getParam('id')
+          id: props.navigation.getParam('id'),
+          limit: PAGINATION_LIMIT
         },
       }),
       props: ({ data, ownProps }) => ({
         loading: data.loading || data.networkStatus === 4,
         error: data.error,
         onRefresh: () => data.refetch(),
+        fetchMore: (nextToken) => data.fetchMore({
+          variables: {
+            nextToken
+          },
+          updateQuery: (prev, { fetchMoreResult }) => {}
+        }),
         comments: data && data.getEventComments && data.getEventComments.comments.items || [],
         ...ownProps
       })

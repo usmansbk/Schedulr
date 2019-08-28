@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { RefreshControl } from 'react-native';
 import { withNavigationFocus, FlatList } from 'react-navigation';
 import { inject, observer } from 'mobx-react';
+import moment from 'moment';
 import Item from './Item';
 import Separator from './Separator';
 import Footer from './Footer';
@@ -102,9 +103,10 @@ class List extends Component {
   _fetchPastEvents = async () => {
     const { loading, nextToken, fetchPastEvents, events } = this.props;
     if (fetchPastEvents && !loading) {
-      const sorted = events.sort((a, b) => a.raw_startAt - b.raw_startAt);
+      console.log('fetch past events');
+      const sorted = events.sort((a, b) => moment(a.raw_endAt) - moment(b.raw_endAt));
       const lastEvent = sorted[0];
-      const lastDate = lastEvent && lastEvent.raw_startAt;
+      const lastDate = lastEvent && lastEvent.raw_endAt;
       this.setState({ loadingPrev: true });
       await fetchPastEvents(nextToken, lastDate);
       this.setState({ loadingPrev: false });

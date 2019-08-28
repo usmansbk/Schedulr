@@ -5,15 +5,17 @@ import { getScheduleEvents } from 'api/queries';
 import { sortBookmarks } from 'lib/utils';
 import { getEvents } from 'lib/calendr';
 import List from 'components/lists/ScheduleEvents';
-import { baseEventsFilter } from 'graphql/filters';
+import { baseEventsFilter, pastEventsFilter } from 'graphql/filters';
 
 const alias = 'withScheduleEventsContainer';
 
 class ListHoc extends React.Component {
 
   _onRefresh = () => this.props.onRefresh();
-
-  _fetchPastEvents = () => this.props.fetchPastEvents();
+  _fetchPastEvents = (nextToken, time) => {
+    console.log(nextToken, time)
+    this.props.fetchMore(nextToken, time);
+  }
 
   render() {
     const {
@@ -53,6 +55,15 @@ export default graphql(gql(getScheduleEvents), {
     error: data.error,
     onRefresh: () => data.refetch(),
     fetchPastEvents: () => null,
+    fetchMore: (nextToken, time) => data.fetchMore({
+      variables: {
+        nextToken,
+        fiter: pastEventsFilter(time)
+      },
+      updateQuery: (prev, { fetchMoreResult }) => {
+        console.log(fetchMoreResult);
+      }
+    }),
     events: data && data.getScheduleEvents && sortBookmarks(getEvents(data.getScheduleEvents.events.items)),
     ...ownProps
   }) 

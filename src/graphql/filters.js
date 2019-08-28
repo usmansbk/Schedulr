@@ -1,5 +1,43 @@
 import moment from 'moment';
 
+export const pastEventsFilter = timestamp => {
+	const time = timestamp || moment().toISOString();
+	// (endAt < time) AND [ (recurrence === NEVER) OR 
+	// (recurrence !== NEVER AND until < time) ]
+	return {
+		or: [
+			{
+				and: [
+					{
+						endAt: {
+							lt: time
+						}
+					},
+					{
+						recurrence: {
+							eq: 'NEVER'
+						}
+					}
+				]
+			},
+			{
+				and: [
+					{
+						recurrence: {
+							ne: 'NEVER'
+						}
+					},
+					{
+						until: {
+							lt: time
+						}
+					}
+				]
+			}
+		]
+	};
+}
+
 export const deltaEventsFilter = timestamp => {
 	const time = timestamp ? moment(timestamp) : moment();
 	const lastSync = time.toISOString();
@@ -22,33 +60,9 @@ export const baseEventsFilter = () => {
 			{	
 				and: [
 					{
-						or: [
-							{
-								recurrence: {
-									eq: 'DAILY'
-								}
-							},
-							{
-								recurrence: {
-									eq: 'WEEKLY'
-								}
-							},
-							{
-								recurrence: {
-									eq: 'WEEKDAYS'
-								}
-							},
-							{
-								recurrence: {
-									eq: 'MONTHLY'
-								}
-							},
-							{
-								recurrence: {
-									eq: 'YEARLY'
-								}
-							},
-						]
+						recurrence: {
+							ne: 'NEVER'
+						}
 					},
 					{
 						or: [
