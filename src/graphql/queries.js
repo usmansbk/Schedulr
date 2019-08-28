@@ -147,13 +147,13 @@ export const getSchedule = `query GetSchedule($id: ID!) {
   }
 }
 `;
-export const getScheduleEvents = `query GetScheduleWithEvents($id: ID!, $filter: ModelEventFilterInput, $nextToken: String) {
+export const getScheduleEvents = `query GetScheduleWithEvents($id: ID!, $limit: Int, $filter: ModelEventFilterInput, $nextToken: String) {
   getScheduleEvents: getSchedule(id: $id) {
     id
     isFollowing
     isOwner
     isPublic
-    events(filter: $filter, nextToken: $nextToken) @connection(key: "events") {
+    events(filter: $filter, nextToken: $nextToken, limit: $limit) @connection(key: "events") {
       items {
         id
         title

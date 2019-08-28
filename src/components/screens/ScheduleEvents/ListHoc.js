@@ -6,16 +6,14 @@ import { sortBookmarks } from 'lib/utils';
 import { getEvents } from 'lib/calendr';
 import List from 'components/lists/ScheduleEvents';
 import { baseEventsFilter, pastEventsFilter } from 'graphql/filters';
+import { PAGINATION_LIMIT } from 'lib/constants';
 
 const alias = 'withScheduleEventsContainer';
 
 class ListHoc extends React.Component {
 
   _onRefresh = () => this.props.onRefresh();
-  _fetchPastEvents = (nextToken, time) => {
-    console.log(nextToken, time)
-    this.props.fetchMore(nextToken, time);
-  }
+  _fetchPastEvents = (nextToken, time) => this.props.fetchMore(nextToken, time);
 
   render() {
     const {
@@ -55,12 +53,13 @@ export default graphql(gql(getScheduleEvents), {
     error: data.error,
     onRefresh: () => data.refetch(),
     fetchPastEvents: () => null,
-    fetchMore: (nextToken, time) => data.fetchMore({
+    fetchMore: (nextToken) => data.fetchMore({
       variables: {
-        nextToken,
-        fiter: pastEventsFilter(time)
+        limit: PAGINATION_LIMIT,
+        filter: pastEventsFilter(nextToken)
       },
       updateQuery: (prev, { fetchMoreResult }) => {
+
         console.log(fetchMoreResult);
       }
     }),
