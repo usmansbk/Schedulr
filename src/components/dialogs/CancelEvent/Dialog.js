@@ -39,7 +39,6 @@ class CancelEvent extends React.Component {
       input.isCancelled = true;
       input.cancelledDates = null;
     } else {
-      console.log(input);
       input.cancelledDates = Array.from(new Set([
         ...cancelledDates,
         date

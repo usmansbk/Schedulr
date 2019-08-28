@@ -117,7 +117,6 @@ class List extends Component {
       stores
     } = this.props;
     const { fetchingMore } = this.state;
-    console.log(nextToken);
 
     const styles = stores.appStyles.bookmarkedEventsList;
     const colors = stores.themeStore.colors;

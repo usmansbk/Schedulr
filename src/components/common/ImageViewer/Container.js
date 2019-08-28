@@ -62,7 +62,6 @@ export default class ImageViewerContainer extends React.Component {
     ImagePicker.showImagePicker(null, async (response) => {
       if (response.error) {
         SimpleToast.show(response.error.message, SimpleToast.SHORT);
-        console.log(response.error);
       } else {
         const { type, uri, fileName, fileSize } = response;
         if (fileSize > (MAX_FILE_SIZE + EPSILON)) {
@@ -88,7 +87,6 @@ export default class ImageViewerContainer extends React.Component {
               this.setState({ loading: false });
             }
           } catch (error) {
-            console.log(error);
             SimpleToast.show(error.message, SimpleToast.SHORT);
           }
         }
