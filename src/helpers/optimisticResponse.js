@@ -332,7 +332,7 @@ function createFollow(input, typename) {
     id: `Schedule:${input.followScheduleId}`
   });
   // Check and read preloaded schedule events
-  const eventConnectionFragment = client.readFragment({
+  const scheduleEvents = client.readFragment({
     fragment: gql`fragment followingScheduleEvents on Schedule {
       id
       events {
@@ -377,7 +377,17 @@ function createFollow(input, typename) {
     id: `Schedule:${input.followScheduleId}`
   });
 
-  const scheduleEventsConnection = eventConnectionFragment ? eventConnectionFragment.events : eventConnection;
+  let scheduleEventsConnection = eventConnection;
+
+  if (scheduleEvents) {
+    const { events: { items } } = scheduleEvents;
+    scheduleEvents.events.items = items.map(event => Object.assign({}, event, {
+      schedule: Object.assign({}, event.schedule, {
+        isFollowing: true
+      })
+    }));
+    scheduleEventsConnection = scheduleEvents.events;
+  }
 
   if (!schedule.isFollowing) {
     if (typeof schedule.followersCount === 'number') {
@@ -390,6 +400,7 @@ function createFollow(input, typename) {
     isFollowing: true,
     events: scheduleEventsConnection
   });
+  console.log(optimisticSchedule);
   //=========== Update user following count ======================
   const userId = stores.appState.userId;
   const userFragment = gql`fragment currentUser on User {
