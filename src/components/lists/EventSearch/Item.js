@@ -30,7 +30,8 @@ class Item extends React.Component {
       this.props.category !== nextProps.category ||
       this.props.isBookmarked !== nextProps.isBookmarked ||
       this.props.commentsCount !== nextProps.commentsCount ||
-      this.props.address !== nextProps.address
+      this.props.address !== nextProps.address ||
+      this.props.isAuth !== nextProps.isAuth
     );
   }
 
@@ -44,6 +45,7 @@ class Item extends React.Component {
       allDay,
       duration,
       category,
+      isAuth,
       pictureUrl,
       isBookmarked,
       bookmarksCount,
@@ -93,6 +95,7 @@ class Item extends React.Component {
               title={title}
               address={address}
               isBookmarked={isBookmarked}
+              isAuth={isAuth}
               bookmarksCount={bookmarksCount}
               commentsCount={commentsCount}
               color={stores.themeStore.colors.light_gray_3}

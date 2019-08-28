@@ -54,6 +54,7 @@ class List extends Component {
     title,
     category,
     isCancelled,
+    isPublic,
     cancelledDates,
     banner,
     startAt,
@@ -62,6 +63,7 @@ class List extends Component {
     venue,
     schedule,
     allDay,
+    isOwner,
     isConcluded,
     isBookmarked,
     bookmarksCount,
@@ -83,6 +85,7 @@ class List extends Component {
     isBookmarked={isBookmarked}
     category={getCategory(category)}
     recurrence={parseRepeat(recurrence)}
+    isAuth={isPublic || isOwner || (schedule && schedule.isFollowing)}
     time={getHumanTime({ allDay, startAt, endAt })}
     scheduleId={schedule && schedule.id}
     duration={getDuration(startAt, endAt, allDay)}
