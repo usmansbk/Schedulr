@@ -332,65 +332,67 @@ function createFollow(input, typename) {
     id: `Schedule:${input.followScheduleId}`
   });
   // Check and read preloaded schedule events
-  const scheduleEvents = client.readFragment({
-    fragment: gql`fragment followingScheduleEvents on Schedule {
-      id
-      events {
-        items {
-          id
-          title
-          description
-          venue
-          category
-          startAt
-          endAt
-          allDay
-          recurrence
-          until
-          forever
-          isPublic
-          isOwner
-          isCancelled
-          isBookmarked
-          cancelledDates
-          banner {
-            bucket
-            key
-          }
-          author {
-            id
-            name
-          }
-          schedule {
-            id
-            name
-            isFollowing
-          }
-          commentsCount
-          bookmarksCount
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-    }`,
-    id: `Schedule:${input.followScheduleId}`
-  });
-
+  
   let scheduleEventsConnection = eventConnection;
 
-  // Update event items schedule isFollowing field to true
-  if (scheduleEvents) {
-    const { events: { items } } = scheduleEvents;
-    scheduleEvents.events.items = items.map(event => Object.assign({}, event, {
-      schedule: Object.assign({}, event.schedule, {
-        isFollowing: true
-      })
-    }));
-    scheduleEventsConnection = scheduleEvents.events;
-  }
-  // ********************************************************
-
+  try {
+    const scheduleEvents = client.readFragment({
+      fragment: gql`fragment followingScheduleEvents on Schedule {
+        id
+        events {
+          items {
+            id
+            title
+            description
+            venue
+            category
+            startAt
+            endAt
+            allDay
+            recurrence
+            until
+            forever
+            isPublic
+            isOwner
+            isCancelled
+            isBookmarked
+            cancelledDates
+            banner {
+              bucket
+              key
+            }
+            author {
+              id
+              name
+            }
+            schedule {
+              id
+              name
+              isFollowing
+            }
+            commentsCount
+            bookmarksCount
+            createdAt
+            updatedAt
+          }
+          nextToken
+        }
+      }`,
+      id: `Schedule:${input.followScheduleId}`
+    });
+  
+    // Update event items schedule isFollowing field to true
+    if (scheduleEvents) {
+      const { events: { items } } = scheduleEvents;
+      scheduleEvents.events.items = items.map(event => Object.assign({}, event, {
+        schedule: Object.assign({}, event.schedule, {
+          isFollowing: true
+        })
+      }));
+      scheduleEventsConnection = scheduleEvents.events;
+    }
+  } catch(error) { console.log(error) }
+  // ********************************************************  
   if (!schedule.isFollowing) {
     if (typeof schedule.followersCount === 'number') {
       schedule.followersCount += 1;
