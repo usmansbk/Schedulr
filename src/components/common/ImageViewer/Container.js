@@ -12,7 +12,7 @@ const {
   aws_user_files_s3_bucket_region: region
 } = config;
 
-const MAX_FILE_SIZE = 1024 * 2000;
+const MAX_FILE_SIZE = 1024 * 4000;
 const EPSILON = 1024 * 100;
 
 export default class ImageViewerContainer extends React.Component {
