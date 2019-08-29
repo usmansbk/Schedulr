@@ -391,7 +391,7 @@ function createFollow(input, typename) {
       }));
       scheduleEventsConnection = scheduleEvents.events;
     }
-  } catch(error) { console.log(error) }
+  } catch(error) {}
   // ********************************************************  
   if (!schedule.isFollowing) {
     if (typeof schedule.followersCount === 'number') {
@@ -404,7 +404,6 @@ function createFollow(input, typename) {
     isFollowing: true,
     events: scheduleEventsConnection
   });
-  console.log(optimisticSchedule);
   //=========== Update user following count ======================
   const userId = stores.appState.userId;
   const userFragment = gql`fragment currentUser on User {
