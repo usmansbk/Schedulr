@@ -39,7 +39,7 @@ export default class Button extends React.Component {
       bookmarksCount
     } = this.props;
 
-    const count = (isBookmarked && (bookmarksCount > 1)) ? bookmarksCount : 0;
+    const count = (isBookmarked && (bookmarksCount === 1)) ? 0 : bookmarksCount;
 
     return (
       <IconBadge
