@@ -11,15 +11,13 @@ export default class AppState {
   debounceQuery = debounce(val => this.query = val, 250);
 
   @observable hasNotifications = true;
-
-  @persist @observable userId = null;
-  @persist @observable loggingIn = false;
-  @observable isSync = false;
   @observable isConnected = false;
   @observable searchText = '';
   @observable query = '';
-  @persist @observable location = null;
 
+  @persist @observable userId = null;
+  @persist @observable loggingIn = false;
+  @persist @observable location = null;
   @persist @observable lastSyncTimestamp = null;
 
   @persist('list') @observable mutedEvents = [];
