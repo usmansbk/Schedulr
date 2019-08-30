@@ -35,7 +35,6 @@ export default inject("stores")(observer(
             query: DeltaQuery,
             variables:{
               id: ownProps.id,
-              filter: deltaEventsFilter(lastSyncTimestamp),
               lastSync: Math.floor(lastSyncTimestamp / 1000)
             },
             updateQuery: (prev, { fetchMoreResult }) => (
