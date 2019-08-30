@@ -555,6 +555,8 @@ export const getUserDelta = `query GetUserDelta($id: ID!, $lastSync: Int!) {
           description
           isPublic
           status
+          eventsCount
+          followersCount
           updatedAt
           picture {
             key
