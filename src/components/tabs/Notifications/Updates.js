@@ -24,7 +24,6 @@ class Updates extends React.Component {
       });
       notifications = user.notifications;
       stores.appState.setNotificationsIndicator(false);
-      console.log(notifications);
     } catch(error) {
       console.log(error);
     }

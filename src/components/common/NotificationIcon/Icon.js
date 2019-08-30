@@ -1,8 +1,9 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
+import { inject, observer } from 'mobx-react';
 import Icon from 'react-native-vector-icons/Feather';
 
-export default ({hasNotification, name, color, size }) => {
+const NotificationIcon = ({ name, color, size, stores }) => {
   return (
     <View style={styles.container}>
       <Icon
@@ -10,12 +11,12 @@ export default ({hasNotification, name, color, size }) => {
         color={color}
         size={size}
       />
-      {
-        hasNotification && <View style={styles.indicator}/>
-      }
+      { stores.appState.hasNotifications && <View style={styles.indicator}/> }
     </View>
   );
 };
+
+export default inject("stores")(observer(NotificationIcon));
 
 const color = '#1DA1F2';
 

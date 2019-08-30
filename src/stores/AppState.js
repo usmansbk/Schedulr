@@ -10,7 +10,7 @@ export default class AppState {
   
   debounceQuery = debounce(val => this.query = val, 250);
 
-  @observable hasNotifications = false;
+  @observable hasNotifications = true;
 
   @persist @observable userId = null;
   @persist @observable loggingIn = false;
