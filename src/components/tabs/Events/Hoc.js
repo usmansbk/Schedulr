@@ -21,8 +21,7 @@ export default inject("stores")(observer(
         notifyOnNetworkStatusChange: true,
         variables: {
           id: props.id,
-          filter: baseEventsFilter(),
-          lastSync: Math.floor(props.stores.appState.lastSyncTimestamp / 1000)
+          filter: baseEventsFilter()
         }
       }),
       props: ({ data, ownProps}) => ({

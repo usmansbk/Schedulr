@@ -311,7 +311,7 @@ export const getUserSchedules = `query GetUserSchedules($id: ID!) {
     }
   }
 }`;
-export const getUserData = `query GetUserData($id: ID!, $filter: ModelEventFilterInput, $lastSync: Int!) {
+export const getUserData = `query GetUserData($id: ID!, $filter: ModelEventFilterInput) {
   getUserData: getUser(id: $id) {
     id
     created {
@@ -494,19 +494,6 @@ export const getUserData = `query GetUserData($id: ID!, $filter: ModelEventFilte
       }
       nextToken
     }
-    notifications(lastSync: $lastSync) @connection(key: "notifications") {
-      id
-      subject
-      message
-      topic
-      type
-      image {
-        key
-        bucket
-      }
-      aws_ds
-      timestamp
-    }
   }
 }`
 
@@ -525,6 +512,72 @@ export const getUserDelta = `query GetUserDelta($id: ID!, $lastSync: Int!) {
       }
       aws_ds
       timestamp
+      extraData {
+        __typename
+        ... on Event {
+          id
+          title
+          description
+          venue
+          category
+          startAt
+          endAt
+          allDay
+          recurrence
+          until
+          forever
+          isPublic
+          isOwner
+          isCancelled
+          isBookmarked
+          cancelledDates
+          banner {
+            bucket
+            key
+          }
+          author {
+            id
+            name
+          }
+          schedule {
+            id
+            name
+            isFollowing
+          }
+          commentsCount
+          bookmarksCount
+          createdAt
+          updatedAt
+        }
+        ... on Schedule {
+          id
+          name
+          description
+          isPublic
+          status
+          updatedAt
+          picture {
+            key
+            bucket
+          }
+        }
+        ... on Comment {
+          id
+          content
+          to {
+            id
+            author {
+              id
+              name
+            }
+          }
+          event {
+            id
+            commentsCount
+          }
+          createdAt
+        }
+      }
     }
   }
 }`;
