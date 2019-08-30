@@ -9,7 +9,14 @@ export default function updateBaseCache({
 	const lastSyncTimestamp = moment.now() - BUFFER_MILLISECONDS;
 	stores.appState.updateLastSyncTimestamp(lastSyncTimestamp);
 	if (!fetchMoreResult) return prev;
+	handleNotifications(fetchMoreResult, stores);
 	return mergeChanges(prev, fetchMoreResult);
+}
+
+function handleNotifications({ getUserDelta }, stores) {
+	if (!getUserDelta) return;
+	const { notifications } = getUserDelta;
+	if (notifications.length) stores.appState.setNotificationsIndicator(true);
 }
 
 function mergeChanges(prevData, newData) {

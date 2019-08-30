@@ -21,7 +21,8 @@ export default inject("stores")(observer(
         notifyOnNetworkStatusChange: true,
         variables: {
           id: props.id,
-          filter: baseEventsFilter()
+          filter: baseEventsFilter(),
+          lastSync: Math.floor(props.stores.appState.lastSyncTimestamp / 1000)
         }
       }),
       props: ({ data, ownProps}) => ({
@@ -34,7 +35,8 @@ export default inject("stores")(observer(
             query: DeltaQuery,
             variables:{
               id: ownProps.id,
-              filter: deltaEventsFilter(lastSyncTimestamp)
+              filter: deltaEventsFilter(lastSyncTimestamp),
+              lastSync: Math.floor(lastSyncTimestamp / 1000)
             },
             updateQuery: (prev, { fetchMoreResult }) => (
               updateBaseCache({

@@ -13,3 +13,23 @@ export const getUserSchedules = gql`
     }
   }
 `;
+
+export const listNotifications = gql`
+  fragment myNotifications on User {
+    id
+    notifications {
+      id
+      subjectId
+      subject
+      message
+      topic
+      type
+      image {
+        key
+        bucket
+      }
+      aws_ds
+      timestamp
+    }
+  }
+`;

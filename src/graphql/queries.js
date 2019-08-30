@@ -311,7 +311,7 @@ export const getUserSchedules = `query GetUserSchedules($id: ID!) {
     }
   }
 }`;
-export const getUserData = `query GetUserData($id: ID!, $filter: ModelEventFilterInput) {
+export const getUserData = `query GetUserData($id: ID!, $filter: ModelEventFilterInput, $lastSync: Int!) {
   getUserData: getUser(id: $id) {
     id
     created {
@@ -494,10 +494,24 @@ export const getUserData = `query GetUserData($id: ID!, $filter: ModelEventFilte
       }
       nextToken
     }
+    notifications(lastSync: $lastSync) @connection(key: "notifications") {
+      id
+      subjectId
+      subject
+      message
+      topic
+      type
+      image {
+        key
+        bucket
+      }
+      aws_ds
+      timestamp
+    }
   }
 }`
 
-export const getUserDelta = `query GetUserDelta($id: ID!, $filter: ModelEventFilterInput) {
+export const getUserDelta = `query GetUserDelta($id: ID!, $filter: ModelEventFilterInput, $lastSync: Int!) {
   getUserDelta: getUser(id: $id) {
     id
     following {
@@ -610,6 +624,20 @@ export const getUserDelta = `query GetUserDelta($id: ID!, $filter: ModelEventFil
           updatedAt
         }
       }
+    }
+    notifications(lastSync: $lastSync) @connection(key: "notifications") {
+      id
+      subjectId
+      subject
+      message
+      topic
+      type
+      image {
+        key
+        bucket
+      }
+      aws_ds
+      timestamp
     }
   }
 }`;
@@ -736,4 +764,4 @@ export const searchPeople = `query SearchPeople($filter: SearchableUserFilterInp
     }
     nextToken
   }
-}`
+}`;

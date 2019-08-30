@@ -10,6 +10,8 @@ export default class AppState {
   
   debounceQuery = debounce(val => this.query = val, 250);
 
+  @observable hasNotifications = false;
+
   @persist @observable userId = null;
   @persist @observable loggingIn = false;
   @observable isSync = false;
@@ -65,6 +67,8 @@ export default class AppState {
   @action removeCustomType = (category) => {
     this.categories = this.categories.filter(item => item.toLowerCase() !== category.toLowerCase());
   };
+
+  @action setNotificationsIndicator = status => this.hasNotifications = status;
 
   @action toggleMute = (id, isMuted) => {
     if (isMuted) {
