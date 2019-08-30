@@ -12,7 +12,9 @@ export default class Events extends React.Component {
   }
 
   componentDidMount = () => {
-    this.props.fetchMore();
+    if (!this.props.loading) {
+      this.props.fetchMore();
+    }
   }
 
   shouldComponentUpdate = (nextProps) => {
