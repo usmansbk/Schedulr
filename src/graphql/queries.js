@@ -496,7 +496,6 @@ export const getUserData = `query GetUserData($id: ID!, $filter: ModelEventFilte
     }
     notifications(lastSync: $lastSync) @connection(key: "notifications") {
       id
-      subjectId
       subject
       message
       topic
@@ -511,123 +510,11 @@ export const getUserData = `query GetUserData($id: ID!, $filter: ModelEventFilte
   }
 }`
 
-export const getUserDelta = `query GetUserDelta($id: ID!, $filter: ModelEventFilterInput, $lastSync: Int!) {
+export const getUserDelta = `query GetUserDelta($id: ID!, $lastSync: Int!) {
   getUserDelta: getUser(id: $id) {
     id
-    following {
-      items {
-        id
-        schedule {
-          id
-          name
-          description
-          isFollowing
-          isPublic
-          status
-          picture {
-            key
-            bucket
-          }
-          author {
-            id
-            name
-            pictureUrl
-            avatar {
-              key
-              bucket
-            }
-            website
-            location
-            createdCount
-            followingCount
-            createdAt
-          }
-          events(filter: $filter) @connection(key: "events") {
-            items {
-              id
-              title
-              description
-              venue
-              category
-              startAt
-              endAt
-              allDay
-              recurrence
-              until
-              forever
-              isPublic
-              isOwner
-              isCancelled
-              isBookmarked
-              cancelledDates
-              banner {
-                bucket
-                key
-              }
-              author {
-                id
-                name
-              }
-              schedule {
-                id
-                name
-                isFollowing
-              }
-              commentsCount
-              bookmarksCount
-              createdAt
-              updatedAt
-            }
-          }
-          followersCount
-          eventsCount
-          updatedAt
-        }
-      }
-    }
-    bookmarks {
-      items {
-        id
-        event {
-          id
-          title
-          description
-          venue
-          category
-          startAt
-          endAt
-          allDay
-          recurrence
-          until
-          forever
-          isPublic
-          isOwner
-          isCancelled
-          isBookmarked
-          cancelledDates
-          banner {
-            bucket
-            key
-          }
-          author {
-            id
-            name
-          }
-          schedule {
-            id
-            name
-            isFollowing
-          }
-          commentsCount
-          bookmarksCount
-          createdAt
-          updatedAt
-        }
-      }
-    }
     notifications(lastSync: $lastSync) @connection(key: "notifications") {
       id
-      subjectId
       subject
       message
       topic
