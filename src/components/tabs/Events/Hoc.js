@@ -3,7 +3,7 @@ import gql from 'graphql-tag';
 import { inject, observer } from 'mobx-react';
 import { withNavigationFocus } from 'react-navigation';
 import { getUserData, getUserDelta } from 'api/queries';
-import { baseEventsFilter, deltaEventsFilter } from 'api/filters';
+import { baseEventsFilter } from 'api/filters';
 import updateBaseCache from 'helpers/deltaSync';
 import Events from './Events';
 
