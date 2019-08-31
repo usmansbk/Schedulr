@@ -2,8 +2,8 @@ import React from 'react';
 import { FlatList, RefreshControl } from 'react-native';
 import { withNavigationFocus } from 'react-navigation';
 import { inject, observer } from 'mobx-react';
-import moment from 'moment';
 import { followers_list } from 'lib/constants';
+import { timeAgo } from 'lib/time';
 import getImageUrl from 'helpers/getImageUrl';
 import Footer from './Footer';
 import Item from './Item';
@@ -70,7 +70,7 @@ class List extends React.Component {
         id={id}
         name={name}
         pictureUrl={avatar ? getImageUrl(avatar) : pictureUrl}
-        joined={moment(createdAt).fromNow()}
+        joined={timeAgo(createdAt)}
         onPressItem={this._onPressItem}
       />
     )
