@@ -4,6 +4,7 @@ import uuid from 'uuid/v4';
 import stores from "stores";
 import client from 'config/client';
 import { ADD, DELETE } from 'lib/constants';
+import { getUserData } from 'api/queries';
 
 const __typename = 'Mutation';
 const EVENT_TYPE = 'Event';
@@ -469,6 +470,34 @@ function deleteEvent(input, typename) {
   if ((typeof count === 'number') && count > 0) {
     event.schedule.eventsCount = count - 1;
   }
+  
+  // ******************* Remove from bookmarks *******************
+  const BaseQuery = gql(getUserData);
+  const userId = stores.appState.userId;
+  const data = client.readQuery({
+    query: BaseQuery,
+    variables: {
+      id: userId
+    }
+  });
+  const newData = Object.assign({}, data, {
+    getUserData: Object.assign({}, data.getUserData, {
+      bookmarks: Object.assign({}, data.getUserData.bookmarks, {
+        items: data.getUserData.bookmarks.items.filter(
+          bookmark => bookmark.event.id !== input.id
+        )
+      })
+    })
+  });
+  client.writeQuery({
+    query: BaseQuery,
+    variables: {
+      id: userId
+    },
+    data: newData
+  });
+  // ************************************************************
+
   return event;
 }
 
