@@ -10,17 +10,22 @@ Analytics.disable();
 const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors) {
     graphQLErrors.map(error => {
-      SimpleToast.show(I18n.get('ERROR_serverError'), SimpleToast.LONG);
-      console.log(error.message);
-      Analytics.record({
-        name: 'GraphQLError',
-        attributes: {
-          errorName: error.name,
-          errorMessage: error.message,
-          errorLocation: error.locations,
-          errorPath: error.path,
-        }
-      });
+      const message = error.message;
+      if (message.includes("Not Found")) {
+        // Dont log elasticsearch "Not found"
+      } else {
+        SimpleToast.show(I18n.get('ERROR_serverError'), SimpleToast.LONG);
+        console.log(error.message);
+        Analytics.record({
+          name: 'GraphQLError',
+          attributes: {
+            errorName: error.name,
+            errorMessage: error.message,
+            errorLocation: error.locations,
+            errorPath: error.path,
+          }
+        });
+      }
     });  
   } else if (networkError) SimpleToast.show(I18n.get("ERROR_noConnection"), SimpleToast.SHORT);
 });
