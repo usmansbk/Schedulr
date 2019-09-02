@@ -94,12 +94,12 @@ class List extends Component {
     onPress={this._fetchPastEvents}
     loading={this.props.loading && this.state.loadingPrev}
     hasPrev={this.props.pastEventsCount}
-    hide={!(this.props.eventsCount && this.props.isAuth)}
+    hide={!((this.props.eventsCount > 0) && this.props.isAuth)}
   />;
 
   _fetchPastEvents = async () => {
     const { loading, fetchPastEvents, nextToken, pastEventsCount } = this.props;
-    if (fetchPastEvents && !loading && pastEventsCount) {
+    if (fetchPastEvents && !loading && (pastEventsCount > 0)) {
       this.setState({ loadingPrev: true });
       await fetchPastEvents(nextToken);
       this.setState({ loadingPrev: false });
