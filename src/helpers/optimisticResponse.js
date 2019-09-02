@@ -472,30 +472,32 @@ function deleteEvent(input, typename) {
   }
   
   // ******************* Remove from bookmarks *******************
-  const BaseQuery = gql(getUserData);
-  const userId = stores.appState.userId;
-  const data = client.readQuery({
-    query: BaseQuery,
-    variables: {
-      id: userId
-    }
-  });
-  const newData = Object.assign({}, data, {
-    getUserData: Object.assign({}, data.getUserData, {
-      bookmarks: Object.assign({}, data.getUserData.bookmarks, {
-        items: data.getUserData.bookmarks.items.filter(
-          bookmark => bookmark.event.id !== input.id
-        )
+  try {
+    const BaseQuery = gql(getUserData);
+    const userId = stores.appState.userId;
+    const data = client.readQuery({
+      query: BaseQuery,
+      variables: {
+        id: userId
+      }
+    });
+    const newData = Object.assign({}, data, {
+      getUserData: Object.assign({}, data.getUserData, {
+        bookmarks: Object.assign({}, data.getUserData.bookmarks, {
+          items: data.getUserData.bookmarks.items.filter(
+            bookmark => bookmark.event && (bookmark.event.id !== input.id)
+          )
+        })
       })
-    })
-  });
-  client.writeQuery({
-    query: BaseQuery,
-    variables: {
-      id: userId
-    },
-    data: newData
-  });
+    });
+    client.writeQuery({
+      query: BaseQuery,
+      variables: {
+        id: userId
+      },
+      data: newData
+    });
+  } catch(error) {console.log(error)}
   // ************************************************************
 
   return event;
