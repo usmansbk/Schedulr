@@ -30,14 +30,6 @@ class List extends Component {
       index
     }
   );
-  shouldComponentUpdate = (nextProps) => { 
-    return (nextProps.navigation.isFocused() &&
-      (
-        nextProps.schedules !== this.props.schedules ||
-        nextProps.loading !== this.props.loading
-      )
-    );
-  };
   _onPressItem = (id) => this.props.navigation.navigate('ScheduleInfo', { id });
   _keyExtractor = (item) => String(item.id);
   _onEndReached = async () => {
@@ -85,6 +77,8 @@ class List extends Component {
     hasMore={this.props.from}
   />;
 
+  shouldComponentUpdate = (nextProps) => nextProps.navigation.isFocused();
+  
   render() {
     const {
       schedules,
