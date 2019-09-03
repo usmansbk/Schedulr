@@ -497,88 +497,85 @@ export const getUserData = `query GetUserData($id: ID!, $filter: ModelEventFilte
   }
 }`
 
-export const getUserDelta = `query GetUserDelta($id: ID!, $lastSync: Int!) {
-  getUserDelta: getUser(id: $id) {
+export const getUserDelta = `query GetNotifications($lastSync: String!) {
+  notifications(lastSync: $lastSync) @connection(key: "notifications") {
     id
-    notifications(lastSync: $lastSync) @connection(key: "notifications") {
-      id
-      subject
-      message
-      topic
-      type
-      image {
-        key
-        bucket
-      }
-      aws_ds
-      timestamp
-      extraData {
-        __typename
-        ... on Event {
+    subject
+    message
+    topic
+    type
+    image {
+      key
+      bucket
+    }
+    aws_ds
+    timestamp
+    entity {
+      __typename
+      ... on Event {
+        id
+        title
+        description
+        venue
+        category
+        startAt
+        endAt
+        allDay
+        recurrence
+        until
+        forever
+        isPublic
+        isOwner
+        isCancelled
+        isBookmarked
+        cancelledDates
+        banner {
+          bucket
+          key
+        }
+        author {
           id
-          title
-          description
-          venue
-          category
-          startAt
-          endAt
-          allDay
-          recurrence
-          until
-          forever
-          isPublic
-          isOwner
-          isCancelled
-          isBookmarked
-          cancelledDates
-          banner {
-            bucket
-            key
-          }
+          name
+        }
+        schedule {
+          id
+          name
+          isFollowing
+        }
+        commentsCount
+        bookmarksCount
+        createdAt
+        updatedAt
+      }
+      ... on Schedule {
+        id
+        name
+        description
+        isPublic
+        status
+        eventsCount
+        followersCount
+        updatedAt
+        picture {
+          key
+          bucket
+        }
+      }
+      ... on Comment {
+        id
+        content
+        to {
+          id
           author {
             id
             name
           }
-          schedule {
-            id
-            name
-            isFollowing
-          }
+        }
+        event {
+          id
           commentsCount
-          bookmarksCount
-          createdAt
-          updatedAt
         }
-        ... on Schedule {
-          id
-          name
-          description
-          isPublic
-          status
-          eventsCount
-          followersCount
-          updatedAt
-          picture {
-            key
-            bucket
-          }
-        }
-        ... on Comment {
-          id
-          content
-          to {
-            id
-            author {
-              id
-              name
-            }
-          }
-          event {
-            id
-            commentsCount
-          }
-          createdAt
-        }
+        createdAt
       }
     }
   }

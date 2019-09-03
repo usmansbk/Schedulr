@@ -33,8 +33,7 @@ export default inject("stores")(observer(
           data.fetchMore({
             query: DeltaQuery,
             variables:{
-              id: ownProps.id,
-              lastSync: Math.floor(lastSyncTimestamp / 1000)
+              lastSync: String(lastSyncTimestamp)
             },
             updateQuery: (prev, { fetchMoreResult }) => (
               updateBaseCache({
