@@ -2,11 +2,6 @@ import React from 'react';
 import List from 'components/lists/Bookmarks';
 
 export default class Bookmarks extends React.Component {
-
-  shouldComponentUpdate = (nextProps) => { 
-    return nextProps.navigation.isFocused();
-  };
-
   _getEvents = (
     (data) => {
       if (!data) return [];
