@@ -156,6 +156,7 @@ const getNextDayEvents = memoize((initialEvents, nextDate) => {
 
 // Returns a flat list of latest events dates
 function getEvents(events) {
+  if (!events) return [];
   return events.map((currentEvent) => {
     const eventDate = moment(currentEvent.startAt);
     const interval = getInterval(currentEvent.recurrence);

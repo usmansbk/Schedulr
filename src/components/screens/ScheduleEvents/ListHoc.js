@@ -25,7 +25,9 @@ class ListHoc extends React.Component {
       eventsCount
     } = this.props;
 
-    const pastEventsCount = eventsCount - events.length;
+    const eventsLength = events ? events.length : [];
+
+    const pastEventsCount = eventsCount - eventsLength;
 
     return <List
             listType="schedule"
@@ -56,7 +58,6 @@ export default graphql(gql(getScheduleEvents), {
     loading: data && data.loading || data.networkStatus === 4,
     error: data.error,
     onRefresh: () => data.refetch(),
-    fetchPastEvents: () => null,
     fetchMore: (nextToken) => data.fetchMore({
       variables: {
         limit: PAGINATION_LIMIT,
@@ -72,7 +73,7 @@ export default graphql(gql(getScheduleEvents), {
         })
       )
     }),
-    events: (data && data.getScheduleEvents && data.getScheduleEvents.events && sortBookmarks(getEvents(data.getScheduleEvents.events.items))) || [],
+    events: data && data.getScheduleEvents && data.getScheduleEvents.events && sortBookmarks(getEvents(data.getScheduleEvents.events.items)),
     nextToken: data && data.getScheduleEvents && data.getScheduleEvents.events && data.getScheduleEvents.events.nextToken,
     ...ownProps
   }) 
