@@ -29,7 +29,7 @@ export default inject("stores")(observer(
         data: data && data.getUserData,
         onRefresh: () => data.refetch(),
         fetchMore: () => {
-          const lastSyncTimestamp = ownProps.stores.appState.lastSyncTimestamp;
+          const lastSyncTimestamp = ownProps.stores.appState.lastSyncTimestamp || Date.now();
           data.fetchMore({
             query: DeltaQuery,
             variables:{
