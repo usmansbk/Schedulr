@@ -38,7 +38,7 @@ class Form extends React.Component {
   _aboutPrivacy = () => {
     const { stores } = this.props;
     if (stores.appState.prefs.showPrivateScheduleAlert) {
-      Alert.alert(I18n.get("ALERT_privateSchedule"), I18n.get("ALERT_privateScheduleA"), [
+      Alert.alert(I18n.get("ALERT_privateSchedule"), I18n.get("ALERT_privateScheduleWarn"), [
         { text: I18n.get("BUTTON_dontShowAgain"), onPress: () => stores.appState.togglePref('showPrivateScheduleAlert') },
         { text: I18n.get("BUTTON_ok"), onPress: () => null }
       ]);
