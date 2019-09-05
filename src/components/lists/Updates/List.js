@@ -36,7 +36,7 @@ export default class List extends React.Component {
     subject,
     message,
     image,
-    date,
+    timestamp,
     topic,
     entityId,
     type
@@ -48,7 +48,7 @@ export default class List extends React.Component {
     topic={topic}
     type={type}
     pictureUrl={image && getImageUrl(image)}
-    date={date}
+    date={moment.unix(timestamp).fromNow()}
     navigateToSchedule={this._navigateToSchedule}
     navigateToEvent={this._navigateToEvent}
   />;
