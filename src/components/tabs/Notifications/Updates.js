@@ -12,6 +12,10 @@ class Updates extends React.Component {
     };
   }
 
+  componentDidMount = () => {
+    this.props.stores.appState.setNotificationIndicator(false);
+  }
+
   shouldComponentUpdate = (nextProps) => {
     return nextProps.navigation.isFocused();
   };

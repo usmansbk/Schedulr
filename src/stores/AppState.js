@@ -10,7 +10,6 @@ export default class AppState {
   
   debounceQuery = debounce(val => this.query = val, 250);
 
-  @observable hasNotifications = true;
   @observable isConnected = false;
   @observable searchText = '';
   @observable query = '';
@@ -19,6 +18,7 @@ export default class AppState {
   @persist @observable loggingIn = false;
   @persist @observable location = null;
   @persist @observable lastSyncTimestamp = null;
+  @persist @observable hasNotifications = false;
 
   @persist('list') @observable mutedEvents = [];
   @persist('list') @observable mutedSchedules = [];
@@ -66,7 +66,7 @@ export default class AppState {
     this.categories = this.categories.filter(item => item.toLowerCase() !== category.toLowerCase());
   };
 
-  @action setNotificationsIndicator = status => this.hasNotifications = status;
+  @action setNotificationIndicator = status => this.hasNotifications = status;
 
   @action toggleMute = (id, isMuted) => {
     if (isMuted) {

@@ -3,14 +3,14 @@ import gql from 'graphql-tag';
 import moment from 'moment';
 import { inject, observer } from 'mobx-react';
 import { withNavigationFocus } from 'react-navigation';
-import { getUserData, getUserDelta } from 'api/queries';
+import { getUserData, getDeltaUpdates } from 'api/queries';
 import { baseEventsFilter } from 'api/filters';
 import updateBaseCache from 'helpers/deltaSync';
 import Events from './Events';
 
 const alias = 'withEventsContainer';
 const BaseQuery = gql(getUserData);
-const DeltaQuery = gql(getUserDelta);
+const DeltaQuery = gql(getDeltaUpdates);
 
 export default inject("stores")(observer(
   compose(

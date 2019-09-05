@@ -6,25 +6,11 @@ export default function updateBaseCache({
   stores,
 }) {
 	console.log(fetchMoreResult);
-	const lastSyncTimestamp = moment().unix();
+	if (!fetchMoreResult) return prev;
+
+	const lastSyncTimestamp = moment().unix() - 2;
 	stores.appState.updateLastSyncTimestamp(lastSyncTimestamp);
 	if (!fetchMoreResult) return prev;
-	// return mergeChanges(prev, fetchMoreResult, stores);
 	return prev;
 }
 
-function mergeChanges(prevData, newData, stores) {
- 	const { getUserDelta } = newData;
- 	const { getUserData } = prevData;
-
-	if (!(getUserDelta && getUserData)) return prevData;
-	
-	const { notifications } = getUserDelta;
-
-	return Object.assign({}, prevData, {
-		getUserData: Object.assign({}, getUserData, {
-			following: updatedFollowing,
-			bookmarks: updatedBookmarks
-		})
-	});
-}

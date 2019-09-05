@@ -497,7 +497,18 @@ export const getUserData = `query GetUserData($id: ID!, $filter: ModelEventFilte
   }
 }`
 
-export const getUserDelta = `query GetNotifications($lastSync: String!) {
+export const getDeltaUpdates = `query GetDeltaUpdates($lastSync: String!) {
+  deltaSync(lastSync: $lastSync) {
+    ... on Event {
+      id
+    }
+    ... on Schedule {
+      id
+    }
+  }
+}`;
+
+export const getNotifications = `query GetNotifications($lastSync: String!) {
   notifications(lastSync: $lastSync) @connection(key: "notifications") {
     id
     subject
@@ -510,74 +521,7 @@ export const getUserDelta = `query GetNotifications($lastSync: String!) {
     }
     aws_ds
     timestamp
-    entity {
-      __typename
-      ... on Event {
-        id
-        title
-        description
-        venue
-        category
-        startAt
-        endAt
-        allDay
-        recurrence
-        until
-        forever
-        isPublic
-        isOwner
-        isCancelled
-        isBookmarked
-        cancelledDates
-        banner {
-          bucket
-          key
-        }
-        author {
-          id
-          name
-        }
-        schedule {
-          id
-          name
-          isFollowing
-        }
-        commentsCount
-        bookmarksCount
-        createdAt
-        updatedAt
-      }
-      ... on Schedule {
-        id
-        name
-        description
-        isPublic
-        status
-        eventsCount
-        followersCount
-        updatedAt
-        picture {
-          key
-          bucket
-        }
-      }
-      ... on Comment {
-        id
-        content
-        to {
-          id
-          author {
-            id
-            name
-          }
-        }
-        event {
-          id
-          commentsCount
-        }
-        createdAt
-      }
-    }
+    entityId
   }
 }`;
 export const listFollowers = `query GetScheduleFollowers($id: ID!, $limit: Int, $nextToken: String) {
