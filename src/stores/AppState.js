@@ -40,7 +40,9 @@ export default class AppState {
     const prevValue = this.prefs[pref];
     this.prefs[pref] = !prevValue;
   };
-  @action appendNotifications = notifs => this.notifications = this.notifications.concat(notifs);
+  @action appendNotifications = newNotifications => this.notifications = this.notifications.concat(newNotifications);
+  @action clearMutedList = () => this.mutedEvents = [];
+  @action clearNotifications = () => this.notifications = [];
 
   @action reset() {
     this.isConnected =false;
@@ -95,17 +97,13 @@ export default class AppState {
     }
   };
 
-  @action clearMutedList = () => {
-    this.mutedEvents = [];
-  };
-
   @action onChangeText (searchText) {
     this.searchText = searchText;
     this.debounceQuery(searchText);
   }
 
   @computed get updates() {
-    return this.notifications.filter(notif => notif.type !== 'Comment');
+    return this.notifications.filter(notif => notif.type !== 'Comment').sort((a, b) => -(a.timestamp - b.timestamp));
   }
 
   @computed get comments() {
