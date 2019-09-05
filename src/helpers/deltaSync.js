@@ -1,5 +1,3 @@
-import moment from 'moment';
-
 export default function updateBaseCache({
   prev,
   fetchMoreResult,
@@ -7,9 +5,7 @@ export default function updateBaseCache({
 }) {
 	console.log(fetchMoreResult);
 	if (!fetchMoreResult) return prev;
-
-	const lastSyncTimestamp = moment().unix() - 2;
-	stores.appState.updateLastSyncTimestamp(lastSyncTimestamp);
+	stores.appState.updateLastSyncTimestamp();
 	if (!fetchMoreResult) return prev;
 	return prev;
 }

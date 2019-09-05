@@ -501,9 +501,11 @@ export const getDeltaUpdates = `query GetDeltaUpdates($lastSync: String!) {
   deltaSync(lastSync: $lastSync) {
     ... on Event {
       id
+      aws_ds
     }
     ... on Schedule {
       id
+      aws_ds
     }
   }
 }`;
@@ -519,7 +521,6 @@ export const getNotifications = `query GetNotifications($lastSync: String!) {
       key
       bucket
     }
-    aws_ds
     timestamp
     entityId
   }
