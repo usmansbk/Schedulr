@@ -19,12 +19,13 @@ const NotificationIcon = ({ name, color, size, stores }) => {
 export default inject("stores")(observer(NotificationIcon));
 
 const color = '#1DA1F2';
+const SIZE = 10;
 
 const styles = StyleSheet.create({
   indicator: {
-    height: 8,
-    width: 8,
-    borderRadius: 4,
+    height: SIZE,
+    width: SIZE,
+    borderRadius: SIZE / 2,
     position: 'absolute',
     top: 2,
     right: 2,
@@ -32,4 +33,4 @@ const styles = StyleSheet.create({
     borderColor: 'white',
     backgroundColor: color,
   }
-})
+});
