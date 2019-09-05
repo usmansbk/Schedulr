@@ -24,6 +24,7 @@ export default class List extends React.Component {
   _renderFooter = () => <Footer visible={this.props.updates.length}/>;
   _navigateToEvent = (id) => this.props.navigation.navigate('EventDetails', { id });
   _navigateToSchedule = (id) => this.props.navigation.navigate('ScheduleInfo', { id });
+  _navigateToFollowers = (id) => this.props.navigation.navigate('Followers', { id });
   _getItemLayout = (_, index) => (
     {
       length: ITEM_HEIGHT,
@@ -51,6 +52,7 @@ export default class List extends React.Component {
     date={moment.unix(timestamp).fromNow()}
     navigateToSchedule={this._navigateToSchedule}
     navigateToEvent={this._navigateToEvent}
+    navigateToFollowers={this._navigateToFollowers}
   />;
 
   render() {
