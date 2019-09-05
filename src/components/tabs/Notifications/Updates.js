@@ -22,9 +22,9 @@ class Updates extends React.Component {
   
   render() {
     const { stores, navigation } = this.props;
-
     return (
       <List
+        updates={stores.appState.updates}
         styles={stores.appStyles.notifications}
         navigation={navigation}
       />

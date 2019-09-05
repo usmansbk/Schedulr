@@ -1,4 +1,4 @@
-import { observable, action } from 'mobx';
+import { observable, action, computed } from 'mobx';
 import { persist } from 'mobx-persist';
 import debounce from 'lodash.debounce';
 import moment from 'moment';
@@ -22,13 +22,13 @@ export default class AppState {
   @persist @observable lastNotifTimestamp = moment().unix();
   @persist @observable hasNotifications = false;
 
+  @persist('list') @observable notifications = [];
   @persist('list') @observable mutedEvents = [];
   @persist('list') @observable mutedSchedules = [];
   @persist('list') @observable allowedEvents = [];
   @persist('object') @observable prefs = {
     showPrivateScheduleAlert: true,
   };
-
   @persist('list') @observable categories =  categories(this.settings.language);
 
   @action setUserId = id => this.userId = id;
@@ -40,6 +40,7 @@ export default class AppState {
     const prevValue = this.prefs[pref];
     this.prefs[pref] = !prevValue;
   };
+  @action appendNotifications = notifs => this.notifications = this.notifications.concat(notifs);
 
   @action reset() {
     this.isConnected =false;
@@ -48,6 +49,7 @@ export default class AppState {
     this.mutedEvents = [];
     this.allowedEvents = [];
     this.mutedSchedules = [];
+    this.notifications = [];
     this.location = null;
     this.prefs = {
       showPrivateScheduleAlert: true,
@@ -100,5 +102,13 @@ export default class AppState {
   @action onChangeText (searchText) {
     this.searchText = searchText;
     this.debounceQuery(searchText);
+  }
+
+  @computed get updates() {
+    return this.notifications.filter(notif => notif.type !== 'Comment');
+  }
+
+  @computed get comments() {
+    return this.notifications.filter(notif => notif.type === 'Comment');
   }
 }

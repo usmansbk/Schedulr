@@ -12,18 +12,18 @@ class Item extends React.Component {
 
   _onPressItems = () => {
     const {
-      id,
+      entityId,
       type,
       navigateToEvent,
       navigateToSchedule
     } = this.props;
-    if (id) {
+    if (entityId) {
       switch(type) {
         case 'Event':
-          navigateToEvent(id);
+          navigateToEvent(entityId);
           break;
         case 'Schedule':
-          navigateToSchedule(id);
+          navigateToSchedule(entityId);
           break;
       }
     }

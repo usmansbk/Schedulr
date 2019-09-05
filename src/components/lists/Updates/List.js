@@ -6,7 +6,6 @@ import Footer from './Footer';
 import Separator from './Separator';
 import Item from './Item';
 import { notifications_list } from 'lib/constants';
-import { timeAgo } from 'lib/time';
 import getImageUrl from 'helpers/getImageUrl';
 
 const {
@@ -16,22 +15,7 @@ const {
 
 export default class List extends React.Component {
   static defaultProps = {
-    updates: [
-      {
-        id: '1',
-        subject: 'EEEN502',
-        message: 'cancelled',
-        topic: '',
-        timestamp: moment.now(),
-      },
-      {
-        id: '2',
-        subject: 'EEEN503',
-        message: 'scheduled for',
-        topic: 'August 20th',
-        timestamp: moment.now(),
-      },
-    ]
+    updates: []
   };
 
   _renderEmpty = () => <Empty />;
@@ -52,17 +36,19 @@ export default class List extends React.Component {
     subject,
     message,
     image,
-    timestamp,
+    date,
     topic,
+    entityId,
     type
   }}) => <Item
     id={id}
+    entityId={entityId}
     subject={subject}
     message={message}
     topic={topic}
     type={type}
     pictureUrl={image && getImageUrl(image)}
-    date={timeAgo(timestamp)}
+    date={date}
     navigateToSchedule={this._navigateToSchedule}
     navigateToEvent={this._navigateToEvent}
   />;

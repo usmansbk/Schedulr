@@ -19,15 +19,17 @@ export default inject("stores")(observer(
       alias: 'withGetNotifications',
       name: 'notifications',
       options: props => ({
-        fetchPolicy: 'network-only',
+        fetchPolicy: 'cache-and-network',
         variables: {
           lastSync: String(props.stores.appState.lastNotifTimestamp)
         },
         onCompleted: (data) => {
           props.stores.appState.updateLastNotifTimestamp();
           const { notifications } = data;
-          if (notifications)
+          if (notifications) {
+            props.stores.appState.appendNotifications(notifications);
             props.stores.appState.setNotificationIndicator(!!notifications.length);
+          }
         }
       }),
     }),
