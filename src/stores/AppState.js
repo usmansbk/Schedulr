@@ -1,6 +1,7 @@
 import { observable, action } from 'mobx';
 import { persist } from 'mobx-persist';
 import debounce from 'lodash.debounce';
+import moment from 'moment';
 import categories from 'i18n/categories';
 
 export default class AppState {
@@ -17,7 +18,8 @@ export default class AppState {
   @persist @observable userId = null;
   @persist @observable loggingIn = false;
   @persist @observable location = null;
-  @persist @observable lastSyncTimestamp = null;
+  @persist @observable lastSyncTimestamp = moment().unix();
+  @persist @observable lastNotifTimestamp = moment().unix();
   @persist @observable hasNotifications = false;
 
   @persist('list') @observable mutedEvents = [];
@@ -30,7 +32,8 @@ export default class AppState {
   @persist('list') @observable categories =  categories(this.settings.language);
 
   @action setUserId = id => this.userId = id;
-  @action updateLastSyncTimestamp = timestamp => this.lastSyncTimestamp = timestamp;
+  @action updateLastSyncTimestamp = () => this.lastSyncTimestamp = moment().unix();
+  @action updateLastNotifTimestamp = () => this.lastNotifTimestamp = moment().unix();
   @action setLoginState = state => this.loggingIn = Boolean(state); 
   @action toggleConnection = isConnected => this.isConnected = isConnected;
   @action togglePref = (pref) => {

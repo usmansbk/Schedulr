@@ -1,9 +1,8 @@
 import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
-import moment from 'moment';
 import { inject, observer } from 'mobx-react';
 import { withNavigationFocus } from 'react-navigation';
-import { getUserData, getDeltaUpdates } from 'api/queries';
+import { getUserData, getDeltaUpdates, getNotifications } from 'api/queries';
 import { baseEventsFilter } from 'api/filters';
 import updateBaseCache from 'helpers/deltaSync';
 import Events from './Events';
@@ -11,10 +10,27 @@ import Events from './Events';
 const alias = 'withEventsContainer';
 const BaseQuery = gql(getUserData);
 const DeltaQuery = gql(getDeltaUpdates);
+const GetNotifications = gql(getNotifications);
 
 export default inject("stores")(observer(
   compose(
     withNavigationFocus,
+    graphql(GetNotifications, {
+      alias: 'withGetNotifications',
+      name: 'notifications',
+      options: props => ({
+        fetchPolicy: 'network-only',
+        variables: {
+          lastSync: String(props.stores.appState.lastNotifTimestamp)
+        },
+        onCompleted: (data) => {
+          props.stores.appState.updateLastNotifTimestamp();
+          const { notifications } = data;
+          if (notifications)
+            props.stores.appState.setNotificationIndicator(!!notifications.length);
+        }
+      }),
+    }),
     graphql(BaseQuery, {
       alias,
       options: props => ({
@@ -30,7 +46,7 @@ export default inject("stores")(observer(
         data: data && data.getUserData,
         onRefresh: () => data.refetch(),
         fetchMore: () => {
-          const lastSyncTimestamp = ownProps.stores.appState.lastSyncTimestamp || moment().unix();
+          const lastSyncTimestamp = ownProps.stores.appState.lastSyncTimestamp;
           data.fetchMore({
             query: DeltaQuery,
             variables:{
