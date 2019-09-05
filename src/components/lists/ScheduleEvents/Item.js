@@ -39,7 +39,7 @@ class Item extends React.Component {
       status,
       stores
     } = this.props;
-
+    
     const styles = stores.appStyles.scheduleEvents;
     const caption = captionDetails({ allDay, category, duration, recurrence });
 

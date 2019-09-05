@@ -1,5 +1,4 @@
 import moment from 'moment';
-const BUFFER_MILLISECONDS = 2000;
 
 export default function updateBaseCache({
   prev,
@@ -7,7 +6,7 @@ export default function updateBaseCache({
   stores,
 }) {
 	console.log(fetchMoreResult);
-	const lastSyncTimestamp = moment.now() - BUFFER_MILLISECONDS;
+	const lastSyncTimestamp = moment().unix();
 	stores.appState.updateLastSyncTimestamp(lastSyncTimestamp);
 	if (!fetchMoreResult) return prev;
 	// return mergeChanges(prev, fetchMoreResult, stores);
