@@ -771,13 +771,18 @@ export default class AppStyles {
         paddingHorizontal: 8,
         flexDirection: 'row',
         alignItems: 'center',
-        maxWidth: 300
+        maxWidth: 320
       },
       itemBody: {
         marginLeft: 8
       },
       boldText: {
         fontWeight: 'bold',
+      },
+      privateIcon: {
+        position: 'absolute',
+        top: 10,
+        left: 10,
       }
     });
   }
