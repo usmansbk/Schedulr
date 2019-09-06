@@ -501,10 +501,51 @@ export const getDeltaUpdates = `query GetDeltaUpdates($lastSync: String!) {
   deltaSync(lastSync: $lastSync) {
     ... on Event {
       id
+      title
+      description
+      venue
+      category
+      startAt
+      endAt
+      allDay
+      recurrence
+      until
+      forever
+      isPublic
+      isOwner
+      isCancelled
+      isBookmarked
+      cancelledDates
+      banner {
+        bucket
+        key
+      }
+      author {
+        id
+        name
+      }
+      schedule {
+        id
+        name
+        isFollowing
+      }
+      commentsCount
+      bookmarksCount
+      createdAt
+      updatedAt
       aws_ds
     }
     ... on Schedule {
       id
+      name
+      description
+      isPublic
+      status
+      updatedAt
+      picture {
+        key
+        bucket
+      }
       aws_ds
     }
   }
