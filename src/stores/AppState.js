@@ -49,7 +49,7 @@ export default class AppState {
     this.prefs = {
       showPrivateScheduleAlert: true,
     }
-    this.categories = categories(this.settingsStore.language);
+    this.categories = categories(this.settings.language);
     this.loggingIn = false;
     this.userId = null;
     this.lastSyncTimestamp = moment().unix();

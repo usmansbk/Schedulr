@@ -13,7 +13,7 @@ export default class AppState {
   @action clearNotifications = () => this.notifications = [];
 
   @action reset() {
-    this.notifications = [];
+    this.clearNotifications();
     this.lastSyncTimestamp = moment().unix();
   }
 
