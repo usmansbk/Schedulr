@@ -55,19 +55,21 @@ class Item extends React.Component {
       <TouchableRipple onPress={this._onPressItems} style={styles.itemContainer}>
         <View style={styles.itemContent}>
           <UserAvatar src={pictureUrl} name={subject} size={32} />
-          <Icon
-            style={styles.privateIcon}
-            name={icon}
-            size={14}
-            color={stores.themeStore.colors.primary_light}
-          />
           <View style={styles.itemBody}>
             <Text ellipsizeMode="tail" numberOfLines={2}>
               <Caption style={styles.boldText}>{subject}</Caption>{' '}
               <Caption>{message}</Caption>
               <Caption style={styles.boldText}>{topic ? ' ' + topic : ''}.</Caption>
             </Text>
-            <Caption style={styles.itemTag}>{date}</Caption>
+            <View style={styles.dateLine}>
+              <Icon
+                style={styles.icon}
+                name={icon}
+                size={14}
+                color={stores.themeStore.colors.primary_light}
+              />
+              <Caption style={styles.itemTag}>{date}</Caption>
+            </View>
           </View>
         </View>
     </TouchableRipple>

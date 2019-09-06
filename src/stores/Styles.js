@@ -779,10 +779,12 @@ export default class AppStyles {
       boldText: {
         fontWeight: 'bold',
       },
-      privateIcon: {
-        position: 'absolute',
-        top: 10,
-        left: 10,
+      dateLine: {
+        flexDirection: 'row',
+        alignItems: 'center'
+      },
+      icon: {
+        marginRight: 8
       }
     });
   }
