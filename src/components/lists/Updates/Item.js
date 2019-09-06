@@ -50,6 +50,7 @@ class Item extends React.Component {
     if (type === 'Schedule') icon = 'clipboard';
     else if (type === 'Comment') icon = 'message-circle';
     else if (type === 'Follow') icon = 'users';
+    else if (type === 'Bookmark') icon = 'bookmark';
 
     return (
       <TouchableRipple onPress={this._onPressItems} style={styles.itemContainer}>
