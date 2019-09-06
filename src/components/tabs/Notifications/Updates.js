@@ -12,17 +12,15 @@ class Updates extends React.Component {
     };
   }
 
-  componentDidMount = () => {
-    this.props.stores.appState.setNotificationIndicator(false);
-  }
-
   shouldComponentUpdate = (nextProps) => nextProps.navigation.isFocused();
   
   render() {
     const { stores, navigation } = this.props;
+    stores.notificationsStore.setNotificationIndicator(false);
+    
     return (
       <List
-        updates={stores.appState.updates}
+        updates={stores.notificationsStore.updates}
         styles={stores.appStyles.notifications}
         navigation={navigation}
       />

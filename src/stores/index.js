@@ -6,6 +6,7 @@ import RemindMe from './RemindMe';
 import Theme from './Theme';
 import AppStyles from './Styles';
 import AppState from './AppState';
+import Notifications from './Notifications';
 
 class RootStore {
   constructor() {
@@ -16,9 +17,11 @@ class RootStore {
 
     const settingsStore = new Settings;
     const remindMeStore = new RemindMe;
+    const notificationsStore = new Notifications;
     
     hydrate('settings', settingsStore);
     hydrate('remindMe', remindMeStore);
+    hydrate('notificationsStore', notificationsStore);
     // Create theme store after hydrating the settings store
     const appState = new AppState(settingsStore);
     hydrate('appState', appState);
@@ -31,12 +34,14 @@ class RootStore {
     this.themeStore = themeStore;
     this.appStyles = appStyles;
     this.appState = appState;
+    this.notificationsStore = notificationsStore;
   }
 
   @action reset = () => {
     this.settingsStore.reset();
     this.remindMeStore.reset();
     this.appState.reset();
+    this.notificationsStore.reset();
   }
 }
 

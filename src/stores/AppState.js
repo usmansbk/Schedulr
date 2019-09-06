@@ -19,10 +19,7 @@ export default class AppState {
   @persist @observable loggingIn = false;
   @persist @observable location = null;
   @persist @observable lastSyncTimestamp = moment().unix();
-  @persist @observable lastNotifTimestamp = moment().unix();
-  @persist @observable hasNotifications = false;
 
-  @persist('list') @observable notifications = [];
   @persist('list') @observable mutedEvents = [];
   @persist('list') @observable mutedSchedules = [];
   @persist('list') @observable allowedEvents = [];
@@ -33,16 +30,13 @@ export default class AppState {
 
   @action setUserId = id => this.userId = id;
   @action updateLastSyncTimestamp = () => this.lastSyncTimestamp = moment().unix();
-  @action updateLastNotifTimestamp = () => this.lastNotifTimestamp = moment().unix();
   @action setLoginState = state => this.loggingIn = Boolean(state); 
   @action toggleConnection = isConnected => this.isConnected = isConnected;
   @action togglePref = (pref) => {
     const prevValue = this.prefs[pref];
     this.prefs[pref] = !prevValue;
   };
-  @action appendNotifications = newNotifications => this.notifications = this.notifications.concat(newNotifications);
   @action clearMutedList = () => this.mutedEvents = [];
-  @action clearNotifications = () => this.notifications = [];
 
   @action reset() {
     this.isConnected =false;
@@ -51,7 +45,6 @@ export default class AppState {
     this.mutedEvents = [];
     this.allowedEvents = [];
     this.mutedSchedules = [];
-    this.notifications = [];
     this.location = null;
     this.prefs = {
       showPrivateScheduleAlert: true,
@@ -59,7 +52,7 @@ export default class AppState {
     this.categories = categories(this.settingsStore.language);
     this.loggingIn = false;
     this.userId = null;
-    this.lastSyncTimestamp = null;
+    this.lastSyncTimestamp = moment().unix();
   }
 
   @action addCustomType = (category) => {
@@ -72,8 +65,6 @@ export default class AppState {
   @action removeCustomType = (category) => {
     this.categories = this.categories.filter(item => item.toLowerCase() !== category.toLowerCase());
   };
-
-  @action setNotificationIndicator = status => this.hasNotifications = status;
 
   @action toggleMute = (id, isMuted) => {
     if (isMuted) {
@@ -100,13 +91,5 @@ export default class AppState {
   @action onChangeText (searchText) {
     this.searchText = searchText;
     this.debounceQuery(searchText);
-  }
-
-  @computed get updates() {
-    return this.notifications.filter(notif => notif.type !== 'Comment').sort((a, b) => -(a.timestamp - b.timestamp));
-  }
-
-  @computed get comments() {
-    return this.notifications.filter(notif => notif.type === 'Comment');
   }
 }

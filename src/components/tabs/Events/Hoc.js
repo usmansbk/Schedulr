@@ -21,14 +21,14 @@ export default inject("stores")(observer(
       options: props => ({
         fetchPolicy: 'network-only',
         variables: {
-          lastSync: String(props.stores.appState.lastNotifTimestamp)
+          lastSync: String(props.stores.notificationsStore.lastSyncTimestamp)
         },
         onCompleted: (data) => {
-          props.stores.appState.updateLastNotifTimestamp();
+          props.stores.notificationsStore.updateLastSyncTimestamp();
           const { notifications } = data;
-          if (notifications) {
-            props.stores.appState.appendNotifications(notifications);
-            props.stores.appState.setNotificationIndicator(!!notifications.length);
+          if (notifications && notifications.length) {
+            props.stores.notificationsStore.appendNotifications(notifications);
+            props.stores.notificationsStore.setNotificationIndicator(true);
           }
         }
       }),

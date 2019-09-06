@@ -17,9 +17,7 @@ export default class Events extends React.Component {
     }
   }
 
-  shouldComponentUpdate = (nextProps) => {
-    return nextProps.navigation.isFocused();
-  };
+  shouldComponentUpdate = (nextProps) => nextProps.navigation.isFocused();
   
   componentDidUpdate = () => {
     const { mutedEvents, allowedEvents } = this.props;

@@ -11,7 +11,7 @@ const NotificationIcon = ({ name, color, size, stores }) => {
         color={color}
         size={size}
       />
-      { stores.appState.hasNotifications && <View style={styles.indicator}/> }
+      { stores.notificationsStore.hasNotifications && <View style={styles.indicator}/> }
     </View>
   );
 };
