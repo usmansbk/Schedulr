@@ -690,3 +690,30 @@ export const searchPeople = `query SearchPeople($filter: SearchableUserFilterInp
     nextToken
   }
 }`;
+export const listBookmarks = `query ListBookmarks($id: ID!, $limit: Int, $nextToken String) {
+  listBookmarks: getEvent(id: $id) {
+    id
+    bookmarks(limit: $limit, nextToken: $nextToken) {
+      items: {
+        id
+        user {
+          id
+          name
+          pictureUrl
+          avatar {
+            key
+            bucket
+          }
+          website
+          location
+          me
+          createdCount
+          followingCount
+          createdAt
+        }
+        createdAt
+      }
+      nextToken
+    }
+  }
+}`;

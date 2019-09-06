@@ -25,6 +25,7 @@ export default class List extends React.Component {
   _navigateToEvent = (id) => this.props.navigation.navigate('EventDetails', { id });
   _navigateToSchedule = (id) => this.props.navigation.navigate('ScheduleInfo', { id });
   _navigateToFollowers = (id) => this.props.navigation.navigate('Followers', { id });
+  _navigateToBookmarks = (id) => this.props.navigation.navigate('EventBookmarks', { id });
   _getItemLayout = (_, index) => (
     {
       length: ITEM_HEIGHT,
@@ -53,6 +54,7 @@ export default class List extends React.Component {
     navigateToSchedule={this._navigateToSchedule}
     navigateToEvent={this._navigateToEvent}
     navigateToFollowers={this._navigateToFollowers}
+    navigateToBookmarks={this._navigateToBookmarks}
   />;
 
   render() {

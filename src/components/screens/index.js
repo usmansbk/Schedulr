@@ -21,6 +21,7 @@ import EditProfile from './EditProfile';
 import AvatarViewer from './AvatarViewer';
 import Banner from './Banner';
 import SchedulePicture from './SchedulePicture';
+import EventBookmarks from './EventBookmarks';
 
 export {
   AuthLoading,
@@ -45,5 +46,6 @@ export {
   EditProfile,
   AvatarViewer,
   Banner,
-  SchedulePicture
+  SchedulePicture,
+  EventBookmarks
 };

@@ -18,6 +18,7 @@ class Item extends React.Component {
       navigateToEvent,
       navigateToSchedule,
       navigateToFollowers,
+      navigateToBookmarks,
     } = this.props;
     if (entityId) {
       switch(type) {
@@ -29,6 +30,9 @@ class Item extends React.Component {
           break;
         case 'Follow':
           navigateToFollowers(entityId);
+          break;
+        case 'Bookmark':
+          navigateToBookmarks(entityId);
           break;
       }
     }

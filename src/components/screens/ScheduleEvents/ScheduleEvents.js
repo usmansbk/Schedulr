@@ -46,10 +46,12 @@ export default class ScheduleEvents extends React.Component {
         <Appbar style={styles.header} collapsable>
           <Appbar.Action
             onPress={onPress}
-            icon={() => <Icon
+            size={24}
+            color={colors.gray}
+            icon={({ size, color }) => <Icon
               name="arrow-left"
-              color={colors.gray}
-              size={24}
+              color={color}
+              size={size}
             />}
           />
           <Appbar.Content

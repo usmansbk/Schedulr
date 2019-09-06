@@ -26,7 +26,8 @@ import {
   EditProfile,
   AvatarViewer,
   Banner,
-  SchedulePicture
+  SchedulePicture,
+  EventBookmarks,
 } from 'components/screens';
 import colors from 'config/colors';
 
@@ -74,6 +75,12 @@ const AppStack = createStackNavigator({
   },
   ScheduleEvents: {
     screen: ScheduleEvents,
+    navigationOptions: {
+      header: null
+    }
+  },
+  EventBookmarks: {
+    screen: EventBookmarks,
     navigationOptions: {
       header: null
     }
