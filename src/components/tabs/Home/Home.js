@@ -1,6 +1,7 @@
 import React from 'react';
 import { Dimensions } from 'react-native';
-import { createMaterialTopTabNavigator, MaterialTopTabBar } from 'react-navigation';
+import { MaterialTopTabBar } from 'react-navigation';
+import { createMaterialTopTabNavigator } from 'react-navigation-tabs';
 import { inject, observer } from 'mobx-react';
 import Icon from 'react-native-vector-icons/Feather';
 import EventsRoute from '../Events';

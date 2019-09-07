@@ -6707,6 +6707,11 @@ react-native-splash-screen@^3.2.0:
   resolved "https://registry.yarnpkg.com/react-native-splash-screen/-/react-native-splash-screen-3.2.0.tgz#d47ec8557b1ba988ee3ea98d01463081b60fff45"
   integrity sha512-Ls9qiNZzW/OLFoI25wfjjAcrf2DZ975hn2vr6U9gyuxi2nooVbzQeFoQS5vQcbCt9QX5NY8ASEEAtlLdIa6KVg==
 
+react-native-tab-view@^2.9.0:
+  version "2.10.0"
+  resolved "https://registry.yarnpkg.com/react-native-tab-view/-/react-native-tab-view-2.10.0.tgz#5e249e5650502010013449ffd4e5edc18a95364b"
+  integrity sha512-qgexVz5eO4yaFjdkmn/sURXgVvaBo6pZD/q1eoca96SbPVbaH3WzVhF3bRUfeTHwZkXwznFTpS3JURqIFU8vQA==
+
 react-native-user-avatar@^1.0.4:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/react-native-user-avatar/-/react-native-user-avatar-1.0.4.tgz#38be5dbaee6358b014c509a044008387287f00cb"
@@ -6772,6 +6777,15 @@ react-navigation-collapsible@^3.0.3:
   integrity sha512-SP2SRyjuU9svwsyWcdSSToCEmwLR41sSQm8XEZtc7RGqVgWDoNNyiOq6XGX0MXyPl3Q2jWH6XGIxNNpXpfZfVA==
   dependencies:
     hoist-non-react-statics "^3.0.1"
+
+react-navigation-tabs@^2.4.0:
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/react-navigation-tabs/-/react-navigation-tabs-2.4.0.tgz#2d4e814bc8b82febf422e822f1fabe3a46f3d9a5"
+  integrity sha512-HwIOsTYOCdurkRWLDMj0ED2Xa3Q8cYlsk8ukDKj3wxp4MMvqTh5cE/BY47A+d5x5WsXgAv7tJsaXvmFcUtTJfA==
+  dependencies:
+    hoist-non-react-statics "^3.3.0"
+    react-lifecycles-compat "^3.0.4"
+    react-native-tab-view "^2.9.0"
 
 react-navigation@^4.0.0:
   version "4.0.0"
