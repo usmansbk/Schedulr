@@ -42,7 +42,7 @@ export default {
   SEARCH_noMoreResults: "No more results",
 
   NOTIFICATIONS_updatesTabLabel: "UPDATES",
-  NOTIFICATIONS_messagesTabLabel: "MESSAGES",
+  NOTIFICATIONS_messagesTabLabel: "COMMENTS",
   NOTIFICATIONS_emptyUpdatesList: "Stay tuned!",
   NOTIFICATIONS_emptyUpdatesListCaption: "Important updates and announcements will appear here",
   NOTIFICATIONS_emptyMessagesList: "No messages",
