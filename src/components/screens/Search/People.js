@@ -46,6 +46,7 @@ const ListHoc = graphql(gql(searchPeople), {
   }),
   props: ({ data, ownProps }) => ({
     loading: data.loading || data.networkStatus === 4,
+    search: true,
     people: (data && data.searchUsers && data.searchUsers.items) || [],
     nextToken: data && data.searchUsers && data.searchUsers.nextToken,
     onRefresh: () => data.refetch(),

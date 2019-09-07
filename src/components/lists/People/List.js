@@ -56,15 +56,16 @@ class List extends React.Component {
     error={this.props.error}
     isOwner={this.props.isOwner}
   />;
-  _renderItem = ({item: {
-    user: {
+  _renderItem = ({item}) => {
+    const user = this.props.search ? item : item.user;
+    const {
       id,
       name,
       avatar,
       pictureUrl
-    },
-    createdAt
-  }}) => {
+    } = user;
+    const createdAt = item.createdAt;
+
     return (
       <Item
         id={id}
@@ -74,7 +75,7 @@ class List extends React.Component {
         onPressItem={this._onPressItem}
       />
     )
-  }
+  };
 
   _onEndReached = async () => {
     const { nextToken, fetchMoreFollowers, loading } = this.props;

@@ -690,14 +690,15 @@ export const searchPeople = `query SearchPeople($filter: SearchableUserFilterInp
     nextToken
   }
 }`;
-export const listBookmarks = `query ListBookmarks($id: ID!, $limit: Int, $nextToken String) {
+export const listBookmarks = `query GetEventBookmarks($id: ID!, $limit: Int, $nextToken: String) {
   listBookmarks: getEvent(id: $id) {
     id
-    bookmarks(limit: $limit, nextToken: $nextToken) {
-      items: {
+    bookmarks(limit: $limit, nextToken: $nextToken, sortDirection: DESC) @connection(key: "bookmarks") {
+      items {
         id
         user {
           id
+          me
           name
           pictureUrl
           avatar {
@@ -706,9 +707,8 @@ export const listBookmarks = `query ListBookmarks($id: ID!, $limit: Int, $nextTo
           }
           website
           location
-          me
-          createdCount
           followingCount
+          createdCount
           createdAt
         }
         createdAt
