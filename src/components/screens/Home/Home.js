@@ -1,9 +1,6 @@
 import React from 'react';
 import { Dimensions, StatusBar } from 'react-native';
-import {
-  createBottomTabNavigator,
-  BottomTabBar
-} from 'react-navigation';
+import { createBottomTabNavigator, BottomTabBar } from 'react-navigation-tabs';
 import Icon from 'react-native-vector-icons/Feather';
 import { inject, observer } from 'mobx-react';
 import MoreRoute from 'components/tabs/More';

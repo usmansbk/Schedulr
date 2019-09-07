@@ -1,7 +1,6 @@
 import React from 'react';
 import { Searchbar } from 'react-native-paper';
-import { MaterialTopTabBar } from 'react-navigation';
-import { createMaterialTopTabNavigator } from 'react-navigation-tabs';
+import { createMaterialTopTabNavigator, MaterialTopTabBar } from 'react-navigation-tabs';
 import { Dimensions } from 'react-native';
 import { inject, observer } from 'mobx-react';
 import Icon from 'react-native-vector-icons/Feather';

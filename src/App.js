@@ -1,8 +1,8 @@
 import {
-  createStackNavigator,
   createSwitchNavigator,
   createAppContainer,
 } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
 import {
   AuthLoading,
   Login,
