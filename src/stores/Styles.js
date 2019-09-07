@@ -779,6 +779,7 @@ export default class AppStyles {
       },
       boldText: {
         fontWeight: 'bold',
+        color: colors.black
       },
       dateLine: {
         flexDirection: 'row',

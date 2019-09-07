@@ -64,7 +64,7 @@ class Item extends React.Component {
             <Text ellipsizeMode="tail" numberOfLines={2}>
               <Caption style={styles.boldText}>{subject}</Caption>{' '}
               <Caption>{message}</Caption>
-              <Caption style={styles.boldText}>{topic ? ' ' + topic : ''}.</Caption>
+              <Caption style={styles.boldText}>{topic ? ' ' + topic : ''}</Caption>.
             </Text>
             <View style={styles.dateLine}>
               <Icon

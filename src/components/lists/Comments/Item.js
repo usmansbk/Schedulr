@@ -18,7 +18,7 @@ class Item extends React.Component {
   state = {
     showOptions: false
   };
-  _onReply = () => this.props.handleReplyComment(this.props.id, this.props.authorName);
+  _onReply = () => this.props.handleReplyComment(this.props.id, this.props.authorName, this.props.authorId);
   _navigateToProfile = () => this.props.navigateToProfile(this.props.authorId);
   _onDelete = () => this.props.onDelete(this.props.id);
   _showOptions = () => {

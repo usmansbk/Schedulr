@@ -7,15 +7,17 @@ export default class Container extends React.Component {
     visibleDialog: null,
     id: null,
     commentToId: null,
+    at: null,
     targetName: null,
   }
   _goBack = () => this.props.navigation.goBack();
   _onDelete = (id) => this._openDialog(id, 'delete');
-  _onReply = (commentToId, targetName) => this.setState({ commentToId, targetName }, this._focusCommentInput);
+  _onReply = (commentToId, targetName, at) => this.setState({ commentToId, targetName, at }, this._focusCommentInput);
   _cancelReply = () => this.setState({ commentToId: null, targetName: null }, this._blurCommentInput);
   _openDialog = (id, visibleDialog) => this.setState({
     visibleDialog,
     id,
+    at: null,
     targetName: null,
     commentToId: null
   });
@@ -35,7 +37,10 @@ export default class Container extends React.Component {
       commentEventId: this.props.commentEventId
     };
     
-    if (this.state.commentToId) input.commentToId = this.state.commentToId;
+    if (this.state.commentToId) {
+      input.commentToId = this.state.commentToId;
+      input.at = this.state.at;
+    }
     this.props.onSubmit && this.props.onSubmit(input);
     this._cancelReply();
   };
