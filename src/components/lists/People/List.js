@@ -64,14 +64,14 @@ class List extends React.Component {
       avatar,
       pictureUrl
     } = user;
-    const createdAt = item.createdAt;
+    const createdAt = item.user && item.createdAt;
 
     return (
       <Item
         id={id}
         name={name}
         pictureUrl={avatar ? getImageUrl(avatar) : pictureUrl}
-        joined={timeAgo(createdAt)}
+        joined={createdAt && timeAgo(createdAt)}
         onPressItem={this._onPressItem}
       />
     )
