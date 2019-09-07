@@ -21,7 +21,7 @@ class List extends React.Component {
   };
 
   static defaultProps = {
-    followers: [],
+    people: [],
     loading: false,
     hasMore: false,
     onRefresh: () => null,
@@ -29,7 +29,7 @@ class List extends React.Component {
   shouldComponentUpdate = (nextProps, nextState) => { 
     return (nextProps.navigation.isFocused() &&
       (
-        nextProps.followers !== this.props.followers ||
+        nextProps.people !== this.props.people ||
         nextProps.loading !== this.props.loading ||
         nextState.fetchingMore !== this.state.fetchingMore
       )
@@ -45,7 +45,7 @@ class List extends React.Component {
   _onPressItem = (id) => this.props.navigation.navigate('UserProfile', { id });
   _keyExtractor = item => String(item.id);
   _renderFooter = () => <Footer
-    hide={!this.props.followers.length}
+    hide={!this.props.people.length}
     loading={this.props.loading && this.state.fetchingMore}
     hasMore={this.props.hasMore}
     onPress={this._onEndReached}
@@ -87,7 +87,7 @@ class List extends React.Component {
 
   render() {
     const {
-      followers,
+      people,
       loading,
       onRefresh,
       stores
@@ -107,7 +107,7 @@ class List extends React.Component {
         ItemSeparatorComponent={this._renderSeparator}
         ListEmptyComponent={this._renderEmpty}
         getItemLayout={this._getItemLayout}
-        data={followers}
+        data={people}
         refreshing={loading && !fetchingMore}
         onRefresh={onRefresh}
         onEndReachedThreshold={0.5}

@@ -1,6 +1,6 @@
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
-import List from 'components/lists/Followers';
+import List from 'components/lists/People';
 import { listFollowers } from 'api/queries';
 import { PAGINATION_LIMIT } from 'lib/constants';
 import updateQuery from 'helpers/updateQuery';
@@ -18,7 +18,7 @@ export default graphql(gql(listFollowers), {
     fetchPolicy: 'cache-and-network'
   }),
   props: ({ data, ownProps }) => ({
-    followers: (data && data.listFollowers && data.listFollowers.followers.items) || [],
+    people: (data && data.listFollowers && data.listFollowers.followers.items) || [],
     nextToken: data && data.listFollowers && data.listFollowers.followers.nextToken,
     loading: data && data.loading || (data.networkStatus === 4),
     error: data.error,
