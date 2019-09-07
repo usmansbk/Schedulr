@@ -727,6 +727,7 @@ export default class AppStyles {
 
   @computed get notifications () {
     const colors = this.settings.dark ? dark : light;
+    const SIZE = 10;
 
     return StyleSheet.create({
       list: {
@@ -785,6 +786,17 @@ export default class AppStyles {
       },
       icon: {
         marginRight: 8
+      },
+      indicator: {
+        height: SIZE,
+        width: SIZE,
+        borderRadius: SIZE / 2,
+        position: 'absolute',
+        top: 2,
+        right: 2,
+        borderWidth: 1,
+        borderColor: colors.white,
+        backgroundColor: '#1DA1F2',
       }
     });
   }
