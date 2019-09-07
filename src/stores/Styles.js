@@ -6,7 +6,7 @@ import {
   schedules,
   searchEvents,
   bookmarkedEvents,
-  followers_list,
+  people_list,
   schedule_events,
   comments_list,
   event_search,
@@ -1006,14 +1006,14 @@ export default class AppStyles {
     });    
   }
 
-  @computed get followersList () {
+  @computed get peopleList () {
     const colors = this.settings.dark ? dark : light;
 
     const {
       ITEM_HEIGHT,
       SEPARATOR_HEIGHT,
       FOOTER_HEIGHT
-    } = followers_list;
+    } = people_list;
 
     return StyleSheet.create({
       list: {

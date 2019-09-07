@@ -60,7 +60,7 @@ export const searchEvents = {
 
 
 // list/followers
-export const followers_list = {
+export const people_list = {
   SEPARATOR_HEIGHT : 1,
   ITEM_HEIGHT : 64,
   AVATAR_SIZE : 40,

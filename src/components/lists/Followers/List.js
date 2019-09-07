@@ -2,7 +2,7 @@ import React from 'react';
 import { FlatList, RefreshControl } from 'react-native';
 import { withNavigationFocus } from 'react-navigation';
 import { inject, observer } from 'mobx-react';
-import { followers_list } from 'lib/constants';
+import { people_list } from 'lib/constants';
 import { timeAgo } from 'lib/time';
 import getImageUrl from 'helpers/getImageUrl';
 import Footer from './Footer';
@@ -13,7 +13,7 @@ import Empty from './Empty';
 const {
   ITEM_HEIGHT,
   SEPARATOR_HEIGHT
-} = followers_list;
+} = people_list;
 
 class List extends React.Component {
   state = {
@@ -95,7 +95,7 @@ class List extends React.Component {
 
     const { fetchingMore } = this.state;
 
-    const styles = stores.appStyles.followersList;
+    const styles = stores.appStyles.peopleList;
 
     return (
       <FlatList
