@@ -3,7 +3,8 @@ import { View } from 'react-native';
 import {
   TouchableRipple,
   Caption,
-  Text
+  Text,
+  Button
 } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/Feather';
 import { inject, observer } from 'mobx-react';
@@ -58,14 +59,17 @@ class Item extends React.Component {
               </>}
               <Caption numberOfLines={5} ellipsizeMode="tail">{content}</Caption>
             </View>
-            <View style={styles.dateLine}>
-              <Icon
-                style={styles.icon}
-                name={icon}
-                size={14}
-                color={stores.themeStore.colors.primary_light}
-              />
-              <Caption style={styles.itemTag}>{date}</Caption>
+            <View style={styles.itemFooter}>
+              <View style={styles.dateLine}>
+                <Icon
+                  style={styles.icon}
+                  name={icon}
+                  size={14}
+                  color={stores.themeStore.colors.primary_light}
+                />
+                <Caption style={styles.itemTag}>{date}</Caption>
+              </View>
+              <View style={styles.replyButton}><Button>Reply</Button></View>
             </View>
           </View>
         </View>

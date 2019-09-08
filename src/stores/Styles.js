@@ -765,29 +765,30 @@ export default class AppStyles {
       },
       itemContainer: {
         backgroundColor: colors.white,
+        maxWidth: WIDTH,
+        minWidth: WIDTH,
       },
       itemContent: {
         height: 80,
         paddingVertical: 4,
         paddingHorizontal: 8,
         flexDirection: 'row',
-        alignItems: 'center',
-        maxWidth: 320
       },
       messageItemContent: {
         paddingVertical: 4,
         paddingHorizontal: 8,
         flexDirection: 'row',
-        maxWidth: 320
       },
       itemBody: {
-        marginLeft: 8
+        marginLeft: 8,
+        flex: 1
       },
       boldText: {
         fontWeight: 'bold',
         color: colors.black
       },
       dateLine: {
+        flex: 1,
         flexDirection: 'row',
         alignItems: 'center'
       },
@@ -812,6 +813,10 @@ export default class AppStyles {
       message: {
         paddingHorizontal: 4,
         backgroundColor: colors.light_gray
+      },
+      itemFooter: {
+        flexDirection: 'row',
+        justifyContent: 'space-between'
       },
       divider: {
         height: 2,
