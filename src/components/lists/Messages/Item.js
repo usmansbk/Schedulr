@@ -4,7 +4,6 @@ import {
   TouchableRipple,
   Caption,
   Text,
-  Button
 } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/Feather';
 import { inject, observer } from 'mobx-react';
@@ -69,7 +68,6 @@ class Item extends React.Component {
                 />
                 <Caption style={styles.itemTag}>{date}</Caption>
               </View>
-              <View style={styles.replyButton}><Button>Reply</Button></View>
             </View>
           </View>
         </View>

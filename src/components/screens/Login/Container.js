@@ -1,4 +1,6 @@
 import React from 'react';
+import uuidv5 from 'uuid/v5';
+import uuidv4 from 'uuid/v4';
 import { Auth, Hub } from 'aws-amplify';
 import { inject, observer } from 'mobx-react';
 import { withNavigationFocus } from'react-navigation';
@@ -7,11 +9,13 @@ import gql from 'graphql-tag';
 import changeNavigationBarColor from 'react-native-navigation-bar-color';
 import SimpleToast from 'react-native-simple-toast';
 import { me } from 'api/queries';
-import { createUser } from 'api/mutations';
+import { createUser, createSchedule } from 'api/mutations';
+import defaultSchedule from 'i18n/schedule';
 import Login from './Login';
 
 const GET_USER = gql(me);
 const CREATE_USER = gql(createUser);
+const CREATE_SCHEDULE =gql(createSchedule);
 
 class Container extends React.Component {
 
@@ -64,6 +68,21 @@ class Container extends React.Component {
               }
             });
             const user = result.data.createUser;
+            
+            const hash = uuidv5(email, uuidv5.DNS);
+            const sort = uuidv4();
+            const id = `${hash}-${sort}`;
+            const input = {
+              id,
+              ...defaultSchedule(this.props.stores.settingsStore.language)
+            };
+
+            await client.mutate({
+              mutation: CREATE_SCHEDULE,
+              variables: {
+                input
+              }
+            });
             client.writeQuery({
               query: GET_USER,
               variables: {

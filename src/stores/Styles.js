@@ -772,7 +772,6 @@ export default class AppStyles {
         height: 80,
         paddingVertical: 4,
         paddingHorizontal: 8,
-        alignItems: 'center',
         flexDirection: 'row',
       },
       messageItemContent: {

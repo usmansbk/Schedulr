@@ -58,7 +58,9 @@ class Item extends React.Component {
     return (
       <TouchableRipple onPress={this._onPressItems} style={styles.itemContainer}>
         <View style={styles.itemContent}>
-          <UserAvatar src={pictureUrl} name={subject} size={32} />
+          <View>
+            <UserAvatar src={pictureUrl} name={subject} size={32} />
+          </View>
           <View style={styles.itemBody}>
             <Text ellipsizeMode="tail" numberOfLines={2}>
               <Caption style={styles.boldText}>{subject}</Caption>{' '}
