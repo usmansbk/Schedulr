@@ -134,6 +134,7 @@ export default {
   ALERT_deleteImage: "Delete image?",
   ALERT_unfollow: name => `Unfollow ${name}?`,
   ALERT_unfollowMessage: 'Their events will no long show up in your calendar.',
+  ALERT_clearNotifications: 'Clear notifications?',
 
   SHARE_inviteAFriendTitle: "Invite via...",
   SHARE_SCHEDULE_inviteTitle: "Share invite link via...",
