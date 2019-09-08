@@ -774,6 +774,12 @@ export default class AppStyles {
         alignItems: 'center',
         maxWidth: 320
       },
+      messageItemContent: {
+        paddingVertical: 4,
+        paddingHorizontal: 8,
+        flexDirection: 'row',
+        maxWidth: 320
+      },
       itemBody: {
         marginLeft: 8
       },
@@ -798,6 +804,18 @@ export default class AppStyles {
         borderWidth: 1,
         borderColor: colors.white,
         backgroundColor: '#1DA1F2',
+      },
+      avatar: {
+        alignSelf: 'flex-start',
+        paddingVertical: 4,
+      },
+      message: {
+        paddingHorizontal: 4,
+        backgroundColor: colors.light_gray
+      },
+      divider: {
+        height: 2,
+        backgroundColor: colors.white
       }
     });
   }

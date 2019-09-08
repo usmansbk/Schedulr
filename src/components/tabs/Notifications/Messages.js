@@ -22,6 +22,7 @@ class Messages extends React.Component {
     return (
       <>
       <List
+        updates={stores.notificationsStore.comments}
         styles={stores.appStyles.notifications}
         navigation={this.props.navigation}
       />
