@@ -564,6 +564,10 @@ export const getNotifications = `query GetNotifications($lastSync: String!) {
     }
     timestamp
     entityId
+    extraData {
+      title
+      content
+    }
   }
 }`;
 export const listFollowers = `query GetScheduleFollowers($id: ID!, $limit: Int, $nextToken: String) {
