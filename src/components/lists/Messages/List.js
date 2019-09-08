@@ -65,7 +65,6 @@ export default class List extends React.Component {
         contentContainerStyle={styles.contentContainer}
         renderItem={this._renderItem}
         ListEmptyComponent={this._renderEmpty}
-        ListFooterComponent={this._renderFooter}
         ItemSeparatorComponent={this._renderSeparator}
         keyExtractor={this._keyExtractor}
       />
