@@ -55,6 +55,7 @@ class List extends React.Component {
     onRefresh={this.props.onRefresh}
     error={this.props.error}
     isOwner={this.props.isOwner}
+    search={this.props.search}
   />;
   _renderItem = ({item}) => {
     const user = this.props.search ? item : item.user;

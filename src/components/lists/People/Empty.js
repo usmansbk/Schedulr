@@ -6,7 +6,7 @@ import { I18n } from 'aws-amplify';
 import ErrorScreen from 'components/common/Error';
 
 export default inject('stores')(observer(
-  ({ error, loading, stores, onRefresh }) =>{
+  ({ error, loading, stores, onRefresh, search }) =>{
     if (loading) return null;
     if (error) return <ErrorScreen
       onRefresh={onRefresh}
@@ -15,7 +15,7 @@ export default inject('stores')(observer(
     return (
       <View style={stores.appStyles.eventsList.empty}>
         <Headline style={stores.appStyles.eventsList.emptyTitle}>
-          { I18n.get("FOLLOWERS_emptyList")}
+          { I18n.get(search ? "SEARCH_emptyList" : "FOLLOWERS_emptyList")}
         </Headline>
       </View>
     );  
