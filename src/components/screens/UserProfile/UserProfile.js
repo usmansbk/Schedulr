@@ -127,7 +127,7 @@ class UserProfile extends React.Component {
           <Caption style={styles.label}>{I18n.get("PROFILE_joined")(date)}</Caption>
         </View>   
         {
-          location && (      
+          !!location && (      
             <View style={styles.link}>
               <Icon size={16} style={styles.linkIcon} name="map-pin" color={stores.themeStore.colors.black} />
               <Caption style={styles.label} numberOfLines={1} ellipsizeMode="tail">{location}</Caption>

@@ -33,6 +33,8 @@ export default class Events extends React.Component {
   };
 
   _onRefresh = () => this.props.onRefresh && this.props.onRefresh();
+
+  _fetchMore = () => this.props.fetchMore && this.props.fetchMore();
   
   _mergeAllEvents = memoize(mergeEvents);
 
@@ -47,6 +49,7 @@ export default class Events extends React.Component {
           events={this.events}
           navigation={this.props.navigation}
           onRefresh={this._onRefresh}
+          fetchMore={this._fetchMore}
           loading={this.props.loading}
         />
         <FAB
