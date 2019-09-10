@@ -246,4 +246,7 @@ export default {
   DIALOG_deleteEvent: "Delete event?",
   DIALOG_deleteSchedule: "Delete schedule?",
   DIALOG_openSchedule: "Open schedule?",
+
+  SNACKBAR_sync: "Sync",
+  SNACKBAR_seeUpdates: "See updates"
 };

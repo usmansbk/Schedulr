@@ -15,21 +15,6 @@ const GetNotifications = gql(getNotifications);
 export default inject("stores")(observer(
   compose(
     withNavigationFocus,
-    graphql(GetNotifications, {
-      alias: 'withGetNotifications',
-      name: 'notifications',
-      options: props => ({
-        fetchPolicy: 'network-only',
-        variables: {
-          lastSync: String(props.stores.notificationsStore.lastSyncTimestamp)
-        },
-        onCompleted: (data) => {
-          props.stores.notificationsStore.updateLastSyncTimestamp();
-          const { notifications } = data;
-          if (notifications) props.stores.notificationsStore.appendNotifications(notifications);
-        }
-      }),
-    }),
     graphql(BaseQuery, {
       alias,
       options: props => ({
@@ -63,5 +48,24 @@ export default inject("stores")(observer(
         ...ownProps
       })
     }),
+    graphql(GetNotifications, {
+      alias: 'withGetNotifications',
+      name: 'notifications',
+      options: props => ({
+        fetchPolicy: 'network-only',
+        variables: {
+          lastSync: String(props.stores.notificationsStore.lastSyncTimestamp)
+        },
+        onCompleted: (data) => {
+          props.stores.notificationsStore.updateLastSyncTimestamp();
+          const { notifications } = data;
+          if (notifications && notifications.length) {
+            props.stores.notificationsStore.appendNotifications(notifications);
+            props.fetchMore && props.fetchMore();
+          }
+        }
+      }),
+    }),
+
   )(Events)
 ));

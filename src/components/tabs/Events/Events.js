@@ -1,4 +1,5 @@
 import React from 'react';
+import { I18n } from 'aws-amplify';
 import memoize from 'memoize-one';
 import List from 'components/lists/Events';
 import FAB from 'components/common/Fab';
@@ -49,7 +50,6 @@ export default class Events extends React.Component {
           events={this.events}
           navigation={this.props.navigation}
           onRefresh={this._onRefresh}
-          fetchMore={this._fetchMore}
           loading={this.props.loading}
         />
         <FAB

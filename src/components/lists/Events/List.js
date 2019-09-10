@@ -168,7 +168,6 @@ class List extends React.Component {
 
   _onRefresh = () => {
     this._processEvents(this.state.events);
-    this.props.fetchMore();
   };
   
   _onEndReached = () => {
