@@ -5,7 +5,7 @@ import Item from './Item';
 import Separator from './Separator';
 import Footer from './Footer';
 import Empty from './Empty';
-import sortSchedules from 'lib/utils';
+import { sortSchedules } from 'lib/utils';
 import { schedules, SCHEDULE_CLOSED } from 'lib/constants';
 import getImageUrl from 'helpers/getImageUrl';
 

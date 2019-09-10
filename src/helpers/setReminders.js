@@ -14,6 +14,7 @@ import {
   ONE_DAY
 } from 'lib/time';
 import { weekdays } from 'lib/calendr';
+import { ONE_TIME_EVENT } from 'lib/constants';
 import stores from 'stores';
 import colors from 'config/colors';
 
@@ -200,7 +201,7 @@ function schdlWeekdaysEvent(event, remindMeBefore, settings) {
 
   if (isWeekday && isToday && isPending) {
     const todayEvent = Object.assign({}, event, {
-      recurrence: 'NEVER'
+      recurrence: ONE_TIME_EVENT
     });
     schdl(todayEvent, remindMeBefore, settings);
   }

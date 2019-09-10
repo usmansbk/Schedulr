@@ -3,15 +3,18 @@ import moment from 'moment';
 import uuid from 'uuid/v4';
 import stores from "stores";
 import client from 'config/client';
-import { ADD, DELETE } from 'lib/constants';
+import {
+  ADD,
+  DELETE,
+  EVENT_TYPE,
+  SCHEDULE_TYPE,
+  BOOKMARK_TYPE,
+  COMMENT_TYPE,
+  FOLLOW_TYPE
+} from 'lib/constants';
 import { getUserData } from 'api/queries';
 
 const __typename = 'Mutation';
-const EVENT_TYPE = 'Event';
-const SCHEDULE_TYPE = 'Schedule';
-const BOOKMARK_TYPE = 'Bookmark';
-const COMMENT_TYPE = 'Comment';
-const FOLLOW_TYPE = 'Follow';
 
 const eventConnection = {
   items: [],
@@ -139,7 +142,7 @@ function createEvent(input, typename) {
     banner: null,
     author,
     schedule: {
-      __typename: 'Schedule',
+      __typename: SCHEDULE_TYPE,
       id: schedule.id,
       name: schedule.name,
       isFollowing: false

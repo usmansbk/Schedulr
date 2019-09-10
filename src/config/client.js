@@ -4,6 +4,12 @@ import { ApolloLink } from 'apollo-link';
 import { onError } from 'apollo-link-error';
 import SimpleToast from 'react-native-simple-toast';
 import aws_config from 'aws_config';
+import {
+  EVENT_TYPE,
+  SCHEDULE_TYPE,
+  USER_TYPE,
+  COMMENT_TYPE
+} from 'lib/constants';
 
 Analytics.disable();
 
@@ -47,13 +53,13 @@ const client = new AWSAppSyncClient({
     cacheRedirects: {
       Query: {
         getSchedule: (_, args, { getCacheKey }) => (
-          getCacheKey({ __typename: 'Schedule', id: args.id })),
+          getCacheKey({ __typename: SCHEDULE_TYPE, id: args.id })),
         getEvent: (_, args, { getCacheKey }) => (
-          getCacheKey({ __typename: 'Event', id: args.id })),
+          getCacheKey({ __typename: EVENT_TYPE, id: args.id })),
         getUser: (_, args, { getCacheKey }) => (
-          getCacheKey({ __typename: 'User', id: args.id })),
+          getCacheKey({ __typename: USER_TYPE, id: args.id })),
         getComment: (_, args, { getCacheKey }) => (
-          getCacheKey({ __typename: 'Comment', id: args.id })
+          getCacheKey({ __typename: COMMENT_TYPE, id: args.id })
         )
       },
     }

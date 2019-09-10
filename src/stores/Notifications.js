@@ -9,7 +9,12 @@ export default class AppState {
   @persist('list') @observable notifications = [];
 
   @action updateLastSyncTimestamp = () => this.lastSyncTimestamp = moment().unix();
-  @action appendNotifications = newNotifications => this.notifications = this.notifications.concat(newNotifications);
+  @action appendNotifications = newNotifications => {
+    if (newNotifications.length) {
+      this.setNotificationIndicator(true);
+      this.notifications = this.notifications.concat(newNotifications);
+    }
+  };
   @action clearNotifications = () => this.notifications = [];
 
   @action reset() {

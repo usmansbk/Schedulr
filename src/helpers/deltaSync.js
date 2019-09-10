@@ -1,3 +1,5 @@
+import { DELETE, EVENT_TYPE } from 'lib/constants';
+
 export default function updateBaseCache({
   prev,
   fetchMoreResult,
@@ -43,7 +45,7 @@ const updateBaseWithDelta = ({
 	action,
 	baseData
 }) => {
-	if (typename === 'Event') {
+	if (typename === EVENT_TYPE) {
 		updateBaseEvents({
 			data,
 			action,
@@ -61,7 +63,7 @@ const updateBaseWithDelta = ({
 const updateBaseSchedules = ({ data, action, baseData }) => {
 	const removeDuplicate = baseData.following.items.filter(({ schedule }) => (schedule && (schedule.id !== data.id)));
 	let updatedItems = baseData.following.items;
-	if (action === 'DELETE') {
+	if (action === DELETE) {
 		updatedItems = removeDuplicate;
 	} else {
 		const follow = baseData.following.items.find(({ schedule }) => (schedule && (schedule.id === data.id)));
@@ -92,7 +94,7 @@ const updateBaseEvents = ({ data, action, baseData }) => {
 	if (follow) removeScheduleEventsDuplicate = follow.schedule.events.items.filter(item => item.id !== data.id);
 	if (isBookmarked) removeBookmarkDuplicate = bookmarks.items.filter(({ event }) => event && (event.id !== data.id));
 
-	if (action === 'DELETE') {
+	if (action === DELETE) {
 		if (removeBookmarkDuplicate) bookmarkItems = removeBookmarkDuplicate;
 		if (removeScheduleEventsDuplicate) scheduleEvents = removeScheduleEventsDuplicate;
 	} else {

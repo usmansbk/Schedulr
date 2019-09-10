@@ -26,10 +26,7 @@ export default inject("stores")(observer(
         onCompleted: (data) => {
           props.stores.notificationsStore.updateLastSyncTimestamp();
           const { notifications } = data;
-          if (notifications && notifications.length) {
-            props.stores.notificationsStore.appendNotifications(notifications);
-            props.stores.notificationsStore.setNotificationIndicator(true);
-          }
+          if (notifications) props.stores.notificationsStore.appendNotifications(notifications);
         }
       }),
     }),
@@ -37,14 +34,14 @@ export default inject("stores")(observer(
       alias,
       options: props => ({
         fetchPolicy: 'cache-first',
-        notifyOnNetworkStatusChange: true,
+        // notifyOnNetworkStatusChange: true,
         variables: {
           id: props.id,
           filter: baseEventsFilter()
         }
       }),
       props: ({ data, ownProps}) => ({
-        loading: data && (data.loading || data.networkStatus === 4),
+        loading: data && data.loading,
         data: data && data.getUserData,
         onRefresh: () => data.refetch(),
         fetchMore: () => {

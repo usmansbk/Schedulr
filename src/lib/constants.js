@@ -20,6 +20,14 @@ export const ADD = 'ADD';
 export const UPDATE = 'UPDATE';
 export const DELETE = 'DELETE';
 
+// GraphQL types
+export const EVENT_TYPE = 'Event';
+export const SCHEDULE_TYPE = 'Schedule';
+export const BOOKMARK_TYPE = 'Bookmark';
+export const COMMENT_TYPE = 'Comment';
+export const FOLLOW_TYPE = 'Follow';
+export const USER_TYPE = 'User';
+
 // list/events
 export const events = {
   AVATAR_SIZE : 54,
@@ -47,7 +55,7 @@ export const bookmarkedEvents = {
   ITEM_HEIGHT_SMALL : 102,
   SEPARATOR_HEIGHT : 1,
   FOOTER_HEIGHT : 80,
-}
+};
 
 // list/bookmarkedEvents
 export const searchEvents = {
@@ -56,7 +64,7 @@ export const searchEvents = {
   ITEM_HEIGHT_SMALL : 102,
   SEPARATOR_HEIGHT : 1,
   FOOTER_HEIGHT : 80,
-}
+};
 
 
 // list/followers
@@ -65,7 +73,7 @@ export const people_list = {
   ITEM_HEIGHT : 64,
   AVATAR_SIZE : 40,
   FOOTER_HEIGHT : 80,
-}
+};
 
 // screen/scheduleInfo
 export const schedule_info = {

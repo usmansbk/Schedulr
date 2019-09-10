@@ -7,15 +7,9 @@ import List from 'components/lists/EventSearch';
 import { getEvents } from 'lib/calendr';
 import { getUserData, searchEvents } from 'api/queries';
 import { searchEventFilter } from 'api/filters';
-import { sortBookmarks, mergeEvents } from 'lib/utils';
+import { sortBookmarks, mergeEvents, filterEvents } from 'lib/utils';
 import { SEARCH_LIMIT } from 'lib/constants';
 import updateQuery from 'helpers/updateQuery';
-
-function filterEvents(events, query) {
-  return sortBookmarks(getEvents(events.filter(
-    item => item.title.toLowerCase().includes(query.toLowerCase()) ||
-     (item.category && item.category.toLowerCase().includes(query.toLowerCase())))));
-}
 
 class Events extends React.Component {
 

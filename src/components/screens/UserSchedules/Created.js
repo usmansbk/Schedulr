@@ -10,7 +10,7 @@ import Item from 'components/lists/ScheduleSearch/Item';
 import Separator from 'components/lists/Schedules/Separator';
 import Footer from 'components/lists/Schedules/Footer';
 import Empty from 'components/lists/Schedules/Empty';
-import sortSchedules from 'lib/utils';
+import { sortSchedules } from 'lib/utils';
 import { schedules } from 'lib/constants';
 import { getUserSchedules } from 'api/queries';
 import getImageUrl from 'helpers/getImageUrl';

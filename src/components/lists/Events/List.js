@@ -13,14 +13,16 @@ import SectionHeader from './SectionHeader';
 import SectionFooter from './SectionFooter';
 import Item from './Item';
 import {
-  getDuration,
   getStatus,
-  getTime,
-  isPast,
   parseRepeat,
   getCategory,
   isEventValid
 } from 'lib/parseItem';
+import {
+  getDuration,
+  getTime,
+  isPast
+} from 'lib/time';
 import { eventsChanged } from 'lib/utils';
 import {
   generatePreviousEvents,

@@ -5,13 +5,14 @@ import {
   getEventComments
 } from 'api/queries';
 import stores from 'stores';
-import { ADD } from 'lib/constants';
-
-const EVENT_TYPE = 'Event';
-const SCHEDULE_TYPE = 'Schedule';
-const COMMENT_TYPE = 'Comment';
-const BOOKMARK_TYPE = 'Bookmark';
-const FOLLOW_TYPE = 'Follow';
+import {
+  ADD,
+  EVENT_TYPE,
+  SCHEDULE_TYPE,
+  COMMENT_TYPE,
+  BOOKMARK_TYPE,
+  FOLLOW_TYPE
+} from 'lib/constants';
 
 function updateData({
   cache,

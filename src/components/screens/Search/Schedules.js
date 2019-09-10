@@ -3,18 +3,12 @@ import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
 import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
-import sortSchedules, { mergeSchedules } from 'lib/utils';
+import { mergeSchedules, sortSchedules, filterSchedules } from 'lib/utils';
 import List from 'components/lists/ScheduleSearch';
 import { getUserSchedules, searchSchedules } from 'api/queries';
 import { searchScheduleFilter } from 'api/filters';
 import { SEARCH_LIMIT } from "lib/constants";
 import updateQuery from 'helpers/updateQuery';
-
-function filterSchedules(schedules, query) {
-  return sortSchedules(schedules.filter(
-    item => item.name.toLowerCase().includes(query.toLowerCase())
-  ));
-}
 
 class Schedules extends React.Component {
 

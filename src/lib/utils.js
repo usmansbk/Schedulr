@@ -17,7 +17,7 @@ function sortList(list) {
   });
 }
 
-export default sortSchedules = memoize((data) => {
+export const sortSchedules = memoize((data) => {
   const closed = sortList(data.filter(a => a.status === SCHEDULE_CLOSED));
   const opened = sortList(data.filter(a => a.status !== SCHEDULE_CLOSED));
 
@@ -135,4 +135,16 @@ export function mergeSchedules(data) {
     allSchedules = allSchedules.concat(followingSchedules);
   }
   return allSchedules;
+}
+
+export function filterEvents(events, query) {
+  return sortBookmarks(getEvents(events.filter(
+    item => item.title.toLowerCase().includes(query.toLowerCase()) ||
+     (item.category && item.category.toLowerCase().includes(query.toLowerCase())))));
+}
+
+export function filterSchedules(schedules, query) {
+  return sortSchedules(schedules.filter(
+    item => item.name.toLowerCase().includes(query.toLowerCase())
+  ));
 }

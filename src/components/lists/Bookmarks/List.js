@@ -6,12 +6,14 @@ import Separator from './Separator';
 import Footer from './Footer';
 import Empty from './Empty';
 import {
-  getDuration,
-  getHumanTime,
   parseRepeat,
   getStatus,
   getCategory
 } from 'lib/parseItem';
+import {
+  getDuration,
+  getHumanTime
+} from 'lib/time';
 import { sortBookmarks } from 'lib/utils';
 import { getEvents } from 'lib/calendr';
 import { bookmarkedEvents } from 'lib/constants';

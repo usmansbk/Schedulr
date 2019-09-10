@@ -9,51 +9,6 @@ export const getCategory = (category) => {
   return decapitalize(category);
 };
 
-export const getTime = ({ startAt, endAt, allDay }) => {
-  const t = moment(startAt).twix(endAt, allDay);
-  const isSameDay = t.isSame('day');
-  return t.format({
-    hideDate: true && isSameDay,
-    allDay: I18n.get("EVENT_ITEM_allDay"),
-    explicitAllDay: true,
-    implicitMinutes: false,
-    groupMeridiems: false
-  });
-};
-
-export const getHumanTime = ({ startAt, endAt, allDay }) => {
-  const t = moment(startAt).twix(endAt, allDay).format();
-  return t;
-};
-
-export const isPast = (date) => {
-  const d = moment(date).endOf('day');
-  return moment().twix(d).isPast();
-};
-
-export const isPastExact = date => moment().twix(date).isPast();
-
-export const isStarted = ({ isCancelled, startAt, endAt }) => {
-  const t = moment(startAt).twix(endAt);
-  return (!isCancelled && t.isCurrent());
-};
-
-export const isToday = (event) => {
-  const { startAt, endAt, isCancelled } = event;
-  const cancelledDates = event.cancelledDates || [];
-  return (
-    moment(startAt).twix(endAt).isSame('day') ||
-    moment(startAt).twix(endAt).isCurrent() ||
-    isCancelled || cancelledDates.includes(startAt)
-  );
-};
-
-export const getDuration = (startAt, endAt, allDay) => {
-  if (allDay) return '';
-  const t = moment(startAt).twix(endAt);
-  return decapitalize(t.humanizeLength());
-};
-
 export const isEventCancelled = (event) => {
   const { startAt, isCancelled } = event;
   const cancelledDates = event.cancelledDates || [];

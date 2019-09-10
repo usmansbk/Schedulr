@@ -7,12 +7,14 @@ import Separator from './Separator';
 import Footer from './Footer';
 import Empty from './Empty';
 import {
-  getDuration,
-  getHumanTime,
   parseRepeat,
   getStatus,
   getCategory
 } from 'lib/parseItem';
+import {
+  getDuration,
+  getHumanTime
+} from 'lib/time';
 import { bookmarkedEvents } from 'lib/constants';
 import getImageUrl from 'helpers/getImageUrl';
 
