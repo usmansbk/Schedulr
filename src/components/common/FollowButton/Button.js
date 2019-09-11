@@ -43,7 +43,7 @@ export default class Button extends React.Component {
       <Alert
         title={I18n.get("ALERT_unfollow")(name)}
         message={I18n.get("ALERT_unfollowMessage")}
-        confirmText={text: I18n.get("BUTTON_unfollow")}
+        confirmText={I18n.get("BUTTON_unfollow")}
         onConfirm={this._unfollow}
       />
       </>

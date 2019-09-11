@@ -38,6 +38,12 @@ class Form extends React.Component {
 
   _showInfoAlert = () => this.setState({ showInfoAlert: true });
   _showPrivacyAlert = () => this.setState({ showPrivacyAlert: true });
+  _hideDialog = () => {
+    this.setState({
+      showInfoAlert: false,
+      showPrivacyAlert: false
+    });
+  };
 
   render() {
     const {
@@ -133,14 +139,14 @@ class Form extends React.Component {
               {errors.description && I18n.get(`HELPER_TEXT_${errors.description}`)}
               </HelperText>
               <View style={styles.switchButton}>
-                <Text style={styles.text}>{I18n.get("SCHEDULE_FORM_private")}</Text>
+                <Text style={styles.text}>{I18n.get("SCHEDULE_FORM_public")}</Text>
                 <Switch
-                  value={!values.isPublic}
+                  value={values.isPublic}
                   onValueChange={() => {
-                    const isPublic = values.isPublic
+                    const isPublic = values.isPublic;
+                    if (isPublic) this._showPrivacyAlert();
                     setFieldValue('isPublic', !isPublic);
-                    if (!isPublic) this._showPrivacyAlert();
-                  }
+                  }}
                 />
               </View>
               <View style={styles.info}>
@@ -152,13 +158,13 @@ class Form extends React.Component {
             title={I18n.get("ALERT_whatIsASchedule")}
             message={I18n.get("ALERT_whatIsAScheduleA")}
             visible={this.state.showInfoAlert}
-            handleDimiss={() => this.setState({ showInfoAlert: false })}
+            handleDismiss={this._hideDialog}
           />
           <Alert
             title={I18n.get("ALERT_privateSchedule")}
             message={I18n.get("ALERT_privateScheduleWarn")}
             visible={this.state.showPrivacyAlert}
-            handleDimiss={() => this.setState({ showPrivacyAlert: false })}
+            handleDismiss={this._hideDialog}
           />
           </>
         )}

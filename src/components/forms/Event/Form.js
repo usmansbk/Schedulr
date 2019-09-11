@@ -41,6 +41,7 @@ class Form extends React.Component {
 
   _showModal = () => this.setState({ showPicker: true });
   _hideModal = () => this.setState({ showPicker: false, showScheduleHelpAlert: false });
+  _scheduleHelp = () => this.setState({ showScheduleHelpAlert: true });
 
   static defaultProps = {
     schedules: [], 
@@ -353,7 +354,7 @@ class Form extends React.Component {
           />
           <Alert
             visible={showScheduleHelpAlert}
-            title={(I18n.get("ALERT_whatIsASchedule")}
+            title={I18n.get("ALERT_whatIsASchedule")}
             message={I18n.get("ALERT_whatIsAScheduleA")}
             handleDismiss={this._hideModal}
           />

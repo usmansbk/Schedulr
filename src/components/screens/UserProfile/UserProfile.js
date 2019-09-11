@@ -51,6 +51,8 @@ class UserProfile extends React.Component {
 
   _editProfile = () => this.props.navigation.navigate('EditProfile');
 
+  _viewAvatar = () => this.props.navigation.navigate('AvatarViewer', { id: this.props.user.id });
+
   render() {
     const {
       loading,
@@ -104,6 +106,7 @@ class UserProfile extends React.Component {
               src={uriBig}
               size={AVATAR_HEIGHT}
               name={name}
+              onPress={this._viewAvatar}
             />
           </View>
           <Headline numberOfLines={2} ellipsizeMode="tail" style={styles.headline}>{name}</Headline>

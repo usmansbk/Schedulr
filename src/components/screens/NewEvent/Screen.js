@@ -5,7 +5,7 @@ import uuidv4 from 'uuid/v4';
 import { withApollo } from 'react-apollo';
 import Form from 'components/forms/Event';
 import recurrences from 'components/forms/Event/recurrence';
-import { isPastExact } from 'lib/parseItem';
+import { isPastExact } from 'lib/time';
 import { getUserSchedules } from 'api/fragments';
 import { SCHEDULE_CLOSED } from "lib/constants";
 

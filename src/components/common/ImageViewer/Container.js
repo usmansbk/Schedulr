@@ -4,7 +4,7 @@ import SimpleToast from 'react-native-simple-toast';
 import { Storage, I18n } from 'aws-amplify';
 import config from 'aws_config';
 import getImageUrl from 'helpers/getImageUrl';
-import Alert from 'components/dialogs/Alert';s
+import Alert from 'components/dialogs/Alert';
 import Screen from './Screen';
 
 const {
