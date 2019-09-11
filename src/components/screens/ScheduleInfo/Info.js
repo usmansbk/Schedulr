@@ -4,8 +4,7 @@ import isEqual from 'lodash.isequal';
 import {
   View,
   ScrollView,
-  RefreshControl,
-  Alert
+  RefreshControl
 } from 'react-native';
 import {
   Menu,
@@ -28,24 +27,23 @@ import getImageUrl from 'helpers/getImageUrl';
 import UserAvater from 'components/common/UserAvatar';
 import FollowButton from 'components/common/FollowButton';
 import Loading from 'components/common/Loading';
+import Alert from 'components/dialogs/Alert';
 import Error from 'components/common/Error';
 
 const { AVATAR_SIZE } = schedule_info;
 
 class Info extends React.Component {
+  state = {
+    showAboutPrivacyAlert: false
+  };
+
+  _showAboutPrivacyAlert = () => this.setState({ showAboutPrivacyAlert: true });
+  _hideAlert = () => this.setState({ showAboutPrivacyAlert: false });
+
   shouldComponentUpdate = (nextProps) => (
     !isEqual(nextProps.schedule, this.props.schedule) ||
     nextProps.loading !== this.props.loading
   );
-
-  _aboutPrivacy = () => {
-    const isPublic = this.props.schedule.isPublic;
-    const title = I18n.get(`SCHEDULE_FORM_${isPublic ? "public" : "private"}`);
-    const message = I18n.get(`ALERT_${isPublic ? 'public' : 'private'}ScheduleA`);
-
-    Alert.alert(title, message);
-  };
-
 
   render() {
     const {
@@ -200,7 +198,7 @@ class Info extends React.Component {
                 />
                 <Text
                   style={styles.note}
-                  onPress={this._aboutPrivacy}
+                  onPress={this._showAboutPrivacyAlert}
                 >{I18n.get(`SCHEDULE_${ isPublic ? 'public' : 'private'}`)}</Text>
               </View>
               {
@@ -234,6 +232,12 @@ class Info extends React.Component {
             </View>
           </View>
       </ScrollView>
+      <Alert
+        visible={this.state.showAboutPrivacyAlert}
+        title={I18n.get(`SCHEDULE_FORM_${isPublic ? "public" : "private"}`)}
+        message={I18n.get(`ALERT_${isPublic ? 'public' : 'private'}ScheduleA`)}
+        handleDismiss={this._hideAlert}
+      />
       {
         isAuth && (<FollowButton
           id={id}

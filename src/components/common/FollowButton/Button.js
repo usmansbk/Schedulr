@@ -1,35 +1,22 @@
 import React from 'react';
-import { Alert } from 'react-native';
+import Alert from 'components/dialogs/Alert';
 import { I18n } from 'aws-amplify';
 import Fab from '../Fab';
 
 export default class Button extends React.Component {
+  _unfollow = (input, id) => this.props.unfollow(input, id);
   _onPress = () => {
     const {
       id,
-      name,
       stores,
       follow,
-      unfollow,
       isFollowing,
     } = this.props;
     const input = {
       id: `${stores.appState.userId}-${id}`,
     };
     if (isFollowing) {
-      Alert.alert(
-        I18n.get("ALERT_unfollow")(name),
-        I18n.get("ALERT_unfollowMessage"),
-        [
-          { text: I18n.get("BUTTON_cancel") },
-          {
-            text: I18n.get("BUTTON_unfollow"),
-            onPress: () => unfollow(input, id),
-            style: 'destructive'
-          }
-        ]
-      )
-      // unfollow(input, id);
+      this._showUnfollowAlert(input, id);
     } else {
       input.followScheduleId = id;
       follow(input);
@@ -39,11 +26,13 @@ export default class Button extends React.Component {
   render() {
     const {
       isFollowing,
+      name,
       small,
       disabled
     } = this.props;
     const label = small ? undefined : (isFollowing ? "Following" : "Follow");
     return (
+      <>
       <Fab
         icon={isFollowing ? "check" : "plus"}
         label={label}
@@ -51,6 +40,13 @@ export default class Button extends React.Component {
         small={small}
         disabled={disabled}
       />
+      <Alert
+        title={I18n.get("ALERT_unfollow")(name)}
+        message={I18n.get("ALERT_unfollowMessage")}
+        confirmText={text: I18n.get("BUTTON_unfollow")}
+        onConfirm={this._unfollow}
+      />
+      </>
     );
   }
 }

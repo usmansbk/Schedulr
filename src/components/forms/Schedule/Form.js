@@ -2,8 +2,7 @@ import React from 'react';
 import {
   View,
   ScrollView,
-  RefreshControl,
-  Alert
+  RefreshControl
 } from 'react-native';
 import isEqual from 'lodash.isequal';
 import {
@@ -15,6 +14,7 @@ import {
   Appbar,
   Caption
 } from 'react-native-paper';
+import Alert from 'components/dialogs/Alert';
 import { Formik } from 'formik';
 import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
@@ -31,19 +31,13 @@ class Form extends React.Component {
     }
   };
 
-  _showInfo = () => {
-    Alert.alert(I18n.get("ALERT_whatIsASchedule"), I18n.get("ALERT_whatIsAScheduleA"));
+  state = {
+    showInfoAlert: false,
+    showPrivacyAlert: false
   };
 
-  _aboutPrivacy = () => {
-    const { stores } = this.props;
-    if (stores.appState.prefs.showPrivateScheduleAlert) {
-      Alert.alert(I18n.get("ALERT_privateSchedule"), I18n.get("ALERT_privateScheduleWarn"), [
-        { text: I18n.get("BUTTON_dontShowAgain"), onPress: () => stores.appState.togglePref('showPrivateScheduleAlert') },
-        { text: I18n.get("BUTTON_ok"), onPress: () => null }
-      ]);
-    }
-  };
+  _showInfoAlert = () => this.setState({ showInfoAlert: true });
+  _showPrivacyAlert = () => this.setState({ showPrivacyAlert: true });
 
   render() {
     const {
@@ -143,17 +137,29 @@ class Form extends React.Component {
                 <Switch
                   value={!values.isPublic}
                   onValueChange={() => {
-                    const privacy = !values.isPublic;
-                    setFieldValue('isPublic', privacy);
-                    if (!privacy) this._aboutPrivacy();
-                  }}
+                    const isPublic = values.isPublic
+                    setFieldValue('isPublic', !isPublic);
+                    if (!isPublic) this._showPrivacyAlert();
+                  }
                 />
               </View>
               <View style={styles.info}>
-                <Caption style={styles.primary} onPress={this._showInfo}>{I18n.get("SCHEDULE_whatIsASchedule")}</Caption>
+                <Caption style={styles.primary} onPress={this._showInfoAlert}>{I18n.get("SCHEDULE_whatIsASchedule")}</Caption>
               </View>
             </View>
           </ScrollView>
+          <Alert
+            title={I18n.get("ALERT_whatIsASchedule")}
+            message={I18n.get("ALERT_whatIsAScheduleA")}
+            visible={this.state.showInfoAlert}
+            handleDimiss={() => this.setState({ showInfoAlert: false })}
+          />
+          <Alert
+            title={I18n.get("ALERT_privateSchedule")}
+            message={I18n.get("ALERT_privateScheduleWarn")}
+            visible={this.state.showPrivacyAlert}
+            handleDimiss={() => this.setState({ showPrivacyAlert: false })}
+          />
           </>
         )}
       </Formik>

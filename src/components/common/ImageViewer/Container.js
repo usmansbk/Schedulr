@@ -1,10 +1,10 @@
 import React from 'react';
 import ImagePicker from 'react-native-image-picker';
 import SimpleToast from 'react-native-simple-toast';
-import { Alert } from 'react-native';
 import { Storage, I18n } from 'aws-amplify';
 import config from 'aws_config';
 import getImageUrl from 'helpers/getImageUrl';
+import Alert from 'components/dialogs/Alert';s
 import Screen from './Screen';
 
 const {
@@ -17,7 +17,8 @@ const EPSILON = 1024 * 100;
 
 export default class ImageViewerContainer extends React.Component {
   state = {
-    loading: false
+    loading: false,
+    showRemoveImageAlert: false
   };
 
   componentDidMount = () => {
@@ -27,34 +28,25 @@ export default class ImageViewerContainer extends React.Component {
 
   _goBack = () => this.props.goBack();
 
+  _showRemoveImageAlert = () => this.setState({ showRemoveImageAlert: true });
+  _hideRemoveImageAlert = () => this.setState({ showRemoveImageAlert: false });
+
   _removePhoto = async () => {
     const { onRemovePhoto, s3Object } = this.props;
-    Alert.alert(
-      I18n.get("ALERT_deleteImage"),
-      '',
-      [
-        {text: I18n.get("BUTTON_dismiss"), onPress: () => null },
-        {
-          text: I18n.get("BUTTON_continue"),
-          onPress: async () => {
-            this.setState({ loading: true });
-            if (s3Object) {
-              try {
-                await Storage.remove(s3Object.key).catch();
-              } catch(error) {
-                SimpleToast.show(error.message, SimpleToast.SHORT);
-              }
-            }
-            try {
-              await onRemovePhoto();
-              this.setState({ loading: false });
-            } catch (error) {
-              console.log(error);
-            }
-          }
-        }
-      ]
-    )
+    this.setState({ loading: true });
+    if (s3Object) {
+      try {
+        await Storage.remove(s3Object.key).catch();
+      } catch(error) {
+        SimpleToast.show(error.message, SimpleToast.SHORT);
+      }
+    }
+    try {
+      await onRemovePhoto();
+      this.setState({ loading: false });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   _uploadPhoto = () => {
@@ -100,16 +92,24 @@ export default class ImageViewerContainer extends React.Component {
     const url = s3Object ? getImageUrl(s3Object, 1040, fit) : uri;
     
     return (
+      <>
       <Screen
         loading={this.state.loading}
         goBack={this._goBack}
         title={title}
         uri={url}
         uploadPhoto={this._uploadPhoto}
-        deletePhoto={this._removePhoto}
+        deletePhoto={this._showRemoveImageAlert}
         me={me}
         s3Object={s3Object}
       />
+      <Alert
+        visible={this.state.showRemoveImageAlert}
+        title={I18n.get("ALERT_deleteImage")}
+        onConfirm={this._removePhoto}
+        handleDismiss={this._hideRemoveImageAlert}
+      />
+      </>
     );
   }
 }

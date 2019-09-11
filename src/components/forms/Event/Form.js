@@ -5,8 +5,7 @@ import {
   View,
   Picker,
   ScrollView,
-  RefreshControl,
-  Alert,
+  RefreshControl
 } from 'react-native';
 import {
   Button,
@@ -23,6 +22,7 @@ import { I18n } from 'aws-amplify';
 import DateTimeInput from 'components/common/DateTimeInput';
 import PickerInputModal from 'components/common/PickerInputModal';
 import PickerButton from 'components/common/PickerButton';
+import Alert from 'components/dialogs/Alert';
 import {
   isEventValid,
   canRepeat
@@ -35,11 +35,12 @@ import buildForm, { getLocation } from 'helpers/buildForm';
 class Form extends React.Component {
 
   state = {
-    showPicker: false
+    showPicker: false,
+    showScheduleHelpAlert: false,
   };
 
   _showModal = () => this.setState({ showPicker: true });
-  _hideModal = () => this.setState({ showPicker: false });
+  _hideModal = () => this.setState({ showPicker: false, showScheduleHelpAlert: false });
 
   static defaultProps = {
     schedules: [], 
@@ -59,17 +60,6 @@ class Form extends React.Component {
     }
   }
 
-  _scheduleHelp = () => {
-    const newSchedule = this.props.newSchedule;
-    const hasSchedules = this.props.schedules.length;
-    let buttons = [];
-    if (newSchedule && !hasSchedules) {
-      buttons.push({ text: I18n.get("BUTTON_create"), onPress: newSchedule });
-    }
-    buttons.push({text: I18n.get("BUTTON_ok"), onPress: () => null });
-    Alert.alert(I18n.get("ALERT_whatIsASchedule"), I18n.get("ALERT_whatIsAScheduleA"), buttons);
-  }
-
   render() {
     const {
       schedules,
@@ -81,7 +71,7 @@ class Form extends React.Component {
       isNew,
       stores
     } = this.props;
-    const { showPicker } = this.state;
+    const { showPicker, showScheduleHelpAlert } = this.state;
 
     const styles = stores.appStyles.eventForm;
     const navButtonColor = stores.themeStore.colors.primary;
@@ -360,6 +350,12 @@ class Form extends React.Component {
             selectedValue={values.category || ''}
             hideModal={this._hideModal}
             onValueChange={itemValue => setFieldValue('category', itemValue)}
+          />
+          <Alert
+            visible={showScheduleHelpAlert}
+            title={(I18n.get("ALERT_whatIsASchedule")}
+            message={I18n.get("ALERT_whatIsAScheduleA")}
+            handleDismiss={this._hideModal}
           />
           </>
         )}

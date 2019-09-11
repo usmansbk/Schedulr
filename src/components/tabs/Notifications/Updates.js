@@ -1,5 +1,5 @@
 import React from 'react';
-import { Alert } from 'react-native';
+import Alert from 'components/dialogs/Alert';
 import { withNavigationFocus } from 'react-navigation';
 import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
@@ -14,13 +14,11 @@ class Updates extends React.Component {
     };
   }
 
-  _clearNotifications = () => {
-    const { stores } = this.props;
-    Alert.alert(I18n.get("ALERT_clearNotifications"), "", [
-        { text: I18n.get("BUTTON_dismiss"), onPress: () => null },
-        { text: I18n.get("BUTTON_ok"), onPress: stores.notificationsStore.clearNotifications }
-     ]);
+  state = {
+    showClearWarning: false
   };
+
+  _clearNotifications = () => this.setState({ showClearWarning: true });
 
   shouldComponentUpdate = (nextProps) => nextProps.navigation.isFocused();
   
@@ -44,6 +42,13 @@ class Updates extends React.Component {
             />
           )
         }
+        <Alert
+          title={I18n.get("ALERT_clearNotifications")}
+          visible={this.state.showClearWarning}
+          handleDismiss={() => this.setState({ showClearWarning: false })}
+          confirmText={I18n.get("BUTTON_ok")}
+          onConfirm={stores.notificationsStore.clearNotifications}
+        />
       </>
     )
   }
