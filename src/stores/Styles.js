@@ -821,6 +821,10 @@ export default class AppStyles {
       divider: {
         height: 2,
         backgroundColor: colors.white
+      },
+      counter: {
+        margin: 8,
+        right: 18
       }
     });
   }
