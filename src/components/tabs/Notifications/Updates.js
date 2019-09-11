@@ -18,6 +18,8 @@ class Updates extends React.Component {
     showClearWarning: false
   };
 
+  _hideDialog = () => this.setState({ showClearWarning: false });
+
   _clearNotifications = () => this.setState({ showClearWarning: true });
 
   shouldComponentUpdate = (nextProps) => nextProps.navigation.isFocused();
@@ -45,7 +47,7 @@ class Updates extends React.Component {
         <Alert
           title={I18n.get("ALERT_clearNotifications")}
           visible={this.state.showClearWarning}
-          handleDismiss={() => this.setState({ showClearWarning: false })}
+          handleDismiss={this._hideDialog}
           confirmText={I18n.get("BUTTON_ok")}
           onConfirm={stores.notificationsStore.clearNotifications}
         />
