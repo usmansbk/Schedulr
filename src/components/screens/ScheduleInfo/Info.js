@@ -40,9 +40,10 @@ class Info extends React.Component {
   _showAboutPrivacyAlert = () => this.setState({ showAboutPrivacyAlert: true });
   _hideAlert = () => this.setState({ showAboutPrivacyAlert: false });
 
-  shouldComponentUpdate = (nextProps) => (
+  shouldComponentUpdate = (nextProps, nextState) => (
     !isEqual(nextProps.schedule, this.props.schedule) ||
-    nextProps.loading !== this.props.loading
+    nextProps.loading !== this.props.loading ||
+    nextState.showAboutPrivacyAlert !== this.state.showAboutPrivacyAlert
   );
 
   render() {
