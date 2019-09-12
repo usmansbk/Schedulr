@@ -32,7 +32,7 @@ const TabBarComponent = inject('stores')(observer(
     style={props.stores.appStyles.userSchedulesTab.barStyle}
     renderBadge={({ route }) => {
       const { routeName } = route;
-      if (routeName === 'Messages') return (
+      if ((routeName === 'Messages') && props.stores.notificationsStore.newCommentsCount > 0) return (
         <View style={props.stores.appStyles.notifications.counter}>
           <Badge>{props.stores.notificationsStore.newCommentsCount}</Badge>
         </View>

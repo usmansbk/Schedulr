@@ -18,7 +18,7 @@ class Messages extends React.Component {
 
   render() {
     const { stores } = this.props;
-    stores.notificationsStore.resetCommentsCounter();
+    stores.notificationsStore.clearCommentsCounter();
 
     return (
       <>

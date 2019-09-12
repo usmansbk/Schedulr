@@ -25,7 +25,7 @@ export default class AppState {
   }
 
   @action setNotificationIndicator = status => this.hasNotifications = status;
-  @action resetCommentsCounter = () => this.newCommentsCount = 0;
+  @action clearCommentsCounter = () => this.newCommentsCount = 0;
 
   @computed get updates() {
     return this.notifications.filter(notif => notif.type !== 'Comment').sort((a, b) => -(a.timestamp - b.timestamp));

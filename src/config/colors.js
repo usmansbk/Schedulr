@@ -34,7 +34,7 @@ export const light = {
   actionsheet: '#e5e5e5',
   actionsheetTitleText: '#757575',
   primaryOpaque : opacity => `rgba(25, 118, 210, ${opacity})`
-}
+};
 
 export const dark = {
   nav: '#303030',
