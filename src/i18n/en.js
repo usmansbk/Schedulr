@@ -235,6 +235,7 @@ export default {
   PLACEHOLDER_aboutThisEvent: "About this event...",
   PLACEHOLDER_normal: "Normal",
   PLACEHOLDER_addYourWebsite: "Add your website",
+  PLACEHOLDER_location: "City, School, Organization...",
 
   WARNING_dontMissOut: "Don't miss out!",
   WARNING_fileTooLarge: "File is too large",

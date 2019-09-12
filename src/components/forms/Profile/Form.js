@@ -119,7 +119,7 @@ class Form extends React.Component {
               {errors.website && I18n.get(`HELPER_TEXT_${errors.website}`)}
               </HelperText>
               <TextInput
-                placeholder={I18n.get("PROFILE_FORM_location")}
+                placeholder={I18n.get("PLACEHOLDER_location")}
                 label={I18n.get("PROFILE_FORM_location")}
                 value={values.location}
                 onChangeText={handleChange('location')}
