@@ -12,7 +12,7 @@ export default class AppState {
   @action updateLastSyncTimestamp = () => this.lastSyncTimestamp = moment().unix();
   @action appendNotifications = newNotifications => {
     if (newNotifications.length) {
-      this.newCommentsCount = newNotifications.filter(notif => notif.type === 'Comment').length;
+      this.newCommentsCount += newNotifications.filter(notif => notif.type === 'Comment').length;
       this.setNotificationIndicator(true);
       this.notifications = this.notifications.concat(newNotifications);
     }

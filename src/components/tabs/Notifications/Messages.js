@@ -12,22 +12,18 @@ class Messages extends React.Component {
     };
   }
 
-  shouldComponentUpdate = (nextProps) => {
-    return nextProps.navigation.isFocused();
-  };
+  shouldComponentUpdate = (nextProps) => nextProps.navigation.isFocused();
 
   render() {
     const { stores } = this.props;
     stores.notificationsStore.clearCommentsCounter();
 
     return (
-      <>
       <List
         updates={stores.notificationsStore.comments}
         styles={stores.appStyles.notifications}
         navigation={this.props.navigation}
       />
-      </>
     )
   }
 }
