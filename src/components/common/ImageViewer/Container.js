@@ -51,7 +51,14 @@ export default class ImageViewerContainer extends React.Component {
 
   _uploadPhoto = () => {
     const { id, onUploadPhoto, s3Object, folder="public" } = this.props;
-    ImagePicker.showImagePicker(null, async (response) => {
+    const options = {
+      title: 'Select image',
+      storageOptions: {
+        skipBackup: true,
+        path: 'images'
+      }
+    };
+    ImagePicker.showImagePicker(options, async (response) => {
       if (response.error) {
         SimpleToast.show(response.error.message, SimpleToast.SHORT);
       } else {
