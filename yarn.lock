@@ -6785,27 +6785,27 @@ react-navigation-collapsible@^3.0.3:
   dependencies:
     hoist-non-react-statics "^3.0.1"
 
-react-navigation-stack@^1.5.4:
-  version "1.5.4"
-  resolved "https://registry.yarnpkg.com/react-navigation-stack/-/react-navigation-stack-1.5.4.tgz#ec3f8468873b86aa2b344430dfc1d7e9801e39bd"
-  integrity sha512-jgbQ3qTRrfo6m5ibldRUzr7S5gf4qvrgqgVpQIyPLS8RXXO3n7eZmldqebmQPg6osaOVMjZ+kbV42n7LbdU4Mw==
+react-navigation-stack@^1.7.2:
+  version "1.7.2"
+  resolved "https://registry.yarnpkg.com/react-navigation-stack/-/react-navigation-stack-1.7.2.tgz#d7cf7a7dc76c2390024be6358fc65461c848a034"
+  integrity sha512-72oL9rVXUFvFayoA7k+OgXcwP/6e5BAtCSpUXfKX+lZYrJe3BvuhZz2KDhEjdfbuP/sNok55ZRzc3/X1kh5mxQ==
   dependencies:
     prop-types "^15.7.2"
 
-react-navigation-tabs@^2.4.1:
-  version "2.4.1"
-  resolved "https://registry.yarnpkg.com/react-navigation-tabs/-/react-navigation-tabs-2.4.1.tgz#8d37e68b56ba11a1d08acd562833ef7184edd8e5"
-  integrity sha512-0BxlvIR3A7axKwIKHjERSE3sw+KKgCCvmoMinrAC+ewfcH4d8Dgt8ix4Git5oDxBZbd3IFXT1J+lsmOucvzhKg==
+react-navigation-tabs@^2.5.0:
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/react-navigation-tabs/-/react-navigation-tabs-2.5.0.tgz#465a96e764c6598880d221c1cf43b069fe8191cf"
+  integrity sha512-J0B+CC4h3Z1cKW2oLe0ZSPdQDVM01eFLtES6kljg6DGlx5iCjiQh+qTCtD0Jc4h2FahWxNhmTgh6bmvffOkSEA==
   dependencies:
     hoist-non-react-statics "^3.3.0"
     react-lifecycles-compat "^3.0.4"
     react-native-safe-area-view "^0.14.6"
     react-native-tab-view "^2.9.0"
 
-react-navigation@^4.0.2:
-  version "4.0.2"
-  resolved "https://registry.yarnpkg.com/react-navigation/-/react-navigation-4.0.2.tgz#09fe915cdc2436c964b8f85b642eaf8d429305c6"
-  integrity sha512-c95NfoOCTb5GEHUTcngtJ9h9lxU484UftYAZ8oeNWWVW4YPbCuvUqwviUCSq3uT0JVkcEhdUqHekmL+eqYhg8g==
+react-navigation@^4.0.4:
+  version "4.0.4"
+  resolved "https://registry.yarnpkg.com/react-navigation/-/react-navigation-4.0.4.tgz#afa43c7183891d38708cf57f1d4394fed1d4c2ad"
+  integrity sha512-MZeVkYkFTKZobhrXMV3Hgeg0HHeokCrYsbxActVfO0n6zfzm0/La6EiC2mIHiwOymvb1ZygyFf90vryLUMEBNA==
   dependencies:
     "@react-navigation/core" "^3.5.0"
     "@react-navigation/native" "^3.6.2"

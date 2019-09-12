@@ -133,7 +133,7 @@ export default {
   ALERT_deleteType: "Delete type?",
   ALERT_deleteImage: "Delete image?",
   ALERT_unfollow: name => `Unfollow ${name}?`,
-  ALERT_unfollowMessage: 'Their events will no long show up in your calendar.',
+  ALERT_unfollowMessage: 'Their events will no longer show up in your calendar.',
   ALERT_clearNotifications: 'Clear notifications?',
   ALERT_clearNotificationsMessage: 'Will clear all notifications.',
 

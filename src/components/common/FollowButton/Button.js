@@ -4,7 +4,17 @@ import { I18n } from 'aws-amplify';
 import Fab from '../Fab';
 
 export default class Button extends React.Component {
-  _unfollow = (input, id) => this.props.unfollow(input, id);
+  state = {
+    showUnfollowAlert: false,
+    input: null,
+    id: null,
+  };
+  _showUnfollowAlert = (input, id) => this.setState({ showUnfollowAlert: true, input, id });
+  _hideAlert = () => this.setState({ showUnfollowAlert: false });
+  _unfollow = () => {
+    this.props.unfollow(this.state.input, this.state.id);
+    this._hideAlert();
+  };
   _onPress = () => {
     const {
       id,
@@ -41,10 +51,12 @@ export default class Button extends React.Component {
         disabled={disabled}
       />
       <Alert
+        visible={this.state.showUnfollowAlert}
         title={I18n.get("ALERT_unfollow")(name)}
         message={I18n.get("ALERT_unfollowMessage")}
         confirmText={I18n.get("BUTTON_unfollow")}
         onConfirm={this._unfollow}
+        handleDismiss={this._hideAlert}
       />
       </>
     );
