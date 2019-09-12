@@ -54,9 +54,9 @@ class NewEventScreen extends React.Component {
     const eventScheduleId = navigation.getParam("eventScheduleId", schedule && schedule.id);
     const currentSchedule = this.schedules && this.schedules.find(schedule => schedule.id === eventScheduleId);
 
-    const targetDate = navigation.getParam('targetDate', moment().toISOString())
-    const initialStartAt = moment(targetDate).toISOString();
-    const initialEndAt = moment(targetDate).add(2, 'hours').toISOString();
+    const targetDate = navigation.getParam('targetDate', moment().toISOString());
+    const targetStartAt = targetDate;
+    const targetEndAt = moment(targetDate).add(2, 'hours').toISOString();
     let newStart = startAt;
     let newEnd = endAt;
 
@@ -75,8 +75,8 @@ class NewEventScreen extends React.Component {
       }
       newEnd = moment(newStart).add(duration).toISOString();
     }
-    const start = newStart || initialStartAt;
-    const end = newEnd || initialEndAt;
+    const start = newStart || targetStartAt;
+    const end = newEnd || targetEndAt;
 
     return ({
       title,
