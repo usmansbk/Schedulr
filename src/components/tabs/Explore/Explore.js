@@ -6,6 +6,7 @@ import { Animated } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import { inject, observer } from 'mobx-react';
 import Empty from './Empty';
+import Header from './Header';
 import Item from './Item';
 import colors from 'config/colors';
 
@@ -18,7 +19,9 @@ class ExploreTab extends Component{
     error: false
   }
 
-  _renderEmptyList = () => <Empty />
+  _renderEmptyList = () => <Empty />;
+
+  _renderHeader = () => <Header />;
 
   renderItem = ({item}) => <Item />
 
