@@ -13,8 +13,8 @@ const alias = 'withScheduleEventsContainer';
 
 class ListHoc extends React.Component {
 
-  _onRefresh = () => this.props.onRefresh();
-  _fetchPastEvents = (nextToken, time) => this.props.fetchMore(nextToken, time);
+  _onRefresh = () => this.props.onRefresh && this.props.onRefresh();
+  _fetchPastEvents = (nextToken, time) => this.props.fetchMore && this.props.fetchMore(nextToken, time);
 
   render() {
     const {

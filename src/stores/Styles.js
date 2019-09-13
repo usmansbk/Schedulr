@@ -344,7 +344,8 @@ export default class AppStyles {
         alignItems: 'center',
         paddingHorizontal: 8,
         backgroundColor: colors.bg,
-        maxWidth: WIDTH
+        maxWidth: WIDTH,
+        minWidth: WIDTH,
       },
       placeholder: {
         color: colors.black
@@ -363,6 +364,8 @@ export default class AppStyles {
         flex: 1
       },
       alert: {
+        maxWidth: WIDTH,
+        minWidth: WIDTH,
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',

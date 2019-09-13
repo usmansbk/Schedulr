@@ -48,7 +48,7 @@ class CommentInput extends React.Component {
     const {
       isSubmitting,
       message
-    } = this.state;
+    } = this.state; 
 
     const styles = stores.appStyles.commentInput;
     const colors = stores.themeStore.colors;
@@ -87,12 +87,13 @@ class CommentInput extends React.Component {
             />
           </View>
           <IconButton
-            icon={(props) => <Icon
-               name="feather"
-               size={24}
-               color={props.color}
-             />}
+            size={24}
             color={colors.primary}
+            icon={({ size, color }) => <Icon
+               name="feather"
+               size={size}
+               color={color}
+             />}
             disabled={isSubmitting || !message || disabled}
             onPress={this._onSubmit}
             style={styles.right}
