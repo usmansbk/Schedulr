@@ -17,6 +17,10 @@ export const createUser = `mutation CreateUser($input: CreateUserInput!) {
     createdCount
     createdAt
     updatedAt
+    preference {
+      disablePush
+      pushBlacklist
+    }
   }
 }
 `;

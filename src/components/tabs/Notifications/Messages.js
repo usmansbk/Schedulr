@@ -1,5 +1,4 @@
 import React from 'react';
-import { withNavigationFocus } from 'react-navigation';
 import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
 import List from 'components/lists/Messages';
@@ -11,8 +10,6 @@ class Messages extends React.Component {
       tabBarLabel: I18n.get("NOTIFICATIONS_messagesTabLabel")
     };
   }
-
-  shouldComponentUpdate = (nextProps) => nextProps.navigation.isFocused();
 
   render() {
     const { stores } = this.props;
@@ -28,6 +25,4 @@ class Messages extends React.Component {
   }
 }
 
-const withStores = inject("stores")(observer(Messages));
-
-export default withNavigationFocus(withStores);
+export default inject("stores")(observer(Messages));

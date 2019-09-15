@@ -1,6 +1,5 @@
 import React from 'react';
 import Alert from 'components/dialogs/Alert';
-import { withNavigationFocus } from 'react-navigation';
 import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
 import List from 'components/lists/Updates';
@@ -21,8 +20,6 @@ class Updates extends React.Component {
   _hideDialog = () => this.setState({ showClearWarning: false });
 
   _clearNotifications = () => this.setState({ showClearWarning: true });
-
-  shouldComponentUpdate = (nextProps) => nextProps.navigation.isFocused();
   
   render() {
     const { stores, navigation } = this.props;
@@ -56,6 +53,4 @@ class Updates extends React.Component {
   }
 }
 
-const withStores = inject("stores")(observer(Updates));
-
-export default withNavigationFocus(withStores);
+export default inject("stores")(observer(Updates));
