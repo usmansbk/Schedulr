@@ -107,7 +107,7 @@ class List extends Component {
   _renderFooter = () => <Footer
     visible={this.props.events.length}
     loading={this.props.loading && this.state.fetchingMore}
-    {/*onPress={this._onEndReached}*/}
+    onPress={this._onEndReached}
     hasMore={this.props.from}
   />;
 

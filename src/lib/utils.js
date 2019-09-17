@@ -1,6 +1,7 @@
 import memoize from 'lodash.memoize';
 import emojiRegex from 'emoji-regex';
 import moment from 'moment';
+import { getEvents } from 'lib/calendr';
 import { SCHEDULE_CLOSED } from 'lib/constants';
 
 function sortList(list) {
