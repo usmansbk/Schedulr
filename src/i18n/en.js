@@ -250,5 +250,8 @@ export default {
   DIALOG_openSchedule: "Open schedule?",
 
   SNACKBAR_sync: "Sync",
-  SNACKBAR_seeUpdates: "See updates"
+  SNACKBAR_seeUpdates: "See updates", 
+
+  REQUEST_LOCATION_TITLE: 'Schdlr Location Permission',
+  REQUEST_LOCATION_MESSAGE: "Schdlr App needs access to your location so events are easier to find."
 };

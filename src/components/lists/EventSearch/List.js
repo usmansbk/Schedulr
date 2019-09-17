@@ -28,7 +28,8 @@ class List extends Component {
   static defaultProps = {
     events: [],
     loading: false,
-    onRefresh: () => null
+    onRefresh: () => null,
+    fetchMore: () => null,
   };
   _getItemLayout = (_, index) => (
     {
@@ -106,7 +107,7 @@ class List extends Component {
   _renderFooter = () => <Footer
     visible={this.props.events.length}
     loading={this.props.loading && this.state.fetchingMore}
-    onPress={this._onEndReached}
+    {/*onPress={this._onEndReached}*/}
     hasMore={this.props.from}
   />;
 

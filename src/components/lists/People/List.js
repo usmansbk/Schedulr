@@ -25,6 +25,7 @@ class List extends React.Component {
     loading: false,
     hasMore: false,
     onRefresh: () => null,
+    fetchMore: () => null
   };
   shouldComponentUpdate = (nextProps, nextState) => { 
     return (nextProps.navigation.isFocused() &&
