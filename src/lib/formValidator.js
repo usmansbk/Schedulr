@@ -1,4 +1,4 @@
-import { Alert } from 'react-native';
+import SimpleToast from 'react-native-simple-toast';
 import moment from 'moment';
 import { I18n } from 'aws-amplify';
 import { repeatLength, FIVE_MINUTES } from 'lib/time';
@@ -16,20 +16,20 @@ export function isEventValid(event) {
 
   let validity = true
   if (!canRepeat(event)) {
-    Alert.alert(I18n.get("ALERT_repeat"), I18n.get("ALERT_cantRepeat"));
+    SimpleToast.show(I18n.get("ALERT_cantRepeat"), SimpleToast.SHORT);
     validity = false;
   } else if (startAt.isAfter(endAt)) {
-    Alert.alert(I18n.get("ALERT_duration"), I18n.get("ALERT_invalidStart"));
+    SimpleToast.show(I18n.get("ALERT_invalidStart"), SimpleToast.SHORT);
     validity = false;
   } else if (endAt.diff(startAt) < FIVE_MINUTES) {
-    Alert.alert(I18n.get("ALERT_tooShort"), I18n.get("ALERT_durationTooShort"));
+    SimpleToast.show(I18n.get("ALERT_durationTooShort"), SimpleToast.SHORT);
     validity = false;
   } else if (untilAt) {
-    const rLength = repeatLength(event.recurrence);
-    const tail = moment.duration(rLength);
-    const secondTime = endAt.clone().add(tail, 'ms');
+    const length = repeatLength(event.recurrence);
+    const duration = moment.duration(length);
+    const secondTime = endAt.clone().add(duration, 'ms');
     if (secondTime.isAfter(untilAt)) {
-      Alert.alert(I18n.get("ALERT_until"), I18n.get("ALERT_shortUntil"));
+      SimpleToast.show(I18n.get("ALERT_shortUntil"), SimpleToast.SHORT);
       validity = false;
     }
   }

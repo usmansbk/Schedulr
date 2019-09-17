@@ -42,7 +42,8 @@ class Input extends React.Component {
       label,
       disabled,
       noMin,
-      stores
+      stores,
+      hideTime
     } = this.props;
 
     const value = this.props.value || moment().toISOString();
@@ -58,13 +59,17 @@ class Input extends React.Component {
           >
           {this._formatDate(value)}
           </Button>
-          <Button
-            disabled={disabled}
-            style={styles.timeButton}
-            onPress={this._showTimePicker}
-          >
-          {this._formatTime(value)}
-          </Button>
+          {
+            !hideTime && (
+              <Button
+                disabled={disabled}
+                style={styles.timeButton}
+                onPress={this._showTimePicker}
+              >
+              {this._formatTime(value)}
+              </Button>
+            )
+          }
           <DateTimePicker
             mode="date"
             date={moment(value).toDate()}

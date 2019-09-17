@@ -1,6 +1,6 @@
 import React from 'react';
-import { FlatList, RefreshControl } from 'react-native';
-import { withNavigationFocus } from 'react-navigation';
+import { RefreshControl } from 'react-native';
+import { withNavigationFocus, FlatList } from 'react-navigation';
 import { inject, observer } from 'mobx-react';
 import { people_list } from 'lib/constants';
 import { timeAgo } from 'lib/time';

@@ -25,7 +25,7 @@ class Form extends React.Component {
       website: null,
       location: null,
     }
-  }
+  };
 
   render() {
     const {

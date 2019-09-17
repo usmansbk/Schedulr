@@ -59,7 +59,7 @@ class Form extends React.Component {
       eventScheduleId: null,
       isPublic: true
     }
-  }
+  };
 
   render() {
     const {
@@ -189,6 +189,7 @@ class Form extends React.Component {
                   noMin
                   disabled={values.allDay}
                   value={values.startAt}
+                  hideTime={values.allDay}
                   onChangeDate={(date) => {
                     const prevStartAt = moment(values.startAt);
                     const prevEndAt = moment(values.endAt);
@@ -210,6 +211,7 @@ class Form extends React.Component {
                   noMin
                   value={values.endAt}
                   disabled={values.allDay}
+                  hideTime={values.allDay}
                   onChangeDate={(date) => setFieldValue('endAt', date)}
                 />
               </View>

@@ -29,7 +29,7 @@ class CommentInput extends React.Component {
     });
   };
 
-  _onChangeText = (message) => this.setState({ message })
+  _onChangeText = (message) => this.setState({ message });
 
   focusInput = () => this._textInputRef && this._textInputRef.focus();
 

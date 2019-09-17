@@ -101,7 +101,7 @@ const updateBaseEvents = ({ data, action, baseData }) => {
 		const event = Object.assign({}, data);
 		if (removeScheduleEventsDuplicate) scheduleEvents = [...removeScheduleEventsDuplicate, event];
 		if (removeBookmarkDuplicate) {
-			const bookmark = bookmarks.items.find(({ event }) => event && event.id === data.id);
+			const bookmark = bookmarks.items.find(({ event }) => event && (event.id === data.id));
 			if (bookmark) {
 				const updatedBookmark = Object.assign({}, bookmark, { event });
 				bookmarkItems = [...removeBookmarkDuplicate, updatedBookmark];		
