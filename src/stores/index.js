@@ -7,6 +7,7 @@ import Theme from './Theme';
 import AppStyles from './Styles';
 import AppState from './AppState';
 import Notifications from './Notifications';
+import Location from './Location';
 
 class RootStore {
   constructor() {
@@ -18,6 +19,7 @@ class RootStore {
     const settingsStore = new Settings;
     const remindMeStore = new RemindMe;
     const notificationsStore = new Notifications;
+    const locationStore = new Location;
     
     hydrate('settings', settingsStore);
     hydrate('remindMe', remindMeStore);
@@ -35,6 +37,7 @@ class RootStore {
     this.appStyles = appStyles;
     this.appState = appState;
     this.notificationsStore = notificationsStore;
+    this.locationStore = locationStore;
   }
 
   @action reset = () => {

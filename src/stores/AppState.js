@@ -17,7 +17,6 @@ export default class AppState {
 
   @persist @observable userId = null;
   @persist @observable loggingIn = false;
-  @persist @observable location = null;
   @persist @observable lastSyncTimestamp = moment().unix();
 
   @persist('list') @observable mutedEvents = [];
@@ -45,7 +44,6 @@ export default class AppState {
     this.mutedEvents = [];
     this.allowedEvents = [];
     this.mutedSchedules = [];
-    this.location = null;
     this.prefs = {
       showPrivateScheduleAlert: true,
     }
