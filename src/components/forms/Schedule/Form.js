@@ -44,6 +44,10 @@ class Form extends React.Component {
       showPrivacyAlert: false
     });
   };
+  
+  componentDidMount = async () => {
+    await this.props.stores.locationStore.fetchLocation();
+  };
 
   render() {
     const {
@@ -63,7 +67,7 @@ class Form extends React.Component {
         validationSchema={validationSchema}
         onSubmit={async (values, { setSubmitting }) => {
           const input = buildForm(values);
-          input.location = stores.appState.location;
+          input.location = stores.locationStore.location;
           onSubmit && await onSubmit(input);
           setSubmitting(false);
         }}

@@ -30,7 +30,7 @@ import {
 import { getRepeatLabel, getTimeUnit } from 'lib/time';
 import formSchema from './schema';
 import recurrence from './recurrence';
-import buildForm, { getLocation } from 'helpers/buildForm';
+import buildForm from 'helpers/buildForm';
 
 class Form extends React.Component {
 
@@ -42,6 +42,10 @@ class Form extends React.Component {
   _showModal = () => this.setState({ showPicker: true });
   _hideModal = () => this.setState({ showPicker: false, showScheduleHelpAlert: false });
   _scheduleHelp = () => this.setState({ showScheduleHelpAlert: true });
+
+  componentDidMount = async () => {
+    await this.props.stores.locationStore.fetchLocation();
+  };
 
   static defaultProps = {
     schedules: [], 
@@ -84,7 +88,7 @@ class Form extends React.Component {
         onSubmit={async (values, { setSubmitting }) => {
           if (isEventValid(values)) {
             const input = buildForm(values);
-            input.location = stores.appState.location;
+            input.location = stores.locationStore.location;
             onSubmit && await onSubmit(input);
           }
           setSubmitting(false);
