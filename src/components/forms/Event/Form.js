@@ -166,7 +166,7 @@ class Form extends React.Component {
               {errors.description && I18n.get(`HELPER_TEXT_${errors.description}`)}
               </HelperText>
               <TextInput
-                placeholder={I18n.get("EVENT_FORM_venue")}
+                placeholder={stores.locationStore.location || I18n.get("EVENT_FORM_venue")}
                 label={I18n.get("EVENT_FORM_venue")}
                 value={values.venue}
                 onChangeText={handleChange('venue')}
