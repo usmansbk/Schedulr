@@ -7,7 +7,7 @@ import List from 'components/lists/EventSearch';
 import { getEvents } from 'lib/calendr';
 import { getUserData, searchEvents } from 'api/queries';
 import { searchEventFilter } from 'api/filters';
-import { sortBookmarks, mergeEvents, filterEvents } from 'lib/utils';
+import { mergeEvents, filterEvents } from 'lib/utils';
 import { SEARCH_LIMIT } from 'lib/constants';
 import updateQuery from 'helpers/updateQuery';
 

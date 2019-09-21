@@ -1,21 +1,36 @@
 import Geolocation from 'react-native-geolocation-service';
 import Geocoder from 'react-native-geocoder';
 import { Alert } from 'react-native';
+import { I18n } from 'aws-amplify';
 import { observable, action, computed } from 'mobx';
 import { persist } from 'mobx-persist';
 import { requestLocationPermission } from 'helpers/permissions';
 
-export default class AppState {
+export default class Location {
   @persist('object') @observable point = null;
+
   @persist @observable locality = null;
   @persist @observable country = null;
   @persist @observable countryCode = null;
 
-  @persist @observable neverAskAgain = false;
+  @persist @observable useLocation = true;
+  @persist @observable neverAskToUseLocation = false;
 
   @action requestLocation = async () => {
-    if (!this.point) {
-
+    if (!this.point && !this.neverAskToUseLocation) {
+      Alert.alert(I18n.get("REQUEST_LOCATION_TITLE"), I18n.get('REQUEST_LOCATION_MESSAGE'), [
+        {
+          text: I18n.get("BUTTON_ok"),
+          onPress: async () => await this.fetchLocation()
+        },
+        {
+          text: I18n.get("BUTTON_cancel")
+        },
+        {
+          text: I18n.get("BUTTON_neverAskAgain"),
+          onPress: () => this.neverAskToUseLocation = true
+        }
+      ]);
     }
   };
 
