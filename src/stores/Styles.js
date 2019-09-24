@@ -832,7 +832,7 @@ export default class AppStyles {
     });
   }
 
-  @computed get explore () {
+  @computed get discover () {
     const colors = this.settings.dark ? dark : light;
 
     return StyleSheet.create({

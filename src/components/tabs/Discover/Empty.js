@@ -6,11 +6,11 @@ import { I18n } from 'aws-amplify';
 
 export default inject('stores')(observer(
   ({ stores }) => (
-    <View style={stores.appStyles.explore.empty}>
-      <Headline style={stores.appStyles.explore.emptyTitle}>
+    <View style={stores.appStyles.discover.empty}>
+      <Headline style={stores.appStyles.discover.emptyTitle}>
         {I18n.get("EXPLORE_emptyList")}
       </Headline>
-      <Caption style={stores.appStyles.explore.paragraph}>
+      <Caption style={stores.appStyles.discover.paragraph}>
         {I18n.get("EXPLORE_emptyListCaption")}
       </Caption>
     </View>

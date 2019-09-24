@@ -98,7 +98,7 @@ export const searchScheduleFilter = (query, location) => {
 					ne: false
 				},
 				location: {
-					matchPhrase: location
+					matchPhrase: location || ''
 				}
 			},
 			{
@@ -127,7 +127,7 @@ export const searchEventFilter = (query, location) => {
 					ne: false
 				},
 				location: {
-					matchPhrase: location || 'New York'
+					matchPhrase: location || ''
 				}
 			},
 			{
@@ -155,5 +155,13 @@ export const searchEventFilter = (query, location) => {
 				]
 			}
 		]
+	};
+};
+
+export const discorverEventsFilter = (location) => {
+	return {
+		location: {
+			matchPhrase: location || ''
+		}
 	};
 };

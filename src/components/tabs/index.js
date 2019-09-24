@@ -3,7 +3,7 @@ import Events from './Events';
 import Schedules from './Schedules';
 import Bookmarks from './Bookmarks';
 import Home from './Home';
-import Explore from './Explore';
+import Discover from './Discover';
 import Notifications from './Notifications';
 
 export {
@@ -11,7 +11,7 @@ export {
   Events,
   Schedules,
   Bookmarks,
-  Explore,
+  Discover,
   Home,
   Notifications,
 };

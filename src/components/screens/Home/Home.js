@@ -4,7 +4,7 @@ import { createBottomTabNavigator, BottomTabBar } from 'react-navigation-tabs';
 import Icon from 'react-native-vector-icons/Feather';
 import { inject, observer } from 'mobx-react';
 import MoreRoute from 'components/tabs/More';
-import ExploreTab from 'components/tabs/Explore';
+import DiscoverTab from 'components/tabs/Discover';
 import HomeRoute from 'components/tabs/Home';
 import NotificationRoute from 'components/tabs/Notifications';
 import NotificationsIcon from 'components/common/NotificationIcon';
@@ -15,7 +15,7 @@ const Home = createBottomTabNavigator({
   Home: {
     screen: HomeRoute
   },
-  Explore: { screen: ExploreTab },
+  Discover: { screen: DiscoverTab },
   Notifications: {
     screen: NotificationRoute,
     path: 'notif'
@@ -35,7 +35,7 @@ const Home = createBottomTabNavigator({
       let iconName;
       if (routeName === 'Home') {
         iconName = 'home'
-      } else if (routeName === 'Explore') {
+      } else if (routeName === 'Discover') {
         iconName = 'search';
       } else if (routeName === 'More') {
         iconName = 'menu';

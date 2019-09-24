@@ -27,7 +27,7 @@ class ExploreTab extends Component{
 
   render(){
     const { paddingHeight, animatedY, onScroll } = this.props.collapsible;
-    const styles = this.props.stores.appStyles.explore;
+    const styles = this.props.stores.appStyles.discover;
 
     return (
       <AnimatedFlatList 

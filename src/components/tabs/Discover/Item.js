@@ -7,7 +7,7 @@ import { inject, observer } from 'mobx-react';
 
 class Item extends React.Component {
   render() {
-    const styles = this.props.stores.appStyles.explore;
+    const styles = this.props.stores.appStyles.discover;
     
     return (
       <TouchableRipple 
