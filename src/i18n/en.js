@@ -55,7 +55,7 @@ export default {
   SETTINGS_darkTheme: "Dark theme",
   SETTINGS_location: "Location",
   SETTINGS_reminderSectionTitle: "Reminder",
-  SETTINGS_reminderDisable: "Disable",
+  SETTINGS_reminderDisable: "Mute all events",
   SETTINGS_remindMe: "Remind me",
   SETTINGS_pushSectionTitle: "Push notification",
   SETTINGS_pushDisable: "Disable",
