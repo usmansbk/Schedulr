@@ -43,9 +43,11 @@ class Form extends React.Component {
   _hideModal = () => this.setState({ showPicker: false, showScheduleHelpAlert: false });
   _scheduleHelp = () => this.setState({ showScheduleHelpAlert: true });
 
-  componentDidMount = async () => {
-    await this.props.stores.locationStore.fetchLocation();
+  componentDidMount = () => {
+    this.fetchLocation = setTimeout(this.props.stores.locationStore.fetchLocation(), 500);
   };
+
+  componentWillUnmount = () => clearTimeout(this.fetchLocation);
 
   static defaultProps = {
     schedules: [], 

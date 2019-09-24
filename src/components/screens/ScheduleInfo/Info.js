@@ -6,12 +6,6 @@ import {
   ScrollView,
   RefreshControl
 } from 'react-native';
-import {
-  Menu,
-  MenuTrigger,
-  MenuOptions,
-  MenuOption
-} from 'react-native-popup-menu';
 import numeral from 'numeral';
 import {
   Appbar,
@@ -39,6 +33,8 @@ class Info extends React.Component {
 
   _showAboutPrivacyAlert = () => this.setState({ showAboutPrivacyAlert: true });
   _hideAlert = () => this.setState({ showAboutPrivacyAlert: false });
+  _onDelete = () => this.props.handleSelectMenu('delete');
+  _onEdit = () => this.props.handleSelectMenu('edit');
 
   shouldComponentUpdate = (nextProps, nextState) => (
     !isEqual(nextProps.schedule, this.props.schedule) ||
@@ -54,7 +50,6 @@ class Info extends React.Component {
       goBack,
       onRefresh,
       handleShare,
-      handleSelectMenu,
       navigateToFollowers,
       navigateToProfile,
       navigateToEvents,
@@ -100,57 +95,50 @@ class Info extends React.Component {
         <Appbar.Header collapsable style={appStyles.header}>
           <Appbar.Action
             onPress={goBack}
-            icon={() => <Icon
+            color={colors.gray}
+            size={24}
+            icon={({ size, color }) => <Icon
               name="arrow-left"
-              color={colors.gray}
-              size={24}
+              size={size}
+              color={color}
             />}
           />
           <Appbar.Content
             titleStyle={appStyles.headerColor}
           />
           <Appbar.Action
-            icon={() => <Icon
+            size={24}
+            color={colors.gray}
+            icon={({ size, color }) => <Icon
               name="share-2"
-              size={24}
-              color={colors.gray}
+              size={size}
+              color={color}
             />}
             onPress={() => handleShare({ name, description, id})}
           />
           {
-            isOwner && (
-              <Menu onSelect={handleSelectMenu}>
-                <MenuTrigger 
-                  customStyles={{
-                    triggerWrapper: styles.menuButton,
-                  }}
-                >
-                  <Icon
-                    size={24}
-                    color={colors.gray}
-                    name="more-vertical"
-                  />
-                </MenuTrigger>
-                <MenuOptions>
-                  <MenuOption value="edit">
-                    <Text style={styles.menuText}>{I18n.get("MENU_edit")}</Text>
-                  </MenuOption>
-                  { !isClosed && (
-                    <MenuOption value="close">
-                      <Text style={styles.menuText}>{I18n.get("MENU_close")}</Text>
-                    </MenuOption>
-                  )}
-                  { isClosed && (
-                    <MenuOption value="open">
-                      <Text style={styles.menuText}>{I18n.get("MENU_open")}</Text>
-                    </MenuOption>
-                  )}
-                  <MenuOption value="delete">
-                    <Text style={styles.menuText}>{I18n.get("MENU_delete")}</Text>
-                  </MenuOption>
-                </MenuOptions>
-              </Menu>
-            )
+            !!isOwner && <>
+              <Appbar.Action
+                size={24}
+                color={colors.gray}
+                icon={({ size, color }) => <Icon
+                  name="edit"
+                  size={size}
+                  color={color}
+                />}
+                onPress={this._onEdit}
+              />
+              <Appbar.Action
+                size={24}
+                color={colors.gray}
+                icon={({ size, color }) => <Icon
+                  name="trash"
+                  size={size}
+                  color={color}
+                />}
+                onPress={this._onDelete}
+              />
+            </>
           }
         </Appbar.Header>
         <ScrollView

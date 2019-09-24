@@ -1,6 +1,5 @@
 import React from 'react';
 import { Provider as PaperProvider } from 'react-native-paper';
-import { MenuProvider } from 'react-native-popup-menu';
 import { ApolloProvider } from 'react-apollo';
 import { Provider as MobxProvider } from 'mobx-react';
 import { Rehydrated } from 'aws-appsync-react';
@@ -31,22 +30,20 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <MenuProvider backHandler={true}>
-        <PaperProvider theme={stores.themeStore.theme}>
-          <ApolloProvider client={client}>
-            <Rehydrated loading={<Loading />}>
-              <MobxProvider stores={stores}>
-                <AppContainer
-                  uriPrefix={env.uriPrefix}
-                  ref={navigatorRef => {
-                    NavigationService.setTopLevelNavigator(navigatorRef);
-                  }}
-                />
-              </MobxProvider>
-            </Rehydrated>
-          </ApolloProvider>
-        </PaperProvider>
-      </MenuProvider>
+      <PaperProvider theme={stores.themeStore.theme}>
+        <ApolloProvider client={client}>
+          <Rehydrated loading={<Loading />}>
+            <MobxProvider stores={stores}>
+              <AppContainer
+                uriPrefix={env.uriPrefix}
+                ref={navigatorRef => {
+                  NavigationService.setTopLevelNavigator(navigatorRef);
+                }}
+              />
+            </MobxProvider>
+          </Rehydrated>
+        </ApolloProvider>
+      </PaperProvider>
     );
   }
 }
