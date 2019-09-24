@@ -73,7 +73,7 @@ class UserProfile extends React.Component {
       me,
       name,
       website,
-      location,
+      bio,
       createdAt,
       followingCount=0,
       createdCount=0
@@ -130,10 +130,10 @@ class UserProfile extends React.Component {
           <Caption style={styles.label}>{I18n.get("PROFILE_joined")(date)}</Caption>
         </View>   
         {
-          !!location && (      
+          !!bio && (      
             <View style={styles.link}>
-              <Icon size={16} style={styles.linkIcon} name="map-pin" color={stores.themeStore.colors.black} />
-              <Caption style={styles.label} numberOfLines={1} ellipsizeMode="tail">{location}</Caption>
+              <Icon size={16} style={styles.linkIcon} name="user" color={stores.themeStore.colors.black} />
+              <Caption style={styles.label} numberOfLines={1} ellipsizeMode="tail">{bio}</Caption>
             </View>
           )
         }

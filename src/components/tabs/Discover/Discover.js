@@ -21,7 +21,7 @@ class DISCOVERTab extends Component{
 
   _renderEmptyList = () => <Empty />;
 
-  _renderHeader = () => <Header />;
+  _renderHeader = () => <Header location={this.props.stores.locationStore.locality} />;
 
   renderItem = ({item}) => <Item />;
 
