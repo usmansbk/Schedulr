@@ -6,8 +6,8 @@ export default Yup.object().shape({
     .min(2, 'tooShort')
     .max(50, 'tooLong')
     .required('nameIsRequired'),
-  location: Yup.string()
+  bio: Yup.string()
     .trim()
-    .min(2, 'tooShort')
-    .max(52, 'tooLong')
+    .min(5, 'tooShort')
+    .max(81, 'tooLong')
 });

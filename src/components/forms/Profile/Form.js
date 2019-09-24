@@ -23,7 +23,7 @@ class Form extends React.Component {
     initialValues: {
       name: '',
       website: null,
-      location: null,
+      bio: null,
     }
   };
 
@@ -119,19 +119,19 @@ class Form extends React.Component {
               {errors.website && I18n.get(`HELPER_TEXT_${errors.website}`)}
               </HelperText>
               <TextInput
-                placeholder={I18n.get("PLACEHOLDER_location")}
-                label={I18n.get("PROFILE_FORM_location")}
-                value={values.location}
-                onChangeText={handleChange('location')}
-                onBlur={handleBlur('location')}
+                placeholder={I18n.get("PLACEHOLDER_bio")}
+                label={I18n.get("PROFILE_FORM_bio")}
+                value={values.bio}
+                onChangeText={handleChange('bio')}
+                onBlur={handleBlur('bio')}
                 mode="outlined"
                 autoFocus
               />
               <HelperText
                 type="error"
-                visible={errors.location && touched.location}
+                visible={errors.bio && touched.bio}
               >
-              {errors.location && I18n.get(`HELPER_TEXT_${errors.location}`)}
+              {errors.bio && I18n.get(`HELPER_TEXT_${errors.bio}`)}
               </HelperText>
             </View>
           </ScrollView>
