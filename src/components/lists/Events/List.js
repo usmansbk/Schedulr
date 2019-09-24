@@ -259,7 +259,6 @@ class List extends React.Component {
     })}
     address={venue}
     isMuted={
-      this.props.stores.settingsStore.disableReminders ||
       this.props.stores.appState.mutedEvents.includes(id) ||
       (!this.props.stores.appState.allowedEvents.includes(id) &&
       this.props.stores.appState.mutedSchedules.includes(schedule.id))
