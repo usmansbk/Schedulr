@@ -53,7 +53,6 @@ class NewEventScreen extends React.Component {
 
     const eventScheduleId = navigation.getParam("eventScheduleId", schedule && schedule.id);
     const currentSchedule = this.schedules && this.schedules.find(schedule => schedule.id === eventScheduleId);
-
     const targetDate = navigation.getParam('targetDate', moment().toISOString());
     const targetStartAt = targetDate;
     const targetEndAt = moment(targetDate).add(2, 'hours').toISOString();
@@ -95,6 +94,7 @@ class NewEventScreen extends React.Component {
   };
 
   render() {
+    const locked= this.props.navigation.getParam('locked');
     return (
       <Form
         initialValues={this._getInitialValues()}
@@ -103,7 +103,7 @@ class NewEventScreen extends React.Component {
         handleCancel={this._handleBack}
         onSubmit={this._handleSubmit}
         newSchedule={this._newSchedule}
-        locked={Boolean(this.props.scheduleId)}
+        locked={locked}
       />
     )
   }
