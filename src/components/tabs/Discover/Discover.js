@@ -23,9 +23,11 @@ class DISCOVERTab extends Component{
 
   _renderHeader = () => <Header />;
 
-  renderItem = ({item}) => <Item />
+  renderItem = ({item}) => <Item />;
 
-  render(){
+  componentDidMount = async () => await this.props.stores.locationStore.fetchLocation();
+
+  render() {
     const { paddingHeight, animatedY, onScroll } = this.props.collapsible;
     const styles = this.props.stores.appStyles.discover;
 

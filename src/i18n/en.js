@@ -33,7 +33,7 @@ export default {
   DISCOVER_emptyList: "Discover",
   DISCOVER_emptyListCaption: "Nearby and sponsored events",
 
-  SEARCH_inputPlaceholder: "Search",
+  SEARCH_inputPlaceholder: city => `Search${city ? (' near ' + city) : ''}`,
   SEARCH_schedulesTabLabel: "Schedules",
   SEARCH_eventsTabLabel: "Events",
   SEARCH_peopleTabLabel: "People",

@@ -56,7 +56,7 @@ const SearchBar = inject('stores')(observer(
       clearIcon={({size, color }) => <Icon name="x" size={size} color={color}  />}
       onIconPress={() => navigation.goBack()}
       autoFocus
-      placeholder={I18n.get("SEARCH_inputPlaceholder")}
+      placeholder={I18n.get("SEARCH_inputPlaceholder")(stores.locationStore.locality)}
       placeholderTextColor={stores.themeStore.colors.placeholder}
       value={stores.appState.searchText}
       onChangeText={(value) => stores.appState.onChangeText(value)}
