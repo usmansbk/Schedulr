@@ -31,7 +31,7 @@ export default {
   MORE_signOut: "Sign out",
 
   DISCOVER_emptyList: "Discover",
-  DISCOVER_emptyListCaption: "Nearby and sponsored events",
+  DISCOVER_emptyListCaption: "Suggested and sponsored events",
 
   SEARCH_inputPlaceholder: city => `Search${city ? (' near ' + city) : ''}`,
   SEARCH_schedulesTabLabel: "Schedules",
