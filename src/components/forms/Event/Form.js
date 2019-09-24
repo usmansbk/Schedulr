@@ -44,7 +44,7 @@ class Form extends React.Component {
   _scheduleHelp = () => this.setState({ showScheduleHelpAlert: true });
 
   componentDidMount = () => {
-    this.fetchLocation = setTimeout(this.props.stores.locationStore.fetchLocation(), 500);
+    this.fetchLocation = setTimeout(this.props.stores.locationStore.fetchLocation, 500);
   };
 
   componentWillUnmount = () => clearTimeout(this.fetchLocation);
