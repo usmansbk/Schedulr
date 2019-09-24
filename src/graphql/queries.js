@@ -12,7 +12,7 @@ export const me = `query GetUser($id: ID!) {
       bucket
     }
     website
-    location
+    bio
     followingCount
     createdCount
     createdAt

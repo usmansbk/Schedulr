@@ -55,7 +55,6 @@ class Form extends React.Component {
           submitForm,
           handleChange,
           handleBlur,
-          setFieldValue,
           resetForm,
           initialValues,
           isValid

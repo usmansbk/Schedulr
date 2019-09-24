@@ -1768,6 +1768,11 @@ export default class AppStyles {
         color: colors.black,
         fontSize: 16,
       },
+      linkLabel: {
+        textAlign: 'center',
+        color: colors.black,
+        fontSize: 16,
+      },
       countRow: {
         flexDirection: 'row',
         alignItems: 'center',
@@ -1780,10 +1785,10 @@ export default class AppStyles {
         paddingHorizontal: 16
       },
       link: {
-        marginVertical: 16,
+        margin: 16,
         flexDirection: 'row',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'flex-start'
       },
       linkStyle: {
         color: colors.link,

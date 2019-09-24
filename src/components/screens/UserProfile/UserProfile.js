@@ -127,13 +127,12 @@ class UserProfile extends React.Component {
         </View>
         <View style={styles.link}>
           <Icon size={16} style={styles.linkIcon} name="calendar" color={stores.themeStore.colors.black} />
-          <Caption style={styles.label}>{I18n.get("PROFILE_joined")(date)}</Caption>
+          <Caption style={styles.linkLabel}>{I18n.get("PROFILE_joined")(date)}</Caption>
         </View>   
         {
           !!bio && (      
             <View style={styles.link}>
-              <Icon size={16} style={styles.linkIcon} name="user" color={stores.themeStore.colors.black} />
-              <Caption style={styles.label} numberOfLines={1} ellipsizeMode="tail">{bio}</Caption>
+              <Caption style={styles.linkLabel} numberOfLines={4} ellipsizeMode="tail">{bio}</Caption>
             </View>
           )
         }
@@ -142,7 +141,7 @@ class UserProfile extends React.Component {
             <View style={styles.link}>
               <Icon size={16} style={styles.linkIcon} name="link-2" color={stores.themeStore.colors.black} />
               <Hyperlink linkStyle={styles.linkStyle} linkDefault={true}>
-                <Caption style={styles.label} numberOfLines={1} ellipsizeMode="tail">{website}</Caption>
+                <Caption style={styles.linkLabel} numberOfLines={1} ellipsizeMode="tail">{website}</Caption>
               </Hyperlink>
             </View>
           )
