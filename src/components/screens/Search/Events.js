@@ -22,14 +22,14 @@ class Events extends React.Component {
   render() {
     const { stores } = this.props;
 
-    const { query, isConnected, location, userId } = stores.appState;
+    const { query, isConnected, userId } = stores.appState;
     
     return (
       <ListHoc
         query={query}
         id={userId}
         isConnected={isConnected}
-        location={location}
+        location={stores.locationStore.location}
         search
       />
     );
@@ -58,7 +58,7 @@ const ListHoc = compose(
       notifyOnNetworkStatusChange: true,
       fetchPolicy: 'cache-and-network',
       variables: {
-        filter: searchEventFilter(props.query),
+        filter: searchEventFilter(props.query, props.location),
         limit: SEARCH_LIMIT
       }
     }),

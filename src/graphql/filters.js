@@ -90,12 +90,15 @@ export const searchUserFilter = (query) => {
 	};
 };
 
-export const searchScheduleFilter = (query) => {
+export const searchScheduleFilter = (query, location) => {
 	return {
 		and: [
 			{
 				isPublic: {
 					ne: false
+				},
+				location: {
+					matchPhrase: location
 				}
 			},
 			{
@@ -116,12 +119,15 @@ export const searchScheduleFilter = (query) => {
 	};
 };
 
-export const searchEventFilter = (query) => {
+export const searchEventFilter = (query, location) => {
 	return {
 		and: [
 			{
 				isPublic: {
 					ne: false
+				},
+				location: {
+					matchPhrase: location || 'New York'
 				}
 			},
 			{

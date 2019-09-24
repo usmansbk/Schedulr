@@ -3,7 +3,7 @@ import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
 import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
-import { mergeSchedules, sortSchedules, filterSchedules } from 'lib/utils';
+import { mergeSchedules, filterSchedules } from 'lib/utils';
 import List from 'components/lists/ScheduleSearch';
 import { getUserSchedules, searchSchedules } from 'api/queries';
 import { searchScheduleFilter } from 'api/filters';
@@ -23,14 +23,14 @@ class Schedules extends React.Component {
   render() {
     const { stores } = this.props;
 
-    const { query, isConnected, location, userId } = stores.appState;
+    const { query, isConnected, userId } = stores.appState;
 
     return (
       <ListHoc
         query={query}
         id={userId}
         isConnected={isConnected}
-        location={location}
+        location={stores.locationStore.location}
       />
     );
   }
@@ -58,7 +58,7 @@ const ListHoc = compose(
       fetchPolicy: 'cache-and-network',
       notifyOnNetworkStatusChange: true,
       variables: {
-        filter: searchScheduleFilter(props.query),
+        filter: searchScheduleFilter(props.query, props.location),
         limit: SEARCH_LIMIT
       }
     }),
