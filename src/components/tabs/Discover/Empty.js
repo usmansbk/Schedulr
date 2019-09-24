@@ -8,10 +8,10 @@ export default inject('stores')(observer(
   ({ stores }) => (
     <View style={stores.appStyles.discover.empty}>
       <Headline style={stores.appStyles.discover.emptyTitle}>
-        {I18n.get("EXPLORE_emptyList")}
+        {I18n.get("DISCOVER_emptyList")}
       </Headline>
       <Caption style={stores.appStyles.discover.paragraph}>
-        {I18n.get("EXPLORE_emptyListCaption")}
+        {I18n.get("DISCOVER_emptyListCaption")}
       </Caption>
     </View>
   )

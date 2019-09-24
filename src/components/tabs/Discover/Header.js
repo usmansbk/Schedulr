@@ -11,7 +11,7 @@ export default class Header extends React.Component {
 	render() {
 		return (
 			<View>
-				<Text>{I18n.get("EXPLORE_header")}</Text>
+				<Text>{I18n.get("DISCOVER_header")}</Text>
 			</View>
 		);
 	}

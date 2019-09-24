@@ -30,8 +30,8 @@ export default {
   MORE_help: "Help",
   MORE_signOut: "Sign out",
 
-  EXPLORE_emptyList: "Discover",
-  EXPLORE_emptyListCaption: "Nearby, sponsored and suggested events",
+  DISCOVER_emptyList: "Discover",
+  DISCOVER_emptyListCaption: "Nearby, sponsored and suggested events",
 
   SEARCH_inputPlaceholder: "Search",
   SEARCH_schedulesTabLabel: "Schedules",
