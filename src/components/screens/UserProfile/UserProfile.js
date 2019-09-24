@@ -127,7 +127,7 @@ class UserProfile extends React.Component {
         </View>
         <View style={styles.link}>
           <Icon size={16} style={styles.linkIcon} name="calendar" color={stores.themeStore.colors.black} />
-          <Caption style={styles.linkLabel}>{I18n.get("PROFILE_joined")(date)}</Caption>
+          <Caption style={styles.linkLabel} numberOfLines={1} ellipsizeMode="tail">{I18n.get("PROFILE_joined")(date)}</Caption>
         </View>   
         {
           !!bio && (      

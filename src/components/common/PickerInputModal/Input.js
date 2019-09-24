@@ -8,6 +8,7 @@ import {
 } from 'react-native-paper';
 import { View, TextInput } from 'react-native';
 import { inject, observer } from 'mobx-react';
+import { I18n } from 'aws-amplify';
 import List from './List';
 
 const MAX_LENGTH = 30;
@@ -88,7 +89,7 @@ class Input extends React.Component {
                 type="error"
                 visible={tooLong || tooShort}
               >
-                { tooLong ? 'Too long' : 'Too short'}
+                { I18n.get(`HELPER_TEXT_too${tooLong ? 'Long' : 'Short'} `)}
               </HelperText>
             </View>
           </Modal>

@@ -1762,7 +1762,7 @@ export default class AppStyles {
         fontWeight: 'bold',
         fontSize: 25,
         marginTop: 8,
-        marginBottom: 4
+        marginBottom: 4 
       },
       label: {
         color: colors.black,
@@ -1788,7 +1788,7 @@ export default class AppStyles {
         margin: 16,
         flexDirection: 'row',
         justifyContent: 'center',
-        alignItems: 'flex-start'
+        alignItems: 'center'
       },
       linkStyle: {
         color: colors.link,
