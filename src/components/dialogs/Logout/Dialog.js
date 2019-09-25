@@ -18,7 +18,7 @@ export default inject('stores')(observer(
   }) => (
     <Portal>
       <Dialog
-        style={{backgroundColor: stores.themeStore.colors.bg}}
+        style={{backgroundColor: stores.themeStore.colors.bg, borderRadius: undefined }}
         dismissable={!loading}
         visible={visible}
         onDismiss={handleDismiss}
