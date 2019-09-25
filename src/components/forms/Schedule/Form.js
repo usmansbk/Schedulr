@@ -47,7 +47,7 @@ class Form extends React.Component {
   
 
   componentDidMount = () => {
-    this.fetchLocation = setTimeout(this.props.stores.locationStore.fetchLocation, 500);
+    this.fetchLocation = setTimeout(this.props.stores.locationStore.fetchLocation, 200);
   };
 
   componentWillUnmount = () => clearTimeout(this.fetchLocation);
