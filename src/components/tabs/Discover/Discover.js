@@ -3,6 +3,7 @@ import { TouchableRipple, Searchbar } from 'react-native-paper';
 import { withCollapsible } from 'react-navigation-collapsible';
 import { FlatList } from 'react-navigation';
 import { Animated } from 'react-native';
+import { I18n } from 'aws-amplify';
 import Icon from 'react-native-vector-icons/Feather';
 import { inject, observer } from 'mobx-react';
 import Empty from './Empty';
@@ -46,7 +47,7 @@ class DISCOVERTab extends Component{
       />
     )
   }
-}
+} 
 
 const SearchBar = inject('stores')(observer(
   ({navigation, stores }) => {
@@ -62,7 +63,7 @@ const SearchBar = inject('stores')(observer(
           />}
           editable={false}
           collapsable
-          placeholder="Search"
+          placeholder={I18n.get("SEARCH_inputPlaceholder")(stores.locationStore.locality)}
           theme={{ roundness: 0 }}
           style={{
             backgroundColor: stores.themeStore.colors.bg,
