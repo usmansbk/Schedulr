@@ -6538,10 +6538,10 @@ react-native-image-progress@^1.1.1:
   dependencies:
     prop-types "^15.5.10"
 
-react-native-modal-datetime-picker@^7.5.2:
-  version "7.5.2"
-  resolved "https://registry.yarnpkg.com/react-native-modal-datetime-picker/-/react-native-modal-datetime-picker-7.5.2.tgz#8bc72010629d502f587dc6e3cb97392945cdf0f4"
-  integrity sha512-aJ0d8d/XVl155rZdMNc1cZKuIHaVQvUs6JVlweH+RdwHbJ9sCSFtv/sldMbsJXLkRzqf03Rql8+6OY2X/JH6EA==
+react-native-modal-datetime-picker@^7.6.0:
+  version "7.6.0"
+  resolved "https://registry.yarnpkg.com/react-native-modal-datetime-picker/-/react-native-modal-datetime-picker-7.6.0.tgz#6818f221010d0f61a6396a956b303fee65726fee"
+  integrity sha512-p7MquU/oAFO+S7+d1IYYK/8b9mroZXuStK2HA2FxX3e8O1YeNyq2Bggr4KPr6D0saJ/6iGzq8pFwN0YfaCW9+A==
   dependencies:
     prop-types "^15.7.2"
     react-native-modal "^11.0.2"
@@ -6618,7 +6618,7 @@ react-native-safe-area-view@^0.14.6:
   dependencies:
     hoist-non-react-statics "^2.3.1"
 
-"react-native-screens@^1.0.0 || ^1.0.0-alpha":
+react-native-screens@1.0.0-alpha.23, "react-native-screens@^1.0.0 || ^1.0.0-alpha":
   version "1.0.0-alpha.23"
   resolved "https://registry.yarnpkg.com/react-native-screens/-/react-native-screens-1.0.0-alpha.23.tgz#25d7ea4d11bda4fcde2d1da7ae50271c6aa636e0"
   integrity sha512-tOxHGQUN83MTmQB4ghoQkibqOdGiX4JQEmeyEv96MKWO/x8T2PJv84ECUos9hD3blPRQwVwSpAid1PPPhrVEaw==
@@ -6752,15 +6752,14 @@ react-test-renderer@^16.9.0:
     react-is "^16.9.0"
     scheduler "^0.15.0"
 
-react@16.8.1:
-  version "16.8.1"
-  resolved "https://registry.yarnpkg.com/react/-/react-16.8.1.tgz#ae11831f6cb2a05d58603a976afc8a558e852c4a"
-  integrity sha512-wLw5CFGPdo7p/AgteFz7GblI2JPOos0+biSoxf1FPsGxWQZdN/pj6oToJs1crn61DL3Ln7mN86uZ4j74p31ELQ==
+react@^16.9.0:
+  version "16.9.0"
+  resolved "https://registry.yarnpkg.com/react/-/react-16.9.0.tgz#40ba2f9af13bc1a38d75dbf2f4359a5185c4f7aa"
+  integrity sha512-+7LQnFBwkiw+BobzOF6N//BdoNw0ouwmSJTEm9cglOOmsg/TMiFHZLe2sEoN5M7LgJTj9oHH0gxklfnQe66S1w==
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
     prop-types "^15.6.2"
-    scheduler "^0.13.1"
 
 read-pkg-up@^2.0.0:
   version "2.0.0"
@@ -7168,14 +7167,6 @@ scheduler@0.15.0, scheduler@^0.15.0:
   version "0.15.0"
   resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.15.0.tgz#6bfcf80ff850b280fed4aeecc6513bc0b4f17f8e"
   integrity sha512-xAefmSfN6jqAa7Kuq7LIJY0bwAPG3xlCj0HMEBQk1lxYiDKZscY2xJ5U/61ZTrYbmNQbXa+gc7czPkVo11tnCg==
-  dependencies:
-    loose-envify "^1.1.0"
-    object-assign "^4.1.1"
-
-scheduler@^0.13.1:
-  version "0.13.6"
-  resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.13.6.tgz#466a4ec332467b31a91b9bf74e5347072e4cd889"
-  integrity sha512-IWnObHt413ucAYKsD9J1QShUKkbKLQQHdxRyw73sw4FN26iWr3DY/H34xGPe4nmL1DwXyWmSWmMrA9TfQbE/XQ==
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
