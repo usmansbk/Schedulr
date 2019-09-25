@@ -4,7 +4,10 @@
   "private": true,
   "scripts": {
     "start": "react-native start",
-    "test": "jest"
+    "android": "react-native run-android",
+    "ios": "react-native run-ios",
+    "test": "jest",
+    "lint": "eslint ."
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.6.2",
@@ -19,7 +22,6 @@
     "emoji-regex": "^8.0.0",
     "formik": "^1.5.8",
     "graphql-tag": "^2.10.1",
-    "jsc-android": "^241213.1.0",
     "lodash.debounce": "^4.0.8",
     "lodash.isequal": "^4.5.0",
     "lodash.memoize": "^4.1.2",

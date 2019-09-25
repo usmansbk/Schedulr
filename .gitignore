@@ -24,7 +24,7 @@ DerivedData
 *.hmap
 *.ipa
 *.xcuserstate
-project.xcworkspace
+xcshareddata
 
 # Android/IntelliJ
 #
@@ -52,6 +52,7 @@ models.graphql
 # BUCK
 buck-out/
 \.buckd/
+!debug.keystore
 
 # fastlane
 #
