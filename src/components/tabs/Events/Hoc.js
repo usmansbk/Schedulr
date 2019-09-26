@@ -22,7 +22,8 @@ export default inject("stores")(observer(
         // notifyOnNetworkStatusChange: true,
         variables: {
           id: props.id,
-          filter: baseEventsFilter()
+          filter: baseEventsFilter(),
+          limit: 50
         }
       }),
       props: ({ data, ownProps}) => ({

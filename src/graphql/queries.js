@@ -315,10 +315,10 @@ export const getUserSchedules = `query GetUserSchedules($id: ID!) {
     }
   }
 }`;
-export const getUserData = `query GetUserData($id: ID!, $filter: ModelEventFilterInput) {
+export const getUserData = `query GetUserData($id: ID!, $filter: ModelEventFilterInput, $limit: Int) {
   getUserData: getUser(id: $id) {
     id
-    created {
+    created(limit: $limit) @connection(key: "created") {
       items {
         id
         name
@@ -340,7 +340,7 @@ export const getUserData = `query GetUserData($id: ID!, $filter: ModelEventFilte
         eventsCount
         createdAt
         updatedAt
-        events(filter: $filter) @connection(key: "events") {
+        events(filter: $filter, limit: $limit) @connection(key: "events") {
           items {
             id
             title
@@ -381,7 +381,7 @@ export const getUserData = `query GetUserData($id: ID!, $filter: ModelEventFilte
       }
       nextToken
     }
-    following {
+    following(limit: $limit) @connection(key: "following") {
       nextToken
       items {
         id
@@ -412,7 +412,7 @@ export const getUserData = `query GetUserData($id: ID!, $filter: ModelEventFilte
             followingCount
             createdAt
           }
-          events {
+          events(limit: $limit) @connection(key: "events") {
             nextToken
             items {
               id
@@ -457,7 +457,7 @@ export const getUserData = `query GetUserData($id: ID!, $filter: ModelEventFilte
         }
       }
     }
-    bookmarks {
+    bookmarks(limit: $limit) @connection(key: "bookmarks") {
       items {
         id
         event {
