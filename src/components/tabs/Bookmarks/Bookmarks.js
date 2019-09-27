@@ -23,6 +23,7 @@ export default class Bookmarks extends React.Component {
     const {
       navigation,
       fetchMore,
+      refresh,
       nextToken,
       loading,
     } = this.props;
@@ -32,6 +33,7 @@ export default class Bookmarks extends React.Component {
         events={this.events}
         nextToken={nextToken}
         fetchMore={fetchMore}
+        refresh={refresh}
         loading={loading}
       />
     );

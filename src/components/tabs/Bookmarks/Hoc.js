@@ -25,6 +25,7 @@ export default inject("stores")(observer(
         data: data && data.getUserBookmarks,
         nextToken: data && data.getUserBookmarks && data.getUserBookmarks.bookmarks && data.getUserBookmarks.bookmarks.nextToken,
         loading: data && data.loading || data.networkStatus === 4,
+        refresh: () => data.refetch(),
         fetchMore: (nextToken) => data.fetchMore({
           variables: {
             nextToken,
