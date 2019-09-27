@@ -89,7 +89,7 @@ class Input extends React.Component {
                 type="error"
                 visible={tooLong || tooShort}
               >
-                { I18n.get(`HELPER_TEXT_too${tooLong ? 'Long' : 'Short'} `)}
+                { I18n.get(`HELPER_TEXT_too${tooLong ? 'Long' : 'Short'}`)}
               </HelperText>
             </View>
           </Modal>

@@ -25,6 +25,9 @@ const styles = StyleSheet.create({
   Done: {
     backgroundColor: colors.soft_blue,
   },
+  Concluded: {
+    backgroundColor: colors.soft_blue,
+  },
   Upcoming: {
     backgroundColor: colors.warning,
   },
