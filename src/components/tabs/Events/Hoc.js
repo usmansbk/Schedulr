@@ -23,7 +23,7 @@ export default inject("stores")(observer(
         variables: {
           id: props.id,
           filter: baseEventsFilter(),
-          limit: 15
+          limit: 50
         }
       }),
       props: ({ data, ownProps}) => ({

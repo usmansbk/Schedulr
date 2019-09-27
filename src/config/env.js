@@ -11,7 +11,7 @@ const common = {
   CONTACT_URL: `${DOMAIN}/contact`,
   LEGALITY_URL: `${DOMAIN}/legal`,
   TERMS_URL: `${DOMAIN}/terms`,
-  EMAIL: 'usmansbk@gmail.com',
+  EMAIL: 'hello.schdlr@gmail.com',
   WEB_CLIENT_ID: "915796894963-6566v17dt2cuet54ihj3cem5vod86js3.apps.googleusercontent.com",
   CloudFrontUrl: "https://d1u22e64efucw4.cloudfront.net",
 }

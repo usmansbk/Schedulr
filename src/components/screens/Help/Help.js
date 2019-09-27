@@ -30,16 +30,20 @@ export default inject('stores')(observer(
           onPress={() => props.onPressItem('contact')}
         />
         <Divider />
-        <List.Item
-          title={I18n.get("HELP_copyRight")}
-          onPress={() => props.onPressItem('copyright')}
-        />
-        <Divider />
-        <List.Item
-          title={I18n.get("HELP_terms")}
-          onPress={() => props.onPressItem('terms')}
-        />
-        <Divider />
+        {
+          false && <>
+          <List.Item
+            title={I18n.get("HELP_copyRight")}
+            onPress={() => props.onPressItem('copyright')}
+          />
+          <Divider />
+          <List.Item
+            title={I18n.get("HELP_terms")}
+            onPress={() => props.onPressItem('terms')}
+          />
+          <Divider />
+          </>
+        }
         <List.Item
           title={I18n.get("HELP_appVersion")}
           description={env.APP_VERSION}
