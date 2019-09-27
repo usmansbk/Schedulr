@@ -6,7 +6,7 @@ export default class Bookmarks extends React.Component {
     (data) => {
       if (!data) return [];
       const { bookmarks } = data;
-      return bookmarks.items.filter(item => Boolean(item.event)).map(item => item.event)
+      return bookmarks.items.map(item => item.event)
     }
   );
 
@@ -17,12 +17,18 @@ export default class Bookmarks extends React.Component {
   render() {
     const {
       navigation,
+      fetchMore,
+      nextToken,
+      loading,
     } = this.props;
 
     return (
       <List
         navigation={navigation}
         events={this.events}
+        nextToken={nextToken}
+        fetchMore={fetchMore}
+        loading={loading}
       />
     );
   }

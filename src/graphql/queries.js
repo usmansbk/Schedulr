@@ -198,10 +198,10 @@ export const getScheduleEvents = `query GetScheduleWithEvents($id: ID!, $limit: 
   }
 }
 `;
-export const getUserBookmarks = `query GetBookmarks($id: ID!) {
+export const getUserBookmarks = `query GetBookmarks($id: ID!, $nextToken: String, $limit: Int) {
   getUserBookmarks: getUser(id: $id) {
     id
-    bookmarks {
+    bookmarks(nextToken: $nextToken, limit: $limit) @connection(key: "bookmarks") {
       items {
         id
         event {

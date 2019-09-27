@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { FlatList } from 'react-navigation';
+import { RefreshControl } from 'react-native';
 import { inject, observer } from 'mobx-react';
 import Item from './Item';
 import Separator from './Separator';
@@ -39,65 +40,85 @@ class List extends Component {
   _navigateToBanner = (id) => this.props.navigation.navigate('Banner', { id });
   _navigateToComments = (id, title, date) => this.props.navigation.navigate('Comments', { id, title, date });
   _keyExtractor = (item) => String(item.id); 
+  _onEndReached = async () => {
+    if (!this.props.loading && this.props.nextToken) {
+      await this.props.fetchMore(this.props.nextToken);
+    }
+  };
 
-  _renderItem = ({ item: {
-    id,
-    title,
-    category,
-    isCancelled,
-    allDay,
-    cancelledDates,
-    isPublic,
-    isOwner,
-    banner,
-    startAt,
-    endAt,
-    recurrence,
-    venue,
-    schedule,
-    isConcluded,
-    isBookmarked,
-    bookmarksCount,
-    commentsCount
-  }}) => (<Item
-    id={id}
-    title={title}
-    status={getStatus({
+  _renderItem = ({ item }) => {
+    if (!item) return <Item deleted />;
+    
+    const {
+      id,
+      title,
+      category,
       isCancelled,
+      allDay,
       cancelledDates,
-      startAt, endAt, isConcluded
-    })}
-    startAt={startAt}
-    endAt={endAt}
-    allDay={allDay}
-    pictureUrl={banner && getImageUrl(banner)}
-    isBookmarked={isBookmarked}
-    isAuth={isPublic || isOwner || (schedule && schedule.isFollowing)}
-    bookmarksCount={bookmarksCount}
-    commentsCount={commentsCount}
-    category={getCategory(category)}
-    recurrence={parseRepeat(recurrence)}
-    time={getHumanTime({ allDay, startAt, endAt })}
-    eventScheduleId={schedule && schedule.id}
-    duration={getDuration(startAt, endAt, allDay)}
-    address={venue}
-    onPressItem={this._onPressItem}
-    onPressComment={this._navigateToComments}
-    navigateToBanner={this._navigateToBanner}
-  />);
+      isPublic,
+      isOwner,
+      banner,
+      startAt,
+      endAt,
+      recurrence,
+      venue,
+      schedule,
+      isConcluded,
+      isBookmarked,
+      bookmarksCount,
+      commentsCount
+    } = item;
+
+    return (<Item
+      id={id}
+      title={title}
+      status={getStatus({
+        isCancelled,
+        cancelledDates,
+        startAt, endAt, isConcluded
+      })}
+      startAt={startAt}
+      endAt={endAt}
+      allDay={allDay}
+      pictureUrl={banner && getImageUrl(banner)}
+      isBookmarked={isBookmarked}
+      isAuth={isPublic || isOwner || (schedule && schedule.isFollowing)}
+      bookmarksCount={bookmarksCount}
+      commentsCount={commentsCount}
+      category={getCategory(category)}
+      recurrence={parseRepeat(recurrence)}
+      time={getHumanTime({ allDay, startAt, endAt })}
+      eventScheduleId={schedule && schedule.id}
+      duration={getDuration(startAt, endAt, allDay)}
+      address={venue}
+      onPressItem={this._onPressItem}
+      onPressComment={this._navigateToComments}
+      navigateToBanner={this._navigateToBanner}
+    />);
+  };
 
   _renderEmptyList = () => <Empty search={this.props.search} error={this.props.error} loading={this.props.loading} />;
   _renderSeparator = () => <Separator />;
-  _renderFooter = () => <Footer visible={this.props.events.length} />;
+  _renderFooter = () => <Footer loading={this.props.loading} visible={this.props.events.length} />;
 
   render() {
     const {
       events,
-      stores
+      stores,
+      loading
     } = this.props;
     
     return (
       <FlatList
+        refreshControl={
+          <RefreshControl
+            onRefresh={this._onRefresh}
+            refreshing={loading}
+            colors={[stores.themeStore.colors.primary]}
+            progressBackgroundColor={stores.themeStore.colors.bg}
+          />
+        }
         style={stores.appStyles.bookmarkedEventsList.list}
         contentContainerStyle={stores.appStyles.bookmarkedEventsList.contentContainer}
         initialNumToRender={5}
@@ -108,6 +129,7 @@ class List extends Component {
         renderItem={this._renderItem}
         ListEmptyComponent={this._renderEmptyList}
         ListFooterComponent={this._renderFooter}
+        onEndReached={this._onEndReached}
       />
     )
   }
