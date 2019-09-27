@@ -335,7 +335,6 @@ class Form extends React.Component {
                   itemStyle={styles.pickerItem}
                   onValueChange={itemValue => setFieldValue('eventScheduleId', itemValue)}
                 >
-                  <Picker.Item label={(schedules.length === 0) ? I18n.get("EVENT_FORM_noSchedule") : I18n.get("EVENT_FORM_addToASchedule")} value="" />
                   {
                     schedules.map(schedule => (
                       <Picker.Item key={schedule.id} label={schedule.name} value={schedule.id} />
