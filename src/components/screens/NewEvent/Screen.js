@@ -51,7 +51,7 @@ class NewEventScreen extends React.Component {
       schedule,
     } = event;
 
-    const eventScheduleId = navigation.getParam("eventScheduleId", schedule && schedule.id);
+    const eventScheduleId = navigation.getParam("eventScheduleId", schedule ? schedule.id : this.schedules[0].id);
     const currentSchedule = this.schedules && this.schedules.find(schedule => schedule.id === eventScheduleId);
     const targetDate = navigation.getParam('targetDate', moment().toISOString());
     const targetStartAt = targetDate;

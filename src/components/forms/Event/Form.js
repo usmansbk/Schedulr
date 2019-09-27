@@ -167,7 +167,7 @@ class Form extends React.Component {
               {errors.description && I18n.get(`HELPER_TEXT_${errors.description}`)}
               </HelperText>
               <TextInput
-                placeholder={stores.locationStore.location || I18n.get("EVENT_FORM_venue")}
+                placeholder={I18n.get("PLACEHOLDER_venue")(stores.locationStore.location)}
                 label={I18n.get("EVENT_FORM_venue")}
                 value={values.venue}
                 onChangeText={handleChange('venue')}
@@ -311,17 +311,22 @@ class Form extends React.Component {
                   </View>
                 )
               }
-              <View style={styles.radio}>
-                <Text style={styles.radioText}>{I18n.get("EVENT_FORM_public")}</Text>
-                <Switch
-                  value={values.isPublic}
-                  onValueChange={() => {
-                    const { isPublic } = values;
-                    setFieldValue('isPublic', !isPublic);
-                  }}
-                />
-              </View>
-              <Divider />
+              {
+                false &&
+                <>
+                  <View style={styles.radio}>
+                    <Text style={styles.radioText}>{I18n.get("EVENT_FORM_public")}</Text>
+                    <Switch
+                      value={values.isPublic}
+                      onValueChange={() => {
+                        const { isPublic } = values;
+                        setFieldValue('isPublic', !isPublic);
+                      }}
+                    />
+                  </View>
+                  <Divider />
+                </>
+              }
               <View style={styles.pickerSpacing}>
                 <View style={styles.row}>
                   <Text style={styles.radioText}>{I18n.get("EVENT_FORM_schedule")}</Text>

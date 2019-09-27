@@ -35,7 +35,7 @@ export default {
 
   SEARCH_inputPlaceholder: city => `Search${city ? (' near ' + city) : ''}`,
   SEARCH_schedulesTabLabel: "Schedules",
-  SEARCH_eventsTabLabel: "Events",
+  SEARCH_eventsTabLabel: "My Events",
   SEARCH_peopleTabLabel: "People",
   SEARCH_emptyList: "No results",
   SEARCH_loadMore: "Load more",
@@ -237,6 +237,7 @@ export default {
   PLACEHOLDER_normal: "Normal",
   PLACEHOLDER_addYourWebsite: "Add your website",
   PLACEHOLDER_bio: "About me",
+  PLACEHOLDER_venue: city => city ? `In ${city}` : "Venue",
 
   WARNING_dontMissOut: "Don't miss out!",
   WARNING_fileTooLarge: "File is too large",

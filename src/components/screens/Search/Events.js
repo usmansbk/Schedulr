@@ -39,7 +39,6 @@ class Events extends React.Component {
 const ListHoc = compose(
   graphql(gql(getUserData), {
     alias: 'withSearchEventsOffline',
-    skip: props => props.isConnected,
     options: props => ({
       fetchPolicy: 'cache-only',
       variables: {
@@ -51,37 +50,37 @@ const ListHoc = compose(
       ...ownProps
     })
   }),
-  graphql(gql(searchEvents), {
-    alias: 'withSearchEventsOnline',
-    skip: props => !(props.isConnected && props.query),
-    options: props => ({
-      notifyOnNetworkStatusChange: true,
-      fetchPolicy: 'cache-and-network',
-      variables: {
-        filter: searchEventFilter(props.query, props.location),
-        limit: SEARCH_LIMIT
-      }
-    }),
-    props: ({ data, ownProps }) => ({
-      loading: data && data.loading || data.networkStatus === 4,
-      events: data && data.searchEvents && getEvents(data.searchEvents.items) || [],
-      nextToken: data && data.searchEvents && data.searchEvents.nextToken,
-      onRefresh: () => data.refetch(),
-      fetchMore: (nextToken) => data.fetchMore({
-        variables: {
-          nextToken
-        },
-        updateQuery: (prev, { fetchMoreResult }) => (
-          updateQuery({
-            prev,
-            fetchMoreResult,
-            rootField: 'searchEvents'
-          })
-        )
-      }),
-      ...ownProps
-    })
-  })
+  // graphql(gql(searchEvents), {
+  //   alias: 'withSearchEventsOnline',
+  //   skip: props => !(props.isConnected && props.query),
+  //   options: props => ({
+  //     notifyOnNetworkStatusChange: true,
+  //     fetchPolicy: 'cache-and-network',
+  //     variables: {
+  //       filter: searchEventFilter(props.query, props.location),
+  //       limit: SEARCH_LIMIT
+  //     }
+  //   }),
+  //   props: ({ data, ownProps }) => ({
+  //     loading: data && data.loading || data.networkStatus === 4,
+  //     events: data && data.searchEvents && getEvents(data.searchEvents.items) || [],
+  //     nextToken: data && data.searchEvents && data.searchEvents.nextToken,
+  //     onRefresh: () => data.refetch(),
+  //     fetchMore: (nextToken) => data.fetchMore({
+  //       variables: {
+  //         nextToken
+  //       },
+  //       updateQuery: (prev, { fetchMoreResult }) => (
+  //         updateQuery({
+  //           prev,
+  //           fetchMoreResult,
+  //           rootField: 'searchEvents'
+  //         })
+  //       )
+  //     }),
+  //     ...ownProps
+  //   })
+  // })
 )(List);
 
 export default inject("stores")(observer(Events));

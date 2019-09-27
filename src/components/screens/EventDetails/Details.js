@@ -63,16 +63,20 @@ export default inject('stores')(observer(
           </View>
           <Divider />
           <View style={stores.appStyles.eventDetails.body}>
-            <View style={stores.appStyles.eventDetails.item}>
-              <Text style={stores.appStyles.eventDetails.label}>{I18n.get("TYPE")}</Text>
-              <Text style={stores.appStyles.eventDetails.value}>{I18n.get(isPublic ? "Public" : "Private")}{category && ` ${BULLET} ${category}`}</Text>
-            </View>
+            {
+              !!category && (
+                <View style={stores.appStyles.eventDetails.item}>
+                  <Text style={stores.appStyles.eventDetails.label}>{I18n.get("TYPE")}</Text>
+                  <Text style={stores.appStyles.eventDetails.value}>{category && ` ${BULLET} ${category}`}</Text>
+                </View>
+                )
+            }
             <View style={stores.appStyles.eventDetails.item}>
               <Text style={stores.appStyles.eventDetails.label}>{I18n.get("VENUE")}</Text>
               <Text style={stores.appStyles.eventDetails.value}>{address || I18n.get("No location set")}</Text>
             </View>
             {
-              (isAuth) && (
+              (isAuth && scheduleName) && (
                 <View style={stores.appStyles.eventDetails.item}>
                   <Text style={stores.appStyles.eventDetails.label}>{I18n.get("SCHEDULE")}</Text>
                   <Text
