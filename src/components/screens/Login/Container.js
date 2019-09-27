@@ -1,6 +1,5 @@
 import React from 'react';
 import uuidv5 from 'uuid/v5';
-import shortid from 'shortid';
 import { Auth, Hub } from 'aws-amplify';
 import { inject, observer } from 'mobx-react';
 import { withNavigationFocus } from'react-navigation';
@@ -69,9 +68,7 @@ class Container extends React.Component {
             });
             const user = result.data.createUser;
             
-            const hash = uuidv5(email, uuidv5.DNS);
-            const sort = shortid.generate();
-            const id = `${hash}-${sort}`;
+            const id = uuidv5(email, uuidv5.DNS);
             const input = {
               id,
               ...defaultSchedule(this.props.stores.settingsStore.language)

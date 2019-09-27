@@ -29,6 +29,7 @@ export default inject("stores")(observer(
       props: ({ data, ownProps}) => ({
         loading: data && data.loading,
         data: data && data.getUserData,
+        userId: ownProps.stores.appState.userId,
         onRefresh: () => data.refetch(),
         fetchMore: () => {
           const lastSyncTimestamp = ownProps.stores.appState.lastSyncTimestamp;

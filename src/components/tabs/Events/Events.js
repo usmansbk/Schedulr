@@ -1,5 +1,5 @@
 import React from 'react';
-import { I18n } from 'aws-amplify';
+import uuidv5 from 'uuid/v5';
 import memoize from 'memoize-one';
 import List from 'components/lists/Events';
 import FAB from 'components/common/Fab';
@@ -30,7 +30,9 @@ export default class Events extends React.Component {
   };
  
   _navigateToNewEvent = () => {
-    this.props.navigation.navigate('NewEvent');
+    this.props.navigation.navigate('NewEvent', {
+      eventScheduleId : uuidv5(this.props.userId, uuidv5.DNS)
+    });
   };
 
   _onRefresh = () => this.props.onRefresh && this.props.onRefresh();
