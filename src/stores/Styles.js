@@ -1179,6 +1179,7 @@ export default class AppStyles {
         height: 40,
         flexDirection: 'row',
         paddingHorizontal: 8,
+        justifyContent: 'space-between'
       },
       itemBody: {
         paddingTop: 4,
@@ -1188,6 +1189,7 @@ export default class AppStyles {
       itemHeadline: {
         // fontSize: 20,
         fontFamily: 'sans-serif-bold',
+        textAlignVertical: 'center'
       },
       itemNote: {
         fontSize: 16,
@@ -1195,6 +1197,11 @@ export default class AppStyles {
         width: 200
       },
       left: {
+        paddingTop: 16
+      },
+      uleft: {
+        justifyContent: 'center',
+        backgroundColor: 'red',
         paddingTop: 16
       },
       right: {

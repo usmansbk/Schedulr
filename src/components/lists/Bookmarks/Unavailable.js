@@ -21,17 +21,13 @@ class Item extends React.Component {
     return (
       <TouchableRipple style={styles.itemContainer}>
         <View useNativeDriver style={styles.unavailableItemContent}>
-          <View style={styles.left}>
-            <View style={styles.itemBody}>
-              <Caption
-                style={styles.itemHeadline}
-                numberOfLines={1}
-                ellipsizeMode="tail">
-                This event was deleted
-              </Caption>
-            </View>
-          </View>
-          <View style={styles.right}>
+          <Caption
+            style={styles.itemHeadline}
+            numberOfLines={1}
+            ellipsizeMode="tail">
+            This event was deleted
+          </Caption>
+          <View style={{justifyContent: 'center'}}>        
             <BookmarkButton
               id={id}
               isBookmarked
