@@ -201,7 +201,7 @@ export const getScheduleEvents = `query GetScheduleWithEvents($id: ID!, $limit: 
 export const getUserBookmarks = `query GetBookmarks($id: ID!, $nextToken: String, $limit: Int) {
   getUserBookmarks: getUser(id: $id) {
     id
-    bookmarks(nextToken: $nextToken, limit: $limit) @connection(key: "bookmarks") {
+    bookmarks(nextToken: $nextToken, limit: $limit, sortDirection: DESC) @connection(key: "bookmarks") {
       items {
         id
         event {
@@ -318,7 +318,7 @@ export const getUserSchedules = `query GetUserSchedules($id: ID!) {
 export const getUserData = `query GetUserData($id: ID!, $filter: ModelEventFilterInput, $limit: Int) {
   getUserData: getUser(id: $id) {
     id
-    created(limit: $limit) @connection(key: "created") {
+    created(limit: $limit, sortDirection: ASC) @connection(key: "created") {
       items {
         id
         name
@@ -340,7 +340,7 @@ export const getUserData = `query GetUserData($id: ID!, $filter: ModelEventFilte
         eventsCount
         createdAt
         updatedAt
-        events(filter: $filter, limit: $limit) @connection(key: "events") {
+        events(filter: $filter, limit: $limit, sortDirection: ASC) @connection(key: "events") {
           items {
             id
             title
@@ -381,7 +381,7 @@ export const getUserData = `query GetUserData($id: ID!, $filter: ModelEventFilte
       }
       nextToken
     }
-    following(limit: $limit) @connection(key: "following") {
+    following(limit: $limit, sortDirection: ASC) @connection(key: "following") {
       nextToken
       items {
         id
@@ -412,7 +412,7 @@ export const getUserData = `query GetUserData($id: ID!, $filter: ModelEventFilte
             followingCount
             createdAt
           }
-          events(limit: $limit) @connection(key: "events") {
+          events(limit: $limit, sortDirection: ASC) @connection(key: "events") {
             nextToken
             items {
               id
@@ -457,7 +457,7 @@ export const getUserData = `query GetUserData($id: ID!, $filter: ModelEventFilte
         }
       }
     }
-    bookmarks(limit: $limit) @connection(key: "bookmarks") {
+    bookmarks(limit: $limit, sortDirection: DESC) @connection(key: "bookmarks") {
       items {
         id
         event {

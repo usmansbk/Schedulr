@@ -158,6 +158,7 @@ const getNextDayEvents = memoize((initialEvents, nextDate) => {
 function getEvents(events) {
   if (!events) return [];
   return events.map((currentEvent) => {
+    if (typeof currentEvent === 'string') return currentEvent;
     const eventDate = moment(currentEvent.startAt);
     const interval = getInterval(currentEvent.recurrence);
     const untilAt = currentEvent.until ? moment(currentEvent.until) : undefined;

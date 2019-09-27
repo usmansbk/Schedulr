@@ -1174,13 +1174,19 @@ export default class AppStyles {
         flexDirection: 'row',
         paddingHorizontal: 8,
       },
+      unavailableItemContent: {
+        paddingTop: 4,
+        height: 40,
+        flexDirection: 'row',
+        paddingHorizontal: 8,
+      },
       itemBody: {
         paddingTop: 4,
         marginLeft: 8,
         flex: 1,
       },
       itemHeadline: {
-        fontSize: 20,
+        // fontSize: 20,
         fontFamily: 'sans-serif-bold',
       },
       itemNote: {

@@ -3,6 +3,7 @@ import { FlatList } from 'react-navigation';
 import { RefreshControl } from 'react-native';
 import { inject, observer } from 'mobx-react';
 import Item from './Item';
+import Unavailable from './Unavailable';
 import Separator from './Separator';
 import Footer from './Footer';
 import Empty from './Empty';
@@ -39,7 +40,7 @@ class List extends Component {
   _onPressItem = (id, refStartAt, refEndAt) => this.props.navigation.navigate('EventDetails', { id, refStartAt, refEndAt });
   _navigateToBanner = (id) => this.props.navigation.navigate('Banner', { id });
   _navigateToComments = (id, title, date) => this.props.navigation.navigate('Comments', { id, title, date });
-  _keyExtractor = (item) => String(item.id); 
+  _keyExtractor = (item) => typeof item === 'string' ? item : String(item.id); 
   _onEndReached = async () => {
     if (!this.props.loading && this.props.nextToken) {
       await this.props.fetchMore(this.props.nextToken);
@@ -47,8 +48,8 @@ class List extends Component {
   };
 
   _renderItem = ({ item }) => {
-    if (!item) return <Item deleted />;
-    
+    if (typeof item === 'string') return <Unavailable id={item} />;
+
     const {
       id,
       title,
