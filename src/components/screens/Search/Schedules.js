@@ -66,6 +66,7 @@ const ListHoc = compose(
       loading: data && data.loading || data.networkStatus === 4,
       schedules: data && data.searchSchedules && data.searchSchedules.items || [],
       nextToken: data && data.searchSchedules && data.searchSchedules.nextToken,
+      onRefresh: () => data.refetch(),
       fetchMore: nextToken => data.fetchMore({
         variables: {
           nextToken
