@@ -33,6 +33,7 @@ class Item extends React.Component {
               isBookmarked
               color={stores.themeStore.colors.light_gray_3}
               activeColor={stores.themeStore.colors.like}
+              size={18}
             />
           </View>
         </View>
