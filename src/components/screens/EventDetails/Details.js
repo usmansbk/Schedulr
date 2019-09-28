@@ -30,10 +30,8 @@ export default inject('stores')(observer(
     status,
     isCancelled,
     isBookmarked,
-    isOwner,
     authorId,
     isAuth,
-    isPublic,
     bookmarksCount,
     commentsCount,
     navigateToSchedule,
@@ -67,7 +65,7 @@ export default inject('stores')(observer(
               !!category && (
                 <View style={stores.appStyles.eventDetails.item}>
                   <Text style={stores.appStyles.eventDetails.label}>{I18n.get("TYPE")}</Text>
-                  <Text style={stores.appStyles.eventDetails.value}>{category && ` ${BULLET} ${category}`}</Text>
+                  <Text style={stores.appStyles.eventDetails.value}>{category}</Text>
                 </View>
                 )
             }

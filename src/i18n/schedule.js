@@ -1,6 +1,6 @@
 const en = {
   name: "Personal",
-  description: "My personal activities",
+  description: "My personal appointments",
   isPublic: false
 };
 
