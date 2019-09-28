@@ -31,12 +31,14 @@ class ListHoc extends React.Component {
       loading,
       error,
       events,
+      isAuth,
       navigation
     } = this.props;
 
     return <>
       <List
         id={id}
+        isAuth={isAuth}
         loading={loading}
         error={error}
         ref={this._eventsListRef}

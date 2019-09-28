@@ -88,6 +88,7 @@ class List extends React.Component {
     error={this.props.error && !this.state.events.length}
     loading={this.props.loading}
     onRefresh={this.props.onRefresh}
+    isAuth={this.props.isAuth}
   />;
   _renderSeparator = () => <Separator />;
   _renderSectionHeader = ({ section }) => <SectionHeader onPress={this._onPressSectionHeader} section={section} />;
