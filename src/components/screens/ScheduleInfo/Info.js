@@ -1,5 +1,6 @@
 import React from 'react';
 import moment from 'moment';
+import uuidv5 from 'uuid/v5';
 import isEqual from 'lodash.isequal';
 import {
   View,
@@ -89,6 +90,7 @@ class Info extends React.Component {
     const styles = stores.appStyles.scheduleInfo;
     const colors = stores.themeStore.colors;
     const isAuth = (isPublic || isFollowing) && !isOwner;
+    const isPersonal = id === uuidv5(stores.appState.userId, uuidv5.DNS);
 
     return (
       <>
@@ -128,16 +130,20 @@ class Info extends React.Component {
                 />}
                 onPress={this._onEdit}
               />
-              <Appbar.Action
-                size={24}
-                color={colors.gray}
-                icon={({ size, color }) => <Icon
-                  name="trash"
-                  size={size}
-                  color={color}
-                />}
-                onPress={this._onDelete}
-              />
+              {
+                !isPersonal && (
+                  <Appbar.Action
+                    size={24}
+                    color={colors.gray}
+                    icon={({ size, color }) => <Icon
+                      name="trash"
+                      size={size}
+                      color={color}
+                    />}
+                    onPress={this._onDelete}
+                  />
+                )
+              }
             </>
           }
         </Appbar.Header>
