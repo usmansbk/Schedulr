@@ -144,7 +144,7 @@ export default {
   SHARE_SCHEDULE_message: name => `Hello, I'm inviting you to follow "${name}" to see their latest events, receive updates and reminders.\n`,
   SHARE_EVENT_inviteTitle: "Share event via...",
 
-  TOAST_enableReminder: "Enable reminder!",
+  TOAST_enableReminder: "Unmute all events to continue!",
   TOAST_locationError: "Failed to get location. Turn off airplane mode.",
   TOAST_noImageFound: "No image found",
   TOAST_removed: "Removed",
