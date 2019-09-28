@@ -4,6 +4,7 @@ import {
   TouchableRipple,
   Caption,
 } from 'react-native-paper';
+import Icon from 'react-native-vector-icons/Feather';
 import BookmarkButton from 'components/common/BookmarkButton';
 import { inject, observer } from 'mobx-react';
 
@@ -25,7 +26,7 @@ class Item extends React.Component {
             style={styles.itemHeadline}
             numberOfLines={1}
             ellipsizeMode="tail">
-            This event was deleted
+            <Icon name="alert-triangle" size={16} /> This event was deleted
           </Caption>
           <View style={{justifyContent: 'center'}}>        
             <BookmarkButton
