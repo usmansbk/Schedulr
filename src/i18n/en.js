@@ -140,8 +140,8 @@ export default {
 
   SHARE_inviteAFriendTitle: "Invite via...",
   SHARE_SCHEDULE_inviteTitle: "Share invite link via...",
-  SHARE_SCHEDULE_subject: "Follow schedule to get latest events",
-  SHARE_SCHEDULE_message: name => `Follow "${name}" to see their latest events, receive updates and get reminders.\n`,
+  SHARE_SCHEDULE_subject: "You have been invited to follow a schedule on Schdlr.",
+  SHARE_SCHEDULE_message: name => `Hello, I'm inviting you to follow "${name}" to see their latest events, receive updates and reminders.\n`,
   SHARE_EVENT_inviteTitle: "Share event via...",
 
   TOAST_enableReminder: "Enable reminder!",
