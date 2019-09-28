@@ -244,10 +244,10 @@ export const getUserBookmarks = `query GetBookmarks($id: ID!, $nextToken: String
     }
   }
 }`;
-export const getUserSchedules = `query GetUserSchedules($id: ID!) {
+export const getUserSchedules = `query GetUserSchedules($id: ID!, $limit: Int) {
   getUserSchedules: getUser(id: $id) {
     id
-    created {
+    created(limit: $limit, sortDirection: ASC) @connection(key: "created") {
       items {
         id
         name
@@ -276,7 +276,7 @@ export const getUserSchedules = `query GetUserSchedules($id: ID!) {
       }
       nextToken
     }
-    following {
+    following(limit: $limit, sortDirection: ASC) @connection(key: "following") {
       items {
         id
         schedule {

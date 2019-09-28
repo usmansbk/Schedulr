@@ -125,7 +125,8 @@ export default inject('stores')(observer(
         fetchPolicy: 'cache-and-network',
         notifyOnNetworkStatusChange: true,
         variables: {
-          id: props.navigation.getParam('id')
+          id: props.navigation.getParam('id'),
+          limit: 50,
         }
       }),
       props: ({ data, ownProps }) => ({
