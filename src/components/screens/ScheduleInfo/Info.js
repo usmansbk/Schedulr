@@ -108,16 +108,20 @@ class Info extends React.Component {
           <Appbar.Content
             titleStyle={appStyles.headerColor}
           />
-          <Appbar.Action
-            size={24}
-            color={colors.gray}
-            icon={({ size, color }) => <Icon
-              name="share-2"
-              size={size}
-              color={color}
-            />}
-            onPress={() => handleShare({ name, description, id})}
-          />
+          {
+            (isPublic || isOwner) && (
+              <Appbar.Action
+                size={24}
+                color={colors.gray}
+                icon={({ size, color }) => <Icon
+                  name="share-2"
+                  size={size}
+                  color={color}
+                />}
+                onPress={() => handleShare({ name, description, id})}
+              />
+            )
+          }
           {
             !!isOwner && <>
               <Appbar.Action
