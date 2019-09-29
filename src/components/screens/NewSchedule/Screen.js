@@ -5,12 +5,6 @@ import Form from 'components/forms/Schedule';
 
 export default class NewScheduleScreen extends React.Component {
   
-  componentDidMount = () => {
-    this.fetchLocation = setTimeout(this.props.stores.locationStore.fetchLocation, 200);
-  };
-
-  componentWillUnmount = () => clearTimeout(this.fetchLocation);
-  
   _handleBack = () => this.props.navigation.goBack();
   _handleSubmit = async (form) => {
     const hash = uuidv5(this.props.stores.appState.userId, uuidv5.DNS);
@@ -32,19 +26,9 @@ export default class NewScheduleScreen extends React.Component {
     }
   };
 
-  get getInitialValues() {
-    return ({
-      name: '',
-      description: '',
-      isPublic: true,
-      location: this.props.stores.locationStore.location,
-    });
-  }
-
   render() {
     return (
       <Form
-        initialValues={this.getInitialValues}
         handleCancel={this._handleBack}
         onSubmit={this._handleSubmit}
       />

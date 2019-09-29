@@ -1,11 +1,27 @@
 import React from 'react';
 import { withApollo } from 'react-apollo';
+import memoize from 'memoize-one';
 import Form from 'components/forms/Event';
 import { getUserSchedules } from 'api/fragments';
 
 class EditEventScreen extends React.Component {
   _handleBack = () => this.props.navigation.goBack();
-  _getInitialValues = () => {
+
+  _schedules = memoize(() => {
+    const data = this.props.client.readFragment({
+      fragment: getUserSchedules,
+      id: `User:${this.props.stores.appState.userId}`
+    });
+    return (data && data.created && data.created.items) || [];
+  });
+  
+  _schedule = memoize(() => (
+    this.schedules.find(
+      schedule => schedule.id === this.props.event.schedule.id
+    )
+  ));
+
+  get initialValues() {
     const { event } = this.props;
     const refStartAt = this.props.navigation.getParam('refStartAt');
     const refEndAt = this.props.navigation.getParam('refEndAt');
@@ -48,24 +64,23 @@ class EditEventScreen extends React.Component {
   };
   
   get schedules() {
-    const data = this.props.client.readFragment({
-      fragment: getUserSchedules,
-      id: `User:${this.props.stores.appState.userId}`
-    });
-    return (data && data.created && data.created.items) || [];
+    return this._schedules();
   }
-  
-  render() {
-    const { event: { schedule } } = this.props;
 
+  get schedule() {
+    return this._schedule();
+  }
+
+  render() {
     return (
       <Form
         handleCancel={this._handleBack}
         schedules={this.schedules}
-        initialValues={this._getInitialValues()}
+        currentSchedule={this.schedule}
+        initialValues={this.initialValues}
         onSubmit={this._onSubmit}
         edit
-        locked={Boolean(schedule)}
+        locked={Boolean(this.schedule)}
       />
     )
   }
