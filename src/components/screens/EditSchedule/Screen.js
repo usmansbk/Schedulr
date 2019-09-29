@@ -10,7 +10,7 @@ export default class EditScheduleScreen extends React.Component {
     this.props.navigation.pop();
   };
 
-  _getInitialValues = () => {
+  get initialValues() {
     const { schedule } = this.props;
     if (!schedule) return undefined;
     return ({
@@ -19,11 +19,11 @@ export default class EditScheduleScreen extends React.Component {
       isPublic: Boolean(schedule.isPublic)
     });
   };
-  
+
   render() {
     return (
       <Form
-        initialValues={this._getInitialValues()}
+        initialValues={this.initialValues}
         onSubmit={this._onSubmit}
         handleCancel={this._handleBack}
         edit
