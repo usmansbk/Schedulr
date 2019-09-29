@@ -20,7 +20,7 @@ import { Formik } from 'formik';
 import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
 import DateTimeInput from 'components/common/DateTimeInput';
-import EventTypePicker, { PickerButton } from 'components/common/EventTypePickerInput';
+import EventTypeInput, { PickerButton } from 'components/common/EventTypeInput';
 import Alert from 'components/dialogs/Alert';
 import {
   isEventValid,
@@ -357,7 +357,7 @@ class Form extends React.Component {
             </View>
           </ScrollView>
           
-          <EventTypePicker
+          <EventTypeInput
             visible={showPicker}
             prompt={I18n.get("EVENT_FORM_category")}
             selectedValue={values.category || ''}
