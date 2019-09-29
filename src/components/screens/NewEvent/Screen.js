@@ -3,6 +3,7 @@ import moment from 'moment';
 import uuidv5 from 'uuid/v5';
 import shortid from 'shortid';
 import { withApollo } from 'react-apollo';
+import memoize from 'memoize-one';
 import Form from 'components/forms/Event';
 import recurrences from 'components/forms/Event/recurrence';
 import { isPastExact } from 'lib/time';
@@ -27,11 +28,7 @@ class NewEventScreen extends React.Component {
   };
 
   get schedules() {
-    const data = this.props.client.readFragment({
-      fragment: getUserSchedules,
-      id: `User:${this.props.stores.appState.userId}`
-    });
-    return (data && data.created && data.created.items) || [];
+    return this._schedules();
   }
   
   get getInitialValues() {
@@ -93,17 +90,38 @@ class NewEventScreen extends React.Component {
     });
   }
 
+  get schedule() {
+    const { event={} } = this.props;
+    const { schedule } = event;
+
+    const eventScheduleId = this.props.navigation.getParam("eventScheduleId", schedule ? schedule.id : this.schedules[0].id);
+    const currentSchedule = this.schedules && this.schedules.find(schedule => schedule.id === eventScheduleId);
+    return currentSchedule;
+  }
+
+  _filterSchedules = memoize((list) => (
+    list.filter(schedule => (schedule.status !== SCHEDULE_CLOSED))
+  ));
+
+  _schedules = memoize(() => {
+    const data = this.props.client.readFragment({
+      fragment: getUserSchedules,
+      id: `User:${this.props.stores.appState.userId}`
+    });
+    return (data && data.created && data.created.items) || [];
+  });
+
   render() {
-    const locked= this.props.navigation.getParam('locked');
     return (
       <Form
         initialValues={this.getInitialValues}
         isNew={this.props.isNew}
-        schedules={this.schedules.filter(schedule => (schedule.status !== SCHEDULE_CLOSED))}
+        schedules={this._filterSchedules(this.schedules)}
+        currentSchedule={this.schedule}
         handleCancel={this._handleBack}
         onSubmit={this._handleSubmit}
         newSchedule={this._newSchedule}
-        locked={locked}
+        locked={this.props.navigation.getParam('locked')}
       />
     )
   }

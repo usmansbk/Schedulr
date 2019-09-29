@@ -63,12 +63,14 @@ class Form extends React.Component {
       until: null,
       forever: false,
       eventScheduleId: null,
-      isPublic: true
+      isPublic: true,
+      location: null
     }
   };
 
   render() {
     const {
+      currentSchedule,
       schedules,
       locked,
       initialValues,
@@ -167,7 +169,7 @@ class Form extends React.Component {
               {errors.description && I18n.get(`HELPER_TEXT_${errors.description}`)}
               </HelperText>
               <TextInput
-                placeholder={I18n.get("PLACEHOLDER_venue")(stores.locationStore.location)}
+                placeholder={I18n.get("PLACEHOLDER_venue")(currentSchedule.location)}
                 label={I18n.get("EVENT_FORM_venue")}
                 value={values.venue}
                 onChangeText={handleChange('venue')}
