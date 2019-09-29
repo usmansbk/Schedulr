@@ -57,7 +57,7 @@ export default class Location {
 
   @computed get location() {
     if (this.locality && this.country) {
-      return `${this.locality}, ${this.countryCode}`;
+      return `${this.locality}, ${this.country}`;
     }
     return null;
   }
