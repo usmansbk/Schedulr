@@ -9,6 +9,7 @@ export const getUserSchedules = gql`
         description
         isPublic
         status
+        location
       }
     }
   }
