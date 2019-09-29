@@ -34,7 +34,7 @@ class NewEventScreen extends React.Component {
     return (data && data.created && data.created.items) || [];
   }
   
-  _getInitialValues = () => {
+  get getInitialValues() {
     const { event={}, navigation } = this.props;
     const {
       title,
@@ -47,7 +47,6 @@ class NewEventScreen extends React.Component {
       recurrence,
       until,
       forever,
-      isPublic=true,
       schedule,
     } = event;
 
@@ -88,16 +87,17 @@ class NewEventScreen extends React.Component {
       recurrence: recurrence || recurrences[0].id,
       until,
       forever: forever !== undefined ? forever : true,
+      location: currentSchedule.location,
       eventScheduleId,
-      isPublic: currentSchedule ? currentSchedule.isPublic : Boolean(isPublic)
+      isPublic: Boolean(currentSchedule.isPublic)
     });
-  };
+  }
 
   render() {
     const locked= this.props.navigation.getParam('locked');
     return (
       <Form
-        initialValues={this._getInitialValues()}
+        initialValues={this.getInitialValues}
         isNew={this.props.isNew}
         schedules={this.schedules.filter(schedule => (schedule.status !== SCHEDULE_CLOSED))}
         handleCancel={this._handleBack}

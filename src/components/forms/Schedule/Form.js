@@ -19,7 +19,7 @@ import { Formik } from 'formik';
 import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
 import validationSchema from './schema';
-import buildForm, { getLocation } from 'helpers/buildForm';
+import buildForm from 'helpers/buildForm';
 
 class Form extends React.Component {
   static defaultProps = {
@@ -44,13 +44,6 @@ class Form extends React.Component {
       showPrivacyAlert: false
     });
   };
-  
-
-  componentDidMount = () => {
-    this.fetchLocation = setTimeout(this.props.stores.locationStore.fetchLocation, 200);
-  };
-
-  componentWillUnmount = () => clearTimeout(this.fetchLocation);
 
   render() {
     const {
@@ -70,7 +63,6 @@ class Form extends React.Component {
         validationSchema={validationSchema}
         onSubmit={async (values, { setSubmitting }) => {
           const input = buildForm(values);
-          input.location = stores.locationStore.location;
           onSubmit && await onSubmit(input);
           setSubmitting(false);
         }}

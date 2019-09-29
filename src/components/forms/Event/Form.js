@@ -90,7 +90,7 @@ class Form extends React.Component {
         onSubmit={async (values, { setSubmitting }) => {
           if (isEventValid(values)) {
             const input = buildForm(values);
-            input.location = stores.locationStore.location;
+            input.geo_point = stores.locationStore.point;
             onSubmit && await onSubmit(input);
           }
           setSubmitting(false);
