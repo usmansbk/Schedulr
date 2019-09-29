@@ -23,7 +23,7 @@ export default class Location {
             } } = position;
             const loc = {
               lat: latitude,
-              lng: longitude
+              lon: longitude
             };
 
             this.point = loc;

@@ -171,6 +171,7 @@ export const createSchedule = `mutation CreateSchedule($input: CreateScheduleInp
     isPublic
     isOwner
     isFollowing
+    location
     status
     picture {
       key
@@ -231,6 +232,7 @@ export const updateSchedule = `mutation UpdateSchedule($input: UpdateScheduleInp
     id
     name
     description
+    location
     isPublic
     status
     updatedAt
@@ -261,6 +263,7 @@ export const createFollow = `mutation CreateFollow($input: CreateFollowInput!, $
       isPublic
       isOwner
       isFollowing
+      location
       status
       picture {
         key

@@ -181,6 +181,7 @@ function createSchedule(input, typename) {
     isFollowing: false,
     status: null,
     picture: null,
+    location: null,
     author,
     followersCount: 0,
     eventsCount: 0,
@@ -310,6 +311,7 @@ function createFollow(input, typename) {
       isPublic
       isOwner
       isFollowing
+      location
       status
       picture {
         key
@@ -595,6 +597,7 @@ function updateSchedule(input, typename) {
       description
       isPublic
       status
+      location
       updatedAt
       picture {
         key

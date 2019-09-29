@@ -124,6 +124,7 @@ export const getSchedule = `query GetSchedule($id: ID!) {
     isPublic
     isOwner
     isFollowing
+    location
     status
     author {
       id
@@ -255,6 +256,7 @@ export const getUserSchedules = `query GetUserSchedules($id: ID!, $limit: Int) {
         isPublic
         isOwner
         isFollowing
+        location
         status
         picture {
           key
@@ -286,6 +288,7 @@ export const getUserSchedules = `query GetUserSchedules($id: ID!, $limit: Int) {
           isPublic
           isOwner
           isFollowing
+          location
           status
           picture {
             key
@@ -326,6 +329,7 @@ export const getUserData = `query GetUserData($id: ID!, $filter: ModelEventFilte
         isPublic
         isOwner
         isFollowing
+        location
         status
         picture {
           key
@@ -392,6 +396,7 @@ export const getUserData = `query GetUserData($id: ID!, $filter: ModelEventFilte
           isPublic
           isOwner
           isFollowing
+          location
           status
           picture {
             key
@@ -546,6 +551,7 @@ export const getDeltaUpdates = `query GetDeltaUpdates($lastSync: String!) {
       isPublic
       status
       updatedAt
+      location
       picture {
         key
         bucket
@@ -650,6 +656,7 @@ export const searchSchedules = `query SearchSchedules($filter: SearchableSchedul
       isPublic
       isOwner
       isFollowing
+      location
       status
       author {
         id
