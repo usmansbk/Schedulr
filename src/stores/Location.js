@@ -61,4 +61,11 @@ export default class Location {
     }
     return null;
   }
+
+  @action reset() {
+    this.country = null;
+    this.point = null;
+    this.locality = null;
+    this.countryCode = null;
+  }
 }

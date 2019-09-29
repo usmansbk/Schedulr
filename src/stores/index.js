@@ -45,6 +45,7 @@ class RootStore {
     this.remindMeStore.reset();
     this.appState.reset();
     this.notificationsStore.reset();
+    this.locationStore.reset();
   }
 }
 
