@@ -2,7 +2,6 @@ import React from 'react';
 import {
   Modal,
   Portal,
-  Provider,
   Divider,
 } from 'react-native-paper';
 import { I18n } from 'aws-amplify';
