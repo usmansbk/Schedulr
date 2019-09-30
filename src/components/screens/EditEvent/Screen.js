@@ -35,6 +35,7 @@ class EditEventScreen extends React.Component {
       schedule,
       isPublic
     } = event;
+    const currentSchedule = this.schedules.find(item => item.id === schedule.id);
     return ({
       title,
       description: description || '',
@@ -46,9 +47,9 @@ class EditEventScreen extends React.Component {
       recurrence,
       until,
       forever: forever !== undefined ? forever : true,
-      eventScheduleId: schedule ? schedule.id : null,
+      eventScheduleId: currentSchedule ? currentSchedule.id : null,
       isPublic: Boolean(isPublic),
-      location: schedule ? schedule.location : null
+      location: currentSchedule ? currentSchedule.location : null
     });
   };
   
