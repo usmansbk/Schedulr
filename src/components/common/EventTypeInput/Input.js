@@ -94,6 +94,7 @@ class Input extends React.Component {
                 value={text}
                 onChangeText={this._onChangeText}
                 onSubmitEditing={this._handleSubmit}
+                clearButtonMode="while-editing"
               />
               <HelperText
                 type="error"
