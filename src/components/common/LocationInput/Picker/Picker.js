@@ -14,50 +14,41 @@ class Input extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      visible: false,
-      text: props.selectedValue
+      visible: false
     }
   }
-
-  _showModal = () => this.setState({ visible: true });
-  _hideModal = () => this.props.hideModal();
   _onChangeText = text => this.setState({ text });
   _onValueChange = (value) => this.props.onValueChange(value);
 
   render() {
     const {
-      selectedValue,
       stores,
-      location,
-      visible
+      visible,
+      hideModal
     } = this.props;
-    const styles = stores.appStyles.picker;
-    const colors = stores.themeStore.colors;
     const { text } = this.state;
-    const data = [];
 
     return (
       <Provider>
         <Portal>
           <Modal
             visible={visible}
-            onDismiss={this._hideModal}
-            contentContainerStyle={styles.container}
+            onDismiss={hideModal}
+            contentContainerStyle={stores.appStyles.picker.container}
           >
-
-            <View style={styles.content}>
+            <View style={stores.appStyles.picker.content}>
               <List
-                data={data}
+                data={[]}
                 onValueChange={this._onValueChange}
-                hideModal={this._hideModal}
+                hideModal={hideModal}
               />
               <Divider />
               <TextInput
                 placeholder={I18n.get("PLACEHOLDER_searchCities")}
                 label={I18n.get("PLACEHOLDER_searchCities")}
                 mode="outlined"
-                style={styles.placeholder}
-                placeholderTextColor={colors.placeholder}
+                style={stores.appStyles.picker.placeholder}
+                placeholderTextColor={stores.themeStore.colors.placeholder}
                 value={text}
                 onChangeText={this._onChangeText}
                 onSubmitEditing={this._handleSubmit}

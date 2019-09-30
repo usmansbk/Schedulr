@@ -171,6 +171,11 @@ class Form extends React.Component {
               </View>
             </View>
           </ScrollView>
+          <LocationPicker
+            visible={this.state.showLocationPicker}
+            hideModal={this._hideDialog}
+            onValueChange={location => setState({ location })}
+          />
           <Alert
             title={I18n.get("ALERT_whatIsASchedule")}
             message={I18n.get("ALERT_whatIsAScheduleA")}
@@ -182,11 +187,6 @@ class Form extends React.Component {
             message={I18n.get("ALERT_privateScheduleWarn")}
             visible={this.state.showPrivacyAlert}
             handleDismiss={this._hideDialog}
-          />
-          <LocationPicker
-            visible={this.state.showLocationPicker}
-            hideModal={this._hideDialog}
-            onValueChange={location => setState({ location })}
           />
           </>
         )}
