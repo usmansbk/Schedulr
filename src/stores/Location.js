@@ -3,6 +3,9 @@ import Geocoder from 'react-native-geocoder';
 import { observable, action, computed } from 'mobx';
 import { persist } from 'mobx-persist';
 import { requestLocationPermission } from 'helpers/permissions';
+import { GOOGLE_API_ANDROID_KEY } from 'config/env';
+
+Geocoder.fallbackToGoogle(GOOGLE_API_ANDROID_KEY);
 
 export default class Location {
   @persist('object') @observable point = null;
@@ -12,7 +15,7 @@ export default class Location {
   @persist @observable countryCode = null;
   @persist @observable currentLocation = null;
 
-  @action fetchLocation = async () => {
+  @action fetchLocation = async (update) => {
     try {
       const hasLocationPermission = await requestLocationPermission();
       if (hasLocationPermission) {

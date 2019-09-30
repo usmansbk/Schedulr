@@ -14,6 +14,7 @@ const common = {
   EMAIL: 'hello.schdlr@gmail.com',
   WEB_CLIENT_ID: "915796894963-6566v17dt2cuet54ihj3cem5vod86js3.apps.googleusercontent.com",
   CloudFrontUrl: "https://d1u22e64efucw4.cloudfront.net",
+  GOOGLE_API_ANDROID_KEY: "AIzaSyCd4f18IwablOuAcBh0_1QnyJ8bcIDz0b8"
 }
 
 const dev = {
