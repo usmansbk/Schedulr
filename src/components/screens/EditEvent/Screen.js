@@ -14,12 +14,6 @@ class EditEventScreen extends React.Component {
     });
     return (data && data.created && data.created.items) || [];
   });
-  
-  _schedule = memoize(() => (
-    this.schedules.find(
-      schedule => schedule.id === this.props.event.schedule.id
-    )
-  ));
 
   get initialValues() {
     const { event } = this.props;
@@ -52,8 +46,9 @@ class EditEventScreen extends React.Component {
       recurrence,
       until,
       forever: forever !== undefined ? forever : true,
-      eventScheduleId: schedule && schedule.id,
-      isPublic: Boolean(isPublic)
+      eventScheduleId: schedule ? schedule.id : null,
+      isPublic: Boolean(isPublic),
+      location: schedule ? schedule.location : null
     });
   };
   
@@ -67,16 +62,11 @@ class EditEventScreen extends React.Component {
     return this._schedules();
   }
 
-  get schedule() {
-    return this._schedule();
-  }
-
   render() {
     return (
       <Form
         handleCancel={this._handleBack}
         schedules={this.schedules}
-        currentSchedule={this.schedule}
         initialValues={this.initialValues}
         onSubmit={this._onSubmit}
         edit

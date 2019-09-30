@@ -69,7 +69,6 @@ class Form extends React.Component {
 
   render() {
     const {
-      currentSchedule,
       schedules,
       locked,
       initialValues,
@@ -169,7 +168,7 @@ class Form extends React.Component {
               {errors.description && I18n.get(`HELPER_TEXT_${errors.description}`)}
               </HelperText>
               <TextInput
-                placeholder={I18n.get("PLACEHOLDER_venue")(currentSchedule.location)}
+                placeholder={I18n.get("PLACEHOLDER_venue")(values.location)}
                 label={I18n.get("EVENT_FORM_venue")}
                 value={values.venue}
                 onChangeText={handleChange('venue')}
@@ -340,7 +339,14 @@ class Form extends React.Component {
                   style={styles.picker}
                   enabled={!locked }
                   itemStyle={styles.pickerItem}
-                  onValueChange={itemValue => setFieldValue('eventScheduleId', itemValue)}
+                  onValueChange={itemValue => {
+                    setFieldValue('eventScheduleId', itemValue);
+                    const found = schedules.find(item => item.id === itemValue);
+                    if (found) {
+                      setFieldValue('location', found.location);
+                      setFieldValue('isPublic', Boolean(found.isPublic));
+                    }
+                  }}
                 >
                   {
                     schedules.map(schedule => (

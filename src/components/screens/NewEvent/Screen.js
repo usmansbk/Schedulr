@@ -90,15 +90,6 @@ class NewEventScreen extends React.Component {
     });
   }
 
-  get schedule() {
-    const { event={} } = this.props;
-    const { schedule } = event;
-
-    const eventScheduleId = this.props.navigation.getParam("eventScheduleId", schedule ? schedule.id : this.schedules[0].id);
-    const currentSchedule = this.schedules && this.schedules.find(schedule => schedule.id === eventScheduleId);
-    return currentSchedule;
-  }
-
   _filterSchedules = memoize((list) => (
     list.filter(schedule => (schedule.status !== SCHEDULE_CLOSED))
   ));
@@ -117,7 +108,6 @@ class NewEventScreen extends React.Component {
         initialValues={this.getInitialValues}
         isNew={this.props.isNew}
         schedules={this._filterSchedules(this.schedules)}
-        currentSchedule={this.schedule}
         handleCancel={this._handleBack}
         onSubmit={this._handleSubmit}
         newSchedule={this._newSchedule}
