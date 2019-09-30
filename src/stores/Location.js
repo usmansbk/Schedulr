@@ -21,12 +21,16 @@ export default class Location {
               latitude,
               longitude
             } } = position;
-            const loc = {
+            const geo_point = {
               lat: latitude,
               lon: longitude
             };
 
-            this.point = loc;
+            this.point = geo_point;
+            const loc = {
+              lat: latitude,
+              lng: longitude
+            };
 
             try {
               const locations = await Geocoder.geocodePosition(loc);

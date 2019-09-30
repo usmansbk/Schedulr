@@ -1,12 +1,10 @@
 import React from 'react';
-import { FlatList, Alert } from 'react-native';
-import { inject, observer } from 'mobx-react';
-import { I18n } from 'aws-amplify';
+import { FlatList } from 'react-native';
 import Item from './Item';
 
 const ITEM_HEIGHT = 48;
 
-class List extends React.Component {
+export default class List extends React.Component {
   _onPressItem = (id) => {
     this.props.onValueChange(id);
     this.props.hideModal();
@@ -40,5 +38,3 @@ class List extends React.Component {
     )
   }
 }
-
-export default inject("stores")(observer(List));

@@ -1,6 +1,5 @@
 import React from 'react';
 import { Text, TouchableRipple } from 'react-native-paper';
-import Icon from 'react-native-vector-icons/Feather';
 import { View } from 'react-native';
 import { inject, observer } from 'mobx-react';
 
@@ -10,7 +9,6 @@ class Item extends React.Component {
   render() {
     const { value, stores } = this.props;
     const styles = stores.appStyles.customTypes;
-    const colors = stores.themeStore.colors;
 
     return  (
       <TouchableRipple
