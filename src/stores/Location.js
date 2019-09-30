@@ -3,9 +3,9 @@ import Geocoder from 'react-native-geocoder';
 import { observable, action, computed } from 'mobx';
 import { persist } from 'mobx-persist';
 import { requestLocationPermission } from 'helpers/permissions';
-import { GOOGLE_API_ANDROID_KEY } from 'config/env';
+import { GEOCODING_ANDROID_KEY } from 'config/env';
 
-Geocoder.fallbackToGoogle(GOOGLE_API_ANDROID_KEY);
+Geocoder.fallbackToGoogle(GEOCODING_ANDROID_KEY);
 
 export default class Location {
   @persist('object') @observable point = null;
