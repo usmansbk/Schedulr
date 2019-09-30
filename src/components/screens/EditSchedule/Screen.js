@@ -16,7 +16,8 @@ export default class EditScheduleScreen extends React.Component {
     return ({
       name: schedule.name,
       description: schedule.description || '',
-      isPublic: Boolean(schedule.isPublic)
+      isPublic: Boolean(schedule.isPublic),
+      location: schedule.location
     });
   };
 

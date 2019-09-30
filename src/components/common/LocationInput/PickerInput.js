@@ -4,7 +4,7 @@ import { Text, TouchableRipple } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/Feather';
 import { inject, observer } from 'mobx-react';
 
-export default inject("stores")(observer(({ stores, location, onPress }) => (
+export default inject("stores")(observer(({ stores, location, onPress, placeholder }) => (
 	<TouchableRipple style={stores.appStyles.locationInput.inputContainer} onPress={onPress}>	
 		<View style={stores.appStyles.locationInput.input}>
 			<Icon
@@ -13,7 +13,7 @@ export default inject("stores")(observer(({ stores, location, onPress }) => (
 				style={stores.appStyles.locationInput.icon}
 				color={stores.themeStore.colors.gray}
 			/>
-			<Text>{location}</Text>
+			<Text>{location || placeholder}</Text>
 		</View>
 	</TouchableRipple>
 )));

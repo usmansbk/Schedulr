@@ -153,7 +153,8 @@ class Form extends React.Component {
               {errors.description && I18n.get(`HELPER_TEXT_${errors.description}`)}
               </HelperText>
               <LocationPickerInput
-                location={stores.locationStore.locality || I18n.get("PICKER_location")}
+                location={values.location ? values.location : this.state.location}
+                placeholder={I18n.get("PICKER_location")}
                 onPress={() => this.setState({ showLocationPicker: true })}
               />
               <View style={styles.switchButton}>
