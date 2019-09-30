@@ -5,14 +5,10 @@ import {
   Provider,
   Divider,
 } from 'react-native-paper';
+import { I18n } from 'aws-amplify';
 import { View, TextInput } from 'react-native';
 import { inject, observer } from 'mobx-react';
-import { I18n } from 'aws-amplify';
 import List from './List';
-import PickerInput from './PickerInput';
-
-const MAX_LENGTH = 30;
-const MIN_LENGTH = 2
 
 class Input extends React.Component {
   constructor(props) {
@@ -24,7 +20,7 @@ class Input extends React.Component {
   }
 
   _showModal = () => this.setState({ visible: true });
-  _hideModal = () => this.setState({ visible: false });
+  _hideModal = () => this.props.hideModal();
   _onChangeText = text => this.setState({ text });
   _onValueChange = (value) => this.props.onValueChange(value);
 
@@ -32,9 +28,9 @@ class Input extends React.Component {
     const {
       selectedValue,
       stores,
-      location
+      location,
+      visible
     } = this.props;
-    const { visible } = this.state;
     const styles = stores.appStyles.picker;
     const colors = stores.themeStore.colors;
     const { text } = this.state;
@@ -57,8 +53,8 @@ class Input extends React.Component {
               />
               <Divider />
               <TextInput
-                placeholder="Custom type"
-                label="Custom type"
+                placeholder={I18n.get("PLACEHOLDER_searchCities")}
+                label={I18n.get("PLACEHOLDER_searchCities")}
                 mode="outlined"
                 style={styles.placeholder}
                 placeholderTextColor={colors.placeholder}

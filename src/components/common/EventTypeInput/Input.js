@@ -76,8 +76,8 @@ class Input extends React.Component {
               />
               <Divider />
               <TextInput
-                placeholder="Custom type"
-                label="Custom type"
+                placeholder={I18n.get("PLACEHOLDER_customType")}
+                label={I18n.get("PLACEHOLDER_customType")}
                 mode="outlined"
                 style={styles.placeholder}
                 placeholderTextColor={colors.placeholder}

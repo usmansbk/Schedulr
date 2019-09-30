@@ -28,8 +28,8 @@ export default class AppStyles {
       },
       input: {
         borderColor: colors.placeholder,
-        borderRadius: 2,
-        borderWidth: 1,
+        borderRadius: 4,
+        borderWidth: 1 * StyleSheet.hairlineWidth,
         padding: 4,
         height: 48,
         flexDirection: 'row',

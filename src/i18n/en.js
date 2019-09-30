@@ -205,6 +205,7 @@ export default {
   HELPER_TEXT_description: "Too long",
   HELPER_TEXT_nameIsRequired: "Name is required",
   HELPER_TEXT_website: "Invalid string",
+  HELPER_TEXT_location: "Your location helps us improve your experience with better search results.",
 
   MENU_edit: "Edit",
   MENU_close: "Close",
@@ -238,6 +239,8 @@ export default {
   PLACEHOLDER_addYourWebsite: "Add your website",
   PLACEHOLDER_bio: "About me",
   PLACEHOLDER_venue: city => city ? `In ${city}` : "Venue",
+  PLACEHOLDER_customType: "Custom type",
+  PLACEHOLDER_searchCities: "Search cities",
 
   WARNING_dontMissOut: "Don't miss out!",
   WARNING_fileTooLarge: "File is too large",

@@ -15,7 +15,7 @@ import {
   Caption
 } from 'react-native-paper';
 import Alert from 'components/dialogs/Alert';
-import LocationInput from 'components/common/LocationInput';
+import LocationInput, { LocationPicker } from 'components/common/LocationInput';
 import { Formik } from 'formik';
 import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
@@ -37,6 +37,7 @@ class Form extends React.Component {
     this.state = {
       showInfoAlert: false,
       showPrivacyAlert: false,
+      showLocationPicker: false,
       location: props.stores.locationStore.location
     };
   }
@@ -52,7 +53,8 @@ class Form extends React.Component {
   _hideDialog = () => {
     this.setState({
       showInfoAlert: false,
-      showPrivacyAlert: false
+      showPrivacyAlert: false,
+      showLocationPicker: false,
     });
   };
 
@@ -149,7 +151,10 @@ class Form extends React.Component {
               >
               {errors.description && I18n.get(`HELPER_TEXT_${errors.description}`)}
               </HelperText>
-              <LocationInput location={stores.locationStore.location || I18n.get("PICKER_location")} />
+              <LocationInput
+                location={stores.locationStore.location || I18n.get("PICKER_location")}
+                onPress={() => this.setState({ showLocationPicker: true })}
+              />
               <View style={styles.switchButton}>
                 <Text style={styles.text}>{I18n.get("SCHEDULE_FORM_public")}</Text>
                 <Switch
@@ -177,6 +182,11 @@ class Form extends React.Component {
             message={I18n.get("ALERT_privateScheduleWarn")}
             visible={this.state.showPrivacyAlert}
             handleDismiss={this._hideDialog}
+          />
+          <LocationPicker
+            visible={this.state.showLocationPicker}
+            hideModal={this._hideDialog}
+            onValueChange={location => setState({ location })}
           />
           </>
         )}
