@@ -9,7 +9,7 @@ export default inject("stores")(observer(({ stores, location, onPress }) => (
 		<View style={stores.appStyles.locationInput.input}>
 			<Icon
 				name="map-pin"
-				size={24}
+				size={18}
 				style={stores.appStyles.locationInput.icon}
 				color={stores.themeStore.colors.gray}
 			/>
