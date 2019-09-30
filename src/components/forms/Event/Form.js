@@ -128,6 +128,7 @@ class Form extends React.Component {
             >{ edit ? I18n.get("BUTTON_save") : I18n.get("BUTTON_create")}</Button>
           </Appbar.Header>
           <ScrollView
+            keyboardShouldPersistTaps="always"
             refreshControl={
               <RefreshControl
                 refreshing={false}
