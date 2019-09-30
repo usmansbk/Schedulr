@@ -1,5 +1,5 @@
 const en = {
-  name: "Personal schedule 📝",
+  name: "Personal List 📝",
   description: "My appointments.",
   isPublic: false
 };

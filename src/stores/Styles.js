@@ -19,6 +19,28 @@ export default class AppStyles {
     this.settings = settingsStore;
   }
 
+  @computed get locationInput() {
+    const colors = this.settings.dark ? dark : light;
+    
+    return StyleSheet.create({
+      inputContainer: {
+        marginBottom: 12
+      },
+      input: {
+        borderColor: colors.placeholder,
+        borderRadius: 2,
+        borderWidth: 1,
+        padding: 4,
+        height: 48,
+        flexDirection: 'row',
+        alignItems: 'center',
+      },
+      icon: {
+        marginRight: 8
+      }
+    });
+  }
+
   @computed get userSchedulesTab () {
     const colors = this.settings.dark ? dark : light;
     

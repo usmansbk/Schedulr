@@ -255,5 +255,7 @@ export default {
   SNACKBAR_seeUpdates: "See updates", 
 
   REQUEST_LOCATION_TITLE: 'Schdlr Location Permission',
-  REQUEST_LOCATION_MESSAGE: "Schdlr App needs access to your location so events are easier to find."
+  REQUEST_LOCATION_MESSAGE: "Schdlr App needs access to your location so events are easier to find.",
+
+  PICKER_location: "Location"
 };

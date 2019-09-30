@@ -55,7 +55,7 @@ class Input extends React.Component {
     const data = this._filterData(stores.appState.categories);
 
     const length = text.length;
-    const tooShort = length && length < MIN_LENGTH;
+    const tooShort = length < MIN_LENGTH;
     const tooLong = length > MAX_LENGTH;
 
     return (

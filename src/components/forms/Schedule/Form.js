@@ -15,6 +15,7 @@ import {
   Caption
 } from 'react-native-paper';
 import Alert from 'components/dialogs/Alert';
+import LocationInput from 'components/common/LocationInput';
 import { Formik } from 'formik';
 import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
@@ -31,10 +32,14 @@ class Form extends React.Component {
     }
   };
 
-  state = {
-    showInfoAlert: false,
-    showPrivacyAlert: false
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      showInfoAlert: false,
+      showPrivacyAlert: false,
+      location: props.stores.locationStore.location
+    };
+  }
   
   componentDidMount = () => {
     this.fetchLocation = setTimeout(this.props.stores.locationStore.fetchLocation, 200);
@@ -69,6 +74,7 @@ class Form extends React.Component {
         validationSchema={validationSchema}
         onSubmit={async (values, { setSubmitting }) => {
           const input = buildForm(values);
+          input.location = this.state.location;
           onSubmit && await onSubmit(input);
           setSubmitting(false);
         }}
@@ -143,6 +149,7 @@ class Form extends React.Component {
               >
               {errors.description && I18n.get(`HELPER_TEXT_${errors.description}`)}
               </HelperText>
+              <LocationInput location={stores.locationStore.location || I18n.get("PICKER_location")} />
               <View style={styles.switchButton}>
                 <Text style={styles.text}>{I18n.get("SCHEDULE_FORM_public")}</Text>
                 <Switch
