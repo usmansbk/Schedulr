@@ -7,14 +7,13 @@ import {
 } from 'react-native-paper';
 import { I18n } from 'aws-amplify';
 import { View, TextInput } from 'react-native';
-import { inject, observer } from 'mobx-react';
 import List from './List';
 
-class Input extends React.Component {
+export default class Picker extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      visible: false
+      text: ''
     }
   }
   _onChangeText = text => this.setState({ text });
@@ -22,44 +21,41 @@ class Input extends React.Component {
 
   render() {
     const {
-      stores,
+      style,
+      placeholder,
       visible,
       hideModal
     } = this.props;
     const { text } = this.state;
 
     return (
-      <Provider>
-        <Portal>
-          <Modal
-            dismissable
-            visible={visible}
-            onDismiss={hideModal}
-            contentContainerStyle={stores.appStyles.picker.container}
-          >
-            <View style={stores.appStyles.picker.content}>
-              <List
-                data={[]}
-                onValueChange={this._onValueChange}
-                hideModal={hideModal}
-              />
-              <Divider />
-              <TextInput
-                placeholder={I18n.get("PLACEHOLDER_searchCities")}
-                label={I18n.get("PLACEHOLDER_searchCities")}
-                mode="outlined"
-                style={stores.appStyles.picker.placeholder}
-                placeholderTextColor={stores.themeStore.colors.placeholder}
-                value={text}
-                onChangeText={this._onChangeText}
-                onSubmitEditing={this._handleSubmit}
-              />
-            </View>
-          </Modal>
-        </Portal>
-      </Provider>
+      <Portal>
+        <Modal
+          dismissable
+          visible={visible}
+          onDismiss={hideModal}
+          contentContainerStyle={style.container}
+        >
+          <View style={style.content}>
+            <List
+              data={[]}
+              onValueChange={this._onValueChange}
+              hideModal={hideModal}
+            />
+            <Divider />
+            <TextInput
+              placeholder={I18n.get("PLACEHOLDER_searchCities")}
+              label={I18n.get("PLACEHOLDER_searchCities")}
+              mode="outlined"
+              style={style.placeholder}
+              placeholderTextColor={placeholder}
+              value={text}
+              onChangeText={this._onChangeText}
+              onSubmitEditing={this._handleSubmit}
+            />
+          </View>
+        </Modal>
+      </Portal>
     )
   }
 }
-
-export default inject("stores")(observer(Input));

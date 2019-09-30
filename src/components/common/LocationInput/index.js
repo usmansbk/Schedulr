@@ -1,6 +1,6 @@
 import LocationPickerInput from './PickerInput';
 import LocationPicker from './Picker';
 
-export { LocationPicker }
+export { LocationPickerInput }
 
-export default LocationPickerInput;
+export default LocationPicker;

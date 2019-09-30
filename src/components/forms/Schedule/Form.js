@@ -15,7 +15,7 @@ import {
   Caption
 } from 'react-native-paper';
 import Alert from 'components/dialogs/Alert';
-import LocationInput, { LocationPicker } from 'components/common/LocationInput';
+import LocationPicker, { LocationPickerInput } from 'components/common/LocationInput';
 import { Formik } from 'formik';
 import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
@@ -95,7 +95,7 @@ class Form extends React.Component {
           isValid
         }) => (
           <>     
-          <Appbar.Header style={styles.header}>
+          <Appbar.Header style={styles.header} collapsable>
             <Button
               mode="outlined"
               color={navButtonColor}
@@ -152,7 +152,7 @@ class Form extends React.Component {
               >
               {errors.description && I18n.get(`HELPER_TEXT_${errors.description}`)}
               </HelperText>
-              <LocationInput
+              <LocationPickerInput
                 location={stores.locationStore.locality || I18n.get("PICKER_location")}
                 onPress={() => this.setState({ showLocationPicker: true })}
               />
@@ -176,6 +176,8 @@ class Form extends React.Component {
             visible={this.state.showLocationPicker}
             hideModal={this._hideDialog}
             onValueChange={location => setState({ location })}
+            style={stores.appStyles.picker}
+            placeholder={stores.themeStore.colors.placeholder}
           />
           <Alert
             title={I18n.get("ALERT_whatIsASchedule")}

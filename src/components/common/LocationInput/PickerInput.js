@@ -2,7 +2,6 @@ import React from 'react';
 import { View } from 'react-native';
 import { Text, TouchableRipple } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/Feather';
-import { I18n } from 'aws-amplify';
 import { inject, observer } from 'mobx-react';
 
 export default inject("stores")(observer(({ stores, location, onPress }) => (
