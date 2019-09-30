@@ -10,6 +10,7 @@ export default class Location {
   @persist @observable locality = null;
   @persist @observable country = null;
   @persist @observable countryCode = null;
+  @persist @observable currentLocation = null;
 
   @action fetchLocation = async () => {
     try {
@@ -31,6 +32,7 @@ export default class Location {
               lat: latitude,
               lng: longitude
             };
+            this.currentLocation = loc;
 
             try {
               const locations = await Geocoder.geocodePosition(loc);
@@ -71,5 +73,6 @@ export default class Location {
     this.point = null;
     this.locality = null;
     this.countryCode = null;
+    this.currentLocation = null;
   }
 }
