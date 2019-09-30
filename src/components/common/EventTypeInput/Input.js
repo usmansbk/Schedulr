@@ -18,16 +18,19 @@ class Input extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      text: props.selectedValue
+      text: props.selectedValue,
+      selectedValue: props.selectedValue
     }
   }
 
-  UNSAFE_componentWillReceiveProps(nextProps) {
-    if (nextProps.selectedValue !== this.props.selectedValue) {
-      this.setState({
-        text: nextProps.selectedValue
-      })
+  static getDerivedStateFromProps(props, state) {
+    if (props.selectedValue !== state.selectedValue) {
+      return {
+        selectedValue: props.selectedValue,
+        text: props.selectedValue
+      };
     }
+    return null;
   }
 
   _hideModal = () => this.props.hideModal();
