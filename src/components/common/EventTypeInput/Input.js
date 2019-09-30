@@ -22,6 +22,14 @@ class Input extends React.Component {
     }
   }
 
+  UNSAFE_componentWillReceiveProps(nextProps) {
+    if (nextProps.selectedValue !== this.props.selectedValue) {
+      this.setState({
+        text: nextProps.selectedValue
+      })
+    }
+  }
+
   _hideModal = () => this.props.hideModal();
   _onChangeText = text => this.setState({ text });
   _onValueChange = (value) => this.props.onValueChange(value);
@@ -60,6 +68,7 @@ class Input extends React.Component {
       <Provider>
         <Portal>
           <Modal
+            dismissable
             visible={visible}
             onDismiss={this._hideModal}
             contentContainerStyle={styles.container}

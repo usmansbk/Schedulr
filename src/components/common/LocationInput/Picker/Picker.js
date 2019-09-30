@@ -32,6 +32,7 @@ class Input extends React.Component {
       <Provider>
         <Portal>
           <Modal
+            dismissable
             visible={visible}
             onDismiss={hideModal}
             contentContainerStyle={stores.appStyles.picker.container}
