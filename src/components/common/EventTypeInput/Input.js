@@ -18,12 +18,10 @@ class Input extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      visible: false,
       text: props.selectedValue
     }
   }
 
-  _showModal = () => this.setState({ visible: true });
   _hideModal = () => this.props.hideModal();
   _onChangeText = text => this.setState({ text });
   _onValueChange = (value) => this.props.onValueChange(value);
