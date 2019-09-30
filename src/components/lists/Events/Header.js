@@ -11,6 +11,7 @@ import { I18n } from 'aws-amplify';
 
 export default inject('stores')(observer(
   ({ onPress, loading, stores, hasPrev, hide }) => {
+    const prevMoment = hasPrev ? moment(hasPrev) : moment();
     if (hide) return null;
     
     return loading ? (
@@ -26,7 +27,7 @@ export default inject('stores')(observer(
       >
         <Caption style={stores.appStyles.eventsList.footerText}>
           {
-             I18n.get(`EVENTS_SECTIONLIST_${hasPrev ? 'before' : 'noPrevEvents'}`)(moment(hasPrev).twix(hasPrev, { allDay: true }).format())
+             I18n.get(`EVENTS_SECTIONLIST_${hasPrev ? 'before' : 'noPrevEvents'}`)(prevMoment.twix(prevMoment, { allDay: true }).format())
           }
         </Caption>
       </TouchableRipple>

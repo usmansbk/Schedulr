@@ -32,6 +32,7 @@ class SectionHeader extends React.Component {
       stores
     } = this.props;
 
+    console.log(5);
     const { heading, subheading, timeAgo } = getSectionHeaderData(title);
     const count = data.length;
     let itemsCount = '';
