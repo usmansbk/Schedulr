@@ -56,7 +56,8 @@ export default class Location {
           },
           (error) => {
             console.log(error.message);
-          }
+          },
+          { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
         );
       }
     } catch (error) {

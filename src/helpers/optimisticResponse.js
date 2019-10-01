@@ -181,7 +181,6 @@ function createSchedule(input, typename) {
     isFollowing: false,
     status: null,
     picture: null,
-    location: null,
     author,
     followersCount: 0,
     eventsCount: 0,
@@ -189,7 +188,6 @@ function createSchedule(input, typename) {
     updatedAt: createdAt,
     events: eventConnection,
   };
-  delete schedule.location;
   return schedule;
 }
 
