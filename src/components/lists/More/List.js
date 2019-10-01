@@ -5,7 +5,7 @@ import Share from 'react-native-share';
 import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
 import LogoutDialog from 'components/dialogs/Logout';
-import Alert from 'components/dialogs/Alert';
+import SyncDialog from 'components/dialogs/Sync';
 import Header from './Header';
 import Footer from './Footer';
 import Item from './Item';
@@ -93,6 +93,12 @@ class List extends React.Component {
         />
         <LogoutDialog
           visible={this.state.visible}
+          handleDismiss={this._hideDialog}
+          onConfirm={this._hideDialog}
+        />
+        <SyncDialog
+          id={this.props.stores.appState.userId}
+          visible={this.state.showSyncAlert}
           handleDismiss={this._hideDialog}
           onConfirm={this._hideDialog}
         />
