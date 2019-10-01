@@ -6,7 +6,6 @@ import gql from 'graphql-tag';
 import { getUserData } from 'api/queries';
 import { baseEventsFilter } from 'api/filters';
 
-
 class Dialog extends React.Component {
   state = {
     loading: false
