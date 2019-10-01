@@ -18,7 +18,7 @@ export default inject("stores")(observer(
         fetchPolicy: 'cache-and-network',
         variables : {
           location: props.location,
-          km: 200,
+          km: 5,
           limit: 50
         },
         notifyOnNetworkStatusChange: true
