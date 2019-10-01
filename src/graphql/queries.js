@@ -732,3 +732,43 @@ export const listBookmarks = `query GetEventBookmarks($id: ID!, $limit: Int, $ne
     }
   }
 }`;
+export const nearbyEvents = `query GetNearbyEvents($location: LocationInput!, $km: Int, $limit: Int, $nextToken: String) {
+  nearbyEvents(location: $location, km: $km, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      title
+      description
+      venue
+      category
+      startAt
+      endAt
+      allDay
+      recurrence
+      until
+      forever
+      isPublic
+      isOwner
+      isCancelled
+      isBookmarked
+      cancelledDates
+      banner {
+        bucket
+        key
+      }
+      author {
+        id
+        name
+      }
+      schedule {
+        id
+        name
+        isFollowing
+      }
+      commentsCount
+      bookmarksCount
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}`
