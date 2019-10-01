@@ -11,6 +11,9 @@ import { PLACES_API_KEY } from 'config/env';
 
 export default class Picker extends React.Component {
   _onValueChange = (value) => this.props.onValueChange(value);
+  _onSelect = (data) => {
+    console.log(data);
+  };
 
   render() {
     const {
@@ -36,20 +39,20 @@ export default class Picker extends React.Component {
             listViewDisplayed="auto"
             returnKeyType='search'
             onPress={this._onSelect}
-            debounce={200}
-            renderLeftButton={() => <IconButton
-               onPress={hideModal}
-              icon={() => <Icon
-                size={22}
-                name="arrow-left"
-              />}
-            />}
             query={{
               key: PLACES_API_KEY,
               language,
               types: '(cities)'
             }}
             styles={styles}
+            debounce={200}
+            renderLeftButton={() => <IconButton
+              onPress={hideModal}
+              icon={() => <Icon
+                size={22}
+                name="arrow-left"
+              />}
+            />}
           />
         </Modal>
       </Portal>
