@@ -1,4 +1,5 @@
 import React from 'react';
+import SimpleToast from 'react-native-simple-toast';
 import Alert from 'components/dialogs/Alert';
 import { I18n } from 'aws-amplify';
 import { withApollo } from 'react-apollo';
@@ -18,10 +19,16 @@ class Dialog extends React.Component {
       limit: 50
     };
     this.setState({ loading: true });
-    await this.props.client.query({
-      query: gql(getUserData),
-      variables
-    });
+    try {
+      await this.props.client.query({
+        query: gql(getUserData),
+        fetchPolicy: 'network-only',
+        variables
+      });
+    } catch (error) {
+      console.log(error);
+    }
+    SimpleToast.show(I18n.get("SYNC_complete"), SimpleToast.SHORT);
     this.setState({ loading: false });
     this.props.onConfirm();
   };
