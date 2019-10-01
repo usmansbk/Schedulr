@@ -54,6 +54,7 @@ const setReminder = (event, before, settings) => {
     message,
     color,
     playSound: sound,
+    soundName: 'notification_sound.mp3',
     vibrate,
     data: JSON.stringify({
       id,
@@ -75,7 +76,7 @@ const schdlStart = (event, settings) => {
     category,
     recurrence,
   } = event;
-  const { playSound, vibrate } = settings;
+  const { sound, vibrate } = settings;
   const time = moment(startAt).format('hh:mm a');
   const date = moment(startAt).toDate();
   const message = `${category ? decapitalize(category) + ' - ' : ''}${time}`;
@@ -89,7 +90,8 @@ const schdlStart = (event, settings) => {
     date,
     color,
     message,
-    playSound,
+    playSound: sound,
+    soundName: 'notification_sound.mp3',
     vibrate,
     data: JSON.stringify({
       id,
