@@ -2,7 +2,7 @@ import React from 'react';
 import List from 'components/lists/Bookmarks';
 
 export default class Bookmarks extends React.Component {
-  _getEvents = (data) => {
+  _processEvents = (data) => {
       if (!data) return [];
       const { bookmarks } = data;
       const events = bookmarks.items.map(item => {
@@ -16,7 +16,7 @@ export default class Bookmarks extends React.Component {
     };
 
   get events() {
-    return this._getEvents(this.props.data);
+    return this._processEvents(this.props.data);
   }
   
   render() {

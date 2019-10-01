@@ -1,9 +1,11 @@
 import React, {Component} from 'react';
+import { RefreshControl } from 'react-native';
 import { FlatList } from 'react-navigation';
 import { inject, observer } from 'mobx-react';
 import Empty from './Empty';
 import Header from './Header';
 import Item from 'components/lists/Bookmarks/Item';
+import Separator from 'components/lists/Bookmarks/Separator';
 import {
   parseRepeat,
   getStatus,
@@ -13,6 +15,7 @@ import {
   getDuration,
   getHumanTime
 } from 'lib/time';
+import { processEvents } from 'lib/calendr';
 import { bookmarkedEvents } from 'lib/constants';
 import getImageUrl from 'helpers/getImageUrl';
 
@@ -25,6 +28,15 @@ class List extends Component{
     error: false
   };
 
+  _onPressItem = (id, refStartAt, refEndAt) => this.props.navigation.navigate('EventDetails', { id, refStartAt, refEndAt });
+  _navigateToBanner = (id) => this.props.navigation.navigate('Banner', { id });
+  _navigateToComments = (id, title, date) => this.props.navigation.navigate('Comments', { id, title, date });
+  // _onEndReached = async () => {
+  //   if (!this.props.loading && this.props.nextToken) {
+  //     await this.props.fetchMore(this.props.nextToken);
+  //   }
+  // };
+
   _getItemLayout = (_, index) => (
     {
       length: ITEM_HEIGHT,
@@ -36,6 +48,7 @@ class List extends Component{
   _renderEmptyList = () => <Empty />;
 
   _renderHeader = () => <Header navigation={this.props.navigation} />;
+  _renderSeparator = () => <Separator />;
 
   _renderItem = ({ item }) => {
     const {
@@ -87,18 +100,27 @@ class List extends Component{
     />);
   };
 
-  componentDidMount = async () => await this.props.stores.locationStore.fetchLocation(true);
+  _keyExtractor = (item) => item.id;
 
-  _keyExtractor = (item) => item.id; 
+  _onRefresh = () => this.props.refresh();
 
   render() {
     const styles = this.props.stores.appStyles.discover;
+    console.log(this.props.nextToken);
 
     return (
       <FlatList
         style={styles.list}
-        data={this.props.data}
-        renderItem={this.renderItem}
+        refreshControl={
+          <RefreshControl
+            onRefresh={this._onRefresh}
+            refreshing={this.props.loading}
+            colors={[this.props.stores.themeStore.colors.primary]}
+            progressBackgroundColor={this.props.stores.themeStore.colors.bg}
+          />
+        }
+        data={processEvents(this.props.data)}
+        renderItem={this._renderItem}
         keyExtractor={this._keyExtractor}
         ListEmptyComponent={this._renderEmptyList}
         ListHeaderComponent={this._renderHeader}
@@ -106,6 +128,8 @@ class List extends Component{
         getItemLayout={this._getItemLayout}
         stickyHeaderIndices={[0]}
         contentContainerStyle={styles.contentContainer}
+        onEndReached={this._onEndReached}
+        ItemSeparatorComponent={this._renderSeparator}
       />
     )
   }

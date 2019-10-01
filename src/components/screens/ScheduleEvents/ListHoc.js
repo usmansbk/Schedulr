@@ -3,7 +3,7 @@ import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import { getScheduleEvents } from 'api/queries';
 import { sortBookmarks } from 'lib/utils';
-import { getEvents } from 'lib/calendr';
+import { processEvents } from 'lib/calendr';
 import List from 'components/lists/ScheduleEvents';
 import { baseEventsFilter, pastEventsFilter } from 'graphql/filters';
 import { PAGINATION_LIMIT } from 'lib/constants';
@@ -73,7 +73,7 @@ export default graphql(gql(getScheduleEvents), {
         })
       )
     }),
-    events: data && data.getScheduleEvents && data.getScheduleEvents.events && sortBookmarks(getEvents(data.getScheduleEvents.events.items)),
+    events: data && data.getScheduleEvents && data.getScheduleEvents.events && sortBookmarks(processEvents(data.getScheduleEvents.events.items)),
     nextToken: data && data.getScheduleEvents && data.getScheduleEvents.events && data.getScheduleEvents.events.nextToken,
     ...ownProps
   }) 

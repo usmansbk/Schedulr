@@ -17,7 +17,7 @@ import {
   getHumanTime
 } from 'lib/time';
 import { sortBookmarks } from 'lib/utils';
-import { getEvents } from 'lib/calendr';
+import { processEvents } from 'lib/calendr';
 import { bookmarkedEvents } from 'lib/constants';
 import getImageUrl from 'helpers/getImageUrl';
 
@@ -127,7 +127,7 @@ class List extends Component {
         getItemLayout={this._getItemLayout}
         ItemSeparatorComponent={this._renderSeparator}
         keyExtractor={this._keyExtractor}
-        data={sortBookmarks(getEvents(events))}
+        data={sortBookmarks(processEvents(events))}
         renderItem={this._renderItem}
         ListEmptyComponent={this._renderEmptyList}
         ListFooterComponent={this._renderFooter}

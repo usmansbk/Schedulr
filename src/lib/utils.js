@@ -1,7 +1,7 @@
 import memoize from 'lodash.memoize';
 import emojiRegex from 'emoji-regex';
 import moment from 'moment';
-import { getEvents } from 'lib/calendr';
+import { processEvents } from 'lib/calendr';
 import { SCHEDULE_CLOSED } from 'lib/constants';
 
 function sortList(list) {
@@ -141,7 +141,7 @@ export function mergeSchedules(data) {
 }
 
 export function filterEvents(events, query) {
-  return sortBookmarks(getEvents(events.filter(
+  return sortBookmarks(processEvents(events.filter(
     item => item.title.toLowerCase().includes(query.toLowerCase()) ||
      (item.category && item.category.toLowerCase().includes(query.toLowerCase())))));
 }

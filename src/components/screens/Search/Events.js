@@ -4,7 +4,7 @@ import gql from 'graphql-tag';
 import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
 import List from 'components/lists/EventSearch';
-import { getEvents } from 'lib/calendr';
+import { processEvents } from 'lib/calendr';
 import { getUserData, searchEvents } from 'api/queries';
 import { searchEventFilter } from 'api/filters';
 import { mergeEvents, filterEvents } from 'lib/utils';
@@ -63,7 +63,7 @@ const ListHoc = compose(
   //   }),
   //   props: ({ data, ownProps }) => ({
   //     loading: data && data.loading || data.networkStatus === 4,
-  //     events: data && data.searchEvents && getEvents(data.searchEvents.items) || [],
+  //     events: data && data.searchEvents && processEvents(data.searchEvents.items) || [],
   //     nextToken: data && data.searchEvents && data.searchEvents.nextToken,
   //     onRefresh: () => data.refetch(),
   //     fetchMore: (nextToken) => data.fetchMore({

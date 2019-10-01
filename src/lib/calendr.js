@@ -35,7 +35,7 @@ function generateNextEvents(events=[], refDate, DAYS_PER_PAGE=3, before=false) {
   let nextDate = getNextDate(events, moment(refDate), before);
   if (events.length && nextDate) {
     for (let i = 0; i < DAYS_PER_PAGE; i++) {
-      sections.push(getNextDayEvents(events, nextDate));
+      sections.push(processNextDayEvents(events, nextDate));
       nextDate = getNextDate(events, nextDate, before);
       if (!nextDate) break;
     }
@@ -106,7 +106,7 @@ const getNextDate = memoize((events=[], refDate, before) => {
   * @param { Date } afterDate - date to start from
   * @return 
 */
-const getNextDayEvents = memoize((initialEvents, nextDate) => {
+const processNextDayEvents = memoize((initialEvents, nextDate) => {
   let refDate = moment();
   if (nextDate) refDate = moment(nextDate);
 
@@ -155,7 +155,7 @@ const getNextDayEvents = memoize((initialEvents, nextDate) => {
 }, (...args) => JSON.stringify(args));
 
 // Returns a flat list of latest events dates
-function getEvents(events) {
+function processEvents(events) {
   if (!events) return [];
   return events.map((currentEvent) => {
     if (typeof currentEvent === 'string') return currentEvent;
@@ -200,7 +200,7 @@ function getEvents(events) {
 };
 
 export {
-  getEvents,
+  processEvents,
   getNextDate,
   generateNextEvents,
   generatePreviousEvents

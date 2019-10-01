@@ -1,3 +1,3 @@
-import Discover from './Discover'
+import Discover from './Discover';
 
 export default Discover;

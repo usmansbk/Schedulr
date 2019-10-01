@@ -1,12 +1,19 @@
 import React from 'react';
-import List from 'components/lists/Discover';
+import { inject, observer } from 'mobx-react';
+import List from './ListHoc';
 
-export default class Discover extends React.Component {
+class Discover extends React.Component {
+  
+  componentDidMount = async () => await this.props.stores.locationStore.fetchLocation(true);
+
   render() {
+    console.log(this.props.stores.locationStore.point);
     return (
       <List
-        navigation={this.props.navigation}
+        location={this.props.stores.locationStore.point}
       />
     )
   }
 }
+
+export default inject("stores")(observer(Discover));
