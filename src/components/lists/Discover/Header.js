@@ -22,7 +22,8 @@ export default inject('stores')(observer(
           theme={{ roundness: 0 }}
           style={{
             backgroundColor: stores.themeStore.colors.bg,
-            elevation: 0
+            elevation: 0,
+            marginBottom: 2
           }}
         />
       </TouchableRipple>
