@@ -177,8 +177,9 @@ class Form extends React.Component {
             visible={this.state.showLocationPicker}
             hideModal={this._hideDialog}
             onValueChange={location => setState({ location })}
-            style={stores.appStyles.picker}
-            placeholder={stores.themeStore.colors.placeholder}
+            modalStyle={stores.appStyles.picker}
+            styles={stores.appStyles.places}
+            language={stores.settingsStore.language}
           />
           <Alert
             title={I18n.get("ALERT_whatIsASchedule")}

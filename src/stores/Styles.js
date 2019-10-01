@@ -138,6 +138,19 @@ export default class AppStyles {
     });    
   }
 
+  @computed get places() {
+    const colors = this.settings.dark ? dark : light;
+    return StyleSheet.create({
+      container: {
+        flex: 1,
+        backgroundColor: colors.bg
+      },
+      // separator: {},
+      // listView: {},
+      // loader: {},
+    })
+  }
+
   @computed get picker () {
     const colors = this.settings.dark ? dark : light;
     const borderWidth = 1 * StyleSheet.hairlineWidth;
