@@ -10,6 +10,11 @@ export default [
     name: 'inviteAFriend',
   },
   {
+    id: 'sync',
+    icon: 'download-cloud',
+    name: 'sync'
+  },
+  {
     id: 'help',
     icon: 'help-circle',
     name: 'help',

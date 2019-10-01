@@ -43,7 +43,7 @@ export default class ImageViewerContainer extends React.Component {
     }
     try {
       await onRemovePhoto();
-      this.setState({ loading: false });
+      this.setState({ loading: false, showRemoveImageAlert: false });
     } catch (error) {
       console.log(error);
     }

@@ -5,6 +5,7 @@ import Share from 'react-native-share';
 import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
 import LogoutDialog from 'components/dialogs/Logout';
+import Alert from 'components/dialogs/Alert';
 import Header from './Header';
 import Footer from './Footer';
 import Item from './Item';
@@ -15,9 +16,10 @@ import env from 'config/env';
 class List extends React.Component {
   state = {
     visible: false,
-  }
+    showSyncAlert: false
+  };
   _openDialog = () => this.setState({ visible: true });
-  _hideDialog = () => this.setState({ visible: false });
+  _hideDialog = () => this.setState({ visible: false, showSyncAlert: false });
   _onPressHeader = () => {
     const id = this.props.stores.appState.userId;
     this.props.navigation.navigate('UserProfile', {
@@ -46,6 +48,9 @@ class List extends React.Component {
         Share.open(options).catch(error => {
           // Ignore
         });
+        break;
+      case 'sync':
+        this.setState({ showSyncAlert: true });
         break;
       default:
         break;

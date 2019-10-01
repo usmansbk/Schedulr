@@ -29,6 +29,7 @@ export default {
   MORE_inviteAFriend: "Invite a friend",
   MORE_help: "Help",
   MORE_signOut: "Sign out",
+  MORE_sync: "Sync",
 
   DISCOVER_emptyList: "Discover",
   DISCOVER_emptyListCaption: "Nearby events",

@@ -104,7 +104,7 @@ class Form extends React.Component {
             >{I18n.get("BUTTON_cancel")}</Button>
             <Button
               loading={isSubmitting}
-              disabled={!isValid || isSubmitting || isEqual(initialValues, values)}
+              disabled={!isValid || isSubmitting || (isEqual(initialValues, values) && (values.location !==this.state.location) )}
               mode="outlined"
               color={navButtonColor}
               onPress={submitForm}
