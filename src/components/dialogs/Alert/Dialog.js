@@ -10,6 +10,7 @@ import { I18n } from 'aws-amplify';
 
 export default inject('stores')(observer(
   ({
+    loading,
     visible,
     handleDismiss,
     title,
@@ -36,7 +37,7 @@ export default inject('stores')(observer(
         }
         <Dialog.Actions>
           <Button onPress={handleDismiss}>{cancelText}</Button>
-          { onConfirm && <Button onPress={onConfirm}>{confirmText}</Button> }
+          { onConfirm && <Button disabled={loading} loading={loading} onPress={onConfirm}>{confirmText}</Button> }
         </Dialog.Actions>
       </Dialog>
     </Portal>

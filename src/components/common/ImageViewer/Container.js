@@ -111,6 +111,7 @@ export default class ImageViewerContainer extends React.Component {
         s3Object={s3Object}
       />
       <Alert
+        loading={this.state.loading}
         visible={this.state.showRemoveImageAlert}
         title={I18n.get("ALERT_deleteImage")}
         onConfirm={this._removePhoto}
