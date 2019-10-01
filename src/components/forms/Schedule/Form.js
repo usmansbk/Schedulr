@@ -32,16 +32,12 @@ class Form extends React.Component {
     }
   };
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      showInfoAlert: false,
-      showPrivacyAlert: false,
-      showLocationPicker: false,
-      location: props.stores.locationStore.location
-    };
-  }
-  
+  state = {
+    showInfoAlert: false,
+    showPrivacyAlert: false,
+    showLocationPicker: false
+  };
+
   componentDidMount = () => {
     this.fetchLocation = setTimeout(this.props.stores.locationStore.fetchLocation, 200);
   };
@@ -67,6 +63,7 @@ class Form extends React.Component {
       stores
     } = this.props;
 
+    initialValues.location = initialValues.location ? initialValues.location : stores.locationStore.location;
     const styles = stores.appStyles.scheduleForm;
     const navButtonColor = stores.themeStore.colors.primary;
     
@@ -76,7 +73,6 @@ class Form extends React.Component {
         validationSchema={validationSchema}
         onSubmit={async (values, { setSubmitting }) => {
           const input = buildForm(values);
-          input.location = this.state.location;
           onSubmit && await onSubmit(input);
           setSubmitting(false);
         }}
@@ -153,7 +149,7 @@ class Form extends React.Component {
               {errors.description && I18n.get(`HELPER_TEXT_${errors.description}`)}
               </HelperText>
               <LocationPickerInput
-                location={values.location ? values.location : this.state.location}
+                location={values.location}
                 placeholder={I18n.get("PICKER_location")}
                 onPress={() => this.setState({ showLocationPicker: true })}
               />
@@ -176,7 +172,7 @@ class Form extends React.Component {
           <LocationPicker
             visible={this.state.showLocationPicker}
             hideModal={this._hideDialog}
-            onValueChange={location => setState({ location })}
+            onValueChange={location => setFieldValue('location', location)}
             modalStyle={stores.appStyles.picker}
             styles={stores.appStyles.places}
             language={stores.settingsStore.language}
