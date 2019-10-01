@@ -106,7 +106,6 @@ class List extends Component{
 
   render() {
     const styles = this.props.stores.appStyles.discover;
-    console.log(this.props.nextToken);
 
     return (
       <FlatList
