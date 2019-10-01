@@ -14,7 +14,6 @@ export default class Picker extends React.Component {
 
   render() {
     const {
-      iconColor,
       styles,
       modalStyle,
       visible,
