@@ -360,7 +360,9 @@ export default class AppStyles {
         backgroundColor: colors.bg
       },
       headline: {
-        textAlign: 'center',
+        fontSize: 25,
+        color: colors.light_gray_3,
+        textAlign: 'center'
       },
       content: {
         margin: 16
