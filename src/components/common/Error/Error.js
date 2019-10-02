@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   View,
+  Image
 } from 'react-native';
 import {
   Headline,
@@ -15,7 +16,7 @@ export default inject('stores')(observer(
   ({ onRefresh, message, caption, loading, stores, icon }) => (
     <View style={stores.appStyles.error.container}>
       {
-        icon && <Icon name={icon} size={64} color={stores.themeStore.colors.gray} />
+        icon && <Image resizeMode="contain" style={{ width: 200, height: 200 }} source={require('../../../assets/error-404.png')} />
       }
       <Headline style={stores.appStyles.error.headline}>
         { message ? message : I18n.get("ERROR_somethingWentWrong")}

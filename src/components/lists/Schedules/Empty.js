@@ -1,5 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, Image } from 'react-native';
 import { Headline, Caption } from 'react-native-paper';
 import { I18n } from 'aws-amplify';
 import { inject, observer } from 'mobx-react';
@@ -25,6 +25,7 @@ export default inject('stores')(observer(
   
     return (
       <View style={styles.empty}>
+        <Image resizeMode="contain" style={{ width: 200, height: 200 }} source={require('../../../assets/list-app.png')} />
         <Headline style={styles.emptyTitle}>{title}</Headline>
         <Caption>{caption}</Caption>
       </View>

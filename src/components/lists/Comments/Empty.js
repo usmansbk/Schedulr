@@ -1,5 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, Image } from 'react-native';
 import { Headline, Paragraph } from 'react-native-paper';
 import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
@@ -7,6 +7,7 @@ import { I18n } from 'aws-amplify';
 export default inject('stores')(observer(
   ({ error, loading, stores }) => loading ? null : (
     <View style={stores.appStyles.commentsList.empty}>
+      <Image resizeMode="contain" style={{ width: 200, height: 200 }} source={require('../../../assets/support-woman.png')} />
       <Headline style={stores.appStyles.commentsList.emptyTitle}>
         {
           error ? I18n.get("ERROR_networkError") : I18n.get("COMMENTS_emptyList")

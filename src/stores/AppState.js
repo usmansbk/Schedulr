@@ -13,6 +13,7 @@ export default class AppState {
 
   @observable isConnected = false;
   @observable searchText = '';
+  @observable searchLocation = null;
   @observable query = '';
 
   @persist @observable userId = null;
