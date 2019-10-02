@@ -21,7 +21,6 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
         // Dont log elasticsearch "Not found"
       } else {
         SimpleToast.show(I18n.get('ERROR_serverError'), SimpleToast.LONG);
-        console.log(error.message);
         Analytics.record({
           name: 'GraphQLError',
           attributes: {
@@ -33,7 +32,8 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
         });
       }
     });  
-  } else if (networkError) SimpleToast.show(I18n.get("ERROR_noConnection"), SimpleToast.SHORT);
+  }
+  // if (networkError) SimpleToast.show(I18n.get("ERROR_noConnection"), SimpleToast.SHORT);
 });
 
 const appSyncLink = createAppSyncLink({
@@ -68,7 +68,6 @@ const client = new AWSAppSyncClient({
     callback: (error) => {
       if (error) {
         SimpleToast.show(error.message, SimpleToast.SHORT);
-        console.log(error);
       }
     }
   }
