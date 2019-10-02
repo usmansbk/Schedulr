@@ -5,8 +5,10 @@ import {
   HelperText,
   Provider,
   Divider,
+  IconButton,
 } from 'react-native-paper';
 import { View, TextInput } from 'react-native';
+import Icon from 'react-native-vector-icons/Feather';
 import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
 import List from './List';
@@ -33,6 +35,7 @@ class Input extends React.Component {
     return null;
   }
 
+  _clearText = () => this.setState({ text: '' });
   _hideModal = () => this.props.hideModal();
   _onChangeText = text => this.setState({ text });
   _onValueChange = (value) => this.props.onValueChange(value);
@@ -85,17 +88,34 @@ class Input extends React.Component {
                 hideModal={this._hideModal}
               />
               <Divider />
-              <TextInput
-                placeholder={I18n.get("PLACEHOLDER_customType")}
-                label={I18n.get("PLACEHOLDER_customType")}
-                mode="outlined"
-                style={styles.placeholder}
-                placeholderTextColor={colors.placeholder}
-                value={text}
-                onChangeText={this._onChangeText}
-                onSubmitEditing={this._handleSubmit}
-                clearButtonMode="while-editing"
-              />
+              <View style={stores.appStyles.commentInput.container}>
+                <View style={stores.appStyles.commentInput.input}>
+                  <TextInput
+                    placeholder={I18n.get("PLACEHOLDER_customType")}
+                    label={I18n.get("PLACEHOLDER_customType")}
+                    mode="outlined"
+                    style={styles.placeholder}
+                    placeholderTextColor={colors.placeholder}
+                    value={text}
+                    onChangeText={this._onChangeText}
+                    onSubmitEditing={this._handleSubmit}
+                  />
+                </View>
+                {
+                  !!length && (
+                    <IconButton
+                      size={24}
+                      color={colors.primary}
+                      icon={({ size, color }) => <Icon
+                        name="x"
+                        size={size}
+                        color={color}
+                      />}
+                      onPress={this._clearText}
+                    />
+                  )
+                }
+              </View>
               <HelperText
                 type="error"
                 visible={tooLong || tooShort}
