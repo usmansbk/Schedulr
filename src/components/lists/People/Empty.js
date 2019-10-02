@@ -8,7 +8,7 @@ import Loading from 'components/common/Loading';
 
 export default inject('stores')(observer(
   ({ error, loading, stores, onRefresh, search }) =>{
-    if (error) return <Error onRefresh={onRefresh} />;
+    if (error) return <Error />;
     if (loading) return <Loading />;
     return (
       <View style={stores.appStyles.eventsList.empty}>

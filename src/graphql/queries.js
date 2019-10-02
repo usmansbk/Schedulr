@@ -507,7 +507,7 @@ export const getUserData = `query GetUserData($id: ID!, $filter: ModelEventFilte
 }`
 
 export const getDeltaUpdates = `query GetDeltaUpdates($lastSync: String!) {
-  deltaSync(lastSync: $lastSync) {
+  deltaSync(lastSync: $lastSync) @connection(key: "deltaSync") {
     ... on Event {
       id
       title

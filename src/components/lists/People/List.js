@@ -32,6 +32,7 @@ class List extends React.Component {
       (
         nextProps.people !== this.props.people ||
         nextProps.loading !== this.props.loading ||
+        nextProps.error !== this.props.error ||
         nextState.fetchingMore !== this.state.fetchingMore
       )
     );

@@ -21,7 +21,7 @@ export default graphql(gql(listFollowers), {
     people: (data && data.listFollowers && data.listFollowers.followers.items) || [],
     nextToken: data && data.listFollowers && data.listFollowers.followers.nextToken,
     loading: data && data.loading || (data.networkStatus === 4),
-    error: data.error,
+    error: !!data.error,
     onRefresh: () => data.refetch(),
     fetchMore: (nextToken) => data.fetchMore({
       variables: {
