@@ -7,7 +7,7 @@ import { I18n } from 'aws-amplify';
 export default inject('stores')(observer(
   ({ stores }) => (
     <View style={stores.appStyles.discover.empty}>
-      <Image resizeMode="contain" style={{ width: 200, height: 200 }} source={require('../../../assets/map.png')} />
+      <Image resizeMode="contain" style={{ width: 200, height: 200 }} source={require('../../../assets/directions.png')} />
       <Headline style={stores.appStyles.discover.emptyTitle}>
         {I18n.get("DISCOVER_emptyList")}
       </Headline>
