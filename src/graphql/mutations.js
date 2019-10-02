@@ -278,6 +278,7 @@ export const createFollow = `mutation CreateFollow($input: CreateFollowInput!, $
           bucket
         }
         bio
+        me
         website
         createdCount
         followingCount

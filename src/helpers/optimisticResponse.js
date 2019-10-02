@@ -323,7 +323,9 @@ function createFollow(input, typename) {
           key
           bucket
         }
+        me
         website
+        bio
         createdCount
         followingCount
         createdAt
@@ -551,7 +553,7 @@ function deleteBookmark(input, typename) {
 
 function deleteFollow(input, typename) {
   const schedule = client.readFragment({
-    fragment: gql`fragment followScheduleDetails on Schedule {
+    fragment: gql`fragment followScheduleDeleteDetails on Schedule {
       id
       followersCount
       isFollowing

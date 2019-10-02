@@ -304,6 +304,7 @@ export const getUserSchedules = `query GetUserSchedules($id: ID!, $limit: Int) {
             }
             website
             bio
+            me
             createdCount
             followingCount
             createdAt
