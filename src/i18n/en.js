@@ -32,7 +32,7 @@ export default {
   MORE_sync: "Sync",
 
   DISCOVER_emptyList: "Discover",
-  DISCOVER_emptyListCaption: "Nearby events",
+  DISCOVER_emptyListCaption: "Events happening around you!",
 
   SEARCH_inputPlaceholder: city => `Search${city ? (' near ' + city) : ''}`,
   SEARCH_schedulesTabLabel: "Schedules",
