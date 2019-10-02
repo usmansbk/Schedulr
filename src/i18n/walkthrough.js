@@ -8,7 +8,7 @@ const en = [
   {
     key: 'p2',
     title: 'Add events to your schedules!',
-    text: 'Organize your events by grouping them in specific schedules',
+    text: 'Organize your events by grouping them in specific schedules.',
     image: require('../assets/calendar.png')
   },
   {
@@ -26,7 +26,7 @@ const en = [
   {
     key: 'p5',
     title: "Welcome to Schdlr!",
-    text: 'Schdlr helps you to organize your events, by creating schedules to keep everyone up-to-date',
+    text: 'Schdlr helps you to organize your events, by creating schedules to keep everyone up-to-date.',
     image: require('../assets/schoolbooks.png')
   },
 ];
