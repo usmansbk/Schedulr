@@ -85,8 +85,6 @@ class CreatedSchedules extends Component{
       stores
     } = this.props;
 
-    if (loading && !schedules.length) return <Loading />;
-
     const styles = stores.appStyles.schedulesList;
 
     return (

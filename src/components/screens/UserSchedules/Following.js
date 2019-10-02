@@ -91,11 +91,8 @@ class FollowingSchedules extends Component{
     const {
       loading,
       onRefresh,
-      following,
       stores
     } = this.props;
-
-    if (loading && !following.length) return <Loading />;
 
     const styles = stores.appStyles.schedulesList;
 

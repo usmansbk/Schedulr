@@ -13,7 +13,7 @@ class Loading extends React.Component {
           backgroundColor={stores.themeStore.colors.light_gray_2}
           barStyle={stores.settingsStore.dark ? "light-content" : "dark-content"}
         />
-        { loading && <ActivityIndicator animating={loading} size="large" color={stores.themeStore.colors.primary} /> }
+        { loading && <ActivityIndicator size="large" color={stores.themeStore.colors.primary} /> }
         <Image resizeMode="contain" style={{ width: 200, height: 200 }} source={require('../../../assets/food-delivery.png')} />
       </View>
     )
