@@ -43,7 +43,7 @@ class CreatedSchedules extends Component{
   _keyExtractor = (item) => String(item.id);
   _renderSeparator = () => <Separator />;
   _renderFooter = () => <Footer visible={this.props.schedules.length} />;
-  _renderEmptyList = () => this.props.loading ? null : <Empty
+  _renderEmptyList = () => <Empty
     profile
     error={this.props.error}
     loading={this.props.loading}

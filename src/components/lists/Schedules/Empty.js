@@ -25,9 +25,19 @@ export default inject('stores')(observer(
   
     return (
       <View style={styles.empty}>
-        <Image resizeMode="contain" style={{ width: 200, height: 200 }} source={require('../../../assets/list-app.png')} />
-        <Headline style={styles.emptyTitle}>{title}</Headline>
-        <Caption>{caption}</Caption>
+        {
+          loading ? <Image resizeMode="contain" style={{ width: 200, height: 200 }} source={require('../../../assets/food-delivery.png')} /> : (
+            <Image resizeMode="contain" style={{ width: 200, height: 200 }} source={require('../../../assets/list-app.png')} />
+          )
+        }
+        {
+          !loading && (
+            <>
+              <Headline style={styles.emptyTitle}>{title}</Headline>
+              <Caption>{caption}</Caption>
+            </>
+          )
+        }
       </View>
     );
   }
