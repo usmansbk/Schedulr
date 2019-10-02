@@ -5,6 +5,11 @@ export const pastEventsFilter = () => {
 	return {
 		or: [
 			{
+				isCancelled: {
+					eq: true
+				}
+			},
+			{
 				and: [
 					{
 						endAt: {
@@ -57,6 +62,11 @@ export const baseEventsFilter = () => {
 			},
 			{	
 				and: [
+					{
+						isCancelled: {
+							ne: true
+						}
+					},
 					{
 						recurrence: {
 							ne: 'NEVER'
