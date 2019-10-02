@@ -1,14 +1,19 @@
 import React, { Component } from 'react';
 import { Auth } from 'aws-amplify';
+import { inject, observer } from 'mobx-react';
 import Loading from './Loading';
 
-export default class Container extends Component {
+class Container extends Component {
   componentDidMount = async () => {
-    try {
-      await Auth.currentAuthenticatedUser();
-      this.props.navigation.navigate('App');
-    } catch (error) {
-      this.props.navigation.navigate('Auth');
+    if (this.props.stores.appState.prefs.showAppIntro) {
+      this.props.navigation.navigate('Intro');
+    } else {
+      try {
+        await Auth.currentAuthenticatedUser();
+        this.props.navigation.navigate('App');
+      } catch (error) {
+        this.props.navigation.navigate('Auth');
+      }
     }
   }
 
@@ -18,3 +23,5 @@ export default class Container extends Component {
     );
   }
 }
+
+export default inject("stores")(observer(Container));

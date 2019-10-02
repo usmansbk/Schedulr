@@ -25,6 +25,7 @@ export default class AppState {
   @persist('list') @observable allowedEvents = [];
   @persist('object') @observable prefs = {
     showPrivateScheduleAlert: true,
+    showAppIntro: true
   };
   @persist('list') @observable categories =  categories(this.settings.language);
 
@@ -47,7 +48,8 @@ export default class AppState {
     this.mutedSchedules = [];
     this.prefs = {
       showPrivateScheduleAlert: true,
-    }
+      showAppIntro: true
+    };
     this.categories = categories(this.settings.language);
     this.loggingIn = false;
     this.userId = null;

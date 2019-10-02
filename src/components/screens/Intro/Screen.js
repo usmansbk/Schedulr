@@ -16,11 +16,8 @@ class Intro extends React.Component {
   }
 
   _onDone = () => {
-    console.log('Navigate to Auth screen');
-  };
-
-  _onSkip = () => {
-    console.log('Skip tutorial');
+    this.props.stores.appState.togglePref('showAppIntro');
+    this.props.navigation.navigate('AuthLoading');
   };
 
   _onSlideChange = (index) => {
@@ -37,7 +34,7 @@ class Intro extends React.Component {
       <AppIntroSlider
         slides={this.slides}
         onDone={this._onDone}
-        onSkip={this._onSkip}
+        onSkip={this._onDone}
         onSlideChange={this._onSlideChange}
         showSkipButton
         doneLabel={I18n.get("BUTTON_done")}
