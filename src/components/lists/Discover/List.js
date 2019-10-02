@@ -15,7 +15,6 @@ import {
   getDuration,
   getHumanTime
 } from 'lib/time';
-import { processEvents } from 'lib/calendr';
 import { bookmarkedEvents } from 'lib/constants';
 import getImageUrl from 'helpers/getImageUrl';
 
@@ -118,7 +117,7 @@ class List extends Component{
             progressBackgroundColor={this.props.stores.themeStore.colors.bg}
           />
         }
-        data={processEvents(this.props.data)}
+        data={this.props.data}
         renderItem={this._renderItem}
         keyExtractor={this._keyExtractor}
         ListEmptyComponent={this._renderEmptyList}
