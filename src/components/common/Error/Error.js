@@ -13,10 +13,12 @@ import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
 
 export default inject('stores')(observer(
-  ({ onRefresh, message, caption, loading, stores, icon }) => (
+  ({ onRefresh, message, caption, loading, stores, notFound }) => (
     <View style={stores.appStyles.error.container}>
       {
-        icon && <Image resizeMode="contain" style={{ width: 200, height: 200 }} source={require('../../../assets/error-404.png')} />
+        notFound ? <Image resizeMode="contain" style={{ width: 200, height: 200 }} source={require('../../../assets/error-404.png')} /> : (
+          <Image resizeMode="contain" style={{ width: 200, height: 200 }} source={require('../../../assets/server-woman.png')} /> 
+        )
       }
       <Headline style={stores.appStyles.error.headline}>
         { message ? message : I18n.get("ERROR_somethingWentWrong")}

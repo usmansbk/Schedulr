@@ -1,37 +1,21 @@
 import React from 'react';
 import { View, Image } from 'react-native';
 import { I18n } from 'aws-amplify';
-import { Headline, Paragraph } from 'react-native-paper';
+import { Headline } from 'react-native-paper';
 import { inject, observer } from 'mobx-react';
-import ErrorScreen from 'components/common/Error';
+import Error from 'components/common/Error';
+import Loading from 'components/common/Loading';
 
 export default inject('stores')(observer(
   ({ error, loading, stores, onRefresh, isAuth }) =>{
-    if (error) return <ErrorScreen
-      onRefresh={onRefresh}
-      loading={loading}
-    />;
+    if (error) return <Error onRefresh={onRefresh} />;
+    if (loading) return <Loading />
     return (
       <View style={stores.appStyles.eventsList.empty}>
-        {
-          loading ? <Image resizeMode="contain" style={{ width: 200, height: 200 }} source={require('../../../assets/food-delivery.png')} /> : (
-            <Image resizeMode="contain" style={{ width: 200, height: 200 }} source={require('../../../assets/calendar.png')} />
-          )
-        }
-        {
-          !loading && (
-            <Headline style={stores.appStyles.eventsList.emptyTitle}>
-              {I18n.get(isAuth ? "EVENTS_emptyList" : 'PROFILE_notVisibleToPublic')}
-            </Headline>
-          )
-        }
-        {
-          error && (
-            <Paragraph style={stores.appStyles.eventsList.paragraph}>
-              {I18n.get("ERROR_noInternetConnection")}
-            </Paragraph>
-          )
-        }
+        <Image resizeMode="contain" style={{ width: 200, height: 200 }} source={require('../../../assets/calendar.png')} />
+        <Headline style={stores.appStyles.eventsList.emptyTitle}>
+          {I18n.get(isAuth ? "EVENTS_emptyList" : 'PROFILE_notVisibleToPublic')}
+        </Headline>
       </View>
     );  
   }

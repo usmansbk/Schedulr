@@ -61,7 +61,7 @@ class Info extends React.Component {
     if (loading && !schedule) return <Loading />;
     if (error && !schedule) return <Error onRefresh={onRefresh} />;
     if (!schedule) return <Error
-      icon="meh"
+      notFound
       message={I18n.get("ERROR_404")}
       caption={I18n.get("ERROR_404_caption")}
     />;

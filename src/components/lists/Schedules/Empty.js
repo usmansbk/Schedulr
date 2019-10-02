@@ -3,16 +3,13 @@ import { View, Image } from 'react-native';
 import { Headline, Caption } from 'react-native-paper';
 import { I18n } from 'aws-amplify';
 import { inject, observer } from 'mobx-react';
-import ErrorScreen from 'components/common/Error';
+import Error from 'components/common/Error';
+import Loading from 'components/common/Loading';
 
 export default inject('stores')(observer(
   ({ profile, error, stores, onRefresh, loading }) => {
-    if (error) {
-      return <ErrorScreen
-        onRefresh={onRefresh}
-        loading={loading}
-      />;
-    }
+    if (error) return <Error onRefresh={onRefresh} />;
+    if (loading) return <Loading />;
 
     let title = I18n.get("BOARD_emptyList");
     let caption = I18n.get("BOARD_emptyListCaption");
@@ -25,19 +22,9 @@ export default inject('stores')(observer(
   
     return (
       <View style={styles.empty}>
-        {
-          loading ? <Image resizeMode="contain" style={{ width: 200, height: 200 }} source={require('../../../assets/food-delivery.png')} /> : (
-            <Image resizeMode="contain" style={{ width: 200, height: 200 }} source={require('../../../assets/list-app.png')} />
-          )
-        }
-        {
-          !loading && (
-            <>
-              <Headline style={styles.emptyTitle}>{title}</Headline>
-              <Caption>{caption}</Caption>
-            </>
-          )
-        }
+        <Image resizeMode="contain" style={{ width: 200, height: 200 }} source={require('../../../assets/list-app.png')} />
+        <Headline style={styles.emptyTitle}>{title}</Headline>
+        <Caption>{caption}</Caption>
       </View>
     );
   }

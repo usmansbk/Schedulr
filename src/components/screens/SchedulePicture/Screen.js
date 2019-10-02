@@ -27,7 +27,7 @@ export default class AvatarViewer extends React.Component {
   render() {
     const { schedule } = this.props;
     if (!schedule) return <Error
-      icon="meh"
+      notFound
       message={I18n.get("ERROR_404")}
       caption={I18n.get("ERROR_404_caption")}
     />;

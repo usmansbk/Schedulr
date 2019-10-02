@@ -41,7 +41,7 @@ export default class Screen extends React.Component {
     if (loading && !event) return <Loading />;
     if (error && !event) return <Error onRefresh={onRefresh} />;
     if (!event) return <Error
-      icon="meh"
+      notFound
       message={I18n.get("ERROR_404")}
       caption={I18n.get("ERROR_404_caption")}
     />
