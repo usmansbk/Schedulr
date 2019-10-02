@@ -22,6 +22,7 @@ import AvatarViewer from './AvatarViewer';
 import Banner from './Banner';
 import SchedulePicture from './SchedulePicture';
 import EventBookmarks from './EventBookmarks';
+import Intro from './Intro';
 
 export {
   AuthLoading,
@@ -47,5 +48,6 @@ export {
   AvatarViewer,
   Banner,
   SchedulePicture,
-  EventBookmarks
+  EventBookmarks,
+  Intro
 };

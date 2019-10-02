@@ -28,6 +28,7 @@ import {
   Banner,
   SchedulePicture,
   EventBookmarks,
+  Intro
 } from 'components/screens';
 import colors from 'config/colors';
 
@@ -172,6 +173,7 @@ const AuthStack = createStackNavigator({
 });
 
 const AppNavigator = createSwitchNavigator({
+  Intro,
   AuthLoading,
   App: {
     screen: AppStack,
@@ -182,7 +184,7 @@ const AppNavigator = createSwitchNavigator({
     path: '',
   }
 }, {
-  initialRouteName: 'AuthLoading',
+  initialRouteName: 'Intro',
 });
 
 export default createAppContainer(AppNavigator);

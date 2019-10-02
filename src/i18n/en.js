@@ -97,6 +97,9 @@ export default {
   BUTTON_dismiss: "Dismiss",
   BUTTON_continue: "Continue",
   BUTTON_done: "Done",
+  BUTTON_next: "Next",
+  BUTTON_skip: "Skip",
+  BUTTON_back: "Back",
   BUTTON_loading: "Loading...",
   BUTTON_tryAgain: "Try again",
   BUTTON_continueWithEmail: "Continue with email",
@@ -113,7 +116,6 @@ export default {
   BUTTON_muteEvents: "Mute events",
   BUTTON_unmute: "Unmute",
   BUTTON_unmuteEvents: "Unmute events",
-  BUTTON_back: "Back",
   BUTTON_unfollow: "Unfollow",
 
   ALERT_repeat: "Repeat",
