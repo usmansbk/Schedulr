@@ -41,7 +41,7 @@ class List extends Component {
       this.setState({ fetchingMore: false });
     }
   };
-  _renderEmptyList = () => this.props.loading ? null : <Empty />;
+  _renderEmptyList = () => <Empty loading={this.props.loading} />;
   _renderItem = ({item}) => {
     const {
       id,

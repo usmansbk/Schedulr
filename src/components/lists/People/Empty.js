@@ -7,14 +7,18 @@ import ErrorScreen from 'components/common/Error';
 
 export default inject('stores')(observer(
   ({ error, loading, stores, onRefresh, search }) =>{
-    if (loading) return null;
     if (error) return <ErrorScreen
       onRefresh={onRefresh}
       loading={loading}
     />;
     return (
       <View style={stores.appStyles.eventsList.empty}>
-        <Image resizeMode="contain" style={{ width: 200, height: 200 }} source={require('../../../assets/hiker-man.png')} />
+        {
+          loading ? <Image resizeMode="contain" style={{ width: 200, height: 200 }} source={require('../../../assets/food-delivery.png')} /> : (
+            <Image resizeMode="contain" style={{ width: 200, height: 200 }} source={require('../../../assets/hiker-man.png')} />
+          )
+        }
+        
         <Headline style={stores.appStyles.eventsList.emptyTitle}>
           { I18n.get(search ? "SEARCH_emptyList" : "FOLLOWERS_emptyList")}
         </Headline>

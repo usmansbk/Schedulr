@@ -49,6 +49,7 @@ export default class Events extends React.Component {
     return (
       <>
         <List
+          isAuth
           events={this.events}
           navigation={this.props.navigation}
           onRefresh={this._onRefresh}

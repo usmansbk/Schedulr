@@ -7,17 +7,24 @@ import ErrorScreen from 'components/common/Error';
 
 export default inject('stores')(observer(
   ({ error, loading, stores, onRefresh, isAuth }) =>{
-    if (loading) return null;
     if (error) return <ErrorScreen
       onRefresh={onRefresh}
       loading={loading}
     />;
     return (
       <View style={stores.appStyles.eventsList.empty}>
-        <Image resizeMode="contain" style={{ width: 200, height: 200 }} source={require('../../../assets/calendar.png')} />
-        <Headline style={stores.appStyles.eventsList.emptyTitle}>
-          {I18n.get(isAuth ? "EVENTS_emptyList" : 'PROFILE_notVisibleToPublic')}
-        </Headline>
+        {
+          loading ? <Image resizeMode="contain" style={{ width: 200, height: 200 }} source={require('../../../assets/food-delivery.png')} /> : (
+            <Image resizeMode="contain" style={{ width: 200, height: 200 }} source={require('../../../assets/calendar.png')} />
+          )
+        }
+        {
+          !loading && (
+            <Headline style={stores.appStyles.eventsList.emptyTitle}>
+              {I18n.get(isAuth ? "EVENTS_emptyList" : 'PROFILE_notVisibleToPublic')}
+            </Headline>
+          )
+        }
         {
           error && (
             <Paragraph style={stores.appStyles.eventsList.paragraph}>

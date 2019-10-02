@@ -52,7 +52,8 @@ class List extends React.Component {
     onPress={this._onEndReached}
   />;
   _renderSeparator = () => <Separator />;
-  _renderEmpty = () => this.props.loading ? null : <Empty
+  _renderEmpty = () => <Empty
+    loading={this.props.loading}
     onRefresh={this.props.onRefresh}
     error={this.props.error}
     isOwner={this.props.isOwner}
