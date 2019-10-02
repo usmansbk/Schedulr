@@ -1,28 +1,33 @@
 const en = [
   {
-    key: 'k1',
+    key: 'p1',
     title: 'Create schedules easily!',
-    text: 'Enter a name, upload a picture and your schedule is ready to use and be shared.',
+    text: 'Enter a schedule name and your schedule is ready to use and be shared.',
+    image: require('../assets/list-app.png')
   },
   {
-    key: 'k2',
+    key: 'p2',
     title: 'Add events to your schedules!',
-    text: 'Organize your related events in each one of your schedules',
+    text: 'Organize your events by grouping them in specific schedules',
+    image: require('../assets/calendar.png')
   },
   {
-    key: 'k3',
+    key: 'p3',
     title: 'Keep everyone Up-to-date!',
     text: 'Create schedules for events in your life and invite people to follow and share them.',
+    image: require('../assets/handshake.png')
   },
   {
-    key: 'k4',
-    title: "Don't want to create a schedule?!",
-    text: 'You can find and follow schedules of your interest and get their events reminders.',
+    key: 'p4',
+    title: "Follow schedules of interest!",
+    text: 'Follow schedules and get their events offline reminders and real-time updates.',
+    image: require('../assets/app-user.png')
   },
   {
-    key: 'k5',
+    key: 'p5',
     title: "Welcome to Schdlr!",
     text: 'Schdlr helps you to organize your events, by creating schedules to keep everyone up-to-date',
+    image: require('../assets/schoolbooks.png')
   },
 ];
 
