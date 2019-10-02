@@ -4,6 +4,7 @@ import { SectionList } from 'react-navigation';
 import { inject, observer } from 'mobx-react';
 import throttle from 'lodash.throttle';
 import moment from 'moment';
+import uuidv5 from 'uuid/v5';
 import sectionListGetItemLayout from 'sectionlist-get-itemlayout';
 import Header from './Header';
 import Footer from './Footer';
@@ -98,7 +99,8 @@ class List extends React.Component {
   _onPressSectionHeader = (targetDate) => {
     if (!isPast(targetDate)) {
       this.props.navigation.navigate('NewEvent', {
-        targetDate
+        targetDate,
+        eventScheduleId : uuidv5(this.props.stores.appState.userId, uuidv5.DNS)
       });
     }
   };
