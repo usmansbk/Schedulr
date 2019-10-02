@@ -12,7 +12,7 @@ export default inject('stores')(observer(
     if (error) return <Error />;
     return (
       <View style={stores.appStyles.bookmarkedEventsList.empty}>
-      <Image resizeMode="contain" style={{ width: 200, height: 200 }} source={require('../../../assets/hiker-man.png')} />
+      <Image resizeMode="contain" style={{ width: 200, height: 200 }} source={require('../../../assets/error-404.png')} />
         <Headline style={stores.appStyles.bookmarkedEventsList.emptyTitle}>
           { I18n.get("SEARCH_emptyList")}
         </Headline>

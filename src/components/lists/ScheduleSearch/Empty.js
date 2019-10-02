@@ -13,7 +13,7 @@ export default inject('stores')(observer(
 
     return (
       <View style={stores.appStyles.scheduleSearch.empty}>
-        <Image resizeMode="contain" style={{ width: 200, height: 200 }} source={require('../../../assets/hiker-man.png')} />
+        <Image resizeMode="contain" style={{ width: 200, height: 200 }} source={require('../../../assets/error-404.png')} />
         <Headline style={stores.appStyles.scheduleSearch.emptyTitle}>{I18n.get("SEARCH_emptyList")}</Headline>
       </View>
     );
