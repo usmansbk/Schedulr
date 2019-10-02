@@ -47,7 +47,7 @@ export default {
   NOTIFICATIONS_messagesTabLabel: "COMMENTS",
   NOTIFICATIONS_emptyUpdatesList: "Stay tuned!",
   NOTIFICATIONS_emptyUpdatesListCaption: "Important updates and announcements will appear here",
-  NOTIFICATIONS_emptyMessagesList: "No messages",
+  NOTIFICATIONS_emptyMessagesList: "No comments",
   NOTIFICATIONS_allCaughtUp: "You are all caught up!",
 
   SETTINGS_screenTitle: "Settings",
