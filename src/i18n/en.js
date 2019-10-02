@@ -252,6 +252,7 @@ export default {
   DIALOG_closeSchedule: "Close schedule?",
   DIALOG_deleteComment: "Delete comment?",
   DIALOG_deleteEvent: "Delete event?",
+  DIALOG_deleteEventWarning: "Always cancel active events before deleting to notify followers.",
   DIALOG_deleteSchedule: "Delete schedule?",
   DIALOG_openSchedule: "Open schedule?",
 

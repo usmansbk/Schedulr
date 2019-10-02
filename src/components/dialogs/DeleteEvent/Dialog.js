@@ -3,6 +3,7 @@ import {
   Button,
   Dialog,
   Portal,
+  Caption
 } from 'react-native-paper';
 import { inject, observer } from 'mobx-react';
 import { I18n, Storage } from 'aws-amplify';
@@ -52,6 +53,9 @@ class DeleteEvent extends React.Component {
           style={{backgroundColor: stores.themeStore.colors.bg, borderRadius: undefined }}
         >
           <Dialog.Title>{I18n.get("DIALOG_deleteEvent")}</Dialog.Title>
+          <Dialog.Content>
+            <Caption>{I18n.get("DIALOG_deleteEventWarning")}</Caption>
+          </Dialog.Content>
           <Dialog.Actions>
             <Button disabled={loading} onPress={handleDismiss}>{I18n.get("BUTTON_dismiss")}</Button>
             <Button loading={loading} disabled={loading} onPress={this._onContinue}>{I18n.get("BUTTON_continue")}</Button>
