@@ -47,7 +47,6 @@ class CreatedSchedules extends Component{
     profile
     error={this.props.error}
     loading={this.props.loading}
-    onRefresh={this.props.onRefresh}
   />;
   _renderItem = ({item}) => {
     const {
