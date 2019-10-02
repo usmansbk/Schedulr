@@ -18,8 +18,8 @@ export default class ScheduleEvents extends React.Component {
       stores,
     } = this.props;
 
-    if (loading && !schedule) return <Loading />;
-    if (!schedule && error) return <Error onRefresh={onRefresh} />;
+    if (loading && !schedule) return <Loading loading={loading} />;
+    if (!schedule && error) return <Error onRefresh={onRefresh} loading={loading} />;
     if (!schedule) return <Error
       notFound
       message={I18n.get("ERROR_404")}

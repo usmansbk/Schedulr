@@ -32,8 +32,13 @@ class Schedule extends React.Component {
       navigation,
       stores
     } = this.props;
-    if (loading && !schedule) return <Loading />;
-    if (error && !schedule) return <Error onRefresh={onRefresh} />;
+    if (loading && !schedule) return <Loading loading={loading} />;
+    if (error && !schedule) return <Error onRefresh={onRefresh} loading={loading} />;
+    if (!schedule) return <Error
+      notFound
+      message={I18n.get("ERROR_404")}
+      caption={I18n.get("ERROR_404_caption")}
+    />;
 
     const {
       id,

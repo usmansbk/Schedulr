@@ -38,8 +38,8 @@ export default class Screen extends React.Component {
     const refEndAt = navigation.getParam('refEndAt');
     const cardView = navigation.getParam('cardView');
 
-    if (loading && !event) return <Loading />;
-    if (error && !event) return <Error onRefresh={onRefresh} />;
+    if (loading && !event) return <Loading loading={loading} />;
+    if (error && !event) return <Error onRefresh={onRefresh} loading={loading} />;
     if (!event) return <Error
       notFound
       message={I18n.get("ERROR_404")}
