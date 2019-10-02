@@ -10,11 +10,12 @@ const en = [
   'Work',
   'Sport',
   'Meeting',
-  'Festival',
+  'Festivity',
   'Ceremony',
   'Competition',
   'Party',
   'Holiday',
+  'Hackathon'
 ];
 
 const translations = {
