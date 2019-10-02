@@ -48,7 +48,7 @@ export default class AppState {
     this.mutedSchedules = [];
     this.prefs = {
       showPrivateScheduleAlert: true,
-      showAppIntro: true
+      showAppIntro: false
     };
     this.categories = categories(this.settings.language);
     this.loggingIn = false;
