@@ -41,15 +41,13 @@ const styles = StyleSheet.create({
     position: 'absolute',
     margin: 16,
     right: 0,
-    bottom: 0,
-    borderRadius: undefined
+    bottom: 0
   },
   secondary: {
     position: 'absolute',
     margin: 16,
     right: 6,
-    bottom: 80,
-    borderRadius: undefined
+    bottom: 80
   }
 });
 

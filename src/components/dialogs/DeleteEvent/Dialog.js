@@ -50,7 +50,7 @@ class DeleteEvent extends React.Component {
         <Dialog
           visible={visible}
           onDismiss={handleDismiss}
-          style={{backgroundColor: stores.themeStore.colors.bg, borderRadius: undefined }}
+          style={{backgroundColor: stores.themeStore.colors.bg}}
         >
           <Dialog.Title>{I18n.get("DIALOG_deleteEvent")}</Dialog.Title>
           <Dialog.Content>

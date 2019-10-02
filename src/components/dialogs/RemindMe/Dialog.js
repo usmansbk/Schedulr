@@ -51,7 +51,7 @@ class RemindMe extends React.Component {
           visible={visible}
           dismissable
           onDismiss={hideDialog}
-          style={{backgroundColor: colors.bg, borderRadius: undefined }}
+          style={{backgroundColor: colors.bg}}
         >
           <Dialog.Title>{I18n.get("REMIND_ME_title")}</Dialog.Title>
           <Dialog.Content>

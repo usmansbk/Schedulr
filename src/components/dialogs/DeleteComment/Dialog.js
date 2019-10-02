@@ -31,7 +31,7 @@ class DeleteComment extends React.Component {
       <Portal>
         <Dialog
           visible={visible}
-          style={{backgroundColor: stores.themeStore.colors.bg, borderRadius: undefined }}
+          style={{backgroundColor: stores.themeStore.colors.bg}}
           onDismiss={handleDismiss}
         >
           <Dialog.Title>{I18n.get("DIALOG_deleteComment")}</Dialog.Title>

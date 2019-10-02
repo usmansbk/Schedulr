@@ -65,7 +65,7 @@ class CancelEvent extends React.Component {
         <Dialog
           visible={visible}
           onDismiss={this._handleDismiss}
-          style={{backgroundColor: stores.themeStore.colors.bg, borderRadius: undefined }}
+          style={{backgroundColor: stores.themeStore.colors.bg}}
         >
           <Dialog.Title>{I18n.get("DIALOG_cancelEvent")}</Dialog.Title>
           {
