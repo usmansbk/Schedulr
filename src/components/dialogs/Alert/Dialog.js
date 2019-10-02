@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   Button,
-  Paragraph,
+  Caption,
   Dialog,
   Portal,
 } from 'react-native-paper';
@@ -31,7 +31,7 @@ export default inject('stores')(observer(
         {
           !!message && (
             <Dialog.Content>
-              <Paragraph>{message}</Paragraph>
+              <Caption>{message}</Caption>
             </Dialog.Content>
           )
         }
