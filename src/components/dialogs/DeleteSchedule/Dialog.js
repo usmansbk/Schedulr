@@ -18,13 +18,15 @@ class DeleteSchedule extends React.Component {
     nextState.loading !== this.state.loading
   );
 
-  _onContinue = () => {
+  _onContinue = async () => {
     const {
       id,
       onSubmit,
+      handleDismiss,
     } = this.props;
     this.setState({ loading: true });
-    onSubmit && onSubmit({ id });
+    onSubmit && await onSubmit({ id });
+    handleDismiss();
     this.props.navigation.popToTop();
     this.setState({ loading: false });
   }
