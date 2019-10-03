@@ -140,11 +140,15 @@ const processNextDayEvents = memoize((initialEvents, nextDate) => {
         const endAt = moment(startAt).add(duration).toISOString();
         accumulator.data.push(Object.assign({}, currentEvent, {
           startAt,
-          endAt
+          endAt,
+          ref_date: refDate.toISOString()
         }));
       }
     } else if (!interval && eventDate.isSame(refDate, 'day') || isExtended) {
-      accumulator.data.push(currentEvent);
+      const currentEventWithMeta = Object.assign({}, currentEvent, {
+        ref_date: refDate.toISOString()
+      });
+      accumulator.data.push(currentEventWithMeta);
     }
     accumulator.data = sortBy(accumulator.data, 'startAt');
     return accumulator;
@@ -189,12 +193,14 @@ function processEvents(events) {
         endAt,
         raw_startAt: currentEvent.startAt,
         raw_endAt: currentEvent.endAt,
+        ref_date: moment().toISOString(),
         isConcluded
       });
     }
     return Object.assign({}, currentEvent, {
       raw_startAt: currentEvent.startAt,
-      raw_endAt: currentEvent.endAt
+      raw_endAt: currentEvent.endAt,
+      ref_date: moment().toISOString(),
     });
   });
 };

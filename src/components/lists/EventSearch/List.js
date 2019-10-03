@@ -62,6 +62,7 @@ class List extends Component {
     banner,
     startAt,
     endAt,
+    ref_date,
     recurrence,
     venue,
     schedule,
@@ -83,6 +84,7 @@ class List extends Component {
     pictureUrl={banner && getImageUrl(banner)}
     startAt={startAt}
     endAt={endAt}
+    ref_date={ref_date}
     bookmarksCount={bookmarksCount}
     commentsCount={commentsCount}
     isBookmarked={isBookmarked}

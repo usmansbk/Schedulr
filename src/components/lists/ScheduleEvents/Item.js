@@ -29,6 +29,9 @@ class Item extends React.Component {
   }
   render() {
     const {
+      startAt,
+      endAt,
+      ref_date,
       title,
       allDay,
       recurrence,
@@ -41,7 +44,15 @@ class Item extends React.Component {
     } = this.props;
     
     const styles = stores.appStyles.scheduleEvents;
-    const caption = captionDetails({ allDay, category, duration, recurrence });
+    const caption = captionDetails({
+      allDay,
+      category,
+      duration,
+      recurrence,
+      startAt,
+      endAt,
+      ref_date
+    });
 
     return (
       <TouchableRipple
