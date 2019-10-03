@@ -2,7 +2,7 @@ import moment from 'moment';
 import 'twix';
 import twitter from 'moment-twitter';
 import { I18n } from 'aws-amplify';
-import capitalizr, { decapitalize } from './capitalizr';
+import { capitalize, decapitalize, singularMomentUnit } from './utils';
 
 export const SECOND = 1000;
 export const ONE_MINUTE = moment.duration(1, 'minute').asMilliseconds();
@@ -73,7 +73,7 @@ export const getSectionHeaderData = (date) => {
   const subheading = momentDate.calendar(null, subheadingCalendarFormats);
   let timeAgo = '';
   if (Math.abs(momentDate.diff(moment().startOf('D'), 'hours')) > 24) {
-    timeAgo = capitalizr(momentDate.from(moment().startOf('D')));
+    timeAgo = capitalize(momentDate.from(moment().startOf('D')));
   }
   return {
     heading,
@@ -149,3 +149,20 @@ export const getDuration = (startAt, endAt, allDay) => {
   const t = moment(startAt).twix(endAt);
   return decapitalize(t.humanizeLength());
 };
+
+export const momentCounter = (startAt, endAt, refDate) => {
+  const currentMoment = moment(refDate);
+  const startMoment = moment(startAt);
+  const endMoment = moment(endAt);
+  const isSameDay = startMoment.isSame(endMoment, 'day');
+  if (isSameDay) return '';
+  
+  const twoDays = moment.duration(2, 'days');
+  const isDurationAtLeastTwoDays = moment.duration(endMoment.diff(startMoment)) >= twoDays;
+  if (!isDurationAtLeastTwoDays) return '';
+  
+  const timeAgo = currentMoment.from(startMoment, true);
+  const timeAgoTokens = timeAgo.split();
+  const [ count, unit ] = timeAgoTokens;
+  return `${singularMomentUnit(unit)}: ${count}`;
+}

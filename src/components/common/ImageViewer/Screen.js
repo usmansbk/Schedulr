@@ -59,7 +59,6 @@ export default inject("stores")(observer(
             source={uri ? {uri} : require('../../../assets/photographer.png')}
             androidScaleType="fitCenter"
             style={ uri ? {flex: 1} : { alignSelf: 'center', width: 400, height: 400 }}
-            loadingIndicatorSource={require('../../../assets/loading-indicator.png')}
           />
         )
       }

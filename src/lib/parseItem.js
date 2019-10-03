@@ -1,7 +1,7 @@
 import moment from 'moment';
 import 'twix';
 import { I18n } from 'aws-amplify';
-import capitalize, { decapitalize } from './capitalizr';
+import { capitalize, decapitalize } from './utils';
 
 export const getCategory = (category) => {
   if (!category) return '';

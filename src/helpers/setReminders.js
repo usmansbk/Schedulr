@@ -4,7 +4,7 @@ import moment from 'moment';
 import 'moment-recur';
 import 'twix';
 import business from 'moment-business';
-import { decapitalize } from 'lib/capitalizr';
+import { decapitalize } from 'lib/utils';
 import {
   FIVE_MINUTES,
   TEN_MINUTES,

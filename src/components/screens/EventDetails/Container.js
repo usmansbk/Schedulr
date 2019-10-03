@@ -8,7 +8,7 @@ import UserAvatar from 'components/common/UserAvatar';
 import Details from './Details';
 import { formatDate, getRepeatLabel, getDuration } from 'lib/time';
 import { isEventValid, isEventCancelled, getStatus } from 'lib/parseItem';
-import capitalizr, {decapitalize} from 'lib/capitalizr';
+import { capitalize, decapitalize} from 'lib/utils';
 import { ONE_TIME_EVENT } from 'lib/constants';
 import getImageUrl from 'helpers/getImageUrl';
 
@@ -30,7 +30,7 @@ class EventDetails extends React.Component {
     } else {
       timeAgo = `${moment(end).fromNow(true)} left`;
     }
-    return capitalizr(timeAgo);
+    return capitalize(timeAgo);
   };
   
  shouldComponentUpdate = (nextProps) => !isEqual(nextProps.event, this.props.event);

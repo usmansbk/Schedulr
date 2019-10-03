@@ -151,3 +151,24 @@ export function filterSchedules(schedules, query) {
     item => item.name.toLowerCase().includes(query.toLowerCase())
   ));
 }
+
+export function capitalize(string) {
+  if (!string) return '';
+  const firstLetter = string[0].toUpperCase();
+  return firstLetter + string.substring(1);
+}
+
+export function decapitalize(string, all=false) {
+  if (!string) return '';
+  const first = string[0]
+  const head = all ? first.toLowerCase() : first.toUpperCase();
+  const tail = string.substring(1).toLowerCase();
+  return head + tail;
+}
+
+export function singularMomentUnit(unit) {
+  if (!string) return unit;
+  const isPlural = unit.slice(-1) === 's';
+  if (!isPlural) return unit;
+  return string.slice(0, -1);
+}
