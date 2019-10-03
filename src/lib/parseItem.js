@@ -71,8 +71,8 @@ export const captionDetails = ({
   }
   const validCategory = category ? ' ' + category : '';
   const caption = allDay ? (`${recurrence}${validCategory}`) : (
-    `${(count && validCategory) ? duration + "'s" : duration}${validCategory}${recurrence ? ' ' + recurrence : ''}`);
+    `${duration}${validCategory}${recurrence ? ' ' + recurrence : ''}`);
   let formatted = capitalize(caption.trim());
-  if (count) formatted = `${count} of ${formatted.toLowerCase()}`;
+  if (count) formatted = `${count}${validCategory ? ' of' + validCategory : validCategory}`;
   return formatted;
 };
