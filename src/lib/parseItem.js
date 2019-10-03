@@ -2,6 +2,7 @@ import moment from 'moment';
 import 'twix';
 import { I18n } from 'aws-amplify';
 import { capitalize, decapitalize } from './utils';
+import { momentCounter } from './time';
 
 export const getCategory = (category) => {
   if (!category) return '';
@@ -55,10 +56,23 @@ export const captionDetails = ({
   allDay,
   recurrence,
   category,
-  duration
+  duration,
+  startAt,
+  endAt,
+  ref_date
 }) => {
-  const validCategory = category ? ' ' + category : '';
+  let count;
+  if (!recurrence) {
+    count = momentCounter({
+      startAt,
+      endAt,
+      ref_date
+    });
+  }
+  const validCategory = ' ' + (category || 'event');
   const caption = allDay ? (`${recurrence}${validCategory}`) : (
-    `${duration}${validCategory}${recurrence ? ' ' + recurrence : ''}`);
-  return capitalize(caption.trim());
+    `${(count) ? duration + "'s" : duration}${validCategory}${recurrence ? ' ' + recurrence : ''}`);
+  let formatted = capitalize(caption.trim());
+  if (count) formatted = `${count} of ${formatted.toLowerCase()}`;
+  return formatted;
 };
