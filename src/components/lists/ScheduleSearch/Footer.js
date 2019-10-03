@@ -11,7 +11,7 @@ import { I18n } from 'aws-amplify';
 export default inject('stores')(observer(
   ({ visible, loading, onPress, stores, hasMore }) => {
     if (!visible) return null;
-    return (loading) ? <ActivityIndicator style={{ margin: 8 }} animating size="small" /> : (
+    return (loading) ? <ActivityIndicator style={{ margin: 8 }} animating size={12} /> : (
       <TouchableRipple
         disabled={!hasMore}
         onPress={onPress}

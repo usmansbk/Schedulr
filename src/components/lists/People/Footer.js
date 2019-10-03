@@ -19,7 +19,7 @@ export default inject('stores')(observer(
       >
         <View style={stores.appStyles.eventsList.footerContent}>
           { 
-            loading ? <ActivityIndicator animating size="small" /> : (
+            loading ? <ActivityIndicator animating size={12} /> : (
               hasMore && (
                 <Caption style={stores.appStyles.eventsList.footerText}>
                   { I18n.get("FOLLOWERS_loadMore")}

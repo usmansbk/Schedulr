@@ -19,7 +19,7 @@ export default inject('stores')(observer(
       >
         <View style={stores.appStyles.eventsList.footerContent}>
         {
-          loading ? <ActivityIndicator  size="small" /> : (
+          loading ? <ActivityIndicator  size={12} /> : (
             <Caption style={stores.appStyles.eventsList.footerText}>
               {
                 hasMore ? I18n.get("COMMENTS_loadMore") : I18n.get("COMMENTS_noMoreComments")

@@ -4,7 +4,7 @@ import { withNavigationFocus, FlatList } from 'react-navigation';
 import { inject, observer } from 'mobx-react';
 import Item from './Item';
 import Separator from './Separator';
-import Footer from './Footer';
+import Header from './Header';
 import Empty from './Empty';
 import {
   parseRepeat,
@@ -94,7 +94,7 @@ class List extends Component {
     isAuth={this.props.isAuth}
   />;
   _renderSeparator = () => <Separator />;
-  _renderFooter = () => <Footer
+  _renderHeader = () => <Header
     onPress={this._fetchPastEvents}
     loading={this.props.loading && this.state.loadingPrev}
     hasPrev={this.props.pastEventsCount}
@@ -143,7 +143,7 @@ class List extends Component {
         data={events}
         renderItem={this._renderItem}
         ListEmptyComponent={this._renderEmptyList}
-        ListFooterComponent={this._renderFooter}
+        ListHeaderComponent={this._renderHeader}
       />
     )
   }

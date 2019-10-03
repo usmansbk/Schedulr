@@ -1530,6 +1530,9 @@ export default class AppStyles {
         color: colors.primary_light,
         fontWeight: 'bold'
       },
+      loadPrevHeaderContainer: {
+        height: 32
+      },
       footerContainer: {
         height: FOOTER_HEIGHT
       },

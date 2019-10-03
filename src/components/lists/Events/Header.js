@@ -16,7 +16,7 @@ export default inject('stores')(observer(
     
     return loading ? (
       <ActivityIndicator
-        size="small"
+        size={12}
         animating
         color={stores.themeStore.colors.primary_light}
       /> ) : (

@@ -12,17 +12,17 @@ export default inject('stores')(observer(
   ({ loading, onPress, stores, hasPrev, hide }) => {
     if (hide) return null;
     return (
-      <TouchableRipple
+      <TouchableRipple 
         disabled={!hasPrev || loading}
         onPress={onPress}
-        style={stores.appStyles.eventsList.footerContainer}
+        style={stores.appStyles.eventsList.loadPrevHeaderContainer}
       >
         <View style={stores.appStyles.eventsList.footerContent}>
           {
             loading ? (
               <ActivityIndicator
                 animating
-                size="small"
+                size={12}
                 color={stores.themeStore.colors.primary_light}
               />
             ) : (
