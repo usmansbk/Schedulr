@@ -4,6 +4,7 @@ import { withNavigationFocus, FlatList } from 'react-navigation';
 import { inject, observer } from 'mobx-react';
 import Item from './Item';
 import Separator from './Separator';
+import Footer from 'components/lists/Events/Footer';
 import Header from './Header';
 import Empty from './Empty';
 import {
@@ -100,6 +101,7 @@ class List extends Component {
     hasPrev={this.props.pastEventsCount}
     hide={!((this.props.eventsCount > 0) && this.props.isAuth)}
   />;
+  _renderFooter = () => <Footer />
 
   _fetchPastEvents = async () => {
     const { loading, fetchPastEvents, nextToken, pastEventsCount } = this.props;
@@ -144,6 +146,7 @@ class List extends Component {
         renderItem={this._renderItem}
         ListEmptyComponent={this._renderEmptyList}
         ListHeaderComponent={this._renderHeader}
+        ListFooterComponent={this._renderFooter}
       />
     )
   }
