@@ -12,9 +12,9 @@ class DeleteComment extends React.Component {
     loading: false
   };
 
-  _onDelete = async () => {
+  _onDelete = () => {
     this.setState({ loading: true });
-    await this.props.onSubmit();
+    this.props.onSubmit();
     this.setState({ loading: false });
     this.props.handleDismiss();
   };

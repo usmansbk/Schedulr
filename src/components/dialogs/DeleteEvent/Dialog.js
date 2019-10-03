@@ -32,7 +32,7 @@ class DeleteEvent extends React.Component {
     } catch (error) {
       console.log(error);
     }
-    onSubmit && await onSubmit({ id });
+    onSubmit && onSubmit({ id });
     handleDismiss();
     this.props.navigation.pop();
     this.setState({ loading: false });
