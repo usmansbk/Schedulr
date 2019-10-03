@@ -69,9 +69,9 @@ export const captionDetails = ({
       ref_date
     });
   }
-  const validCategory = ' ' + (category || 'event');
+  const validCategory = category ? ' ' + category : '';
   const caption = allDay ? (`${recurrence}${validCategory}`) : (
-    `${(count) ? duration + "'s" : duration}${validCategory}${recurrence ? ' ' + recurrence : ''}`);
+    `${(count && validCategory) ? duration + "'s" : duration}${validCategory}${recurrence ? ' ' + recurrence : ''}`);
   let formatted = capitalize(caption.trim());
   if (count) formatted = `${count} of ${formatted.toLowerCase()}`;
   return formatted;
