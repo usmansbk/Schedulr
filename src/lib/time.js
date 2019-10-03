@@ -150,19 +150,18 @@ export const getDuration = (startAt, endAt, allDay) => {
   return decapitalize(t.humanizeLength());
 };
 
-export const momentCounter = (startAt, endAt, refDate) => {
-  const currentMoment = moment(refDate);
-  const startMoment = moment(startAt);
-  const endMoment = moment(endAt);
-  const isSameDay = startMoment.isSame(endMoment, 'day');
+export const momentCounter = ({ startAt, endAt, ref_date }) => {
+  const currentMoment = moment(ref_date);
+  const startMoment = moment(startAt).startOf('D');
+  const endMoment = moment(endAt).startOf('D');
+
+  const isSameDay = startMoment.isSame(currentMoment, 'day');
   if (isSameDay) return '';
   
+  const count = currentMoment.diff(startMoment, 'd') + 1;
   const twoDays = moment.duration(2, 'days');
-  const isDurationAtLeastTwoDays = moment.duration(endMoment.diff(startMoment)) >= twoDays;
+  const isDurationAtLeastTwoDays = moment.duration(endMoment.diff(startMoment)) > twoDays;
   if (!isDurationAtLeastTwoDays) return '';
-  
-  const timeAgo = currentMoment.from(startMoment, true);
-  const timeAgoTokens = timeAgo.split();
-  const [ count, unit ] = timeAgoTokens;
-  return `${singularMomentUnit(unit)}: ${count}`;
+
+  return `Day ${count}`;
 }

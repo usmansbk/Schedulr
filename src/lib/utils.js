@@ -167,8 +167,8 @@ export function decapitalize(string, all=false) {
 }
 
 export function singularMomentUnit(unit) {
-  if (!string) return unit;
+  if (!unit) return unit;
   const isPlural = unit.slice(-1) === 's';
   if (!isPlural) return unit;
-  return string.slice(0, -1);
+  return unit.slice(0, -1);
 }

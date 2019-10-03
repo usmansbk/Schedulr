@@ -20,12 +20,7 @@ export default class ImageViewerContainer extends React.Component {
     loading: false,
     showRemoveImageAlert: false
   };
-
-  componentDidMount = () => {
-    const { s3Object, uri } = this.props;
-    if (!(s3Object || uri)) SimpleToast.show(I18n.get("TOAST_noImageFound"), SimpleToast.SHORT);
-  };
-
+  
   _goBack = () => this.props.goBack();
 
   _showRemoveImageAlert = () => this.setState({ showRemoveImageAlert: true });
