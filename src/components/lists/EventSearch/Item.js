@@ -43,9 +43,6 @@ class Item extends React.Component {
       time,
       status,
       allDay,
-      startAt,
-      endAt,
-      ref_date,
       duration,
       category,
       isAuth,
@@ -62,10 +59,7 @@ class Item extends React.Component {
       allDay,
       recurrence,
       category,
-      duration,
-      startAt,
-      endAt,
-      ref_date
+      duration
     });
 
     return (

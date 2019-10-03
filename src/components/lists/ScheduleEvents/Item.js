@@ -29,9 +29,6 @@ class Item extends React.Component {
   }
   render() {
     const {
-      startAt,
-      endAt,
-      ref_date,
       title,
       allDay,
       recurrence,
@@ -49,9 +46,6 @@ class Item extends React.Component {
       category,
       duration,
       recurrence,
-      startAt,
-      endAt,
-      ref_date
     });
 
     return (
