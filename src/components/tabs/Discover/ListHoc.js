@@ -28,7 +28,7 @@ export default inject("stores")(observer(
         data: data && data.nearbyEvents && data.nearbyEvents.items || [],
         nextToken: data && data.nearbyEvents && data.nearbyEvents.nextToken,
         loading: data && data.loading || data.networkStatus === 4,
-        refresh: () => data.refetch(),
+        onRefresh: () => data && data.refetch(),
         fetchMore: (nextToken) => data.fetchMore({
           variables: {
             nextToken,

@@ -101,7 +101,7 @@ class List extends Component{
 
   _keyExtractor = (item) => item.id;
 
-  _onRefresh = () => this.props.refresh();
+  _onRefresh = () => this.props.onRefresh();
 
   render() {
     const styles = this.props.stores.appStyles.discover;
