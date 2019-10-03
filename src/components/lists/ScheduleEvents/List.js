@@ -101,7 +101,7 @@ class List extends Component {
     hasPrev={this.props.pastEventsCount}
     hide={!((this.props.eventsCount > 0) && this.props.isAuth)}
   />;
-  _renderFooter = () => <Footer />
+  _renderFooter = () => this.props.events.length ? <Footer /> : null;
 
   _fetchPastEvents = async () => {
     const { loading, fetchPastEvents, nextToken, pastEventsCount } = this.props;
