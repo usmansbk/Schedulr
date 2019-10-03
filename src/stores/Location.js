@@ -4,6 +4,7 @@ import { observable, action, computed } from 'mobx';
 import { persist } from 'mobx-persist';
 import { requestLocationPermission } from 'helpers/permissions';
 import { GEOCODING_ANDROID_KEY } from 'config/env';
+import SimpleToast from 'react-native-simple-toast';
 
 Geocoder.fallbackToGoogle(GEOCODING_ANDROID_KEY);
 
@@ -39,7 +40,6 @@ export default class Location {
 
             try {
               const locations = await Geocoder.geocodePosition(loc);
-              // console.log(locations);
               const bestLocation = locations[0];
               const {
                 locality,
@@ -56,6 +56,7 @@ export default class Location {
           },
           (error) => {
             console.log(error.message);
+            SimpleToast.show(error.message, SimpleToast.SHORT);
           },
           { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
         );
