@@ -8,7 +8,7 @@ import Dialog from './Dialog';
 
 export default graphql(gql(deleteComment), {
   props: ({ mutate, ownProps }) => ({
-    onDelete: () => mutate({
+    onSubmit: () => mutate({
       variables: {
         input: {
           id: ownProps.id
