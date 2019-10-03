@@ -158,7 +158,7 @@ export const momentCounter = ({ startAt, endAt, ref_date }) => {
   const isSameDay = startMoment.isSame(currentMoment, 'day');
   if (isSameDay) return '';
   
-  const count = currentMoment.diff(startMoment, 'd') + 1;
+  const count = currentMoment.diff(startMoment, 'd');
   const twoDays = moment.duration(2, 'days');
   const isDurationAtLeastTwoDays = moment.duration(endMoment.diff(startMoment)) > twoDays;
   if (!isDurationAtLeastTwoDays) return '';
