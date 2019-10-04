@@ -11,10 +11,7 @@ const en = [
   'Sport',
   'Meeting',
   'Festivity',
-  'Ceremony',
   'Competition',
-  'Party',
-  'Holiday',
   'Hackathon'
 ];
 

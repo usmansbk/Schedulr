@@ -63,6 +63,7 @@ export default class AppState {
     this.loggingIn = false;
     this.userId = null;
     this.lastSyncTimestamp = moment().unix();
+    this.discoverFilters = [];
   }
 
   @action addCustomType = (category) => {
