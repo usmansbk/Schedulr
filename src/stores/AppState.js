@@ -11,6 +11,7 @@ export default class AppState {
   
   debounceQuery = debounce(val => this.query = val, 250);
 
+
   @observable isConnected = false;
   @observable searchText = '';
   @observable query = '';
@@ -19,6 +20,7 @@ export default class AppState {
   @persist @observable loggingIn = false;
   @persist @observable lastSyncTimestamp = moment().unix();
 
+  @persist('list') @observable discoverFilters = [];
   @persist('list') @observable mutedEvents = [];
   @persist('list') @observable mutedSchedules = [];
   @persist('list') @observable allowedEvents = [];
@@ -30,13 +32,21 @@ export default class AppState {
 
   @action setUserId = id => this.userId = id;
   @action updateLastSyncTimestamp = () => this.lastSyncTimestamp = moment().unix();
-  @action setLoginState = state => this.loggingIn = Boolean(state); 
+  @action setLoginState = state => this.loggingIn = Boolean(state);
   @action toggleConnection = isConnected => this.isConnected = isConnected;
   @action togglePref = (pref) => {
     const prevValue = this.prefs[pref];
     this.prefs[pref] = !prevValue;
   };
   @action clearMutedList = () => this.mutedEvents = [];
+
+  @action toggleFilter = (id) => {
+    const index = this.discoverFilters.findIndex(elem => elem === id.toLowerCase());
+    if (index === -1) this.discoverFilters = [...this.discoverFilters, id.toLowerCase()];
+    else this.discoverFilters = this.discoverFilters.slice(0, index).concat(
+      this.discoverFilters.slice(index+1)
+    );
+  };
 
   @action reset() {
     this.isConnected =false;
@@ -92,4 +102,6 @@ export default class AppState {
     this.searchText = searchText;
     this.debounceQuery(searchText);
   }
+
+  isToggled = (id) => this.discoverFilters.includes(id.toLowerCase());
 }

@@ -33,6 +33,7 @@ export const light = {
   image_loading: '#C0DEED',
   actionsheet: '#e5e5e5',
   actionsheetTitleText: '#757575',
+  selectedButton: 'white',
   primaryOpaque : opacity => `rgba(25, 118, 210, ${opacity})`
 };
 
@@ -72,6 +73,7 @@ export const dark = {
   image_loading: '#C0DEED',
   actionsheet: '#212121',
   actionsheetTitleText: 'white',
+  selectedButton: 'black',
   primaryOpaque : opacity => `rgba(25, 118, 210, ${opacity})`
 };
 

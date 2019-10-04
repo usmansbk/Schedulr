@@ -2,11 +2,13 @@ import React from 'react';
 import { TouchableRipple, Searchbar } from 'react-native-paper';
 import { I18n } from 'aws-amplify';
 import Icon from 'react-native-vector-icons/Feather';
+import Chips from 'components/lists/Chips';
 import { inject, observer } from 'mobx-react';
 
 export default inject('stores')(observer(
   ({navigation, stores }) => {
     return (
+      <>
       <TouchableRipple
         onPress={() => navigation.navigate('SearchScreen')}
       >
@@ -27,6 +29,10 @@ export default inject('stores')(observer(
           }}
         />
       </TouchableRipple>
+      <Chips
+        data={stores.appState.categories}
+      />
+      </>
     );
   }
 ));

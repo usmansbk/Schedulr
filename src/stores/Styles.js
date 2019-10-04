@@ -19,6 +19,37 @@ export default class AppStyles {
     this.settings = settingsStore;
   }
 
+  @computed get chipList() {
+    const colors = this.settings.dark ? dark : light;
+    
+    return StyleSheet.create({
+      container: {
+        backgroundColor: colors.bg,
+        height: 48,
+      },
+      itemContent: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: colors.light_gray,
+        borderWidth: 1,
+        borderColor: colors.light_gray_3,
+        margin: 4,
+        paddingHorizontal: 12,
+        borderRadius: 16
+      },
+      selected : {
+        backgroundColor: colors.light_gray_3
+      },
+      itemText: {
+        textAlign: 'center',
+      },
+      selectedText: {
+        color: colors.selectedButton
+      }
+    });
+  }
+
   @computed get locationInput() {
     const colors = this.settings.dark ? dark : light;
     
