@@ -97,10 +97,14 @@ class List extends React.Component {
   _onPressItem = (id, refStartAt, refEndAt) => this.props.navigation.navigate('EventDetails', { id, refStartAt, refEndAt });
   _navigateToBanner = (id) => this.props.navigation.navigate('Banner', { id });
   _onPressSectionHeader = (targetDate) => {
+    let id = uuidv5(this.props.stores.appState.userId, uuidv5.DNS);
+    if (this.props.isAuth && this.props.id) {
+      id = this.props.id;
+    } 
     if (!isPast(targetDate)) {
       this.props.navigation.navigate('NewEvent', {
         targetDate,
-        eventScheduleId : uuidv5(this.props.stores.appState.userId, uuidv5.DNS)
+        eventScheduleId : id
       });
     }
   };
