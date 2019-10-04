@@ -1,6 +1,7 @@
 import React from 'react';
 import ImagePicker from 'react-native-image-picker';
 import SimpleToast from 'react-native-simple-toast';
+import { inject, observer } from 'mobx-react';
 import { Storage, I18n } from 'aws-amplify';
 import config from 'aws_config';
 import getImageUrl from 'helpers/getImageUrl';
@@ -15,7 +16,7 @@ const {
 const MAX_FILE_SIZE = 1024 * 4000;
 const EPSILON = 1024 * 100;
 
-export default class ImageViewerContainer extends React.Component {
+class ImageViewerContainer extends React.Component {
   state = {
     loading: false,
     showRemoveImageAlert: false
@@ -27,65 +28,73 @@ export default class ImageViewerContainer extends React.Component {
   _hideRemoveImageAlert = () => this.setState({ showRemoveImageAlert: false });
 
   _removePhoto = async () => {
-    const { onRemovePhoto, s3Object } = this.props;
-    this.setState({ loading: true });
-    if (s3Object) {
-      try {
-        await Storage.remove(s3Object.key).catch();
-      } catch(error) {
-        SimpleToast.show(error.message, SimpleToast.SHORT);
+    if (this.props.stores.appState.isConnected) {
+      const { onRemovePhoto, s3Object } = this.props;
+      this.setState({ loading: true });
+      if (s3Object) {
+        try {
+          await Storage.remove(s3Object.key).catch();
+        } catch(error) {
+          SimpleToast.show(error.message, SimpleToast.SHORT);
+        }
       }
-    }
-    try {
-      await onRemovePhoto();
-      this.setState({ loading: false, showRemoveImageAlert: false });
-    } catch (error) {
-      console.log(error);
+      try {
+        await onRemovePhoto();
+        this.setState({ loading: false, showRemoveImageAlert: false });
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      SimpleToast.show(I18n.get("ERROR_noConnection"), SimpleToast.SHORT);
     }
   };
 
   _uploadPhoto = () => {
-    const { id, onUploadPhoto, s3Object, folder="public" } = this.props;
-    const options = {
-      title: 'Select image',
-      storageOptions: {
-        skipBackup: true,
-        path: 'images'
-      }
-    };
-    ImagePicker.showImagePicker(options, async (response) => {
-      if (response.error) {
-        SimpleToast.show(response.error.message, SimpleToast.SHORT);
-      } else {
-        const { type, uri, fileName, fileSize } = response;
-        if (fileSize > (MAX_FILE_SIZE + EPSILON)) {
-          SimpleToast.show(I18n.get("WARNING_fileTooLarge"), SimpleToast.SHORT);
+    if (this.props.stores.appState.isConnected) {
+      const { id, onUploadPhoto, s3Object, folder="public" } = this.props;
+      const options = {
+        title: 'Select image',
+        storageOptions: {
+          skipBackup: true,
+          path: 'images'
+        }
+      };
+      ImagePicker.showImagePicker(options, async (response) => {
+        if (response.error) {
+          SimpleToast.show(response.error.message, SimpleToast.SHORT);
         } else {
-          try {
-            const key = `${folder}/${id}${fileName}`;
-            const fileForUpload = {
-              key,
-              bucket,
-              region
-            };
-  
-            if (uri) {
-              const fetchResponse = await fetch(uri);
-              const blob = await fetchResponse.blob();
-              this.setState({ loading: true });
-              if (s3Object) await Storage.remove(s3Object.key).catch();
-              await Storage.put(key, blob, {
-                contentType: type
-              }).catch();
-              await onUploadPhoto(fileForUpload);
-              this.setState({ loading: false });
+          const { type, uri, fileName, fileSize } = response;
+          if (fileSize > (MAX_FILE_SIZE + EPSILON)) {
+            SimpleToast.show(I18n.get("WARNING_fileTooLarge"), SimpleToast.SHORT);
+          } else {
+            try {
+              const key = `${folder}/${id}${fileName}`;
+              const fileForUpload = {
+                key,
+                bucket,
+                region
+              };
+    
+              if (uri) {
+                const fetchResponse = await fetch(uri);
+                const blob = await fetchResponse.blob();
+                this.setState({ loading: true });
+                if (s3Object) await Storage.remove(s3Object.key).catch();
+                await Storage.put(key, blob, {
+                  contentType: type
+                }).catch();
+                await onUploadPhoto(fileForUpload);
+                this.setState({ loading: false });
+              }
+            } catch (error) {
+              SimpleToast.show(error.message, SimpleToast.SHORT);
             }
-          } catch (error) {
-            SimpleToast.show(error.message, SimpleToast.SHORT);
           }
         }
-      }
-    })
+      });
+    } else {
+      SimpleToast.show(I18n.get("ERROR_noConnection"), SimpleToast.SHORT);
+    }
   };
 
   render() {
@@ -116,3 +125,5 @@ export default class ImageViewerContainer extends React.Component {
     );
   }
 }
+
+export default inject("stores")(observer(ImageViewerContainer));
