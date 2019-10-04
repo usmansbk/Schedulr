@@ -167,11 +167,3 @@ export const searchEventFilter = (query, location) => {
 		]
 	};
 };
-
-export const discorverEventsFilter = (location) => {
-	return {
-		location: {
-			matchPhrase: location || ''
-		}
-	};
-};
