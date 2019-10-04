@@ -6,7 +6,7 @@ import Chips from 'components/lists/Chips';
 import { inject, observer } from 'mobx-react';
 
 export default inject('stores')(observer(
-  ({navigation, stores }) => {
+  ({navigation, stores, onPressLocationButton }) => {
     return (
       <>
       <TouchableRipple
@@ -31,6 +31,7 @@ export default inject('stores')(observer(
       </TouchableRipple>
       <Chips
         data={['__current__location__', ...stores.appState.categories]}
+        onPressLocationButton={onPressLocationButton}
       />
       </>
     );

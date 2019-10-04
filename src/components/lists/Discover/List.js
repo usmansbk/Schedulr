@@ -46,7 +46,10 @@ class List extends Component{
 
   _renderEmptyList = () => <Empty />;
 
-  _renderHeader = () => <Header navigation={this.props.navigation} />;
+  _renderHeader = () => <Header
+    onPressLocationButton={this.props.onPressLocationButton}
+    navigation={this.props.navigation}
+  />;
   _renderSeparator = () => <Separator />;
 
   _renderItem = ({ item }) => {
