@@ -106,7 +106,7 @@ class List extends Component{
   _filterData = (list) => list.filter(item => {
     const filters = this.props.stores.appState.discoverFilters;
     if (!filters.length) return true;
-    return this.props.stores.appState.discoverFilters.includes(item.category)
+    return this.props.stores.appState.discoverFilters.includes(item.category && item.category.toLowerCase())
   });
 
   render() {
