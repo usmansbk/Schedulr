@@ -30,7 +30,7 @@ export default inject('stores')(observer(
         />
       </TouchableRipple>
       <Chips
-        data={stores.appState.categories}
+        data={['__current__location__', ...stores.appState.categories]}
       />
       </>
     );

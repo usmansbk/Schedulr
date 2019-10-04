@@ -20,7 +20,13 @@ class List extends React.Component {
   );
 
   _onPressItem = (id) => {
-    this.props.stores.appState.toggleFilter(id);
+    switch(id) {
+      case '__current__location__': 
+        break;
+      default:
+        this.props.stores.appState.toggleFilter(id);
+        break;
+    }
   };
 
   _renderItem = ({ item }) => (
