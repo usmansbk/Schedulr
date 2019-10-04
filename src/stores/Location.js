@@ -5,6 +5,7 @@ import { persist } from 'mobx-persist';
 import { requestLocationPermission } from 'helpers/permissions';
 import { GEOCODING_ANDROID_KEY } from 'config/env';
 import SimpleToast from 'react-native-simple-toast';
+import { I18n } from 'aws-amplify';
 
 Geocoder.fallbackToGoogle(GEOCODING_ANDROID_KEY);
 
@@ -37,7 +38,6 @@ export default class Location {
               lng: longitude
             };
             this.currentLocation = loc;
-
             try {
               const locations = await Geocoder.geocodePosition(loc);
               const bestLocation = locations[0];
@@ -52,6 +52,7 @@ export default class Location {
 
             } catch (error) {
               console.log(error);
+              SimpleToast.show(I18n.get("ERROR_failedToGetLocation"), SimpleToast.SHORT);
             }
           },
           (error) => {

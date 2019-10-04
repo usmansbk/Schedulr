@@ -13,7 +13,7 @@ export default class Events extends React.Component {
   }
 
   componentDidMount = () => {
-    if (!this.props.loading) {
+    if (!this.props.loading && this.props.isConnected) {
       this.props.fetchMore();
     }
   }

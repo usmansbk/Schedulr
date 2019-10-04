@@ -54,7 +54,7 @@ export default inject("stores")(observer(
       alias: 'withGetNotifications',
       name: 'notifications',
       options: props => ({
-        fetchPolicy: 'network-only',
+        fetchPolicy: 'no-cache',
         variables: {
           lastSync: String(props.stores.notificationsStore.lastSyncTimestamp)
         },

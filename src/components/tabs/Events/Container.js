@@ -101,6 +101,7 @@ class Container extends React.Component {
       id={stores.appState.userId}
       mutedEvents={stores.appState.mutedEvents}
       allowedEvents={stores.appState.allowedEvents}
+      isConnected={stores.appState.isConnected}
     />
   }
 }
