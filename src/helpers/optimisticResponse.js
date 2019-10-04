@@ -508,22 +508,24 @@ function deleteEvent(input, typename) {
 }
 
 function deleteComment(input, typename) {
-  const comment = client.readFragment({
-    fragment: gql`fragment deleteCommentDetails on Comment {
+  const event = client.readFragment({
+    fragment: gql`fragment deleteCommentEvent on Event {
       id
-      event {
-        id
-        commentsCount
-      }
+      commentsCount
     }`,
-    id: `${typename}:${input.id}`
+    id: `${EVENT_TYPE}:${input.eventId}`
   });
-  if (comment) {
-    const count = comment.event.commentsCount;
+  if (event) {
+    const count = event.commentsCount;
     if (typeof count === 'number' && count > 0) {
-      comment.event.commentsCount = count - 1;
+      event.commentsCount = count - 1;
     }
   }
+  const comment = Object.assign({}, {
+    __typename: typename,
+    id: input.id,
+    event
+  });
   return comment;
 }
 

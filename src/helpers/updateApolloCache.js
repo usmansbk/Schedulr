@@ -44,62 +44,63 @@ function updateData({
 }
 
 export default function(cache, result, operationType) {
-  if (!result) return;
-  switch(result.__typename) {
-    case EVENT_TYPE:
-      updateData({
-        cache,
-        operationType,
-        updatedItem: result,
-        connectionField: 'events',
-        rootField: 'getScheduleEvents',
-        id: result.schedule.id,
-        cacheUpdateQuery: getScheduleEvents
-      });
-      break;
-    case SCHEDULE_TYPE:
-      updateData({
-        cache,
-        operationType,
-        updatedItem: result,
-        rootField: 'getUserData',
-        connectionField: 'created',
-        id: stores.appState.userId,
-        cacheUpdateQuery: getUserData
-      });
-      break;
-    case BOOKMARK_TYPE:
-      updateData({
-        cache,
-        operationType,
-        updatedItem: result,
-        rootField: 'getUserData',
-        connectionField: 'bookmarks',
-        id: stores.appState.userId,
-        cacheUpdateQuery: getUserData
-      });
-      break;
-    case COMMENT_TYPE:
-      updateData({
-        cache,
-        operationType,
-        updatedItem: result,
-        rootField: 'getEventComments',
-        connectionField: 'comments',
-        id: result.event.id,
-        cacheUpdateQuery: getEventComments
-      });
-      break;
-    case FOLLOW_TYPE:
-      updateData({
-        cache,
-        operationType,
-        updatedItem: result,
-        rootField: 'getUserData',
-        connectionField: 'following',
-        id: stores.appState.userId,
-        cacheUpdateQuery: getUserData
-      });
-      break;
+  if (result) {
+    switch(result.__typename) {
+      case EVENT_TYPE:
+        updateData({
+          cache,
+          operationType,
+          updatedItem: result,
+          connectionField: 'events',
+          rootField: 'getScheduleEvents',
+          id: result.schedule.id,
+          cacheUpdateQuery: getScheduleEvents
+        });
+        break;
+      case SCHEDULE_TYPE:
+        updateData({
+          cache,
+          operationType,
+          updatedItem: result,
+          rootField: 'getUserData',
+          connectionField: 'created',
+          id: stores.appState.userId,
+          cacheUpdateQuery: getUserData
+        });
+        break;
+      case BOOKMARK_TYPE:
+        updateData({
+          cache,
+          operationType,
+          updatedItem: result,
+          rootField: 'getUserData',
+          connectionField: 'bookmarks',
+          id: stores.appState.userId,
+          cacheUpdateQuery: getUserData
+        });
+        break;
+      case COMMENT_TYPE:
+        updateData({
+          cache,
+          operationType,
+          updatedItem: result,
+          rootField: 'getEventComments',
+          connectionField: 'comments',
+          id: result.event.id,
+          cacheUpdateQuery: getEventComments
+        });
+        break;
+      case FOLLOW_TYPE:
+        updateData({
+          cache,
+          operationType,
+          updatedItem: result,
+          rootField: 'getUserData',
+          connectionField: 'following',
+          id: stores.appState.userId,
+          cacheUpdateQuery: getUserData
+        });
+        break;
+    }
   }
 }
