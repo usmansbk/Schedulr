@@ -26,6 +26,7 @@ export default class AppStyles {
       container: {
         backgroundColor: colors.bg,
         height: 48,
+        marginBottom: 2
       },
       itemContent: {
         flex: 1,
