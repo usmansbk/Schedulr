@@ -9,11 +9,10 @@ import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
 
 export default inject('stores')(observer(
-  ({ loading, onPress, stores, hasPrev, hide }) => {
-    if (hide) return null;
+  ({ loading, onPress, stores, count }) => {
     return (
       <TouchableRipple 
-        disabled={!hasPrev || loading}
+        disabled={!count || loading}
         onPress={onPress}
         style={stores.appStyles.eventsList.loadPrevHeaderContainer}
       >
@@ -28,7 +27,7 @@ export default inject('stores')(observer(
             ) : (
               <Caption style={stores.appStyles.eventsList.footerText}>
                 {
-                  hasPrev ? I18n.get("SCHEDULES_loadPastEvents")(hasPrev) : I18n.get("SCHEDULES_noMoreEvents")
+                  count ? I18n.get("SCHEDULES_loadPastEvents")(count) : I18n.get("SCHEDULES_noMoreEvents")
                 }
               </Caption>
             )
