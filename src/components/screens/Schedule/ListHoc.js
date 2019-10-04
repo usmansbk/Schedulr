@@ -32,6 +32,7 @@ class ListHoc extends React.Component {
       error,
       events,
       isAuth,
+      isOwner,
       navigation
     } = this.props;
 
@@ -39,6 +40,7 @@ class ListHoc extends React.Component {
       <List
         id={id}
         isAuth={isAuth}
+        isOwner={isOwner}
         loading={loading}
         error={error}
         ref={this._eventsListRef}

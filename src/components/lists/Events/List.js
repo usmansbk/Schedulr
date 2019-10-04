@@ -98,7 +98,7 @@ class List extends React.Component {
   _navigateToBanner = (id) => this.props.navigation.navigate('Banner', { id });
   _onPressSectionHeader = (targetDate) => {
     let id = uuidv5(this.props.stores.appState.userId, uuidv5.DNS);
-    if (this.props.isAuth && this.props.id) {
+    if (this.props.isOwner && this.props.id) {
       id = this.props.id;
     } 
     if (!isPast(targetDate)) {

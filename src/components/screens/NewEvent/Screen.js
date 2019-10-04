@@ -84,9 +84,9 @@ class NewEventScreen extends React.Component {
       recurrence: recurrence || recurrences[0].id,
       until,
       forever: forever !== undefined ? forever : true,
-      location: currentSchedule.location,
+      location: currentSchedule ? currentSchedule.location : null,
       eventScheduleId,
-      isPublic: Boolean(currentSchedule.isPublic)
+      isPublic: Boolean(currentSchedule && currentSchedule.isPublic)
     });
   }
 

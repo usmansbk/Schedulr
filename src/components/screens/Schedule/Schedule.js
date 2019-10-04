@@ -83,6 +83,7 @@ class Schedule extends React.Component {
           id={id}
           navigation={navigation}
           isAuth={isAuth}
+          isOwner={isOwner}
         />
         {
           !(Boolean(error) && this.events.length) && isOwner && (status !== SCHEDULE_CLOSED ) && (
