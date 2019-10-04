@@ -8,38 +8,33 @@ import Button from './Picker';
 class Input extends React.Component {
 
   state = {
-    showDatePicker: false,
-    showTimePicker: false,
+    showPicker: false,
+    mode: 'date'
   };
 
   shouldComponentUpdate = (nextProps, nextState) => (
     (nextProps.value !== this.props.value) ||
     (nextProps.disabled !== this.props.disabled) ||
-    (nextState.showDatePicker !== this.state.showDatePicker) ||
-    (nextState.showTimePicker !== this.state.showTimePicker)
+    (nextState.showPicker !== this.state.showPicker) ||
+    (nextState.mode !== this.state.mode)
   );
   
   _formatDate = (date) => moment(date).format('ddd, Do MMM YYYY');
   _formatTime = (time) => moment(time).format('hh:mm a');
-  _hidePicker = (name) => this.setState({[name]: false});
-  _showPicker = (name) => this.setState({[name]: true});
-  _handleConfirmDate = (date) => {
-    this.props.onChangeDate(moment(date).toISOString());
-    this._hidePicker('showDatePicker');
-  };
-  _handleConfirmTime = (date) => {
-    this.props.onChangeDate(moment(date).toISOString());
-    this._hidePicker('showTimePicker');
+
+  _hidePicker = () => this.setState({ showPicker: false });
+  _showPicker = (mode) => this.setState({showPicker : true, mode});
+
+  _datePicker = () => this._showPicker('date');
+  _timePicker = () => this._showPicker('time');
+
+  _handleChange = (date) => {
+    this.props.onChangeDate(date)
+    this._hidePicker();
   };
 
-  _showDatePicker = () => this._showPicker('showDatePicker');
-  _showTimePicker = () => this._showPicker('showTimePicker');
-  _hideDatePicker = () => this._hidePicker('showDatePicker');
-  _hideTimePicker = () => this._hidePicker('showTimePicker');
-  
   render() {
     const {
-      label,
       disabled,
       noMin,
       stores,
@@ -47,6 +42,7 @@ class Input extends React.Component {
     } = this.props;
 
     const value = this.props.value || moment().toISOString();
+    console.log(value);
     const styles = stores.appStyles.datePicker;
 
     return (
@@ -55,32 +51,25 @@ class Input extends React.Component {
           <Button
             disabled={disabled}
             style={styles.dateButton}
-            onPress={this._showDatePicker}
+            onPress={this._datePicker}
           >
           {this._formatDate(value)}
           </Button>
           <Button
             disabled={disabled}
             style={styles.timeButton}
-            onPress={this._showTimePicker}
+            onPress={this._timePicker}
           >
           {hideTime ? '' : this._formatTime(value)}
           </Button>
           <DateTimePicker
-            mode="date"
+            mode={this.state.mode}
             date={moment(value).toDate()}
             minimumDate={noMin ? undefined : moment(value).toDate()}
-            isVisible={this.state.showDatePicker}
-            onCancel={this._hideDatePicker}
-            onConfirm={this._handleConfirmDate}
-          />
-          <DateTimePicker
-            mode="time"
-            date={moment(value).toDate()}
-            minimumDate={moment(value).toDate()}
-            isVisible={this.state.showTimePicker}
-            onCancel={this._hideTimePicker}
-            onConfirm={this._handleConfirmTime}
+            isVisible={this.state.showPicker}
+            onConfirm={this._handleChange}
+            onCancel={this._hidePicker}
+            isDarkModeEnabled={stores.settingsStore.dark}
           />
         </View>
       </View>
