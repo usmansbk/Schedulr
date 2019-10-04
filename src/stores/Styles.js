@@ -25,7 +25,7 @@ export default class AppStyles {
     return StyleSheet.create({
       container: {
         backgroundColor: colors.bg,
-        height: 48,
+        height: 40,
         marginBottom: 2
       },
       itemContent: {
