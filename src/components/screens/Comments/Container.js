@@ -1,4 +1,6 @@
 import React from 'react';
+import uuidv5 from 'uuid/v5';
+import shortid from 'shortid';
 import Screen from './Screen';
 import DeleteCommentDialog from 'components/dialogs/DeleteComment';
 
@@ -32,7 +34,11 @@ export default class Container extends React.Component {
     this._commentsRef && this._commentsRef.scrollDown();
   }
   _onSubmit = (message) => {
+    const hash = uuidv5(this.props.stores.appState.userId, uuidv5.DNS);
+    const sort = shortid.generate();
+    const id = `${hash}-${sort}`;
     const input = {
+      id,
       content: message,
       commentEventId: this.props.commentEventId
     };

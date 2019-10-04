@@ -1,6 +1,5 @@
 import gql from 'graphql-tag';
 import moment from 'moment';
-import uuid from 'uuid/v4';
 import stores from "stores";
 import client from 'config/client';
 import {
@@ -234,7 +233,7 @@ function createComment(input, typename) {
   }
   
   const comment = {
-    id: '-' + uuid(),
+    id: input.id,
     content: input.content,
     isOwner: true,
     to,
@@ -519,9 +518,11 @@ function deleteComment(input, typename) {
     }`,
     id: `${typename}:${input.id}`
   });
-  const count = comment.event.commentsCount;
-  if (typeof count === 'number' && count > 0) {
-    comment.event.commentsCount = count - 1;
+  if (comment) {
+    const count = comment.event.commentsCount;
+    if (typeof count === 'number' && count > 0) {
+      comment.event.commentsCount = count - 1;
+    }
   }
   return comment;
 }
