@@ -3,11 +3,21 @@ import { FlatList } from 'react-native';
 import { inject, observer } from 'mobx-react';
 import Item from './Item';
 
+const ITEM_HEIGHT = 48;
+
 class List extends React.Component {
   static defaultProps = {
     data: [],
     filters: []
   };
+
+  _getItemLayout = (_, index) => (
+    {
+      length: ITEM_HEIGHT,
+      offset: ITEM_HEIGHT * index,
+      index
+    }
+  );
 
   _onPressItem = (id) => {
     this.props.stores.appState.toggleFilter(id);
@@ -21,7 +31,7 @@ class List extends React.Component {
     />
   );
 
-  _keyExtractor = (item, index) => item + index
+  _keyExtractor = (item, index) => item + index;
 
   render() {
     const { stores, data } = this.props;
@@ -35,6 +45,7 @@ class List extends React.Component {
         keyExtractor={this._keyExtractor}
         showsHorizontalScrollIndicator={false}
         extraData={stores.appState.discoverFilters.length}
+        getItemLayout={this._getItemLayout}
       />
     );
   }
