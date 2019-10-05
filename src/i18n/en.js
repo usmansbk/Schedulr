@@ -18,7 +18,7 @@ export default {
   BOARD_emptyList: "Your board is empty",
   BOARD_emptyListCaption: "Follow or create a schedule",
 
-  PROFILE_boardEmptyList: "No schedule",
+  PROFILE_boardEmptyList: "No schedules",
   PROFILE_followingLabel: "Following",
   PROFILE_createdLabel: "Created",
   PROFILE_notVisibleToPublic: "Events not visible to public",
