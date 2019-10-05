@@ -236,7 +236,7 @@ export default {
   ERROR_noConnection: "No connection",
   ERROR_404: "Not found",
   ERROR_404_caption: "Item may have been deleted",
-  ERROR_failedToGetLocation: "Failed to get your current location. Turn on your mobile network or GPS",
+  ERROR_failedToGetLocation: "Failed to access your location. Check your mobile network and GPS",
 
   PLACEHOLDER_aboutThisEvent: "About this event...",
   PLACEHOLDER_normal: "Normal",
