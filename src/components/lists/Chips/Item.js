@@ -7,7 +7,7 @@ import { inject, observer } from 'mobx-react';
 class Item extends React.Component {
   _onPress = () => this.props.onPress(this.props.text);
 
-  componentWillUpdate = (nextProps) => this.props.selected !== nextProps.selected;
+  shouldComponentUpdate = (nextProps) => this.props.selected !== nextProps.selected;
   
   render() {
     const { text, selected, stores } = this.props;
