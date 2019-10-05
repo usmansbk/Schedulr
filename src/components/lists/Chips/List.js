@@ -22,7 +22,6 @@ class List extends React.Component {
   _onPressItem = (id) => {
     switch(id) {
       case '__current__location__':
-        console.log('__current__location__')
         this.props.onPressLocationButton && this.props.onPressLocationButton();
         break;
       default:

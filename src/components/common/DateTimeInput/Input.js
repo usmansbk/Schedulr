@@ -42,7 +42,6 @@ class Input extends React.Component {
     } = this.props;
 
     const value = this.props.value || moment().toISOString();
-    console.log(value);
     const styles = stores.appStyles.datePicker;
 
     return (
