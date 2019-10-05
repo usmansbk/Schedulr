@@ -39,6 +39,13 @@ export const updateUser = `mutation UpdateUser($input: UpdateUserInput!) {
   }
 }
 `;
+export const togglePush = `mutation UpdateUser($input: UpdateUserInput!) {
+  updateUser(input: $input) {
+    id
+    disablePush
+  }
+}
+`;
 export const createEvent = `mutation CreateEvent($input: CreateEventInput!) {
   createEvent(input: $input) {
     id

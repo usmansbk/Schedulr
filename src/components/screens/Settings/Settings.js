@@ -17,7 +17,11 @@ class Settings extends React.Component {
   }
 
   handleValueChange = (value) => {
-    this.props.stores.settingsStore.toggle(value)
+    if (value === 'disablePushNotifications') {
+      this.props.stores.settingsStore.togglePush(this.props.stores.appState.userId);
+    } else {
+      this.props.stores.settingsStore.toggle(value);
+    }
   }
 
   toggleTheme = () => {
