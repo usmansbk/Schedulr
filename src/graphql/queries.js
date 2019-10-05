@@ -17,10 +17,8 @@ export const me = `query GetUser($id: ID!) {
     createdCount
     createdAt
     updatedAt
-    preference {
-      disablePush
-      pushBlacklist
-    }
+    disablePush
+    pushBlacklist
   }
 }
 `;

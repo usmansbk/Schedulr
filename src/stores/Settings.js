@@ -1,8 +1,11 @@
 import { observable, action } from 'mobx';
 import { persist } from 'mobx-persist';
+import gql from 'graphql-tag';
 import changeNavigationBarColor from 'react-native-navigation-bar-color';
 import SimpleToast from 'react-native-simple-toast';
 import { dark, light } from 'config/colors';
+import client from 'config/client';
+import { updateUser } from 'api/mutations';
 
 export default class SettingsState {
   @persist @observable language = "en";
@@ -25,6 +28,23 @@ export default class SettingsState {
       SimpleToast.show("Applying theme... Just a sec!", SimpleToast.SHORT);
       await changeNavigationBarColor(this.dark ? colors.light_gray_2 : colors.bg, !this.dark);
     } catch (error) {}
+  }
+
+  @action async togglePush(id) {
+    try {
+      const result = await client.mutate({
+        mutation: gql(updateUser),
+        variables: {
+          input: {
+            id,
+            disablePush: !this.disablePushNotifications
+          }
+        }
+      });
+      console.log(result);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   @action reset() {

@@ -17,10 +17,8 @@ export const createUser = `mutation CreateUser($input: CreateUserInput!) {
     createdCount
     createdAt
     updatedAt
-    preference {
-      disablePush
-      pushBlacklist
-    }
+    disablePush
+    pushBlacklist
   }
 }
 `;
@@ -36,6 +34,8 @@ export const updateUser = `mutation UpdateUser($input: UpdateUserInput!) {
     website
     bio
     updatedAt
+    disablePush
+    pushBlacklist
   }
 }
 `;
