@@ -21,8 +21,8 @@ export default class Location {
     try {
       const hasLocationPermission = await requestLocationPermission();
       if (hasLocationPermission) {
-        await Geolocation.getCurrentPosition(
-          async (position) => {
+        Geolocation.getCurrentPosition(
+          (position) => {
             const { coords: {
               latitude,
               longitude
@@ -38,8 +38,7 @@ export default class Location {
               lng: longitude
             };
             this.currentLocation = loc;
-            try {
-              const locations = await Geocoder.geocodePosition(loc);
+            Geocoder.geocodePosition(loc).then((locations) => {
               const bestLocation = locations[0];
               const {
                 locality,
@@ -49,11 +48,10 @@ export default class Location {
               this.locality = locality;
               this.country = country;
               this.countryCode = countryCode;
-
-            } catch (error) {
+            }).catch((error) => {
               console.log(error);
               SimpleToast.show(I18n.get("ERROR_failedToGetLocation"), SimpleToast.SHORT);
-            }
+            });
           },
           (error) => {
             console.log(error.message);

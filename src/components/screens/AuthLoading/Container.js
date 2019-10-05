@@ -13,8 +13,8 @@ class Container extends Component {
         if (this.props.stores.appState.userId) {
           this.props.navigation.navigate('App');
         } else {
-          await Auth.signOut();
-          this.props.navigation.navigate('Auth');
+          Auth.signOut()
+            .then(() => this.props.navigation.navigate('Auth'));
         }
       } catch (error) {
         this.props.navigation.navigate('Auth');
