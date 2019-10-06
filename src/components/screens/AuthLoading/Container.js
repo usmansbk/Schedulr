@@ -15,9 +15,7 @@ class Container extends Component {
         if (this.props.stores.appState.userId) {
           this.props.navigation.navigate('App');
         } else {
-          Auth.signOut()
-            .then(this._navigateToAuth)
-            .catch(this._navigateToAuth);
+          await Auth.signOut();
         }
       } catch (error) {
         this._navigateToAuth();
