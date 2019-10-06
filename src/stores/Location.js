@@ -15,6 +15,7 @@ export default class Location {
   @persist @observable locality = null;
   @persist @observable country = null;
   @persist @observable countryCode = null;
+  @persist @observable searchLocation = null;
   @persist @observable currentLocation = null;
 
   @action fetchLocation = async (update) => {
@@ -47,6 +48,7 @@ export default class Location {
               } = bestLocation;
               this.locality = locality;
               this.country = country;
+              this.searchLocation = locality;
               this.countryCode = countryCode;
             }).catch((error) => {
               console.log(error);
@@ -65,6 +67,12 @@ export default class Location {
     }
   };
 
+  @action setSearchLocation(newLocation) {
+    if (newLocation) {
+      this.searchLocation = newLocation;
+    }
+  }
+
   @computed get location() {
     if (this.locality && this.country) {
       return `${this.locality}, ${this.country}`;
@@ -78,5 +86,6 @@ export default class Location {
     this.locality = null;
     this.countryCode = null;
     this.currentLocation = null;
+    this.searchLocation = null;
   }
 }

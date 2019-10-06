@@ -20,7 +20,7 @@ export default inject('stores')(observer(
           />}
           editable={false}
           collapsable
-          placeholder={I18n.get("SEARCH_inputPlaceholder")(stores.locationStore.locality)}
+          placeholder={I18n.get("SEARCH_inputPlaceholder")(stores.locationStore.searchLocation)}
           theme={{ roundness: 0 }}
           style={{
             backgroundColor: stores.themeStore.colors.bg,
