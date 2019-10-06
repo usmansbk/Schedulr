@@ -24,12 +24,8 @@ class Discover extends React.Component {
       />
       <LocationInput
         visible={this.state.showLocationPicker}
-        location={this.props.stores.locationStore.location}
         hideModal={this._hideLocationPicker}
-        language={this.props.stores.settingsStore.language}
-        styles={this.props.stores.appStyles.places}
-        modalStyle={this.props.stores.appStyles.picker}
-        onSelectLocation={this._handleSelect}
+        onSelect={this._handleSelect}
       />
       </>
     );

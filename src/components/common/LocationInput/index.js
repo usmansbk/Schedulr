@@ -1,5 +1,5 @@
 import LocationPickerInput from './PickerInput';
-import LocationPicker from './Picker';
+import LocationPicker from './Container';
 
 export { LocationPickerInput }
 
