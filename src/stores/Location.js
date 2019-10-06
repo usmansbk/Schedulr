@@ -48,7 +48,7 @@ export default class Location {
               } = bestLocation;
               this.locality = locality;
               this.country = country;
-              this.searchLocation = locality;
+              if (!this.searchLocation) this.searchLocation = locality;
               this.countryCode = countryCode;
             }).catch((error) => {
               console.log(error);
