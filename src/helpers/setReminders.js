@@ -60,7 +60,7 @@ const setReminder = (event, before, settings) => {
       id,
       startAt,
       endAt,
-      notificationType: 'Local'
+      notificationType: 'local'
     }),
     repeatType,
     ...repeatTime
@@ -98,7 +98,7 @@ const schdlStart = (event, settings) => {
       id,
       startAt,
       endAt,
-      notificationType: 'Local',
+      notificationType: 'local',
     }),
     repeatType,
     ...repeatTime

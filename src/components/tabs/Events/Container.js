@@ -26,10 +26,12 @@ class Container extends React.Component {
       senderID: env.FCM_SENDER_ID,
       onRegister: this.props.stores.notificationsStore.updatePushToken, 
       onNotification: notification => {
+        console.log(notification);
         const { userInteraction, data } = notification;
-        if (data && data.notificationType === 'Local') {
+        if (data && data.notificationType === 'local') {
           processLocalNotification(notification);
         } else {
+          console.log(notification);
           if (userInteraction) {
             processRemoteNotification(notification);
           }
