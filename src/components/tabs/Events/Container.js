@@ -2,7 +2,7 @@ import React from 'react';
 import NetInfo from '@react-native-community/netinfo';
 import LocalNotifications from 'react-native-push-notification';
 import SimpleToast from 'react-native-simple-toast';
-import { Linking, Platform } from 'react-native';
+import { Linking, Platform, PushNotificationIOS } from 'react-native';
 import changeNavigationBarColor from 'react-native-navigation-bar-color';
 import { inject, observer } from 'mobx-react';
 import NavigationService from 'config/navigation';
