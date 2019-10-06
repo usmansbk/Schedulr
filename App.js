@@ -6,7 +6,6 @@ import { Rehydrated } from 'aws-appsync-react';
 import SplashScreen from 'react-native-splash-screen';
 import { observer } from 'mobx-react';
 import Amplify from 'aws-amplify';
-import PushNotification from '@aws-amplify/pushnotification';
 import AppContainer from './src/App';
 import Loading from 'components/common/Hydrating';
 import NavigationService from 'config/navigation';
@@ -21,8 +20,6 @@ console.disableYellowBox = true;
 // window.LOG_LEVEL = 'DEBUG';
 
 Amplify.configure(aws_config);
-
-PushNotification.configure(aws_config);
 
 @observer
 export default class App extends React.Component {

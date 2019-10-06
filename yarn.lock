@@ -76,13 +76,6 @@
     uuid "^3.2.1"
     zen-observable "^0.8.6"
 
-"@aws-amplify/pushnotification@^1.0.34":
-  version "1.0.34"
-  resolved "https://registry.yarnpkg.com/@aws-amplify/pushnotification/-/pushnotification-1.0.34.tgz#689164cc0efe3643715bd636105c565c56244ece"
-  integrity sha512-B+oeNzdPZQG8mnxNZ4bt4hPUno/SdYiiaVKULGDBeQhVqTzg8QoIifTRZF28Ytpn5kjJt+guRrMHf1s50jzipw==
-  dependencies:
-    "@aws-amplify/core" "^1.1.2"
-
 "@aws-amplify/storage@^1.1.2":
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/@aws-amplify/storage/-/storage-1.1.2.tgz#16c3c66e8455df48375036743c2cbfc025af4f10"
