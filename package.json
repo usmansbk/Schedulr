@@ -9,6 +9,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "@aws-amplify/pushnotification": "^1.0.34",
     "@react-native-community/async-storage": "^1.6.2",
     "@react-native-community/netinfo": "^4.3.3",
     "apollo-link": "^1.2.13",
