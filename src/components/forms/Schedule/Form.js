@@ -168,7 +168,7 @@ class Form extends React.Component {
           <LocationPicker
             visible={this.state.showLocationPicker}
             hideModal={this._hideDialog}
-            onValueChange={location => setFieldValue('location', location)}
+            onSelectLocation={location => setFieldValue('location', location)}
             modalStyle={stores.appStyles.picker}
             styles={stores.appStyles.places}
             language={stores.settingsStore.language}

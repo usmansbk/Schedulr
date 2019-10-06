@@ -13,6 +13,8 @@ class Discover extends React.Component {
   
   componentDidMount = async () => await this.props.stores.locationStore.fetchLocation(true);
 
+  _handleSelect = (location) => this.props.stores.locationStore.setSearchLocation(location);
+
   render() {
     return (
       <>
@@ -27,6 +29,7 @@ class Discover extends React.Component {
         language={this.props.stores.settingsStore.language}
         styles={this.props.stores.appStyles.places}
         modalStyle={this.props.stores.appStyles.picker}
+        onSelectLocation={this._handleSelect}
       />
       </>
     );

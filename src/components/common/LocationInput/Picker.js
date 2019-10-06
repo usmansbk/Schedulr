@@ -13,6 +13,9 @@ export default class Picker extends React.Component {
   _onValueChange = (value) => this.props.onValueChange(value);
   _onSelect = (data) => {
     console.log(data);
+    let location = null;
+    this.props.onSelectLocation && this.props.onSelectLocation(location);
+    this.props.hideModal();
   };
 
   render() {
