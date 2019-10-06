@@ -4,6 +4,8 @@ import { inject, observer } from 'mobx-react';
 import Loading from './Loading';
 
 class Container extends Component {
+  _navigateToAuth = () => this.props.navigation.navigate('Auth');
+
   componentDidMount = async () => {
     if (this.props.stores.appState.prefs.showAppIntro) {
       this.props.navigation.navigate('Intro');
@@ -14,10 +16,11 @@ class Container extends Component {
           this.props.navigation.navigate('App');
         } else {
           Auth.signOut()
-            .then(() => this.props.navigation.navigate('Auth'));
+            .then(this._navigateToAuth)
+            .catch(this._navigateToAuth);
         }
       } catch (error) {
-        this.props.navigation.navigate('Auth');
+        this._navigateToAuth();
       }
     }
   }
