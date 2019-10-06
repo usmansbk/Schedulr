@@ -59,7 +59,8 @@ const setReminder = (event, before, settings) => {
     data: JSON.stringify({
       id,
       startAt,
-      endAt
+      endAt,
+      notificationType: 'Local'
     }),
     repeatType,
     ...repeatTime
@@ -96,7 +97,8 @@ const schdlStart = (event, settings) => {
     data: JSON.stringify({
       id,
       startAt,
-      endAt
+      endAt,
+      notificationType: 'Local',
     }),
     repeatType,
     ...repeatTime
