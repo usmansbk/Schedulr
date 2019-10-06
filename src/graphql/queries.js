@@ -19,6 +19,8 @@ export const me = `query GetUser($id: ID!) {
     updatedAt
     disablePush
     pushBlacklist
+    androidToken
+    iosToken
   }
 }
 `;

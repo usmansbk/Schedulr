@@ -19,6 +19,8 @@ export const createUser = `mutation CreateUser($input: CreateUserInput!) {
     updatedAt
     disablePush
     pushBlacklist
+    androidToken
+    iosToken
   }
 }
 `;
@@ -36,6 +38,8 @@ export const updateUser = `mutation UpdateUser($input: UpdateUserInput!) {
     updatedAt
     disablePush
     pushBlacklist
+    androidToken
+    iosToken
   }
 }
 `;
@@ -43,6 +47,14 @@ export const togglePush = `mutation UpdateUser($input: UpdateUserInput!) {
   updateUser(input: $input) {
     id
     disablePush
+  }
+}
+`;;
+export const updatePushToken = `mutation UpdateUser($input: UpdateUserInput!) {
+  updateUser(input: $input) {
+    id
+    androidToken
+    iosToken
   }
 }
 `;
