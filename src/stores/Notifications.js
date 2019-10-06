@@ -34,4 +34,8 @@ export default class AppState {
   @computed get comments() {
     return this.notifications.filter(notif => notif.type === 'Comment').sort((a, b) => -(a.timestamp - b.timestamp));
   }
+
+  @action updatePushToken(token) {
+    console.log(token);
+  }
 }

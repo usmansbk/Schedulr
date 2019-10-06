@@ -24,14 +24,15 @@ class Container extends React.Component {
     // Configure notifications for local events reminder
     LocalNotifications.configure({
       senderID: env.FCM_SENDER_ID,
-      onRegister: token => {
-        console.log(token);
-      },
+      onRegister: this.props.stores.notificationsStore.updatePushToken, 
       onNotification: notification => {
-        if (notification.data.notificationType === 'Local') {
+        const { userInteraction, data } = notification;
+        if (data && data.notificationType === 'Local') {
           processLocalNotification(notification);
         } else {
-          processRemoteNotification(notification);
+          if (userInteraction) {
+            processRemoteNotification(notification);
+          }
         }
         if (Platform.OS === 'ios') {
           notification.finish(PushNotificationIOS.FetchResult.NoData);
