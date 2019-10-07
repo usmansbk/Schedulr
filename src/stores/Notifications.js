@@ -1,7 +1,9 @@
-import { Platform } from 'react-native';
 import { observable, action, computed } from 'mobx';
 import { persist } from 'mobx-persist';
 import moment from 'moment';
+import gql from 'graphql-tag';
+import client from 'config/client';
+import { updatePushToken } from 'api/mutations';
 
 export default class Notifications {
   @persist @observable token = null;
@@ -38,12 +40,18 @@ export default class Notifications {
     return this.notifications.filter(notif => notif.type === 'Comment').sort((a, b) => -(a.timestamp - b.timestamp));
   }
 
-  @action updatePushToken({ os, token }) {
+  @action updatePushToken = ({ os, token }, id) => {
     const key = `${os}Token`;
-    if (token === this.token) {
-      console.log('Token still the same', token);
-    } else {
-      console.log(key, token);
+    if (token !== this.token) {
+      client.mutate({
+        mutation: gql(updatePushToken),
+        variables: {
+          input: {
+            id,
+            [key]: token
+          }
+        }
+      }).catch(console.log);
     }
     this.token = token;
   }
