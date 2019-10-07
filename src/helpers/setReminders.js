@@ -55,6 +55,8 @@ const setReminder = (event, before, settings) => {
     color,
     playSound: sound,
     soundName: 'notification_sound.mp3',
+    priority: 'max',
+    importance: 'max',
     vibrate,
     data: JSON.stringify({
       id,
@@ -94,6 +96,8 @@ const schdlStart = (event, settings) => {
     playSound: sound,
     soundName: 'notification_sound.mp3',
     vibrate,
+    priority: 'max',
+    importance: 'max',
     data: JSON.stringify({
       id,
       startAt,
