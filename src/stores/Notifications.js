@@ -1,8 +1,10 @@
+import { Platform } from 'react-native';
 import { observable, action, computed } from 'mobx';
 import { persist } from 'mobx-persist';
 import moment from 'moment';
 
-export default class AppState {
+export default class Notifications {
+  @persist @observable token = null;
   @persist @observable newCommentsCount = 0;
   @persist @observable lastSyncTimestamp = moment().unix();
   @persist @observable hasNotifications = false;
@@ -22,6 +24,7 @@ export default class AppState {
   @action reset() {
     this.clearNotifications();
     this.lastSyncTimestamp = moment().unix();
+    this.token = null;
   }
 
   @action setNotificationIndicator = status => this.hasNotifications = status;
@@ -35,7 +38,16 @@ export default class AppState {
     return this.notifications.filter(notif => notif.type === 'Comment').sort((a, b) => -(a.timestamp - b.timestamp));
   }
 
-  @action updatePushToken(token) {
-    console.log(token);
+  @action updatePushToken({ os, token }) {
+    const key = `${os}Token`;
+    if (token === this.token) {
+      console.log('Token still the same', token);
+    } else {
+      console.log(key, token);
+    }
   }
+
+  @action setToken = (token) => {
+    if (token) this.token = token;
+  };
 }

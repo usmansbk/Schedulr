@@ -58,11 +58,11 @@ const setReminder = (event, before, settings) => {
     priority: 'max',
     importance: 'max',
     vibrate,
+    tag: 'local',
     data: JSON.stringify({
       id,
       startAt,
       endAt,
-      notificationType: 'local'
     }),
     repeatType,
     ...repeatTime
@@ -96,13 +96,13 @@ const schdlStart = (event, settings) => {
     playSound: sound,
     soundName: 'notification_sound.mp3',
     vibrate,
+    tag: 'local',
     priority: 'max',
     importance: 'max',
     data: JSON.stringify({
       id,
       startAt,
       endAt,
-      notificationType: 'local',
     }),
     repeatType,
     ...repeatTime

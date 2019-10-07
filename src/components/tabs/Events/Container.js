@@ -1,6 +1,6 @@
 import React from 'react';
 import NetInfo from '@react-native-community/netinfo';
-import LocalNotifications from 'react-native-push-notification';
+import PushNotifications from 'react-native-push-notification';
 import SimpleToast from 'react-native-simple-toast';
 import { Linking, Platform, PushNotificationIOS } from 'react-native';
 import changeNavigationBarColor from 'react-native-navigation-bar-color';
@@ -21,15 +21,13 @@ class Container extends React.Component {
   }
   
   _handleLocalNotifications = () => {
-    // Configure notifications for local events reminder
-    LocalNotifications.configure({
+    PushNotifications.configure({
       senderID: env.FCM_SENDER_ID,
       onRegister: this.props.stores.notificationsStore.updatePushToken, 
       onNotification: notification => {
-        console.log(notification);
-        const { userInteraction, data } = notification;
-        if (data && data.notificationType === 'local') {
-          processLocalNotification(notification);
+        const { userInteraction, data, tag } = notification;
+        if (tag === 'local') {
+          processLocalNotification(data);
         } else {
           console.log(notification);
           if (userInteraction) {
