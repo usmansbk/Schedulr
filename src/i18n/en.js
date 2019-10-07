@@ -150,8 +150,8 @@ export default {
   TOAST_enableReminder: "Unmute all events to continue!",
   TOAST_locationError: "Failed to get location. Turn off airplane mode.",
   TOAST_noImageFound: "No image found",
-  TOAST_removed: "Removed",
-  TOAST_saved: "Saved",
+  TOAST_removed: "Event was removed from your bookmarks",
+  TOAST_saved: "Event was added to your bookmarks",
 
   PROFILE_FORM_name: "Name",
   PROFILE_FORM_website: "Website",
