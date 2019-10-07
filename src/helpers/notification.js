@@ -24,5 +24,6 @@ export function processLocalNotification(data) {
 }
 
 export function processRemoteNotification(notification) {
+  console.log(notification);
   NavigationService.navigate('Notifications');
 }

@@ -45,6 +45,7 @@ export default class Notifications {
     } else {
       console.log(key, token);
     }
+    this.token = token;
   }
 
   @action setToken = (token) => {
