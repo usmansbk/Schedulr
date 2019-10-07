@@ -12,12 +12,9 @@ class Container extends Component {
     } else {
       try {
         await Auth.currentAuthenticatedUser();
-        if (this.props.stores.appState.userId) {
-          this.props.navigation.navigate('App');
-        } else {
-          await Auth.signOut();
-        }
+        this.props.navigation.navigate('App');
       } catch (error) {
+        console.log(error.message);
         this._navigateToAuth();
       }
     }
