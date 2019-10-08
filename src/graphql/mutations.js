@@ -405,14 +405,18 @@ export const deleteComment = `mutation DeleteComment($input: DeleteCommentInput!
 }
 `;
 export const createPreference = `mutation CreateUserPreference($input: CreateUserPreferenceInput!) {
-  id
-  androidToken
-  iosToken
-  disablePush
+  createPreference(input: $input) {
+    id
+    androidToken
+    iosToken
+    disablePush
+  }
 }`;
 export const updatePreference = `mutation UpdateUserPreference($input: UpdateUserPreferenceInput!) {
-  id
-  androidToken
-  iosToken
-  disablePush
+  updatePreference(input: $input) {
+    id
+    androidToken
+    iosToken
+    disablePush
+  }
 }`;

@@ -1,5 +1,4 @@
 import React from 'react';
-import { Platform } from 'react-native';
 import uuidv5 from 'uuid/v5';
 import { Auth, Hub } from 'aws-amplify';
 import { inject, observer } from 'mobx-react';
@@ -63,7 +62,8 @@ class Container extends React.Component {
                 input: {
                   name,
                   email,
-                  pictureUrl
+                  pictureUrl,
+                  userPreferenceId: email
                 }
               }
             });
@@ -92,11 +92,7 @@ class Container extends React.Component {
             });
           } else {
             const user = data.me;
-            if (Platform.OS === 'ios') {
-              this.props.stores.notificationsStore.setToken(user.iosToken);
-            } else {
-              this.props.stores.notificationsStore.setToken(user.androidToken);
-            }
+            this.props.stores.notificationsStore.setPreference(user.preference);
           }
           this.props.stores.appState.setUserId(email);
           this.props.navigation.navigate('App');

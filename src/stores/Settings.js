@@ -5,7 +5,7 @@ import changeNavigationBarColor from 'react-native-navigation-bar-color';
 import SimpleToast from 'react-native-simple-toast';
 import { dark, light } from 'config/colors';
 import client from 'config/client';
-import { togglePush } from 'api/mutations';
+import { updatePreference } from 'api/mutations';
 
 export default class SettingsState {
   @persist @observable language = "en";
@@ -34,10 +34,10 @@ export default class SettingsState {
     try {
       this.disablePushNotifications = !this.disablePushNotifications;
       const result = await client.mutate({
-        mutation: gql(togglePush),
+        mutation: gql(updatePreference),
         optimisticResponse: {
           updateUser: {
-            __typename: 'User',
+            __typename: 'UserPreference',
             id,
             disablePush: this.disablePushNotifications
           } 

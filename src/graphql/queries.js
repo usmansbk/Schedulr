@@ -27,6 +27,15 @@ export const me = `query GetUser($id: ID!) {
 }
 `;
 
+export const myPref = `query GetPreference($id: ID!) {
+  userPref(id: $id) {
+    id
+    androidToken
+    iosToken
+    disablePush
+  }
+}`
+
 export const getUser = `query GetUser($id: ID!) {
   getUser(id: $id) {
     id
