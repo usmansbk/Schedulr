@@ -17,10 +17,12 @@ export const createUser = `mutation CreateUser($input: CreateUserInput!) {
     createdCount
     createdAt
     updatedAt
-    disablePush
-    pushBlacklist
-    androidToken
-    iosToken
+    preference {
+      id
+      androidToken
+      iosToken
+      disablePush
+    }
   }
 }
 `;
@@ -36,25 +38,6 @@ export const updateUser = `mutation UpdateUser($input: UpdateUserInput!) {
     website
     bio
     updatedAt
-    disablePush
-    pushBlacklist
-    androidToken
-    iosToken
-  }
-}
-`;
-export const togglePush = `mutation UpdateUser($input: UpdateUserInput!) {
-  updateUser(input: $input) {
-    id
-    disablePush
-  }
-}
-`;;
-export const updatePushToken = `mutation UpdateUser($input: UpdateUserInput!) {
-  updateUser(input: $input) {
-    id
-    androidToken
-    iosToken
   }
 }
 `;
@@ -405,7 +388,7 @@ export const deleteComment = `mutation DeleteComment($input: DeleteCommentInput!
 }
 `;
 export const createPreference = `mutation CreateUserPreference($input: CreateUserPreferenceInput!) {
-  createPreference(input: $input) {
+  createUserPreference(input: $input) {
     id
     androidToken
     iosToken
@@ -413,7 +396,7 @@ export const createPreference = `mutation CreateUserPreference($input: CreateUse
   }
 }`;
 export const updatePreference = `mutation UpdateUserPreference($input: UpdateUserPreferenceInput!) {
-  updatePreference(input: $input) {
+  updateUserPreference(input: $input) {
     id
     androidToken
     iosToken

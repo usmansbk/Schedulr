@@ -1,12 +1,12 @@
 import { observable, action } from 'mobx';
 import { persist } from 'mobx-persist';
 import gql from 'graphql-tag';
-import client from 'config/client';
 import changeNavigationBarColor from 'react-native-navigation-bar-color';
 import SimpleToast from 'react-native-simple-toast';
 import { dark, light } from 'config/colors';
 import client from 'config/client';
 import { updatePreference } from 'api/mutations';
+import { updateUserPushToken } from 'helpers/updatePreference';
 
 export default class SettingsState {
   @persist @observable language = "en";
@@ -73,17 +73,7 @@ export default class SettingsState {
 
   @action updatePushToken = ({ os, token }, id) => {
     const key = `${os}Token`;
-    if (token !== this.token) {
-      client.mutate({
-        mutation: gql(updatePreference),
-        variables: {
-          input: {
-            id,
-            [key]: token
-          }
-        }
-      }).catch(console.log);
-    }
+    updateUserPushToken(key, token);
   }
 
   @action setUserPreference = (pref) => {

@@ -1,16 +1,29 @@
 import gql from 'graphql-tag';
 import client from 'config/client';
 import stores from 'stores';
-import { myPref } from 'api/queries';
-import { updatePreference } from 'api/mutation';
+import { updatePreference } from 'api/mutations';
 
-const getPreference = async () => {
+async function updateUserPushToken(device, token) {
+  try {
+    const response = await client.mutate({
+      mutation: gql(updatePreference),
+      variables: {
+        input: {
+          id: stores.appState.userId,
+          [device]: token
+        }
+      }
+    });
+    console.log(response);
+  } catch (error) {
+    console.log(error);
+  }
 }
-
-async function updatePushToken(device, token) {
-
-}
-
 async function toggleSettings(key) {
 
 }
+
+export {
+  updateUserPushToken,
+  toggleSettings
+};

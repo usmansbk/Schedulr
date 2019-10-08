@@ -8,13 +8,14 @@ import gql from 'graphql-tag';
 import changeNavigationBarColor from 'react-native-navigation-bar-color';
 import SimpleToast from 'react-native-simple-toast';
 import { me } from 'api/queries';
-import { createUser, createSchedule } from 'api/mutations';
+import { createUser, createSchedule, createPreference } from 'api/mutations';
 import defaultSchedule from 'i18n/schedule';
 import Login from './Login';
 
 const GET_USER = gql(me);
 const CREATE_USER = gql(createUser);
-const CREATE_SCHEDULE =gql(createSchedule);
+const CREATE_SCHEDULE = gql(createSchedule);
+const CREATE_PREFERENCE = gql(createPreference);
 
 class Container extends React.Component {
 
@@ -56,6 +57,14 @@ class Container extends React.Component {
           });
           const { data } = response;
           if (!data.me) {
+            await client.mutate({
+              mutation: CREATE_PREFERENCE,
+              variables: {
+                input: {
+                  disablePush: false
+                }
+              }
+            });
             const result = await client.mutate({
               mutation: CREATE_USER,
               variables: {
