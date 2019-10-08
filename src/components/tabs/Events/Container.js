@@ -24,7 +24,7 @@ class Container extends React.Component {
     PushNotifications.configure({
       senderID: env.FCM_SENDER_ID,
       onRegister: (token) => (
-        this.props.stores.notificationsStore.updatePushToken(
+        this.props.stores.settingsStore.updatePushToken(
           token,
           this.props.stores.appState.userId
         ))

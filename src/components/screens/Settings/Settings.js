@@ -47,7 +47,7 @@ class Settings extends React.Component {
       sound,
       vibrate,
       disableReminders,
-      disablePushNotifications,
+      userPreference,
     } = stores.settingsStore;
     const { styles } = stores.appStyles;
 
@@ -130,7 +130,7 @@ class Settings extends React.Component {
               title={I18n.get("SETTINGS_pushDisable")}
               right={() => (
                 <Switch
-                  value={disablePushNotifications}
+                  value={userPreference && userPreference.disablePush}
                   onValueChange={() => this.handleValueChange('disablePushNotifications')}
                 />
               )}

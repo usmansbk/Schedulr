@@ -92,7 +92,7 @@ class Container extends React.Component {
             });
           } else {
             const user = data.me;
-            this.props.stores.notificationsStore.setPreference(user.preference);
+            this.props.stores.settingsStore.setPreference(user.preference);
           }
           this.props.stores.appState.setUserId(email);
           this.props.navigation.navigate('App');
