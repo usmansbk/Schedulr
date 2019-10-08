@@ -116,17 +116,26 @@ function createEvent(input, typename) {
     fragment: scheduleFragment,
     id: fragmentId
   });
-  const count = schedule.eventsCount;
-  if (typeof count === 'number') {
-    schedule.eventsCount = count + 1;
-  } else {
-    schedule.eventsCount = 1;
+  let updatedSchedule = null;
+  if (schedule) {
+    const count = schedule.eventsCount;
+    if (typeof count === 'number') {
+      schedule.eventsCount = count + 1;
+    } else {
+      schedule.eventsCount = 1;
+    }
+    client.writeFragment({
+      fragment: scheduleFragment,
+      id: fragmentId,
+      data: schedule
+    });
+    updatedSchedule = {
+      __typename: SCHEDULE_TYPE,
+      id: schedule.id,
+      name: schedule.name,
+      isFollowing: false
+    };
   }
-  client.writeFragment({
-    fragment: scheduleFragment,
-    id: fragmentId,
-    data: schedule
-  });
   // ======================================================================
 
   const createdAt = moment().toISOString();
@@ -140,12 +149,7 @@ function createEvent(input, typename) {
     cancelledDates: null,
     banner: null,
     author,
-    schedule: {
-      __typename: SCHEDULE_TYPE,
-      id: schedule.id,
-      name: schedule.name,
-      isFollowing: false
-    },
+    schedule: updatedSchedule,
     bookmarksCount: 0,
     commentsCount: 0,
     createdAt,
@@ -389,11 +393,14 @@ function createFollow(input, typename) {
     // Update event items schedule isFollowing field to true
     if (scheduleEvents) {
       const { events: { items } } = scheduleEvents;
-      scheduleEvents.events.items = items.map(event => Object.assign({}, event, {
-        schedule: Object.assign({}, event.schedule, {
-          isFollowing: true
-        })
-      }));
+      scheduleEvents.events.items = items.map(event => {
+        if (!event.schedule) return event;
+        return Object.assign({}, event, {
+          schedule: Object.assign({}, event.schedule, {
+            isFollowing: true
+          })
+        });
+      });
       scheduleEventsConnection = scheduleEvents.events;
     }
   } catch(error) {}
@@ -470,9 +477,12 @@ function deleteEvent(input, typename) {
     }`,
     id: `${typename}:${input.id}`
   });
-  const count = event.schedule.eventsCount;
-  if ((typeof count === 'number') && count > 0) {
-    event.schedule.eventsCount = count - 1;
+  const schedule = event.schedule;
+  if (schedule) {
+    const count = schedule.eventsCount;
+    if ((typeof count === 'number') && count > 0) {
+      schedule.eventsCount = count - 1;
+    }
   }
   
   // ******************* Remove from bookmarks *******************

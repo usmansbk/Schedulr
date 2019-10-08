@@ -18,23 +18,29 @@ async function updateUserPushToken(device, token) {
     console.log(error);
   }
 }
-async function toggleDisablePush(status) {
+async function toggleDisablePush(prev) {
+  const toggled = prev ? !prev.disablePush : true;
+  let optimisticResponse = null;
+  if (prev) {
+    optimisticResponse = Object.asign({}, prev, {
+      disablePush: toggled
+    });
+  }
   try {
     const result = await client.mutate({
       mutation: gql(updatePreference),
       variables: {
         input: {
           id: stores.appState.userId,
-          disablePush: status
+          disablePush: toggled
         }
       }
     });
-    const pref = result.data && result.data.updateUserPreference;
-    return pref;
+    return result.data.updateUserPreference;
   } catch (error) {
     console.log(error);
   }
-  return null;
+  return optimisticResponse;
 }
 
 export {
