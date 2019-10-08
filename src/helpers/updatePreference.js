@@ -5,7 +5,7 @@ import { updatePreference } from 'api/mutations';
 
 async function updateUserPushToken(device, token) {
   try {
-    const response = await client.mutate({
+    await client.mutate({
       mutation: gql(updatePreference),
       variables: {
         input: {
@@ -14,7 +14,6 @@ async function updateUserPushToken(device, token) {
         }
       }
     });
-    console.log(response);
   } catch (error) {
     console.log(error);
   }
