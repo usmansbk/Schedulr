@@ -1,12 +1,9 @@
 import { observable, action } from 'mobx';
 import { persist } from 'mobx-persist';
-import gql from 'graphql-tag';
 import changeNavigationBarColor from 'react-native-navigation-bar-color';
 import SimpleToast from 'react-native-simple-toast';
 import { dark, light } from 'config/colors';
-import client from 'config/client';
-import { updatePreference } from 'api/mutations';
-import { updateUserPushToken } from 'helpers/updatePreference';
+import { updateUserPushToken, toggleDisablePush } from 'helpers/updatePreference';
 
 export default class SettingsState {
   @persist @observable language = "en";
@@ -16,8 +13,7 @@ export default class SettingsState {
   @persist @observable disableReminders = false;
   @persist @observable headsUp = false;
   @persist @observable bookmarkedEventsOnly = false;
-  @persist @observable disablePushNotifications = false;
-  @persist('object') @observable userPreference = {};
+  @persist('object') @observable userPreference = null;
 
   @action toggle (value) {
     this[value] = !this[value];
@@ -29,34 +25,8 @@ export default class SettingsState {
     try {
       SimpleToast.show("Applying theme... Just a sec!", SimpleToast.SHORT);
       await changeNavigationBarColor(this.dark ? colors.light_gray_2 : colors.bg, !this.dark);
-    } catch (error) {}
-  }
-
-  @action async togglePush(id) {
-    try {
-      this.disablePushNotifications = !this.disablePushNotifications;
-      const result = await client.mutate({
-        mutation: gql(updatePreference),
-        optimisticResponse: {
-          updateUserPreference: {
-            __typename: 'UserPreference',
-            id,
-            disablePush: this.disablePushNotifications
-          } 
-        },
-        variables: {
-          input: {
-            id,
-            disablePush: this.disablePushNotifications
-          }
-        }
-      });
-      const pref = result.data && result.data.updateUserPreference;
-      if (pref) {
-        this.userPreference.disablePush = pref.disablePush;
-      }
     } catch (error) {
-      console.log(error);
+      console.log(error.message);
     }
   }
 
@@ -68,15 +38,24 @@ export default class SettingsState {
     this.disableReminders = false;
     this.headsUp = false;
     this.bookmarkedEventsOnly = false;
-    this.userPreference = {};
+    this.userPreference = null;
   }
 
-  @action updatePushToken = ({ os, token }, id) => {
+  @action updatePushToken = ({ os, token }) => {
     const key = `${os}Token`;
     updateUserPushToken(key, token);
   }
 
+  @action async togglePush() {
+    const toggled = this.userPreference ? !this.userPreference.disablePush : true;
+    this.userPreference = {
+      disablePush: toggled 
+    };
+    const response = await toggleDisablePush(toggled);
+    this.setUserPreference(response);
+  }
+
   @action setUserPreference = (pref) => {
-    if (pref) this.userPreference = pref || {};
+    if (pref) this.userPreference = pref;
   };
 }
