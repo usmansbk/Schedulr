@@ -19,6 +19,7 @@ export default class Location {
   @persist @observable currentLocation = null;
 
   @action fetchLocation = async (update) => {
+    if (this.point && this.location) return;
     try {
       const hasLocationPermission = await requestLocationPermission();
       if (hasLocationPermission) {

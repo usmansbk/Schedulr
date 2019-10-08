@@ -17,10 +17,12 @@ export const me = `query GetUser($id: ID!) {
     createdCount
     createdAt
     updatedAt
-    disablePush
-    pushBlacklist
-    androidToken
-    iosToken
+    preference {
+      id
+      androidToken
+      iosToken
+      disablePush
+    }
   }
 }
 `;
