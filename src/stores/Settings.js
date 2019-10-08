@@ -47,12 +47,8 @@ export default class SettingsState {
   }
 
   @action async togglePush() {
-    const toggled = this.userPreference ? !this.userPreference.disablePush : true;
-    this.userPreference = {
-      disablePush: toggled 
-    };
-    const response = await toggleDisablePush(toggled);
-    this.setUserPreference(response);
+    const updatedPreference = await toggleDisablePush(this.userPreference);
+    this.setUserPreference(updatedPreference);
   }
 
   @action setUserPreference = (pref) => {
