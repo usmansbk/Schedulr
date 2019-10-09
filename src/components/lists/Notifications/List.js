@@ -1,4 +1,5 @@
 import React from 'react';
+import { RefreshControl } from 'react-native';
 import { FlatList } from 'react-navigation';
 import moment from 'moment';
 import Empty from './Empty';
@@ -67,7 +68,13 @@ export default class List extends React.Component {
   };
 
   render() {
-    const { styles, updates } = this.props;
+    const {
+      stores,
+      styles,
+      updates,
+      onRefresh,
+      loading
+    } = this.props;
     
     return (
       <FlatList
@@ -81,6 +88,14 @@ export default class List extends React.Component {
         ListFooterComponent={this._renderFooter}
         ItemSeparatorComponent={this._renderSeparator}
         keyExtractor={this._keyExtractor}
+        refreshControl={
+          <RefreshControl
+            onRefresh={onRefresh}
+            refreshing={loading}
+            colors={[stores.themeStore.colors.primary]}
+            progressBackgroundColor={stores.themeStore.colors.bg}
+          />
+        }
       />
     );
   }

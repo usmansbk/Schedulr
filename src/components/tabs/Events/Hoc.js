@@ -68,6 +68,5 @@ export default inject("stores")(observer(
         }
       }),
     }),
-
   )(Events)
 ));

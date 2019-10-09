@@ -3,7 +3,7 @@ import { persist } from 'mobx-persist';
 import moment from 'moment';
 
 export default class Notifications {
-  @persist @observable count = 2;
+  @persist @observable count = 0;
   @persist @observable lastSyncTimestamp = moment().unix();
   @persist @observable hasNotifications = false;
 
@@ -23,6 +23,7 @@ export default class Notifications {
 
   @action reset() {
     this.clearNotifications();
+    this.count = 0;
     this.lastSyncTimestamp = moment().unix();
   }
 
