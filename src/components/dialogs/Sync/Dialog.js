@@ -20,6 +20,7 @@ class Dialog extends React.Component {
     };
     this.setState({ loading: true });
     try {
+      await this.props.client.clearStore();
       await this.props.client.query({
         query: gql(getUserData),
         fetchPolicy: 'network-only',
@@ -42,6 +43,7 @@ class Dialog extends React.Component {
         title={I18n.get("MORE_sync")}
         message={I18n.get("SYNC_message")}
         loading={this.state.loading}
+        dismissable={!this.state.loading}
       />
     );
   }

@@ -18,11 +18,12 @@ export default inject('stores')(observer(
     cancelText=I18n.get('BUTTON_dismiss'),
     confirmText=I18n.get('BUTTON_continue'),
     onConfirm,
-    stores
+    stores,
+    dismissable=true
   }) => (
     <Portal>
       <Dialog
-        dismissable
+        dismissable={dismissable}
         style={{backgroundColor: stores.themeStore.colors.bg}}
         visible={visible}
         onDismiss={handleDismiss}
