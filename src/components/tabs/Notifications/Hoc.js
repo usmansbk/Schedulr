@@ -21,8 +21,8 @@ compose(
       },
       onCompleted: (data) => {
         const { notifications } = data;
+        props.stores.notificationsStore.updateLastSyncTimestamp();
         if (notifications && notifications.length) {
-          props.stores.notificationsStore.updateLastSyncTimestamp();
           props.stores.notificationsStore.appendNotifications(notifications);
         }
       }

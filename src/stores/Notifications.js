@@ -13,7 +13,7 @@ export default class Notifications {
 
   @action appendNotifications = newNotifications => {
     if (newNotifications.length) {
-      this.count = newNotifications.length;
+      this.count += newNotifications.length;
       this.notifications = this.notifications.concat(newNotifications);
     }
   };

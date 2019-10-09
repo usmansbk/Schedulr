@@ -59,8 +59,8 @@ export default inject("stores")(observer(
           lastSync: String(props.stores.notificationsStore.lastSyncTimestamp)
         },
         onCompleted: (data) => {
-          props.stores.notificationsStore.updateLastSyncTimestamp();
           const { notifications } = data;
+          props.stores.notificationsStore.updateLastSyncTimestamp();
           if (notifications && notifications.length) {
             props.stores.notificationsStore.appendNotifications(notifications);
             props.fetchMore && props.fetchMore();
