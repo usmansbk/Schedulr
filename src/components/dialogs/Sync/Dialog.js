@@ -20,8 +20,7 @@ class Dialog extends React.Component {
     };
     this.setState({ loading: true });
     try {
-      await this.props.client.clearStore();
-      await this.props.client.query({
+await this.props.client.query({
         query: gql(getUserData),
         fetchPolicy: 'network-only',
         variables
