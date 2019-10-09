@@ -23,24 +23,26 @@ function updateData({
   operationType,
   id
 }) {
-  const query = gql(cacheUpdateQuery);
-  const data = cache.readQuery({ query, variables: { id } });
-  const { items } = data[rootField][connectionField];
-  const removeDuplicate = items.filter(item => item.id !== updatedItem.id);
-  let newItems;
-  if (operationType === ADD) {
-    newItems = [...removeDuplicate, updatedItem];
-  } else {
-    newItems = removeDuplicate;
-  }
-  const newData = Object.assign({}, data, {
-    [rootField]: Object.assign({}, data[rootField], {
-      [connectionField]: Object.assign({}, data[rootField][connectionField], {
-        items: newItems
+  if (id) {
+    const query = gql(cacheUpdateQuery);
+    const data = cache.readQuery({ query, variables: { id } });
+    const { items } = data[rootField][connectionField];
+    const removeDuplicate = items.filter(item => item.id !== updatedItem.id);
+    let newItems;
+    if (operationType === ADD) {
+      newItems = [...removeDuplicate, updatedItem];
+    } else {
+      newItems = removeDuplicate;
+    }
+    const newData = Object.assign({}, data, {
+      [rootField]: Object.assign({}, data[rootField], {
+        [connectionField]: Object.assign({}, data[rootField][connectionField], {
+          items: newItems
+        })
       })
-    })
-  });
-  cache.writeQuery({ query, variables: { id }, data: newData });
+    });
+    cache.writeQuery({ query, variables: { id }, data: newData });
+  }
 }
 
 export default function(cache, result, operationType) {
@@ -53,7 +55,7 @@ export default function(cache, result, operationType) {
           updatedItem: result,
           connectionField: 'events',
           rootField: 'getScheduleEvents',
-          id: result.schedule.id,
+          id: result.schedule && result.schedule.id,
           cacheUpdateQuery: getScheduleEvents
         });
         break;
