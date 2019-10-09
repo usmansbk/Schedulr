@@ -53,7 +53,7 @@ class Item extends React.Component {
             </Text>
             <View style={styles.message}>
               { title && <>
-                <Caption>{title}</Caption>
+                <Caption><Caption style={{fontWeight: 'bold'}}>R:</Caption> {title}</Caption>
                 <View style={styles.divider} />
               </>}
               <Caption numberOfLines={5} ellipsizeMode="tail">{content}</Caption>

@@ -1,9 +1,9 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
-import List from 'components/lists/Updates';
+import List from 'components/lists/Notifications';
 
-class Updates extends React.Component {
+class Notifications extends React.Component {
 
   static navigationOptions() {
     return {
@@ -13,8 +13,9 @@ class Updates extends React.Component {
   
   render() {
     const { stores, navigation } = this.props;
-    stores.notificationsStore.setNotificationIndicator(false);
-    
+   
+    stores.notificationsStore.resetCounter();
+
     return (
       <List
         updates={stores.notificationsStore.updates}
@@ -25,4 +26,4 @@ class Updates extends React.Component {
   }
 }
 
-export default inject("stores")(observer(Updates));
+export default inject("stores")(observer(Notifications));

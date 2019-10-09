@@ -4,7 +4,8 @@ import moment from 'moment';
 import Empty from './Empty';
 import Footer from './Footer';
 import Separator from './Separator';
-import Item from './Item';
+import NotifItem from './Item';
+import CommentItem from './CommentItem';
 import { notifications_list } from 'lib/constants';
 import getImageUrl from 'helpers/getImageUrl';
 
@@ -22,6 +23,10 @@ export default class List extends React.Component {
   _renderSeparator = () => <Separator />;
   _keyExtractor = (item, index) => item.id + item.date + index;
   _renderFooter = () => <Footer visible={this.props.updates.length}/>;
+  _navigateToEvent = (id) => this.props.navigation.navigate('EventDetails', { id });
+  _navigateToSchedule = (id) => this.props.navigation.navigate('ScheduleInfo', { id });
+  _navigateToFollowers = (id) => this.props.navigation.navigate('Followers', { id });
+  _navigateToBookmarks = (id) => this.props.navigation.navigate('EventBookmarks', { id });
   _navigateToComments = (id) => this.props.navigation.navigate('Comments', { id });
   _getItemLayout = (_, index) => (
     {
@@ -38,20 +43,28 @@ export default class List extends React.Component {
     timestamp,
     topic,
     entityId,
-    extraData,
-    type
-  }}) => <Item
-    id={id}
-    entityId={entityId}
-    subject={subject}
-    message={message}
-    topic={topic}
-    type={type}
-    extraData={extraData}
-    pictureUrl={image && getImageUrl(image)}
-    date={moment.unix(timestamp).fromNow()}
-    navigateToComments={this._navigateToComments}
-  />;
+    type,
+    extraData
+  }}) => {
+    let Item = NotifItem;
+    if (type === 'Comment') Item = CommentItem;
+    return <Item
+      id={id}
+      entityId={entityId}
+      subject={subject}
+      message={message}
+      topic={topic}
+      type={type}
+      extraData={extraData}
+      pictureUrl={image && getImageUrl(image)}
+      date={moment.unix(timestamp).fromNow()}
+      navigateToSchedule={this._navigateToSchedule}
+      navigateToEvent={this._navigateToEvent}
+      navigateToFollowers={this._navigateToFollowers}
+      navigateToBookmarks={this._navigateToBookmarks}
+      navigateToComments={this._navigateToComments}
+    />
+  };
 
   render() {
     const { styles, updates } = this.props;
@@ -65,6 +78,7 @@ export default class List extends React.Component {
         contentContainerStyle={styles.contentContainer}
         renderItem={this._renderItem}
         ListEmptyComponent={this._renderEmpty}
+        ListFooterComponent={this._renderFooter}
         ItemSeparatorComponent={this._renderSeparator}
         keyExtractor={this._keyExtractor}
       />

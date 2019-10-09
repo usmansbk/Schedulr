@@ -3,19 +3,23 @@ import { persist } from 'mobx-persist';
 import moment from 'moment';
 
 export default class Notifications {
+  @persist @observable count = 0;
   @persist @observable lastSyncTimestamp = moment().unix();
   @persist @observable hasNotifications = false;
 
   @persist('list') @observable notifications = [];
 
   @action updateLastSyncTimestamp = () => this.lastSyncTimestamp = moment().unix();
+
   @action appendNotifications = newNotifications => {
     if (newNotifications.length) {
-      this.setNotificationIndicator(true);
+      this.count = newNotifications.length;
       this.notifications = this.notifications.concat(newNotifications);
     }
   };
+
   @action clearNotifications = () => this.notifications = [];
+  @action resetCounter = () => this.count = 0;
 
   @action reset() {
     this.clearNotifications();
@@ -23,17 +27,13 @@ export default class Notifications {
   }
 
   @action setNotificationIndicator = status => this.hasNotifications = status;
-  @action clearCommentsCounter = () => this.newCommentsCount = 0;
 
   @computed get updates() {
-    return this.notifications.filter(notif => notif.type !== 'Comment').sort((a, b) => -(a.timestamp - b.timestamp));
+    return this.notifications.sort((a, b) => -(a.timestamp - b.timestamp));
   }
 
   @computed get comments() {
     return this.notifications.filter(notif => notif.type === 'Comment').sort((a, b) => -(a.timestamp - b.timestamp));
   }
 
-  @computed get newCommentsCount() {
-    return this.notifications.filter(notif => notif.type === 'Comment').length;
-  }
 }
