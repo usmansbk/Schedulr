@@ -868,15 +868,9 @@ export default class AppStyles {
         marginRight: 8
       },
       indicator: {
-        height: SIZE,
-        width: SIZE,
-        borderRadius: SIZE / 2,
         position: 'absolute',
-        top: 2,
-        right: 2,
-        borderWidth: 1,
-        borderColor: colors.white,
-        backgroundColor: '#1DA1F2',
+        top: 0,
+        right: 0
       },
       avatar: {
         alignSelf: 'flex-start',

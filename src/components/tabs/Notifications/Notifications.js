@@ -14,7 +14,7 @@ class Notifications extends React.Component {
   render() {
     const { stores, navigation } = this.props;
    
-    stores.notificationsStore.resetCounter();
+    stores.notificationsStore.resetCounter(0);
 
     return (
       <List
