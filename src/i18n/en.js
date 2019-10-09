@@ -49,6 +49,7 @@ export default {
   NOTIFICATIONS_emptyUpdatesListCaption: "Important updates and announcements will appear here",
   NOTIFICATIONS_emptyMessagesList: "No comments",
   NOTIFICATIONS_allCaughtUp: "You are all caught up!",
+  NOTIFICATIONS_title: "Notifications",
 
   SETTINGS_screenTitle: "Settings",
   SETTINGS_generalSectionTitle: "General",
@@ -83,6 +84,7 @@ export default {
   HELP_copyRight: "Copyright information",
   HELP_terms: "Terms and Privacy Policy",
   HELP_appVersion: "App version",
+
 
   BUTTON_cancel: "Cancel",
   BUTTON_create: "create",
