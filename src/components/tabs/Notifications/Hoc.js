@@ -28,7 +28,8 @@ compose(
       }
     }),
     props: ({ data, ownProps }) => ({
-      loading: data && data.loading || data.networkStatus === 4,
+      loading: data && data.loading,
+      refreshing: data && data.networkStatus === 4,
       onRefresh: () => data.refetch(),
       ...ownProps
     })
