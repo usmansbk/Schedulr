@@ -8,6 +8,12 @@ import {
 import Icon from 'react-native-vector-icons/Feather';
 import { inject, observer } from 'mobx-react';
 import UserAvatar from 'components/common/UserAvatar';
+import {
+  EVENT_TYPE,
+  SCHEDULE_TYPE,
+  FOLLOW_TYPE,
+  BOOKMARK_TYPE,
+} from 'lib/constants';
 
 class Item extends React.Component {
 
@@ -22,16 +28,16 @@ class Item extends React.Component {
     } = this.props;
     if (entityId) {
       switch(type) {
-        case 'Event':
+        case EVENT_TYPE:
           navigateToEvent(entityId);
           break;
-        case 'Schedule':
+        case SCHEDULE_TYPE:
           navigateToSchedule(entityId);
           break;
-        case 'Follow':
+        case FOLLOW_TYPE:
           navigateToFollowers(entityId);
           break;
-        case 'Bookmark':
+        case BOOKMARK_TYPE:
           navigateToBookmarks(entityId);
           break;
       }

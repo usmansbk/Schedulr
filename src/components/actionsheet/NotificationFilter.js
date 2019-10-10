@@ -2,6 +2,14 @@ import React from 'react';
 import ActionSheet from 'react-native-actionsheet';
 import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
+import {
+  EVENT_TYPE,
+  SCHEDULE_TYPE,
+  FOLLOW_TYPE,
+  BOOKMARK_TYPE,
+  COMMENT_TYPE
+} from 'lib/constants';
+
 
 class FilterAction extends React.Component {
   showActionSheet = () => {
@@ -15,19 +23,19 @@ class FilterAction extends React.Component {
         filter = 'all';
         break;
       case 1:
-        filter = 'Event';
+        filter = EVENT_TYPE;
         break;
       case 2:
-        filter = 'Schedule';
+        filter = SCHEDULE_TYPE;
         break;
       case 3:
-        filter = 'Follower';
+        filter = FOLLOW_TYPE;
         break;
       case 4:
-        filter = 'Bookmark';
+        filter = BOOKMARK_TYPE;
         break;
       case 5:
-        filter = 'Comment';
+        filter = COMMENT_TYPE;
       case 6:
         filter = 'clear';
         break;

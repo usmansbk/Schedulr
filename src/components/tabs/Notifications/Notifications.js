@@ -17,6 +17,8 @@ export default class Notifications extends React.Component {
   render() {
     const { stores, navigation, onRefresh, loading } = this.props;
     stores.notificationsStore.resetCounter(0);
+    console.log(stores.notificationsStore.updates);
+    console.log(stores.notificationsStore.filter);
 
     return (
       <>
@@ -37,12 +39,9 @@ export default class Notifications extends React.Component {
       </Appbar.Header>
       <Divider />
       <List
-        updates={stores.notificationsStore.updates}
-        styles={stores.appStyles.notifications}
         navigation={navigation}
         onRefresh={onRefresh}
         loading={loading}
-        stores={stores}
       />
       <Filter
         ref={ref => this.Filter = ref}

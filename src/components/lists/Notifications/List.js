@@ -2,6 +2,7 @@ import React from 'react';
 import { RefreshControl } from 'react-native';
 import { FlatList } from 'react-navigation';
 import moment from 'moment';
+import { inject, observer } from 'mobx-react';
 import Empty from './Empty';
 import Footer from './Footer';
 import Separator from './Separator';
@@ -9,13 +10,14 @@ import NotifItem from './Item';
 import CommentItem from './CommentItem';
 import { notifications_list } from 'lib/constants';
 import getImageUrl from 'helpers/getImageUrl';
+import { COMMENT_TYPE } from 'lib/constants';
 
 const {
   ITEM_HEIGHT,
   SEPARATOR_HEIGHT
 } = notifications_list;
 
-export default class List extends React.Component {
+class List extends React.Component {
   static defaultProps = {
     updates: []
   };
@@ -48,7 +50,7 @@ export default class List extends React.Component {
     extraData
   }}) => {
     let Item = NotifItem;
-    if (type === 'Comment') Item = CommentItem;
+    if (type === COMMENT_TYPE) Item = CommentItem;
     return <Item
       id={id}
       entityId={entityId}
@@ -70,15 +72,13 @@ export default class List extends React.Component {
   render() {
     const {
       stores,
-      styles,
-      updates,
       onRefresh,
       loading
     } = this.props;
-    
+    const styles = stores.appStyles.notifications   
     return (
       <FlatList
-        data={updates}
+        data={stores.notificationsStore.updates}
         style={styles}
         initialNumToRender={7}
         extraData={moment().format('mm')}
@@ -101,3 +101,5 @@ export default class List extends React.Component {
     );
   }
 }
+
+export default inject("stores")(observer(List));
