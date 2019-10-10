@@ -1,5 +1,5 @@
 import React from 'react';
-import { TouchableRipple, Searchbar } from 'react-native-paper';
+import { TouchableRipple, Searchbar, Divider } from 'react-native-paper';
 import { I18n } from 'aws-amplify';
 import Icon from 'react-native-vector-icons/Feather';
 import Chips from 'components/lists/Chips';
@@ -25,14 +25,15 @@ export default inject('stores')(observer(
           style={{
             backgroundColor: stores.themeStore.colors.bg,
             elevation: 0,
-            marginBottom: 2
           }}
         />
       </TouchableRipple>
+      <Divider />
       <Chips
         data={['__current__location__', ...stores.appState.categories]}
         onPressLocationButton={onPressLocationButton}
       />
+      <Divider />
       </>
     );
   }
