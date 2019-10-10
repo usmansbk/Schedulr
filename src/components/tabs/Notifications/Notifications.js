@@ -8,8 +8,9 @@ import Filter from 'components/actionsheet/NotificationFilter';
 export default class Notifications extends React.Component {
 
   _onPressFilterButton = () => {
-    this.ActionSheet &&
-      this.ActionSheet.getWrappedInstance().wrappedInstance.showActionSheet();
+    console.log(this.Filter);
+    this.Filter &&
+      this.Filter.showActionSheet();
   };
 
   shouldComponentUpdate = () => this.props.navigation.isFocused();
@@ -44,7 +45,7 @@ export default class Notifications extends React.Component {
         stores={stores}
       />
       <Filter
-        ref={ref => this.ActionSheet = ref}
+        ref={ref => this.Filter = ref}
       />
       </>
     )

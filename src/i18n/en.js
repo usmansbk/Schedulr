@@ -1,10 +1,12 @@
 export default {
+  ACTION_filterByType: "Filter By Type",
   ACTION_all: "All",
   ACTION_events: "Events",
   ACTION_schedules: "Schedules",
   ACTION_bookmarks: "Bookmarks",
   ACTION_followers: "Followers",
   ACTION_comments: "Comments",
+  ACTION_clearAll: "Clear all",
 
   COMMENTS: 'Comments',
   COMMENTS_emptyList: "No comments",
