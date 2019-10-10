@@ -80,6 +80,7 @@ export default class List extends React.Component {
       <FlatList
         data={updates}
         style={styles}
+        initialNumToRender={7}
         extraData={moment().format('mm')}
         getItemLayout={this._getItemLayout}
         contentContainerStyle={styles.contentContainer}
