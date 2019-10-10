@@ -20,7 +20,7 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
       if (message.includes("Not Found")) {
         // Dont log elasticsearch "Not found"
       } else {
-        SimpleToast.show(I18n.get('ERROR_serverError'), SimpleToast.LONG);
+        SimpleToast.show(I18n.get('ERROR_serverError')(error.message), SimpleToast.LONG);
         console.log(error.message);
         Analytics.record({
           name: 'GraphQLError',

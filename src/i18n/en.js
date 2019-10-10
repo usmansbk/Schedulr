@@ -244,7 +244,7 @@ export default {
   ERROR_noInternetConnection: "Check your internet connection. Pull to refresh",
   ERROR_somethingWentWrong: "Something went wrong. Please try again",
   ERROR_networkError: "Network error",
-  ERROR_serverError: "Oop! My fault",
+  ERROR_serverError: message => "Oop! My fault: " + message,
   ERROR_noConnection: "No connection",
   ERROR_404: "Not found",
   ERROR_404_caption: "Item may have been deleted",
