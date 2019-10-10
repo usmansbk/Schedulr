@@ -1,5 +1,6 @@
+import { capitalize } from 'lib/utils';
 export default {
-  ACTION_filterByType: "Filter By Type",
+  ACTION_filterByType: filter => "Filter By Type: " + capitalize(filter),
   ACTION_all: "All",
   ACTION_events: "Events",
   ACTION_schedules: "Schedules",

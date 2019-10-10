@@ -68,7 +68,7 @@ class FilterAction extends React.Component {
     return (
       <ActionSheet
         ref={ref => this.actionSheet = ref}
-        title={I18n.get('ACTION_filterByType')}
+        title={I18n.get('ACTION_filterByType')(stores.notificationsStore.filter)}
         options={options}
         destructiveButtonIndex={destructiveButtonIndex}
         cancelButtonIndex={cancelButtonIndex}
