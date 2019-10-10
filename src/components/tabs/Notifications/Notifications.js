@@ -8,7 +8,6 @@ import Filter from 'components/actionsheet/NotificationFilter';
 export default class Notifications extends React.Component {
 
   _onPressFilterButton = () => {
-    console.log(this.Filter);
     this.Filter &&
       this.Filter.showActionSheet();
   };
