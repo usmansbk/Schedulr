@@ -2,7 +2,7 @@ import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
 import { inject, observer } from 'mobx-react';
 import { withNavigationFocus } from 'react-navigation';
-import { getUserData, getDeltaUpdates, getNotifications } from 'api/queries';
+import { getUserData, getDeltaUpdates } from 'api/queries';
 import { baseEventsFilter } from 'api/filters';
 import updateBaseCache from 'helpers/deltaSync';
 import Events from './Events';
@@ -10,7 +10,6 @@ import Events from './Events';
 const alias = 'withEventsContainer';
 const BaseQuery = gql(getUserData);
 const DeltaQuery = gql(getDeltaUpdates);
-const GetNotifications = gql(getNotifications);
 
 export default inject("stores")(observer(
   compose(
@@ -49,24 +48,6 @@ export default inject("stores")(observer(
         },
         ...ownProps
       })
-    }),
-    graphql(GetNotifications, {
-      alias: 'withGetNotifications',
-      name: 'notifications',
-      options: props => ({
-        fetchPolicy: 'no-cache',
-        variables: {
-          lastSync: String(props.stores.notificationsStore.lastSyncTimestamp)
-        },
-        onCompleted: (data) => {
-          const { notifications } = data;
-          props.stores.notificationsStore.updateLastSyncTimestamp();
-          if (notifications && notifications.length) {
-            props.stores.notificationsStore.appendNotifications(notifications);
-            props.fetchMore && props.fetchMore();
-          }
-        }
-      }),
     }),
   )(Events)
 ));

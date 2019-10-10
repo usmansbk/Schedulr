@@ -5,6 +5,9 @@ import List from 'components/lists/Events';
 import FAB from 'components/common/Fab';
 import schdlAll from 'helpers/setReminders';
 import { mergeEvents } from 'lib/utils';
+import gql from 'graphql-tag';
+import { getNotifications } from 'api/queries';
+import client from 'config/client';
 
 export default class Events extends React.Component {
   static defaultProps = {
@@ -45,6 +48,29 @@ export default class Events extends React.Component {
     return this._mergeAllEvents(this.props.data);
   }
 
+  _fetchNotifications = () => {
+    const { stores, fetchMore } = this.props;
+    client.query({
+      fetchPolicy: 'network-only',
+      query: gql(getNotifications),
+      variables: {
+        lastSync: String(this.props.stores.notificationsStore.lastSyncTimestamp)
+      }
+    }).then((result) => {
+      const { data: { notifications } } = result;
+      console.log(result);
+      stores.notificationsStore.updateLastSyncTimestamp();
+      if (notifications && notifications.length) {
+        stores.notificationsStore.appendNotifications(notifications);
+        fetchMore && fetchMore();
+      }   
+    }).catch(console.log);
+  };
+
+  componentDidMount = () => {
+    this._fetchNotifications();
+  };
+
   render() {
     return (
       <>
@@ -54,6 +80,7 @@ export default class Events extends React.Component {
           navigation={this.props.navigation}
           onRefresh={this._onRefresh}
           loading={this.props.loading}
+          fetchMore={this._fetchNotifications}
         />
         <FAB
           icon="edit-2"

@@ -95,7 +95,7 @@ class List extends Component {
     isAuth={this.props.isAuth}
   />;
   _renderSeparator = () => <Separator />;
-  _renderHeader = () => this.props.pastEventsCount ? <Header
+  _renderHeader = () => (this.props.pastEventsCount > 0) ? <Header
     onPress={this._fetchPastEvents}
     loading={this.props.loading && this.state.loadingPrev}
     count={this.props.pastEventsCount}

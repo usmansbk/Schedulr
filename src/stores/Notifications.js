@@ -19,12 +19,15 @@ export default class Notifications {
     }
   };
 
-  @action clearNotifications = () => this.allNotifications = [];
-  @action resetCounter = (temp) => this.count = temp;
+  @action clearNotifications = () => {
+    this.allNotifications = [];
+    this.filter = 'all';
+    this.resetCounter(0);
+  };
+  @action resetCounter = (temp=0) => this.count = temp;
 
   @action reset() {
     this.clearNotifications();
-    this.count = 0;
     this.lastSyncTimestamp = moment().unix();
   }
 
@@ -46,5 +49,4 @@ export default class Notifications {
         this.filter = filter;
     }
   }
-
 }
