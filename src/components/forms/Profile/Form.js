@@ -124,7 +124,6 @@ class Form extends React.Component {
                 onChangeText={handleChange('bio')}
                 onBlur={handleBlur('bio')}
                 mode="outlined"
-                autoFocus
               />
               <HelperText
                 type="error"

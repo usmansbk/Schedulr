@@ -1,4 +1,11 @@
 export default {
+  ACTION_all: "All",
+  ACTION_events: "Events",
+  ACTION_schedules: "Schedules",
+  ACTION_bookmarks: "Bookmarks",
+  ACTION_followers: "Followers",
+  ACTION_comments: "Comments",
+
   COMMENTS: 'Comments',
   COMMENTS_emptyList: "No comments",
   COMMENTS_loadMore: "Load more comments",

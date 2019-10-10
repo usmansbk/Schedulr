@@ -3,8 +3,14 @@ import { Appbar, Divider } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/Feather';
 import { I18n } from 'aws-amplify';
 import List from 'components/lists/Notifications';
+import Filter from 'components/actionsheet/NotificationFilter';
 
 export default class Notifications extends React.Component {
+
+  _onPressFilterButton = () => {
+    this.ActionSheet &&
+      this.ActionSheet.getWrappedInstance().wrappedInstance.showActionSheet();
+  };
 
   shouldComponentUpdate = () => this.props.navigation.isFocused();
  
@@ -20,7 +26,7 @@ export default class Notifications extends React.Component {
           titleStyle={stores.appStyles.styles.headerColor}
         />
         <Appbar.Action
-          onPress={() => null}
+          onPress={this._onPressFilterButton}
           icon={() => <Icon
             name="sliders"
             color={stores.themeStore.colors.gray}
@@ -36,6 +42,9 @@ export default class Notifications extends React.Component {
         onRefresh={onRefresh}
         loading={loading}
         stores={stores}
+      />
+      <Filter
+        ref={ref => this.ActionSheet = ref}
       />
       </>
     )
