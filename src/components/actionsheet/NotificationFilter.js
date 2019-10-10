@@ -36,6 +36,7 @@ class FilterAction extends React.Component {
         break;
       case 5:
         filter = COMMENT_TYPE;
+        break;
       case 6:
         filter = 'clear';
         break;
@@ -63,7 +64,7 @@ class FilterAction extends React.Component {
    
     const cancelButtonIndex = options.length - 1;
     const destructiveButtonIndex = cancelButtonIndex - 1;
-
+    console.log(destructiveButtonIndex, cancelButtonIndex);
     return (
       <ActionSheet
         ref={ref => this.actionSheet = ref}

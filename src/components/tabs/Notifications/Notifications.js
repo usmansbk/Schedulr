@@ -17,8 +17,6 @@ export default class Notifications extends React.Component {
   render() {
     const { stores, navigation, onRefresh, loading } = this.props;
     stores.notificationsStore.resetCounter(0);
-    console.log(stores.notificationsStore.updates);
-    console.log(stores.notificationsStore.filter);
 
     return (
       <>
@@ -29,7 +27,7 @@ export default class Notifications extends React.Component {
         />
         <Appbar.Action
           onPress={this._onPressFilterButton}
-          disabled={!stores.notificationsStore.allNotifications.length}
+          disabled={false && !stores.notificationsStore.allNotifications.length}
           icon={() => <Icon
             name="sliders"
             color={stores.themeStore.colors.gray}
