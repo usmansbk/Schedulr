@@ -27,7 +27,7 @@ export default class Notifications extends React.Component {
         />
         <Appbar.Action
           onPress={this._onPressFilterButton}
-          disabled={false && !stores.notificationsStore.allNotifications.length}
+          disabled={!stores.notificationsStore.allNotifications.length}
           icon={() => <Icon
             name="sliders"
             color={stores.themeStore.colors.gray}
