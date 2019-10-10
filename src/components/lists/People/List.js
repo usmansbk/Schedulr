@@ -113,8 +113,6 @@ class List extends React.Component {
         ListEmptyComponent={this._renderEmpty}
         getItemLayout={this._getItemLayout}
         data={people}
-        refreshing={loading && !fetchingMore}
-        onRefresh={onRefresh}
         onEndReachedThreshold={0.5}
         onEndReached={this._onEndReached}
         refreshControl={

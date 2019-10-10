@@ -125,7 +125,6 @@ class List extends Component {
 
     return (
       <FlatList
-        refreshing={loading && !loadingPrev}
         refreshControl={
           <RefreshControl
             onRefresh={onRefresh}
@@ -134,7 +133,6 @@ class List extends Component {
             progressBackgroundColor={colors.bg}
           />
         }
-        onRefresh={onRefresh}
         style={styles.list}
         contentContainerStyle={styles.contentContainer}
         initialNumToRender={5}
