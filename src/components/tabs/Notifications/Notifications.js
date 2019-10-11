@@ -13,9 +13,21 @@ export default class Notifications extends React.Component {
   };
 
   shouldComponentUpdate = () => this.props.navigation.isFocused();
+
+  componentWillReceiveProps = (nextProps) => {
+    if (nextProps.hasDelta) {
+      this.props.fetchDelta();
+    }
+  };
  
   render() {
-    const { refreshing, stores, navigation, onRefresh, loading } = this.props;
+    const {
+      refreshing,
+      stores,
+      navigation,
+      onRefresh,
+      loading
+    } = this.props;
     stores.notificationsStore.resetCounter(0);
 
     return (
