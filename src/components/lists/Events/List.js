@@ -189,15 +189,15 @@ class List extends React.Component {
   static getDerivedStateFromProps(props, state) {
     if (eventsChanged(state.events, props.events)) {
       const events = props.events;
-      const today = moment().startOf('day').format();
+      const today = moment().startOf('day').toISOString();
       const yesterday = moment().subtract(1, 'day').startOf('day').format();
-      let sections = generateNextEvents(events, yesterday, DAYS_PER_PAGE);
+      let sections = generateNextEvents(events, today, DAYS_PER_PAGE);
       if (!sections.length && events.length) {
         sections = [{ data: [], title: today }];
       }
       const sectionLength = sections.length;
-      const afterDate = (sectionLength === DAYS_PER_PAGE) && moment(sections[sectionLength - 1].title).format();
-      const beforeDate = sectionLength && moment(sections[0].title).format();
+      const afterDate = (sectionLength === DAYS_PER_PAGE) && moment(sections[sectionLength - 1].title).toISOString();
+      const beforeDate = sectionLength && moment(sections[0].title).toISOString();
 
       return {
         sections,
