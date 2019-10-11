@@ -57,8 +57,8 @@ function generatePreviousEvents(events=[], beforeDate, DAYS_PER_PAGE) {
 /* Return next available event date */
 const getNextDate = memoize((events=[], refDate, before) => {
   return uniqWith(events.map((currentEvent) => {
-    const eventDate = moment(currentEvent.startAt);
-    const endDate = moment(currentEvent.endAt);
+    const eventDate = moment(currentEvent.startAt).startOf('D');
+    const endDate = moment(currentEvent.endAt).endOf('D');
     const untilAt = currentEvent.until ? moment(currentEvent.until).endOf('day') : undefined;
     const interval = getInterval(currentEvent.recurrence);
     const isValid = !currentEvent.isCancelled;
@@ -107,8 +107,8 @@ const getNextDate = memoize((events=[], refDate, before) => {
   * @return 
 */
 const processNextDayEvents = memoize((initialEvents, nextDate) => {
-  let refDate = moment();
-  if (nextDate) refDate = moment(nextDate);
+  let refDate = moment().startOf('D');
+  if (nextDate) refDate = moment(nextDate).startOf('D');
 
   return initialEvents.reduce((accumulator, currentEvent) => {
     const eventDate = moment(currentEvent.startAt);
@@ -141,12 +141,12 @@ const processNextDayEvents = memoize((initialEvents, nextDate) => {
         accumulator.data.push(Object.assign({}, currentEvent, {
           startAt,
           endAt,
-          ref_date: refDate.toISOString()
+          ref_date: refDate.startOf('D').toISOString()
         }));
       }
     } else if (!interval && eventDate.isSame(refDate, 'day') || isExtended) {
       const currentEventWithMeta = Object.assign({}, currentEvent, {
-        ref_date: refDate.toISOString()
+        ref_date: refDate.startOf('D').toISOString()
       });
       accumulator.data.push(currentEventWithMeta);
     }
@@ -193,14 +193,14 @@ function processEvents(events) {
         endAt,
         raw_startAt: currentEvent.startAt,
         raw_endAt: currentEvent.endAt,
-        ref_date: moment().toISOString(),
+        ref_date: moment().startOf('D').toISOString(),
         isConcluded
       });
     }
     return Object.assign({}, currentEvent, {
       raw_startAt: currentEvent.startAt,
       raw_endAt: currentEvent.endAt,
-      ref_date: moment().toISOString(),
+      ref_date: moment().startOf('D').toISOString(),
     });
   });
 };
