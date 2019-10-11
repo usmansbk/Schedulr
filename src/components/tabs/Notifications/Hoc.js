@@ -3,6 +3,7 @@ import gql from 'graphql-tag';
 import { withNavigationFocus } from 'react-navigation';
 import { inject, observer } from 'mobx-react';
 import { getNotifications, getDeltaUpdates, getUserData } from 'api/queries';
+import { baseEventsFilter } from 'api/filters';
 import Notifications from './Notifications';
 import client from 'config/client';
 import updateBaseCache from 'helpers/deltaSync';
@@ -34,30 +35,6 @@ compose(
       refreshing: data && data.networkStatus === 4,
       hasDelta: data && data.notifications && data.notifications.length,
       onRefresh: () => data.refetch(),
-      fetchDelta: () => {
-        const lastSyncTimestamp = ownProps.stores.appState.lastSyncTimestamp;
-        client.query({
-          fetchPolicy: 'network-only',
-          query: gql(getDeltaUpdates),
-          variables:{
-            lastSync: String(lastSyncTimestamp)
-          },
-        }).then(async (result) => {
-          const { data: fetchMoreResult } = result;
-          const { data: prev } = await client.query({
-            fetchPolicy: 'cache-only',
-            query: gql(getUserData),
-            variables: {
-              id: ownProps.stores.appState.userId,
-            }
-          });
-          updateBaseCache({
-            prev,
-            fetchMoreResult,
-            stores: ownProps.stores
-          });
-        }).catch(console.log);
-      },
       ...ownProps
     })
   })
