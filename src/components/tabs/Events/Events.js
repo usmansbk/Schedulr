@@ -61,8 +61,8 @@ export default class Events extends React.Component {
       stores.notificationsStore.updateLastSyncTimestamp();
       if (notifications && notifications.length) {
         stores.notificationsStore.appendNotifications(notifications);
-        fetchMore && fetchMore();
-      }   
+      }
+      fetchMore && fetchMore();
     }).catch(console.log);
   };
 
@@ -79,6 +79,7 @@ export default class Events extends React.Component {
           navigation={this.props.navigation}
           onRefresh={this._onRefresh}
           loading={this.props.loading}
+          fetchingMore={this.props.fetchingMore}
           fetchMore={this._fetchNotifications}
         />
         <FAB
