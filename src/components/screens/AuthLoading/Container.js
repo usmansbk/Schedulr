@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Auth } from 'aws-amplify';
 import { inject, observer } from 'mobx-react';
 import Loading from './Loading';
 
@@ -11,9 +10,8 @@ class Container extends Component {
       this.props.navigation.navigate('Intro');
     } else {
       try {
-        await Auth.currentAuthenticatedUser();
         if (!this.props.stores.appState.userId) {
-          throw new Error('GraphqlQL: No user found');
+          throw new Error('Unauthenticated: Not logged in');
         }
         this.props.navigation.navigate('App');
       } catch (error) {
