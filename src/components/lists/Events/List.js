@@ -191,7 +191,7 @@ class List extends React.Component {
       const events = props.events;
       const today = moment().startOf('day').toISOString();
       const yesterday = moment().subtract(1, 'day').startOf('day').format();
-      let sections = generateNextEvents(events, today, DAYS_PER_PAGE);
+      let sections = generateNextEvents(events, yesterday, DAYS_PER_PAGE);
       if (!sections.length && events.length) {
         sections = [{ data: [], title: today }];
       }
