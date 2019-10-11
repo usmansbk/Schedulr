@@ -2,8 +2,9 @@ import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
 import { withNavigationFocus } from 'react-navigation';
 import { inject, observer } from 'mobx-react';
-import { getNotifications, getDeltaUpdates } from 'api/queries';
+import { getNotifications, getDeltaUpdates, getUserData } from 'api/queries';
 import Notifications from './Notifications';
+import client from 'config/client';
 import updateBaseCache from 'helpers/deltaSync';
 
 const GetNotifications = gql(getNotifications);
@@ -35,19 +36,27 @@ compose(
       onRefresh: () => data.refetch(),
       fetchDelta: () => {
         const lastSyncTimestamp = ownProps.stores.appState.lastSyncTimestamp;
-        data.fetchMore({
+        client.query({
+          fetchPolicy: 'network-only',
           query: gql(getDeltaUpdates),
           variables:{
             lastSync: String(lastSyncTimestamp)
           },
-          updateQuery: (prev, { fetchMoreResult }) => (
-            updateBaseCache({
-              prev,
-              fetchMoreResult,
-              stores: ownProps.stores
-            })
-          )
-        })
+        }).then(async (result) => {
+          const { data: fetchMoreResult } = result;
+          const { data: prev }= await client.query({
+            fetchPolicy: 'cache-only',
+            query: gql(getUserData),
+            variables: {
+              id: ownProps.stores.appState.userId,
+            }
+          });
+          updateBaseCache({
+            prev,
+            fetchMoreResult,
+            stores: ownProps.stores
+          });
+        }).catch(console.log);
       },
       ...ownProps
     })
