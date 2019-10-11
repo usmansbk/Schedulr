@@ -7,7 +7,7 @@ import Loading from 'components/common/Loading';
 
 export default inject('stores')(observer(
   ({ stores, loading }) => {
-    if (loading) return <Loading loading={loading} />;
+    if (loading) return <Loading />;
     return (
     <View style={stores.appStyles.notifications.empty}>
       <Image resizeMode="contain" style={{ width: 200, height: 200 }} source={require('../../../assets/reading-corner.png')} />

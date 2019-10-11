@@ -22,7 +22,7 @@ class List extends React.Component {
     updates: []
   };
 
-  _renderEmpty = () => <Empty loading={this.props.loading} />;
+  _renderEmpty = () => <Empty loading={this.props.refreshing} />;
   _renderSeparator = () => <Separator />;
   _keyExtractor = (item, index) => item.id + item.date + index;
   _renderFooter = () => <Footer visible={this.props.updates.length}/>;
