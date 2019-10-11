@@ -2,11 +2,8 @@ import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
 import { withNavigationFocus } from 'react-navigation';
 import { inject, observer } from 'mobx-react';
-import { getNotifications, getDeltaUpdates, getUserData } from 'api/queries';
-import { baseEventsFilter } from 'api/filters';
+import { getNotifications } from 'api/queries';
 import Notifications from './Notifications';
-import client from 'config/client';
-import updateBaseCache from 'helpers/deltaSync';
 
 const GetNotifications = gql(getNotifications);
 
