@@ -44,7 +44,7 @@ compose(
           },
         }).then(async (result) => {
           const { data: fetchMoreResult } = result;
-          const { data: prev }= await client.query({
+          const { data: prev } = await client.query({
             fetchPolicy: 'cache-only',
             query: gql(getUserData),
             variables: {
