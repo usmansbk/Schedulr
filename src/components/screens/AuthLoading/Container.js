@@ -21,7 +21,7 @@ class Container extends Component {
         this._navigateToAuth();
       }
     }
-  }
+  };
 
   render() {
     return (

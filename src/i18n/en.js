@@ -279,6 +279,6 @@ export default {
   REQUEST_LOCATION_MESSAGE: "Schdlr App needs access to your location so events are easier to find.",
 
   PICKER_location: "Location",
-  SYNC_message: "Will remove all deleted and expired events from your calendar",
+  SYNC_message: "Will remove all deleted and expired events from your calendar.",
   SYNC_complete: "Synchronized"
 };
