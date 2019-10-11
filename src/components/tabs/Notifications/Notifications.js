@@ -16,7 +16,7 @@ export default class Notifications extends React.Component {
 
   componentWillReceiveProps = (nextProps) => {
     if (nextProps.hasDelta) {
-      this.props.fetchDelta();
+      this.props.fetchDelta && this.props.fetchDelta();
     }
   };
  
