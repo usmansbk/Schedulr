@@ -70,7 +70,7 @@ export const captionDetails = ({
     span = startMoment.from(endMoment, true);
     const count = momentCounter({ startAt, ref_date });
     if (count) {
-      span = `Day ${count + 1} of ${span},`;
+      span = `${count + 1} of ${span},`;
     }
   }
   const validCategory = category ? ' ' + category : '';
