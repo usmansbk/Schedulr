@@ -171,7 +171,8 @@ const processNextDayEvents = memoize((initialEvents, nextDate) => {
         const endAt = moment(startAt).add(duration).toISOString();
         accumulator.data.push(Object.assign({}, currentEvent, {
           startAt,
-          endAt
+          endAt,
+          ref_date: refDate.toISOString()
         }));
       }
     }

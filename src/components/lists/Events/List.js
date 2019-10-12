@@ -64,7 +64,7 @@ class List extends React.Component {
     onRefresh: () => null,
   };
 
-  _keyExtractor = (item) => item.id + item.startAt;
+  _keyExtractor = (item) => item.id + item.ref_date;
   _renderHeader = () => (
     this.state.sections.length ?
     <Header
@@ -190,7 +190,7 @@ class List extends React.Component {
     if (eventsChanged(state.events, props.events)) {
       const events = props.events;
       const today = moment().startOf('day').toISOString();
-      const yesterday = moment().subtract(1, 'day').startOf('day').toISOString();
+      const yesterday = moment().subtract(1, 'day').endOf('day').toISOString();
       let sections = generateNextEvents(events, yesterday, DAYS_PER_PAGE);
       if (!sections.length && events.length) {
         sections = [{ data: [], title: today }];
