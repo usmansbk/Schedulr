@@ -62,8 +62,28 @@ const getNextDate = memoize((events=[], refDate, before) => {
     const untilAt = currentEvent.until ? moment(currentEvent.until).endOf('day') : undefined;
     const interval = getInterval(currentEvent.recurrence);
     const isValid = !currentEvent.isCancelled;
+    const isExtended = moment(refDate).isBetween(eventDate, endDate, null, '[]');
+
     let recurrence;
-    if (interval && isValid) {
+    if (isValid && isExtended) {
+      recurrence = eventDate.recur(endDate).every(1).day().fromDate(refDate);
+      const nextDates = before ? recurrence.previous(1) : recurrence.next(1);
+      const nextDate = nextDates[0];
+      const shouldReturn = nextDate.isBetween(eventDate, endDate, null, '[]');
+
+      if (shouldReturn) return nextDate.local().startOf('day');
+      if (interval) {
+        if (interval === 'weekdays') {
+          recurrence = eventDate.recur().every(weekdays).daysOfWeek();
+        } else {
+          recurrence = eventDate.recur().every(1, interval);
+        }
+        recurrence.fromDate(refDate);
+        const nextDates = before ? recurrence.previous(1) : recurrence.next(1);
+        const nextDate = nextDates[0];
+        return nextDate.local().startOf('day');
+      }
+    } else if (interval && isValid) {
       if (interval === 'weekdays') {
         recurrence = eventDate.recur().every(weekdays).daysOfWeek();
       } else {
@@ -81,13 +101,6 @@ const getNextDate = memoize((events=[], refDate, before) => {
         // Prevent weekends
         return null;
       }
-    } else if (isValid && moment(refDate).isBetween(eventDate, endDate, null, '[]')) {
-      recurrence = eventDate.recur(endDate).every(1).day().fromDate(refDate);
-      const nextDates = before ? recurrence.previous(1) : recurrence.next(1);
-      const nextDate = nextDates[0];
-      const shouldReturn = nextDate.isBetween(eventDate, endDate, null, '[]');
-
-      if (shouldReturn) return nextDate.local().startOf('day');
     }
     return eventDate;
   }).filter(date => {
@@ -117,7 +130,12 @@ const processNextDayEvents = memoize((initialEvents, nextDate) => {
     const isExtended = refDate.isBetween(eventDate, endDate, 'D', '[]');
     const isValid = currentEvent.until ? refDate.isSameOrBefore(moment(currentEvent.until), 'day') : true;
 
-    if (interval && !currentEvent.isCancelled && isValid) {
+    if (eventDate.isSame(refDate, 'day') || isExtended) {
+      const currentEventWithMeta = Object.assign({}, currentEvent, {
+        ref_date: refDate.toISOString()
+      });
+      accumulator.data.push(currentEventWithMeta);
+    } else if (interval && !currentEvent.isCancelled && isValid) {
       let recurrence;
       if (interval === 'weekdays') {
         recurrence = eventDate.recur().every(weekdays).daysOfWeek();
@@ -143,11 +161,6 @@ const processNextDayEvents = memoize((initialEvents, nextDate) => {
           endAt
         }));
       }
-    } else if (!interval && eventDate.isSame(refDate, 'day') || isExtended) {
-      const currentEventWithMeta = Object.assign({}, currentEvent, {
-        ref_date: refDate.toISOString()
-      });
-      accumulator.data.push(currentEventWithMeta);
     }
     accumulator.data = sortBy(accumulator.data, 'startAt');
     return accumulator;
