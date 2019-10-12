@@ -144,11 +144,8 @@ const processNextDayEvents = memoize((initialEvents, nextDate) => {
         }));
       }
     } else if (!interval && eventDate.isSame(refDate, 'day') || isExtended) {
-      recurrence = eventDate.recur(endDate).every(1).day().fromDate(refDate);
-      const nextDates = recurrence.next(1);
-      const nextDate = nextDates[0];
       const currentEventWithMeta = Object.assign({}, currentEvent, {
-        ref_date: nextDate.local().toISOString()
+        ref_date: refDate.toISOString()
       });
       accumulator.data.push(currentEventWithMeta);
     }
