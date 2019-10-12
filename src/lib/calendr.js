@@ -89,7 +89,7 @@ const getNextDate = memoize((events=[], refDate, before) => {
 
       if (shouldReturn) return nextDate.local().startOf('day');
     }
-    return eventDate.startOf('day');
+    return eventDate;
   }).filter(date => {
     if (!date) return false;
     if (before) return date.isBefore(refDate, 'day');
@@ -135,18 +135,20 @@ const processNextDayEvents = memoize((initialEvents, nextDate) => {
 
         const duration = Math.abs(moment.duration(start.diff(end)));
 
-        const startAt = refDate.seconds(startSec).minutes(startMins).hours(startHours).toISOString();
+        const startAt = refDate.clone().seconds(startSec).minutes(startMins).hours(startHours).toISOString();
 
         const endAt = moment(startAt).add(duration).toISOString();
         accumulator.data.push(Object.assign({}, currentEvent, {
           startAt,
-          endAt,
-          ref_date: refDate.startOf('D').toISOString()
+          endAt
         }));
       }
     } else if (!interval && eventDate.isSame(refDate, 'day') || isExtended) {
+      recurrence = eventDate.recur(endDate).every(1).day().fromDate(refDate);
+      const nextDates = recurrence.next(1);
+      const nextDate = nextDates[0];
       const currentEventWithMeta = Object.assign({}, currentEvent, {
-        ref_date: refDate.startOf('D').toISOString()
+        ref_date: nextDate.local().toISOString()
       });
       accumulator.data.push(currentEventWithMeta);
     }
@@ -154,7 +156,7 @@ const processNextDayEvents = memoize((initialEvents, nextDate) => {
     return accumulator;
   }, {
     data: [],
-    title: refDate.startOf('day').toISOString(),
+    title: refDate.toISOString(),
   });
 }, (...args) => JSON.stringify(args));
 
