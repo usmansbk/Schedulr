@@ -81,7 +81,20 @@ const getNextDate = memoize((events=[], refDate, before) => {
         recurrence.fromDate(refDate);
         const nextDates = before ? recurrence.previous(1) : recurrence.next(1);
         const nextDate = nextDates[0];
-        return nextDate.local().startOf('day');
+        const start = moment(currentEvent.startAt);
+        const startSec = start.seconds();
+        const startMins = start.minutes();
+        const startHours = start.hours();
+
+        const end = moment(currentEvent.endAt);
+
+        const duration = Math.abs(moment.duration(start.diff(end)));
+
+        const startAt = nextDate.clone().seconds(startSec).minutes(startMins).hours(startHours).toISOString();
+
+        const endAt = moment(startAt).add(duration);
+        const shouldReturn = nextDate.isBetween(eventDate, endAt, null, '[]');
+        if (shouldReturn) return nextDate.local().startOf('day');
       }
     } else if (interval && isValid) {
       if (interval === 'weekdays') {
