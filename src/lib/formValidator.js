@@ -16,7 +16,7 @@ export function isEventValid(event) {
 
   let validity = true
   if (!canRepeat(event)) {
-    SimpleToast.show(I18n.get("ALERT_cantRepeat"), SimpleToast.SHORT);
+    SimpleToast.show(I18n.get("HELPER_TEXT_invalidDatesAndRecur"), SimpleToast.SHORT);
     validity = false;
   } else if (startAt.isAfter(endAt)) {
     SimpleToast.show(I18n.get("ALERT_invalidStart"), SimpleToast.SHORT);
