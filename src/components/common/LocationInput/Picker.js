@@ -20,9 +20,11 @@ export default class Picker extends React.Component {
     const {
       styles,
       modalStyle,
+      placeholderTextColor,
       visible,
       hideModal,
       language,
+      iconColor,
     } = this.props;
 
     return (
@@ -35,6 +37,7 @@ export default class Picker extends React.Component {
         >
           <GeoDBCitiesSearch
             placeholder={I18n.get("PLACEHOLDER_searchCities")}
+            placeholderTextColor={placeholderTextColor}
             onPress={this._onSelect}
             emptyListImagePlaceholder={require('../../../assets/map.png')}
             query={{
@@ -45,11 +48,15 @@ export default class Picker extends React.Component {
             }}
             renderLeftButton={() => <IconButton
               onPress={hideModal}
-              icon={() => <Icon
-                size={22}
+              color={iconColor}
+              size={22}
+              icon={({ color, size}) => <Icon
                 name="arrow-left"
+                color={color}
+                size={size}
               />}
             />}
+            styles={styles}
           />
         </Modal>
       </Portal>

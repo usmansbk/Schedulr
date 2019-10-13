@@ -172,10 +172,22 @@ export default class AppStyles {
   @computed get places() {
     const colors = this.settings.dark ? dark : light;
     return StyleSheet.create({
-      container: {
-        flex: 1,
+      contentContainer: {
         backgroundColor: colors.bg
       },
+      textInputContainer: {
+        backgroundColor: colors.light_gray_2
+      },
+      textInput: {
+        backgroundColor: colors.textInput,
+        color: colors.black,
+      },
+      itemText: {
+        color: colors.black
+      },
+      poweredText: {
+        color: colors.gray
+      }
       // separator: {},
       // listView: {},
       // loader: {},
