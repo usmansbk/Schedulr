@@ -4,6 +4,7 @@ import { I18n } from 'aws-amplify';
 import Icon from 'react-native-vector-icons/Feather';
 import Chips from 'components/lists/Chips';
 import { inject, observer } from 'mobx-react';
+import { ellipsisMode } from 'lib/utils';
 
 export default inject('stores')(observer(
   ({navigation, stores, onPressLocationButton }) => {
@@ -20,7 +21,7 @@ export default inject('stores')(observer(
           />}
           editable={false}
           collapsable
-          placeholder={I18n.get("SEARCH_inputPlaceholder")(stores.locationStore.searchLocation)}
+          placeholder={ellipsisMode(I18n.get("SEARCH_inputPlaceholder")(stores.locationStore.searchLocation))}
           theme={{ roundness: 0 }}
           style={{
             backgroundColor: stores.themeStore.colors.bg,
