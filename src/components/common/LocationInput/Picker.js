@@ -5,7 +5,7 @@ import {
   IconButton
 } from 'react-native-paper';
 import { I18n } from 'aws-amplify';
-import GeoDBCitiesSearch from 'components/common/GeoDBCitiesSearch';
+import GeoDBCitiesSearch from 'react-native-geodb';
 import Icon from 'react-native-vector-icons/Feather';
 import { GEODB_API_KEY } from 'config/env';
 

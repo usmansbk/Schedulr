@@ -6636,6 +6636,14 @@ react-native-geocoder@^0.5.0:
   resolved "https://registry.yarnpkg.com/react-native-geocoder/-/react-native-geocoder-0.5.0.tgz#ff4b9c55d5768a4784eefccb411761c82e067579"
   integrity sha1-/0ucVdV2ikeE7vzLQRdhyC4GdXk=
 
+react-native-geodb@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/react-native-geodb/-/react-native-geodb-1.0.1.tgz#c073b3e93a0f47164c2c60b4b8a1f6b4b0772cc3"
+  integrity sha512-LWZn5pHgVCQT3NXeCQo5d/JpJ5LbOZ0Al5teK9AHlxe2nOBZhICn4q0AMxNSpleiarp3nLvkDvZJ2oBcNDg9GA==
+  dependencies:
+    lodash.debounce "^4.0.8"
+    prop-types "^15.7.2"
+
 react-native-geolocation-service@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/react-native-geolocation-service/-/react-native-geolocation-service-3.1.0.tgz#62e112374f1cd284ea00ced0ef6826af820f50e2"
