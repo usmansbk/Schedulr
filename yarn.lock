@@ -6636,10 +6636,10 @@ react-native-geocoder@^0.5.0:
   resolved "https://registry.yarnpkg.com/react-native-geocoder/-/react-native-geocoder-0.5.0.tgz#ff4b9c55d5768a4784eefccb411761c82e067579"
   integrity sha1-/0ucVdV2ikeE7vzLQRdhyC4GdXk=
 
-react-native-geodb@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/react-native-geodb/-/react-native-geodb-1.0.1.tgz#c073b3e93a0f47164c2c60b4b8a1f6b4b0772cc3"
-  integrity sha512-LWZn5pHgVCQT3NXeCQo5d/JpJ5LbOZ0Al5teK9AHlxe2nOBZhICn4q0AMxNSpleiarp3nLvkDvZJ2oBcNDg9GA==
+react-native-geodb@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/react-native-geodb/-/react-native-geodb-1.1.0.tgz#c72012cca352201d14b1fcf93f95481e3161aac8"
+  integrity sha512-llVSczmdrWMXOhLc+9ejTE8Y2jxSRCp/qqVN+ZTtiSIoHU5PU9IkhXMVX//+XOwjF99YEHsr5BSmycdoh4WMWA==
   dependencies:
     lodash.debounce "^4.0.8"
     prop-types "^15.7.2"
