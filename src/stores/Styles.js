@@ -188,10 +188,7 @@ export default class AppStyles {
       poweredText: {
         color: colors.gray
       }
-      // separator: {},
-      // listView: {},
-      // loader: {},
-    })
+    });
   }
 
   @computed get picker () {
