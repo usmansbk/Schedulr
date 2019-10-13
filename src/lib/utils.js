@@ -178,5 +178,5 @@ export function ellipsisMode(str) {
   if (str && (str.length >= 30)) {
     trimmed = str.slice(0, 27) + '...';
   }
-  trimmed;
+  return trimmed;
 }
