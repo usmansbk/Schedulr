@@ -26,6 +26,7 @@ export default inject('stores')(observer(
             backgroundColor: stores.themeStore.colors.bg,
             elevation: 0,
           }}
+          numberOfLines={1}
         />
       </TouchableRipple>
       <Divider />

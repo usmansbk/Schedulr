@@ -65,6 +65,7 @@ const SearchBar = inject('stores')(observer(
         backgroundColor: stores.themeStore.colors.bg,
         borderRadius: 0
       }}
+      numberOfLines={1}
     />
   )
 ));
