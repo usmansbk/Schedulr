@@ -175,8 +175,8 @@ export function singularMomentUnit(unit) {
 
 export function ellipsisMode(str) {
   let trimmed = str;
-  if (str && (str.length >= 30)) {
-    trimmed = str.slice(0, 27) + '...';
+  if (str && (str.length >= 23)) {
+    trimmed = str.slice(0, 23) + '...';
   }
   return trimmed;
 }
