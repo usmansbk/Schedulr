@@ -75,7 +75,7 @@ export const captionDetails = ({
   }
   const validCategory = category ? ' ' + category : '';
   const caption = allDay ? (`${recurrence}${validCategory}`) : (
-    `${span || duration}${validCategory}${recurrence ? ' ' + recurrence : ''}`);
+    `${span || duration}${recurrence ? recurrence : ''}${validCategory}`);
   let formatted = capitalize(caption.trim());
   return formatted;
 };
