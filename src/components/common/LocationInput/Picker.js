@@ -38,7 +38,7 @@ export default class Picker extends React.Component {
           <GeoDBCitiesSearch
             placeholder={I18n.get("PLACEHOLDER_searchCities")}
             placeholderTextColor={placeholderTextColor}
-            onPress={this._onSelect}
+            onSelectItem={this._onSelect}
             emptyListImagePlaceholder={require('../../../assets/map.png')}
             query={{
               key: GEODB_API_KEY
