@@ -5,15 +5,14 @@ import {
   IconButton
 } from 'react-native-paper';
 import { I18n } from 'aws-amplify';
-import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
+import GeoDBCitiesSearch from 'components/common/GeoDBCitiesSearch';
 import Icon from 'react-native-vector-icons/Feather';
-import { PLACES_API_KEY } from 'config/env';
+import { GEODB_API_KEY } from 'config/env';
 
 export default class Picker extends React.Component {
   _onValueChange = (value) => this.props.onValueChange(value);
-  _onSelect = (data) => {
-    let location = null;
-    this.props.onSelectLocation && this.props.onSelectLocation(location);
+  _onSelect = ({ city, country }) => {
+    this.props.onSelectLocation && this.props.onSelectLocation(`${city}, ${country}`);
     this.props.hideModal();
   };
 
@@ -34,20 +33,14 @@ export default class Picker extends React.Component {
           onDismiss={hideModal}
           contentContainerStyle={modalStyle.container}
         >
-          <GooglePlacesAutocomplete
+          <GeoDBCitiesSearch
             placeholder={I18n.get("PLACEHOLDER_searchCities")}
-            minLength={2}
-            autoFocus={true}
-            listViewDisplayed="auto"
-            returnKeyType='search'
             onPress={this._onSelect}
+            emptyListImagePlaceholder={require('../../../assets/map.png')}
             query={{
-              key: PLACES_API_KEY,
-              language,
-              types: '(cities)'
+              key: GEODB_API_KEY,
+              language
             }}
-            styles={styles}
-            debounce={200}
             renderLeftButton={() => <IconButton
               onPress={hideModal}
               icon={() => <Icon

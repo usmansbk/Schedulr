@@ -121,7 +121,7 @@ class List extends Component{
         refreshControl={
           <RefreshControl
             onRefresh={this._onRefresh}
-            refreshing={this.props.loading}
+            refreshing={this.props.refreshing}
             colors={[this.props.stores.themeStore.colors.primary]}
             progressBackgroundColor={this.props.stores.themeStore.colors.bg}
           />
