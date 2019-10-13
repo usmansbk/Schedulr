@@ -38,7 +38,9 @@ export default class Picker extends React.Component {
             onPress={this._onSelect}
             emptyListImagePlaceholder={require('../../../assets/map.png')}
             query={{
-              key: GEODB_API_KEY,
+              key: GEODB_API_KEY
+            }}
+            params={{
               language
             }}
             renderLeftButton={() => <IconButton
