@@ -7,7 +7,9 @@
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "test": "jest",
-    "patch": "copy .\\react.gradle .\\node_modules\\react-native\\"
+    "clean-android": "cd .\\android && .\\gradlew clean && cd .\\",
+    "win-patch": "copy .\\react.gradle .\\node_modules\\react-native\\",
+    "android-release": "(npm run clean-android) & (npm run win-patch) & npm run android --variant release"
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.6.2",
@@ -44,14 +46,14 @@
     "react-native-email": "^1.0.2",
     "react-native-fast-image": "^7.0.2",
     "react-native-geocoder": "^0.5.0",
-    "react-native-geodb": "^1.1.7",
+    "react-native-geodb": "^1.1.8",
     "react-native-geolocation-service": "^3.1.0",
     "react-native-gesture-handler": "^1.4.1",
     "react-native-hyperlink": "^0.0.16",
     "react-native-image-picker": "^1.1.0",
     "react-native-image-progress": "^1.1.1",
     "react-native-modal-datetime-picker": "^7.6.0",
-    "react-native-navigation-bar-color": "^0.1.0",
+    "react-native-navigation-bar-color": "^1.0.0",
     "react-native-open-maps": "^0.3.4",
     "react-native-paper": "^2.16.0",
     "react-native-photo-view": "^1.5.2",
