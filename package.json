@@ -6,7 +6,8 @@
     "start": "react-native start",
     "android": "react-native run-android",
     "ios": "react-native run-ios",
-    "test": "jest"
+    "test": "jest",
+    "patch": "copy .\\react.gradle .\\node_modules\\react-native\\"
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.6.2",
