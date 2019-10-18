@@ -164,6 +164,7 @@ export default {
   TOAST_noImageFound: "No image found",
   TOAST_removed: "Event was removed from your bookmarks",
   TOAST_saved: "Event was added to your bookmarks",
+  TOAST_fetchingUpdates: "Fetching updates...",
 
   PROFILE_FORM_name: "Name",
   PROFILE_FORM_website: "Website",
