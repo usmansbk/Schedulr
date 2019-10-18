@@ -10,6 +10,7 @@
     "clean-android": "cd .\\android && .\\gradlew clean && cd .\\",
     "win-patch": "copy .\\react.gradle .\\node_modules\\react-native\\",
     "android-release": "react-native run-android --variant release",
+    "android-debug": "(npm run clean-android) & (react-native run-android)",
     "android-release-patch": "(npm run clean-android) & (npm run win-patch) & (npm run android-release)"
   },
   "dependencies": {
