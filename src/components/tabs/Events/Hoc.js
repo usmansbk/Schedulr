@@ -1,6 +1,7 @@
 import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
 import { inject, observer } from 'mobx-react';
+import { I18n } from 'aws-amplify';
 import SimpleToast from 'react-native-simple-toast';
 import { withNavigationFocus } from 'react-navigation';
 import { getUserData, getDeltaUpdates } from 'api/queries';
