@@ -66,7 +66,7 @@ class List extends React.Component {
 
   _keyExtractor = (item) => item.id + item.ref_date;
   _renderHeader = () => (
-    this.state.sections.length ?
+    (this.state.sections.length && this.props.isAuth) ?
     <Header
       hide={this.props.error || !this.state.events.length}
       hasPrev={this.state.beforeDate}
