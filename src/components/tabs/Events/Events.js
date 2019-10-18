@@ -54,7 +54,7 @@ export default class Events extends React.Component {
       fetchPolicy: 'network-only',
       query: gql(getNotifications),
       variables: {
-        lastSync: String(this.props.stores.notificationsStore.lastSyncTimestamp)
+        lastSync: String(stores.notificationsStore.lastSyncTimestamp)
       }
     }).then((result) => {
       const { data: { notifications } } = result;
