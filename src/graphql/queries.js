@@ -589,6 +589,7 @@ export const getNotifications = `query GetNotifications($lastSync: String!) {
     extraData {
       title
       content
+      pictureUrl
     }
   }
 }`;

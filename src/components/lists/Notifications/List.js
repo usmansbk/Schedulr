@@ -51,6 +51,14 @@ class List extends React.Component {
   }}) => {
     let Item = NotifItem;
     if (type === COMMENT_TYPE) Item = CommentItem;
+    let pictureUrl;
+    if (image) {
+      pictureUrl = getImageUrl(image);
+    } else {
+      if (extraData) {
+        pictureUrl = extraData.pictureUrl;
+      }
+    }
     return <Item
       id={id}
       entityId={entityId}
@@ -59,7 +67,7 @@ class List extends React.Component {
       topic={topic}
       type={type}
       extraData={extraData}
-      pictureUrl={image && getImageUrl(image)}
+      pictureUrl={pictureUrl}
       date={moment.unix(timestamp).fromNow()}
       navigateToSchedule={this._navigateToSchedule}
       navigateToEvent={this._navigateToEvent}
