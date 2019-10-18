@@ -67,7 +67,9 @@ export default class Events extends React.Component {
   };
 
   componentDidMount = () => {
-    this._fetchNotifications();
+    if (!this.props.loading) {
+      this._fetchNotifications();
+    }
   };
 
   render() {
