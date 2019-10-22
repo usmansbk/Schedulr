@@ -142,6 +142,7 @@ class Form extends React.Component {
                 onChangeText={handleChange('title')}
                 onBlur={handleBlur('title')}
                 mode="outlined"
+                style={styles.textInput}
               />
               <HelperText
                 type="error"
@@ -156,6 +157,7 @@ class Form extends React.Component {
                 onChangeText={handleChange('description')}
                 onBlur={handleBlur('description')}
                 mode="outlined"
+                style={styles.textInput}
               />
               <HelperText
                 type="error"
@@ -170,6 +172,7 @@ class Form extends React.Component {
                 onChangeText={handleChange('venue')}
                 onBlur={handleBlur('venue')}
                 mode="outlined"
+                style={styles.textInput}
               />
               <HelperText
                 type="error"

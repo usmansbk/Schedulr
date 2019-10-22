@@ -293,6 +293,9 @@ export default class AppStyles {
         color: colors.placeholder,
         fontFamily: 'sans-serif-bold'
       },
+      textInput: {
+        backgroundColor: colors.bg
+      },
       primary: {
         color: colors.primary
       },
@@ -322,6 +325,9 @@ export default class AppStyles {
       text: {
         color: colors.primary,
         marginVertical: 8,
+      },
+      textInput: {
+        backgroundColor: colors.bg
       },
       input: {
         marginVertical: 8,

@@ -96,6 +96,7 @@ class Form extends React.Component {
                 onBlur={handleBlur('name')}
                 mode="outlined"
                 autoFocus
+                style={styles.textInput}
               />
               <HelperText
                 type="error"
@@ -110,6 +111,7 @@ class Form extends React.Component {
                 onChangeText={handleChange('website')}
                 onBlur={handleBlur('website')}
                 mode="outlined"
+                style={styles.textInput}
               />
               <HelperText
                 type="error"
@@ -124,6 +126,7 @@ class Form extends React.Component {
                 onChangeText={handleChange('bio')}
                 onBlur={handleBlur('bio')}
                 mode="outlined"
+                style={styles.textInput}
               />
               <HelperText
                 type="error"
