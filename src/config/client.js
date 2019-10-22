@@ -27,7 +27,6 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
           attributes: {
             errorName: error.name,
             errorMessage: error.message,
-            errorLocation: error.locations,
             errorPath: error.path,
           }
         });
