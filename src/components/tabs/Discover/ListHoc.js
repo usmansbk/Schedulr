@@ -15,7 +15,7 @@ export default inject("stores")(observer(
     {
       alias,
       options: props => ({
-        fetchPolicy: 'cache-and-network',
+        fetchPolicy: 'no-cache',
         variables : {
           city: props.city,
           location: props.location,
