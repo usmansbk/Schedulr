@@ -1,5 +1,5 @@
 import React from 'react';
-import { Auth, Cache } from'aws-amplify';
+import { Auth } from'aws-amplify';
 import { withNavigation } from 'react-navigation';
 import { inject, observer } from 'mobx-react';
 import { withApollo } from 'react-apollo';
@@ -16,7 +16,6 @@ class Container extends React.Component {
     try { await Auth.signOut(); } catch(error) {}
     this._handleDimiss();
     this.props.stores.reset();
-    Cache.clear();
     this.props.navigation.navigate('Auth');
   };
 
