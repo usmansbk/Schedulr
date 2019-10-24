@@ -16,7 +16,7 @@ compose(
     alias: 'withGetNotifications',
     skip: props => !props.navigation.isFocused(),
     options: props => ({
-      fetchPolicy: 'network-only',
+      fetchPolicy: 'no-cache',
       notifyOnNetworkStatusChange: true,
       variables: {
         lastSync: String(props.stores.notificationsStore.lastSyncTimestamp)
