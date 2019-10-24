@@ -40,7 +40,7 @@ export default class AppState {
   };
   @action clearMutedList = () => this.mutedEvents = [];
 
-  @action toggleFilter = (id) => this.discoverFilter = id;
+  @action toggleFilter = (id) => this.discoverFilter = id.toLowerCase();
 
   @action reset() {
     this.isConnected =false;
