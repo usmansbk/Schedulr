@@ -40,7 +40,7 @@
     "moment-recur": "^1.0.7",
     "moment-twitter": "^0.2.0",
     "numeral": "^2.0.6",
-    "react": "^16.10.2",
+    "react": "^16.11.0",
     "react-apollo": "2.5.8",
     "react-native": "^0.61.2",
     "react-native-actionsheet": "^2.4.2",
@@ -86,7 +86,7 @@
     "babel-plugin-transform-remove-console": "^6.9.4",
     "jest": "^24.9.0",
     "metro-react-native-babel-preset": "^0.56.0",
-    "react-test-renderer": "^16.10.2"
+    "react-test-renderer": "^16.11.0"
   },
   "jest": {
     "preset": "react-native"
