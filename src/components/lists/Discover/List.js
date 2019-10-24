@@ -24,7 +24,8 @@ class List extends Component{
   static defaultProps = {
     data: [],
     loading: false,
-    error: false
+    error: false,
+    onRefresh: () => null
   };
 
   _onPressItem = (id, refStartAt, refEndAt) => this.props.navigation.navigate('EventDetails', { id, refStartAt, refEndAt });
