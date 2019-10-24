@@ -5,18 +5,14 @@ import Loading from './Loading';
 class Container extends Component {
   _navigateToAuth = () => this.props.navigation.navigate('Auth');
 
-  componentDidMount = async () => {
+  componentDidMount = () => {
     if (this.props.stores.appState.prefs.showAppIntro) {
       this.props.navigation.navigate('Intro');
     } else {
-      try {
-        if (!this.props.stores.appState.userId) {
-          throw new Error('Unauthenticated: Not logged in');
-        }
-        this.props.navigation.navigate('App');
-      } catch (error) {
-        console.log(error.message);
+      if (!this.props.stores.appState.userId) {
         this._navigateToAuth();
+      } else {
+        this.props.navigation.navigate('App');
       }
     }
   };
