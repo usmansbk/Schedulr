@@ -354,10 +354,12 @@ export default class AppStyles {
         height: 48,
         color: colors.black,
         borderWidth: 1,
-        borderColor: colors.gray
+        borderColor: colors.gray,
+        backgroundColor: colors.bg
       },
       pickerItem: {
         color: colors.black,
+        backgroundColor: colors.bg
       },
       header: {
         flexDirection: 'row',
