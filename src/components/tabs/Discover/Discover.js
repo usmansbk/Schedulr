@@ -20,6 +20,7 @@ class Discover extends React.Component {
       <>
       <List
         city={this.props.stores.locationStore.locality || 'Global'}
+        category={this.props.stores.appState.discoverFilter}
         location={this.props.stores.locationStore.point}
         onPressLocationButton={this._openLocationPicker}
       />

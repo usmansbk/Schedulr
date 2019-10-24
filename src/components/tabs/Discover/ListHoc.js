@@ -19,6 +19,7 @@ export default inject("stores")(observer(
         variables : {
           city: props.city,
           location: props.location,
+          category: props.category,
           km: 5,
           limit: 50
         },
