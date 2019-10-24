@@ -42,7 +42,7 @@ class List extends React.Component {
         initialNumToRender={5}
         keyExtractor={this._keyExtractor}
         showsHorizontalScrollIndicator={false}
-        extraData={stores.appState.discoverFilters.length}
+        extraData={stores.appState.discoverFilter}
         getItemLayout={this._getItemLayout}
       />
     );
