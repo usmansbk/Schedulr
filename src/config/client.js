@@ -29,7 +29,7 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
             errorMessage: error.message,
             errorPath: error.path,
           }
-        });
+        }).catch((e) => { /* Ignore */});
       }
     });  
   }
