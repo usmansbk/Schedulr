@@ -160,6 +160,7 @@ export default {
   SHARE_EVENT_inviteTitle: "Share event via...",
 
   TOAST_enableReminder: "Unmute all events to continue!",
+  TOAST_updatesAvailable: "Updates available. Refresh calendar",
   TOAST_locationError: "Failed to get location. Turn off airplane mode.",
   TOAST_noImageFound: "No image found",
   TOAST_removed: "Event was removed from your bookmarks",
