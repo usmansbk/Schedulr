@@ -18,7 +18,7 @@
     "@react-native-community/netinfo": "^4.4.0",
     "apollo-link": "^1.2.13",
     "apollo-link-error": "^1.1.12",
-    "aws-amplify": "1.1.40",
+    "aws-amplify": "^1.2.3",
     "aws-amplify-react-native": "^2.2.3",
     "aws-appsync": "^2.0.1",
     "aws-appsync-react": "^2.0.1",
