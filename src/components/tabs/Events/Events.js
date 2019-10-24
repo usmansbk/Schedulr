@@ -57,7 +57,7 @@ export default class Events extends React.Component {
         lastSync: String(stores.notificationsStore.lastSyncTimestamp)
       }
     }).then((result) => {
-      const { data: { notifications } } = result;
+      const { data: { notifications }={} } = result || {};
       stores.notificationsStore.updateLastSyncTimestamp();
       if (notifications && notifications.length) {
         stores.notificationsStore.appendNotifications(notifications);

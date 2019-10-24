@@ -22,7 +22,7 @@ compose(
         lastSync: String(props.stores.notificationsStore.lastSyncTimestamp)
       },
       onCompleted: (data) => {
-        const { notifications } = data;
+        const { notifications={} } = data || {};
         props.stores.notificationsStore.updateLastSyncTimestamp();
         if (notifications && notifications.length) {
           SimpleToast.show(I18n.get('TOAST_updatesAvailable'), SimpleToast.SHORT);
