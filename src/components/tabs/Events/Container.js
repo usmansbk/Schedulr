@@ -5,7 +5,6 @@ import SimpleToast from 'react-native-simple-toast';
 import { Linking, Platform, PushNotificationIOS } from 'react-native';
 import changeNavigationBarColor from 'react-native-navigation-bar-color';
 import { inject, observer } from 'mobx-react';
-import { Auth } from 'aws-amplify';
 import NavigationService from 'config/navigation';
 import { processLocalNotification, processRemoteNotification } from 'helpers/notification';
 import env from 'config/env';
@@ -76,10 +75,6 @@ class Container extends React.Component {
     Linking.addEventListener('url', this.handleOpenURL);
     
     this.unsubscribe = NetInfo.addEventListener(state => {
-      if (state.isConnected) {
-        Auth.currentAuthenticatedUser().catch(error => { console.log(error)});
-      }
-
       stores.appState.toggleConnection(state.isConnected);
     });
   };
