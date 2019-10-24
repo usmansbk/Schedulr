@@ -15,8 +15,8 @@ class Container extends React.Component {
     try { await Auth.signOut(); } catch(error) {}
     try { await this.props.client.clearStore(); } catch(error){}
     this._handleDimiss();
-    this.props.navigation.navigate('Auth');
     this.props.stores.reset();
+    this.props.navigation.navigate('Auth');
   };
 
   _handleDimiss = () => this.props.handleDismiss();
