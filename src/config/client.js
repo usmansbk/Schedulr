@@ -11,7 +11,7 @@ import {
   COMMENT_TYPE
 } from 'lib/constants';
 
-// Analytics.disable();
+Analytics.disable();
 
 const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors) {
