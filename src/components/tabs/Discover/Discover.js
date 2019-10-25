@@ -16,7 +16,6 @@ class Discover extends React.Component {
   _handleSelect = (location) => this.props.stores.locationStore.setSearchLocation(location);
 
   render() {
-    console.log('rerender')
     return (
       <>
       <List
