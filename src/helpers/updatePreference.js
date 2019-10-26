@@ -14,12 +14,12 @@ function getChannelType(device) {
 async function updateUserPushToken(device, token) {
   const channelType = getChannelType(device);
   console.log(token, channelType);
-  // Analytics.updateEndpoint({
-  //   userId: stores.appState.userId,
-  //   address: token,
-  //   optOut: 'NONE',
-  //   channelType
-  // }).then(console.log).catch(console.log);
+  Analytics.updateEndpoint({
+    userId: stores.appState.userId,
+    address: token,
+    optOut: 'NONE',
+    channelType
+  }).then(console.log).catch(console.log);
   try {
     await client.mutate({
       mutation: gql(updatePreference),
