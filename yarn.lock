@@ -1778,10 +1778,10 @@ atob@^2.1.1:
   resolved "https://registry.yarnpkg.com/atob/-/atob-2.1.2.tgz#6d9517eb9e030d2436666651e86bd9f6f13533c9"
   integrity sha512-Wm6ukoaOGJi/73p/cl2GvLjTI5JM1k/O14isD73YML8StrH/7/lRFgmg8nICZgD3bZZvjwCGxtMOD3wWNAu8cg==
 
-aws-amplify-react-native@^2.2.3:
-  version "2.2.3"
-  resolved "https://registry.yarnpkg.com/aws-amplify-react-native/-/aws-amplify-react-native-2.2.3.tgz#0d4bb4c669bb1d64d96fc7d4dc25381f6adb23b4"
-  integrity sha512-JLzUOl0LRZUS7cMI5IxCOEbM/I5HcnfjZqfzGL7W3lp59oPvrtSjtKf7u1Ciwzga2EjN4GFdPEvXw8crpKzTuQ==
+aws-amplify-react-native@2.2.4-unstable.5:
+  version "2.2.4-unstable.5"
+  resolved "https://registry.yarnpkg.com/aws-amplify-react-native/-/aws-amplify-react-native-2.2.4-unstable.5.tgz#8e3c341557f1a9c02cc2b6cd5f715a1cf3847ad9"
+  integrity sha512-znNyV7HvsiicUDybuvodHY9jIYdSXXLYxI1rsjLX/QgC55MdR3GX5Z3qf/HK7h1XStkXvHtFb6KGux9F0ZOCtg==
   dependencies:
     babel-preset-es2015 "^6.24.1"
     buffer "^5.2.1"
