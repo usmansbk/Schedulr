@@ -19,7 +19,7 @@ async function updateUserPushToken(device, token) {
     address: token,
     optOut: 'NONE',
     channelType
-  }).then(console.log).catch(console.log);
+  }).catch(console.log);
   try {
     await client.mutate({
       mutation: gql(updatePreference),
