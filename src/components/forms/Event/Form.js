@@ -3,7 +3,6 @@ import moment from "moment";
 import isEqual from 'lodash.isequal';
 import {
   View,
-  Picker,
   ScrollView,
   RefreshControl
 } from 'react-native';
@@ -19,8 +18,10 @@ import {
 import { Formik } from 'formik';
 import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
+import Picker from 'components/common/Picker';
 import DateTimeInput from 'components/common/DateTimeInput';
-import EventTypeInput, { PickerButton } from 'components/common/EventTypeInput';
+import EventTypeInput from 'components/common/EventTypeInput';
+import PickerButton from 'components/common/PickerButton';
 import Alert from 'components/dialogs/Alert';
 import {
   isEventValid,
@@ -34,12 +35,16 @@ import buildForm from 'helpers/buildForm';
 class Form extends React.Component {
 
   state = {
-    showPicker: false,
+    showEventTypePicker: false,
     showScheduleHelpAlert: false,
   };
 
-  _showModal = () => this.setState({ showPicker: true });
-  _hideModal = () => this.setState({ showPicker: false, showScheduleHelpAlert: false });
+  _showEventTypePicker = () => this.setState({ showEventTypePicker: true });
+
+  _hideModal = () => this.setState({
+    showScheduleHelpAlert: false,
+    showEventTypePicker: false,
+  });
   _scheduleHelp = () => this.setState({ showScheduleHelpAlert: true });
 
   componentDidMount = () => this.props.stores.locationStore.fetchLocation();
@@ -74,7 +79,10 @@ class Form extends React.Component {
       isNew,
       stores
     } = this.props;
-    const { showPicker, showScheduleHelpAlert } = this.state;
+    const {
+      showEventTypePicker,
+      showScheduleHelpAlert
+    } = this.state;
 
     const styles = stores.appStyles.eventForm;
     const navButtonColor = stores.themeStore.colors.primary;
@@ -185,7 +193,7 @@ class Form extends React.Component {
                 <Text style={styles.radioText}>{I18n.get("EVENT_FORM_category")}</Text>
                 <PickerButton
                   value={values.category}
-                  onPress={this._showModal}
+                  onPress={this._showEventTypePicker}
                 />
               </View>
               <View style={styles.pickerSpacing}>
@@ -239,10 +247,7 @@ class Form extends React.Component {
                 <Text style={styles.radioText}>{I18n.get("EVENT_FORM_repetition")}</Text>
                 <Picker
                   prompt={I18n.get("EVENT_FORM_repeat")}
-                  selectedValue={values.recurrence}
-                  style={styles.picker}
-                  
-                  itemStyle={styles.pickerItem}
+                  value={values.recurrence}
                   onValueChange={itemValue => {
                     setFieldValue('recurrence', itemValue);
                     if (itemValue === recurrence[0].id) {
@@ -253,17 +258,12 @@ class Form extends React.Component {
                       setFieldValue('until', moment(values.startAt).add(1, unit).toISOString());
                     }
                   }}
-                >
-                  {
-                    recurrence.map(recur => (
-                      <Picker.Item
-                        key={recur.id}
-                        label={getRepeatLabel(recur.id, values.startAt)}
-                        value={recur.id}
-                      />
-                    ))
-                  }
-                </Picker>
+                  items={recurrence.map(recur => ({
+                    key: recur.id,
+                    label: getRepeatLabel(recur.id, values.startAt),
+                    value: recur.id
+                  }))}
+                />
                 {
                   (!canRepeat(values)) && (
                     <HelperText
@@ -311,22 +311,6 @@ class Form extends React.Component {
                   </View>
                 )
               }
-              {
-                false &&
-                <>
-                  <View style={styles.radio}>
-                    <Text style={styles.radioText}>{I18n.get("EVENT_FORM_public")}</Text>
-                    <Switch
-                      value={values.isPublic}
-                      onValueChange={() => {
-                        const { isPublic } = values;
-                        setFieldValue('isPublic', !isPublic);
-                      }}
-                    />
-                  </View>
-                  <Divider />
-                </>
-              }
               <View style={styles.pickerSpacing}>
                 <View style={styles.row}>
                   <Text style={styles.radioText}>{I18n.get("EVENT_FORM_schedule")}</Text>
@@ -334,10 +318,8 @@ class Form extends React.Component {
                 </View>
                 <Picker
                   prompt={I18n.get("EVENT_FORM_selectASchedule")}
-                  selectedValue={values.eventScheduleId}
-                  style={styles.picker}
-                  enabled={!locked }
-                  itemStyle={styles.pickerItem}
+                  value={values.eventScheduleId}
+                  disabled={locked }
                   onValueChange={itemValue => {
                     setFieldValue('eventScheduleId', itemValue);
                     const found = schedules.find(item => item.id === itemValue);
@@ -346,13 +328,12 @@ class Form extends React.Component {
                       setFieldValue('isPublic', Boolean(found.isPublic));
                     }
                   }}
-                >
-                  {
-                    schedules.map(schedule => (
-                      <Picker.Item key={schedule.id} label={schedule.name} value={schedule.id} />
-                    ))
-                  }
-                </Picker>
+                  items={schedules.map(schedule => ({
+                    key: schedule.id,
+                    label: schedule.name,
+                    value: schedule.id
+                  }))}
+                />
                 <HelperText
                   type="error"
                   visible={errors.eventScheduleId && touched.eventScheduleId}
@@ -362,9 +343,8 @@ class Form extends React.Component {
               </View>
             </View>
           </ScrollView>
-          
           <EventTypeInput
-            visible={showPicker}
+            visible={showEventTypePicker}
             prompt={I18n.get("EVENT_FORM_category")}
             selectedValue={values.category || ''}
             hideModal={this._hideModal}
