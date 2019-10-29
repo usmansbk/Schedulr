@@ -1,33 +1,62 @@
 import React from 'react';
-import {
-  TouchableRipple,
-  Text,
-} from 'react-native-paper';
-import Modal from './Modal';
+import { View } from 'react-native';
+import { Text } from 'react-native-paper';
+import PickerItem from './Item';
+import { CustomPicker } from 'react-native-custom-picker';
 import { inject, observer} from 'mobx-react';
 
 class Button extends React.Component {
+  
+	_renderOption = ({ item: {
+		label,
+		value,	
+  }}) => <PickerItem
+		key={value}
+		value={value}
+		label={label}
+		marked={value === this.props.value}
+  />;
+  
+  _renderField = ({ selectedItem, defaultText }) => {
+
+    const styles = this.props.stores.appStyles.picker;
+
+    let label;
+    if (selectedItem) {
+      label = selectedItem.label;
+    } else {
+      const targetItem = this.props.items.find(item => item.value === this.props.value);
+      label = !!targetItem ? targetItem.label : defaultText;
+    }
+    
+    return (    
+      <View style={styles.button}>
+        <Text>{label}</Text>
+      </View>
+    );
+  };
+
+  _onValueChange = item => this.props.onValueChange(item.value);
+
   render() {
     const {
       items,
       stores, 
-      value,
-      onValueChange,
-      prompt
+      prompt,
     } = this.props;
 
     const styles = stores.appStyles.picker;
-
     return (
-      <Modal
-        items={items}
-        prompt={prompt}
-        visible={this.state.showModal}
-        onDismiss={this._hideModal}
-        onValueChange={onValueChange}
-        selectedValue={value}
+      <CustomPicker
+        placeholder={prompt}
+        options={items}
+        getLabel={item => item.label}
+        optionTemplate={this._renderOption}
+        fieldTemplate={this._renderField}
+        onValueChange={this._onValueChange}
+        modalStyle={styles.contentContainer}
       />
-    )
+    );
   }
 }
 

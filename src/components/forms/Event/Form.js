@@ -242,7 +242,6 @@ class Form extends React.Component {
                   }}
                 />
               </View>
-              <Divider />
               <View style={styles.pickerSpacing}>
                 <Text style={styles.radioText}>{I18n.get("EVENT_FORM_repetition")}</Text>
                 <Picker
@@ -275,7 +274,6 @@ class Form extends React.Component {
                   )
                 }
               </View>
-              <Divider />
               {
                 (values.recurrence !== recurrence[0].id) && (
                   <>

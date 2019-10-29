@@ -196,6 +196,10 @@ export default class AppStyles {
     const borderWidth = 1 * StyleSheet.hairlineWidth;
     
     return StyleSheet.create({
+      contentContainer: {
+        padding: 16,
+        backgroundColor: colors.bg,
+      },
       button: {
         height: 48,
         justifyContent: 'center',
