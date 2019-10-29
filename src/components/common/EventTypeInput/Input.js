@@ -11,6 +11,7 @@ import { View, TextInput } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
+import Alert from 'components/dialogs/Alert';
 import List from './List';
 
 const MAX_LENGTH = 30;
@@ -20,10 +21,27 @@ class Input extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      id: null,
+      showDeleteAlert: false,
       text: props.selectedValue,
       selectedValue: props.selectedValue
     }
   }
+
+  _onConfirmAlert = () => {
+    this.props.stores.appState.removeCustomType(this.state.id);
+    this._hideAlertModal();
+   };
+
+  _hideAlertModal = () => this.setState({
+    id: null,
+    showDeleteAlert: false
+  });
+
+  _onLongPressItem = (id) => this.setState({
+    id,
+    showDeleteAlert: true
+  });
 
   static getDerivedStateFromProps(props, state) {
     if (props.selectedValue !== state.selectedValue) {
@@ -71,6 +89,7 @@ class Input extends React.Component {
     const tooLong = length > MAX_LENGTH;
 
     return (
+      <>
       <Provider>
         <Portal>
           <Modal
@@ -86,6 +105,7 @@ class Input extends React.Component {
                 data={data}
                 onValueChange={this._onValueChange}
                 hideModal={this._hideModal}
+                onLongPressItem={this._onLongPressItem}
               />
               <Divider />
               <View style={stores.appStyles.commentInput.container}>
@@ -126,6 +146,14 @@ class Input extends React.Component {
           </Modal>
         </Portal>
       </Provider>
+
+      <Alert
+        visible={this.state.showDeleteAlert}
+        title={I18n.get("ALERT_deleteType")}
+        handleDismiss={this._hideAlertModal}
+        onConfirm={this._onConfirmAlert}
+      />
+      </>
     )
   }
 }

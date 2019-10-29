@@ -94,7 +94,7 @@ export default {
   HELP_copyRight: "Copyright information",
   HELP_terms: "Terms and Privacy Policy",
   HELP_appVersion: "App version",
-
+  HELP_build: "Build version",
 
   BUTTON_cancel: "Cancel",
   BUTTON_create: "create",
