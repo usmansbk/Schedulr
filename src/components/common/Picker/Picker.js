@@ -29,7 +29,7 @@ class Button extends React.Component {
       label = !!targetItem ? targetItem.label : defaultText;
     }
     
-    return (    
+    return (
       <View style={styles.button}>
         <Text>{label}</Text>
       </View>
@@ -43,6 +43,7 @@ class Button extends React.Component {
       items,
       stores, 
       prompt,
+      disabled
     } = this.props;
 
     const styles = stores.appStyles.picker;
@@ -55,6 +56,7 @@ class Button extends React.Component {
         fieldTemplate={this._renderField}
         onValueChange={this._onValueChange}
         modalStyle={styles.contentContainer}
+        disabled={disabled}
       />
     );
   }

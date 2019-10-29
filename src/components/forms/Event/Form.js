@@ -276,25 +276,22 @@ class Form extends React.Component {
               </View>
               {
                 (values.recurrence !== recurrence[0].id) && (
-                  <>
-                    <View style={styles.radio}>
-                      <Text style={styles.radioText}>{I18n.get("EVENT_FORM_repeatForever")}</Text>
-                      <Switch
-                        value={values.forever}
-                        onValueChange={() => {
-                          const forever = values.forever;
-                          if (!forever) {
-                            setFieldValue('until', null);
-                          } else {
-                            const unit = getTimeUnit(values.recurrence);
-                            setFieldValue('until', moment(values.startAt).add(2, unit).toISOString());
-                          }
-                          setFieldValue('forever', !forever);
-                        }}
-                      />
-                    </View>
-                    <Divider />
-                  </>
+                  <View style={styles.radio}>
+                    <Text style={styles.radioText}>{I18n.get("EVENT_FORM_repeatForever")}</Text>
+                    <Switch
+                      value={values.forever}
+                      onValueChange={() => {
+                        const forever = values.forever;
+                        if (!forever) {
+                          setFieldValue('until', null);
+                        } else {
+                          const unit = getTimeUnit(values.recurrence);
+                          setFieldValue('until', moment(values.startAt).add(2, unit).toISOString());
+                        }
+                        setFieldValue('forever', !forever);
+                      }}
+                    />
+                  </View>
                 )
               }
               {
@@ -317,7 +314,7 @@ class Form extends React.Component {
                 <Picker
                   prompt={I18n.get("EVENT_FORM_selectASchedule")}
                   value={values.eventScheduleId}
-                  disabled={locked }
+                  disabled={locked}
                   onValueChange={itemValue => {
                     setFieldValue('eventScheduleId', itemValue);
                     const found = schedules.find(item => item.id === itemValue);
