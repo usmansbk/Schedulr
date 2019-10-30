@@ -172,14 +172,23 @@ export default class AppStyles {
   @computed get places() {
     const colors = this.settings.dark ? dark : light;
     return StyleSheet.create({
-      container: {
-        flex: 1,
+      contentContainer: {
         backgroundColor: colors.bg
       },
-      // separator: {},
-      // listView: {},
-      // loader: {},
-    })
+      textInputContainer: {
+        backgroundColor: colors.light_gray_2
+      },
+      textInput: {
+        backgroundColor: colors.textInput,
+        color: colors.black,
+      },
+      itemText: {
+        color: colors.black
+      },
+      poweredText: {
+        color: colors.gray
+      }
+    });
   }
 
   @computed get picker () {
@@ -187,6 +196,10 @@ export default class AppStyles {
     const borderWidth = 1 * StyleSheet.hairlineWidth;
     
     return StyleSheet.create({
+      contentContainer: {
+        padding: 16,
+        backgroundColor: colors.bg,
+      },
       button: {
         height: 48,
         justifyContent: 'center',
@@ -284,6 +297,9 @@ export default class AppStyles {
         color: colors.placeholder,
         fontFamily: 'sans-serif-bold'
       },
+      textInput: {
+        backgroundColor: colors.bg
+      },
       primary: {
         color: colors.primary
       },
@@ -314,6 +330,9 @@ export default class AppStyles {
         color: colors.primary,
         marginVertical: 8,
       },
+      textInput: {
+        backgroundColor: colors.bg
+      },
       input: {
         marginVertical: 8,
       },
@@ -339,10 +358,12 @@ export default class AppStyles {
         height: 48,
         color: colors.black,
         borderWidth: 1,
-        borderColor: colors.gray
+        borderColor: colors.gray,
+        backgroundColor: colors.bg
       },
       pickerItem: {
         color: colors.black,
+        backgroundColor: colors.bg
       },
       header: {
         flexDirection: 'row',

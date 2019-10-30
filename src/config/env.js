@@ -1,5 +1,5 @@
 import moment from 'moment';
-const date = moment().format('YYYY-MM-DD');
+const date = '2019-10-29T19:53';
 const DOMAIN = 'https://help.schdlr.com';
 
 const common = {
@@ -21,12 +21,14 @@ const common = {
 
 const dev = {
   ...common,
-  APP_VERSION: `${date}-beta-dev`,
+  BUILD: `${date}-beta-dev`,
+  APP_VERSION: '0.0.1'
 };
 
 export const prod = {
   ...common,
-  APP_VERSION: `${date}-beta-release`,
+  BUILD: `${date}-beta-release`,
+  APP_VERSION: '0.0.1'
 };
 
 export default dev;

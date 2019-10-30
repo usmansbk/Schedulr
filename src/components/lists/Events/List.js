@@ -64,9 +64,9 @@ class List extends React.Component {
     onRefresh: () => null,
   };
 
-  _keyExtractor = (item) => item.id + item.startAt;
+  _keyExtractor = (item) => item.id + item.ref_date;
   _renderHeader = () => (
-    this.state.sections.length ?
+    (this.state.sections.length && this.props.isAuth) ?
     <Header
       hide={this.props.error || !this.state.events.length}
       hasPrev={this.state.beforeDate}
@@ -189,15 +189,15 @@ class List extends React.Component {
   static getDerivedStateFromProps(props, state) {
     if (eventsChanged(state.events, props.events)) {
       const events = props.events;
-      const today = moment().startOf('day').format();
-      const yesterday = moment().subtract(1, 'day').startOf('day').format();
+      const today = moment().startOf('day').toISOString();
+      const yesterday = moment().subtract(1, 'day').endOf('day').toISOString();
       let sections = generateNextEvents(events, yesterday, DAYS_PER_PAGE);
       if (!sections.length && events.length) {
         sections = [{ data: [], title: today }];
       }
       const sectionLength = sections.length;
-      const afterDate = (sectionLength === DAYS_PER_PAGE) && moment(sections[sectionLength - 1].title).format();
-      const beforeDate = sectionLength && moment(sections[0].title).format();
+      const afterDate = (sectionLength === DAYS_PER_PAGE) && moment(sections[sectionLength - 1].title).toISOString();
+      const beforeDate = sectionLength && moment(sections[0].title).toISOString();
 
       return {
         sections,

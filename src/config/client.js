@@ -11,7 +11,7 @@ import {
   COMMENT_TYPE
 } from 'lib/constants';
 
-Analytics.disable();
+// Analytics.disable();
 
 const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors) {
@@ -27,10 +27,9 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
           attributes: {
             errorName: error.name,
             errorMessage: error.message,
-            errorLocation: error.locations,
             errorPath: error.path,
           }
-        });
+        }).catch((e) => { /* Ignore */});
       }
     });  
   }

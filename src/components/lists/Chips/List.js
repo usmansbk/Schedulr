@@ -19,16 +19,7 @@ class List extends React.Component {
     }
   );
 
-  _onPressItem = (id) => {
-    switch(id) {
-      case '__current__location__':
-        this.props.onPressLocationButton && this.props.onPressLocationButton();
-        break;
-      default:
-        this.props.stores.appState.toggleFilter(id);
-        break;
-    }
-  };
+  _onPressItem = (id) => this.props.stores.appState.toggleFilter(id);
 
   _renderItem = ({ item }) => (
     <Item
@@ -51,7 +42,7 @@ class List extends React.Component {
         initialNumToRender={5}
         keyExtractor={this._keyExtractor}
         showsHorizontalScrollIndicator={false}
-        extraData={stores.appState.discoverFilters.length}
+        extraData={stores.appState.discoverFilter}
         getItemLayout={this._getItemLayout}
       />
     );

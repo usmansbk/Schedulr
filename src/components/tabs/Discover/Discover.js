@@ -11,7 +11,7 @@ class Discover extends React.Component {
   _openLocationPicker = () => this.setState({ showLocationPicker: true });
   _hideLocationPicker = () => this.setState({ showLocationPicker: false });
   
-  componentDidMount = async () => await this.props.stores.locationStore.fetchLocation(true);
+  componentDidMount = () => this.props.stores.locationStore.fetchLocation(true);
 
   _handleSelect = (location) => this.props.stores.locationStore.setSearchLocation(location);
 
@@ -19,6 +19,8 @@ class Discover extends React.Component {
     return (
       <>
       <List
+        city={this.props.stores.locationStore.locality || 'Global'}
+        category={this.props.stores.appState.discoverFilter}
         location={this.props.stores.locationStore.point}
         onPressLocationButton={this._openLocationPicker}
       />

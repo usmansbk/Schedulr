@@ -54,20 +54,22 @@ export default class Events extends React.Component {
       fetchPolicy: 'network-only',
       query: gql(getNotifications),
       variables: {
-        lastSync: String(this.props.stores.notificationsStore.lastSyncTimestamp)
+        lastSync: String(stores.notificationsStore.lastSyncTimestamp)
       }
     }).then((result) => {
-      const { data: { notifications } } = result;
+      const { data: { notifications }={} } = result || {};
       stores.notificationsStore.updateLastSyncTimestamp();
       if (notifications && notifications.length) {
         stores.notificationsStore.appendNotifications(notifications);
-        fetchMore && fetchMore();
-      }   
+      }
+      fetchMore && fetchMore();
     }).catch(console.log);
   };
 
   componentDidMount = () => {
-    this._fetchNotifications();
+    if (!this.props.loading) {
+      this._fetchNotifications();
+    }
   };
 
   render() {
@@ -79,6 +81,7 @@ export default class Events extends React.Component {
           navigation={this.props.navigation}
           onRefresh={this._onRefresh}
           loading={this.props.loading}
+          fetchingMore={this.props.fetchingMore}
           fetchMore={this._fetchNotifications}
         />
         <FAB

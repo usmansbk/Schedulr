@@ -1,9 +1,25 @@
 import gql from 'graphql-tag';
+import Analytics from '@aws-amplify/analytics';
 import client from 'config/client';
 import stores from 'stores';
 import { updatePreference } from 'api/mutations';
 
+function getChannelType(device) {
+  switch(device) {
+    case 'iosToken': return 'APNS';
+    case 'androidToken': return 'GCM';
+  }
+}
+
 async function updateUserPushToken(device, token) {
+  const channelType = getChannelType(device);
+  console.log(token, channelType);
+  Analytics.updateEndpoint({
+    userId: stores.appState.userId,
+    address: token,
+    optOut: 'NONE',
+    channelType
+  }).catch(console.log);
   try {
     await client.mutate({
       mutation: gql(updatePreference),

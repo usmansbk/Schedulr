@@ -19,8 +19,8 @@ export default class AppState {
   @persist @observable userId = null;
   @persist @observable loggingIn = false;
   @persist @observable lastSyncTimestamp = moment().unix();
-
-  @persist('list') @observable discoverFilters = [];
+  @persist @observable discoverFilter = 'Event';
+  
   @persist('list') @observable mutedEvents = [];
   @persist('list') @observable mutedSchedules = [];
   @persist('list') @observable allowedEvents = [];
@@ -40,13 +40,7 @@ export default class AppState {
   };
   @action clearMutedList = () => this.mutedEvents = [];
 
-  @action toggleFilter = (id) => {
-    const index = this.discoverFilters.findIndex(elem => elem === id.toLowerCase());
-    if (index === -1) this.discoverFilters = [...this.discoverFilters, id.toLowerCase()];
-    else this.discoverFilters = this.discoverFilters.slice(0, index).concat(
-      this.discoverFilters.slice(index+1)
-    );
-  };
+  @action toggleFilter = (id) => this.discoverFilter = id.toLowerCase();
 
   @action reset() {
     this.isConnected =false;
@@ -63,7 +57,7 @@ export default class AppState {
     this.loggingIn = false;
     this.userId = null;
     this.lastSyncTimestamp = moment().unix();
-    this.discoverFilters = [];
+    this.discoverFilter = 'Event';
   }
 
   @action addCustomType = (category) => {
@@ -104,5 +98,5 @@ export default class AppState {
     this.debounceQuery(searchText);
   }
 
-  isToggled = (id) => this.discoverFilters.includes(id.toLowerCase());
+  isToggled = (id) => this.discoverFilter === id.toLowerCase();
 }

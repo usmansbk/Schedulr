@@ -64,7 +64,6 @@ class FilterAction extends React.Component {
    
     const cancelButtonIndex = options.length - 1;
     const destructiveButtonIndex = cancelButtonIndex - 1;
-    console.log(destructiveButtonIndex, cancelButtonIndex);
     return (
       <ActionSheet
         ref={ref => this.actionSheet = ref}

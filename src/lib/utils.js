@@ -172,3 +172,11 @@ export function singularMomentUnit(unit) {
   if (!isPlural) return unit;
   return unit.slice(0, -1);
 }
+
+export function ellipsisMode(str) {
+  let trimmed = str;
+  if (str && (str.length >= 21)) {
+    trimmed = str.slice(0, 21) + '...';
+  }
+  return trimmed;
+}

@@ -7,6 +7,7 @@ import Loading from 'components/common/Loading';
 import Error from 'components/common/Error';
 import { SCHEDULE_CLOSED } from 'lib/constants';
 import List from './ListHoc';
+import { handleShareSchedule } from 'helpers/share';
 
 class Schedule extends React.Component {
 
@@ -20,6 +21,13 @@ class Schedule extends React.Component {
   _navigateToNewEvent = () => {
     const id = this.props.schedule.id;
     this.props.navigation.navigate('NewEvent', { eventScheduleId: id, locked: true });
+  };
+
+  _handleShare = ({ id, name }) => {
+    handleShareSchedule({
+      id,
+      title: name,
+    });
   };
 
   render() {
@@ -70,11 +78,27 @@ class Schedule extends React.Component {
             subtitle={description}
             titleStyle={styles.headerColor}
           />
+          {
+            (isPublic || isOwner) && (
+              <Appbar.Action
+                size={24}
+                color={colors.gray}
+                icon={({ size, color }) => <Icon
+                  name="share-2"
+                  size={size}
+                  color={color}
+                />}
+                onPress={() => this._handleShare({ name, id})}
+              />
+            )
+          }
           <Appbar.Action
-            icon={() => <Icon
+            size={24}
+            color={colors.gray}
+            icon={({ size, color }) => <Icon
               name="info"
-              size={24}
-              color={colors.gray}
+              size={size}
+              color={color}
             />}
             onPress={this._navigateToScheduleInfo}
           />

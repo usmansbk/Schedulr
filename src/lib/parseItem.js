@@ -61,18 +61,21 @@ export const captionDetails = ({
   endAt,
   ref_date
 }) => {
-  let count;
-  if (!recurrence) {
-    count = momentCounter({
-      startAt,
-      endAt,
-      ref_date
-    });
+  const isSameDay = moment(startAt).isSame(endAt, 'D');
+  const startMoment = moment(startAt).startOf('D');
+  const endMoment = moment(endAt).endOf('D');
+
+  let span;
+  if (!isSameDay) {
+    span = startMoment.from(endMoment, true);
+    const count = momentCounter({ startAt, ref_date });
+    if (count) {
+      span = `${count + 1} of ${span}`;
+    }
   }
   const validCategory = category ? ' ' + category : '';
   const caption = allDay ? (`${recurrence}${validCategory}`) : (
-    `${duration}${validCategory}${recurrence ? ' ' + recurrence : ''}`);
+    `${span || duration}${recurrence ? ' ' + recurrence : ''}${validCategory}`);
   let formatted = capitalize(caption.trim());
-  if (count) formatted = `${count}${validCategory ? ' of' + validCategory : validCategory}`;
   return formatted;
 };

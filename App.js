@@ -5,7 +5,7 @@ import { Provider as MobxProvider } from 'mobx-react';
 import { Rehydrated } from 'aws-appsync-react';
 import SplashScreen from 'react-native-splash-screen';
 import { observer } from 'mobx-react';
-import Amplify from 'aws-amplify';
+import Amplify, { Auth } from 'aws-amplify';
 import AppContainer from './src/App';
 import Loading from 'components/common/Hydrating';
 import NavigationService from 'config/navigation';
@@ -14,12 +14,17 @@ import client from 'config/client';
 import stores from 'stores';
 import env from 'config/env';
 import i18n from 'config/i18n';
+import AmplifyStorage from 'helpers/AmplifyStorage';
 
 console.disableYellowBox = true;
 
 // window.LOG_LEVEL = 'DEBUG';
 
 Amplify.configure(aws_config);
+Auth.configure({
+    storage: AmplifyStorage
+});
+
 
 @observer
 export default class App extends React.Component {

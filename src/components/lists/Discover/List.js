@@ -24,7 +24,8 @@ class List extends Component{
   static defaultProps = {
     data: [],
     loading: false,
-    error: false
+    error: false,
+    onRefresh: () => null
   };
 
   _onPressItem = (id, refStartAt, refEndAt) => this.props.navigation.navigate('EventDetails', { id, refStartAt, refEndAt });
@@ -120,8 +121,9 @@ class List extends Component{
         style={styles.list}
         refreshControl={
           <RefreshControl
+            progressViewOffset={80}
             onRefresh={this._onRefresh}
-            refreshing={this.props.loading}
+            refreshing={this.props.refreshing ||this.props.loading}
             colors={[this.props.stores.themeStore.colors.primary]}
             progressBackgroundColor={this.props.stores.themeStore.colors.bg}
           />

@@ -71,7 +71,7 @@ class EditEventScreen extends React.Component {
         initialValues={this.initialValues}
         onSubmit={this._onSubmit}
         edit
-        locked={Boolean(this.schedule)}
+        locked
       />
     )
   }

@@ -22,7 +22,7 @@ class List extends React.Component {
     updates: []
   };
 
-  _renderEmpty = () => <Empty loading={this.props.loading} />;
+  _renderEmpty = () => <Empty loading={this.props.refreshing} />;
   _renderSeparator = () => <Separator />;
   _keyExtractor = (item, index) => item.id + item.date + index;
   _renderFooter = () => <Footer visible={this.props.updates.length}/>;
@@ -51,6 +51,14 @@ class List extends React.Component {
   }}) => {
     let Item = NotifItem;
     if (type === COMMENT_TYPE) Item = CommentItem;
+    let pictureUrl;
+    if (image) {
+      pictureUrl = getImageUrl(image);
+    } else {
+      if (extraData) {
+        pictureUrl = extraData.pictureUrl;
+      }
+    }
     return <Item
       id={id}
       entityId={entityId}
@@ -59,7 +67,7 @@ class List extends React.Component {
       topic={topic}
       type={type}
       extraData={extraData}
-      pictureUrl={image && getImageUrl(image)}
+      pictureUrl={pictureUrl}
       date={moment.unix(timestamp).fromNow()}
       navigateToSchedule={this._navigateToSchedule}
       navigateToEvent={this._navigateToEvent}
@@ -69,10 +77,15 @@ class List extends React.Component {
     />
   };
 
+  _onRefresh = () => {
+    if (!(this.props.loading || this.props.refreshing)) {
+      this.props.onRefresh();
+    }
+  };
+
   render() {
     const {
       stores,
-      onRefresh,
       refreshing,
     } = this.props;
     const styles = stores.appStyles.notifications   
@@ -91,7 +104,7 @@ class List extends React.Component {
         keyExtractor={this._keyExtractor}
         refreshControl={
           <RefreshControl
-            onRefresh={onRefresh}
+            onRefresh={this._onRefresh}
             refreshing={refreshing}
             colors={[stores.themeStore.colors.primary]}
             progressBackgroundColor={stores.themeStore.colors.bg}

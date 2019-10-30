@@ -4,12 +4,12 @@ import gql from 'graphql-tag';
 import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
 import List from 'components/lists/EventSearch';
-import { processEvents } from 'lib/calendr';
+// import { processEvents } from 'lib/calendr';
 import { getUserData, searchEvents } from 'api/queries';
-import { searchEventFilter } from 'api/filters';
+// import { searchEventFilter } from 'api/filters';
 import { mergeEvents, filterEvents } from 'lib/utils';
-import { SEARCH_LIMIT } from 'lib/constants';
-import updateQuery from 'helpers/updateQuery';
+// import { SEARCH_LIMIT } from 'lib/constants';
+// import updateQuery from 'helpers/updateQuery';
 
 class Events extends React.Component {
 

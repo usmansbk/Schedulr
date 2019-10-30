@@ -15,9 +15,11 @@ export default inject("stores")(observer(
     {
       alias,
       options: props => ({
-        fetchPolicy: 'cache-and-network',
+        fetchPolicy: 'no-cache',
         variables : {
+          city: props.city,
           location: props.location,
+          category: props.category,
           km: 5,
           limit: 50
         },
@@ -27,7 +29,8 @@ export default inject("stores")(observer(
       props: ({ data, ownProps}) => ({
         data: data && data.nearbyEvents && data.nearbyEvents.items || [],
         nextToken: data && data.nearbyEvents && data.nearbyEvents.nextToken,
-        loading: data && data.loading || data.networkStatus === 4,
+        loading: data && data.loading,
+        refreshing: data.networkStatus === 4,
         onRefresh: () => data && data.refetch(),
         fetchMore: (nextToken) => data.fetchMore({
           variables: {

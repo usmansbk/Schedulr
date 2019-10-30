@@ -1,4 +1,4 @@
-import { DELETE, EVENT_TYPE } from 'lib/constants';
+import { DELETE, EVENT_TYPE, SCHEDULE_TYPE } from 'lib/constants';
 
 export default function updateBaseCache({
   prev,
@@ -51,7 +51,7 @@ const updateBaseWithDelta = ({
 			action,
 			baseData
 		});
-	} else {
+	} else if (typename === SCHEDULE_TYPE) {
 		updateBaseSchedules({
 			data,
 			action,

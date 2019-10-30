@@ -94,7 +94,7 @@ export default {
   HELP_copyRight: "Copyright information",
   HELP_terms: "Terms and Privacy Policy",
   HELP_appVersion: "App version",
-
+  HELP_build: "Build version",
 
   BUTTON_cancel: "Cancel",
   BUTTON_create: "create",
@@ -160,10 +160,12 @@ export default {
   SHARE_EVENT_inviteTitle: "Share event via...",
 
   TOAST_enableReminder: "Unmute all events to continue!",
+  TOAST_updatesAvailable: "Updates available. Refresh calendar",
   TOAST_locationError: "Failed to get location. Turn off airplane mode.",
   TOAST_noImageFound: "No image found",
   TOAST_removed: "Event was removed from your bookmarks",
   TOAST_saved: "Event was added to your bookmarks",
+  TOAST_fetchingUpdates: "Fetching updates...",
 
   PROFILE_FORM_name: "Name",
   PROFILE_FORM_website: "Website",
@@ -244,7 +246,7 @@ export default {
   ERROR_noInternetConnection: "Check your internet connection. Pull to refresh",
   ERROR_somethingWentWrong: "Something went wrong. Please try again",
   ERROR_networkError: "Network error",
-  ERROR_serverError: message => "Oop! My fault: " + message,
+  ERROR_serverError: message => "Schdlr server error: " + message,
   ERROR_noConnection: "No connection",
   ERROR_404: "Not found",
   ERROR_404_caption: "Item may have been deleted",
@@ -279,6 +281,6 @@ export default {
   REQUEST_LOCATION_MESSAGE: "Schdlr App needs access to your location so events are easier to find.",
 
   PICKER_location: "Location",
-  SYNC_message: "Will refresh all events, schedules and bookmarks.",
+  SYNC_message: "Will remove all deleted and expired events from your calendar.",
   SYNC_complete: "Synchronized"
 };
