@@ -19,8 +19,7 @@ export const me = `query GetUser($id: ID!) {
     updatedAt
     preference {
       id
-      androidToken
-      iosToken
+      userId
       disablePush
     }
   }
@@ -30,8 +29,7 @@ export const me = `query GetUser($id: ID!) {
 export const myPref = `query GetPreference($id: ID!) {
   userPref(id: $id) {
     id
-    androidToken
-    iosToken
+    userId
     disablePush
   }
 }`

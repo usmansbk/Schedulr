@@ -19,8 +19,7 @@ export const createUser = `mutation CreateUser($input: CreateUserInput!) {
     updatedAt
     preference {
       id
-      androidToken
-      iosToken
+      userId
       disablePush
     }
   }
@@ -390,16 +389,14 @@ export const deleteComment = `mutation DeleteComment($input: DeleteCommentInput!
 export const createPreference = `mutation CreateUserPreference($input: CreateUserPreferenceInput!) {
   createUserPreference(input: $input) {
     id
-    androidToken
-    iosToken
+    userId
     disablePush
   }
 }`;
 export const updatePreference = `mutation UpdateUserPreference($input: UpdateUserPreferenceInput!) {
   updateUserPreference(input: $input) {
     id
-    androidToken
-    iosToken
+    userId
     disablePush
   }
 }`;
