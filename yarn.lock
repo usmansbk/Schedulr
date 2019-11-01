@@ -6520,6 +6520,13 @@ react-native-navigation-bar-color@^1.0.0:
   resolved "https://registry.yarnpkg.com/react-native-navigation-bar-color/-/react-native-navigation-bar-color-1.0.0.tgz#04ff752a58049af93ceea9ccf266b8d3fbc6514a"
   integrity sha512-djBE0zSp+JT65VeUm4UpIpr9DA9SpE9YTLwDAcqkWfB9JI8l3djSx+SmrIYfc7dUs216Y6qo2dr0qR3+M5qbOQ==
 
+react-native-onesignal@^3.5.0:
+  version "3.5.0"
+  resolved "https://registry.yarnpkg.com/react-native-onesignal/-/react-native-onesignal-3.5.0.tgz#7f4ab2fae32c52fc1a5f34efdba6bbb53d04e6bb"
+  integrity sha512-Ww2d1na7SOpZ0DEVb+8BGpTt5Ty0Nuak/YqjY3YCauHFBdNOdI7Cz5CtSWLJMjKiyniJmWWHkvLu6HDE9zGZng==
+  dependencies:
+    invariant "^2.2.2"
+
 react-native-open-maps@^0.3.4:
   version "0.3.4"
   resolved "https://registry.yarnpkg.com/react-native-open-maps/-/react-native-open-maps-0.3.4.tgz#c63fa82ca162b1584a6ce38b9a0e2421e5086074"
