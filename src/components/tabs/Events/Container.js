@@ -7,7 +7,7 @@ import { Linking, Platform, PushNotificationIOS } from 'react-native';
 import changeNavigationBarColor from 'react-native-navigation-bar-color';
 import { inject, observer } from 'mobx-react';
 import NavigationService from 'config/navigation';
-import { processLocalNotification } from 'helpers/notification';
+import { processLocalNotification, processRemoteNotification } from 'helpers/notification';
 import Events from './Hoc';
 
 /**
@@ -24,20 +24,24 @@ class Container extends React.Component {
   _handlePushNotifications = () => {
     OneSignal.addEventListener('ids', this.onIds);
     OneSignal.addEventListener('received', this.onReceived);
-    OneSignal.addEventListener('opened', this.onOpened);
+    OneSignal.addEventListener('opened', processRemoteNotification);
   };
 
   onIds = (device) => console.log(device);
 
-  onReceived = notification => console.log(notification);
-
-  onOpened = result => console.log(result);
+  onReceived = notification => {
+    console.log('received push notification');
+    console.log(notification);
+    this.props.stores.notificationsStore.increment();
+  };
   
   _handleLocalNotifications = () => {
     PushNotifications.configure({
       onNotification: notification => {
-        const { data } = notification;
-        processLocalNotification(data);
+        const { data, tag } = notification;
+        if (tag === 'local') {
+          processLocalNotification(data);
+        }
         if (Platform.OS === 'ios') {
           notification.finish(PushNotificationIOS.FetchResult.NoData);
         }
@@ -89,7 +93,7 @@ class Container extends React.Component {
     Linking.removeEventListener('url', this.handleOpenURL);
     OneSignal.removeEventListener('ids', this.onIds);
     OneSignal.removeEventListener('received', this.onReceived);
-    OneSignal.removeEventListener('opened', this.onOpened);
+    OneSignal.removeEventListener('opened', processRemoteNotification);
     this.unsubscribe();
   };
 
