@@ -1,11 +1,6 @@
 import React from 'react';
-import { View } from 'react-native';
-import FastImage from 'react-native-fast-image';
-import { createImageProgress } from 'react-native-image-progress';
+import { View, Image } from 'react-native';
 import colors from 'config/colors';
-
-const Image = createImageProgress(FastImage);
-
 
 export default class CustomImage extends React.Component {
 
