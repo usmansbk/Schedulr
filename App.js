@@ -6,6 +6,7 @@ import { Rehydrated } from 'aws-appsync-react';
 import SplashScreen from 'react-native-splash-screen';
 import { observer } from 'mobx-react';
 import Amplify, { Auth } from 'aws-amplify';
+import OneSignal from 'react-native-onesignal';
 import AppContainer from './src/App';
 import Loading from 'components/common/Hydrating';
 import NavigationService from 'config/navigation';
@@ -25,12 +26,12 @@ Auth.configure({
     storage: AmplifyStorage
 });
 
-
 @observer
 export default class App extends React.Component {
   componentDidMount = () => {
     SplashScreen.hide();
     i18n(stores.settingsStore.language);
+    OneSignal.init(env.ONESIGNAL_ID);
   }
 
   render() {

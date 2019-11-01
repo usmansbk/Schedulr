@@ -1,5 +1,6 @@
 import React from 'react';
 import NetInfo from '@react-native-community/netinfo';
+import OneSignal from 'react-native-onesignal';
 import PushNotifications from 'react-native-push-notification';
 import SimpleToast from 'react-native-simple-toast';
 import { Linking, Platform, PushNotificationIOS } from 'react-native';
@@ -17,7 +18,20 @@ class Container extends React.Component {
     super(props);
     this._handleDeeplink();
     this._handleLocalNotifications();
+    this._handlePushNotifications();
   }
+
+  _handlePushNotifications = () => {
+    OneSignal.addEventListener('ids', this.onIds);
+    OneSignal.addEventListener('received', this.onReceived);
+    OneSignal.addEventListener('opened', this.onOpened);
+  };
+
+  onIds = (device) => console.log(device);
+
+  onReceived = notification => console.log(notification);
+
+  onOpened = result => console.log(result);
   
   _handleLocalNotifications = () => {
     PushNotifications.configure({
@@ -73,6 +87,9 @@ class Container extends React.Component {
 
   componentWillUnmount = () => {
     Linking.removeEventListener('url', this.handleOpenURL);
+    OneSignal.removeEventListener('ids', this.onIds);
+    OneSignal.removeEventListener('received', this.onReceived);
+    OneSignal.removeEventListener('opened', this.onOpened);
     this.unsubscribe();
   };
 
