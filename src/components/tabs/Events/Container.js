@@ -6,8 +6,7 @@ import { Linking, Platform, PushNotificationIOS } from 'react-native';
 import changeNavigationBarColor from 'react-native-navigation-bar-color';
 import { inject, observer } from 'mobx-react';
 import NavigationService from 'config/navigation';
-import { processLocalNotification, processRemoteNotification } from 'helpers/notification';
-import env from 'config/env';
+import { processLocalNotification } from 'helpers/notification';
 import Events from './Hoc';
 
 /**
@@ -22,21 +21,9 @@ class Container extends React.Component {
   
   _handleLocalNotifications = () => {
     PushNotifications.configure({
-      senderID: env.FCM_SENDER_ID,
-      onRegister: this.props.stores.settingsStore.updatePushToken,
       onNotification: notification => {
-        const {
-          userInteraction,
-          data,
-          tag,
-        } = notification;
-        if (tag === 'local') {
-          processLocalNotification(data);
-        } else {
-          if (userInteraction) {
-            processRemoteNotification(notification);
-          }
-        }
+        const { data } = notification;
+        processLocalNotification(data);
         if (Platform.OS === 'ios') {
           notification.finish(PushNotificationIOS.FetchResult.NoData);
         }
