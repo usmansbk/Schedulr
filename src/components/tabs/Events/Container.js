@@ -9,6 +9,7 @@ import { inject, observer } from 'mobx-react';
 import NavigationService from 'config/navigation';
 import { processLocalNotification, processRemoteNotification } from 'helpers/notification';
 import Events from './Hoc';
+import { updateUserPushToken } from 'helpers/updatePreference';
 
 /**
  * This component handles Local Notifications
@@ -22,18 +23,12 @@ class Container extends React.Component {
   }
 
   _handlePushNotifications = () => {
-    OneSignal.addEventListener('ids', this.onIds);
+    OneSignal.addEventListener('ids', updateUserPushToken);
     OneSignal.addEventListener('received', this.onReceived);
     OneSignal.addEventListener('opened', processRemoteNotification);
   };
 
-  onIds = (device) => console.log(device);
-
-  onReceived = notification => {
-    console.log('received push notification');
-    console.log(notification);
-    this.props.stores.notificationsStore.increment();
-  };
+  onReceived = this.props.stores.notificationsStore.increment;
   
   _handleLocalNotifications = () => {
     PushNotifications.configure({
@@ -91,7 +86,7 @@ class Container extends React.Component {
 
   componentWillUnmount = () => {
     Linking.removeEventListener('url', this.handleOpenURL);
-    OneSignal.removeEventListener('ids', this.onIds);
+    OneSignal.removeEventListener('ids', updateUserPushToken);
     OneSignal.removeEventListener('received', this.onReceived);
     OneSignal.removeEventListener('opened', processRemoteNotification);
     this.unsubscribe();
