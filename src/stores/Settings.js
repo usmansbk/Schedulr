@@ -59,7 +59,7 @@ export default class SettingsState {
     }
     const updatedPreference = await toggleDisablePush(optimisticResponse);
     if (updatedPreference) this.setUserPreference(updatedPreference);
-    OneSignal.setSubscription(toggled);
+    OneSignal.setSubscription(!toggled);
   }
 
   @action setUserPreference = (pref) => {
