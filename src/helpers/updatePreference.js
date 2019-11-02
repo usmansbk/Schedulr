@@ -4,7 +4,6 @@ import stores from 'stores';
 import { updatePreference } from 'api/mutations';
 
 async function updateUserPushToken({ userId }) {
-  console.log(userId);
   try {
     await client.mutate({
       mutation: gql(updatePreference),
