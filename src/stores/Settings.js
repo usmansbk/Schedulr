@@ -61,7 +61,7 @@ export default class SettingsState {
   @action setUserPreference = (pref) => {
     if (pref) {
       this.userPreference = pref;
-      OneSignal.setSubscription(!!pref.disablePush);
+      OneSignal.setSubscription(!pref.disablePush);
     }
   };
 }
