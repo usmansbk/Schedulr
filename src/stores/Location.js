@@ -57,7 +57,7 @@ export default class Location {
             });
           },
           (error) => {
-            console.log(error.message);
+            SimpleToast.show(error.message, SimpleToast.SHORT);
           },
           { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
         );
