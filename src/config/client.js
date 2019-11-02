@@ -21,7 +21,7 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
         // Dont log elasticsearch "Not found"
       } else {
         SimpleToast.show(I18n.get('ERROR_serverError')(error.message), SimpleToast.LONG);
-        console.log(error.message);
+        console.log(error);
         Analytics.record({
           name: 'GraphQLError',
           attributes: {
@@ -67,6 +67,7 @@ const client = new AWSAppSyncClient({
   offlineConfig: {
     callback: (error) => {
       if (error) {
+        console.log(error);
         SimpleToast.show(error.message, SimpleToast.SHORT);
       }
     }
