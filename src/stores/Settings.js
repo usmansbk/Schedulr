@@ -1,4 +1,3 @@
-import { Platform } from 'react-native';
 import { observable, action } from 'mobx';
 import { persist } from 'mobx-persist';
 import changeNavigationBarColor from 'react-native-navigation-bar-color';
