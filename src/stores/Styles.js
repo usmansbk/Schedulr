@@ -200,6 +200,12 @@ export default class AppStyles {
         padding: 16,
         backgroundColor: colors.bg,
       },
+      textInputContainer: {
+        flexDirection: 'row'
+      },
+      textInput: {
+        flex: 1
+      },
       button: {
         height: 48,
         justifyContent: 'center',
