@@ -2,8 +2,9 @@ import { observable, action } from 'mobx';
 import { persist } from 'mobx-persist';
 import changeNavigationBarColor from 'react-native-navigation-bar-color';
 import SimpleToast from 'react-native-simple-toast';
+import OneSignal from 'react-native-onesignal';
 import { dark, light } from 'config/colors';
-import { updateUserPushToken, toggleDisablePush } from 'helpers/updatePreference';
+import { toggleDisablePush } from 'helpers/updatePreference';
 
 export default class SettingsState {
   @persist @observable language = "en";
@@ -41,11 +42,6 @@ export default class SettingsState {
     this.userPreference = null;
   }
 
-  @action updatePushToken = ({ os, token }) => {
-    const key = `${os}Token`;
-    updateUserPushToken(key, token);
-  }
-
   @action async togglePush() {
     const prev = this.userPreference;
     const toggled = prev ? !prev.disablePush : true;
@@ -58,9 +54,13 @@ export default class SettingsState {
     }
     const updatedPreference = await toggleDisablePush(optimisticResponse);
     if (updatedPreference) this.setUserPreference(updatedPreference);
+    OneSignal.setSubscription(!toggled);
   }
 
   @action setUserPreference = (pref) => {
-    if (pref) this.userPreference = pref;
+    if (pref) {
+      this.userPreference = pref;
+      OneSignal.setSubscription(!pref.disablePush);
+    }
   };
 }

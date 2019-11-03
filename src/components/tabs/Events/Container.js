@@ -1,5 +1,6 @@
 import React from 'react';
 import NetInfo from '@react-native-community/netinfo';
+import OneSignal from 'react-native-onesignal';
 import PushNotifications from 'react-native-push-notification';
 import SimpleToast from 'react-native-simple-toast';
 import { Linking, Platform, PushNotificationIOS } from 'react-native';
@@ -7,8 +8,8 @@ import changeNavigationBarColor from 'react-native-navigation-bar-color';
 import { inject, observer } from 'mobx-react';
 import NavigationService from 'config/navigation';
 import { processLocalNotification, processRemoteNotification } from 'helpers/notification';
-import env from 'config/env';
 import Events from './Hoc';
+import { updateUserPushToken } from 'helpers/updatePreference';
 
 /**
  * This component handles Local Notifications
@@ -18,24 +19,23 @@ class Container extends React.Component {
     super(props);
     this._handleDeeplink();
     this._handleLocalNotifications();
+    this._handlePushNotifications();
   }
+
+  _handlePushNotifications = () => {
+    OneSignal.addEventListener('ids', updateUserPushToken);
+    OneSignal.addEventListener('received', this.onReceived);
+    OneSignal.addEventListener('opened', processRemoteNotification);
+  };
+
+  onReceived = this.props.stores.notificationsStore.increment;
   
   _handleLocalNotifications = () => {
     PushNotifications.configure({
-      senderID: env.FCM_SENDER_ID,
-      onRegister: this.props.stores.settingsStore.updatePushToken,
       onNotification: notification => {
-        const {
-          userInteraction,
-          data,
-          tag,
-        } = notification;
+        const { data, tag } = notification;
         if (tag === 'local') {
           processLocalNotification(data);
-        } else {
-          if (userInteraction) {
-            processRemoteNotification(notification);
-          }
         }
         if (Platform.OS === 'ios') {
           notification.finish(PushNotificationIOS.FetchResult.NoData);
@@ -86,6 +86,9 @@ class Container extends React.Component {
 
   componentWillUnmount = () => {
     Linking.removeEventListener('url', this.handleOpenURL);
+    OneSignal.removeEventListener('ids', updateUserPushToken);
+    OneSignal.removeEventListener('received', this.onReceived);
+    OneSignal.removeEventListener('opened', processRemoteNotification);
     this.unsubscribe();
   };
 

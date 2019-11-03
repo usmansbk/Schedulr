@@ -22,7 +22,9 @@ export default graphql(gql(listFollowers), {
     nextToken: data && data.listFollowers && data.listFollowers.followers.nextToken,
     loading: data && data.loading || (data.networkStatus === 4),
     error: !!data.error,
-    onRefresh: () => data.refetch(),
+    onRefresh: () => data.refetch({
+      nextToken: null
+    }),
     fetchMore: (nextToken) => data.fetchMore({
       variables: {
         nextToken

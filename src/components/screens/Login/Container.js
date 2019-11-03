@@ -24,7 +24,6 @@ class Container extends React.Component {
   }
 
   componentDidMount = async () => {
-    this.props.stores.appState.setLoginState(false);
     Hub.listen('auth', this._authListener);
     try {
       await changeNavigationBarColor('white', true);
@@ -106,10 +105,10 @@ class Container extends React.Component {
           this.props.stores.appState.setUserId(email);
           this.props.navigation.navigate('App');
         } catch(error) {
-          this.props.stores.appState.setLoginState(false);
           SimpleToast.show("Sign-in failed", SimpleToast.LONG);
           console.log(error.message);
         }
+        this.props.stores.appState.setLoginState(false);
         break;
     }
   };
@@ -119,6 +118,7 @@ class Container extends React.Component {
       this.props.stores.appState.setLoginState(true);
       await Auth.federatedSignIn({ provider });
     } catch (error) {
+      console.log(error);
       this.props.stores.appState.setLoginState(false);
     }
   };

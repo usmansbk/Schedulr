@@ -57,7 +57,11 @@ export default graphql(gql(getScheduleEvents), {
   props: ({ data, ownProps}) => ({
     loading: data && data.loading || data.networkStatus === 4,
     error: data.error,
-    onRefresh: () => data.refetch(),
+    onRefresh: () => data.refetch({
+      filter: baseEventsFilter(),
+      limit: PAGINATION_LIMIT,
+      nextToken: null
+    }),
     fetchMore: (nextToken) => data.fetchMore({
       variables: {
         limit: PAGINATION_LIMIT,

@@ -13,6 +13,7 @@ import aws_config from 'aws_config';
 import client from 'config/client';
 import stores from 'stores';
 import env from 'config/env';
+import push from 'config/pushnotification';
 import i18n from 'config/i18n';
 import AmplifyStorage from 'helpers/AmplifyStorage';
 
@@ -25,12 +26,12 @@ Auth.configure({
     storage: AmplifyStorage
 });
 
-
 @observer
 export default class App extends React.Component {
   componentDidMount = () => {
     SplashScreen.hide();
     i18n(stores.settingsStore.language);
+    push.init();
   }
 
   render() {

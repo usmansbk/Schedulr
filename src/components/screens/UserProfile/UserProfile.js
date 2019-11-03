@@ -3,7 +3,8 @@ import {
   View,
   ScrollView,
   Text,
-  RefreshControl
+  RefreshControl,
+  Image
 } from 'react-native';
 import {
   Headline,
@@ -11,7 +12,6 @@ import {
   FAB,
   Caption
 } from 'react-native-paper';
-import FastImage from 'react-native-fast-image';
 import Icon from 'react-native-vector-icons/Feather';
 import Hyperlink from 'react-native-hyperlink';
 import { inject, observer } from 'mobx-react';
@@ -96,9 +96,9 @@ class UserProfile extends React.Component {
         }
         contentContainerStyle={styles.container}>
         <View style={styles.header}>  
-          <FastImage
+          <Image
             source={{uri: uriSmall}}
-            resizeMode={FastImage.resizeMode.cover}
+            resizeMode="cover"
             style={styles.backgroundImage}
           />  
           <View style={styles.image}> 

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Appbar, Divider } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/Feather';
+import OneSignal from 'react-native-onesignal';
 import { I18n } from 'aws-amplify';
 import List from 'components/lists/Notifications';
 import Filter from 'components/actionsheet/NotificationFilter';
@@ -23,6 +24,7 @@ export default class Notifications extends React.Component {
       loading
     } = this.props;
     stores.notificationsStore.resetCounter(0);
+    OneSignal.clearOneSignalNotifications();
 
     return (
       <>

@@ -108,8 +108,8 @@ class Input extends React.Component {
                 onLongPressItem={this._onLongPressItem}
               />
               <Divider />
-              <View style={stores.appStyles.commentInput.container}>
-                <View style={stores.appStyles.commentInput.input}>
+              <View style={styles.textInputContainer}>
+                <View style={styles.textInput}>
                   <TextInput
                     placeholder={I18n.get("PLACEHOLDER_customType")}
                     label={I18n.get("PLACEHOLDER_customType")}
