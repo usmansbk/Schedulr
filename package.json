@@ -58,11 +58,7 @@
     "react-native-paper": "^3.1.1",
     "react-native-photo-view": "^1.5.2",
     "react-native-push-notification": "^3.1.9",
-<<<<<<< HEAD
-    "react-native-reanimated": "^1.3.2",
-=======
     "react-native-reanimated": "^1.4.0",
->>>>>>> feature/push_notifications
     "react-native-screens": "^2.0.0-alpha.7",
     "react-native-share": "^2.0.0",
     "react-native-simple-toast": "^1.0.0",
