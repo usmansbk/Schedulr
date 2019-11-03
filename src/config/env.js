@@ -1,4 +1,3 @@
-import moment from 'moment';
 const date = '2019-10-29T19:53';
 const DOMAIN = 'https://help.schdlr.com';
 
@@ -21,13 +20,13 @@ const common = {
 
 const dev = {
   ...common,
-  BUILD: `${date}-beta-dev`,
+  BUILD: `${date}-beta`,
   APP_VERSION: '0.0.1'
 };
 
 export const prod = {
   ...common,
-  BUILD: `${date}-beta-release`,
+  BUILD: `${date}-release`,
   APP_VERSION: '0.0.1'
 };
 
