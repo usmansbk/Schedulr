@@ -18,15 +18,14 @@ async function updateUserPushToken({ userId }) {
     console.log(error);
   }
 }
-async function toggleDisablePush(optimisticResponse) {
+async function updateUserPreference(optimisticResponse) {
+  let input = optimisticResponse;
+  delete input.__typename;
   try {
     const result = await client.mutate({
       mutation: gql(updatePreference),
       variables: {
-        input: {
-          id: stores.appState.userId,
-          disablePush: optimisticResponse.disablePush
-        }
+        input
       }
     });
     return result.data.updateUserPreference;
@@ -38,5 +37,5 @@ async function toggleDisablePush(optimisticResponse) {
 
 export {
   updateUserPushToken,
-  toggleDisablePush
+  updateUserPreference
 };

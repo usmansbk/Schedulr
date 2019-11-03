@@ -21,6 +21,10 @@ export const me = `query GetUser($id: ID!) {
       id
       userId
       disablePush
+      disableAdminComments
+      disableReplies
+      disableComments
+      enableMembersComments
     }
   }
 }
@@ -31,6 +35,10 @@ export const myPref = `query GetPreference($id: ID!) {
     id
     userId
     disablePush
+    disableAdminComments
+    disableReplies
+    disableComments
+    enableMembersComments
   }
 }`
 

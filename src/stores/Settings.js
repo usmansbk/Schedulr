@@ -4,7 +4,7 @@ import changeNavigationBarColor from 'react-native-navigation-bar-color';
 import SimpleToast from 'react-native-simple-toast';
 import OneSignal from 'react-native-onesignal';
 import { dark, light } from 'config/colors';
-import { toggleDisablePush } from 'helpers/updatePreference';
+import { updateUserPreference } from 'helpers/updatePreference';
 
 export default class SettingsState {
   @persist @observable language = "en";
@@ -42,19 +42,21 @@ export default class SettingsState {
     this.userPreference = null;
   }
 
-  @action async togglePush() {
+  @action async togglePref(key) {
     const prev = this.userPreference;
-    const toggled = prev ? !prev.disablePush : true;
     let optimisticResponse = {};
     if (prev) {
+      const toggled = !prev[key];
       optimisticResponse = Object.assign({}, prev, {
-        disablePush: toggled
+        [key]: toggled
       });
       this.setUserPreference(optimisticResponse);
     }
-    const updatedPreference = await toggleDisablePush(optimisticResponse);
+    const updatedPreference = await updateUserPreference(optimisticResponse);
     if (updatedPreference) this.setUserPreference(updatedPreference);
-    OneSignal.setSubscription(!toggled);
+    if (key === 'disablePush') {
+      OneSignal.setSubscription(!optimisticResponse.disablePush);
+    }
   }
 
   @action setUserPreference = (pref) => {

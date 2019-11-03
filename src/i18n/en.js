@@ -63,6 +63,7 @@ export default {
 
   SETTINGS_screenTitle: "Settings",
   SETTINGS_generalSectionTitle: "General",
+  SETTINGS_commentSectionTitle: "Comments",
   SETTINGS_sound: "Sound",
   SETTINGS_vibrate: "Vibrate",
   SETTINGS_darkTheme: "Dark theme",
@@ -72,6 +73,10 @@ export default {
   SETTINGS_remindMe: "Remind me",
   SETTINGS_pushSectionTitle: "Push notification",
   SETTINGS_pushDisable: "Disable",
+  SETTINGS_disableComment: "Disable comments",
+  SETTINGS_disableAdminComment: "Disable admin comments",
+  SETTINGS_enableMembersComment: "Enable members comments",
+  SETTINGS_disableReplies: "Disable replies",
 
   REMIND_ME_title: "Remind me",
   REMIND_ME_five: "5 minutes before",

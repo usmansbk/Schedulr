@@ -17,10 +17,17 @@ class Settings extends React.Component {
   }
 
   handleValueChange = (value) => {
-    if (value === 'disablePushNotifications') {
-      this.props.stores.settingsStore.togglePush(this.props.stores.appState.userId);
-    } else {
-      this.props.stores.settingsStore.toggle(value);
+    switch(value) {
+      case 'disablePush':
+      case 'disableComments':
+      case 'disableReplies':
+      case 'disableAdminComments':
+      case 'enableMembersComments':
+        this.props.stores.settingsStore.togglePref(value);
+        break;
+      default:
+        this.props.stores.settingsStore.toggle(value);
+        break;
     }
   }
 
@@ -47,9 +54,17 @@ class Settings extends React.Component {
       sound,
       vibrate,
       disableReminders,
-      userPreference,
+      userPreference={},
     } = stores.settingsStore;
     const { styles } = stores.appStyles;
+
+    const {
+      disableAdminComments,
+      disableComments,
+      disablePush,
+      disableReplies,
+      enableMembersComments
+    } = userPreference;
 
     return (
       <>
@@ -130,8 +145,50 @@ class Settings extends React.Component {
               title={I18n.get("SETTINGS_pushDisable")}
               right={() => (
                 <Switch
-                  value={userPreference && userPreference.disablePush}
-                  onValueChange={() => this.handleValueChange('disablePushNotifications')}
+                  value={disablePush}
+                  onValueChange={() => this.handleValueChange('disablePush')}
+                />
+              )}
+            />
+          </List.Section>
+          <List.Section title={I18n.get("SETTINGS_commentSectionTitle")}>
+            <List.Item
+              title={I18n.get("SETTINGS_disableComment")}
+              right={() => (
+                <Switch
+                  disabled={disablePush}
+                  value={disableComments}
+                  onValueChange={() => this.handleValueChange('disableComments')}
+                />
+              )}
+            />
+            <List.Item
+              title={I18n.get("SETTINGS_disableAdminComment")}
+              right={() => (
+                <Switch
+                  disabled={disablePush || disableComments}
+                  value={disableAdminComments}
+                  onValueChange={() => this.handleValueChange('disableAdminComments')}
+                />
+              )}
+            />
+            <List.Item
+              title={I18n.get("SETTINGS_disableReplies")}
+              right={() => (
+                <Switch
+                  disabled={disablePush || disableComments}
+                  value={disableReplies}
+                  onValueChange={() => this.handleValueChange('disableReplies')}
+                />
+              )}
+            />
+            <List.Item
+              title={I18n.get("SETTINGS_enableMembersComment")}
+              right={() => (
+                <Switch
+                  disabled={disablePush || disableComments}
+                  value={enableMembersComments}
+                  onValueChange={() => this.handleValueChange('enableMembersComments')}
                 />
               )}
             />

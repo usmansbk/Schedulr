@@ -21,6 +21,10 @@ export const createUser = `mutation CreateUser($input: CreateUserInput!) {
       id
       userId
       disablePush
+      disableAdminComments
+      disableReplies
+      disableComments
+      enableMembersComments
     }
   }
 }
@@ -391,6 +395,10 @@ export const createPreference = `mutation CreateUserPreference($input: CreateUse
     id
     userId
     disablePush
+    disableAdminComments
+    disableReplies
+    disableComments
+    enableMembersComments
   }
 }`;
 export const updatePreference = `mutation UpdateUserPreference($input: UpdateUserPreferenceInput!) {
@@ -398,5 +406,9 @@ export const updatePreference = `mutation UpdateUserPreference($input: UpdateUse
     id
     userId
     disablePush
+    disableAdminComments
+    disableReplies
+    disableComments
+    enableMembersComments
   }
 }`;
