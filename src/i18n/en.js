@@ -257,7 +257,7 @@ export default {
   PLACEHOLDER_addYourWebsite: "Add your website",
   PLACEHOLDER_bio: "About me",
   PLACEHOLDER_venue: city => city ? `In ${city}` : "Venue",
-  PLACEHOLDER_customType: "Custom type",
+  PLACEHOLDER_customType: "Add a custom type",
   PLACEHOLDER_searchCities: "Search cities",
 
   WARNING_dontMissOut: "Don't miss out!",
