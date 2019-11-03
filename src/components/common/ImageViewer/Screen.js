@@ -57,6 +57,7 @@ export default inject("stores")(observer(
         loading ? <Loading loading /> : (
           <PhotoView
             source={uri ? {uri} : require('../../../assets/photographer.png')}
+            loadingIndicatorSource={require('./img/loading.png')}
             androidScaleType="fitCenter"
             style={ uri ? {flex: 1} : { alignSelf: 'center', width: 400, height: 400 }}
           />
