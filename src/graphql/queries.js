@@ -427,7 +427,7 @@ export const getUserData = `query GetUserData($id: ID!, $filter: ModelEventFilte
             followingCount
             createdAt
           }
-          events(limit: $limit, sortDirection: ASC) @connection(key: "events") {
+          events(filter: $filter, limit: $limit, sortDirection: ASC) @connection(key: "events") {
             nextToken
             items {
               id
