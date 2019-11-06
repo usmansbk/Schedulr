@@ -78,7 +78,7 @@ class List extends React.Component {
   };
 
   _onRefresh = () => {
-    if (!this.props.loading) {
+    if (!this.props.loading && !this.props.refreshing) {
       this.props.onRefresh();
     }
   };
@@ -87,7 +87,6 @@ class List extends React.Component {
     const {
       stores,
       refreshing,
-      loading
     } = this.props;
     const styles = stores.appStyles.notifications   
     return (
@@ -106,7 +105,7 @@ class List extends React.Component {
         refreshControl={
           <RefreshControl
             onRefresh={this._onRefresh}
-            refreshing={refreshing || loading}
+            refreshing={refreshing}
             colors={[stores.themeStore.colors.primary]}
             progressBackgroundColor={stores.themeStore.colors.bg}
           />
