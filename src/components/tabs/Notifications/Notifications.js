@@ -15,6 +15,14 @@ export default class Notifications extends React.Component {
 
   shouldComponentUpdate = () => this.props.navigation.isFocused();
 
+  componentDidUpdate = () => OneSignal.clearOneSignalNotifications();
+  
+  UNSAFE_componentWillReceiveProps = (props) => {
+    if (!props.navigation.isFocused()) {
+      props.stores.notificationsStore.resetCounter(0);
+    }
+  }
+
   render() {
     const {
       stores,
@@ -23,8 +31,6 @@ export default class Notifications extends React.Component {
       loading,
       refreshing
     } = this.props;
-    stores.notificationsStore.resetCounter(0);
-    OneSignal.clearOneSignalNotifications();
 
     return (
       <>
