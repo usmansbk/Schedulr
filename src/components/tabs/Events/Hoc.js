@@ -28,10 +28,15 @@ export default inject("stores")(observer(
         }
       }),
       props: ({ data, ownProps}) => ({
-        loading: data && (data.loading || data.networkStatus === 3),
+        loading: data && (data.loading || data.networkStatus === 4),
+        fetchingMore: data && data.networkStatus === 3,
         data: data && data.getUserData,
         userId: ownProps.stores.appState.userId,
-        onRefresh: () => data.refetch(),
+        onRefresh: () => data.refetch({
+          id: ownProps.id,
+          filter: baseEventsFilter(),
+          limit: 50
+        }),
         fetchMore: () => {
           SimpleToast.show(I18n.get('TOAST_fetchingUpdates'), SimpleToast.SHORT);
           const lastSyncTimestamp = ownProps.stores.appState.lastSyncTimestamp;

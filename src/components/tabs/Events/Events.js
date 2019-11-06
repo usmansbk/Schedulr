@@ -19,7 +19,7 @@ export default class Events extends React.Component {
     if (!this.props.loading && this.props.isConnected) {
       this.props.fetchMore();
     }
-  }
+  };
 
   shouldComponentUpdate = (nextProps) => nextProps.navigation.isFocused();
   
@@ -70,12 +70,12 @@ export default class Events extends React.Component {
       if (notifications && notifications.length) {
         stores.notificationsStore.appendNotifications(notifications);
       }
-      fetchMore && fetchMore();
     }).catch(console.log);
+    fetchMore && fetchMore();
   };
 
   componentDidMount = () => {
-    if (!this.props.loading) {
+    if ( !(this.props.loading || this.props.fetchingMore) ) {
       this._fetchNotifications();
     }
   };
