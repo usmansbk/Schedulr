@@ -31,9 +31,12 @@ compose(
       }
     }),
     props: ({ data, ownProps }) => ({
-      loading: data && (data.loading || data.networkStatus === 4),
+      loading: data && data.loading,
+      refreshing: data && data.networkStatus === 4,
       hasDelta: data && data.notifications && data.notifications.length,
-      onRefresh: () => data.refetch(),
+      onRefresh: () => data.refetch({
+        lastSync: String(ownProps.stores.notificationsStore.lastSyncTimestamp)
+      }),
       ...ownProps
     })
   })

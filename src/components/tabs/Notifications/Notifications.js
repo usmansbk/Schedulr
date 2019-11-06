@@ -17,11 +17,11 @@ export default class Notifications extends React.Component {
 
   render() {
     const {
-      refreshing,
       stores,
       navigation,
       onRefresh,
-      loading
+      loading,
+      refreshing
     } = this.props;
     stores.notificationsStore.resetCounter(0);
     OneSignal.clearOneSignalNotifications();
