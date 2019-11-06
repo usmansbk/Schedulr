@@ -24,6 +24,7 @@ class Container extends React.Component {
   }
 
   componentDidMount = async () => {
+    this.props.stores.appState.setLoginState(false);
     Hub.listen('auth', this._authListener);
     try {
       await changeNavigationBarColor('white', true);

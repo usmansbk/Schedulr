@@ -38,9 +38,17 @@ export default class Events extends React.Component {
     });
   };
 
-  _onRefresh = () => this.props.onRefresh && this.props.onRefresh();
+  _onRefresh = () => {
+    if (!this.props.loading) {
+      this.props.onRefresh && this.props.onRefresh();
+    }
+  };
 
-  _fetchMore = () => this.props.fetchMore && this.props.fetchMore();
+  _fetchMore = () => {
+    if (!this.props.loading) {
+      this.props.fetchMore && this.props.fetchMore();
+    }
+  };
   
   _mergeAllEvents = memoize(mergeEvents);
 

@@ -1,8 +1,8 @@
 import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
 import { inject, observer } from 'mobx-react';
-// import { I18n } from 'aws-amplify';
-// import SimpleToast from 'react-native-simple-toast';
+import { I18n } from 'aws-amplify';
+import SimpleToast from 'react-native-simple-toast';
 import { withNavigationFocus } from 'react-navigation';
 import { getUserData, getDeltaUpdates } from 'api/queries';
 import { baseEventsFilter } from 'api/filters';
@@ -20,7 +20,7 @@ export default inject("stores")(observer(
       alias,
       options: props => ({
         fetchPolicy: 'cache-first',
-        // notifyOnNetworkStatusChange: true,
+        notifyOnNetworkStatusChange: true,
         variables: {
           id: props.id,
           filter: baseEventsFilter(),
@@ -28,12 +28,12 @@ export default inject("stores")(observer(
         }
       }),
       props: ({ data, ownProps}) => ({
-        loading: data && data.loading,
+        loading: data && (data.loading || data.networkStatus === 3),
         data: data && data.getUserData,
         userId: ownProps.stores.appState.userId,
         onRefresh: () => data.refetch(),
         fetchMore: () => {
-          // SimpleToast.show(I18n.get('TOAST_fetchingUpdates'), SimpleToast.SHORT);
+          SimpleToast.show(I18n.get('TOAST_fetchingUpdates'), SimpleToast.SHORT);
           const lastSyncTimestamp = ownProps.stores.appState.lastSyncTimestamp;
           data.fetchMore({
             query: DeltaQuery,
