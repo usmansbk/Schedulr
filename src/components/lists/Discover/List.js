@@ -107,12 +107,6 @@ class List extends Component{
 
   _onRefresh = () => this.props.onRefresh();
 
-  _filterData = (list) => list.filter(item => {
-    const filters = this.props.stores.appState.discoverFilters;
-    if (!filters.length) return true;
-    return this.props.stores.appState.discoverFilters.includes(item.category && item.category.toLowerCase())
-  });
-
   render() {
     const styles = this.props.stores.appStyles.discover;
 
@@ -128,7 +122,7 @@ class List extends Component{
             progressBackgroundColor={this.props.stores.themeStore.colors.bg}
           />
         }
-        data={this._filterData(this.props.data)}
+        data={this.props.data}
         renderItem={this._renderItem}
         keyExtractor={this._keyExtractor}
         ListEmptyComponent={this._renderEmptyList}

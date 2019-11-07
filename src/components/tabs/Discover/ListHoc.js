@@ -6,7 +6,7 @@ import { nearbyEvents } from 'api/queries';
 import List from 'components/lists/Discover';
 import updateQuery from 'helpers/updateQuery';
 
-const alias = 'withBookmarksContainer';
+const alias = 'withDiscoverContainer';
 
 export default inject("stores")(observer(
   compose(
@@ -27,7 +27,7 @@ export default inject("stores")(observer(
       }),
       skip: props => !props.location,
       props: ({ data, ownProps}) => ({
-        data: data && data.nearbyEvents && data.nearbyEvents.items || [],
+        data: (data && data.nearbyEvents && data.nearbyEvents.items) || [],
         nextToken: data && data.nearbyEvents && data.nearbyEvents.nextToken,
         loading: data && data.loading,
         refreshing: data.networkStatus === 4,
