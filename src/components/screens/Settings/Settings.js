@@ -54,7 +54,7 @@ class Settings extends React.Component {
       sound,
       vibrate,
       disableReminders,
-      userPreference={},
+      userPreference,
     } = stores.settingsStore;
     const { styles } = stores.appStyles;
 
@@ -64,7 +64,7 @@ class Settings extends React.Component {
       disablePush,
       disableReplies,
       enableMembersComments
-    } = userPreference;
+    } = userPreference || {};
 
     return (
       <>
