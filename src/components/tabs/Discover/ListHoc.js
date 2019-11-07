@@ -15,7 +15,7 @@ export default inject("stores")(observer(
     {
       alias,
       options: props => ({
-        fetchPolicy: 'no-cache',
+        fetchPolicy: 'cache-and-network',
         variables : {
           city: props.city,
           location: props.location,
@@ -31,7 +31,9 @@ export default inject("stores")(observer(
         nextToken: data && data.nearbyEvents && data.nearbyEvents.nextToken,
         loading: data && data.loading,
         refreshing: data.networkStatus === 4,
-        onRefresh: () => data && data.refetch(),
+        onRefresh: () => data && data.refetch({
+          nextToken: null
+        }),
         fetchMore: (nextToken) => data.fetchMore({
           variables: {
             nextToken,
