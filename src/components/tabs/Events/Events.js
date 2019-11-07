@@ -16,7 +16,7 @@ export default class Events extends React.Component {
   }
 
   componentDidMount = () => {
-    if (!this.props.loading && this.props.isConnected) {
+    if (!(this.props.loading || this.props.fetchingMore) && this.props.isConnected) {
       this.props.fetchMore();
     }
   };
@@ -39,13 +39,13 @@ export default class Events extends React.Component {
   };
 
   _onRefresh = () => {
-    if (!this.props.loading) {
+    if (!(this.props.loading || this.props.fetchingMore)) {
       this.props.onRefresh && this.props.onRefresh();
     }
   };
 
   _fetchMore = () => {
-    if (!this.props.loading) {
+    if (!(this.props.loading || this.props.fetchingMore)) {
       this.props.fetchMore && this.props.fetchMore();
     }
   };
