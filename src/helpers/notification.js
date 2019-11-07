@@ -23,6 +23,15 @@ export function processLocalNotification(data) {
   NavigationService.navigate('EventDetails', { id, refStartAt, refEndAt });
 }
 
-export function processRemoteNotification(notification) {
-  NavigationService.navigate('Notifications');
+export function processRemoteNotification(result) {
+  const { notification : { payload : { additionalData } } } = result;
+  let screen = 'Notifications';
+  if (additionalData.type === 'Event') {
+    screen = 'EventDetails';
+  } else if (additionalData.type === 'Comment') {
+    screen = 'Comments';
+  }
+  NavigationService.navigate(screen, {
+    id: additionalData.id
+  });
 }
