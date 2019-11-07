@@ -25,8 +25,10 @@ class Container extends React.Component {
   _handlePushNotifications = () => {
     OneSignal.addEventListener('ids', updateUserPushToken);
     OneSignal.addEventListener('received', this.onReceived);
-    OneSignal.addEventListener('opened', processRemoteNotification);
+    OneSignal.addEventListener('opened', this.onOpened);
   };
+  
+  onOpened = result => processRemoteNotification(result);
 
   onReceived = this.props.stores.notificationsStore.increment;
   
@@ -88,7 +90,7 @@ class Container extends React.Component {
     Linking.removeEventListener('url', this.handleOpenURL);
     OneSignal.removeEventListener('ids', updateUserPushToken);
     OneSignal.removeEventListener('received', this.onReceived);
-    OneSignal.removeEventListener('opened', processRemoteNotification);
+    OneSignal.removeEventListener('opened', this.onOpened);
     this.unsubscribe();
   };
 
