@@ -27,6 +27,8 @@ export default class Notifications {
   @action resetCounter = (temp=0) => this.count = temp;
   
   @action increment = () => this.count += 1;
+  
+  @action decrement = () => this.count -= 1;
 
   @action reset() {
     this.clearNotifications();
