@@ -28,9 +28,11 @@ class Container extends React.Component {
     OneSignal.addEventListener('opened', this.onOpened);
   };
   
-  onOpened = result => processRemoteNotification(result);
+  onOpened = processRemoteNotification;
 
-  onReceived = this.props.stores.notificationsStore.increment;
+  onReceived = () => {
+    console.log('received notification');
+  };
   
   _handleLocalNotifications = () => {
     PushNotifications.configure({
