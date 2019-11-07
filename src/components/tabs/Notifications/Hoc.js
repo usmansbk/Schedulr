@@ -1,7 +1,7 @@
 import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
-import SimpleToast from 'react-native-simple-toast';
-import { I18n } from 'aws-amplify';
+// import SimpleToast from 'react-native-simple-toast';
+// import { I18n } from 'aws-amplify';
 import { withNavigationFocus } from 'react-navigation';
 import { inject, observer } from 'mobx-react';
 import { getNotifications } from 'api/queries';
@@ -25,7 +25,7 @@ compose(
         const { notifications={} } = data || {};
         props.stores.notificationsStore.updateLastSyncTimestamp();
         if (notifications && notifications.length) {
-          SimpleToast.show(I18n.get('TOAST_updatesAvailable'), SimpleToast.SHORT);
+          // SimpleToast.show(I18n.get('TOAST_updatesAvailable'), SimpleToast.SHORT);
           props.stores.notificationsStore.appendNotifications(notifications);
         }
       }
