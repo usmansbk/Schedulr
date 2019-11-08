@@ -7,7 +7,7 @@ import updateBaseQuery from 'helpers/deltaSync';
 import Notifications from './Notifications';
 
 const GetNotifications = gql(getNotifications);
-const GetDeltaUpdates = gql(getDeltaUpdates);
+const DeltaQuery = gql(getDeltaUpdates);
 const BaseQuery = gql(getUserData);
 
 export default inject("stores")(observer(
@@ -32,7 +32,7 @@ compose(
             stores.notificationsStore.appendNotifications(notifications);
             client.query({
               fetchPolicy: 'network-only',
-              query: GetDeltaUpdates,
+              query: DeltaQuery,
               variables: {
                 lastSync: String(stores.appState.lastSyncTimestamp)
               }

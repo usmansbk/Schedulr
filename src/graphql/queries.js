@@ -526,7 +526,7 @@ export const getUserData = `query GetUserData($id: ID!, $filter: ModelEventFilte
 
 export const getDeltaUpdates = `query GetDeltaUpdates($lastSync: String!) {
   deltaSync(lastSync: $lastSync) @connection(key: "deltaSync") {
-    ... on Event {
+    events {
       id
       title
       description
@@ -562,7 +562,7 @@ export const getDeltaUpdates = `query GetDeltaUpdates($lastSync: String!) {
       updatedAt
       aws_ds
     }
-    ... on Schedule {
+    schedules {
       id
       name
       description
