@@ -20,6 +20,7 @@ export default class Notifications extends React.Component {
   UNSAFE_componentWillReceiveProps = (props) => {
     if (!props.navigation.isFocused()) {
       props.stores.notificationsStore.resetCounter(0);
+      props.stores.notificationsStore.markAsSeen();
     }
   }
 

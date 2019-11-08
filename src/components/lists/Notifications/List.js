@@ -47,7 +47,8 @@ class List extends React.Component {
     topic,
     entityId,
     type,
-    extraData
+    extraData,
+    seen
   }}) => {
     let Item = NotifItem;
     if (type === COMMENT_TYPE) Item = CommentItem;
@@ -67,6 +68,7 @@ class List extends React.Component {
       topic={topic}
       type={type}
       extraData={extraData}
+      seen={seen}
       pictureUrl={pictureUrl}
       date={moment.unix(timestamp).fromNow()}
       navigateToSchedule={this._navigateToSchedule}

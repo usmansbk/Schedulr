@@ -15,8 +15,15 @@ export default class Notifications {
   @action appendNotifications = newNotifications => {
     if (newNotifications.length) {
       this.count += newNotifications.length;
-      this.allNotifications = this.allNotifications.concat(newNotifications);
+      this.allNotifications = this.allNotifications.concat(newNotifications.map(notif => Object.assign(notif, { seen: false })));
     }
+  };
+  
+  @action markAsSeen = () => {
+    this.allNotifications = this.allNotifications.map(notif => {
+      if (!notif.seen) notif.seen = true;
+      return notif;
+    });
   };
 
   @action clearNotifications = () => {

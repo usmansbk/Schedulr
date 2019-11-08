@@ -52,7 +52,8 @@ class Item extends React.Component {
       date,
       topic,
       stores,
-      type
+      type,
+      seen
     } = this.props;
 
     const styles = stores.appStyles.notifications;
@@ -61,8 +62,9 @@ class Item extends React.Component {
     else if (type === 'Follow') icon = 'users';
     else if (type === 'Bookmark') icon = 'bookmark';
 
+    const mark = seen ? {} : styles.unseen;
     return (
-      <TouchableRipple onPress={this._onPressItems} style={styles.itemContainer}>
+      <TouchableRipple onPress={this._onPressItems} style={[styles.itemContainer, mark]}>
         <View style={styles.itemContent}>
           <View>
             <UserAvatar src={pictureUrl} name={subject} size={32} />
