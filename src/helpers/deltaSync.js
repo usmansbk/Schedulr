@@ -10,9 +10,12 @@ export default function updateBaseQuery({
 	if (!fetchMoreResult) return prev;
 	const { getUserData } = prev;
 
+	const { events, schedules } = fetchMoreResult.deltaSync;
+	const deltaRecords = [...events, ...schedules];
+
 	const updatedUserData = deltaRecordsProcessor({
 		baseResult: getUserData,
-		deltaRecords: fetchMoreResult.deltaSync
+		deltaRecords 
 	});
 
 	return Object.assign({}, prev, {
