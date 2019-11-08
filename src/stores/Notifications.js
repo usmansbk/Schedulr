@@ -5,7 +5,7 @@ import moment from 'moment';
 export default class Notifications {
   @persist @observable count = 0;
   @persist @observable lastSyncTimestamp = moment().unix();
-  @persist @observable hasNotifications = false;
+  @persist @observable hasUpdates = false;
   @observable filter = 'all';
 
   @persist('list') @observable allNotifications = [];
@@ -35,7 +35,7 @@ export default class Notifications {
     this.lastSyncTimestamp = moment().unix();
   }
 
-  @action setNotificationIndicator = status => this.hasNotifications = status;
+  @action setUpdatesIndicator = status => this.hasUpdates = status;
 
   @computed get updates() {
     if (this.filter === 'all') {

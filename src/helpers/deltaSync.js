@@ -6,6 +6,7 @@ export default function updateBaseQuery({
   stores,
 }) {
 	stores.appState.updateLastSyncTimestamp();
+    stores.notificationsStore.setUpdatesIndicator(false);
 
 	if (!fetchMoreResult) return prev;
 	const { getUserData } = prev;

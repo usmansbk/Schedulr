@@ -10,16 +10,16 @@ import { I18n } from 'aws-amplify';
 Geocoder.fallbackToGoogle(GEOCODING_ANDROID_KEY);
 
 export default class Location {
-  @persist('object') @observable point = null;
+  @persist('object') @observable point = {};
+  @persist('object') @observable currentLocation = {};
 
   @persist @observable locality = null;
   @persist @observable country = null;
   @persist @observable countryCode = null;
   @persist @observable searchLocation = null;
-  @persist @observable currentLocation = null;
 
-  @action fetchLocation = async (update) => {
-    if (this.point && this.location) return;
+  @action fetchLocation = async () => {
+    if (this.point.lat && this.point.lon && this.location) return;
     try {
       const hasLocationPermission = await requestLocationPermission();
       if (hasLocationPermission) {
@@ -82,10 +82,10 @@ export default class Location {
 
   @action reset() {
     this.country = null;
-    this.point = null;
+    this.point = {};
     this.locality = null;
     this.countryCode = null;
-    this.currentLocation = null;
+    this.currentLocation = {};
     this.searchLocation = null;
   }
 }
