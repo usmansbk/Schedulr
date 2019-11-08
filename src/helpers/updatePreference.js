@@ -19,9 +19,9 @@ async function updateUserPushToken({ userId }) {
   }
 }
 async function updateUserPreference(optimisticResponse) {
-  let input = optimisticResponse;
-  delete input.__typename;
   try {
+    let input = optimisticResponse;
+    delete input.__typename;
     const result = await client.mutate({
       mutation: gql(updatePreference),
       variables: {
