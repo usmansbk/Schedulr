@@ -1,16 +1,18 @@
-import { graphql, compose } from 'react-apollo';
+import { graphql, compose, withApollo } from 'react-apollo';
 import gql from 'graphql-tag';
-// import SimpleToast from 'react-native-simple-toast';
-// import { I18n } from 'aws-amplify';
 import { withNavigationFocus } from 'react-navigation';
 import { inject, observer } from 'mobx-react';
-import { getNotifications } from 'api/queries';
+import { getNotifications, getDeltaUpdates, getUserData } from 'api/queries';
+import updateBaseQuery from 'helpers/deltaSync';
 import Notifications from './Notifications';
 
 const GetNotifications = gql(getNotifications);
+const GetDeltaUpdates = gql(getDeltaUpdates);
+const BaseQuery = gql(getUserData);
 
 export default inject("stores")(observer(
 compose(
+  withApollo,
   withNavigationFocus,
   graphql(GetNotifications, {
     alias: 'withGetNotifications',
@@ -22,11 +24,42 @@ compose(
         lastSync: String(props.stores.notificationsStore.lastSyncTimestamp)
       },
       onCompleted: (data) => {
-        const { notifications={} } = data || {};
-        props.stores.notificationsStore.updateLastSyncTimestamp();
-        if (notifications && notifications.length) {
-          // SimpleToast.show(I18n.get('TOAST_updatesAvailable'), SimpleToast.SHORT);
-          props.stores.notificationsStore.appendNotifications(notifications);
+        if (data) {
+          const { notifications } = data;
+          const { stores, client } = props;
+          stores.notificationsStore.updateLastSyncTimestamp();
+          if (notifications && notifications.length) {
+            stores.notificationsStore.appendNotifications(notifications);
+            client.query({
+              fetchPolicy: 'network-only',
+              query: GetDeltaUpdates,
+              variables: {
+                lastSync: String(stores.appState.lastSyncTimestamp)
+              }
+            }).then(result => {
+              const { data: fetchMoreResult } = result;
+              if (fetchMoreResult && fetchMoreResult.deltaSync) {
+                const prev = client.readQuery({
+                  query: BaseQuery,
+                  variables: {
+                    id: stores.appState.userId
+                  }
+                });
+                const data = updateBaseQuery({
+                  prev,
+                  fetchMoreResult,
+                  stores
+                });
+                client.writeQuery({
+                  query: BaseQuery,
+                  variables: {
+                    id: stores.appState.userId
+                  },
+                  data
+                });
+              }
+            }).catch(console.log);
+          }
         }
       }
     }),
