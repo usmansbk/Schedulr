@@ -6,7 +6,7 @@ import { inject, observer } from 'mobx-react';
 import { withNavigationFocus } from 'react-navigation';
 import { getUserData, getDeltaUpdates } from 'api/queries';
 import { baseEventsFilter } from 'api/filters';
-import updateBaseCache from 'helpers/deltaSync';
+import updateBaseQuery from 'helpers/deltaSync';
 import Events from './Events';
 
 const alias = 'withEventsContainer';
@@ -46,7 +46,7 @@ export default inject("stores")(observer(
               lastSync: String(lastSyncTimestamp)
             },
             updateQuery: (prev, { fetchMoreResult }) => (
-              updateBaseCache({
+              updateBaseQuery({
                 prev,
                 fetchMoreResult,
                 stores: ownProps.stores
