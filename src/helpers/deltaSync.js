@@ -1,6 +1,6 @@
 import { DELETE, EVENT_TYPE, SCHEDULE_TYPE } from 'lib/constants';
 
-export default function updateBaseCache({
+export default function updateBaseQuery({
   prev,
   fetchMoreResult,
   stores,
