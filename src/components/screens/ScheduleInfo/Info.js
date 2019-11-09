@@ -129,16 +129,6 @@ class Info extends React.Component {
                 size={24}
                 color={colors.gray}
                 icon={({ size, color }) => <Icon
-                  name="archive"
-                  size={size}
-                  color={color}
-                />}
-                onPress={this._onArchive}
-              />
-              <Appbar.Action
-                size={24}
-                color={colors.gray}
-                icon={({ size, color }) => <Icon
                   name="edit"
                   size={size}
                   color={color}
@@ -147,6 +137,17 @@ class Info extends React.Component {
               />
               {
                 !isPersonal && (
+                  <>
+                  <Appbar.Action
+                    size={24}
+                    color={colors.gray}
+                    icon={({ size, color }) => <Icon
+                      name="archive"
+                      size={size}
+                      color={color}
+                    />}
+                    onPress={this._onArchive}
+                  />
                   <Appbar.Action
                     size={24}
                     color={colors.gray}
@@ -157,6 +158,7 @@ class Info extends React.Component {
                     />}
                     onPress={this._onDelete}
                   />
+                  </>
                 )
               }
             </>
