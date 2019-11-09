@@ -9,11 +9,10 @@ export default graphql(gql(getEvent), {
   alias,
   options: props => {
     const id = props.navigation.getParam('id');
-    const fetchPolicy = props.navigation.getParam('fetchPolicy', 'cache-first');
     return ({
       variables: { id },
       notifyOnNetworkStatusChange: true,
-      fetchPolicy
+      fetchPolicy: 'cache-and-network'
     })
   },
   props: ({ data, ownProps }) => ({
