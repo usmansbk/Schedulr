@@ -1,13 +1,10 @@
 import Geolocation from 'react-native-geolocation-service';
-import Geocoder from 'react-native-geocoder';
 import { observable, action, computed } from 'mobx';
 import { persist } from 'mobx-persist';
-import { requestLocationPermission } from 'helpers/permissions';
-import { GEOCODING_ANDROID_KEY } from 'config/env';
-import SimpleToast from 'react-native-simple-toast';
 import { I18n } from 'aws-amplify';
-
-Geocoder.fallbackToGoogle(GEOCODING_ANDROID_KEY);
+import { requestLocationPermission } from 'helpers/permissions';
+import Geocoder from 'helpers/geocoder';
+import SimpleToast from 'react-native-simple-toast';
 
 export default class Location {
   @persist('object') @observable point = {};
@@ -40,16 +37,16 @@ export default class Location {
               lng: longitude
             };
             this.currentLocation = loc;
-            Geocoder.geocodePosition(loc).then((locations) => {
+            Geocoder(loc).then((locations) => {
               const bestLocation = locations[0];
               const {
-                locality,
+                city,
                 country,
                 countryCode
               } = bestLocation;
-              this.locality = locality;
+              this.locality = city;
               this.country = country;
-              if (!this.searchLocation) this.searchLocation = locality;
+              if (!this.searchLocation) this.searchLocation = city;
               this.countryCode = countryCode;
             }).catch((error) => {
               console.log(error);
