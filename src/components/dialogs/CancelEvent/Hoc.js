@@ -32,7 +32,7 @@ export default compose(
       }
     }),
     props: ({ data, ownProps }) => ({
-      cancelledDates: data.getEvent.cancelledDates || [],
+      cancelledDates: (data && data.getEvent && data.getEvent.cancelledDates) || [],
       ...ownProps,
     })
   })
