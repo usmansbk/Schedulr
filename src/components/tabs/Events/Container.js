@@ -30,8 +30,12 @@ class Container extends React.Component {
   
   onOpened = processRemoteNotification;
 
-  onReceived = () => {
-    console.log('received notification');
+  onReceived = (result) => {
+    const { payload: { additionalData } } = result;
+    if (additionalData && (additionalData.type === 'Event')) {
+      console.log(additionalData);
+      this.props.stores.notificationsStore.setUpdatesIndicator(true);
+    }
   };
   
   _handleLocalNotifications = () => {
