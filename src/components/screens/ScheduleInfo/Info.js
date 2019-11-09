@@ -36,6 +36,7 @@ class Info extends React.Component {
   _hideAlert = () => this.setState({ showAboutPrivacyAlert: false });
   _onDelete = () => this.props.handleSelectMenu('delete');
   _onEdit = () => this.props.handleSelectMenu('edit');
+  _onArchive = () => this.props.handleSelectMenu(this.props.schedule.status === 'OPEN' ? 'close' : 'open');
 
   shouldComponentUpdate = (nextProps, nextState) => (
     !isEqual(nextProps.schedule, this.props.schedule) ||
@@ -124,6 +125,16 @@ class Info extends React.Component {
           }
           {
             !!isOwner && <>
+              <Appbar.Action
+                size={24}
+                color={colors.gray}
+                icon={({ size, color }) => <Icon
+                  name="archive"
+                  size={size}
+                  color={color}
+                />}
+                onPress={this._onArchive}
+              />
               <Appbar.Action
                 size={24}
                 color={colors.gray}
