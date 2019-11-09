@@ -12,7 +12,7 @@ const parseLocation = location => {
 
 export default function(location) {
     const locationId = parseLocation(location);
-    const url = `https://${HOST}/v1/geo/locations/${locationId}/nearbyCities?limit=5&radius=100`;
+    const url = `https://${HOST}/v1/geo/locations/${locationId}/nearbyCities?limit=1&radius=100`;
     const headers = {
         "x-rapidapi-host": HOST,
         "x-rapidapi-key": KEY
