@@ -7,7 +7,7 @@ import {
 import { I18n } from 'aws-amplify';
 import GeoDBCitiesSearch from 'react-native-geodb';
 import Icon from 'react-native-vector-icons/Feather';
-import { GEODB_API_KEY } from 'config/env';
+import env from 'config/env';
 
 export default class Picker extends React.Component {
   _onValueChange = (value) => this.props.onValueChange(value);
@@ -41,7 +41,7 @@ export default class Picker extends React.Component {
             onSelectItem={this._onSelect}
             emptyListImagePlaceholder={require('../../../assets/map.png')}
             query={{
-              key: GEODB_API_KEY
+              key: env.GEODB_API_KEY
             }}
             params={{
               language
