@@ -164,14 +164,7 @@ class Info extends React.Component {
             </>
           }
         </Appbar.Header>
-        <ScrollView
-          refreshControl={<RefreshControl
-            onRefresh={onRefresh}
-            refreshing={loading}
-            colors={[colors.primary]}
-            progressBackgroundColor={colors.bg}
-          />}
-          style={styles.container}>
+        <ScrollView style={styles.container}>
           <View style={styles.container}>
             <View style={styles.avatar}>
               <View style={styles.userAvatar}>
