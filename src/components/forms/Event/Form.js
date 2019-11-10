@@ -13,7 +13,6 @@ import {
   HelperText,
   Appbar,
   Switch,
-  Divider
 } from 'react-native-paper';
 import { Formik } from 'formik';
 import { inject, observer } from 'mobx-react';
