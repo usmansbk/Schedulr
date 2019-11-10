@@ -2,7 +2,8 @@ import React from 'react';
 import {
   Button,
   Dialog,
-  Portal
+  Portal,
+  Caption
 } from 'react-native-paper';
 import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
@@ -46,6 +47,9 @@ class CloseSchedule extends React.Component {
           style={{backgroundColor: stores.themeStore.colors.bg}}
         >
           <Dialog.Title>{I18n.get("DIALOG_closeSchedule")}</Dialog.Title>
+          <Dialog.Content>
+            <Caption>{I18n.get("DIALOG_closeScheduleWarning")}</Caption>
+          </Dialog.Content>
           <Dialog.Actions>
             <Button disabled={loading} onPress={handleDismiss}>{I18n.get("BUTTON_dismiss")}</Button>
             <Button loading={loading} disabled={loading} onPress={this._onContinue}>{I18n.get("BUTTON_continue")}</Button>

@@ -272,6 +272,7 @@ export default {
   DIALOG_onlyThisEvent: "Only this event?",
   DIALOG_allOfThisEvent: "All of this event",
   DIALOG_closeSchedule: "Archive this schedule?",
+  DIALOG_closeScheduleWarning: "You won't be adding future events.",
   DIALOG_deleteComment: "Delete this comment?",
   DIALOG_deleteEvent: "Delete this event?",
   DIALOG_deleteEventWarning: "Always cancel events before deleting them to notify your followers.",
