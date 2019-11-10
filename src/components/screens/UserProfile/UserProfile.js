@@ -63,7 +63,7 @@ class UserProfile extends React.Component {
       stores
     } = this.props;
 
-    if (loading && !user) return <Loading />;
+    if (loading && !user) return <Loading loading={loading} />;
     if (error && !user) return <Error onRefresh={onRefresh} loading={refreshing} />;
     if (!user) return <Error onRefresh={onRefresh} loading={refreshing} />;
   
