@@ -27,6 +27,7 @@ class RootStore {
     // Create theme store after hydrating the settings store
     const appState = new AppState(settingsStore);
     hydrate('appState', appState);
+    hydrate('locationStore', locationStore);
     
     const themeStore = new Theme(settingsStore);
     const appStyles = new AppStyles(settingsStore);
