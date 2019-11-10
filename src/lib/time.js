@@ -1,13 +1,7 @@
 import moment from 'moment';
 import 'twix';
-import TimeAgo from 'javascript-time-ago';
 import { I18n } from 'aws-amplify';
-import en from 'javascript-time-ago/locale/en';
 import { capitalize, decapitalize } from './utils';
-
-TimeAgo.addLocale(en);
-
-const timeAgoInstance = new TimeAgo('en-Us');
 
 export const SECOND = 1000;
 export const ONE_MINUTE = moment.duration(1, 'minute').asMilliseconds();
@@ -69,7 +63,7 @@ export const getNextDate = (event) => {
 };
 
 export const timeAgo = (date) => {
-  return timeAgoInstance.format(moment(date).toDate(), 'twitter');
+  return moment(date).fromNow(true);
 };
 
 export const getSectionHeaderData = (date) => {
