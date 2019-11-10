@@ -208,7 +208,7 @@ class Info extends React.Component {
               {
                 isClosed && (
                   <View style={styles.noteView}>
-                    <Icon color={colors.black} name="slash" size={18} />
+                    <Icon color={colors.black} name="archive" size={18} />
                     <Text style={styles.note}>{I18n.get("SCHEDULE_thisScheduleIsClosed")}</Text>
                   </View>
                 )
