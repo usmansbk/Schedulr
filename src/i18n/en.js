@@ -278,7 +278,7 @@ export default {
   DIALOG_deleteEventWarning: "Always cancel events before deleting them to notify your followers.",
   DIALOG_deleteSchedule: "Delete this schedule?",
   DIALOG_deleteScheduleWarning: "Action will delete all related events!",
-  DIALOG_openSchedule: "Open this schedule?",
+  DIALOG_openSchedule: "Unarchive this schedule?",
 
   SNACKBAR_sync: "Sync",
   SNACKBAR_seeUpdates: "See updates", 
