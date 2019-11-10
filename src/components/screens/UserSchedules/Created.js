@@ -5,7 +5,6 @@ import { graphql, compose } from 'react-apollo';
 import { FlatList } from 'react-navigation';
 import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
-import Loading from 'components/common/Loading';
 import Item from 'components/lists/ScheduleSearch/Item';
 import Separator from 'components/lists/Schedules/Separator';
 import Footer from 'components/lists/Schedules/Footer';
