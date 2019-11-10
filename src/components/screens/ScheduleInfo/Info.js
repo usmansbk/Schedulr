@@ -5,7 +5,6 @@ import isEqual from 'lodash.isequal';
 import {
   View,
   ScrollView,
-  RefreshControl
 } from 'react-native';
 import numeral from 'numeral';
 import {
@@ -36,7 +35,7 @@ class Info extends React.Component {
   _hideAlert = () => this.setState({ showAboutPrivacyAlert: false });
   _onDelete = () => this.props.handleSelectMenu('delete');
   _onEdit = () => this.props.handleSelectMenu('edit');
-  _onArchive = () => this.props.handleSelectMenu(this.props.schedule.status === 'OPEN' ? 'close' : 'open');
+  _onArchive = () => this.props.handleSelectMenu(this.props.schedule.status === SCHEDULE_CLOSED ? 'open' : 'close');
 
   shouldComponentUpdate = (nextProps, nextState) => (
     !isEqual(nextProps.schedule, this.props.schedule) ||
