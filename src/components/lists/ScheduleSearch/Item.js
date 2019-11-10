@@ -4,6 +4,7 @@ import { TouchableRipple, Text, Caption } from 'react-native-paper';
 import { inject, observer } from 'mobx-react';
 import UserAvatar from 'components/common/UserAvatar';
 import FollowButton from 'components/common/FollowButton';
+import Tag from 'components/common/Tag';
 import { schedule_search } from 'lib/constants';
 
 const { AVATAR_SIZE } = schedule_search;
@@ -52,7 +53,7 @@ class Item extends React.Component {
             </View>
             { Boolean(description) && <Caption numberOfLines={1} ellipsizeMode="tail" style={styles.itemDescription}>{description}</Caption> }
             <View style={styles.itemFooter}>
-              { isClosed && <Caption style={styles.danger}>Closed</Caption> }
+              { isClosed && <Tag status="Closed" /> }
             </View>
           </View>
           {
