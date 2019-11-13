@@ -23,7 +23,7 @@
     "aws-appsync-react": "^2.0.2",
     "btoa": "^1.2.1",
     "emoji-regex": "^8.0.0",
-    "formik": "^2.0.3",
+    "formik": "^2.0.4",
     "graphql-tag": "^2.10.1",
     "lodash.debounce": "^4.0.8",
     "lodash.isequal": "^4.5.0",
