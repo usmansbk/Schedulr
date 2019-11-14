@@ -13,7 +13,7 @@
     "android-debug": "(npm run clean-android) & (react-native run-android)"
   },
   "dependencies": {
-    "@react-native-community/async-storage": "^1.6.2",
+    "@react-native-community/async-storage": "^1.6.3",
     "@react-native-community/netinfo": "^4.6.0",
     "apollo-link": "^1.2.13",
     "apollo-link-error": "^1.1.12",
@@ -57,7 +57,7 @@
     "react-native-photo-view": "^1.5.2",
     "react-native-push-notification": "^3.1.9",
     "react-native-reanimated": "^1.4.0",
-    "react-native-screens": "^2.0.0-alpha.8",
+    "react-native-screens": "^2.0.0-alpha.11",
     "react-native-share": "^2.0.0",
     "react-native-simple-toast": "^1.0.0",
     "react-native-splash-screen": "^3.2.0",
