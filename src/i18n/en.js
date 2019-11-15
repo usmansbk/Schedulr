@@ -51,7 +51,7 @@ export default {
   SEARCH_emptyList: "No results",
   SEARCH_loadMore: "Load more",
   SEARCH_noMoreResults: "No more results",
-  SEARCH_search: "Search",
+  SEARCH_search: "Search Schdlr",
 
   NOTIFICATIONS_updatesTabLabel: "UPDATES",
   NOTIFICATIONS_messagesTabLabel: "COMMENTS",
