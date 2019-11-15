@@ -44,7 +44,7 @@ export default {
   DISCOVER_emptyList: "Discover",
   DISCOVER_emptyListCaption: "Events happening around you!",
 
-  SEARCH_inputPlaceholder: city => `Search${city ? (' near ' + city) : ''}`,
+  SEARCH_inputPlaceholder: city => `Search${city ? (' ' + city) : ''}`,
   SEARCH_schedulesTabLabel: "Schedules",
   SEARCH_eventsTabLabel: "My Events",
   SEARCH_peopleTabLabel: "People",
