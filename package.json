@@ -19,8 +19,8 @@
     "apollo-link-error": "^1.1.12",
     "aws-amplify": "^1.2.4",
     "aws-amplify-react-native": "2.2.4-unstable.5",
-    "aws-appsync": "^2.0.2",
-    "aws-appsync-react": "^2.0.2",
+    "aws-appsync": "^3.0.2",
+    "aws-appsync-react": "^3.0.2",
     "btoa": "^1.2.1",
     "emoji-regex": "^8.0.0",
     "formik": "^2.0.4",
@@ -38,7 +38,7 @@
     "moment-business": "^3.0.1",
     "moment-recur": "^1.0.7",
     "numeral": "^2.0.6",
-    "react": "^16.11.0",
+    "react": "^16.12.0",
     "react-apollo": "2.5.8",
     "react-native": "^0.61.4",
     "react-native-actionsheet": "^2.4.2",
@@ -83,7 +83,7 @@
     "eslint": "^6.6.0",
     "jest": "^24.9.0",
     "metro-react-native-babel-preset": "^0.57.0",
-    "react-test-renderer": "^16.11.0"
+    "react-test-renderer": "^16.12.0"
   },
   "jest": {
     "preset": "react-native"
