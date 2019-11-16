@@ -124,7 +124,7 @@ class Info extends React.Component {
           }
           {
             !!isOwner && <>
-              <Appbar.Action
+              { !isClosed && <Appbar.Action
                 size={24}
                 color={colors.gray}
                 icon={({ size, color }) => <Icon
@@ -133,7 +133,7 @@ class Info extends React.Component {
                   color={color}
                 />}
                 onPress={this._onEdit}
-              />
+              />}
               {
                 !isPersonal && (
                   <>
