@@ -15,11 +15,11 @@ export default class AppState {
   @observable isConnected = false;
   @observable searchText = '';
   @observable query = '';
+  @observable discoverFilter = '';
 
   @persist @observable userId = null;
   @persist @observable loggingIn = false;
   @persist @observable lastSyncTimestamp = moment().unix();
-  @persist @observable discoverFilter = 'Event';
   
   @persist('list') @observable mutedEvents = [];
   @persist('list') @observable mutedSchedules = [];
@@ -57,7 +57,6 @@ export default class AppState {
     this.loggingIn = false;
     this.userId = null;
     this.lastSyncTimestamp = moment().unix();
-    this.discoverFilter = 'Event';
   }
 
   @action addCustomType = (category) => {
