@@ -53,7 +53,7 @@ const ListHoc = compose(
   }),
   graphql(gql(searchSchedules), {
     alias: 'withSearchSchedulesOnline',
-    skip: props => !(props.isConnected && props.query),
+    skip: props => !(props.isConnected && props.query.trim()),
     options: props => ({
       fetchPolicy: 'cache-and-network',
       notifyOnNetworkStatusChange: true,

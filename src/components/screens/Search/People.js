@@ -35,7 +35,7 @@ class People extends React.Component {
 
 const ListHoc = graphql(gql(searchPeople), {
   alias: 'withSearchPeople',
-  skip: props => !(props.isConnected && props.query),
+  skip: props => !(props.isConnected && props.query.trim()),
   options: props => ({
     notifyOnNetworkStatusChange: true,
     fetchPolicy: 'cache-and-network',
