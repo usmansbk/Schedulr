@@ -22,7 +22,7 @@ class List extends React.Component {
     updates: []
   };
 
-  _renderEmpty = () => <Empty loading={this.props.loading || this.props.refreshing} />;
+  _renderEmpty = () => <Empty />;
   _renderSeparator = () => <Separator />;
   _keyExtractor = (item, index) => item.id + item.date + index;
   _renderFooter = () => <Footer visible={this.props.updates.length}/>;
@@ -80,7 +80,7 @@ class List extends React.Component {
   };
 
   _onRefresh = () => {
-    if (!(this.props.loading || this.props.refreshing)) {
+    if (!this.props.loading) {
       this.props.onRefresh();
     }
   };
@@ -88,7 +88,7 @@ class List extends React.Component {
   render() {
     const {
       stores,
-      refreshing,
+      loading,
     } = this.props;
     const styles = stores.appStyles.notifications   
     return (
@@ -107,7 +107,7 @@ class List extends React.Component {
         refreshControl={
           <RefreshControl
             onRefresh={this._onRefresh}
-            refreshing={refreshing}
+            refreshing={loading}
             colors={[stores.themeStore.colors.primary]}
             progressBackgroundColor={stores.themeStore.colors.bg}
           />

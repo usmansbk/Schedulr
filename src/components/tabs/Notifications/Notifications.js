@@ -30,7 +30,6 @@ export default class Notifications extends React.Component {
       navigation,
       onRefresh,
       loading,
-      refreshing
     } = this.props;
 
     return (
@@ -55,7 +54,6 @@ export default class Notifications extends React.Component {
         navigation={navigation}
         onRefresh={onRefresh}
         loading={loading}
-        refreshing={refreshing}
       />
       <Filter
         ref={ref => this.Filter = ref}
