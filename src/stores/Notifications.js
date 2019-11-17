@@ -13,9 +13,13 @@ export default class Notifications {
   @action updateLastSyncTimestamp = () => this.lastSyncTimestamp = moment().unix();
 
   @action appendNotifications = newNotifications => {
-    if (newNotifications.length) {
-      this.count += newNotifications.length;
-      this.allNotifications = this.allNotifications.concat(newNotifications.map(notif => Object.assign(notif, { seen: false })));
+    const uniqueNotifications = newNotifications.filter(
+      notif => !(this.allNotifications.find(currentNotif => currentNotif.id === notif.id))
+    );
+
+    if (uniqueNotifications.length) {
+      this.count += uniqueNotifications.length;
+      this.allNotifications = this.allNotifications.concat(uniqueNotifications.map(notif => Object.assign(notif, { seen: false })));
     }
   };
   
