@@ -1,5 +1,6 @@
 import React from 'react';
 import { Provider as PaperProvider } from 'react-native-paper';
+import { Platform } from 'react-native';
 import { ApolloProvider } from 'react-apollo';
 import { Provider as MobxProvider } from 'mobx-react';
 import { Rehydrated } from 'aws-appsync-react';
@@ -38,8 +39,10 @@ export default class App extends React.Component {
     Analytics.record({
       name: "JavaScriptError",
       attributes: {
+        Platform: Platform.OS, 
         errorName: error.name,
         errorMessage: error.message,
+        errorStack: error.stack
       }
     }).then((result) => console.log(result))
     .catch(e => console.log(e));
