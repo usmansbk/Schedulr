@@ -5,7 +5,7 @@ import { Provider as MobxProvider } from 'mobx-react';
 import { Rehydrated } from 'aws-appsync-react';
 import SplashScreen from 'react-native-splash-screen';
 import { observer } from 'mobx-react';
-import Amplify, { Auth } from 'aws-amplify';
+import Amplify, { Auth, Analytics } from 'aws-amplify';
 import AppContainer from './src/App';
 import Loading from 'components/common/Hydrating';
 import NavigationService from 'config/navigation';
@@ -32,7 +32,18 @@ export default class App extends React.Component {
     SplashScreen.hide();
     i18n(stores.settingsStore.language);
     push.init();
-  }
+  };
+
+  componentDidCatch = (error) => {
+    Analytics.record({
+      name: "JavaScriptError",
+      attributes: {
+        errorName: error.name,
+        errorMessage: error.message,
+      }
+    }).then((result) => console.log(result))
+    .catch(e => console.log(e));
+  };
 
   render() {
     return (

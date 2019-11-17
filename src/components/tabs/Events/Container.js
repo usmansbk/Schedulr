@@ -33,7 +33,6 @@ class Container extends React.Component {
   onReceived = (result) => {
     const { payload: { additionalData } } = result;
     if (additionalData && (additionalData.type === 'Event')) {
-      console.log(additionalData);
       this.props.stores.notificationsStore.setUpdatesIndicator(true);
     }
   };
