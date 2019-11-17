@@ -16,7 +16,7 @@ compose(
   withNavigationFocus,
   graphql(GetNotifications, {
     alias: 'withGetNotifications',
-    skip: props => !props.navigation.isFocused(),
+    skip: props => !props.navigation.isFocused() || props.stores.appState.fetchingNotifications,
     options: props => ({
       fetchPolicy: 'no-cache',
       notifyOnNetworkStatusChange: true,

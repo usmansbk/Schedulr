@@ -81,7 +81,7 @@ class List extends React.Component {
 
   _onRefresh = () => {
     if (!this.props.loading) {
-      this.props.onRefresh();
+      this.props.onRefresh && this.props.onRefresh();
     }
   };
 

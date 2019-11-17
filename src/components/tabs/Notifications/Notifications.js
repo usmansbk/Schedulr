@@ -17,10 +17,13 @@ export default class Notifications extends React.Component {
 
   componentDidUpdate = () => OneSignal.clearOneSignalNotifications();
   
-  UNSAFE_componentWillReceiveProps = (props) => {
-    if (!props.navigation.isFocused()) {
-      props.stores.notificationsStore.resetCounter(0);
-      props.stores.notificationsStore.markAsSeen();
+  UNSAFE_componentWillReceiveProps = (nextProps) => {
+    if (!nextProps.navigation.isFocused()) {
+      nextProps.stores.notificationsStore.resetCounter(0);
+      nextProps.stores.notificationsStore.markAsSeen();
+    }
+    if (!!nextProps.loading !== !!this.props.loading) {
+      nextProps.stores.appState.setFetchingNotificationsStatus(nextProps.loading);
     }
   }
 
