@@ -16,6 +16,7 @@ export default class AppState {
   @observable searchText = '';
   @observable query = '';
   @observable discoverFilter = '';
+  @observable fetchingNotifications = false;
 
   @persist @observable userId = null;
   @persist @observable loggingIn = false;
@@ -30,6 +31,7 @@ export default class AppState {
   };
   @persist('list') @observable categories =  categories(this.settings.language);
 
+  @action setFetchingNotificationsStatus = status => this.fetchingNotifications = !!status;
   @action setUserId = id => this.userId = id;
   @action updateLastSyncTimestamp = () => this.lastSyncTimestamp = moment().unix();
   @action setLoginState = state => this.loggingIn = Boolean(state);

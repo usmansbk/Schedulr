@@ -58,19 +58,23 @@ export default class Events extends React.Component {
 
   _fetchNotifications = () => {
     const { stores, fetchMore } = this.props;
-    client.query({
-      fetchPolicy: 'network-only',
-      query: gql(getNotifications),
-      variables: {
-        lastSync: String(stores.notificationsStore.lastSyncTimestamp)
-      }
-    }).then((result) => {
-      const { data: { notifications }={} } = result || {};
-      stores.notificationsStore.updateLastSyncTimestamp();
-      if (notifications && notifications.length) {
-        stores.notificationsStore.appendNotifications(notifications);
-      }
-    }).catch(console.log);
+    if (!stores.appState.fetchingNotifications) {
+      stores.appState.setFetchingNotificationsStatus(true);
+      client.query({
+        fetchPolicy: 'network-only',
+        query: gql(getNotifications),
+        variables: {
+          lastSync: String(stores.notificationsStore.lastSyncTimestamp)
+        }
+      }).then((result) => {
+        const { data: { notifications }={} } = result || {};
+        stores.notificationsStore.updateLastSyncTimestamp();
+        stores.appState.setFetchingNotificationsStatus(false);
+        if (notifications && notifications.length) {
+          stores.notificationsStore.appendNotifications(notifications);
+        }
+      }).catch(console.log);
+    }
     fetchMore && fetchMore();
   };
 
