@@ -29,7 +29,8 @@ class Item extends React.Component {
       date,
       topic,
       extraData,
-      stores
+      stores,
+      seen
     } = this.props;
 
     const styles = stores.appStyles.notifications;
@@ -38,9 +39,10 @@ class Item extends React.Component {
       content,
       title
     } = extraData;
+    const mark = seen ? {} : styles.unseen;
 
     return (
-      <TouchableRipple onPress={this._onPressItems} style={styles.itemContainer}>
+      <TouchableRipple onPress={this._onPressItems} style={[styles.itemContainer, mark]}>
         <View style={styles.messageItemContent}>
           <View>
             <UserAvatar src={pictureUrl} name={subject} size={32} />
