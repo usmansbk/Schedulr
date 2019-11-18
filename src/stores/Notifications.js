@@ -1,12 +1,18 @@
 import { observable, action, computed } from 'mobx';
 import { persist } from 'mobx-persist';
 import moment from 'moment';
+import gql from 'graphql-tag';
+import { getNotifications } from 'api/queries';
+import client from 'config/client';
+
+const MIN_UPPER_BOUND_TIME = 2;
 
 export default class Notifications {
   @persist @observable count = 0;
   @persist @observable lastSyncTimestamp = moment().unix();
   @persist @observable hasUpdates = false;
   @observable filter = 'all';
+  @observable loading = false;
 
   @persist('list') @observable allNotifications = [];
 
@@ -55,6 +61,10 @@ export default class Notifications {
     return this.allNotifications.filter(notif => notif.type === this.filter).sort((a, b) => -(a.timestamp - b.timestamp));
   }
 
+  @computed get skipQuery() {
+    return (moment().unix() - this.lastSyncTimestamp) < MIN_UPPER_BOUND_TIME;
+  }
+
   @action handleFilterAction = (filter) => {
     switch(filter) {
       case 'clear':
@@ -64,4 +74,26 @@ export default class Notifications {
         this.filter = filter;
     }
   }
+
+  @action fetchNotifications = () => {
+    if (!this.loading) {
+      this.loading = true;
+      client.query({
+        fetchPolicy: 'network-only',
+        query: gql(getNotifications),
+        variables: {
+          lastSync: String(this.lastSyncTimestamp)
+        }
+      }).then((result) => {
+        const { data: { notifications }={} } = result || {};
+        this.updateLastSyncTimestamp();
+        this.loading = false;
+        if (notifications && notifications.length) {
+          this.appendNotifications(notifications);
+        }
+      }).catch(() => {
+        this.loading = false;
+      });
+    }
+  };
 }

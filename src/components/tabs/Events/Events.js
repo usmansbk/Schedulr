@@ -5,9 +5,6 @@ import List from 'components/lists/Events';
 import FAB from 'components/common/Fab';
 import schdlAll from 'helpers/setReminders';
 import { mergeEvents } from 'lib/utils';
-import gql from 'graphql-tag';
-import { getNotifications } from 'api/queries';
-import client from 'config/client';
 
 export default class Events extends React.Component {
   static defaultProps = {
@@ -58,23 +55,7 @@ export default class Events extends React.Component {
 
   _fetchNotifications = () => {
     const { stores, fetchMore } = this.props;
-    if (!stores.appState.fetchingNotifications) {
-      stores.appState.setFetchingNotificationsStatus(true);
-      client.query({
-        fetchPolicy: 'network-only',
-        query: gql(getNotifications),
-        variables: {
-          lastSync: String(stores.notificationsStore.lastSyncTimestamp)
-        }
-      }).then((result) => {
-        const { data: { notifications }={} } = result || {};
-        stores.notificationsStore.updateLastSyncTimestamp();
-        stores.appState.setFetchingNotificationsStatus(false);
-        if (notifications && notifications.length) {
-          stores.notificationsStore.appendNotifications(notifications);
-        }
-      }).catch(console.log);
-    }
+    stores.notificationsStore.fetchNotifications();
     fetchMore && fetchMore();
   };
 

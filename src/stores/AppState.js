@@ -8,9 +8,6 @@ export default class AppState {
   constructor(settingsStore) {
     this.settings = settingsStore;
   }
-  
-  debounceQuery = debounce(val => this.query = val, 250);
-
 
   @observable isConnected = false;
   @observable searchText = '';
@@ -100,4 +97,5 @@ export default class AppState {
   }
 
   isToggled = (id) => this.discoverFilter === id.toLowerCase();
+  debounceQuery = debounce(val => this.query = val, 250);
 }
