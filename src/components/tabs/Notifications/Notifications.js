@@ -9,6 +9,26 @@ import List from 'components/lists/Notifications';
 import Filter from 'components/actionsheet/NotificationFilter';
 
 class Notifications extends React.Component {
+  state = {
+    loading: false
+  };
+
+  static getDerivedStateFromProps = (props) => {
+    if (!props.navigation.isFocused()) {
+      props.stores.notificationsStore.resetCounter(0);
+      props.stores.notificationsStore.markAsSeen();
+      OneSignal.clearOneSignalNotifications();
+      return {
+        loading: false 
+      };
+    } else {
+      props.stores.notificationsStore.fetchNotifications();
+      props.stores.appState.deltaSync();
+    };
+    return null;
+  };
+
+  _onRefresh = () => this.setState({ loading: true });
 
   _onPressFilterButton = () => {
     this.Filter &&
@@ -16,19 +36,6 @@ class Notifications extends React.Component {
   };
 
   shouldComponentUpdate = () => this.props.navigation.isFocused();
-
-  componentDidUpdate = () => OneSignal.clearOneSignalNotifications();
-  
-  UNSAFE_componentWillReceiveProps = (nextProps) => {
-    if (!nextProps.navigation.isFocused()) {
-      nextProps.stores.notificationsStore.resetCounter(0);
-      nextProps.stores.notificationsStore.markAsSeen();
-    }
-    if (nextProps.navigation.isFocused()) {
-      nextProps.stores.notificationsStore.fetchNotifications();
-      nextProps.stores.appState.deltaSync();
-    }
-  };
 
   render() {
     const {
@@ -54,7 +61,11 @@ class Notifications extends React.Component {
         />
       </Appbar.Header>
       <Divider />
-      <List navigation={navigation} />
+      <List
+        navigation={navigation}
+        refreshing={this.state.loading}
+        onRefresh={this._onRefresh}
+       />
       <Filter ref={ref => this.Filter = ref} />
       </>
     )
