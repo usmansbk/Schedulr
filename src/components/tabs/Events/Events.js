@@ -12,12 +12,6 @@ export default class Events extends React.Component {
     allowedEvents: []
   }
 
-  componentDidMount = () => {
-    if (!(this.props.loading || this.props.fetchingMore) && this.props.isConnected) {
-      this.props.fetchMore();
-    }
-  };
-
   shouldComponentUpdate = (nextProps) => nextProps.navigation.isFocused();
   
   componentDidUpdate = () => {
@@ -31,19 +25,13 @@ export default class Events extends React.Component {
  
   _navigateToNewEvent = () => {
     this.props.navigation.navigate('NewEvent', {
-      eventScheduleId : uuidv5(this.props.userId, uuidv5.DNS)
+      eventScheduleId : uuidv5(this.props.id, uuidv5.DNS)
     });
   };
 
   _onRefresh = () => {
-    if (!(this.props.loading || this.props.fetchingMore)) {
+    if (!this.props.loading) {
       this.props.onRefresh && this.props.onRefresh();
-    }
-  };
-
-  _fetchMore = () => {
-    if (!(this.props.loading || this.props.fetchingMore)) {
-      this.props.fetchMore && this.props.fetchMore();
     }
   };
   
@@ -53,15 +41,14 @@ export default class Events extends React.Component {
     return this._mergeAllEvents(this.props.data);
   }
 
-  _fetchNotifications = () => {
-    const { stores, fetchMore } = this.props;
-    stores.notificationsStore.fetchNotifications();
-    fetchMore && fetchMore();
+  _sync = () => {
+    this.props.fetchNotifications();
+    this.props.deltaSync();
   };
 
   componentDidMount = () => {
-    if ( !(this.props.loading || this.props.fetchingMore) ) {
-      this._fetchNotifications();
+    if (!this.props.loading) {
+      this._sync();
     }
   };
 
@@ -73,9 +60,8 @@ export default class Events extends React.Component {
           events={this.events}
           navigation={this.props.navigation}
           onRefresh={this._onRefresh}
-          loading={this.props.loading}
-          fetchingMore={this.props.fetchingMore}
-          fetchMore={this._fetchNotifications}
+          loading={this.props.loading || this.props.fetchingUpdates}
+          fetchMore={this._sync}
         />
         <FAB
           icon="edit-2"

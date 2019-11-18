@@ -98,14 +98,19 @@ class Container extends React.Component {
     this.unsubscribe();
   };
 
+  _deltaSync = () => this.props.stores.appState.deltaSync();
+  _fetchNotifications = () => this.props.stores.notificationsStore.fetchNotifications();
+
   render() {
     const { stores } = this.props;
-    
     return <Events
       id={stores.appState.userId}
       mutedEvents={stores.appState.mutedEvents}
       allowedEvents={stores.appState.allowedEvents}
       isConnected={stores.appState.isConnected}
+      fetchingUpdates={stores.appState.loading}
+      deltaSync={this._deltaSync}
+      fetchNotifications={this._fetchNotifications}
     />
   }
 }
