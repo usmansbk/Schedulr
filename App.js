@@ -46,6 +46,7 @@ export default class App extends React.Component {
       }
     }).then((result) => console.log(result))
     .catch(e => console.log(e));
+    if (__DEV__) return;
   };
 
   render() {

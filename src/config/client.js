@@ -32,7 +32,7 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
       }
     });  
   }
-  // if (networkError) SimpleToast.show(I18n.get("ERROR_noConnection"), SimpleToast.SHORT);
+  if (__DEV__) return;
 });
 
 const appSyncLink = createAppSyncLink({
