@@ -19,6 +19,8 @@ class ScheduleAction extends React.Component {
   
   _toggleMute = () => this.props.onMute(this.props.id);
 
+  _unfollowSchedule = () => console.log('Unfollow', this.props.title);
+
   _handleActionSheet = (index) => {
     switch (index) {
       case 0:
@@ -27,21 +29,33 @@ class ScheduleAction extends React.Component {
       case 1:
         this._toggleMute();
         break;
+      case 2: {
+        if (this.props.isFollowing) {
+          this._unfollowSchedule();
+        }
+        break;
+      }
     }
-  }
+  };
 
   render() {
     const {
       title,
       isMuted,
+      isFollowing,
       stores
     } = this.props;
 
-    const options = [I18n.get('BUTTON_back')];
+    const options = [];
     options.unshift(
       I18n.get('BUTTON_shareInviteLink'),
       I18n.get(`BUTTON_${isMuted ? 'unmuteEvents' : 'muteEvents'}`)
     );
+    if (isFollowing) {
+      options.push(I18n.get('BUTTON_unfollow'));
+    }
+    options.push(I18n.get('BUTTON_back'));
+
     const cancelButtonIndex = options.length - 1;
     const destructiveButtonIndex = cancelButtonIndex - 1;
 

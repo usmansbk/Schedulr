@@ -39,7 +39,8 @@ class Item extends React.Component {
       isClosed,
       isPublic,
       stores,
-      isMuted
+      isMuted,
+      isFollowing
     } = this.props;
     
     const styles = stores.appStyles.schedulesList;
@@ -92,6 +93,7 @@ class Item extends React.Component {
             id={id}
             title={name}
             isMuted={isMuted}
+            isFollowing={isFollowing}
             ref={ref => this.ActionSheet = ref}
             onMute={this._onMute}
           />
