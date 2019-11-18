@@ -15,9 +15,22 @@ export default graphql(gql(deleteFollow), {
       variables: {
         input
       },
-      update: (cache, { data: { deleteFollow } }) => deleteFollow && (
-        updateApolloCache(cache, deleteFollow, DELETE)
-      ),
+      update: (cache, { data: { deleteFollow } }) => {
+        let optimisticFollow = deleteFollow;
+        if (!optimisticFollow) {
+          const optimisticResponse = buildOptimisticResponse({
+            input: {
+              ...input,
+              followScheduleId: id
+            },
+            mutationName: 'deleteFollow',
+            operationType: DELETE,
+            responseType: 'Follow'
+          });
+          optimisticFollow = optimisticResponse.deleteFollow;
+        }
+        updateApolloCache(cache, optimisticFollow, DELETE);
+      },
       optimisticResponse: buildOptimisticResponse({
         input: {
           ...input,

@@ -35,17 +35,30 @@ export default inject("stores")(observer(
       alias: 'withDeleteFollow',
       props: ({ mutate, ownProps }) => ({
         ...ownProps,
-        unfollow: (input, id) => mutate({
+        unfollow: (input, followScheduleId) => mutate({
           variables: {
             input
           },
-          update: (cache, { data: { deleteFollow } }) => deleteFollow && (
-            updateApolloCache(cache, deleteFollow, DELETE)
-          ),
+          update: (cache, { data: { deleteFollow } }) => {
+            let optimisticFollow = deleteFollow;
+            if (!optimisticFollow) {
+              const optimisticResponse = buildOptimisticResponse({
+                input: {
+                  ...input,
+                  followScheduleId
+                },
+                mutationName: 'deleteFollow',
+                operationType: DELETE,
+                responseType: 'Follow'
+              });
+              optimisticFollow = optimisticResponse.deleteFollow;
+            }
+            updateApolloCache(cache, optimisticFollow, DELETE);
+          },
           optimisticResponse: buildOptimisticResponse({
             input: {
               ...input,
-              followScheduleId: id
+              followScheduleId
             },
             mutationName: 'deleteFollow',
             operationType: DELETE,

@@ -36,9 +36,22 @@ export default compose(
         variables: {
           input
         },
-        update: (cache, { data: { deleteBookmark } }) => (
-          updateApolloCache(cache, deleteBookmark, DELETE)
-        ),
+          update: (cache, { data: { deleteBookmark } }) => {
+            let optimisticBookmark = deleteBookmark;
+            if (!optimisticBookmark) {
+              const optimisticResponse = buildOptimisticResponse({
+                input: {
+                  ...input,
+                  bookmarkEventId
+                },
+                mutationName: 'deleteBookmark',
+                responseType: 'Bookmark',
+                operationType: DELETE
+              });
+              optimisticBookmark = optimisticResponse.deleteBookmark;
+            }
+            updateApolloCache(cache, optimisticBookmark, DELETE);
+          },
         optimisticResponse: buildOptimisticResponse({
           input: {
             ...input,
