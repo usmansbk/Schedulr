@@ -2,6 +2,7 @@ import React from 'react';
 import { Appbar } from 'react-native-paper';
 import { inject, observer } from 'mobx-react';
 import Icon from 'react-native-vector-icons/Feather';
+import { I18n } from 'aws-amplify';
 import Fab from 'components/common/Fab';
 import Loading from 'components/common/Loading';
 import Error from 'components/common/Error';
