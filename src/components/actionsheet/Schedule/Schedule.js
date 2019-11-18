@@ -19,7 +19,12 @@ class ScheduleAction extends React.Component {
   
   _toggleMute = () => this.props.onMute(this.props.id);
 
-  _unfollowSchedule = () => console.log('Unfollow', this.props.title);
+  _unfollowSchedule = () => {
+    const input = {
+      id: `${this.props.stores.appState.userId}-${this.props.id}`
+    };
+    this.props.unfollow(input, this.props.id);
+  };
 
   _handleActionSheet = (index) => {
     switch (index) {
