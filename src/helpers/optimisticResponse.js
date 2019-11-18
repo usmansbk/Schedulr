@@ -426,10 +426,12 @@ function createFollow(input, typename) {
     fragment: userFragment,
     id: `User:${userId}`
   });
-  if (typeof currentUser.followingCount === 'number') {
-    currentUser.followingCount += 1;
-  } else {
-    currentUser.followingCount = 1;
+  if (currentUser) {
+    if (typeof currentUser.followingCount === 'number') {
+      currentUser.followingCount += 1;
+    } else {
+      currentUser.followingCount = 1;
+    }
   }
   client.writeFragment({
     fragment: userFragment,
