@@ -31,6 +31,7 @@ class List extends React.Component {
   _navigateToFollowers = (id) => this.props.navigation.navigate('Followers', { id });
   _navigateToBookmarks = (id) => this.props.navigation.navigate('EventBookmarks', { id });
   _navigateToComments = (id) => this.props.navigation.navigate('Comments', { id });
+  _onRefresh = () => this.props.stores.notificationsStore.fetchNotifications();
   _getItemLayout = (_, index) => (
     {
       length: ITEM_HEIGHT,
@@ -79,16 +80,9 @@ class List extends React.Component {
     />
   };
 
-  _onRefresh = () => {
-    if (!this.props.loading) {
-      this.props.onRefresh && this.props.onRefresh();
-    }
-  };
-
   render() {
     const {
       stores,
-      loading,
     } = this.props;
     const styles = stores.appStyles.notifications;
     return (
@@ -107,7 +101,7 @@ class List extends React.Component {
         refreshControl={
           <RefreshControl
             onRefresh={this._onRefresh}
-            refreshing={loading}
+            refreshing={stores.notificationsStore.loading}
             colors={[stores.themeStore.colors.primary]}
             progressBackgroundColor={stores.themeStore.colors.bg}
           />

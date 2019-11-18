@@ -3,10 +3,12 @@ import { Appbar, Divider } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/Feather';
 import OneSignal from 'react-native-onesignal';
 import { I18n } from 'aws-amplify';
+import { inject, observer } from 'mobx-react';
+import { withNavigationFocus } from 'react-navigation';
 import List from 'components/lists/Notifications';
 import Filter from 'components/actionsheet/NotificationFilter';
 
-export default class Notifications extends React.Component {
+class Notifications extends React.Component {
 
   _onPressFilterButton = () => {
     this.Filter &&
@@ -22,17 +24,16 @@ export default class Notifications extends React.Component {
       nextProps.stores.notificationsStore.resetCounter(0);
       nextProps.stores.notificationsStore.markAsSeen();
     }
-    if (!!nextProps.loading !== !!this.props.loading) {
-      nextProps.stores.appState.setFetchingNotificationsStatus(nextProps.loading);
+    if (nextProps.navigation.isFocused()) {
+      nextProps.stores.notificationsStore.fetchNotifications();
+      nextProps.stores.appState.deltaSync();
     }
-  }
+  };
 
   render() {
     const {
       stores,
       navigation,
-      onRefresh,
-      loading,
     } = this.props;
 
     return (
@@ -53,15 +54,11 @@ export default class Notifications extends React.Component {
         />
       </Appbar.Header>
       <Divider />
-      <List
-        navigation={navigation}
-        onRefresh={onRefresh}
-        loading={loading}
-      />
-      <Filter
-        ref={ref => this.Filter = ref}
-      />
+      <List navigation={navigation} />
+      <Filter ref={ref => this.Filter = ref} />
       </>
     )
   }
 }
+
+export default inject("stores")(observer(withNavigationFocus(Notifications)))

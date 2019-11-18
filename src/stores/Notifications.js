@@ -52,8 +52,6 @@ export default class Notifications {
     this.lastSyncTimestamp = moment().unix();
   }
 
-  @action setUpdatesIndicator = status => this.hasUpdates = status;
-
   @computed get updates() {
     if (this.filter === 'all') {
       return this.allNotifications.sort((a, b) => -(a.timestamp - b.timestamp));

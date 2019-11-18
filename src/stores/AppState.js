@@ -1,8 +1,15 @@
-import { observable, action, computed } from 'mobx';
+import { observable, action } from 'mobx';
 import { persist } from 'mobx-persist';
 import debounce from 'lodash.debounce';
 import moment from 'moment';
+import gql from 'graphql-tag';
 import categories from 'i18n/categories';
+import { getDeltaUpdates, getUserData } from 'api/queries';
+import updateBaseQuery from 'helpers/deltaSync';
+import client from 'config/client';
+
+const DeltaQuery = gql(getDeltaUpdates);
+const BaseQuery = gql(getUserData);
 
 export default class AppState {
   constructor(settingsStore) {
@@ -13,6 +20,7 @@ export default class AppState {
   @observable searchText = '';
   @observable query = '';
   @observable discoverFilter = '';
+  @observable loading = false;
 
   @persist @observable userId = null;
   @persist @observable loggingIn = false;
@@ -92,6 +100,45 @@ export default class AppState {
   @action onChangeText (searchText) {
     this.searchText = searchText;
     this.debounceQuery(searchText);
+  }
+
+  @action deltaSync() {
+    if (!this.loading) {
+      this.loading = true;
+      client.query({
+        fetchPolicy: 'network-only',
+        query: DeltaQuery,
+        variables: {
+          lastSync: String(this.lastSyncTimestamp)
+        }
+      }).then(result => {
+        this.loading = false;
+        this.updateLastSyncTimestamp();
+        const { data: fetchMoreResult } = result;
+        if (fetchMoreResult && fetchMoreResult.deltaSync) {
+          const prev = client.readQuery({
+            query: BaseQuery,
+            variables: {
+              id: this.userId
+            }
+          });
+          const data = updateBaseQuery({
+            prev,
+            fetchMoreResult,
+          });
+          client.writeQuery({
+            query: BaseQuery,
+            variables: {
+              id: this.userId
+            },
+            data
+          });
+        }
+      }).catch((error) => {
+        console.log(error);
+        this.loading = false;
+      });
+    }
   }
 
   isToggled = (id) => this.discoverFilter === id.toLowerCase();

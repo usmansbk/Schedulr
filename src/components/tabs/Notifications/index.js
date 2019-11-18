@@ -1,3 +1,3 @@
-import Notifications from './Hoc';
+import Notifications from './Notifications';
 
 export default Notifications;

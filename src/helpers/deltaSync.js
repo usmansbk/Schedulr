@@ -3,11 +3,7 @@ import { DELETE, EVENT_TYPE, SCHEDULE_TYPE } from 'lib/constants';
 export default function updateBaseQuery({
   prev,
   fetchMoreResult,
-  stores,
 }) {
-	stores.appState.updateLastSyncTimestamp();
-    stores.notificationsStore.setUpdatesIndicator(false);
-
 	if (!fetchMoreResult) return prev;
 	const { getUserData } = prev;
 
