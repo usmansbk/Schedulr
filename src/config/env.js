@@ -31,7 +31,7 @@ const dev = {
 export const prod = {
   ...common,
   BUILD: `${date}-release`,
-  APP_VERSION: '0.0.1'
+  APP_VERSION: '0.1.0'
 };
 
 export default dev;
