@@ -13,7 +13,7 @@ const { AVATAR_SIZE } = schedules
 class Item extends React.Component {
   _onPress = () => this.props.onPressItem(this.props.id);
   _onLongPress = () => {
-    this.ActionSheet && this.ActionSheet.showActionSheet();
+    this.ActionSheet && this.ActionSheet.getWrappedInstance().showActionSheet();
   };
   _onMute = () => {
     this.props.stores.appState.toggleMuteSchedule(this.props.id, this.props.isMuted);
