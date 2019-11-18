@@ -25,7 +25,7 @@ const common = {
 const dev = {
   ...common,
   BUILD: `${date}-beta`,
-  APP_VERSION: '0.0.1'
+  APP_VERSION: '0.1.0'
 };
 
 export const prod = {
