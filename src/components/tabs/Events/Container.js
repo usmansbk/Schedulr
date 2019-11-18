@@ -32,7 +32,9 @@ class Container extends React.Component {
 
   onReceived = (result) => {
     const { payload: { additionalData } } = result;
+    this.props.stores.notificationsStore.fetchNotifications();
     if (additionalData && (additionalData.type === 'Event')) {
+      this.props.stores.appState.deltaSync();
     }
   };
   
