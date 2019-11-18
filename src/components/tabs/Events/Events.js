@@ -60,7 +60,7 @@ export default class Events extends React.Component {
           events={this.events}
           navigation={this.props.navigation}
           onRefresh={this._onRefresh}
-          loading={this.props.loading || this.props.fetchingUpdates}
+          loading={this.props.loading}
           fetchMore={this._sync}
         />
         <FAB
