@@ -11,7 +11,10 @@ class Discover extends React.Component {
   _openLocationPicker = () => this.setState({ showLocationPicker: true });
   _hideLocationPicker = () => this.setState({ showLocationPicker: false });
   
-  componentDidMount = () => this.props.stores.locationStore.fetchLocation(true);
+  componentDidMount = () => {
+    this.props.stores.locationStore.fetchLocation(true);
+    this.props.stores.adsStore.showInterstitialAd();
+  };
 
   _handleSelect = (location) => this.props.stores.locationStore.setSearchLocation(location);
 
