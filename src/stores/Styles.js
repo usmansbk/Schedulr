@@ -1885,7 +1885,6 @@ export default class AppStyles {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-evenly',
-        // backgroundColor: 'blue'
       },
       item: {
         justifyContent: 'center',
