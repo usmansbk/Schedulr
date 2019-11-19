@@ -5,6 +5,7 @@ import isEqual from 'lodash.isequal';
 import {
   View,
   ScrollView,
+  RefreshControl
 } from 'react-native';
 import numeral from 'numeral';
 import {
@@ -163,7 +164,17 @@ class Info extends React.Component {
             </>
           }
         </Appbar.Header>
-        <ScrollView style={styles.container}>
+        <ScrollView
+          style={styles.container}
+          refreshControl={
+            <RefreshControl
+              refreshing={loading}
+              onRefresh={onRefresh}
+              colors={[stores.themeStore.colors.primary]}
+              progressBackgroundColor={stores.themeStore.colors.bg}
+            />
+          }
+        >
           <View style={styles.container}>
             <View style={styles.avatar}>
               <View style={styles.userAvatar}>
