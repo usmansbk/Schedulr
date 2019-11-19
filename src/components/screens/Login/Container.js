@@ -1,6 +1,7 @@
 import React from 'react';
 import uuidv5 from 'uuid/v5';
 import { Auth, Hub } from 'aws-amplify';
+import crashlytics from '@react-native-firebase/crashlytics';
 import { inject, observer } from 'mobx-react';
 import { withNavigationFocus } from'react-navigation';
 import { withApollo } from 'react-apollo';
@@ -104,6 +105,7 @@ class Container extends React.Component {
             this.props.stores.settingsStore.setUserPreference(user.preference);
           }
           this.props.stores.appState.setUserId(email);
+          crashlytics().setUserEmail(email);
           this.props.navigation.navigate('App');
         } catch(error) {
           SimpleToast.show("Sign-in failed", SimpleToast.LONG);

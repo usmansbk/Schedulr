@@ -1,12 +1,12 @@
 import React from 'react';
 import { Provider as PaperProvider } from 'react-native-paper';
-import { Platform } from 'react-native';
 import { ApolloProvider } from 'react-apollo';
 import { Provider as MobxProvider } from 'mobx-react';
 import { Rehydrated } from 'aws-appsync-react';
 import SplashScreen from 'react-native-splash-screen';
 import { observer } from 'mobx-react';
-import Amplify, { Auth, Analytics } from 'aws-amplify';
+import crashlytics from '@react-native-firebase/crashlytics';
+import Amplify, { Auth } from 'aws-amplify';
 import AppContainer from './src/App';
 import Loading from 'components/common/Hydrating';
 import NavigationService from 'config/navigation';
@@ -19,7 +19,8 @@ import i18n from 'config/i18n';
 import AmplifyStorage from 'helpers/AmplifyStorage';
 
 console.disableYellowBox = true;
-
+crashlytics().log('Testing');
+crashlytics().crash();
 // window.LOG_LEVEL = 'DEBUG';
 
 Amplify.configure(aws_config);
@@ -36,16 +37,7 @@ export default class App extends React.Component {
   };
 
   componentDidCatch = (error) => {
-    Analytics.record({
-      name: "JavaScriptError",
-      attributes: {
-        Platform: Platform.OS, 
-        errorName: error.name,
-        errorMessage: error.message,
-        errorStack: error.stack
-      }
-    }).then((result) => console.log(result))
-    .catch(e => console.log(e));
+    crashlytics().recordError(error);
     if (__DEV__) return;
   };
 
