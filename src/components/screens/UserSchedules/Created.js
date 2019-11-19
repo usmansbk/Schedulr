@@ -118,7 +118,7 @@ export default inject('stores')(observer(
     graphql(gql(getUserSchedules), {
       alias,
       options: props => ({
-        fetchPolicy: 'cache-and-network',
+        fetchPolicy: 'cache-first',
         notifyOnNetworkStatusChange: true,
         variables: {
           id: props.navigation.getParam('id'),
