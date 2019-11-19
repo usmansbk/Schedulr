@@ -15,11 +15,9 @@ const NotificationIcon = ({ name, color, size, stores }) => {
         color={color}
         size={size}
       />
-      {!!stores.notificationsStore.count && (
-        <Badge size={16} style={stores.appStyles.notifications.indicator}>
-          {numeral(stores.notificationsStore.count).format('0a')}
+        <Badge visible={!!stores.notificationsStore.count} size={16} style={stores.appStyles.notifications.indicator}>
+          {numeral(stores.notificationsStore.count || 3).format('0a')}
         </Badge>
-      )}
     </View>
   );
 };

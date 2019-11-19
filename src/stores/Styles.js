@@ -897,6 +897,8 @@ export default class AppStyles {
         marginRight: 8
       },
       indicator: {
+        backgroundColor: colors.primary_light,
+        color: '#fff',
         position: 'absolute',
         top: 0,
         right: 0
