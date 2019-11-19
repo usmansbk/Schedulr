@@ -5,7 +5,6 @@ import { Provider as MobxProvider } from 'mobx-react';
 import { Rehydrated } from 'aws-appsync-react';
 import SplashScreen from 'react-native-splash-screen';
 import { observer } from 'mobx-react';
-import crashlytics from '@react-native-firebase/crashlytics';
 import Amplify, { Auth } from 'aws-amplify';
 import AppContainer from './src/App';
 import Loading from 'components/common/Hydrating';
@@ -17,6 +16,7 @@ import env from 'config/env';
 import push from 'config/pushnotification';
 import i18n from 'config/i18n';
 import AmplifyStorage from 'helpers/AmplifyStorage';
+import logError from 'config/logger';
 
 console.disableYellowBox = true;
 // window.LOG_LEVEL = 'DEBUG';
@@ -35,7 +35,7 @@ export default class App extends React.Component {
   };
 
   componentDidCatch = (error) => {
-    crashlytics().recordError(error);
+    logError(error);
     if (__DEV__) return;
   };
 

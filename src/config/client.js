@@ -1,10 +1,10 @@
 import AWSAppSyncClient, { createAppSyncLink } from 'aws-appsync';
 import { Auth, I18n } from 'aws-amplify';
-import crashlytics from '@react-native-firebase/crashlytics';
 import { ApolloLink } from 'apollo-link';
 import { onError } from 'apollo-link-error';
 import SimpleToast from 'react-native-simple-toast';
 import aws_config from 'aws_config';
+import logError from './logger';
 import {
   EVENT_TYPE,
   SCHEDULE_TYPE,
@@ -12,7 +12,7 @@ import {
   COMMENT_TYPE
 } from 'lib/constants';
 
-const errorLink = onError(({ graphQLErrors, networkError }) => {
+const errorLink = onError(({ graphQLErrors }) => {
   if (graphQLErrors) {
     graphQLErrors.map(error => {
       const message = error.message;
@@ -20,7 +20,7 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
         // Dont log elasticsearch "Not found"
       } else {
         SimpleToast.show(I18n.get('ERROR_serverError')(error.message), SimpleToast.LONG);
-        crashlytics().recordError(error);
+        logError(error);
       }
     });  
   }
