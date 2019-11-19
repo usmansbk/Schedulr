@@ -50,6 +50,7 @@ class RootStore {
     this.appState.reset();
     this.notificationsStore.reset();
     this.locationStore.reset();
+    this.adsStore.reset();
   }
 }
 
