@@ -23,7 +23,7 @@ class Fab extends React.Component {
         onPress={this._onPress}
         theme={{
           colors: {
-            accent: secondary ? stores.themeStore.colors.primary_light : stores.themeStore.colors.primary
+            accent: stores.themeStore.colors.primary
           }
         }}
         style={secondary ? styles.secondary : styles.fab}
