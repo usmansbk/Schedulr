@@ -19,8 +19,7 @@ import i18n from 'config/i18n';
 import AmplifyStorage from 'helpers/AmplifyStorage';
 
 console.disableYellowBox = true;
-crashlytics().log('Testing');
-crashlytics().recordError(new Error('Testing'));
+crashlytics().log('Testing Logs');
 crashlytics().crash();
 // window.LOG_LEVEL = 'DEBUG';
 
