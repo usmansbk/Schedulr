@@ -12,7 +12,7 @@ export default class Screen extends React.Component {
         url = env.FAQ_URL;
         break;
       case 'contact':
-        url = `mailto:${env.EMAIL}?subject=${Platform.OS} User Feedback`;
+        url = `mailto:${env.EMAIL}?subject=[${Platform.OS}] User Feedback`;
         break;
       case 'copyright':
         url = env.LEGALITY_URL;
