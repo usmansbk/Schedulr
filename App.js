@@ -20,6 +20,7 @@ import AmplifyStorage from 'helpers/AmplifyStorage';
 
 console.disableYellowBox = true;
 crashlytics().log('Testing');
+crashlytics().recordError(new Error('Testing'));
 crashlytics().crash();
 // window.LOG_LEVEL = 'DEBUG';
 
