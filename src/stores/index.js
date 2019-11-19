@@ -8,6 +8,7 @@ import AppStyles from './Styles';
 import AppState from './AppState';
 import Notifications from './Notifications';
 import Location from './Location';
+import Admob from './AdMob';
 
 class RootStore {
   constructor() {
@@ -20,6 +21,7 @@ class RootStore {
     const remindMeStore = new RemindMe;
     const notificationsStore = new Notifications;
     const locationStore = new Location;
+    const adsStore = new Admob;
     
     hydrate('settings', settingsStore);
     hydrate('remindMe', remindMeStore);
@@ -39,6 +41,7 @@ class RootStore {
     this.appState = appState;
     this.notificationsStore = notificationsStore;
     this.locationStore = locationStore;
+    this.adsStore = adsStore;
   }
 
   @action reset = () => {
