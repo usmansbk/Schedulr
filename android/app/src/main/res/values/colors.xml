@@ -1,5 +1,5 @@
 <resources>
     <color name="white">#FFF</color>
-    <color name="primary">#3F51B5</color>
-    <color name="primary_dark">#002984</color>
+    <color name="primary">#00acee</color>
+    <color name="primary_dark">#008abe</color>
 </resources>
