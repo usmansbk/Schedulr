@@ -1,5 +1,5 @@
 import React from 'react';
-import { Linking } from 'react-native';
+import { Linking, Platform } from 'react-native';
 import Help from './Help';
 import env from 'config/env';
 
@@ -12,7 +12,7 @@ export default class Screen extends React.Component {
         url = env.FAQ_URL;
         break;
       case 'contact':
-        url = env.CONTACT_URL;
+        url = `mailto:${env.EMAIL}?subject=${Platform.OS} User Feedback`;
         break;
       case 'copyright':
         url = env.LEGALITY_URL;
