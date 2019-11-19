@@ -14,8 +14,8 @@ export default () => (
   </View>
 );
 
-const LENGTH = 120;
-const LOGO_LENGTH = 100;
+const LENGTH = 140;
+const LOGO_LENGTH = 140;
 
 const styles = StyleSheet.create({
   logo: {
@@ -28,16 +28,16 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     width: LENGTH,
     height: LENGTH,
-    borderRadius: LENGTH / 2,
-    backgroundColor: colors.primary,
-    elevation: 8,
-    shadowOpacity: 0.5,
-    shadowRadius: 6,
-    shadowColor: '#000',
-    shadowOffset: {
-      height: 4,
-      width: 0
-    },
+    // borderRadius: LENGTH / 2,
+    // backgroundColor: colors.primary,
+    // elevation: 8,
+    // shadowOpacity: 0.5,
+    // shadowRadius: 6,
+    // shadowColor: '#000',
+    // shadowOffset: {
+    //   height: 4,
+    //   width: 0
+    // },
     marginBottom: 16
   }
 });
