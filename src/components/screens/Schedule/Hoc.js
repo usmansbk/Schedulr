@@ -11,7 +11,7 @@ export default compose(
   graphql(gql(getSchedule), {
     alias,
     options: props => ({
-      fetchPolicy: 'cache-and-network',
+      fetchPolicy: 'cache-first',
       notifyOnNetworkStatusChange: true,
       variables: {
         id: props.id
