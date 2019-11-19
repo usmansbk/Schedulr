@@ -153,6 +153,11 @@ class UserProfile extends React.Component {
                 label={I18n.get("BUTTON_editProfile")}
                 color={colors.white}
                 onPress={this._editProfile}
+                theme={{
+                  colors: {
+                    accent: colors.primary_dark
+                  }
+                }}
               />
             </View>
           )
