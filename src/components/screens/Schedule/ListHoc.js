@@ -65,7 +65,7 @@ class ListHoc extends React.Component {
 export default graphql(gql(getScheduleEvents), {
   alias,
   options: props => ({
-    fetchPolicy: 'cache-and-network', 
+    fetchPolicy: 'cache-first', 
     notifyOnNetworkStatusChange: true,
     variables: {
       id: props.id,
