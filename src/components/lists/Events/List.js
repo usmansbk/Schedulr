@@ -12,7 +12,7 @@ import Separator from './Separator';
 import SectionHeader from './SectionHeader';
 import SectionFooter from './SectionFooter';
 import Item from './Item';
-import Ad from './Ad';
+import AdItem from './AdItem';
 import {
   getStatus,
   parseRepeat,
@@ -186,8 +186,8 @@ class List extends React.Component {
 
   static getDerivedStateFromProps(props, state) {
     let events = props.events;
-    if (state.events.length > 1) {
-      events = injectAds(props.events);
+    if (events.length > 1) {
+      events = injectAds(events);
     }
     if (props.events.length && eventsChanged(state.events, events)) {
       const today = moment().startOf('day').toISOString();
@@ -242,7 +242,7 @@ class List extends React.Component {
     bookmarksCount,
     isOwner,
     ref_date
-  }}) => __typename === 'Advert' ? <Ad /> : (<Item
+  }}) => __typename === 'Advert' ? <AdItem /> : (<Item
     id={id}
     title={title}
     startAt={startAt}
