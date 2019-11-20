@@ -80,7 +80,7 @@ class Item extends React.Component {
                 style={styles.icon}
                 name={icon}
                 size={14}
-                color={stores.themeStore.colors.primary_light}
+                color={stores.themeStore.colors.primary}
               />
               <Caption style={styles.itemTag}>{date}</Caption>
             </View>

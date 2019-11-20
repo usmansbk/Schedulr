@@ -20,7 +20,7 @@ export default class ThemeStore {
         ...DefaultTheme.colors,
         dark: this.settings.dark,
         primary: colors.primary,
-        accent: colors.primary_light,
+        accent: colors.primary,
         error: colors.light_red,
         text: colors.black,
         placeholder: colors.placeholder,

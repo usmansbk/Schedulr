@@ -29,6 +29,7 @@ export default inject('stores')(observer(
               size={size}
               color={color}
             />}
+            iconColor={stores.themeStore.colors.primary}
             editable={false}
             collapsable
             placeholder={ellipsisMode(I18n.get("SEARCH_inputPlaceholder")(stores.locationStore.searchLocation))}
@@ -41,7 +42,7 @@ export default inject('stores')(observer(
           />
           <IconButton
             size={22}
-            color={stores.themeStore.colors.gray}
+            color={stores.themeStore.colors.primary}
             onPress={onPressLocationButton}
             icon={({ size, color }) => <Icon
               name="map-pin"

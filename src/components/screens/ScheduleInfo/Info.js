@@ -98,7 +98,7 @@ class Info extends React.Component {
         <Appbar.Header collapsable style={appStyles.header}>
           <Appbar.Action
             onPress={goBack}
-            color={colors.gray}
+            color={colors.primary}
             size={24}
             icon={({ size, color }) => <Icon
               name="arrow-left"
@@ -113,7 +113,7 @@ class Info extends React.Component {
             (isPublic || isOwner) && (
               <Appbar.Action
                 size={24}
-                color={colors.gray}
+                color={colors.primary}
                 icon={({ size, color }) => <Icon
                   name="share-2"
                   size={size}
@@ -127,7 +127,7 @@ class Info extends React.Component {
             !!isOwner && <>
               { !isClosed && <Appbar.Action
                 size={24}
-                color={colors.gray}
+                color={colors.primary}
                 icon={({ size, color }) => <Icon
                   name="edit"
                   size={size}
@@ -140,7 +140,7 @@ class Info extends React.Component {
                   <>
                   <Appbar.Action
                     size={24}
-                    color={colors.gray}
+                    color={colors.primary}
                     icon={({ size, color }) => <Icon
                       name="archive"
                       size={size}
@@ -150,9 +150,9 @@ class Info extends React.Component {
                   />
                   <Appbar.Action
                     size={24}
-                    color={colors.gray}
+                    color={colors.primary}
                     icon={({ size, color }) => <Icon
-                      name="trash"
+                      name="trash-2"
                       size={size}
                       color={color}
                     />}

@@ -12,10 +12,12 @@ export default inject('stores')(observer(
       <Appbar.Header style={props.stores.appStyles.styles.header} collapsable>
         <Appbar.Action
           onPress={props.goBack}
-          icon={() => <Icon
+          size={24}
+          color={props.stores.themeStore.colors.primary}
+          icon={({ size, color }) => <Icon
             name="arrow-left"
-            color={props.stores.themeStore.colors.gray}
-            size={24}
+            color={color}
+            size={size}
           />}
         />
         <Appbar.Content

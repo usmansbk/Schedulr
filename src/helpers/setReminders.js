@@ -19,7 +19,7 @@ import { ONE_TIME_EVENT } from 'lib/constants';
 import stores from 'stores';
 import colors from 'config/colors';
 
-const color = colors.primary_light;
+const color = colors.primary;
 
 function getReminderMessage({ category, startAt, date }) {
   const validCategory = category ? decapitalize(category) + ' ' : '';

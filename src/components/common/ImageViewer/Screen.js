@@ -11,7 +11,7 @@ export default inject("stores")(observer(
     <>
     <Appbar.Header style={stores.appStyles.styles.header}>
       <Appbar.Action
-        color={stores.themeStore.colors.gray}
+        color={stores.themeStore.colors.primary}
         icon={({color, size}) => <Icon
           name="arrow-left"
           onPress={goBack}
@@ -29,7 +29,7 @@ export default inject("stores")(observer(
           {
             Boolean(s3Object) && (
               <Appbar.Action
-                color={stores.themeStore.colors.gray}
+                color={stores.themeStore.colors.primary}
                 icon={({ color, size }) => <Icon
                   name="trash-2"
                   onPress={deletePhoto}
@@ -40,7 +40,7 @@ export default inject("stores")(observer(
             )
           }
           <Appbar.Action
-            color={stores.themeStore.colors.gray}
+            color={stores.themeStore.colors.primary}
             icon={({ color, size }) => <Icon
               name="camera"
               onPress={uploadPhoto}

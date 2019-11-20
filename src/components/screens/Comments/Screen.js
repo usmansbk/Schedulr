@@ -55,13 +55,14 @@ class Screen extends React.Component {
       <>
         <Appbar.Header style={styles.header}>
           <Appbar.Action
-            icon={() => <Icon
-              color={colors.gray}
-              size={24}
+            size={24}
+            color={colors.primary}
+            icon={({ size, color }) => <Icon
+              color={color}
+              size={size}
               name="arrow-left"
             />}
             onPress={goBack}
-            color={colors.gray}
           />
           <Appbar.Content
             title={title || I18n.get('COMMENTS')}

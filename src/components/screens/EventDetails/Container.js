@@ -95,7 +95,7 @@ class EventDetails extends React.Component {
         <Appbar.Header style={styles.header} collapsable>
           <Appbar.Action
             onPress={handleBack}
-            color={colors.gray}
+            color={colors.primary}
             size={FONT_SIZE}
             icon={({ color, size }) => <Icon
               name="arrow-left"

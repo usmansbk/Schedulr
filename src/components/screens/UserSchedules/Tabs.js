@@ -37,7 +37,7 @@ const HeaderComponent = inject('stores')(observer(
         onPress={goBack}
         icon={() => <Icon
           name="arrow-left"
-          color={stores.themeStore.colors.gray}
+          color={stores.themeStore.colors.primary}
           size={24}
         />}
       />

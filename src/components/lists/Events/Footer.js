@@ -18,7 +18,7 @@ export default inject('stores')(observer(
     <ActivityIndicator
       animating
       size={12}
-      color={stores.themeStore.colors.primary_light}
+      color={stores.themeStore.colors.primary}
     /> ) : (
       <TouchableRipple
         disabled={!hasMore}

@@ -54,7 +54,7 @@ export default StyleSheet.create({
     marginVertical: 12
   },
   nav: {
-    color: colors.primary_light
+    color: colors.primary
   },
   red: {
     color: colors.light_red

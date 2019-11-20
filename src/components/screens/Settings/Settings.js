@@ -71,10 +71,12 @@ class Settings extends React.Component {
         <Appbar style={styles.header} collapsable>
           <Appbar.Action
             onPress={goBack}
-            icon={() => <Icon
+            size={24}
+            color={stores.themeStore.colors.primary}
+            icon={({ color, size }) => <Icon
               name="arrow-left"
-              size={24}
-              color={stores.themeStore.colors.gray}
+              size={size}
+              color={color}
             />}
           />
           <Appbar.Content

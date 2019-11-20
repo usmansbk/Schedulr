@@ -82,7 +82,7 @@ export default class AppStyles {
         borderTopWidth: 0
       },
       indicatorStyle: {
-        backgroundColor: colors.primary_light
+        backgroundColor: colors.primary
       }
     });
   }
@@ -99,7 +99,7 @@ export default class AppStyles {
         backgroundColor: colors.bg,
       },
       indicatorStyle: {
-        backgroundColor: colors.primary_light
+        backgroundColor: colors.primary
       }
     });
   }
@@ -536,7 +536,7 @@ export default class AppStyles {
         marginVertical: 12
       },
       nav: {
-        color: colors.primary_light
+        color: colors.primary
       },
       red: {
         color: colors.light_red
@@ -897,7 +897,7 @@ export default class AppStyles {
         marginRight: 8
       },
       indicator: {
-        backgroundColor: colors.primary_light,
+        backgroundColor: colors.primary,
         color: '#fff',
         position: 'absolute',
         top: 0,
@@ -1190,7 +1190,7 @@ export default class AppStyles {
         height: FOOTER_HEIGHT
       },
       footerText: {
-        color: colors.primary_light,
+        color: colors.primary,
         fontWeight: 'bold',
         fontSize: 16
       },
@@ -1562,7 +1562,7 @@ export default class AppStyles {
       },
       sectionHeading: {
         fontSize: 24,
-        color: colors.primary_light
+        color: colors.primary
       },
       sectionSubheadingContent: {
         flexDirection: 'row',
@@ -1584,7 +1584,7 @@ export default class AppStyles {
         backgroundColor: colors.white,
       },
       headerText:{
-        color: colors.primary_light,
+        color: colors.primary,
         fontWeight: 'bold'
       },
       loadPrevHeaderContainer: {

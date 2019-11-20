@@ -47,7 +47,7 @@ export default class ScheduleEvents extends React.Component {
           <Appbar.Action
             onPress={onPress}
             size={24}
-            color={colors.gray}
+            color={colors.primary}
             icon={({ size, color }) => <Icon
               name="arrow-left"
               color={color}

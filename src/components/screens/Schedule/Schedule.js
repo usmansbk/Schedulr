@@ -70,7 +70,7 @@ class Schedule extends React.Component {
             onPress={onPress}
             icon={() => <Icon
               name="arrow-left"
-              color={colors.gray}
+              color={colors.primary}
               size={24}
             />}
           />
@@ -83,7 +83,7 @@ class Schedule extends React.Component {
             (isPublic || isOwner) && (
               <Appbar.Action
                 size={24}
-                color={colors.gray}
+                color={colors.primary}
                 icon={({ size, color }) => <Icon
                   name="share-2"
                   size={size}
@@ -95,7 +95,7 @@ class Schedule extends React.Component {
           }
           <Appbar.Action
             size={24}
-            color={colors.gray}
+            color={colors.primary}
             icon={({ size, color }) => <Icon
               name="info"
               size={size}

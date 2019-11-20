@@ -53,10 +53,12 @@ class Notifications extends React.Component {
         <Appbar.Action
           onPress={this._onPressFilterButton}
           disabled={!stores.notificationsStore.allNotifications.length}
-          icon={() => <Icon
+          color={stores.themeStore.colors.primary}
+          size={24}
+          icon={({ size, color }) => <Icon
             name="sliders"
-            color={stores.themeStore.colors.gray}
-            size={24}
+            color={color}
+            size={size}
           />}
         />
       </Appbar.Header>
