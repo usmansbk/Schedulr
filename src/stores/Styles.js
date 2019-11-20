@@ -868,7 +868,7 @@ export default class AppStyles {
         minWidth: WIDTH,
       },
       unseen: {
-        backgroundColor: colors.light_gray
+        backgroundColor: colors.light_gray_4
       },
       itemContent: {
         height: 80,
