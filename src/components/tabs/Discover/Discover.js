@@ -13,7 +13,6 @@ class Discover extends React.Component {
   
   componentDidMount = () => {
     this.props.stores.locationStore.fetchLocation(true);
-    this.props.stores.adsStore.showInterstitialAd();
   };
 
   _handleSelect = (location) => this.props.stores.locationStore.setSearchLocation(location);
