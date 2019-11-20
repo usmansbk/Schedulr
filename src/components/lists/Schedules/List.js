@@ -81,7 +81,7 @@ class List extends Component {
     return (
       <FlatList
         style={stores.appStyles.schedulesList.list}
-        extraData={stores.appState.mutedSchedules.length}
+        extraData={stores.appState.mutedSchedules.length || schedules.length}
         contentContainerStyle={stores.appStyles.schedulesList.contentContainer}
         initialNumToRender={7}
         getItemLayout={this._getItemLayout}
