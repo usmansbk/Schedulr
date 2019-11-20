@@ -49,7 +49,14 @@ class Banner extends React.Component {
         size={size}
         requestOptions={{
           requestNonPersonalizedAdsOnly: true,
-          location: this.props.stores.locationStore.adLocation
+          location: this.props.stores.locationStore.adLocation,
+          keywords: [
+            'scholarship',
+            'laptop',
+            'phone',
+            'fashion',
+            'clothing'
+          ]
         }}
         onAdLoaded={this._onLoad}
         onAdFailedToLoad={this._onError}
