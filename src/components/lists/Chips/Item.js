@@ -15,7 +15,7 @@ class Item extends React.Component {
     return (
       <TouchableRipple style={styles.itemContainer} onPress={this._onPress}>
         <View style={[styles.itemContent, selected ? styles.selected : {}]}> 
-          <Text style={[styles.itemText, selected ? styles.selectedText : {}]}>{text}</Text>
+          <Text numberOfLines={1} ellipsizeMode="tail" style={[styles.itemText, selected ? styles.selectedText : {}]}>{text}</Text>
         </View>
       </TouchableRipple>
     )

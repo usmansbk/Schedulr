@@ -25,7 +25,7 @@ export default class AppStyles {
     return StyleSheet.create({
       container: {
         backgroundColor: colors.bg,
-        height: 40,
+        height: 36,
       },
       itemContent: {
         flex: 1,
@@ -39,7 +39,8 @@ export default class AppStyles {
         borderRadius: 16
       },
       selected : {
-        backgroundColor: colors.light_gray_3
+        backgroundColor: colors.primary_light,
+        borderColor: colors.primary,
       },
       itemText: {
         textAlign: 'center',
