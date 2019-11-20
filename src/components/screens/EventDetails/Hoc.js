@@ -12,7 +12,7 @@ export default graphql(gql(getEvent), {
     return ({
       variables: { id },
       notifyOnNetworkStatusChange: true,
-      fetchPolicy: 'cache-and-network'
+      fetchPolicy: 'cache-first' 
     })
   },
   props: ({ data, ownProps }) => ({

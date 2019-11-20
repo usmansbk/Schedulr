@@ -1,5 +1,6 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
+import { withNavigationFocus } from 'react-navigation';
 import List from './ListHoc';
 import LocationInput from 'components/common/LocationInput';
 
@@ -11,10 +12,12 @@ class Discover extends React.Component {
   _openLocationPicker = () => this.setState({ showLocationPicker: true });
   _hideLocationPicker = () => this.setState({ showLocationPicker: false });
   
-  shouldComponentUpdate = nextProps => nextProps.navigation.isFocused();
-
   componentDidMount = () => {
     this.props.stores.locationStore.fetchLocation(true);
+  };
+
+  shouldComponentUpdate = nextProps => {
+    return nextProps.navigation.isFocused();
   };
 
   _handleSelect = (location) => this.props.stores.locationStore.setSearchLocation(location);
@@ -27,6 +30,7 @@ class Discover extends React.Component {
         category={this.props.stores.appState.discoverFilter}
         location={this.props.stores.locationStore.point}
         onPressLocationButton={this._openLocationPicker}
+        navigation={this.props.navigation}
       />
       <LocationInput
         visible={this.state.showLocationPicker}
@@ -38,4 +42,4 @@ class Discover extends React.Component {
   }
 } 
 
-export default inject("stores")(observer(Discover));
+export default inject("stores")(observer(withNavigationFocus(Discover)));

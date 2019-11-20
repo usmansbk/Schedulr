@@ -35,7 +35,7 @@ class Notifications extends React.Component {
       this.Filter.showActionSheet();
   };
 
-  shouldComponentUpdate = () => this.props.navigation.isFocused();
+  shouldComponentUpdate = (nextProps) => nextProps.navigation.isFocused();
 
   render() {
     const {
