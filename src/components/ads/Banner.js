@@ -18,19 +18,21 @@ class Banner extends React.Component {
   render() {
     const { large, medium_rect } = this.props;
     let size = BannerAdSize.SMART_BANNER;
-    let source = require('../../assets/calendar.png');
+    let source = require('../../assets/sunset2.jpg');
     let style = {
       height: 54,
       alignItems: 'center',
       justifyContent: 'center'
     };
     if (large) {
+      source = require('../../assets/sunset.png');
       size = BannerAdSize.LARGE_BANNER;
       style = {
         width: 320,
         height: 100
       };
     } else if (medium_rect) {
+      source = require('../../assets/mountain.png');
       size = BannerAdSize.MEDIUM_RECTANGLE;
       style = {
         width: 300,
