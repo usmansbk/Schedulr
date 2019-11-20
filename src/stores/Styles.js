@@ -1638,7 +1638,7 @@ export default class AppStyles {
       },
       ad: {
         height: ITEM_HEIGHT_SMALL,
-        justifyContent: 'center',
+        // justifyContent: 'center',
         alignItems: 'center'
       },
       itemContent: {

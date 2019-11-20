@@ -7,9 +7,10 @@ class Banner extends React.Component {
   shouldComponentUpdate = () => false;
 
   render() {
+    const { large } = this.props;
     return <BannerAd
       unitId={TestIds.BANNER}
-      size={BannerAdSize.SMART_BANNER}
+      size={large ? BannerAdSize.LARGE_BANNER : BannerAdSize.SMART_BANNER}
       requestOptions={{
         requestNonPersonalizedAdsOnly: true,
         location: this.props.stores.locationStore.adLocation
