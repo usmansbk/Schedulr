@@ -5,6 +5,7 @@ import { inject, observer } from 'mobx-react';
 import Empty from './Empty';
 import Header from './Header';
 import Item from 'components/lists/Bookmarks/Item';
+import AdItem from './AdItem';
 import Separator from 'components/lists/Bookmarks/Separator';
 import {
   parseRepeat,
@@ -15,7 +16,8 @@ import {
   getDuration,
   getHumanTime
 } from 'lib/time';
-import { bookmarkedEvents } from 'lib/constants';
+import { bookmarkedEvents, MEDIUM_RECTANGLE } from 'lib/constants';
+import { injectMediumRectAd } from 'lib/utils';
 import getImageUrl from 'helpers/getImageUrl';
 
 const { ITEM_HEIGHT, SEPARATOR_HEIGHT } = bookmarkedEvents;
@@ -37,13 +39,17 @@ class List extends Component{
   //   }
   // };
 
-  _getItemLayout = (_, index) => (
-    {
-      length: ITEM_HEIGHT,
-      offset: ITEM_HEIGHT * index + SEPARATOR_HEIGHT,
-      index
-    }
-  );
+  _getItemLayout = (_, index) => {
+    let length = ITEM_HEIGHT;
+    if (index === 2) length = MEDIUM_RECTANGLE; // Medium Rectangle Size ad 
+    return (
+      {
+        length,
+        offset: ITEM_HEIGHT * index + SEPARATOR_HEIGHT,
+        index
+      }
+    );
+  };
 
   _renderEmptyList = () => <Empty />;
 
@@ -55,6 +61,7 @@ class List extends Component{
 
   _renderItem = ({ item }) => {
     const {
+      __typename,
       id,
       title,
       category,
@@ -74,6 +81,7 @@ class List extends Component{
       bookmarksCount,
       commentsCount
     } = item;
+    if (__typename === 'Advert') return <AdItem />;
 
     return (<Item
       id={id}
@@ -122,7 +130,7 @@ class List extends Component{
             progressBackgroundColor={this.props.stores.themeStore.colors.bg}
           />
         }
-        data={this.props.data}
+        data={injectMediumRectAd(this.props.data)}
         renderItem={this._renderItem}
         keyExtractor={this._keyExtractor}
         ListEmptyComponent={this._renderEmptyList}

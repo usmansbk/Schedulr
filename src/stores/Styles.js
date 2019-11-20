@@ -11,7 +11,8 @@ import {
   comments_list,
   event_search,
   schedule_search,
-  WIDTH
+  WIDTH,
+  MEDIUM_RECTANGLE
 } from 'lib/constants';
 
 export default class AppStyles {
@@ -1638,6 +1639,11 @@ export default class AppStyles {
       },
       ad: {
         height: ITEM_HEIGHT_SMALL,
+        justifyContent: 'center',
+        alignItems: 'center'
+      },
+      mediumRect: {
+        height: MEDIUM_RECTANGLE,
         justifyContent: 'center',
         alignItems: 'center'
       },

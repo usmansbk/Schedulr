@@ -193,3 +193,17 @@ export function injectAds(events) {
   const withAds = [ad, ...events];
   return withAds;
 }
+
+export function injectMediumRectAd(events) {
+  const ad = {
+    id: '__ads__',
+    __typename: 'Advert',
+    title: 'Custom ads',
+    recurrence: 'NEVER',
+    startAt: moment().startOf('day').toISOString(),
+    endAt: moment().endOf('day').toISOString(),
+  };
+
+  const withAds = events.slice(0, 2).concat([ad]).concat(events.slice(2));
+  return withAds;
+}
