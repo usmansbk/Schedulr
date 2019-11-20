@@ -69,6 +69,13 @@ export default class Location {
       this.searchLocation = newLocation;
     }
   }
+  
+  @computed get adLocation() {
+    if (this.point.lat && this.point.lon) {
+      return [this.point.lat, this.point.lon];
+    }
+    return null;
+  }
 
   @computed get location() {
     if (this.locality && this.country) {

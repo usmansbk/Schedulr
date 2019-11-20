@@ -1,16 +1,21 @@
 import React from 'react';
 import { BannerAd, BannerAdSize, TestIds } from '@react-native-firebase/admob';
+import { inject, observer } from 'mobx-react';
+import env from 'config/env';
 
-export default class HeaderBanner extends React.Component {
+class HeaderBanner extends React.Component {
   render() {
     return <BannerAd
       unitId={TestIds.BANNER}
       size={BannerAdSize.SMART_BANNER}
       requestOptions={{
         requestNonPersonalizedAdsOnly: true,
+        location: this.props.stores.locationStore.adLocation
       }}
       onAdLoaded={() => console.log('Advert loaded')}
       onAdFailedToLoad={(error) => console.log('Advert failed to load: ', error)}
     />
   }
 }
+
+export default inject("stores")(observer(HeaderBanner));
