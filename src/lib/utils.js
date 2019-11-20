@@ -180,3 +180,16 @@ export function ellipsisMode(str) {
   }
   return trimmed;
 }
+
+export function injectAds(events) {
+  const ad = {
+    id: '__ads__',
+    __typename: 'Advert',
+    title: 'Custom ads',
+    recurrence: 'NEVER',
+    startAt: moment().startOf('day').toISOString(),
+    endAt: moment().endOf('day').toISOString(),
+  };
+  const withAds = [ad, ...events];
+  return withAds;
+}

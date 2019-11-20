@@ -1636,6 +1636,11 @@ export default class AppStyles {
         flexDirection: 'row',
         paddingHorizontal: 8,
       },
+      ad: {
+        height: ITEM_HEIGHT_SMALL,
+        justifyContent: 'center',
+        alignItems: 'center'
+      },
       itemContent: {
         paddingTop: 4,
         height: ITEM_HEIGHT,

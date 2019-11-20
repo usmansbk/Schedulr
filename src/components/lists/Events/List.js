@@ -12,6 +12,7 @@ import Separator from './Separator';
 import SectionHeader from './SectionHeader';
 import SectionFooter from './SectionFooter';
 import Item from './Item';
+import Ad from './Ad';
 import {
   getStatus,
   parseRepeat,
@@ -23,7 +24,7 @@ import {
   getTime,
   isPast
 } from 'lib/time';
-import { eventsChanged } from 'lib/utils';
+import { eventsChanged, injectAds } from 'lib/utils';
 import {
   generatePreviousEvents,
   generateNextEvents,
@@ -184,8 +185,11 @@ class List extends React.Component {
   };
 
   static getDerivedStateFromProps(props, state) {
-    if (eventsChanged(state.events, props.events)) {
-      const events = props.events;
+    let events = props.events;
+    if (state.events.length > 1) {
+      events = injectAds(props.events);
+    }
+    if (props.events.length && eventsChanged(state.events, events)) {
       const today = moment().startOf('day').toISOString();
       const yesterday = moment().subtract(1, 'day').endOf('day').toISOString();
       let sections = generateNextEvents(events, yesterday, DAYS_PER_PAGE);
@@ -205,10 +209,6 @@ class List extends React.Component {
     }
     return null;
   }
-  
-  componentDidMount = () => {
-    this._processEvents(this.props.events);
-  };
 
   _onScroll = (event) => {
     this.props.handleScroll && this.props.handleScroll(event.nativeEvent.contentOffset.y)
@@ -225,6 +225,7 @@ class List extends React.Component {
   };
 
   _renderItem = ({ item: {
+    __typename,
     id,
     title,
     category,
@@ -241,7 +242,7 @@ class List extends React.Component {
     bookmarksCount,
     isOwner,
     ref_date
-  }}) => (<Item
+  }}) => __typename === 'Advert' ? <Ad /> : (<Item
     id={id}
     title={title}
     startAt={startAt}

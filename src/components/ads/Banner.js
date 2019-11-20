@@ -4,6 +4,8 @@ import { inject, observer } from 'mobx-react';
 import env from 'config/env';
 
 class Banner extends React.Component {
+  shouldComponentUpdate = () => false;
+
   render() {
     return <BannerAd
       unitId={TestIds.BANNER}
