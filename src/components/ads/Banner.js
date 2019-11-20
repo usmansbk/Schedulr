@@ -3,7 +3,7 @@ import { BannerAd, BannerAdSize, TestIds } from '@react-native-firebase/admob';
 import { inject, observer } from 'mobx-react';
 import env from 'config/env';
 
-class HeaderBanner extends React.Component {
+class Banner extends React.Component {
   render() {
     return <BannerAd
       unitId={TestIds.BANNER}
@@ -18,4 +18,4 @@ class HeaderBanner extends React.Component {
   }
 }
 
-export default inject("stores")(observer(HeaderBanner));
+export default inject("stores")(observer(Banner));
