@@ -50,6 +50,7 @@ export default inject('stores')(observer(
           title={I18n.get("HELP_appVersion")}
           description={env.APP_VERSION}
         />
+        <Divider />
         <List.Item
           title={I18n.get("HELP_build")}
           description={env.BUILD}
