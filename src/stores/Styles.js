@@ -1469,7 +1469,7 @@ export default class AppStyles {
         textAlign: 'center'
       },
       header: {
-        height: 60,
+        height: 54,
         justifyContent: 'center',
         alignItems: 'center'
       },
