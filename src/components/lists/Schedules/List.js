@@ -7,7 +7,7 @@ import Header from './Header';
 import Footer from './Footer';
 import Empty from './Empty';
 import { sortSchedules } from 'lib/utils';
-import { schedules, SCHEDULE_CLOSED } from 'lib/constants';
+import { schedules, SCHEDULE_CLOSED, BANNER } from 'lib/constants';
 import getImageUrl from 'helpers/getImageUrl';
 
 const {
@@ -21,13 +21,17 @@ class List extends Component {
     loading: false,
     onRefresh: () => null
   };
-  _getItemLayout = (_, index) => (
-    {
-      length: ITEM_HEIGHT,
-      offset: ITEM_HEIGHT * index + SEPARATOR_HEIGHT,
-      index
-    }
-  );
+  _getItemLayout = (_, index) => {
+    let length = ITEM_HEIGHT;
+    if (index === 0) length = BANNER;
+    return (
+      {
+        length,
+        offset: ITEM_HEIGHT * index + SEPARATOR_HEIGHT,
+        index
+      }
+    );
+  };
 
   _onPressItem = (id) => this.props.navigation.navigate('Schedule', { id });
   _navigateToInfo = (id) => this.props.navigation.navigate('ScheduleInfo', { id });

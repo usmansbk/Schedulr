@@ -12,7 +12,8 @@ import {
   event_search,
   schedule_search,
   WIDTH,
-  MEDIUM_RECTANGLE
+  MEDIUM_RECTANGLE,
+  BANNER
 } from 'lib/constants';
 
 export default class AppStyles {
@@ -1470,7 +1471,7 @@ export default class AppStyles {
         textAlign: 'center'
       },
       header: {
-        height: 54,
+        height: BANNER,
         justifyContent: 'center',
         alignItems: 'center'
       },
