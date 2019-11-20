@@ -7,6 +7,7 @@ import Header from './Header';
 import Item from 'components/lists/Bookmarks/Item';
 import AdItem from './AdItem';
 import Separator from 'components/lists/Bookmarks/Separator';
+import Footer from 'components/lists/Bookmarks/Footer';
 import {
   parseRepeat,
   getStatus,
@@ -58,6 +59,7 @@ class List extends Component{
     navigation={this.props.navigation}
   />;
   _renderSeparator = () => <Separator />;
+  _renderFooter = () => <Footer visible={this.props.data.length} />;
 
   _renderItem = ({ item }) => {
     const {
@@ -135,6 +137,7 @@ class List extends Component{
         keyExtractor={this._keyExtractor}
         ListEmptyComponent={this._renderEmptyList}
         ListHeaderComponent={this._renderHeader}
+        ListFooterComponent={this._renderFooter}
         initialNumToRender={5}
         getItemLayout={this._getItemLayout}
         stickyHeaderIndices={[0]}
