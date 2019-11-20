@@ -11,6 +11,8 @@ class Discover extends React.Component {
   _openLocationPicker = () => this.setState({ showLocationPicker: true });
   _hideLocationPicker = () => this.setState({ showLocationPicker: false });
   
+  shouldComponentUpdate = nextProps => nextProps.navigation.isFocused();
+
   componentDidMount = () => {
     this.props.stores.locationStore.fetchLocation(true);
   };
