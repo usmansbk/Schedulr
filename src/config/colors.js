@@ -3,7 +3,7 @@ export const light = {
   nav: '#e3f1fc',
   facebook: '#3b5998',
   google: '#4285F4',
-  black: '#212121',
+  black: '#14171a',
   bg: 'white',
   gray: '#657786',
   light_gray: '#f5f8fa',
