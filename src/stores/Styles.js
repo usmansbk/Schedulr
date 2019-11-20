@@ -46,7 +46,7 @@ export default class AppStyles {
         textAlign: 'center',
       },
       selectedText: {
-        color: colors.selectedButton
+        color: colors.light_gray
       }
     });
   }
