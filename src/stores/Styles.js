@@ -1468,6 +1468,11 @@ export default class AppStyles {
         color: colors.light_gray_3,
         textAlign: 'center'
       },
+      header: {
+        height: 60,
+        justifyContent: 'center',
+        alignItems: 'center'
+      },
       footer: {
         height: ITEM_HEIGHT,
         justifyContent: 'center',

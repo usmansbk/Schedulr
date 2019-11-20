@@ -3,6 +3,7 @@ import { withNavigation, FlatList } from 'react-navigation';
 import { inject, observer } from 'mobx-react';
 import Item from './Item';
 import Separator from './Separator';
+import Header from './Header';
 import Footer from './Footer';
 import Empty from './Empty';
 import { sortSchedules } from 'lib/utils';
@@ -68,6 +69,7 @@ class List extends Component {
 
   _renderSeparator = () => <Separator />;
   _renderFooter = () => <Footer visible={this.props.schedules.length} />;
+  _renderHeader = () => this.props.schedules.length ? <Header /> : null;
 
   render() {
     const {
@@ -89,6 +91,8 @@ class List extends Component {
         renderItem={this._renderItem}
         ListEmptyComponent={this._renderEmptyList}
         ListFooterComponent={this._renderFooter}
+        ListHeaderComponent={this._renderHeader}
+        stickyHeaderIndices={[0]}
       />
     )
   }
