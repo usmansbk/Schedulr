@@ -5,6 +5,14 @@ import { inject, observer } from 'mobx-react';
 class Banner extends React.Component {
   shouldComponentUpdate = () => false;
 
+  _onLoad = () => {
+
+  };
+  
+  _onError = (error) => {
+    console.log('Advert failed to load: ', error);
+  };
+
   render() {
     const { large, medium_rect } = this.props;
     let size = BannerAdSize.SMART_BANNER;
@@ -18,8 +26,8 @@ class Banner extends React.Component {
         requestNonPersonalizedAdsOnly: true,
         location: this.props.stores.locationStore.adLocation
       }}
-      onAdLoaded={() => console.log('Advert loaded')}
-      onAdFailedToLoad={(error) => console.log('Advert failed to load: ', error)}
+      onAdLoaded={this._onLoad}
+      onAdFailedToLoad={this._onError}
     />
   }
 }
