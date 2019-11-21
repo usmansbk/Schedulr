@@ -41,12 +41,6 @@ node_modules/
 npm-debug.log
 yarn-error.log
 
-# amplify
-resolvers/
-schema.graphql
-models.graphql
-*.vtl
-
 # BUCK
 buck-out/
 \.buckd/

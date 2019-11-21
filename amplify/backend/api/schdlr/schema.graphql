@@ -1,0 +1,20 @@
+type User @model {
+  id: ID!
+  name: String!
+}
+
+type Schedule @model {
+  id: ID!
+}
+
+type Event @model {
+}
+
+type Bookmark @model {
+}
+
+type Follow @model {
+}
+
+type Comment @model {
+}
