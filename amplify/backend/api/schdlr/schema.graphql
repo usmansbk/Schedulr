@@ -20,7 +20,7 @@ type User
   me: Boolean
   following: [Schedule]
   followingCount: Int
-  created: [Schedule]
+  created: [Schedule] @connection(name: "UserSchedules", sortField: "createdAt")
   createdCount: Int
   bookmarks: [Event] @auth(rules: [{allow: owner, ownerField: "id", identityClaim: "email"}])
   preference: UserPreference @connection
@@ -71,9 +71,9 @@ type Schedule
   location: String
   followers: [User]
   followersCount: Int
-  events: [Event] @connection
+  events: [Event] @connection(name: "ScheduleEvents", sortField: "createdAt")
   eventsCount: Int
-  author: User @connection
+  author: User @connection(name: "UserSchedules", sortField: "createdAt")
   picture: S3Object
   createdAt: String
   updatedAt: String
@@ -116,8 +116,8 @@ type Event
   isBookmarked: Boolean
   cancelledDates: [String]
   author: User @connection
-  schedule: Schedule @connection
-  comments: [Comment] @connection
+  schedule: Schedule @connection(name: "ScheduleEvents", sortField: "createdAt")
+  comments: [Comment] @connection(name: "EventComments", sortField: "createdAt")
   commentsCount: Int
   bookmarks: [User]
   bookmarksCount: Int
@@ -160,7 +160,7 @@ type Comment
   content: String
   isOwner: Boolean
   to: Comment @connection
-  event: Event @connection
+  event: Event @connection(name: "EventComments", sortField: "createdAt")
   author: User @connection
   createdAt: String
   updatedAt: String
