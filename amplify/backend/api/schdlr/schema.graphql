@@ -1,20 +1,102 @@
-type User @model {
+type User @model(subscriptions: null, queries: { get: "getUser", list: null }) {
   id: ID!
   name: String!
+  email: String!
+  pictureUrl: String 
+  website: String
+  bio: String
+  me: Boolean
+  following: [Schedule]
+  followingCount: Int
+  created: [Schedule]
+  createdCount: Int
+  bookmarks: [Event]
+  preference: UserPreference
+  createdAt: String
+  updatedAt: String
 }
 
-type Schedule @model {
+type UserPreference
+  @model(subscriptions: null, queries: { get: "userPref" }, mutations: { create: "createUserPreference", update: "updateUserPreference" }) {
   id: ID!
+  userId: ID
+  disablePush: Boolean
+  disableComments: Boolean
+  disableAdminComments: Boolean
+  disableReplies: Boolean
+  enableMembersComments: Boolean
 }
 
-type Event @model {
+type Schedule
+  @model(subscriptions: null, queries: { get: "getSchedule" })
+ {
+  id: ID!
+  name: String!
+  description: String
+  isPublic: Boolean
+  isOwner: Boolean
+  isFollowing: Boolean 
+  status: Status 
+  location: String
+  followers: [User]
+  followersCount: Int
+  events: [Event]
+  eventsCount: Int
+  author: User
+  createdAt: String
+  updatedAt: String
 }
 
-type Bookmark @model {
+enum Status {
+  CLOSED
+  OPEN
 }
 
-type Follow @model {
+type Event
+  @model(subscriptions: null, queries: { get: "getEvent" }) {
+  id: ID!
+  title: String!
+  description: String
+  venue: String
+  category: String
+  startAt: String
+  endAt: String
+  allDay: Boolean
+  recurrence: Recurrence
+  until: String
+  forever: Boolean
+  isPublic: Boolean
+  isOwner: Boolean
+  isCancelled: Boolean
+  isBookmarked: Boolean
+  cancelledDates: [String]
+  author: User
+  schedule: Schedule!
+  comments: [Comment]
+  commentsCount: Int
+  bookmarks: [User]
+  bookmarksCount: Int
+  createdAt: String
+  updatedAt: String
 }
 
-type Comment @model {
+enum Recurrence {
+  NEVER
+  DAILY
+  WEEKLY
+  WEEKDAYS
+  MONTHLY
+  YEARLY
+}
+
+type Comment
+  @model {
+  id: ID!
+  content: String
+  isOwner: Boolean
+  to: Comment
+  event: Event
+  author: User
+  createdAt: String
+  updatedAt: String
 }
