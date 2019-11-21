@@ -163,4 +163,6 @@ type NotificationExtraData {
 type Delta {
   events: [Event]
   schedules: [Schedule]
+  deletedEvents: [ID]
+  deletedSchedules: [ID]
 }
