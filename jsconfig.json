@@ -10,7 +10,7 @@
       "helpers/*": ["src/helpers/*"],
       "lib/*": ["src/lib"],
       "stores/*": ["src/stores"],
-      "aws_config": ["./aws-exports"]
+      "aws_config": ["src/aws-exports"]
     }
   }
 }

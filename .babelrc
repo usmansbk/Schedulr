@@ -12,13 +12,13 @@
         "helpers": "./src/helpers",
         "lib": "./src/lib",
         "stores": "./src/stores",
-        "aws_config": "./aws-exports"
+        "aws_config": "./src/aws-exports"
       }
     }]
   ],
   "env": {
     "production": {
-      "plugins": ["react-native-paper/babel", "transform-remove-console"],
-    },
-  },
+      "plugins": ["react-native-paper/babel", "transform-remove-console"]
+    }
+  }
 }
