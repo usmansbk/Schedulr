@@ -1,5 +1,5 @@
 import AWSAppSyncClient, { createAppSyncLink } from 'aws-appsync';
-import { Auth, I18n, Analytics } from 'aws-amplify';
+import { Auth, I18n } from 'aws-amplify';
 import { ApolloLink } from 'apollo-link';
 import { onError } from 'apollo-link-error';
 import SimpleToast from 'react-native-simple-toast';
@@ -11,8 +11,6 @@ import {
   USER_TYPE,
   COMMENT_TYPE
 } from 'lib/constants';
-
-Analytics.disable();
 
 const errorLink = onError(({ graphQLErrors }) => {
   if (graphQLErrors) {

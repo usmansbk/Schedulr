@@ -10,5 +10,39 @@
             "StackName": "amplify-schdlr-dev-172405",
             "StackId": "arn:aws:cloudformation:us-east-1:900820753842:stack/amplify-schdlr-dev-172405/58544590-0c7b-11ea-9adf-0a28f59d0ab4"
         }
+    },
+    "auth": {
+        "schdlr1428cab7": {
+            "service": "Cognito",
+            "providerPlugin": "awscloudformation",
+            "dependsOn": [],
+            "providerMetadata": {
+                "s3TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-dev-172405-deployment/amplify-cfn-templates/auth/schdlr1428cab7-cloudformation-template.yml",
+                "logicalId": "authschdlr1428cab7"
+            },
+            "lastPushTimeStamp": "2019-11-21T16:46:00.908Z"
+        }
+    },
+    "api": {
+        "schdlr": {
+            "service": "AppSync",
+            "providerPlugin": "awscloudformation",
+            "output": {
+                "authConfig": {
+                    "additionalAuthenticationProviders": [],
+                    "defaultAuthentication": {
+                        "authenticationType": "AMAZON_COGNITO_USER_POOLS",
+                        "userPoolConfig": {
+                            "userPoolId": "authschdlr1428cab7"
+                        }
+                    }
+                }
+            },
+            "providerMetadata": {
+                "s3TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-dev-172405-deployment/amplify-cfn-templates/api/cloudformation-template.json",
+                "logicalId": "apischdlr"
+            },
+            "lastPushTimeStamp": "2019-11-21T16:46:00.647Z"
+        }
     }
 }
