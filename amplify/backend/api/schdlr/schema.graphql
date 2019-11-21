@@ -45,6 +45,7 @@ type Schedule
   author: User
   createdAt: String
   updatedAt: String
+  aws_ds: DELTA_ACTION
 }
 
 enum Status {
@@ -78,6 +79,13 @@ type Event
   bookmarksCount: Int
   createdAt: String
   updatedAt: String
+  aws_ds: DELTA_ACTION
+}
+
+enum DELTA_ACTION {
+  CREATE
+  DELETE
+  UPDATE
 }
 
 enum Recurrence {
@@ -99,4 +107,32 @@ type Comment
   author: User
   createdAt: String
   updatedAt: String
+}
+
+type Query {
+  nearbyEvents: [Event]
+  deltaSync(lastSync: String!): Delta
+  notifications(lastSync: String!): [Notification]
+}
+
+type Notification {
+  id: ID!
+  subject: String!
+  message: String!
+  topic: String
+  type: String
+  timestamp: Int
+  entityId: String
+  extraData: NotificationData
+}
+
+type NotificationData {
+  title: String
+  content: String
+  pictureUrl: String
+}
+
+type Delta {
+  events: [Event]
+  schedules: [Schedule]
 }
