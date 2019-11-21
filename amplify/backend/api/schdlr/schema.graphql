@@ -1,7 +1,14 @@
-type User @model(subscriptions: null, queries: { get: "getUser", list: null }) {
+type User
+  @model(subscriptions: null, queries: { get: "getUser", list: null })
+  @auth(
+    rules: [
+      { allow: owner, ownerField: "id", operations: [create, update, delete] }
+    ])
+{
   id: ID!
   name: String!
   email: String!
+  avatar: S3Object
   pictureUrl: String 
   website: String
   bio: String
@@ -43,9 +50,10 @@ type Schedule
   events: [Event]
   eventsCount: Int
   author: User
+  picture: S3Object
   createdAt: String
   updatedAt: String
-  aws_ds: DELTA_ACTION
+  aws_ds: DeltaAction
 }
 
 enum Status {
@@ -63,6 +71,7 @@ type Event
   startAt: String
   endAt: String
   allDay: Boolean
+  banner: S3Object
   recurrence: Recurrence
   until: String
   forever: Boolean
@@ -79,11 +88,12 @@ type Event
   bookmarksCount: Int
   createdAt: String
   updatedAt: String
-  location: Location
-  aws_ds: DELTA_ACTION
+  location: String
+  geo_point: Location
+  aws_ds: DeltaAction
 }
 
-enum DELTA_ACTION {
+enum DeltaAction {
   CREATE
   DELETE
   UPDATE
@@ -116,14 +126,20 @@ type Query {
   notifications(lastSync: String!): [Notification]
 }
 
+type S3Object {
+  key: String!
+  bucket: String!
+  region: String!
+}
+
 type Location {
   lat: Float!
-  lng: Float!
+  lon: Float!
 }
 
 input LocationInput {
   lat: Float!
-  lng: Float!
+  lon: Float!
 }
 
 type Notification {
@@ -132,12 +148,13 @@ type Notification {
   message: String!
   topic: String
   type: String
+  image: S3Object
   timestamp: Int
   entityId: String
-  extraData: NotificationData
+  extraData: NotificationExtraData
 }
 
-type NotificationData {
+type NotificationExtraData {
   title: String
   content: String
   pictureUrl: String
