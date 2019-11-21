@@ -43,20 +43,20 @@ type Schedule
   isPublic: Boolean
   isOwner: Boolean
   isFollowing: Boolean 
-  status: Status 
+  status: ScheduleStatus 
   location: String
   followers: [User]
   followersCount: Int
   events: [Event]
   eventsCount: Int
-  author: User
+  author: User!
   picture: S3Object
   createdAt: String
   updatedAt: String
   aws_ds: DeltaAction
 }
 
-enum Status {
+enum ScheduleStatus {
   CLOSED
   OPEN
 }
@@ -68,8 +68,8 @@ type Event
   description: String
   venue: String
   category: String
-  startAt: String
-  endAt: String
+  startAt: String!
+  endAt: String!
   allDay: Boolean
   banner: S3Object
   recurrence: Recurrence
@@ -80,16 +80,16 @@ type Event
   isCancelled: Boolean
   isBookmarked: Boolean
   cancelledDates: [String]
-  author: User
+  author: User!
   schedule: Schedule!
   comments: [Comment]
   commentsCount: Int
   bookmarks: [User]
   bookmarksCount: Int
-  createdAt: String
-  updatedAt: String
   location: String
   geo_point: Location
+  createdAt: String
+  updatedAt: String
   aws_ds: DeltaAction
 }
 
