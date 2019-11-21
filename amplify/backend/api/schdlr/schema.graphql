@@ -109,7 +109,7 @@ enum Recurrence {
 }
 
 type Comment
-  @model {
+  @model(queries: null) {
   id: ID!
   content: String
   isOwner: Boolean
