@@ -1,4 +1,6 @@
 type User
+  @versioned
+  @searchable
   @model(subscriptions: null, queries: { get: "getUser", list: null })
   @auth(
     rules: [
@@ -50,6 +52,7 @@ type UserPreference
 
 type Schedule
   @versioned
+  @searchable
   @model(subscriptions: null, queries: { get: "getSchedule" })
   @auth(
     rules: [
