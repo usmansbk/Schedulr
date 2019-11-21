@@ -16,6 +16,9 @@ const DATE_FORMAT = "ddd DD, MMM YYYY, hh:mm a";
 const FONT_SIZE = 24;
 
 class EventDetails extends React.Component {
+  state = {
+    count: 0
+  };
   _handleCancel = () => {
     const isRecurring = this.props.event.recurrence !== ONE_TIME_EVENT;
     this.props.handleCancel(isRecurring ? this.props.event.startAt : null);
@@ -32,8 +35,15 @@ class EventDetails extends React.Component {
     }
     return capitalize(timeAgo);
   };
-  
- shouldComponentUpdate = (nextProps) => !isEqual(nextProps.event, this.props.event);
+ _incrementCount = () => {
+   this.setState({
+     count: 1
+   });
+  };
+
+ shouldComponentUpdate = (nextProps, nextState) => (
+   (this.state.count !== nextState.count) || !isEqual(nextProps.event, this.props.event)
+ );
 
   render() {
     const {
@@ -184,6 +194,7 @@ class EventDetails extends React.Component {
             endAt: end
           })}
           startAt={start}
+          endAt={end}
           weekDay={moment(start).format('dddd')}
           firstAt={moment(startAt).format(DATE_FORMAT)}
           category={decapitalize(category)}
@@ -211,6 +222,8 @@ class EventDetails extends React.Component {
           navigateToComments={navigateToComments}
           navigateToUser={navigateToUser}
           cardView={cardView}
+          count={this.state.count}
+          onFinish={this._incrementCount}
         />
       </>
     )

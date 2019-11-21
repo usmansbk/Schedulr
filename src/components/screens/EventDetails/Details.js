@@ -5,6 +5,7 @@ import Hyperlink from 'react-native-hyperlink';
 import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
 import Actions from 'components/common/Actions';
+import CountDown from 'components/common/Countdown';
 import Tag from 'components/common/Tag';
 import { BULLET } from 'lib/constants';
 
@@ -28,6 +29,8 @@ export default inject('stores')(observer(
     duration,
     timeAgo,
     status,
+    startAt,
+    endAt,
     isCancelled,
     isBookmarked,
     authorId,
@@ -38,21 +41,24 @@ export default inject('stores')(observer(
     navigateToComments,
     navigateToUser,
     cardView,
-    stores
+    stores,
+    onFinish
   }) => (
     <View style={stores.appStyles.eventDetails.container}>
       <ScrollView style={stores.appStyles.eventDetails.bg}>
         <View style={stores.appStyles.eventDetails.content}>
           <View style={stores.appStyles.eventDetails.head}>
+            { !(cardView || isCancelled) && (
+                <CountDown
+                  startAt={startAt}
+                  endAt={endAt}
+                  timeAgo={timeAgo}
+                  onFinish={onFinish}
+                />
+              )
+            }
             <View style={stores.appStyles.eventDetails.headNote}>
-              {
-                !cardView && (
-                  <>
-                    <Tag status={status} />
-                    {!isCancelled && <Text style={stores.appStyles.eventDetails.note}> {BULLET} {timeAgo}</Text>}
-                  </>
-                )
-              }
+              { !cardView && <Tag status={status} /> }
             </View> 
             <Headline style={stores.appStyles.eventDetails.title}>{title}</Headline>
             <Text style={stores.appStyles.eventDetails.date}>{weekDay}</Text>

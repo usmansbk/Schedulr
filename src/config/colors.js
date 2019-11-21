@@ -53,7 +53,7 @@ export const dark = {
   disabled: '#d3d3d3',
   money_green: '#216C2A',
   like: '#63a4ff',
-  green: '#7FFF00',
+  green: '#008000',
   yellow: '#ffc40d',
   soft_blue: '#7ad7f0',
   placeholder: '#7d7d7d',
