@@ -12,7 +12,7 @@ type User
 {
   id: ID
   name: String!
-  email: String!
+  email: String! @auth(rules: [{allow: owner, ownerField: "id", identityClaim: "email"}])
   avatar: S3Object
   pictureUrl: AWSURL
   website: String
@@ -22,7 +22,7 @@ type User
   followingCount: Int
   created: [Schedule]
   createdCount: Int
-  bookmarks: [Event]
+  bookmarks: [Event] @auth(rules: [{allow: owner, ownerField: "id", identityClaim: "email"}])
   preference: UserPreference
   createdAt: String
   updatedAt: String
