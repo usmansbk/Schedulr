@@ -37,7 +37,7 @@ class EventDetails extends React.Component {
   };
  _incrementCount = () => {
    this.setState({
-     count: 1
+     count: this.state.count + 1 
    });
   };
 
