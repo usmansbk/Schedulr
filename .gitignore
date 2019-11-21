@@ -42,8 +42,6 @@ npm-debug.log
 yarn-error.log
 
 # amplify
-#
-amplify/
 resolvers/
 schema.graphql
 models.graphql
