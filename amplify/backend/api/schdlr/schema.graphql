@@ -2,10 +2,15 @@ type User
   @model(subscriptions: null, queries: { get: "getUser", list: null })
   @auth(
     rules: [
-      { allow: owner, ownerField: "id", operations: [create, update, delete] }
+      {
+        allow: owner,
+        ownerField: "id",
+        identityClaim: "email",
+        operations: [create, update, delete]
+      }
     ])
 {
-  id: ID!
+  id: ID
   name: String!
   email: String!
   avatar: S3Object
@@ -24,8 +29,17 @@ type User
 }
 
 type UserPreference
-  @model(subscriptions: null, queries: { get: "userPref" }, mutations: { create: "createUserPreference", update: "updateUserPreference" }) {
-  id: ID!
+  @model(subscriptions: null, queries: { get: "userPref" }, mutations: { create: "createUserPreference", update: "updateUserPreference" })
+  @auth(
+    rules: [
+      {
+        allow: owner,
+        ownerField: "id",
+        identityClaim: "email"
+      }
+    ])
+{
+  id: ID
   userId: ID
   disablePush: Boolean
   disableComments: Boolean
@@ -36,6 +50,16 @@ type UserPreference
 
 type Schedule
   @model(subscriptions: null, queries: { get: "getSchedule" })
+  @auth(
+    rules: [
+      {
+        allow: owner,
+        ownerField: "scheduleAuthorId",
+        identityClaim: "email",
+        operations: [create, update, delete]
+      }
+    ]
+  )
  {
   id: ID!
   name: String!
@@ -62,7 +86,18 @@ enum ScheduleStatus {
 }
 
 type Event
-  @model(subscriptions: null, queries: { get: "getEvent" }) {
+  @model(subscriptions: null, queries: { get: "getEvent" })
+  @auth(
+    rules: [
+      {
+        allow: owner,
+        ownerField: "eventAuthorId",
+        identityClaim: "email",
+        operations: [create, update, delete]
+      }
+    ]
+  )
+{
   id: ID!
   title: String!
   description: String
@@ -109,7 +144,18 @@ enum Recurrence {
 }
 
 type Comment
-  @model(queries: null) {
+  @model(queries: null)
+  @auth(
+    rules: [
+      {
+        allow: owner,
+        ownerField: "commentAuthorId",
+        identityClaim: "email",
+        operations: [create, update, delete]
+      }
+    ]
+  )
+{
   id: ID!
   content: String
   isOwner: Boolean
