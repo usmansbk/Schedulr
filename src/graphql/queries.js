@@ -1,5 +1,4 @@
 /* eslint-disable */
-// this is an auto generated file. This will be overwritten
 export const me = `query GetUser($id: ID!) {
   me: getUser(id: $id) {
     id
