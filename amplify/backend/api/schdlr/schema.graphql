@@ -23,7 +23,7 @@ type User
   created: [Schedule]
   createdCount: Int
   bookmarks: [Event] @auth(rules: [{allow: owner, ownerField: "id", identityClaim: "email"}])
-  preference: UserPreference
+  preference: UserPreference @connection
   createdAt: String
   updatedAt: String
 }
@@ -71,9 +71,9 @@ type Schedule
   location: String
   followers: [User]
   followersCount: Int
-  events: [Event]
+  events: [Event] @connection
   eventsCount: Int
-  author: User!
+  author: User @connection
   picture: S3Object
   createdAt: String
   updatedAt: String
@@ -115,9 +115,9 @@ type Event
   isCancelled: Boolean
   isBookmarked: Boolean
   cancelledDates: [String]
-  author: User!
-  schedule: Schedule!
-  comments: [Comment]
+  author: User @connection
+  schedule: Schedule @connection
+  comments: [Comment] @connection
   commentsCount: Int
   bookmarks: [User]
   bookmarksCount: Int
@@ -156,12 +156,12 @@ type Comment
     ]
   )
 {
-  id: ID!
+  id: ID
   content: String
   isOwner: Boolean
-  to: Comment
-  event: Event
-  author: User
+  to: Comment @connection
+  event: Event @connection
+  author: User @connection
   createdAt: String
   updatedAt: String
 }
