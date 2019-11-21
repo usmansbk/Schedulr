@@ -9,7 +9,7 @@ type User
   name: String!
   email: String!
   avatar: S3Object
-  pictureUrl: String 
+  pictureUrl: AWSURL
   website: String
   bio: String
   me: Boolean
@@ -157,7 +157,7 @@ type Notification {
 type NotificationExtraData {
   title: String
   content: String
-  pictureUrl: String
+  pictureUrl: AWSURL 
 }
 
 type Delta {
