@@ -79,6 +79,7 @@ type Event
   bookmarksCount: Int
   createdAt: String
   updatedAt: String
+  location: Location
   aws_ds: DELTA_ACTION
 }
 
@@ -110,9 +111,19 @@ type Comment
 }
 
 type Query {
-  nearbyEvents: [Event]
+  nearbyEvents(location: LocationInput!, km: Int, limit: Int, nextToken: String): [Event]
   deltaSync(lastSync: String!): Delta
   notifications(lastSync: String!): [Notification]
+}
+
+type Location {
+  lat: Float!
+  lng: Float!
+}
+
+input LocationInput {
+  lat: Float!
+  lng: Float!
 }
 
 type Notification {
