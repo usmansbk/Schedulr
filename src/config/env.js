@@ -14,7 +14,8 @@ const common = {
   ONESIGNAL_ID: "c45c9feb-9c17-4f6b-a397-abc7b49e5e40",
   GEODB_API_KEY: "rdcRtGlyhVmshYGy2m2p3jBCFSfOp1rrdtqjsn8tzV5y3RRSK3",
   GEODB_HOST: "wft-geo-db.p.mashape.com",
-  BANNER: "ca-app-pub-9280955048587070/4698333698",
+  BANNER: "ca-app-pub-5101585071736651/9094843890",
+  INTERSTITIAL: "ca-app-pub-5101585071736651/8903272202"
 }
 
 const dev = {
