@@ -216,11 +216,12 @@ type Delta {
 }
 
 type Bookmark
-  @model(subscriptions: null, queries: null)
+  @model(subscriptions: null, queries: null, mutations: { create: "createBookmark", delete: "deleteBookmark" })
   @auth(
     rules: [
       {
         allow: owner,
+        ownerField: "bookmarkUserId",
         identityClaim: "email",
         operations: [create, update, delete]
       }
@@ -228,16 +229,17 @@ type Bookmark
 {
   id: ID!
   event: Event! @connection(name: "EventBookmarks", sortField: "createdAt")
-  user: User! @connection(name: "UserBookmarks", sortField: "createdAt")
+  user: User @connection(name: "UserBookmarks", sortField: "createdAt")
   createdAt: String
 }
 
 type Follow
-  @model(subscriptions: null, queries: null)
+  @model(subscriptions: null, queries: null, mutations: { create: "createFollow", delete: "deleteFollow" })
   @auth(
     rules: [
       {
         allow: owner,
+        ownerField: "followUserId",
         identityClaim: "email",
         operations: [create, update, delete]
       }
