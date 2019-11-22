@@ -117,6 +117,7 @@ class List extends Component{
     let data = this.props.data;
     if (data.length >= 2) data = injectMediumRectAd(data);
 
+    console.log(this.props.loading);
     return (
       <FlatList
         style={styles.list}
@@ -124,7 +125,7 @@ class List extends Component{
           <RefreshControl
             progressViewOffset={80}
             onRefresh={this._onRefresh}
-            refreshing={this.props.refreshing ||this.props.loading}
+            refreshing={this.props.loading}
             colors={[this.props.stores.themeStore.colors.primary]}
             progressBackgroundColor={this.props.stores.themeStore.colors.bg}
           />

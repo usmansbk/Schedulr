@@ -4,6 +4,7 @@ import debounce from 'lodash.debounce';
 import moment from 'moment';
 import gql from 'graphql-tag';
 import categories from 'i18n/categories';
+import { ALL_FILTER } from 'lib/constants';
 import { getDeltaUpdates, getUserData } from 'api/queries';
 import updateBaseQuery from 'helpers/deltaSync';
 import client from 'config/client';
@@ -19,7 +20,7 @@ export default class AppState {
   @observable isConnected = false;
   @observable searchText = '';
   @observable query = '';
-  @observable discoverFilter = '';
+  @observable discoverFilter = ALL_FILTER;
   @observable loading = false;
 
   @persist @observable userId = null;
@@ -46,17 +47,12 @@ export default class AppState {
   @action clearMutedList = () => this.mutedEvents = [];
 
   @action toggleFilter = (id) => {
-    let filter = id.toLowerCase();
-    if (filter === '__all__') {
-      this.discoverFilter = ''; 
-    } else {
-      this.discoverFilter = id.toLowerCase();
-    }
+    this.discoverFilter = id.toLowerCase();
   };
 
   @action reset() {
     this.isConnected =false;
-    this.searchText = '';
+    this.searchText = ALL_FILTER;
     this.query = '';
     this.mutedEvents = [];
     this.allowedEvents = [];
