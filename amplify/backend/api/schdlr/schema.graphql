@@ -17,6 +17,7 @@ type User
   avatar: S3Object
   pictureUrl: AWSURL
   website: String
+  gender: String
   bio: String
   me: Boolean
   following: [Follow] @connection(name: "Followings", sortField: "createdAt", limit: 25)
