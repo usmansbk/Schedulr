@@ -13,13 +13,15 @@
                 "bool" : {
                     "must" : {
                         "match_all" : {}
-                    },
-                    "filter" : {
+                    }
+                    #if($ctx.args.location)
+                    ,"filter" : {
                         "geo_distance" : {
                             "distance" : "${distance}km",
                             "geo_point" : $util.toJson($ctx.args.location)
                         }
                     }
+                    #end
                 }
             }
         }

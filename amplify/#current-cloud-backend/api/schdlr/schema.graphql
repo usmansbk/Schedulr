@@ -169,8 +169,14 @@ type Comment
   updatedAt: String
 }
 
+type SearchableEventConnection {
+  items: [Event]
+  nextToken: String
+  total: Int
+}
+
 type Query {
-  nearbyEvents(location: LocationInput!, km: Int, limit: Int, nextToken: String): [Event]
+  nearbyEvents(location: LocationInput!, km: Int, limit: Int, nextToken: String): SearchableEventConnection
   deltaSync(lastSync: String!): Delta @function(name: "QueryDeltaSync-${env}")
   notifications(lastSync: String!): [Notification] @function(name: "QueryNotifications-${env}")
 }
