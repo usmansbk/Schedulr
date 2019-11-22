@@ -20,11 +20,11 @@ type User
   website: String
   bio: String
   me: Boolean
-  following: [Schedule]
+  following: [Follow] @connection(name: "Followings", sortField: "createdAt", limit: 25)
   followingCount: Int
-  created: [Schedule] @connection(name: "UserSchedules", sortField: "createdAt", limit: 20)
+  created: [Schedule] @connection(name: "UserSchedules", sortField: "createdAt", limit: 25)
   createdCount: Int
-  bookmarks: [Event] @auth(rules: [{allow: owner, ownerField: "id", identityClaim: "email"}])
+  bookmarks: [Bookmark] @connection(name: "UserBookmarks", sortField: "createdAt", limit: 50) @auth(rules: [{allow: owner, ownerField: "id", identityClaim: "email"}])
   preference: UserPreference @connection
   createdAt: String
   updatedAt: String
@@ -73,7 +73,7 @@ type Schedule
   isFollowing: Boolean 
   status: ScheduleStatus 
   location: String
-  followers: [User]
+  followers: [Follow] @connection(name: "Followers", sortField: "createdAt", limit: 25)
   followersCount: Int
   events: [Event] @connection(name: "ScheduleEvents", sortField: "createdAt", limit: 50)
   eventsCount: Int
@@ -124,7 +124,7 @@ type Event
   schedule: Schedule @connection(name: "ScheduleEvents", sortField: "createdAt")
   comments: [Comment] @connection(name: "EventComments", sortField: "createdAt", limit: 20)
   commentsCount: Int
-  bookmarks: [User]
+  bookmarks: [Bookmark] @connection(name: "EventBookmarks", sortField: "createdAt", limit: 20)
   bookmarksCount: Int
   location: String
   geo_point: Location
@@ -216,4 +216,38 @@ type Delta {
   schedules: [Schedule]
   deletedEvents: [ID]
   deletedSchedules: [ID]
+}
+
+type Bookmark
+  @model(subscriptions: null, queries: null)
+  @auth(
+    rules: [
+      {
+        allow: owner,
+        identityClaim: "email",
+        operations: [create, update, delete]
+      }
+    ])
+{
+  id: ID!
+  event: Event! @connection(name: "EventBookmarks", sortField: "createdAt")
+  user: User! @connection(name: "UserBookmarks", sortField: "createdAt")
+  createdAt: String
+}
+
+type Follow
+  @model(subscriptions: null, queries: null)
+  @auth(
+    rules: [
+      {
+        allow: owner,
+        identityClaim: "email",
+        operations: [create, update, delete]
+      }
+    ])
+{
+  id: ID!
+  schedule: Schedule! @connection(name: "Followers", sortField: "createdAt")
+  user: User @connection(name: "Followings", sortField: "createdAt")
+  createdAt: String
 }
