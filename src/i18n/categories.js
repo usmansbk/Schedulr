@@ -13,8 +13,27 @@ const en = [
   'Hackathon'
 ];
 
+const en_blacklist = [
+  'Test',
+  'Lecture',
+  'Studies',
+  'Examination',
+  'Event',
+  'Meeting'
+];
+
+const blacklist = {
+  en: en_blacklist
+};
+
 const translations = {
   en
+};
+
+export const getBlacklist = (lang) => {
+  const bl = blacklist[lang];
+  if (bl) return bl;
+  return en_blacklist;
 };
 
 export default (lang) => {

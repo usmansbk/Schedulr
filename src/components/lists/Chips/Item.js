@@ -4,7 +4,7 @@ import { TouchableRipple, Text } from 'react-native-paper';
 import { inject, observer } from 'mobx-react';
 
 class Item extends React.Component {
-  _onPress = () => this.props.onPress(this.props.text);
+  _onPress = () => this.props.onPress(this.props.id);
 
   shouldComponentUpdate = (nextProps) => this.props.selected !== nextProps.selected;
   

@@ -207,3 +207,7 @@ export function injectMediumRectAd(events) {
   const withAds = events.slice(0, 2).concat([ad]).concat(events.slice(2));
   return withAds;
 }
+
+export function filterBlacklist(filters, blacklist) {
+  return filters.filter(item => !blacklist.includes(item))
+}

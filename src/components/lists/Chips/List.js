@@ -1,6 +1,9 @@
 import React from 'react';
 import { FlatList } from 'react-native';
 import { inject, observer } from 'mobx-react';
+import { I18n } from 'aws-amplify';
+import { filterBlacklist } from 'lib/utils';
+import { getBlacklist } from 'i18n/categories';
 import Item from './Item';
 
 const ITEM_HEIGHT = 48;
@@ -23,7 +26,8 @@ class List extends React.Component {
 
   _renderItem = ({ item }) => (
     <Item
-      text={item}
+      id={item}
+      text={item === '__all__' ? I18n.get('All') : item}
       onPress={this._onPressItem}
       selected={this.props.stores.appState.isToggled(item)}
     />
@@ -33,11 +37,12 @@ class List extends React.Component {
 
   render() {
     const { stores, data } = this.props;
+    const blacklist = getBlacklist(stores.settingsStore.language);
     return (
       <FlatList
         horizontal
         contentContainerStyle={stores.appStyles.chipList.container}
-        data={data}
+        data={['__all__', ...filterBlacklist(data, blacklist)]}
         renderItem={this._renderItem}
         initialNumToRender={5}
         keyExtractor={this._keyExtractor}

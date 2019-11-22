@@ -45,7 +45,14 @@ export default class AppState {
   };
   @action clearMutedList = () => this.mutedEvents = [];
 
-  @action toggleFilter = (id) => this.discoverFilter = id.toLowerCase();
+  @action toggleFilter = (id) => {
+    let filter = id.toLowerCase();
+    if (filter === '__all__') {
+      this.discoverFilter = ''; 
+    } else {
+      this.discoverFilter = id.toLowerCase();
+    }
+  };
 
   @action reset() {
     this.isConnected =false;
