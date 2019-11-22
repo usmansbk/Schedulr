@@ -186,7 +186,7 @@ class EventDetails extends React.Component {
           title={title}
           date={formatDate(start, end, allDay)}
           duration={this._getDuration(start, end)}
-          timeAgo={this._getStartAgo(start, end)}
+          timeAgo={this._getStartAgo}
           status={getStatus({
             isCancelled,
             cancelledDates,

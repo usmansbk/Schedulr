@@ -5,7 +5,7 @@ import moment from 'moment';
 import { inject, observer } from 'mobx-react';
 
 class DateCountdown extends React.Component {
-  _onPress = () => SimpleToast.show(this.props.timeAgo, SimpleToast.SHORT);
+  _onPress = () => SimpleToast.show(this.props.timeAgo(this.props.startAt, this.props.endA), SimpleToast.SHORT);
   _onFinish = () => {
     this.props.onFinish && this.props.onFinish();
   };
