@@ -171,8 +171,8 @@ type Comment
 
 type Query {
   nearbyEvents(location: LocationInput!, km: Int, limit: Int, nextToken: String): [Event]
-  deltaSync(lastSync: String!): Delta
-  notifications(lastSync: String!): [Notification]
+  deltaSync(lastSync: String!): Delta @function(name: "QueryDeltaSync-${env}")
+  notifications(lastSync: String!): [Notification] @function(name: "QueryNotifications-${env}")
 }
 
 type S3Object {
