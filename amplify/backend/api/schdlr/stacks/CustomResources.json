@@ -99,6 +99,228 @@
 						}
 					]
 				}
+			},
+			"EventBookmarksCountResolver": {
+				"Type": "AWS::AppSync::Resolver",
+				"Properties": {
+					"ApiId": {
+						"Ref": "AppSyncApiId"
+					},
+					"DataSourceName": "BookmarkTable",
+					"TypeName": "Event",
+					"FieldName": "bookmarksCount",
+					"RequestMappingTemplateS3Location": {
+						"Fn::Sub": [
+							"s3://${S3DeploymentBucket}/${S3DeploymentRootKey}/resolvers/Event.bookmarksCount.req.vtl",
+							{
+								"S3DeploymentBucket": {
+									"Ref": "S3DeploymentBucket"
+								},
+								"S3DeploymentRootKey": {
+									"Ref": "S3DeploymentRootKey"
+								}
+							}
+						]
+					},
+					"ResponseMappingTemplateS3Location": {
+						"Fn::Sub": [
+							"s3://${S3DeploymentBucket}/${S3DeploymentRootKey}/resolvers/Event.bookmarksCount.res.vtl",
+							{
+								"S3DeploymentBucket": {
+									"Ref": "S3DeploymentBucket"
+								},
+								"S3DeploymentRootKey": {
+									"Ref": "S3DeploymentRootKey"
+								}
+							}
+						]
+					}
+				}
+			},
+			"EventCommentsCountResolver": {
+				"Type": "AWS::AppSync::Resolver",
+				"Properties": {
+					"ApiId": {
+						"Ref": "AppSyncApiId"
+					},
+					"DataSourceName": "CommentTable",
+					"TypeName": "Event",
+					"FieldName": "commentsCount",
+					"RequestMappingTemplateS3Location": {
+						"Fn::Sub": [
+							"s3://${S3DeploymentBucket}/${S3DeploymentRootKey}/resolvers/Event.commentsCount.req.vtl",
+							{
+								"S3DeploymentBucket": {
+									"Ref": "S3DeploymentBucket"
+								},
+								"S3DeploymentRootKey": {
+									"Ref": "S3DeploymentRootKey"
+								}
+							}
+						]
+					},
+					"ResponseMappingTemplateS3Location": {
+						"Fn::Sub": [
+							"s3://${S3DeploymentBucket}/${S3DeploymentRootKey}/resolvers/Event.commentsCount.res.vtl",
+							{
+								"S3DeploymentBucket": {
+									"Ref": "S3DeploymentBucket"
+								},
+								"S3DeploymentRootKey": {
+									"Ref": "S3DeploymentRootKey"
+								}
+							}
+						]
+					}
+				}
+			},
+			"ScheduleEventsCountResolver": {
+				"Type": "AWS::AppSync::Resolver",
+				"Properties": {
+					"ApiId": {
+						"Ref": "AppSyncApiId"
+					},
+					"DataSourceName": "EventTable",
+					"TypeName": "Schedule",
+					"FieldName": "eventsCount",
+					"RequestMappingTemplateS3Location": {
+						"Fn::Sub": [
+							"s3://${S3DeploymentBucket}/${S3DeploymentRootKey}/resolvers/Schedule.eventsCount.req.vtl",
+							{
+								"S3DeploymentBucket": {
+									"Ref": "S3DeploymentBucket"
+								},
+								"S3DeploymentRootKey": {
+									"Ref": "S3DeploymentRootKey"
+								}
+							}
+						]
+					},
+					"ResponseMappingTemplateS3Location": {
+						"Fn::Sub": [
+							"s3://${S3DeploymentBucket}/${S3DeploymentRootKey}/resolvers/Schedule.eventsCount.res.vtl",
+							{
+								"S3DeploymentBucket": {
+									"Ref": "S3DeploymentBucket"
+								},
+								"S3DeploymentRootKey": {
+									"Ref": "S3DeploymentRootKey"
+								}
+							}
+						]
+					}
+				}
+			},
+			"ScheduleFollowersCountResolver": {
+				"Type": "AWS::AppSync::Resolver",
+				"Properties": {
+					"ApiId": {
+						"Ref": "AppSyncApiId"
+					},
+					"DataSourceName": "FollowTable",
+					"TypeName": "Schedule",
+					"FieldName": "followersCount",
+					"RequestMappingTemplateS3Location": {
+						"Fn::Sub": [
+							"s3://${S3DeploymentBucket}/${S3DeploymentRootKey}/resolvers/Schedule.followersCount.req.vtl",
+							{
+								"S3DeploymentBucket": {
+									"Ref": "S3DeploymentBucket"
+								},
+								"S3DeploymentRootKey": {
+									"Ref": "S3DeploymentRootKey"
+								}
+							}
+						]
+					},
+					"ResponseMappingTemplateS3Location": {
+						"Fn::Sub": [
+							"s3://${S3DeploymentBucket}/${S3DeploymentRootKey}/resolvers/Schedule.followersCount.res.vtl",
+							{
+								"S3DeploymentBucket": {
+									"Ref": "S3DeploymentBucket"
+								},
+								"S3DeploymentRootKey": {
+									"Ref": "S3DeploymentRootKey"
+								}
+							}
+						]
+					}
+				}
+			},
+			"UserCreatedCountResolver": {
+				"Type": "AWS::AppSync::Resolver",
+				"Properties": {
+					"ApiId": {
+						"Ref": "AppSyncApiId"
+					},
+					"DataSourceName": "ScheduleTable",
+					"TypeName": "User",
+					"FieldName": "createdCount",
+					"RequestMappingTemplateS3Location": {
+						"Fn::Sub": [
+							"s3://${S3DeploymentBucket}/${S3DeploymentRootKey}/resolvers/User.createdCount.req.vtl",
+							{
+								"S3DeploymentBucket": {
+									"Ref": "S3DeploymentBucket"
+								},
+								"S3DeploymentRootKey": {
+									"Ref": "S3DeploymentRootKey"
+								}
+							}
+						]
+					},
+					"ResponseMappingTemplateS3Location": {
+						"Fn::Sub": [
+							"s3://${S3DeploymentBucket}/${S3DeploymentRootKey}/resolvers/User.createdCount.res.vtl",
+							{
+								"S3DeploymentBucket": {
+									"Ref": "S3DeploymentBucket"
+								},
+								"S3DeploymentRootKey": {
+									"Ref": "S3DeploymentRootKey"
+								}
+							}
+						]
+					}
+				}
+			},
+			"UserfollowingCountResolver": {
+				"Type": "AWS::AppSync::Resolver",
+				"Properties": {
+					"ApiId": {
+						"Ref": "AppSyncApiId"
+					},
+					"DataSourceName": "FollowTable",
+					"TypeName": "User",
+					"FieldName": "followingCount",
+					"RequestMappingTemplateS3Location": {
+						"Fn::Sub": [
+							"s3://${S3DeploymentBucket}/${S3DeploymentRootKey}/resolvers/User.followingCount.req.vtl",
+							{
+								"S3DeploymentBucket": {
+									"Ref": "S3DeploymentBucket"
+								},
+								"S3DeploymentRootKey": {
+									"Ref": "S3DeploymentRootKey"
+								}
+							}
+						]
+					},
+					"ResponseMappingTemplateS3Location": {
+						"Fn::Sub": [
+							"s3://${S3DeploymentBucket}/${S3DeploymentRootKey}/resolvers/User.followingCount.res.vtl",
+							{
+								"S3DeploymentBucket": {
+									"Ref": "S3DeploymentBucket"
+								},
+								"S3DeploymentRootKey": {
+									"Ref": "S3DeploymentRootKey"
+								}
+							}
+						]
+					}
+				}
 			}
 		},
 		"ScheduleIsOwnerResolver": {
