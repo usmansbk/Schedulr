@@ -24,7 +24,7 @@ type User
   created: [Schedule] @connection(name: "UserSchedules", sortField: "createdAt", limit: 25)
   createdCount: Int
   bookmarks: [Bookmark] @connection(name: "UserBookmarks", sortField: "createdAt", limit: 50) @auth(rules: [{allow: owner, ownerField: "id", identityClaim: "email"}])
-  preference: UserPreference @connection
+  preference: UserPreference! @connection
   createdAt: String
   updatedAt: String
 }
