@@ -82,8 +82,8 @@
 			"providerPlugin": "awscloudformation",
 			"build": true,
 			"lastBuildTimeStamp": "2019-11-22T01:47:35.298Z",
-			"lastPackageTimeStamp": "2019-11-22T02:50:26.759Z",
-			"distZipFilename": "notificationsresolver-6f3176434a69536f4f2b-build.zip",
+			"lastPackageTimeStamp": "2019-11-22T03:01:06.412Z",
+			"distZipFilename": "notificationsresolver-4345666b554e3061764e-build.zip",
 			"providerMetadata": {
 				"s3TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-dev-172405-deployment/amplify-cfn-templates/function/notificationsresolver-cloudformation-template.json",
 				"logicalId": "functionnotificationsresolver"
