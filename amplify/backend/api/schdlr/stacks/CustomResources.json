@@ -27,9 +27,44 @@
 		}
 	},
 	"Resources": {
-		"EmptyResource": {
-			"Type": "Custom::EmptyResource",
-			"Condition": "AlwaysFalse"
+		"Resources": {
+			"QueryNearybyEventsResolver": {
+				"Type": "AWS::AppSync::Resolver",
+				"Properties": {
+					"ApiId": {
+						"Ref": "AppSyncApiId"
+					},
+					"DataSourceName": "NONE",
+					"TypeName": "Query",
+					"FieldName": "nearbyEvents",
+					"RequestMappingTemplateS3Location": {
+						"Fn::Sub": [
+							"s3://${S3DeploymentBucket}/${S3DeploymentRootKey}/resolvers/Query.nearbyEvents.req.vtl",
+							{
+								"S3DeploymentBucket": {
+									"Ref": "S3DeploymentBucket"
+								},
+								"S3DeploymentRootKey": {
+									"Ref": "S3DeploymentRootKey"
+								}
+							}
+						]
+					},
+					"ResponseMappingTemplateS3Location": {
+						"Fn::Sub": [
+							"s3://${S3DeploymentBucket}/${S3DeploymentRootKey}/resolvers/Query.nearbyEvents.res.vtl",
+							{
+								"S3DeploymentBucket": {
+									"Ref": "S3DeploymentBucket"
+								},
+								"S3DeploymentRootKey": {
+									"Ref": "S3DeploymentRootKey"
+								}
+							}
+						]
+					}
+				}
+			}
 		}
 	},
 	"Conditions": {
