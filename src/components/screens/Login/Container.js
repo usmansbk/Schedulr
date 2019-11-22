@@ -57,7 +57,8 @@ class Container extends React.Component {
             }
           });
           const { data } = response;
-          if (!data.me) {
+          let user = data.me;
+          if (!user) {
             await client.mutate({
               mutation: CREATE_PREFERENCE,
               variables: {
@@ -77,8 +78,8 @@ class Container extends React.Component {
                 }
               }
             });
-            const user = result.data.createUser;
-            
+            user = result.data.createUser;
+            // Create user personal schedule  
             const id = uuidv5(email, uuidv5.DNS);
             const input = {
               id,
@@ -91,6 +92,7 @@ class Container extends React.Component {
                 input
               }
             });
+
             client.writeQuery({
               query: GET_USER,
               variables: {
@@ -100,10 +102,8 @@ class Container extends React.Component {
                 me: user
               }
             });
-          } else {
-            const user = data.me;
-            this.props.stores.settingsStore.setUserPreference(user.preference);
           }
+          this.props.stores.settingsStore.setUserPreference(user.preference);
           this.props.stores.appState.setUserId(email);
           crashlytics().setUserEmail(email);
           this.props.navigation.navigate('App');
