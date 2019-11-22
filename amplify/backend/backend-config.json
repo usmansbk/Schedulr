@@ -22,5 +22,11 @@
 				}
 			}
 		}
+	},
+	"storage": {
+		"schdlr": {
+			"service": "S3",
+			"providerPlugin": "awscloudformation"
+		}
 	}
 }

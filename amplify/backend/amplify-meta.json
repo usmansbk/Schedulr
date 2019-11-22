@@ -59,5 +59,11 @@
 			"lastPushTimeStamp": "2019-11-21T16:50:53.441Z",
 			"lastPushDirHash": "oX/8hhxlrDxuMLqVjkD1TXlbbt0="
 		}
+	},
+	"storage": {
+		"schdlr": {
+			"service": "S3",
+			"providerPlugin": "awscloudformation"
+		}
 	}
 }
