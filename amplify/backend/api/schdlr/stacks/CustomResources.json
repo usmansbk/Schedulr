@@ -28,7 +28,7 @@
 	},
 	"Resources": {
 		"Resources": {
-			"QueryNearybyEvents": {
+			"QueryNearbyEvents": {
 				"Type": "AWS::AppSync::Resolver",
 				"Properties": {
 					"ApiId": {
