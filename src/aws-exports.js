@@ -22,7 +22,9 @@ const awsmobile = {
     "federationTarget": "COGNITO_USER_POOLS",
     "aws_appsync_graphqlEndpoint": "https://caqpb466y5hvbjvqtohpxzphq4.appsync-api.us-east-1.amazonaws.com/graphql",
     "aws_appsync_region": "us-east-1",
-    "aws_appsync_authenticationType": "AMAZON_COGNITO_USER_POOLS"
+    "aws_appsync_authenticationType": "AMAZON_COGNITO_USER_POOLS",
+    "aws_user_files_s3_bucket": "schdlrassets-dev",
+    "aws_user_files_s3_bucket_region": "us-east-1"
 };
 
 
