@@ -1,5 +1,4 @@
 type User
-  @versioned
   @searchable
   @model(subscriptions: null, queries: { get: "getUser", list: null })
   @auth(
@@ -51,7 +50,6 @@ type UserPreference
 }
 
 type Schedule
-  @versioned
   @searchable
   @model(subscriptions: null, queries: { get: "getSchedule" })
   @auth(
@@ -90,7 +88,6 @@ enum ScheduleStatus {
 }
 
 type Event
-  @versioned
   @model(subscriptions: null, queries: { get: "getEvent" })
   @auth(
     rules: [
