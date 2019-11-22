@@ -45,7 +45,8 @@ export default class Container extends React.Component {
     
     if (this.state.commentToId) {
       input.commentToId = this.state.commentToId;
-      input.at = this.state.at;
+      input.commentAtId = this.state.at;
+      input.commentScheduleId = this.props.commentScheduleId;
     }
     this.props.onSubmit && this.props.onSubmit(input);
     this._cancelReply();

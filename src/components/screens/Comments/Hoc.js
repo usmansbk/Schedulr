@@ -54,6 +54,7 @@ export default inject("stores")(observer(
             })
           )
         }),
+        commentScheduleId: data && data.getEventComments && data.getEventComments.schedule && data.getEventComments.schedule.id,
         comments: (data && data.getEventComments && data.getEventComments.comments && data.getEventComments.comments.items) || [],
         nextToken: data && data.getEventComments && data.getEventComments.comments && data.getEventComments.comments.nextToken,
         ...ownProps

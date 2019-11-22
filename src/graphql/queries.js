@@ -100,6 +100,9 @@ export const getEvent = `query GetEvent($id: ID!) {
 export const getEventComments = `query GetEventComments($id: ID!, $limit: Int, $nextToken: String) {
   getEventComments: getEvent(id: $id) {
     id
+    schedule {
+      id
+    }
     comments(sortDirection: DESC, limit: $limit, nextToken: $nextToken) @connection(key: "comments") {
       items {
         id
