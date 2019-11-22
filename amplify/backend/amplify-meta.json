@@ -56,7 +56,7 @@
                 "s3TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-dev-172405-deployment/amplify-cfn-templates/api/cloudformation-template.json",
                 "logicalId": "apischdlr"
             },
-            "lastPushTimeStamp": "2019-11-22T13:08:02.189Z",
+            "lastPushTimeStamp": "2019-11-22T13:47:27.099Z",
             "lastPushDirHash": "A1PSGdCGNzN2MESudzbqt9PDoB8="
         }
     },
