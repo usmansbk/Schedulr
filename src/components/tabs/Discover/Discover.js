@@ -23,12 +23,16 @@ class Discover extends React.Component {
   _handleSelect = (location) => this.props.stores.locationStore.setSearchLocation(location);
 
   render() {
+    const location = this.props.stores.locationStore.point;
+    const category = this.props.stores.appState.discoverFilter;
+    const city = this.props.stores.locationStore.searchLocation;
+    
     return (
       <>
       <List
-        city={this.props.stores.locationStore.locality || 'Global'}
-        category={this.props.stores.appState.discoverFilter}
-        location={this.props.stores.locationStore.point}
+        city={city}
+        category={category}
+        location={location}
         onPressLocationButton={this._openLocationPicker}
         navigation={this.props.navigation}
       />

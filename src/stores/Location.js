@@ -7,8 +7,8 @@ import Geocoder from 'helpers/geocoder';
 import SimpleToast from 'react-native-simple-toast';
 
 export default class Location {
-  @persist('object') @observable point = {};
-  @persist('object') @observable currentLocation = {};
+  @persist('object') @observable point = null; 
+  @persist('object') @observable currentLocation = null; 
 
   @persist @observable locality = null;
   @persist @observable country = null;
@@ -71,7 +71,7 @@ export default class Location {
   }
   
   @computed get adLocation() {
-    if (this.point.lat && this.point.lon) {
+    if ( this.point && this.point.lat && this.point.lon) {
       return [this.point.lat, this.point.lon];
     }
     return null;
@@ -86,10 +86,10 @@ export default class Location {
 
   @action reset() {
     this.country = null;
-    this.point = {};
+    this.point = null; 
     this.locality = null;
     this.countryCode = null;
-    this.currentLocation = {};
+    this.currentLocation = null; 
     this.searchLocation = null;
   }
 }

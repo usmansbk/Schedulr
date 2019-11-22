@@ -11,9 +11,46 @@
         "body": {
             "query": {
                 "bool" : {
-                    "must" : {
-                        "match_all" : {}
-                    }
+                    "must" : [
+                        {
+                            "match": {
+                                "isPublic": true
+                            }
+                        },
+                        {
+                            "range": {
+                                "startAt": {
+                                    "lt": "now+3d"
+                                }
+                            }
+                        },
+                        #if($ctx.args.city)
+                        {
+                            "match": {
+                                "location": "${ctx.args.city}"
+                            }
+                        }
+                        #end
+                        #if($ctx.args.category)
+                        ,{
+                            "match": {
+                                "category": "${ctx.args.category}"
+                            }
+                        }
+                        #end
+                    ],
+                    "must_not": [
+                        {
+                            "match": {
+                                "isCancelled": true
+                            }
+                        },
+                        {
+                            "match_phrase": {
+                                "eventAuthorId": "${ctx.identity.claims.email}"
+                            }
+                        }
+                    ]
                     #if($ctx.args.location)
                     ,"filter" : {
                         "geo_distance" : {

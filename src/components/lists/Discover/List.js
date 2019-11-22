@@ -34,11 +34,6 @@ class List extends Component{
   _onPressItem = (id, refStartAt, refEndAt) => this.props.navigation.navigate('EventDetails', { id, refStartAt, refEndAt });
   _navigateToBanner = (id) => this.props.navigation.navigate('Banner', { id });
   _navigateToComments = (id, title, date) => this.props.navigation.navigate('Comments', { id, title, date });
-  // _onEndReached = async () => {
-  //   if (!this.props.loading && this.props.nextToken) {
-  //     await this.props.fetchMore(this.props.nextToken);
-  //   }
-  // };
 
   _getItemLayout = (_, index) => {
     let length = ITEM_HEIGHT;
