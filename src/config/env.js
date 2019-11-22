@@ -10,7 +10,7 @@ const common = {
   LEGALITY_URL: `${DOMAIN}/legal`,
   TERMS_URL: `${DOMAIN}/terms`,
   EMAIL: 'hello.schdlr@gmail.com',
-  CloudFrontUrl: "https://d1u22e64efucw4.cloudfront.net",
+  CloudFrontUrl: "https://dffqb1y6phusm.cloudfront.net/",
   ONESIGNAL_ID: "c45c9feb-9c17-4f6b-a397-abc7b49e5e40",
   GEODB_API_KEY: "rdcRtGlyhVmshYGy2m2p3jBCFSfOp1rrdtqjsn8tzV5y3RRSK3",
   GEODB_HOST: "wft-geo-db.p.mashape.com",
