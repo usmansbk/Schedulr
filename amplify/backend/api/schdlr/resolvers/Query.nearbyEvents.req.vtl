@@ -20,12 +20,13 @@
                         {
                             "range": {
                                 "startAt": {
-                                    "lt": "now+3d"
+                                    "gt": "now",
+                                    "lte": "now+3d"
                                 }
                             }
-                        },
+                        }
                         #if($ctx.args.city)
-                        {
+                        ,{
                             "match": {
                                 "location": "${ctx.args.city}"
                             }
