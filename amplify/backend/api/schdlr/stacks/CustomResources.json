@@ -28,13 +28,13 @@
 	},
 	"Resources": {
 		"Resources": {
-			"QueryNearybyEventsResolver": {
+			"QueryNearybyEvents": {
 				"Type": "AWS::AppSync::Resolver",
 				"Properties": {
 					"ApiId": {
 						"Ref": "AppSyncApiId"
 					},
-					"DataSourceName": "NONE",
+					"DataSourceName": "ElasticSearchDomain",
 					"TypeName": "Query",
 					"FieldName": "nearbyEvents",
 					"RequestMappingTemplateS3Location": {
