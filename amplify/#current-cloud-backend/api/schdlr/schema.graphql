@@ -164,6 +164,8 @@ type Comment
   content: String
   isOwner: Boolean
   to: Comment @connection
+  at: User @connection
+  schedule: Schedule @connection 
   event: Event! @connection(name: "EventComments", sortField: "createdAt")
   author: User @connection
   createdAt: String
