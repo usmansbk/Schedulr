@@ -3,9 +3,23 @@ import CountDown from 'react-native-countdown-component';
 import SimpleToast from 'react-native-simple-toast';
 import moment from 'moment';
 import { inject, observer } from 'mobx-react';
+import { capitalize } from 'lib/utils';
 
 class DateCountdown extends React.Component {
-  _onPress = () => SimpleToast.show(this.props.timeAgo(this.props.startAt, this.props.endA), SimpleToast.SHORT);
+  _timeAgo = () => {
+    const start = this.props.startAt;
+    const end = this.props.endAt;
+    let timeAgo;
+    if (moment().isBefore(moment(start))) {
+      timeAgo = moment(start).fromNow(); 
+    } else if (moment().isAfter(moment(end))) {
+      timeAgo = moment(end).fromNow();
+    } else {
+      timeAgo = `${moment(end).fromNow(true)} left`;
+    }
+    return capitalize(timeAgo);
+  };
+  _onPress = () => SimpleToast.show(this._timeAgo(), SimpleToast.SHORT);
   _onFinish = () => {
     this.props.onFinish && this.props.onFinish();
   };

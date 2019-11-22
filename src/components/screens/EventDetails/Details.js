@@ -7,7 +7,6 @@ import { I18n } from 'aws-amplify';
 import Actions from 'components/common/Actions';
 import CountDown from 'components/common/Countdown';
 import Tag from 'components/common/Tag';
-import { BULLET } from 'lib/constants';
 
 export default inject('stores')(observer(
   ({
@@ -27,7 +26,6 @@ export default inject('stores')(observer(
     updatedAt,
     description,
     duration,
-    timeAgo,
     status,
     startAt,
     endAt,
@@ -52,7 +50,6 @@ export default inject('stores')(observer(
                 <CountDown
                   startAt={startAt}
                   endAt={endAt}
-                  timeAgo={timeAgo}
                   onFinish={onFinish}
                 />
               )

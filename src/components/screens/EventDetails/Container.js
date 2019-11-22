@@ -8,7 +8,7 @@ import UserAvatar from 'components/common/UserAvatar';
 import Details from './Details';
 import { formatDate, getRepeatLabel, getDuration } from 'lib/time';
 import { isEventValid, isEventCancelled, getStatus } from 'lib/parseItem';
-import { capitalize, decapitalize} from 'lib/utils';
+import { decapitalize} from 'lib/utils';
 import { ONE_TIME_EVENT } from 'lib/constants';
 import getImageUrl from 'helpers/getImageUrl';
 
@@ -24,17 +24,6 @@ class EventDetails extends React.Component {
     this.props.handleCancel(isRecurring ? this.props.event.startAt : null);
   };
   _getDuration = (start, end) => getDuration(start, end);
-  _getStartAgo = (start, end) => {
-    let timeAgo;
-    if (moment().isBefore(moment(start))) {
-      timeAgo = moment(start).fromNow(); 
-    } else if (moment().isAfter(moment(end))) {
-      timeAgo = moment(end).fromNow();
-    } else {
-      timeAgo = `${moment(end).fromNow(true)} left`;
-    }
-    return capitalize(timeAgo);
-  };
  _incrementCount = () => {
    this.setState({
      count: this.state.count + 1 
@@ -186,7 +175,6 @@ class EventDetails extends React.Component {
           title={title}
           date={formatDate(start, end, allDay)}
           duration={this._getDuration(start, end)}
-          timeAgo={this._getStartAgo}
           status={getStatus({
             isCancelled,
             cancelledDates,
