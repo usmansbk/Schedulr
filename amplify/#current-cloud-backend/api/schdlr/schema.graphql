@@ -1,5 +1,253 @@
-type Todo @model {
+type User
+  @searchable
+  @model(subscriptions: null, queries: { get: "getUser", list: null })
+  @auth(
+    rules: [
+      {
+        allow: owner,
+        ownerField: "id",
+        identityClaim: "email",
+        operations: [create, update, delete]
+      }
+    ])
+{
+  id: ID
+  name: String!
+  email: String! @auth(rules: [{allow: owner, ownerField: "id", identityClaim: "email"}])
+  avatar: S3Object
+  pictureUrl: AWSURL
+  website: String
+  bio: String
+  me: Boolean
+  following: [Follow] @connection(name: "Followings", sortField: "createdAt", limit: 25)
+  followingCount: Int
+  created: [Schedule] @connection(name: "UserSchedules", sortField: "createdAt", limit: 25)
+  createdCount: Int
+  bookmarks: [Bookmark] @connection(name: "UserBookmarks", sortField: "createdAt", limit: 50) @auth(rules: [{allow: owner, ownerField: "id", identityClaim: "email"}])
+  preference: UserPreference! @connection
+  createdAt: String
+  updatedAt: String
+}
+
+type UserPreference
+  @model(subscriptions: null, queries: { get: "userPref" }, mutations: { create: "createUserPreference", update: "updateUserPreference" })
+  @auth(
+    rules: [
+      {
+        allow: owner,
+        ownerField: "id",
+        identityClaim: "email"
+      }
+    ])
+{
+  id: ID
+  userId: ID
+  disablePush: Boolean
+  disableComments: Boolean
+  disableAdminComments: Boolean
+  disableReplies: Boolean
+  enableMembersComments: Boolean
+}
+
+type Schedule
+  @searchable
+  @model(subscriptions: null, queries: { get: "getSchedule" })
+  @auth(
+    rules: [
+      {
+        allow: owner,
+        ownerField: "scheduleAuthorId",
+        identityClaim: "email",
+        operations: [create, update, delete]
+      }
+    ]
+  )
+ {
   id: ID!
   name: String!
   description: String
+  isPublic: Boolean
+  isOwner: Boolean
+  isFollowing: Boolean 
+  status: ScheduleStatus 
+  location: String
+  followers: [Follow] @connection(name: "Followers", sortField: "createdAt", limit: 25)
+  followersCount: Int
+  events: [Event] @connection(name: "ScheduleEvents", sortField: "createdAt", limit: 50)
+  eventsCount: Int
+  author: User @connection(name: "UserSchedules", sortField: "createdAt")
+  picture: S3Object
+  createdAt: String
+  updatedAt: String
+  aws_ds: DeltaAction
+}
+
+enum ScheduleStatus {
+  CLOSED
+  OPEN
+}
+
+type Event
+  @searchable
+  @model(subscriptions: null, queries: { get: "getEvent" })
+  @auth(
+    rules: [
+      {
+        allow: owner,
+        ownerField: "eventAuthorId",
+        identityClaim: "email",
+        operations: [create, update, delete]
+      }
+    ]
+  )
+{
+  id: ID!
+  title: String!
+  description: String
+  venue: String
+  category: String
+  startAt: String!
+  endAt: String!
+  allDay: Boolean
+  banner: S3Object
+  recurrence: Recurrence
+  until: String
+  forever: Boolean
+  isPublic: Boolean
+  isOwner: Boolean
+  isCancelled: Boolean
+  isBookmarked: Boolean
+  cancelledDates: [String]
+  author: User @connection
+  schedule: Schedule! @connection(name: "ScheduleEvents", sortField: "createdAt")
+  comments: [Comment] @connection(name: "EventComments", sortField: "createdAt", limit: 20)
+  commentsCount: Int
+  bookmarks: [Bookmark] @connection(name: "EventBookmarks", sortField: "createdAt", limit: 20)
+  bookmarksCount: Int
+  location: String
+  geo_point: Location
+  createdAt: String
+  updatedAt: String
+  aws_ds: DeltaAction
+}
+
+enum DeltaAction {
+  CREATE
+  DELETE
+  UPDATE
+}
+
+enum Recurrence {
+  NEVER
+  DAILY
+  WEEKLY
+  WEEKDAYS
+  MONTHLY
+  YEARLY
+}
+
+type Comment
+  @model(queries: null)
+  @auth(
+    rules: [
+      {
+        allow: owner,
+        ownerField: "commentAuthorId",
+        identityClaim: "email",
+        operations: [create, update, delete]
+      }
+    ]
+  )
+{
+  id: ID
+  content: String
+  isOwner: Boolean
+  to: Comment @connection
+  event: Event! @connection(name: "EventComments", sortField: "createdAt")
+  author: User @connection
+  createdAt: String
+  updatedAt: String
+}
+
+type Query {
+  nearbyEvents(location: LocationInput!, km: Int, limit: Int, nextToken: String): [Event]
+  deltaSync(lastSync: String!): Delta @function(name: "QueryDeltaSync-${env}")
+  notifications(lastSync: String!): [Notification] @function(name: "QueryNotifications-${env}")
+}
+
+type S3Object {
+  key: String!
+  bucket: String!
+  region: String!
+}
+
+type Location {
+  lat: Float!
+  lon: Float!
+}
+
+input LocationInput {
+  lat: Float!
+  lon: Float!
+}
+
+type Notification {
+  id: ID!
+  subject: String!
+  message: String!
+  topic: String
+  type: String
+  image: S3Object
+  timestamp: Int
+  entityId: String
+  extraData: NotificationExtraData
+}
+
+type NotificationExtraData {
+  title: String
+  content: String
+  pictureUrl: AWSURL 
+}
+
+type Delta {
+  events: [Event]
+  schedules: [Schedule]
+  deletedEvents: [ID]
+  deletedSchedules: [ID]
+}
+
+type Bookmark
+  @model(subscriptions: null, queries: null, mutations: { create: "createBookmark", delete: "deleteBookmark" })
+  @auth(
+    rules: [
+      {
+        allow: owner,
+        ownerField: "bookmarkUserId",
+        identityClaim: "email",
+        operations: [create, update, delete]
+      }
+    ])
+{
+  id: ID!
+  event: Event! @connection(name: "EventBookmarks", sortField: "createdAt")
+  user: User @connection(name: "UserBookmarks", sortField: "createdAt")
+  createdAt: String
+}
+
+type Follow
+  @model(subscriptions: null, queries: null, mutations: { create: "createFollow", delete: "deleteFollow" })
+  @auth(
+    rules: [
+      {
+        allow: owner,
+        ownerField: "followUserId",
+        identityClaim: "email",
+        operations: [create, update, delete]
+      }
+    ])
+{
+  id: ID!
+  schedule: Schedule! @connection(name: "Followers", sortField: "createdAt")
+  user: User @connection(name: "Followings", sortField: "createdAt")
+  createdAt: String
 }
