@@ -28,5 +28,17 @@
 			"service": "S3",
 			"providerPlugin": "awscloudformation"
 		}
+	},
+	"function": {
+		"notificationsresolver": {
+			"service": "Lambda",
+			"providerPlugin": "awscloudformation",
+			"build": true
+		},
+		"deltasyncresolver": {
+			"service": "Lambda",
+			"providerPlugin": "awscloudformation",
+			"build": true
+		}
 	}
 }
