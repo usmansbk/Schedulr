@@ -6,5 +6,8 @@ var region = process.env.REGION
 Amplify Params - DO NOT EDIT */
 
 exports.handler = async function (event, context) { //eslint-disable-line
-  return [];
+  return {
+    items: [],
+    nextToken: null
+  };
 };
