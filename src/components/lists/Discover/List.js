@@ -119,6 +119,8 @@ class List extends Component{
 
   render() {
     const styles = this.props.stores.appStyles.discover;
+    let data = this.props.data;
+    if (data.length >= 2) data = injectMediumRectAd(data);
 
     return (
       <FlatList
@@ -132,7 +134,7 @@ class List extends Component{
             progressBackgroundColor={this.props.stores.themeStore.colors.bg}
           />
         }
-        data={injectMediumRectAd(this.props.data)}
+        data={data}
         renderItem={this._renderItem}
         keyExtractor={this._keyExtractor}
         ListEmptyComponent={this._renderEmptyList}
