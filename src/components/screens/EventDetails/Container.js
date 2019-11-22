@@ -24,11 +24,7 @@ class EventDetails extends React.Component {
     this.props.handleCancel(isRecurring ? this.props.event.startAt : null);
   };
   _getDuration = (start, end) => getDuration(start, end);
- _incrementCount = () => {
-   this.setState({
-     count: this.state.count + 1 
-   });
-  };
+ _incrementCount = () => this.setState(prev => ({ count: prev.count + 1 }));
 
  shouldComponentUpdate = (nextProps, nextState) => (
    (this.state.count !== nextState.count) || !isEqual(nextProps.event, this.props.event)

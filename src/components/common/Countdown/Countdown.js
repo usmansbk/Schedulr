@@ -6,6 +6,10 @@ import { inject, observer } from 'mobx-react';
 import { capitalize } from 'lib/utils';
 
 class DateCountdown extends React.Component {
+  state = {
+    finished: false
+  };
+
   _timeAgo = () => {
     const start = this.props.startAt;
     const end = this.props.endAt;
@@ -21,7 +25,9 @@ class DateCountdown extends React.Component {
   };
   _onPress = () => SimpleToast.show(this._timeAgo(), SimpleToast.SHORT);
   _onFinish = () => {
-    this.props.onFinish && this.props.onFinish();
+    this.setState({
+      finished: true
+    }, () => this.props.onFinish && this.props.onFinish());
   };
 
   render() {
