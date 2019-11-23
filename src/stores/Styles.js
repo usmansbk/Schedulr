@@ -1284,7 +1284,7 @@ export default class AppStyles {
         flex: 1,
       },
       itemHeadline: {
-        // fontSize: 20,
+        fontSize: 20,
         fontFamily: 'sans-serif-bold',
         textAlignVertical: 'center'
       },
