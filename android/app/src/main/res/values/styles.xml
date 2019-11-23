@@ -6,8 +6,9 @@
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryDark">@color/primary_dark</item>
     </style>
-    <style name="SplashScreenTheme" parent="SplashScreen_SplashTheme">
-        <item name="colorPrimaryDark">@color/white</item>
+    <style name="SplashScreenTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:statusBarColor">@color/white</item>
+        <item name="android:navigationBarColor">@color/white</item>
     </style>
 
 </resources>
