@@ -19,7 +19,6 @@ async function updateUserPushToken({ userId }) {
   }
 }
 async function updateUserPreference(optimisticResponse) {
-  console.log(optimisticResponse);
   try {
     let input = optimisticResponse;
     delete input.__typename;

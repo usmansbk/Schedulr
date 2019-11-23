@@ -189,7 +189,7 @@ class List extends React.Component {
     if (events.length > 1) {
       events = injectAds(events);
     }
-    if (props.events.length && eventsChanged(state.events, events)) {
+    if (eventsChanged(state.events, events)) {
       const today = moment().startOf('day').toISOString();
       const yesterday = moment().subtract(1, 'day').endOf('day').toISOString();
       let sections = generateNextEvents(events, yesterday, DAYS_PER_PAGE);
