@@ -165,7 +165,7 @@ type Comment
   isOwner: Boolean
   to: Comment @connection
   at: User @connection
-  schedule: Schedule @connection 
+  schedule: Schedule @connection # Better handling of push notification
   event: Event! @connection(name: "EventComments", sortField: "createdAt")
   author: User @connection
   createdAt: String
