@@ -25,7 +25,7 @@ class Discover extends React.Component {
       <>
       <List
         city={city}
-        category={category}
+        category={category ? category : null}
         location={location}
         onPressLocationButton={this._openLocationPicker}
       />
