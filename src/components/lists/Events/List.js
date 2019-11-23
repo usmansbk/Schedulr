@@ -294,7 +294,11 @@ class List extends React.Component {
   render() {
     const { stores, loading } = this.props;
     const { sections } = this.state;
-  
+    const extraData = 
+          (stores.appState.mutedEvents.length +
+          stores.appState.mutedSchedules.length +
+          stores.appState.allowedEvents.length);
+
     return (
       <SectionList
         ref={this.listRef}
@@ -304,11 +308,7 @@ class List extends React.Component {
         style={stores.appStyles.eventsList.list}
         stickySectionHeadersEnabled
         sections={sections}
-        extraData={
-          stores.appState.mutedEvents.length +
-          stores.appState.mutedSchedules.length +
-          stores.appState.allowedEvents.length
-        }
+        extraData={extraData}
         ListHeaderComponent={this._renderHeader}
         ListEmptyComponent={this._renderEmptyList}
         ItemSeparatorComponent={this._renderSeparator}
