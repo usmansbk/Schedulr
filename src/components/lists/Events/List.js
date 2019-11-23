@@ -64,6 +64,16 @@ class List extends React.Component {
     onRefresh: () => null,
   };
 
+  shouldComponentUpdate = (nextProps, nextState) => {
+    return (
+      this.props.loading !== nextProps.loading ||
+      this.props.updateListEveryMinute !== nextProps.updateListEveryMinute ||
+      this.state.sections !== nextState.sections ||
+      this.state.afterDate !== nextState.afterDate ||
+      this.state.beforeDate !== nextState.beforeDate
+    );
+  };
+
   _keyExtractor = (item) => item.id + item.ref_date;
   _renderHeader = () => (
     (this.state.sections.length && this.props.isAuth) ?
