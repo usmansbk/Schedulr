@@ -5,6 +5,7 @@ import {
   Caption,
 } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/Feather';
+import { I18n } from 'aws-amplify';
 import BookmarkButton from 'components/common/BookmarkButton';
 import { inject, observer } from 'mobx-react';
 
@@ -26,7 +27,7 @@ class Item extends React.Component {
             style={styles.itemHeadline}
             numberOfLines={1}
             ellipsizeMode="tail">
-            <Icon name="alert-triangle" size={16} /> This event was deleted
+            <Icon name="alert-triangle" size={16} /> {I18n.get("This event is unavailable")} 
           </Caption>
           <View style={{justifyContent: 'center'}}>        
             <BookmarkButton
