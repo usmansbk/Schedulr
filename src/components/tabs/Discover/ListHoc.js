@@ -23,7 +23,7 @@ export default compose(
       },
       notifyOnNetworkStatusChange: true
     }),
-    skip: props => !props.location,
+    skip: props => !props.location || !props.navigation.isFocused(),
     props: ({ data, ownProps}) => ({
       data: (data && data.nearbyEvents && data.nearbyEvents.items) || [],
       nextToken: data && data.nearbyEvents && data.nearbyEvents.nextToken,
