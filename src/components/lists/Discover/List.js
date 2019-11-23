@@ -117,7 +117,6 @@ class List extends Component{
     let data = this.props.data;
     if (data.length >= 2) data = injectMediumRectAd(data);
 
-    console.log(this.props.loading);
     return (
       <FlatList
         style={styles.list}
