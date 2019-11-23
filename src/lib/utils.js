@@ -181,7 +181,7 @@ export function ellipsisMode(str) {
   return trimmed;
 }
 
-export function injectAds(events) {
+export function injectAds(events, index) {
   const ad = {
     id: '__ads__',
     __typename: 'Advert',
@@ -190,21 +190,7 @@ export function injectAds(events) {
     startAt: moment().startOf('day').toISOString(),
     endAt: moment().endOf('day').toISOString(),
   };
-  const withAds = [ad, ...events];
-  return withAds;
-}
-
-export function injectMediumRectAd(events) {
-  const ad = {
-    id: '__ads__',
-    __typename: 'Advert',
-    title: 'Custom ads',
-    recurrence: 'NEVER',
-    startAt: moment().startOf('day').toISOString(),
-    endAt: moment().endOf('day').toISOString(),
-  };
-
-  const withAds = events.slice(0, 2).concat([ad]).concat(events.slice(2));
+  const withAds = events.slice(0, index).concat([ad]).concat(events.slice(index));
   return withAds;
 }
 

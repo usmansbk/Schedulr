@@ -187,7 +187,7 @@ class List extends React.Component {
   static getDerivedStateFromProps(props, state) {
     let events = props.events;
     if (events.length > 1) {
-      events = injectAds(events);
+      events = injectAds(events, 0);
     }
     if (eventsChanged(state.events, events)) {
       const today = moment().startOf('day').toISOString();

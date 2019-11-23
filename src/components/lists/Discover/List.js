@@ -18,7 +18,7 @@ import {
   getHumanTime
 } from 'lib/time';
 import { bookmarkedEvents, MEDIUM_RECTANGLE } from 'lib/constants';
-import { injectMediumRectAd } from 'lib/utils';
+import { injectAds } from 'lib/utils';
 import getImageUrl from 'helpers/getImageUrl';
 
 const { ITEM_HEIGHT, SEPARATOR_HEIGHT } = bookmarkedEvents;
@@ -115,7 +115,7 @@ class List extends Component{
   render() {
     const styles = this.props.stores.appStyles.discover;
     let data = this.props.data;
-    if (data.length >= 2) data = injectMediumRectAd(data);
+    if (data.length >= 2) data = injectAds(data, 2);
 
     return (
       <FlatList
