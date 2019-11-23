@@ -21,13 +21,12 @@ export default compose(
         km: 5,
         limit: 50
       },
-      notifyOnNetworkStatusChange: true
     }),
-    skip: props => !props.location || !props.navigation.isFocused(),
+    skip: props => !(props.location && props.navigation.isFocused()),
     props: ({ data, ownProps}) => ({
       data: (data && data.nearbyEvents && data.nearbyEvents.items) || [],
       nextToken: data && data.nearbyEvents && data.nearbyEvents.nextToken,
-      loading: data && (data.loading || data.networkStatus === 4),
+      loading: data && data.loading,
       onRefresh: () => data && data.refetch({
         nextToken: null
       }),
