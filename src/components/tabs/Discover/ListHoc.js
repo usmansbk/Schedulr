@@ -22,7 +22,7 @@ export default compose(
         limit: 50
       },
     }),
-    skip: props => !(props.location && props.navigation.isFocused()),
+    skip: props => !props.location,
     props: ({ data, ownProps}) => ({
       data: (data && data.nearbyEvents && data.nearbyEvents.items) || [],
       nextToken: data && data.nearbyEvents && data.nearbyEvents.nextToken,
