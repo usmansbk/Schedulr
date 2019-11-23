@@ -52,7 +52,7 @@ export default class AppState {
 
   @action reset() {
     this.isConnected =false;
-    this.searchText = ALL_FILTER;
+    this.searchText = '';
     this.query = '';
     this.mutedEvents = [];
     this.allowedEvents = [];
