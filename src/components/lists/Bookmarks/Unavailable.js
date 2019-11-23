@@ -24,7 +24,6 @@ class Item extends React.Component {
       <TouchableRipple style={styles.itemContainer}>
         <View useNativeDriver style={styles.unavailableItemContent}>
           <Caption
-            style={styles.itemHeadline}
             numberOfLines={1}
             ellipsizeMode="tail">
             <Icon name="alert-triangle" size={16} /> {I18n.get("This event is unavailable")} 
