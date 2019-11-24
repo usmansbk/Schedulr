@@ -14,9 +14,7 @@ export default class NewScheduleScreen extends React.Component {
       id,
       ...form
     };
-    const result = this.props.onSubmit(input);
-
-    // this.props.navigation.pop();
+    await this.props.onSubmit(input);
     this.props.navigation.replace('Schedule', { id });
   };
 
