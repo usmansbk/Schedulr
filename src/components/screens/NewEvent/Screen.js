@@ -21,8 +21,9 @@ class NewEventScreen extends React.Component {
       id,
       ...form
     };
-    await this.props.onSubmit(input);
-    this.props.navigation.replace('EventDetails', { id });
+    this.props.onSubmit(input);
+    this.props.navigation.pop();
+    // this.props.navigation.replace('EventDetails', { id });
   };
 
   get schedules() {
