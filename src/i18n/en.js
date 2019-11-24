@@ -250,6 +250,7 @@ export default {
 
   ERROR_noInternetConnection: "Check your internet connection. Pull to refresh",
   ERROR_somethingWentWrong: "Something went wrong. Please try again",
+  ERROR_offline: "You're offline!",
   ERROR_networkError: "Network error",
   ERROR_serverError: message => "Schdlr server error: " + message,
   ERROR_noConnection: "No connection",
