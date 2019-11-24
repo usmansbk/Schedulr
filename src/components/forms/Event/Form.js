@@ -46,7 +46,11 @@ class Form extends React.Component {
   });
   _scheduleHelp = () => this.setState({ showScheduleHelpAlert: true });
 
-  componentDidMount = () => this.props.stores.locationStore.fetchLocation();
+  componentDidMount = () => {
+    this.locationTimeout = setTimeout(this.props.stores.locationStore.fetchLocation, 200);
+  };
+
+  componentWillUnmount = () => clearTimeout(this.locationTimeout);
 
   static defaultProps = {
     schedules: [], 

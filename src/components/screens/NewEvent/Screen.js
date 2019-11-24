@@ -4,11 +4,13 @@ import uuidv5 from 'uuid/v5';
 import shortid from 'shortid';
 import { withApollo } from 'react-apollo';
 import memoize from 'memoize-one';
+import SimpleToast from 'react-native-simple-toast';
 import Form from 'components/forms/Event';
 import recurrences from 'components/forms/Event/recurrence';
 import { isPastExact } from 'lib/time';
 import { getUserSchedules } from 'api/fragments';
 import { SCHEDULE_CLOSED } from "lib/constants";
+import { I18n } from 'aws-amplify';
 
 class NewEventScreen extends React.Component {
   _newSchedule = () => this.props.navigation.navigate("NewSchedule");
@@ -22,6 +24,7 @@ class NewEventScreen extends React.Component {
       ...form
     };
     this.props.onSubmit(input);
+    SimpleToast.show(I18n.get("TOAST_eventAdded"), SimpleToast.SHORT);
     this.props.navigation.pop();
     // this.props.navigation.replace('EventDetails', { id });
   };
