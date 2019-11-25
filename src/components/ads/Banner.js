@@ -38,6 +38,11 @@ class Banner extends React.Component {
         height: 250
       };
     }
+    if (__DEV__) {
+      source = {
+        uri:`https://source.unsplash.com/random/${style.width}x${style.height}`,
+      };
+    }
 
     return (
       <ImageBackground
