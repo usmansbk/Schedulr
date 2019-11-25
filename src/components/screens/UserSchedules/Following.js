@@ -137,7 +137,7 @@ export default inject("stores")(observer(
         }
       }),
       props: ({ data, ownProps }) => ({
-        loading: data.loading || data.networkStatus === 4,
+        loading: data && (data.loading || data.networkStatus === 4),
         error: data.error,
         onRefresh: () => data.refetch(),
         following: (data && data.getUserSchedules &&
