@@ -4,7 +4,11 @@ var environment = process.env.ENV
 var region = process.env.REGION
 
 Amplify Params - DO NOT EDIT */
+const aws = require('aws-sdk');
+const dayjs = require('dayjs');
 
 exports.handler = async function (event, context) { //eslint-disable-line
-  return []; 
+  const userId = event.identity.claims.email;
+  const lastSync = Number(event.arguments.lastSync);
+  return [];
 };
