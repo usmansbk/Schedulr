@@ -16,11 +16,10 @@ exports.handler = async function (event, context) { //eslint-disable-line
   const userId = event.identity.claims.email;
   const lastSync = Number(event.arguments.lastSync);
 
-  const followings = [
-    {
-      "scheduleId": "authorId"
-    }
-  ];
+  const followings = await getFollowings(userId);
+  const createdIds = await getCreatedScheduleIds(userId);
+  const bookmarkIds = await getBookmarkIds(userId);
+  
   // Get following schedules events updates
   // Get following schedules status updates
   // Get created events comments
@@ -32,6 +31,14 @@ exports.handler = async function (event, context) { //eslint-disable-line
   return [];
 };
 
-function getFollowingSchedulesEventsAdminsComments(followings) {
-  // get comments where commentScheduleId === scheduleId && commentAuthorId === authorId
+async function getFollowings(userId) {
+
+} 
+
+async function getCreatedScheduleIds(userId) {
+
+}
+
+async function getBookmarkIds(userId) {
+
 }
