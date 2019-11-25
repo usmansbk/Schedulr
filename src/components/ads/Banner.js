@@ -56,7 +56,9 @@ class Banner extends React.Component {
             'phone',
             'fashion',
             'clothing',
-            'student'
+            'student',
+            'job',
+            'bet'
           ]
         }}
         onAdLoaded={this._onLoad}

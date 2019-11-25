@@ -7,6 +7,7 @@ import { I18n } from 'aws-amplify';
 import Actions from 'components/common/Actions';
 import CountDown from 'components/common/Countdown';
 import Tag from 'components/common/Tag';
+import AdsBanner from 'components/ads/Banner';
 
 export default inject('stores')(observer(
   ({
@@ -88,6 +89,7 @@ export default inject('stores')(observer(
                 </View>
               )
             }
+            <AdsBanner medium_rect />
             <View style={stores.appStyles.eventDetails.item}>
               <Text style={stores.appStyles.eventDetails.label}>{I18n.get("REPEAT")}</Text>
               <Text style={stores.appStyles.eventDetails.value}>{recurrence}</Text>
