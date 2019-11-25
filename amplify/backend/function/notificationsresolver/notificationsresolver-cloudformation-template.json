@@ -63,7 +63,7 @@
 				"Timeout": "25",
 				"Code": {
 					"S3Bucket": "amplify-schdlr-dev-172405-deployment",
-					"S3Key": "amplify-builds/notificationsresolver-4345666b554e3061764e-build.zip"
+					"S3Key": "amplify-builds/notificationsresolver-6f304c4e4c4e73473159-build.zip"
 				}
 			}
 		},
@@ -101,6 +101,39 @@
 							"Action": [
 								"sts:AssumeRole"
 							]
+						}
+					]
+				}
+			}
+		},
+		"lambdadynamodbreadpolicy": {
+			"DependsOn": [
+				"LambdaExecutionRole"
+			],
+			"Type": "AWS::IAM::Policy",
+			"Properties": {
+				"PolicyName": "lambda-dynamodb-read-tables-policy",
+				"Roles": [
+					{
+						"Ref": "LambdaExecutionRole"
+					}
+				],
+				"PolicyDocument": {
+					"Version": "2012-10-17",
+					"Statement": [
+						{
+							"Effect": "Allow",
+							"Action": "dynamodb:Query",
+							"Resource": "arn:aws:dynamodb:*:*:table/*/index/*"
+						},
+						{
+							"Effect": "Allow",
+							"Action": [
+								"dynamodb:BatchGetItem",
+								"dynamodb:GetItem",
+								"dynamodb:Query"
+							],
+							"Resource": "arn:aws:dynamodb:*:*:table/*"
 						}
 					]
 				}
