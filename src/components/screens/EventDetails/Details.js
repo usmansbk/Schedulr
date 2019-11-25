@@ -77,6 +77,7 @@ export default inject('stores')(observer(
               <Text style={stores.appStyles.eventDetails.label}>{I18n.get("VENUE")}</Text>
               <Text style={stores.appStyles.eventDetails.value}>{address || I18n.get("No location set")}</Text>
             </View>
+            <AdsBanner medium_rect />
             {
               (isAuth && scheduleName) && (
                 <View style={stores.appStyles.eventDetails.item}>
@@ -89,7 +90,6 @@ export default inject('stores')(observer(
                 </View>
               )
             }
-            <AdsBanner medium_rect />
             <View style={stores.appStyles.eventDetails.item}>
               <Text style={stores.appStyles.eventDetails.label}>{I18n.get("REPEAT")}</Text>
               <Text style={stores.appStyles.eventDetails.value}>{recurrence}</Text>
