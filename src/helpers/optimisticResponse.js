@@ -11,7 +11,7 @@ import {
   COMMENT_TYPE,
   FOLLOW_TYPE
 } from 'lib/constants';
-import { getUserData } from 'api/queries';
+import { getUserData, getScheduleEvents } from 'api/queries';
 
 const __typename = 'Mutation';
 
@@ -176,6 +176,27 @@ function createSchedule(input, typename) {
     author.createdCount = 1;
   }
   const createdAt = moment().toISOString();
+
+  try {
+    client.writeQuery({
+      query: gql(getScheduleEvents),
+      variables: {
+        id: input.id
+      },
+      data: {
+        getScheduleEvents: {
+          __typename: 'Schedule',
+          id: input.id,
+          isFollowing: false,
+          isOwner: true,
+          isPublic: !!input.isPublic,
+          events: eventConnection
+        }
+      }
+    });
+  } catch(e) {
+    console.log(e);
+  }
 
   const schedule  = {
     __typename: typename,
