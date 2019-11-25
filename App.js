@@ -7,7 +7,7 @@ import SplashScreen from 'react-native-splash-screen';
 import { observer } from 'mobx-react';
 import Amplify, { Auth } from 'aws-amplify';
 import AppContainer from './src/App';
-import Loading from 'components/common/Loading';
+import Loading from 'components/common/Hydrating';
 import NavigationService from 'config/navigation';
 import aws_config from 'aws_config';
 import client from 'config/client';
@@ -43,16 +43,16 @@ export default class App extends React.Component {
     return (
       <PaperProvider theme={stores.themeStore.theme}>
         <ApolloProvider client={client}>
-          <MobxProvider stores={stores}>
-            <Rehydrated loading={<Loading />}>
-              <AppContainer
-                uriPrefix={env.uriPrefix}
-                ref={navigatorRef => {
-                  NavigationService.setTopLevelNavigator(navigatorRef);
-                }}
-              />
-            </Rehydrated>
-          </MobxProvider>
+          <Rehydrated loading={<Loading  dark={stores.settingsStore.dark}/>} >
+            <MobxProvider stores={stores}>
+                <AppContainer
+                  uriPrefix={env.uriPrefix}
+                  ref={navigatorRef => {
+                    NavigationService.setTopLevelNavigator(navigatorRef);
+                  }}
+                />
+            </MobxProvider>
+          </Rehydrated>
         </ApolloProvider>
       </PaperProvider>
     );

@@ -5,8 +5,9 @@ import colors from 'config/colors';
 export default class Loading extends React.Component {
 
   render() {
+    const style = this.props.dark ? styles.dark : styles.light;
     return (
-      <View style={styles.container}>
+      <View style={[styles.container, style]}>
         <ActivityIndicator size="large" color={colors.primary} />
       </View>
     )
@@ -18,6 +19,11 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: colors.gray
+  },
+  light: {
+    backgroundColor: colors.white
+  },
+  dark: {
+    backgroundColor: colors.black
   },
 });
