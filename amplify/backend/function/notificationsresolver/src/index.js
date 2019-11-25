@@ -4,11 +4,34 @@ var environment = process.env.ENV
 var region = process.env.REGION
 
 Amplify Params - DO NOT EDIT */
-const aws = require('aws-sdk');
+const AWS = require('aws-sdk');
 const dayjs = require('dayjs');
+
+const dynamodb = new AWS.DynamoDB.DocumentClient();
+
+const gsiFollowings = process.env.GSI_FOLLOWINGS;
+const gsiFollowingsKey = process.env.GSI_FOLLOWINGS_KEY;
 
 exports.handler = async function (event, context) { //eslint-disable-line
   const userId = event.identity.claims.email;
   const lastSync = Number(event.arguments.lastSync);
+
+  const followings = [
+    {
+      "scheduleId": "authorId"
+    }
+  ];
+  // Get following schedules events updates
+  // Get following schedules status updates
+  // Get created events comments
+  // Get following schedules events admins comments
+  // Get comments replies
+  // Get new followers updates
+  // Get new bookmarks updates
+
   return [];
 };
+
+function getFollowingSchedulesEventsAdminsComments(followings) {
+  // get comments where commentScheduleId === scheduleId && commentAuthorId === authorId
+}
