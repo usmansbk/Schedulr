@@ -10,15 +10,12 @@ const { processUpdates, processEvents } = require('./updatesProcessor');
 const dynamodb = new AWS.DynamoDB.DocumentClient();
 
 const FOLLOW_TABLE_NAME = process.env.FOLLOW_TABLE_NAME;
-// const SCHEDULE_TABLE_NAME = process.env.SCHEDULE_TABLE_NAME;
 const BOOKMARK_TABLE_NAME = process.env.BOOKMARK_TABLE_NAME;
 const EVENT_DELTA_TABLE_NAME = process.env.EVENT_DELTA_TABLE_NAME;
 const SCHEDULE_DELTA_TABLE_NAME = process.env.SCHEDULE_DELTA_TABLE_NAME;
 
 const gsiFollowingScheduleEvents = process.env.GSI_FOLLOWING_SCHEDULE_EVENTS;
 const gsiFollowingScheduleEventsKey = process.env.GSI_FOLLOWING_SCHEDULE_EVENTS_KEY;
-// const gsiUserSchedules = process.env.GSI_USER_SCHEDULES;
-// const gsiUserSchedulesKey = process.env.GSI_USER_SCHEDULES_KEY;
 const gsiFollowings = process.env.GSI_FOLLOWINGS;
 const gsiFollowingsKey = process.env.GSI_FOLLOWINGS_KEY;
 const gsiUserBookmarks = process.env.GSI_USER_BOOKMARKS;
@@ -27,8 +24,6 @@ const gsiUserBookmarksKey = process.env.GSI_USER_BOOKMARKS_KEY;
 exports.handler = async function (event) { //eslint-disable-line
   const id = event.identity.claims.email;
   const lastSync = Number(event.arguments.lastSync);
-  console.log('userId', id);
-  // console.log('lastSync', lastSync);
 
   const followingIds = await getFieldsById({
     id,
@@ -37,13 +32,6 @@ exports.handler = async function (event) { //eslint-disable-line
     primaryKey: gsiFollowingsKey,
     Field: 'followScheduleId'
   });
-  // const createdIds = await getFieldsById({
-  //   id,
-  //   TableName: SCHEDULE_TABLE_NAME,
-  //   IndexName: gsiUserSchedules,
-  //   primaryKey: gsiUserSchedulesKey,
-  //   Field: 'id'
-  // });
   const bookmarksIds = await getFieldsById({
     id,
     TableName: BOOKMARK_TABLE_NAME,
@@ -51,9 +39,6 @@ exports.handler = async function (event) { //eslint-disable-line
     primaryKey: gsiUserBookmarksKey,
     Field: 'bookmarkEventId'
   });
-  // console.log('followingIds',followingIds);
-  // console.log('createdIds', createdIds);
-  // console.log('bookmarksIds', bookmarksIds);
 
   // Get following schedules events updates
   const followingScheduleEventsUpdates = await queryIndexByIds({
@@ -72,7 +57,6 @@ exports.handler = async function (event) { //eslint-disable-line
     primaryKey: 'id',
     TableName: SCHEDULE_DELTA_TABLE_NAME
   });
-  // console.log('following schedules updates', JSON.stringify(followingSchedulesUpdates));
   
   // Get bookmarks updates of schedule events user isn't following or created
   const bookmarksUpdates = await queryBookmarksTableByIds({
@@ -83,7 +67,6 @@ exports.handler = async function (event) { //eslint-disable-line
     filterIds: followingIds,
     TableName: EVENT_DELTA_TABLE_NAME
   });
-  console.log('bookmarks updates', JSON.stringify(bookmarksUpdates));
 
   const events = processEvents(followingScheduleEventsUpdates);
   const bookmarks = processUpdates(bookmarksUpdates);
@@ -103,11 +86,26 @@ async function queryBookmarksTableByIds({
   filterIds,
   TableName
 }) {
-  const filteredValues = {};
+  const expValues = {
+    ':author': userId,
+    ':lastSync': lastSync
+  };
+  const expNames = {
+    '#key': primaryKey,
+    '#author': 'eventAuthorId',
+    '#timestamp': 'timestamp'
+  };
   for (let index in filterIds) {
-    let key = `:item${index}`;
-    let value = filterIds[index];
-    filteredValues[key] = value;
+    const key = `:item${index}`;
+    const value = filterIds[index];
+    expValues[key] = value;
+  }
+  
+  let FilterExpression = `(NOT (#author = :author))`;
+  const inExp = Object.keys(expValues).toString();
+  if (inExp) {
+    expNames['#filter'] = 'eventScheduleId';
+    FilterExpression = `${FilterExpression} and (NOT (#filter IN (${inExp})))`;
   }
 
   const items = [];
@@ -115,18 +113,13 @@ async function queryBookmarksTableByIds({
     const params = {
       TableName,
       KeyConditionExpression: '#key = :id and #timestamp > :lastSync',
-      FilterExpression: `(NOT (#author = :author)) and (NOT (#filter IN (${Object.keys(filteredValues)})))`,
+      FilterExpression,
       ExpressionAttributeValues: {
         ':id': id,
-        ':lastSync': lastSync,
-        ':author': userId,
-        ...filteredValues
+        ...expValues
       },
       ExpressionAttributeNames: {
-        '#key': primaryKey,
-        '#timestamp': 'timestamp',
-        '#author': 'eventAuthorId',
-        '#filter': 'eventScheduleId'
+        ...expNames
       }
     };
     const group = {
