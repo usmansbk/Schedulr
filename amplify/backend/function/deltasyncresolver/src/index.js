@@ -10,6 +10,7 @@ const dynamodb = new AWS.DynamoDB.DocumentClient();
 
 const FOLLOW_TABLE_NAME = process.env.FOLLOW_TABLE_NAME;
 const SCHEDULE_TABLE_NAME = process.env.SCHEDULE_TABLE_NAME;
+const BOOKMARK_TABLE_NAME = process.env.BOOKMARK_TABLE_NAME;
 const EVENT_DELTA_TABLE_NAME = process.env.EVENT_DELTA_TABLE_NAME;
 const SCHEDULE_DELTA_TABLE_NAME = process.env.SCHEDULE_DELTA_TABLE_NAME;
 
@@ -19,6 +20,8 @@ const gsiUserSchedules = process.env.GSI_USER_SCHEDULES;
 const gsiUserSchedulesKey = process.env.GSI_USER_SCHEDULES_KEY;
 const gsiFollowings = process.env.GSI_FOLLOWINGS;
 const gsiFollowingsKey = process.env.GSI_FOLLOWINGS_KEY;
+const gsiUserBookmarks = process.env.GSI_USER_BOOKMARKS;
+const gsiUserBookmarksKey = process.env.GSI_USER_BOOKMARKS_KEY;
 
 exports.handler = async function (event, context) { //eslint-disable-line
   const id = event.identity.claims.email;
@@ -40,8 +43,16 @@ exports.handler = async function (event, context) { //eslint-disable-line
     primaryKey: gsiUserSchedulesKey,
     Field: 'id'
   });
+  const bookmarksIds = await getFieldsById({
+    id,
+    TableName: BOOKMARK_TABLE_NAME,
+    IndexName: gsiUserBookmarks,
+    primaryKey: gsiUserBookmarksKey,
+    Field: 'bookmarkEventId'
+  });
   console.log('followingIds',followingIds);
   console.log('createdIds', createdIds);
+  console.log('bookmarksIds', bookmarksIds);
 
   // Get following schedules events updates
   const followingScheduleEventsUpdates = await queryIndexByIds({
@@ -61,12 +72,79 @@ exports.handler = async function (event, context) { //eslint-disable-line
     TableName: SCHEDULE_DELTA_TABLE_NAME
   });
   console.log('following schedules updates', JSON.stringify(followingSchedulesUpdates));
+  
+  // Get bookmarks updates
+  const bookmarksUpdates = await queryBookmarksTableByIds({
+    ids: bookmarksIds,
+    lastSync,
+    primaryKey: 'id',
+    userId: id,
+    filterIds: followingIds,
+    TableName: EVENT_DELTA_TABLE_NAME
+  });
+  console.log('bookmarks updates', JSON.stringify(bookmarksUpdates));
 
   return {
     events: [],
     schedules: []
   };
 };
+
+async function queryBookmarksTableByIds({
+  ids,
+  lastSync,
+  userId,
+  primaryKey,
+  filterIds,
+  TableName
+}) {
+  const schedulesValues = {};
+  for (let index in filterIds) {
+    let key = `:s${index}`;
+    let value = filterIds[index];
+    schedulesValues[key] = value;
+  }
+
+  const items = [];
+  for (let id of ids) {
+    const params = {
+      TableName,
+      KeyConditionExpression: '#key = :id and #timestamp > :lastSync',
+      FilterExpression: `(NOT (#author = :author)) and (NOT (#schedule IN (${Object.keys(schedulesValues)})))`,
+      ExpressionAttributeValues: {
+        ':id': id,
+        ':lastSync': lastSync,
+        ':author': userId,
+        ...schedulesValues
+      },
+      ExpressionAttributeNames: {
+        '#key': primaryKey,
+        '#timestamp': 'timestamp',
+        '#author': 'eventAuthorId',
+        '#schedule': 'eventScheduleId'
+      }
+    };
+    const group = {
+      id,
+      items: []
+    };
+    try {
+      const { Items, LastEvaluatedKey } = await dynamodb.query(params).promise();
+      group.items = Items;
+      let ExclusiveStartKey = LastEvaluatedKey;
+      while(ExclusiveStartKey) {
+        params.ExclusiveStartKey = ExclusiveStartKey;
+        const { Items, LastEvaluatedKey }= await dynamodb.query(params).promise();
+        group.items = [...group.items, ...Items];
+        ExclusiveStartKey = LastEvaluatedKey;
+      }
+    } catch(error) {
+      console.error(error);
+    }
+    items.push(group);
+  }
+  return items;
+}
 
 async function queryTableByIds({
   ids,
