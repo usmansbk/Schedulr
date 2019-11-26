@@ -34,7 +34,7 @@ class Container extends React.Component {
   };
 
   _authListener = async ({ payload: { event } }) => {
-    const { client } = this.props;
+    const { client, stores } = this.props;
     switch(event) {
       case "signIn":
         try {
@@ -64,7 +64,7 @@ class Container extends React.Component {
               variables: {
                 input: {
                   disablePush: false,
-                  language: 'en'
+                  language: stores.settingsStore.language
                 }
               }
             });
