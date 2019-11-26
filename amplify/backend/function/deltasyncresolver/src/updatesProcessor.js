@@ -1,7 +1,7 @@
 const DELETE = 'DELETE';
 const CREATE = 'CREATE';
 
-module.exports.processUpdates = function (updates) { //eslint-disable-line
+function processUpdates(updates) { //eslint-disable-line
   let Items = [];
   for (let update of updates) {
     const { items } = update;
@@ -20,11 +20,23 @@ module.exports.processUpdates = function (updates) { //eslint-disable-line
   return Items;
 }
 
-module.exports.processEvents = function (updates) {
-  let Items = [];
-  for (let update of updates) {
-    const { items } = update;
-
+function uniqItems(items) {
+  let latestUpdates = {};
+  for (let item of items) {
+    latestUpdates[item.id] = { items: [item] };
   }
-  return Items;
+  return Object.values(latestUpdates);
 }
+
+function processEvents(updates) {
+  let Items = [];
+  for (let schedule of updates) {
+    const { items } = schedule;
+    const events = uniqItems(items);
+    Items = [...Items, ...events];
+  }
+  return processUpdates(Items);
+}
+
+module.exports.processUpdates = processUpdates;
+module.exports.processEvents = processEvents;
