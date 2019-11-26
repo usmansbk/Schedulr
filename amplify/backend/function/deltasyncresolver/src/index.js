@@ -9,15 +9,15 @@ const AWS = require('aws-sdk');
 const dynamodb = new AWS.DynamoDB.DocumentClient();
 
 const FOLLOW_TABLE_NAME = process.env.FOLLOW_TABLE_NAME;
-const SCHEDULE_TABLE_NAME = process.env.SCHEDULE_TABLE_NAME;
+// const SCHEDULE_TABLE_NAME = process.env.SCHEDULE_TABLE_NAME;
 const BOOKMARK_TABLE_NAME = process.env.BOOKMARK_TABLE_NAME;
 const EVENT_DELTA_TABLE_NAME = process.env.EVENT_DELTA_TABLE_NAME;
 const SCHEDULE_DELTA_TABLE_NAME = process.env.SCHEDULE_DELTA_TABLE_NAME;
 
 const gsiFollowingScheduleEvents = process.env.GSI_FOLLOWING_SCHEDULE_EVENTS;
 const gsiFollowingScheduleEventsKey = process.env.GSI_FOLLOWING_SCHEDULE_EVENTS_KEY;
-const gsiUserSchedules = process.env.GSI_USER_SCHEDULES;
-const gsiUserSchedulesKey = process.env.GSI_USER_SCHEDULES_KEY;
+// const gsiUserSchedules = process.env.GSI_USER_SCHEDULES;
+// const gsiUserSchedulesKey = process.env.GSI_USER_SCHEDULES_KEY;
 const gsiFollowings = process.env.GSI_FOLLOWINGS;
 const gsiFollowingsKey = process.env.GSI_FOLLOWINGS_KEY;
 const gsiUserBookmarks = process.env.GSI_USER_BOOKMARKS;
@@ -27,7 +27,7 @@ exports.handler = async function (event) { //eslint-disable-line
   const id = event.identity.claims.email;
   const lastSync = Number(event.arguments.lastSync);
   console.log('userId', id);
-  console.log('lastSync', lastSync);
+  // console.log('lastSync', lastSync);
 
   const followingIds = await getFieldsById({
     id,
@@ -36,13 +36,13 @@ exports.handler = async function (event) { //eslint-disable-line
     primaryKey: gsiFollowingsKey,
     Field: 'followScheduleId'
   });
-  const createdIds = await getFieldsById({
-    id,
-    TableName: SCHEDULE_TABLE_NAME,
-    IndexName: gsiUserSchedules,
-    primaryKey: gsiUserSchedulesKey,
-    Field: 'id'
-  });
+  // const createdIds = await getFieldsById({
+  //   id,
+  //   TableName: SCHEDULE_TABLE_NAME,
+  //   IndexName: gsiUserSchedules,
+  //   primaryKey: gsiUserSchedulesKey,
+  //   Field: 'id'
+  // });
   const bookmarksIds = await getFieldsById({
     id,
     TableName: BOOKMARK_TABLE_NAME,
@@ -73,7 +73,7 @@ exports.handler = async function (event) { //eslint-disable-line
   });
   console.log('following schedules updates', JSON.stringify(followingSchedulesUpdates));
   
-  // Get bookmarks updates
+  // Get bookmarks updates of schedule events user isn't following or created
   const bookmarksUpdates = await queryBookmarksTableByIds({
     ids: bookmarksIds,
     lastSync,
