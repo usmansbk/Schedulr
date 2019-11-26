@@ -50,7 +50,20 @@
 						},
 						"REGION": {
 							"Ref": "AWS::Region"
-						}
+						},
+						"FOLLOW_TABLE_NAME": "Follow-nuvqxpmrwrgvdpzysdvzf6keju-dev",
+						"SCHEDULE_TABLE_NAME": "Schedule-nuvqxpmrwrgvdpzysdvzf6keju-dev",
+						"BOOKMARK_TABLE_NAME": "Bookmark-nuvqxpmrwrgvdpzysdvzf6keju-dev",
+						"EVENT_DELTA_TABLE_NAME": "Event-delta",
+						"SCHEDULE_DELTA_TABLE_NAME": "Schedule-delta",
+						"GSI_FOLLOWINGS": "gsi-Followings",
+						"GSI_FOLLOWINGS_KEY": "followUserId",
+						"GSI_USER_SCHEDULES": "gsi-UserSchedules",
+						"GSI_USER_SCHEDULES_KEY": "scheduleAuthorId",
+						"GSI_USER_BOOKMARKS": "gsi-UserBookmarks",
+						"GSI_USER_BOOKMARKS_KEY": "bookmarkUserId",
+						"GSI_FOLLOWING_SCHEDULE_EVENTS": "gsi-FollowingScheduleEvents",
+						"GSI_FOLLOWING_SCHEDULE_EVENTS_KEY": "eventScheduleId"
 					}
 				},
 				"Role": {
