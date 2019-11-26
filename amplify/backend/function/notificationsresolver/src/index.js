@@ -12,6 +12,9 @@ const FOLLOW_TABLE_NAME = process.env.FOLLOW_TABLE_NAME;
 const SCHEDULE_TABLE_NAME = process.env.SCHEDULE_TABLE_NAME;
 const EVENT_DELTA_TABLE_NAME = process.env.EVENT_DELTA_TABLE_NAME;
 const SCHEDULE_DELTA_TABLE_NAME = process.env.SCHEDULE_DELTA_TABLE_NAME;
+const FOLLOW_DELTA_TABLE_NAME = process.env.FOLLOW_DELTA_TABLE_NAME;
+const BOOKMARK_DELTA_TABLE_NAME = process.env.BOOKMARK_DELTA_TABLE_NAME;
+const COMMENT_DELTA_TABLE_NAME = process.env.COMMENT_DELTA_TABLE_NAME;
 
 const gsiFollowingScheduleEvents = process.env.GSI_FOLLOWING_SCHEDULE_EVENTS;
 const gsiFollowingScheduleEventsKey = process.env.GSI_FOLLOWING_SCHEDULE_EVENTS_KEY;
@@ -19,8 +22,14 @@ const gsiUserSchedules = process.env.GSI_USER_SCHEDULES;
 const gsiUserSchedulesKey = process.env.GSI_USER_SCHEDULES_KEY;
 const gsiFollowings = process.env.GSI_FOLLOWINGS;
 const gsiFollowingsKey = process.env.GSI_FOLLOWINGS_KEY;
+const gsiNewFollowers = process.env.GSI_NEW_FOLLOWERS;
+const gsiNewFollowersKey = process.env.GSI_NEW_FOLLOWERS_KEY;
+const gsiEventBookmarks = process.env.GSI_EVENT_BOOKMARKS;
+const gsiEventBookmarksKey = process.env.GSI_EVENT_BOOKMARKS_KEY;
+const gsiScheduleComments = process.env.GSI_SCHEDULE_COMMENTS;
+const gsiScheduleCommentsKey = process.env.GSI_SCHEDULE_COMMENTS_KEY;
 
-exports.handler = async function (event, context) { //eslint-disable-line
+exports.handler = async function (event) { //eslint-disable-line
   const id = event.identity.claims.email;
   const lastSync = Number(event.arguments.lastSync);
 
@@ -47,6 +56,7 @@ exports.handler = async function (event, context) { //eslint-disable-line
     TableName: EVENT_DELTA_TABLE_NAME,
     IndexName: gsiFollowingScheduleEvents
   });
+  console.log('following schedule Event updates', JSON.stringify(followingScheduleEventsUpdates));
   
   // Get following schedules updates
   const followingSchedulesUpdates = await queryTableByIds({
@@ -55,15 +65,63 @@ exports.handler = async function (event, context) { //eslint-disable-line
     primaryKey: 'id',
     TableName: SCHEDULE_DELTA_TABLE_NAME
   });
+  console.log('following schedules updates', JSON.stringify(followingSchedulesUpdates));
   
-  // Get created events comments
-  // Get following schedules events admins comments
-  // Get comments replies
   // Get new followers updates
-  // Get new bookmarks updates
+  const followersUpdates = await queryIndexByIds({
+    ids: createdIds,
+    lastSync,
+    primaryKey: gsiNewFollowersKey,
+    TableName: FOLLOW_DELTA_TABLE_NAME,
+    IndexName: gsiNewFollowers 
+  });
+  console.log('new followers updates', JSON.stringify(followersUpdates));
 
+  // Get new bookmarks updates
+  const bookmarksUpdates = await queryIndexByIds({
+    ids: [id],
+    lastSync,
+    primaryKey: gsiEventBookmarksKey,
+    TableName: BOOKMARK_DELTA_TABLE_NAME,
+    IndexName: gsiEventBookmarks
+  });
+  console.log('new bookmarks updates', JSON.stringify(bookmarksUpdates));
+
+  // Get created schedules new comments
+  const createdSchedulesComments = await queryIndexByIds({
+    ids: createdIds,
+    lastSync,
+    primaryKey: gsiScheduleCommentsKey,
+    TableName: COMMENT_DELTA_TABLE_NAME,
+    IndexName: gsiScheduleComments,
+    FilterExpression: 'NOT (#author = :author)',
+    expNames: {
+      '#author': 'commentAuthorId'
+    },
+    expValues: {
+      ':author': id
+    }
+  });
+  console.log('created schedules comments', JSON.stringify(createdSchedulesComments));
+
+  const followingSchedulesComments = await queryIndexByIds({
+    ids: followingIds,
+    lastSync,
+    primaryKey: gsiScheduleCommentsKey,
+    TableName: COMMENT_DELTA_TABLE_NAME,
+    IndexName: gsiScheduleComments,
+    FilterExpression: 'NOT (#author = :author)',
+    expNames: {
+      '#author': 'commentAuthorId'
+    },
+    expValues: {
+      ':author': id
+    }
+  });
+  console.log('following schedules comments', JSON.stringify(followingSchedulesComments));
   return [];
 };
+
 
 async function queryTableByIds({
   ids,
@@ -113,6 +171,9 @@ async function queryIndexByIds({
   primaryKey,
   TableName,
   IndexName,
+  FilterExpression,
+  expNames={},
+  expValues={}
 }) {
   const items = [];
   for (let id of ids) {
@@ -120,13 +181,16 @@ async function queryIndexByIds({
       TableName,
       IndexName,
       KeyConditionExpression: '#key = :id and #timestamp > :lastSync',
+      FilterExpression,
       ExpressionAttributeValues: {
         ':id': id,
-        ':lastSync': lastSync
+        ':lastSync': lastSync,
+        ...expValues
       },
       ExpressionAttributeNames: {
         '#key': primaryKey,
-        '#timestamp': 'timestamp'
+        '#timestamp': 'timestamp',
+        ...expNames
       }
     };
     const group = {
