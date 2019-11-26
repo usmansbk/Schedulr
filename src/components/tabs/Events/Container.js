@@ -31,13 +31,10 @@ class Container extends React.Component {
   onOpened = processRemoteNotification;
 
   onReceived = (result) => {
-    const { isAppInFocus, payload: { additionalData } } = result;
+    const { payload: { additionalData } } = result;
     this.props.stores.notificationsStore.fetchNotifications();
     if (additionalData && (additionalData.type === 'Event')) {
       this.props.stores.appState.deltaSync();
-    }
-    if (isAppInFocus) {
-      OneSignal.clearOneSignalNotifications();
     }
   };
   
@@ -102,6 +99,8 @@ class Container extends React.Component {
     OneSignal.removeEventListener('opened', this.onOpened);
     this.unsubscribe();
   };
+
+  componentDidUpdate = () => OneSignal.clearOneSignalNotifications();
 
   _deltaSync = () => this.props.stores.appState.deltaSync();
   _fetchNotifications = () => this.props.stores.notificationsStore.fetchNotifications();
