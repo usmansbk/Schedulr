@@ -23,8 +23,6 @@ const gsiFollowingsKey = process.env.GSI_FOLLOWINGS_KEY;
 exports.handler = async function (event, context) { //eslint-disable-line
   const id = event.identity.claims.email;
   const lastSync = Number(event.arguments.lastSync);
-  console.log('userId', id);
-  console.log('lastSync', lastSync);
 
   const followingIds = await getFieldsById({
     id,
@@ -40,8 +38,6 @@ exports.handler = async function (event, context) { //eslint-disable-line
     primaryKey: gsiUserSchedulesKey,
     Field: 'id'
   });
-  console.log('followingIds',followingIds);
-  console.log('createdIds', createdIds);
 
   // Get following schedules events updates
   const followingScheduleEventsUpdates = await queryIndexByIds({
@@ -51,7 +47,6 @@ exports.handler = async function (event, context) { //eslint-disable-line
     TableName: EVENT_DELTA_TABLE_NAME,
     IndexName: gsiFollowingScheduleEvents
   });
-  console.log('following schedules events updates', JSON.stringify(followingScheduleEventsUpdates));
   
   // Get following schedules updates
   const followingSchedulesUpdates = await queryTableByIds({
@@ -60,7 +55,7 @@ exports.handler = async function (event, context) { //eslint-disable-line
     primaryKey: 'id',
     TableName: SCHEDULE_DELTA_TABLE_NAME
   });
-  console.log('following schedules updates', JSON.stringify(followingSchedulesUpdates));
+  
   // Get created events comments
   // Get following schedules events admins comments
   // Get comments replies
