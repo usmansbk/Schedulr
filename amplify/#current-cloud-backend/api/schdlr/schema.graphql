@@ -48,6 +48,7 @@ type UserPreference
   disableAdminComments: Boolean
   disableReplies: Boolean
   enableMembersComments: Boolean
+  language: String
 }
 
 type Schedule
