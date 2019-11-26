@@ -23,7 +23,7 @@ const gsiFollowingsKey = process.env.GSI_FOLLOWINGS_KEY;
 const gsiUserBookmarks = process.env.GSI_USER_BOOKMARKS;
 const gsiUserBookmarksKey = process.env.GSI_USER_BOOKMARKS_KEY;
 
-exports.handler = async function (event, context) { //eslint-disable-line
+exports.handler = async function (event) { //eslint-disable-line
   const id = event.identity.claims.email;
   const lastSync = Number(event.arguments.lastSync);
   console.log('userId', id);
@@ -50,9 +50,9 @@ exports.handler = async function (event, context) { //eslint-disable-line
     primaryKey: gsiUserBookmarksKey,
     Field: 'bookmarkEventId'
   });
-  console.log('followingIds',followingIds);
-  console.log('createdIds', createdIds);
-  console.log('bookmarksIds', bookmarksIds);
+  // console.log('followingIds',followingIds);
+  // console.log('createdIds', createdIds);
+  // console.log('bookmarksIds', bookmarksIds);
 
   // Get following schedules events updates
   const followingScheduleEventsUpdates = await queryIndexByIds({
@@ -98,11 +98,11 @@ async function queryBookmarksTableByIds({
   filterIds,
   TableName
 }) {
-  const schedulesValues = {};
+  const filteredValues = {};
   for (let index in filterIds) {
-    let key = `:s${index}`;
+    let key = `:item${index}`;
     let value = filterIds[index];
-    schedulesValues[key] = value;
+    filteredValues[key] = value;
   }
 
   const items = [];
@@ -110,18 +110,18 @@ async function queryBookmarksTableByIds({
     const params = {
       TableName,
       KeyConditionExpression: '#key = :id and #timestamp > :lastSync',
-      FilterExpression: `(NOT (#author = :author)) and (NOT (#schedule IN (${Object.keys(schedulesValues)})))`,
+      FilterExpression: `(NOT (#author = :author)) and (NOT (#filter IN (${Object.keys(filteredValues)})))`,
       ExpressionAttributeValues: {
         ':id': id,
         ':lastSync': lastSync,
         ':author': userId,
-        ...schedulesValues
+        ...filteredValues
       },
       ExpressionAttributeNames: {
         '#key': primaryKey,
         '#timestamp': 'timestamp',
         '#author': 'eventAuthorId',
-        '#schedule': 'eventScheduleId'
+        '#filter': 'eventScheduleId'
       }
     };
     const group = {
