@@ -11,6 +11,7 @@ const dynamodb = new AWS.DynamoDB.DocumentClient();
 const FOLLOW_TABLE_NAME = process.env.FOLLOW_TABLE_NAME;
 const SCHEDULE_TABLE_NAME = process.env.SCHEDULE_TABLE_NAME;
 const EVENT_DELTA_TABLE_NAME = process.env.EVENT_DELTA_TABLE_NAME;
+const BOOKMARK_TABLE_NAME = process.env.BOOKMARK_TABLE_NAME;
 const SCHEDULE_DELTA_TABLE_NAME = process.env.SCHEDULE_DELTA_TABLE_NAME;
 const FOLLOW_DELTA_TABLE_NAME = process.env.FOLLOW_DELTA_TABLE_NAME;
 const BOOKMARK_DELTA_TABLE_NAME = process.env.BOOKMARK_DELTA_TABLE_NAME;
@@ -28,6 +29,8 @@ const gsiEventBookmarks = process.env.GSI_EVENT_BOOKMARKS;
 const gsiEventBookmarksKey = process.env.GSI_EVENT_BOOKMARKS_KEY;
 const gsiScheduleComments = process.env.GSI_SCHEDULE_COMMENTS;
 const gsiScheduleCommentsKey = process.env.GSI_SCHEDULE_COMMENTS_KEY;
+const gsiUserBookmarks = process.env.GSI_USER_BOOKMARKS;
+const gsiUserBookmarksKey = process.env.GSI_USER_BOOKMARKS_KEY;
 
 exports.handler = async function (event) { //eslint-disable-line
   const id = event.identity.claims.email;
@@ -46,6 +49,13 @@ exports.handler = async function (event) { //eslint-disable-line
     IndexName: gsiUserSchedules,
     primaryKey: gsiUserSchedulesKey,
     Field: 'id'
+  });
+  const bookmarksIds = await getFieldsById({
+    id,
+    TableName: BOOKMARK_TABLE_NAME,
+    IndexName: gsiUserBookmarks,
+    primaryKey: gsiUserBookmarksKey,
+    Field: 'bookmarkEventId'
   });
 
   // Get following schedules events updates
@@ -119,6 +129,37 @@ exports.handler = async function (event) { //eslint-disable-line
     }
   });
   console.log('following schedules comments', JSON.stringify(followingSchedulesComments));
+
+  // Get bookmarks updates of schedule events user isn't following or created
+  const expValues = {
+    ':author': id,
+  };
+  const expNames = {
+    '#author': 'eventAuthorId',
+  };
+  for (let index in followingIds) {
+    const key = `:item${index}`;
+    const value = followingIds[index];
+    expValues[key] = value;
+  }
+  
+  let FilterExpression = `(NOT (#author = :author))`;
+  const inExp = Object.keys(expValues).toString();
+  if (inExp) {
+    expNames['#filter'] = 'eventScheduleId';
+    FilterExpression = `${FilterExpression} and (NOT (#filter IN (${inExp})))`;
+  }
+  const bookmarkedEventsUpdates = await queryTableByIds({
+    ids: bookmarksIds,
+    lastSync,
+    primaryKey: 'id',
+    TableName: EVENT_DELTA_TABLE_NAME,
+    FilterExpression,
+    expNames,
+    expValues
+  });
+  console.log('bookmarked events updates', JSON.stringify(bookmarkedEventsUpdates));
+  
   return [];
 };
 
@@ -127,20 +168,26 @@ async function queryTableByIds({
   ids,
   lastSync,
   TableName,
-  primaryKey
+  primaryKey,
+  FilterExpression,
+  expNames={},
+  expValues={}
 }) {
   const items = [];
   for (let id of ids) {
     const params = {
       TableName,
       KeyConditionExpression: '#key = :id and #timestamp > :lastSync',
+      FilterExpression,
       ExpressionAttributeValues: {
         ':id': id,
-        ':lastSync': lastSync
+        ':lastSync': lastSync,
+        ...expValues
       },
       ExpressionAttributeNames: {
         '#key': primaryKey,
-        '#timestamp': 'timestamp'
+        '#timestamp': 'timestamp',
+        ...expNames
       }
     };
     const group = {
