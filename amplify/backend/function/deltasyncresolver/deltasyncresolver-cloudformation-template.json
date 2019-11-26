@@ -76,7 +76,7 @@
 				"Timeout": "25",
 				"Code": {
 					"S3Bucket": "amplify-schdlr-dev-172405-deployment",
-					"S3Key": "amplify-builds/deltasyncresolver-645130372b6362546548-build.zip"
+					"S3Key": "amplify-builds/deltasyncresolver-35524c4675634b56316c-build.zip"
 				}
 			}
 		},
