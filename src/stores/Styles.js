@@ -1471,7 +1471,7 @@ export default class AppStyles {
         textAlign: 'center'
       },
       header: {
-        height: BANNER,
+        height: BANNER + 4,
         justifyContent: 'center',
         alignItems: 'center'
       },

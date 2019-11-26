@@ -50,7 +50,7 @@ class Banner extends React.Component {
         style={style}
        >
       <BannerAd
-        unitId={env.BANNER}
+        unitId={TestIds.BANNER}
         size={size}
         requestOptions={{
           requestNonPersonalizedAdsOnly: true,
