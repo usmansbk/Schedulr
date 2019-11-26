@@ -129,7 +129,7 @@ export default {
   BUTTON_shareInviteLink: "Share invite link",
   BUTTON_removeBookmark: "Remove bookmark",
   BUTTON_bookmark: "Bookmark",
-  BUTTON_mute: "Mute",
+  BUTTON_mute: "Mute reminder",
   BUTTON_muteEvents: "Mute events",
   BUTTON_unmute: "Unmute",
   BUTTON_unmuteEvents: "Unmute events",

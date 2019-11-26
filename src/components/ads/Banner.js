@@ -50,11 +50,21 @@ class Banner extends React.Component {
         style={style}
        >
       <BannerAd
-        unitId={TestIds.BANNER}
+        unitId={env.BANNER}
         size={size}
         requestOptions={{
           requestNonPersonalizedAdsOnly: true,
           location: this.props.stores.locationStore.adLocation,
+          keywords: [
+            'scholarship',
+            'laptop',
+            'phone',
+            'fashion',
+            'clothing',
+            'student',
+            'job',
+            'bet'
+          ]
         }}
         onAdLoaded={this._onLoad}
         onAdFailedToLoad={this._onError}
@@ -64,14 +74,4 @@ class Banner extends React.Component {
   }
 }
 
-// keywords: [
-//   'scholarship',
-//   'laptop',
-//   'phone',
-//   'fashion',
-//   'clothing',
-//   'student',
-//   'job',
-//   'bet'
-// ]
 export default inject("stores")(observer(Banner));
