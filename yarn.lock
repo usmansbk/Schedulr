@@ -1285,29 +1285,29 @@
   dependencies:
     invariant "^2.2.4"
 
-"@react-native-firebase/admob@^6.0.4":
-  version "6.0.4"
-  resolved "https://registry.yarnpkg.com/@react-native-firebase/admob/-/admob-6.0.4.tgz#5d390875c60b5ef151122215fee82e1b8e10f1c1"
-  integrity sha512-MuPv2I8O4+P+BsAg/Uxmcrg63TO98GYrIQ+mwyK4db6LnkWha+T6rRtI0RRQDBIkTKqC12pZfHVIi3PkFDZzSQ==
+"@react-native-firebase/admob@^6.1.0":
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/admob/-/admob-6.1.0.tgz#da98dcaf61fba15d7db3bb266844925ecaf54c06"
+  integrity sha512-waRMr78+/N1aQfRs4ryVKoqym0DgO1HNDlLT/FPn3yjEse/YY7kcSTh2T7k9oBGhi6/LMEtBZcaBTYEfftAG4A==
 
-"@react-native-firebase/app-types@6.0.4":
-  version "6.0.4"
-  resolved "https://registry.yarnpkg.com/@react-native-firebase/app-types/-/app-types-6.0.4.tgz#f6c78b4759ffd46d08bc1d2ed0c40c10e1b1791c"
-  integrity sha512-jy6ySprTk786pFZEMaTsvwvaqphD1uCIr8jtAAno9KrUhiZWpizHrAsTpKA6QR2IZoTmYtHv6eWatKKVvKcQcg==
+"@react-native-firebase/app-types@6.1.0":
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/app-types/-/app-types-6.1.0.tgz#b7a2cd678e7c54f0b17d1e2faa7b8131333facdb"
+  integrity sha512-w5VxtgMyqx0DU5y2vKzBT8f313ruaykC4T14P/vp8sQwVeitUolLrD7SLOZW9SUm7epExrQDPrdW7M3SFeze0g==
 
-"@react-native-firebase/app@^6.0.4":
-  version "6.0.4"
-  resolved "https://registry.yarnpkg.com/@react-native-firebase/app/-/app-6.0.4.tgz#5003d9a631ac480e0c7106524c0a5463900a7f2d"
-  integrity sha512-d0hoA9oP2CrJNhrQoXC1blFd+SOirHJfJP81smloB6wHX29HOBt62BQkrTQKFerDv7ZQXOEVlUeP9tyOCmT29Q==
+"@react-native-firebase/app@^6.1.0":
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/app/-/app-6.1.0.tgz#c7b9b70f9aea65ba3fa68d9a25005ee5a746424a"
+  integrity sha512-ZNnb9kgJxpohW+S5zGF3HECSdktmFuozIiuK5rkghpnzO9ZMgPIudIjOYX4P/wdm8w1gj5wXH4sQDtyJ2ryE9w==
   dependencies:
-    "@react-native-firebase/app-types" "6.0.4"
+    "@react-native-firebase/app-types" "6.1.0"
     opencollective-postinstall "^2.0.1"
     superstruct "^0.6.2"
 
-"@react-native-firebase/crashlytics@^6.0.4":
-  version "6.0.4"
-  resolved "https://registry.yarnpkg.com/@react-native-firebase/crashlytics/-/crashlytics-6.0.4.tgz#4b3c9dd6713ac6efdab82ac9f1ba3a941c39077a"
-  integrity sha512-2+5PD+cW1sIK9hq/gX4nTu5zg+znlPlwhc4J3XK29YmFLFgm8rbQduT799OWiczjVMkW6KT1WkVNgJJtYHDY6A==
+"@react-native-firebase/crashlytics@^6.1.0":
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/crashlytics/-/crashlytics-6.1.0.tgz#137a15055d75b6cb662059fed21800f4437370cd"
+  integrity sha512-5R4mrxR5glhKiXU30l8tu5uH+V0ftDSkpUtoH84D6bn+N2jZhb1A+JwiQZIb7Z+A4an//luClwr4dX30wLs20g==
   dependencies:
     stacktrace-js "^2.0.0"
 
