@@ -50,7 +50,22 @@
 						},
 						"REGION": {
 							"Ref": "AWS::Region"
-						}
+						},
+						"FOLLOW_TABLE_NAME": "Follow-nuvqxpmrwrgvdpzysdvzf6keju-dev",
+						"SCHEDULE_TABLE_NAME": "Schedule-nuvqxpmrwrgvdpzysdvzf6keju-dev",
+						"BOOKMARK_TABLE_NAME": "Bookmark-nuvqxpmrwrgvdpzysdvzf6keju-dev",
+						"EVENT_DELTA_TABLE_NAME": "Event-delta",
+						"SCHEDULE_DELTA_TABLE_NAME": "Schedule-delta",
+						"GSI_FOLLOWINGS": "gsi-Followings",
+						"GSI_FOLLOWINGS_KEY": "followUserId",
+						"GSI_USER_SCHEDULES": "gsi-UserSchedules",
+						"GSI_USER_SCHEDULES_KEY": "scheduleAuthorId",
+						"GSI_USER_BOOKMARKS": "gsi-UserBookmarks",
+						"GSI_USER_BOOKMARKS_KEY": "bookmarkUserId",
+						"GSI_FOLLOWING_SCHEDULE_EVENTS": "gsi-FollowingScheduleEvents",
+						"GSI_FOLLOWING_SCHEDULE_EVENTS_KEY": "eventScheduleId",
+						"GSI_FOLLOWING_SCHEDULES": "followScheduleId-timestamp-index",
+						"GSI_FOLLOWING_SCHEDULES_KEY": "followScheduleId"
 					}
 				},
 				"Role": {
@@ -63,7 +78,7 @@
 				"Timeout": "25",
 				"Code": {
 					"S3Bucket": "amplify-schdlr-dev-172405-deployment",
-					"S3Key": "amplify-builds/notificationsresolver-597a42716a42534e6a55-build.zip"
+					"S3Key": "amplify-builds/notificationsresolver-704648676b326332305a-build.zip"
 				}
 			}
 		},
