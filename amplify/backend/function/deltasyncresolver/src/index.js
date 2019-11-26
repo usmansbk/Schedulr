@@ -5,7 +5,7 @@ var region = process.env.REGION
 
 Amplify Params - DO NOT EDIT */
 const AWS = require('aws-sdk');
-const { processUpdates } = require('./updatesProcessor');
+const { processUpdates, processEvents } = require('./updatesProcessor');
 
 const dynamodb = new AWS.DynamoDB.DocumentClient();
 
@@ -83,13 +83,14 @@ exports.handler = async function (event) { //eslint-disable-line
     filterIds: followingIds,
     TableName: EVENT_DELTA_TABLE_NAME
   });
-  // console.log('bookmarks updates', JSON.stringify(bookmarksUpdates));
+  console.log('bookmarks updates', JSON.stringify(bookmarksUpdates));
 
+  const events = processEvents(followingScheduleEventsUpdates);
   const bookmarks = processUpdates(bookmarksUpdates);
   const schedules = processUpdates(followingSchedulesUpdates);
 
   return {
-    events: [...bookmarks],
+    events: [...events, ...bookmarks],
     schedules: schedules 
   };
 };

@@ -19,3 +19,12 @@ module.exports.processUpdates = function (updates) { //eslint-disable-line
   }
   return Items;
 }
+
+module.exports.processEvents = function (updates) {
+  let Items = [];
+  for (let update of updates) {
+    const { items } = update;
+
+  }
+  return Items;
+}
