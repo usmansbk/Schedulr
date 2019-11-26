@@ -48,7 +48,6 @@ exports.handler = async function (event) { //eslint-disable-line
     TableName: EVENT_DELTA_TABLE_NAME,
     IndexName: gsiFollowingScheduleEvents
   });
-  console.log('following schedules events updates', JSON.stringify(followingScheduleEventsUpdates));
   
   // Get following schedules updates
   const followingSchedulesUpdates = await queryTableByIds({
