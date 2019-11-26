@@ -191,7 +191,7 @@ export const createSchedule = `mutation CreateSchedule($input: CreateScheduleInp
     eventsCount
     createdAt
     updatedAt
-    events {
+    events @connection(key: "events") {
       items {
         id
         title

@@ -48,6 +48,7 @@ class ListHoc extends React.Component {
         listType="schedule"
         navigation={navigation}
         handleScroll={this._onScroll}
+        updateListEveryMinute={new Date().getMinutes()}
       /> 
       {
         Boolean(this.state.offsetY > HEIGHT) && (

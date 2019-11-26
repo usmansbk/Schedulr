@@ -1,6 +1,5 @@
 import React from 'react';
 import { Image, View, StyleSheet } from 'react-native';
-import colors from 'config/colors';
 
 const src = require('./img/logo.png');
 
@@ -14,8 +13,7 @@ export default () => (
   </View>
 );
 
-const LENGTH = 140;
-const LOGO_LENGTH = 140;
+const LOGO_LENGTH = 128;
 
 const styles = StyleSheet.create({
   logo: {
@@ -26,18 +24,6 @@ const styles = StyleSheet.create({
   iconContainer: {
     alignContent: 'center',
     justifyContent: 'center',
-    width: LENGTH,
-    height: LENGTH,
-    // borderRadius: LENGTH / 2,
-    // backgroundColor: colors.primary,
-    // elevation: 8,
-    // shadowOpacity: 0.5,
-    // shadowRadius: 6,
-    // shadowColor: '#000',
-    // shadowOffset: {
-    //   height: 4,
-    //   width: 0
-    // },
     marginBottom: 16
   }
 });

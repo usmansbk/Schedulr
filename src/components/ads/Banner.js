@@ -38,6 +38,11 @@ class Banner extends React.Component {
         height: 250
       };
     }
+    if (__DEV__) {
+      source = {
+        uri:`https://source.unsplash.com/random/${style.width}x${style.height}`,
+      };
+    }
 
     return (
       <ImageBackground
@@ -45,19 +50,11 @@ class Banner extends React.Component {
         style={style}
        >
       <BannerAd
-        unitId={env.BANNER}
+        unitId={TestIds.BANNER}
         size={size}
         requestOptions={{
           requestNonPersonalizedAdsOnly: true,
           location: this.props.stores.locationStore.adLocation,
-          keywords: [
-            'scholarship',
-            'laptop',
-            'phone',
-            'fashion',
-            'clothing',
-            'student'
-          ]
         }}
         onAdLoaded={this._onLoad}
         onAdFailedToLoad={this._onError}
@@ -67,4 +64,14 @@ class Banner extends React.Component {
   }
 }
 
+// keywords: [
+//   'scholarship',
+//   'laptop',
+//   'phone',
+//   'fashion',
+//   'clothing',
+//   'student',
+//   'job',
+//   'bet'
+// ]
 export default inject("stores")(observer(Banner));

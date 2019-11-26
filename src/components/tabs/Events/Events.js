@@ -62,6 +62,7 @@ export default class Events extends React.Component {
           onRefresh={this._onRefresh}
           loading={this.props.loading}
           fetchMore={this._sync}
+          updateListEveryMinute={new Date().getMinutes()}
         />
         <FAB
           icon="edit-2"

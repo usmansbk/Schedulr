@@ -14,16 +14,8 @@ export default class NewScheduleScreen extends React.Component {
       id,
       ...form
     };
-    const result = await this.props.onSubmit(input);
-    const popAfterCreation = await this.props.navigation.getParam('popAfterCreation');
-
-    if (popAfterCreation) {
-      this.props.navigation.pop();
-    } else {
-      this.props.navigation.replace('Schedule', {
-        id: result.data.createSchedule.id
-      });
-    }
+    await this.props.onSubmit(input);
+    this.props.navigation.replace('Schedule', { id });
   };
 
   render() {

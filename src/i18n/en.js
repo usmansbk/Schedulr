@@ -164,6 +164,7 @@ export default {
   SHARE_SCHEDULE_message: name => `Hello, I'm inviting you to follow "${name}" to see their latest events, receive updates and reminders.\n`,
   SHARE_EVENT_inviteTitle: "Share event via...",
 
+  TOAST_eventAdded: "Event added",
   TOAST_enableReminder: "Unmute all events to continue!",
   TOAST_updatesAvailable: "Updates available. Refresh calendar",
   TOAST_locationError: "Failed to get location. Turn off airplane mode.",
@@ -250,6 +251,7 @@ export default {
 
   ERROR_noInternetConnection: "Check your internet connection. Pull to refresh",
   ERROR_somethingWentWrong: "Something went wrong. Please try again",
+  ERROR_offline: "You're offline!",
   ERROR_networkError: "Network error",
   ERROR_serverError: message => "Schdlr server error: " + message,
   ERROR_noConnection: "No connection",

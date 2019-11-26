@@ -23,7 +23,7 @@ class List extends Component {
   };
   _getItemLayout = (_, index) => {
     let length = ITEM_HEIGHT;
-    if (index === 0) length = BANNER;
+    if (index === 0) length = BANNER + 4;
     return (
       {
         length,

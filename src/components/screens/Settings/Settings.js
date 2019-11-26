@@ -164,26 +164,34 @@ class Settings extends React.Component {
                 />
               )}
             />
-            <List.Item
-              title={I18n.get("SETTINGS_disableAdminComment")}
-              right={() => (
-                <Switch
-                  disabled={disablePush || disableComments}
-                  value={disableAdminComments}
-                  onValueChange={() => this.handleValueChange('disableAdminComments')}
+            {
+              false && (
+                <List.Item
+                  title={I18n.get("SETTINGS_disableAdminComment")}
+                  right={() => (
+                    <Switch
+                      disabled={disablePush || disableComments}
+                      value={disableAdminComments}
+                      onValueChange={() => this.handleValueChange('disableAdminComments')}
+                    />
+                  )}
                 />
-              )}
-            />
-            <List.Item
-              title={I18n.get("SETTINGS_disableReplies")}
-              right={() => (
-                <Switch
-                  disabled={disablePush || disableComments}
-                  value={disableReplies}
-                  onValueChange={() => this.handleValueChange('disableReplies')}
+              )
+            }
+            {
+              false && (
+                <List.Item
+                  title={I18n.get("SETTINGS_disableReplies")}
+                  right={() => (
+                    <Switch
+                      disabled={disablePush || disableComments}
+                      value={disableReplies}
+                      onValueChange={() => this.handleValueChange('disableReplies')}
+                    />
+                  )}
                 />
-              )}
-            />
+              )
+            }
             <List.Item
               title={I18n.get("SETTINGS_enableMembersComment")}
               right={() => (

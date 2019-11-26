@@ -7,6 +7,7 @@ import { I18n } from 'aws-amplify';
 import Actions from 'components/common/Actions';
 import CountDown from 'components/common/Countdown';
 import Tag from 'components/common/Tag';
+import AdsBanner from 'components/ads/Banner';
 
 export default inject('stores')(observer(
   ({
@@ -76,6 +77,7 @@ export default inject('stores')(observer(
               <Text style={stores.appStyles.eventDetails.label}>{I18n.get("VENUE")}</Text>
               <Text style={stores.appStyles.eventDetails.value}>{address || I18n.get("No location set")}</Text>
             </View>
+            <AdsBanner medium_rect />
             {
               (isAuth && scheduleName) && (
                 <View style={stores.appStyles.eventDetails.item}>

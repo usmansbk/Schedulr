@@ -63,7 +63,8 @@ class Container extends React.Component {
               mutation: CREATE_PREFERENCE,
               variables: {
                 input: {
-                  disablePush: false
+                  disablePush: false,
+                  language: 'en'
                 }
               }
             });

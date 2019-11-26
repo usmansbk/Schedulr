@@ -43,14 +43,14 @@ export default class App extends React.Component {
     return (
       <PaperProvider theme={stores.themeStore.theme}>
         <ApolloProvider client={client}>
-          <Rehydrated loading={<Loading />}>
+          <Rehydrated loading={<Loading  dark={stores.settingsStore.dark}/>} >
             <MobxProvider stores={stores}>
-              <AppContainer
-                uriPrefix={env.uriPrefix}
-                ref={navigatorRef => {
-                  NavigationService.setTopLevelNavigator(navigatorRef);
-                }}
-              />
+                <AppContainer
+                  uriPrefix={env.uriPrefix}
+                  ref={navigatorRef => {
+                    NavigationService.setTopLevelNavigator(navigatorRef);
+                  }}
+                />
             </MobxProvider>
           </Rehydrated>
         </ApolloProvider>

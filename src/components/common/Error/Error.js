@@ -17,11 +17,15 @@ export default inject('stores')(observer(
     <View style={stores.appStyles.error.container}>
       {
         notFound ? <Image resizeMode="contain" style={{ width: 200, height: 200 }} source={require('../../../assets/error-404.png')} /> : (
-          <Image resizeMode="contain" style={{ width: 200, height: 200 }} source={require('../../../assets/server-woman.png')} /> 
+          <Image
+            resizeMode="contain"
+            style={{ width: 200, height: 200 }}
+            source={stores.appState.isConnected ? require('../../../assets/server-woman.png') : require('../../../assets/nature-man.png')}
+          /> 
         )
       }
       <Headline style={stores.appStyles.error.headline}>
-        { message ? message : I18n.get("ERROR_somethingWentWrong")}
+        { message ? message : I18n.get(`ERROR_${stores.appState.isConnected ? 'somethingWentWrong' : 'offline'}`)}
       </Headline>
       {
         caption && <Caption>{caption}</Caption>

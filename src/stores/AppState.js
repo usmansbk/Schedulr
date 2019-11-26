@@ -52,7 +52,7 @@ export default class AppState {
 
   @action reset() {
     this.isConnected =false;
-    this.searchText = ALL_FILTER;
+    this.searchText = '';
     this.query = '';
     this.mutedEvents = [];
     this.allowedEvents = [];
@@ -115,7 +115,6 @@ export default class AppState {
           lastSync: String(this.lastSyncTimestamp)
         }
       }).then(result => {
-        this.loading = false;
         this.updateLastSyncTimestamp();
         const { data: fetchMoreResult } = result;
         if (fetchMoreResult && fetchMoreResult.deltaSync) {
@@ -137,6 +136,7 @@ export default class AppState {
             data
           });
         }
+        this.loading = false;
       }).catch((error) => {
         console.log(error);
         this.loading = false;

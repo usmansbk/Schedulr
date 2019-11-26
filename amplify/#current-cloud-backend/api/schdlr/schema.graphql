@@ -48,6 +48,7 @@ type UserPreference
   disableAdminComments: Boolean
   disableReplies: Boolean
   enableMembersComments: Boolean
+  language: String
 }
 
 type Schedule
@@ -238,7 +239,7 @@ type Bookmark
     ])
 {
   id: ID!
-  event: Event! @connection(name: "EventBookmarks", sortField: "createdAt")
+  event: Event @connection(name: "EventBookmarks", sortField: "createdAt")
   user: User @connection(name: "UserBookmarks", sortField: "createdAt")
   createdAt: String
 }
@@ -256,7 +257,7 @@ type Follow
     ])
 {
   id: ID!
-  schedule: Schedule! @connection(name: "Followers", sortField: "createdAt")
+  schedule: Schedule @connection(name: "Followers", sortField: "createdAt")
   user: User @connection(name: "Followings", sortField: "createdAt")
   createdAt: String
 }

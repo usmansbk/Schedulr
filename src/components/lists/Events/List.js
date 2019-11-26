@@ -64,6 +64,16 @@ class List extends React.Component {
     onRefresh: () => null,
   };
 
+  shouldComponentUpdate = (nextProps, nextState) => {
+    return (
+      this.props.loading !== nextProps.loading ||
+      this.props.updateListEveryMinute !== nextProps.updateListEveryMinute ||
+      this.state.sections !== nextState.sections ||
+      this.state.afterDate !== nextState.afterDate ||
+      this.state.beforeDate !== nextState.beforeDate
+    );
+  };
+
   _keyExtractor = (item) => item.id + item.ref_date;
   _renderHeader = () => (
     (this.state.sections.length && this.props.isAuth) ?
@@ -187,9 +197,9 @@ class List extends React.Component {
   static getDerivedStateFromProps(props, state) {
     let events = props.events;
     if (events.length > 1) {
-      events = injectAds(events);
+      events = injectAds(events, 0);
     }
-    if (props.events.length && eventsChanged(state.events, events)) {
+    if (eventsChanged(state.events, events)) {
       const today = moment().startOf('day').toISOString();
       const yesterday = moment().subtract(1, 'day').endOf('day').toISOString();
       let sections = generateNextEvents(events, yesterday, DAYS_PER_PAGE);
@@ -294,7 +304,11 @@ class List extends React.Component {
   render() {
     const { stores, loading } = this.props;
     const { sections } = this.state;
-  
+    const extraData = 
+          (stores.appState.mutedEvents.length +
+          stores.appState.mutedSchedules.length +
+          stores.appState.allowedEvents.length);
+
     return (
       <SectionList
         ref={this.listRef}
@@ -304,11 +318,7 @@ class List extends React.Component {
         style={stores.appStyles.eventsList.list}
         stickySectionHeadersEnabled
         sections={sections}
-        extraData={
-          stores.appState.mutedEvents.length +
-          stores.appState.mutedSchedules.length +
-          stores.appState.allowedEvents.length
-        }
+        extraData={extraData}
         ListHeaderComponent={this._renderHeader}
         ListEmptyComponent={this._renderEmptyList}
         ItemSeparatorComponent={this._renderSeparator}

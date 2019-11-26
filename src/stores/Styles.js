@@ -1284,7 +1284,7 @@ export default class AppStyles {
         flex: 1,
       },
       itemHeadline: {
-        // fontSize: 20,
+        fontSize: 20,
         fontFamily: 'sans-serif-bold',
         textAlignVertical: 'center'
       },
@@ -1471,7 +1471,7 @@ export default class AppStyles {
         textAlign: 'center'
       },
       header: {
-        height: BANNER,
+        height: BANNER + 4,
         justifyContent: 'center',
         alignItems: 'center'
       },

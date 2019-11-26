@@ -85,10 +85,10 @@ export default class Notifications {
       }).then((result) => {
         const { data: { notifications }={} } = result || {};
         this.updateLastSyncTimestamp();
-        this.loading = false;
         if (notifications && notifications.length) {
           this.appendNotifications(notifications);
         }
+        this.loading = false;
       }).catch(() => {
         this.loading = false;
       });

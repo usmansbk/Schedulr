@@ -1,6 +1,6 @@
 import { Dimensions } from 'react-native';
 
-export const ALL_FILTER = '__schdlr__give__me__everything__you__can__find__';
+export const ALL_FILTER = '';
 
 export const WIDTH = Dimensions.get('window').width;
 export const MEDIUM_RECTANGLE = 260;
