@@ -5,6 +5,7 @@ var region = process.env.REGION
 
 Amplify Params - DO NOT EDIT */
 const AWS = require('aws-sdk');
+const { processUpdates } = require('./updatesProcessor');
 
 const dynamodb = new AWS.DynamoDB.DocumentClient();
 
@@ -71,7 +72,7 @@ exports.handler = async function (event) { //eslint-disable-line
     primaryKey: 'id',
     TableName: SCHEDULE_DELTA_TABLE_NAME
   });
-  console.log('following schedules updates', JSON.stringify(followingSchedulesUpdates));
+  // console.log('following schedules updates', JSON.stringify(followingSchedulesUpdates));
   
   // Get bookmarks updates of schedule events user isn't following or created
   const bookmarksUpdates = await queryBookmarksTableByIds({
@@ -82,11 +83,14 @@ exports.handler = async function (event) { //eslint-disable-line
     filterIds: followingIds,
     TableName: EVENT_DELTA_TABLE_NAME
   });
-  console.log('bookmarks updates', JSON.stringify(bookmarksUpdates));
+  // console.log('bookmarks updates', JSON.stringify(bookmarksUpdates));
+
+  const bookmarks = processUpdates(bookmarksUpdates);
+  const schedules = processUpdates(followingSchedulesUpdates);
 
   return {
-    events: [],
-    schedules: []
+    events: [...bookmarks],
+    schedules: schedules 
   };
 };
 
