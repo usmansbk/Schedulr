@@ -19,8 +19,10 @@ const errorLink = onError(({ graphQLErrors }) => {
       if (message.includes("Not Found")) {
         // Dont log elasticsearch "Not found"
       } else {
-        SimpleToast.show(I18n.get('ERROR_serverError')(error.message), SimpleToast.LONG);
-        logError(error);
+        if (error.message) {
+          SimpleToast.show(I18n.get('ERROR_serverError')(error.message), SimpleToast.LONG);
+          logError(error);
+        }
       }
     });  
   }
