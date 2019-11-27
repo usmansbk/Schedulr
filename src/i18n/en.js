@@ -144,7 +144,7 @@ export default {
   ALERT_durationTooShort: "Event should be at least five minutes long",
   ALERT_shortUntil: "Event should happen at least twice before final date",
   ALERT_whatIsASchedule: "What is a schedule?",
-  ALERT_whatIsAScheduleA: "Organize your events by adding them to your schedules",
+  ALERT_whatIsAScheduleA: "Plan your events so people with similar interests can find them easily like a Timetable.",
   ALERT_privateSchedule: "Private schedule",
   ALERT_privateScheduleA: "Events created after setting schedule to 'Private' are not visible to everyone.",
   ALERT_privateScheduleWarn: "This schedule's future events will not be visible to the public.",
