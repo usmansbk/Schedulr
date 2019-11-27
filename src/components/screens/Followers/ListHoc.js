@@ -20,7 +20,7 @@ export default graphql(gql(listFollowers), {
   props: ({ data, ownProps }) => ({
     people: (data && data.listFollowers && data.listFollowers.followers.items) || [],
     nextToken: data && data.listFollowers && data.listFollowers.followers.nextToken,
-    loading: data && data.loading || (data.networkStatus === 4),
+    loading: data && (data.loading || data.networkStatus === 4 || data.networkStatus === 3),
     error: !!data.error,
     onRefresh: () => data.refetch({
       nextToken: null
