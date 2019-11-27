@@ -1,5 +1,4 @@
 import PushNotification from 'react-native-push-notification';
-import OneSignal from 'react-native-onesignal';
 import { InteractionManager } from 'react-native';
 import moment from 'moment';
 import 'moment-recur';
@@ -175,7 +174,6 @@ const schdlAll = (events, mutedList, allowedList) => {
         return;
       });
     }
-    OneSignal.clearOneSignalNotifications();
   });
 };
 

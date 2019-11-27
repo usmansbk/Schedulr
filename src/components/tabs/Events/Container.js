@@ -100,8 +100,6 @@ class Container extends React.Component {
     this.unsubscribe();
   };
 
-  componentDidUpdate = () => OneSignal.clearOneSignalNotifications();
-
   _deltaSync = () => this.props.stores.appState.deltaSync();
   _fetchNotifications = () => this.props.stores.notificationsStore.fetchNotifications();
 
