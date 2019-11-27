@@ -23,7 +23,7 @@ const en = [
   {
     key: 'p2',
     title: 'Create schedules easily!',
-    text: 'Enter a schedule name and your schedule is ready to use and be shared.',
+    text: 'Enter a schedule name and your schedule is ready to used and shared.',
     image: require('../assets/list-app.png'),
     backgroundColor: '#63a4ff',
     textStyle: textStyles.text,
