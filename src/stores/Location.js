@@ -75,7 +75,7 @@ export default class Location {
     if ( this.point && this.point.lat && this.point.lon) {
       return [this.point.lat, this.point.lon];
     }
-    return null;
+    return undefined;
   }
 
   @computed get location() {
