@@ -12,6 +12,10 @@ class Dialog extends React.Component {
     loading: false
   };
 
+  _handleDismiss = () => {
+    this.setState({ loading: false }, this.props.handleDismiss);
+  };
+
   _onConfirm = async () => {
     const variables = {
       id: this.props.id,
@@ -25,10 +29,11 @@ class Dialog extends React.Component {
         fetchPolicy: 'network-only',
         variables
       });
+      SimpleToast.show(I18n.get("SYNC_complete"), SimpleToast.SHORT);
     } catch (error) {
       console.log(error);
+      SimpleToast.show(I18n.get("ERROR_noConnection"), SimpleToast.SHORT);
     }
-    SimpleToast.show(I18n.get("SYNC_complete"), SimpleToast.SHORT);
     this.setState({ loading: false });
     this.props.onConfirm();
   };
@@ -38,7 +43,7 @@ class Dialog extends React.Component {
       <Alert
         visible={this.props.visible}
         onConfirm={this._onConfirm}
-        handleDismiss={this.props.handleDismiss}
+        handleDismiss={this._handleDismiss}
         title={I18n.get("MORE_sync")}
         message={I18n.get("SYNC_message")}
         loading={this.state.loading}
