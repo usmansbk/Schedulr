@@ -18,6 +18,7 @@ class Banner extends React.Component {
   render() {
     const { large, medium_rect } = this.props;
     let size = BannerAdSize.BANNER;
+    let unitId = env.BANNER;
     let source = require('../../assets/camp.png');
     let style = {
       height: 50,
@@ -26,6 +27,7 @@ class Banner extends React.Component {
     if (large) {
       source = require('../../assets/sunset.png');
       size = BannerAdSize.LARGE_BANNER;
+      unitId = env.LARGE_BANNER;
       style = {
         width: 320,
         height: 100
@@ -33,6 +35,7 @@ class Banner extends React.Component {
     } else if (medium_rect) {
       source = require('../../assets/beach.png');
       size = BannerAdSize.MEDIUM_RECTANGLE;
+      unitId = env.MEDIUM_RECT_BANNER;
       style = {
         width: 300,
         height: 250
@@ -50,7 +53,7 @@ class Banner extends React.Component {
         style={style}
        >
       <BannerAd
-        unitId={env.BANNER}
+        unitId={unitId}
         size={size}
         requestOptions={{
           requestNonPersonalizedAdsOnly: true,

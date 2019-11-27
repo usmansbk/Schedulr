@@ -1,6 +1,8 @@
 package com.schdlr;
 
 import android.content.Intent;
+
+import com.applovin.sdk.AppLovinSdk;
 import com.facebook.react.ReactActivity;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
@@ -25,6 +27,7 @@ public class MainActivity extends ReactActivity {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         SplashScreen.show(this, R.style.SplashScreenTheme);
+        AppLovinSdk.initializeSdk(this);
         super.onCreate(savedInstanceState);
     }
     
