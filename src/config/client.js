@@ -56,14 +56,6 @@ const client = new AWSAppSyncClient({
         )
       },
     }
-  },
-  offlineConfig: {
-    callback: (error) => {
-      if (error) {
-        console.log(error);
-        SimpleToast.show(error.message, SimpleToast.SHORT);
-      }
-    }
   }
 }, { link });
 
