@@ -163,6 +163,25 @@ exports.handler = async function (event) { //eslint-disable-line
   return [];
 };
 
+async function getItemById({
+  id,
+  TableName,
+}) {
+  const params = {
+    TableName,
+    Key: {
+      id
+    }
+  }
+  try {
+    const { Item } = await dynamodb.get(params).promise();
+    return Item;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+}
+
 
 async function queryTableByIds({
   ids,
