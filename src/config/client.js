@@ -56,6 +56,13 @@ const client = new AWSAppSyncClient({
         )
       },
     }
+  },
+  offlineConfig: {
+    callback: (error) => {
+      if (error) {
+        logError(error);
+      }
+    }
   }
 }, { link });
 
