@@ -1,4 +1,5 @@
 import PushNotification from 'react-native-push-notification';
+import OneSignal from 'react-native-onesignal';
 import { InteractionManager } from 'react-native';
 import moment from 'moment';
 import 'moment-recur';
@@ -153,6 +154,7 @@ const schdl = (event, before, settings) => {
 
 const schdlAll = (events, mutedList, allowedList) => {
   InteractionManager.runAfterInteractions(() => {
+    OneSignal.clearOneSignalNotifications();
     PushNotification.cancelAllLocalNotifications();
     const settings = stores.settingsStore;
     const remindMeBefore = stores.remindMeStore;
