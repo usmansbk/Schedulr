@@ -2,6 +2,10 @@ package com.schdlr;
 
 import android.app.Application;
 import android.content.Context;
+
+import androidx.multidex.MultiDex;
+import androidx.multidex.MultiDexApplication;
+
 import com.facebook.react.PackageList;
 import com.facebook.hermes.reactexecutor.HermesExecutorFactory;
 import com.facebook.react.bridge.JavaScriptExecutorFactory;
@@ -18,7 +22,7 @@ import java.lang.reflect.InvocationTargetException;
 
 import java.util.List;
 
-public class MainApplication extends Application implements ReactApplication {
+public class MainApplication extends MultiDexApplication implements ReactApplication {
   
   private final ReactNativeHost mReactNativeHost =
     new ReactNativeHost(this) {
@@ -50,6 +54,7 @@ public class MainApplication extends Application implements ReactApplication {
   public void onCreate() {
     super.onCreate();
     SoLoader.init(this, /* native exopackage */ false);
+    MultiDex.install(this);
     initializeFlipper(this); // Remove this line if you don't want Flipper enabled
   }
 
