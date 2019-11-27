@@ -5,6 +5,7 @@ import SimpleToast from 'react-native-simple-toast';
 import OneSignal from 'react-native-onesignal';
 import { dark, light } from 'config/colors';
 import { updateUserPreference } from 'helpers/updatePreference';
+import logError from 'config/logger';
 
 export default class SettingsState {
   @persist @observable language = "en";
@@ -27,7 +28,7 @@ export default class SettingsState {
       SimpleToast.show("Applying theme... Just a sec!", SimpleToast.SHORT);
       await changeNavigationBarColor(this.dark ? colors.light_gray_2 : colors.bg, !this.dark);
     } catch (error) {
-      console.log(error.message);
+      logError(error);
     }
   }
 

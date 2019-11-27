@@ -1,5 +1,6 @@
 import React from 'react';
 import IconBadge from '../IconBadge';
+import logError from 'config/logger';
 
 export default class Button extends React.Component {
 
@@ -26,7 +27,7 @@ export default class Button extends React.Component {
         await bookmarkEvent(input);
       }
     } catch (error) {
-      console.log(error);
+      logError(error);
     }
   };
 

@@ -5,6 +5,7 @@ import { I18n } from 'aws-amplify';
 import { requestLocationPermission } from 'helpers/permissions';
 import Geocoder from 'helpers/geocoder';
 import SimpleToast from 'react-native-simple-toast';
+import logError from 'config/logger';
 
 export default class Location {
   @persist('object') @observable point = null; 
@@ -49,7 +50,7 @@ export default class Location {
               if (!this.searchLocation) this.searchLocation = city;
               this.countryCode = countryCode;
             }).catch((error) => {
-              console.log(error);
+              logError(error);
               SimpleToast.show(I18n.get("ERROR_failedToGetLocation"), SimpleToast.SHORT);
             });
           },
@@ -60,7 +61,7 @@ export default class Location {
         );
       }
     } catch (error) {
-      console.log(error.message);
+      logError(error);
     }
   };
 
