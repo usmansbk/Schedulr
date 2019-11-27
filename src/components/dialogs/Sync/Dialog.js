@@ -6,7 +6,7 @@ import { withApollo } from 'react-apollo';
 import gql from 'graphql-tag';
 import { getUserData } from 'api/queries';
 import { baseEventsFilter } from 'api/filters';
-import logError from 'config/logger';
+import logger from 'config/logger';
 
 class Dialog extends React.Component {
   state = {
@@ -33,7 +33,7 @@ class Dialog extends React.Component {
       SimpleToast.show(I18n.get("SYNC_complete"), SimpleToast.SHORT);
     } catch (error) {
       SimpleToast.show(I18n.get("ERROR_noConnection"), SimpleToast.SHORT);
-      logError(error);
+      logger.logError(error);
     }
     this.setState({ loading: false });
     this.props.onConfirm();

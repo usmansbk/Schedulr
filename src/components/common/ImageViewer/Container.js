@@ -7,7 +7,7 @@ import config from 'aws_config';
 import getImageUrl from 'helpers/getImageUrl';
 import Alert from 'components/dialogs/Alert';
 import Screen from './Screen';
-import logError from 'config/logger';
+import logger from 'config/logger';
 
 const {
   aws_user_files_s3_bucket: bucket,
@@ -43,7 +43,7 @@ class ImageViewerContainer extends React.Component {
         await onRemovePhoto();
         this.setState({ loading: false, showRemoveImageAlert: false });
       } catch (error) {
-        logError(error);
+        logger.logError(error);
       }
     } else {
       SimpleToast.show(I18n.get("ERROR_noConnection"), SimpleToast.SHORT);

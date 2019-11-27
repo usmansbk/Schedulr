@@ -12,7 +12,7 @@ import { me } from 'api/queries';
 import { createUser, createSchedule, createPreference } from 'api/mutations';
 import defaultSchedule from 'i18n/schedule';
 import Login from './Login';
-import logError from 'config/logger';
+import logger from 'config/logger';
 
 const GET_USER = gql(me);
 const CREATE_USER = gql(createUser);
@@ -108,10 +108,11 @@ class Container extends React.Component {
           this.props.stores.settingsStore.setUserPreference(user.preference);
           this.props.stores.appState.setUserId(email);
           crashlytics().setUserEmail(email);
+          logger.log('sign-in');
           this.props.navigation.navigate('App');
         } catch(error) {
           SimpleToast.show("Sign-in failed", SimpleToast.LONG);
-          logError(error);
+          logger.logError(error);
         }
         this.props.stores.appState.setLoginState(false);
         break;
@@ -124,7 +125,7 @@ class Container extends React.Component {
       await Auth.federatedSignIn({ provider });
     } catch (error) {
       this.props.stores.appState.setLoginState(false);
-      logError(error);
+      logger.logError(error);
     }
   };
 

@@ -1,6 +1,6 @@
 import crashlytics from '@react-native-firebase/crashlytics';
 
-export default function logError(error) {
+function logError(error) {
   let e = error;
   if (!(error instanceof Error)) {
     if (typeof error === 'object') e = JSON.stringify(error);
@@ -9,3 +9,15 @@ export default function logError(error) {
   console.log(e);
   crashlytics().recordError(e);
 }
+
+function log(message) {
+  if (message) {
+    console.log(message);
+    crashlytics().log(message);
+  }
+}
+
+export default {
+  logError,
+  log
+};

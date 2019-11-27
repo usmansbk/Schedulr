@@ -8,7 +8,7 @@ import { ALL_FILTER } from 'lib/constants';
 import { getDeltaUpdates, getUserData } from 'api/queries';
 import updateBaseQuery from 'helpers/deltaSync';
 import client from 'config/client';
-import logError from 'config/logger';
+import logger from 'config/logger';
 
 const DeltaQuery = gql(getDeltaUpdates);
 const BaseQuery = gql(getUserData);
@@ -139,7 +139,7 @@ export default class AppState {
         }
         this.loading = false;
       }).catch((error) => {
-        logError(error);
+        logger.logError(error);
         this.loading = false;
       });
     }

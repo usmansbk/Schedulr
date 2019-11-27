@@ -1,6 +1,6 @@
 import admob, { MaxAdContentRating, InterstitialAd, TestIds, AdEventType } from '@react-native-firebase/admob';
 import { observable, action } from 'mobx';
-import logError from 'config/logger';
+import logger from 'config/logger';
 
 export default class AdManager {
 
@@ -15,7 +15,7 @@ export default class AdManager {
         this.unsubscribe();
       }
       if (error) {
-        logError(error);
+        logger.logError(error);
       }
     });
     interstitialAd.load();

@@ -5,7 +5,7 @@ import SimpleToast from 'react-native-simple-toast';
 import { I18n } from 'aws-amplify';
 import { inject, observer } from 'mobx-react';
 import handleShareEvent from 'helpers/share';
-import logError from 'config/logger';
+import logger from 'config/logger';
 
 class EventAction extends React.Component {
   showActionSheet = () => {
@@ -49,7 +49,7 @@ class EventAction extends React.Component {
         await bookmarkEvent(input);
       }
     } catch (error) {
-      logError(error);
+      logger.logError(error);
     }
   };
 

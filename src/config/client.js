@@ -4,7 +4,7 @@ import { ApolloLink } from 'apollo-link';
 import { onError } from 'apollo-link-error';
 import SimpleToast from 'react-native-simple-toast';
 import aws_config from 'aws_config';
-import logError from './logger';
+import logger from './logger';
 import {
   EVENT_TYPE,
   SCHEDULE_TYPE,
@@ -21,7 +21,7 @@ const errorLink = onError(({ graphQLErrors }) => {
       } else {
         if (error.message) {
           SimpleToast.show(I18n.get('ERROR_serverError')(error.message), SimpleToast.LONG);
-          logError(error);
+          logger.logError(error);
         }
       }
     });  
@@ -60,7 +60,7 @@ const client = new AWSAppSyncClient({
   offlineConfig: {
     callback: (error) => {
       if (error) {
-        logError(error);
+        logger.logError(error);
       }
     }
   }

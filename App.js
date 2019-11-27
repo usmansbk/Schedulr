@@ -16,7 +16,7 @@ import env from 'config/env';
 import push from 'config/pushnotification';
 import i18n from 'config/i18n';
 import AmplifyStorage from 'helpers/AmplifyStorage';
-import logError from 'config/logger';
+import logger from 'config/logger';
 
 console.disableYellowBox = true;
 // window.LOG_LEVEL = 'DEBUG';
@@ -35,7 +35,7 @@ export default class App extends React.Component {
   };
 
   componentDidCatch = (error) => {
-    logError(error);
+    logger.logError(error);
     if (__DEV__) return;
   };
 
