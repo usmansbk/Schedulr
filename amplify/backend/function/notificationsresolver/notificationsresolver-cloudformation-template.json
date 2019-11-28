@@ -67,6 +67,8 @@
 						"GSI_NEW_FOLLOWERS_KEY": "followScheduleId",
 						"GSI_EVENT_BOOKMARKS": "gsi-EventBookmarks",
 						"GSI_EVENT_BOOKMARKS_KEY": "bookmarkEventId",
+						"GSI_SCHEDULE_BOOKMARKS": "gsi-ScheduleBookmarks",
+						"GSI_SCHEDULE_BOOKMARKS_KEY": "bookmarkScheduleId",
 						"GSI_USER_SCHEDULES": "gsi-UserSchedules",
 						"GSI_USER_SCHEDULES_KEY": "scheduleAuthorId",
 						"GSI_USER_BOOKMARKS": "gsi-UserBookmarks",

@@ -31,8 +31,8 @@ const gsiFollowings = process.env.GSI_FOLLOWINGS;
 const gsiFollowingsKey = process.env.GSI_FOLLOWINGS_KEY;
 const gsiNewFollowers = process.env.GSI_NEW_FOLLOWERS;
 const gsiNewFollowersKey = process.env.GSI_NEW_FOLLOWERS_KEY;
-const gsiEventBookmarks = process.env.GSI_EVENT_BOOKMARKS;
-const gsiEventBookmarksKey = process.env.GSI_EVENT_BOOKMARKS_KEY;
+const gsiScheduleBookmarks = process.env.GSI_SCHEDULE_BOOKMARKS;
+const gsiScheduleBookmarksKey = process.env.GSI_SCHEDULE_BOOKMARKS_KEY;
 const gsiScheduleComments = process.env.GSI_SCHEDULE_COMMENTS;
 const gsiScheduleCommentsKey = process.env.GSI_SCHEDULE_COMMENTS_KEY;
 const gsiUserBookmarks = process.env.GSI_USER_BOOKMARKS;
@@ -101,9 +101,16 @@ exports.handler = async function (event) { //eslint-disable-line
   const bookmarksUpdates = await queryIndexByIds({
     ids: createdIds, 
     lastSync,
-    primaryKey: gsiEventBookmarksKey,
+    primaryKey: gsiScheduleBookmarksKey,
     TableName: BOOKMARK_DELTA_TABLE_NAME,
-    IndexName: gsiEventBookmarks
+    IndexName: gsiScheduleBookmarks,
+    FilterExpression: 'NOT (#author = :author)',
+    expNames: {
+      '#author': 'bookmarkUserId'
+    },
+    expValues: {
+      '#author': id
+    }
   });
   console.log('new bookmarks updates', JSON.stringify(bookmarksUpdates));
   // ============================================================================================
