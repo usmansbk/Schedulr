@@ -36,6 +36,7 @@ class EventAction extends React.Component {
       isBookmarked,
       removeBookmark,
       bookmarkEvent,
+      bookmarkScheduleId
     } = this.props;
     const input = {
       id: `${stores.appState.userId}-${id}`,
@@ -46,6 +47,7 @@ class EventAction extends React.Component {
         await removeBookmark(input, id);
       } else {
         input.bookmarkEventId = id,
+        input.bookmarkScheduleId = bookmarkScheduleId;
         await bookmarkEvent(input);
       }
     } catch (error) {

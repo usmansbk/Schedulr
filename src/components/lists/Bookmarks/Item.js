@@ -47,6 +47,7 @@ class Item extends React.Component {
       isAuth,
       bookmarksCount,
       commentsCount,
+      eventScheduleId,
       address,
       stores
     } = this.props;
@@ -93,6 +94,7 @@ class Item extends React.Component {
               isAuth={isAuth}
               bookmarksCount={bookmarksCount}
               commentsCount={commentsCount}
+              bookmarkScheduleId={eventScheduleId}
               color={stores.themeStore.colors.light_gray_3}
               activeColor={stores.themeStore.colors.like}
               navigateToComments={this._onPressComment}
