@@ -196,7 +196,7 @@ class List extends React.Component {
 
   static getDerivedStateFromProps(props, state) {
     let events = props.events;
-    if (events.length > 1) {
+    if (events.length) {
       events = injectAds(events, 0);
     }
     if (eventsChanged(state.events, events)) {
