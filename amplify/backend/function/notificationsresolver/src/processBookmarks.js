@@ -57,8 +57,8 @@ async function processBookmarks(bookmarks, getItem) {
 function parseMessage(count, lang) {
   const others = count - 1;
   let message = 'bookmarked';
-  if (others > 1) {
-    message = `and ${others} others ${message}`;
+  if (others > 0) {
+    message = `and ${others} other${others > 1 ? 's' : ''} ${message}`;
   }
   return message;
 }
