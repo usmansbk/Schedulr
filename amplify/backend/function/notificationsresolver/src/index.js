@@ -6,6 +6,12 @@ var region = process.env.REGION
 Amplify Params - DO NOT EDIT */
 const AWS = require('aws-sdk');
 
+const processFollows = require('./processFollows');
+const processBookmarks = require('./processBookmarks');
+const processComments = require('./processComments');
+const processEvents = require('./processEvents');
+const processSchedules = require('./processSchedules');
+
 const dynamodb = new AWS.DynamoDB.DocumentClient();
 
 const FOLLOW_TABLE_NAME = process.env.FOLLOW_TABLE_NAME;
@@ -57,6 +63,7 @@ exports.handler = async function (event) { //eslint-disable-line
     primaryKey: gsiUserBookmarksKey,
     Field: 'bookmarkEventId'
   });
+  // ============================================================================================
 
   // Get following schedules events updates
   const followingScheduleEventsUpdates = await queryIndexByIds({
@@ -67,6 +74,7 @@ exports.handler = async function (event) { //eslint-disable-line
     IndexName: gsiFollowingScheduleEvents
   });
   console.log('following schedule Event updates', JSON.stringify(followingScheduleEventsUpdates));
+  // ============================================================================================
   
   // Get following schedules updates
   const followingSchedulesUpdates = await queryTableByIds({
@@ -76,6 +84,7 @@ exports.handler = async function (event) { //eslint-disable-line
     TableName: SCHEDULE_DELTA_TABLE_NAME
   });
   console.log('following schedules updates', JSON.stringify(followingSchedulesUpdates));
+  // ============================================================================================
   
   // Get new followers updates
   const followersUpdates = await queryIndexByIds({
@@ -86,6 +95,7 @@ exports.handler = async function (event) { //eslint-disable-line
     IndexName: gsiNewFollowers 
   });
   console.log('new followers updates', JSON.stringify(followersUpdates));
+  // ============================================================================================
 
   // Get new bookmarks updates
   const bookmarksUpdates = await queryIndexByIds({
@@ -96,6 +106,7 @@ exports.handler = async function (event) { //eslint-disable-line
     IndexName: gsiEventBookmarks
   });
   console.log('new bookmarks updates', JSON.stringify(bookmarksUpdates));
+  // ============================================================================================
 
   // Get created schedules new comments
   const createdSchedulesComments = await queryIndexByIds({
@@ -113,6 +124,7 @@ exports.handler = async function (event) { //eslint-disable-line
     }
   });
   console.log('created schedules comments', JSON.stringify(createdSchedulesComments));
+  // ============================================================================================
 
   const followingSchedulesComments = await queryIndexByIds({
     ids: followingIds,
@@ -129,6 +141,7 @@ exports.handler = async function (event) { //eslint-disable-line
     }
   });
   console.log('following schedules comments', JSON.stringify(followingSchedulesComments));
+  // ============================================================================================
 
   // Get bookmarks updates of schedule events user isn't following or created
   const expValues = {
@@ -159,8 +172,33 @@ exports.handler = async function (event) { //eslint-disable-line
     expValues
   });
   console.log('bookmarked events updates', JSON.stringify(bookmarkedEventsUpdates));
+  // ============================================================================================
+
+  const followingScheduleEventsNotifications = processEvents({
+    followingScheduleEventsUpdates,
+    bookmarkedEventsUpdates
+  });
+  const followingScheduleNotifications = processSchedules({
+    followingSchedulesUpdates
+  });
+  const newCommentNotifications = processComments({
+    followingSchedulesComments,
+    createdSchedulesComments
+  });
+  const newFollowerNotifications = processFollows({
+    followersUpdates
+  });
+  const newBookmarkNotifications = processBookmarks({
+    bookmarksUpdates
+  });
   
-  return [];
+  return [
+    ...followingScheduleEventsNotifications,
+    ...followingScheduleNotifications,
+    ...newCommentNotifications,
+    ...newBookmarkNotifications,
+    ...newFollowerNotifications
+  ];
 };
 
 async function getItemById({
