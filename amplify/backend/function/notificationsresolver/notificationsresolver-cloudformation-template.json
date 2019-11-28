@@ -54,6 +54,8 @@
 						"FOLLOW_TABLE_NAME": "Follow-nuvqxpmrwrgvdpzysdvzf6keju-dev",
 						"SCHEDULE_TABLE_NAME": "Schedule-nuvqxpmrwrgvdpzysdvzf6keju-dev",
 						"BOOKMARK_TABLE_NAME": "Bookmark-nuvqxpmrwrgvdpzysdvzf6keju-dev",
+						"USER_TABLE_NAME": "User-nuvqxpmrwrgvdpzysdvzf6keju-dev",
+						"EVENT_TABLE_NAME": "Event-nuvqxpmrwrgvdpzysdvzf6keju-dev",
 						"EVENT_DELTA_TABLE_NAME": "Event-delta",
 						"SCHEDULE_DELTA_TABLE_NAME": "Schedule-delta",
 						"FOLLOW_DELTA_TABLE_NAME": "Follow-delta",
@@ -91,7 +93,7 @@
 				"Timeout": "25",
 				"Code": {
 					"S3Bucket": "amplify-schdlr-dev-172405-deployment",
-					"S3Key": "amplify-builds/notificationsresolver-4b426b49617a6639676e-build.zip"
+					"S3Key": "amplify-builds/notificationsresolver-48514663424e43706957-build.zip"
 				}
 			}
 		},
