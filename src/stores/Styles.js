@@ -1660,7 +1660,7 @@ export default class AppStyles {
         flex: 1,
       },
       itemHeadline: {
-        fontSize: 20,
+        fontSize: 18,
         fontFamily: 'sans-serif-bold',
       },
       itemNote: {
