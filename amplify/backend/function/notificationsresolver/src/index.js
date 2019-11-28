@@ -109,7 +109,7 @@ exports.handler = async function (event) { //eslint-disable-line
       '#author': 'bookmarkUserId'
     },
     expValues: {
-      '#author': id
+      ':author': id
     }
   });
   console.log('new bookmarks updates', JSON.stringify(bookmarksUpdates));
