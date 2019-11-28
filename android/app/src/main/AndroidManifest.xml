@@ -22,8 +22,6 @@
       android:allowBackup="false"
       tools:replace="android:allowBackup"
       android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <meta-data android:name="applovin.sdk.key"
-            android:value="7Ct63ZQuc8Z1c3RZklcexo7UQLCNfi5QyFTQUxTb-DUlX5xKEWb6LVBvQpoaNWXVckyWcNy_CT_RvdMpFh65aE" />
         <meta-data android:name="com.dieam.reactnativepushnotification.notification_channel_name" android:value="SCHDLR"/>
         <meta-data android:name="com.dieam.reactnativepushnotification.notification_channel_description" android:value="SCHDLR NOTIFICATION CHANNEL DESCRIPTION"/>
         <meta-data android:name="com.dieam.reactnativepushnotification.notification_color"
