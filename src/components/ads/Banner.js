@@ -62,13 +62,11 @@ class Banner extends React.Component {
           location: this.props.stores.locationStore.adLocation,
           keywords: [
             'scholarship',
-            'laptop',
-            'phone',
             'fashion',
             'clothing',
             'student',
             'job',
-            'bet',
+            'news',
             'transport',
             'ride'
           ]
