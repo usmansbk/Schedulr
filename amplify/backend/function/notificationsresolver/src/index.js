@@ -99,7 +99,7 @@ exports.handler = async function (event) { //eslint-disable-line
 
   // Get new bookmarks updates
   const bookmarksUpdates = await queryIndexByIds({
-    ids: [id],
+    ids: createdIds, 
     lastSync,
     primaryKey: gsiEventBookmarksKey,
     TableName: BOOKMARK_DELTA_TABLE_NAME,
