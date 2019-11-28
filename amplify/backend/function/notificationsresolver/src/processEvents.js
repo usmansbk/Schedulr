@@ -1,4 +1,7 @@
-function processUpdates({}) {
+function processUpdates({
+  followingScheduleEventsUpdates,
+  bookmarkedEventsUpdates
+}) {
   return [];
 }
 

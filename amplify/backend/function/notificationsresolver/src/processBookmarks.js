@@ -1,4 +1,4 @@
-function processUpdates({}) {
+function processUpdates({ bookmarksUpdates }) {
   return [];
 }
 
