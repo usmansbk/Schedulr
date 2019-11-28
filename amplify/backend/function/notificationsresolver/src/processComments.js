@@ -1,4 +1,4 @@
-function processUpdates({
+async function processUpdates({
   followingSchedulesComments,
   createdSchedulesComments
 }) {

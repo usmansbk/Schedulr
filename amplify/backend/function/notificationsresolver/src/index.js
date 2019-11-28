@@ -174,22 +174,27 @@ exports.handler = async function (event) { //eslint-disable-line
   console.log('bookmarked events updates', JSON.stringify(bookmarkedEventsUpdates));
   // ============================================================================================
 
-  const followingScheduleEventsNotifications = processEvents({
+  const followingScheduleEventsNotifications = await processEvents({
     followingScheduleEventsUpdates,
-    bookmarkedEventsUpdates
+    bookmarkedEventsUpdates,
+    getItemById
   });
-  const followingScheduleNotifications = processSchedules({
-    followingSchedulesUpdates
+  const followingScheduleNotifications = await processSchedules({
+    followingSchedulesUpdates,
+    getItemById
   });
-  const newCommentNotifications = processComments({
+  const newCommentNotifications = await processComments({
     followingSchedulesComments,
-    createdSchedulesComments
+    createdSchedulesComments,
+    getItemById
   });
-  const newFollowerNotifications = processFollows({
-    followersUpdates
+  const newFollowerNotifications = await processFollows({
+    followersUpdates,
+    getItemById
   });
-  const newBookmarkNotifications = processBookmarks({
-    bookmarksUpdates
+  const newBookmarkNotifications = await processBookmarks({
+    bookmarksUpdates,
+    getItemById
   });
   
   return [

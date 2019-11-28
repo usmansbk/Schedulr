@@ -1,4 +1,4 @@
-function processUpdates({ bookmarksUpdates }) {
+async function processUpdates({ bookmarksUpdates }) {
   return [];
 }
 

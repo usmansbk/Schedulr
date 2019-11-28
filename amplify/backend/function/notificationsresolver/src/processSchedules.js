@@ -1,4 +1,4 @@
-function processUpdates({ followingSchedulesUpdates }) {
+async function processUpdates({ followingSchedulesUpdates }) {
   return [];
 }
 

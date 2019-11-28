@@ -1,4 +1,4 @@
-function processUpdates({ followersUpdates }) {
+async function processUpdates({ followersUpdates }) {
   return [];
 }
 
