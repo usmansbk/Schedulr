@@ -37,7 +37,7 @@ async function processNotification({ items, currentUserId, getItemById }) {
   if (items.length) {
     const at = items.find(item => item.commentAtId === currentUserId);
     if (at) {
-      const { timestamp, commentAuthorId, commentEventId, __typename } = at;
+      const { timestamp, commentAuthorId, commentEventId, newImage: { __typename } } = at;
       const author = await getItemById({ TableName: USER_TABLE_NAME, id: commentAuthorId});
       const event = await getItemById({ TableName: EVENT_TABLE_NAME, id: commentEventId });
       if (author && event) {
@@ -57,7 +57,7 @@ async function processNotification({ items, currentUserId, getItemById }) {
       }
     } else {
       const firstComment = items[0];
-      const { timestamp, commentAuthorId, commentEventId, __typename } = firstComment;
+      const { timestamp, commentAuthorId, commentEventId,newImage: { __typename } } = firstComment;
       const author = await getItemById({ TableName: USER_TABLE_NAME, id: commentAuthorId});
       const event = await getItemById({ TableName: EVENT_TABLE_NAME, id: commentEventId });
       if (author && event) {

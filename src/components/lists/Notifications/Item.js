@@ -66,6 +66,7 @@ class Item extends React.Component {
     if (type === 'Schedule') icon = 'clipboard';
     else if (type === 'Follow') icon = 'users';
     else if (type === 'Bookmark') icon = 'bookmark';
+    else if (type === 'Comment')  icon = 'message-circle';
 
     const mark = seen ? {} : styles.unseen;
     return (
