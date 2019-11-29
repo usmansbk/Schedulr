@@ -67,7 +67,7 @@ class Intro extends React.Component {
   render() {
     return (
       <>
-      <StatusBar backgroundColor={this.state.color} />
+      <StatusBar hidden backgroundColor={this.state.color} />
       <AppIntroSlider
         slides={this.slides}
         onDone={this._onDone}
