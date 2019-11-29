@@ -73,7 +73,7 @@ exports.handler = async function (event) { //eslint-disable-line
     TableName: EVENT_DELTA_TABLE_NAME,
     IndexName: gsiFollowingScheduleEvents
   });
-  console.log('following schedule Event updates', JSON.stringify(followingScheduleEventsUpdates));
+  // console.log('following schedule Event updates', JSON.stringify(followingScheduleEventsUpdates));
   // ============================================================================================
   
   // Get following schedules updates
@@ -178,7 +178,7 @@ exports.handler = async function (event) { //eslint-disable-line
     expNames,
     expValues
   });
-  console.log('bookmarked events updates', JSON.stringify(bookmarkedEventsUpdates));
+  // console.log('bookmarked events updates', JSON.stringify(bookmarkedEventsUpdates));
   // ============================================================================================
 
   const followingScheduleEventsNotifications = await processEvents({

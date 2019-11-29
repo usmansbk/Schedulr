@@ -20,13 +20,13 @@ function uniqueFlat(items) {
 }
 
 function transformFollowing(schedules) {
-  let items = [];
+  let allItems = [];
   for (let schedule of schedules) {
     const { items } = schedule;
     const events = uniqueGroup(items);
-    items = [...items, ...events];
+    allItems = [...allItems, ...events];
   }
-  return items;
+  return allItems;
 }
 
 module.exports = {

@@ -2,8 +2,8 @@ const uuid = require('uuid/v1');
 const moment = require('moment');
 const { transformFollowing } = require('./utils');
 
+const USER_TABLE_NAME = process.env.USER_TABLE_NAME;
 const DELETE = 'DELETE';
-const USER_TABLE_NAME = proces.env.USER_TABLE_NAME;
 
 async function processUpdates({
   followingScheduleEventsUpdates,
@@ -22,15 +22,13 @@ async function processUpdates({
 
 async function processChanges(update, getItem) {
   let notifications = [];
-  for (let changes of update) {
-    const { items } = changes;
-    const count = items.length;
-    if (count) {
-      const oldest = items[0];
-      const latest = items[count - 1];
-      const diffs = await processDifference({ oldest, latest, getItem });
-      notifications = [...notifications, ...diffs];
-    }
+  const { items } = update;
+  const count = items.length;
+  if (count) {
+    const oldest = items[0];
+    const latest = items[count - 1];
+    const diffs = await processDifference({ oldest, latest, getItem });
+    notifications = [...notifications, ...diffs];
   }
   return notifications;
 }
@@ -40,7 +38,7 @@ async function processDifference({ oldest, latest, getItem }) {
   const { oldImage } = oldest;
   const { newImage, timestamp, eventAuthorId, aws_ds, id } = latest;
   if (aws_ds !== DELETE) {
-    if (!oldImage.__typename) {
+    if (!(oldImage && oldImage.__typename)) {
       const notification = {
         id: uuid(),
         type: newImage.__typename,
@@ -101,10 +99,23 @@ async function processDifference({ oldest, latest, getItem }) {
           };
           diffs.push(notification);
         }
+        if ((oldImage.title !== newImage.title) && newImage.title) {
+          const notification = {
+            id: uuid(),
+            type: newImage.__typename,
+            subject: oldImage.title,
+            message: 'was renamed as',
+            topic: newImage.title,
+            image: newImage.banner,
+            timestamp,
+            entityId: id,
+          };
+          diffs.push(notification);
+        }
         const oldCancelledDates = oldImage.cancelledDates || [];
         const newCancelledDates = newImage.cancelledDates || [];
         if (newCancelledDates.length !== oldCancelledDates.length) {
-          const cancelledDate = newCancelledDates.filter(date => !oldCancelledDates.includes(date));
+          const cancelledDate = newCancelledDates.find(date => !oldCancelledDates.includes(date));
           const user = await getItem({
             TableName: USER_TABLE_NAME,
             id: eventAuthorId
