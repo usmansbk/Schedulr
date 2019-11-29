@@ -901,6 +901,8 @@ export default class AppStyles {
       },
       indicator: {
         backgroundColor: colors.primary,
+        borderWidth: 1,
+        borderColor: colors.bg,
         color: '#fff',
         position: 'absolute',
         top: 0,
