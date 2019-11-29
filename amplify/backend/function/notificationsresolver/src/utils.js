@@ -1,7 +1,12 @@
-function unique(items) {
+function uniqueGroup(items) {
   let set = {};
   for (let item of items) {
-    set[item.id] = { items: [item] };
+    let elem = set[item.id];
+    if (elem) {
+      set[item.id] = { items: [...elem.items, item] };
+    } else {
+      set[item.id] = { items: [item] };
+    }
   }
   return Object.values(set);
 }
@@ -15,6 +20,6 @@ function uniqueFlat(items) {
 }
 
 module.exports = {
-  unique,
+  uniqueGroup,
   uniqueFlat
 };
