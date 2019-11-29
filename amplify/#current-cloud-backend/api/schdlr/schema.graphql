@@ -217,6 +217,7 @@ type NotificationExtraData {
   title: String
   content: String
   pictureUrl: AWSURL 
+  ref: String
 }
 
 type Delta {

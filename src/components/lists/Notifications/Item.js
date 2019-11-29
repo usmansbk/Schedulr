@@ -14,6 +14,7 @@ import {
   FOLLOW_TYPE,
   BOOKMARK_TYPE,
 } from 'lib/constants';
+import { COMMENT_TYPE } from 'lib/constants';
 
 class Item extends React.Component {
 
@@ -21,15 +22,17 @@ class Item extends React.Component {
     const {
       entityId,
       type,
+      refStartAt,
       navigateToEvent,
       navigateToSchedule,
       navigateToFollowers,
       navigateToBookmarks,
+      navigateToComments
     } = this.props;
     if (entityId) {
       switch(type) {
         case EVENT_TYPE:
-          navigateToEvent(entityId);
+          navigateToEvent(entityId, refStartAt);
           break;
         case SCHEDULE_TYPE:
           navigateToSchedule(entityId);
@@ -39,6 +42,8 @@ class Item extends React.Component {
           break;
         case BOOKMARK_TYPE:
           navigateToBookmarks(entityId);
+        case COMMENT_TYPE:
+          navigateToComments(entityId);
           break;
       }
     }

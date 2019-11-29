@@ -29,8 +29,26 @@ function transformFollowing(schedules) {
   return allItems;
 }
 
+function groupCommentsByEvent({ comments }) {
+  let events = {};
+  for (let comment of comments) {
+    let elem = events[comment.commentEventId];
+    if (elem) {
+      elem.items = [...elem.items, comment];
+    } else {
+      events[comment.commentEventId] = {
+        id: comment.commentEventId,
+        items: [comment]
+      };
+    }
+  }
+
+  return Object.values(events);
+}
+
 module.exports = {
   uniqueGroup,
   uniqueFlat,
-  transformFollowing
+  transformFollowing,
+  groupCommentsByEvent
 };
