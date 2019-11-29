@@ -56,7 +56,7 @@ async function processFollowers(followers, getItem) {
 
 function parseMessage(count, lang) {
   const others = count - 1;
-  let message = 'followed';
+  let message = 'started following';
   if (others > 0) {
     message = `and ${others} other${others > 1 ? 's' : ''} ${message}`;
   }
