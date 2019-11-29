@@ -193,6 +193,7 @@ exports.handler = async function (event) { //eslint-disable-line
   const newCommentNotifications = await processComments({
     followingSchedulesComments,
     createdSchedulesComments,
+    currentUserId: id,
     getItemById
   });
   const newFollowerNotifications = await processFollows({
