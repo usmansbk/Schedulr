@@ -3,9 +3,9 @@ function uniqueGroup(items) {
   for (let item of items) {
     let elem = set[item.id];
     if (elem) {
-      set[item.id] = { items: [...elem.items, item] };
+      elem.items = [...elem.items, item];
     } else {
-      set[item.id] = { items: [item] };
+      set[item.id] = { items: [item], id: item.id };
     }
   }
   return Object.values(set);
@@ -19,7 +19,18 @@ function uniqueFlat(items) {
   return Object.values(set);
 }
 
+function transformFollowing(schedules) {
+  let items = [];
+  for (let schedule of schedules) {
+    const { items } = schedule;
+    const events = uniqueGroup(items);
+    items = [...items, ...events];
+  }
+  return items;
+}
+
 module.exports = {
   uniqueGroup,
-  uniqueFlat
+  uniqueFlat,
+  transformFollowing
 };
