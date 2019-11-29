@@ -143,7 +143,7 @@ async function processDifference({ oldest, latest, getItem }) {
             id: uuid(),
             type: newImage.__typename,
             subject: newImage.title,
-            message: `type changed to`,
+            message: `changed to`,
             topic: newImage.category,
             image: newImage.banner,
             timestamp,
