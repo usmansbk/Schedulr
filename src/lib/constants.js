@@ -35,8 +35,8 @@ export const USER_TYPE = 'User';
 // list/events
 export const events = {
   AVATAR_SIZE : 54,
-  ITEM_HEIGHT : 122,
-  ITEM_HEIGHT_SMALL : 102,
+  ITEM_HEIGHT : 100,
+  ITEM_HEIGHT_SMALL : 100,
   SEPARATOR_HEIGHT : 1,
   SECTION_HEADER_HEIGHT : 64,
   SECTION_FOOTER_HEIGHT : 40,

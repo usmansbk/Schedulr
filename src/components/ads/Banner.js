@@ -17,22 +17,25 @@ class Banner extends React.Component {
 
   render() {
     const { large, medium_rect } = this.props;
-    let size = BannerAdSize.BANNER;
+    let size = BannerAdSize.SMART_BANNER;
+    let unitId = env.SMART_BANNER;
     let source = require('../../assets/camp.png');
     let style = {
       height: 50,
-      width: 320
+      width: '100%'
     };
     if (large) {
       source = require('../../assets/sunset.png');
-      size = BannerAdSize.LARGE_BANNER;
+      size = BannerAdSize.SMART_BANNER;
+      unitId = env.SMART_BANNER;
       style = {
-        width: 320,
-        height: 100
+        height: 100,
+        width: '100%'
       };
     } else if (medium_rect) {
       source = require('../../assets/beach.png');
       size = BannerAdSize.MEDIUM_RECTANGLE;
+      unitId = env.SMART_BANNER;
       style = {
         width: 300,
         height: 250
@@ -40,7 +43,7 @@ class Banner extends React.Component {
     }
     if (__DEV__) {
       source = {
-        uri:`https://source.unsplash.com/random/${style.width}x${style.height}`,
+        uri:`https://source.unsplash.com/random/320x${style.height}`,
       };
     }
 
@@ -50,11 +53,21 @@ class Banner extends React.Component {
         style={style}
        >
       <BannerAd
-        unitId={TestIds.BANNER}
+        unitId={unitId}
         size={size}
         requestOptions={{
           requestNonPersonalizedAdsOnly: true,
           location: this.props.stores.locationStore.adLocation,
+          keywords: [
+            'scholarship',
+            'fashion',
+            'clothing',
+            'student',
+            'job',
+            'news',
+            'transport',
+            'ride'
+          ]
         }}
         onAdLoaded={this._onLoad}
         onAdFailedToLoad={this._onError}
@@ -64,14 +77,4 @@ class Banner extends React.Component {
   }
 }
 
-// keywords: [
-//   'scholarship',
-//   'laptop',
-//   'phone',
-//   'fashion',
-//   'clothing',
-//   'student',
-//   'job',
-//   'bet'
-// ]
 export default inject("stores")(observer(Banner));

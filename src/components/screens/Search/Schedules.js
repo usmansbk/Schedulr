@@ -63,7 +63,7 @@ const ListHoc = compose(
       }
     }),
     props: ({ data, ownProps }) => ({
-      loading: data && data.loading || data.networkStatus === 4,
+      loading: data && data.loading || data.networkStatus === 4 || data.networkStatus === 3,
       schedules: data && data.searchSchedules && data.searchSchedules.items || [],
       nextToken: data && data.searchSchedules && data.searchSchedules.nextToken,
       onRefresh: () => data.refetch(),

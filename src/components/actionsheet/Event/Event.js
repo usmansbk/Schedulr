@@ -5,6 +5,7 @@ import SimpleToast from 'react-native-simple-toast';
 import { I18n } from 'aws-amplify';
 import { inject, observer } from 'mobx-react';
 import handleShareEvent from 'helpers/share';
+import logger from 'config/logger';
 
 class EventAction extends React.Component {
   showActionSheet = () => {
@@ -35,6 +36,7 @@ class EventAction extends React.Component {
       isBookmarked,
       removeBookmark,
       bookmarkEvent,
+      bookmarkScheduleId
     } = this.props;
     const input = {
       id: `${stores.appState.userId}-${id}`,
@@ -45,10 +47,11 @@ class EventAction extends React.Component {
         await removeBookmark(input, id);
       } else {
         input.bookmarkEventId = id,
+        input.bookmarkScheduleId = bookmarkScheduleId;
         await bookmarkEvent(input);
       }
     } catch (error) {
-      console.log(error);
+      logger.logError(error);
     }
   };
 

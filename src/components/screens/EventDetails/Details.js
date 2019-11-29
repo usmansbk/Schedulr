@@ -147,6 +147,7 @@ export default inject('stores')(observer(
         category={category}
         isBookmarked={isBookmarked}
         bookmarksCount={bookmarksCount}
+        bookmarkScheduleId={scheduleId}
         commentsCount={commentsCount}
         color={stores.themeStore.colors.gray}
         activeColor={stores.themeStore.colors.like}

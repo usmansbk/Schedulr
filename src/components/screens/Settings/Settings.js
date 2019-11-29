@@ -152,8 +152,6 @@ class Settings extends React.Component {
                 />
               )}
             />
-          </List.Section>
-          <List.Section title={I18n.get("SETTINGS_commentSectionTitle")}>
             <List.Item
               title={I18n.get("SETTINGS_disableComment")}
               right={() => (
@@ -164,34 +162,29 @@ class Settings extends React.Component {
                 />
               )}
             />
-            {
-              false && (
-                <List.Item
-                  title={I18n.get("SETTINGS_disableAdminComment")}
-                  right={() => (
-                    <Switch
-                      disabled={disablePush || disableComments}
-                      value={disableAdminComments}
-                      onValueChange={() => this.handleValueChange('disableAdminComments')}
-                    />
-                  )}
+          </List.Section>
+          {false && (
+          <List.Section title={I18n.get("SETTINGS_commentSectionTitle")}>
+            <List.Item
+              title={I18n.get("SETTINGS_disableAdminComment")}
+              right={() => (
+                <Switch
+                  disabled={disablePush || disableComments}
+                  value={disableAdminComments}
+                  onValueChange={() => this.handleValueChange('disableAdminComments')}
                 />
-              )
-            }
-            {
-              false && (
-                <List.Item
-                  title={I18n.get("SETTINGS_disableReplies")}
-                  right={() => (
-                    <Switch
-                      disabled={disablePush || disableComments}
-                      value={disableReplies}
-                      onValueChange={() => this.handleValueChange('disableReplies')}
-                    />
-                  )}
+              )}
+            />
+            <List.Item
+              title={I18n.get("SETTINGS_disableReplies")}
+              right={() => (
+                <Switch
+                  disabled={disablePush || disableComments}
+                  value={disableReplies}
+                  onValueChange={() => this.handleValueChange('disableReplies')}
                 />
-              )
-            }
+              )}
+            />
             <List.Item
               title={I18n.get("SETTINGS_enableMembersComment")}
               right={() => (
@@ -203,6 +196,7 @@ class Settings extends React.Component {
               )}
             />
           </List.Section>
+          )}
         </ScrollView>
       </>
     );

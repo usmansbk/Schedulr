@@ -51,6 +51,7 @@ class Item extends React.Component {
       bookmarksCount,
       commentsCount,
       address,
+      scheduleId,
       stores
     } = this.props;
 
@@ -101,6 +102,7 @@ class Item extends React.Component {
               color={stores.themeStore.colors.light_gray_3}
               activeColor={stores.themeStore.colors.like}
               navigateToComments={this._onPressComment}
+              bookmarkScheduleId={scheduleId}
               size={18}
               small
             />

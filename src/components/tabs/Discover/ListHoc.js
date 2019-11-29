@@ -27,7 +27,7 @@ export default compose(
     props: ({ data, ownProps}) => ({
       data: (data && data.nearbyEvents && data.nearbyEvents.items) || [],
       nextToken: data && data.nearbyEvents && data.nearbyEvents.nextToken,
-      loading: data && (data.loading || data.networkStatus === 4),
+      loading: data && (data.loading || data.networkStatus === 4 || data.networkStatus === 3),
       onRefresh: () => data && data.refetch({
         nextToken: null
       }),

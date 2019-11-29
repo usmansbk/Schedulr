@@ -4,7 +4,7 @@ import { ApolloLink } from 'apollo-link';
 import { onError } from 'apollo-link-error';
 import SimpleToast from 'react-native-simple-toast';
 import aws_config from 'aws_config';
-import logError from './logger';
+import logger from './logger';
 import {
   EVENT_TYPE,
   SCHEDULE_TYPE,
@@ -19,8 +19,10 @@ const errorLink = onError(({ graphQLErrors }) => {
       if (message.includes("Not Found")) {
         // Dont log elasticsearch "Not found"
       } else {
-        SimpleToast.show(I18n.get('ERROR_serverError')(error.message), SimpleToast.LONG);
-        logError(error);
+        if (error.message) {
+          SimpleToast.show(I18n.get('ERROR_serverError')(error.message), SimpleToast.LONG);
+          logger.logError(error);
+        }
       }
     });  
   }
@@ -58,8 +60,7 @@ const client = new AWSAppSyncClient({
   offlineConfig: {
     callback: (error) => {
       if (error) {
-        console.log(error);
-        SimpleToast.show(error.message, SimpleToast.SHORT);
+        logger.logError(error);
       }
     }
   }

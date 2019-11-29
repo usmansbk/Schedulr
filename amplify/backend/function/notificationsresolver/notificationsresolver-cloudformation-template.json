@@ -54,10 +54,23 @@
 						"FOLLOW_TABLE_NAME": "Follow-nuvqxpmrwrgvdpzysdvzf6keju-dev",
 						"SCHEDULE_TABLE_NAME": "Schedule-nuvqxpmrwrgvdpzysdvzf6keju-dev",
 						"BOOKMARK_TABLE_NAME": "Bookmark-nuvqxpmrwrgvdpzysdvzf6keju-dev",
+						"USER_TABLE_NAME": "User-nuvqxpmrwrgvdpzysdvzf6keju-dev",
+						"EVENT_TABLE_NAME": "Event-nuvqxpmrwrgvdpzysdvzf6keju-dev",
 						"EVENT_DELTA_TABLE_NAME": "Event-delta",
 						"SCHEDULE_DELTA_TABLE_NAME": "Schedule-delta",
+						"FOLLOW_DELTA_TABLE_NAME": "Follow-delta",
+						"BOOKMARK_DELTA_TABLE_NAME": "Bookmark-delta",
+						"COMMENT_DELTA_TABLE_NAME": "Comment-delta",
 						"GSI_FOLLOWINGS": "gsi-Followings",
 						"GSI_FOLLOWINGS_KEY": "followUserId",
+						"GSI_FOLLOWERS": "gsi-Followers",
+						"GSI_FOLLOWERS_KEY": "followUserId",
+						"GSI_NEW_FOLLOWERS": "followScheduleId-timestamp-index",
+						"GSI_NEW_FOLLOWERS_KEY": "followScheduleId",
+						"GSI_EVENT_BOOKMARKS": "gsi-EventBookmarks",
+						"GSI_EVENT_BOOKMARKS_KEY": "bookmarkEventId",
+						"GSI_SCHEDULE_BOOKMARKS": "gsi-ScheduleBookmarks",
+						"GSI_SCHEDULE_BOOKMARKS_KEY": "bookmarkScheduleId",
 						"GSI_USER_SCHEDULES": "gsi-UserSchedules",
 						"GSI_USER_SCHEDULES_KEY": "scheduleAuthorId",
 						"GSI_USER_BOOKMARKS": "gsi-UserBookmarks",
@@ -65,7 +78,9 @@
 						"GSI_FOLLOWING_SCHEDULE_EVENTS": "gsi-FollowingScheduleEvents",
 						"GSI_FOLLOWING_SCHEDULE_EVENTS_KEY": "eventScheduleId",
 						"GSI_FOLLOWING_SCHEDULES": "followScheduleId-timestamp-index",
-						"GSI_FOLLOWING_SCHEDULES_KEY": "followScheduleId"
+						"GSI_FOLLOWING_SCHEDULES_KEY": "followScheduleId",
+						"GSI_SCHEDULE_COMMENTS": "gsi-ScheduleComments",
+						"GSI_SCHEDULE_COMMENTS_KEY": "commentScheduleId"
 					}
 				},
 				"Role": {
@@ -78,7 +93,7 @@
 				"Timeout": "25",
 				"Code": {
 					"S3Bucket": "amplify-schdlr-dev-172405-deployment",
-					"S3Key": "amplify-builds/notificationsresolver-75355635514639526b59-build.zip"
+					"S3Key": "amplify-builds/notificationsresolver-48716e64433132335047-build.zip"
 				}
 			}
 		},

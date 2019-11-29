@@ -17,7 +17,6 @@ class Notifications extends React.Component {
     if (!props.navigation.isFocused()) {
       props.stores.notificationsStore.resetCounter(0);
       props.stores.notificationsStore.markAsSeen();
-      OneSignal.clearOneSignalNotifications();
       return {
         loading: false 
       };
@@ -36,6 +35,8 @@ class Notifications extends React.Component {
   };
 
   shouldComponentUpdate = (nextProps) => nextProps.navigation.isFocused();
+
+  componentDidUpdate = () => OneSignal.clearOneSignalNotifications();
 
   render() {
     const {

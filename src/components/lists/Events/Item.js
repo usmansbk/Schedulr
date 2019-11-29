@@ -57,6 +57,7 @@ class Item extends React.Component {
       isMuted,
       isBookmarked,
       bookmarksCount,
+      eventScheduleId,
     } = this.props;
     
     const styles = stores.appStyles.eventsList;
@@ -108,6 +109,7 @@ class Item extends React.Component {
             startAt={startAt}
             isMuted={isMuted}
             bookmarksCount={bookmarksCount}
+            bookmarkScheduleId={eventScheduleId}
             ref={ref => this.ActionSheet = ref}
             onMute={this._onMute}
           />

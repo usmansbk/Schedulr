@@ -26,7 +26,7 @@ class List extends React.Component {
   _renderSeparator = () => <Separator />;
   _keyExtractor = (item, index) => item.id + item.date + index;
   _renderFooter = () => <Footer visible={this.props.updates.length}/>;
-  _navigateToEvent = (id) => this.props.navigation.navigate('EventDetails', { id });
+  _navigateToEvent = (id, refStartAt) => this.props.navigation.navigate('EventDetails', { id, refStartAt });
   _navigateToSchedule = (id) => this.props.navigation.navigate('ScheduleInfo', { id });
   _navigateToFollowers = (id) => this.props.navigation.navigate('Followers', { id });
   _navigateToBookmarks = (id) => this.props.navigation.navigate('EventBookmarks', { id });
@@ -55,7 +55,7 @@ class List extends React.Component {
     seen
   }}) => {
     let Item = NotifItem;
-    if (type === COMMENT_TYPE) Item = CommentItem;
+    // if (type === COMMENT_TYPE) Item = CommentItem;
     let pictureUrl;
     if (image) {
       pictureUrl = getImageUrl(image);
@@ -63,6 +63,10 @@ class List extends React.Component {
       if (extraData) {
         pictureUrl = extraData.pictureUrl;
       }
+    }
+    let date = '';
+    if (moment() > moment.unix(timestamp).add(1, 'minute')) {
+      date = moment.unix(timestamp).fromNow();
     }
     return <Item
       id={id}
@@ -74,7 +78,8 @@ class List extends React.Component {
       extraData={extraData}
       seen={seen}
       pictureUrl={pictureUrl}
-      date={moment.unix(timestamp).fromNow()}
+      date={date}
+      refStartAt={extraData && extraData.ref}
       navigateToSchedule={this._navigateToSchedule}
       navigateToEvent={this._navigateToEvent}
       navigateToFollowers={this._navigateToFollowers}

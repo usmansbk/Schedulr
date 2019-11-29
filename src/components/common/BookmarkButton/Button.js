@@ -1,5 +1,6 @@
 import React from 'react';
 import IconBadge from '../IconBadge';
+import logger from 'config/logger';
 
 export default class Button extends React.Component {
 
@@ -14,6 +15,7 @@ export default class Button extends React.Component {
       isBookmarked,
       removeBookmark,
       bookmarkEvent,
+      bookmarkScheduleId,
     } = this.props;
     const input = {
       id: `${stores.appState.userId}-${id}`,
@@ -23,10 +25,11 @@ export default class Button extends React.Component {
         await removeBookmark(input, id);
       } else {
         input.bookmarkEventId = id,
+        input.bookmarkScheduleId = bookmarkScheduleId;
         await bookmarkEvent(input);
       }
     } catch (error) {
-      console.log(error);
+      logger.logError(error);
     }
   };
 

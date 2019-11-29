@@ -12,6 +12,7 @@ import { me } from 'api/queries';
 import { createUser, createSchedule, createPreference } from 'api/mutations';
 import defaultSchedule from 'i18n/schedule';
 import Login from './Login';
+import logger from 'config/logger';
 
 const GET_USER = gql(me);
 const CREATE_USER = gql(createUser);
@@ -34,7 +35,7 @@ class Container extends React.Component {
   };
 
   _authListener = async ({ payload: { event } }) => {
-    const { client } = this.props;
+    const { client, stores } = this.props;
     switch(event) {
       case "signIn":
         try {
@@ -64,7 +65,7 @@ class Container extends React.Component {
               variables: {
                 input: {
                   disablePush: false,
-                  language: 'en'
+                  language: stores.settingsStore.language
                 }
               }
             });
@@ -107,10 +108,11 @@ class Container extends React.Component {
           this.props.stores.settingsStore.setUserPreference(user.preference);
           this.props.stores.appState.setUserId(email);
           crashlytics().setUserEmail(email);
+          logger.log('sign-in');
           this.props.navigation.navigate('App');
         } catch(error) {
           SimpleToast.show("Sign-in failed", SimpleToast.LONG);
-          console.log(error.message);
+          logger.logError(error);
         }
         this.props.stores.appState.setLoginState(false);
         break;
@@ -122,8 +124,8 @@ class Container extends React.Component {
       this.props.stores.appState.setLoginState(true);
       await Auth.federatedSignIn({ provider });
     } catch (error) {
-      console.log(error);
       this.props.stores.appState.setLoginState(false);
+      logger.logError(error);
     }
   };
 

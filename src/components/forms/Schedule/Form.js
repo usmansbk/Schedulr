@@ -38,7 +38,11 @@ class Form extends React.Component {
     showLocationPicker: false
   };
 
-  componentDidMount = () => this.props.stores.locationStore.fetchLocation();
+  componentDidMount = () => {
+    this.locationTimeout = setTimeout(this.props.stores.locationStore.fetchLocation, 200);
+  };
+
+  componentWillUnmount = () => clearTimeout(this.locationTimeout);
 
   _showInfoAlert = () => this.setState({ showInfoAlert: true });
   _showPrivacyAlert = () => this.setState({ showPrivacyAlert: true });

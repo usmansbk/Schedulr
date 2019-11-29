@@ -217,6 +217,7 @@ type NotificationExtraData {
   title: String
   content: String
   pictureUrl: AWSURL 
+  ref: String
 }
 
 type Delta {
@@ -241,6 +242,7 @@ type Bookmark
   id: ID!
   event: Event @connection(name: "EventBookmarks", sortField: "createdAt")
   user: User @connection(name: "UserBookmarks", sortField: "createdAt")
+  schedule: Schedule @connection
   createdAt: String
 }
 

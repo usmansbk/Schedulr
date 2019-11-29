@@ -58,13 +58,32 @@ exports.handler = async function (event) { //eslint-disable-line
   });
   
   // Get bookmarks updates of schedule events user isn't following or created
-  const bookmarksUpdates = await queryBookmarksTableByIds({
+  const expValues = {
+    ':author': id,
+  };
+  const expNames = {
+    '#author': 'eventAuthorId',
+  };
+  for (let index in followingIds) {
+    const key = `:item${index}`;
+    const value = followingIds[index];
+    expValues[key] = value;
+  }
+  
+  let FilterExpression = `(NOT (#author = :author))`;
+  const inExp = Object.keys(expValues).toString();
+  if (inExp) {
+    expNames['#filter'] = 'eventScheduleId';
+    FilterExpression = `${FilterExpression} and (NOT (#filter IN (${inExp})))`;
+  }
+  const bookmarksUpdates = await queryTableByIds({
     ids: bookmarksIds,
     lastSync,
     primaryKey: 'id',
-    userId: id,
-    filterIds: followingIds,
-    TableName: EVENT_DELTA_TABLE_NAME
+    TableName: EVENT_DELTA_TABLE_NAME,
+    FilterExpression,
+    expNames,
+    expValues
   });
 
   const events = processEvents(followingScheduleEventsUpdates);
@@ -77,36 +96,15 @@ exports.handler = async function (event) { //eslint-disable-line
   };
 };
 
-async function queryBookmarksTableByIds({
+async function queryTableByIds({
   ids,
   lastSync,
-  userId,
+  TableName,
   primaryKey,
-  filterIds,
-  TableName
+  FilterExpression,
+  expValues={},
+  expNames={}
 }) {
-  const expValues = {
-    ':author': userId,
-    ':lastSync': lastSync
-  };
-  const expNames = {
-    '#key': primaryKey,
-    '#author': 'eventAuthorId',
-    '#timestamp': 'timestamp'
-  };
-  for (let index in filterIds) {
-    const key = `:item${index}`;
-    const value = filterIds[index];
-    expValues[key] = value;
-  }
-  
-  let FilterExpression = `(NOT (#author = :author))`;
-  const inExp = Object.keys(expValues).toString();
-  if (inExp) {
-    expNames['#filter'] = 'eventScheduleId';
-    FilterExpression = `${FilterExpression} and (NOT (#filter IN (${inExp})))`;
-  }
-
   const items = [];
   for (let id of ids) {
     const params = {
@@ -115,52 +113,13 @@ async function queryBookmarksTableByIds({
       FilterExpression,
       ExpressionAttributeValues: {
         ':id': id,
+        ':lastSync': lastSync,
         ...expValues
       },
       ExpressionAttributeNames: {
-        ...expNames
-      }
-    };
-    const group = {
-      id,
-      items: []
-    };
-    try {
-      const { Items, LastEvaluatedKey } = await dynamodb.query(params).promise();
-      group.items = Items;
-      let ExclusiveStartKey = LastEvaluatedKey;
-      while(ExclusiveStartKey) {
-        params.ExclusiveStartKey = ExclusiveStartKey;
-        const { Items, LastEvaluatedKey }= await dynamodb.query(params).promise();
-        group.items = [...group.items, ...Items];
-        ExclusiveStartKey = LastEvaluatedKey;
-      }
-    } catch(error) {
-      console.error(error);
-    }
-    items.push(group);
-  }
-  return items;
-}
-
-async function queryTableByIds({
-  ids,
-  lastSync,
-  TableName,
-  primaryKey
-}) {
-  const items = [];
-  for (let id of ids) {
-    const params = {
-      TableName,
-      KeyConditionExpression: '#key = :id and #timestamp > :lastSync',
-      ExpressionAttributeValues: {
-        ':id': id,
-        ':lastSync': lastSync
-      },
-      ExpressionAttributeNames: {
         '#key': primaryKey,
-        '#timestamp': 'timestamp'
+        '#timestamp': 'timestamp',
+        ...expNames
       }
     };
     const group = {

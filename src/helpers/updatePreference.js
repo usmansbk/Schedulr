@@ -2,6 +2,7 @@ import gql from 'graphql-tag';
 import client from 'config/client';
 import stores from 'stores';
 import { updatePreference } from 'api/mutations';
+import logger from 'config/logger';
 
 async function updateUserPushToken({ userId }) {
   try {
@@ -15,7 +16,7 @@ async function updateUserPushToken({ userId }) {
       }
     });
   } catch (error) {
-    console.log(error);
+    logger.logError(error);
   }
 }
 async function updateUserPreference(optimisticResponse) {
@@ -30,7 +31,7 @@ async function updateUserPreference(optimisticResponse) {
     });
     return result.data.updateUserPreference;
   } catch (error) {
-    console.log(error);
+    logger.logError(error);
   }
   return null;
 }

@@ -31,6 +31,7 @@ export default class Actions extends React.Component {
       isAuth,
       isBookmarked,
       bookmarksCount,
+      bookmarkScheduleId,
       commentsCount,
       address,
       category,
@@ -48,6 +49,7 @@ export default class Actions extends React.Component {
           id={id}
           isBookmarked={isBookmarked}
           bookmarksCount={bookmarksCount}
+          bookmarkScheduleId={bookmarkScheduleId}
           activeColor={activeColor}
           size={FONT_SIZE}
           color={color}
