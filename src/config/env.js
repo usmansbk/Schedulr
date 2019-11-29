@@ -1,14 +1,15 @@
 const date = '2019-11-18T22:57';
-const DOMAIN = 'https://help.schdlr.com';
+const DOMAIN = 'https://get-schdlr.com';
 
 const common = {
   uriPrefix: 'schdlr://',
-  APP_URL: `https://schdlr.com`,
+  APP_URL: `https://get-schdlr.com`,
   DOWNLOAD_URL: `${DOMAIN}/download`,
   FAQ_URL: `${DOMAIN}/faq`,
   CONTACT_URL: `${DOMAIN}/contact`,
   LEGALITY_URL: `${DOMAIN}/legal`,
   TERMS_URL: `${DOMAIN}/terms`,
+  PRIVACY_URL: `${DOMAIN}/privacy`,
   EMAIL: 'hello.schdlr@gmail.com',
   ONESIGNAL_ID: 'b6031600-8b05-4702-9e29-bde94401f18a',
   CloudFrontUrl: "https://dffqb1y6phusm.cloudfront.net/",

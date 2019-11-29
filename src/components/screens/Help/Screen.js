@@ -20,6 +20,9 @@ export default class Screen extends React.Component {
       case 'terms':
         url = env.TERMS_URL;
         break;
+      case 'privacy':
+        url = env.PRIVACY_URL;
+        break;
       default:
         url = env.APP_URL;
         break;

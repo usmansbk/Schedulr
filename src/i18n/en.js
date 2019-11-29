@@ -100,6 +100,7 @@ export default {
   HELP_terms: "Terms and Privacy Policy",
   HELP_appVersion: "App version",
   HELP_build: "Build version",
+  HELP_privacy: "Privacy Policy",
 
   BUTTON_cancel: "Cancel",
   BUTTON_create: "create",
