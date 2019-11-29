@@ -65,7 +65,7 @@ class List extends React.Component {
       }
     }
     let date = '';
-    if (moment.unix(timestamp) > moment().unix()) {
+    if (moment() > moment.unix(timestamp).add(1, 'minute')) {
       date = moment.unix(timestamp).fromNow();
     }
     return <Item

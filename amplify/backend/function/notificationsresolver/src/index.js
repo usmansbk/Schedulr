@@ -83,7 +83,7 @@ exports.handler = async function (event) { //eslint-disable-line
     primaryKey: 'id',
     TableName: SCHEDULE_DELTA_TABLE_NAME
   });
-  console.log('following schedules updates', JSON.stringify(followingSchedulesUpdates));
+  // console.log('following schedules updates', JSON.stringify(followingSchedulesUpdates));
   // ============================================================================================
   
   // Get new followers updates
@@ -94,7 +94,7 @@ exports.handler = async function (event) { //eslint-disable-line
     TableName: FOLLOW_DELTA_TABLE_NAME,
     IndexName: gsiNewFollowers 
   });
-  console.log('new followers updates', JSON.stringify(followersUpdates));
+  // console.log('new followers updates', JSON.stringify(followersUpdates));
   // ============================================================================================
 
   // Get new bookmarks updates
@@ -112,7 +112,7 @@ exports.handler = async function (event) { //eslint-disable-line
       ':author': id
     }
   });
-  console.log('new bookmarks updates', JSON.stringify(bookmarksUpdates));
+  // console.log('new bookmarks updates', JSON.stringify(bookmarksUpdates));
   // ============================================================================================
 
   // Get created schedules new comments

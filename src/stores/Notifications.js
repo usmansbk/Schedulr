@@ -65,7 +65,6 @@ export default class Notifications {
 
   @action fetchNotifications = () => {
     if (!this.loading) {
-      console.log('fetching notifications')
       this.loading = true;
       client.query({
         fetchPolicy: 'network-only',
