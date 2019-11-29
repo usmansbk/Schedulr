@@ -22,13 +22,15 @@ class Banner extends React.Component {
     let source = require('../../assets/camp.png');
     let style = {
       height: 50,
+      width: '100%'
     };
     if (large) {
       source = require('../../assets/sunset.png');
       size = BannerAdSize.SMART_BANNER;
       unitId = env.SMART_BANNER;
       style = {
-        height: 100
+        height: 100,
+        width: '100%'
       };
     } else if (medium_rect) {
       source = require('../../assets/beach.png');
@@ -41,18 +43,14 @@ class Banner extends React.Component {
     }
     if (__DEV__) {
       source = {
-        uri:`https://source.unsplash.com/random/${style.width}x${style.height}`,
+        uri:`https://source.unsplash.com/random/320x${style.height}`,
       };
     }
 
     return (
       <ImageBackground
         source={source}
-        style={[style, {
-          flex: 1,
-          alignItems: 'center',
-          justifyContent: 'flex-start'
-        }]}
+        style={style}
        >
       <BannerAd
         unitId={unitId}

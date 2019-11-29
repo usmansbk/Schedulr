@@ -121,12 +121,11 @@ async function processDifference({ oldest, latest, getItem }) {
             id: eventAuthorId
           });
           if (user) {
-            const category = newImage.category ? newImage.category.toLowerCase() : 'event';
             const notification = {
               id: uuid(),
               type: newImage.__typename,
               subject: user.name,
-              message: `cancelled ${category} scheduled for`,
+              message: `cancelled '${newImage.title}' scheduled for`,
               topic: moment(cancelledDate).add(1, 'hour').calendar(),
               image: user.avatar,
               timestamp,
