@@ -64,6 +64,10 @@ class List extends React.Component {
         pictureUrl = extraData.pictureUrl;
       }
     }
+    let date = '';
+    if (moment.unix(timestamp) > moment().unix()) {
+      date = moment.unix(timestamp).fromNow();
+    }
     return <Item
       id={id}
       entityId={entityId}
@@ -74,7 +78,7 @@ class List extends React.Component {
       extraData={extraData}
       seen={seen}
       pictureUrl={pictureUrl}
-      date={moment.unix(timestamp).fromNow()}
+      date={date}
       navigateToSchedule={this._navigateToSchedule}
       navigateToEvent={this._navigateToEvent}
       navigateToFollowers={this._navigateToFollowers}

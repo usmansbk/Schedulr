@@ -5,8 +5,6 @@ import gql from 'graphql-tag';
 import { getNotifications } from 'api/queries';
 import client from 'config/client';
 
-const MIN_UPPER_BOUND_TIME = 2;
-
 export default class Notifications {
   @persist @observable count = 0;
   @persist @observable lastSyncTimestamp = moment().unix();
@@ -16,16 +14,12 @@ export default class Notifications {
 
   @persist('list') @observable allNotifications = [];
 
-  @action updateLastSyncTimestamp = () => this.lastSyncTimestamp = moment().unix();
+  @action updateLastSyncTimestamp = () => this.lastSyncTimestamp = moment().unix() + 2;
 
   @action appendNotifications = newNotifications => {
-    const uniqueNotifications = newNotifications.filter(
-      notif => !(this.allNotifications.find(currentNotif => currentNotif.id === notif.id))
-    );
-
-    if (uniqueNotifications.length) {
-      this.count += uniqueNotifications.length;
-      this.allNotifications = this.allNotifications.concat(uniqueNotifications.map(notif => Object.assign(notif, { seen: false })));
+    if (newNotifications.length) {
+      this.count += newNotifications.length;
+      this.allNotifications = this.allNotifications.concat(newNotifications.map(notif => Object.assign(notif, { seen: false })));
     }
   };
   
@@ -59,10 +53,6 @@ export default class Notifications {
     return this.allNotifications.filter(notif => notif.type === this.filter).sort((a, b) => -(a.timestamp - b.timestamp));
   }
 
-  @computed get skipQuery() {
-    return (moment().unix() - this.lastSyncTimestamp) < MIN_UPPER_BOUND_TIME;
-  }
-
   @action handleFilterAction = (filter) => {
     switch(filter) {
       case 'clear':
@@ -74,7 +64,8 @@ export default class Notifications {
   }
 
   @action fetchNotifications = () => {
-    if (!this.loading && !this.skipQuery) {
+    if (!this.loading) {
+      console.log('fetching notifications')
       this.loading = true;
       client.query({
         fetchPolicy: 'network-only',
