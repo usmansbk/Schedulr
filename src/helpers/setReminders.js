@@ -22,8 +22,8 @@ import colors from 'config/colors';
 const color = colors.primary;
 
 function getReminderMessage({ category, startAt, date }) {
-  const validCategory = category ? decapitalize(category) + ' ' : '';
-  return `${validCategory}${moment(startAt).from(date)}`;
+  const validCategory = category ? category + ' ' : '';
+  return decapitalize(`${validCategory}${moment(startAt).from(date)}`);
 }
 
 const setReminder = (event, before, settings) => {
@@ -82,7 +82,7 @@ const schdlStart = (event, settings) => {
   const { sound, vibrate } = settings;
   const time = moment(startAt).format('hh:mm a');
   const date = moment(startAt).toDate();
-  const message = `${category ? decapitalize(category) + ' - ' : ''}${time}`;
+  const message = decapitalize(`${category ? category + ' - ' : ''}${time}`);
   const repeatType = getRepeatType(recurrence);
   const repeatTime = {};
   if (repeatType === 'time') {
