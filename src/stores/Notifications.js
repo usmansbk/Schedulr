@@ -78,8 +78,6 @@ export default class Notifications {
           this.appendNotifications(notifications);
           const latest = notifications.sort((a, b) => b.timestamp - a.timestamp)[0];
           this.lastSyncTimestamp = latest.lastSyncTimestamp;
-        } else {
-          this.updateLastSyncTimestamp();
         }
         this.loading = false;
       }).catch(() => {
