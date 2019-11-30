@@ -32,6 +32,7 @@ export function processRemoteNotification(result) {
     screen = 'Comments';
   }
   NavigationService.navigate(screen, {
-    id: additionalData.id
+    id: additionalData.id,
+    refStartAt: additionalData.refStartAt
   });
 }
