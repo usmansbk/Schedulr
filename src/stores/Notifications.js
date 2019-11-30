@@ -48,9 +48,9 @@ export default class Notifications {
 
   @computed get updates() {
     if (this.filter === 'all') {
-      return this.allNotifications.sort((a, b) => -(a.timestamp - b.timestamp));
+      return this.allNotifications.sort((a, b) => (b.timestamp - a.timestamp));
     }
-    return this.allNotifications.filter(notif => notif.type === this.filter).sort((a, b) => -(a.timestamp - b.timestamp));
+    return this.allNotifications.filter(notif => notif.type === this.filter).sort((a, b) => (b.timestamp - a.timestamp));
   }
 
   @action handleFilterAction = (filter) => {
@@ -74,9 +74,12 @@ export default class Notifications {
         }
       }).then((result) => {
         const { data: { notifications }={} } = result || {};
-        this.updateLastSyncTimestamp();
         if (notifications && notifications.length) {
           this.appendNotifications(notifications);
+          const latest = notifications.sort((a, b) => b.timestamp - a.timestamp)[0];
+          this.lastSyncTimestamp = latest.lastSyncTimestamp;
+        } else {
+          this.updateLastSyncTimestamp();
         }
         this.loading = false;
       }).catch(() => {
