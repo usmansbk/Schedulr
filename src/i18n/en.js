@@ -94,9 +94,9 @@ export default {
   SIGN_OUT_message: "Will clear data",
 
   HELP_title: "Help",
-  HELP_contactUs: "Contact developer",
+  HELP_contactUs: "Contact Developer",
   HELP_contactUsSubtitle: "Questions? Need help",
-  HELP_copyRight: "Copyright information",
+  HELP_copyRight: "Copyright Information",
   HELP_terms: "Terms of Service",
   HELP_appVersion: "App version",
   HELP_build: "Build version",
