@@ -97,7 +97,7 @@ export default {
   HELP_contactUs: "Contact developer",
   HELP_contactUsSubtitle: "Questions? Need help",
   HELP_copyRight: "Copyright information",
-  HELP_terms: "Terms and Privacy Policy",
+  HELP_terms: "Terms of Service",
   HELP_appVersion: "App version",
   HELP_build: "Build version",
   HELP_privacy: "Privacy Policy",
