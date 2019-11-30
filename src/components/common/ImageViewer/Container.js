@@ -36,7 +36,8 @@ class ImageViewerContainer extends React.Component {
         try {
           await Storage.remove(s3Object.key).catch();
         } catch(error) {
-          SimpleToast.show(error.message, SimpleToast.SHORT);
+          SimpleToast.show(I18n.get('ERROR_failedToRemoveImage'), SimpleToast.SHORT);
+          logger.logError(error)
         }
       }
       try {
@@ -88,7 +89,8 @@ class ImageViewerContainer extends React.Component {
                 this.setState({ loading: false });
               }
             } catch (error) {
-              SimpleToast.show(error.message, SimpleToast.SHORT);
+              SimpleToast.show(I18n.get('ERROR_failedToRemoveImage'), SimpleToast.SHORT);
+              logger.logError(error);
             }
           }
         }

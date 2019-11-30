@@ -6,10 +6,12 @@ import SimpleToast from 'react-native-simple-toast';
 import { Linking, Platform, PushNotificationIOS } from 'react-native';
 import changeNavigationBarColor from 'react-native-navigation-bar-color';
 import { inject, observer } from 'mobx-react';
+import { I18n } from 'aws-amplify';
 import NavigationService from 'config/navigation';
 import { processLocalNotification, processRemoteNotification } from 'helpers/notification';
 import Events from './Hoc';
 import { updateUserPushToken } from 'helpers/updatePreference';
+import logger from 'config/logger';
 
 /**
  * This component handles Local Notifications
@@ -61,7 +63,8 @@ class Container extends React.Component {
       const navColor = isDark ? colors.light_gray_2 : colors.bg;
       await changeNavigationBarColor(navColor, !isDark);
     } catch (error) {
-      SimpleToast.show(error.message, SimpleToast.SHORT);
+      SimpleToast.show(I18n.get('ERROR_failedToApplyTheme'), SimpleToast.SHORT);
+      logger.logError(error);
     }
   };
 
@@ -74,7 +77,8 @@ class Container extends React.Component {
         NavigationService.deepLinkNavigate(url);
       }
     } catch (error) {
-      SimpleToast.show(error.message, SimpleToast.SHORT);
+      SimpleToast.show(I18n.get('ERROR_navigationError'), SimpleToast.SHORT);
+      logger.logError(error);
     }
   };
 
