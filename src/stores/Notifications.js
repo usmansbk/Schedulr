@@ -14,7 +14,10 @@ export default class Notifications {
 
   @persist('list') @observable allNotifications = [];
 
-  @action updateLastSyncTimestamp = () => this.lastSyncTimestamp = moment().unix() + 2;
+  @action updateLastSyncTimestamp = (timestamp) => {
+    if (timestamp) this.lastSyncTimestamp = timestamp;
+    else this.lastSyncTimestamp = moment().unix() + 2;
+  };
 
   @action appendNotifications = newNotifications => {
     if (newNotifications.length) {
@@ -77,7 +80,9 @@ export default class Notifications {
         if (notifications && notifications.length) {
           this.appendNotifications(notifications);
           const latest = notifications.sort((a, b) => b.timestamp - a.timestamp)[0];
-          this.lastSyncTimestamp = latest.lastSyncTimestamp;
+          this.updateLastSyncTimestamp(latest.timestamp);
+        } else {
+          this.updateLastSyncTimestamp();
         }
         this.loading = false;
       }).catch(() => {
