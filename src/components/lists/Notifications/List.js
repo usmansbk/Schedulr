@@ -2,15 +2,14 @@ import React from 'react';
 import { RefreshControl } from 'react-native';
 import { FlatList } from 'react-navigation';
 import moment from 'moment';
+import { I18n } from 'aws-amplify';
 import { inject, observer } from 'mobx-react';
 import Empty from './Empty';
 import Footer from './Footer';
 import Separator from './Separator';
 import NotifItem from './Item';
-import CommentItem from './CommentItem';
 import { notifications_list } from 'lib/constants';
 import getImageUrl from 'helpers/getImageUrl';
-import { COMMENT_TYPE } from 'lib/constants';
 
 const {
   ITEM_HEIGHT,
@@ -55,7 +54,6 @@ class List extends React.Component {
     seen
   }}) => {
     let Item = NotifItem;
-    // if (type === COMMENT_TYPE) Item = CommentItem;
     let pictureUrl;
     if (image) {
       pictureUrl = getImageUrl(image);
@@ -64,7 +62,7 @@ class List extends React.Component {
         pictureUrl = extraData.pictureUrl;
       }
     }
-    let date = '';
+    let date = I18n.get('now');
     if (moment() > moment.unix(timestamp).add(1, 'minute')) {
       date = moment.unix(timestamp).fromNow();
     }
