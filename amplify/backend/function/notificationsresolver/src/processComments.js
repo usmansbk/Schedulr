@@ -45,7 +45,7 @@ async function processNotification({ items, currentUserId, getItemById }) {
           id: uuid(),
           type: __typename,
           subject: author.name,
-          message: 'replied your to comment on',
+          message: 'replied to your comment on',
           topic: event.title,
           timestamp,
           image: author.avatar,
