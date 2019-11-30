@@ -58,8 +58,11 @@ class Item extends React.Component {
       topic,
       stores,
       type,
-      seen
+      seen,
+      extraData
     } = this.props;
+
+    const content = extraData && extraData.content;
 
     const styles = stores.appStyles.notifications;
     let icon = 'calendar';
@@ -79,7 +82,8 @@ class Item extends React.Component {
             <Text ellipsizeMode="tail" numberOfLines={2}>
               <Caption style={styles.boldText}>{subject}</Caption>{' '}
               <Caption>{message}</Caption>
-              <Caption style={styles.boldText}>{topic ? ' ' + topic : ''}</Caption>.
+              <Caption style={styles.boldText}>{topic ? ' ' + topic : ''}</Caption>
+              {content ? <Caption numberOfLines={1} ellipsizeMode="tail">: {content}</Caption> : '.'}
             </Text>
             <View style={styles.dateLine}>
               <Icon

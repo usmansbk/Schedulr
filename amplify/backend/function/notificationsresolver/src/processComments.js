@@ -37,7 +37,7 @@ async function processNotification({ items, currentUserId, getItemById }) {
   if (items.length) {
     const at = items.find(item => item.commentAtId === currentUserId);
     if (at) {
-      const { timestamp, commentAuthorId, commentEventId, newImage: { __typename } } = at;
+      const { timestamp, commentAuthorId, commentEventId, newImage: { __typename, content } } = at;
       const author = await getItemById({ TableName: USER_TABLE_NAME, id: commentAuthorId});
       const event = await getItemById({ TableName: EVENT_TABLE_NAME, id: commentEventId });
       if (author && event) {
@@ -51,13 +51,14 @@ async function processNotification({ items, currentUserId, getItemById }) {
           image: author.avatar,
           entityId: commentEventId,
           extraData: {
-            pictureUrl: author.pictureUrl
+            pictureUrl: author.pictureUrl,
+            content
           }
         };
       }
     } else {
       const firstComment = items[0];
-      const { timestamp, commentAuthorId, commentEventId,newImage: { __typename } } = firstComment;
+      const { timestamp, commentAuthorId, commentEventId,newImage: { __typename, content } } = firstComment;
       const author = await getItemById({ TableName: USER_TABLE_NAME, id: commentAuthorId});
       const event = await getItemById({ TableName: EVENT_TABLE_NAME, id: commentEventId });
       if (author && event) {
@@ -76,7 +77,8 @@ async function processNotification({ items, currentUserId, getItemById }) {
           image: author.avatar,
           entityId: commentEventId,
           extraData: {
-            pictureUrl: author.pictureUrl
+            pictureUrl: author.pictureUrl,
+            content
           }
         };
       }
