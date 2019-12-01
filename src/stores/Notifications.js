@@ -2,8 +2,10 @@ import { observable, action, computed } from 'mobx';
 import { persist } from 'mobx-persist';
 import moment from 'moment';
 import gql from 'graphql-tag';
+import { I18n } from 'aws-amplify';
 import { getNotifications } from 'api/queries';
 import client from 'config/client';
+import stores from 'stores';
 
 export default class Notifications {
   @persist @observable count = 0;
@@ -77,10 +79,12 @@ export default class Notifications {
         }
       }).then((result) => {
         const { data: { notifications }={} } = result || {};
-        if (notifications && notifications.length) {
+        const count = notifications && notifications.length;
+        if (count) {
           this.appendNotifications(notifications);
           const latest = notifications.sort((a, b) => b.timestamp - a.timestamp)[0];
           this.updateLastSyncTimestamp(latest.timestamp);
+          stores.snackbar.show(I18n.get('TOAST_newNotifications')(count));
         }
         this.loading = false;
       }).catch(() => {

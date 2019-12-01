@@ -173,6 +173,7 @@ export default {
   TOAST_removed: "Bookmark removed",
   TOAST_saved: "Event bookmarked",
   TOAST_fetchingUpdates: "Fetching updates...",
+  TOAST_newNotifications: count => `${count} new Notification${count > 1 ? 's' : ''}`,
 
   PROFILE_FORM_name: "Name",
   PROFILE_FORM_website: "Website",
