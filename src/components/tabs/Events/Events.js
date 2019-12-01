@@ -1,6 +1,8 @@
 import React from 'react';
 import uuidv5 from 'uuid/v5';
 import memoize from 'memoize-one';
+import SimpleToast from 'react-native-simple-toast';
+import { I18n } from 'aws-amplify';
 import List from 'components/lists/Events';
 import FAB from 'components/common/Fab';
 import schdlAll from 'helpers/setReminders';
@@ -10,7 +12,7 @@ export default class Events extends React.Component {
   static defaultProps = {
     mutedEvents: [],
     allowedEvents: []
-  }
+  };
 
   shouldComponentUpdate = (nextProps) => nextProps.navigation.isFocused();
   
@@ -29,12 +31,6 @@ export default class Events extends React.Component {
     });
   };
 
-  _onRefresh = () => {
-    if (!this.props.loading) {
-      this.props.onRefresh && this.props.onRefresh();
-    }
-  };
-  
   _mergeAllEvents = memoize(mergeEvents);
 
   get events() {
@@ -42,6 +38,7 @@ export default class Events extends React.Component {
   }
 
   _sync = () => {
+    SimpleToast.show(I18n.get('TOAST_fetchingUpdates'), SimpleToast.SHORT);
     this.props.fetchNotifications();
     this.props.deltaSync();
   };
@@ -59,7 +56,6 @@ export default class Events extends React.Component {
           isAuth
           events={this.events}
           navigation={this.props.navigation}
-          onRefresh={this._onRefresh}
           loading={this.props.loading}
           fetchMore={this._sync}
           updateListEveryMinute={new Date().getMinutes()}
