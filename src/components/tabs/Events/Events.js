@@ -38,13 +38,15 @@ export default class Events extends React.Component {
   }
 
   _sync = () => {
-    SimpleToast.show(I18n.get('TOAST_fetchingUpdates'), SimpleToast.SHORT);
-    this.props.fetchNotifications();
-    this.props.deltaSync();
+    if (this.props.isConnected) {
+      SimpleToast.show(I18n.get('TOAST_fetchingUpdates'), SimpleToast.SHORT);
+      this.props.fetchNotifications();
+      this.props.deltaSync();
+    }
   };
 
   componentDidMount = () => {
-    if (!this.props.loading) {
+    if (!this.props.loading && this.props.isConnected) {
       this._sync();
     }
   };

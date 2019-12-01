@@ -21,8 +21,10 @@ class Notifications extends React.Component {
         loading: false 
       };
     } else {
-      props.stores.notificationsStore.fetchNotifications();
-      props.stores.appState.deltaSync();
+      if (props.stores.appState.isConnected) {
+        props.stores.notificationsStore.fetchNotifications();
+        props.stores.appState.deltaSync();
+      }
     };
     return null;
   };

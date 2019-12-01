@@ -107,7 +107,7 @@ export default class AppState {
   }
 
   @action deltaSync() {
-    if (!this.loading) {
+    if (!this.loading && this.isConnected) {
       this.loading = true;
       client.query({
         fetchPolicy: 'network-only',
