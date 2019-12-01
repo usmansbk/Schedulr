@@ -26,48 +26,29 @@ async function processComments({ items, currentUserId, getItemById }) {
   const commentsByEvent = groupCommentsByEvent({ comments: items });
   for (let event of commentsByEvent) {
     const { items } = event;
-    const notification = await processNotification({ items, currentUserId, getItemById });
-    if (notification) allNotifications.push(notification);
+    const notifications = await processNotification({ items, currentUserId, getItemById });
+    allNotifications = [...allNotifications, notifications];
   }
   return allNotifications;
 }
 
 async function processNotification({ items, currentUserId, getItemById }) {
-  let notification = null;
+  const notifications = [];
   if (items.length) {
-    const at = items.find(item => item.commentAtId === currentUserId);
-    if (at) {
+    const replies = items.filter(item => item.commentAtId === currentUserId);
+    if (replies.length) {
+      const at = replies[0];
       const { timestamp, commentAuthorId, commentEventId, newImage: { __typename, content } } = at;
       const author = await getItemById({ TableName: USER_TABLE_NAME, id: commentAuthorId});
       const event = await getItemById({ TableName: EVENT_TABLE_NAME, id: commentEventId });
-      if (author && event) {
-        notification = {
-          id: uuid(),
-          type: __typename,
-          subject: author.name,
-          message: 'replied to your comment on',
-          topic: event.title,
-          timestamp,
-          image: author.avatar,
-          entityId: commentEventId,
-          extraData: {
-            pictureUrl: author.pictureUrl,
-            content
-          }
-        };
+
+      const others = replies.length - 1;
+      let message = 'replied to your comment on';
+      if (others > 0) {
+        message = `and ${others} other${others > 1 ? 's' : ''} ${message}`;
       }
-    } else {
-      const firstComment = items[0];
-      const { timestamp, commentAuthorId, commentEventId,newImage: { __typename, content } } = firstComment;
-      const author = await getItemById({ TableName: USER_TABLE_NAME, id: commentAuthorId});
-      const event = await getItemById({ TableName: EVENT_TABLE_NAME, id: commentEventId });
       if (author && event) {
-        const others = items.length - 1;
-        let message = 'commented on';
-        if (others > 0) {
-          message = `and ${others} other${others > 1 ? 's' : ''} ${message}`;
-        }
-        notification = {
+        const notification = {
           id: uuid(),
           type: __typename,
           subject: author.name,
@@ -81,11 +62,41 @@ async function processNotification({ items, currentUserId, getItemById }) {
             content
           }
         };
+        notifications.push(notification);
       }
+    }
 
+    const newComments = items.filter(item => item.commentAtId !== currentUserId);
+    if (newComments.length) {
+      const firstComment = newComments[0];
+      const { timestamp, commentAuthorId, commentEventId,newImage: { __typename, content } } = firstComment;
+      const author = await getItemById({ TableName: USER_TABLE_NAME, id: commentAuthorId});
+      const event = await getItemById({ TableName: EVENT_TABLE_NAME, id: commentEventId });
+      if (author && event) {
+        const others = newComments.length - 1;
+        let message = 'commented on';
+        if (others > 0) {
+          message = `and ${others} other${others > 1 ? 's' : ''} ${message}`;
+        }
+        const notification = {
+          id: uuid(),
+          type: __typename,
+          subject: author.name,
+          message,
+          topic: event.title,
+          timestamp,
+          image: author.avatar,
+          entityId: commentEventId,
+          extraData: {
+            pictureUrl: author.pictureUrl,
+            content
+          }
+        };
+        notifications.push(notification);
+      }
     }
   }
-  return notification;
+  return notifications;
 }
 
 
