@@ -1,6 +1,5 @@
 import React from 'react';
 import CountDown from 'react-native-countdown-component';
-import SimpleToast from 'react-native-simple-toast';
 import moment from 'moment';
 import { inject, observer } from 'mobx-react';
 import { capitalize } from 'lib/utils';
@@ -23,7 +22,7 @@ class DateCountdown extends React.Component {
     }
     return capitalize(timeAgo);
   };
-  _onPress = () => SimpleToast.show(this._timeAgo(), SimpleToast.SHORT);
+  _onPress = () => this.props.stores.snackbar.show(this._timeAgo());
   _onFinish = () => {
     this.setState({
       finished: true

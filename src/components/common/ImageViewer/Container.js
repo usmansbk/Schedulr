@@ -1,6 +1,5 @@
 import React from 'react';
 import ImagePicker from 'react-native-image-picker';
-import SimpleToast from 'react-native-simple-toast';
 import { inject, observer } from 'mobx-react';
 import { Storage, I18n } from 'aws-amplify';
 import config from 'aws_config';
@@ -36,7 +35,7 @@ class ImageViewerContainer extends React.Component {
         try {
           await Storage.remove(s3Object.key).catch();
         } catch(error) {
-          SimpleToast.show(I18n.get('ERROR_failedToRemoveImage'), SimpleToast.SHORT);
+          this.props.stores.snackbar.show(I18n.get('ERROR_failedToRemoveImage'));
           logger.logError(error)
         }
       }
@@ -47,7 +46,7 @@ class ImageViewerContainer extends React.Component {
         logger.logError(error);
       }
     } else {
-      SimpleToast.show(I18n.get("ERROR_noConnection"), SimpleToast.SHORT);
+      this.props.stores.snackbar.show(I18n.get("ERROR_noConnection"));
     }
   };
 
@@ -63,11 +62,11 @@ class ImageViewerContainer extends React.Component {
       };
       ImagePicker.showImagePicker(options, async (response) => {
         if (response.error) {
-          SimpleToast.show(response.error.message, SimpleToast.SHORT);
+          this.props.stores.snackbar.show(response.error.message);
         } else {
           const { type, uri, fileName, fileSize } = response;
           if (fileSize > (MAX_FILE_SIZE + EPSILON)) {
-            SimpleToast.show(I18n.get("WARNING_fileTooLarge"), SimpleToast.SHORT);
+            this.props.stores.snackbar.show(I18n.get("WARNING_fileTooLarge"));
           } else {
             try {
               const key = `${folder}/${id}${fileName}`;
@@ -89,14 +88,14 @@ class ImageViewerContainer extends React.Component {
                 this.setState({ loading: false });
               }
             } catch (error) {
-              SimpleToast.show(I18n.get('ERROR_failedToRemoveImage'), SimpleToast.SHORT);
+              this.props.stores.snackbar.show(I18n.get('ERROR_failedToRemoveImage'));
               logger.logError(error);
             }
           }
         }
       });
     } else {
-      SimpleToast.show(I18n.get("ERROR_noConnection"), SimpleToast.SHORT);
+      this.props.stores.snackbar.show(I18n.get("ERROR_noConnection"));
     }
   };
 

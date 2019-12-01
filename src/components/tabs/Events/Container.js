@@ -2,7 +2,6 @@ import React from 'react';
 import NetInfo from '@react-native-community/netinfo';
 import OneSignal from 'react-native-onesignal';
 import PushNotifications from 'react-native-push-notification';
-import SimpleToast from 'react-native-simple-toast';
 import { Linking, Platform, PushNotificationIOS } from 'react-native';
 import changeNavigationBarColor from 'react-native-navigation-bar-color';
 import { inject, observer } from 'mobx-react';
@@ -63,7 +62,7 @@ class Container extends React.Component {
       const navColor = isDark ? colors.light_gray_2 : colors.bg;
       await changeNavigationBarColor(navColor, !isDark);
     } catch (error) {
-      SimpleToast.show(I18n.get('ERROR_failedToApplyTheme'), SimpleToast.SHORT);
+      stores.snackbar.show(I18n.get('ERROR_failedToApplyTheme'));
       logger.logError(error);
     }
   };
@@ -77,7 +76,7 @@ class Container extends React.Component {
         NavigationService.deepLinkNavigate(url);
       }
     } catch (error) {
-      SimpleToast.show(I18n.get('ERROR_navigationError'), SimpleToast.SHORT);
+      this.props.snackbar.show(I18n.get('ERROR_navigationError'));
       logger.logError(error);
     }
   };

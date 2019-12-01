@@ -6,7 +6,6 @@ import {
   Switch,
   Divider
 } from 'react-native-paper';
-import SimpleToast from 'react-native-simple-toast';
 import Icon from 'react-native-vector-icons/Feather';
 import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
@@ -38,7 +37,7 @@ class Settings extends React.Component {
   _handleRemindMeDialog = () => {
     const { openRemindMeDialog, stores } = this.props;
     if (stores.settingsStore.disableReminders) {
-      SimpleToast.show(I18n.get("TOAST_enableReminder"), SimpleToast.SHORT);
+      stores.snackbar.show(I18n.get("TOAST_enableReminder"));
     } else {
       openRemindMeDialog();
     }

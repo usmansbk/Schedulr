@@ -7,7 +7,6 @@ import { withNavigationFocus } from'react-navigation';
 import { withApollo } from 'react-apollo';
 import gql from 'graphql-tag';
 import changeNavigationBarColor from 'react-native-navigation-bar-color';
-import SimpleToast from 'react-native-simple-toast';
 import { me } from 'api/queries';
 import { createUser, createSchedule, createPreference } from 'api/mutations';
 import defaultSchedule from 'i18n/schedule';
@@ -111,7 +110,7 @@ class Container extends React.Component {
           logger.log('sign-in');
           this.props.navigation.navigate('App');
         } catch(error) {
-          SimpleToast.show("Sign-in failed", SimpleToast.LONG);
+          this.props.stores.snackbar.show("Sign-in failed");
           logger.logError(error);
         }
         this.props.stores.appState.setLoginState(false);

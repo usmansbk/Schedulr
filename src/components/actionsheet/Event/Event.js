@@ -1,7 +1,6 @@
 import React from 'react';
 import { InteractionManager } from 'react-native';
 import ActionSheet from 'react-native-actionsheet';
-import SimpleToast from 'react-native-simple-toast';
 import { I18n } from 'aws-amplify';
 import { inject, observer } from 'mobx-react';
 import handleShareEvent from 'helpers/share';
@@ -41,7 +40,7 @@ class EventAction extends React.Component {
     const input = {
       id: `${stores.appState.userId}-${id}`,
     };
-    SimpleToast.show(I18n.get(`TOAST_${isBookmarked ? "removed" : "saved"}`), SimpleToast.SHORT);
+    stores.snackbar.show(I18n.get(`TOAST_${isBookmarked ? "removed" : "saved"}`));
     try {
       if (isBookmarked) {
         await removeBookmark(input, id);
