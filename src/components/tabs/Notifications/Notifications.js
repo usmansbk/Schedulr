@@ -45,6 +45,7 @@ class Notifications extends React.Component {
       stores,
       navigation,
       title,
+      hasNotifications
     } = this.props;
 
     return (
@@ -56,7 +57,7 @@ class Notifications extends React.Component {
         />
         <Appbar.Action
           onPress={this._onPressFilterButton}
-          disabled={!stores.notificationsStore.allNotifications.length}
+          disabled={!hasNotifications}
           color={stores.themeStore.colors.primary}
           size={24}
           icon={({ size, color }) => <Icon

@@ -10,6 +10,7 @@ class Container extends React.Component {
         stores={this.props.stores}
         styles={styles}
         title={this.props.stores.notificationsStore.filter}
+        hasNotifications={this.props.stores.notificationsStore.allNotifications.length}
       />
     );
   }
