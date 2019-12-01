@@ -174,6 +174,7 @@ export default {
   TOAST_saved: "Event bookmarked",
   TOAST_fetchingUpdates: "Fetching updates...",
   TOAST_newNotifications: count => `${count} new Notification${count > 1 ? 's' : ''}`,
+  TOAST_justAmoment: "Applying theme... Just a moment",
 
   PROFILE_FORM_name: "Name",
   PROFILE_FORM_website: "Website",

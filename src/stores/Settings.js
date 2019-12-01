@@ -2,6 +2,7 @@ import { observable, action } from 'mobx';
 import { persist } from 'mobx-persist';
 import changeNavigationBarColor from 'react-native-navigation-bar-color';
 import OneSignal from 'react-native-onesignal';
+import { I18n } from 'aws-amplify';
 import { dark, light } from 'config/colors';
 import { updateUserPreference } from 'helpers/updatePreference';
 import logger from 'config/logger';
@@ -25,7 +26,7 @@ export default class SettingsState {
     this.dark = !this.dark;
     const colors = this.dark ? dark : light;
     try {
-      stores.snackbar.show("Applying theme... Just a sec!");
+      stores.snackbar.show(I18n.get('TOAST_justAmoment'));
       await changeNavigationBarColor(this.dark ? colors.light_gray_2 : colors.bg, !this.dark);
     } catch (error) {
       logger.logError(error);
