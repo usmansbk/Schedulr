@@ -76,7 +76,7 @@ class Container extends React.Component {
         NavigationService.deepLinkNavigate(url);
       }
     } catch (error) {
-      this.props.snackbar.show(I18n.get('ERROR_navigationError'));
+      this.props.snackbar.show(I18n.get('ERROR_navigationError'), true);
       logger.logError(error);
     }
   };
