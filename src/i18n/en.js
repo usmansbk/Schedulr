@@ -59,7 +59,7 @@ export default {
   NOTIFICATIONS_emptyUpdatesListCaption: "Important updates and announcements will appear here",
   NOTIFICATIONS_emptyMessagesList: "No comments",
   NOTIFICATIONS_allCaughtUp: "You are all caught up!",
-  NOTIFICATIONS_title: "Notifications",
+  NOTIFICATIONS_title: filter => `${filter} Notifications`,
 
   SETTINGS_screenTitle: "Settings",
   SETTINGS_generalSectionTitle: "General",

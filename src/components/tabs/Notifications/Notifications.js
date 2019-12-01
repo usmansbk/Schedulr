@@ -4,9 +4,9 @@ import Icon from 'react-native-vector-icons/Feather';
 import OneSignal from 'react-native-onesignal';
 import { I18n } from 'aws-amplify';
 import { inject, observer } from 'mobx-react';
-import { withNavigationFocus } from 'react-navigation';
 import List from 'components/lists/Notifications';
 import Filter from 'components/actionsheet/NotificationFilter';
+import { capitalize } from 'lib/utils';
 
 class Notifications extends React.Component {
   state = {
@@ -50,7 +50,7 @@ class Notifications extends React.Component {
       <>
       <Appbar.Header style={stores.appStyles.styles.header} collapsable>
         <Appbar.Content
-          title={I18n.get("NOTIFICATIONS_title")}
+          title={I18n.get("NOTIFICATIONS_title")(capitalize(stores.notificationsStore.filter))}
           titleStyle={stores.appStyles.styles.headerColor}
         />
         <Appbar.Action
@@ -77,4 +77,4 @@ class Notifications extends React.Component {
   }
 }
 
-export default inject("stores")(observer(withNavigationFocus(Notifications)))
+export default inject("stores")(observer(Notifications))
