@@ -27,7 +27,7 @@ async function processComments({ items, currentUserId, getItemById }) {
   for (let event of commentsByEvent) {
     const { items } = event;
     const notifications = await processNotification({ items, currentUserId, getItemById });
-    allNotifications = [...allNotifications, notifications];
+    allNotifications = [...allNotifications, ...notifications];
   }
   return allNotifications;
 }
