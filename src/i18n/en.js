@@ -170,8 +170,8 @@ export default {
   TOAST_updatesAvailable: "Updates available. Refresh calendar",
   TOAST_locationError: "Failed to get location. Turn off airplane mode.",
   TOAST_noImageFound: "No image found",
-  TOAST_removed: "Event was removed from your bookmarks",
-  TOAST_saved: "Event was added to your bookmarks",
+  TOAST_removed: "Bookmark removed",
+  TOAST_saved: "Event bookmarked",
   TOAST_fetchingUpdates: "Fetching updates...",
 
   PROFILE_FORM_name: "Name",
@@ -250,10 +250,6 @@ export default {
   STATUS_upcoming: "Upcoming",
   STATUS_closed: "Archived",
 
-  ERROR_noInternetConnection: "Check your internet connection. Pull to refresh",
-  ERROR_somethingWentWrong: "Something went wrong. Please try again",
-  ERROR_offline: "You're offline!",
-  ERROR_networkError: "Network error",
   ERROR_serverError: message => "Server Error" + (message ? ': ' + message : ''),
   ERROR_noConnection: "No connection",
   ERROR_404: "Not found",

@@ -35,7 +35,7 @@ class ImageViewerContainer extends React.Component {
         try {
           await Storage.remove(s3Object.key).catch();
         } catch(error) {
-          this.props.stores.snackbar.show(I18n.get('ERROR_failedToRemoveImage'));
+          this.props.stores.snackbar.show(I18n.get('ERROR_failedToRemoveImage'), true);
           logger.logError(error)
         }
       }
@@ -88,7 +88,7 @@ class ImageViewerContainer extends React.Component {
                 this.setState({ loading: false });
               }
             } catch (error) {
-              this.props.stores.snackbar.show(I18n.get('ERROR_failedToRemoveImage'));
+              this.props.stores.snackbar.show(I18n.get('ERROR_failedToRemoveImage'), true);
               logger.logError(error);
             }
           }

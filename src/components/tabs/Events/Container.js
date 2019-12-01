@@ -62,7 +62,7 @@ class Container extends React.Component {
       const navColor = isDark ? colors.light_gray_2 : colors.bg;
       await changeNavigationBarColor(navColor, !isDark);
     } catch (error) {
-      stores.snackbar.show(I18n.get('ERROR_failedToApplyTheme'));
+      stores.snackbar.show(I18n.get('ERROR_failedToApplyTheme'), true);
       logger.logError(error);
     }
   };

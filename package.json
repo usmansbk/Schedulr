@@ -62,7 +62,7 @@
     "react-native-reanimated": "^1.4.0",
     "react-native-screens": "^2.0.0-alpha.15",
     "react-native-share": "^2.0.0",
-    "react-native-simple-toast": "^1.0.0",
+    "react-native-snackbar": "^2.0.3",
     "react-native-splash-screen": "^3.2.0",
     "react-native-user-avatar": "^1.0.4",
     "react-native-vector-icons": "^6.6.0",

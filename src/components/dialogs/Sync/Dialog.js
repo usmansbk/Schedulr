@@ -32,7 +32,7 @@ class Dialog extends React.Component {
       });
       stores.snackbar.show(I18n.get("SYNC_complete"));
     } catch (error) {
-      stores.snackbar.show(I18n.get("ERROR_noConnection"));
+      stores.snackbar.show(I18n.get("ERROR_noConnection"), error);
       logger.logError(error);
     }
     this.setState({ loading: false });

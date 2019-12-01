@@ -24,7 +24,7 @@ const errorLink = onError(({ graphQLErrors }) => {
           if (__DEV__) {
             message = error.message;
           }
-          stores.snackbar.show(I18n.get('ERROR_serverError')(message));
+          stores.snackbar.show(I18n.get('ERROR_serverError')(message), true);
           logger.logError(error);
         }
       }

@@ -51,7 +51,7 @@ export default class Location {
               this.countryCode = countryCode;
             }).catch((error) => {
               logger.logError(error);
-              stores.snackbar.show(I18n.get("ERROR_failedToGetLocation"));
+              stores.snackbar.show(I18n.get("ERROR_failedToGetLocation"), true);
             });
           },
           (error) => {
