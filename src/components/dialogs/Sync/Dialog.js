@@ -1,5 +1,4 @@
 import React from 'react';
-import SimpleToast from 'react-native-simple-toast';
 import Alert from 'components/dialogs/Alert';
 import { I18n } from 'aws-amplify';
 import { withApollo } from 'react-apollo';
@@ -7,6 +6,7 @@ import gql from 'graphql-tag';
 import { getUserData } from 'api/queries';
 import { baseEventsFilter } from 'api/filters';
 import logger from 'config/logger';
+import stores from 'stores';
 
 class Dialog extends React.Component {
   state = {
@@ -30,9 +30,9 @@ class Dialog extends React.Component {
         fetchPolicy: 'network-only',
         variables
       });
-      SimpleToast.show(I18n.get("SYNC_complete"), SimpleToast.SHORT);
+      stores.snackbar.show(I18n.get("SYNC_complete"));
     } catch (error) {
-      SimpleToast.show(I18n.get("ERROR_noConnection"), SimpleToast.SHORT);
+      stores.snackbar.show(I18n.get("ERROR_noConnection"));
       logger.logError(error);
     }
     this.setState({ loading: false });

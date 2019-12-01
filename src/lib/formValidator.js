@@ -1,8 +1,8 @@
-import SimpleToast from 'react-native-simple-toast';
 import moment from 'moment';
 import { I18n } from 'aws-amplify';
 import { repeatLength, FIVE_MINUTES } from 'lib/time';
 import { ONE_TIME_EVENT } from 'lib/constants';
+import stores from 'stores';
 
 export const canRepeat = ({ recurrence, endAt, startAt }) => {
   if (recurrence === ONE_TIME_EVENT ) return true; // One-time event can be repeated
@@ -16,20 +16,20 @@ export function isEventValid(event) {
 
   let validity = true
   if (!canRepeat(event)) {
-    SimpleToast.show(I18n.get("HELPER_TEXT_invalidDatesAndRecur"), SimpleToast.SHORT);
+    stores.snackbar.show(I18n.get("HELPER_TEXT_invalidDatesAndRecur"));
     validity = false;
   } else if (startAt.isAfter(endAt)) {
-    SimpleToast.show(I18n.get("ALERT_invalidStart"), SimpleToast.SHORT);
+    stores.snackbar.show(I18n.get("ALERT_invalidStart"));
     validity = false;
   } else if (endAt.diff(startAt) < FIVE_MINUTES) {
-    SimpleToast.show(I18n.get("ALERT_durationTooShort"), SimpleToast.SHORT);
+    stores.snackbar.show(I18n.get("ALERT_durationTooShort"));
     validity = false;
   } else if (untilAt) {
     const length = repeatLength(event.recurrence);
     const duration = moment.duration(length);
     const secondTime = endAt.clone().add(duration, 'ms');
     if (secondTime.isAfter(untilAt)) {
-      SimpleToast.show(I18n.get("ALERT_shortUntil"), SimpleToast.SHORT);
+      stores.snackbar.show(I18n.get("ALERT_shortUntil"));
       validity = false;
     }
   }

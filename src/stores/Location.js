@@ -4,8 +4,8 @@ import { persist } from 'mobx-persist';
 import { I18n } from 'aws-amplify';
 import { requestLocationPermission } from 'helpers/permissions';
 import Geocoder from 'helpers/geocoder';
-import SimpleToast from 'react-native-simple-toast';
 import logger from 'config/logger';
+import stores from 'stores';
 
 export default class Location {
   @persist('object') @observable point = null; 
@@ -51,11 +51,11 @@ export default class Location {
               this.countryCode = countryCode;
             }).catch((error) => {
               logger.logError(error);
-              SimpleToast.show(I18n.get("ERROR_failedToGetLocation"), SimpleToast.SHORT);
+              stores.snackbar.show(I18n.get("ERROR_failedToGetLocation"));
             });
           },
           (error) => {
-            SimpleToast.show(error.message, SimpleToast.SHORT);
+            stores.snackbar.show(error.message);
           },
           { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
         );

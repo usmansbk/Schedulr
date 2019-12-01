@@ -2,9 +2,9 @@ import AWSAppSyncClient, { createAppSyncLink } from 'aws-appsync';
 import { Auth, I18n } from 'aws-amplify';
 import { ApolloLink } from 'apollo-link';
 import { onError } from 'apollo-link-error';
-import SimpleToast from 'react-native-simple-toast';
 import aws_config from 'aws_config';
 import logger from './logger';
+import stores from 'stores';
 import {
   EVENT_TYPE,
   SCHEDULE_TYPE,
@@ -24,7 +24,7 @@ const errorLink = onError(({ graphQLErrors }) => {
           if (__DEV__) {
             message = error.message;
           }
-          SimpleToast.show(I18n.get('ERROR_serverError')(message), SimpleToast.LONG);
+          stores.snackbar.show(I18n.get('ERROR_serverError')(message));
           logger.logError(error);
         }
       }

@@ -1,12 +1,12 @@
 import React from 'react';
 import uuidv5 from 'uuid/v5';
 import memoize from 'memoize-one';
-import SimpleToast from 'react-native-simple-toast';
 import { I18n } from 'aws-amplify';
 import List from 'components/lists/Events';
 import FAB from 'components/common/Fab';
 import schdlAll from 'helpers/setReminders';
 import { mergeEvents } from 'lib/utils';
+import stores from 'stores';
 
 export default class Events extends React.Component {
   static defaultProps = {
@@ -39,7 +39,7 @@ export default class Events extends React.Component {
 
   _sync = () => {
     if (this.props.isConnected) {
-      SimpleToast.show(I18n.get('TOAST_fetchingUpdates'), SimpleToast.SHORT);
+      stores.snackbar.show(I18n.get('TOAST_fetchingUpdates'));
       this.props.fetchNotifications();
       this.props.deltaSync();
     }

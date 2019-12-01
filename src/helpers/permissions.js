@@ -1,6 +1,6 @@
 import { PermissionsAndroid } from 'react-native';
-import SimpleToast from 'react-native-simple-toast';
 import { I18n } from 'aws-amplify';
+import stores from 'stores';
 
 async function requestLocationPermission() {
   try {
@@ -16,7 +16,7 @@ async function requestLocationPermission() {
     );
     return granted === PermissionsAndroid.RESULTS.GRANTED;
   } catch (error) {
-    SimpleToast.show(error.message, SimpleToast.SHORT);
+    stores.snackbar.show(error.message);
     return false;
   }
 }

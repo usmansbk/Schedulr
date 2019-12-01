@@ -1,11 +1,11 @@
 import { observable, action } from 'mobx';
 import { persist } from 'mobx-persist';
 import changeNavigationBarColor from 'react-native-navigation-bar-color';
-import SimpleToast from 'react-native-simple-toast';
 import OneSignal from 'react-native-onesignal';
 import { dark, light } from 'config/colors';
 import { updateUserPreference } from 'helpers/updatePreference';
 import logger from 'config/logger';
+import stores from 'stores';
 
 export default class SettingsState {
   @persist @observable language = "en";
@@ -25,7 +25,7 @@ export default class SettingsState {
     this.dark = !this.dark;
     const colors = this.dark ? dark : light;
     try {
-      SimpleToast.show("Applying theme... Just a sec!", SimpleToast.SHORT);
+      stores.snackbar.show("Applying theme... Just a sec!");
       await changeNavigationBarColor(this.dark ? colors.light_gray_2 : colors.bg, !this.dark);
     } catch (error) {
       logger.logError(error);
