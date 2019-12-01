@@ -60,7 +60,7 @@
     "react-native-photo-view": "^1.5.2",
     "react-native-push-notification": "^3.1.9",
     "react-native-reanimated": "^1.4.0",
-    "react-native-screens": "^2.0.0-alpha.13",
+    "react-native-screens": "^2.0.0-alpha.15",
     "react-native-share": "^2.0.0",
     "react-native-simple-toast": "^1.0.0",
     "react-native-splash-screen": "^3.2.0",
@@ -83,7 +83,7 @@
     "babel-jest": "^24.9.0",
     "babel-plugin-module-resolver": "^3.2.0",
     "babel-plugin-transform-remove-console": "^6.9.4",
-    "eslint": "^6.7.1",
+    "eslint": "^6.7.2",
     "jest": "^24.9.0",
     "metro-react-native-babel-preset": "^0.57.0",
     "react-test-renderer": "^16.12.0"
