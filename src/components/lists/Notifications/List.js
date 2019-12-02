@@ -96,7 +96,7 @@ class List extends React.Component {
       <FlatList
         data={stores.notificationsStore.updates}
         style={styles}
-        initialNumToRender={7}
+        initialNumToRender={4}
         extraData={moment().format('mm')}
         getItemLayout={this._getItemLayout}
         contentContainerStyle={styles.contentContainer}

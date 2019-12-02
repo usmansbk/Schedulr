@@ -8,8 +8,8 @@ import Loading from 'components/common/Loading';
 
 export default inject('stores')(observer(
   ({ profile, error, stores, onRefresh, loading }) => {
-    if (error) return <Error onRefresh={onRefresh} />;
     if (loading) return <Loading />;
+    if (error) return <Error onRefresh={onRefresh} />;
 
     let title = I18n.get("BOARD_emptyList");
     let caption = I18n.get("BOARD_emptyListCaption");

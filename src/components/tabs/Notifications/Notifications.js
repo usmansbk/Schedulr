@@ -1,62 +1,70 @@
 import React from 'react';
 import { Appbar, Divider } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/Feather';
-import OneSignal from 'react-native-onesignal';
 import { I18n } from 'aws-amplify';
-import { inject, observer } from 'mobx-react';
 import { withNavigationFocus } from 'react-navigation';
 import List from 'components/lists/Notifications';
 import Filter from 'components/actionsheet/NotificationFilter';
 
 class Notifications extends React.Component {
   state = {
-    loading: false
+    isFocused: false
   };
 
-  static getDerivedStateFromProps = (props) => {
+  static getDerivedStateFromProps = (props, state) => {
     if (!props.navigation.isFocused()) {
-      props.stores.notificationsStore.resetCounter(0);
-      props.stores.notificationsStore.markAsSeen();
       return {
-        loading: false 
+        isFocused: false
       };
     } else {
-      if (props.stores.appState.isConnected) {
-        props.stores.notificationsStore.fetchNotifications();
-        props.stores.appState.deltaSync();
-      }
-    };
-    return null;
+      return {
+        isFocused: true
+      };
+    }
   };
 
-  _onRefresh = () => this.setState({ loading: true });
+  _onRefresh = () => this.props.fetchUpdates();
 
   _onPressFilterButton = () => {
     this.Filter &&
       this.Filter.showActionSheet();
   };
 
-  shouldComponentUpdate = (nextProps) => nextProps.navigation.isFocused();
+  componentDidMount = () => {
+    this.props.fetchUpdates();
+  };
 
-  componentDidUpdate = () => OneSignal.clearOneSignalNotifications();
+  componentDidUpdate = (_, prevState) => {
+    if (prevState.isFocused && !this.props.navigation.isFocused()) {
+      if (this.props.hasNotification) {
+        this.props.clearIndicator();
+      }
+    }
+    if (!prevState.isFocused && this.props.isConnected && this.props.navigation.isFocused()) {
+      this.props.fetchUpdates();
+    }
+  };
 
   render() {
     const {
-      stores,
       navigation,
+      title,
+      styles,
+      color,
+      allNotifications
     } = this.props;
 
     return (
       <>
-      <Appbar.Header style={stores.appStyles.styles.header} collapsable>
+      <Appbar.Header style={styles.header} collapsable>
         <Appbar.Content
-          title={I18n.get("NOTIFICATIONS_title")}
-          titleStyle={stores.appStyles.styles.headerColor}
+          title={I18n.get("NOTIFICATIONS_title")(title)}
+          titleStyle={styles.headerColor}
         />
         <Appbar.Action
           onPress={this._onPressFilterButton}
-          disabled={!stores.notificationsStore.allNotifications.length}
-          color={stores.themeStore.colors.primary}
+          disabled={!allNotifications.length}
+          color={color}
           size={24}
           icon={({ size, color }) => <Icon
             name="sliders"
@@ -68,7 +76,6 @@ class Notifications extends React.Component {
       <Divider />
       <List
         navigation={navigation}
-        refreshing={this.state.loading}
         onRefresh={this._onRefresh}
        />
       <Filter ref={ref => this.Filter = ref} />
@@ -77,4 +84,4 @@ class Notifications extends React.Component {
   }
 }
 
-export default inject("stores")(observer(withNavigationFocus(Notifications)))
+export default withNavigationFocus(Notifications);

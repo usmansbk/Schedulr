@@ -59,7 +59,10 @@ export default {
   NOTIFICATIONS_emptyUpdatesListCaption: "Important updates and announcements will appear here",
   NOTIFICATIONS_emptyMessagesList: "No comments",
   NOTIFICATIONS_allCaughtUp: "You are all caught up!",
-  NOTIFICATIONS_title: "Notifications",
+  NOTIFICATIONS_title: filter => {
+    if (filter === 'all') return 'Notifications';
+    return `Notifications - ${capitalize(filter)}s`;
+  },
 
   SETTINGS_screenTitle: "Settings",
   SETTINGS_generalSectionTitle: "General",
@@ -174,6 +177,7 @@ export default {
   TOAST_saved: "Event bookmarked",
   TOAST_fetchingUpdates: "Fetching updates...",
   TOAST_newNotifications: count => `${count} new Notification${count > 1 ? 's' : ''}`,
+  TOAST_justAmoment: "Applying theme... Just a moment",
 
   PROFILE_FORM_name: "Name",
   PROFILE_FORM_website: "Website",
@@ -255,6 +259,8 @@ export default {
   ERROR_noConnection: "No connection",
   ERROR_404: "Not found",
   ERROR_404_caption: "Item may have been deleted",
+  ERROR_offline: "You're offline!",
+  ERROR_somethingWentWrong: "Something went wrong! Try Again",
   ERROR_failedToGetLocation: "Failed to access your location. Check your mobile network and GPS",
   ERROR_failedToRemoveImage: "Failed to delete image",
   ERROR_failedToApplyTheme: "Failed to apply theme",
