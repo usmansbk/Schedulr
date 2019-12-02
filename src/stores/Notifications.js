@@ -28,11 +28,12 @@ export default class Notifications {
     }
   };
   
-  @action markAsSeen = () => {
-    this.allNotifications = this.allNotifications.map(notif => {
-      if (!notif.seen) notif.seen = true;
-      return notif;
-    });
+  @action markSeen = () => {
+    this.allNotifications.forEach(notif => notif.seen = true);
+    // this.allNotifications = this.allNotifications.map(notif => {
+    //   if (!notif.seen) notif.seen = true;
+    //   return notif;
+    // });
   };
 
   @action clearNotifications = () => {
