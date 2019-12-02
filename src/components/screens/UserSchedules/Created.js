@@ -98,8 +98,6 @@ class CreatedSchedules extends Component{
         ListEmptyComponent={this._renderEmptyList}
         ListFooterComponent={this._renderFooter}
         keyboardShouldPersistTaps="always"
-        refreshing={loading}
-        onRefresh={onRefresh}
         refreshControl={
           <RefreshControl
             onRefresh={onRefresh}
