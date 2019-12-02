@@ -2,11 +2,11 @@ import React from 'react';
 import { Appbar, Divider } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/Feather';
 import OneSignal from 'react-native-onesignal';
-import { withNavigationFocus } from 'react-navigation';
 import { I18n } from 'aws-amplify';
+import { inject, observer } from 'mobx-react';
+import { withNavigationFocus } from 'react-navigation';
 import List from 'components/lists/Notifications';
 import Filter from 'components/actionsheet/NotificationFilter';
-import { capitalize } from 'lib/utils';
 
 class Notifications extends React.Component {
   state = {
@@ -44,20 +44,18 @@ class Notifications extends React.Component {
     const {
       stores,
       navigation,
-      title,
-      hasNotifications
     } = this.props;
 
     return (
       <>
       <Appbar.Header style={stores.appStyles.styles.header} collapsable>
         <Appbar.Content
-          title={I18n.get("NOTIFICATIONS_title")(capitalize(title))}
+          title={I18n.get("NOTIFICATIONS_title")(stores.notificationsStore.filter)}
           titleStyle={stores.appStyles.styles.headerColor}
         />
         <Appbar.Action
           onPress={this._onPressFilterButton}
-          disabled={!hasNotifications}
+          disabled={!stores.notificationsStore.allNotifications.length}
           color={stores.themeStore.colors.primary}
           size={24}
           icon={({ size, color }) => <Icon
@@ -78,4 +76,5 @@ class Notifications extends React.Component {
     )
   }
 }
-export default withNavigationFocus(Notifications);
+
+export default inject("stores")(observer(withNavigationFocus(Notifications)))
