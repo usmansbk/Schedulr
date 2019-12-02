@@ -260,6 +260,7 @@ export default {
   ERROR_404: "Not found",
   ERROR_404_caption: "Item may have been deleted",
   ERROR_offline: "You're offline!",
+  ERROR_somethingWentWrong: "Something went wrong! Try Again",
   ERROR_failedToGetLocation: "Failed to access your location. Check your mobile network and GPS",
   ERROR_failedToRemoveImage: "Failed to delete image",
   ERROR_failedToApplyTheme: "Failed to apply theme",
