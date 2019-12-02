@@ -8,8 +8,8 @@ import Loading from 'components/common/Loading';
 
 export default inject('stores')(observer(
   ({ error, loading, stores, onRefresh, isAuth }) =>{
+    if (loading) return <Loading />;
     if (error) return <Error onRefresh={onRefresh} />;
-    if (loading) return <Loading />
     return (
       <View style={stores.appStyles.eventsList.empty}>
         <Image resizeMode="contain" style={{ width: 200, height: 200 }} source={require('../../../assets/calendar.png')} />
