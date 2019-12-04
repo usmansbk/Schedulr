@@ -42,6 +42,8 @@ export default {
   MORE_sync: "Sync",
 
   DISCOVER_emptyList: "Discover",
+  DISCOVER_turnOnLocation: "Use your location",
+  DISCOVER_locationUsage: "Schdlr requires your location to find nearby events.",
   DISCOVER_emptyListCaption: "Events happening around you!",
 
   SEARCH_inputPlaceholder: city => `Search${city ? (' ' + city) : ' Schdlr'}`,
@@ -138,6 +140,7 @@ export default {
   BUTTON_unmute: "Unmute",
   BUTTON_unmuteEvents: "Unmute Reminder",
   BUTTON_unfollow: "Unfollow",
+  BUTTON_turnOnLocation: "Turn on",
 
   ALERT_repeat: "Repeat",
   ALERT_duration: "Duration",
