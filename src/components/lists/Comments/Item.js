@@ -80,7 +80,7 @@ class Item extends React.Component {
                   ellipsizeMode="tail"
                   style={styles.replyName}
                 >{toCommentAuthorName}</Caption>
-                <Caption numberOfLines={4} ellipsizeMode="tail">{toCommentContent}</Caption>
+                <Caption numberOfLines={3} ellipsizeMode="tail">{toCommentContent}</Caption>
               </View>
             )
           }

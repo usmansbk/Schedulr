@@ -79,6 +79,8 @@ class CommentInput extends React.Component {
               ref={textInputRef => this._textInputRef = textInputRef}
               placeholder={I18n.get("PLACEHOLDER_aboutThisEvent")}
               value={message}
+              multiline
+              maxHeight={120}
               onChangeText={this._onChangeText}
               onBlur={() => this._onChangeText(message)}
               placeholderTextColor={colors.placeholder}
