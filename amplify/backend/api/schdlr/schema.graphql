@@ -149,7 +149,7 @@ enum Recurrence {
 }
 
 type Comment
-  @model(queries: null)
+  @model(queries: { get: "getComment" })
   @auth(
     rules: [
       {

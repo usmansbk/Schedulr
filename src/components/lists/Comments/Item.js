@@ -21,7 +21,7 @@ class Item extends React.Component {
   };
   _onReply = () => this.props.handleReplyComment(this.props.id, this.props.authorName, this.props.authorId);
   _navigateToProfile = () => this.props.navigateToProfile(this.props.authorId);
-  _navigateToThread = () => this.props.navigateToThread(this.props.id);
+  _navigateToThread = () => this.props.navigateToThread(this.props.toCommentId);
   _onDelete = () => this.props.onDelete(this.props.id);
   _showOptions = () => {
     if (this.props.isOwner) {

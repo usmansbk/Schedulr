@@ -149,7 +149,7 @@ enum Recurrence {
 }
 
 type Comment
-  @model(queries: null)
+  @model(queries: { get: "getComment" })
   @auth(
     rules: [
       {
@@ -192,6 +192,7 @@ type S3Object {
   bucket: String!
   region: String!
   type: String
+  size: String
 }
 
 type Location {

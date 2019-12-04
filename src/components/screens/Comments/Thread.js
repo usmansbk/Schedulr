@@ -1,7 +1,7 @@
 import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
 import { inject, observer } from 'mobx-react';
-import { getUser, getEventComments } from 'api/queries';
+import { getUser, getCommentThread } from 'api/queries';
 import { createComment } from 'api/mutations';
 import updateApolloCache from 'helpers/updateApolloCache';
 import Container from './Container';
@@ -25,8 +25,8 @@ export default inject("stores")(observer(
         ...ownProps
       })
     }),
-    graphql(gql(getEventComments), {
-      alias: 'withGetEventCommentsScreenContainer',
+    graphql(gql(getCommentThread), {
+      alias: 'withGetCommentThreadScreenContainer',
       options: props => ({
         fetchPolicy: 'cache-and-network',
         notifyOnNetworkStatusChange: true,
@@ -49,14 +49,14 @@ export default inject("stores")(observer(
             updateQuery({
               prev,
               fetchMoreResult,
-              rootField: 'getEventComments',
-              connectionField: 'comments'
+              rootField: 'getCommentThread',
+              connectionField: 'thread'
             })
           )
         }),
-        commentScheduleId: data && data.getEventComments && data.getEventComments.schedule && data.getEventComments.schedule.id,
-        comments: (data && data.getEventComments && data.getEventComments.comments && data.getEventComments.comments.items) || [],
-        nextToken: data && data.getEventComments && data.getEventComments.comments && data.getEventComments.comments.nextToken,
+        commentScheduleId: data && data.getCommentThread && data.getCommentThread.schedule && data.getCommentThread.schedule.id,
+        comments: (data && data.getCommentThread && data.getCommentThread.thread && data.getCommentThread.thread.items) || [],
+        nextToken: data && data.getCommentThread && data.getCommentThread.thread && data.getCommentThread.thread.nextToken,
         ...ownProps
       })
     }),

@@ -97,6 +97,36 @@ export const getEvent = `query GetEvent($id: ID!) {
   }
 }
 `;
+export const getCommentThread = `query GetCommentThread($id: ID!, $limit: Int, $nextToken: String) {
+  getCommentThread: getComment(id: $id) {
+    id
+    schedule {
+      id
+    }
+    thread(sortDirection: DESC, limit: $limit, nextToken: $nextToken) @connection(key: "thread") {
+      items {
+        id
+        content
+        isOwner
+        author {
+          id
+          name
+          pictureUrl
+          avatar {
+            key
+            bucket
+          }
+        }
+        event {
+          id
+          commentsCount
+        }
+        createdAt
+      }
+      nextToken
+    }
+  }
+}`;
 export const getEventComments = `query GetEventComments($id: ID!, $limit: Int, $nextToken: String) {
   getEventComments: getEvent(id: $id) {
     id

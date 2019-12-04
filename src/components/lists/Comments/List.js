@@ -35,6 +35,7 @@ class List extends React.Component {
         authorPictureUrl={author.avatar ? getImageUrl(author.avatar) : author.pictureUrl}
         isOwner={isOwner}
         content={content}
+        toCommentId={to && to.id}
         toCommentAuthorName={to && to.author.name}
         toCommentContent={to && to.content}
         timeAgo={timeAgo(createdAt)}

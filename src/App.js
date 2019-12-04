@@ -30,6 +30,7 @@ import {
   EventBookmarks,
   Intro
 } from 'components/screens';
+import Thread from 'components/screens/Comments/Thread';
 import colors from 'config/colors';
 
 const AppStack = createStackNavigator({
@@ -116,6 +117,12 @@ const AppStack = createStackNavigator({
   },
   UserSchedules: {
     screen: UserSchedules,
+  },
+  Thread: {
+    screen: Thread,
+    navigationOptions: {
+      header: null
+    }
   },
   Comments: {
     screen: Comments,
