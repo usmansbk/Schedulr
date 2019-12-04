@@ -9,7 +9,7 @@ export default inject('stores')(observer(
   ({ stores }) => (
     <View style={stores.appStyles.discover.empty}>
       {
-        stores.appState.isConnected ? (
+        stores.locationStore.currentLocation ? (
         <>
         <Image resizeMode="contain" style={{ width: 200, height: 200 }} source={require('../../../assets/directions.png')} />
         <Headline style={stores.appStyles.discover.emptyTitle}>
