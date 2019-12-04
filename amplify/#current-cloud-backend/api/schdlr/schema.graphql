@@ -164,11 +164,13 @@ type Comment
   id: ID
   content: String
   isOwner: Boolean
-  to: Comment @connection
+  to: Comment @connection(name: "CommentThread")
+  thread: [Comment] @connection(name: "CommentThread", sortField: "createdAt", limit: 20)
   at: User @connection
   schedule: Schedule @connection # Better handling of push notification
   event: Event! @connection(name: "EventComments", sortField: "createdAt")
   author: User @connection
+  attachment: [S3Object]
   createdAt: String
   updatedAt: String
 }
@@ -189,6 +191,7 @@ type S3Object {
   key: String!
   bucket: String!
   region: String!
+  type: String
 }
 
 type Location {
