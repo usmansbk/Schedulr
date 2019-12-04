@@ -73,7 +73,8 @@ class ImageViewerContainer extends React.Component {
               const fileForUpload = {
                 key,
                 bucket,
-                region
+                region,
+                type
               };
     
               if (uri) {
