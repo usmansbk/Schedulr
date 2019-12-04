@@ -34,3 +34,17 @@ export function handleShareSchedule({
       // Ignore
     });
 }
+
+export function shareApp() {
+  const url = env.DOWNLOAD_URL;
+  const message = I18n.get("SHARE_appMessage");
+  const options = {
+    title: I18n.get('SHARE_appTitle'),
+    message,
+    subject: I18n.get('SHARE_appSubject'),
+    url
+  }
+  Share.open(options).catch(error => {
+    // Ignore
+  });
+}

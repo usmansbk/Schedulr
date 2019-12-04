@@ -36,7 +36,7 @@ export default {
   BOOKMARKS_emptyList: "You haven't saved any events yet",
 
   MORE_settings: "Settings",
-  MORE_inviteAFriend: "Invite a friend",
+  MORE_inviteAFriend: "Share app",
   MORE_help: "Help",
   MORE_signOut: "Sign out",
   MORE_sync: "Sync",
@@ -167,6 +167,9 @@ export default {
   SHARE_SCHEDULE_subject: "You have been invited to follow a schedule on Schdlr.",
   SHARE_SCHEDULE_message: name => `Hello, I'm inviting you to follow "${name}" to see their latest events, receive updates and reminders.\n`,
   SHARE_EVENT_inviteTitle: "Share event via...",
+  SHARE_appMessage: `Hi! I'm inviting you to use Schdlr!\n\nWith Schdlr you can easily share events with communities, be it family, work or school.\n\nDownload Schdlr here:`,
+  SHARE_appTitle: 'Invite a friend',
+  SHARE_appSubject: "See events happening near you",
 
   TOAST_eventAdded: "Event added",
   TOAST_enableReminder: "Unmute all events to continue!",

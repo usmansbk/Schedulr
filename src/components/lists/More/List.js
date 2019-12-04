@@ -1,7 +1,6 @@
 import React from 'react';
 import { FlatList } from 'react-native';
 import { withNavigationFocus } from 'react-navigation';
-import Share from 'react-native-share';
 import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
 import LogoutDialog from 'components/dialogs/Logout';
@@ -11,7 +10,7 @@ import Footer from './Footer';
 import Item from './Item';
 import Separator from './Separator';
 import items from './items';
-import env from 'config/env';
+import { shareApp } from 'helpers/share';
 
 class List extends React.Component {
   state = {
@@ -37,17 +36,7 @@ class List extends React.Component {
         navigation.navigate('Help');
         break;
       case 'invite':
-        const url = env.DOWNLOAD_URL;
-        const message = "Hey there... I use Schdlr to share and follow events with friends and collegues.";
-        const options = {
-          title: 'Invite via...',
-          message,
-          subject: 'The Social Scheduler',
-          url
-        }
-        Share.open(options).catch(error => {
-          // Ignore
-        });
+        shareApp();
         break;
       case 'sync':
         this.setState({ showSyncAlert: true });

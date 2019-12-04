@@ -4,11 +4,11 @@ export default [
     icon: 'settings',
     name: 'settings',
   },
-  // {
-  //   id: 'invite',
-  //   icon: 'share',
-  //   name: 'inviteAFriend',
-  // },
+  {
+    id: 'invite',
+    icon: 'share',
+    name: 'inviteAFriend',
+  },
   {
     id: 'sync',
     icon: 'download-cloud',
