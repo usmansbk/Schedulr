@@ -43,11 +43,6 @@ export default inject('stores')(observer(
         />
         <Divider />
         <List.Item
-          title={I18n.get("HELP_copyRight")}
-          onPress={() => props.onPressItem('copyright')}
-        />
-        <Divider />
-        <List.Item
           title={I18n.get("HELP_appVersion")}
           description={env.APP_VERSION}
         />
