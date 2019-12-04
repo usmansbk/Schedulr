@@ -192,6 +192,7 @@ type S3Object {
   bucket: String!
   region: String!
   type: String
+  size: String
 }
 
 type Location {
