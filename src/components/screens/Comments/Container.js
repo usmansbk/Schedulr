@@ -52,6 +52,7 @@ export default class Container extends React.Component {
     this._cancelReply();
   };
   _navigateToProfile = (id) => this.props.navigation.navigate('UserProfile', { id });
+  _navigateToThread = (id) => alert('Hello')
 
   shouldComponentUpdate = (nextProps, nextState) => {
     return (
@@ -99,6 +100,7 @@ export default class Container extends React.Component {
         onSubmit={this._onSubmit}
         onRefresh={onRefresh}
         navigateToProfile={this._navigateToProfile}
+        navigateToThread={this._navigateToThread}
         fetchMoreComments={fetchMore}
         nextToken={nextToken}
       />

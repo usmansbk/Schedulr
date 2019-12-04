@@ -4,7 +4,8 @@ import {
   Text,
   Paragraph,
   Caption,
-  IconButton
+  IconButton,
+  TouchableRipple
 } from 'react-native-paper';
 import Hyperlink from 'react-native-hyperlink';
 import { inject, observer } from 'mobx-react';
@@ -20,6 +21,7 @@ class Item extends React.Component {
   };
   _onReply = () => this.props.handleReplyComment(this.props.id, this.props.authorName, this.props.authorId);
   _navigateToProfile = () => this.props.navigateToProfile(this.props.authorId);
+  _navigateToThread = () => this.props.navigateToThread(this.props.id);
   _onDelete = () => this.props.onDelete(this.props.id);
   _showOptions = () => {
     if (this.props.isOwner) {
@@ -74,14 +76,16 @@ class Item extends React.Component {
           </View>
           {
             Boolean(toCommentContent) && (
-              <View style={styles.replyBox}>
-                <Caption
-                  numberOfLines={1}
-                  ellipsizeMode="tail"
-                  style={styles.replyName}
-                >{toCommentAuthorName}</Caption>
-                <Caption numberOfLines={3} ellipsizeMode="tail">{toCommentContent}</Caption>
-              </View>
+              <TouchableRipple onPress={this._navigateToThread}>
+                <View style={styles.replyBox}>
+                  <Caption
+                    numberOfLines={1}
+                    ellipsizeMode="tail"
+                    style={styles.replyName}
+                  >{toCommentAuthorName}</Caption>
+                  <Caption numberOfLines={3} ellipsizeMode="tail">{toCommentContent}</Caption>
+                </View>
+              </TouchableRipple>
             )
           }
           <View style={styles.itemContent}>  

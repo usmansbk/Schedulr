@@ -39,6 +39,7 @@ class List extends React.Component {
         toCommentContent={to && to.content}
         timeAgo={timeAgo(createdAt)}
         navigateToProfile={this.props.navigateToProfile}
+        navigateToThread={this.props.navigateToThread}
         onDelete={this.props.onDelete}
         handleReplyComment={this.props.handleReply}
       />

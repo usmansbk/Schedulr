@@ -44,6 +44,7 @@ class Screen extends React.Component {
       handleReply,
       cancelReply,
       navigateToProfile,
+      navigateToThread,
       stores,
       fetchMoreComments,
     } = this.props;
@@ -79,6 +80,7 @@ class Screen extends React.Component {
           handleReply={handleReply}
           onDelete={this._handleDelete}
           navigateToProfile={navigateToProfile}
+          navigateToThread={navigateToThread}
           fetchMoreComments={fetchMoreComments}
         />
         <CommentForm
