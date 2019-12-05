@@ -1,7 +1,12 @@
 import { I18n } from 'aws-amplify';
 import stores from 'stores';
+// import client from 'config/client';
+// import gql from 'graphql-tag'
+// import updateApolloCache from 'helpers/updateApolloCache';
+// import { getScheduleEvents } from 'api/queries'
+// import { ADD } from 'lib/constants';
 
-export default(error, success) => {
+export default (error, success) => {
   if (error) {
     const { mutation, variables: { input } } = error;
     let message = '';
@@ -45,7 +50,12 @@ export default(error, success) => {
     message = message + I18n.get('ERROR_configHint');
     stores.snackbar.show(message, true);
   } else {
-    console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ success')
-    console.log(JSON.stringify(success))
+    const { mutation, data } = success;
+    if (mutation === 'createEvent') {
+      // console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ success');
+      // const { createEvent } = data;
+      // updateApolloCache(client, createEvent, ADD);
+      stores.snackbar.show(I18n.get('TOAST_eventAdded'))
+    }
   }
 }
