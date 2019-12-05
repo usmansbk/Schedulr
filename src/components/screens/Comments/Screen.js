@@ -47,6 +47,7 @@ class Screen extends React.Component {
       navigateToThread,
       stores,
       fetchMoreComments,
+      noReply
     } = this.props;
 
     const styles = stores.appStyles.styles;
@@ -73,6 +74,7 @@ class Screen extends React.Component {
         <List
           ref={commentsRef => this._commentsListRef = commentsRef}
           error={error}
+          noReply={noReply}
           loading={loading}
           comments={comments}
           nextToken={nextToken}
@@ -83,15 +85,19 @@ class Screen extends React.Component {
           navigateToThread={navigateToThread}
           fetchMoreComments={fetchMoreComments}
         />
-        <CommentForm
-          name={userName}
-          pictureUrl={userPictureUrl}
-          ref={inputRef => this._inputRef = inputRef}
-          handleSubmit={this._handleSubmit}
-          targetName={targetName}
-          cancelReply={cancelReply}
-          disabled={loading || error}
-        />
+        {
+          noReply ? null : (
+          <CommentForm
+            name={userName}
+            pictureUrl={userPictureUrl}
+            ref={inputRef => this._inputRef = inputRef}
+            handleSubmit={this._handleSubmit}
+            targetName={targetName}
+            cancelReply={cancelReply}
+            disabled={loading || error}
+          />
+          )
+        }
       </>
     );
   }

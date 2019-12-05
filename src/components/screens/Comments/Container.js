@@ -52,7 +52,11 @@ export default class Container extends React.Component {
     this._cancelReply();
   };
   _navigateToProfile = (id) => this.props.navigation.navigate('UserProfile', { id });
-  _navigateToThread = (id) => this.props.navigation.navigate('Thread', { id, title: 'Replies' });
+  _navigateToThread = (eventId, commentToId) => this.props.navigation.navigate('Thread', {
+    id: eventId,
+    commentToId,
+    title: 'Replies',
+  });
 
   shouldComponentUpdate = (nextProps, nextState) => {
     return (
@@ -77,7 +81,7 @@ export default class Container extends React.Component {
       nextToken,
       user,
       comments,
-      commentData
+      noReply,
     } = this.props;
 
     const uri = user.avatar ? getImageUrl(user.avatar) : user.pictureUrl;
@@ -85,6 +89,7 @@ export default class Container extends React.Component {
     return (
       <>
       <Screen
+        noReply={noReply}
         loading={loading}
         title={this.props.navigation.getParam('title')}
         error={Boolean(error)}

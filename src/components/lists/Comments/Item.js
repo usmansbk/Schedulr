@@ -21,7 +21,7 @@ class Item extends React.Component {
   };
   _onReply = () => this.props.handleReplyComment(this.props.id, this.props.authorName, this.props.authorId);
   _navigateToProfile = () => this.props.navigateToProfile(this.props.authorId);
-  _navigateToThread = () => this.props.navigateToThread(this.props.toCommentId);
+  _navigateToThread = () => this.props.navigateToThread(this.props.commentEventId, this.props.toCommentId, this.props.id);
   _onDelete = () => this.props.onDelete(this.props.id);
   _showOptions = () => {
     if (this.props.isOwner) {
@@ -48,7 +48,8 @@ class Item extends React.Component {
       authorPictureUrl,
       toCommentAuthorName,
       toCommentContent,
-      stores
+      stores,
+      noReply
     } = this.props;
 
     const styles = stores.appStyles.commentsList;
@@ -95,25 +96,29 @@ class Item extends React.Component {
               </Paragraph>
             </Hyperlink>
             <View style={styles.footer}>
-            <View style={styles.actions}>
-              {isOwner && <IconButton
-                color={colors.light_gray_3}
-                icon={() => <Icon
-                  size={20}
-                  name="trash-2"
-                  color={colors.light_gray_3}
-                />}
-                onPress={this._onDelete}
-              />}
-              <IconButton
-                icon={() => <Icon
-                  size={20}
-                  name="feather"
-                  color={colors.light_gray_3}
-                />}
-                onPress={this._onReply}
-              />
-            </View>
+              {
+                noReply ? null : (
+                  <View style={styles.actions}>
+                    {isOwner && <IconButton
+                      color={colors.light_gray_3}
+                      icon={() => <Icon
+                        size={20}
+                        name="trash-2"
+                        color={colors.light_gray_3}
+                      />}
+                      onPress={this._onDelete}
+                    />}
+                    <IconButton
+                      icon={() => <Icon
+                        size={20}
+                        name="feather"
+                        color={colors.light_gray_3}
+                      />}
+                      onPress={this._onReply}
+                    />
+                  </View>
+                )
+              }
             </View>
           </View>
         </View>

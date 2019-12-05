@@ -22,6 +22,7 @@ class List extends React.Component {
       id,
       content,
       author,
+      event,
       to,
       isOwner,
       createdAt,
@@ -35,6 +36,7 @@ class List extends React.Component {
         authorPictureUrl={author.avatar ? getImageUrl(author.avatar) : author.pictureUrl}
         isOwner={isOwner}
         content={content}
+        commentEventId={event.id}
         toCommentId={to && to.id}
         toCommentAuthorName={to && to.author.name}
         toCommentContent={to && to.content}
@@ -43,6 +45,7 @@ class List extends React.Component {
         navigateToThread={this.props.navigateToThread}
         onDelete={this.props.onDelete}
         handleReplyComment={this.props.handleReply}
+        noReply={this.props.noReply}
       />
     );
   }
