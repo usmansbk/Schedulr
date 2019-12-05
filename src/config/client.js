@@ -60,9 +60,47 @@ const client = new AWSAppSyncClient({
   offlineConfig: {
     callback: (error, success) => {
       if (error) {
-        console.log(JSON.stringify(error));
-      } else {
-        console.log(JSON.stringify(success));
+        const { mutation, variables: { input } } = error;
+        let message;
+        switch(mutation) {
+          case 'createEvent':
+          case 'updateEvent':
+            message = `Failed to save event: ${input.title}`;
+            break;
+          case 'createSchedule':
+          case 'updateSchedule':
+            message = `Failed to save schedule: ${input.name}`;
+            break;
+          case 'createBookmark':
+            message = `Failed to bookmark event`;
+            break;
+          case 'createFollow':
+            message = `Failed to follow schedule`;
+            break;
+          case 'createComment':
+            message = `Failed to deliver comment: ${input.content}`;
+            break;
+          case 'deleteEvent':
+            message = `Failed to delete event`;
+            break;
+          case 'deleteSchedule':
+            message = `Failed to delete schedule`;
+            break;
+          case 'deleteFollow':
+            message = `Failed to unfollow schedule`;
+            break;
+          case 'deleteBookmark':
+            message = `Failed to remove bookmark`;
+            break;
+          case 'deleteComment':
+            message = `Failed to delete comment`;
+            break;
+          default:
+            message = `Fatal error`;
+            break;
+        }
+        message = `. Please Sync now and try again.`;
+        stores.snackbar.show(message, true);
       }
     }
   }
