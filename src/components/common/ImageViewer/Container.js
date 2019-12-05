@@ -84,12 +84,12 @@ class ImageViewerContainer extends React.Component {
                 if (s3Object) await Storage.remove(s3Object.key).catch();
                 await Storage.put(key, blob, {
                   contentType: type
-                }).catch();
+                });
                 await onUploadPhoto(fileForUpload);
                 this.setState({ loading: false });
               }
             } catch (error) {
-              this.props.stores.snackbar.show(I18n.get('ERROR_failedToRemoveImage'), true);
+              this.props.stores.snackbar.show(I18n.get('ERROR_failedToUploadImage'), true);
               logger.logError(error);
             }
           }
