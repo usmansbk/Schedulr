@@ -61,45 +61,45 @@ const client = new AWSAppSyncClient({
     callback: (error, success) => {
       if (error) {
         const { mutation, variables: { input } } = error;
-        let message;
+        let message = '';
         switch(mutation) {
           case 'createEvent':
           case 'updateEvent':
-            message = `Failed to save event: ${input.title}`;
+            message = I18n.get(`ERROR_failedToCreateEvent`)(input.title);
             break;
           case 'createSchedule':
           case 'updateSchedule':
-            message = `Failed to save schedule: ${input.name}`;
-            break;
-          case 'createBookmark':
-            message = `Failed to bookmark event`;
-            break;
-          case 'createFollow':
-            message = `Failed to follow schedule`;
+            message = I18n.get(`ERROR_failedToCreateSchedule`)(input.name);
             break;
           case 'createComment':
-            message = `Failed to deliver comment: ${input.content}`;
+            message = I18n.get(`ERROR_failedToCreateComment`)(input.content);
+            break;
+          case 'createBookmark':
+            message = I18n.get(`ERROR_failedToCreateBookmark`);
+            break;
+          case 'createFollow':
+            message = I18n.get(`ERROR_failedToCreateFollow`);
             break;
           case 'deleteEvent':
-            message = `Failed to delete event`;
+            message = I18n.get(`ERROR_failedToDeleteEvent`);
             break;
           case 'deleteSchedule':
-            message = `Failed to delete schedule`;
+            message = I18n.get(`ERROR_failedToDeleteSchedule`);
             break;
           case 'deleteFollow':
-            message = `Failed to unfollow schedule`;
+            message = I18n.get(`ERROR_failedToDeleteFollow`);
             break;
           case 'deleteBookmark':
-            message = `Failed to remove bookmark`;
+            message = I18n.get(`ERROR_failedToDeleteBookmark`);
             break;
           case 'deleteComment':
-            message = `Failed to delete comment`;
+            message = I18n.get(`ERROR_failedToDeleteComment`);
             break;
           default:
-            message = `Fatal error`;
+            message = I18n.get(`ERROR_fatal`);
             break;
         }
-        message = `. Please Sync now and try again.`;
+        message = message + I18n.get('ERROR_configHint');
         stores.snackbar.show(message, true);
       }
     }
