@@ -18,6 +18,7 @@ export const FORTY_FIVE_MINUTES = 3 * FIFTEEN_MINUTES;
 const DATE_FORMAT = 'MMMM DD, YYYY';
 const DAY_FORMAT = 'dddd';
 const NEXT_LAST_FORMAT = 'dddd, Do';
+const CAL_TIME_FORMAT = 'DD MMM YYYY hh:mm';
 
 const headingCalendarFormats = {
   sameDay: '[Today]',
@@ -26,6 +27,14 @@ const headingCalendarFormats = {
   lastDay: '[Yesterday]',
   lastWeek: '[Last] dddd',
   sameElse: DATE_FORMAT
+};
+const calendarTimeFormats = {
+  sameDay: '[Today] [at] HH:mm',
+  nextDay: '[Tomorrow]',
+  nextWeek: DAY_FORMAT,
+  lastDay: '[Yesterday] [at] hh:mm',
+  lastWeek: CAL_TIME_FORMAT,
+  sameElse: CAL_TIME_FORMAT 
 };
 
 const subheadingCalendarFormats = {
@@ -57,7 +66,7 @@ export const formatDate = (startAt, endAt, allDay) => {
   }); 
 };
 
-export const calendarTime = (date) => moment(date).calendar();
+export const calendarTime = (date) => moment(date).calendar(null, calendarTimeFormats);
 
 export const getNextDate = (event) => {
   const { startAt, endAt } = event;
