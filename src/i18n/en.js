@@ -174,7 +174,7 @@ export default {
   SHARE_appTitle: 'Invite a friend',
   SHARE_appSubject: "See events happening near you",
 
-  TOAST_eventAdded: "Event added",
+  TOAST_eventAdded: "Event posted",
   TOAST_enableReminder: "Unmute all events to continue!",
   TOAST_updatesAvailable: "Updates available. Refresh calendar",
   TOAST_locationError: "Failed to get location. Turn off airplane mode.",
