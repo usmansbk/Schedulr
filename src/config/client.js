@@ -19,14 +19,10 @@ const errorLink = onError(({ graphQLErrors }) => {
       if (message.includes("Not Found")) {
         // Dont log elasticsearch "Not found"
       } else {
-        if (error.message) {
-          let message = '';
-          if (__DEV__) {
-            message = error.message;
-          }
-          stores.snackbar.show(I18n.get('ERROR_serverError')(message), true);
-          logger.logError(error);
+        if (__DEV__) {
+          stores.snackbar.show(I18n.get('ERROR_serverError')(error.message), true);
         }
+        logger.logError(error);
       }
     });  
   }
@@ -62,9 +58,11 @@ const client = new AWSAppSyncClient({
     }
   },
   offlineConfig: {
-    callback: (error) => {
+    callback: (error, success) => {
       if (error) {
-        logger.logError(error);
+        console.log(JSON.stringify(error));
+      } else {
+        console.log(JSON.stringify(success));
       }
     }
   }

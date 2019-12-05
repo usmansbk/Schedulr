@@ -9,7 +9,6 @@ import recurrences from 'components/forms/Event/recurrence';
 import { isPastExact } from 'lib/time';
 import { getUserSchedules } from 'api/fragments';
 import { SCHEDULE_CLOSED } from "lib/constants";
-import { I18n } from 'aws-amplify';
 
 class NewEventScreen extends React.Component {
   _newSchedule = () => this.props.navigation.navigate("NewSchedule");
@@ -23,7 +22,6 @@ class NewEventScreen extends React.Component {
       ...form
     };
     this.props.onSubmit(input);
-    this.props.stores.snackbar.show(I18n.get("TOAST_eventAdded"));
     this.props.navigation.pop();
     // this.props.navigation.replace('EventDetails', { id });
   };

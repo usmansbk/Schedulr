@@ -40,7 +40,7 @@ class CommentInput extends React.Component {
   };
 
   _onSubmit = () => {
-    if (this.statem.message.trim()) {
+    if (this.state.message.trim()) {
       this.setState({ isSubmitting: true });
       this.props.handleSubmit(this.state.message.trim());
       this.setState({
