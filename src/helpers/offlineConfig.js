@@ -2,7 +2,7 @@ import { I18n } from 'aws-amplify';
 import stores from 'stores';
 import updateApolloCache from 'helpers/updateApolloCache';
 import client from 'config/client';
-import { ADD } from 'lib/constants';
+import { ADD, DELETE } from 'lib/constants';
 
 export default (error, success) => {
   if (error) {
