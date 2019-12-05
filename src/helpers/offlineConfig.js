@@ -1,5 +1,8 @@
 import { I18n } from 'aws-amplify';
 import stores from 'stores';
+import updateApolloCache from 'helpers/updateApolloCache';
+import client from 'config/client';
+import { ADD } from 'lib/constants';
 
 export default (error, success) => {
   if (error) {
@@ -47,7 +50,59 @@ export default (error, success) => {
   } else {
     const { mutation, data } = success;
     if (mutation === 'createEvent') {
-      stores.snackbar.show(I18n.get('TOAST_eventAdded'))
+      const { createEvent } = data;
+      stores.snackbar.show(I18n.get('TOAST_eventAdded'));
+      /**
+       * For some reason offline mutation removes optimistic response
+       * without calling the update function and needs to be written back after a moment delay.
+       * This is a temporary work around before it is fixed.
+       */
+      const timeout = setTimeout(() => {
+        updateApolloCache(client, createEvent, ADD);
+        clearTimeout(timeout);
+      }, 2000);
+    } else if (mutation === 'createSchedule') {
+      const { createSchedule } = data;
+      const timeout = setTimeout(() => {
+        updateApolloCache(client, createSchedule, ADD);
+        clearTimeout(timeout);
+      }, 2000);
+    } else if (mutation === 'createFollow') {
+      const { createFollow } = data;
+      const timeout = setTimeout(() => {
+        updateApolloCache(client, createFollow, ADD);
+        clearTimeout(timeout);
+      }, 2000);
+    } else if (mutation === 'createBookmark') {
+      const { createBookmark } = data;
+      const timeout = setTimeout(() => {
+        updateApolloCache(client, createBookmark, ADD);
+        clearTimeout(timeout);
+      }, 2000);
+    } else if (mutation === 'deleteEvent') {
+      const { deleteEvent } = data;
+      const timeout = setTimeout(() => {
+        updateApolloCache(client, deleteEvent, DELETE);
+        clearTimeout(timeout);
+      }, 2000);
+    } else if (mutation === 'deleteFollow') {
+      const { deleteFollow } = data;
+      const timeout = setTimeout(() => {
+        updateApolloCache(client, deleteFollow, DELETE);
+        clearTimeout(timeout);
+      }, 2000);
+    } else if (mutation === 'deleteBookmark') {
+      const { deleteBookmark } = data;
+      const timeout = setTimeout(() => {
+        updateApolloCache(client, deleteBookmark, DELETE);
+        clearTimeout(timeout);
+      }, 2000);
+    } else if (mutation === 'deleteSchedule') {
+      const { deleteSchedule } = data;
+      const timeout = setTimeout(() => {
+        updateApolloCache(client, deleteSchedule, DELETE);
+        clearTimeout(timeout);
+      }, 2000);
     }
   }
 }
