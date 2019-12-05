@@ -57,6 +57,8 @@ export const formatDate = (startAt, endAt, allDay) => {
   }); 
 };
 
+export const calendarTime = (date) => moment(date).calendar();
+
 export const getNextDate = (event) => {
   const { startAt, endAt } = event;
   return moment(startAt).twix(endAt).format();

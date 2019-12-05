@@ -5,8 +5,8 @@ import Item from './Item';
 import Footer from './Footer';
 import Empty from './Empty';
 import Separator from './Separator';
-import { timeAgo } from 'lib/time';
 import getImageUrl from 'helpers/getImageUrl';
+import { calendarTime } from 'lib/time';
 
 class List extends React.Component {
   state = {
@@ -40,7 +40,7 @@ class List extends React.Component {
         toCommentId={to && to.id}
         toCommentAuthorName={to && to.author.name}
         toCommentContent={to && to.content}
-        timeAgo={timeAgo(createdAt)}
+        timeAgo={calendarTime(createdAt)}
         navigateToProfile={this.props.navigateToProfile}
         navigateToThread={this.props.navigateToThread}
         onDelete={this.props.onDelete}
