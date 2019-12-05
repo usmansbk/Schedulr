@@ -40,12 +40,14 @@ class CommentInput extends React.Component {
   };
 
   _onSubmit = () => {
-    this.setState({ isSubmitting: true });
-    this.props.handleSubmit(this.state.message);
-    this.setState({
-      isSubmitting: false,
-      message: ''
-    });
+    if (this.statem.message.trim()) {
+      this.setState({ isSubmitting: true });
+      this.props.handleSubmit(this.state.message.trim());
+      this.setState({
+        isSubmitting: false,
+        message: ''
+      });
+    }
   };
 
   _onChangeText = (message) => this.setState({ message });
@@ -69,6 +71,7 @@ class CommentInput extends React.Component {
 
     const styles = stores.appStyles.commentInput;
     const colors = stores.themeStore.colors;
+    const invalid = isSubmitting || !message.trim() || disabled;
 
     return (
       <>
@@ -94,7 +97,7 @@ class CommentInput extends React.Component {
                size={size}
                color={color}
              />}
-            disabled={isSubmitting || !message || disabled}
+            disabled={invalid}
             onPress={this._openPicker}
             style={styles.right}
           />
@@ -120,7 +123,7 @@ class CommentInput extends React.Component {
                size={size}
                color={color}
              />}
-            disabled={isSubmitting || !message || disabled}
+            disabled={invalid}
             onPress={this._onSubmit}
             style={styles.right}
           />
