@@ -2,10 +2,11 @@ import React from 'react';
 import { View, TextInput } from 'react-native';
 import { IconButton, Text, Button } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/Feather';
+import DocumentPicker from 'react-native-document-picker';
 import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
-import UserAvatar from 'components/common/UserAvatar';
 import { comment_input } from 'lib/constants';
+import logger from 'config/logger';
 
 const { AVATAR_SIZE } = comment_input;
 
@@ -18,6 +19,24 @@ class CommentInput extends React.Component {
   static defaultProps = {
     name: 'hello',
     pictureUrl: null
+  };
+  
+  _openPicker = async () => {
+    try {
+      const response = await DocumentPicker.pickMultiple({
+        type: [
+          DocumentPicker.types.images,
+          DocumentPicker.types.pdf,
+          DocumentPicker.types.plainText]
+      });
+      console.log(JSON.stringify(response));
+    } catch (error) {
+      if (DocumentPicker.isCancel(error)) {
+        // Do nothing
+      } else {
+        logger.logError(error);
+      }
+    }
   };
 
   _onSubmit = () => {
@@ -38,8 +57,6 @@ class CommentInput extends React.Component {
   render() {
     const {
       targetName,
-      pictureUrl,
-      name,
       cancelReply,
       stores,
       disabled
@@ -69,10 +86,17 @@ class CommentInput extends React.Component {
           )
         }
         <View style={styles.container}>
-          <UserAvatar
-            size={AVATAR_SIZE}
-            src={pictureUrl}
-            name={name}
+          <IconButton
+            size={24}
+            color={colors.primary}
+            icon={({ size, color }) => <Icon
+               name="paperclip"
+               size={size}
+               color={color}
+             />}
+            disabled={isSubmitting || !message || disabled}
+            onPress={this._openPicker}
+            style={styles.right}
           />
           <View style={styles.input}>
             <TextInput
