@@ -5,10 +5,7 @@ import Icon from 'react-native-vector-icons/Feather';
 import DocumentPicker from 'react-native-document-picker';
 import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
-import { comment_input } from 'lib/constants';
 import logger from 'config/logger';
-
-const { AVATAR_SIZE } = comment_input;
 
 class CommentInput extends React.Component {
   state = {
