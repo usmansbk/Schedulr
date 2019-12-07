@@ -52,6 +52,7 @@ class List extends Component {
       status,
       isOwner,
       isFollowing,
+      isOffline
     } = item;
 
     return (
@@ -64,6 +65,7 @@ class List extends Component {
         isClosed={status === SCHEDULE_CLOSED}
         isMuted={this.props.stores.appState.mutedSchedules.includes(id)}
         isOwner={isOwner}
+        isOffline={isOffline}
         isFollowing={isFollowing}
         onPressItem={this._onPressItem}
         navigateToScheduleInfo={this._navigateToInfo}

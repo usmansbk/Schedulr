@@ -251,6 +251,7 @@ class List extends React.Component {
     isBookmarked,
     bookmarksCount,
     isOwner,
+    isOffline,
     ref_date
   }}) => __typename === 'Advert' ? <AdItem /> : (<Item
     id={id}
@@ -285,6 +286,7 @@ class List extends React.Component {
     isBookmarked={isBookmarked}
     bookmarksCount={bookmarksCount}
     isOwner={isOwner}
+    isOffline={isOffline}
     duration={getDuration(startAt, endAt, allDay)}
     onPressItem={this._onPressItem}
     onPressCommentButton={this._onPressCommentItem}

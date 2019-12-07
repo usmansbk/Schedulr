@@ -40,7 +40,8 @@ class Item extends React.Component {
       isPublic,
       stores,
       isMuted,
-      isFollowing
+      isFollowing,
+      isOffline
     } = this.props;
     
     const styles = stores.appStyles.schedulesList;
@@ -60,9 +61,9 @@ class Item extends React.Component {
             style={styles.itemAvatar}
           />
           {
-            !isPublic && <Icon
+            (!isPublic || isOffline) && <Icon
               style={styles.privateIcon}
-              name="eye-off"
+              name={isOffline ? "cloud-off" : "eye-off"}
               size={16}
               color={stores.themeStore.colors.light_gray_3}
             />

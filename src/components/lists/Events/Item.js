@@ -6,6 +6,7 @@ import {
   Caption,
   Headline,
 } from 'react-native-paper';
+import Icon from 'react-native-vector-icons/Feather';
 import { inject, observer } from 'mobx-react';
 import Avatar from 'components/common/UserAvatar';
 import Badge from 'components/common/Badge';
@@ -56,6 +57,7 @@ class Item extends React.Component {
       stores,
       isMuted,
       isBookmarked,
+      isOffline,
       bookmarksCount,
       eventScheduleId,
     } = this.props;
@@ -89,10 +91,19 @@ class Item extends React.Component {
           </View>
           <View style={styles.right}>
             <View style={styles.itemBody}>
+              {
+                (isOffline) && <Icon
+                  style={styles.privateIcon}
+                  name="cloud-off"
+                  size={16}
+                  color={stores.themeStore.colors.light_gray_3}
+                />
+              }
               <Headline
                 style={styles.itemHeadline}
                 numberOfLines={1}
-                ellipsizeMode="tail">
+                ellipsizeMode="tail"
+              >
                 {title}
               </Headline>
               <Text style={styles.time}>{time}</Text>

@@ -138,6 +138,7 @@ export const getEventComments = `query GetEventComments($id: ID!, $limit: Int, $
         id
         content
         isOwner
+        isOffline
         to {
           id
           content
@@ -305,6 +306,7 @@ export const getUserSchedules = `query GetUserSchedules($id: ID!, $limit: Int) {
         isPublic
         isOwner
         isFollowing
+        isOffline
         location
         status
         picture {
@@ -379,6 +381,7 @@ export const getUserData = `query GetUserData($id: ID!, $filter: ModelEventFilte
         isPublic
         isOwner
         isFollowing
+        isOffline
         location
         status
         picture {
@@ -411,6 +414,7 @@ export const getUserData = `query GetUserData($id: ID!, $filter: ModelEventFilte
             isOwner
             isCancelled
             isBookmarked
+            isOffline
             cancelledDates
             banner {
               bucket

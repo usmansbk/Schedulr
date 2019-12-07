@@ -61,6 +61,7 @@ export const createEvent = `mutation CreateEvent($input: CreateEventInput!) {
     isOwner
     isCancelled
     isBookmarked
+    isOffline
     cancelledDates
     banner {
       bucket
@@ -176,6 +177,7 @@ export const createSchedule = `mutation CreateSchedule($input: CreateScheduleInp
     isPublic
     isOwner
     isFollowing
+    isOffline
     location
     status
     picture {
@@ -355,6 +357,7 @@ export const createComment = `mutation CreateComment($input: CreateCommentInput!
     id
     content
     isOwner
+    isOffline
     to {
       id
       content

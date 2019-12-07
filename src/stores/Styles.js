@@ -1700,6 +1700,12 @@ export default class AppStyles {
       paragraph: {
         textAlign: 'center'
       },
+      privateIcon: {
+        borderRadius: 5,
+        position: 'absolute',
+        top: 17,
+        right: 17,
+      }
     });
   }
 
