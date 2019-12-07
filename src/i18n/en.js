@@ -34,6 +34,7 @@ export default {
   PROFILE_notVisibleToPublic: "Events not visible to public",
 
   BOOKMARKS_emptyList: "You haven't saved any events yet",
+  BOOKMARKS_BY_emptyList: "No bookmarks yet",
 
   MORE_settings: "Settings",
   MORE_inviteAFriend: "Share app",

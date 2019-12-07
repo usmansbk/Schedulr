@@ -8,7 +8,7 @@ export default class Button extends React.Component {
     return nextProps.isBookmarked !== this.props.isBookmarked
   };
 
-  _onLongPress = () => this.props.onLongPress(this.props.id);
+  _onLongPress = () => this.props.onLongPress && this.props.onLongPress(this.props.id);
 
   _onPress = async () => {
     const {

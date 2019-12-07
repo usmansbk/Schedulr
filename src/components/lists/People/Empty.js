@@ -7,7 +7,7 @@ import Error from 'components/common/Error';
 import Loading from 'components/common/Loading';
 
 export default inject('stores')(observer(
-  ({ error, loading, stores, search }) =>{
+  ({ error, loading, stores, search, isBookmarks }) =>{
     if (error) return <Error />;
     if (loading) return <Loading />;
     return (
@@ -18,7 +18,7 @@ export default inject('stores')(observer(
           )
         }
         <Headline style={stores.appStyles.eventsList.emptyTitle}>
-          { I18n.get(search ? "SEARCH_emptyList" : "FOLLOWERS_emptyList")}
+          { I18n.get(search ? "SEARCH_emptyList" : ( isBookmarks ? 'BOOKMARKS_BY_emptyList' : "FOLLOWERS_emptyList"))}
         </Headline>
       </View>
     );  
