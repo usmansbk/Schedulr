@@ -67,7 +67,7 @@ export default class Notifications {
       default:
         this.filter = filter;
     }
-  }
+  };
 
   @action fetchNotifications = () => {
     if (!this.loading) {
