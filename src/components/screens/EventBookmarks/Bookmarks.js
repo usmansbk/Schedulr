@@ -31,7 +31,7 @@ class Bookmarks extends React.Component {
             />}
           />
           <Appbar.Content
-            title={I18n.get("Bookmarks")}
+            title={I18n.get("BOOKMARKED_BY")}
             titleStyle={stores.appStyles.styles.headerColor}
           />
         </Appbar>
