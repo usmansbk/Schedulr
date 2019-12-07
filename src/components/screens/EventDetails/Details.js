@@ -39,6 +39,7 @@ export default inject('stores')(observer(
     navigateToSchedule,
     navigateToComments,
     navigateToUser,
+    navigateToBookmarks,
     cardView,
     stores,
     onFinish
@@ -153,6 +154,7 @@ export default inject('stores')(observer(
         activeColor={stores.themeStore.colors.like}
         date={date}
         navigateToComments={navigateToComments}
+        navigateToBookmarks={navigateToBookmarks}
       />
     </View>
   )

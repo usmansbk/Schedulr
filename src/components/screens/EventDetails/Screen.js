@@ -17,6 +17,7 @@ export default class Screen extends React.Component {
   _navigateToComments = (id, title, date) => this.props.navigation.navigate('Comments', { id, title, date });
   _navigateToUser = (id) => this.props.navigation.navigate('UserProfile', { id });
   _navigateToBanner = (id) => this.props.navigation.navigate('Banner', { id });
+  _navigateToBookmarks = (id) => this.props.navigation.navigate('EventBookmarks', { id });
 
   _openDeleteDialog = () => this.setState({ visibleDialog: 'delete' });
   _openCancelDialog = () => this.setState({ visibleDialog: 'cancel' });
@@ -65,6 +66,7 @@ export default class Screen extends React.Component {
           navigateToComments={this._navigateToComments}
           navigateToBanner={this._navigateToBanner}
           navigateToUser={this._navigateToUser}
+          navigateToBookmarks={this._navigateToBookmarks}
         />
         <DeleteDialog
           id={id}

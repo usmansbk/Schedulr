@@ -10,6 +10,7 @@ import { inject, observer } from 'mobx-react';
 
 class IconBagdeButton extends React.Component {
   _onPress = () => this.props.onPress();
+  _onLongPress = () => this.props.onLongPress();
 
   shouldComponentUpdate = nextProps => nextProps.count !== this.props.count ||
     nextProps.color !== this.props.color
@@ -34,6 +35,7 @@ class IconBagdeButton extends React.Component {
       <View style={stores.appStyles.styles.button}>
         <IconButton
           onPress={this._onPress}
+          onLongPress={this._onLongPress}
           icon={this._renderIcon}
           size={size}
           style={stores.appStyles.styles.iconButton}

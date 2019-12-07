@@ -71,6 +71,7 @@ type Schedule
   isPublic: Boolean
   isOwner: Boolean
   isFollowing: Boolean 
+  isOffline: Boolean
   status: ScheduleStatus 
   location: String
   followers: [Follow] @connection(name: "Followers", sortField: "createdAt", limit: 25)
@@ -119,6 +120,7 @@ type Event
   isOwner: Boolean
   isCancelled: Boolean
   isBookmarked: Boolean
+  isOffline: Boolean
   cancelledDates: [String]
   author: User @connection
   schedule: Schedule! @connection(name: "ScheduleEvents", sortField: "createdAt")
@@ -164,6 +166,7 @@ type Comment
   id: ID
   content: String
   isOwner: Boolean
+  isOffline: Boolean
   to: Comment @connection(name: "CommentThread")
   thread: [Comment] @connection(name: "CommentThread", sortField: "createdAt", limit: 20)
   at: User @connection

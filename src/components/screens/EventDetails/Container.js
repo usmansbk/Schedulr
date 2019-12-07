@@ -43,6 +43,7 @@ class EventDetails extends React.Component {
       navigateToComments,
       navigateToUser,
       navigateToBanner,
+      navigateToBookmarks,
       cardView,
       stores
     } = this.props;
@@ -205,6 +206,7 @@ class EventDetails extends React.Component {
           navigateToSchedule={navigateToSchedule}
           navigateToComments={navigateToComments}
           navigateToUser={navigateToUser}
+          navigateToBookmarks={navigateToBookmarks}
           cardView={cardView}
           count={this.state.count}
           onFinish={this._incrementCount}
