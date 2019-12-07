@@ -21,6 +21,7 @@ class Item extends React.Component {
   _navigateToInfo = () => this.props.navigateToScheduleInfo(this.props.id);
   shouldComponentUpdate = (nextProps) => {
     return (
+      this.props.isOffline !== nextProps.isOffline ||
       this.props.name !== nextProps.name ||
       this.props.description !== nextProps.description ||
       this.props.isClosed !== nextProps.isClosed ||

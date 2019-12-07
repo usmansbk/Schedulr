@@ -28,6 +28,7 @@ class Item extends React.Component {
 
   shouldComponentUpdate = (nextProps) => {
     return (
+      nextProps.isOffline !== this.props.isOffline ||
       nextProps.title !== this.props.title ||
       nextProps.time !== this.props.time ||
       nextProps.status !== this.props.status ||
