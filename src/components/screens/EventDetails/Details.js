@@ -1,8 +1,9 @@
 import React from 'react';
 import { View, ScrollView } from 'react-native';
-import { Text, Headline, Divider, TouchableRipple } from 'react-native-paper';
+import { Text, Headline, Divider } from 'react-native-paper';
 import Hyperlink from 'react-native-hyperlink';
 import { inject, observer } from 'mobx-react';
+import numeral from 'numeral';
 import { I18n } from 'aws-amplify';
 import Actions from 'components/common/Actions';
 import CountDown from 'components/common/Countdown';
@@ -141,7 +142,7 @@ export default inject('stores')(observer(
                 <>
                 <Divider />
                 <View style={stores.appStyles.eventDetails.item}>
-                  <Text onPress={() => navigateToBookmarks(id)}><Text style={stores.appStyles.eventDetails.date}>{bookmarksCount}</Text> {I18n.get("BOOKMARKS_COUNT")(bookmarksCount)}</Text>
+                  <Text onPress={() => navigateToBookmarks(id)}><Text style={stores.appStyles.eventDetails.date}>{numeral(bookmarksCount).format('0 a')}</Text> {I18n.get("BOOKMARKS_COUNT")(bookmarksCount)}</Text>
                 </View>
                 </>
               )
