@@ -38,7 +38,7 @@ const Home = createBottomTabNavigator({
       } else if (routeName === 'Discover') {
         iconName = 'search';
       } else if (routeName === 'More') {
-        iconName = 'menu';
+        iconName = 'user';
       } else if (routeName === 'Notifications') {
         return <NotificationsIcon
           focused={focused}
