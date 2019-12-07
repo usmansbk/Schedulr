@@ -21,6 +21,34 @@ export default class AppStyles {
     this.settings = settingsStore;
   }
 
+  @computed get fileSelect () {
+    const colors = this.settings.dark ? dark : light;
+    const ITEM_HEIGHT = 60;
+
+    return StyleSheet.create({
+      view: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        backgroundColor: colors.bg,
+      },
+      container: {
+        marginHorizontal: 4,
+        height: ITEM_HEIGHT,
+      },
+      itemContainer: {
+        width: ITEM_HEIGHT,
+        marginHorizontal: 2,
+        marginVertical: 4,
+        backgroundColor: colors.light_gray_2,
+      },
+      itemContent: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+      }
+    });
+  }
+
   @computed get chipList() {
     const colors = this.settings.dark ? dark : light;
     

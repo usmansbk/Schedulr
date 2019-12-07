@@ -5,17 +5,14 @@ import Icon from 'react-native-vector-icons/Feather';
 import DocumentPicker from 'react-native-document-picker';
 import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
+import FileSelect from 'components/lists/FileSelect';
 import logger from 'config/logger';
 
 class CommentInput extends React.Component {
   state = {
     isSubmitting: false,
-    message: ''
-  };
-
-  static defaultProps = {
-    name: 'hello',
-    pictureUrl: null
+    message: '',
+    uploads: []
   };
   
   _openPicker = async () => {
@@ -26,7 +23,8 @@ class CommentInput extends React.Component {
           DocumentPicker.types.pdf,
           DocumentPicker.types.plainText]
       });
-      console.log(JSON.stringify(response));
+      this.setState({ uploads: response });
+      // console.log(JSON.stringify(response));
     } catch (error) {
       if (DocumentPicker.isCancel(error)) {
         // Do nothing
@@ -42,7 +40,8 @@ class CommentInput extends React.Component {
       this.props.handleSubmit(this.state.message.trim());
       this.setState({
         isSubmitting: false,
-        message: ''
+        message: '',
+        uploads: []
       });
     }
   };
@@ -52,6 +51,15 @@ class CommentInput extends React.Component {
   focusInput = () => this._textInputRef && this._textInputRef.focus();
 
   blurInput = () => this._textInputRef && this._textInputRef.blur();
+  
+  _cancelUpload = () => this.setState({ uploads: [] });
+
+  _onPressItem = (id) => {
+    const uploads = this.state.uploads.filter(item => item.uri !== id);
+    this.setState({
+      uploads
+    });
+  }
 
   render() {
     const {
@@ -85,6 +93,13 @@ class CommentInput extends React.Component {
             </View>
           )
         }
+        { Boolean(this.state.uploads.length) && (
+          <FileSelect
+            data={this.state.uploads}
+            onCancel={this._cancelUpload}
+            onPressItem={this._onPressItem}
+          />
+        )}
         <View style={styles.container}>
           <IconButton
             size={24}
