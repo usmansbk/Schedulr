@@ -85,7 +85,7 @@ export default class Notifications {
           this.appendNotifications(notifications);
           const latest = notifications.sort((a, b) => b.timestamp - a.timestamp)[0];
           this.updateLastSyncTimestamp(latest.timestamp);
-          stores.snackbar.show(I18n.get('TOAST_newNotifications')(count));
+          stores.snackbar.show(I18n.get('TOAST_newNotifications')(this.count));
         }
         this.loading = false;
       }).catch(() => {
