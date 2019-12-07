@@ -37,7 +37,7 @@ export default {
   BOOKMARKS_BY_emptyList: "No bookmarks yet",
 
   MORE_settings: "Settings",
-  MORE_inviteAFriend: "Share app",
+  MORE_inviteAFriend: "Tell A Friend",
   MORE_help: "Help",
   MORE_signOut: "Sign out",
   MORE_sync: "Sync",
