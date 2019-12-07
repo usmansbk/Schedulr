@@ -23,7 +23,6 @@ export default class Actions extends React.Component {
     const { id, title, navigateToComments } = this.props;
     navigateToComments(id, title);
   };
-  navigateToBookmarks = id => this.props.navigateToBookmarks && this.props.navigateToBookmarks(id);
 
   render() {
     const {
@@ -51,7 +50,6 @@ export default class Actions extends React.Component {
           isBookmarked={isBookmarked}
           bookmarksCount={bookmarksCount}
           bookmarkScheduleId={bookmarkScheduleId}
-          onLongPress={this.navigateToBookmarks}
           activeColor={activeColor}
           size={FONT_SIZE}
           color={color}

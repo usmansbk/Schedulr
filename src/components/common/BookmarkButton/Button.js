@@ -8,8 +8,6 @@ export default class Button extends React.Component {
     return nextProps.isBookmarked !== this.props.isBookmarked
   };
 
-  _onLongPress = () => this.props.onLongPress && this.props.onLongPress(this.props.id);
-
   _onPress = async () => {
     const {
       id,
@@ -50,7 +48,6 @@ export default class Button extends React.Component {
       <IconBadge
         icon="bookmark"
         onPress={this._onPress}
-        onLongPress={this._onLongPress}
         size={size}
         count={count}
         color={isBookmarked ? activeColor : color}

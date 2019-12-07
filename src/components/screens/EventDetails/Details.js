@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, ScrollView } from 'react-native';
-import { Text, Headline, Divider } from 'react-native-paper';
+import { Text, Headline, Divider, TouchableRipple } from 'react-native-paper';
 import Hyperlink from 'react-native-hyperlink';
 import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
@@ -136,6 +136,16 @@ export default inject('stores')(observer(
                 <Text style={stores.appStyles.eventDetails.value}>{description || I18n.get("No description")}</Text>
               </Hyperlink>
             </View>
+            {
+              (Boolean(bookmarksCount)) && (
+                <>
+                <Divider />
+                <View style={stores.appStyles.eventDetails.item}>
+                  <Text onPress={() => navigateToBookmarks(id)}><Text style={stores.appStyles.eventDetails.date}>{bookmarksCount}</Text> {I18n.get("BOOKMARKS_COUNT")(bookmarksCount)}</Text>
+                </View>
+                </>
+              )
+            }
           </View>
         </View>
       </ScrollView>
@@ -154,7 +164,6 @@ export default inject('stores')(observer(
         activeColor={stores.themeStore.colors.like}
         date={date}
         navigateToComments={navigateToComments}
-        navigateToBookmarks={navigateToBookmarks}
       />
     </View>
   )
