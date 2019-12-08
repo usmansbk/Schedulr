@@ -50,6 +50,7 @@ class CommentInput extends React.Component {
     if (message.length < MAX_LENGTH || this.props.isOwner) {
       this.setState({ message });
     } else {
+      this.setState({ message: message.slice(0, MAX_LENGTH)});
       this.props.stores.snackbar.show(I18n.get('COMMENT_tooLong'));
     }
   };
