@@ -89,6 +89,7 @@ class ImageViewerContainer extends React.Component {
                 this.setState({ loading: false });
               }
             } catch (error) {
+              this.setState({ loading: false });
               this.props.stores.snackbar.show(I18n.get('ERROR_failedToUploadImage'), true);
               logger.logError(error);
             }
