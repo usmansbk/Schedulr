@@ -19,12 +19,11 @@ class CommentInput extends React.Component {
     try {
       const response = await DocumentPicker.pickMultiple({
         type: [
-          DocumentPicker.types.images,
-          DocumentPicker.types.pdf,
-          DocumentPicker.types.plainText]
+          DocumentPicker.types.allFiles
+        ]
       });
       this.setState({ uploads: response });
-      // console.log(JSON.stringify(response));
+      console.log(JSON.stringify(response));
     } catch (error) {
       if (DocumentPicker.isCancel(error)) {
         // Do nothing

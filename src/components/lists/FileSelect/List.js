@@ -26,6 +26,7 @@ class FileSelect extends React.Component {
       <Item
         name={item.name}
         uri={item.uri}
+        type={item.type}
         onPress={this.props.onPressItem}
       />
     );
