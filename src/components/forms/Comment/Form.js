@@ -66,7 +66,7 @@ class CommentInput extends React.Component {
     this.setState({
       uploads
     });
-  }
+  };
 
   render() {
     const {
