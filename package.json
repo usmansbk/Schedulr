@@ -14,10 +14,10 @@
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.6.3",
-    "@react-native-community/netinfo": "^4.6.1",
-    "@react-native-firebase/admob": "^6.1.0",
-    "@react-native-firebase/app": "^6.1.0",
-    "@react-native-firebase/crashlytics": "^6.1.0",
+    "@react-native-community/netinfo": "4.6.1",
+    "@react-native-firebase/admob": "^6.2.0",
+    "@react-native-firebase/app": "^6.2.0",
+    "@react-native-firebase/crashlytics": "^6.2.0",
     "apollo-link": "^1.2.13",
     "apollo-link-error": "^1.1.12",
     "aws-amplify": "^2.2.0",
@@ -79,7 +79,7 @@
   "devDependencies": {
     "@babel/core": "^7.7.5",
     "@babel/plugin-proposal-decorators": "^7.7.4",
-    "@babel/runtime": "^7.7.5",
+    "@babel/runtime": "^7.7.6",
     "@react-native-community/eslint-config": "^0.0.5",
     "babel-jest": "^24.9.0",
     "babel-plugin-module-resolver": "^3.2.0",
