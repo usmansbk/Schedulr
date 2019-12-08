@@ -32,8 +32,6 @@ class Screen extends React.Component {
   render() {
     const {
       loading,
-      userName,
-      userPictureUrl,
       targetName,
       comments,
       nextToken,
@@ -47,7 +45,8 @@ class Screen extends React.Component {
       navigateToThread,
       stores,
       fetchMoreComments,
-      noReply
+      noReply,
+      isOwner
     } = this.props;
 
     const styles = stores.appStyles.styles;
@@ -88,8 +87,7 @@ class Screen extends React.Component {
         {
           noReply ? null : (
           <CommentForm
-            name={userName}
-            pictureUrl={userPictureUrl}
+            isOwner={isOwner}
             ref={inputRef => this._inputRef = inputRef}
             handleSubmit={this._handleSubmit}
             targetName={targetName}

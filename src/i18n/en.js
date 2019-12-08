@@ -13,6 +13,7 @@ export default {
   COMMENTS_emptyList: "No comments",
   COMMENTS_loadMore: "Load more comments",
   COMMENTS_noMoreComments: "No more comments",
+  COMMENT_tooLong: "Comment too long",
 
   FOLLOWERS_emptyList: "No followers",
   FOLLOWERS_loadMore: "Load more",

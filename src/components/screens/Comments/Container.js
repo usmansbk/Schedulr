@@ -82,20 +82,18 @@ export default class Container extends React.Component {
       user,
       comments,
       noReply,
+      isOwner
     } = this.props;
 
-    const uri = user.avatar ? getImageUrl(user.avatar) : user.pictureUrl;
-    
     return (
       <>
       <Screen
+        isOwner={isOwner}
         noReply={noReply}
         loading={loading}
         title={this.props.navigation.getParam('title')}
         error={Boolean(error)}
         comments={comments.sort((a, b) => -(Date.parse(a.createdAt) - Date.parse(b.createdAt)))}
-        userName={user.name}
-        userPictureUrl={uri}
         userId={user.id}
         ref={commentsRef => this._commentsRef = commentsRef}
         targetName={targetName}

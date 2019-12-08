@@ -130,6 +130,7 @@ export const getCommentThread = `query GetCommentThread($id: ID!, $limit: Int, $
 export const getEventComments = `query GetEventComments($id: ID!, $limit: Int, $nextToken: String) {
   getEventComments: getEvent(id: $id) {
     id
+    isOwner
     schedule {
       id
     }

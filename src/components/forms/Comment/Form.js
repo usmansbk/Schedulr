@@ -8,6 +8,8 @@ import { I18n } from 'aws-amplify';
 import FileSelect from 'components/lists/FileSelect';
 import logger from 'config/logger';
 
+const MAX_LENGTH = 240;
+
 class CommentInput extends React.Component {
   state = {
     isSubmitting: false,
@@ -44,7 +46,13 @@ class CommentInput extends React.Component {
     }
   };
 
-  _onChangeText = (message) => this.setState({ message });
+  _onChangeText = (message) => {
+    if (message.length < MAX_LENGTH || this.props.isOwner) {
+      this.setState({ message });
+    } else {
+      this.props.stores.snackbar.show(I18n.get('COMMENT_tooLong'));
+    }
+  };
 
   focusInput = () => this._textInputRef && this._textInputRef.focus();
 
