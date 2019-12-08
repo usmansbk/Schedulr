@@ -41,10 +41,10 @@ class ImageViewerContainer extends React.Component {
       }
       try {
         await onRemovePhoto();
-        this.setState({ loading: false, showRemoveImageAlert: false });
       } catch (error) {
         logger.logError(error);
       }
+      this.setState({ loading: false, showRemoveImageAlert: false });
     } else {
       this.props.stores.snackbar.show(I18n.get("ERROR_noConnection"));
     }
