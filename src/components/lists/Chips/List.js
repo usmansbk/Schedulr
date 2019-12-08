@@ -50,6 +50,7 @@ class List extends React.Component {
         showsHorizontalScrollIndicator={false}
         extraData={stores.appState.discoverFilter}
         getItemLayout={this._getItemLayout}
+        keyboardShouldPersistTaps="always"
       />
     );
   }

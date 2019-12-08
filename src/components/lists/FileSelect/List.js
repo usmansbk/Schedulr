@@ -47,6 +47,7 @@ class FileSelect extends React.Component {
           initialNumToRender={4}
           keyExtractor={this._keyExtractor}
           showsHorizontalScrollIndicator={false}
+          keyboardShouldPersistTaps="always"
         />
         <IconButton
           onPress={onCancel}
