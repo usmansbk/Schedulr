@@ -22,8 +22,7 @@ class CommentInput extends React.Component {
           DocumentPicker.types.allFiles
         ]
       });
-      this.setState({ uploads: response });
-      console.log(JSON.stringify(response));
+      this.setState({ uploads: response});
     } catch (error) {
       if (DocumentPicker.isCancel(error)) {
         // Do nothing
