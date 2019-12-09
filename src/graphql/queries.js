@@ -108,6 +108,13 @@ export const getCommentThread = `query GetCommentThread($id: ID!, $limit: Int, $
         id
         content
         isOwner
+        attachment {
+          key
+          bucket
+          name
+          size
+          type
+        }
         author {
           id
           name
@@ -140,6 +147,13 @@ export const getEventComments = `query GetEventComments($id: ID!, $limit: Int, $
         content
         isOwner
         isOffline
+        attachment {
+          key
+          bucket
+          name
+          size
+          type
+        }
         to {
           id
           content
