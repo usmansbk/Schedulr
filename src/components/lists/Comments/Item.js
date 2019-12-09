@@ -91,9 +91,13 @@ class Item extends React.Component {
           }
           <View style={styles.itemContent}>  
             <Hyperlink linkStyle={styles.linkStyle} linkDefault={true}>
-              <Paragraph style={styles.message}>
-                {content}
-              </Paragraph>
+              {
+                Boolean(content) && (
+                  <Paragraph style={styles.message}>
+                    {content}
+                  </Paragraph>
+                )
+              }
             </Hyperlink>
             <View style={styles.footer}>
               {

@@ -358,6 +358,13 @@ export const createComment = `mutation CreateComment($input: CreateCommentInput!
     content
     isOwner
     isOffline
+    attachment {
+      key
+      bucket
+      name
+      size
+      type
+    }
     to {
       id
       content

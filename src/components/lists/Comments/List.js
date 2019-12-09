@@ -22,6 +22,7 @@ class List extends React.Component {
   _renderItem = ({ item: {
       id,
       content,
+      attachment,
       author,
       event,
       to,
@@ -29,6 +30,7 @@ class List extends React.Component {
       createdAt,
     }
   }) => {
+    if (attachment) console.log(attachment);
     return (
       <Item
         id={id}

@@ -262,6 +262,7 @@ function createComment(input, typename) {
   const comment = {
     id: input.id,
     content: input.content,
+    attachment: input.attachment ? input.attachment : null,
     isOwner: true,
     isOffline: true,
     to,
