@@ -138,7 +138,7 @@ class CommentInput extends React.Component {
             size={24}
             color={colors.primary}
             icon={({ size, color }) => <Icon
-               name="feather"
+               name="send"
                size={size}
                color={color}
              />}
