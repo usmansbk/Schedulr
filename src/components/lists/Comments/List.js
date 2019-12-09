@@ -62,7 +62,7 @@ class List extends React.Component {
     if (this.props.comments.length) {
       this._listRef && this._listRef.scrollToEnd();
     }
-  }
+  };
   scrollTop = () => {
     if (this.props.comments.length) {
       this._listRef && this._listRef.scrollToIndex({
@@ -70,7 +70,7 @@ class List extends React.Component {
         viewPosition: 0
       });
     }
-  }
+  };
   
   _onEndReached = async () => {
     const { nextToken, fetchMoreComments, loading } = this.props;
@@ -96,7 +96,6 @@ class List extends React.Component {
 
     return (
       <FlatList
-        inverted
         ref={ref => this._listRef = ref}
         style={styles.list}
         contentContainerStyle={styles.contentContainer}
@@ -106,7 +105,6 @@ class List extends React.Component {
         ListFooterComponent={this._renderFooter}
         ListEmptyComponent={this._renderEmpty}
         ItemSeparatorComponent={this._renderSeparator}
-        ListHeaderComponent={this._renderHeader}
         refreshControl={
           <RefreshControl
             refreshing={loading && !fetchingMore}
