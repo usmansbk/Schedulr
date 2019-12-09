@@ -35,9 +35,11 @@ class CommentInput extends React.Component {
   };
 
   _onSubmit = () => {
-    if (this.state.message.trim()) {
+    if (this.state.message.trim() || this.state.uploads.length) {
+      let message = this.state.message.trim();
+
       this.setState({ isSubmitting: true });
-      this.props.handleSubmit(this.state.message.trim());
+      this.props.handleSubmit(message || null);
       this.setState({
         isSubmitting: false,
         message: '',
@@ -78,12 +80,13 @@ class CommentInput extends React.Component {
     
     const {
       isSubmitting,
-      message
+      message,
+      uploads
     } = this.state; 
 
     const styles = stores.appStyles.commentInput;
     const colors = stores.themeStore.colors;
-    const invalid = isSubmitting || !message.trim() || disabled;
+    const invalid = isSubmitting || !(message.trim() || uploads.length) || disabled;
 
     return (
       <>
@@ -94,7 +97,7 @@ class CommentInput extends React.Component {
                 numberOfLines={1}
                 ellipsizeMode="tail"
                 style={styles.alertTitle}
-              >Replying <Text style={styles.targetName}>{targetName}</Text>
+              >{I18n.get('Replying')} <Text style={styles.targetName}>{targetName}</Text>
               </Text>
               <Button compact mode="text" onPress={cancelReply}>{I18n.get("BUTTON_cancel")}</Button>
             </View>
@@ -116,7 +119,7 @@ class CommentInput extends React.Component {
                size={size}
                color={color}
              />}
-            disabled={invalid}
+            disabled={isSubmitting || disabled}
             onPress={this._openPicker}
             style={styles.right}
           />
