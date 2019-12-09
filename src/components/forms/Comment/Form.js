@@ -159,6 +159,7 @@ class CommentInput extends React.Component {
             data={this.state.uploads}
             onCancel={this._cancelUpload}
             onPressItem={this._onPressItem}
+            disabled={isSubmitting}
           />
         )}
         <View style={styles.container}>

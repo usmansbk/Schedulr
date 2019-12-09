@@ -7,7 +7,7 @@ class Item extends React.Component {
   _onPress = () => this.props.onPress(this.props.uri);
   
   render() {
-    const { stores, type, uri } = this.props;
+    const { stores, type, uri, disabled } = this.props;
     const styles = stores.appStyles.fileSelect;
     let source;
     if (type.includes('image')) {
@@ -29,7 +29,7 @@ class Item extends React.Component {
     }
 
     return (
-      <TouchableRipple style={styles.itemContainer} onPress={this._onPress}>
+      <TouchableRipple disabled={disabled} style={styles.itemContainer} onPress={this._onPress}>
         <View style={styles.itemContent}>
           <Image style={{width: 60, height: 60}} source={source} resizeMode="contain" />
         </View>

@@ -24,6 +24,7 @@ class FileSelect extends React.Component {
   _renderItem = ({ item }) => {
     return (
       <Item
+        disabled={this.props.disabled}
         name={item.name}
         uri={item.uri}
         type={item.type}
@@ -35,7 +36,7 @@ class FileSelect extends React.Component {
   _keyExtractor = (item) => item.uri;
 
   render() {
-    const { stores, onCancel } = this.props;
+    const { stores, onCancel, disabled } = this.props;
     return (
       <View style={stores.appStyles.fileSelect.view}>
         <FlatList
@@ -50,6 +51,7 @@ class FileSelect extends React.Component {
           keyboardShouldPersistTaps="always"
         />
         <IconButton
+          disabled={disabled}
           onPress={onCancel}
           color={stores.themeStore.colors.gray}
           icon={({ size, color }) => <Icon
