@@ -62,7 +62,7 @@ class ImageViewerContainer extends React.Component {
         } else {
           const { type, uri, fileName, fileSize } = response;
           if (fileSize > (MAX_FILE_SIZE + EPSILON)) {
-            this.props.stores.snackbar.show(I18n.get("WARNING_fileTooLarge"));
+            this.props.stores.snackbar.show(I18n.get("WARNING_fileTooLarge"), true);
           } else {
             try {
               const key = `${folder}/${id}${fileName}`;
