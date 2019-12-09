@@ -28,11 +28,11 @@ export default class Container extends React.Component {
     this._commentsRef && this._commentsRef.focusCommentInput();
   };
   _blurCommentInput = () => {
-    this._commentsRef && this._commentsRef.blurCommentInput();
+    // this._commentsRef && this._commentsRef.blurCommentInput();
   };
   _scrollDown = () => {
     this._commentsRef && this._commentsRef.scrollDown();
-  }
+  };
   _onSubmit = (message) => {
     const hash = uuidv5(this.props.stores.appState.userId, uuidv5.DNS);
     const sort = shortid.generate();
@@ -65,7 +65,7 @@ export default class Container extends React.Component {
       this.state.visibleDialog !== nextState.visibleDialog ||
       this.state.commentToId !== nextState.commentToId
     );
-  }
+  };
 
   render() {
     const {

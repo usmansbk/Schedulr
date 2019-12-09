@@ -4,6 +4,7 @@ import { inject, observer } from 'mobx-react';
 import Item from './Item';
 import Footer from './Footer';
 import Empty from './Empty';
+import Header from './Header';
 import Separator from './Separator';
 import getImageUrl from 'helpers/getImageUrl';
 import { calendarTime } from 'lib/time';
@@ -49,6 +50,7 @@ class List extends React.Component {
       />
     );
   }
+  _renderHeader = () => <Header />;
   _renderSeparator = () => <Separator />;
   _renderFooter = () => <Footer
     hide={!this.props.comments.length}
@@ -94,6 +96,7 @@ class List extends React.Component {
 
     return (
       <FlatList
+        inverted
         ref={ref => this._listRef = ref}
         style={styles.list}
         contentContainerStyle={styles.contentContainer}
@@ -103,6 +106,7 @@ class List extends React.Component {
         ListFooterComponent={this._renderFooter}
         ListEmptyComponent={this._renderEmpty}
         ItemSeparatorComponent={this._renderSeparator}
+        ListHeaderComponent={this._renderHeader}
         refreshControl={
           <RefreshControl
             refreshing={loading && !fetchingMore}
@@ -113,6 +117,7 @@ class List extends React.Component {
         }
         onEndReachedThreshold={0.5}
         onEndReached={this._onEndReached}
+        keyboardShouldPersistTaps="always"
       />
     )
   }
