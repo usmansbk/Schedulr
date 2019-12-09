@@ -279,6 +279,7 @@ export default {
   ERROR_failedToCreateEvent: title => `Failed to publish event: ${title}.`,
   ERROR_failedToCreateSchedule: name => `Failed to save schedule: ${name}.`,
   ERROR_failedToCreateComment: content => `Failed to deliver comment: ${content}.`,
+  ERROR_failedToSendFiles: count => `Failed to send ${count} file${count > 1 ? 's' : ''}`,
   ERROR_failedToCreateBookmark: 'Failed to bookmark event.',
   ERROR_failedToCreateFollow: 'Failed to follow schedule.',
   ERROR_failedToDeleteEvent: 'Failed to delete event.',

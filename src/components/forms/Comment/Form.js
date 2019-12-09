@@ -73,8 +73,7 @@ class CommentInput extends React.Component {
           }
         } catch(error) {
           failed.push(doc);
-          this.props.stores.snackbar.show(error.message, true);
-          console.log(error);
+          logger.logError(error);
         }
       }
       if (docs.length) {
@@ -84,6 +83,11 @@ class CommentInput extends React.Component {
           message: '',
           uploads: failed 
         });
+      } else {
+        this.setState({ isSubmitting: false });
+      }
+      if (failed.length) {
+        this.props.stores.snackbar.show(I18n.get('ERROR_failedToSendFiles')(failed.length), true);
       }
 
     } else if (message) {
