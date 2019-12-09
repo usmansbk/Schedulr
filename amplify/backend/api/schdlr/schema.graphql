@@ -196,6 +196,7 @@ type S3Object {
   region: String!
   type: String
   size: String
+  name: String
 }
 
 type Location {
