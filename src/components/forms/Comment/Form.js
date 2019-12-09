@@ -1,14 +1,21 @@
 import React from 'react';
 import { View, TextInput } from 'react-native';
-import { IconButton, Text, Button } from 'react-native-paper';
+import { IconButton, Text, Button, ActivityIndicator } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/Feather';
 import DocumentPicker from 'react-native-document-picker';
 import { inject, observer } from 'mobx-react';
-import { I18n } from 'aws-amplify';
+import { I18n, Storage } from 'aws-amplify';
 import FileSelect from 'components/lists/FileSelect';
 import logger from 'config/logger';
+import config from 'aws_config';
 
 const MAX_LENGTH = 240;
+const MAX_FILE_SIZE = 10000 * 1024;
+
+const {
+  aws_user_files_s3_bucket: bucket,
+  aws_user_files_s3_bucket_region: region
+} = config;
 
 class CommentInput extends React.Component {
   state = {
@@ -35,17 +42,55 @@ class CommentInput extends React.Component {
   };
 
   _onSubmit = async () => {
-    if (this.state.message.trim() || this.state.uploads.length) {
-      let message = this.state.message.trim();
-      if (uploads.length) {
-      }
+    const { uploads } = this.state;
+    let message = this.state.message.trim();
+    if (uploads.length) {
+      const { id } = this.props;
+      let docs = [];
+      let failed = [];
 
       this.setState({ isSubmitting: true });
-      await this.props.handleSubmit(message || null);
+      for (let doc of uploads) {
+        const { type, uri, name, size} = doc;
+        const key = `uploads/${id}${name}`;
+        const fileForUpload = {
+          key,
+          bucket,
+          region,
+          type,
+          size,
+          // name
+        };
+        try {
+          if (uri) {
+            const fetchResponse = await fetch(uri);
+            const blob = await fetchResponse.blob();
+            await Storage.put(key, blob, {
+              contentType: type,
+              level: 'private'
+            });
+            docs.push(fileForUpload);
+          }
+        } catch(error) {
+          failed.push(doc);
+          this.props.stores.snackbar.show(error.message, true);
+          console.log(error);
+        }
+      }
+      if (docs.length) {
+        this.props.handleSubmit(message || null, docs);
+        this.setState({
+          isSubmitting: false,
+          message: '',
+          uploads: failed 
+        });
+      }
+
+    } else if (message) {
+      this.props.handleSubmit(message || null);
       this.setState({
         isSubmitting: false,
         message: '',
-        uploads: []
       });
     }
   };
@@ -139,18 +184,22 @@ class CommentInput extends React.Component {
               disabled={disabled}
             />
           </View>
-          <IconButton
-            size={24}
-            color={colors.primary}
-            icon={({ size, color }) => <Icon
-               name="send"
-               size={size}
-               color={color}
-             />}
-            disabled={invalid}
-            onPress={this._onSubmit}
-            style={styles.right}
-          />
+          {
+            isSubmitting ? <ActivityIndicator animating /> : (
+              <IconButton
+                size={24}
+                color={colors.primary}
+                icon={({ size, color }) => <Icon
+                  name="send"
+                  size={size}
+                  color={color}
+                />}
+                disabled={invalid}
+                onPress={this._onSubmit}
+                style={styles.right}
+              />
+            )
+          }
         </View>
       </>
     );

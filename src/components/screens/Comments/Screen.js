@@ -31,6 +31,7 @@ class Screen extends React.Component {
 
   render() {
     const {
+      id,
       loading,
       targetName,
       comments,
@@ -87,6 +88,7 @@ class Screen extends React.Component {
         {
           noReply ? null : (
           <CommentForm
+            id={id}
             isOwner={isOwner}
             ref={inputRef => this._inputRef = inputRef}
             handleSubmit={this._handleSubmit}
