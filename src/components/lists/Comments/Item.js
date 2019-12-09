@@ -102,7 +102,7 @@ class Item extends React.Component {
                     {isOwner && <IconButton
                       color={colors.light_gray_3}
                       icon={() => <Icon
-                        size={20}
+                        size={18}
                         name="trash-2"
                         color={colors.light_gray_3}
                       />}
@@ -110,7 +110,7 @@ class Item extends React.Component {
                     />}
                     <IconButton
                       icon={() => <Icon
-                        size={20}
+                        size={18}
                         name="feather"
                         color={colors.light_gray_3}
                       />}

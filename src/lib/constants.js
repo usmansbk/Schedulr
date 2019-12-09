@@ -102,7 +102,7 @@ export const schedule_events = {
 // list/commentsList
 export const comments_list = {
   AVATAR_SIZE : 32,
-  SEPARATOR_HEIGHT : 4
+  SEPARATOR_HEIGHT : 2
 };
 
 // form/comment
