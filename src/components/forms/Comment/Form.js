@@ -34,12 +34,14 @@ class CommentInput extends React.Component {
     }
   };
 
-  _onSubmit = () => {
+  _onSubmit = async () => {
     if (this.state.message.trim() || this.state.uploads.length) {
       let message = this.state.message.trim();
+      if (uploads.length) {
+      }
 
       this.setState({ isSubmitting: true });
-      this.props.handleSubmit(message || null);
+      await this.props.handleSubmit(message || null);
       this.setState({
         isSubmitting: false,
         message: '',

@@ -20,8 +20,8 @@ class Screen extends React.Component {
 
   scrollTop = () => this._commentsListRef && this._commentsListRef.scrollTop();
 
-  _handleSubmit = (message) => {
-    this.props.onSubmit(message);
+  _handleSubmit = async (message, uploads) => {
+    await this.props.onSubmit(message, uploads);
     this.scrollTop();
   };
 

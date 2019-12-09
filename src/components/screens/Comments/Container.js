@@ -33,7 +33,7 @@ export default class Container extends React.Component {
   _scrollDown = () => {
     this._commentsRef && this._commentsRef.scrollDown();
   };
-  _onSubmit = (message) => {
+  _onSubmit = async (message, attachments) => {
     const hash = uuidv5(this.props.stores.appState.userId, uuidv5.DNS);
     const sort = shortid.generate();
     const id = `${hash}-${sort}`;
@@ -41,8 +41,11 @@ export default class Container extends React.Component {
       id,
       content: message,
       commentEventId: this.props.commentEventId,
-      commentScheduleId: this.props.commentScheduleId
+      commentScheduleId: this.props.commentScheduleId,
     };
+    if (attachments) {
+      input.attachments = attachments;
+    }
     
     if (this.state.commentToId) {
       input.commentToId = this.state.commentToId;
