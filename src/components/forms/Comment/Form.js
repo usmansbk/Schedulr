@@ -59,7 +59,7 @@ class CommentInput extends React.Component {
           region,
           type,
           size,
-          // name
+          name
         };
         try {
           if (uri) {
