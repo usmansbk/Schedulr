@@ -15,17 +15,17 @@ class Item extends React.Component {
         uri
       };
     } else if (type.includes('audio')) {
-      source = require('./img/audio.png'); 
+      source = require('../../../assets/audio.png');
     } else if (type.includes('video')) {
-      source = require('./img/video.png');
+      source = require('../../../assets/video.png');
     } else if (type.includes('pdf')) {
-      source = require('./img/pdf.png');
+      source = require('../../../assets/pdf.png');
     } else if (type.includes('text')) {
-      source = require('./img/txt.png');
+      source = require('../../../assets/txt.png');
     } else if (type.includes('zip') || (type.includes('compressed') || type.includes('archive'))) {
-      source = require('./img/zip.png'); 
+      source = require('../../../assets/zip.png'); 
     } else {
-      source = require('./img/doc.png'); 
+      source = require('../../../assets/doc.png'); 
     }
 
     return (

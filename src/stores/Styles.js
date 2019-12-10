@@ -21,6 +21,41 @@ export default class AppStyles {
     this.settings = settingsStore;
   }
 
+  @computed get media() {
+    const colors = this.settings.dark ? dark : light;
+
+    return StyleSheet.create({
+      view: {
+        marginVertical: 8,
+        borderWidth: 1,
+        borderColor: colors.light_gray,
+        justifyContent: 'center',
+      },
+      image: {
+        height: 200
+      },
+      docName: {
+        fontSize: 14,
+        margin: 0,
+        padding: 0
+      },
+      docContent: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        borderRadius: 4,
+        backgroundColor: colors.light_gray,
+      },
+      docBody: {
+        paddingVertical: 4,
+      },
+      mediaIcon: {
+        width: 40,
+        height: 40
+      }
+    });
+  }
+
   @computed get fileSelect () {
     const colors = this.settings.dark ? dark : light;
     const ITEM_HEIGHT = 60;

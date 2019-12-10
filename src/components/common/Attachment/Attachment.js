@@ -1,15 +1,17 @@
 import React from 'react';
-import { Image, View } from 'react-native';
-import { inject, observer } from 'mobx-react';
+import { View } from 'react-native';
+import Media from './Media';
 
-class Attachment extends React.Component {
+export default class Attachment extends React.Component {
   render() {
+    const { attachment } = this.props;
+
     return (
       <View>
-        <Image />
+        {
+          Boolean(attachment) && attachment.map(file => <Media file={file} />)
+        }
       </View>
     )
   }
 }
-
-export default inject('stores')(observer(Attachment));
