@@ -12,6 +12,7 @@ import { inject, observer } from 'mobx-react';
 import Icon from 'react-native-vector-icons/Feather';
 import UserAvatar from 'components/common/UserAvatar';
 import { comments_list } from 'lib/constants';
+import Attachment from 'components/common/Attachment';
 
 const { AVATAR_SIZE } = comments_list;
 
@@ -90,15 +91,16 @@ class Item extends React.Component {
             )
           }
           <View style={styles.itemContent}>  
-            <Hyperlink linkStyle={styles.linkStyle} linkDefault={true}>
-              {
-                Boolean(content) && (
+            {
+              Boolean(content) && (
+                <Hyperlink linkStyle={styles.linkStyle} linkDefault={true}>
                   <Paragraph style={styles.message}>
                     {content}
                   </Paragraph>
-                )
-              }
-            </Hyperlink>
+                </Hyperlink>
+              )
+            }
+            { Boolean(attachment) && <Attachment attachment={attachment} /> }
             <View style={styles.footer}>
               {
                 noReply ? null : (
