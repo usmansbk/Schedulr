@@ -6949,10 +6949,10 @@ react-native-gesture-handler@^1.5.2:
     invariant "^2.2.4"
     prop-types "^15.7.2"
 
-react-native-hyperlink@^0.0.17:
-  version "0.0.17"
-  resolved "https://registry.yarnpkg.com/react-native-hyperlink/-/react-native-hyperlink-0.0.17.tgz#fb9c4592df06b85ea05d870aca71758589b4a536"
-  integrity sha512-0kZ6aodBqa17EjdV7ZcIApwJ8PCHtHLae6ktxgF49WjjQbGKADpbrs/60vsAAm+3/WWMdUqIdGis9S1OpE8sgg==
+react-native-hyperlink@^0.0.16:
+  version "0.0.16"
+  resolved "https://registry.yarnpkg.com/react-native-hyperlink/-/react-native-hyperlink-0.0.16.tgz#3f60f6d1fb86ea883c64a2cec3e9ee2c890ae739"
+  integrity sha512-3W+dK0u96XTbNzmjTV0NLBCjZuF3r87Zr1FwDYeob5fjeU9grc9dss5Rind/drJFmXH5hXRyhKxX0xFs1gULFw==
   dependencies:
     linkify-it "^2.2.0"
     mdurl "^1.0.0"
