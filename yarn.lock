@@ -1165,10 +1165,10 @@
     "@types/istanbul-reports" "^1.1.1"
     "@types/yargs" "^13.0.0"
 
-"@react-native-community/async-storage@^1.6.3":
-  version "1.6.3"
-  resolved "https://registry.yarnpkg.com/@react-native-community/async-storage/-/async-storage-1.6.3.tgz#1a713e8c5cacd543ab8539080a5ce57ad917da88"
-  integrity sha512-67K2akX90uc252zKMYJt1wISvaEH6ARtdTI9bUkwmOFXVPyVk1DfPnaRmyUzcVdeCBOO1n0xv9YO2GSppIormQ==
+"@react-native-community/async-storage@^1.7.0":
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/@react-native-community/async-storage/-/async-storage-1.7.0.tgz#75e8795cfadef5005228fd1f8a0b0178d50924a2"
+  integrity sha512-6SdZhoS6ykkIPJeJkJ5pwxmRfdQbDILQxRlZLXVzsV0WA9wmcf7FutKXBEX9dlSPbYTbjo7L3xbXQkZXsMzZBA==
 
 "@react-native-community/cli-debugger-ui@^3.0.0":
   version "3.0.0"
@@ -6949,10 +6949,10 @@ react-native-gesture-handler@^1.5.2:
     invariant "^2.2.4"
     prop-types "^15.7.2"
 
-react-native-hyperlink@^0.0.16:
-  version "0.0.16"
-  resolved "https://registry.yarnpkg.com/react-native-hyperlink/-/react-native-hyperlink-0.0.16.tgz#3f60f6d1fb86ea883c64a2cec3e9ee2c890ae739"
-  integrity sha512-3W+dK0u96XTbNzmjTV0NLBCjZuF3r87Zr1FwDYeob5fjeU9grc9dss5Rind/drJFmXH5hXRyhKxX0xFs1gULFw==
+react-native-hyperlink@^0.0.17:
+  version "0.0.17"
+  resolved "https://registry.yarnpkg.com/react-native-hyperlink/-/react-native-hyperlink-0.0.17.tgz#fb9c4592df06b85ea05d870aca71758589b4a536"
+  integrity sha512-0kZ6aodBqa17EjdV7ZcIApwJ8PCHtHLae6ktxgF49WjjQbGKADpbrs/60vsAAm+3/WWMdUqIdGis9S1OpE8sgg==
   dependencies:
     linkify-it "^2.2.0"
     mdurl "^1.0.0"

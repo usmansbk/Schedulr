@@ -13,7 +13,7 @@
     "android-debug": "(npm run clean-android) & (react-native run-android)"
   },
   "dependencies": {
-    "@react-native-community/async-storage": "^1.6.3",
+    "@react-native-community/async-storage": "^1.7.0",
     "@react-native-community/netinfo": "^4.6.1",
     "@react-native-firebase/admob": "^6.2.0",
     "@react-native-firebase/app": "^6.2.0",
@@ -51,7 +51,7 @@
     "react-native-geodb": "^1.2.5",
     "react-native-geolocation-service": "^3.1.0",
     "react-native-gesture-handler": "^1.5.2",
-    "react-native-hyperlink": "^0.0.16",
+    "react-native-hyperlink": "^0.0.17",
     "react-native-image-picker": "^1.1.0",
     "react-native-modal-datetime-picker": "^7.6.0",
     "react-native-navigation-bar-color": "^1.0.0",
