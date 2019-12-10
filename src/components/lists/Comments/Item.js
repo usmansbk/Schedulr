@@ -12,13 +12,12 @@ import { inject, observer } from 'mobx-react';
 import Icon from 'react-native-vector-icons/Feather';
 import UserAvatar from 'components/common/UserAvatar';
 import { comments_list } from 'lib/constants';
-import { Storage } from 'aws-amplify';
 
 const { AVATAR_SIZE } = comments_list;
 
 class Item extends React.Component {
   state = {
-    showOptions: false
+    showOptions: false,
   };
   _onReply = () => this.props.handleReplyComment(this.props.id, this.props.authorName, this.props.authorId);
   _navigateToProfile = () => this.props.navigateToProfile(this.props.authorId);
@@ -31,13 +30,13 @@ class Item extends React.Component {
       }));
     }
   };
-  shouldComponentUpdate = (nextProps) => {
+  shouldComponentUpdate = (nextProps, nextState) => {
     return (
       nextProps.content !== this.props.content ||
       nextProps.timeAgo !== this.props.timeAgo ||
       nextProps.toCommentContent !== this.props.toCommentContent ||
       nextProps.authorPictureUrl !== this.props.authorPictureUrl
-    )
+    );
   };
 
   render() {
@@ -56,10 +55,6 @@ class Item extends React.Component {
 
     const styles = stores.appStyles.commentsList;
     const colors = stores.themeStore.colors;
-    if (attachment) {
-      const file = attachment[0];
-      Storage.get(file.key).then(response => console.log(JSON.stringify(response)))
-    }
     return (
       <View style={styles.itemContainer}>
         <View style={styles.itemLeft}>

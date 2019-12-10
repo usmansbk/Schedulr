@@ -70,7 +70,7 @@ class CommentInput extends React.Component {
             const blob = await fetchResponse.blob();
             await Storage.put(key, blob, {
               contentType: type,
-              level: 'private',
+              level: 'public',
               progressCallback: progress => {
                 this.setState(prev => ({
                   loaded: prev.loaded + progress.loaded
