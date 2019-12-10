@@ -30,7 +30,6 @@ class List extends React.Component {
       createdAt,
     }
   }) => {
-    if (attachment) console.log(attachment);
     return (
       <Item
         id={id}
@@ -39,6 +38,7 @@ class List extends React.Component {
         authorPictureUrl={author.avatar ? getImageUrl(author.avatar) : author.pictureUrl}
         isOwner={isOwner}
         content={content}
+        attachment={attachment}
         commentEventId={event.id}
         toCommentId={to && to.id}
         toCommentAuthorName={to && to.author.name}

@@ -45,6 +45,7 @@ class Item extends React.Component {
       content,
       timeAgo,
       isOwner,
+      attachment,
       authorPictureUrl,
       toCommentAuthorName,
       toCommentContent,
