@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, TextInput } from 'react-native';
-import { IconButton, Text, Button, ActivityIndicator } from 'react-native-paper';
+import { IconButton, Text, Button, ProgressBar, ActivityIndicator } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/Feather';
 import DocumentPicker from 'react-native-document-picker';
 import { inject, observer } from 'mobx-react';
@@ -21,7 +21,9 @@ class CommentInput extends React.Component {
   state = {
     isSubmitting: false,
     message: '',
-    uploads: []
+    uploads: [],
+    total: 0,
+    loaded: 0
   };
   
   _openPicker = async () => {
@@ -31,7 +33,8 @@ class CommentInput extends React.Component {
           DocumentPicker.types.allFiles
         ]
       });
-      this.setState({ uploads: response});
+      let total = response.reduce((accumulator, currentVal) => accumulator + Number(currentVal.size), 0);
+      this.setState({ uploads: response, total, loaded: 0 });
     } catch (error) {
       if (DocumentPicker.isCancel(error)) {
         // Do nothing
@@ -67,7 +70,12 @@ class CommentInput extends React.Component {
             const blob = await fetchResponse.blob();
             await Storage.put(key, blob, {
               contentType: type,
-              level: 'private'
+              level: 'private',
+              progressCallback: progress => {
+                this.setState(prev => ({
+                  loaded: prev.loaded + progress.loaded
+                }));
+              }
             });
             docs.push(fileForUpload);
           }
@@ -81,10 +89,17 @@ class CommentInput extends React.Component {
         this.setState({
           isSubmitting: false,
           message: '',
-          uploads: failed 
+          uploads: failed,
+          total: 0,
+          loaded: 0
         });
       } else {
-        this.setState({ isSubmitting: false });
+        this.setState({
+          isSubmitting: false,
+          message: '',
+          total: 0,
+          loaded: 0
+        });
       }
       if (failed.length) {
         this.props.stores.snackbar.show(I18n.get('ERROR_failedToSendFiles')(failed.length), true);
@@ -132,7 +147,9 @@ class CommentInput extends React.Component {
     const {
       isSubmitting,
       message,
-      uploads
+      uploads,
+      total,
+      loaded
     } = this.state; 
 
     const styles = stores.appStyles.commentInput;
@@ -155,12 +172,19 @@ class CommentInput extends React.Component {
           )
         }
         { Boolean(this.state.uploads.length) && (
+          <>
           <FileSelect
             data={this.state.uploads}
             onCancel={this._cancelUpload}
             onPressItem={this._onPressItem}
             disabled={isSubmitting}
           />
+          {
+            Boolean(isSubmitting) && (
+              <ProgressBar progress={loaded / total} />
+            )
+          }
+          </>
         )}
         <View style={styles.container}>
           <IconButton

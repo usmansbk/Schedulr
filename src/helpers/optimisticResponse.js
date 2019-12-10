@@ -258,11 +258,19 @@ function createComment(input, typename) {
   } else {
     event.commentsCount = 1;
   }
+  let attachment = null;
+  if (input.attachment) {
+    attachment = input.attachment.map(file => {
+      return Object.assign({}, file, {
+        __typename: 'S3Object'
+      });
+    });
+  }
   
   const comment = {
     id: input.id,
     content: input.content,
-    attachment: input.attachment ? input.attachment : null,
+    attachment,
     isOwner: true,
     isOffline: true,
     to,
