@@ -28,7 +28,8 @@ import {
   Banner,
   SchedulePicture,
   EventBookmarks,
-  Intro
+  Intro,
+  ViewEmbed
 } from 'components/screens';
 import Thread from 'components/screens/Comments/Thread';
 import colors from 'config/colors';
@@ -102,6 +103,12 @@ const AppStack = createStackNavigator({
   },
   Settings: {
     screen: Settings,
+    navigationOptions: {
+      header: null
+    }
+  },
+  ViewEmbed: {
+    screen: ViewEmbed,
     navigationOptions: {
       header: null
     }

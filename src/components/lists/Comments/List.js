@@ -46,6 +46,7 @@ class List extends React.Component {
         timeAgo={calendarTime(createdAt)}
         navigateToProfile={this.props.navigateToProfile}
         navigateToThread={this.props.navigateToThread}
+        navigateToViewEmbed={this.props.navigateToViewEmbed}
         onDelete={this.props.onDelete}
         handleReplyComment={this.props.handleReply}
         noReply={this.props.noReply}

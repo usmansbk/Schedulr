@@ -4,12 +4,12 @@ import Media from './Media';
 
 export default class Attachment extends React.Component {
   render() {
-    const { attachment } = this.props;
+    const { attachment, navigateToViewEmbed} = this.props;
 
     return (
       <View>
         {
-          Boolean(attachment) && attachment.map(file => <Media file={file} />)
+          Boolean(attachment) && attachment.map(file => <Media navigateToViewEmbed={navigateToViewEmbed} file={file} />)
         }
       </View>
     )

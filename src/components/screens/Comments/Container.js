@@ -54,6 +54,11 @@ export default class Container extends React.Component {
     this.props.onSubmit && this.props.onSubmit(input);
     this._cancelReply();
   };
+  _navigateToViewEmbed = ({ subtitle, uri, s3Object }) => this.props.navigation.navigate('ViewEmbed', {
+    subtitle,
+    uri,
+    s3Object
+  });
   _navigateToProfile = (id) => this.props.navigation.navigate('UserProfile', { id });
   _navigateToThread = (eventId, commentToId) => this.props.navigation.navigate('Thread', {
     id: eventId,
@@ -110,6 +115,7 @@ export default class Container extends React.Component {
         onRefresh={onRefresh}
         navigateToProfile={this._navigateToProfile}
         navigateToThread={this._navigateToThread}
+        navigateToViewEmbed={this._navigateToViewEmbed}
         fetchMoreComments={fetchMore}
         nextToken={nextToken}
       />

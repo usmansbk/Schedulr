@@ -23,6 +23,7 @@ class Item extends React.Component {
   _onReply = () => this.props.handleReplyComment(this.props.id, this.props.authorName, this.props.authorId);
   _navigateToProfile = () => this.props.navigateToProfile(this.props.authorId);
   _navigateToThread = () => this.props.navigateToThread(this.props.commentEventId, this.props.toCommentId, this.props.id);
+  _navigateToViewEmbed = (params) => this.props.navigateToViewEmbed(params);
   _onDelete = () => this.props.onDelete(this.props.id);
   _showOptions = () => {
     if (this.props.isOwner) {
@@ -100,7 +101,13 @@ class Item extends React.Component {
                 </Hyperlink>
               )
             }
-            { Boolean(attachment) && <Attachment attachment={attachment} /> }
+            { Boolean(attachment) && (
+              <Attachment
+                attachment={attachment}
+                navigateToViewEmbed={this._navigateToViewEmbed}
+              />
+            )
+            }
             <View style={styles.footer}>
               {
                 noReply ? null : (

@@ -7,7 +7,7 @@ import Icon from 'react-native-vector-icons/Feather';
 import Loading from '../Loading';
 
 export default inject("stores")(observer(
-  ({s3Object, goBack, title, uploadPhoto, deletePhoto, uri, stores, me, loading }) => (
+  ({s3Object, goBack, title, subtitle, uploadPhoto, deletePhoto, uri, stores, me, loading }) => (
     <>
     <Appbar.Header style={stores.appStyles.styles.header}>
       <Appbar.Action
@@ -21,6 +21,7 @@ export default inject("stores")(observer(
       />
       <Appbar.Content
         title={title}
+        subtitle={subtitle}
         titleStyle={stores.appStyles.styles.headerColor}
       />
       {

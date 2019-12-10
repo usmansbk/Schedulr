@@ -44,6 +44,7 @@ class Screen extends React.Component {
       cancelReply,
       navigateToProfile,
       navigateToThread,
+      navigateToViewEmbed,
       stores,
       fetchMoreComments,
       noReply,
@@ -83,6 +84,7 @@ class Screen extends React.Component {
           onDelete={this._handleDelete}
           navigateToProfile={navigateToProfile}
           navigateToThread={navigateToThread}
+          navigateToViewEmbed={navigateToViewEmbed}
           fetchMoreComments={fetchMoreComments}
         />
         {

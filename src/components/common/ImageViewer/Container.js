@@ -98,7 +98,7 @@ class ImageViewerContainer extends React.Component {
   };
 
   render() {
-    const { title, uri, me, s3Object, fit } = this.props;
+    const { title, subtitle, uri, me, s3Object, fit } = this.props;
 
     const url = s3Object ? getImageUrl(s3Object, 1040, fit) : uri;
     
@@ -108,6 +108,7 @@ class ImageViewerContainer extends React.Component {
         loading={this.state.loading}
         goBack={this._goBack}
         title={title}
+        subtitle={subtitle}
         uri={url}
         uploadPhoto={this._uploadPhoto}
         deletePhoto={this._showRemoveImageAlert}

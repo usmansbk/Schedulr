@@ -23,8 +23,10 @@ import Banner from './Banner';
 import SchedulePicture from './SchedulePicture';
 import EventBookmarks from './EventBookmarks';
 import Intro from './Intro';
+import ViewEmbed from './ViewEmbed';
 
 export {
+  ViewEmbed,
   AuthLoading,
   Login,
   Home,
