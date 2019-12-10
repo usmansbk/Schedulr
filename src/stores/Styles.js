@@ -47,6 +47,7 @@ export default class AppStyles {
         backgroundColor: colors.light_gray,
       },
       docBody: {
+        flex: 1,
         paddingVertical: 4,
       },
       mediaIcon: {
