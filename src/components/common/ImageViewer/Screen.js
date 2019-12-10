@@ -6,8 +6,27 @@ import { inject, observer } from 'mobx-react';
 import Icon from 'react-native-vector-icons/Feather';
 import Loading from '../Loading';
 
-export default inject("stores")(observer(
-  ({s3Object, goBack, title, subtitle, uploadPhoto, deletePhoto, uri, stores, me, loading }) => (
+class ImageViewer extends React.Component {
+  _downloadImage = () => {
+    const { s3Object: { key } } = this.props;
+    console.log('this', key);
+  };
+
+  render() {
+    const {
+      s3Object,
+      goBack,
+      title,
+      subtitle,
+      uploadPhoto,
+      deletePhoto,
+      uri,
+      stores,
+      me,
+      loading
+    } = this.props;
+
+    return (
     <>
     <Appbar.Header style={stores.appStyles.styles.header}>
       <Appbar.Action
@@ -24,16 +43,25 @@ export default inject("stores")(observer(
         subtitle={subtitle}
         titleStyle={stores.appStyles.styles.headerColor}
       />
+      <Appbar.Action
+        onPress={this._downloadImage}
+        color={stores.themeStore.colors.primary}
+        icon={({ color,size }) => <Icon
+          name="download"
+          size={size}
+          color={color}
+        />}
+      />
       {
         me && (
           <>
           {
             Boolean(s3Object) && (
               <Appbar.Action
+                onPress={deletePhoto}
                 color={stores.themeStore.colors.primary}
                 icon={({ color, size }) => <Icon
                   name="trash-2"
-                  onPress={deletePhoto}
                   size={size}
                   color={color}
                 />}
@@ -41,10 +69,10 @@ export default inject("stores")(observer(
             )
           }
           <Appbar.Action
+            onPress={uploadPhoto}
             color={stores.themeStore.colors.primary}
             icon={({ color, size }) => <Icon
               name="camera"
-              onPress={uploadPhoto}
               size={size}
               color={color}
             />}
@@ -67,4 +95,8 @@ export default inject("stores")(observer(
     </View>
     </>
   )
-));
+
+  }
+}
+
+export default inject("stores")(observer(ImageViewer));
