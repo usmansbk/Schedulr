@@ -12,6 +12,7 @@ import { inject, observer } from 'mobx-react';
 import Icon from 'react-native-vector-icons/Feather';
 import UserAvatar from 'components/common/UserAvatar';
 import { comments_list } from 'lib/constants';
+import { Storage } from 'aws-amplify';
 
 const { AVATAR_SIZE } = comments_list;
 
@@ -55,7 +56,10 @@ class Item extends React.Component {
 
     const styles = stores.appStyles.commentsList;
     const colors = stores.themeStore.colors;
-
+    if (attachment) {
+      const file = attachment[0];
+      Storage.get(file.key).then(response => console.log(JSON.stringify(response)))
+    }
     return (
       <View style={styles.itemContainer}>
         <View style={styles.itemLeft}>

@@ -90,15 +90,11 @@ class CommentInput extends React.Component {
           isSubmitting: false,
           message: '',
           uploads: failed,
-          total: 0,
-          loaded: 0
         });
       } else {
         this.setState({
           isSubmitting: false,
           message: '',
-          total: 0,
-          loaded: 0
         });
       }
       if (failed.length) {
