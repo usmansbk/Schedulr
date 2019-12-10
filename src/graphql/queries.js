@@ -9,6 +9,7 @@ export const me = `query GetUser($id: ID!) {
     avatar {
       key
       bucket
+      name
     }
     website
     bio
@@ -50,6 +51,7 @@ export const getUser = `query GetUser($id: ID!) {
     avatar {
       key
       bucket
+      name
     }
     website
     bio
@@ -80,6 +82,7 @@ export const getEvent = `query GetEvent($id: ID!) {
     banner {
       bucket
       key
+      name
     }
     author {
       id
@@ -122,6 +125,7 @@ export const getCommentThread = `query GetCommentThread($id: ID!, $limit: Int, $
           avatar {
             key
             bucket
+            name
           }
         }
         event {
@@ -169,6 +173,7 @@ export const getEventComments = `query GetEventComments($id: ID!, $limit: Int, $
           avatar {
             key
             bucket
+            name
           }
         }
         event {
@@ -198,6 +203,7 @@ export const getSchedule = `query GetSchedule($id: ID!) {
       avatar {
         key
         bucket
+        name
       }
       website
       bio
@@ -244,6 +250,7 @@ export const getScheduleEvents = `query GetScheduleWithEvents($id: ID!, $limit: 
         banner {
           bucket
           key
+          name
         }
         author {
           id
@@ -290,6 +297,7 @@ export const getUserBookmarks = `query GetBookmarks($id: ID!, $nextToken: String
           banner {
             bucket
             key
+            name
           }
           author {
             id
@@ -327,6 +335,7 @@ export const getUserSchedules = `query GetUserSchedules($id: ID!, $limit: Int) {
         picture {
           key
           bucket
+          name
         }
         author {
           id
@@ -335,6 +344,7 @@ export const getUserSchedules = `query GetUserSchedules($id: ID!, $limit: Int) {
           avatar {
             key
             bucket
+            name
           }
         }
         followersCount
@@ -359,6 +369,7 @@ export const getUserSchedules = `query GetUserSchedules($id: ID!, $limit: Int) {
           picture {
             key
             bucket
+            name
           }
           author {
             id
@@ -367,6 +378,7 @@ export const getUserSchedules = `query GetUserSchedules($id: ID!, $limit: Int) {
             avatar {
               key
               bucket
+              name
             }
             website
             bio
@@ -402,6 +414,7 @@ export const getUserData = `query GetUserData($id: ID!, $filter: ModelEventFilte
         picture {
           key
           bucket
+          name
         }
         author {
           id
@@ -434,6 +447,7 @@ export const getUserData = `query GetUserData($id: ID!, $filter: ModelEventFilte
             banner {
               bucket
               key
+              name
             }
             author {
               id
@@ -470,6 +484,7 @@ export const getUserData = `query GetUserData($id: ID!, $filter: ModelEventFilte
           picture {
             key
             bucket
+            name
           }
           author {
             id
@@ -478,6 +493,7 @@ export const getUserData = `query GetUserData($id: ID!, $filter: ModelEventFilte
             avatar {
               key
               bucket
+              name
             }
             website
             bio
@@ -508,6 +524,7 @@ export const getUserData = `query GetUserData($id: ID!, $filter: ModelEventFilte
               banner {
                 bucket
                 key
+                name
               }
               author {
                 id
@@ -554,6 +571,7 @@ export const getUserData = `query GetUserData($id: ID!, $filter: ModelEventFilte
           banner {
             bucket
             key
+            name
           }
           author {
             id
@@ -597,6 +615,7 @@ export const getDeltaUpdates = `query GetDeltaUpdates($lastSync: String!) {
       banner {
         bucket
         key
+        name
       }
       author {
         id
@@ -640,6 +659,7 @@ export const getNotifications = `query GetNotifications($lastSync: String!) {
     image {
       key
       bucket
+      name
     }
     timestamp
     entityId
@@ -665,6 +685,7 @@ export const listFollowers = `query GetScheduleFollowers($id: ID!, $limit: Int, 
           avatar {
             key
             bucket
+            name
           }
           website
           bio
@@ -700,6 +721,7 @@ export const searchEvents = `query SearchEvents($filter: SearchableEventFilterIn
       banner {
         bucket
         key
+        name
       }
       author {
         id
@@ -736,6 +758,7 @@ export const searchSchedules = `query SearchSchedules($filter: SearchableSchedul
         avatar {
           key
           bucket
+          name
         }
         website
         bio
@@ -747,6 +770,7 @@ export const searchSchedules = `query SearchSchedules($filter: SearchableSchedul
       picture {
         key
         bucket
+        name
       }
       followersCount
       eventsCount
@@ -765,6 +789,7 @@ export const searchPeople = `query SearchPeople($filter: SearchableUserFilterInp
       avatar {
         key
         bucket
+        name
       }
       website
       bio
@@ -790,6 +815,7 @@ export const listBookmarks = `query GetEventBookmarks($id: ID!, $limit: Int, $ne
           avatar {
             key
             bucket
+            name
           }
           website
           bio
@@ -825,6 +851,7 @@ export const nearbyEvents = `query GetNearbyEvents($location: LocationInput!, $k
       banner {
         bucket
         key
+        name
       }
       author {
         id

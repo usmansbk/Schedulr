@@ -10,6 +10,7 @@ export const createUser = `mutation CreateUser($input: CreateUserInput!) {
     avatar {
       key
       bucket
+      name
     }
     website
     bio
@@ -37,6 +38,7 @@ export const updateUser = `mutation UpdateUser($input: UpdateUserInput!) {
     avatar {
       key
       bucket
+      name
     }
     website
     bio
@@ -66,6 +68,7 @@ export const createEvent = `mutation CreateEvent($input: CreateEventInput!) {
     banner {
       bucket
       key
+      name
     }
     author {
       id
@@ -102,6 +105,7 @@ export const updateEvent = `mutation UpdateEvent($input: UpdateEventInput!) {
     banner {
       bucket
       key
+      name
     }
     updatedAt
   }
@@ -140,6 +144,7 @@ export const createBookmark = `mutation CreateBookmark($input: CreateBookmarkInp
       banner {
         bucket
         key
+        name
       }
       author {
         id
@@ -183,6 +188,7 @@ export const createSchedule = `mutation CreateSchedule($input: CreateScheduleInp
     picture {
       key
       bucket
+      name
     }
     author {
       id
@@ -214,6 +220,7 @@ export const createSchedule = `mutation CreateSchedule($input: CreateScheduleInp
         banner {
           bucket
           key
+          name
         }
         author {
           id
@@ -246,6 +253,7 @@ export const updateSchedule = `mutation UpdateSchedule($input: UpdateScheduleInp
     picture {
       key
       bucket
+      name
     }
   }
 }
@@ -275,6 +283,7 @@ export const createFollow = `mutation CreateFollow($input: CreateFollowInput!, $
       picture {
         key
         bucket
+        name
       }
       author {
         id
@@ -283,6 +292,7 @@ export const createFollow = `mutation CreateFollow($input: CreateFollowInput!, $
         avatar {
           key
           bucket
+          name
         }
         bio
         me
@@ -313,6 +323,7 @@ export const createFollow = `mutation CreateFollow($input: CreateFollowInput!, $
           banner {
             bucket
             key
+            name
           }
           author {
             id
@@ -380,6 +391,7 @@ export const createComment = `mutation CreateComment($input: CreateCommentInput!
       avatar {
         key
         bucket
+        name
       }
     }
     event {

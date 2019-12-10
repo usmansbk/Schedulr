@@ -70,7 +70,8 @@ class ImageViewerContainer extends React.Component {
                 key,
                 bucket,
                 region,
-                type
+                type,
+                name: fileName
               };
     
               if (uri) {

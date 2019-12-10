@@ -1,15 +1,46 @@
 import React from 'react';
 import PhotoView from 'react-native-photo-view';
-import { Appbar } from 'react-native-paper';
+import { Appbar, ProgressBar } from 'react-native-paper';
 import { View } from 'react-native';
 import { inject, observer } from 'mobx-react';
+import { Storage, I18n } from 'aws-amplify';
+import RNFS from 'react-native-fs';
+import FileViewer from 'react-native-file-viewer';
 import Icon from 'react-native-vector-icons/Feather';
 import Loading from '../Loading';
+import logger from 'config/logger';
 
 class ImageViewer extends React.Component {
-  _downloadImage = () => {
-    const { s3Object: { key } } = this.props;
-    console.log('this', key);
+  state = {
+    progress: 0
+  };
+
+  _downloadImage = async () => {
+    const { stores, s3Object: { key, name } } = this.props;
+    try {
+      const fromUrl = await Storage.get(key);
+      const toFile = `${RNFS.DocumentDirectoryPath}/${name}`
+      const options = {
+        fromUrl,
+        toFile,
+        progress: ({ bytesWritten, contentLength })=> {
+          this.setState({
+            progress: bytesWritten / contentLength
+          });
+        }
+      };
+
+      this.setState({ downloading: true });
+      stores.snackbar.show(I18n.get('Downloading'));
+      RNFS.downloadFile(options).promise
+        .then(() => {
+          FileViewer.open(toFile);
+          this.setState({ downloading: false });
+        });
+    } catch (error) {
+      this.setState({ downloading: false });
+      logger.logError(error);
+    }
   };
 
   render() {
@@ -25,6 +56,7 @@ class ImageViewer extends React.Component {
       me,
       loading
     } = this.props;
+    const { downloading, progress } = this.state;
 
     return (
     <>
@@ -82,6 +114,7 @@ class ImageViewer extends React.Component {
       }
     </Appbar.Header>
     <View style={{ flex: 1, justifyContent: 'center', backgroundColor: stores.themeStore.colors.bg }}>
+      { downloading && <ProgressBar progress={progress} />}
       {
         loading ? <Loading loading /> : (
           <PhotoView
