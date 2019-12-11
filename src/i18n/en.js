@@ -190,6 +190,7 @@ export default {
   TOAST_justAmoment: "Applying theme... Just a moment",
   TOAST_downloading: "Downloading...",
   TOAST_downloadFailed: "Download failed",
+  TOAST_fileTooLarge: name => `"${name.slice(0, 20)}..." is larger than 8mb`,
 
   PROFILE_FORM_name: "Name",
   PROFILE_FORM_website: "Website",

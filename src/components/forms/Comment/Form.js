@@ -10,7 +10,7 @@ import logger from 'config/logger';
 import config from 'aws_config';
 
 const MAX_LENGTH = 240;
-const MAX_FILE_SIZE = 10000 * 1024;
+const MAX_FILE_SIZE = 8000 * 1024;
 
 const {
   aws_user_files_s3_bucket: bucket,
@@ -65,7 +65,7 @@ class CommentInput extends React.Component {
           name
         };
         try {
-          if (uri) {
+          if (uri && (size <= MAX_FILE_SIZE)) {
             const fetchResponse = await fetch(uri);
             const blob = await fetchResponse.blob();
             await Storage.put(key, blob, {
@@ -78,6 +78,8 @@ class CommentInput extends React.Component {
               }
             });
             docs.push(fileForUpload);
+          } else {
+            this.props.stores.snackbar.show(I18n.get('TOAST_fileTooLarge')(name));
           }
         } catch(error) {
           failed.push(doc);
