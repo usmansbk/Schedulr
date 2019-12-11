@@ -64,7 +64,7 @@ class MediaItem extends React.Component {
 
   _downloadFile = async () => {
     const { file: { key, name }, stores } = this.props;
-    this.setState({ downloading: true });
+    this.setState({ downloading: true, progress: 0 });
     try {
       const fromUrl = await Storage.get(key);
       const toFile = `${RNFS.DocumentDirectoryPath}/${name}`
@@ -78,12 +78,17 @@ class MediaItem extends React.Component {
         }
       };
 
-      this.setState({ downloading: true });
-      await RNFS.downloadFile(options).promise
-        .then(() => {
-          FileViewer.open(toFile);
-          this.setState({ downloading: false });
-        });
+      const exists = await RNFS.exists(toFile);
+      if (exists) {
+        FileViewer.open(toFile);
+        this.setState({ downloading: false });
+      } else {
+        await RNFS.downloadFile(options).promise
+          .then((res) => {
+            FileViewer.open(toFile);
+            this.setState({ downloading: false });
+          });
+      }
     } catch (error) {
       this.setState({ downloading: false });
       stores.snackbar.show(I18n.get('TOAST_downloadFailed'), true);

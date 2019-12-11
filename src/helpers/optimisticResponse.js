@@ -226,6 +226,7 @@ function createComment(input, typename) {
       avatar {
         key
         bucket
+        name
       }
     }`,
     id: `User:${stores.appState.userId}`
@@ -304,6 +305,7 @@ function createBookmark(input, typename) {
       banner {
         bucket
         key
+        name
       }
       author {
         id
@@ -350,6 +352,7 @@ function createFollow(input, typename) {
       picture {
         key
         bucket
+        name
       }
       author {
         id
@@ -358,6 +361,7 @@ function createFollow(input, typename) {
         avatar {
           key
           bucket
+          name
         }
         me
         website
@@ -402,6 +406,7 @@ function createFollow(input, typename) {
             banner {
               bucket
               key
+              name
             }
             author {
               id
@@ -650,6 +655,7 @@ function updateSchedule(input, typename) {
       picture {
         key
         bucket
+        name
       }
     }`,
     id: `${typename}:${input.id}`
@@ -681,6 +687,7 @@ function updateEvent(input, typename) {
       banner {
         key
         bucket
+        name
       }
       commentsCount
       bookmarksCount

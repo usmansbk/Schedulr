@@ -11,12 +11,14 @@ import Loading from '../Loading';
 import logger from 'config/logger';
 
 class ImageViewer extends React.Component {
+
   state = {
     progress: 0
   };
 
   _downloadImage = async () => {
     const { stores, s3Object: { key, name } } = this.props;
+    this.setState({ downloading: true, progress: 0 });
     try {
       const fromUrl = await Storage.get(key);
       const toFile = `${RNFS.DocumentDirectoryPath}/${name}`
@@ -30,13 +32,18 @@ class ImageViewer extends React.Component {
         }
       };
 
-      this.setState({ downloading: true });
-      stores.snackbar.show(I18n.get('TOAST_downloading'));
-      await RNFS.downloadFile(options).promise
-        .then(() => {
-          FileViewer.open(toFile);
-          this.setState({ downloading: false });
-        });
+      const exists = await RNFS.exists(toFile);
+      if (exists) {
+        FileViewer.open(toFile);
+        this.setState({ downloading: false });
+      } else {
+        stores.snackbar.show(I18n.get('TOAST_downloading'));
+        await RNFS.downloadFile(options).promise
+          .then(() => {
+            FileViewer.open(toFile);
+            this.setState({ downloading: false });
+          });
+      }
     } catch (error) {
       this.setState({ downloading: false });
       stores.snackbar.show(I18n.get('TOAST_downloadFailed'), true);
