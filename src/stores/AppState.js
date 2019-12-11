@@ -1,3 +1,4 @@
+import { Storage } from 'aws-amplify';
 import { observable, action } from 'mobx';
 import { persist } from 'mobx-persist';
 import debounce from 'lodash.debounce';
@@ -28,6 +29,7 @@ export default class AppState {
   @persist @observable loggingIn = false;
   @persist @observable lastSyncTimestamp = moment().unix();
   
+  @persist('list') @observable keysToRemove = [];
   @persist('list') @observable mutedEvents = [];
   @persist('list') @observable mutedSchedules = [];
   @persist('list') @observable allowedEvents = [];
@@ -66,6 +68,7 @@ export default class AppState {
     this.loggingIn = false;
     this.userId = null;
     this.lastSyncTimestamp = moment().unix();
+    this.removeKeysFromStorage();
   }
 
   @action addCustomType = (category) => {
@@ -143,6 +146,20 @@ export default class AppState {
         this.loading = false;
       });
     }
+  }
+
+  @action removeKeysFromStorage(keys) {
+    const queue = this.keysToRemove.concat(keys);
+    const removed = [];
+    queue.forEach(key => {
+      Storage.remove(key).then(() => {
+        removed.push(key);
+      }).catch((error) => {
+        logger.log(error.message);
+      });
+    });
+    const filtered = queue.filter(key => removed.includes(key));
+    this.keysToRemove = filtered;
   }
 
   isToggled = (id) => this.discoverFilter === id.toLowerCase();

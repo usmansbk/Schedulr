@@ -11,17 +11,19 @@ export default class Container extends React.Component {
     commentToId: null,
     at: null,
     targetName: null,
+    meta: null
   }
   _goBack = () => this.props.navigation.goBack();
-  _onDelete = (id) => this._openDialog(id, 'delete');
+  _onDelete = (id, keys) => this._openDialog(id, 'delete', keys);
   _onReply = (commentToId, targetName, at) => this.setState({ commentToId, targetName, at }, this._focusCommentInput);
   _cancelReply = () => this.setState({ commentToId: null, targetName: null }, this._blurCommentInput);
-  _openDialog = (id, visibleDialog) => this.setState({
+  _openDialog = (id, visibleDialog, meta) => this.setState({
     visibleDialog,
     id,
     at: null,
     targetName: null,
-    commentToId: null
+    commentToId: null,
+    meta
   });
   _hideDialog = () => this.setState({ visibleDialog: null, id: null });
   _focusCommentInput = () => {
@@ -123,6 +125,7 @@ export default class Container extends React.Component {
         commentEventId={this.props.commentEventId}
         visible={visibleDialog === 'delete'}
         handleDismiss={this._hideDialog}
+        attachment={this.state.meta}
       />
       </>
     )

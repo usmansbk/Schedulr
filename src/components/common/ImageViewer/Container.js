@@ -33,7 +33,7 @@ class ImageViewerContainer extends React.Component {
       this.setState({ loading: true });
       if (s3Object) {
         try {
-          await Storage.remove(s3Object.key).catch();
+          this.props.stores.appState.removeKeysFromStorage([s3Object.key]);
           await onRemovePhoto();
         } catch(error) {
           this.props.stores.snackbar.show(I18n.get('ERROR_failedToRemoveImage'), true);
@@ -78,7 +78,7 @@ class ImageViewerContainer extends React.Component {
                 const fetchResponse = await fetch(uri);
                 const blob = await fetchResponse.blob();
                 this.setState({ loading: true });
-                if (s3Object) await Storage.remove(s3Object.key).catch();
+                if (s3Object) this.props.stores.appState.removeKeysFromStorage([s3Object.key]);
                 await Storage.put(key, blob, {
                   contentType: type
                 });

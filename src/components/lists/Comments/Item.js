@@ -24,7 +24,13 @@ class Item extends React.Component {
   _navigateToProfile = () => this.props.navigateToProfile(this.props.authorId);
   _navigateToThread = () => this.props.navigateToThread(this.props.commentEventId, this.props.toCommentId, this.props.id);
   _navigateToViewEmbed = (params) => this.props.navigateToViewEmbed(params);
-  _onDelete = () => this.props.onDelete(this.props.id);
+  _onDelete = () => {
+    let keys = [];
+    if (this.props.attachment) {
+      keys = this.props.attachment.map(file => file.key);
+    }
+    this.props.onDelete(this.props.id, keys);
+  };
   _showOptions = () => {
     if (this.props.isOwner) {
       this.setState(prev =>({

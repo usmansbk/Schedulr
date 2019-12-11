@@ -16,6 +16,8 @@ class DeleteComment extends React.Component {
     this.setState({ loading: true });
     this.props.onSubmit();
     this.setState({ loading: false });
+    console.log(this.props.attachment);
+    this.props.stores.appState.removeKeysFromStorage(this.props.attachment);
     this.props.handleDismiss();
   };
   

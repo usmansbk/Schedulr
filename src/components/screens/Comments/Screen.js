@@ -25,9 +25,9 @@ class Screen extends React.Component {
     this.scrollTop();
   };
 
-  _handleDelete = (id) => {
-    this.props.handleDelete(id);
-  }
+  _handleDelete = (id, keys) => {
+    this.props.handleDelete(id, keys);
+  };
 
   render() {
     const {
