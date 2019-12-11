@@ -29,7 +29,7 @@ const Doc = inject('stores')(observer(({ stores, onPress, file, downloading, pro
   }
 
   return (
-    <TouchableRipple onPress={onPress}>
+    <TouchableRipple onPress={onPress} disabled={downloading}>
       <>
       <View style={styles.docContent}>
         <Image

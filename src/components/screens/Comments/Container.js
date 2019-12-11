@@ -28,7 +28,7 @@ export default class Container extends React.Component {
     this._commentsRef && this._commentsRef.focusCommentInput();
   };
   _blurCommentInput = () => {
-    // this._commentsRef && this._commentsRef.blurCommentInput();
+    this._commentsRef && this._commentsRef.blurCommentInput();
   };
   _scrollDown = () => {
     this._commentsRef && this._commentsRef.scrollDown();
@@ -52,7 +52,6 @@ export default class Container extends React.Component {
       input.commentAtId = this.state.at;
     }
     this.props.onSubmit && this.props.onSubmit(input);
-    this._cancelReply();
   };
   _navigateToViewEmbed = ({ subtitle, uri, s3Object }) => this.props.navigation.navigate('ViewEmbed', {
     subtitle,
