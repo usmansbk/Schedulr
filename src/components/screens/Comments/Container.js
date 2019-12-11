@@ -104,7 +104,7 @@ export default class Container extends React.Component {
         loading={loading}
         title={this.props.navigation.getParam('title')}
         error={Boolean(error)}
-        comments={comments.sort((a, b) => -(Date.parse(a.createdAt) - Date.parse(b.createdAt)))}
+        comments={comments.sort((a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt))}
         userId={user.id}
         ref={commentsRef => this._commentsRef = commentsRef}
         targetName={targetName}

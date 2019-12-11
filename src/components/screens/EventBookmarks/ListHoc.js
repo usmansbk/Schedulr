@@ -22,8 +22,10 @@ export default graphql(gql(listBookmarks), {
     nextToken: data && data.listBookmarks && data.listBookmarks.bookmarks.nextToken,
     loading: data && (data.loading || data.networkStatus === 4 || data.networkStatus === 3),
     isBookmarks: true,
-    error: data.error,
-    onRefresh: () => data.refetch(),
+    error: !!data.error,
+    onRefresh: () => data.refetch({
+      nextToken: null
+    }),
     fetchMore: (nextToken) => data.fetchMore({
       variables: {
         nextToken

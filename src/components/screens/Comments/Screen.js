@@ -96,7 +96,7 @@ class Screen extends React.Component {
             handleSubmit={this._handleSubmit}
             targetName={targetName}
             cancelReply={cancelReply}
-            disabled={loading || error}
+            disabled={!comments.length && (loading || error)}
           />
           )
         }
