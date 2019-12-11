@@ -1,13 +1,13 @@
 import moment from 'moment';
 import 'twix';
 import { I18n } from 'aws-amplify';
-import { capitalize, decapitalize } from './utils';
+import { capitalize } from './utils';
 import { momentCounter } from './time';
 
 export const getCategory = (category) => {
   if (!category) return '';
   if (category.toLowerCase().trim() === 'normal') return '';
-  return decapitalize(category);
+  return category;
 };
 
 export const isEventCancelled = (event) => {
