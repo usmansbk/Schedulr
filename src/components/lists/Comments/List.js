@@ -43,6 +43,7 @@ class List extends React.Component {
         toCommentId={to && to.id}
         toCommentAuthorName={to && to.author.name}
         toCommentContent={to && to.content}
+        toAttachment={to && to.attachment}
         timeAgo={calendarTime(createdAt)}
         navigateToProfile={this.props.navigateToProfile}
         navigateToThread={this.props.navigateToThread}

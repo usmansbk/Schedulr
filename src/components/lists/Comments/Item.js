@@ -1,5 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, Image } from 'react-native';
 import {
   Text,
   Paragraph,
@@ -36,8 +36,9 @@ class Item extends React.Component {
     return (
       nextProps.content !== this.props.content ||
       nextProps.timeAgo !== this.props.timeAgo ||
+      nextProps.authorPictureUrl !== this.props.authorPictureUrl ||
       nextProps.toCommentContent !== this.props.toCommentContent ||
-      nextProps.authorPictureUrl !== this.props.authorPictureUrl
+      nextProps.toAttachment !== this.props.toAttachment
     );
   };
 
@@ -51,6 +52,7 @@ class Item extends React.Component {
       authorPictureUrl,
       toCommentAuthorName,
       toCommentContent,
+      toAttachment,
       stores,
       noReply
     } = this.props;
@@ -78,15 +80,22 @@ class Item extends React.Component {
             <Caption>{timeAgo}</Caption>
           </View>
           {
-            Boolean(toCommentContent) && (
+            (Boolean(toCommentContent) || Boolean(toAttachment)) && (
               <TouchableRipple onPress={this._navigateToThread}>
                 <View style={styles.replyBox}>
-                  <Caption
-                    numberOfLines={1}
-                    ellipsizeMode="tail"
-                    style={styles.replyName}
-                  >{toCommentAuthorName}</Caption>
-                  <Caption numberOfLines={3} ellipsizeMode="tail">{toCommentContent}</Caption>
+                  {
+                    Boolean(toAttachment && toAttachment.length) && (
+                      <Image source={require('../../../assets/doc.png')} style={{ width: 30, height: 30 }}/>
+                    )
+                  }
+                  <View style={styles.replyContent}>
+                    <Text
+                      numberOfLines={1}
+                      ellipsizeMode="tail"
+                      style={styles.replyName}
+                    >{toCommentAuthorName}</Text>
+                    <Caption numberOfLines={3} ellipsizeMode="tail">{toCommentContent || toAttachment[0].name}</Caption>
+                  </View>
                 </View>
               </TouchableRipple>
             )

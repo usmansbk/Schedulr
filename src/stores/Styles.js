@@ -1193,7 +1193,13 @@ export default class AppStyles {
       },
       replyBox: {
         backgroundColor: colors.light_gray,
+        flexDirection: 'row',
+        justifyContent: 'center',
         padding:4
+      },
+      replyContent: {
+        flex: 1,
+        justifyContent: 'center',
       },
       replyName: {
         color: colors.gray,

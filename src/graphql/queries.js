@@ -161,6 +161,9 @@ export const getEventComments = `query GetEventComments($id: ID!, $limit: Int, $
         to {
           id
           content
+          attachment {
+            name
+          }
           author {
             id
             name

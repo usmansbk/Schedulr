@@ -244,6 +244,9 @@ function createComment(input, typename) {
       fragment: gql`fragment toComment on Comment {    
         id
         content
+        attachment {
+          name
+        }
         author {
           id
           name
