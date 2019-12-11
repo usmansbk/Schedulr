@@ -2,6 +2,7 @@ import React from 'react';
 import { Linking, Platform } from 'react-native';
 import Help from './Help';
 import env from 'config/env';
+import logger from 'config/logger';
 
 export default class Screen extends React.Component {
   _goBack = () => this.props.navigation.goBack();
@@ -28,7 +29,7 @@ export default class Screen extends React.Component {
         break;
     }
     Linking.openURL(url)
-      .catch(console.log);
+      .catch(logger.logError);
   };
 
   render() {
