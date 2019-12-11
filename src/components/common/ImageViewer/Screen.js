@@ -32,13 +32,14 @@ class ImageViewer extends React.Component {
 
       this.setState({ downloading: true });
       stores.snackbar.show(I18n.get('TOAST_downloading'));
-      RNFS.downloadFile(options).promise
+      await RNFS.downloadFile(options).promise
         .then(() => {
           FileViewer.open(toFile);
           this.setState({ downloading: false });
         });
     } catch (error) {
       this.setState({ downloading: false });
+      stores.snackbar.show(I18n.get('TOAST_downloadFailed'), true);
       logger.logError(error);
     }
   };

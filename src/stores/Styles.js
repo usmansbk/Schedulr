@@ -34,6 +34,9 @@ export default class AppStyles {
       image: {
         height: 200
       },
+      caption: {
+        paddingHorizontal: 4
+      },
       docName: {
         fontSize: 14,
         margin: 0,

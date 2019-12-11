@@ -189,6 +189,7 @@ export default {
   TOAST_newNotifications: count => `${count} new notification${count > 1 ? 's' : ''}`,
   TOAST_justAmoment: "Applying theme... Just a moment",
   TOAST_downloading: "Downloading...",
+  TOAST_downloadFailed: "Download failed",
 
   PROFILE_FORM_name: "Name",
   PROFILE_FORM_website: "Website",
