@@ -1,14 +1,11 @@
 import React from 'react';
 import { Appbar } from 'react-native-paper';
-import { withNavigationFocus } from 'react-navigation';
 import Icon from 'react-native-vector-icons/Feather';
 import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
 import List from './ListHoc';
 
 class Bookmarks extends React.Component {
-  shouldComponentUpdate = nextProps => nextProps.navigation.isFocused();
-
   render() {
     const {
       id,
@@ -44,6 +41,4 @@ class Bookmarks extends React.Component {
   }
 }
 
-const withStores = inject("stores")(observer(Bookmarks))
-
-export default withNavigationFocus(withStores);
+export default inject("stores")(observer(Bookmarks));

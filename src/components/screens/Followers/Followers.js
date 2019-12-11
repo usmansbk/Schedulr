@@ -41,4 +41,4 @@ class Followers extends React.Component {
   }
 }
 
-export default inject("stores")(observer(Followers))
+export default inject("stores")(observer(Followers));

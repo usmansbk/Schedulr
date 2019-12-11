@@ -11,7 +11,8 @@ import {
   COMMENT_TYPE,
   FOLLOW_TYPE
 } from 'lib/constants';
-import { getUserData, getScheduleEvents } from 'api/queries';
+import { getUserData, getScheduleEvents, getEventComments } from 'api/queries';
+import logger from 'config/logger';
 
 const __typename = 'Mutation';
 
@@ -19,6 +20,12 @@ const eventConnection = {
   items: [],
   nextToken: null,
   __typename: "ModelEventConnection"
+};
+
+const commentConnection = {
+  items: [],
+  nextToken: null,
+  __typename: "ModelCommentConnection"
 };
 
 export default function buildOptimisticResponse({
@@ -138,6 +145,30 @@ function createEvent(input, typename) {
   }
   // ======================================================================
 
+  // ============================ Create comments =================================
+  try {
+    client.writeQuery({
+      query: gql(getEventComments),
+      variables: {
+        id: input.id
+      },
+      data: {
+        getEventComments: {
+          __typename: EVENT_TYPE,
+          id: input.id,
+          isOwner: true,
+          schedule: {
+            __typename: SCHEDULE_TYPE,
+            id: input.eventScheduleId
+          },
+          comments: commentConnection
+        }
+      }
+    });
+  } catch(error) {
+    logger.logError(error);
+  }
+  // ==============================================================================
   const createdAt = moment().toISOString();
 
   const event = {
@@ -177,7 +208,7 @@ function createSchedule(input, typename) {
     author.createdCount = 1;
   }
   const createdAt = moment().toISOString();
-
+  // ================== Create schedule events optimistic query =================
   try {
     client.writeQuery({
       query: gql(getScheduleEvents),
@@ -186,7 +217,7 @@ function createSchedule(input, typename) {
       },
       data: {
         getScheduleEvents: {
-          __typename: 'Schedule',
+          __typename: SCHEDULE_TYPE,
           id: input.id,
           isFollowing: false,
           isOwner: true,
@@ -195,9 +226,10 @@ function createSchedule(input, typename) {
         }
       }
     });
-  } catch(e) {
-    console.log(e);
+  } catch(error) {
+    logger.logError(error);
   }
+  // =========================================================================
 
   const schedule  = {
     __typename: typename,
@@ -444,7 +476,9 @@ function createFollow(input, typename) {
       });
       scheduleEventsConnection = scheduleEvents.events;
     }
-  } catch(error) {}
+  } catch(error) {
+    logger.logError(error);
+  }
   // ********************************************************  
   if (!schedule.isFollowing) {
     if (typeof schedule.followersCount === 'number') {
@@ -554,7 +588,9 @@ function deleteEvent(input, typename) {
       },
       data: newData
     });
-  } catch(error) {console.log(error)}
+  } catch(error) {
+    logger.logError(error);
+  }
   // ************************************************************
 
   return event;
