@@ -182,7 +182,7 @@ class EventDetails extends React.Component {
           endAt={end}
           weekDay={moment(start).format('dddd')}
           firstAt={moment(startAt).format(DATE_FORMAT)}
-          category={decapitalize(category)}
+          category={category}
           address={venue}
           isPublic={isPublic}
           publicSchedule={schedule && schedule.isPublic}
