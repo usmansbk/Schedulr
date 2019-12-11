@@ -188,6 +188,7 @@ export default {
   TOAST_fetchingUpdates: "Fetching updates...",
   TOAST_newNotifications: count => `${count} new notification${count > 1 ? 's' : ''}`,
   TOAST_justAmoment: "Applying theme... Just a moment",
+  TOAST_downloading: "Downloading...",
 
   PROFILE_FORM_name: "Name",
   PROFILE_FORM_website: "Website",
