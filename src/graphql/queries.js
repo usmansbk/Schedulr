@@ -247,6 +247,7 @@ export const getScheduleEvents = `query GetScheduleWithEvents($id: ID!, $limit: 
         forever
         isPublic
         isOwner
+        isOffline
         isCancelled
         isBookmarked
         cancelledDates
