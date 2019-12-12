@@ -148,7 +148,7 @@ export default class AppState {
     }
   }
 
-  @action removeKeysFromStorage(keys) {
+  @action removeKeysFromStorage(keys=[]) {
     const queue = this.keysToRemove.concat(keys);
     const removed = [];
     queue.forEach(key => {
