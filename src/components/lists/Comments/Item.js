@@ -13,6 +13,7 @@ import Icon from 'react-native-vector-icons/Feather';
 import UserAvatar from 'components/common/UserAvatar';
 import { comments_list } from 'lib/constants';
 import Attachment from 'components/common/Attachment';
+import MediaIcon from 'components/common/MediaIcon';
 
 const { AVATAR_SIZE } = comments_list;
 
@@ -91,7 +92,7 @@ class Item extends React.Component {
                 <View style={styles.replyBox}>
                   {
                     Boolean(toAttachment && toAttachment.length) && (
-                      <Image source={require('../../../assets/doc.png')} style={{ width: 30, height: 30 }}/>
+                      <MediaIcon style={{width: 24, height: 24}} />
                     )
                   }
                   <View style={styles.replyContent}>

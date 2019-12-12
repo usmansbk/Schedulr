@@ -8,32 +8,17 @@ import numeral from 'numeral';
 import { inject, observer } from 'mobx-react';
 import getImageUrl from 'helpers/getImageUrl';
 import logger from 'config/logger';
+import MediaIcon from '../MediaIcon';
 
 const Doc = inject('stores')(observer(({ stores, onPress, file, downloading, progress }) => {
   const { name, size, type } = file;
   const styles = stores.appStyles.media;
-  let source = require('../../../assets/doc.png');
-
-  if (type.includes('audio')) {
-    source = require('../../../assets/audio.png');
-  } else if (type.includes('video')) {
-    source = require('../../../assets/video.png');
-  } else if (type.includes('pdf')) {
-    source = require('../../../assets/pdf.png');
-  } else if (type.includes('text')) {
-    source = require('../../../assets/txt.png');
-  } else if (type.includes('zip') || (type.includes('compressed') || type.includes('archive'))) {
-    source = require('../../../assets/zip.png'); 
-  } else {
-    source = require('../../../assets/doc.png'); 
-  }
-
   return (
     <TouchableRipple onPress={onPress} disabled={downloading}>
       <>
       <View style={styles.docContent}>
-        <Image
-          source={source}
+        <MediaIcon
+          type={type}
           style={styles.mediaIcon}
         />
         <View style={styles.docBody}>
