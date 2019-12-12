@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Image } from 'react-native';
+import { View } from 'react-native';
 import { TouchableRipple } from 'react-native-paper';
 import { inject, observer } from 'mobx-react';
 import MediaIcon from 'components/common/MediaIcon';
