@@ -203,7 +203,7 @@ export default class AppStyles {
         color: colors.green
       },
       Done: {
-        color: colors.soft_blue,
+        color: colors.tint,
       },
       Upcoming: {
         color: colors.yellow,
@@ -213,7 +213,7 @@ export default class AppStyles {
         fontSize: 12
       },
       Concluded: {
-        color: colors.soft_blue,
+        color: colors.tint,
       }
     });
   }
@@ -1778,7 +1778,10 @@ export default class AppStyles {
         position: 'absolute',
         top: 17,
         right: 17,
-      }
+      },
+      muteIcon: {
+        marginRight: 4
+      },
     });
   }
 

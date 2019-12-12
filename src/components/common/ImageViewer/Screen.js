@@ -83,15 +83,19 @@ class ImageViewer extends React.Component {
         subtitle={subtitle}
         titleStyle={stores.appStyles.styles.headerColor}
       />
-      <Appbar.Action
-        onPress={this._downloadImage}
-        color={stores.themeStore.colors.primary}
-        icon={({ color,size }) => <Icon
-          name="download"
-          size={size}
-          color={color}
-        />}
-      />
+      {
+        Boolean(s3Object) && (
+          <Appbar.Action
+            onPress={this._downloadImage}
+            color={stores.themeStore.colors.primary}
+            icon={({ color,size }) => <Icon
+              name="download"
+              size={size}
+              color={color}
+            />}
+          />
+        )
+      }
       {
         me && (
           <>
