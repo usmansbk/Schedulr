@@ -1,7 +1,7 @@
 import React from 'react';
 import { Image } from 'react-native';
 
-export default ({ type, style, uri }) => {
+export default ({ type="", style, uri }) => {
   let source;
 
   if (type.includes('image')) {
