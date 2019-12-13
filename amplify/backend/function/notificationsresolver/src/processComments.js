@@ -44,7 +44,8 @@ async function processNotification({ items, currentUserId, getItemById }) {
 
       let extraContent = content;
       if (attachment && attachment.length) {
-        extraContent = '[document]';
+        const { type } = attachment[0];
+        extraContent = `[${type.slice(0, type.indexOf('/'))}]`;
       }
       const others = replies.length - 1;
       let message = 'replied to your comment on';
@@ -84,7 +85,8 @@ async function processNotification({ items, currentUserId, getItemById }) {
         }
         let extraContent = content;
         if (attachment && attachment.length) {
-          extraContent = `[document]`;
+          const { type } = attachment[0];
+          extraContent = `[${type.slice(0, type.indexOf('/'))}]`;
         }
         const notification = {
           id: uuid(),
