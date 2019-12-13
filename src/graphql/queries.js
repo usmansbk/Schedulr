@@ -522,6 +522,7 @@ export const getUserData = `query GetUserData($id: ID!, $filter: ModelEventFilte
               forever
               isPublic
               isOwner
+              isOffline
               isCancelled
               isBookmarked
               cancelledDates
@@ -615,6 +616,7 @@ export const getDeltaUpdates = `query GetDeltaUpdates($lastSync: String!) {
       isOwner
       isCancelled
       isBookmarked
+      isOffline
       cancelledDates
       banner {
         bucket

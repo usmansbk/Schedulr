@@ -437,6 +437,7 @@ function createFollow(input, typename) {
             isOwner
             isCancelled
             isBookmarked
+            isOffline
             cancelledDates
             banner {
               bucket
