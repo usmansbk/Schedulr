@@ -38,10 +38,14 @@ async function processNotification({ items, currentUserId, getItemById }) {
     const replies = items.filter(item => item.commentAtId === currentUserId);
     if (replies.length) {
       const at = replies[0];
-      const { timestamp, commentAuthorId, commentEventId, newImage: { __typename, content } } = at;
+      const { timestamp, commentAuthorId, commentEventId, newImage: { __typename, content, attachment } } = at;
       const author = await getItemById({ TableName: USER_TABLE_NAME, id: commentAuthorId});
       const event = await getItemById({ TableName: EVENT_TABLE_NAME, id: commentEventId });
 
+      let extraContent = content;
+      if (attachment && attachment.length) {
+        extraContent = '[document]';
+      }
       const others = replies.length - 1;
       let message = 'replied to your comment on';
       if (others > 0) {
@@ -59,7 +63,7 @@ async function processNotification({ items, currentUserId, getItemById }) {
           entityId: commentEventId,
           extraData: {
             pictureUrl: author.pictureUrl,
-            content
+            content: content || extraContent
           }
         };
         notifications.push(notification);
@@ -69,7 +73,7 @@ async function processNotification({ items, currentUserId, getItemById }) {
     const newComments = items.filter(item => item.commentAtId !== currentUserId);
     if (newComments.length) {
       const firstComment = newComments[0];
-      const { timestamp, commentAuthorId, commentEventId,newImage: { __typename, content } } = firstComment;
+      const { timestamp, commentAuthorId, commentEventId,newImage: { __typename, content, attachment } } = firstComment;
       const author = await getItemById({ TableName: USER_TABLE_NAME, id: commentAuthorId});
       const event = await getItemById({ TableName: EVENT_TABLE_NAME, id: commentEventId });
       if (author && event) {
@@ -77,6 +81,10 @@ async function processNotification({ items, currentUserId, getItemById }) {
         let message = 'commented on';
         if (others > 0) {
           message = `and ${others} other${others > 1 ? 's' : ''} ${message}`;
+        }
+        let extraContent = content;
+        if (attachment && attachment.length) {
+          extraContent = `[document]`;
         }
         const notification = {
           id: uuid(),
@@ -89,7 +97,7 @@ async function processNotification({ items, currentUserId, getItemById }) {
           entityId: commentEventId,
           extraData: {
             pictureUrl: author.pictureUrl,
-            content
+            content: content || extraContent
           }
         };
         notifications.push(notification);
