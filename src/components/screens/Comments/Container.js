@@ -1,8 +1,10 @@
 import React from 'react';
 import uuidv5 from 'uuid/v5';
 import shortid from 'shortid';
+import { I18n } from 'aws-amplify';
 import Screen from './Screen';
 import DeleteCommentDialog from 'components/dialogs/DeleteComment';
+import Error from 'components/common/Error';
 
 export default class Container extends React.Component {
   state = {
@@ -94,6 +96,16 @@ export default class Container extends React.Component {
       isOwner,
       commentEventId
     } = this.props;
+
+    if (error && !loading && !comments.length) return (
+      <Error
+        onRefresh={onRefresh}
+        loading={loading}
+        notFound
+        message={I18n.get("ERROR_404")}
+        caption={I18n.get("ERROR_404_caption")}
+      />
+    );
 
     return (
       <>
