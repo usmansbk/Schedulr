@@ -4,6 +4,7 @@ import { ApolloProvider } from 'react-apollo';
 import { Provider as MobxProvider } from 'mobx-react';
 import { Rehydrated } from 'aws-appsync-react';
 import SplashScreen from 'react-native-splash-screen';
+import codepush from 'react-native-code-push';
 import { observer } from 'mobx-react';
 import Amplify, { Auth } from 'aws-amplify';
 import AppContainer from './src/App';
@@ -26,6 +27,13 @@ Auth.configure({
     storage: AmplifyStorage
 });
 
+if (__DEV__) {
+  codepush.sync({
+    deploymentKey: env.CODE_PUSH_STAGING
+  });
+}
+
+@codepush
 @observer
 export default class App extends React.Component {
   componentDidMount = () => {
