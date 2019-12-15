@@ -13,7 +13,7 @@
     "android-debug": "(npm run clean-android) & (react-native run-android)"
   },
   "dependencies": {
-    "@react-native-community/async-storage": "^1.7.0",
+    "@react-native-community/async-storage": "^1.7.1",
     "@react-native-community/netinfo": "^4.6.1",
     "@react-native-firebase/admob": "^6.2.0",
     "@react-native-firebase/app": "^6.2.0",
