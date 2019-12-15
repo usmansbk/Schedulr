@@ -139,6 +139,11 @@ export function mergeSchedules(data) {
   }
   return allSchedules;
 }
+[].filter
+
+export function filterPrivate(schedules) {
+  return schedules.filter(schdl => schdl.isPublic || schdl.isFollowing || schdl.isOwner);
+}
 
 export function filterEvents(events, query) {
   return sortBookmarks(processEvents(events.filter(
