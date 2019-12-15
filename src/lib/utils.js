@@ -139,7 +139,6 @@ export function mergeSchedules(data) {
   }
   return allSchedules;
 }
-[].filter
 
 export function filterPrivate(schedules) {
   return schedules.filter(schdl => schdl.isPublic || schdl.isFollowing || schdl.isOwner);
