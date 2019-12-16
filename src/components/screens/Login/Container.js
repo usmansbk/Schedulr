@@ -52,9 +52,7 @@ class Container extends React.Component {
           }
           const response = await client.query({
             query: GET_USER,
-            variables: {
-              id: email
-            }
+            fetchPolicy: 'network-only'
           });
           const { data } = response;
           let user = data.me;
@@ -96,9 +94,6 @@ class Container extends React.Component {
 
             client.writeQuery({
               query: GET_USER,
-              variables: {
-                id: email
-              },
               data: {
                 me: user
               }

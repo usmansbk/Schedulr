@@ -1,5 +1,5 @@
 /* eslint-disable */
-export const me = `query GetUser($id: ID!) {
+export const me = `query {
   me {
     id
     me
