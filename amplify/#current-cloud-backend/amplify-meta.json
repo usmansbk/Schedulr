@@ -8,7 +8,8 @@
 			"DeploymentBucketName": "amplify-schdlr-dev-172405-deployment",
 			"UnauthRoleName": "amplify-schdlr-dev-172405-unauthRole",
 			"StackName": "amplify-schdlr-dev-172405",
-			"StackId": "arn:aws:cloudformation:us-east-1:900820753842:stack/amplify-schdlr-dev-172405/58544590-0c7b-11ea-9adf-0a28f59d0ab4"
+			"StackId": "arn:aws:cloudformation:us-east-1:900820753842:stack/amplify-schdlr-dev-172405/58544590-0c7b-11ea-9adf-0a28f59d0ab4",
+			"AmplifyAppId": "d2hhxq5zotlv3x"
 		}
 	},
 	"auth": {
@@ -20,7 +21,7 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-dev-172405-deployment/amplify-cfn-templates/auth/schdlr1428cab7-cloudformation-template.yml",
 				"logicalId": "authschdlr1428cab7"
 			},
-			"lastPushTimeStamp": "2019-12-16T08:53:03.715Z",
+			"lastPushTimeStamp": "2019-12-16T15:13:06.387Z",
 			"output": {
 				"AppClientSecret": "110ca22vlag7sjj184f8ta07846hda1sholpmmv14ec3hqi4l369",
 				"UserPoolId": "us-east-1_lfRHQx7qd",
@@ -41,7 +42,11 @@
 			"providerPlugin": "awscloudformation",
 			"output": {
 				"authConfig": {
-					"additionalAuthenticationProviders": [],
+					"additionalAuthenticationProviders": [
+						{
+							"authenticationType": "AWS_IAM"
+						}
+					],
 					"defaultAuthentication": {
 						"authenticationType": "AMAZON_COGNITO_USER_POOLS",
 						"userPoolConfig": {
@@ -56,8 +61,8 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-dev-172405-deployment/amplify-cfn-templates/api/cloudformation-template.json",
 				"logicalId": "apischdlr"
 			},
-			"lastPushTimeStamp": "2019-12-16T08:53:03.737Z",
-			"lastPushDirHash": "NrbDvb+AzYzLoi6bSNmurATPwuU="
+			"lastPushTimeStamp": "2019-12-16T15:13:19.614Z",
+			"lastPushDirHash": "4YIDwzhFPc3gXtmtqgz7CpeDheU="
 		}
 	},
 	"storage": {
@@ -68,7 +73,7 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-dev-172405-deployment/amplify-cfn-templates/storage/s3-cloudformation-template.json",
 				"logicalId": "storageschdlr"
 			},
-			"lastPushTimeStamp": "2019-12-16T08:53:03.723Z",
+			"lastPushTimeStamp": "2019-12-16T15:13:06.400Z",
 			"output": {
 				"BucketName": "schdlrassets-dev",
 				"Region": "us-east-1"
@@ -88,7 +93,7 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-dev-172405-deployment/amplify-cfn-templates/function/notificationsresolver-cloudformation-template.json",
 				"logicalId": "functionnotificationsresolver"
 			},
-			"lastPushTimeStamp": "2019-12-16T08:53:03.726Z",
+			"lastPushTimeStamp": "2019-12-16T15:13:06.402Z",
 			"output": {
 				"Region": "us-east-1",
 				"Arn": "arn:aws:lambda:us-east-1:900820753842:function:QueryNotifications-dev",
@@ -108,7 +113,7 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-dev-172405-deployment/amplify-cfn-templates/function/deltasyncresolver-cloudformation-template.json",
 				"logicalId": "functiondeltasyncresolver"
 			},
-			"lastPushTimeStamp": "2019-12-16T08:53:03.728Z",
+			"lastPushTimeStamp": "2019-12-16T15:13:06.405Z",
 			"output": {
 				"Region": "us-east-1",
 				"Arn": "arn:aws:lambda:us-east-1:900820753842:function:QueryDeltaSync-dev",
@@ -138,7 +143,7 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-dev-172405-deployment/amplify-cfn-templates/function/queryserver-cloudformation-template.json",
 				"logicalId": "functionqueryserver"
 			},
-			"lastPushTimeStamp": "2019-12-16T08:53:03.737Z",
+			"lastPushTimeStamp": "2019-12-16T15:13:06.407Z",
 			"output": {
 				"Region": "us-east-1",
 				"Arn": "arn:aws:lambda:us-east-1:900820753842:function:QueryServer-dev",

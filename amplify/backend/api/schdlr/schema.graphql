@@ -8,6 +8,10 @@ type User
         ownerField: "id",
         identityClaim: "email",
         operations: [create, update, delete]
+      },
+      {
+        allow: private,
+        operations: [read]
       }
     ])
 {
@@ -61,6 +65,10 @@ type Schedule
         ownerField: "scheduleAuthorId",
         identityClaim: "email",
         operations: [create, update, delete]
+      },
+      {
+        allow: private,
+        operations: [read]
       }
     ]
   )
@@ -100,6 +108,10 @@ type Event
         ownerField: "eventAuthorId",
         identityClaim: "email",
         operations: [create, update, delete]
+      },
+      {
+        allow: private,
+        operations: [read]
       }
     ]
   )
@@ -159,6 +171,10 @@ type Comment
         ownerField: "commentAuthorId",
         identityClaim: "email",
         operations: [create, update, delete]
+      },
+      {
+        allow: private,
+        operations: [read]
       }
     ]
   )

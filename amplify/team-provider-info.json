@@ -8,7 +8,8 @@
             "DeploymentBucketName": "amplify-schdlr-dev-172405-deployment",
             "UnauthRoleName": "amplify-schdlr-dev-172405-unauthRole",
             "StackName": "amplify-schdlr-dev-172405",
-            "StackId": "arn:aws:cloudformation:us-east-1:900820753842:stack/amplify-schdlr-dev-172405/58544590-0c7b-11ea-9adf-0a28f59d0ab4"
+            "StackId": "arn:aws:cloudformation:us-east-1:900820753842:stack/amplify-schdlr-dev-172405/58544590-0c7b-11ea-9adf-0a28f59d0ab4",
+            "AmplifyAppId": "d2hhxq5zotlv3x"
         },
         "categories": {
             "auth": {
