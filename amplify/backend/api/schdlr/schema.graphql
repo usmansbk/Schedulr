@@ -1,6 +1,6 @@
 type User
   @searchable
-  @model(subscriptions: null, queries: { get: "getUser", list: null })
+  @model(subscriptions: null, queries: null)
   @auth(
     rules: [
       {
@@ -53,7 +53,7 @@ type UserPreference
 
 type Schedule
   @searchable
-  @model(subscriptions: null, queries: { get: "getSchedule" })
+  @model(subscriptions: null, queries: null)
   @auth(
     rules: [
       {
@@ -92,7 +92,7 @@ enum ScheduleStatus {
 
 type Event
   @searchable
-  @model(subscriptions: null, queries: { get: "getEvent" })
+  @model(subscriptions: null, queries: null)
   @auth(
     rules: [
       {
@@ -151,7 +151,7 @@ enum Recurrence {
 }
 
 type Comment
-  @model(queries: { get: "getComment" })
+  @model(queries: null, subscriptions: null)
   @auth(
     rules: [
       {
@@ -185,11 +185,11 @@ type SearchableEventConnection {
 }
 
 type Query {
-  me: User
-  user(id: ID!): User
-  event(id: ID!): Event
-  schedule(id: ID!): Schedule
-  comment(id: ID!): Comment
+  me: User @function(name: "QueryServer-${env}")
+  user(id: ID!): User @function(name: "QueryServer-${env}")
+  event(id: ID!): Event @function(name: "QueryServer-${env}")
+  schedule(id: ID!): Schedule @function(name: "QueryServer-${env}")
+  comment(id: ID!): Comment @function(name: "QueryServer-${env}")
 
   nearbyEvents(location: LocationInput!, city: String, category: String, km: Int, limit: Int, nextToken: String): SearchableEventConnection
   deltaSync(lastSync: String!): Delta @function(name: "QueryDeltaSync-${env}")
