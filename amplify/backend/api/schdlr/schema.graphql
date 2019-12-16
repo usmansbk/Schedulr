@@ -185,6 +185,12 @@ type SearchableEventConnection {
 }
 
 type Query {
+  me: User
+  user(id: ID!): User
+  event(id: ID!): Event
+  schedule(id: ID!): Schedule
+  comment(id: ID!): Comment
+
   nearbyEvents(location: LocationInput!, city: String, category: String, km: Int, limit: Int, nextToken: String): SearchableEventConnection
   deltaSync(lastSync: String!): Delta @function(name: "QueryDeltaSync-${env}")
   notifications(lastSync: String!): [Notification] @function(name: "QueryNotifications-${env}")

@@ -705,47 +705,6 @@ export const listFollowers = `query GetScheduleFollowers($id: ID!, $limit: Int, 
     }
   }
 }`;
-export const searchEvents = `query SearchEvents($filter: SearchableEventFilterInput!, $limit: Int, $nextToken: String, $sort: SearchableEventSortInput) {
-  searchEvents(filter: $filter, limit: $limit, nextToken: $nextToken, sort: $sort) @connection(key: "searchEvents") {
-    items {
-      id
-      title
-      description
-      venue
-      category
-      startAt
-      endAt
-      allDay
-      recurrence
-      until
-      forever
-      isPublic
-      isOwner
-      isCancelled
-      isBookmarked
-      cancelledDates
-      banner {
-        bucket
-        key
-        name
-      }
-      author {
-        id
-        name
-      }
-      schedule {
-        id
-        name
-        isFollowing
-      }
-      commentsCount
-      bookmarksCount
-      createdAt
-      updatedAt
-    }
-    nextToken
-  }
-}`;
 export const searchSchedules = `query SearchSchedules($filter: SearchableScheduleFilterInput!, $limit: Int, $nextToken: String, $sort: SearchableScheduleSortInput) {
   searchSchedules(filter: $filter, limit: $limit, nextToken: $nextToken, sort: $sort) @connection(key: "searchSchedules") {
     items {
