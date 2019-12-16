@@ -27,12 +27,6 @@ Auth.configure({
     storage: AmplifyStorage
 });
 
-if (__DEV__) {
-  codepush.sync({
-    deploymentKey: env.CODE_PUSH_STAGING
-  });
-}
-
 @codepush
 @observer
 export default class App extends React.Component {
@@ -40,6 +34,11 @@ export default class App extends React.Component {
     SplashScreen.hide();
     i18n(stores.settingsStore.language);
     push.init();
+    if (__DEV__) {
+      codepush.sync({
+        deploymentKey: env.CODE_PUSH_STAGING
+      });
+    }
   };
 
   componentDidCatch = (error) => {
