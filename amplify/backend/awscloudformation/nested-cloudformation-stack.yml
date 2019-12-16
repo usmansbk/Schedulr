@@ -141,7 +141,7 @@
 						"Ref": "AuthRoleName"
 					},
 					"S3DeploymentBucket": "amplify-schdlr-dev-172405-deployment",
-					"S3DeploymentRootKey": "amplify-appsync-files/77e89419bb4bf377fc91cdc849e2c51803c7cfba",
+					"S3DeploymentRootKey": "amplify-appsync-files/66a959bcdfefa01df7f5d4286cc2a838e71e741c",
 					"env": "dev"
 				}
 			}
