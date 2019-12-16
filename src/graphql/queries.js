@@ -1,6 +1,6 @@
 /* eslint-disable */
 export const me = `query GetUser($id: ID!) {
-  me: getUser(id: $id) {
+  me {
     id
     me
     email
@@ -275,8 +275,8 @@ export const getScheduleEvents = `query GetScheduleWithEvents($id: ID!, $limit: 
   }
 }
 `;
-export const getUserBookmarks = `query GetBookmarks($id: ID!, $nextToken: String, $limit: Int) {
-  getUserBookmarks: getUser(id: $id) {
+export const getUserBookmarks = `query GetBookmarks($nextToken: String, $limit: Int) {
+  getUserBookmarks: me {
     id
     bookmarks(nextToken: $nextToken, limit: $limit, sortDirection: DESC) @connection(key: "bookmarks") {
       items {
@@ -401,8 +401,8 @@ export const getUserSchedules = `query GetUserSchedules($id: ID!, $limit: Int) {
     }
   }
 }`;
-export const getUserData = `query GetUserData($id: ID!, $filter: ModelEventFilterInput, $limit: Int) {
-  getUserData: getUser(id: $id) {
+export const getUserData = `query GetUserData($filter: ModelEventFilterInput, $limit: Int) {
+  getUserData: me {
     id
     created(limit: $limit, sortDirection: ASC) @connection(key: "created") {
       items {

@@ -35,11 +35,8 @@ class Events extends React.Component {
 const ListHoc = compose(
   graphql(gql(getUserData), {
     alias: 'withSearchEventsOffline',
-    options: props => ({
+    options: () => ({
       fetchPolicy: 'cache-only',
-      variables: {
-        id: props.id
-      }
     }),
     props: ({ data, ownProps }) => ({
       events: data && data.getUserData && filterEvents(mergeEvents(data.getUserData), ownProps.query),

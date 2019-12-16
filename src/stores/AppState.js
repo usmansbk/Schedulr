@@ -124,9 +124,6 @@ export default class AppState {
         if (fetchMoreResult && fetchMoreResult.deltaSync) {
           const prev = client.readQuery({
             query: BaseQuery,
-            variables: {
-              id: this.userId
-            }
           });
           const data = updateBaseQuery({
             prev,
@@ -134,9 +131,6 @@ export default class AppState {
           });
           client.writeQuery({
             query: BaseQuery,
-            variables: {
-              id: this.userId
-            },
             data
           });
         }

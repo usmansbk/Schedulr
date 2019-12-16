@@ -19,7 +19,6 @@ class Dialog extends React.Component {
 
   _onConfirm = async () => {
     const variables = {
-      id: this.props.id,
       filter: baseEventsFilter(),
       limit: 50
     };

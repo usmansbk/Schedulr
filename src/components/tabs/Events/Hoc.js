@@ -12,11 +12,10 @@ export default compose(
   withNavigationFocus,
   graphql(BaseQuery, {
     alias,
-    options: props => ({
+    options: () => ({
       fetchPolicy: 'cache-first',
       notifyOnNetworkStatusChange: true,
       variables: {
-        id: props.id,
         filter: baseEventsFilter(),
         limit: 50
       }
@@ -25,7 +24,6 @@ export default compose(
       loading: data && (data.loading || data.networkStatus === 4),
       data: data && data.getUserData,
       onRefresh: () => data.refetch({
-        id: ownProps.id,
         filter: baseEventsFilter(),
         limit: 50
       }),

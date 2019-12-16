@@ -566,12 +566,8 @@ function deleteEvent(input, typename) {
   // ******************* Remove from bookmarks *******************
   try {
     const BaseQuery = gql(getUserData);
-    const userId = stores.appState.userId;
     const data = client.readQuery({
       query: BaseQuery,
-      variables: {
-        id: userId
-      }
     });
     const newData = Object.assign({}, data, {
       getUserData: Object.assign({}, data.getUserData, {
@@ -584,9 +580,6 @@ function deleteEvent(input, typename) {
     });
     client.writeQuery({
       query: BaseQuery,
-      variables: {
-        id: userId
-      },
       data: newData
     });
   } catch(error) {
