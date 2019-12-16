@@ -72,6 +72,7 @@ class Intro extends React.Component {
         slides={this.slides}
         onDone={this._onDone}
         onSkip={this._onDone}
+        showSkipButton
         renderItem={this._renderItem}
         onSlideChange={this._onSlideChange}
         doneLabel={I18n.get("BUTTON_done")}
