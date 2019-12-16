@@ -1,6 +1,6 @@
 type User
   @searchable
-  @model(subscriptions: null, queries: null)
+  @model(subscriptions: null, queries: { get: "getUser" })
   @auth(
     rules: [
       {
@@ -11,6 +11,11 @@ type User
       },
       {
         allow: private,
+        operations: [read]
+      },
+      {
+        allow: private,
+        provider: iam,
         operations: [read]
       }
     ])
@@ -57,7 +62,7 @@ type UserPreference
 
 type Schedule
   @searchable
-  @model(subscriptions: null, queries: null)
+  @model(subscriptions: null, queries: { get: "getSchedule" })
   @auth(
     rules: [
       {
@@ -68,6 +73,11 @@ type Schedule
       },
       {
         allow: private,
+        operations: [read]
+      },
+      {
+        allow: private,
+        provider: iam,
         operations: [read]
       }
     ]
@@ -100,7 +110,7 @@ enum ScheduleStatus {
 
 type Event
   @searchable
-  @model(subscriptions: null, queries: null)
+  @model(subscriptions: null, queries: { get: "getEvent" })
   @auth(
     rules: [
       {
@@ -111,6 +121,11 @@ type Event
       },
       {
         allow: private,
+        operations: [read]
+      },
+      {
+        allow: private,
+        provider: iam,
         operations: [read]
       }
     ]
@@ -163,7 +178,7 @@ enum Recurrence {
 }
 
 type Comment
-  @model(queries: null, subscriptions: null)
+  @model(subscriptions: null, queries: { get: "getComment" })
   @auth(
     rules: [
       {
@@ -174,6 +189,11 @@ type Comment
       },
       {
         allow: private,
+        operations: [read]
+      },
+      {
+        allow: private,
+        provider: iam,
         operations: [read]
       }
     ]
@@ -201,15 +221,19 @@ type SearchableEventConnection {
 }
 
 type Query {
+  # User
   me: User @function(name: "QueryServer-${env}")
-  user(id: ID!): User @function(name: "QueryServer-${env}")
   event(id: ID!): Event @function(name: "QueryServer-${env}")
   schedule(id: ID!): Schedule @function(name: "QueryServer-${env}")
   comment(id: ID!): Comment @function(name: "QueryServer-${env}")
-
   nearbyEvents(location: LocationInput!, city: String, category: String, km: Int, limit: Int, nextToken: String): SearchableEventConnection
   deltaSync(lastSync: String!): Delta @function(name: "QueryDeltaSync-${env}")
   notifications(lastSync: String!): [Notification] @function(name: "QueryNotifications-${env}")
+
+  # # Admin
+  # getEvent(id: ID!): Event @aws_iam
+  # getSchedule(id: ID!): Schedule  @aws_iam
+  # getComment(id: ID!):Comment @aws_iam
 }
 
 type S3Object {
