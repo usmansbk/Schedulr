@@ -30,12 +30,12 @@ type User
   bio: String
   me: Boolean
   following: ModelFollowConnection @function(name: "QueryServer-${env}")
-  privateFollowing: [Follow]
+  allFollowing: [Follow]
     @connection(name: "Followings", sortField: "createdAt", limit: 25)
     @auth(rules: [{ allow: private, provider: iam, operations: [ read ] }])
   followingCount: Int
   created: ModelScheduleConnection @function(name: "QueryServer-${env}")
-  privateCreated: [Schedule]
+  allCreated: [Schedule]
     @connection(name: "UserSchedules", sortField: "createdAt", limit: 25)
     @auth(rules: [{ allow: private, provider: iam, operations: [ read ] }])
   createdCount: Int
