@@ -20,55 +20,8 @@ module.exports = {
             bucket
             name
           }
-          author {
-            id
-            name
-            createdCount
-          }
-          followersCount
-          eventsCount
           createdAt
           updatedAt
-          events {
-            items {
-              id
-              title
-              description
-              venue
-              category
-              startAt
-              endAt
-              allDay
-              recurrence
-              until
-              forever
-              isPublic
-              isOwner
-              isCancelled
-              isBookmarked
-              isOffline
-              cancelledDates
-              banner {
-                bucket
-                key
-                name
-              }
-              author {
-                id
-                name
-              }
-              schedule {
-                id
-                name
-                isFollowing
-              }
-              commentsCount
-              bookmarksCount
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
         }
         nextToken
       }
@@ -95,64 +48,6 @@ module.exports = {
               bucket
               name
             }
-            author {
-              id
-              name
-              pictureUrl
-              avatar {
-                key
-                bucket
-                name
-              }
-              website
-              bio
-              me
-              createdCount
-              followingCount
-              createdAt
-            }
-            events @connection(key: "events") {
-              nextToken
-              items {
-                id
-                title
-                description
-                venue
-                category
-                startAt
-                endAt
-                allDay
-                recurrence
-                until
-                forever
-                isPublic
-                isOwner
-                isOffline
-                isCancelled
-                isBookmarked
-                cancelledDates
-                banner {
-                  bucket
-                  key
-                  name
-                }
-                author {
-                  id
-                  name
-                }
-                schedule {
-                  id
-                  name
-                  isFollowing
-                }
-                commentsCount
-                bookmarksCount
-                createdAt
-                updatedAt
-              }
-            }
-            followersCount
-            eventsCount
             createdAt
             updatedAt
           }

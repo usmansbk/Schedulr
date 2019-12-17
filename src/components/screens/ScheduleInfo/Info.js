@@ -85,7 +85,7 @@ class Info extends React.Component {
     const ownerId = author && author.id;
     const ownerName = author && author.name;
     const isClosed = status === SCHEDULE_CLOSED;
-    const pictureUrl = author.avatar ? getImageUrl(author.avatar) : author.pictureUrl;
+    const pictureUrl = author && (author.avatar ? getImageUrl(author.avatar) : author.pictureUrl);
 
     const appStyles = stores.appStyles.styles;
     const styles = stores.appStyles.scheduleInfo;

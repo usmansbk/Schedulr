@@ -2,6 +2,7 @@ const appsync = require('aws-appsync');
 require('isomorphic-fetch');
 
 const { created, following } = require('./queries');
+const { filterCreatedSchedules, filterFollowingSchedules } = require('./utils');
 
 const region = process.env.AWS_REGION
 const apiSchdlrGraphQLAPIEndpointOutput = process.env.API_SCHDLR_GRAPHQLAPIENDPOINTOUTPUT
@@ -35,15 +36,14 @@ const resolvers = {
     created: async (ctx) => {
       const id = ctx.source.id;
       const {
-        data: { getUser }
+        data: { getUser: { allCreated } }
       } = await client.query({
         query: created,
         variables: {
           id
         }
       });
-      const { allCreated } = getUser;
-      return allCreated;
+      return filterCreatedSchedules(allCreated);
     },
     following: async (ctx) => {
       const id = ctx.source.id;
@@ -55,7 +55,7 @@ const resolvers = {
           id
         }
       });
-      return allFollowing;
+      return filterFollowingSchedules(allFollowing);
     }
   }
 };
