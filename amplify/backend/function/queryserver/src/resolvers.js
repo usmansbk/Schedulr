@@ -42,7 +42,6 @@ const resolvers = {
           id
         }
       });
-      console.log(JSON.stringify(getUser));
       const { allCreated } = getUser;
       return allCreated;
     },
@@ -56,7 +55,6 @@ const resolvers = {
           id
         }
       });
-      console.log(JSON.stringify(allFollowing));
       return allFollowing;
     }
   }
