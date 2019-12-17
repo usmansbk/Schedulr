@@ -24,11 +24,12 @@ class Dialog extends React.Component {
     };
     this.setState({ loading: true });
     try {
-      await this.props.client.query({
+      const res = await this.props.client.query({
         query: gql(getUserData),
         fetchPolicy: 'network-only',
         variables
       });
+      console.log(JSON.stringify(res))
       stores.snackbar.show(I18n.get("SYNC_complete"));
     } catch (error) {
       stores.snackbar.show(I18n.get("ERROR_noConnection"), error);
