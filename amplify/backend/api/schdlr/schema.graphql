@@ -29,11 +29,19 @@ type User
   gender: String
   bio: String
   me: Boolean
-  following: [Follow] @connection(name: "Followings", sortField: "createdAt", limit: 25)
+  following: ModelFollowConnection @function(name: "QueryServer-${env}")
+  privateFollowing: [Follow]
+    @connection(name: "Followings", sortField: "createdAt", limit: 25)
+    @auth(rules: [{ allow: private, provider: iam, operations: [ read ] }])
   followingCount: Int
-  created: [Schedule] @connection(name: "UserSchedules", sortField: "createdAt", limit: 25)
+  created: ModelScheduleConnection @function(name: "QueryServer-${env}")
+  privateCreated: [Schedule]
+    @connection(name: "UserSchedules", sortField: "createdAt", limit: 25)
+    @auth(rules: [{ allow: private, provider: iam, operations: [ read ] }])
   createdCount: Int
-  bookmarks: [Bookmark] @connection(name: "UserBookmarks", sortField: "createdAt", limit: 50) @auth(rules: [{allow: owner, ownerField: "id", identityClaim: "email"}])
+  bookmarks: [Bookmark]
+    @connection(name: "UserBookmarks", sortField: "createdAt", limit: 50)
+    @auth(rules: [{allow: owner, ownerField: "id", identityClaim: "email"}])
   preference: UserPreference! @connection
   createdAt: String
   updatedAt: String
@@ -212,6 +220,16 @@ type Comment
   attachment: [S3Object]
   createdAt: String
   updatedAt: String
+}
+
+type ModelFollowConnection {
+  items: [Follow]
+  nextToken: String
+}
+
+type ModelScheduleConnection {
+  items: [Schedule]
+  nextToken: String
 }
 
 type SearchableEventConnection {

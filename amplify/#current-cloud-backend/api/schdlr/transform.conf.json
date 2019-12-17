@@ -1,4 +1,8 @@
 {
     "Version": 4,
-    "ResolverConfig": {}
+    "ResolverConfig": {},
+    "StackMapping": {
+        "UserfollowingResolver": "ConnectionStack",
+        "UsercreatedResolver": "ConnectionStack"
+    }
 }
