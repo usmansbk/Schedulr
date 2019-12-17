@@ -228,12 +228,12 @@ type Comment
   updatedAt: String
 }
 
-type ModelFollowConnection {
+type ModelFollowConnection @aws_iam @aws_cognito_user_pools {
   items: [Follow]
   nextToken: String
 }
 
-type ModelScheduleConnection {
+type ModelScheduleConnection @aws_iam @aws_cognito_user_pools {
   items: [Schedule]
   nextToken: String
 }
@@ -324,6 +324,15 @@ type Follow
         ownerField: "followUserId",
         identityClaim: "email",
         operations: [create, update, delete]
+      },
+      {
+        allow: private,
+        operations: [read]
+      },
+      {
+        allow: private,
+        provider: iam,
+        operations: [read]
       }
     ])
 {
