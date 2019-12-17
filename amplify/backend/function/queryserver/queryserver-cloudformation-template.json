@@ -64,7 +64,13 @@
 						},
 						"API_SCHDLR_GRAPHQLAPIENDPOINTOUTPUT": {
 							"Ref": "apischdlrGraphQLAPIEndpointOutput"
-						}
+						},
+						"SCHEDULE_TABLE_NAME": "Schedule-nuvqxpmrwrgvdpzysdvzf6keju-dev",
+						"FOLLOW_TABLE_NAME": "Follow-nuvqxpmrwrgvdpzysdvzf6keju-dev",
+						"GSI_USER_SCHEDULES": "gsi-UserSchedules",
+						"GSI_USER_SCHEDULES_KEY": "scheduleAuthorId",
+						"GSI_FOLLOWINGS": "gsi-Followings",
+						"GSI_FOLLOWINGS_KEY": "followUserId"
 					}
 				},
 				"Role": {
