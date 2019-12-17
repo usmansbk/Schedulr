@@ -195,27 +195,6 @@
 				}
 			}
 		},
-		"functionqueryserver": {
-			"Type": "AWS::CloudFormation::Stack",
-			"Properties": {
-				"TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-dev-172405-deployment/amplify-cfn-templates/function/queryserver-cloudformation-template.json",
-				"Parameters": {
-					"apischdlrGraphQLAPIIdOutput": {
-						"Fn::GetAtt": [
-							"apischdlr",
-							"Outputs.GraphQLAPIIdOutput"
-						]
-					},
-					"apischdlrGraphQLAPIEndpointOutput": {
-						"Fn::GetAtt": [
-							"apischdlr",
-							"Outputs.GraphQLAPIEndpointOutput"
-						]
-					},
-					"env": "dev"
-				}
-			}
-		},
 		"UpdateRolesWithIDPFunction": {
 			"DependsOn": [
 				"AuthRole",

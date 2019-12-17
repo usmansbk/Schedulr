@@ -1,126 +1,126 @@
 {
-	"providers": {
-		"awscloudformation": {
-			"AuthRoleName": "amplify-schdlr-dev-172405-authRole",
-			"UnauthRoleArn": "arn:aws:iam::900820753842:role/amplify-schdlr-dev-172405-unauthRole",
-			"AuthRoleArn": "arn:aws:iam::900820753842:role/amplify-schdlr-dev-172405-authRole",
-			"Region": "us-east-1",
-			"DeploymentBucketName": "amplify-schdlr-dev-172405-deployment",
-			"UnauthRoleName": "amplify-schdlr-dev-172405-unauthRole",
-			"StackName": "amplify-schdlr-dev-172405",
-			"StackId": "arn:aws:cloudformation:us-east-1:900820753842:stack/amplify-schdlr-dev-172405/58544590-0c7b-11ea-9adf-0a28f59d0ab4",
-			"AmplifyAppId": "d2hhxq5zotlv3x"
-		}
-	},
-	"auth": {
-		"schdlr1428cab7": {
-			"service": "Cognito",
-			"providerPlugin": "awscloudformation",
-			"dependsOn": [],
-			"providerMetadata": {
-				"s3TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-dev-172405-deployment/amplify-cfn-templates/auth/schdlr1428cab7-cloudformation-template.yml",
-				"logicalId": "authschdlr1428cab7"
-			},
-			"lastPushTimeStamp": "2019-12-17T21:52:46.885Z",
-			"output": {
-				"AppClientSecret": "110ca22vlag7sjj184f8ta07846hda1sholpmmv14ec3hqi4l369",
-				"UserPoolId": "us-east-1_lfRHQx7qd",
-				"AppClientIDWeb": "29l6hj8ip6cro7cmq1bkq356n3",
-				"AppClientID": "1apthnc1ao62p0gq5rgnd1qaeo",
-				"HostedUIDomain": "schdlr-dev",
-				"IdentityPoolId": "us-east-1:8cfbfb88-32dd-480c-b0c2-fe3685276caf",
-				"IdentityPoolName": "schdlr1428cab7_identitypool_1428cab7__dev",
-				"OAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"schdlr://\"],\"LogoutURLs\":[\"schdlr://\"]}",
-				"UserPoolName": "schdlr1428cab7_userpool_1428cab7"
-			},
-			"lastPushDirHash": "H/JVRarzt32d2eAgGa7JFp3gisA="
-		}
-	},
-	"api": {
-		"schdlr": {
-			"service": "AppSync",
-			"providerPlugin": "awscloudformation",
-			"output": {
-				"authConfig": {
-					"additionalAuthenticationProviders": [
-						{
-							"authenticationType": "AWS_IAM"
-						}
-					],
-					"defaultAuthentication": {
-						"authenticationType": "AMAZON_COGNITO_USER_POOLS",
-						"userPoolConfig": {
-							"userPoolId": "authschdlr1428cab7"
-						}
-					}
-				},
-				"GraphQLAPIIdOutput": "nuvqxpmrwrgvdpzysdvzf6keju",
-				"GraphQLAPIEndpointOutput": "https://caqpb466y5hvbjvqtohpxzphq4.appsync-api.us-east-1.amazonaws.com/graphql"
-			},
-			"providerMetadata": {
-				"s3TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-dev-172405-deployment/amplify-cfn-templates/api/cloudformation-template.json",
-				"logicalId": "apischdlr"
-			},
-			"lastPushTimeStamp": "2019-12-17T22:17:39.566Z",
-			"lastPushDirHash": "btMj7DLOqf52T7nwKDTYrH/OcCc="
-		}
-	},
-	"storage": {
-		"schdlr": {
-			"service": "S3",
-			"providerPlugin": "awscloudformation",
-			"providerMetadata": {
-				"s3TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-dev-172405-deployment/amplify-cfn-templates/storage/s3-cloudformation-template.json",
-				"logicalId": "storageschdlr"
-			},
-			"lastPushTimeStamp": "2019-12-17T21:52:46.897Z",
-			"output": {
-				"BucketName": "schdlrassets-dev",
-				"Region": "us-east-1"
-			},
-			"lastPushDirHash": "uzYWvp6cqRx/9valyD9PU4KC6ec="
-		}
-	},
-	"function": {
-		"notificationsresolver": {
-			"service": "Lambda",
-			"providerPlugin": "awscloudformation",
-			"build": true,
-			"lastBuildTimeStamp": "2019-11-30T00:08:34.413Z",
-			"lastPackageTimeStamp": "2019-12-13T00:46:41.397Z",
-			"distZipFilename": "notificationsresolver-547330644d5252437659-build.zip",
-			"providerMetadata": {
-				"s3TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-dev-172405-deployment/amplify-cfn-templates/function/notificationsresolver-cloudformation-template.json",
-				"logicalId": "functionnotificationsresolver"
-			},
-			"lastPushTimeStamp": "2019-12-17T21:52:46.904Z",
-			"output": {
-				"Region": "us-east-1",
-				"Arn": "arn:aws:lambda:us-east-1:900820753842:function:QueryNotifications-dev",
-				"Name": "QueryNotifications-dev",
-				"LambdaExecutionRole": "schdlrLambdaRolef28f203e-dev"
-			},
-			"lastPushDirHash": "ePJQ7+ePiApS3svZZ2+h6eJ+6QA="
-		},
-		"deltasyncresolver": {
-			"service": "Lambda",
-			"providerPlugin": "awscloudformation",
-			"build": true,
-			"lastBuildTimeStamp": "2019-11-25T20:11:23.077Z",
-			"lastPackageTimeStamp": "2019-11-26T20:30:22.930Z",
-			"distZipFilename": "deltasyncresolver-62645351416736396a74-build.zip",
-			"providerMetadata": {
-				"s3TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-dev-172405-deployment/amplify-cfn-templates/function/deltasyncresolver-cloudformation-template.json",
-				"logicalId": "functiondeltasyncresolver"
-			},
-			"lastPushTimeStamp": "2019-12-17T21:52:46.909Z",
-			"output": {
-				"Region": "us-east-1",
-				"Arn": "arn:aws:lambda:us-east-1:900820753842:function:QueryDeltaSync-dev",
-				"Name": "QueryDeltaSync-dev",
-				"LambdaExecutionRole": "schdlrLambdaRoleeb76f572-dev"
-			},
-			"lastPushDirHash": "awpx6eEvxpWbkeLj4J8fYIjw2Lg="
-		}
-	}
+    "providers": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-schdlr-dev-172405-authRole",
+            "UnauthRoleArn": "arn:aws:iam::900820753842:role/amplify-schdlr-dev-172405-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::900820753842:role/amplify-schdlr-dev-172405-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "amplify-schdlr-dev-172405-deployment",
+            "UnauthRoleName": "amplify-schdlr-dev-172405-unauthRole",
+            "StackName": "amplify-schdlr-dev-172405",
+            "StackId": "arn:aws:cloudformation:us-east-1:900820753842:stack/amplify-schdlr-dev-172405/58544590-0c7b-11ea-9adf-0a28f59d0ab4",
+            "AmplifyAppId": "d2hhxq5zotlv3x"
+        }
+    },
+    "auth": {
+        "schdlr1428cab7": {
+            "service": "Cognito",
+            "providerPlugin": "awscloudformation",
+            "dependsOn": [],
+            "providerMetadata": {
+                "s3TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-dev-172405-deployment/amplify-cfn-templates/auth/schdlr1428cab7-cloudformation-template.yml",
+                "logicalId": "authschdlr1428cab7"
+            },
+            "lastPushTimeStamp": "2019-12-17T23:11:59.222Z",
+            "output": {
+                "AppClientSecret": "110ca22vlag7sjj184f8ta07846hda1sholpmmv14ec3hqi4l369",
+                "UserPoolId": "us-east-1_lfRHQx7qd",
+                "AppClientIDWeb": "29l6hj8ip6cro7cmq1bkq356n3",
+                "AppClientID": "1apthnc1ao62p0gq5rgnd1qaeo",
+                "HostedUIDomain": "schdlr-dev",
+                "IdentityPoolId": "us-east-1:8cfbfb88-32dd-480c-b0c2-fe3685276caf",
+                "IdentityPoolName": "schdlr1428cab7_identitypool_1428cab7__dev",
+                "OAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"schdlr://\"],\"LogoutURLs\":[\"schdlr://\"]}",
+                "UserPoolName": "schdlr1428cab7_userpool_1428cab7"
+            },
+            "lastPushDirHash": "H/JVRarzt32d2eAgGa7JFp3gisA="
+        }
+    },
+    "api": {
+        "schdlr": {
+            "service": "AppSync",
+            "providerPlugin": "awscloudformation",
+            "output": {
+                "authConfig": {
+                    "additionalAuthenticationProviders": [
+                        {
+                            "authenticationType": "AWS_IAM"
+                        }
+                    ],
+                    "defaultAuthentication": {
+                        "authenticationType": "AMAZON_COGNITO_USER_POOLS",
+                        "userPoolConfig": {
+                            "userPoolId": "authschdlr1428cab7"
+                        }
+                    }
+                },
+                "GraphQLAPIIdOutput": "nuvqxpmrwrgvdpzysdvzf6keju",
+                "GraphQLAPIEndpointOutput": "https://caqpb466y5hvbjvqtohpxzphq4.appsync-api.us-east-1.amazonaws.com/graphql"
+            },
+            "providerMetadata": {
+                "s3TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-dev-172405-deployment/amplify-cfn-templates/api/cloudformation-template.json",
+                "logicalId": "apischdlr"
+            },
+            "lastPushTimeStamp": "2019-12-17T23:20:41.850Z",
+            "lastPushDirHash": "btMj7DLOqf52T7nwKDTYrH/OcCc="
+        }
+    },
+    "storage": {
+        "schdlr": {
+            "service": "S3",
+            "providerPlugin": "awscloudformation",
+            "providerMetadata": {
+                "s3TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-dev-172405-deployment/amplify-cfn-templates/storage/s3-cloudformation-template.json",
+                "logicalId": "storageschdlr"
+            },
+            "lastPushTimeStamp": "2019-12-17T23:11:59.229Z",
+            "output": {
+                "BucketName": "schdlrassets-dev",
+                "Region": "us-east-1"
+            },
+            "lastPushDirHash": "uzYWvp6cqRx/9valyD9PU4KC6ec="
+        }
+    },
+    "function": {
+        "notificationsresolver": {
+            "service": "Lambda",
+            "providerPlugin": "awscloudformation",
+            "build": true,
+            "lastBuildTimeStamp": "2019-11-30T00:08:34.413Z",
+            "lastPackageTimeStamp": "2019-12-13T00:46:41.397Z",
+            "distZipFilename": "notificationsresolver-547330644d5252437659-build.zip",
+            "providerMetadata": {
+                "s3TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-dev-172405-deployment/amplify-cfn-templates/function/notificationsresolver-cloudformation-template.json",
+                "logicalId": "functionnotificationsresolver"
+            },
+            "lastPushTimeStamp": "2019-12-17T23:11:59.229Z",
+            "output": {
+                "Region": "us-east-1",
+                "Arn": "arn:aws:lambda:us-east-1:900820753842:function:QueryNotifications-dev",
+                "Name": "QueryNotifications-dev",
+                "LambdaExecutionRole": "schdlrLambdaRolef28f203e-dev"
+            },
+            "lastPushDirHash": "ePJQ7+ePiApS3svZZ2+h6eJ+6QA="
+        },
+        "deltasyncresolver": {
+            "service": "Lambda",
+            "providerPlugin": "awscloudformation",
+            "build": true,
+            "lastBuildTimeStamp": "2019-11-25T20:11:23.077Z",
+            "lastPackageTimeStamp": "2019-11-26T20:30:22.930Z",
+            "distZipFilename": "deltasyncresolver-62645351416736396a74-build.zip",
+            "providerMetadata": {
+                "s3TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-dev-172405-deployment/amplify-cfn-templates/function/deltasyncresolver-cloudformation-template.json",
+                "logicalId": "functiondeltasyncresolver"
+            },
+            "lastPushTimeStamp": "2019-12-17T23:11:59.230Z",
+            "output": {
+                "Region": "us-east-1",
+                "Arn": "arn:aws:lambda:us-east-1:900820753842:function:QueryDeltaSync-dev",
+                "Name": "QueryDeltaSync-dev",
+                "LambdaExecutionRole": "schdlrLambdaRoleeb76f572-dev"
+            },
+            "lastPushDirHash": "awpx6eEvxpWbkeLj4J8fYIjw2Lg="
+        }
+    }
 }
