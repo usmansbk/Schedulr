@@ -89,14 +89,14 @@ export function mergeEvents(data) {
 
   const { created, following, bookmarks } = data;
   
-  if (created) {
+  if (created && created.items) {
     // extract events from created schedules
     created.items.forEach(schedule => {
       allEvents = allEvents.concat(schedule.events.items);
     });
   }
 
-  if (following) {
+  if (following && following.items) {
     // extract events from following schedules
     following.items.forEach(follow => {
       const { schedule } = follow;
@@ -108,7 +108,7 @@ export function mergeEvents(data) {
     });
   }
 
-  if (bookmarks) {
+  if (bookmarks && bookmarks.items) {
     // extract events from bookmarks
     bookmarks.items.forEach(bookmark => {
       const { event } = bookmark;
@@ -128,12 +128,12 @@ export function mergeSchedules(data) {
   const { created, following } = data;
 
   // extract created schedules
-  if (created) {
+  if (created && created.items) {
     allSchedules = allSchedules.concat(created.items);
   }
 
   // extract following schedules
-  if (following) {
+  if (following && following.items) {
     const followingSchedules = following.items.map(follow => follow.schedule).filter(schedule => Boolean(schedule));
     allSchedules = allSchedules.concat(followingSchedules);
   }
