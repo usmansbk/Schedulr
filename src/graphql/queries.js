@@ -325,7 +325,7 @@ export const getUserBookmarks = `query GetBookmarks($nextToken: String, $limit: 
 export const getUserSchedules = `query GetUserSchedules($id: ID!, $limit: Int) {
   getUserSchedules: getUser(id: $id) {
     id
-    created(limit: $limit, sortDirection: ASC) @connection(key: "created") {
+    created {
       items {
         id
         name
@@ -358,7 +358,7 @@ export const getUserSchedules = `query GetUserSchedules($id: ID!, $limit: Int) {
       }
       nextToken
     }
-    following(limit: $limit, sortDirection: ASC) @connection(key: "following") {
+    following {
       items {
         id
         schedule {
@@ -404,7 +404,7 @@ export const getUserSchedules = `query GetUserSchedules($id: ID!, $limit: Int) {
 export const getUserData = `query GetUserData($filter: ModelEventFilterInput, $limit: Int) {
   getUserData: me {
     id
-    created(limit: $limit, sortDirection: ASC) @connection(key: "created") {
+    created {
       items {
         id
         name
@@ -472,7 +472,7 @@ export const getUserData = `query GetUserData($filter: ModelEventFilterInput, $l
       }
       nextToken
     }
-    following(limit: $limit, sortDirection: ASC) @connection(key: "following") {
+    following {
       nextToken
       items {
         id
