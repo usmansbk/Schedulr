@@ -92,7 +92,7 @@
 				"Runtime": "nodejs10.x",
 				"Timeout": "25",
 				"Code": {
-					"S3Bucket": "amplify-schdlr-dev-172405-deployment",
+					"S3Bucket": "amplify-schdlr-prod-21214-deployment",
 					"S3Key": "amplify-builds/notificationsresolver-547330644d5252437659-build.zip"
 				}
 			}
