@@ -8,9 +8,9 @@ import UserAvatar from 'components/common/UserAvatar';
 import Details from './Details';
 import { formatDate, getRepeatLabel, getDuration } from 'lib/time';
 import { isEventValid, isEventCancelled, getStatus } from 'lib/parseItem';
-import { decapitalize} from 'lib/utils';
 import { ONE_TIME_EVENT } from 'lib/constants';
 import getImageUrl from 'helpers/getImageUrl';
+import logger from 'config/logger';
 
 const DATE_FORMAT = "ddd DD, MMM YYYY, hh:mm a";
 const FONT_SIZE = 24;
@@ -25,6 +25,8 @@ class EventDetails extends React.Component {
   };
   _getDuration = (start, end) => getDuration(start, end);
  _incrementCount = () => this.setState(prev => ({ count: prev.count + 1 }));
+
+ componentDidMount = () => logger.log('event_details_screen');
 
  shouldComponentUpdate = (nextProps, nextState) => (
    (this.state.count !== nextState.count) || !isEqual(nextProps.event, this.props.event)

@@ -1,7 +1,10 @@
 import React from 'react';
 import List from 'components/lists/Bookmarks';
+import logger from 'config/logger';
 
 export default class Bookmarks extends React.Component {
+  componentDidMount = () => logger.log('bookmarks');
+
   _processEvents = (data) => {
       if (!data) return [];
       const { bookmarks } = data;
