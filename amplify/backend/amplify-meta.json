@@ -10,6 +10,18 @@
 			"StackName": "amplify-schdlr-prod-21214",
 			"StackId": "arn:aws:cloudformation:us-east-1:900820753842:stack/amplify-schdlr-prod-21214/70800bf0-2133-11ea-ba0e-0e4c53e0aefd",
 			"AmplifyAppId": "d2hhxq5zotlv3x"
+		},
+		"categories": {
+			"auth": {
+				"schdlr1428cab7": {
+					"hostedUIProviderCreds": "[{\"ProviderName\":\"Facebook\",\"client_id\":\"203644060264792\",\"client_secret\":\"25160892b72473bfb8e1355da76e7d68\"},{\"ProviderName\":\"Google\",\"client_id\":\"281442930531-6766tska22faigc1bs9hdoud9bqeulib.apps.googleusercontent.com\",\"client_secret\":\"-gwe8MZRjWeAKwzRh30AW55_\"}]"
+				}
+			},
+			"function": {
+				"notificationsresolver": {},
+				"deltasyncresolver": {},
+				"schdlr": {}
+			}
 		}
 	},
 	"auth": {
@@ -17,11 +29,6 @@
 			"service": "Cognito",
 			"providerPlugin": "awscloudformation",
 			"dependsOn": [],
-			"providerMetadata": {
-				"s3TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-prod-21214-deployment/amplify-cfn-templates/auth/schdlr1428cab7-cloudformation-template.yml",
-				"logicalId": "authschdlr1428cab7"
-			},
-			"lastPushTimeStamp": "2019-12-18T01:51:04.892Z",
 			"output": {
 				"AppClientSecret": "ok96dpkk9e7b07bbm4ebpgro3pk5saedbr1n8s1nt1nb94k6iu7",
 				"UserPoolId": "us-east-1_2yTgdTeoh",
@@ -33,7 +40,11 @@
 				"OAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"schdlr://\"],\"LogoutURLs\":[\"schdlr://\"]}",
 				"UserPoolName": "schdlr1428cab7_userpool_1428cab7"
 			},
-			"lastPushDirHash": "H/JVRarzt32d2eAgGa7JFp3gisA="
+			"lastPushTimeStamp": "2019-12-18T02:25:34.250Z",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-prod-21214-deployment/amplify-cfn-templates/auth/schdlr1428cab7-cloudformation-template.yml",
+				"logicalId": "authschdlr1428cab7"
+			}
 		}
 	},
 	"api": {
@@ -57,28 +68,26 @@
 				"GraphQLAPIIdOutput": "wb4flhdy5bfdjppc5l6kyzr63y",
 				"GraphQLAPIEndpointOutput": "https://adeesfck7fhmxjpl47t5oklbue.appsync-api.us-east-1.amazonaws.com/graphql"
 			},
+			"lastPushTimeStamp": "2019-12-18T02:25:34.256Z",
 			"providerMetadata": {
 				"s3TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-prod-21214-deployment/amplify-cfn-templates/api/cloudformation-template.json",
 				"logicalId": "apischdlr"
-			},
-			"lastPushTimeStamp": "2019-12-18T01:51:04.892Z",
-			"lastPushDirHash": "7hiQ7vHoqrFTNwCJOKvIyIzL4Rs="
+			}
 		}
 	},
 	"storage": {
 		"schdlr": {
 			"service": "S3",
 			"providerPlugin": "awscloudformation",
-			"providerMetadata": {
-				"s3TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-prod-21214-deployment/amplify-cfn-templates/storage/s3-cloudformation-template.json",
-				"logicalId": "storageschdlr"
-			},
-			"lastPushTimeStamp": "2019-12-18T01:51:04.892Z",
 			"output": {
 				"BucketName": "schdlrassets-prod",
 				"Region": "us-east-1"
 			},
-			"lastPushDirHash": "uzYWvp6cqRx/9valyD9PU4KC6ec="
+			"lastPushTimeStamp": "2019-12-18T02:25:34.258Z",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-prod-21214-deployment/amplify-cfn-templates/storage/s3-cloudformation-template.json",
+				"logicalId": "storageschdlr"
+			}
 		}
 	},
 	"function": {
@@ -86,41 +95,41 @@
 			"service": "Lambda",
 			"providerPlugin": "awscloudformation",
 			"build": true,
-			"lastBuildTimeStamp": "2019-12-18T01:23:31.183Z",
-			"lastPackageTimeStamp": "2019-12-18T01:23:43.600Z",
-			"distZipFilename": "notificationsresolver-547330644d5252437659-build.zip",
-			"providerMetadata": {
-				"s3TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-prod-21214-deployment/amplify-cfn-templates/function/notificationsresolver-cloudformation-template.json",
-				"logicalId": "functionnotificationsresolver"
-			},
-			"lastPushTimeStamp": "2019-12-18T01:51:04.892Z",
 			"output": {
 				"Region": "us-east-1",
 				"Arn": "arn:aws:lambda:us-east-1:900820753842:function:QueryNotifications-prod",
 				"Name": "QueryNotifications-prod",
 				"LambdaExecutionRole": "schdlrLambdaRolef28f203e-prod"
 			},
-			"lastPushDirHash": "lOrHZrJC0AJOyDct8JkvbYHbTDw="
+			"lastPushTimeStamp": "2019-12-18T02:25:34.262Z",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-prod-21214-deployment/amplify-cfn-templates/function/notificationsresolver-cloudformation-template.json",
+				"logicalId": "functionnotificationsresolver"
+			},
+			"lastBuildTimeStamp": "2019-12-18T02:23:20.927Z",
+			"lastPackageTimeStamp": "2019-12-18T02:23:34.756Z",
+			"distZipFilename": "notificationsresolver-547330644d5252437659-build.zip",
+			"lastPushDirHash": "zj2NhobU4EjWf4r00tKss5SCCSo="
 		},
 		"deltasyncresolver": {
 			"service": "Lambda",
 			"providerPlugin": "awscloudformation",
 			"build": true,
-			"lastBuildTimeStamp": "2019-12-18T01:23:34.419Z",
-			"lastPackageTimeStamp": "2019-12-18T01:23:42.748Z",
-			"distZipFilename": "deltasyncresolver-62645351416736396a74-build.zip",
-			"providerMetadata": {
-				"s3TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-prod-21214-deployment/amplify-cfn-templates/function/deltasyncresolver-cloudformation-template.json",
-				"logicalId": "functiondeltasyncresolver"
-			},
-			"lastPushTimeStamp": "2019-12-18T01:51:04.892Z",
 			"output": {
 				"Region": "us-east-1",
 				"Arn": "arn:aws:lambda:us-east-1:900820753842:function:QueryDeltaSync-prod",
 				"Name": "QueryDeltaSync-prod",
 				"LambdaExecutionRole": "schdlrLambdaRoleeb76f572-prod"
 			},
-			"lastPushDirHash": "tMWg1hujRGlL5NMG0ZEYbloRas8="
+			"lastPushTimeStamp": "2019-12-18T02:25:34.262Z",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-prod-21214-deployment/amplify-cfn-templates/function/deltasyncresolver-cloudformation-template.json",
+				"logicalId": "functiondeltasyncresolver"
+			},
+			"lastBuildTimeStamp": "2019-12-18T02:23:23.409Z",
+			"lastPackageTimeStamp": "2019-12-18T02:23:33.974Z",
+			"distZipFilename": "deltasyncresolver-62645351416736396a74-build.zip",
+			"lastPushDirHash": "wtpZmPzXG388hy1bKXHAJBXJ4Ng="
 		}
 	}
 }
