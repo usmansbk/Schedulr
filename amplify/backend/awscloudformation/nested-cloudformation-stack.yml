@@ -114,9 +114,9 @@
 					"hostedUIDomainName": "schdlr",
 					"authProvidersUserPool": "Facebook,Google",
 					"hostedUIProviderMeta": "[{\"ProviderName\":\"Facebook\",\"authorize_scopes\":\"email,public_profile\",\"AttributeMapping\":{\"email\":\"email\",\"username\":\"id\"}},{\"ProviderName\":\"Google\",\"authorize_scopes\":\"openid email profile\",\"AttributeMapping\":{\"email\":\"email\",\"username\":\"sub\"}}]",
-					"oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"schdlr://\"],\"LogoutURLs\":[\"schdlr://\"]}",
 					"userPoolGroupList": "",
 					"dependsOn": "",
+					"oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"schdlr://\"],\"LogoutURLs\":[\"schdlr://\"]}",
 					"hostedUIProviderCreds": "[{\"ProviderName\":\"Facebook\",\"client_id\":\"203644060264792\",\"client_secret\":\"25160892b72473bfb8e1355da76e7d68\"},{\"ProviderName\":\"Google\",\"client_id\":\"281442930531-6766tska22faigc1bs9hdoud9bqeulib.apps.googleusercontent.com\",\"client_secret\":\"-gwe8MZRjWeAKwzRh30AW55_\"}]",
 					"env": "prod"
 				}
