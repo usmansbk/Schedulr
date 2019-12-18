@@ -292,6 +292,7 @@ export default {
   ERROR_failedToDeleteFollow: 'Failed to unfollow schedule.',
   ERROR_fatal: 'Fatal error occured.',
   ERROR_configHint: ' Sync now and try again.',
+  ERROR_signInFailure: 'Failed to Sign In',
 
   PLACEHOLDER_aboutThisEvent: "About this event...",
   PLACEHOLDER_normal: "Normal",

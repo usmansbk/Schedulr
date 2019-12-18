@@ -1,6 +1,6 @@
 import React from 'react';
 import uuidv5 from 'uuid/v5';
-import { Auth, Hub } from 'aws-amplify';
+import { Auth, Hub, I18n } from 'aws-amplify';
 import crashlytics from '@react-native-firebase/crashlytics';
 import { inject, observer } from 'mobx-react';
 import { withNavigationFocus } from'react-navigation';
@@ -36,6 +36,10 @@ class Container extends React.Component {
   _authListener = async ({ payload: { event } }) => {
     const { client, stores } = this.props;
     switch(event) {
+      case 'signIn_failure':
+        this.props.stores.appState.setLoginState(false);
+        this.props.stores.snackbar.show(I18n.get('ERROR_signInFailure'), true);
+        break;
       case "signIn":
         try {
           const currentUser = await Auth.currentAuthenticatedUser();
