@@ -1,10 +1,9 @@
 /* eslint-disable */
- 
 export const createUser = `mutation CreateUser($input: CreateUserInput!) {
   createUser(input: $input) {
     id
-    email
     me
+    email
     name
     pictureUrl
     avatar {

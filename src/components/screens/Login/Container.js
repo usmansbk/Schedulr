@@ -30,6 +30,7 @@ class Container extends React.Component {
     try {
       await changeNavigationBarColor('white', true);
     } catch (error) {
+      logger.logError(error);
     }
   };
 
@@ -109,7 +110,7 @@ class Container extends React.Component {
           logger.log('sign-in');
           this.props.navigation.navigate('App');
         } catch(error) {
-          this.props.stores.snackbar.show("Sign-in failed");
+          this.props.stores.snackbar.show(I18n.get('ERROR_signInFailure'));
           logger.logError(error);
         }
         this.props.stores.appState.setLoginState(false);
