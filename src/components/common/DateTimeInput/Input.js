@@ -5,6 +5,15 @@ import { View } from 'react-native';
 import { inject, observer } from 'mobx-react';
 import Button from './Picker';
 
+const calendarFormats = {
+  sameDay: '[Today], ddd Do',
+  nextDay: '[Tomorrow], ddd Do',
+  nextWeek: 'dddd, Do',
+  lastDay: '[Yesterday], ddd Do',
+  lastWeek: '[Last] dddd, Do',
+  sameElse: 'ddd, Do MMM YYYY'
+};
+
 class Input extends React.Component {
 
   state = {
@@ -19,7 +28,7 @@ class Input extends React.Component {
     (nextState.mode !== this.state.mode)
   );
   
-  _formatDate = (date) => moment(date).format('ddd, Do MMM YYYY');
+  _formatDate = (date) => moment(date).calendar(null, calendarFormats);
   _formatTime = (time) => moment(time).format('hh:mm a');
 
   _hidePicker = () => this.setState({ showPicker: false });
