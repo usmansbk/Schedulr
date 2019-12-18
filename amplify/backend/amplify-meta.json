@@ -21,7 +21,7 @@
                 "s3TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-dev-172405-deployment/amplify-cfn-templates/auth/schdlr1428cab7-cloudformation-template.yml",
                 "logicalId": "authschdlr1428cab7"
             },
-            "lastPushTimeStamp": "2019-12-17T23:11:59.222Z",
+            "lastPushTimeStamp": "2019-12-18T01:05:52.975Z",
             "output": {
                 "AppClientSecret": "110ca22vlag7sjj184f8ta07846hda1sholpmmv14ec3hqi4l369",
                 "UserPoolId": "us-east-1_lfRHQx7qd",
@@ -61,7 +61,7 @@
                 "s3TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-dev-172405-deployment/amplify-cfn-templates/api/cloudformation-template.json",
                 "logicalId": "apischdlr"
             },
-            "lastPushTimeStamp": "2019-12-17T23:20:41.850Z",
+            "lastPushTimeStamp": "2019-12-18T01:05:52.982Z",
             "lastPushDirHash": "btMj7DLOqf52T7nwKDTYrH/OcCc="
         }
     },
@@ -73,7 +73,7 @@
                 "s3TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-dev-172405-deployment/amplify-cfn-templates/storage/s3-cloudformation-template.json",
                 "logicalId": "storageschdlr"
             },
-            "lastPushTimeStamp": "2019-12-17T23:11:59.229Z",
+            "lastPushTimeStamp": "2019-12-18T01:05:52.982Z",
             "output": {
                 "BucketName": "schdlrassets-dev",
                 "Region": "us-east-1"
@@ -93,7 +93,7 @@
                 "s3TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-dev-172405-deployment/amplify-cfn-templates/function/notificationsresolver-cloudformation-template.json",
                 "logicalId": "functionnotificationsresolver"
             },
-            "lastPushTimeStamp": "2019-12-17T23:11:59.229Z",
+            "lastPushTimeStamp": "2019-12-18T01:05:52.983Z",
             "output": {
                 "Region": "us-east-1",
                 "Arn": "arn:aws:lambda:us-east-1:900820753842:function:QueryNotifications-dev",
@@ -113,7 +113,7 @@
                 "s3TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-dev-172405-deployment/amplify-cfn-templates/function/deltasyncresolver-cloudformation-template.json",
                 "logicalId": "functiondeltasyncresolver"
             },
-            "lastPushTimeStamp": "2019-12-17T23:11:59.230Z",
+            "lastPushTimeStamp": "2019-12-18T01:05:52.983Z",
             "output": {
                 "Region": "us-east-1",
                 "Arn": "arn:aws:lambda:us-east-1:900820753842:function:QueryDeltaSync-dev",
@@ -121,6 +121,36 @@
                 "LambdaExecutionRole": "schdlrLambdaRoleeb76f572-dev"
             },
             "lastPushDirHash": "awpx6eEvxpWbkeLj4J8fYIjw2Lg="
+        },
+        "queryserver": {
+            "service": "Lambda",
+            "providerPlugin": "awscloudformation",
+            "build": true,
+            "dependsOn": [
+                {
+                    "category": "api",
+                    "resourceName": "schdlr",
+                    "attributes": [
+                        "GraphQLAPIIdOutput",
+                        "GraphQLAPIEndpointOutput"
+                    ]
+                }
+            ],
+            "lastBuildTimeStamp": "2019-12-17T12:01:11.133Z",
+            "lastPackageTimeStamp": "2019-12-17T17:19:13.034Z",
+            "distZipFilename": "queryserver-4a4b774c6737745a6c46-build.zip",
+            "providerMetadata": {
+                "s3TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-dev-172405-deployment/amplify-cfn-templates/function/queryserver-cloudformation-template.json",
+                "logicalId": "functionqueryserver"
+            },
+            "lastPushTimeStamp": "2019-12-18T01:05:52.984Z",
+            "output": {
+                "Region": "us-east-1",
+                "Arn": "arn:aws:lambda:us-east-1:900820753842:function:QueryServer-dev",
+                "Name": "QueryServer-dev",
+                "LambdaExecutionRole": "schdlrLambdaRole437b2a20-dev"
+            },
+            "lastPushDirHash": "M5hl2WWXlleXfVoxkdC7jRm6D7A="
         }
     }
 }

@@ -8,6 +8,15 @@ type User
         ownerField: "id",
         identityClaim: "email",
         operations: [create, update, delete]
+      },
+      {
+        allow: private,
+        operations: [read]
+      },
+      {
+        allow: private,
+        provider: iam,
+        operations: [read]
       }
     ])
 {
@@ -20,11 +29,21 @@ type User
   gender: String
   bio: String
   me: Boolean
-  following: [Follow]
+  following: ModelFollowConnection @function(name: "QueryServer-${env}")
+  allFollowing: [Follow]
     @connection(name: "Followings", sortField: "createdAt", limit: 25)
+    @auth(rules: [
+      { allow: owner, ownerField: "id", identityClaim: "email" },
+      { allow: private, provider: iam, operations: [ read ] }
+    ])
   followingCount: Int
-  created: [Schedule]
+  created: ModelScheduleConnection @function(name: "QueryServer-${env}")
+  allCreated: [Schedule]
     @connection(name: "UserSchedules", sortField: "createdAt", limit: 25)
+    @auth(rules: [
+      { allow: owner, ownerField: "id", identityClaim: "email" },
+      { allow: private, provider: iam, operations: [ read ] }
+    ])
   createdCount: Int
   bookmarks: [Bookmark]
     @connection(name: "UserBookmarks", sortField: "createdAt", limit: 50)
@@ -35,11 +54,7 @@ type User
 }
 
 type UserPreference
-  @model(
-    subscriptions: null,
-    queries: { get: "userPref" },
-    mutations: { create: "createUserPreference", update: "updateUserPreference"
-  })
+  @model(subscriptions: null, queries: { get: "userPref" }, mutations: { create: "createUserPreference", update: "updateUserPreference" })
   @auth(
     rules: [
       {
@@ -69,6 +84,15 @@ type Schedule
         ownerField: "scheduleAuthorId",
         identityClaim: "email",
         operations: [create, update, delete]
+      },
+      {
+        allow: private,
+        operations: [read]
+      },
+      {
+        allow: private,
+        provider: iam,
+        operations: [read]
       }
     ]
   )
@@ -108,6 +132,15 @@ type Event
         ownerField: "eventAuthorId",
         identityClaim: "email",
         operations: [create, update, delete]
+      },
+      {
+        allow: private,
+        operations: [read]
+      },
+      {
+        allow: private,
+        provider: iam,
+        operations: [read]
       }
     ]
   )
@@ -167,6 +200,15 @@ type Comment
         ownerField: "commentAuthorId",
         identityClaim: "email",
         operations: [create, update, delete]
+      },
+      {
+        allow: private,
+        operations: [read]
+      },
+      {
+        allow: private,
+        provider: iam,
+        operations: [read]
       }
     ]
   )
@@ -184,6 +226,16 @@ type Comment
   attachment: [S3Object]
   createdAt: String
   updatedAt: String
+}
+
+type ModelFollowConnection @aws_iam @aws_cognito_user_pools {
+  items: [Follow]
+  nextToken: String
+}
+
+type ModelScheduleConnection @aws_iam @aws_cognito_user_pools {
+  items: [Schedule]
+  nextToken: String
 }
 
 type SearchableEventConnection {
@@ -245,11 +297,7 @@ type Delta {
 }
 
 type Bookmark
-  @model(
-    subscriptions: null,
-    queries: null,
-    mutations: { create: "createBookmark", delete: "deleteBookmark" }
-  )
+  @model(subscriptions: null, queries: null, mutations: { create: "createBookmark", delete: "deleteBookmark" })
   @auth(
     rules: [
       {
@@ -268,11 +316,7 @@ type Bookmark
 }
 
 type Follow
-  @model(
-    subscriptions: null,
-    queries: null,
-    mutations: { create: "createFollow", delete: "deleteFollow" }
-  )
+  @model(subscriptions: null, queries: null, mutations: { create: "createFollow", delete: "deleteFollow" })
   @auth(
     rules: [
       {
@@ -280,6 +324,15 @@ type Follow
         ownerField: "followUserId",
         identityClaim: "email",
         operations: [create, update, delete]
+      },
+      {
+        allow: private,
+        operations: [read]
+      },
+      {
+        allow: private,
+        provider: iam,
+        operations: [read]
       }
     ])
 {
