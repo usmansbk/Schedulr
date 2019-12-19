@@ -5,6 +5,27 @@
 		"env": {
 			"Type": "String"
 		},
+		"BATCH_SIZE": {
+			"Type": "String"
+		},
+		"BOOKMARK_TABLE_NAME": {
+			"Type": "String"
+		},
+		"COMMENT_TABLE_NAME": {
+			"Type": "String"
+		},
+		"DELTA_TABLE": {
+			"Type": "String"
+		},
+		"GSI_EVENT_BOOKMARKS": {
+			"Type": "String"
+		},
+		"GSI_EVENT_BOOKMARKS_KEY": {
+			"Type": "String"
+		},
+		"TTL": {
+			"Type": "String"
+		},
 		"storageeventdeltaName": {
 			"Type": "String",
 			"Default": "storageeventdeltaName"
@@ -58,6 +79,27 @@
 						},
 						"REGION": {
 							"Ref": "AWS::Region"
+						},
+						"BATCH_SIZE": {
+							"Ref": "BATCH_SIZE"
+						},
+						"BOOKMARK_TABLE_NAME": {
+							"Ref": "BOOKMARK_TABLE_NAME"
+						},
+						"COMMENT_TABLE_NAME":{
+							"Ref": "COMMENT_TABLE_NAME"
+						},
+						"DELTA_TABLE":{
+							"Ref": "DELTA_TABLE"
+						},
+						"GSI_EVENT_BOOKMARKS":{
+							"Ref":"GSI_EVENT_BOOKMARKS"
+						},
+						"GSI_EVENT_BOOKMARKS_KEY": {
+							"Ref": "GSI_EVENT_BOOKMARKS_KEY"
+						},
+						"TTL":{
+							"Ref": "TTL"
 						}
 					}
 				},

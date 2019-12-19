@@ -1,0 +1,9 @@
+{
+  "BATCH_SIZE": "25",
+  "DELTA_TABLE": "Schedule-delta",
+  "EVENT_TABLE_NAME": "Event-wb4flhdy5bfdjppc5l6kyzr63y-prod",
+  "FOLLOW_TABLE_NAME": "Follow-wb4flhdy5bfdjppc5l6kyzr63y-prod",
+  "GSI_SCHEDULE_EVENTS": "gsi-ScheduleEvents",
+  "GSI_FOLLOWERS": "gsi-Followers",
+  "TTL": "86400"
+}
