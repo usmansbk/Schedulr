@@ -1,5 +1,1 @@
-{
-  "BATCH_SIZE": "25",
-  "DELTA_TABLE": "Comment-delta-prod",
-  "TTL": "86400"
-}
+{}

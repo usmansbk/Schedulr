@@ -270,6 +270,9 @@
 			"Properties": {
 				"TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-prod-21214-deployment/amplify-cfn-templates/function/bookmarkstreamhandler-cloudformation-template.json",
 				"Parameters": {
+					"BATCH_SIZE": "25",
+					"DELTA_TABLE": "Bookmark-delta-prod",
+					"TTL": "86400",
 					"storagebookmarkdeltaName": {
 						"Fn::GetAtt": [
 							"storagebookmarkdelta",
