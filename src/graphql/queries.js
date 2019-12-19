@@ -322,7 +322,7 @@ export const getUserBookmarks = `query GetBookmarks($nextToken: String, $limit: 
     }
   }
 }`;
-export const getUserSchedules = `query GetUserSchedules($id: ID!, $limit: Int) {
+export const getUserSchedules = `query GetUserSchedules($id: ID!) {
   getUserSchedules: getUser(id: $id) {
     id
     created {

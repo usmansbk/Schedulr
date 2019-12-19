@@ -20,9 +20,7 @@ const errorLink = onError(({ graphQLErrors }) => {
       if (message.includes("Not Found")) {
         // Dont log elasticsearch "Not found"
       } else {
-        if (__DEV__) {
-          stores.snackbar.show(I18n.get('ERROR_serverError')(error.message), true);
-        }
+        stores.snackbar.show(I18n.get('ERROR_serverError')(error.message), true);
         logger.logError(error);
       }
     });  

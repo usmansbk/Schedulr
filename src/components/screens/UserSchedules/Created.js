@@ -120,7 +120,6 @@ export default inject('stores')(observer(
         notifyOnNetworkStatusChange: true,
         variables: {
           id: props.navigation.getParam('id'),
-          limit: 50,
         }
       }),
       props: ({ data, ownProps }) => ({
