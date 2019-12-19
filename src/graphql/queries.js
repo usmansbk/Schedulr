@@ -404,6 +404,30 @@ export const getUserSchedules = `query GetUserSchedules($id: ID!) {
 export const getUserData = `query GetUserData($filter: ModelEventFilterInput, $limit: Int) {
   getUserData: me {
     id
+    me
+    email
+    name
+    pictureUrl
+    avatar {
+      key
+      bucket
+      name
+    }
+    website
+    bio
+    followingCount
+    createdCount
+    createdAt
+    updatedAt
+    preference {
+      id
+      userId
+      disablePush
+      disableAdminComments
+      disableReplies
+      disableComments
+      enableMembersComments
+    }
     created {
       items {
         id
