@@ -306,6 +306,16 @@
 					]
 				}
 			]
+		},
+		"commentspushhandler": {
+			"service": "Lambda",
+			"providerPlugin": "awscloudformation",
+			"build": true
+		},
+		"eventspushhandler": {
+			"service": "Lambda",
+			"providerPlugin": "awscloudformation",
+			"build": true
 		}
 	}
 }
