@@ -8,8 +8,8 @@ const DELTA_TABLE = process.env.DELTA_TABLE;
 const TTL = Number(process.env.TTL);
 const commentTableName = process.env.COMMENT_TABLE_NAME;
 const bookmarkTableName = process.env.BOOKMARK_TABLE_NAME;
-const commentsIndexName = process.env.EVENT_COMMENTS_INDEX_NAME;
-const eventIndexName = process.env.EVENT_BOOKMARKS_INDEX_NAME;
+const commentsIndexName = process.env.GSI_EVENT_COMMENTS;
+const eventIndexName = process.env.GSI_EVENT_BOOKMARKS;
 
 exports.handler = async (event, context) => {
     const { Records } = event;
