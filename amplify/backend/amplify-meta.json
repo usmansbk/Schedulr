@@ -253,7 +253,7 @@
                 "s3TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-prod-21214-deployment/amplify-cfn-templates/function/bookmarkstreamhandler-cloudformation-template.json",
                 "logicalId": "functionbookmarkstreamhandler"
             },
-            "lastPushTimeStamp": "2019-12-19T22:22:13.514Z"
+            "lastPushTimeStamp": "2019-12-19T22:28:29.891Z"
         },
         "followstreamhandler": {
             "service": "Lambda",
@@ -276,7 +276,7 @@
                 "s3TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-prod-21214-deployment/amplify-cfn-templates/function/followstreamhandler-cloudformation-template.json",
                 "logicalId": "functionfollowstreamhandler"
             },
-            "lastPushTimeStamp": "2019-12-19T22:22:13.799Z"
+            "lastPushTimeStamp": "2019-12-19T22:28:30.202Z"
         },
         "eventstreamhandler": {
             "service": "Lambda",
@@ -299,7 +299,7 @@
                 "s3TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-prod-21214-deployment/amplify-cfn-templates/function/eventstreamhandler-cloudformation-template.json",
                 "logicalId": "functioneventstreamhandler"
             },
-            "lastPushTimeStamp": "2019-12-19T22:22:45.111Z"
+            "lastPushTimeStamp": "2019-12-19T22:28:29.918Z"
         },
         "commentstreamhandler": {
             "service": "Lambda",
@@ -322,7 +322,7 @@
                 "s3TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-prod-21214-deployment/amplify-cfn-templates/function/commentstreamhandler-cloudformation-template.json",
                 "logicalId": "functioncommentstreamhandler"
             },
-            "lastPushTimeStamp": "2019-12-19T22:22:13.236Z"
+            "lastPushTimeStamp": "2019-12-19T22:28:30.165Z"
         },
         "schedulestreamhandler": {
             "service": "Lambda",
@@ -345,7 +345,7 @@
                 "s3TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-prod-21214-deployment/amplify-cfn-templates/function/schedulestreamhandler-cloudformation-template.json",
                 "logicalId": "functionschedulestreamhandler"
             },
-            "lastPushTimeStamp": "2019-12-19T22:22:13.270Z"
+            "lastPushTimeStamp": "2019-12-19T22:28:30.171Z"
         },
         "commentspushhandler": {
             "service": "Lambda",
@@ -358,7 +358,7 @@
                 "s3TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-prod-21214-deployment/amplify-cfn-templates/function/commentspushhandler-cloudformation-template.json",
                 "logicalId": "functioncommentspushhandler"
             },
-            "lastPushTimeStamp": "2019-12-19T22:22:16.636Z"
+            "lastPushTimeStamp": "2019-12-19T22:28:30.183Z"
         },
         "eventspushhandler": {
             "service": "Lambda",
@@ -371,7 +371,7 @@
                 "s3TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-prod-21214-deployment/amplify-cfn-templates/function/eventspushhandler-cloudformation-template.json",
                 "logicalId": "functioneventspushhandler"
             },
-            "lastPushTimeStamp": "2019-12-19T22:22:13.234Z"
+            "lastPushTimeStamp": "2019-12-19T22:28:30.127Z"
         }
     }
 }
