@@ -17,7 +17,7 @@ class Banner extends React.Component {
 
   render() {
     const { large, medium_rect } = this.props;
-    let size = BannerAdSize.SMART_BANNER;
+    let size = BannerAdSize.BANNER;
     let unitId = env.SMART_BANNER;
     let source = require('../../assets/camp.png');
     let style = {
@@ -26,7 +26,7 @@ class Banner extends React.Component {
     };
     if (large) {
       source = require('../../assets/sunset.png');
-      size = BannerAdSize.SMART_BANNER;
+      size = BannerAdSize.LARGE_BANNER;
       unitId = env.SMART_BANNER;
       style = {
         height: 100,
