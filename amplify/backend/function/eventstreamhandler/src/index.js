@@ -11,7 +11,7 @@ const bookmarkTableName = process.env.BOOKMARK_TABLE_NAME;
 const commentsIndexName = process.env.GSI_EVENT_COMMENTS;
 const eventIndexName = process.env.GSI_EVENT_BOOKMARKS;
 
-exports.handler = async (event, context) => {
+exports.handler = async (event) => {
     const { Records } = event;
     for (let i = 0; i < BATCH_SIZE; i += BATCH_SIZE) {
         const [ records, deletedEventsIds ] = processRecords(Records.slice(i, i + BATCH_SIZE));
