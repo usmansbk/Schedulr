@@ -177,6 +177,76 @@
 				}
 			}
 		},
+		"storagebookmarkdelta": {
+			"Type": "AWS::CloudFormation::Stack",
+			"Properties": {
+				"TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-prod-21214-deployment/amplify-cfn-templates/storage/bookmarkdelta-cloudformation-template.json",
+				"Parameters": {
+					"tableName": "Bookmark-delta",
+					"partitionKeyName": "id",
+					"partitionKeyType": "S",
+					"sortKeyName": "timestamp",
+					"sortKeyType": "N",
+					"env": "prod"
+				}
+			}
+		},
+		"storagecommentdelta": {
+			"Type": "AWS::CloudFormation::Stack",
+			"Properties": {
+				"TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-prod-21214-deployment/amplify-cfn-templates/storage/commentdelta-cloudformation-template.json",
+				"Parameters": {
+					"tableName": "Comment-delta",
+					"partitionKeyName": "id",
+					"partitionKeyType": "S",
+					"sortKeyName": "timestamp",
+					"sortKeyType": "N",
+					"env": "prod"
+				}
+			}
+		},
+		"storageeventdelta": {
+			"Type": "AWS::CloudFormation::Stack",
+			"Properties": {
+				"TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-prod-21214-deployment/amplify-cfn-templates/storage/eventdelta-cloudformation-template.json",
+				"Parameters": {
+					"tableName": "Event-delta",
+					"partitionKeyName": "id",
+					"partitionKeyType": "S",
+					"sortKeyName": "timestamp",
+					"sortKeyType": "N",
+					"env": "prod"
+				}
+			}
+		},
+		"storagefollowdelta": {
+			"Type": "AWS::CloudFormation::Stack",
+			"Properties": {
+				"TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-prod-21214-deployment/amplify-cfn-templates/storage/followdelta-cloudformation-template.json",
+				"Parameters": {
+					"tableName": "Follow-delta",
+					"partitionKeyName": "id",
+					"partitionKeyType": "S",
+					"sortKeyName": "timestamp",
+					"sortKeyType": "N",
+					"env": "prod"
+				}
+			}
+		},
+		"storagescheduledelta": {
+			"Type": "AWS::CloudFormation::Stack",
+			"Properties": {
+				"TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-prod-21214-deployment/amplify-cfn-templates/storage/scheduledelta-cloudformation-template.json",
+				"Parameters": {
+					"tableName": "Schedule-delta",
+					"partitionKeyName": "id",
+					"partitionKeyType": "S",
+					"sortKeyName": "timestamp",
+					"sortKeyType": "N",
+					"env": "prod"
+				}
+			}
+		},
 		"functionnotificationsresolver": {
 			"Type": "AWS::CloudFormation::Stack",
 			"Properties": {

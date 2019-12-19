@@ -40,7 +40,7 @@
 				"OAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"schdlr://\"],\"LogoutURLs\":[\"schdlr://\"]}",
 				"UserPoolName": "schdlr1428cab7_userpool_1428cab7"
 			},
-			"lastPushTimeStamp": "2019-12-18T13:59:05.059Z",
+			"lastPushTimeStamp": "2019-12-19T18:31:56.297Z",
 			"providerMetadata": {
 				"s3TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-prod-21214-deployment/amplify-cfn-templates/auth/schdlr1428cab7-cloudformation-template.yml",
 				"logicalId": "authschdlr1428cab7"
@@ -69,7 +69,7 @@
 				"GraphQLAPIIdOutput": "wb4flhdy5bfdjppc5l6kyzr63y",
 				"GraphQLAPIEndpointOutput": "https://adeesfck7fhmxjpl47t5oklbue.appsync-api.us-east-1.amazonaws.com/graphql"
 			},
-			"lastPushTimeStamp": "2019-12-18T13:59:05.038Z",
+			"lastPushTimeStamp": "2019-12-19T18:31:56.304Z",
 			"providerMetadata": {
 				"s3TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-prod-21214-deployment/amplify-cfn-templates/api/cloudformation-template.json",
 				"logicalId": "apischdlr"
@@ -84,11 +84,111 @@
 				"BucketName": "schdlrassets-prod",
 				"Region": "us-east-1"
 			},
-			"lastPushTimeStamp": "2019-12-18T13:59:05.041Z",
+			"lastPushTimeStamp": "2019-12-19T18:31:56.306Z",
 			"providerMetadata": {
 				"s3TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-prod-21214-deployment/amplify-cfn-templates/storage/s3-cloudformation-template.json",
 				"logicalId": "storageschdlr"
 			}
+		},
+		"bookmarkdelta": {
+			"service": "DynamoDB",
+			"providerPlugin": "awscloudformation",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-prod-21214-deployment/amplify-cfn-templates/storage/bookmarkdelta-cloudformation-template.json",
+				"logicalId": "storagebookmarkdelta"
+			},
+			"lastPushTimeStamp": "2019-12-19T18:31:56.317Z",
+			"output": {
+				"PartitionKeyName": "id",
+				"SortKeyName": "timestamp",
+				"SortKeyType": "N",
+				"Region": "us-east-1",
+				"Arn": "arn:aws:dynamodb:us-east-1:900820753842:table/Bookmark-delta-prod",
+				"StreamArn": "arn:aws:dynamodb:us-east-1:900820753842:table/Bookmark-delta-prod/stream/2019-12-19T18:29:55.681",
+				"PartitionKeyType": "S",
+				"Name": "Bookmark-delta-prod"
+			},
+			"lastPushDirHash": "hw0Unqf9tX4wFP3RrQBLUrp7pOg="
+		},
+		"commentdelta": {
+			"service": "DynamoDB",
+			"providerPlugin": "awscloudformation",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-prod-21214-deployment/amplify-cfn-templates/storage/commentdelta-cloudformation-template.json",
+				"logicalId": "storagecommentdelta"
+			},
+			"lastPushTimeStamp": "2019-12-19T18:31:56.317Z",
+			"output": {
+				"PartitionKeyName": "id",
+				"SortKeyName": "timestamp",
+				"SortKeyType": "N",
+				"Region": "us-east-1",
+				"Arn": "arn:aws:dynamodb:us-east-1:900820753842:table/Comment-delta-prod",
+				"StreamArn": "arn:aws:dynamodb:us-east-1:900820753842:table/Comment-delta-prod/stream/2019-12-19T18:29:56.546",
+				"PartitionKeyType": "S",
+				"Name": "Comment-delta-prod"
+			},
+			"lastPushDirHash": "mSx1O4b+Nd9TGct1coQlt27Eugg="
+		},
+		"eventdelta": {
+			"service": "DynamoDB",
+			"providerPlugin": "awscloudformation",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-prod-21214-deployment/amplify-cfn-templates/storage/eventdelta-cloudformation-template.json",
+				"logicalId": "storageeventdelta"
+			},
+			"lastPushTimeStamp": "2019-12-19T18:31:56.317Z",
+			"output": {
+				"PartitionKeyName": "id",
+				"SortKeyName": "timestamp",
+				"SortKeyType": "N",
+				"Region": "us-east-1",
+				"Arn": "arn:aws:dynamodb:us-east-1:900820753842:table/Event-delta-prod",
+				"StreamArn": "arn:aws:dynamodb:us-east-1:900820753842:table/Event-delta-prod/stream/2019-12-19T18:29:56.246",
+				"PartitionKeyType": "S",
+				"Name": "Event-delta-prod"
+			},
+			"lastPushDirHash": "LuhhbRADnYvLiTlBgXJFMiwSdq4="
+		},
+		"followdelta": {
+			"service": "DynamoDB",
+			"providerPlugin": "awscloudformation",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-prod-21214-deployment/amplify-cfn-templates/storage/followdelta-cloudformation-template.json",
+				"logicalId": "storagefollowdelta"
+			},
+			"lastPushTimeStamp": "2019-12-19T18:31:56.317Z",
+			"output": {
+				"PartitionKeyName": "id",
+				"SortKeyName": "timestamp",
+				"SortKeyType": "N",
+				"Region": "us-east-1",
+				"Arn": "arn:aws:dynamodb:us-east-1:900820753842:table/Follow-delta-prod",
+				"StreamArn": "arn:aws:dynamodb:us-east-1:900820753842:table/Follow-delta-prod/stream/2019-12-19T18:29:55.833",
+				"PartitionKeyType": "S",
+				"Name": "Follow-delta-prod"
+			},
+			"lastPushDirHash": "LINdhO0pJ6uhWin3JUiGUzvGoJc="
+		},
+		"scheduledelta": {
+			"service": "DynamoDB",
+			"providerPlugin": "awscloudformation",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-prod-21214-deployment/amplify-cfn-templates/storage/scheduledelta-cloudformation-template.json",
+				"logicalId": "storagescheduledelta"
+			},
+			"lastPushTimeStamp": "2019-12-19T18:31:56.317Z",
+			"output": {
+				"PartitionKeyName": "id",
+				"SortKeyName": "timestamp",
+				"SortKeyType": "N",
+				"Region": "us-east-1",
+				"Arn": "arn:aws:dynamodb:us-east-1:900820753842:table/Schedule-delta-prod",
+				"StreamArn": "arn:aws:dynamodb:us-east-1:900820753842:table/Schedule-delta-prod/stream/2019-12-19T18:29:56.086",
+				"PartitionKeyType": "S",
+				"Name": "Schedule-delta-prod"
+			},
+			"lastPushDirHash": "y0Q6iNVPyfhbuOyURqQvqsY7hgM="
 		}
 	},
 	"function": {
@@ -102,7 +202,7 @@
 				"Name": "QueryNotifications-prod",
 				"LambdaExecutionRole": "schdlrLambdaRolef28f203e-prod"
 			},
-			"lastPushTimeStamp": "2019-12-18T13:59:05.045Z",
+			"lastPushTimeStamp": "2019-12-19T18:31:56.312Z",
 			"providerMetadata": {
 				"s3TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-prod-21214-deployment/amplify-cfn-templates/function/notificationsresolver-cloudformation-template.json",
 				"logicalId": "functionnotificationsresolver"
@@ -122,7 +222,7 @@
 				"Name": "QueryDeltaSync-prod",
 				"LambdaExecutionRole": "schdlrLambdaRoleeb76f572-prod"
 			},
-			"lastPushTimeStamp": "2019-12-18T13:59:05.049Z",
+			"lastPushTimeStamp": "2019-12-19T18:31:56.313Z",
 			"providerMetadata": {
 				"s3TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-prod-21214-deployment/amplify-cfn-templates/function/deltasyncresolver-cloudformation-template.json",
 				"logicalId": "functiondeltasyncresolver"

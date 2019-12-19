@@ -24,7 +24,30 @@ const awsmobile = {
     "aws_appsync_region": "us-east-1",
     "aws_appsync_authenticationType": "AMAZON_COGNITO_USER_POOLS",
     "aws_user_files_s3_bucket": "schdlrassets-prod",
-    "aws_user_files_s3_bucket_region": "us-east-1"
+    "aws_user_files_s3_bucket_region": "us-east-1",
+    "aws_dynamodb_all_tables_region": "us-east-1",
+    "aws_dynamodb_table_schemas": [
+        {
+            "tableName": "Bookmark-delta-prod",
+            "region": "us-east-1"
+        },
+        {
+            "tableName": "Comment-delta-prod",
+            "region": "us-east-1"
+        },
+        {
+            "tableName": "Event-delta-prod",
+            "region": "us-east-1"
+        },
+        {
+            "tableName": "Follow-delta-prod",
+            "region": "us-east-1"
+        },
+        {
+            "tableName": "Schedule-delta-prod",
+            "region": "us-east-1"
+        }
+    ]
 };
 
 
