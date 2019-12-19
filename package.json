@@ -9,6 +9,7 @@
     "test": "jest",
     "lint": "eslint .",
     "clean-android": "cd ./android && ./gradlew clean && cd ./",
+    "bundleAndroid": "cd ./android && ./gradlew bundleRelease",
     "android-release": "(npm run clean-android) & (react-native run-android --variant release)",
     "android-debug": "(npm run clean-android) & (react-native run-android)",
     "postversion": "react-native-version"
