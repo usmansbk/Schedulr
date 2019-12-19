@@ -1,1 +1,9 @@
-{}
+{
+  "BATCH_SIZE": 25,
+  "BOOKMARK_TABLE_NAME": "Bookmark-wb4flhdy5bfdjppc5l6kyzr63y-prod",
+  "COMMENT_TABLE_NAME": "Comment-wb4flhdy5bfdjppc5l6kyzr63y-prod",
+  "DELTA_TABLE": "Event-delta",
+  "GSI_EVENT_BOOKMARKS": "gsi-EventBookmarks",
+  "GSI_EVENT_COMMENTS": "gsi-EventComments",
+  "TTL": 86400
+}
