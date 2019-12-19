@@ -5,6 +5,15 @@
 		"env": {
 			"Type": "String"
 		},
+		"BATCH_SIZE": {
+			"Type": "String"
+		},
+		"DELTA_TABLE": {
+			"Type": "String"
+		},
+		"TTL": {
+			"Type": "String"
+		},
 		"storagefollowdeltaName": {
 			"Type": "String",
 			"Default": "storagefollowdeltaName"
@@ -58,6 +67,15 @@
 						},
 						"REGION": {
 							"Ref": "AWS::Region"
+						},
+						"BATCH_SIZE": {
+							"Ref": "BATCH_SIZE"
+						},
+						"DELTA_TABLE": {
+							"Ref": "DELTA_TABLE"
+						},
+						"TTL": {
+							"Ref": "TTL"
 						}
 					}
 				},

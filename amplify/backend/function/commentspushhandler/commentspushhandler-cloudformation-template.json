@@ -4,6 +4,42 @@
 	"Parameters": {
 		"env": {
 			"Type": "String"
+		},
+		"API_KEY": {
+			"Type": "String"
+		},
+		"APPLICATION_ID": {
+			"Type": "String"
+		},
+		"BATCH_SIZE": {
+			"Type": "String"
+		},
+		"EVENT_TABLE_NAME": {
+			"Type": "String"
+		},
+		"FOLLOW_TABLE_NAME": {
+			"Type": "String"
+		},
+		"GSI_FOLLOWERS": {
+			"Type": "String"
+		},
+		"GSI_FOLLOWERS_KEY": {
+			"Type": "String"
+		},
+		"PLAYERS_LIMIT": {
+			"Type": "String"
+		},
+		"USER_AUTH_KEY": {
+			"Type": "String"
+		},
+		"USER_PREF_TABLE_NAME": {
+			"Type": "String"
+		},
+		"USER_TABLE_NAME": {
+			"Type": "String"
+		},
+		"WEB_URL": {
+			"Type": "String"
 		}
 	},
 	"Conditions": {
@@ -50,6 +86,42 @@
 						},
 						"REGION": {
 							"Ref": "AWS::Region"
+						},
+						"API_KEY": {
+							"Ref": "API_KEY"
+						},
+						"APPLICATION_ID": {
+							"Ref": "APPLICATION_ID"
+						},
+						"BATCH_SIZE": {
+							"Ref": "BATCH_SIZE"
+						},
+						"EVENT_TABLE_NAME":{
+							"Ref": "EVENT_TABLE_NAME"
+						},
+						"FOLLOW_TABLE_NAME": {
+							"Ref": "FOLLOW_TABLE_NAME"
+						},
+						"GSI_FOLLOWERS":{
+							"Ref": "GSI_FOLLOWERS"
+						},
+						"GSI_FOLLOWERS_KEY":{
+							"Ref": "GSI_FOLLOWERS_KEY"
+						},
+						"PLAYERS_LIMIT":{
+							"Ref": "PLAYERS_LIMIT"
+						},
+						"USER_AUTH_KEY":{
+							"Ref": "USER_AUTH_KEY"
+						},
+						"USER_PREF_TABLE_NAME":{
+							"Ref": "USER_PREF_TABLE_NAME"
+						},
+						"USER_TABLE_NAME":{
+							"Ref": "USER_TABLE_NAME"
+						},
+						"WEB_URL":{
+							"Ref": "WEB_URL"
 						}
 					}
 				},
