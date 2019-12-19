@@ -265,6 +265,129 @@
 				}
 			}
 		},
+		"functionbookmarkstreamhandler": {
+			"Type": "AWS::CloudFormation::Stack",
+			"Properties": {
+				"TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-prod-21214-deployment/amplify-cfn-templates/function/bookmarkstreamhandler-cloudformation-template.json",
+				"Parameters": {
+					"storagebookmarkdeltaName": {
+						"Fn::GetAtt": [
+							"storagebookmarkdelta",
+							"Outputs.Name"
+						]
+					},
+					"storagebookmarkdeltaArn": {
+						"Fn::GetAtt": [
+							"storagebookmarkdelta",
+							"Outputs.Arn"
+						]
+					},
+					"env": "prod"
+				}
+			}
+		},
+		"functionfollowstreamhandler": {
+			"Type": "AWS::CloudFormation::Stack",
+			"Properties": {
+				"TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-prod-21214-deployment/amplify-cfn-templates/function/followstreamhandler-cloudformation-template.json",
+				"Parameters": {
+					"storagefollowdeltaName": {
+						"Fn::GetAtt": [
+							"storagefollowdelta",
+							"Outputs.Name"
+						]
+					},
+					"storagefollowdeltaArn": {
+						"Fn::GetAtt": [
+							"storagefollowdelta",
+							"Outputs.Arn"
+						]
+					},
+					"env": "prod"
+				}
+			}
+		},
+		"functioneventstreamhandler": {
+			"Type": "AWS::CloudFormation::Stack",
+			"Properties": {
+				"TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-prod-21214-deployment/amplify-cfn-templates/function/eventstreamhandler-cloudformation-template.json",
+				"Parameters": {
+					"storageeventdeltaName": {
+						"Fn::GetAtt": [
+							"storageeventdelta",
+							"Outputs.Name"
+						]
+					},
+					"storageeventdeltaArn": {
+						"Fn::GetAtt": [
+							"storageeventdelta",
+							"Outputs.Arn"
+						]
+					},
+					"env": "prod"
+				}
+			}
+		},
+		"functioncommentstreamhandler": {
+			"Type": "AWS::CloudFormation::Stack",
+			"Properties": {
+				"TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-prod-21214-deployment/amplify-cfn-templates/function/commentstreamhandler-cloudformation-template.json",
+				"Parameters": {
+					"storagecommentdeltaName": {
+						"Fn::GetAtt": [
+							"storagecommentdelta",
+							"Outputs.Name"
+						]
+					},
+					"storagecommentdeltaArn": {
+						"Fn::GetAtt": [
+							"storagecommentdelta",
+							"Outputs.Arn"
+						]
+					},
+					"env": "prod"
+				}
+			}
+		},
+		"functionschedulestreamhandler": {
+			"Type": "AWS::CloudFormation::Stack",
+			"Properties": {
+				"TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-prod-21214-deployment/amplify-cfn-templates/function/schedulestreamhandler-cloudformation-template.json",
+				"Parameters": {
+					"storagescheduledeltaName": {
+						"Fn::GetAtt": [
+							"storagescheduledelta",
+							"Outputs.Name"
+						]
+					},
+					"storagescheduledeltaArn": {
+						"Fn::GetAtt": [
+							"storagescheduledelta",
+							"Outputs.Arn"
+						]
+					},
+					"env": "prod"
+				}
+			}
+		},
+		"functioncommentspushhandler": {
+			"Type": "AWS::CloudFormation::Stack",
+			"Properties": {
+				"TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-prod-21214-deployment/amplify-cfn-templates/function/commentspushhandler-cloudformation-template.json",
+				"Parameters": {
+					"env": "prod"
+				}
+			}
+		},
+		"functioneventspushhandler": {
+			"Type": "AWS::CloudFormation::Stack",
+			"Properties": {
+				"TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-prod-21214-deployment/amplify-cfn-templates/function/eventspushhandler-cloudformation-template.json",
+				"Parameters": {
+					"env": "prod"
+				}
+			}
+		},
 		"UpdateRolesWithIDPFunction": {
 			"DependsOn": [
 				"AuthRole",
