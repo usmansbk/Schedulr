@@ -86,19 +86,19 @@
 						"BOOKMARK_TABLE_NAME": {
 							"Ref": "BOOKMARK_TABLE_NAME"
 						},
-						"COMMENT_TABLE_NAME":{
+						"COMMENT_TABLE_NAME": {
 							"Ref": "COMMENT_TABLE_NAME"
 						},
-						"DELTA_TABLE":{
+						"DELTA_TABLE": {
 							"Ref": "DELTA_TABLE"
 						},
-						"GSI_EVENT_BOOKMARKS":{
-							"Ref":"GSI_EVENT_BOOKMARKS"
+						"GSI_EVENT_BOOKMARKS": {
+							"Ref": "GSI_EVENT_BOOKMARKS"
 						},
 						"GSI_EVENT_BOOKMARKS_KEY": {
 							"Ref": "GSI_EVENT_BOOKMARKS_KEY"
 						},
-						"TTL":{
+						"TTL": {
 							"Ref": "TTL"
 						}
 					}

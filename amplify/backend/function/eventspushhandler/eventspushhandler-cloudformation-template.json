@@ -87,40 +87,40 @@
 						"REGION": {
 							"Ref": "AWS::Region"
 						},
-						"API_KEY":{
+						"API_KEY": {
 							"Ref": "API_KEY"
 						},
-						"APPLICATION_ID":{
+						"APPLICATION_ID": {
 							"Ref": "APPLICATION_ID"
 						},
-						"BATCH_SIZE":{
+						"BATCH_SIZE": {
 							"Ref": "BATCH_SIZE"
 						},
-						"FOLLOW_TABLE_NAME":{
+						"FOLLOW_TABLE_NAME": {
 							"Ref": "FOLLOW_TABLE_NAM"
 						},
-						"GSI_FOLLOWERS":{
+						"GSI_FOLLOWERS": {
 							"Ref": "GSI_FOLLOWERS"
 						},
-						"GSI_FOLLOWERS_KEY":{
+						"GSI_FOLLOWERS_KEY": {
 							"Ref": "GSI_FOLLOWERS_KEY"
 						},
-						"PLAYERS_LIMIT":{
+						"PLAYERS_LIMIT": {
 							"Ref": "PLAYERS_LIMIT"
 						},
 						"SCHEDULE_TABLE_NAME": {
 							"Ref": "SCHEDULE_TABLE_NAME"
 						},
-						"TTL":{
+						"TTL": {
 							"Ref": "TTL"
 						},
-						"USER_AUTH_KEY":{
+						"USER_AUTH_KEY": {
 							"Ref": "USER_AUTH_KEY"
 						},
-						"USER_PREF_TABLE_NAME":{
+						"USER_PREF_TABLE_NAME": {
 							"Ref": "USER_PREF_TABLE_NAME"
 						},
-						"WEB_URL":{
+						"WEB_URL": {
 							"Ref": "WEB_URL"
 						}
 					}

@@ -5,25 +5,25 @@
 		"env": {
 			"Type": "String"
 		},
-		"BATCH_SIZE":{
+		"BATCH_SIZE": {
 			"Type": "String"
 		},
-		"TTL":{
+		"TTL": {
 			"Type": "String"
 		},
-		"DELTA_TABLE":{
+		"DELTA_TABLE": {
 			"Type": "String"
 		},
-		"EVENT_TABLE_NAME":{
+		"EVENT_TABLE_NAME": {
 			"Type": "String"
 		},
-		"FOLLOW_TABLE_NAME":{
+		"FOLLOW_TABLE_NAME": {
 			"Type": "String"
 		},
-		"GSI_FOLLOWERS":{
+		"GSI_FOLLOWERS": {
 			"Type": "String"
 		},
-		"GSI_SCHEDULE_EVENTS":{
+		"GSI_SCHEDULE_EVENTS": {
 			"Type": "String"
 		},
 		"storagescheduledeltaName": {
@@ -80,25 +80,25 @@
 						"REGION": {
 							"Ref": "AWS::Region"
 						},
-						"BATCH_SIZE":{
+						"BATCH_SIZE": {
 							"Ref": "BATCH_SIZE"
 						},
-						"TTL":{
+						"TTL": {
 							"Ref": "TTL"
 						},
-						"DELTA_TABLE":{
+						"DELTA_TABLE": {
 							"Ref": "DELTA_TABLE"
 						},
-						"FOLLOW_TABLE_NAME":{
+						"FOLLOW_TABLE_NAME": {
 							"Ref": "FOLLOW_TABLE_NAME"
 						},
-						"EVENT_TABLE_NAME":{
+						"EVENT_TABLE_NAME": {
 							"Ref": "EVENT_TABLE_NAME"
 						},
 						"GSI_SCHEDULE_EVENTS": {
 							"Ref": "GSI_SCHEDULE_EVENTS"
 						},
-						"GSI_FOLLOWERS":{
+						"GSI_FOLLOWERS": {
 							"Ref": "GSI_FOLLOWERS"
 						}
 					}
