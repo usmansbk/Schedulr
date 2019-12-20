@@ -793,6 +793,7 @@ export const searchPeople = `query SearchPeople($filter: SearchableUserFilterInp
 export const listBookmarks = `query GetEventBookmarks($id: ID!, $limit: Int, $nextToken: String) {
   listBookmarks: getEvent(id: $id) {
     id
+    bookmarksCount
     bookmarks(limit: $limit, nextToken: $nextToken, sortDirection: DESC) @connection(key: "bookmarks") {
       items {
         id
