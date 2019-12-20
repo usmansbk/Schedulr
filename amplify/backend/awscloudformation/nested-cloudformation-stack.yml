@@ -378,7 +378,7 @@
 					"followTableName": "Follow-wb4flhdy5bfdjppc5l6kyzr63y-prod",
 					"gsiScheduleEvents": "gsi-ScheduleEvents",
 					"gsiFollowers": "gsi-Followers",
-					"TTL": "86400",
+					"ttl": "86400",
 					"storagescheduledeltaName": {
 						"Fn::GetAtt": [
 							"storagescheduledelta",
