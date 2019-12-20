@@ -42,6 +42,7 @@ class Item extends React.Component {
           break;
         case BOOKMARK_TYPE:
           navigateToBookmarks(entityId);
+          break;
         case COMMENT_TYPE:
           navigateToComments(entityId);
           break;
