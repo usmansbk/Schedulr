@@ -253,7 +253,7 @@
                 "s3TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-prod-21214-deployment/amplify-cfn-templates/function/bookmarkstreamhandler-cloudformation-template.json",
                 "logicalId": "functionbookmarkstreamhandler"
             },
-            "lastPushTimeStamp": "2019-12-20T13:23:19.311Z",
+            "lastPushTimeStamp": "2019-12-20T13:44:53.151Z",
             "output": {
                 "Region": "us-east-1",
                 "Arn": "arn:aws:lambda:us-east-1:900820753842:function:BookmarkStreamHandler-prod",
