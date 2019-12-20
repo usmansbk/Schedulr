@@ -575,7 +575,6 @@ function deleteEvent(input, typename) {
     }`,
     id: `${BOOKMARK_TYPE}:${event.author.id}-${event.id}`
   });
-  console.log(bookmark);
   if (bookmark) {
     const deleteInput = {
       id: bookmark.id
