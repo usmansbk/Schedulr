@@ -58,6 +58,37 @@
 		}
 	},
 	"Resources": {
+		"EventSourceMapping": {
+			"Type": "AWS::Lambda::EventSourceMapping",
+			"Properties": {
+				"EventSourceArn": {
+					"Fn::Sub": [
+						"arn:aws:dynamodb:${region}:${account}:table/${tableName}/stream/${streamId}",
+						{
+							"region": {
+								"Ref": "AWS::Region"
+							},
+							"account": {
+								"Ref": "AWS::AccountId"
+							},
+							"tableName": {
+								"Ref": "TableName"
+							},
+							"streamId": {
+								"Ref": "StreamId"
+							}
+						}
+					]
+				},
+				"FunctionName": {
+					"Fn::GetAtt": [
+						"LambdaFunction",
+						"Arn"
+					]
+				},
+				"StartingPosition": "TRIM_HORIZON"
+			}
+		},
 		"LambdaFunction": {
 			"Type": "AWS::Lambda::Function",
 			"Metadata": {
