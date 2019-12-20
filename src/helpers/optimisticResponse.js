@@ -585,7 +585,10 @@ function deleteEvent(input, typename) {
       variables: {
         input: deleteInput
       },
-      optimisticResponse: deleteBookmark(deleteInput, BOOKMARK_TYPE)
+      optimisticResponse: {
+        __typename: 'Mutation',
+        deleteBookmark: deleteBookmark(deleteInput, BOOKMARK_TYPE)
+      }
     }).catch(console.log);
   }
   // ************************************************************
