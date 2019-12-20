@@ -108,7 +108,7 @@ export default class AppStyles {
         borderRadius: 16
       },
       selected : {
-        backgroundColor: "#d4ebf2",
+        backgroundColor: colors.primary_light,
         borderColor: colors.light_gray,
       },
       itemText: {
