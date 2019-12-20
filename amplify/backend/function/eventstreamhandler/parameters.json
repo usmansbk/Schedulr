@@ -8,6 +8,6 @@
   "gsiEventComments": "gsi-EventComments",
   "gsiEventCommentsKey": "commentEventId",
   "ttl": "86400",
-  "TableName": "Comment-wb4flhdy5bfdjppc5l6kyzr63y-prod",
-  "StreamId": "2019-12-18T01:34:10.265"
+  "TableName": "Event-wb4flhdy5bfdjppc5l6kyzr63y-prod",
+  "StreamId": "2019-12-18T01:34:09.629"
 }

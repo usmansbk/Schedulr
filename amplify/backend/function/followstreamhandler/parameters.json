@@ -2,6 +2,6 @@
   "batchSize": "25",
   "deltaTable": "Follow-delta-prod",
   "ttl": "86400",
-  "TableName": "Comment-wb4flhdy5bfdjppc5l6kyzr63y-prod",
-  "StreamId": "2019-12-18T01:34:10.265"
+  "TableName": "Follow-wb4flhdy5bfdjppc5l6kyzr63y-prod",
+  "StreamId": "2019-12-18T01:34:10.598"
 }
