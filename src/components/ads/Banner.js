@@ -22,11 +22,12 @@ class Banner extends React.Component {
     let source = require('../../assets/camp.png');
     let style = {
       height: 50,
-      width: '100%'
+      width: '100%',
+      alignItems: 'center'
     };
     if (large) {
       source = require('../../assets/sunset.png');
-      size = BannerAdSize.LARGE_BANNER;
+      size = BannerAdSize.SMART_BANNER;
       unitId = env.SMART_BANNER;
       style = {
         height: 100,
@@ -38,7 +39,8 @@ class Banner extends React.Component {
       unitId = env.SMART_BANNER;
       style = {
         width: 300,
-        height: 250
+        height: 250,
+        alignItems: 'center'
       };
     }
     if (__DEV__) {
