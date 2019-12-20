@@ -704,6 +704,7 @@ export const getNotifications = `query GetNotifications($lastSync: String!) {
 export const listFollowers = `query GetScheduleFollowers($id: ID!, $limit: Int, $nextToken: String) {
   listFollowers: getSchedule(id: $id) {
     id
+    followersCount
     followers(limit: $limit, nextToken: $nextToken, sortDirection: DESC) @connection(key: "followers") {
       items {
         id
