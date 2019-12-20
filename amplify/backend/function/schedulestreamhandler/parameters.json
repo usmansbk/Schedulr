@@ -1,6 +1,6 @@
 {
   "batchSize": "25",
-  "deltaTable": "Schedule-delta",
+  "deltaTable": "Schedule-delta-prod",
   "eventTableName": "Event-wb4flhdy5bfdjppc5l6kyzr63y-prod",
   "followTableName": "Follow-wb4flhdy5bfdjppc5l6kyzr63y-prod",
   "gsiScheduleEvents": "gsi-ScheduleEvents",
