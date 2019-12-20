@@ -108,15 +108,15 @@ export default class AppStyles {
         borderRadius: 16
       },
       selected : {
-        backgroundColor: colors.primary_light,
-        borderColor: colors.primary,
+        backgroundColor: "#d4ebf2",
+        borderColor: colors.light_gray,
       },
       itemText: {
         textAlign: 'center',
         color: colors.gray
       },
       selectedText: {
-        color: colors.light_gray
+        color: colors.gray
       }
     });
   }
