@@ -8,8 +8,10 @@ const DELTA_TABLE = process.env.DELTA_TABLE;
 const TTL = Number(process.env.TTL);
 const eventTableName = process.env.EVENT_TABLE_NAME;
 const followTableName = process.env.FOLLOW_TABLE_NAME;
-const eventsIndexName = process.env.SCHEDULE_EVENTS_INDEX;
-const scheduleIndexName = process.env.SCHEDULE_FOLLOWS_INDEX;
+const gsiScheduleEvents = process.env.GSI_SCHEDULE_EVENTS;
+const gsiFollowers = process.env.GSI_FOLLOWERS;
+const gsiScheduleEventsKey = process.env.GSI_SCHEDULE_EVENTS_KEY;
+const gsiFollowersKey = process.env.GSI_FOLLOWERS_KEY;
 
 exports.handler = async (event) => {
     const { Records } = event;
@@ -83,11 +85,11 @@ async function deleteSchedulesEvents(scheduleIds) {
     const queries = scheduleIds.map(id => {
         const params = {
             TableName: eventTableName,
-            IndexName: eventsIndexName,
+            IndexName: gsiScheduleEvents,
             ProjectionExpression: 'id',
             KeyConditionExpression: '#scheduleId = :id',
             ExpressionAttributeNames: {
-                "#scheduleId": "eventScheduleId"
+                "#scheduleId": gsiScheduleEventsKey
             },
             ExpressionAttributeValues: {
                 ":id": id
@@ -142,11 +144,11 @@ async function deleteSchedulesFollows(scheduleIds) {
     const queries = scheduleIds.map(id => {
         const params = {
             TableName: followTableName,
-            IndexName: scheduleIndexName,
+            IndexName: gsiFollowers,
             ProjectionExpression: 'id',
             KeyConditionExpression: '#scheduleId = :id',
             ExpressionAttributeNames: {
-                "#scheduleId": "followScheduleId"
+                "#scheduleId": gsiFollowersKey
             },
             ExpressionAttributeValues: {
                 ":id": id

@@ -23,7 +23,13 @@
 		"gsiFollowers": {
 			"Type": "String"
 		},
+		"gsiFollowersKey": {
+			"Type": "String"
+		},
 		"gsiScheduleEvents": {
+			"Type": "String"
+		},
+		"gsiScheduleEventsKey": {
 			"Type": "String"
 		},
 		"storagescheduledeltaName": {
@@ -135,8 +141,14 @@
 						"GSI_SCHEDULE_EVENTS": {
 							"Ref": "gsiScheduleEvents"
 						},
+						"GSI_SCHEDULE_EVENTS_KEY": {
+							"Ref": "gsiScheduleEventsKey"
+						},
 						"GSI_FOLLOWERS": {
 							"Ref": "gsiFollowers"
+						},
+						"GSI_FOLLOWERS_KEY": {
+							"Ref": "gsiFollowersKey"
 						}
 					}
 				},
@@ -300,6 +312,7 @@
 							"Effect": "Allow",
 							"Action": [
 								"dynamodb:BatchGetItem",
+                "dynamodb:BatchWriteItem",
 								"dynamodb:GetItem",
 								"dynamodb:Query"
 							],

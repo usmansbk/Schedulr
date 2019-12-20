@@ -8,8 +8,10 @@ const DELTA_TABLE = process.env.DELTA_TABLE;
 const TTL = Number(process.env.TTL);
 const commentTableName = process.env.COMMENT_TABLE_NAME;
 const bookmarkTableName = process.env.BOOKMARK_TABLE_NAME;
-const commentsIndexName = process.env.GSI_EVENT_COMMENTS;
-const eventIndexName = process.env.GSI_EVENT_BOOKMARKS;
+const gsiEventComments = process.env.GSI_EVENT_COMMENTS;
+const gsiEventBookmarks = process.env.GSI_EVENT_BOOKMARKS;
+const gsiEventCommentsKey = process.env.GSI_EVENT_COMMENTS_KEY;
+const gsiEventBookmarksKey = process.env.GSI_EVENT_BOOKMARKS_KEY;
 
 exports.handler = async (event) => {
     const { Records } = event;
@@ -83,11 +85,11 @@ async function deleteEventsComments(eventIds) {
     const queries = eventIds.map(id => {
         const params = {
             TableName: commentTableName,
-            IndexName: commentsIndexName,
+            IndexName: gsiEventComments,
             ProjectionExpression: 'id',
             KeyConditionExpression: '#commentEventId = :id',
             ExpressionAttributeNames: {
-                "#commentEventId": "commentEventId"
+                "#commentEventId": gsiEventCommentsKey
             },
             ExpressionAttributeValues: {
                 ":id": id
@@ -142,11 +144,11 @@ async function deleteEventsBookmarks(deletedEventsIds) {
     const queries = deletedEventsIds.map(id => {
         const params = {
             TableName: bookmarkTableName,
-            IndexName: eventIndexName,
+            IndexName: gsiEventBookmarks,
             ProjectionExpression: 'id',
             KeyConditionExpression: '#eventId = :id',
             ExpressionAttributeNames: {
-                "#eventId": "bookmarkEventId"
+                "#eventId": gsiEventBookmarksKey
             },
             ExpressionAttributeValues: {
                 ":id": id

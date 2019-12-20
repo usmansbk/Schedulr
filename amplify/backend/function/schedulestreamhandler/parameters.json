@@ -4,7 +4,9 @@
   "eventTableName": "Event-wb4flhdy5bfdjppc5l6kyzr63y-prod",
   "followTableName": "Follow-wb4flhdy5bfdjppc5l6kyzr63y-prod",
   "gsiScheduleEvents": "gsi-ScheduleEvents",
+  "gsiScheduleEventsKey": "eventScheduleId",
   "gsiFollowers": "gsi-Followers",
+  "gsiFollowersKey": "followScheduleId",
   "ttl": "86400",
   "TableName": "Schedule-wb4flhdy5bfdjppc5l6kyzr63y-prod",
   "StreamId": "2019-12-18T01:34:10.691"
