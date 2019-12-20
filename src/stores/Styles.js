@@ -116,7 +116,7 @@ export default class AppStyles {
         color: colors.gray
       },
       selectedText: {
-        color: colors.gray
+        color: colors.white
       }
     });
   }
