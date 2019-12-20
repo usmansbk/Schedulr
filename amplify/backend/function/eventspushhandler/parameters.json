@@ -10,5 +10,7 @@
   "ttl": "30",
   "userAuthKey": "YzFlNzM4NDgtMWE5YS00M2I2LThhNjEtNDFkYTBjZGU3YTIy",
   "userPrefTableName": "UserPreference-wb4flhdy5bfdjppc5l6kyzr63y-prod",
-  "webUrl": "https://www.schdlr.com"
+  "webUrl": "https://www.schdlr.com",
+  "TableName": "Comment-wb4flhdy5bfdjppc5l6kyzr63y-prod",
+  "StreamId": "2019-12-18T01:34:10.265"
 }

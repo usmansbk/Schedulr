@@ -39,6 +39,12 @@
 		"storageeventdeltaArn": {
 			"Type": "String",
 			"Default": "storageeventdeltaArn"
+		},
+		"StreamId": {
+			"Type": "String"
+		},
+		"TableName": {
+			"Type": "String"
 		}
 	},
 	"Conditions": {
@@ -233,6 +239,38 @@
 									]
 								}
 							]
+						},
+						{
+							"Effect": "Allow",
+							"Action": [
+								"dynamodb:GetShardIterator",
+								"dynamodb:DescribeStream",
+								"dynamodb:GetRecords"
+							],
+							"Resource": {
+								"Fn::Sub": [
+									"arn:aws:dynamodb:${region}:${account}:table/${tableName}/stream/${streamId}",
+									{
+										"region": {
+											"Ref": "AWS::Region"
+										},
+										"account": {
+											"Ref": "AWS::AccountId"
+										},
+										"tableName": {
+											"Ref": "TableName"
+										},
+										"streamId": {
+											"Ref": "StreamId"
+										}
+									}
+								]
+							}
+						},
+						{
+							"Effect": "Allow",
+							"Action": "dynamodb:ListStreams",
+							"Resource": "*"
 						}
 					]
 				}
