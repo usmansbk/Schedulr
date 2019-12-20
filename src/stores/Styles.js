@@ -113,6 +113,7 @@ export default class AppStyles {
       },
       itemText: {
         textAlign: 'center',
+        color: colors.gray
       },
       selectedText: {
         color: colors.light_gray
