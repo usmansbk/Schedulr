@@ -11,7 +11,8 @@ import {
   COMMENT_TYPE,
   FOLLOW_TYPE
 } from 'lib/constants';
-import { getUserData, getScheduleEvents, getEventComments } from 'api/queries';
+import { getScheduleEvents, getEventComments } from 'api/queries';
+import { deleteBookmark as deleteBookmarkQuery } from 'api/mutations';
 import logger from 'config/logger';
 
 const __typename = 'Mutation';
@@ -552,6 +553,9 @@ function deleteEvent(input, typename) {
         id
         eventsCount
       }
+      author {
+        id
+      }
     }`,
     id: `${typename}:${input.id}`
   });
@@ -564,26 +568,25 @@ function deleteEvent(input, typename) {
   }
   
   // ******************* Remove from bookmarks *******************
-  try {
-    const BaseQuery = gql(getUserData);
-    const data = client.readQuery({
-      query: BaseQuery,
-    });
-    const newData = Object.assign({}, data, {
-      getUserData: Object.assign({}, data.getUserData, {
-        bookmarks: Object.assign({}, data.getUserData.bookmarks, {
-          items: data.getUserData.bookmarks.items.filter(
-            bookmark => bookmark.event && (bookmark.event.id !== input.id)
-          )
-        })
-      })
-    });
-    client.writeQuery({
-      query: BaseQuery,
-      data: newData
-    });
-  } catch(error) {
-    logger.logError(error);
+
+  const bookmark = client.readFragment({
+    fragment: gql`fragment deleteEventBookmark on Bookmark {
+      id
+    }`,
+    id: `${BOOKMARK_TYPE}:${event.author.id}-${event.id}`
+  });
+  console.log(bookmark);
+  if (bookmark) {
+    const deleteInput = {
+      id: bookmark.id
+    };
+    client.mutate({
+      mutation: gql(deleteBookmarkQuery),
+      variables: {
+        input: deleteInput
+      },
+      optimisticResponse: deleteBookmark(deleteInput, BOOKMARK_TYPE)
+    }).catch(console.log);
   }
   // ************************************************************
 
