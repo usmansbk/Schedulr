@@ -248,6 +248,7 @@
 							"Effect": "Allow",
 							"Action": [
 								"dynamodb:GetItem",
+								"dynamodb:BatchWriteItem",
 								"dynamodb:Query",
 								"dynamodb:Scan",
 								"dynamodb:PutItem",
@@ -275,7 +276,6 @@
 							"Effect": "Allow",
 							"Action": [
 								"dynamodb:GetShardIterator",
-								"dynamodb:BatchWriteItem",
 								"dynamodb:DescribeStream",
 								"dynamodb:GetRecords"
 							],

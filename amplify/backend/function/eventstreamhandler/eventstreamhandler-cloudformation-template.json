@@ -251,6 +251,7 @@
 								"dynamodb:Query",
 								"dynamodb:Scan",
 								"dynamodb:PutItem",
+								"dynamodb:BatchWriteItem",
 								"dynamodb:UpdateItem",
 								"dynamodb:DeleteItem"
 							],
