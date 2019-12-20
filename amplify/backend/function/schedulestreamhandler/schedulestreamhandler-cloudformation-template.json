@@ -292,18 +292,18 @@
 							"Resource": "*"
 						},
 						{
-								"Effect": "Allow",
-								"Action": "dynamodb:Query",
-								"Resource": "arn:aws:dynamodb:*:*:table/*/index/*"
+							"Effect": "Allow",
+							"Action": "dynamodb:Query",
+							"Resource": "arn:aws:dynamodb:*:*:table/*/index/*"
 						},
 						{
-								"Effect": "Allow",
-								"Action": [
-										"dynamodb:BatchGetItem",
-										"dynamodb:GetItem",
-										"dynamodb:Query"
-								],
-								"Resource": "arn:aws:dynamodb:*:*:table/*"
+							"Effect": "Allow",
+							"Action": [
+								"dynamodb:BatchGetItem",
+								"dynamodb:GetItem",
+								"dynamodb:Query"
+							],
+							"Resource": "arn:aws:dynamodb:*:*:table/*"
 						}
 					]
 				}
