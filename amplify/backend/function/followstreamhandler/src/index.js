@@ -29,7 +29,6 @@ function processRecords(records) {
         const keys = unmarshall(Keys);
         const newImage = unmarshall(NewImage);
         const oldImage = unmarshall(OldImage);
-        console.log(eventName);
         if (eventName === 'INSERT') {
             if (newImage) {
                 const Item = {
