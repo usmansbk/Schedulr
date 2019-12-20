@@ -5,25 +5,31 @@
 		"env": {
 			"Type": "String"
 		},
-		"BATCH_SIZE": {
+		"batchSize": {
 			"Type": "String"
 		},
-		"BOOKMARK_TABLE_NAME": {
+		"bookmarkTableName": {
 			"Type": "String"
 		},
-		"COMMENT_TABLE_NAME": {
+		"commentTableName": {
 			"Type": "String"
 		},
-		"DELTA_TABLE": {
+		"deltaTable": {
 			"Type": "String"
 		},
-		"GSI_EVENT_BOOKMARKS": {
+		"gsiEventBookmarks": {
 			"Type": "String"
 		},
-		"GSI_EVENT_BOOKMARKS_KEY": {
+		"gsiEventBookmarksKey": {
 			"Type": "String"
 		},
-		"TTL": {
+		"gsiEventComments": {
+			"Type": "String"
+		},
+		"gsiEventCommentsKey": {
+			"Type": "String"
+		},
+		"ttl": {
 			"Type": "String"
 		},
 		"storageeventdeltaName": {
@@ -81,25 +87,31 @@
 							"Ref": "AWS::Region"
 						},
 						"BATCH_SIZE": {
-							"Ref": "BATCH_SIZE"
+							"Ref": "batchSize"
 						},
 						"BOOKMARK_TABLE_NAME": {
-							"Ref": "BOOKMARK_TABLE_NAME"
+							"Ref": "bookmarkTableName"
 						},
 						"COMMENT_TABLE_NAME": {
-							"Ref": "COMMENT_TABLE_NAME"
+							"Ref": "commentTableName"
 						},
 						"DELTA_TABLE": {
-							"Ref": "DELTA_TABLE"
+							"Ref": "deltaTable"
 						},
 						"GSI_EVENT_BOOKMARKS": {
-							"Ref": "GSI_EVENT_BOOKMARKS"
+							"Ref": "gsiEventBookmarks"
 						},
 						"GSI_EVENT_BOOKMARKS_KEY": {
-							"Ref": "GSI_EVENT_BOOKMARKS_KEY"
+							"Ref": "gsiEventBookmarksKey"
+						},
+						"GSI_EVENT_COMMENTS": {
+							"Ref": "gsiEventComments"
+						},
+						"GSI_EVENT_COMMENTS_KEY": {
+							"Ref": "gsiEventCommentsKey"
 						},
 						"TTL": {
-							"Ref": "TTL"
+							"Ref": "ttl"
 						}
 					}
 				},

@@ -5,40 +5,40 @@
 		"env": {
 			"Type": "String"
 		},
-		"API_KEY": {
+		"apiKey": {
 			"Type": "String"
 		},
-		"APPLICATION_ID": {
+		"applicationId": {
 			"Type": "String"
 		},
-		"BATCH_SIZE": {
+		"batchSize": {
 			"Type": "String"
 		},
-		"EVENT_TABLE_NAME": {
+		"eventTableName": {
 			"Type": "String"
 		},
-		"FOLLOW_TABLE_NAME": {
+		"followTableName": {
 			"Type": "String"
 		},
-		"GSI_FOLLOWERS": {
+		"gsiFollowers": {
 			"Type": "String"
 		},
-		"GSI_FOLLOWERS_KEY": {
+		"gsiFollowersKey": {
 			"Type": "String"
 		},
-		"PLAYERS_LIMIT": {
+		"playersLimit": {
 			"Type": "String"
 		},
-		"USER_AUTH_KEY": {
+		"userAuthKey": {
 			"Type": "String"
 		},
-		"USER_PREF_TABLE_NAME": {
+		"userPrefTableName": {
 			"Type": "String"
 		},
-		"USER_TABLE_NAME": {
+		"userTableName": {
 			"Type": "String"
 		},
-		"WEB_URL": {
+		"webUrl": {
 			"Type": "String"
 		}
 	},
@@ -88,40 +88,40 @@
 							"Ref": "AWS::Region"
 						},
 						"API_KEY": {
-							"Ref": "API_KEY"
+							"Ref": "apiKey"
 						},
 						"APPLICATION_ID": {
-							"Ref": "APPLICATION_ID"
+							"Ref": "applicationId"
 						},
 						"BATCH_SIZE": {
-							"Ref": "BATCH_SIZE"
+							"Ref": "batchSize"
 						},
 						"EVENT_TABLE_NAME": {
-							"Ref": "EVENT_TABLE_NAME"
+							"Ref": "eventTableName"
 						},
 						"FOLLOW_TABLE_NAME": {
-							"Ref": "FOLLOW_TABLE_NAME"
+							"Ref": "followTableName"
 						},
 						"GSI_FOLLOWERS": {
-							"Ref": "GSI_FOLLOWERS"
+							"Ref": "gsiFollowers"
 						},
 						"GSI_FOLLOWERS_KEY": {
-							"Ref": "GSI_FOLLOWERS_KEY"
+							"Ref": "gsiFollowersKey"
 						},
 						"PLAYERS_LIMIT": {
-							"Ref": "PLAYERS_LIMIT"
+							"Ref": "playersLimit"
 						},
 						"USER_AUTH_KEY": {
-							"Ref": "USER_AUTH_KEY"
+							"Ref": "userAuthKey"
 						},
 						"USER_PREF_TABLE_NAME": {
-							"Ref": "USER_PREF_TABLE_NAME"
+							"Ref": "userPrefTableName"
 						},
 						"USER_TABLE_NAME": {
-							"Ref": "USER_TABLE_NAME"
+							"Ref": "userTableName"
 						},
 						"WEB_URL": {
-							"Ref": "WEB_URL"
+							"Ref": "webUrl"
 						}
 					}
 				},

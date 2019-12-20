@@ -1,14 +1,14 @@
 {
-  "API_KEY": "MDdlZGMzZmMtMWVkMi00NzY0LThkMGItMjM5NDQ0MjM2NmRk",
-  "APPLICATION_ID": "b6031600-8b05-4702-9e29-bde94401f18a",
-  "BATCH_SIZE": "100",
-  "EVENT_TABLE_NAME": "Event-wb4flhdy5bfdjppc5l6kyzr63y-prod",
-  "FOLLOW_TABLE_NAME": "Follow-wb4flhdy5bfdjppc5l6kyzr63y-prod",
-  "GSI_FOLLOWERS": "gsi-Followers",
-  "GSI_FOLLOWERS_KEY": "followUserId",
-  "PLAYERS_LIMIT": "2001",
-  "USER_AUTH_KEY": "YzFlNzM4NDgtMWE5YS00M2I2LThhNjEtNDFkYTBjZGU3YTIy",
-  "USER_PREF_TABLE_NAME": "UserPreference-wb4flhdy5bfdjppc5l6kyzr63y-prod",
-  "USER_TABLE_NAME": "User-wb4flhdy5bfdjppc5l6kyzr63y-prod",
-  "WEB_URL": "https://www.schdlr.com"
+  "apiKey": "MDdlZGMzZmMtMWVkMi00NzY0LThkMGItMjM5NDQ0MjM2NmRk",
+  "applicationId": "b6031600-8b05-4702-9e29-bde94401f18a",
+  "batchSize": "100",
+  "eventTableName": "Event-wb4flhdy5bfdjppc5l6kyzr63y-prod",
+  "followTableName": "Follow-wb4flhdy5bfdjppc5l6kyzr63y-prod",
+  "gsiFollowers": "gsi-Followers",
+  "gsiFollowersKey": "followUserId",
+  "playersLimit": "2001",
+  "userAuthKey": "YzFlNzM4NDgtMWE5YS00M2I2LThhNjEtNDFkYTBjZGU3YTIy",
+  "userPrefTableName": "UserPreference-wb4flhdy5bfdjppc5l6kyzr63y-prod",
+  "userTableName": "User-wb4flhdy5bfdjppc5l6kyzr63y-prod",
+  "webUrl": "https://www.schdlr.com"
 }

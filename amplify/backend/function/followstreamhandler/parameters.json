@@ -1,5 +1,5 @@
 {
-  "BATCH_SIZE": "25",
-  "DELTA_TABLE": "Follow-delta-prod",
-  "TTL": "86400"
+  "batchSize": "25",
+  "deltaTable": "Follow-delta-prod",
+  "ttl": "86400"
 }
