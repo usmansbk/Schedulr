@@ -17,30 +17,32 @@ class Banner extends React.Component {
 
   render() {
     const { large, medium_rect } = this.props;
+    let Unit = __DEV__ ? TestIds : env;
     let size = BannerAdSize.BANNER;
-    let unitId = env.SMART_BANNER;
+    let unitId = Unit.BANNER;
     let source = require('../../assets/camp.png');
     let style = {
       height: 50,
       width: '100%',
-      alignItems: 'center'
+      alignItems: 'center',
+      justifyContent: 'center'
     };
     if (large) {
       source = require('../../assets/sunset.png');
-      size = BannerAdSize.SMART_BANNER;
-      unitId = env.SMART_BANNER;
+      size = BannerAdSize.LARGE_BANNER;
+      unitId = Unit.BANNER;
       style = {
         height: 100,
-        width: '100%'
+        width: '100%',
+        alignItems: 'center',
       };
     } else if (medium_rect) {
       source = require('../../assets/beach.png');
       size = BannerAdSize.MEDIUM_RECTANGLE;
-      unitId = env.SMART_BANNER;
+      unitId = Unit.BANNER;
       style = {
         width: 300,
-        height: 250,
-        alignItems: 'center'
+        height: 250
       };
     }
     if (__DEV__) {
