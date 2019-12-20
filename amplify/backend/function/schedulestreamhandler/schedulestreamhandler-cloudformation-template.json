@@ -275,6 +275,7 @@
 							"Effect": "Allow",
 							"Action": [
 								"dynamodb:GetShardIterator",
+								"dynamodb:BatchWriteItem",
 								"dynamodb:DescribeStream",
 								"dynamodb:GetRecords"
 							],
