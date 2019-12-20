@@ -162,7 +162,7 @@
 				"Timeout": "25",
 				"Code": {
 					"S3Bucket": "amplify-schdlr-prod-21214-deployment",
-					"S3Key": "amplify-builds/eventstreamhandler-6a48644f645143676c2f-build.zip"
+					"S3Key": "amplify-builds/eventstreamhandler-553651424f6f79506d76-build.zip"
 				}
 			}
 		},
@@ -312,7 +312,7 @@
 							"Effect": "Allow",
 							"Action": [
 								"dynamodb:BatchGetItem",
-                "dynamodb:BatchWriteItem",
+								"dynamodb:BatchWriteItem",
 								"dynamodb:GetItem",
 								"dynamodb:Query"
 							],
