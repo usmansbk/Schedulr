@@ -4,6 +4,45 @@
 	"Parameters": {
 		"env": {
 			"Type": "String"
+		},
+		"followTableName": {
+			"Type": "String"
+		},
+		"scheduleTableName": {
+			"Type": "String"
+		},
+		"bookmarkTableName": {
+			"Type": "String"
+		},
+		"eventDeltaTableName": {
+			"Type": "String"
+		},
+		"scheduleDeltaTableName": {
+			"Type": "String"
+		},
+		"gsiFollowings": {
+			"Type": "String"
+		},
+		"gsiFollowingsKey": {
+			"Type": "String"
+		},
+		"gsiUserSchedules": {
+			"Type": "String"
+		},
+		"gsiUserSchedulesKey": {
+			"Type": "String"
+		},
+		"gsiUserBookmarks": {
+			"Type": "String"
+		},
+		"gsiUserBookmarksKey": {
+			"Type": "String"
+		},
+		"gsiFollowingScheduleEvents": {
+			"Type": "String"
+		},
+		"gsiFollowingScheduleEventsKey": {
+			"Type": "String"
 		}
 	},
 	"Conditions": {
@@ -51,19 +90,45 @@
 						"REGION": {
 							"Ref": "AWS::Region"
 						},
-						"FOLLOW_TABLE_NAME": "Follow-wb4flhdy5bfdjppc5l6kyzr63y-prod",
-						"SCHEDULE_TABLE_NAME": "Schedule-wb4flhdy5bfdjppc5l6kyzr63y-prod",
-						"BOOKMARK_TABLE_NAME": "Bookmark-wb4flhdy5bfdjppc5l6kyzr63y-prod",
-						"EVENT_DELTA_TABLE_NAME": "Event-delta",
-						"SCHEDULE_DELTA_TABLE_NAME": "Schedule-delta",
-						"GSI_FOLLOWINGS": "gsi-Followings",
-						"GSI_FOLLOWINGS_KEY": "followUserId",
-						"GSI_USER_SCHEDULES": "gsi-UserSchedules",
-						"GSI_USER_SCHEDULES_KEY": "scheduleAuthorId",
-						"GSI_USER_BOOKMARKS": "gsi-UserBookmarks",
-						"GSI_USER_BOOKMARKS_KEY": "bookmarkUserId",
-						"GSI_FOLLOWING_SCHEDULE_EVENTS": "gsi-FollowingScheduleEvents",
-						"GSI_FOLLOWING_SCHEDULE_EVENTS_KEY": "eventScheduleId"
+						"FOLLOW_TABLE_NAME": {
+							"Ref": "followTableName"
+						},
+						"SCHEDULE_TABLE_NAME": {
+							"Ref": "scheduleTableName"
+						},
+						"BOOKMARK_TABLE_NAME": {
+							"Ref": "bookmarkTableName"
+						},
+						"EVENT_DELTA_TABLE_NAME": {
+							"Ref": "eventDeltaTableName"
+						},
+						"SCHEDULE_DELTA_TABLE_NAME": {
+							"Ref": "scheduleDeltaTableName"
+						},
+						"GSI_FOLLOWINGS": {
+							"Ref": "gsiFollowings"
+						},
+						"GSI_FOLLOWINGS_KEY": {
+							"Ref": "gsiFollowingsKey"
+						},
+						"GSI_USER_SCHEDULES": {
+							"Ref": "gsiUserSchedules"
+						},
+						"GSI_USER_SCHEDULES_KEY": {
+							"Ref": "gsiUserSchedulesKey"
+						},
+						"GSI_USER_BOOKMARKS": {
+							"Ref": "gsiUserBookmarks"
+						},
+						"GSI_USER_BOOKMARKS_KEY": {
+							"Ref": "gsiUserBookmarksKey"
+						},
+						"GSI_FOLLOWING_SCHEDULE_EVENTS": {
+							"Ref": "gsiFollowingScheduleEvents"
+						},
+						"GSI_FOLLOWING_SCHEDULE_EVENTS_KEY": {
+							"Ref": "gsiFollowingScheduleEventsKey"
+						}
 					}
 				},
 				"Role": {
