@@ -21,6 +21,12 @@
 		"storagebookmarkdeltaArn": {
 			"Type": "String",
 			"Default": "storagebookmarkdeltaArn"
+		},
+		"StreamId": {
+			"Type": "String"
+		},
+		"TableName": {
+			"Type": "String"
 		}
 	},
 	"Conditions": {
@@ -34,6 +40,41 @@
 		}
 	},
 	"Resources": {
+		"EventSourceMapping": {
+			"Type": "AWS::Lambda::EventSourceMapping",
+			"Properties": {
+				"EventSourceArn": {
+					"Fn::Join": [
+						"",
+						[
+							"arn:aws:dynamodb:",
+							{
+								"Ref": "AWS::Region"
+							},
+							":",
+							{
+								"Ref": "AWS::AccountId"
+							},
+							":table/",
+							{
+								"Ref": "TableName"
+							},
+							"/stream/",
+							{
+								"Ref": "StreamId"
+							}
+						]
+					]
+				},
+				"FunctionName": {
+					"Fn::GetAtt": [
+						"LambdaFunction",
+						"Arn"
+					]
+				},
+				"StartingPosition": "TRIM_HORIZON"
+			}
+		},
 		"LambdaFunction": {
 			"Type": "AWS::Lambda::Function",
 			"Metadata": {

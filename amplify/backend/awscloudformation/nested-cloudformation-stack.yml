@@ -316,6 +316,8 @@
 					"batchSize": "25",
 					"deltaTable": "Bookmark-delta-prod",
 					"ttl": "86400",
+					"TableName": "Bookmark-wb4flhdy5bfdjppc5l6kyzr63y-prod",
+					"StreamId": "2019-12-18T01:34:09.662",
 					"storagebookmarkdeltaName": {
 						"Fn::GetAtt": [
 							"storagebookmarkdelta",
