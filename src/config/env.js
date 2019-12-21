@@ -3,7 +3,7 @@ const DOMAIN = 'https://get-schdlr.com';
 
 const common = {
   uriPrefix: 'schdlr://',
-  APP_URL: `https://get-schdlr.com`,
+  APP_URL: `https://schdlr.com`,
   DOWNLOAD_URL: `${DOMAIN}`,
   FAQ_URL: `${DOMAIN}/faq`,
   CONTACT_URL: `${DOMAIN}/contact`,
