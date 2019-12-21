@@ -13,8 +13,12 @@ import logger from 'config/logger';
 class ImageViewer extends React.Component {
 
   state = {
-    progress: 0
+    progress: 0,
+    loadingImage: false,
+    downloading: false
   };
+
+  _toggleLoadingImage = () => this.setState(prev => ({ loadingImage: !prev.loadingImage }));
 
   _downloadImage = async () => {
     const { stores, s3Object: { key, name } } = this.props;
@@ -64,7 +68,7 @@ class ImageViewer extends React.Component {
       me,
       loading
     } = this.props;
-    const { downloading, progress } = this.state;
+    const { downloading, progress, loadingImage } = this.state;
 
     return (
     <>
@@ -127,13 +131,15 @@ class ImageViewer extends React.Component {
     </Appbar.Header>
     <View style={{ flex: 1, justifyContent: 'center', backgroundColor: stores.themeStore.colors.bg }}>
       { downloading && <ProgressBar progress={progress} />}
+      { loadingImage && <ProgressBar indeterminate /> }
       {
         loading ? <Loading loading /> : (
           <PhotoView
             source={uri ? {uri} : require('../../../assets/photographer.png')}
-            loadingIndicatorSource={require('./img/loading.png')}
             androidScaleType="fitCenter"
             style={ uri ? {flex: 1} : { alignSelf: 'center', width: 400, height: 400 }}
+            onLoadStart={this._toggleLoadingImage}
+            onLoadEnd={this._toggleLoadingImage}
           />
         )
       }

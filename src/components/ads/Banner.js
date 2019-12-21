@@ -56,26 +56,30 @@ class Banner extends React.Component {
         source={source}
         style={style}
        >
-      <BannerAd
-        unitId={unitId}
-        size={size}
-        requestOptions={{
-          requestNonPersonalizedAdsOnly: true,
-          location: this.props.stores.locationStore.adLocation,
-          keywords: [
-            'scholarship',
-            'fashion',
-            'clothing',
-            'student',
-            'job',
-            'news',
-            'transport',
-            'ride'
-          ]
-        }}
-        onAdLoaded={this._onLoad}
-        onAdFailedToLoad={this._onError}
-      />
+         {
+           false && (
+            <BannerAd
+              unitId={unitId}
+              size={size}
+              requestOptions={{
+                requestNonPersonalizedAdsOnly: true,
+                location: this.props.stores.locationStore.adLocation,
+                keywords: [
+                  'scholarship',
+                  'fashion',
+                  'clothing',
+                  'student',
+                  'job',
+                  'news',
+                  'transport',
+                  'ride'
+                ]
+              }}
+              onAdLoaded={this._onLoad}
+              onAdFailedToLoad={this._onError}
+            />
+           )
+         }
       </ImageBackground>
     )
   }
