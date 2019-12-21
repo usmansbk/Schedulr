@@ -90,7 +90,7 @@ class Info extends React.Component {
     const appStyles = stores.appStyles.styles;
     const styles = stores.appStyles.scheduleInfo;
     const colors = stores.themeStore.colors;
-    const isAuth = (isPublic || isFollowing) && !isOwner;
+    // const isAuth = (isPublic || isFollowing) && !isOwner;
     const isPersonal = id === uuidv5(stores.appState.userId, uuidv5.DNS);
 
     return (
@@ -254,7 +254,7 @@ class Info extends React.Component {
         handleDismiss={this._hideAlert}
       />
       {
-        isAuth && (<FollowButton
+        !isOwner && (<FollowButton
           id={id}
           name={name}
           isFollowing={isFollowing}

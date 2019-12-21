@@ -39,10 +39,13 @@ class Item extends React.Component {
       pictureUrl,
       isClosed,
       isPublic,
+      authorPictureUrl,
+      authorName,
       stores,
       isMuted,
       isFollowing,
-      isOffline
+      isOffline,
+      isOwner
     } = this.props;
     
     const styles = stores.appStyles.schedulesList;
@@ -61,6 +64,16 @@ class Item extends React.Component {
             name={name}
             style={styles.itemAvatar}
           />
+          {
+            !isOwner && (
+              <UserAvatar
+                size={22}
+                src={authorPictureUrl}
+                name={authorName}
+                style={styles.authorAvatar}
+              />
+            )
+          }
           {
             (!isPublic || isOffline) && <Icon
               style={styles.privateIcon}

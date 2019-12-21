@@ -1611,6 +1611,11 @@ export default class AppStyles {
         position: 'absolute',
         top: 17,
         right: 17,
+      },
+      authorAvatar: {
+        position: 'absolute',
+        bottom: 8,
+        left: 36
       }
     });
   }
