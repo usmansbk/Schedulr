@@ -15,7 +15,10 @@ class Discover extends React.Component {
     this.props.stores.locationStore.fetchLocation(true);
   };
 
-  _handleSelect = (location) => this.props.stores.locationStore.setSearchLocation(location);
+  _handleSelect = (location, point) => {
+    this.props.stores.locationStore.setSearchLocation(location);
+    this.props.stores.locationStore.setCurrentLocation(point);
+  };
 
   render() {
     const location = this.props.stores.locationStore.point;
