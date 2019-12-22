@@ -63,6 +63,7 @@ export default class Picker extends React.Component {
             />}
             styles={styles}
             hidePoweredBy
+            showActivityIndicator
           />
         </Modal>
       </Portal>
