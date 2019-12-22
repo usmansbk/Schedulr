@@ -149,17 +149,22 @@ export const searchEventFilter = (query, location) => {
 					{
 						venue:  {
 							matchPhrase: query
-						},
+						}
 					},
 					{
 						category:  {
 							matchPhrasePrefix: query
-						},
+						}
 					},
 					{
 						description:  {
 							matchPhrase: query
-						},
+						}
+					},
+					{
+						startAt: {
+							matchPhrase: query
+						}
 					}
 				]
 			}
