@@ -7,6 +7,7 @@ import { I18n, Storage } from 'aws-amplify';
 import numeral from 'numeral';
 import { inject, observer } from 'mobx-react';
 import getImageUrl from 'helpers/getImageUrl';
+import getFilePath from 'helpers/fs';
 import logger from 'config/logger';
 import MediaIcon from '../MediaIcon';
 
@@ -52,7 +53,7 @@ class MediaItem extends React.Component {
     this.setState({ downloading: true, progress: 0 });
     try {
       const fromUrl = await Storage.get(key);
-      const toFile = `${RNFS.DocumentDirectoryPath}/${name}`
+      const toFile = await getFilePath(name);
       const options = {
         fromUrl,
         toFile,
