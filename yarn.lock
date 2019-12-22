@@ -7347,10 +7347,10 @@ react-native-elements@^0.19.1:
     opencollective "^1.0.3"
     prop-types "^15.5.8"
 
-react-native-file-viewer@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/react-native-file-viewer/-/react-native-file-viewer-2.0.0.tgz#f8991e3872da1137e3b269661aab62844be3778e"
-  integrity sha512-ld495zlnI9IIMbSh2X7tE/N0l1tJEtyETFrF+KHl2IeTgekbA+3BhaaNAkQI545pXzToK2MN2QGYkkyUqL5OFw==
+react-native-file-viewer@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/react-native-file-viewer/-/react-native-file-viewer-2.0.1.tgz#2e173637825f007af3bf003caa1a9047ef7e0e58"
+  integrity sha512-Mu1HSyc53RBbda6Y5mO8By92urjlz/faqFhE4GyQWVHLXfcX7IXwG7STVFfq5qYfIrQbWuDn+LjOIT2VDpF07g==
 
 react-native-fs@^2.16.2:
   version "2.16.2"

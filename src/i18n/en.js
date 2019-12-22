@@ -52,7 +52,7 @@ export default {
 
   SEARCH_inputPlaceholder: city => `Search${city ? (' ' + city) : ' Schdlr'}`,
   SEARCH_schedulesTabLabel: "Schedules",
-  SEARCH_eventsTabLabel: "My Events",
+  SEARCH_eventsTabLabel: "Events",
   SEARCH_peopleTabLabel: "People",
   SEARCH_emptyList: "No results",
   SEARCH_loadMore: "Load more",

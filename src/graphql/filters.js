@@ -128,3 +128,41 @@ export const searchScheduleFilter = (query, location) => {
 		]
 	};
 };
+export const searchEventFilter = (query, location) => {
+	return {
+		and: [
+			{
+				isPublic: {
+					ne: false
+				},
+				location: {
+					matchPhrase: location || ''
+				}
+			},
+			{
+				or: [
+					{
+						title: {
+							matchPhrasePrefix: query
+						}
+					},
+					{
+						venue:  {
+							matchPhrasePrefix: query
+						},
+					},
+					{
+						category:  {
+							matchPhrasePrefix: query
+						},
+					},
+					{
+						description:  {
+							matchPhrasePrefix: query
+						},
+					}
+				]
+			}
+		]
+	};
+};
