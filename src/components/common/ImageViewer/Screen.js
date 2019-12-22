@@ -9,6 +9,7 @@ import FileViewer from 'react-native-file-viewer';
 import Icon from 'react-native-vector-icons/Feather';
 import Loading from '../Loading';
 import logger from 'config/logger';
+import downloadPath from 'helpers/fs';
 
 class ImageViewer extends React.Component {
 
@@ -25,7 +26,7 @@ class ImageViewer extends React.Component {
     this.setState({ downloading: true, progress: 0 });
     try {
       const fromUrl = await Storage.get(key);
-      const toFile = `${RNFS.DocumentDirectoryPath}/${name}`
+      const toFile = await downloadPath(name);
       const options = {
         fromUrl,
         toFile,
@@ -91,6 +92,7 @@ class ImageViewer extends React.Component {
         Boolean(s3Object) && (
           <Appbar.Action
             onPress={this._downloadImage}
+            disabled={downloading}
             color={stores.themeStore.colors.primary}
             icon={({ color,size }) => <Icon
               name="download"

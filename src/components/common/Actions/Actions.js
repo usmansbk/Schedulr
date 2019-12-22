@@ -28,7 +28,6 @@ export default class Actions extends React.Component {
     const {
       date,
       title,
-      isAuth,
       isBookmarked,
       bookmarksCount,
       bookmarkScheduleId,
@@ -60,7 +59,6 @@ export default class Actions extends React.Component {
           commentsCount={commentsCount}
           size={FONT_SIZE}
           color={color}
-          disabled={!isAuth}
           onPress={this._onPressCommentButton}
         />
         <LocationButton
