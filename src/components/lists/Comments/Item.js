@@ -19,8 +19,7 @@ const { AVATAR_SIZE } = comments_list;
 
 class Item extends React.Component {
   state = {
-    showOptions: false,
-    checked: false
+    showOptions: false
   };
   _onCheck = () => this.props.stores.appState.checkItem(this.props.id);
   _onReply = () => this.props.handleReplyComment(this.props.id, this.props.authorName, this.props.authorId);
@@ -41,14 +40,14 @@ class Item extends React.Component {
       }));
     }
   };
-  shouldComponentUpdate = (nextProps, nextState) => {
+  shouldComponentUpdate = (nextProps) => {
     return (
       nextProps.content !== this.props.content ||
       nextProps.timeAgo !== this.props.timeAgo ||
       nextProps.authorPictureUrl !== this.props.authorPictureUrl ||
       nextProps.toCommentContent !== this.props.toCommentContent ||
       nextProps.toAttachment !== this.props.toAttachment ||
-      nextState.checked !== this.state.checked
+      nextProps.checked !== this.props.checked
     );
   };
 
@@ -65,9 +64,11 @@ class Item extends React.Component {
       toCommentContent,
       toAttachment,
       stores,
-      noReply
+      noReply,
+      checked
     } = this.props;
-    const checked = stores.appState.isChecked(id);
+
+    console.log('update', id);
 
     const styles = stores.appStyles.commentsList;
     const colors = stores.themeStore.colors;
