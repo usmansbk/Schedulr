@@ -348,7 +348,7 @@ class Form extends React.Component {
           <Alert
             visible={showScheduleHelpAlert}
             title={I18n.get("ALERT_whatIsASchedule")}
-            message={I18n.get("ALERT_whatIsAScheduleA")}
+            message={I18n.get("ALERT_whatIsAScheduleA")(schedules.find(schdl => schdl.id === values.eventScheduleId))}
             handleDismiss={this._hideModal}
           />
           </>

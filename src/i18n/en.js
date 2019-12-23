@@ -155,7 +155,7 @@ export default {
   ALERT_durationTooShort: "Event should be at least five minutes long",
   ALERT_shortUntil: "Event should happen at least twice before final date",
   ALERT_whatIsASchedule: "What is a schedule?",
-  ALERT_whatIsAScheduleA: "A Schedule is a group of events, like a class timetable. People who follow your schedule will be informed of this event.",
+  ALERT_whatIsAScheduleA: schdl => `A Schedule is a group of events, like a class timetable. ${schdl ? `"${schdl.name}"` : "Your schedule"} followers will be informed of this event.`,
   ALERT_whatIsAScheduleA2: "A Schedule is a group of events. Add events in here and people who follow this schedule will be informed of your events.",
   ALERT_privateSchedule: "Private schedule",
   ALERT_privateScheduleA: "Events created after setting schedule to 'Private' are not visible to everyone.",
