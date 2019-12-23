@@ -61,6 +61,7 @@ export function eventsChanged(prev, next=[]) {
       (prevVal.category === nextVal.category) &&
       (prevVal.recurrence === nextVal.recurrence) &&
       (prevVal.until === nextVal.until) &&
+      (prevVal.allDay === nextVal.allDay) &&
       (prevVal.isCancelled === nextVal.isCancelled) &&
       (prevVal.isBookmarked === nextVal.isBookmarked) &&
       (prevCancelledDates.length === nextCancelledDates.length) &&
