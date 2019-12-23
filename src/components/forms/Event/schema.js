@@ -4,7 +4,7 @@ export default Yup.object().shape({
   title: Yup.string()
     .trim()
     .min(2, 'tooShort')
-    .max(50, 'tooLong')
+    .max(51, 'tooLong')
     .required('titleIsRequired'),
   description: Yup.string()
     .trim()

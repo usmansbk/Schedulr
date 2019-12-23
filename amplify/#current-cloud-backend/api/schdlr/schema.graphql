@@ -94,6 +94,27 @@ enum ScheduleStatus {
   OPEN
 }
 
+type Album
+  @model(subscriptions: null, queries: { get: "getAlbum" })
+  @auth(
+    rules: [
+      {
+        allow: owner,
+        ownerField: "albumAuthorId",
+        identityClaim: "email",
+        operations: [create, update, delete]
+      }
+    ]
+  )
+{
+  id: ID!
+  caption: String
+  images: [S3Object]
+  event: Event @connection(name: "EventAlbums")
+  createdAt: String
+  updatedAt: String
+}
+
 type Event
   @searchable
   @model(subscriptions: null, queries: { get: "getEvent" })
@@ -127,6 +148,7 @@ type Event
   isOffline: Boolean
   cancelledDates: [String]
   author: User @connection
+  albums: [Album] @connection(name: "EventAlbums", sortField: "createdAt", limit: 5)
   schedule: Schedule! @connection(name: "ScheduleEvents", sortField: "createdAt")
   comments: [Comment] @connection(name: "EventComments", sortField: "createdAt", limit: 20)
   commentsCount: Int
