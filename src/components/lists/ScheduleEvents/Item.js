@@ -70,9 +70,13 @@ class Item extends React.Component {
                 {title}
               </Headline>
               <Text style={styles.time}>{time}</Text>
-              <Caption numberOfLines={1}
-                ellipsizeMode="tail"
-              >{caption}</Caption>
+              {
+                Boolean(caption) && (
+                  <Caption numberOfLines={1}
+                    ellipsizeMode="tail"
+                  >{caption}</Caption>
+                )
+              }
               <Tag status={status} /> 
             </View>
           </View>

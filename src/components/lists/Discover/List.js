@@ -66,7 +66,7 @@ class List extends Component{
     if (__typename === 'Event') return <EventItem
       id={id}
       title={title}
-      pictureUrl={banner && getImageUrl(banner)}
+      pictureUrl={banner && getImageUrl(banner, 320)}
       venue={venue}
       startAt={startAt}
       endAt={endAt}

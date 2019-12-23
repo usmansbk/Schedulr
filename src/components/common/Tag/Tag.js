@@ -8,7 +8,7 @@ export default inject('stores')(observer(
     const styles = stores.appStyles.tag;
     let statusStyle = styles[status];
     return (
-      <Text style={[styles.text, statusStyle]}>{I18n.get(`STATUS_${status.toLowerCase()}`)}</Text>
+      <Text style={[styles.text, statusStyle, {marginVertical: 4}]}>{I18n.get(`STATUS_${status.toLowerCase()}`)}</Text>
     );
   }
 ));

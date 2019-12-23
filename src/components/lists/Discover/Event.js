@@ -57,13 +57,15 @@ export default class EventItem extends React.Component {
       month,
       day,
       venue,
-      description
+      description,
+      pictureUrl
     } = this.props;
+    let source = pictureUrl ? {uri: pictureUrl} : require('../../../assets/beach.png')
     return (
       <TouchableRipple onPress={this._onPress}>
         <View style={styles.container}>
           <View style={styles.content}>
-            <Image style={styles.image} source={require('../../../assets/beach.png')}/>
+            <Image resizeMode="cover" style={styles.image} source={source}/>
           </View>
           <View style={styles.body}>
             <View style={styles.date}>
