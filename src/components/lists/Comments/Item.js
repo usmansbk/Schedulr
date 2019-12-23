@@ -68,8 +68,6 @@ class Item extends React.Component {
       checked
     } = this.props;
 
-    console.log('update', id);
-
     const styles = stores.appStyles.commentsList;
     const colors = stores.themeStore.colors;
     return (

@@ -588,7 +588,7 @@ function deleteEvent(input, typename) {
         __typename: 'Mutation',
         deleteBookmark: deleteBookmark(deleteInput, BOOKMARK_TYPE)
       }
-    }).catch(console.log);
+    }).catch(logger.logError);
   }
   // ************************************************************
 
