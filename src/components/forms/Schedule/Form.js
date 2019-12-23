@@ -73,6 +73,7 @@ class Form extends React.Component {
         validationSchema={validationSchema}
         onSubmit={async (values, { setSubmitting }) => {
           const input = buildForm(values);
+          input.geo_point = stores.locationStore.point;
           onSubmit && await onSubmit(input);
           setSubmitting(false);
         }}

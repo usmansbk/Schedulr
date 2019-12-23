@@ -78,6 +78,7 @@ type Schedule
   isOffline: Boolean
   status: ScheduleStatus 
   location: String
+  geo_point: Location
   followers: [Follow] @connection(name: "Followers", sortField: "createdAt", limit: 25)
   followersCount: Int
   events: [Event] @connection(name: "ScheduleEvents", sortField: "createdAt", limit: 25)
