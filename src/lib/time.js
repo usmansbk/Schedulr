@@ -104,6 +104,10 @@ export function getRepeatLabel(id, date) {
   }
 }
 
+export const getHumanMonth = (startAt) => {
+  return moment(startAt).format('MMM').toUpperCase();
+};
+
 export function getTimeUnit(recurrence) {
   const val = recurrence.toLowerCase();
   switch (val) {
