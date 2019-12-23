@@ -160,11 +160,6 @@ export const searchEventFilter = (query, location) => {
 						description:  {
 							matchPhrase: query
 						}
-					},
-					{
-						startAt: {
-							matchPhrase: query
-						}
 					}
 				]
 			}
