@@ -326,5 +326,8 @@ export default {
 
   PICKER_location: "Location",
   SYNC_message: "Will remove all deleted and expired events and fix missing events and schedules.",
-  SYNC_complete: "Synchronized"
+  SYNC_complete: "Synchronized",
+
+  TEXT_addImagesToAlbum: "Add Images to album",
+  TEXT_noAlbum: "No Album"
 };
