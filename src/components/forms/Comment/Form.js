@@ -56,14 +56,15 @@ class CommentInput extends React.Component {
       this.setState({ isSubmitting: true });
       for (let doc of uploads) {
         const { type, uri, name, size} = doc;
-        const key = `uploads/${id}_${shortid.generate()}_${name}`;
+        const fileName = `${id}_${shortid.generate()}_${name}`;
+        const key = `uploads/${fileName}`;
         const fileForUpload = {
           key,
           bucket,
           region,
           type,
           size,
-          name
+          name: fileName
         };
         try {
           if (uri && (size <= MAX_FILE_SIZE)) {
