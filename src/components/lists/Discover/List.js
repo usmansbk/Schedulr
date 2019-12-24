@@ -11,11 +11,11 @@ import Footer from 'components/lists/Bookmarks/Footer';
 import {
   getHumanMonth
 } from 'lib/time';
-import { bookmarkedEvents, MEDIUM_RECTANGLE } from 'lib/constants';
+import { discover, MEDIUM_RECTANGLE } from 'lib/constants';
 // import { injectAds } from 'lib/utils';
 import getImageUrl from 'helpers/getImageUrl';
 
-const { ITEM_HEIGHT, SEPARATOR_HEIGHT } = bookmarkedEvents;
+const { ITEM_HEIGHT, SEPARATOR_HEIGHT } = discover;
 
 class List extends Component{
   static defaultProps = {
@@ -31,7 +31,7 @@ class List extends Component{
 
   _getItemLayout = (_, index) => {
     let length = ITEM_HEIGHT;
-    if (index === 2) length = MEDIUM_RECTANGLE; // Medium Rectangle Size ad 
+    // if (index === 2) length = MEDIUM_RECTANGLE; // Medium Rectangle Size ad 
     return (
       {
         length,
