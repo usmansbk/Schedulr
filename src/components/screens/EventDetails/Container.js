@@ -4,7 +4,6 @@ import isEqual from 'lodash.isequal';
 import { Appbar } from 'react-native-paper';
 import { inject, observer } from 'mobx-react';
 import Icon from 'react-native-vector-icons/Feather';
-import UserAvatar from 'components/common/UserAvatar';
 import Details from './Details';
 import { formatDate, getRepeatLabel, getDuration } from 'lib/time';
 import { isEventValid, isEventCancelled, getStatus } from 'lib/parseItem';
@@ -83,7 +82,7 @@ class EventDetails extends React.Component {
 
     const colors = stores.themeStore.colors;
     const styles = stores.appStyles.styles;
-    const pictureUrl = banner && getImageUrl(banner);
+    const pictureUrl = banner && getImageUrl(banner, 320);
     const isFollowing = schedule && schedule.isFollowing;
 
     const isAuth = isPublic || isFollowing || isOwner;
@@ -101,17 +100,9 @@ class EventDetails extends React.Component {
               size={size}
             />}
           />
-          <Appbar.Action
-            key={pictureUrl}
-            size={32}
-            icon={({ size }) => <UserAvatar
-              name={title}
-              size={size}
-              src={pictureUrl}
-            />}
-            onPress={() => navigateToBanner(id)}
+          <Appbar.Content
+            titleStyle={styles.headerColor}
           />
-          <Appbar.Content titleStyle={styles.headerColor} />
           {
             isOwner && (
               <>
@@ -200,6 +191,7 @@ class EventDetails extends React.Component {
           isBookmarked={isBookmarked}
           bookmarksCount={bookmarksCount || 0}
           commentsCount={commentsCount || 0}
+          pictureUrl={pictureUrl}
           isAuth={isAuth}
           banner={banner}
           isOwner={isOwner}
@@ -209,6 +201,7 @@ class EventDetails extends React.Component {
           navigateToComments={navigateToComments}
           navigateToUser={navigateToUser}
           navigateToBookmarks={navigateToBookmarks}
+          navigateToBanner={navigateToBanner}
           cardView={cardView}
           count={this.state.count}
           onFinish={this._incrementCount}

@@ -63,7 +63,7 @@ export default inject('stores')(observer(
             <Headline style={stores.appStyles.eventDetails.title}>{title}</Headline>
             <Text style={stores.appStyles.eventDetails.date}>{weekDay}</Text>
             <Text style={stores.appStyles.eventDetails.date}>{date}</Text>
-            {(duration !== 'A day') && <Text style={stores.appStyles.eventDetails.date}>{duration}</Text>}
+            {(duration !== I18n.get('A day')) && <Text style={stores.appStyles.eventDetails.date}>{duration}</Text>}
           </View>
           <Divider />
           <View style={stores.appStyles.eventDetails.body}>
