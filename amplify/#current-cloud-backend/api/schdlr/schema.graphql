@@ -1,6 +1,6 @@
 type User
   @searchable
-  @model(subscriptions: null, queries: { get: "getUser", list: null })
+  @model(subscriptions: null, queries: { get: "getUser" })
   @auth(
     rules: [
       {
@@ -20,11 +20,15 @@ type User
   gender: String
   bio: String
   me: Boolean
-  following: [Follow] @connection(name: "Followings", sortField: "createdAt", limit: 25)
+  following: [Follow]
+    @connection(name: "Followings", sortField: "createdAt", limit: 25)
   followingCount: Int
-  created: [Schedule] @connection(name: "UserSchedules", sortField: "createdAt", limit: 25)
+  created: [Schedule]
+    @connection(name: "UserSchedules", sortField: "createdAt", limit: 25)
   createdCount: Int
-  bookmarks: [Bookmark] @connection(name: "UserBookmarks", sortField: "createdAt", limit: 50) @auth(rules: [{allow: owner, ownerField: "id", identityClaim: "email"}])
+  bookmarks: [Bookmark]
+    @connection(name: "UserBookmarks", sortField: "createdAt", limit: 25)
+    @auth(rules: [{allow: owner, ownerField: "id", identityClaim: "email"}])
   preference: UserPreference! @connection
   createdAt: String
   updatedAt: String
@@ -74,9 +78,10 @@ type Schedule
   isOffline: Boolean
   status: ScheduleStatus 
   location: String
+  geo_point: Location
   followers: [Follow] @connection(name: "Followers", sortField: "createdAt", limit: 25)
   followersCount: Int
-  events: [Event] @connection(name: "ScheduleEvents", sortField: "createdAt", limit: 50)
+  events: [Event] @connection(name: "ScheduleEvents", sortField: "createdAt", limit: 25)
   eventsCount: Int
   author: User @connection(name: "UserSchedules", sortField: "createdAt")
   picture: S3Object
@@ -88,6 +93,27 @@ type Schedule
 enum ScheduleStatus {
   CLOSED
   OPEN
+}
+
+type Album
+  @model(subscriptions: null, queries: { get: "getAlbum" })
+  @auth(
+    rules: [
+      {
+        allow: owner,
+        ownerField: "albumAuthorId",
+        identityClaim: "email",
+        operations: [create, update, delete]
+      }
+    ]
+  )
+{
+  id: ID!
+  caption: String
+  images: [S3Object]
+  event: Event @connection(name: "EventAlbums")
+  createdAt: String
+  updatedAt: String
 }
 
 type Event
@@ -123,6 +149,7 @@ type Event
   isOffline: Boolean
   cancelledDates: [String]
   author: User @connection
+  album: Album @connection(name: "EventAlbums")
   schedule: Schedule! @connection(name: "ScheduleEvents", sortField: "createdAt")
   comments: [Comment] @connection(name: "EventComments", sortField: "createdAt", limit: 20)
   commentsCount: Int
@@ -151,7 +178,7 @@ enum Recurrence {
 }
 
 type Comment
-  @model(queries: { get: "getComment" })
+  @model(subscriptions: null, queries: { get: "getComment" })
   @auth(
     rules: [
       {
@@ -184,7 +211,15 @@ type SearchableEventConnection {
   total: Int
 }
 
+type SearchableScheduleConnection {
+  items: [Schedule]
+  nextToken: String
+  total: Int
+}
+
 type Query {
+  me: User
+  nearbySchedules(location: LocationInput!, km:Int, limit: Int, nextToken: String): SearchableScheduleConnection
   nearbyEvents(location: LocationInput!, city: String, category: String, km: Int, limit: Int, nextToken: String): SearchableEventConnection
   deltaSync(lastSync: String!): Delta @function(name: "QueryDeltaSync-${env}")
   notifications(lastSync: String!): [Notification] @function(name: "QueryNotifications-${env}")

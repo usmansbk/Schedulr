@@ -4,24 +4,18 @@ import { FlatList } from 'react-navigation';
 import { inject, observer } from 'mobx-react';
 import Empty from './Empty';
 import Header from './Header';
-import Item from 'components/lists/Bookmarks/Item';
 import AdItem from './AdItem';
+import EventItem from './Event';
 import Separator from 'components/lists/Bookmarks/Separator';
 import Footer from 'components/lists/Bookmarks/Footer';
 import {
-  parseRepeat,
-  getStatus,
-  getCategory
-} from 'lib/parseItem';
-import {
-  getDuration,
-  getHumanTime
+  getHumanMonth
 } from 'lib/time';
-import { bookmarkedEvents, MEDIUM_RECTANGLE } from 'lib/constants';
-import { injectAds } from 'lib/utils';
+import { discover, MEDIUM_RECTANGLE } from 'lib/constants';
+// import { injectAds } from 'lib/utils';
 import getImageUrl from 'helpers/getImageUrl';
 
-const { ITEM_HEIGHT, SEPARATOR_HEIGHT } = bookmarkedEvents;
+const { ITEM_HEIGHT, SEPARATOR_HEIGHT } = discover;
 
 class List extends Component{
   static defaultProps = {
@@ -37,7 +31,7 @@ class List extends Component{
 
   _getItemLayout = (_, index) => {
     let length = ITEM_HEIGHT;
-    if (index === 2) length = MEDIUM_RECTANGLE; // Medium Rectangle Size ad 
+    // if (index === 2) length = MEDIUM_RECTANGLE; // Medium Rectangle Size ad 
     return (
       {
         length,
@@ -61,51 +55,28 @@ class List extends Component{
       __typename,
       id,
       title,
-      category,
-      isCancelled,
-      allDay,
-      cancelledDates,
-      isPublic,
-      isOwner,
+      description,
       banner,
       startAt,
       endAt,
-      recurrence,
       venue,
-      schedule,
-      isConcluded,
       isBookmarked,
-      bookmarksCount,
-      commentsCount
     } = item;
     if (__typename === 'Advert') return <AdItem />;
-
-    return (<Item
+    if (__typename === 'Event') return <EventItem
       id={id}
       title={title}
-      status={getStatus({
-        isCancelled,
-        cancelledDates,
-        startAt, endAt, isConcluded
-      })}
+      pictureUrl={banner && getImageUrl(banner, 320)}
+      venue={venue}
       startAt={startAt}
       endAt={endAt}
-      allDay={allDay}
-      pictureUrl={banner && getImageUrl(banner)}
+      description={description}
       isBookmarked={isBookmarked}
-      isAuth={isPublic || isOwner || (schedule && schedule.isFollowing)}
-      bookmarksCount={bookmarksCount}
-      commentsCount={commentsCount}
-      category={getCategory(category)}
-      recurrence={parseRepeat(recurrence)}
-      time={getHumanTime({ allDay, startAt, endAt })}
-      eventScheduleId={schedule && schedule.id}
-      duration={getDuration(startAt, endAt, allDay)}
-      address={venue}
+      month={getHumanMonth(startAt)}
+      day={new Date(startAt).getDate()}
       onPressItem={this._onPressItem}
-      onPressComment={this._navigateToComments}
       navigateToBanner={this._navigateToBanner}
-    />);
+    />;
   };
 
   _keyExtractor = (item) => item.id;
@@ -115,7 +86,7 @@ class List extends Component{
   render() {
     const styles = this.props.stores.appStyles.discover;
     let data = this.props.data;
-    if (data.length >= 2) data = injectAds(data, 2);
+    // if (data.length >= 1) data = injectAds(data, 2);
 
     return (
       <FlatList

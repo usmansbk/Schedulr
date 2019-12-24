@@ -88,7 +88,7 @@ class Item extends React.Component {
               src={pictureUrl}
               onPress={this._navigateToBanner}
             />
-            <Badge status={status} isMuted={isMuted} />
+            <Badge status={status} />
           </View>
           <View style={styles.right}>
             <View style={styles.itemBody}>
@@ -105,6 +105,13 @@ class Item extends React.Component {
                 numberOfLines={1}
                 ellipsizeMode="tail"
               >
+                { isMuted && <Icon
+                    name="volume-x"
+                    size={18}
+                    style={styles.muteIcon}
+                    color={stores.themeStore.colors.light_red}
+                  />
+                }
                 {title}
               </Headline>
               <Text style={styles.time}>{time}</Text>

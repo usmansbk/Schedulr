@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Image } from 'react-native';
+import { View } from 'react-native';
 import {
   Text,
   Paragraph,
@@ -13,13 +13,15 @@ import Icon from 'react-native-vector-icons/Feather';
 import UserAvatar from 'components/common/UserAvatar';
 import { comments_list } from 'lib/constants';
 import Attachment from 'components/common/Attachment';
+import MediaIcon from 'components/common/MediaIcon';
 
 const { AVATAR_SIZE } = comments_list;
 
 class Item extends React.Component {
   state = {
-    showOptions: false,
+    showOptions: false
   };
+  _onCheck = () => this.props.stores.appState.checkItem(this.props.id);
   _onReply = () => this.props.handleReplyComment(this.props.id, this.props.authorName, this.props.authorId);
   _navigateToProfile = () => this.props.navigateToProfile(this.props.authorId);
   _navigateToThread = () => this.props.navigateToThread(this.props.commentEventId, this.props.toCommentId, this.props.id);
@@ -38,18 +40,20 @@ class Item extends React.Component {
       }));
     }
   };
-  shouldComponentUpdate = (nextProps, nextState) => {
+  shouldComponentUpdate = (nextProps) => {
     return (
       nextProps.content !== this.props.content ||
       nextProps.timeAgo !== this.props.timeAgo ||
       nextProps.authorPictureUrl !== this.props.authorPictureUrl ||
       nextProps.toCommentContent !== this.props.toCommentContent ||
-      nextProps.toAttachment !== this.props.toAttachment
+      nextProps.toAttachment !== this.props.toAttachment ||
+      nextProps.checked !== this.props.checked
     );
   };
 
   render() {
     const {
+      id,
       authorName,
       content,
       timeAgo,
@@ -60,7 +64,8 @@ class Item extends React.Component {
       toCommentContent,
       toAttachment,
       stores,
-      noReply
+      noReply,
+      checked
     } = this.props;
 
     const styles = stores.appStyles.commentsList;
@@ -91,7 +96,7 @@ class Item extends React.Component {
                 <View style={styles.replyBox}>
                   {
                     Boolean(toAttachment && toAttachment.length) && (
-                      <Image source={require('../../../assets/doc.png')} style={{ width: 30, height: 30 }}/>
+                      <MediaIcon style={{width: 24, height: 24}} />
                     )
                   }
                   <View style={styles.replyContent}>
@@ -110,7 +115,7 @@ class Item extends React.Component {
             {
               Boolean(content) && (
                 <Hyperlink linkStyle={styles.linkStyle} linkDefault={true}>
-                  <Paragraph style={styles.message}>
+                  <Paragraph style={[styles.message, checked ? { textDecorationLine: 'line-through'} : {}]}>
                     {content}
                   </Paragraph>
                 </Hyperlink>
@@ -124,6 +129,14 @@ class Item extends React.Component {
             )
             }
             <View style={styles.footer}>
+              <IconButton
+                icon={() => <Icon
+                  size={18}
+                  name="check-square"
+                  color={colors.light_gray_3}
+                />}
+                onPress={this._onCheck}
+              />
               {
                 noReply ? null : (
                   <View style={styles.actions}>

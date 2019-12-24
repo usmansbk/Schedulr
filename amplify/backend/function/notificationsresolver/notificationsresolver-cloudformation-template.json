@@ -4,6 +4,96 @@
 	"Parameters": {
 		"env": {
 			"Type": "String"
+		},
+		"followTableName": {
+			"Type": "String"
+		},
+		"scheduleTableName": {
+			"Type": "String"
+		},
+		"bookmarkTableName": {
+			"Type": "String"
+		},
+		"userTableName": {
+			"Type": "String"
+		},
+		"eventTableName": {
+			"Type": "String"
+		},
+		"eventDeltaTableName": {
+			"Type": "String"
+		},
+		"scheduleDeltaTableName": {
+			"Type": "String"
+		},
+		"followDeltaTableName": {
+			"Type": "String"
+		},
+		"bookmarkDeltaTableName": {
+			"Type": "String"
+		},
+		"commentDeltaTableName": {
+			"Type": "String"
+		},
+		"gsiFollowings": {
+			"Type": "String"
+		},
+		"gsiFollowingsKey": {
+			"Type": "String"
+		},
+		"gsiFollowers": {
+			"Type": "String"
+		},
+		"gsiFollowersKey": {
+			"Type": "String"
+		},
+		"gsiNewFollowers": {
+			"Type": "String"
+		},
+		"gsiNewFollowersKey": {
+			"Type": "String"
+		},
+		"gsiEventBookmarks": {
+			"Type": "String"
+		},
+		"gsiEventBookmarksKey": {
+			"Type": "String"
+		},
+		"gsiScheduleBookmarks": {
+			"Type": "String"
+		},
+		"gsiScheduleBookmarksKey": {
+			"Type": "String"
+		},
+		"gsiUserSchedules": {
+			"Type": "String"
+		},
+		"gsiUserSchedulesKey": {
+			"Type": "String"
+		},
+		"gsiUserBookmarks": {
+			"Type": "String"
+		},
+		"gsiUserBookmarksKey": {
+			"Type": "String"
+		},
+		"gsiFollowingScheduleEvents": {
+			"Type": "String"
+		},
+		"gsiFollowingScheduleEventsKey": {
+			"Type": "String"
+		},
+		"gsiFollowingSchedules": {
+			"Type": "String"
+		},
+		"gsiFollowingSchedulesKey": {
+			"Type": "String"
+		},
+		"gsiScheduleComments": {
+			"Type": "String"
+		},
+		"gsiScheduleCommentsKey": {
+			"Type": "String"
 		}
 	},
 	"Conditions": {
@@ -51,36 +141,96 @@
 						"REGION": {
 							"Ref": "AWS::Region"
 						},
-						"FOLLOW_TABLE_NAME": "Follow-nuvqxpmrwrgvdpzysdvzf6keju-dev",
-						"SCHEDULE_TABLE_NAME": "Schedule-nuvqxpmrwrgvdpzysdvzf6keju-dev",
-						"BOOKMARK_TABLE_NAME": "Bookmark-nuvqxpmrwrgvdpzysdvzf6keju-dev",
-						"USER_TABLE_NAME": "User-nuvqxpmrwrgvdpzysdvzf6keju-dev",
-						"EVENT_TABLE_NAME": "Event-nuvqxpmrwrgvdpzysdvzf6keju-dev",
-						"EVENT_DELTA_TABLE_NAME": "Event-delta",
-						"SCHEDULE_DELTA_TABLE_NAME": "Schedule-delta",
-						"FOLLOW_DELTA_TABLE_NAME": "Follow-delta",
-						"BOOKMARK_DELTA_TABLE_NAME": "Bookmark-delta",
-						"COMMENT_DELTA_TABLE_NAME": "Comment-delta",
-						"GSI_FOLLOWINGS": "gsi-Followings",
-						"GSI_FOLLOWINGS_KEY": "followUserId",
-						"GSI_FOLLOWERS": "gsi-Followers",
-						"GSI_FOLLOWERS_KEY": "followUserId",
-						"GSI_NEW_FOLLOWERS": "followScheduleId-timestamp-index",
-						"GSI_NEW_FOLLOWERS_KEY": "followScheduleId",
-						"GSI_EVENT_BOOKMARKS": "gsi-EventBookmarks",
-						"GSI_EVENT_BOOKMARKS_KEY": "bookmarkEventId",
-						"GSI_SCHEDULE_BOOKMARKS": "gsi-ScheduleBookmarks",
-						"GSI_SCHEDULE_BOOKMARKS_KEY": "bookmarkScheduleId",
-						"GSI_USER_SCHEDULES": "gsi-UserSchedules",
-						"GSI_USER_SCHEDULES_KEY": "scheduleAuthorId",
-						"GSI_USER_BOOKMARKS": "gsi-UserBookmarks",
-						"GSI_USER_BOOKMARKS_KEY": "bookmarkUserId",
-						"GSI_FOLLOWING_SCHEDULE_EVENTS": "gsi-FollowingScheduleEvents",
-						"GSI_FOLLOWING_SCHEDULE_EVENTS_KEY": "eventScheduleId",
-						"GSI_FOLLOWING_SCHEDULES": "followScheduleId-timestamp-index",
-						"GSI_FOLLOWING_SCHEDULES_KEY": "followScheduleId",
-						"GSI_SCHEDULE_COMMENTS": "gsi-ScheduleComments",
-						"GSI_SCHEDULE_COMMENTS_KEY": "commentScheduleId"
+						"FOLLOW_TABLE_NAME": {
+							"Ref": "followTableName"
+						},
+						"SCHEDULE_TABLE_NAME": {
+							"Ref": "scheduleTableName"
+						},
+						"BOOKMARK_TABLE_NAME": {
+							"Ref": "bookmarkTableName"
+						},
+						"USER_TABLE_NAME": {
+							"Ref": "userTableName"
+						},
+						"EVENT_TABLE_NAME": {
+							"Ref": "eventTableName"
+						},
+						"EVENT_DELTA_TABLE_NAME": {
+							"Ref": "eventDeltaTableName"
+						},
+						"SCHEDULE_DELTA_TABLE_NAME": {
+							"Ref": "scheduleDeltaTableName"
+						},
+						"FOLLOW_DELTA_TABLE_NAME": {
+							"Ref": "followDeltaTableName"
+						},
+						"BOOKMARK_DELTA_TABLE_NAME": {
+							"Ref": "bookmarkDeltaTableName"
+						},
+						"COMMENT_DELTA_TABLE_NAME": {
+							"Ref": "commentDeltaTableName"
+						},
+						"GSI_FOLLOWINGS": {
+							"Ref": "gsiFollowings"
+						},
+						"GSI_FOLLOWINGS_KEY": {
+							"Ref": "gsiFollowingsKey"
+						},
+						"GSI_FOLLOWERS": {
+							"Ref": "gsiFollowers"
+						},
+						"GSI_FOLLOWERS_KEY": {
+							"Ref": "gsiFollowersKey"
+						},
+						"GSI_NEW_FOLLOWERS": {
+							"Ref": "gsiNewFollowers"
+						},
+						"GSI_NEW_FOLLOWERS_KEY": {
+							"Ref": "gsiNewFollowersKey"
+						},
+						"GSI_EVENT_BOOKMARKS": {
+							"Ref": "gsiEventBookmarks"
+						},
+						"GSI_EVENT_BOOKMARKS_KEY": {
+							"Ref": "gsiEventBookmarksKey"
+						},
+						"GSI_SCHEDULE_BOOKMARKS": {
+							"Ref": "gsiScheduleBookmarks"
+						},
+						"GSI_SCHEDULE_BOOKMARKS_KEY": {
+							"Ref": "gsiScheduleBookmarksKey"
+						},
+						"GSI_USER_SCHEDULES": {
+							"Ref": "gsiUserSchedules"
+						},
+						"GSI_USER_SCHEDULES_KEY": {
+							"Ref": "gsiUserSchedulesKey"
+						},
+						"GSI_USER_BOOKMARKS": {
+							"Ref": "gsiUserBookmarks"
+						},
+						"GSI_USER_BOOKMARKS_KEY": {
+							"Ref": "gsiUserBookmarksKey"
+						},
+						"GSI_FOLLOWING_SCHEDULE_EVENTS": {
+							"Ref": "gsiFollowingScheduleEvents"
+						},
+						"GSI_FOLLOWING_SCHEDULE_EVENTS_KEY": {
+							"Ref": "gsiFollowingScheduleEventsKey"
+						},
+						"GSI_FOLLOWING_SCHEDULES": {
+							"Ref": "gsiFollowingSchedules"
+						},
+						"GSI_FOLLOWING_SCHEDULES_KEY": {
+							"Ref": "gsiFollowingSchedulesKey"
+						},
+						"GSI_SCHEDULE_COMMENTS": {
+							"Ref": "gsiScheduleComments"
+						},
+						"GSI_SCHEDULE_COMMENTS_KEY": {
+							"Ref": "gsiScheduleCommentsKey"
+						}
 					}
 				},
 				"Role": {
@@ -92,8 +242,8 @@
 				"Runtime": "nodejs10.x",
 				"Timeout": "25",
 				"Code": {
-					"S3Bucket": "amplify-schdlr-dev-172405-deployment",
-					"S3Key": "amplify-builds/notificationsresolver-4c36314d616f58443539-build.zip"
+					"S3Bucket": "amplify-schdlr-prod-21214-deployment",
+					"S3Key": "amplify-builds/notificationsresolver-547330644d5252437659-build.zip"
 				}
 			}
 		},

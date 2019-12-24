@@ -23,21 +23,18 @@ const styles = StyleSheet.create({
     backgroundColor: colors.success
   },
   Done: {
-    backgroundColor: colors.soft_blue,
+    backgroundColor: colors.tint
   },
   Concluded: {
-    backgroundColor: colors.soft_blue,
+    backgroundColor: colors.tint
   },
   Upcoming: {
     backgroundColor: colors.warning,
   },
-  muted: {
-    backgroundColor: colors.tint
-  }
 });
 
-export default ({ status, isMuted }) => {
-  let statusStyle = isMuted ? styles.muted : styles[status];
+export default ({ status }) => {
+  let statusStyle = styles[status];
   return (
     <View
       style={[styles.container, statusStyle]}

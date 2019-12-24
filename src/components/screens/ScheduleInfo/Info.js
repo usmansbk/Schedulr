@@ -34,7 +34,7 @@ class Info extends React.Component {
 
   _showAboutPrivacyAlert = () => this.setState({ showAboutPrivacyAlert: true });
   _hideAlert = () => this.setState({ showAboutPrivacyAlert: false });
-  _onDelete = () => this.props.handleSelectMenu('delete');
+  _onDelete = () => this.props.handleSelectMenu('delete', this.props.schedule.picture && this.props.schedule.picture.key);
   _onEdit = () => this.props.handleSelectMenu('edit');
   _onArchive = () => this.props.handleSelectMenu(this.props.schedule.status === SCHEDULE_CLOSED ? 'open' : 'close');
 
@@ -85,12 +85,12 @@ class Info extends React.Component {
     const ownerId = author && author.id;
     const ownerName = author && author.name;
     const isClosed = status === SCHEDULE_CLOSED;
-    const pictureUrl = author.avatar ? getImageUrl(author.avatar) : author.pictureUrl;
+    const pictureUrl = author && (author.avatar ? getImageUrl(author.avatar) : author.pictureUrl);
 
     const appStyles = stores.appStyles.styles;
     const styles = stores.appStyles.scheduleInfo;
     const colors = stores.themeStore.colors;
-    const isAuth = (isPublic || isFollowing) && !isOwner;
+    // const isAuth = (isPublic || isFollowing) && !isOwner;
     const isPersonal = id === uuidv5(stores.appState.userId, uuidv5.DNS);
 
     return (
@@ -254,7 +254,7 @@ class Info extends React.Component {
         handleDismiss={this._hideAlert}
       />
       {
-        isAuth && (<FollowButton
+        !isOwner && (<FollowButton
           id={id}
           name={name}
           isFollowing={isFollowing}

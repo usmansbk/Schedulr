@@ -73,6 +73,7 @@ class Form extends React.Component {
         validationSchema={validationSchema}
         onSubmit={async (values, { setSubmitting }) => {
           const input = buildForm(values);
+          input.geo_point = stores.locationStore.point;
           onSubmit && await onSubmit(input);
           setSubmitting(false);
         }}
@@ -178,7 +179,7 @@ class Form extends React.Component {
           />
           <Alert
             title={I18n.get("ALERT_whatIsASchedule")}
-            message={I18n.get("ALERT_whatIsAScheduleA")}
+            message={I18n.get("ALERT_whatIsAScheduleA2")}
             visible={this.state.showInfoAlert}
             handleDismiss={this._hideDialog}
           />

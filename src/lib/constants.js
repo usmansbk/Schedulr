@@ -52,6 +52,11 @@ export const schedules = {
   FOOTER_HEIGHT : 80,
 };
 
+export const discover = {
+  ITEM_HEIGHT: 250,
+  SEPARATOR_HEIGHT: 1
+};
+
 // list/bookmarkedEvents
 export const bookmarkedEvents = {
   AVATAR_SIZE : 54,

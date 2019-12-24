@@ -51,6 +51,7 @@ class List extends React.Component {
         onDelete={this.props.onDelete}
         handleReplyComment={this.props.handleReply}
         noReply={this.props.noReply}
+        checked={this.props.stores.appState.isChecked(id)}
       />
     );
   }
@@ -104,6 +105,7 @@ class List extends React.Component {
         style={styles.list}
         contentContainerStyle={styles.contentContainer}
         data={comments}
+        extraData={stores.appState.checkedList.length}
         keyExtractor={this._keyExtractor}
         renderItem={this._renderItem}
         ListFooterComponent={this._renderFooter}

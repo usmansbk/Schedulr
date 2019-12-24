@@ -1,19 +1,20 @@
 import React from 'react';
 import uuidv5 from 'uuid/v5';
-import { Auth, Hub } from 'aws-amplify';
+import { Auth, Hub, I18n } from 'aws-amplify';
 import crashlytics from '@react-native-firebase/crashlytics';
 import { inject, observer } from 'mobx-react';
 import { withNavigationFocus } from'react-navigation';
 import { withApollo } from 'react-apollo';
 import gql from 'graphql-tag';
 import changeNavigationBarColor from 'react-native-navigation-bar-color';
-import { me } from 'api/queries';
+import { getUserData } from 'api/queries';
 import { createUser, createSchedule, createPreference } from 'api/mutations';
 import defaultSchedule from 'i18n/schedule';
 import Login from './Login';
 import logger from 'config/logger';
+import { baseEventsFilter } from 'graphql/filters';
 
-const GET_USER = gql(me);
+const GET_USER = gql(getUserData);
 const CREATE_USER = gql(createUser);
 const CREATE_SCHEDULE = gql(createSchedule);
 const CREATE_PREFERENCE = gql(createPreference);
@@ -30,12 +31,17 @@ class Container extends React.Component {
     try {
       await changeNavigationBarColor('white', true);
     } catch (error) {
+      logger.logError(error);
     }
   };
 
   _authListener = async ({ payload: { event } }) => {
     const { client, stores } = this.props;
     switch(event) {
+      case 'signIn_failure':
+        this.props.stores.appState.setLoginState(false);
+        this.props.stores.snackbar.show(I18n.get('ERROR_signInFailure'), true);
+        break;
       case "signIn":
         try {
           const currentUser = await Auth.currentAuthenticatedUser();
@@ -52,12 +58,14 @@ class Container extends React.Component {
           }
           const response = await client.query({
             query: GET_USER,
+            fetchPolicy: 'network-only',
             variables: {
-              id: email
+              filter: baseEventsFilter(),
+              limit: 50
             }
           });
           const { data } = response;
-          let user = data.me;
+          let user = data.getUserData;
           if (!user) {
             await client.mutate({
               mutation: CREATE_PREFERENCE,
@@ -94,14 +102,9 @@ class Container extends React.Component {
               }
             });
 
-            client.writeQuery({
+            await client.query({
               query: GET_USER,
-              variables: {
-                id: email
-              },
-              data: {
-                me: user
-              }
+              fetchPolicy: 'network-only'
             });
           }
           this.props.stores.settingsStore.setUserPreference(user.preference);
@@ -110,7 +113,7 @@ class Container extends React.Component {
           logger.log('sign-in');
           this.props.navigation.navigate('App');
         } catch(error) {
-          this.props.stores.snackbar.show("Sign-in failed");
+          this.props.stores.snackbar.show(I18n.get('ERROR_signInFailure'));
           logger.logError(error);
         }
         this.props.stores.appState.setLoginState(false);

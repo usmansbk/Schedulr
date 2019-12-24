@@ -176,7 +176,7 @@ const processNextDayEvents = memoize((initialEvents, nextDate) => {
         }));
       }
     }
-    accumulator.data = sortBy(accumulator.data, 'startAt');
+    accumulator.data = sortBy(accumulator.data, 'startAt', '__typename');
     return accumulator;
   }, {
     data: [],

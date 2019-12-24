@@ -9,7 +9,7 @@ import Item from 'components/lists/ScheduleSearch/Item';
 import Separator from 'components/lists/Schedules/Separator';
 import Footer from 'components/lists/Schedules/Footer';
 import Empty from 'components/lists/Schedules/Empty';
-import { sortSchedules } from 'lib/utils';
+import { sortSchedules, filterPrivate } from 'lib/utils';
 import { schedules } from 'lib/constants';
 import { getUserSchedules } from 'api/queries';
 import getImageUrl from 'helpers/getImageUrl';
@@ -88,7 +88,7 @@ class CreatedSchedules extends Component{
     return (
       <FlatList 
         style={styles.list}
-        data={sortSchedules(schedules)}
+        data={filterPrivate(sortSchedules(schedules))}
         renderItem={this._renderItem}
         contentContainerStyle={styles.contentContainer}
         initialNumToRender={7}
@@ -120,7 +120,6 @@ export default inject('stores')(observer(
         notifyOnNetworkStatusChange: true,
         variables: {
           id: props.navigation.getParam('id'),
-          limit: 50,
         }
       }),
       props: ({ data, ownProps }) => ({

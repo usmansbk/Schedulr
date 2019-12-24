@@ -1,0 +1,7 @@
+{
+    "tableName": "Bookmark-delta",
+    "partitionKeyName": "id",
+    "partitionKeyType": "S",
+    "sortKeyName": "timestamp",
+    "sortKeyType": "N"
+}

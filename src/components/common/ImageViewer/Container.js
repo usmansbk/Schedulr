@@ -2,6 +2,7 @@ import React from 'react';
 import ImagePicker from 'react-native-image-picker';
 import { inject, observer } from 'mobx-react';
 import { Storage, I18n } from 'aws-amplify';
+import shortid from 'shortid';
 import config from 'aws_config';
 import getImageUrl from 'helpers/getImageUrl';
 import Alert from 'components/dialogs/Alert';
@@ -65,13 +66,14 @@ class ImageViewerContainer extends React.Component {
             this.props.stores.snackbar.show(I18n.get("WARNING_fileTooLarge"), true);
           } else {
             try {
-              const key = `${folder}/${id}${fileName}`;
+              const name = `${id}_${shortid.generate()}_${fileName}`;
+              const key = `${folder}/${name}`;
               const fileForUpload = {
                 key,
                 bucket,
                 region,
                 type,
-                name: fileName
+                name
               };
     
               if (uri) {

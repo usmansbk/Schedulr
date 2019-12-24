@@ -191,7 +191,34 @@ class Form extends React.Component {
               >
               {errors.venue && I18n.get(`HELPER_TEXT_${errors.venue}`)}
               </HelperText>
-              
+              {
+                !locked && (
+                  <View style={[styles.pickerSpacing, styles.firstPicker]}>
+                    <View style={styles.row}>
+                      <Text style={styles.radioText}>{I18n.get("EVENT_FORM_schedule")}</Text>
+                      <Text style={styles.radioText} onPress={this._scheduleHelp}>{I18n.get("BUTTON_help")}</Text>
+                    </View>
+                    <Picker
+                      prompt={I18n.get("EVENT_FORM_selectASchedule")}
+                      value={values.eventScheduleId}
+                      disabled={locked}
+                      onValueChange={itemValue => {
+                        setFieldValue('eventScheduleId', itemValue);
+                        const found = schedules.find(item => item.id === itemValue);
+                        if (found) {
+                          setFieldValue('location', found.location);
+                          setFieldValue('isPublic', Boolean(found.isPublic));
+                        }
+                      }}
+                      items={schedules.map(schedule => ({
+                        key: schedule.id,
+                        label: schedule.name,
+                        value: schedule.id
+                      }))}
+                    />
+                  </View>
+                )
+              }
               <View style={[styles.pickerSpacing, styles.firstPicker]}>
                 <Text style={styles.radioText}>{I18n.get("EVENT_FORM_category")}</Text>
                 <PickerButton
@@ -309,40 +336,6 @@ class Form extends React.Component {
                   </View>
                 )
               }
-              {
-                !locked && (
-                  <View style={styles.pickerSpacing}>
-                    <View style={styles.row}>
-                      <Text style={styles.radioText}>{I18n.get("EVENT_FORM_schedule")}</Text>
-                      <Text style={styles.radioText} onPress={this._scheduleHelp}>{I18n.get("BUTTON_help")}</Text>
-                    </View>
-                    <Picker
-                      prompt={I18n.get("EVENT_FORM_selectASchedule")}
-                      value={values.eventScheduleId}
-                      disabled={locked}
-                      onValueChange={itemValue => {
-                        setFieldValue('eventScheduleId', itemValue);
-                        const found = schedules.find(item => item.id === itemValue);
-                        if (found) {
-                          setFieldValue('location', found.location);
-                          setFieldValue('isPublic', Boolean(found.isPublic));
-                        }
-                      }}
-                      items={schedules.map(schedule => ({
-                        key: schedule.id,
-                        label: schedule.name,
-                        value: schedule.id
-                      }))}
-                    />
-                    <HelperText
-                      type="error"
-                      visible={errors.eventScheduleId && touched.eventScheduleId}
-                    >
-                    {errors.eventScheduleId && I18n.get(`HELPER_TEXT_required`)}
-                    </HelperText>
-                  </View>
-                )
-              }
             </View>
           </ScrollView>
           <EventTypeInput
@@ -355,7 +348,7 @@ class Form extends React.Component {
           <Alert
             visible={showScheduleHelpAlert}
             title={I18n.get("ALERT_whatIsASchedule")}
-            message={I18n.get("ALERT_whatIsAScheduleA")}
+            message={I18n.get("ALERT_whatIsAScheduleA")(schedules.find(schdl => schdl.id === values.eventScheduleId))}
             handleDismiss={this._hideModal}
           />
           </>

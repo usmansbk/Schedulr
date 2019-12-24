@@ -4,8 +4,9 @@ import { ApolloProvider } from 'react-apollo';
 import { Provider as MobxProvider } from 'mobx-react';
 import { Rehydrated } from 'aws-appsync-react';
 import SplashScreen from 'react-native-splash-screen';
+import codepush from 'react-native-code-push';
 import { observer } from 'mobx-react';
-import Amplify, { Auth } from 'aws-amplify';
+import Amplify from 'aws-amplify';
 import AppContainer from './src/App';
 import Loading from 'components/common/Hydrating';
 import NavigationService from 'config/navigation';
@@ -15,23 +16,23 @@ import stores from 'stores';
 import env from 'config/env';
 import push from 'config/pushnotification';
 import i18n from 'config/i18n';
-import AmplifyStorage from 'helpers/AmplifyStorage';
 import logger from 'config/logger';
 
 console.disableYellowBox = true;
-// window.LOG_LEVEL = 'DEBUG';
-
 Amplify.configure(aws_config);
-Auth.configure({
-    storage: AmplifyStorage
-});
 
+@codepush
 @observer
 export default class App extends React.Component {
   componentDidMount = () => {
     SplashScreen.hide();
     i18n(stores.settingsStore.language);
     push.init();
+    if (__DEV__) {
+      codepush.sync({
+        deploymentKey: env.CODE_PUSH_STAGING
+      });
+    }
   };
 
   componentDidCatch = (error) => {

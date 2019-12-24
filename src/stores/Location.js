@@ -16,6 +16,8 @@ export default class Location {
   @persist @observable countryCode = null;
   @persist @observable searchLocation = null;
 
+  @action setCurrentLocation = loc => this.currentLocation = loc;
+
   @action fetchLocation = async () => {
     if (this.searchLocation) return;
     try {

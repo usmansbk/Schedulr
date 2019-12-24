@@ -25,8 +25,12 @@ export const sortSchedules = memoize((data) => {
   return opened.concat(closed);
 });
 
-export const sortBy = (arr, key) => {
+export const sortBy = (arr, key, extraKey) => {
   return arr.sort((a, b) => {
+    if (extraKey) {
+      if (a[extraKey] === 'Advert') return -1;
+      if (b[extraKey] === 'Advert') return 1;
+    }
     return moment(a[key]) - moment(b[key]);
   });
 };
@@ -61,6 +65,7 @@ export function eventsChanged(prev, next=[]) {
       (prevVal.category === nextVal.category) &&
       (prevVal.recurrence === nextVal.recurrence) &&
       (prevVal.until === nextVal.until) &&
+      (prevVal.allDay === nextVal.allDay) &&
       (prevVal.isCancelled === nextVal.isCancelled) &&
       (prevVal.isBookmarked === nextVal.isBookmarked) &&
       (prevCancelledDates.length === nextCancelledDates.length) &&
@@ -89,14 +94,14 @@ export function mergeEvents(data) {
 
   const { created, following, bookmarks } = data;
   
-  if (created) {
+  if (created && created.items) {
     // extract events from created schedules
     created.items.forEach(schedule => {
       allEvents = allEvents.concat(schedule.events.items);
     });
   }
 
-  if (following) {
+  if (following && following.items) {
     // extract events from following schedules
     following.items.forEach(follow => {
       const { schedule } = follow;
@@ -108,7 +113,7 @@ export function mergeEvents(data) {
     });
   }
 
-  if (bookmarks) {
+  if (bookmarks && bookmarks.items) {
     // extract events from bookmarks
     bookmarks.items.forEach(bookmark => {
       const { event } = bookmark;
@@ -128,16 +133,20 @@ export function mergeSchedules(data) {
   const { created, following } = data;
 
   // extract created schedules
-  if (created) {
+  if (created && created.items) {
     allSchedules = allSchedules.concat(created.items);
   }
 
   // extract following schedules
-  if (following) {
+  if (following && following.items) {
     const followingSchedules = following.items.map(follow => follow.schedule).filter(schedule => Boolean(schedule));
     allSchedules = allSchedules.concat(followingSchedules);
   }
   return allSchedules;
+}
+
+export function filterPrivate(schedules) {
+  return schedules.filter(schdl => schdl.isPublic || schdl.isFollowing || schdl.isOwner);
 }
 
 export function filterEvents(events, query) {

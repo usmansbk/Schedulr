@@ -4,6 +4,7 @@ import gql from 'graphql-tag';
 import { nearbyEvents } from 'api/queries';
 import List from 'components/lists/Discover';
 import updateQuery from 'helpers/updateQuery';
+import { sortEvents } from 'lib/utils';
 
 const alias = 'withDiscoverContainer';
 
@@ -25,7 +26,7 @@ export default compose(
     }),
     skip: props => !props.location,
     props: ({ data, ownProps}) => ({
-      data: (data && data.nearbyEvents && data.nearbyEvents.items) || [],
+      data: sortEvents((data && data.nearbyEvents && data.nearbyEvents.items) || []),
       nextToken: data && data.nearbyEvents && data.nearbyEvents.nextToken,
       loading: data && (data.loading || data.networkStatus === 4 || data.networkStatus === 3),
       onRefresh: () => data && data.refetch({

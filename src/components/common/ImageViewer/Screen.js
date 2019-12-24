@@ -9,19 +9,24 @@ import FileViewer from 'react-native-file-viewer';
 import Icon from 'react-native-vector-icons/Feather';
 import Loading from '../Loading';
 import logger from 'config/logger';
+import downloadPath from 'helpers/fs';
 
 class ImageViewer extends React.Component {
 
   state = {
-    progress: 0
+    progress: 0,
+    loadingImage: false,
+    downloading: false
   };
+
+  _toggleLoadingImage = () => this.setState(prev => ({ loadingImage: !prev.loadingImage }));
 
   _downloadImage = async () => {
     const { stores, s3Object: { key, name } } = this.props;
     this.setState({ downloading: true, progress: 0 });
     try {
       const fromUrl = await Storage.get(key);
-      const toFile = `${RNFS.DocumentDirectoryPath}/${name}`
+      const toFile = await downloadPath(name);
       const options = {
         fromUrl,
         toFile,
@@ -64,7 +69,7 @@ class ImageViewer extends React.Component {
       me,
       loading
     } = this.props;
-    const { downloading, progress } = this.state;
+    const { downloading, progress, loadingImage } = this.state;
 
     return (
     <>
@@ -83,15 +88,20 @@ class ImageViewer extends React.Component {
         subtitle={subtitle}
         titleStyle={stores.appStyles.styles.headerColor}
       />
-      <Appbar.Action
-        onPress={this._downloadImage}
-        color={stores.themeStore.colors.primary}
-        icon={({ color,size }) => <Icon
-          name="download"
-          size={size}
-          color={color}
-        />}
-      />
+      {
+        Boolean(s3Object) && (
+          <Appbar.Action
+            onPress={this._downloadImage}
+            disabled={downloading}
+            color={stores.themeStore.colors.primary}
+            icon={({ color,size }) => <Icon
+              name="download"
+              size={size}
+              color={color}
+            />}
+          />
+        )
+      }
       {
         me && (
           <>
@@ -123,13 +133,15 @@ class ImageViewer extends React.Component {
     </Appbar.Header>
     <View style={{ flex: 1, justifyContent: 'center', backgroundColor: stores.themeStore.colors.bg }}>
       { downloading && <ProgressBar progress={progress} />}
+      { loadingImage && <ProgressBar indeterminate /> }
       {
         loading ? <Loading loading /> : (
           <PhotoView
             source={uri ? {uri} : require('../../../assets/photographer.png')}
-            loadingIndicatorSource={require('./img/loading.png')}
             androidScaleType="fitCenter"
             style={ uri ? {flex: 1} : { alignSelf: 'center', width: 400, height: 400 }}
+            onLoadStart={this._toggleLoadingImage}
+            onLoadEnd={this._toggleLoadingImage}
           />
         )
       }

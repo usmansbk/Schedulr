@@ -1,10 +1,9 @@
 /* eslint-disable */
- 
 export const createUser = `mutation CreateUser($input: CreateUserInput!) {
   createUser(input: $input) {
     id
-    email
     me
+    email
     name
     pictureUrl
     avatar {
@@ -317,6 +316,7 @@ export const createFollow = `mutation CreateFollow($input: CreateFollowInput!, $
           forever
           isPublic
           isOwner
+          isOffline
           isCancelled
           isBookmarked
           cancelledDates
@@ -379,6 +379,9 @@ export const createComment = `mutation CreateComment($input: CreateCommentInput!
     to {
       id
       content
+      attachment {
+        name
+      }
       author {
         id
         name

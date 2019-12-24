@@ -87,6 +87,9 @@ class Container extends React.Component {
     
     this.unsubscribe = NetInfo.addEventListener(state => {
       stores.appState.toggleConnection(state.isConnected);
+      if (state.isConnected) {
+        stores.appState.removeKeysFromStorage();
+      }
     });
   };
 

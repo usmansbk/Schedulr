@@ -8,7 +8,7 @@ import { I18n } from 'aws-amplify';
 import Actions from 'components/common/Actions';
 import CountDown from 'components/common/Countdown';
 import Tag from 'components/common/Tag';
-import AdsBanner from 'components/ads/Banner';
+import Carousel from 'components/lists/Carousel';
 
 export default inject('stores')(observer(
   ({
@@ -37,10 +37,12 @@ export default inject('stores')(observer(
     isAuth,
     bookmarksCount,
     commentsCount,
+    pictureUrl,
     navigateToSchedule,
     navigateToComments,
     navigateToUser,
     navigateToBookmarks,
+    navigateToBanner,
     cardView,
     stores,
     onFinish
@@ -63,7 +65,7 @@ export default inject('stores')(observer(
             <Headline style={stores.appStyles.eventDetails.title}>{title}</Headline>
             <Text style={stores.appStyles.eventDetails.date}>{weekDay}</Text>
             <Text style={stores.appStyles.eventDetails.date}>{date}</Text>
-            {(duration !== 'A day') && <Text style={stores.appStyles.eventDetails.date}>{duration}</Text>}
+            {(duration !== I18n.get('A day')) && <Text style={stores.appStyles.eventDetails.date}>{duration}</Text>}
           </View>
           <Divider />
           <View style={stores.appStyles.eventDetails.body}>
@@ -79,7 +81,12 @@ export default inject('stores')(observer(
               <Text style={stores.appStyles.eventDetails.label}>{I18n.get("VENUE")}</Text>
               <Text style={stores.appStyles.eventDetails.value}>{address || I18n.get("No location set")}</Text>
             </View>
-            <AdsBanner medium_rect />
+            <Carousel
+              id={id}
+              data={[]}
+              banner={pictureUrl}
+              navigateToBanner={navigateToBanner}
+            />
             {
               (isAuth && scheduleName) && (
                 <View style={stores.appStyles.eventDetails.item}>

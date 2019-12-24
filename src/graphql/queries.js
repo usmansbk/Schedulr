@@ -1,6 +1,6 @@
 /* eslint-disable */
-export const me = `query GetUser($id: ID!) {
-  me: getUser(id: $id) {
+export const me = `query {
+  me {
     id
     me
     email
@@ -247,6 +247,7 @@ export const getScheduleEvents = `query GetScheduleWithEvents($id: ID!, $limit: 
         forever
         isPublic
         isOwner
+        isOffline
         isCancelled
         isBookmarked
         cancelledDates
@@ -274,8 +275,8 @@ export const getScheduleEvents = `query GetScheduleWithEvents($id: ID!, $limit: 
   }
 }
 `;
-export const getUserBookmarks = `query GetBookmarks($id: ID!, $nextToken: String, $limit: Int) {
-  getUserBookmarks: getUser(id: $id) {
+export const getUserBookmarks = `query GetBookmarks($nextToken: String, $limit: Int) {
+  getUserBookmarks: me {
     id
     bookmarks(nextToken: $nextToken, limit: $limit, sortDirection: DESC) @connection(key: "bookmarks") {
       items {
@@ -321,10 +322,10 @@ export const getUserBookmarks = `query GetBookmarks($id: ID!, $nextToken: String
     }
   }
 }`;
-export const getUserSchedules = `query GetUserSchedules($id: ID!, $limit: Int) {
+export const getUserSchedules = `query GetUserSchedules($id: ID!) {
   getUserSchedules: getUser(id: $id) {
     id
-    created(limit: $limit, sortDirection: ASC) @connection(key: "created") {
+    created {
       items {
         id
         name
@@ -357,7 +358,7 @@ export const getUserSchedules = `query GetUserSchedules($id: ID!, $limit: Int) {
       }
       nextToken
     }
-    following(limit: $limit, sortDirection: ASC) @connection(key: "following") {
+    following {
       items {
         id
         schedule {
@@ -400,10 +401,34 @@ export const getUserSchedules = `query GetUserSchedules($id: ID!, $limit: Int) {
     }
   }
 }`;
-export const getUserData = `query GetUserData($id: ID!, $filter: ModelEventFilterInput, $limit: Int) {
-  getUserData: getUser(id: $id) {
+export const getUserData = `query GetUserData($filter: ModelEventFilterInput, $limit: Int) {
+  getUserData: me {
     id
-    created(limit: $limit, sortDirection: ASC) @connection(key: "created") {
+    me
+    email
+    name
+    pictureUrl
+    avatar {
+      key
+      bucket
+      name
+    }
+    website
+    bio
+    followingCount
+    createdCount
+    createdAt
+    updatedAt
+    preference {
+      id
+      userId
+      disablePush
+      disableAdminComments
+      disableReplies
+      disableComments
+      enableMembersComments
+    }
+    created {
       items {
         id
         name
@@ -471,7 +496,7 @@ export const getUserData = `query GetUserData($id: ID!, $filter: ModelEventFilte
       }
       nextToken
     }
-    following(limit: $limit, sortDirection: ASC) @connection(key: "following") {
+    following {
       nextToken
       items {
         id
@@ -521,6 +546,7 @@ export const getUserData = `query GetUserData($id: ID!, $filter: ModelEventFilte
               forever
               isPublic
               isOwner
+              isOffline
               isCancelled
               isBookmarked
               cancelledDates
@@ -614,6 +640,7 @@ export const getDeltaUpdates = `query GetDeltaUpdates($lastSync: String!) {
       isOwner
       isCancelled
       isBookmarked
+      isOffline
       cancelledDates
       banner {
         bucket
@@ -677,6 +704,7 @@ export const getNotifications = `query GetNotifications($lastSync: String!) {
 export const listFollowers = `query GetScheduleFollowers($id: ID!, $limit: Int, $nextToken: String) {
   listFollowers: getSchedule(id: $id) {
     id
+    followersCount
     followers(limit: $limit, nextToken: $nextToken, sortDirection: DESC) @connection(key: "followers") {
       items {
         id
@@ -700,47 +728,6 @@ export const listFollowers = `query GetScheduleFollowers($id: ID!, $limit: Int, 
       }
       nextToken
     }
-  }
-}`;
-export const searchEvents = `query SearchEvents($filter: SearchableEventFilterInput!, $limit: Int, $nextToken: String, $sort: SearchableEventSortInput) {
-  searchEvents(filter: $filter, limit: $limit, nextToken: $nextToken, sort: $sort) @connection(key: "searchEvents") {
-    items {
-      id
-      title
-      description
-      venue
-      category
-      startAt
-      endAt
-      allDay
-      recurrence
-      until
-      forever
-      isPublic
-      isOwner
-      isCancelled
-      isBookmarked
-      cancelledDates
-      banner {
-        bucket
-        key
-        name
-      }
-      author {
-        id
-        name
-      }
-      schedule {
-        id
-        name
-        isFollowing
-      }
-      commentsCount
-      bookmarksCount
-      createdAt
-      updatedAt
-    }
-    nextToken
   }
 }`;
 export const searchSchedules = `query SearchSchedules($filter: SearchableScheduleFilterInput!, $limit: Int, $nextToken: String, $sort: SearchableScheduleSortInput) {
@@ -783,6 +770,46 @@ export const searchSchedules = `query SearchSchedules($filter: SearchableSchedul
     nextToken
   }
 }`;
+export const searchEvents = `query SearchEvents($filter: SearchableEventFilterInput!, $limit: Int, $nextToken: String, $sort: SearchableEventSortInput) {
+  searchEvents(filter: $filter, limit: $limit, nextToken: $nextToken, sort: $sort) @connection(key: "searchEvents") {
+    items {
+      id
+      title
+      description
+      venue
+      category
+      startAt
+      endAt
+      allDay
+      recurrence
+      until
+      forever
+      isPublic
+      isOwner
+      isCancelled
+      isBookmarked
+      cancelledDates
+      banner {
+        bucket
+        key
+      }
+      author {
+        id
+        name
+      }
+      schedule {
+        id
+        name
+        isFollowing
+      }
+      commentsCount
+      bookmarksCount
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}`;
 export const searchPeople = `query SearchPeople($filter: SearchableUserFilterInput!, $limit: Int, $nextToken: String, $sort: SearchableUserSortInput) {
   searchUsers(filter: $filter, limit: $limit, nextToken: $nextToken, sort: $sort) @connection(key: "searchPeople") {
     items {
@@ -807,6 +834,7 @@ export const searchPeople = `query SearchPeople($filter: SearchableUserFilterInp
 export const listBookmarks = `query GetEventBookmarks($id: ID!, $limit: Int, $nextToken: String) {
   listBookmarks: getEvent(id: $id) {
     id
+    bookmarksCount
     bookmarks(limit: $limit, nextToken: $nextToken, sortDirection: DESC) @connection(key: "bookmarks") {
       items {
         id
@@ -872,4 +900,44 @@ export const nearbyEvents = `query GetNearbyEvents($location: LocationInput!, $k
     }
     nextToken
   }
-}`
+}`;
+export const nearbySchedules = `query GetNearbySchedules($location: LocationInput!, $km: Int, $limit: Int, $nextToken: String) {
+  nearbySchedules(location: $location, km: $km, limit: $limit, nextToken: $nextToken) @connection(key: "nearbySchedules") {
+    items {
+      id
+      name
+      description
+      isPublic
+      isOwner
+      isFollowing
+      location
+      status
+      author {
+        id
+        name
+        pictureUrl
+        avatar {
+          key
+          bucket
+          name
+        }
+        website
+        bio
+        me
+        createdCount
+        followingCount
+        createdAt
+      }
+      picture {
+        key
+        bucket
+        name
+      }
+      followersCount
+      eventsCount
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}`;

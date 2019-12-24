@@ -6,23 +6,23 @@ import CloseDialog from 'components/dialogs/CloseSchedule';
 import { handleShareSchedule } from 'helpers/share';
 
 export default class Screen extends React.Component {
-  state = { visibleDialog: null };
+  state = { visibleDialog: null, pictureKey: null };
   _goBack = () => this.props.navigation.goBack();
-  _hideDialog = () => this.setState({ visibleDialog: null });
+  _hideDialog = () => this.setState({ visibleDialog: null, pictureKey: null });
   _handleShare = ({ id, name }) => {
     handleShareSchedule({
       id,
       title: name,
     });
   };
-  _handleSelectMenu = (option) => {
+  _handleSelectMenu = (option, pictureKey) => {
     const id = this.props.navigation.getParam('id');
     switch (option) {
       case 'edit':
         this.props.navigation.navigate('EditSchedule', { id });
         break;
       default:
-        this.setState({ visibleDialog: option });
+        this.setState({ visibleDialog: option, pictureKey});
         break;
     }
   };
@@ -32,7 +32,7 @@ export default class Screen extends React.Component {
   _navigateToPicture = (id) => this.props.navigation.navigate('SchedulePicture', { id });
 
   render() {
-    const { visibleDialog } = this.state;
+    const { visibleDialog, pictureKey } = this.state;
     const id = this.props.navigation.getParam('id');
     return (
       <>
@@ -50,6 +50,7 @@ export default class Screen extends React.Component {
           id={id}
           visible={visibleDialog === 'delete' }
           handleDismiss={this._hideDialog}
+          pictureKey={pictureKey}
         />
         <OpenDialog
           id={id}

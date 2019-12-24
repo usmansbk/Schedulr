@@ -33,6 +33,7 @@ export default class AppState {
   @persist('list') @observable mutedEvents = [];
   @persist('list') @observable mutedSchedules = [];
   @persist('list') @observable allowedEvents = [];
+  @persist('list') @observable checkedList = [];
   @persist('object') @observable prefs = {
     showPrivateScheduleAlert: true,
     showAppIntro: true
@@ -53,6 +54,19 @@ export default class AppState {
     this.discoverFilter = id.toLowerCase();
   };
 
+  @action checkItem = id => {
+    const isChecked = this.checkedList.includes(id);
+    if (isChecked) {
+      this.checkedList = this.checkedList.filter(currentId => currentId !== id);
+    } else {
+      this.checkedList.push(id);
+    }
+  };
+
+  isChecked(id) {
+    return this.checkedList.includes(id);
+  }
+
   @action reset() {
     this.isConnected =false;
     this.searchText = '';
@@ -60,6 +74,7 @@ export default class AppState {
     this.mutedEvents = [];
     this.allowedEvents = [];
     this.mutedSchedules = [];
+    this.checkedList = [];
     this.prefs = {
       showPrivateScheduleAlert: true,
       showAppIntro: false
@@ -124,9 +139,6 @@ export default class AppState {
         if (fetchMoreResult && fetchMoreResult.deltaSync) {
           const prev = client.readQuery({
             query: BaseQuery,
-            variables: {
-              id: this.userId
-            }
           });
           const data = updateBaseQuery({
             prev,
@@ -134,9 +146,6 @@ export default class AppState {
           });
           client.writeQuery({
             query: BaseQuery,
-            variables: {
-              id: this.userId
-            },
             data
           });
         }
@@ -148,7 +157,7 @@ export default class AppState {
     }
   }
 
-  @action removeKeysFromStorage(keys) {
+  @action removeKeysFromStorage(keys=[]) {
     const queue = this.keysToRemove.concat(keys);
     const removed = [];
     queue.forEach(key => {

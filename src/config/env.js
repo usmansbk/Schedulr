@@ -3,7 +3,7 @@ const DOMAIN = 'https://get-schdlr.com';
 
 const common = {
   uriPrefix: 'schdlr://',
-  APP_URL: `https://get-schdlr.com`,
+  APP_URL: `https://schdlr.com`,
   DOWNLOAD_URL: `${DOMAIN}`,
   FAQ_URL: `${DOMAIN}/faq`,
   CONTACT_URL: `${DOMAIN}/contact`,
@@ -18,19 +18,20 @@ const common = {
   BANNER: "ca-app-pub-5101585071736651/9094843890",
   MEDIUM_RECT_BANNER: "ca-app-pub-5101585071736651/8260467898",
   SMART_BANNER: "ca-app-pub-5101585071736651/9363125562",
-  INTERSTITIAL: "ca-app-pub-5101585071736651/8903272202"
+  INTERSTITIAL: "ca-app-pub-5101585071736651/8903272202",
+  CODE_PUSH_STAGING: "boKPQY0t1F_JLz4ziHHZsUGNjlkee-bDRHWBL"
 }
 
 const dev = {
   ...common,
   BUILD: `${date}-beta`,
-  APP_VERSION: '1.1.0'
+  APP_VERSION: '1.0'
 };
 
 export const prod = {
   ...common,
   BUILD: `${date}-release`,
-  APP_VERSION: '1.0.0'
+  APP_VERSION: '1.0'
 };
 
 export default dev;

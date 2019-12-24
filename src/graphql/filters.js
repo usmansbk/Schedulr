@@ -120,7 +120,7 @@ export const searchScheduleFilter = (query, location) => {
 					},
 					{
 						description: {
-							matchPhrasePrefix: query
+							matchPhrase: query
 						}
 					}
 				]
@@ -128,7 +128,6 @@ export const searchScheduleFilter = (query, location) => {
 		]
 	};
 };
-
 export const searchEventFilter = (query, location) => {
 	return {
 		and: [
@@ -149,18 +148,18 @@ export const searchEventFilter = (query, location) => {
 					},
 					{
 						venue:  {
-							matchPhrasePrefix: query
-						},
+							matchPhrase: query
+						}
 					},
 					{
 						category:  {
 							matchPhrasePrefix: query
-						},
+						}
 					},
 					{
 						description:  {
-							matchPhrasePrefix: query
-						},
+							matchPhrase: query
+						}
 					}
 				]
 			}

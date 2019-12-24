@@ -2,8 +2,11 @@ import React from 'react';
 import { inject, observer } from 'mobx-react';
 import OneSignal from 'react-native-onesignal';
 import Notifications from './Notifications';
+import logger from 'config/logger';
 
 class Container extends React.Component {
+  componentDidMount = () => logger.log('notifications_screen');
+
   componentDidUpdate = () => {
     OneSignal.clearOneSignalNotifications();
   };

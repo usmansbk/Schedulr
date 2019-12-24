@@ -53,7 +53,7 @@ class DateCountdown extends React.Component {
       } else {
         until = 0;
         digitStyle = {
-          backgroundColor: stores.themeStore.colors.soft_blue
+          backgroundColor: stores.themeStore.colors.tint
         }
         digitTxtStyle = {
           color: 'white'

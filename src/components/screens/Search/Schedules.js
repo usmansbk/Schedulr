@@ -9,6 +9,7 @@ import { getUserSchedules, searchSchedules } from 'api/queries';
 import { searchScheduleFilter } from 'api/filters';
 import { SEARCH_LIMIT } from "lib/constants";
 import updateQuery from 'helpers/updateQuery';
+import logger from 'config/logger';
 
 class Schedules extends React.Component {
 
@@ -17,6 +18,8 @@ class Schedules extends React.Component {
       tabBarLabel: I18n.get("SEARCH_schedulesTabLabel")
     };
   }
+
+  componentDidMount = () => logger.log('search_screen');
 
   componentWillUnmount = () => this.props.stores.appState.onChangeText('');
 

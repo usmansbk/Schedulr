@@ -52,7 +52,8 @@ class List extends Component {
       status,
       isOwner,
       isFollowing,
-      isOffline
+      isOffline,
+      author,
     } = item;
 
     return (
@@ -62,6 +63,8 @@ class List extends Component {
         description={description}
         isPublic={isPublic}
         pictureUrl={picture && getImageUrl(picture)}
+        authorPictureUrl={author && (author.avatar ? getImageUrl(author.avatar) : author.pictureUrl)}
+        authorName={author && author.name}
         isClosed={status === SCHEDULE_CLOSED}
         isMuted={this.props.stores.appState.mutedSchedules.includes(id)}
         isOwner={isOwner}

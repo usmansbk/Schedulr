@@ -5,6 +5,7 @@ import Icon from 'react-native-vector-icons/Feather';
 import DocumentPicker from 'react-native-document-picker';
 import { inject, observer } from 'mobx-react';
 import { I18n, Storage } from 'aws-amplify';
+import shortid from 'shortid';
 import FileSelect from 'components/lists/FileSelect';
 import logger from 'config/logger';
 import config from 'aws_config';
@@ -55,14 +56,15 @@ class CommentInput extends React.Component {
       this.setState({ isSubmitting: true });
       for (let doc of uploads) {
         const { type, uri, name, size} = doc;
-        const key = `uploads/${id}${name}`;
+        const fileName = `${id}_${shortid.generate()}_${name}`;
+        const key = `uploads/${fileName}`;
         const fileForUpload = {
           key,
           bucket,
           region,
           type,
           size,
-          name
+          name: fileName
         };
         try {
           if (uri && (size <= MAX_FILE_SIZE)) {

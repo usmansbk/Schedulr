@@ -2,6 +2,7 @@ import React from 'react';
 import { I18n } from 'aws-amplify';
 import Viewer from 'components/common/ImageViewer';
 import Error from 'components/common/Error';
+import logger from 'config/logger';
 
 export default class AvatarViewer extends React.Component {
   _goBack = () => this.props.navigation.goBack();
@@ -23,6 +24,8 @@ export default class AvatarViewer extends React.Component {
     };
     await uploadPhoto(input);
   };
+
+  componentDidMount = () => logger.log('banner')
 
   render() {
     const { event } = this.props;

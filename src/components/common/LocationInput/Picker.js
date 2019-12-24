@@ -11,8 +11,13 @@ import env from 'config/env';
 
 export default class Picker extends React.Component {
   _onValueChange = (value) => this.props.onValueChange(value);
-  _onSelect = ({ city, country }) => {
-    this.props.onSelectLocation && this.props.onSelectLocation(`${city}, ${country}`);
+  _onSelect = (data) => {
+    const { city, country, latitude, longitude } = data;
+    const point = {
+      lat: latitude,
+      lng: longitude
+    };
+    this.props.onSelectLocation && this.props.onSelectLocation(`${city}, ${country}`, point);
     this.props.hideModal();
   };
 
@@ -57,6 +62,8 @@ export default class Picker extends React.Component {
               />}
             />}
             styles={styles}
+            hidePoweredBy
+            showActivityIndicator
           />
         </Modal>
       </Portal>

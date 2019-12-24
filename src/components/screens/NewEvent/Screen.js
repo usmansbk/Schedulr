@@ -9,6 +9,7 @@ import recurrences from 'components/forms/Event/recurrence';
 import { isPastExact } from 'lib/time';
 import { getUserSchedules } from 'api/fragments';
 import { SCHEDULE_CLOSED } from "lib/constants";
+import logger from 'config/logger';
 
 class NewEventScreen extends React.Component {
   _newSchedule = () => this.props.navigation.navigate("NewSchedule");
@@ -23,6 +24,7 @@ class NewEventScreen extends React.Component {
     };
     this.props.onSubmit(input);
     this.props.navigation.pop();
+    logger.log('create_event');
     // this.props.navigation.replace('EventDetails', { id });
   };
 

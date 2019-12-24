@@ -1,6 +1,27 @@
 import { PermissionsAndroid } from 'react-native';
 import { I18n } from 'aws-amplify';
 import stores from 'stores';
+import logger from 'config/logger';
+
+async function requestReadWritePermission() {
+  try {
+    const response = await PermissionsAndroid.requestMultiple(
+      [
+        PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
+        PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE
+      ]
+    );
+    const readGranted = response[PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE];
+    const writeGranted = response[PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE];
+    const granted = PermissionsAndroid.RESULTS.GRANTED;
+
+    const hasPermission = (writeGranted === granted) && (readGranted === granted);
+    return hasPermission;
+  } catch (error) {
+    logger.logError(error);
+  }
+  return false;
+}
 
 async function requestLocationPermission() {
   try {
@@ -22,5 +43,6 @@ async function requestLocationPermission() {
 }
 
 export {
-  requestLocationPermission
+  requestLocationPermission,
+  requestReadWritePermission
 };

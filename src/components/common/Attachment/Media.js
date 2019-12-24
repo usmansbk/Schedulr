@@ -7,33 +7,19 @@ import { I18n, Storage } from 'aws-amplify';
 import numeral from 'numeral';
 import { inject, observer } from 'mobx-react';
 import getImageUrl from 'helpers/getImageUrl';
+import getFilePath from 'helpers/fs';
 import logger from 'config/logger';
+import MediaIcon from '../MediaIcon';
 
 const Doc = inject('stores')(observer(({ stores, onPress, file, downloading, progress }) => {
   const { name, size, type } = file;
   const styles = stores.appStyles.media;
-  let source = require('../../../assets/doc.png');
-
-  if (type.includes('audio')) {
-    source = require('../../../assets/audio.png');
-  } else if (type.includes('video')) {
-    source = require('../../../assets/video.png');
-  } else if (type.includes('pdf')) {
-    source = require('../../../assets/pdf.png');
-  } else if (type.includes('text')) {
-    source = require('../../../assets/txt.png');
-  } else if (type.includes('zip') || (type.includes('compressed') || type.includes('archive'))) {
-    source = require('../../../assets/zip.png'); 
-  } else {
-    source = require('../../../assets/doc.png'); 
-  }
-
   return (
     <TouchableRipple onPress={onPress} disabled={downloading}>
       <>
       <View style={styles.docContent}>
-        <Image
-          source={source}
+        <MediaIcon
+          type={type}
           style={styles.mediaIcon}
         />
         <View style={styles.docBody}>
@@ -67,7 +53,7 @@ class MediaItem extends React.Component {
     this.setState({ downloading: true, progress: 0 });
     try {
       const fromUrl = await Storage.get(key);
-      const toFile = `${RNFS.DocumentDirectoryPath}/${name}`
+      const toFile = await getFilePath(name);
       const options = {
         fromUrl,
         toFile,
@@ -111,7 +97,7 @@ class MediaItem extends React.Component {
         <TouchableRipple onPress={this._onPress}>
           <View style={styles.view}>
             <Image source={source} style={styles.image} />
-            <Caption style={styles.caption}>{numeral(file.size).format('0b')}</Caption>
+            <Caption style={styles.caption} numberOfLines={1}>{numeral(file.size).format('0b')} - {file.name}</Caption>
           </View>
         </TouchableRipple>
       );

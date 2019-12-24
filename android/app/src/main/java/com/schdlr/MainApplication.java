@@ -1,5 +1,7 @@
 package com.schdlr;
 
+import com.microsoft.codepush.react.CodePush;
+
 import android.app.Application;
 import android.content.Context;
 
@@ -29,6 +31,11 @@ public class MainApplication extends MultiDexApplication implements ReactApplica
       @Override
       public boolean getUseDeveloperSupport() {
         return BuildConfig.DEBUG;
+      }
+      
+      @Override
+      protected String getJSBundleFile() {
+          return CodePush.getJSBundleFile();
       }
 
       @Override
