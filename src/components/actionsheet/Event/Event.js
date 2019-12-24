@@ -48,7 +48,9 @@ class EventAction extends React.Component {
         input.bookmarkScheduleId = bookmarkScheduleId;
         await bookmarkEvent(input);
       }
-      stores.snackbar.show(I18n.get(`TOAST_${isBookmarked ? "removed" : "saved"}`));
+      if (!isBookmarked) {
+        stores.snackbar.show(I18n.get(`TOAST_${isBookmarked ? "removed" : "saved"}`));
+      }
     } catch (error) {
       logger.logError(error);
     }
