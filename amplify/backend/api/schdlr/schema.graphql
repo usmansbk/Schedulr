@@ -149,7 +149,7 @@ type Event
   isOffline: Boolean
   cancelledDates: [String]
   author: User @connection
-  albums: [Album] @connection(name: "EventAlbums", sortField: "createdAt", limit: 5)
+  album: Album @connection(name: "EventAlbums")
   schedule: Schedule! @connection(name: "ScheduleEvents", sortField: "createdAt")
   comments: [Comment] @connection(name: "EventComments", sortField: "createdAt", limit: 20)
   commentsCount: Int

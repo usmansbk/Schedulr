@@ -1,6 +1,6 @@
 import React from 'react';
-import { View, ScrollView } from 'react-native';
-import { Text, Headline, Divider } from 'react-native-paper';
+import { View, ScrollView, Image } from 'react-native';
+import { Text, Headline, Divider, Surface } from 'react-native-paper';
 import Hyperlink from 'react-native-hyperlink';
 import { inject, observer } from 'mobx-react';
 import numeral from 'numeral';
@@ -37,6 +37,7 @@ export default inject('stores')(observer(
     isAuth,
     bookmarksCount,
     commentsCount,
+    pictureUrl,
     navigateToSchedule,
     navigateToComments,
     navigateToUser,
@@ -79,7 +80,9 @@ export default inject('stores')(observer(
               <Text style={stores.appStyles.eventDetails.label}>{I18n.get("VENUE")}</Text>
               <Text style={stores.appStyles.eventDetails.value}>{address || I18n.get("No location set")}</Text>
             </View>
-            <AdsBanner medium_rect />
+            <Surface style={{elevation: 4}}>
+            <Image source={{uri: pictureUrl}} style={{height: 250, width: '100%'}} />
+            </Surface>
             {
               (isAuth && scheduleName) && (
                 <View style={stores.appStyles.eventDetails.item}>
