@@ -1,6 +1,6 @@
 import React from 'react';
-import { View, ScrollView, Image } from 'react-native';
-import { Text, Headline, Divider, Surface } from 'react-native-paper';
+import { View, ScrollView } from 'react-native';
+import { Text, Headline, Divider } from 'react-native-paper';
 import Hyperlink from 'react-native-hyperlink';
 import { inject, observer } from 'mobx-react';
 import numeral from 'numeral';
@@ -8,7 +8,7 @@ import { I18n } from 'aws-amplify';
 import Actions from 'components/common/Actions';
 import CountDown from 'components/common/Countdown';
 import Tag from 'components/common/Tag';
-import AdsBanner from 'components/ads/Banner';
+import Carousel from 'components/lists/Carousel';
 
 export default inject('stores')(observer(
   ({
@@ -42,6 +42,7 @@ export default inject('stores')(observer(
     navigateToComments,
     navigateToUser,
     navigateToBookmarks,
+    navigateToBanner,
     cardView,
     stores,
     onFinish
@@ -80,9 +81,12 @@ export default inject('stores')(observer(
               <Text style={stores.appStyles.eventDetails.label}>{I18n.get("VENUE")}</Text>
               <Text style={stores.appStyles.eventDetails.value}>{address || I18n.get("No location set")}</Text>
             </View>
-            <Surface style={{elevation: 4}}>
-            <Image source={{uri: pictureUrl}} style={{height: 250, width: '100%'}} />
-            </Surface>
+            <Carousel
+              id={id}
+              data={[]}
+              banner={pictureUrl}
+              navigateToBanner={navigateToBanner}
+            />
             {
               (isAuth && scheduleName) && (
                 <View style={stores.appStyles.eventDetails.item}>
