@@ -6,7 +6,7 @@ import {
   Caption
 } from 'react-native-paper';
 import { inject, observer } from 'mobx-react';
-import { I18n, Storage } from 'aws-amplify';
+import { I18n } from 'aws-amplify';
 import logger from 'config/logger';
 
 class DeleteEvent extends React.Component {
@@ -25,13 +25,12 @@ class DeleteEvent extends React.Component {
       id,
       banner,
       onSubmit,
-      handleDismiss
+      handleDismiss,
+      stores
     } = this.props;
     this.setState({ loading: true });
-    try {
-      if (banner) await Storage.remove(banner.key).catch();
-    } catch (error) {
-      logger.logError(error);
+    if (banner) {
+      stores.appState.removeKeysFromStorage([banner.key])
     }
     onSubmit && onSubmit({ id });
     handleDismiss();
