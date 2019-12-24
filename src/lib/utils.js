@@ -25,8 +25,12 @@ export const sortSchedules = memoize((data) => {
   return opened.concat(closed);
 });
 
-export const sortBy = (arr, key) => {
+export const sortBy = (arr, key, extraKey) => {
   return arr.sort((a, b) => {
+    if (extraKey) {
+      if (a[extraKey] === 'Advert') return -1;
+      if (b[extraKey] === 'Advert') return 1;
+    }
     return moment(a[key]) - moment(b[key]);
   });
 };
