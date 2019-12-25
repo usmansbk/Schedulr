@@ -42,11 +42,10 @@ export default class Footer extends React.Component {
   };
 
   render() {
-    const { isEmpty, isOwner } = this.props;
     return (
       <TouchableRipple onPress={this._openDocumentPicker}>
         <Surface style={styles.container}>
-          <Text style={styles.text}>{I18n.get(`TEXT_${(isEmpty && !isOwner) ? "noAlbum" : "addImagesToAlbum"}`)}</Text>
+          <Text style={styles.text}>{I18n.get(`TEXT_noAlbum`)}</Text>
           <Icon name="image" size={24}/>
         </Surface>
       </TouchableRipple>

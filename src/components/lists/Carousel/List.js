@@ -15,27 +15,21 @@ export default class List extends React.Component {
   };
 
   _renderFooter = () => {
-    const { data=[], isOwner } = this.props;
-    const isEmpty = !data.length;
-    return <Footer
-      isEmpty={isEmpty}
-      isOwner={isOwner}
-    />;
+    return <Footer />;
   };
 
   _keyExtractor = item => item.key;
 
   render() {
-    const { data=[], isOwner } = this.props;
     return (
       <FlatList
         horizontal
         showsHorizontalScrollIndicator={false}
-        data={data}
+        data={[]}
         renderItem={this._renderItem}
         keyExtractor={this._keyExtractor}
         ListHeaderComponent={this._renderHeader}
-        ListFooterComponent={(data.length && !isOwner) ? null : this._renderFooter}
+        ListFooterComponent={this._renderFooter}
       />
     );
   }

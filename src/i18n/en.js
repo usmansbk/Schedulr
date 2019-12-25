@@ -329,5 +329,6 @@ export default {
   SYNC_complete: "Synchronized",
 
   TEXT_addImagesToAlbum: "Add Images to album",
-  TEXT_noAlbum: "No Album"
+  TEXT_noAlbum: "Photo Album Empty",
+  TEXT_noBanner: "No Event Banner"
 };
