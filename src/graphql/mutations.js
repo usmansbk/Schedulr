@@ -437,3 +437,26 @@ export const updatePreference = `mutation UpdateUserPreference($input: UpdateUse
     enableMembersComments
   }
 }`;
+export const createAlbum = `mutation CreateAlbum($input: CreateAlbumInput!) {
+  createAlbum(input: $input) {
+    id
+    images {
+      key
+      bucket
+    }
+  }
+}`;
+export const updateAlbum = `mutation UpdateAlbum($input: UpdateAlbumInput!) {
+  updateAlbum(input: $input) {
+    id
+    images {
+      key
+      bucket
+    }
+  }
+}`;
+export const deleteAlbum = `mutation DeleteAlbum($input: DeleteAlbumInput!) {
+  deleteAlbum(input: $input) {
+    id
+  }
+}`;

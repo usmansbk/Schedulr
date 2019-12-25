@@ -330,5 +330,6 @@ export default {
 
   TEXT_addImagesToAlbum: "Add Images to album",
   TEXT_noAlbum: "Photo Album Empty",
-  TEXT_noBanner: "No Event Banner"
+  TEXT_noBanner: "No Event Banner",
+  TEXT_album: "Album"
 };

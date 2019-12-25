@@ -810,6 +810,16 @@ export const searchEvents = `query SearchEvents($filter: SearchableEventFilterIn
     nextToken
   }
 }`;
+export const eventAlbum = `query GetAlbum($id: ID!) {
+  getAlbum(id: $id) {
+    id
+    images {
+      key
+      bucket
+      name
+    }
+  }
+}`;
 export const searchPeople = `query SearchPeople($filter: SearchableUserFilterInput!, $limit: Int, $nextToken: String, $sort: SearchableUserSortInput) {
   searchUsers(filter: $filter, limit: $limit, nextToken: $nextToken, sort: $sort) @connection(key: "searchPeople") {
     items {
