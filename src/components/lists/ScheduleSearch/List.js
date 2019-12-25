@@ -103,7 +103,7 @@ class List extends Component {
         }
         style={styles.list}
         contentContainerStyle={styles.contentContainer}
-        initialNumToRender={0}
+        initialNumToRender={1}
         getItemLayout={this._getItemLayout}
         ItemSeparatorComponent={this._renderSeparator}
         keyExtractor={this._keyExtractor}
