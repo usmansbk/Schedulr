@@ -1,27 +1,11 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
 import { Surface, Text, TouchableRipple } from 'react-native-paper';
 import DocumentPicker from 'react-native-document-picker';
 import Icon from 'react-native-vector-icons/Feather';
 import { I18n } from 'aws-amplify';
+import { inject, observer } from 'mobx-react';
 
-const styles = StyleSheet.create({
-  container: {
-    width: 300,
-    height: 250,
-    justifyContent: 'center',
-    alignItems: 'center',
-    margin: 4,
-    elevation: 4
-  },
-  text: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: 'gray'
-  }
-});
-
-export default class Footer extends React.Component {
+class Footer extends React.Component {
 
   _openDocumentPicker = async () => {
     try {
@@ -42,13 +26,17 @@ export default class Footer extends React.Component {
   };
 
   render() {
+    const { stores } = this.props;
+    const styles = stores.appStyles.carousel;
     return (
       <TouchableRipple onPress={this._openDocumentPicker}>
         <Surface style={styles.container}>
           <Text style={styles.text}>{I18n.get(`TEXT_noAlbum`)}</Text>
-          <Icon name="image" size={24}/>
+          <Icon name="image" size={24} color={stores.themeStore.colors.gray}/>
         </Surface>
       </TouchableRipple>
     );
   }
 }
+
+export default inject("stores")(observer(Footer));

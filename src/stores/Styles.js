@@ -1406,6 +1406,31 @@ export default class AppStyles {
       },
     });
   }
+
+  @computed get carousel() {
+    const colors = this.settings.dark ? dark : light;
+    return StyleSheet.create({
+      container: {
+        width: 300,
+        height: 250,
+        justifyContent: 'center',
+        alignItems: 'center',
+        margin: 4,
+        elevation: 4,
+        backgroundColor: colors.bg
+      },
+      image: {
+        width: '100%',
+        height: 250
+      },
+      text: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        color: colors.gray
+      }
+    });
+  }
+
   @computed get searchEventsList () {
     const colors = this.settings.dark ? dark : light;
 
