@@ -15,7 +15,7 @@ export default class List extends React.Component {
   };
 
   _renderFooter = () => {
-    return <Footer />;
+    return <Footer id={this.props.id} />;
   };
 
   _keyExtractor = item => item.key;
