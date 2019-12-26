@@ -11,7 +11,7 @@ import Loading from 'components/common/Loading';
 import Error from 'components/common/Error';
 import logger from 'config/logger';
 import config from 'aws_config';
-import { updateAlbum } from 'graphql/mutations';
+import { updateEvent } from 'graphql/mutations';
 import { getAlbum } from 'graphql/queries';
 
 const MAX_FILE_SIZE = 8000 * 1024;
@@ -48,7 +48,7 @@ class Album extends React.Component {
 
   _onSubmit = async (uploads) => {
     if (uploads.length) {
-      const { id, noAlbum } = this.props;
+      const { id, images } = this.props;
       let docs = [];
       let failed = [];
 
@@ -87,7 +87,7 @@ class Album extends React.Component {
         }
       }
       if (docs.length) {
-        await this.props.updateAlbum(id, docs);
+        await this.props.updateAlbum(id, [...docs, ...images]);
       }
       this.setState({ isSubmitting: false });
       if (failed.length) {
@@ -132,39 +132,39 @@ class Album extends React.Component {
   }
 }
 
-// const withGraphql = compose(
-//   graphql(gql(getAlbum), {
-//     alias: 'withGetAlbum',
-//     options: props => ({
-//       notifyOnNetworkStatusChange: true,
-//       fetchPolicy: 'cache-and-network',
-//       variables: {
-//         id: props.id
-//       }
-//     }),
-//     props: ({ data, ownProps }) => ({
-//       images: (data && data.getAlbum && data.getAlbum.images) || [],
-//       loading: data.loading,
-//       error: data.error,
-//       isOwner: data && data.getAlbum && data.getAlbum.isOwner,
-//       onRefresh: () => data.refetch(),
-//       ...ownProps
-//     })
-//   }),
-//   graphql(gql(updateAlbum), {
-//     alias: 'withUpdateAlbum',
-//     props: ({ mutate, ownProps }) => ({
-//       updateAlbum: (id, images) => mutate({
-//         variables: {
-//           input: {
-//             id,
-//             images
-//           }
-//         }
-//       }),
-//       ...ownProps
-//     })
-//   })
-// )(Album);
+const withGraphql = compose(
+  graphql(gql(getAlbum), {
+    alias: 'withGetAlbum',
+    options: props => ({
+      notifyOnNetworkStatusChange: true,
+      fetchPolicy: 'cache-and-network',
+      variables: {
+        id: props.id
+      }
+    }),
+    props: ({ data, ownProps }) => ({
+      images: (data && data.getAlbum && data.getAlbum.album) || [],
+      loading: data.loading,
+      error: data.error,
+      isOwner: data && data.getAlbum && data.getAlbum.isOwner,
+      onRefresh: () => data.refetch(),
+      ...ownProps
+    })
+  }),
+  graphql(gql(updateEvent), {
+    alias: 'withUpdateAlbum',
+    props: ({ mutate, ownProps }) => ({
+      updateAlbum: (id, album) => mutate({
+        variables: {
+          input: {
+            id,
+            album
+          }
+        }
+      }),
+      ...ownProps
+    })
+  })
+)(Album);
 
-export default inject("stores")(observer(Album));
+export default inject("stores")(observer(withGraphql));

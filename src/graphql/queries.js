@@ -61,6 +61,16 @@ export const getUser = `query GetUser($id: ID!) {
   }
 }
 `;
+export const getAlbum = `query GetAlbum($id: ID!) {
+  getAlbum: getEvent(id: $id) {
+    id
+    isOwner
+    album {
+      key
+      bucket
+    }
+  }
+}`;
 export const getEvent = `query GetEvent($id: ID!) {
   getEvent(id: $id) {
     id

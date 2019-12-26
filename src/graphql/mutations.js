@@ -106,6 +106,10 @@ export const updateEvent = `mutation UpdateEvent($input: UpdateEventInput!) {
       key
       name
     }
+    album {
+      bucket
+      key
+    }
     updatedAt
   }
 }
