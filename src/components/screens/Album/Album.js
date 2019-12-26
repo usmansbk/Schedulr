@@ -6,7 +6,7 @@ import { I18n, Storage } from 'aws-amplify';
 import { compose, graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import shortid from 'shortid';
-import MasonryList from 'components/common/Masonry';
+import MasonryList from 'components/lists/Masonry';
 import Fab from 'components/common/Fab';
 import Loading from 'components/common/Loading';
 import Error from 'components/common/Error';
