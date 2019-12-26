@@ -111,6 +111,7 @@ type Album
   id: ID!
   caption: String
   images: [S3Object]
+  isOwner: Boolean
   event: Event @connection(name: "EventAlbums")
   createdAt: String
   updatedAt: String

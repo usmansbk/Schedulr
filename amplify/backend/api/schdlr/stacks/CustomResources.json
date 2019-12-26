@@ -434,6 +434,43 @@
 				}
 			}
 		},
+		"AlbumIsOwnerResolver": {
+			"Type": "AWS::AppSync::Resolver",
+			"Properties": {
+				"ApiId": {
+					"Ref": "AppSyncApiId"
+				},
+				"DataSourceName": "NONE",
+				"TypeName": "Album",
+				"FieldName": "isOwner",
+				"RequestMappingTemplateS3Location": {
+					"Fn::Sub": [
+						"s3://${S3DeploymentBucket}/${S3DeploymentRootKey}/resolvers/Album.isOwner.req.vtl",
+						{
+							"S3DeploymentBucket": {
+								"Ref": "S3DeploymentBucket"
+							},
+							"S3DeploymentRootKey": {
+								"Ref": "S3DeploymentRootKey"
+							}
+						}
+					]
+				},
+				"ResponseMappingTemplateS3Location": {
+					"Fn::Sub": [
+						"s3://${S3DeploymentBucket}/${S3DeploymentRootKey}/resolvers/Album.isOwner.res.vtl",
+						{
+							"S3DeploymentBucket": {
+								"Ref": "S3DeploymentBucket"
+							},
+							"S3DeploymentRootKey": {
+								"Ref": "S3DeploymentRootKey"
+							}
+						}
+					]
+				}
+			}
+		},
 		"EventIsOwnerResolver": {
 			"Type": "AWS::AppSync::Resolver",
 			"Properties": {
