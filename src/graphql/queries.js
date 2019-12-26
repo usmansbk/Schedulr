@@ -68,6 +68,10 @@ export const getAlbum = `query GetAlbum($id: ID!) {
     album {
       key
       bucket
+      region
+      type
+      size
+      name
     }
   }
 }`;

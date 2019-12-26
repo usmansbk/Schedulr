@@ -6,6 +6,7 @@ import { I18n, Storage } from 'aws-amplify';
 import { compose, graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import shortid from 'shortid';
+import MasonryList from 'components/common/Masonry';
 import Fab from 'components/common/Fab';
 import Loading from 'components/common/Loading';
 import Error from 'components/common/Error';
@@ -87,7 +88,12 @@ class Album extends React.Component {
         }
       }
       if (docs.length) {
-        await this.props.updateAlbum(id, [...docs, ...images]);
+        const prev = images.map(image => {
+          const temp = Object.assign({}, image);
+          delete temp.__typename;
+          return temp;
+        });
+        await this.props.updateAlbum(id, [...docs, ...prev]);
       }
       this.setState({ isSubmitting: false });
       if (failed.length) {
@@ -109,8 +115,6 @@ class Album extends React.Component {
 
     if (loading && !images.length) return <Loading loading={loading} />;
     if (error && !images.length) return <Error onRefresh={onRefresh} loading={loading} />;
-    console.log(images);
-    const appStyles = stores.appStyles.styles;
     const colors = stores.themeStore.colors;
     return (
       <>
@@ -119,6 +123,10 @@ class Album extends React.Component {
             <ProgressBar progress={loaded / total} />
           )
         }
+        <MasonryList
+          images={images}
+          backgroundColor={colors.bg}
+        />
         {
           isOwner && (
             <Fab
