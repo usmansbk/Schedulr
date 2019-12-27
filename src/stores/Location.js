@@ -49,7 +49,7 @@ export default class Location {
               } = bestLocation;
               this.locality = city;
               this.country = country;
-              if (!this.searchLocation) this.searchLocation = city;
+              this.searchLocation = city;
               this.countryCode = countryCode;
             }).catch((error) => {
               logger.logError(error);

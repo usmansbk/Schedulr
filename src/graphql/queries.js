@@ -774,7 +774,6 @@ export const searchSchedules = `query SearchSchedules($filter: SearchableSchedul
       picture {
         key
         bucket
-        name
       }
       followersCount
       eventsCount
@@ -806,6 +805,7 @@ export const searchEvents = `query SearchEvents($filter: SearchableEventFilterIn
       banner {
         bucket
         key
+        name
       }
       author {
         id
