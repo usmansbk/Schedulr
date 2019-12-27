@@ -6,7 +6,7 @@ import { I18n, Storage } from 'aws-amplify';
 import { compose, graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import shortid from 'shortid';
-import MasonryList from 'components/lists/Masonry';
+import MasonryList from 'components/lists/Album';
 import Fab from 'components/common/Fab';
 import Loading from 'components/common/Loading';
 import Error from 'components/common/Error';
@@ -25,7 +25,22 @@ class Album extends React.Component {
   state = {
     total: 0,
     loaded: 0,
-    isSubmitting: false
+    isSubmitting: false,
+    selected: [] 
+  };
+
+  _onLongPress = (url) => {
+    const { selected } = this.state;
+    const isSelected =  selected.includes(url);
+    let temp;
+    if (isSelected) {
+      temp = selected.filter(uri => uri !== url);
+    } else {
+      temp = [...selected, url];
+    }
+    this.setState({
+      selected: temp 
+    });
   };
 
   _openDocumentPicker = async () => {
@@ -45,6 +60,20 @@ class Album extends React.Component {
         logger.logError(error);
       }
     }
+  };
+
+  _onDelete = async () => {
+    const { id, images, stores } = this.props;
+    const filtered = images.filter(image => !this.state.selected.includes(image.key));
+    this.setState({ isLoading: true });
+    const newList = filtered.map(image => {
+      const temp = Object.assign({}, image);
+      delete temp.__typename;
+      return temp;
+    });
+    stores.appState.removeKeysFromStorage(this.state.selected);
+    await this.props.updateAlbum(id, newList);
+    this.setState({ isLoading: false, selected: [] });
   };
 
   _onSubmit = async (uploads) => {
@@ -103,14 +132,20 @@ class Album extends React.Component {
   };
 
   render() {
-    const { isSubmitting, loaded, total } = this.state;
+    const {
+      isSubmitting,
+      loaded,
+      total,
+      selected,
+      isLoading
+    } = this.state;
     const {
       stores,
       images,
       loading,
       onRefresh,
       error,
-      isOwner
+      isOwner,
     } = this.props;
 
     if (loading && !images.length) return <Loading loading={loading} />;
@@ -118,20 +153,24 @@ class Album extends React.Component {
     const colors = stores.themeStore.colors;
     return (
       <>
-        {
-          Boolean(isSubmitting) && (
-            <ProgressBar progress={loaded / total} />
-          )
-        }
+        { Boolean(isSubmitting) && <ProgressBar progress={loaded / total} /> }
+        { isLoading && <ProgressBar indeterminate />}
         <MasonryList
           images={images}
+          selected={this.state.selected}
           backgroundColor={colors.bg}
+          color={colors.primary_dark}
+          onPress={this._onPress}
+          onLongPress={this._onLongPress}
+          onRefresh={onRefresh}
+          loading={loading}
         />
         {
           isOwner && (
             <Fab
-              icon="image"
-              onPress={this._openDocumentPicker}
+              disabled={loading || isLoading || isSubmitting}
+              icon={selected.length ? "trash":"image"}
+              onPress={selected.length ? this._onDelete : this._openDocumentPicker}
             />
           )
         }
