@@ -58,7 +58,8 @@ class List extends React.Component {
       <FlatList
         contentContainerStyle={{
           flex: 1,
-          backgroundColor: stores.themeStore.colors.bg
+          backgroundColor: stores.themeStore.colors.bg,
+          paddingHorizontal: 5
         }}
         data={images}
         refreshControl={
