@@ -14,7 +14,8 @@ export default class Item extends React.Component {
       <TouchableRipple onPress={this._onPress} onLongPress={this._onLongPress}>
         <Surface style={[{
           elevation: 4,
-          margin: 4,
+          margin: 8,
+          width: 175
         }, selected ? { borderWidth: 2, borderColor: color } : {}]}>
           <Image source={source} style={{
             height: style.height

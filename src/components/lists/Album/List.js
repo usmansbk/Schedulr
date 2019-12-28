@@ -69,6 +69,8 @@ class List extends React.Component {
             progressBackgroundColor={stores.themeStore.colors.bg}
           />
         }
+        horizontal={false}
+        numColumns={2}
         renderItem={this._renderItem}
         getItemLayout={this._getItemLayout}
         initialNumToRender={1}

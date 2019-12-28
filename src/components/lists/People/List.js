@@ -99,8 +99,6 @@ class List extends React.Component {
       stores
     } = this.props;
 
-    const { fetchingMore } = this.state;
-
     const styles = stores.appStyles.peopleList;
 
     return (
@@ -118,7 +116,7 @@ class List extends React.Component {
         onEndReached={this._onEndReached}
         refreshControl={
           <RefreshControl
-            refreshing={loading && !fetchingMore}
+            refreshing={loading}
             onRefresh={onRefresh}
             colors={[stores.themeStore.colors.primary]}
             progressBackgroundColor={stores.themeStore.colors.bg}
