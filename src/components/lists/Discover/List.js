@@ -106,7 +106,7 @@ class List extends Component{
         ListEmptyComponent={this._renderEmptyList}
         ListHeaderComponent={this._renderHeader}
         ListFooterComponent={this._renderFooter}
-        initialNumToRender={5}
+        initialNumToRender={2}
         getItemLayout={this._getItemLayout}
         stickyHeaderIndices={[0]}
         contentContainerStyle={styles.contentContainer}

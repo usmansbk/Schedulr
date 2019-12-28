@@ -111,6 +111,7 @@ class List extends React.Component {
         ListFooterComponent={this._renderFooter}
         ListEmptyComponent={this._renderEmpty}
         ItemSeparatorComponent={this._renderSeparator}
+        initialNumToRender={1}
         refreshControl={
           <RefreshControl
             refreshing={loading && !fetchingMore}

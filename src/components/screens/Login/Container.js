@@ -65,7 +65,7 @@ class Container extends React.Component {
             }
           });
           const { data } = response;
-          let user = data.getUserData;
+          let user = data && data.getUserData;
           if (!user) {
             await client.mutate({
               mutation: CREATE_PREFERENCE,

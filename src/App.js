@@ -29,7 +29,9 @@ import {
   SchedulePicture,
   EventBookmarks,
   Intro,
-  ViewEmbed
+  ViewEmbed,
+  Album,
+  AlbumViewer
 } from 'components/screens';
 import Thread from 'components/screens/Comments/Thread';
 import colors from 'config/colors';
@@ -160,6 +162,18 @@ const AppStack = createStackNavigator({
   },
   SchedulePicture: {
     screen: SchedulePicture,
+    navigationOptions: {
+      header: null
+    }
+  },
+  Album: {
+    screen: Album,
+    navigationOptions: {
+      header: null
+    }
+  },
+  AlbumViewer: {
+    screen: AlbumViewer,
     navigationOptions: {
       header: null
     }

@@ -24,6 +24,8 @@ import SchedulePicture from './SchedulePicture';
 import EventBookmarks from './EventBookmarks';
 import Intro from './Intro';
 import ViewEmbed from './ViewEmbed';
+import Album from './Album';
+import AlbumViewer from './AlbumViewer';
 
 export {
   ViewEmbed,
@@ -51,5 +53,7 @@ export {
   Banner,
   SchedulePicture,
   EventBookmarks,
-  Intro
+  Intro,
+  Album,
+  AlbumViewer
 };

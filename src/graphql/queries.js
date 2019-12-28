@@ -61,6 +61,20 @@ export const getUser = `query GetUser($id: ID!) {
   }
 }
 `;
+export const getAlbum = `query GetAlbum($id: ID!) {
+  getAlbum: getEvent(id: $id) {
+    id
+    isOwner
+    album {
+      key
+      bucket
+      region
+      type
+      size
+      name
+    }
+  }
+}`;
 export const getEvent = `query GetEvent($id: ID!) {
   getEvent(id: $id) {
     id
@@ -760,7 +774,6 @@ export const searchSchedules = `query SearchSchedules($filter: SearchableSchedul
       picture {
         key
         bucket
-        name
       }
       followersCount
       eventsCount
@@ -792,6 +805,7 @@ export const searchEvents = `query SearchEvents($filter: SearchableEventFilterIn
       banner {
         bucket
         key
+        name
       }
       author {
         id

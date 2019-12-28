@@ -92,7 +92,7 @@ class List extends Component {
         style={stores.appStyles.schedulesList.list}
         extraData={stores.appState.mutedSchedules.length || schedules.length}
         contentContainerStyle={stores.appStyles.schedulesList.contentContainer}
-        initialNumToRender={7}
+        initialNumToRender={1}
         getItemLayout={this._getItemLayout}
         ItemSeparatorComponent={this._renderSeparator}
         keyExtractor={this._keyExtractor}

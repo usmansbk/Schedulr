@@ -35,6 +35,7 @@ export default inject('stores')(observer(
     isBookmarked,
     authorId,
     isAuth,
+    isOwner,
     bookmarksCount,
     commentsCount,
     pictureUrl,
@@ -83,6 +84,7 @@ export default inject('stores')(observer(
             </View>
             <Carousel
               id={id}
+              isOwner={isOwner}
               data={[]}
               banner={pictureUrl}
               navigateToBanner={navigateToBanner}

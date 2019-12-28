@@ -314,7 +314,7 @@ class List extends React.Component {
     return (
       <SectionList
         ref={this.listRef}
-        initialNumToRender={0}
+        initialNumToRender={1}
         getItemLayout={this._getItemLayout}
         contentContainerStyle={stores.appStyles.eventsList.contentContainer}
         style={stores.appStyles.eventsList.list}

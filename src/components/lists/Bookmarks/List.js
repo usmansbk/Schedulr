@@ -125,7 +125,7 @@ class List extends Component {
         }
         style={stores.appStyles.bookmarkedEventsList.list}
         contentContainerStyle={stores.appStyles.bookmarkedEventsList.contentContainer}
-        initialNumToRender={5}
+        initialNumToRender={1}
         getItemLayout={this._getItemLayout}
         ItemSeparatorComponent={this._renderSeparator}
         keyExtractor={this._keyExtractor}

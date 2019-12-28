@@ -29,7 +29,7 @@ class Events extends React.Component {
         query={query}
         id={userId}
         isConnected={isConnected}
-        location={stores.locationStore.location}
+        location={stores.locationStore.searchLocation}
         search
       />
     );
@@ -60,7 +60,7 @@ const ListHoc = compose(
       }
     }),
     props: ({ data, ownProps }) => ({
-      loading: data && data.loading || data.networkStatus === 4,
+      loading: data && (data.loading || data.networkStatus === 4 || data.networkStatus === 3),
       events: data && data.searchEvents && processEvents(data.searchEvents.items) || [],
       nextToken: data && data.searchEvents && data.searchEvents.nextToken,
       onRefresh: () => data.refetch(),
