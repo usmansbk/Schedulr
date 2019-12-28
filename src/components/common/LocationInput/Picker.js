@@ -7,6 +7,7 @@ import {
 import { I18n } from 'aws-amplify';
 import GeoDBCitiesSearch from 'react-native-geodb';
 import Icon from 'react-native-vector-icons/Feather';
+import colors from 'config/colors';
 import env from 'config/env';
 
 export default class Picker extends React.Component {
@@ -62,6 +63,7 @@ export default class Picker extends React.Component {
               />}
             />}
             styles={styles}
+            colors={[colors.primary]}
             hidePoweredBy
             showActivityIndicator
           />
