@@ -10,6 +10,8 @@ import { getAlbum } from 'graphql/queries';
 import getImageUrl from 'helpers/getImageUrl';
 
 class AlbumViewer extends React.Component {
+  _goBack = () => this.props.navigation.goBack();
+  
   render() {
     const { album, s3Key, stores } = this.props;
     const index = album.findIndex(img => img.key === s3Key);
