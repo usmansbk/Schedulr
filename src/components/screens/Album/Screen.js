@@ -7,6 +7,7 @@ import Album from './Album';
 
 class Screen extends React.Component {
   _goBack = () => this.props.navigation.goBack();
+  _openViewer = (id, key) => this.props.navigation.navigate('AlbumViewer', { id, key });
 
   render() {
     const { stores } = this.props;
@@ -31,7 +32,10 @@ class Screen extends React.Component {
             title={I18n.get('TEXT_album')}
           />
         </Appbar.Header>
-        <Album id={id} /> 
+        <Album
+          id={id}
+          navigateToViewer={this._openViewer}
+        /> 
       </>
     )
   }

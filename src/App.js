@@ -30,7 +30,8 @@ import {
   EventBookmarks,
   Intro,
   ViewEmbed,
-  Album
+  Album,
+  AlbumViewer
 } from 'components/screens';
 import Thread from 'components/screens/Comments/Thread';
 import colors from 'config/colors';
@@ -167,6 +168,12 @@ const AppStack = createStackNavigator({
   },
   Album: {
     screen: Album,
+    navigationOptions: {
+      header: null
+    }
+  },
+  AlbumViewer: {
+    screen: AlbumViewer,
     navigationOptions: {
       header: null
     }

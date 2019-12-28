@@ -25,6 +25,7 @@ import EventBookmarks from './EventBookmarks';
 import Intro from './Intro';
 import ViewEmbed from './ViewEmbed';
 import Album from './Album';
+import AlbumViewer from './AlbumViewer';
 
 export {
   ViewEmbed,
@@ -53,5 +54,6 @@ export {
   SchedulePicture,
   EventBookmarks,
   Intro,
-  Album
+  Album,
+  AlbumViewer
 };

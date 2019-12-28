@@ -13,7 +13,7 @@ class List extends React.Component {
     if (this.props.selected.length) {
       this.props.onLongPress(key);
     } else {
-      console.log('onPress');
+      this.props.onPress(key);
     }
   };
 
@@ -45,7 +45,8 @@ class List extends React.Component {
       onPress={this._onPress}
       color={this.props.color}
     />
-  }
+  };
+
   render() {
     const {
       images=[],

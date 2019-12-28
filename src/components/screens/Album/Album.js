@@ -42,6 +42,10 @@ class Album extends React.Component {
       selected: temp 
     });
   };
+   
+  _onPress = (key) => {
+    this.props.navigateToViewer(this.props.id, key);
+  };
 
   _openDocumentPicker = async () => {
     try {
