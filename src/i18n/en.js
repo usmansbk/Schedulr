@@ -349,14 +349,16 @@ export default {
   TEXT_album: "Album",
 
   MOMENT_left: from => `${from} left`,
-  sameDay: '[Today], ddd Do',
-  nextDay: '[Tomorrow], ddd Do',
-  nextWeek: 'dddd, Do',
-  lastDay: '[Yesterday], ddd Do',
-  lastWeek: '[Last] dddd, Do',
-  sameElse: 'ddd, Do MMM YYYY',
-
   Today: 'Today',
+
+  calendarFormats: {
+    sameDay: '[Today], ddd Do',
+    nextDay: '[Tomorrow], ddd Do',
+    nextWeek: 'dddd, Do',
+    lastDay: '[Yesterday], ddd Do',
+    lastWeek: '[Last] dddd, Do',
+    sameElse: 'ddd, Do MMM YYYY',
+  },
 
   headingCalendarFormats : {
     sameDay: '[Today]',

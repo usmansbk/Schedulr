@@ -6,15 +6,6 @@ import { inject, observer } from 'mobx-react';
 import Button from './Picker';
 import { I18n } from 'aws-amplify';
 
-const calendarFormats = {
-  sameDay: I18n.get("sameDay"),
-  nextDay:  I18n.get("nextDay"),
-  nextWeek: I18n.get("nextWeek"),
-  lastDay: I18n.get("lastDay"),
-  lastWeek: I18n.get("lastWeek"),
-  sameElse: I18n.get("sameElse")
-};
-
 class Input extends React.Component {
 
   state = {
@@ -29,7 +20,7 @@ class Input extends React.Component {
     (nextState.mode !== this.state.mode)
   );
   
-  _formatDate = (date) => moment(date).calendar(null, calendarFormats);
+  _formatDate = (date) => moment(date).calendar(null, I18n.get('calendarFormats'));
   _formatTime = (time) => moment(time).format('hh:mm a');
 
   _hidePicker = () => this.setState({ showPicker: false });
