@@ -225,8 +225,8 @@ export default {
   EVENT_CAPTION_allDay: ({ type, recurrence }) => {
     return `${recurrence} ${type}`;
   },
-  EVENT_CAPTION_xthDayOfType: ({ type, span }) => {
-    return `${span} day ${type ? `of ${type}` : ''}`;
+  EVENT_CAPTION_xthDayOfType: ({ type, totalDayCount, currentDayCount }) => {
+    return `${type ? type + ' day' : 'Day'} ${currentDayCount} of ${totalDayCount}`;
   },
   EVENT_CAPTION_xDurationRecurrenceType: ({ duration, recurrence, type }) => {
     return `${duration}${recurrence ? ` ${recurrence}` : ''}${type ? ` ${type}` : '' }`;

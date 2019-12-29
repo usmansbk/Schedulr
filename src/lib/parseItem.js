@@ -63,21 +63,22 @@ export const captionDetails = ({
   ref_date
 }) => {
   const isSameDay = moment(startAt).isSame(endAt, 'D');
-  const startMoment = moment(startAt).startOf('D');
-  const endMoment = moment(endAt).endOf('D');
+  // const startMoment = moment(startAt).startOf('D');
+  // const endMoment = moment(endAt).endOf('D');
 
-  let span;
+  let currentDayCount, totalDayCount;
   if (!isSameDay) {
-    span = startMoment.from(endMoment, true);
+    // span = startMoment.from(endMoment, true);
     const count = momentCounter({ startAt, ref_date });
-    span = numeral(count + 1).format('0o')
+    currentDayCount = count + 1;
+    totalDayCount = momentCounter({ startAt, endAt }) + 1;
   }
   let caption;
   if (allDay) {
     caption = I18n.get("EVENT_CAPTION_allDay")({ type: category, recurrence });
   } else {
-    if (span) {
-      caption = I18n.get("EVENT_CAPTION_xthDayOfType")({ span, type: category });
+    if (currentDayCount) {
+      caption = I18n.get("EVENT_CAPTION_xthDayOfType")({ currentDayCount, totalDayCount, type: category });
     } else {
       caption = I18n.get("EVENT_CAPTION_xDurationRecurrenceType")({ duration, recurrence, type: category });
     }
