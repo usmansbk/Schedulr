@@ -205,7 +205,7 @@ export default {
   EVENT_FORM_from: "FROM",
   EVENT_FORM_to: "TO",
   EVENT_FORM_allDay: "ALL DAY EVENT",
-  EVENT_FORM_repetition: "REPETITION",
+  EVENT_FORM_repetition: "RECURRENCE",
   EVENT_FORM_public: "Public",
   EVENT_FORM_schedule: "SCHEDULE",
   EVENT_FORM_repeat: "REPEAT",
