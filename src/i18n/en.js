@@ -1,4 +1,10 @@
 import { capitalize } from 'lib/utils';
+
+const DATE_FORMAT = 'MMMM DD, YYYY';
+const DAY_FORMAT = 'dddd';
+const NEXT_LAST_FORMAT = 'dddd, Do';
+const CAL_TIME_FORMAT = 'DD MMM YYYY hh:mm';
+
 export default {
   ACTION_filterByType: filter => "Filter By Type: " + capitalize(filter),
   ACTION_all: "All",
@@ -340,5 +346,40 @@ export default {
   TEXT_addImagesToAlbum: "Add Images to album",
   TEXT_noAlbum: "Photo Album Empty",
   TEXT_noBanner: "No Event Banner",
-  TEXT_album: "Album"
+  TEXT_album: "Album",
+
+  MOMENT_left: from => `${from} left`,
+  sameDay: '[Today], ddd Do',
+  nextDay: '[Tomorrow], ddd Do',
+  nextWeek: 'dddd, Do',
+  lastDay: '[Yesterday], ddd Do',
+  lastWeek: '[Last] dddd, Do',
+  sameElse: 'ddd, Do MMM YYYY',
+
+  Today: 'Today',
+
+  headingCalendarFormats : {
+    sameDay: '[Today]',
+    nextDay: '[Tomorrow]',
+    nextWeek: DAY_FORMAT,
+    lastDay: '[Yesterday]',
+    lastWeek: '[Last] dddd',
+    sameElse: DATE_FORMAT
+  },
+  calendarTimeFormats : {
+    sameDay: '[Today] [at] HH:mm',
+    nextDay: '[Tomorrow]',
+    nextWeek: DAY_FORMAT,
+    lastDay: '[Yesterday] [at] hh:mm',
+    lastWeek: CAL_TIME_FORMAT,
+    sameElse: CAL_TIME_FORMAT 
+  },
+  subheadingCalendarFormats : {
+    sameDay: NEXT_LAST_FORMAT,
+    nextDay: NEXT_LAST_FORMAT,
+    nextWeek: DATE_FORMAT,
+    lastDay: NEXT_LAST_FORMAT,
+    lastWeek: DATE_FORMAT,
+    sameElse: DAY_FORMAT
+  }
 };

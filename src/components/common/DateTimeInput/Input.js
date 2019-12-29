@@ -4,14 +4,15 @@ import DateTimePicker from 'react-native-modal-datetime-picker';
 import { View } from 'react-native';
 import { inject, observer } from 'mobx-react';
 import Button from './Picker';
+import { I18n } from 'aws-amplify';
 
 const calendarFormats = {
-  sameDay: '[Today], ddd Do',
-  nextDay: '[Tomorrow], ddd Do',
-  nextWeek: 'dddd, Do',
-  lastDay: '[Yesterday], ddd Do',
-  lastWeek: '[Last] dddd, Do',
-  sameElse: 'ddd, Do MMM YYYY'
+  sameDay: I18n.get("sameDay"),
+  nextDay:  I18n.get("nextDay"),
+  nextWeek: I18n.get("nextWeek"),
+  lastDay: I18n.get("lastDay"),
+  lastWeek: I18n.get("lastWeek"),
+  sameElse: I18n.get("sameElse")
 };
 
 class Input extends React.Component {

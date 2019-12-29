@@ -1,6 +1,7 @@
 import React from 'react';
 import CountDown from 'react-native-countdown-component';
 import moment from 'moment';
+import { I18n } from 'aws-amplify';
 import { inject, observer } from 'mobx-react';
 import { capitalize } from 'lib/utils';
 
@@ -18,7 +19,7 @@ class DateCountdown extends React.Component {
     } else if (moment().isAfter(moment(end))) {
       timeAgo = moment(end).fromNow();
     } else {
-      timeAgo = `${moment(end).fromNow(true)} left`;
+      timeAgo = I18n.get('MOMENT_left')(moment(end).fromNow(true));
     }
     return capitalize(timeAgo);
   };
