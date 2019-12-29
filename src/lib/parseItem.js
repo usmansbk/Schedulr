@@ -1,5 +1,6 @@
 import moment from 'moment';
 import 'twix';
+import numeral from 'numeral';
 import { I18n } from 'aws-amplify';
 import { capitalize } from './utils';
 import { momentCounter } from './time';
@@ -69,9 +70,8 @@ export const captionDetails = ({
   if (!isSameDay) {
     span = startMoment.from(endMoment, true);
     const count = momentCounter({ startAt, ref_date });
-    if (count) {
-      span = `${count + 1} of ${span}`;
-    }
+    span = numeral(count + 1).format('0o')
+      // span = `${count + 1} of ${span}`;
   }
   const validCategory = category ? ' ' + category : '';
   const caption = allDay ? (`${recurrence}${validCategory}`) : (
