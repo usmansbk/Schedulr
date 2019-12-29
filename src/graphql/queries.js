@@ -232,6 +232,7 @@ export const getSchedule = `query GetSchedule($id: ID!) {
     picture {
       key
       bucket
+      name
     }
     followersCount
     eventsCount
