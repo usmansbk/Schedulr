@@ -71,11 +71,17 @@ export const captionDetails = ({
     span = startMoment.from(endMoment, true);
     const count = momentCounter({ startAt, ref_date });
     span = numeral(count + 1).format('0o')
-      // span = `${count + 1} of ${span}`;
   }
-  const validCategory = category ? ' ' + category : '';
-  const caption = allDay ? (`${recurrence}${validCategory}`) : (
-    `${span || duration}${recurrence ? ' ' + recurrence : ''}${validCategory}`);
+  let caption;
+  if (allDay) {
+    caption = I18n.get("EVENT_CAPTION_allDay")({ type: category, recurrence });
+  } else {
+    if (span) {
+      caption = I18n.get("EVENT_CAPTION_xthDayOfType")({ span, type: category });
+    } else {
+      caption = I18n.get("EVENT_CAPTION_xDurationRecurrenceType")({ duration, recurrence, type: category });
+    }
+  }
   let formatted = capitalize(caption.trim());
   return formatted;
 };

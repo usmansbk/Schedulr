@@ -216,6 +216,15 @@ export default {
   EVENT_FORM_addToASchedule: "Add to a schedule",
 
   EVENT_ITEM_allDay: "All day",
+  EVENT_CAPTION_allDay: ({ type, recurrence }) => {
+    return `${recurrence} ${type}`;
+  },
+  EVENT_CAPTION_xthDayOfType: ({ type, span }) => {
+    return `${span} day ${type ? `of ${type}` : ''}`;
+  },
+  EVENT_CAPTION_xDurationRecurrenceType: ({ duration, recurrence, type }) => {
+    return `${duration}${recurrence ? ` ${recurrence}` : ''}${type ? ` ${type}` : '' }`;
+  },
 
   SCHEDULE: "SCHEDULE",
   SCHEDULE_public: "Public schedule",
