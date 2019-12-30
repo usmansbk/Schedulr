@@ -56,6 +56,13 @@ export default class Container extends React.Component {
       input.commentAtId = this.state.at;
     }
     this.props.onSubmit && this.props.onSubmit(input);
+    this.setState({
+      targetName: null,
+      commentToId: null,
+      commentAtId: null,
+      at: null,
+      meta: null
+    });
   };
   _navigateToViewEmbed = ({ subtitle, uri, s3Object }) => this.props.navigation.navigate('ViewEmbed', {
     subtitle,
