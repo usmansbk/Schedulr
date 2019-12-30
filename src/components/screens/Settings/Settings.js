@@ -19,16 +19,13 @@ class Settings extends React.Component {
     switch(value) {
       case 'disablePush':
       case 'disableComments':
-      case 'disableReplies':
-      case 'disableAdminComments':
-      case 'enableMembersComments':
         this.props.stores.settingsStore.togglePref(value);
         break;
       default:
         this.props.stores.settingsStore.toggle(value);
         break;
     }
-  }
+  };
 
   toggleTheme = () => {
     this.props.stores.settingsStore.toggleTheme();
