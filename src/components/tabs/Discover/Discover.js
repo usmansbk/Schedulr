@@ -13,7 +13,6 @@ class Discover extends React.Component {
   
   componentDidMount = () => {
     this.props.stores.locationStore.fetchLocation(true);
-    this.props.stores.calendar.findCalendars();
   };
 
   _handleSelect = (location, point) => {
