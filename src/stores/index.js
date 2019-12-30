@@ -55,6 +55,10 @@ class RootStore {
     this.locationStore.reset();
     this.adsStore.reset();
   }
+
+  @action init = () => {
+    this.appState.setDefaults();
+  }
 }
 
 export default new RootStore();

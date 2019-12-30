@@ -38,7 +38,7 @@ export default class AppState {
     showPrivateScheduleAlert: true,
     showAppIntro: true
   };
-  @persist('list') @observable categories =  Arrya.from(I18n.get('categories'));
+  @persist('list') @observable categories =  [];
 
   @action setUserId = id => this.userId = id;
   @action updateLastSyncTimestamp = () => this.lastSyncTimestamp = moment().unix();
@@ -62,6 +62,10 @@ export default class AppState {
       this.checkedList.push(id);
     }
   };
+
+  @action setDefaults = () => {
+    this.categories = I18n.get('categories');
+  }
 
   isChecked(id) {
     return this.checkedList.includes(id);
