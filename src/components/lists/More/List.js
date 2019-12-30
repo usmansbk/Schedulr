@@ -15,10 +15,15 @@ import { shareApp } from 'helpers/share';
 class List extends React.Component {
   state = {
     visible: false,
-    showSyncAlert: false
+    showSyncAlert: false,
+    showImportDialog: false
   };
   _openDialog = () => this.setState({ visible: true });
-  _hideDialog = () => this.setState({ visible: false, showSyncAlert: false });
+  _hideDialog = () => this.setState({
+    visible: false,
+    showSyncAlert: false,
+    showImportDialog: false
+  });
   _onPressHeader = () => {
     const id = this.props.stores.appState.userId;
     this.props.navigation.navigate('UserProfile', {
@@ -40,6 +45,9 @@ class List extends React.Component {
         break;
       case 'sync':
         this.setState({ showSyncAlert: true });
+        break;
+      case 'import-calendar':
+        this.setState({ showImportDialog: true });
         break;
       default:
         break;

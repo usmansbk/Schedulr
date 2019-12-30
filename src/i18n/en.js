@@ -54,6 +54,7 @@ export default {
   MORE_help: "Help",
   MORE_signOut: "Sign out",
   MORE_sync: "Sync",
+  MORE_importCalendar: "Import Calendar",
 
   DISCOVER_emptyList: "Discover",
   DISCOVER_turnOnLocation: "Use your location",

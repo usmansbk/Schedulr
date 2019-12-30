@@ -19,4 +19,9 @@ export default [
     icon: 'help-circle',
     name: 'help',
   },
+  {
+    id: 'import-calendar',
+    icon: 'calendar',
+    name: 'importCalendar'
+  }
 ];
