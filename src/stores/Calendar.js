@@ -8,19 +8,31 @@ export default class Calendar {
 
   isAuthorized = async () => {
     try {
-      console.log(1);
       const granted = await RNCalendarEvents.authorizationStatus();
-      return granted;
+      return granted === 'authorized';
     } catch(e) {
       return false;
     }
   };
 
+  includes = id => {
+    const cal = this.calendars.find(cal => cal.id === id);
+    return Boolean(cal);
+  };
+
+  @action toggleCalendar = (calendar) => {
+    const cal = this.calendars.find(cal => cal.id === calendar.id);
+    if (cal) {
+      this.calendars = this.calendars.filter(cal => cal.id !== calendar.id);
+    } else {
+      this.calendars = [...this.calendars, calendar];
+    }
+  };
+
   @action authorize = async () => {
     try {
-      console.log(2);
       const granted = await RNCalendarEvents.authorizeEventStore();
-      return granted;
+      return granted === 'authorized';
     } catch(e) {
       return false;
     }
@@ -28,16 +40,13 @@ export default class Calendar {
 
   @action findCalendars = async () => {
     try {
-      // let isAuth = await this.isAuthorized();
       let isAuth = await this.authorize();
       if (isAuth) {
-        console.log(isAuth);
         const cals = await RNCalendarEvents.findCalendars();
-        if (cals) this.calendars = cals;
-        console.log(cals);
+        return cals;
       }
     } catch(e) {
-      console.log(e);
+      return [];
     }
   };
 

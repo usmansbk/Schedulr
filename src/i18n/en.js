@@ -122,6 +122,7 @@ export default {
   HELP_build: "Build version",
   HELP_privacy: "Privacy Policy",
 
+  BUTTON_import: "Import",
   BUTTON_cancel: "Cancel",
   BUTTON_create: "create",
   BUTTON_save: "save",
@@ -140,6 +141,7 @@ export default {
   BUTTON_back: "Back",
   BUTTON_loading: "Loading...",
   BUTTON_tryAgain: "Try again",
+  BUTTON_addMyCalendar: "Add My Calendar",
   BUTTON_continueWithEmail: "Continue with email",
   BUTTON_continueWithGoogle: "Continue with Google",
   BUTTON_continueWithFacebook: "Continue with Facebook",

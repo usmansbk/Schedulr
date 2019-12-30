@@ -1,4 +1,5 @@
 import React from 'react';
+import { FlatList } from 'react-native';
 import {
   Button,
   Dialog,
@@ -8,6 +9,7 @@ import {
 } from 'react-native-paper';
 import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
+import items from './items';
 
 class RemindMe extends React.Component {
   static defaultProps = {
@@ -25,7 +27,24 @@ class RemindMe extends React.Component {
 
   _toggle = async (key) => {
     await this.props.stores.remindMeStore.toggle(key);
-  }
+  };
+
+  _keyExtractor = item => item.key;
+
+  _renderItem = ({item}) => {
+    const { stores } = this.props;
+    return (
+      <List.Item
+        title={I18n.get(`REMIND_ME_${item.text}`)}
+        right={() => (
+          <Switch
+            value={stores.remindMeStore[item.key]}
+            onValueChange={() => this._toggle(item.key)}
+          />
+        )}
+      />
+    );
+  };
 
   render() {
     const {
@@ -33,15 +52,6 @@ class RemindMe extends React.Component {
       visible,
       hideDialog,
     } = this.props;
-
-    const {
-      fiveMin,
-      tenMin,
-      fifteenMin,
-      thirtyMin,
-      oneHour,
-      oneDay,
-    } = stores.remindMeStore;
 
     const { colors } = stores.themeStore;
 
@@ -55,59 +65,11 @@ class RemindMe extends React.Component {
         >
           <Dialog.Title>{I18n.get("REMIND_ME_title")}</Dialog.Title>
           <Dialog.Content>
-            <List.Item
-              title={I18n.get("REMIND_ME_five")}
-              right={() => (
-                <Switch
-                  value={fiveMin}
-                  onValueChange={() => this._toggle('fiveMin')}
-                />
-              )}
-            />
-            <List.Item
-              title={I18n.get("REMIND_ME_ten")}
-              right={() => (
-                <Switch
-                  value={tenMin}
-                  onValueChange={() => this._toggle('tenMin')}
-                />
-              )}
-            />
-            <List.Item
-              title={I18n.get("REMIND_ME_fifteen")}
-              right={() => (
-                <Switch
-                  value={fifteenMin}
-                  onValueChange={() => this._toggle('fifteenMin')}
-                />
-              )}
-            />
-            <List.Item
-              title={I18n.get("REMIND_ME_thirty")}
-              right={() => (
-                <Switch
-                  value={thirtyMin}
-                  onValueChange={() => this._toggle('thirtyMin')}
-                />
-              )}
-            />
-            <List.Item
-              title={I18n.get("REMIND_ME_oneHour")}
-              right={() => (
-                <Switch
-                  value={oneHour}
-                  onValueChange={() => this._toggle('oneHour')}
-                />
-              )}
-            />
-            <List.Item
-              title={I18n.get("REMIND_ME_oneDay")}
-              right={() => (
-                <Switch
-                  value={oneDay}
-                  onValueChange={() => this._toggle('oneDay')}
-                />
-              )}
+            <FlatList
+              data={items}
+              keyExtractor={this._keyExtractor}
+              renderItem={this._renderItem}
+              extraData={stores.remindMeStore.extraData}
             />
           </Dialog.Content>
           <Dialog.Actions>
