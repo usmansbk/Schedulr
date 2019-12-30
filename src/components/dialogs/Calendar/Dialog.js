@@ -27,7 +27,11 @@ class CalendarDialog extends React.Component {
 
   _authorize = async () => {
     const isAuthorized = await this.props.stores.calendar.authorize();
-    this.setState({ isAuthorized });
+    let calendars = [];
+    if (isAuthorized) {
+      calendars = await this.props.stores.calendar.findCalendars();
+    }
+    this.setState({ isAuthorized, calendars });
   };
 
   _keyExtractor = item => item.id;
@@ -50,6 +54,7 @@ class CalendarDialog extends React.Component {
   };
 
   _dimiss = () => this.props.handleDismiss();
+  _import = async () => await this.props.stores.calendar.fetchEvents();
 
   render() {
     const {
@@ -90,7 +95,7 @@ class CalendarDialog extends React.Component {
             isAuthorized && (
               <Dialog.Actions>
                 <Button onPress={this._dimiss}>{I18n.get('BUTTON_dismiss')}</Button>
-                <Button disabled={!stores.calendar.calendars.length} loading={loading}>{I18n.get('BUTTON_import')}</Button>
+                <Button onPress={this._import} disabled={!stores.calendar.calendars.length} loading={loading}>{I18n.get('BUTTON_import')}</Button>
               </Dialog.Actions>
             )
           }

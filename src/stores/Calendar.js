@@ -1,6 +1,7 @@
 import RNCalendarEvents from 'react-native-calendar-events';
 import { observable, action, computed } from 'mobx';
 import { persist } from 'mobx-persist';
+import logger from 'config/logger';
 
 export default class Calendar {
   @persist('list') @observable calendars = [];
@@ -53,5 +54,13 @@ export default class Calendar {
   @action reset = () => {
     this.calendars = [];
     this.events = [];
+  };
+
+  @action fetchEvents = async () => {
+    try {
+      console.log('fetch all')
+    } catch(e) {
+      logger.logError(e);
+    }
   };
 }

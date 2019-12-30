@@ -33,6 +33,7 @@ class RootStore {
     // Create theme store after hydrating the settings store
     const appState = new AppState(settingsStore);
     hydrate('appState', appState);
+    hydrate('calendarStore', calendarStore)
     hydrate('locationStore', locationStore);
     
     const themeStore = new Theme(settingsStore);
