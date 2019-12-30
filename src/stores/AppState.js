@@ -4,7 +4,7 @@ import { persist } from 'mobx-persist';
 import debounce from 'lodash.debounce';
 import moment from 'moment';
 import gql from 'graphql-tag';
-import categories from 'i18n/categories';
+import { I18n } from 'aws-amplify';
 import { ALL_FILTER } from 'lib/constants';
 import { getDeltaUpdates, getUserData } from 'api/queries';
 import updateBaseQuery from 'helpers/deltaSync';
@@ -38,7 +38,7 @@ export default class AppState {
     showPrivateScheduleAlert: true,
     showAppIntro: true
   };
-  @persist('list') @observable categories =  categories(this.settings.language);
+  @persist('list') @observable categories =  I18n.get('categories');
 
   @action setUserId = id => this.userId = id;
   @action updateLastSyncTimestamp = () => this.lastSyncTimestamp = moment().unix();
@@ -79,7 +79,7 @@ export default class AppState {
       showPrivateScheduleAlert: true,
       showAppIntro: false
     };
-    this.categories = categories(this.settings.language);
+    this.categories = I18n.get('categories');
     this.loggingIn = false;
     this.userId = null;
     this.lastSyncTimestamp = moment().unix();

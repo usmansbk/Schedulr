@@ -383,5 +383,32 @@ export default {
     lastDay: NEXT_LAST_FORMAT,
     lastWeek: DATE_FORMAT,
     sameElse: DAY_FORMAT
+  },
+  categories : [
+    'Event',
+    'Lecture',
+    'Examination',
+    'Test',
+    'Meetup',
+    'Studies',
+    'Work',
+    'Sport',
+    'Meeting',
+    'Festivity',
+    'Competition',
+    'Hackathon'
+  ],
+  blacklist : [
+    'Test',
+    'Lecture',
+    'Studies',
+    'Examination',
+    'Event',
+    'Meeting'
+  ],
+  personalSchedule: {
+    name: "Personal List 📝",
+    description: "My appointments.",
+    isPublic: false
   }
 };

@@ -40,7 +40,7 @@ class Intro extends React.Component {
   };
 
   get slides() {
-    return walkthrough(this.props.stores.settingsStore.language);
+    return walkthrough;
   }
 
   _renderItem = ({ item, dimensions }) => {
