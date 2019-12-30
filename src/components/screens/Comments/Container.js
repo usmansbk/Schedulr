@@ -81,7 +81,7 @@ export default class Container extends React.Component {
   render() {
     const {
       visibleDialog,
-      targetName
+      targetName,
     } = this.state;
     
     const {
@@ -94,16 +94,15 @@ export default class Container extends React.Component {
       comments,
       noReply,
       isOwner,
-      commentEventId
+      commentEventId,
+      notFound
     } = this.props;
 
-    if (error && !loading && !comments.length) return (
+    if (!loading && (notFound || error)) return (
       <Error
         onRefresh={onRefresh}
         loading={loading}
-        notFound
-        message={I18n.get("ERROR_404")}
-        caption={I18n.get("ERROR_404_caption")}
+        notFound={notFound}
       />
     );
 
