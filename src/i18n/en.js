@@ -6,6 +6,10 @@ const NEXT_LAST_FORMAT = 'dddd, Do';
 const CAL_TIME_FORMAT = 'DD MMM YYYY hh:mm';
 
 export default {
+  APP_welcome: 'Welcome to Schdlr!',
+  APP_caption: 'The event scheduler',
+  APP_footerCaption: 'Share your schedules!',
+
   ACTION_filterByType: filter => "Filter By Type: " + capitalize(filter),
   ACTION_all: "All",
   ACTION_events: "Events",
@@ -398,7 +402,7 @@ export default {
     'Competition',
     'Hackathon'
   ],
-  blacklist : [
+  blacklist :[
     'Test',
     'Lecture',
     'Studies',

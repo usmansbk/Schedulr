@@ -20,13 +20,13 @@ import logger from 'config/logger';
 
 console.disableYellowBox = true;
 Amplify.configure(aws_config);
+i18n(stores.settingsStore.language);
 
 @codepush
 @observer
 export default class App extends React.Component {
   componentDidMount = () => {
     SplashScreen.hide();
-    i18n(stores.settingsStore.language);
     push.init();
     if (__DEV__) {
       codepush.sync({
