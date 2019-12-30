@@ -105,7 +105,7 @@ export default class Container extends React.Component {
       notFound
     } = this.props;
 
-    if (!loading && (notFound || error)) return (
+    if (error && !loading && !comments.length) return (
       <Error
         onRefresh={onRefresh}
         loading={loading}
