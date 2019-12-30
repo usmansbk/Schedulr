@@ -71,7 +71,7 @@ export const captionDetails = ({
     // span = startMoment.from(endMoment, true);
     const count = momentCounter({ startAt, ref_date });
     currentDayCount = count + 1;
-    totalDayCount = momentCounter({ startAt, endAt }) + 1;
+    totalDayCount = momentCounter({ startAt, ref_date: endAt }) + 1;
   }
   let caption;
   if (allDay) {
