@@ -38,7 +38,7 @@ export default class AppState {
     showPrivateScheduleAlert: true,
     showAppIntro: true
   };
-  @persist('list') @observable categories =  I18n.get('categories');
+  @persist('list') @observable categories =  Array.from(I18n.get('categories'));
 
   @action setUserId = id => this.userId = id;
   @action updateLastSyncTimestamp = () => this.lastSyncTimestamp = moment().unix();
@@ -79,7 +79,7 @@ export default class AppState {
       showPrivateScheduleAlert: true,
       showAppIntro: false
     };
-    this.categories = I18n.get('categories');
+    this.categories = Array.from(I18n.get('categories'));
     this.loggingIn = false;
     this.userId = null;
     this.lastSyncTimestamp = moment().unix();
