@@ -90,7 +90,7 @@ class CalendarDialog extends React.Component {
             isAuthorized && (
               <Dialog.Actions>
                 <Button onPress={this._dimiss}>{I18n.get('BUTTON_dismiss')}</Button>
-                <Button disabled={!calendars.length} loading={loading}>{I18n.get('BUTTON_import')}</Button>
+                <Button disabled={!stores.calendar.calendars.length} loading={loading}>{I18n.get('BUTTON_import')}</Button>
               </Dialog.Actions>
             )
           }
