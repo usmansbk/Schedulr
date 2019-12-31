@@ -327,6 +327,9 @@ class List extends React.Component {
         ListHeaderComponent={this._renderHeader}
         ListEmptyComponent={this._renderEmptyList}
         ItemSeparatorComponent={this._renderSeparator}
+        maxToRenderPerBatch={5}
+        updateCellsBatchingPeriod={100}
+        removeClippedSubviews
         refreshControl={
           <RefreshControl
             onRefresh={this._onRefresh}

@@ -41,14 +41,14 @@ class Item extends React.Component {
   shouldComponentUpdate = (nextProps) => {
     return (
       nextProps.isOffline !== this.props.isOffline ||
+      nextProps.isBookmarked !== this.props.isBookmarked ||
+      nextProps.isMuted !== this.props.isMuted ||
       nextProps.title !== this.props.title ||
       nextProps.time !== this.props.time ||
       nextProps.status !== this.props.status ||
       nextProps.recurrence !== this.props.recurrence ||
       nextProps.category !== this.props.category ||
-      nextProps.isMuted !== this.props.isMuted ||
-      nextProps.pictureUrl !== this.props.pictureUrl ||
-      nextProps.isBookmarked !== this.props.isBookmarked
+      nextProps.pictureUrl !== this.props.pictureUrl
     );
   };
 
