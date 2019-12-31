@@ -54,7 +54,12 @@ class CalendarDialog extends React.Component {
   };
 
   _dimiss = () => this.props.handleDismiss();
-  _import = async () => await this.props.stores.calendar.fetchEvents();
+  _import = async () => {
+    this.setState({ loading: true });
+    await this.props.stores.calendar.fetchEvents();
+    this.setState({ loading: false }, this._dimiss);
+    this.props.stores.snackbar.show('Events imported');
+  };
 
   render() {
     const {

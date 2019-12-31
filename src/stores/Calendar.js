@@ -1,5 +1,6 @@
 import RNCalendarEvents from 'react-native-calendar-events';
-import { observable, action, computed } from 'mobx';
+import { observable, action } from 'mobx';
+import moment from 'moment';
 import { persist } from 'mobx-persist';
 import logger from 'config/logger';
 
@@ -58,7 +59,12 @@ export default class Calendar {
 
   @action fetchEvents = async () => {
     try {
-      console.log('fetch all')
+      const m = moment();
+      const startDate = m.toDate().toISOString();
+      const endDate = m.clone().add(1, 'year').toDate().toISOString();
+      const events = await RNCalendarEvents.fetchAllEvents(startDate, endDate, this.calendars.map(cal => cal.id));
+      this.events = events;
+      console.log(events);
     } catch(e) {
       logger.logError(e);
     }
