@@ -418,5 +418,11 @@ export default {
     name: "Personal List 📝",
     description: "My appointments.",
     isPublic: false
+  },
+  timeLabels: {
+    d: 'Days',
+    h: 'Hours',
+    m: 'Minutes',
+    s: 'Seconds'
   }
 };

@@ -69,6 +69,7 @@ class DateCountdown extends React.Component {
         digitStyle={digitStyle}
         digitTxtStyle={digitTxtStyle}
         timeLabelStyle={timeLabelStyle}
+        timeLabels={I18n.get('timeLabels')}
         size={20}
       />
     );
