@@ -1,3 +1,4 @@
+import { I18nManager } from 'react-native';
 import { I18n } from 'aws-amplify';
 import * as RNLocalize from 'react-native-localize';
 import moment from 'moment';
@@ -11,4 +12,5 @@ export default () => {
     [languageTag]: dicts(languageTag)
   };
   I18n.putVocabularies(dict);
+  I18nManager.forceRTL(isRTL);
 };

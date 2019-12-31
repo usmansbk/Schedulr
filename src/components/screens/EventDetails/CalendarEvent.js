@@ -121,12 +121,16 @@ class CalendarEvent extends React.Component {
                   </View>
                 )
               }
-              <View style={stores.appStyles.eventDetails.item}>
-                <Text style={stores.appStyles.eventDetails.label}>{I18n.get("DESCRIPTION")}</Text>
-                <Hyperlink linkStyle={stores.appStyles.eventDetails.linkStyle} linkDefault={true}>
-                  <Text style={stores.appStyles.eventDetails.value}>{description || I18n.get("No description")}</Text>
-                </Hyperlink>
-              </View>
+              {
+                Boolean(description && description.trim()) && (
+                  <View style={stores.appStyles.eventDetails.item}>
+                    <Text style={stores.appStyles.eventDetails.label}>{I18n.get("DESCRIPTION")}</Text>
+                    <Hyperlink linkStyle={stores.appStyles.eventDetails.linkStyle} linkDefault={true}>
+                      <Text style={stores.appStyles.eventDetails.value}>{description || I18n.get("No description")}</Text>
+                    </Hyperlink>
+                  </View>
+                )
+              }
             </View>
           </View>
         </ScrollView>
