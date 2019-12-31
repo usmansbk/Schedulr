@@ -64,9 +64,39 @@ export default class Calendar {
       const endDate = m.clone().add(1, 'year').toDate().toISOString();
       const events = await RNCalendarEvents.fetchAllEvents(startDate, endDate, this.calendars.map(cal => cal.id));
       this.events = events;
-      console.log(events);
     } catch(e) {
       logger.logError(e);
     }
   };
+
+  get transform() {
+    return this.events.map(event => {
+      const startAt = moment(event.startDate).toISOString();
+      let endAt;
+      if (event.allDay) {
+        endAt = moment(event.startDate).endOf('D').toISOString();
+      } else {
+        endAt = moment(event.endDate).toISOString();
+      }
+      return ({
+        id: event.id,
+        schedule: {
+          id: event.calendar.id,
+          name: event.calendar.title,
+        },
+        startAt,
+        endAt,
+        allDay: event.allDay,
+        title: event.title,
+        recurrence: 'NEVER',
+        category: '',
+        description: event.description,
+        venue: event.location,
+        author: {
+          id: event.calendar.source,
+          name: event.calendar.source
+        }
+      });
+    })
+  }
 }

@@ -87,8 +87,9 @@ export function getInitials(name) {
   return avatarName;
 }
 
-export function mergeEvents(data) {
-  let allEvents = [];
+export function mergeEvents(data, calendarEvents) {
+
+  let allEvents = [...calendarEvents];
 
   if (!data) return allEvents;
 

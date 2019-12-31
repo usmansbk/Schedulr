@@ -34,7 +34,7 @@ export default class Events extends React.Component {
   _mergeAllEvents = memoize(mergeEvents);
 
   get events() {
-    return this._mergeAllEvents(this.props.data);
+    return this._mergeAllEvents(this.props.data, this.props.calendarEvents);
   }
 
   _sync = () => {
