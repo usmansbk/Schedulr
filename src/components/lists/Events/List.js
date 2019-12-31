@@ -106,6 +106,7 @@ class List extends React.Component {
   _renderSectionFooter = ({ section }) => <SectionFooter section={section} />;
   _onPressItem = (id, refStartAt, refEndAt) => this.props.navigation.navigate('EventDetails', { id, refStartAt, refEndAt });
   _navigateToBanner = (id) => this.props.navigation.navigate('Banner', { id });
+  _navigateToCalendarEvent = (id) => this.props.navigation.navigate('CalendarEvent', { id });
   _onPressSectionHeader = (targetDate) => {
     let id = uuidv5(this.props.stores.appState.userId, uuidv5.DNS);
     if (this.props.isOwner && this.props.id) {
@@ -291,6 +292,8 @@ class List extends React.Component {
     onPressItem={this._onPressItem}
     onPressCommentButton={this._onPressCommentItem}
     navigateToBanner={this._navigateToBanner}
+    navigateToCalendarEvent={this._navigateToCalendarEvent}
+    __typename={__typename}
   />);
 
 

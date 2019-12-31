@@ -31,7 +31,8 @@ import {
   Intro,
   ViewEmbed,
   Album,
-  AlbumViewer
+  AlbumViewer,
+  CalendarEvent
 } from 'components/screens';
 import Thread from 'components/screens/Comments/Thread';
 import colors from 'config/colors';
@@ -40,6 +41,12 @@ const AppStack = createStackNavigator({
   Home: {
     screen: Home,
     path: ''
+  },
+  CalendarEvent: {
+    screen: CalendarEvent,
+    navigationOptions: {
+      header: null
+    }
   },
   EditEvent: {
     screen: EditEvent,

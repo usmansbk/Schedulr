@@ -16,7 +16,13 @@ import { formatDate } from 'lib/time';
 import { captionDetails } from 'lib/parseItem';
 
 class Item extends React.Component {
-  _onPress = () => this.props.onPressItem(this.props.id, this.props.startAt, this.props.endAt);
+  _onPress = () => {
+    if (this.props.__typename === 'Calendar') {
+      this.props.navigateToCalendarEvent(this.props.id);
+    } else {
+      this.props.onPressItem(this.props.id, this.props.startAt, this.props.endAt);
+    }
+  };
   _onLongPress = () => {
     this.ActionSheet &&
       this.ActionSheet.getWrappedInstance().wrappedInstance.showActionSheet();
@@ -24,7 +30,13 @@ class Item extends React.Component {
   _onMute = () => {
     this.props.stores.appState.toggleMute(this.props.id, this.props.isMuted);
   };
-  _navigateToBanner = () => this.props.navigateToBanner(this.props.id);
+  _navigateToBanner = () => {
+    if (this.props.__typename === 'Calendar') {
+      this.props.navigateToCalendarEvent(this.props.id);
+    } else {
+      this.props.navigateToBanner(this.props.id);
+    }
+  };
 
   shouldComponentUpdate = (nextProps) => {
     return (

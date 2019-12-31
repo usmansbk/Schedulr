@@ -6,7 +6,7 @@ import EditSchedule from './EditSchedule';
 import NewEvent from './NewEvent';
 import NewSchedule from './NewSchedule';
 import AuthLoading from './AuthLoading';
-import EventDetails from './EventDetails';
+import EventDetails, { CalendarEvent } from './EventDetails';
 import Schedule from './Schedule';
 import ScheduleInfo from './ScheduleInfo';
 import Settings from './Settings';
@@ -28,6 +28,7 @@ import Album from './Album';
 import AlbumViewer from './AlbumViewer';
 
 export {
+  CalendarEvent,
   ViewEmbed,
   AuthLoading,
   Login,

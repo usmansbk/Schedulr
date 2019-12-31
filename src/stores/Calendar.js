@@ -96,6 +96,7 @@ export default class Calendar {
         category: '',
         description: event.description,
         venue: event.location,
+        __typename: 'Calendar',
         author: {
           id: event.calendar.source,
           name: event.calendar.source
