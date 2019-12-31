@@ -73,6 +73,7 @@ class Item extends React.Component {
       isOffline,
       bookmarksCount,
       eventScheduleId,
+      __typename
     } = this.props;
     
     const styles = stores.appStyles.eventsList;
@@ -139,6 +140,7 @@ class Item extends React.Component {
             isBookmarked={isBookmarked}
             startAt={startAt}
             isMuted={isMuted}
+            isCalendarEvent={__typename === 'Calendar'}
             bookmarksCount={bookmarksCount}
             bookmarkScheduleId={eventScheduleId}
             ref={ref => this.ActionSheet = ref}

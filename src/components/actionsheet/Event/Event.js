@@ -35,24 +35,28 @@ class EventAction extends React.Component {
       isBookmarked,
       removeBookmark,
       bookmarkEvent,
-      bookmarkScheduleId
+      bookmarkScheduleId,
+      isCalendarEvent
     } = this.props;
-    const input = {
-      id: `${stores.appState.userId}-${id}`,
-    };
-    try {
-      if (isBookmarked) {
-        await removeBookmark(input, id);
-      } else {
-        input.bookmarkEventId = id,
-        input.bookmarkScheduleId = bookmarkScheduleId;
-        await bookmarkEvent(input);
+    if (isCalendarEvent) {
+    } else {
+      const input = {
+        id: `${stores.appState.userId}-${id}`,
+      };
+      try {
+        if (isBookmarked) {
+          await removeBookmark(input, id);
+        } else {
+          input.bookmarkEventId = id,
+          input.bookmarkScheduleId = bookmarkScheduleId;
+          await bookmarkEvent(input);
+        }
+        if (!isBookmarked) {
+          stores.snackbar.show(I18n.get(`TOAST_${isBookmarked ? "removed" : "saved"}`));
+        }
+      } catch (error) {
+        logger.logError(error);
       }
-      if (!isBookmarked) {
-        stores.snackbar.show(I18n.get(`TOAST_${isBookmarked ? "removed" : "saved"}`));
-      }
-    } catch (error) {
-      logger.logError(error);
     }
   };
 
