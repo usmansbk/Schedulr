@@ -88,6 +88,7 @@ export default class Calendar {
 
   @action findEventById = id => {
     const event = this.events.find(e => e.id === id);
+    if (!event) return null;
     return this.transformEvent(event);
   };
 
