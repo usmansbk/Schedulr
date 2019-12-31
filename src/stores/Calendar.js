@@ -15,6 +15,18 @@ export default class Calendar {
     }
   };
 
+  @action removeEvent = async id => {
+    try {
+      console.log(1);
+      await RNCalendarEvents.removeEvent(id, { futureEvents: true });
+      console.log(2);
+    } catch (e) {
+      logger.logError(e);
+      console.log(3);
+    }
+    this.events = this.events.filter(e => e.id !== id);
+  };
+
   isAuthorized = async () => {
     try {
       const granted = await RNCalendarEvents.authorizationStatus();

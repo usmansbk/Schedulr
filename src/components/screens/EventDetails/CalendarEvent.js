@@ -6,6 +6,7 @@ import Icon from 'react-native-vector-icons/Feather';
 import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
 import CountDown from 'components/common/Countdown';
+import Alert from 'components/dialogs/Alert';
 import { formatDate } from 'lib/time';
 
 
@@ -15,10 +16,20 @@ class CalendarEvent extends React.Component {
       title: '',
       schedule: {},
       author: {}
-    }
+    },
+    showAlert: false
   };
 
+  _hideDialogs = () => this.setState({ showAlert: false });
+
   _goBack = () => this.props.navigation.goBack();
+
+  _onRemoveEvent = async () => {
+    await this.props.stores.calendar.removeEvent(this.props.navigation.getParam('id'));
+    this.props.navigation.pop();
+  };
+
+  _removeEvent = () => this.setState({ showAlert: true });
 
   componentDidMount = () => {
     const id = this.props.navigation.getParam('id');
@@ -31,7 +42,7 @@ class CalendarEvent extends React.Component {
     const colors = stores.themeStore.colors;
     const styles = stores.appStyles.styles;
 
-    const { event } = this.state;
+    const { event, showAlert } = this.state;
     const {
       title,
       startAt,
@@ -61,6 +72,16 @@ class CalendarEvent extends React.Component {
         />
         <Appbar.Content
           titleStyle={styles.headerColor}
+        />
+        <Appbar.Action
+          onPress={this._removeEvent}
+          color={colors.error}
+          size={24}
+          icon={({ color, size }) => <Icon
+            name="trash-2"
+            color={color}
+            size={size}
+          />}
         />
       </Appbar.Header>
       <View style={stores.appStyles.eventDetails.container}>
@@ -106,6 +127,12 @@ class CalendarEvent extends React.Component {
             </View>
           </View>
         </ScrollView>
+        <Alert
+          visible={showAlert}
+          handleDismiss={this._hideDialogs}
+          onConfirm={this._onRemoveEvent}
+          title={I18n.get('DIALOG_deleteEvent')}
+        />
       </View>
       </>
     )
