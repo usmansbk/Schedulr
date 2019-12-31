@@ -2,7 +2,8 @@ import moment from 'moment';
 import NavigationService from 'config/navigation';
 
 export function processLocalNotification(data) {
-  const { id, startAt, endAt } = data;
+  const { id, startAt, endAt, __typename } = data;
+  console.log(__typename);
   let today = moment();
   const start = moment(startAt);
   const end = moment(endAt);

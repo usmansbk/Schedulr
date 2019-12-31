@@ -5,7 +5,10 @@ import dicts from 'i18n';
 
 export default () => {
   const { isRTL, languageTag } = RNLocalize.getLocales()[0];
-  I18n.setLanguage(languageTag);
   moment.locale(languageTag);
-  I18n.putVocabularies(dicts(languageTag));
+  I18n.setLanguage(languageTag);
+  const dict = {
+    [languageTag]: dicts(languageTag)
+  };
+  I18n.putVocabularies(dict);
 };

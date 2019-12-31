@@ -7,16 +7,13 @@ import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
 import CountDown from 'components/common/Countdown';
 import Alert from 'components/dialogs/Alert';
+import Error from 'components/common/Error';
 import { formatDate } from 'lib/time';
 
 
 class CalendarEvent extends React.Component {
   state = {
-    event: {
-      title: '',
-      schedule: {},
-      author: {}
-    },
+    event: null,
     showAlert: false
   };
 
@@ -43,6 +40,12 @@ class CalendarEvent extends React.Component {
     const styles = stores.appStyles.styles;
 
     const { event, showAlert } = this.state;
+    if (!event) return <Error
+      notFound
+      message={I18n.get("ERROR_404")}
+      caption={I18n.get("ERROR_404_caption")}
+    />
+
     const {
       title,
       startAt,

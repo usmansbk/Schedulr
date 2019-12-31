@@ -77,6 +77,7 @@ const schdlStart = (event, settings) => {
     endAt,
     category,
     recurrence,
+    __typename
   } = event;
   const { sound, vibrate } = settings;
   const time = moment(startAt).format('hh:mm a');
@@ -101,6 +102,7 @@ const schdlStart = (event, settings) => {
       id,
       startAt,
       endAt,
+      __typename
     }),
     repeatType,
     ...repeatTime
