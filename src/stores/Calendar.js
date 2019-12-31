@@ -40,6 +40,11 @@ export default class Calendar {
     }
   };
 
+  @action findEventById = id => {
+    const event = this.events.find(e => e.id === id);
+    return event;
+  };
+
   @action findCalendars = async () => {
     try {
       let isAuth = await this.authorize();
@@ -62,8 +67,7 @@ export default class Calendar {
       const m = moment();
       const startDate = m.toDate().toISOString();
       const endDate = m.clone().add(1, 'year').toDate().toISOString();
-      const events = await RNCalendarEvents.fetchAllEvents(startDate, endDate, this.calendars.map(cal => cal.id));
-      this.events = events;
+      this.events = await RNCalendarEvents.fetchAllEvents(startDate, endDate, this.calendars.map(cal => cal.id));
     } catch(e) {
       logger.logError(e);
     }
