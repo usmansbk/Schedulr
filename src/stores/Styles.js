@@ -371,8 +371,8 @@ export default class AppStyles {
       },
       text: {
         fontSize: 16,
-        color: colors.placeholder,
-        fontFamily: 'sans-serif-bold'
+        fontWeight: 'bold',
+        color: colors.primary,
       },
       textInput: {
         backgroundColor: colors.bg
