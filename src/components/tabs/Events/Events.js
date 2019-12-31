@@ -7,6 +7,7 @@ import FAB from 'components/common/Fab';
 import schdlAll from 'helpers/setReminders';
 import { mergeEvents } from 'lib/utils';
 import stores from 'stores';
+import { InteractionManager } from 'react-native';
 
 export default class Events extends React.Component {
   static defaultProps = {
@@ -18,11 +19,11 @@ export default class Events extends React.Component {
   
   componentDidUpdate = () => {
     const { mutedEvents, allowedEvents } = this.props;
-    schdlAll(
+    InteractionManager.runAfterInteractions(() => schdlAll(
       this.events,
       mutedEvents,
       allowedEvents
-    );
+    ));
   };
  
   _navigateToNewEvent = () => {
