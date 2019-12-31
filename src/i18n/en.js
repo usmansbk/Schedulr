@@ -157,6 +157,7 @@ export default {
   BUTTON_unmute: "Unmute",
   BUTTON_unmuteEvents: "Unmute Reminder",
   BUTTON_unfollow: "Unfollow",
+  BUTTON_sync: "Sync",
   BUTTON_turnOnLocation: "Turn on",
 
   ALERT_repeat: "Repeat",

@@ -101,6 +101,7 @@ export default class Calendar {
     } catch(e) {
       return [];
     }
+    return [];
   };
 
   @action reset = () => {
@@ -110,10 +111,14 @@ export default class Calendar {
 
   @action fetchEvents = async () => {
     try {
-      const m = moment();
-      const startDate = m.toDate().toISOString();
-      const endDate = m.clone().add(1, 'year').toDate().toISOString();
-      this.events = await RNCalendarEvents.fetchAllEvents(startDate, endDate, this.calendars.map(cal => cal.id));
+      if (this.calendars.length) {
+        const m = moment();
+        const startDate = m.toDate().toISOString();
+        const endDate = m.clone().add(1, 'year').toDate().toISOString();
+        this.events = await RNCalendarEvents.fetchAllEvents(startDate, endDate, this.calendars.map(cal => cal.id));
+      } else {
+        this.reset();
+      }
     } catch(e) {
       logger.logError(e);
     }

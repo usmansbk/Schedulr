@@ -58,7 +58,7 @@ class RootStore {
     this.notificationsStore.reset();
     this.locationStore.reset();
     this.adsStore.reset();
-    this.calendarStore.reset();
+    this.calendar.reset();
   }
 
   @action init = () => {
