@@ -1,41 +1,68 @@
 import React from 'react';
 import { View, ScrollView } from 'react-native';
-import { Text, Headline, Divider } from 'react-native-paper';
+import { Text, Headline, Divider, Appbar } from 'react-native-paper';
 import Hyperlink from 'react-native-hyperlink';
-import moment from 'moment';
 import Icon from 'react-native-vector-icons/Feather';
 import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
 import CountDown from 'components/common/Countdown';
+import { formatDate } from 'lib/time';
 
 
 class CalendarEvent extends React.Component {
   state = {
     event: {
-      title: 'demo',
-      startAd: moment().toISOString(),
-      scheduleName: 'usmansbk@gmail.com',
-      authorName: 'usmansbk@gmail.com'
+      title: '',
+      schedule: {},
+      author: {}
     }
+  };
+
+  _goBack = () => this.props.navigation.goBack();
+
+  componentDidMount = () => {
+    const id = this.props.navigation.getParam('id');
+    const event = this.props.stores.calendar.findEventById(id);
+    this.setState({ event });
   };
 
   render() {
     const { stores } = this.props;
+    const colors = stores.themeStore.colors;
+    const styles = stores.appStyles.styles;
+
     const { event } = this.state;
     const {
       title,
       startAt,
       endAt,
-      address,
-      scheduleName,
-      authorName,
-      recurrence,
+      allDay,
+      venue: address,
+      schedule: {
+        name: scheduleName
+      },
       description,
       until
     } = event;
-    const date = moment(startAt).calendar();
+    const date = formatDate(startAt, endAt, allDay);
 
     return (
+      <>
+      <Appbar.Header style={styles.header} collapsable>
+        <Appbar.Action
+          onPress={this._goBack}
+          color={colors.primary}
+          size={24}
+          icon={({ color, size }) => <Icon
+            name="arrow-left"
+            color={color}
+            size={size}
+          />}
+        />
+        <Appbar.Content
+          titleStyle={styles.headerColor}
+        />
+      </Appbar.Header>
       <View style={stores.appStyles.eventDetails.container}>
         <ScrollView style={stores.appStyles.eventDetails.bg}>
           <View style={stores.appStyles.eventDetails.content}>
@@ -63,14 +90,6 @@ class CalendarEvent extends React.Component {
                   style={stores.appStyles.eventDetails.value}>{scheduleName}</Text>
               </View>
               {
-                Boolean(recurrence) && (
-                  <View style={stores.appStyles.eventDetails.item}>
-                    <Text style={stores.appStyles.eventDetails.label}>{I18n.get("REPEAT")}</Text>
-                    <Text style={stores.appStyles.eventDetails.value}>{recurrence}</Text>
-                  </View>
-                )
-              }
-              {
                 Boolean(until) && (
                   <View style={stores.appStyles.eventDetails.item}>
                     <Text style={stores.appStyles.eventDetails.label}>{I18n.get("UNTIL")}</Text>
@@ -78,14 +97,6 @@ class CalendarEvent extends React.Component {
                   </View>
                 )
               }
-              <View style={stores.appStyles.eventDetails.item}>
-                <Text style={stores.appStyles.eventDetails.label}>{I18n.get("AUTHOR")}</Text>
-                <Text
-                  style={stores.appStyles.eventDetails.value}
-                >
-                {authorName}
-                </Text>
-              </View>
               <View style={stores.appStyles.eventDetails.item}>
                 <Text style={stores.appStyles.eventDetails.label}>{I18n.get("DESCRIPTION")}</Text>
                 <Hyperlink linkStyle={stores.appStyles.eventDetails.linkStyle} linkDefault={true}>
@@ -96,6 +107,7 @@ class CalendarEvent extends React.Component {
           </View>
         </ScrollView>
       </View>
+      </>
     )
   }
 }

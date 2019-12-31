@@ -8,6 +8,13 @@ export default class Calendar {
   @persist('list') @observable calendars = [];
   @persist('list') @observable events = [];
 
+  @action sync = async () => {
+    const isAuthorized = await this.isAuthorized();
+    if (isAuthorized) {
+      await this.fetchEvents();
+    }
+  };
+
   isAuthorized = async () => {
     try {
       const granted = await RNCalendarEvents.authorizationStatus();
@@ -40,9 +47,39 @@ export default class Calendar {
     }
   };
 
+  transformEvent = event => {
+    const startAt = moment(event.startDate).toISOString();
+    let endAt;
+    if (event.allDay) {
+      endAt = moment(event.startDate).endOf('D').toISOString();
+    } else {
+      endAt = moment(event.endDate).toISOString();
+    }
+    return ({
+      id: event.id,
+      schedule: {
+        id: event.calendar.id,
+        name: event.calendar.title,
+      },
+      startAt,
+      endAt,
+      allDay: event.allDay,
+      title: event.title,
+      recurrence: 'NEVER',
+      category: '',
+      description: event.description,
+      venue: event.location,
+      __typename: 'Calendar',
+      author: {
+        id: event.calendar.source,
+        name: event.calendar.source
+      }
+    });
+  }
+
   @action findEventById = id => {
     const event = this.events.find(e => e.id === id);
-    return event;
+    return this.transformEvent(event);
   };
 
   @action findCalendars = async () => {
@@ -74,34 +111,6 @@ export default class Calendar {
   };
 
   get transform() {
-    return this.events.map(event => {
-      const startAt = moment(event.startDate).toISOString();
-      let endAt;
-      if (event.allDay) {
-        endAt = moment(event.startDate).endOf('D').toISOString();
-      } else {
-        endAt = moment(event.endDate).toISOString();
-      }
-      return ({
-        id: event.id,
-        schedule: {
-          id: event.calendar.id,
-          name: event.calendar.title,
-        },
-        startAt,
-        endAt,
-        allDay: event.allDay,
-        title: event.title,
-        recurrence: 'NEVER',
-        category: '',
-        description: event.description,
-        venue: event.location,
-        __typename: 'Calendar',
-        author: {
-          id: event.calendar.source,
-          name: event.calendar.source
-        }
-      });
-    })
+    return this.events.map(this.transformEvent)
   }
 }
