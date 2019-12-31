@@ -42,6 +42,7 @@ export default class Events extends React.Component {
       stores.snackbar.show(I18n.get('TOAST_fetchingUpdates'));
       this.props.fetchNotifications();
       this.props.deltaSync();
+      this.props.calendarSync();
     }
   };
 
