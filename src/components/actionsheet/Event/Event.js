@@ -70,10 +70,10 @@ class EventAction extends React.Component {
         InteractionManager.runAfterInteractions(this._handleShare);
         break;
       case 1:
-        InteractionManager.runAfterInteractions(this._handleBookmark);
+        InteractionManager.runAfterInteractions(this._toggleMute);
         break;
       case 2:
-        InteractionManager.runAfterInteractions(this._toggleMute);
+        InteractionManager.runAfterInteractions(this._handleBookmark);
         break;
     }
   };
@@ -82,14 +82,19 @@ class EventAction extends React.Component {
     const { 
       title,
       isBookmarked,
+      isCalendarEvent,
       isMuted,
       stores
     } = this.props;
 
     const options = [I18n.get('BUTTON_back')];
+    if (!isCalendarEvent) {
+      options.unshift(
+        isBookmarked ? I18n.get('BUTTON_removeBookmark') : I18n.get('BUTTON_bookmark')
+      )
+    }
     options.unshift(
       I18n.get('BUTTON_shareVia'),
-      isBookmarked ? I18n.get('BUTTON_removeBookmark') : I18n.get('BUTTON_bookmark'),
       isMuted ? I18n.get('BUTTON_unmute') : I18n.get('BUTTON_mute')
     );
     const cancelButtonIndex = options.length - 1;

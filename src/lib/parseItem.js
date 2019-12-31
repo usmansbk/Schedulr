@@ -1,6 +1,5 @@
 import moment from 'moment';
 import 'twix';
-import numeral from 'numeral';
 import { I18n } from 'aws-amplify';
 import { capitalize } from './utils';
 import { momentCounter } from './time';
@@ -63,12 +62,9 @@ export const captionDetails = ({
   ref_date
 }) => {
   const isSameDay = moment(startAt).isSame(endAt, 'D');
-  // const startMoment = moment(startAt).startOf('D');
-  // const endMoment = moment(endAt).endOf('D');
 
   let currentDayCount, totalDayCount;
   if (!isSameDay) {
-    // span = startMoment.from(endMoment, true);
     const count = momentCounter({ startAt, ref_date });
     currentDayCount = count + 1;
     totalDayCount = momentCounter({ startAt, ref_date: endAt }) + 1;
