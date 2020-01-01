@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image } from 'react-native';
+import { Image, PixelRatio } from 'react-native';
 import { getSeason } from 'lib/utils';
 
 export default class Banner extends React.Component {
@@ -14,13 +14,13 @@ export default class Banner extends React.Component {
     };
     let source;
     if (season === 'winter') {
-      source = require('../../assets/winter.png');
+      source = require('../../../assets/winter.png');
     } else if (season === 'autumn') {
-      source = require('../../assets/autumn.png');
+      source = require('../../../assets/autumn.png');
     } else if (season === 'spring') {
-      source = require('../../assets/spring.png');
+      source = require('../../../assets/spring.png');
     } else {
-      source = require('../../assets/summer.png');
+      source = require('../../../assets/summer.png');
     }
 
     return (

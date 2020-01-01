@@ -4,15 +4,13 @@ import { FlatList } from 'react-navigation';
 import { inject, observer } from 'mobx-react';
 import Empty from './Empty';
 import Header from './Header';
-import AdItem from './AdItem';
 import EventItem from './Event';
 import Separator from 'components/lists/Bookmarks/Separator';
 import Footer from 'components/lists/Bookmarks/Footer';
 import {
   getHumanMonth
 } from 'lib/time';
-import { discover, MEDIUM_RECTANGLE } from 'lib/constants';
-// import { injectAds } from 'lib/utils';
+import { discover } from 'lib/constants';
 import getImageUrl from 'helpers/getImageUrl';
 
 const { ITEM_HEIGHT, SEPARATOR_HEIGHT } = discover;
@@ -31,7 +29,6 @@ class List extends Component{
 
   _getItemLayout = (_, index) => {
     let length = ITEM_HEIGHT;
-    // if (index === 2) length = MEDIUM_RECTANGLE; // Medium Rectangle Size ad 
     return (
       {
         length,
@@ -62,7 +59,6 @@ class List extends Component{
       venue,
       isBookmarked,
     } = item;
-    if (__typename === 'Advert') return <AdItem />;
     if (__typename === 'Event') return <EventItem
       id={id}
       title={title}
@@ -86,7 +82,6 @@ class List extends Component{
   render() {
     const styles = this.props.stores.appStyles.discover;
     let data = this.props.data;
-    // if (data.length >= 1) data = injectAds(data, 2);
 
     return (
       <FlatList

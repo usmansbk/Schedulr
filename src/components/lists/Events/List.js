@@ -12,7 +12,7 @@ import Separator from './Separator';
 import SectionHeader from './SectionHeader';
 import SectionFooter from './SectionFooter';
 import Item from './Item';
-import AdItem from './AdItem';
+import Banner from 'components/common/Banner';
 import {
   getStatus,
   parseRepeat,
@@ -254,7 +254,7 @@ class List extends React.Component {
     isOwner,
     isOffline,
     ref_date
-  }}) => __typename === 'Advert' ? <AdItem /> : (<Item
+  }}) => __typename === 'Advert' ? <Banner /> : (<Item
     id={id}
     title={title}
     startAt={startAt}
