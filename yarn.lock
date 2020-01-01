@@ -7640,12 +7640,12 @@ react-native@^0.61.5:
     stacktrace-parser "^0.1.3"
     whatwg-fetch "^3.0.0"
 
-react-navigation-stack@^1.10.3:
-  version "1.10.3"
-  resolved "https://registry.yarnpkg.com/react-navigation-stack/-/react-navigation-stack-1.10.3.tgz#e714e442b20427f0d2d3c18fce1f9e8cfe69be0b"
-  integrity sha512-1gksFi/g/Lg9sBhgLlD0OiEB5xnatHb4C0eNMA5tli9cTVlhq375XNPIqOiTyftibBmjdApAsZFj5srUCoOu/w==
+react-navigation-stack@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/react-navigation-stack/-/react-navigation-stack-2.0.1.tgz#994401ab106c54bb20ffd1199d01e51b72099f87"
+  integrity sha512-JaY+h15aNXi/OaA8sXykKD9aGscTqH4qTrDE2HFME3lYoj+45OT1GmnYr24QNr29tH6T4F5UFOPZMTBXMW+TJA==
   dependencies:
-    prop-types "^15.7.2"
+    color "^3.1.2"
 
 react-navigation-tabs@^2.6.2:
   version "2.6.2"
