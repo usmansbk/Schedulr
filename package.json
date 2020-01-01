@@ -10,12 +10,14 @@
     "lint": "eslint .",
     "clean-android": "cd ./android && ./gradlew clean && cd ./",
     "bundleAndroid": "cd ./android && ./gradlew bundleRelease",
-    "android-release": "(npm run clean-android) & (react-native run-android --variant release)",
-    "android-debug": "(npm run clean-android) & (react-native run-android)",
+    "android-release": "(yarn clean-android) & (react-native run-android --variant release)",
+    "android-debug": "(yarn clean-android) & (react-native run-android)",
     "postversion": "react-native-version",
     "build": "code-push release-react Schdlr-Android android",
     "promote": "code-push promote Schdlr-Android Staging Production",
-    "build-dev": "code-push release-react Schdlr-Android android --dev true"
+    "build-dev": "code-push release-react Schdlr-Android android --dev true",
+    "codepush": "(yarn build) & (yarn promote)",
+    "codepush-dev": "(yarn build) & (yarn build-dev)"
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.7.1",
