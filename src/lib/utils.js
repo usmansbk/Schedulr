@@ -207,3 +207,19 @@ export function injectAds(events, index, recurrence="NEVER") {
 export function filterBlacklist(filters, blacklist) {
   return filters.filter(item => !blacklist.includes(item))
 }
+
+export function getSeason(date) {
+  const m = moment(date);
+  const month = m.month();
+  console.log(month);
+  switch(month) {
+    case 11: case 0: case 1:
+      return 'winter';
+    case 2: case 3: case 4:
+      return 'spring';
+    case 5: case 6: case 7:
+      return 'summer';
+    default:
+      return 'fall';
+  }
+}
