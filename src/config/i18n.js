@@ -5,11 +5,11 @@ import moment from 'moment';
 import dicts from 'i18n';
 
 export default () => {
-  const { isRTL, languageTag } = RNLocalize.getLocales()[0];
-  moment.locale(languageTag);
-  I18n.setLanguage(languageTag);
+  const { isRTL, languageCode } = RNLocalize.getLocales()[0];
+  moment.locale(languageCode);
+  I18n.setLanguage(languageCode);
   const dict = {
-    [languageTag]: dicts(languageTag)
+    [languageCode]: dicts(languageCode)
   };
   I18n.putVocabularies(dict);
   I18nManager.forceRTL(isRTL);

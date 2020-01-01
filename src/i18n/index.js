@@ -1,7 +1,7 @@
 let momentLocale;
 export default (lang) => {
-  switch(lang) {
-    case 'en': case 'en-GB':
+  switch(lang.toLowerCase()) {
+    case 'en':
       return require('./en').default;
     case 'fr':
       momentLocale = require('moment/locale/fr');
