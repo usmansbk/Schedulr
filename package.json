@@ -14,7 +14,8 @@
     "android-debug": "(npm run clean-android) & (react-native run-android)",
     "postversion": "react-native-version",
     "build": "code-push release-react Schdlr-Android android",
-    "promote": "code-push promote Schdlr-Android Staging Production"
+    "promote": "code-push promote Schdlr-Android Staging Production",
+    "build-dev": "code-push release-react Schdlr-Android android --dev true"
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.7.1",
