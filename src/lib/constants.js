@@ -1,4 +1,9 @@
-import { Dimensions } from 'react-native';
+import { Dimensions, PixelRatio } from 'react-native';
+
+export const dp = (val) => {
+  const fontScale = PixelRatio.getFontScale();
+  return val * fontScale;
+};
 
 export const ALL_FILTER = '';
 
@@ -32,99 +37,109 @@ export const COMMENT_TYPE = 'Comment';
 export const FOLLOW_TYPE = 'Follow';
 export const USER_TYPE = 'User';
 
+//list/album
+export const album = {
+  ITEM_WIDTH:  dp(175)
+};
+
+//list/chips
+export const chips = {
+  ITEM_HEIGHT: dp(48)
+}
+
 // list/events
 export const events = {
-  AVATAR_SIZE : 54,
-  ITEM_HEIGHT : 100,
-  ITEM_HEIGHT_SMALL : 100,
-  SEPARATOR_HEIGHT : 1,
-  SECTION_HEADER_HEIGHT : 70,
-  SECTION_FOOTER_HEIGHT : 40,
-  HEADER_HEIGHT : 32,
-  FOOTER_HEIGHT : 80
+  AVATAR_SIZE : dp(54),
+  ITEM_HEIGHT : dp(100),
+  ITEM_HEIGHT_SMALL : dp(100),
+  SEPARATOR_HEIGHT : dp(1),
+  SECTION_HEADER_HEIGHT : dp(70),
+  SECTION_FOOTER_HEIGHT : dp(40),
+  HEADER_HEIGHT : dp(32),
+  FOOTER_HEIGHT : dp(80)
 };
 
 // list/schedules
 export const schedules = {
-  ITEM_HEIGHT : 80,
-  SEPARATOR_HEIGHT : 1,
-  AVATAR_SIZE : 50,
-  FOOTER_HEIGHT : 80,
+  ITEM_HEIGHT : dp(80),
+  SEPARATOR_HEIGHT : dp(1),
+  AVATAR_SIZE : dp(50),
+  FOOTER_HEIGHT : dp(80),
 };
 
 export const discover = {
-  ITEM_HEIGHT: 250,
-  SEPARATOR_HEIGHT: 1
+  ITEM_HEIGHT: dp(250),
+  SEPARATOR_HEIGHT: dp(1)
 };
 
 // list/bookmarkedEvents
 export const bookmarkedEvents = {
-  AVATAR_SIZE : 54,
-  ITEM_HEIGHT : 136,
-  ITEM_HEIGHT_SMALL : 102,
-  SEPARATOR_HEIGHT : 1,
-  FOOTER_HEIGHT : 80,
+  AVATAR_SIZE : dp(54),
+  ITEM_HEIGHT : dp(136),
+  ITEM_HEIGHT_SMALL : dp(102),
+  SEPARATOR_HEIGHT : dp(1),
+  FOOTER_HEIGHT : dp(80),
 };
 
 // list/bookmarkedEvents
 export const searchEvents = {
-  AVATAR_SIZE : 54,
-  ITEM_HEIGHT : 148,
-  ITEM_HEIGHT_SMALL : 102,
-  SEPARATOR_HEIGHT : 1,
-  FOOTER_HEIGHT : 80,
+  AVATAR_SIZE : dp(54),
+  ITEM_HEIGHT : dp(148),
+  ITEM_HEIGHT_SMALL : dp(102),
+  SEPARATOR_HEIGHT : dp(1),
+  FOOTER_HEIGHT : dp(80),
 };
 
 
 // list/followers
 export const people_list = {
-  SEPARATOR_HEIGHT : 1,
-  ITEM_HEIGHT : 64,
-  AVATAR_SIZE : 40,
-  FOOTER_HEIGHT : 80,
+  SEPARATOR_HEIGHT : dp(1),
+  ITEM_HEIGHT : dp(64),
+  AVATAR_SIZE : dp(40),
+  FOOTER_HEIGHT : dp(80),
 };
 
 // screen/scheduleInfo
 export const schedule_info = {
-  AVATAR_SIZE : 80
+  AVATAR_SIZE : dp(80)
 };
 
 // list/notifications_list
 export const notifications_list = {
-  ITEM_HEIGHT: 80,
-  SEPARATOR_HEIGHT: 1
+  ITEM_HEIGHT: dp(80),
+  SEPARATOR_HEIGHT: dp(1)
 };
 
 // list/scheduleEvents
 export const schedule_events = {
-  AVATAR_SIZE : 54,
-  ITEM_HEIGHT : 122,
-  ITEM_HEIGHT_SMALL : 102,
-  SEPARATOR_HEIGHT : 1,
-  FOOTER_HEIGHT : 80,
+  AVATAR_SIZE : dp(54),
+  ITEM_HEIGHT : dp(122),
+  ITEM_HEIGHT_SMALL : dp(102),
+  SEPARATOR_HEIGHT : dp(1),
+  FOOTER_HEIGHT : dp(80),
 };
 
 // list/commentsList
 export const comments_list = {
-  AVATAR_SIZE : 32,
-  SEPARATOR_HEIGHT : 2
+  AVATAR_SIZE : dp(32),
+  SEPARATOR_HEIGHT : dp(2)
 };
 
 // form/comment
 export const comment_input = {
-  AVATAR_SIZE : 32,
-  INPUT_WIDTH : 278
+  AVATAR_SIZE : dp(32),
+  INPUT_WIDTH : dp(278)
 };
 
 export const event_search = {
-  ITEM_HEIGHT : 148,
-  SEPARATOR_HEIGHT : 1,
-  AVATAR_SIZE : 48,
+  ITEM_HEIGHT : dp(148),
+  SEPARATOR_HEIGHT : dp(1),
+  AVATAR_SIZE : dp(48),
 };
 
 export const schedule_search = {
-  ITEM_HEIGHT : 80,
-  SEPARATOR_HEIGHT : 1,
-  AVATAR_SIZE : 50,
-  FOOTER_HEIGHT : 80,
+  ITEM_HEIGHT : dp(80),
+  SEPARATOR_HEIGHT : dp(1),
+  AVATAR_SIZE : dp(50),
+  FOOTER_HEIGHT : dp(80),
 };

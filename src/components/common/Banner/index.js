@@ -1,6 +1,7 @@
 import React from 'react';
-import { Image, PixelRatio } from 'react-native';
+import { Image } from 'react-native';
 import { getSeason } from 'lib/utils';
+import { dp } from 'lib/constants';
 
 export default class Banner extends React.Component {
   shouldComponentUpdate = () => false;
@@ -8,7 +9,7 @@ export default class Banner extends React.Component {
   render() {
     const season = getSeason();
     const style = {
-      height: 100,
+      height: dp(100),
       width: '100%',
       alignItems: 'center',
     };

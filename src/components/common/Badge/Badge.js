@@ -4,12 +4,13 @@ import {
   StyleSheet
 } from 'react-native';
 import colors from 'config/colors';
+import {dp} from 'lib/constants';
 
 const styles = StyleSheet.create({
   container: {
-    height: 10,
-    width: 10,
-    borderRadius: 5,
+    height: dp(10),
+    width: dp(10),
+    borderRadius: dp(5),
     position: 'absolute',
     top: 17,
     right: 8,

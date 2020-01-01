@@ -3,10 +3,10 @@ import { FlatList } from 'react-native';
 import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
 import { filterBlacklist } from 'lib/utils';
-import { ALL_FILTER } from 'lib/constants';
+import { ALL_FILTER, chips } from 'lib/constants';
 import Item from './Item';
 
-const ITEM_HEIGHT = 48;
+const { ITEM_HEIGHT } = chips;
 
 class List extends React.Component {
   static defaultProps = {

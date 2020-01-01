@@ -422,7 +422,7 @@ export default {
   timeLabels: {
     d: 'Days',
     h: 'Hours',
-    m: 'Minutes',
-    s: 'Seconds'
+    m: 'Mins',
+    s: 'Sec'
   }
 };

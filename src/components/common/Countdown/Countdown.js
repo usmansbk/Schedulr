@@ -4,6 +4,7 @@ import moment from 'moment';
 import { I18n } from 'aws-amplify';
 import { inject, observer } from 'mobx-react';
 import { capitalize } from 'lib/utils';
+import {dp} from 'lib/constants';
 
 class DateCountdown extends React.Component {
   state = {
@@ -38,7 +39,7 @@ class DateCountdown extends React.Component {
     let digitStyle;
     let digitTxtStyle;
     let timeLabelStyle = {
-      color: stores.themeStore.colors.gray
+      color: stores.themeStore.colors.gray,
     };
 
     let until = Math.floor((start - now) / 1000);
@@ -70,7 +71,7 @@ class DateCountdown extends React.Component {
         digitTxtStyle={digitTxtStyle}
         timeLabelStyle={timeLabelStyle}
         timeLabels={I18n.get('timeLabels')}
-        size={20}
+        size={dp(20)}
       />
     );
   }
