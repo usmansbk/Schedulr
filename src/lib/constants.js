@@ -69,7 +69,8 @@ export const schedules = {
 
 export const discover = {
   ITEM_HEIGHT: dp(250),
-  SEPARATOR_HEIGHT: dp(1)
+  SEPARATOR_HEIGHT: dp(1),
+  OFFSET: dp(80)
 };
 
 // list/bookmarkedEvents
@@ -142,4 +143,18 @@ export const schedule_search = {
   SEPARATOR_HEIGHT : dp(1),
   AVATAR_SIZE : dp(50),
   FOOTER_HEIGHT : dp(80),
+};
+
+export const badge = {
+  HEIGHT: dp(10),
+  WIDTH: dp(10),
+  BORDER_RADIUS: dp(5)
+};
+
+export const banner = {
+  HEIGHT: dp(100)
+};
+
+export const countdown = {
+  SIZE: dp(20)
 };

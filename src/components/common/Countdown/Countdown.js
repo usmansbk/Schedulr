@@ -4,8 +4,9 @@ import moment from 'moment';
 import { I18n } from 'aws-amplify';
 import { inject, observer } from 'mobx-react';
 import { capitalize } from 'lib/utils';
-import {dp} from 'lib/constants';
+import { countdown } from 'lib/constants';
 
+const { SIZE } = countdown;
 class DateCountdown extends React.Component {
   state = {
     finished: false
@@ -71,7 +72,7 @@ class DateCountdown extends React.Component {
         digitTxtStyle={digitTxtStyle}
         timeLabelStyle={timeLabelStyle}
         timeLabels={I18n.get('timeLabels')}
-        size={dp(20)}
+        size={SIZE}
       />
     );
   }

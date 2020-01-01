@@ -1,18 +1,20 @@
 import React from 'react';
 import { Image } from 'react-native';
 import { getSeason } from 'lib/utils';
-import { dp } from 'lib/constants';
+import { banner } from 'lib/constants'; 
+
+const { HEIGHT } = banner;
+const style = {
+  height: HEIGHT,
+  width: '100%',
+  alignItems: 'center',
+};
 
 export default class Banner extends React.Component {
   shouldComponentUpdate = () => false;
 
   render() {
     const season = getSeason();
-    const style = {
-      height: dp(100),
-      width: '100%',
-      alignItems: 'center',
-    };
     let source;
     if (season === 'winter') {
       source = require('../../../assets/winter.png');

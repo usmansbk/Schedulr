@@ -10,10 +10,10 @@ import Footer from 'components/lists/Bookmarks/Footer';
 import {
   getHumanMonth
 } from 'lib/time';
-import { discover, dp } from 'lib/constants';
+import { discover } from 'lib/constants';
 import getImageUrl from 'helpers/getImageUrl';
 
-const { ITEM_HEIGHT, SEPARATOR_HEIGHT } = discover;
+const { ITEM_HEIGHT, SEPARATOR_HEIGHT, OFFSET } = discover;
 
 class List extends Component{
   static defaultProps = {
@@ -88,7 +88,7 @@ class List extends Component{
         style={styles.list}
         refreshControl={
           <RefreshControl
-            progressViewOffset={dp(80)}
+            progressViewOffset={OFFSET}
             onRefresh={this._onRefresh}
             refreshing={this.props.loading}
             colors={[this.props.stores.themeStore.colors.primary]}
