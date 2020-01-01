@@ -208,10 +208,9 @@ export function filterBlacklist(filters, blacklist) {
   return filters.filter(item => !blacklist.includes(item))
 }
 
-export function getSeason(date) {
-  const m = moment(date);
+export function getSeason() {
+  const m = moment();
   const month = m.month();
-  console.log(month);
   switch(month) {
     case 11: case 0: case 1:
       return 'winter';

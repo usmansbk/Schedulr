@@ -3,6 +3,7 @@ import { ImageBackground } from 'react-native';
 import { BannerAd, BannerAdSize, TestIds } from '@react-native-firebase/admob';
 import { inject, observer } from 'mobx-react';
 import env from 'config/env';
+import { getSeason } from 'lib/utils';
 
 class Banner extends React.Component {
   shouldComponentUpdate = () => false;
@@ -16,19 +17,19 @@ class Banner extends React.Component {
   };
 
   render() {
+    const season = getSeason();
     const { large, medium_rect } = this.props;
     let Unit = __DEV__ ? TestIds : env;
     let size = BannerAdSize.BANNER;
     let unitId = Unit.BANNER;
-    let source = require('../../assets/camp.png');
     let style = {
       height: 50,
       width: '100%',
       alignItems: 'center',
       justifyContent: 'center'
     };
+    
     if (large) {
-      source = require('../../assets/sunset.png');
       size = BannerAdSize.LARGE_BANNER;
       unitId = Unit.BANNER;
       style = {
@@ -37,7 +38,6 @@ class Banner extends React.Component {
         alignItems: 'center',
       };
     } else if (medium_rect) {
-      source = require('../../assets/beach.png');
       size = BannerAdSize.MEDIUM_RECTANGLE;
       unitId = Unit.BANNER;
       style = {
@@ -45,10 +45,14 @@ class Banner extends React.Component {
         height: 250
       };
     }
-    if (__DEV__) {
-      source = {
-        uri:`https://source.unsplash.com/random/320x${style.height}`,
-      };
+    if (season === 'winter') {
+      source = require('../../assets/winter.jpeg');
+    } else if (season === 'autumn') {
+      source = require('../../assets/autumn.jpeg');
+    } else if (season === 'spring') {
+      source = require('../../assets/spring.jpeg');
+    } else {
+      source = require('../../assets/sunset.png');
     }
 
     return (
