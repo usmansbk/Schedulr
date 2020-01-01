@@ -1,5 +1,5 @@
 import React from 'react';
-import { RefreshControl, PixelRatio } from 'react-native';
+import { RefreshControl } from 'react-native';
 import { SectionList } from 'react-navigation';
 import { inject, observer } from 'mobx-react';
 import moment from 'moment';
@@ -307,7 +307,6 @@ class List extends React.Component {
   });
 
   render() {
-    console.log(PixelRatio.getFontScale(),PixelRatio.get());
     const { stores, loading } = this.props;
     const { sections } = this.state;
     const extraData = 
