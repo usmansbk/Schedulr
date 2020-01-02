@@ -64,7 +64,6 @@ class Intro extends React.Component {
   };
 
   render() {
-    console.log(I18n.get('walkthrough'))
     return (
       <>
       <StatusBar hidden />
