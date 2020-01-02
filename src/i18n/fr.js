@@ -442,5 +442,49 @@ export default {
     h: 'Heures',
     m: 'Min',
     s: 'Seconde'
-  }
+  },
+  walkthrough : [
+    {
+      key: 'p1',
+      title: 'Schdlr',
+      text: "Schdlr est un planificateur d'événements sociaux",
+      image: require('../assets/student.png'),
+      backgroundColor: '#22bcb5',
+    },
+    {
+      key: 'p2',
+      title: 'Créez des horaires facilement!',
+      text: 'Entrez un nom de programme et votre programme est prêt à être utilisé et partagé.',
+      image: require('../assets/list-app.png'),
+      backgroundColor: '#63a4ff',
+    },
+    {
+      key: 'p3',
+      title: 'Ajoutez des événements à vos horaires!',
+      text: 'Organisez vos événements en les regroupant dans des horaires spécifiques.',
+      image: require('../assets/calendar.png'),
+      backgroundColor: '#00897b',
+    },
+    {
+      key: 'p4',
+      title: 'Gardez tout le monde à jour!',
+      text: 'Créez des horaires pour les événements de votre vie et invitez les gens à les suivre et à les partager.',
+      image: require('../assets/handshake.png'),
+      backgroundColor: '#ab47bc',
+    },
+    {
+      key: 'p5',
+      title: "Suivez les horaires qui vous intéressent!",
+      text: 'Suivez les horaires et obtenez leurs événements des rappels hors ligne et des mises à jour en temps réel.',
+      image: require('../assets/app-user.png'),
+      backgroundColor: '#673ab7',
+    },
+    {
+      key: 'p6',
+      title: "Bienvenue chez Schdlr!",
+      text: 'Schdlr vous aide à organiser vos événements, en créant des horaires pour tenir tout le monde à jour.',
+      image: require('../assets/schoolbooks.png'),
+      backgroundColor: '#22bcb5',
+    },
+  ]
 };
