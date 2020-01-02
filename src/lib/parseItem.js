@@ -70,12 +70,12 @@ export const captionDetails = ({
   }
   let caption;
   if (allDay) {
-    caption = I18n.get("EVENT_CAPTION_allDay")({ type: category, recurrence });
+    caption = I18n.get("EVENT_CAPTION_allDay")({ type: category, recurrence: I18n.get(recurrence) });
   } else {
     if (currentDayCount) {
       caption = I18n.get("EVENT_CAPTION_xthDayOfType")({ currentDayCount, totalDayCount, type: category });
     } else {
-      caption = I18n.get("EVENT_CAPTION_xDurationRecurrenceType")({ duration, recurrence, type: category });
+      caption = I18n.get("EVENT_CAPTION_xDurationRecurrenceType")({ duration, recurrence: I18n.get(recurrence), type: category });
     }
   }
   let formatted = capitalize(caption.trim());

@@ -25,6 +25,7 @@ export default {
   COMMENTS_noMoreComments: "Pas d'autres commentaires",
   COMMENT_tooLong: "Commentaire trop long",
 
+  Followers: "Planifier les abonnés",
   FOLLOWERS_emptyList: "Aucun abonné",
   FOLLOWERS_loadMore: "Charger plus",
 
@@ -243,13 +244,13 @@ export default {
 
   EVENT_ITEM_allDay: "Toute la journée",
   EVENT_CAPTION_allDay: ({ type, recurrence }) => {
-    return `${recurrence} ${type}`;
+    return `${recurrence} - ${type}`;
   },
   EVENT_CAPTION_xthDayOfType: ({ type, totalDayCount, currentDayCount }) => {
     return `${type ? type + ' day' : 'Jour'} ${currentDayCount} / ${totalDayCount}`;
   },
   EVENT_CAPTION_xDurationRecurrenceType: ({ duration, recurrence, type }) => {
-    return `${duration}${recurrence ? ` ${recurrence}` : ''}${type ? ` ${type}` : '' }`;
+    return `${duration}${recurrence ? ` ${recurrence} - ` : ''}${type ? ` ${type}` : '' }`;
   },
 
   SCHEDULE: "PROGRAMME",
@@ -260,8 +261,8 @@ export default {
   SCHEDULE_FORM_private: "Horaire privé",
   SCHEDULE_FORM_public: "Horaire public",
 
-  SCHEDULE_followerCount: "calendrier suiveur",
-  SCHEDULE_followerCounts: "programmer des abonnés",
+  SCHEDULE_followerCount: "Suiveuses",
+  SCHEDULE_followerCounts: "Suiveuses",
   SCHEDULE_eventsCount: "un événement",
   SCHEDULE_eventsCounts: "Événements",
   SCHEDULE_thisScheduleIsClosed: "Ce planning est archivé",
@@ -270,7 +271,7 @@ export default {
   SCHEDULE_whatIsASchedule: "Qu'est-ce qu'un horaire?",
   
   SCHEDULES_noUpcomingEvents: "Aucun événement à venir",
-  SCHEDULES_loadPastEvents: count => `Load (${count}) past event${count > 1 ? 's' : ''}`,
+  SCHEDULES_loadPastEvents: count => `charger (${count}) événement${count > 1 ? 's' : ''} passé`,
   SCHEDULES_noMoreEvents: "Plus d'événements",
 
   HELPER_TEXT_titleIsRequired: "Le titre est requis",
@@ -443,6 +444,11 @@ export default {
     m: 'Min',
     s: 'Seconde'
   },
+  daily: 'du quotidien',
+  weekly: 'hebdomadaire',
+  weekdays: 'jours de la semaine',
+  monthly: 'mensuelle',
+  yearly: 'annuelle',
   walkthrough : [
     {
       key: 'p1',
@@ -486,5 +492,5 @@ export default {
       image: require('../assets/schoolbooks.png'),
       backgroundColor: '#22bcb5',
     },
-  ]
+  ],
 };

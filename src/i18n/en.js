@@ -30,6 +30,8 @@ export default {
   FOLLOWERS_loadMore: "Load more",
 
   EVENTS_emptyList: "No upcoming events",
+  EVENT_noLocationSet: "No location set",
+  EVENT_noDescription: "No description",
   EVENTS_SECTIONLIST_after: date => `After ${date}`,
   EVENTS_SECTIONLIST_noMoreEvents: () => "No more events",
   EVENTS_SECTIONLIST_before: date => `Before ${date}`,
@@ -426,6 +428,11 @@ export default {
     m: 'Mins',
     s: 'Sec'
   },
+  daily: 'daily',
+  weekly: 'weekly',
+  weekdays: 'weekdays',
+  monthly: 'monthly',
+  yearly: 'yearly',
   walkthrough : [
     {
       key: 'p1',
