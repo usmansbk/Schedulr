@@ -214,6 +214,14 @@ export default {
   PROFILE_FORM_bio: "Bio",
   PROFILE_joined: date => `Joined ${date}`,
 
+  VENUE: "VENUE",
+  REPEAT: "REPEAT",
+  CREATED: "CREATED",
+  UNTIL: "UNTIL",
+  STARTED: "STARTED",
+  AUTHOR: "AUTHOR",
+  EDITED: "EDITED",
+  
   EVENT_FORM_title: "Title",
   EVENT_FORM_description: "Description",
   EVENT_FORM_venue: "Venue",

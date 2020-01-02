@@ -221,7 +221,7 @@ export default {
   UNTIL: "JUSQU'À",
   STARTED: "COMMENCÉ",
   AUTHOR: "PROPRIÉTAIRE",
-  EDIT: "ÉDITÉ",
+  EDITED: "ÉDITÉ",
   DESCRIPTION: "LA DESCRIPTION",
   EVENT_noLocationSet: "Aucun emplacement défini",
   EVENT_noDescription: "Pas de description",

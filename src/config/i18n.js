@@ -5,8 +5,8 @@ import moment from 'moment';
 import dicts from 'i18n';
 
 export default () => {
-  const { isRTL, alanguageCode } = RNLocalize.getLocales()[0];
-  const languageCode = 'es';
+  const { isRTL, languageCode } = RNLocalize.getLocales()[0];
+  // const languageCode = 'fr';
   moment.locale(languageCode);
   I18n.setLanguage(languageCode);
   const dict = {
