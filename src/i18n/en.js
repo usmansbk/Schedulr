@@ -6,7 +6,6 @@ const NEXT_LAST_FORMAT = 'dddd, Do';
 const CAL_TIME_FORMAT = 'DD MMM YYYY hh:mm';
 
 export default {
-  P1_title: 'Create schedules easily!',
   APP_welcome: 'Welcome to Schdlr!',
   APP_caption: 'The event scheduler',
   APP_footerCaption: 'Share your schedules!',
