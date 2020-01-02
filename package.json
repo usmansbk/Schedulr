@@ -16,8 +16,8 @@
     "build": "code-push release-react Schdlr-Android android",
     "promote": "code-push promote Schdlr-Android Staging Production",
     "build-dev": "code-push release-react Schdlr-Android android --dev true",
-    "codepush": "(yarn build) & (yarn promote)",
-    "codepush-dev": "(yarn build) & (yarn build-dev)"
+    "codepush": "(yarn build) && (yarn promote)",
+    "codepush-dev": "(yarn build) && (yarn build-dev)"
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.7.1",
