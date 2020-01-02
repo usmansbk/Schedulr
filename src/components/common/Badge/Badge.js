@@ -23,19 +23,19 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'white'
   },
-  Cancelled: {
+  cancelled: {
     backgroundColor: colors.error,
   },
-  Ongoing: {
+  ongoing: {
     backgroundColor: colors.success
   },
-  Done: {
+  done: {
     backgroundColor: colors.tint
   },
-  Concluded: {
+  concluded: {
     backgroundColor: colors.tint
   },
-  Upcoming: {
+  upcoming: {
     backgroundColor: colors.warning,
   },
 });

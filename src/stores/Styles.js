@@ -198,23 +198,23 @@ export default class AppStyles {
         fontFamily: 'sans-serif-bold',
         fontWeight: 'bold'
       },
-      Cancelled: {
+      cancelled: {
         color: colors.light_red,
       },
-      Ongoing: {
+      ongoing: {
         color: colors.green
       },
-      Done: {
+      done: {
         color: colors.tint,
       },
-      Upcoming: {
+      upcoming: {
         color: colors.yellow,
       },
-      Closed: {
+      closed: {
         color: colors.light_red,
         fontSize: 12
       },
-      Concluded: {
+      concluded: {
         color: colors.tint,
       }
     });

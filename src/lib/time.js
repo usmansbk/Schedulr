@@ -48,8 +48,8 @@ export const timeAgo = (date) => {
 
 export const getSectionHeaderData = (date) => {
   const momentDate = moment(date);
-  const heading = momentDate.calendar(null, I18n.get('headingCalendarFormats'));
-  const subheading = momentDate.calendar(null, I18n.get('subheadingCalendarFormats'));
+  const heading = capitalize(momentDate.calendar(null, I18n.get('headingCalendarFormats')));
+  const subheading = capitalize(momentDate.calendar(null, I18n.get('subheadingCalendarFormats')));
   let timeAgo = '';
   if (Math.abs(momentDate.diff(moment().startOf('D'), 'hours')) > 24) {
     timeAgo = capitalize(momentDate.from(moment().startOf('D')));
@@ -65,6 +65,7 @@ export function getRepeatLabel(id, date) {
   const val = id.toLowerCase();
   switch(val) {
     case 'never': return I18n.get(`RECUR_${val}`);
+    case 'daily': return I18n.get(`RECUR_daily`);
     case 'weekly': return I18n.get(`RECUR_${val}`)(moment(date).format('dddd'));
     case 'weekdays': return I18n.get(`RECUR_${val}`);
     case 'monthly': return I18n.get(`RECUR_${val}`);

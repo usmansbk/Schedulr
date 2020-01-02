@@ -23,14 +23,14 @@ export const getStatus = ({
   endAt,
   isConcluded
 }) => {
-  if (isConcluded) return I18n.get("STATUS_concluded");
+  if (isConcluded) return "concluded";
   const cancelled =  isEventCancelled({ cancelledDates, startAt, isCancelled });
-  if (cancelled) return I18n.get("STATUS_cancelled");
+  if (cancelled) return "cancelled";
   const isEnded = moment().twix(endAt).isPast();
-  if (isEnded) return I18n.get("STATUS_done");
+  if (isEnded) return "done";
   const isOngoing = moment(startAt).twix(endAt).isCurrent();
-  if (isOngoing) return I18n.get('STATUS_ongoing');
-  return I18n.get("STATUS_upcoming");
+  if (isOngoing) return "ongoing";
+  return "upcoming";
 };
 
 export const isEventValid = (event) => {
