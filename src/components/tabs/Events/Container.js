@@ -116,7 +116,6 @@ class Container extends React.Component {
       id={stores.appState.userId}
       mutedEvents={stores.appState.mutedEvents}
       allowedEvents={stores.appState.allowedEvents}
-      calendarEvents={stores.calendar.transform}
       isConnected={stores.appState.isConnected}
       fetchingUpdates={stores.appState.loading}
       deltaSync={this._deltaSync}

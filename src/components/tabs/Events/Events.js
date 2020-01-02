@@ -35,7 +35,7 @@ export default class Events extends React.Component {
   _mergeAllEvents = memoize(mergeEvents);
 
   get events() {
-    return this._mergeAllEvents(this.props.data, this.props.calendarEvents);
+    return this._mergeAllEvents(this.props.data);
   }
 
   _sync = () => {
@@ -46,6 +46,8 @@ export default class Events extends React.Component {
       this.props.calendarSync();
     }
   };
+
+  _fetchMoreCalendarEvents = stores.calendar.fetchNextEvents;
 
   componentDidMount = () => {
     if (!this.props.loading && this.props.isConnected) {
@@ -62,6 +64,7 @@ export default class Events extends React.Component {
           navigation={this.props.navigation}
           loading={this.props.loading}
           fetchMore={this._sync}
+          fetchMoreCalendarEvents={this._fetchMoreCalendarEvents}
           updateListEveryMinute={new Date().getMinutes()}
         />
         <FAB
