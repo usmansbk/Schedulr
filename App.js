@@ -20,7 +20,7 @@ import logger from 'config/logger';
 
 console.disableYellowBox = true;
 Amplify.configure(aws_config);
-i18n(stores.settingsStore.language);
+i18n(stores);
 stores.init();
 
 @codepush

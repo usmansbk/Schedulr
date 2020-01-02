@@ -4,9 +4,9 @@ import * as RNLocalize from 'react-native-localize';
 import moment from 'moment';
 import dicts from 'i18n';
 
-export default () => {
+export default (stores) => {
   const { isRTL, languageCode } = RNLocalize.getLocales()[0];
-  // const languageCode = 'fr';
+  stores.settingsStore.language = languageCode;
   moment.locale(languageCode);
   I18n.setLanguage(languageCode);
   const dict = {
