@@ -330,8 +330,9 @@ export default {
   ERROR_configHint: ' Synchronisez maintenant et réessayez.',
   ERROR_signInFailure: 'Échec de la connexion',
 
+  Event: "Événement normal",
   PLACEHOLDER_aboutThisEvent: "À propos de cet événement ...",
-  PLACEHOLDER_normal: "Normal",
+  PLACEHOLDER_normal: "Événement normal",
   PLACEHOLDER_addYourWebsite: "Ajoutez votre site web",
   PLACEHOLDER_bio: "À propos de moi",
   PLACEHOLDER_venue: city => {

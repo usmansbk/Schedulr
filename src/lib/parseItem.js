@@ -6,8 +6,7 @@ import { momentCounter } from './time';
 
 export const getCategory = (category) => {
   if (!category) return '';
-  if (category.toLowerCase().trim() === 'normal') return '';
-  return category;
+  return I18n.get(category);
 };
 
 export const isEventCancelled = (event) => {
