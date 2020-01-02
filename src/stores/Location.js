@@ -3,6 +3,7 @@ import { observable, action, computed } from 'mobx';
 import { persist } from 'mobx-persist';
 import { I18n } from 'aws-amplify';
 import { requestLocationPermission } from 'helpers/permissions';
+import numeral from 'numeral';
 import Geocoder from 'helpers/geocoder';
 import logger from 'config/logger';
 import stores from 'stores';
@@ -85,6 +86,20 @@ export default class Location {
       return `${this.locality}, ${this.country}`;
     }
     return null;
+  }
+
+  @computed get parsedLocation() {
+    if (this.point) {
+      const lat = this.point.lat;
+      const lon = this.point.lon;
+      return `${this.sign(lat)}${numeral(Math.abs(lat)).format('00.0000')}${this.sign(lon)}${numeral(Math.abs(lon)).format('000.0000')}`;
+    }
+    return null;
+  }
+
+  sign(number) {
+    if (number > 0) return `%2B`;
+    return '-';
   }
 
   @action reset() {
