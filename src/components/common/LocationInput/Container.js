@@ -4,7 +4,6 @@ import Picker from './Picker';
 
 export default inject("stores")(observer(({
   stores,
-  location,
   visible,
   hideModal,
   onSelect
@@ -12,7 +11,7 @@ export default inject("stores")(observer(({
   <Picker
     hideModal={hideModal}
     visible={visible}
-    location={location}
+    location={stores.locationStore.parsedLocation}
     styles={stores.appStyles.places}
     modalStyle={stores.appStyles.picker}
     language={stores.settingsStore.language}
