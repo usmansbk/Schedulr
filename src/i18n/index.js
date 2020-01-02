@@ -6,6 +6,9 @@ export default (lang) => {
     case 'fr':
       momentLocale = require('moment/locale/fr');
       return require('./fr').default;
+    case 'es':
+      momentLocale = require('moment/locale/es');
+      return require('./es').default;
     default:
       return require('./en').default;
   }
