@@ -108,7 +108,8 @@ export const schedule_info = {
 // list/notifications_list
 export const notifications_list = {
   ITEM_HEIGHT: dp(80),
-  SEPARATOR_HEIGHT: dp(1)
+  SEPARATOR_HEIGHT: dp(1), 
+  AVATAR_SIZE: dp(32)
 };
 
 // list/scheduleEvents
