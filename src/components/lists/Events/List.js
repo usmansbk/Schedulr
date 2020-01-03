@@ -319,7 +319,6 @@ class List extends React.Component {
         ListHeaderComponent={this._renderHeader}
         ListEmptyComponent={this._renderEmptyList}
         ItemSeparatorComponent={this._renderSeparator}
-        removeClippedSubviews
         refreshControl={
           <RefreshControl
             onRefresh={this._onRefresh}
