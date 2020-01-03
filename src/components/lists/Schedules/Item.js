@@ -8,7 +8,7 @@ import Tag from 'components/common/Tag';
 import ActionSheet from 'components/actionsheet/Schedule';
 import { schedules } from 'lib/constants';
 
-const { AVATAR_SIZE } = schedules
+const { AVATAR_SIZE, SUB_AVATAR_SIZE } = schedules
 
 class Item extends React.Component {
   _onPress = () => this.props.onPressItem(this.props.id);
@@ -67,7 +67,7 @@ class Item extends React.Component {
           {
             !isOwner && (
               <UserAvatar
-                size={22}
+                size={SUB_AVATAR_SIZE}
                 src={authorPictureUrl}
                 name={authorName}
                 style={styles.authorAvatar}

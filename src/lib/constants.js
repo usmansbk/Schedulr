@@ -65,6 +65,7 @@ export const schedules = {
   SEPARATOR_HEIGHT : dp(1),
   AVATAR_SIZE : dp(50),
   FOOTER_HEIGHT : dp(80),
+  SUB_AVATAR_SIZE: dp(22)
 };
 
 export const discover = {
