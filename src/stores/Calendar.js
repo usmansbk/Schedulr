@@ -114,7 +114,7 @@ export default class Calendar {
     try {
       if (this.calendars.length) {
         const m = moment().startOf('D');
-        const month = m.moment();
+        const month = m.month();
         const startDate = m.toDate().toISOString();
         let endDate;
         if (month === 11) {

@@ -47,8 +47,6 @@ export default class Events extends React.Component {
     }
   };
 
-  _fetchMoreCalendarEvents = stores.calendar.fetchNextEvents;
-
   componentDidMount = () => {
     if (!this.props.loading && this.props.isConnected) {
       this._sync();
@@ -64,7 +62,6 @@ export default class Events extends React.Component {
           navigation={this.props.navigation}
           loading={this.props.loading}
           fetchMore={this._sync}
-          fetchMoreCalendarEvents={this._fetchMoreCalendarEvents}
           updateListEveryMinute={new Date().getMinutes()}
         />
         <FAB
