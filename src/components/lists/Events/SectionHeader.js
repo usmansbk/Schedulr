@@ -48,9 +48,9 @@ class SectionHeader extends React.Component {
     return (
       <TouchableRipple onPress={this._onPress}>
         <View style={styles.sectionHeader}>
-          <Headline style={styles.sectionHeading}>{heading}</Headline>
+          <Headline ellipsizeMode="tail" numberOfLines={1} style={styles.sectionHeading}>{heading}</Headline>
           <View style={styles.sectionSubheadingContent}>
-            <Text style={styles.sectionSubheading}>{subheading}</Text>
+            <Text style={styles.sectionSubheading} ellipsizeMode="tail" numberOfLines={1}>{subheading}</Text>
             <Caption>{itemsCount}{time}</Caption>
           </View>
         </View>
