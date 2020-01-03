@@ -114,8 +114,14 @@ export default class Calendar {
     try {
       if (this.calendars.length) {
         const m = moment().startOf('D');
+        const month = m.moment();
         const startDate = m.toDate().toISOString();
-        const endDate = m.clone().add(1, 'year').toDate().toISOString();
+        let endDate;
+        if (month === 11) {
+          endDate = m.clone().add(1, 'year').toDate().toISOString();
+        } else {
+          endDate = m.clone().endOf('year').toDate().toISOString();
+        }
         this.events = await RNCalendarEvents.fetchAllEvents(startDate, endDate, this.calendars.map(cal => cal.id));
       } else {
         this.reset();
@@ -126,6 +132,6 @@ export default class Calendar {
   };
 
   get transform() {
-    return this.events.map(this.transformEvent)
+    return this.events.map(this.transformEvent);
   }
 }
