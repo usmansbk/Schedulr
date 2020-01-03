@@ -19,6 +19,7 @@ export default class AppState {
     this.settings = settingsStore;
   }
 
+  @observable extraData = 0;
   @observable isConnected = false;
   @observable searchText = '';
   @observable query = '';
@@ -40,6 +41,7 @@ export default class AppState {
   };
   @persist('list') @observable categories =  [];
 
+  @action updateExtraData = () => this.extraData += 1;
   @action setUserId = id => this.userId = id;
   @action updateLastSyncTimestamp = () => this.lastSyncTimestamp = moment().unix();
   @action setLoginState = state => this.loggingIn = Boolean(state);
@@ -113,6 +115,7 @@ export default class AppState {
       this.mutedEvents.push(id);
       this.allowedEvents = this.allowedEvents.filter(currentId => currentId !== id);
     }
+    this.updateExtraData()
   };
 
   @action toggleMuteSchedule = (mutedId, isMuted) => {
@@ -121,6 +124,7 @@ export default class AppState {
     } else {
       this.mutedSchedules.push(mutedId);
     }
+    this.updateExtraData();
   };
 
   @action onChangeText (searchText) {
@@ -176,5 +180,11 @@ export default class AppState {
   }
 
   isToggled = (id) => this.discoverFilter === id.toLowerCase();
+  isEventMuted = (id, and) => {
+    return (
+      this.mutedEvents.includes(id) ||
+      (!this.allowedEvents.includes(id) &&
+      this.mutedSchedules.includes(and)))
+  };
   debounceQuery = debounce(val => this.query = val, 250);
 }
