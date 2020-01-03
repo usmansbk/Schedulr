@@ -3,7 +3,7 @@ import { RefreshControl } from 'react-native';
 import { withNavigationFocus, FlatList } from 'react-navigation';
 import { inject, observer } from 'mobx-react';
 import { people_list } from 'lib/constants';
-import { timeAgo } from 'lib/time';
+import { calendarTime } from 'lib/time';
 import getImageUrl from 'helpers/getImageUrl';
 import Footer from './Footer';
 import Item from './Item';
@@ -76,7 +76,7 @@ class List extends React.Component {
         id={id}
         name={name}
         pictureUrl={avatar ? getImageUrl(avatar) : pictureUrl}
-        joined={createdAt && timeAgo(createdAt)}
+        joined={createdAt && calendarTime(createdAt)}
         onPressItem={this._onPressItem}
       />
     )

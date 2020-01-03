@@ -42,10 +42,6 @@ export const getNextDate = (event) => {
   return moment(startAt).twix(endAt).format();
 };
 
-export const timeAgo = (date) => {
-  return moment(date).fromNow(true);
-};
-
 export const getSectionHeaderData = (date) => {
   const momentDate = moment(date);
   const heading = capitalize(momentDate.calendar(null, I18n.get('headingCalendarFormats')));
