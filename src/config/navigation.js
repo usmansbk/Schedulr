@@ -18,9 +18,11 @@ function navigate(routeName, params) {
 function deepLinkNavigate(url) {
   const route = url.replace(/.*?:\/\//g, '');
   const id = route.match(/\/([^\/]+)\/?$/)[1];
-  let routeName = route.split('/')[1];
-  if (typeof Number(id) === 'number') {
+  let routeName;
+  if (id.indexOf('-') === -1) {
     routeName = 'calendr';
+  } else {
+    routeName = route.split('/')[1];
   }
   switch(routeName) {
     case 'event':
