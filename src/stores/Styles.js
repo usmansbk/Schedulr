@@ -248,7 +248,8 @@ export default class AppStyles {
         backgroundColor: colors.bg
       },
       textInputContainer: {
-        backgroundColor: colors.light_gray_2
+        backgroundColor: colors.light_gray_2,
+        height: dp(48)
       },
       textInput: {
         backgroundColor: colors.textInput,
