@@ -16,8 +16,8 @@ export default inject("stores")(observer((props) => (
         barStyle="dark-content"
       />
       <Logo />
-      <Headline style={styles.h1}>{I18n.get("APP_welcome")}</Headline>
-      <Caption style={styles.caption}>
+      <Headline allowFontScaling={false} style={styles.h1}>{I18n.get("APP_welcome")}</Headline>
+      <Caption allowFontScaling={false} style={styles.caption}>
         {I18n.get("APP_caption")}
       </Caption>
       <View style={styles.content}>
@@ -31,7 +31,7 @@ export default inject("stores")(observer((props) => (
           )
         }
       </View>
-      <Caption style={styles.caption}>
+      <Caption allowFontScaling={false} style={styles.caption}>
         {I18n.get("APP_footerCaption")}
       </Caption>
     </View>

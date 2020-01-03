@@ -16,7 +16,8 @@ export default StyleSheet.create({
   },
   h1: {
     fontSize: 27,
-    color: colors.black
+    color: colors.black,
+    textAlign: 'center'
   },
   caption: {
     textAlign: 'center',
