@@ -26,6 +26,6 @@ export default class NewScheduleScreen extends React.Component {
         handleCancel={this._handleBack}
         onSubmit={this._handleSubmit}
       />
-    )
+    );
   }
 }
