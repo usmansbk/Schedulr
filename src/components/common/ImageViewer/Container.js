@@ -20,7 +20,8 @@ const EPSILON = 1024 * 100;
 class ImageViewerContainer extends React.Component {
   state = {
     loading: false,
-    showRemoveImageAlert: false
+    showRemoveImageAlert: false,
+    progress: 0
   };
   
   _goBack = () => this.props.goBack();
@@ -82,10 +83,15 @@ class ImageViewerContainer extends React.Component {
                 this.setState({ loading: true });
                 if (s3Object) this.props.stores.appState.removeKeysFromStorage([s3Object.key]);
                 await Storage.put(key, blob, {
-                  contentType: type
+                  contentType: type,
+                  progressCallback: progress => {
+                    this.setState({
+                      progress: progress.loaded / progress.total
+                    });
+                  }
                 });
                 await onUploadPhoto(fileForUpload);
-                this.setState({ loading: false });
+                this.setState({ loading: false, progress: 0 });
               }
             } catch (error) {
               this.setState({ loading: false });
@@ -115,6 +121,7 @@ class ImageViewerContainer extends React.Component {
         uri={url}
         uploadPhoto={this._uploadPhoto}
         deletePhoto={this._showRemoveImageAlert}
+        uploadProgress={this.state.progress}
         me={me}
         s3Object={s3Object}
       />

@@ -65,6 +65,7 @@ class ImageViewer extends React.Component {
       subtitle,
       uploadPhoto,
       deletePhoto,
+      uploadProgress,
       uri,
       stores,
       me,
@@ -93,7 +94,7 @@ class ImageViewer extends React.Component {
         Boolean(s3Object) && (
           <Appbar.Action
             onPress={this._downloadImage}
-            disabled={downloading}
+            disabled={downloading || loadingImage ||uploadProgress}
             color={stores.themeStore.colors.primary}
             icon={({ color,size }) => <Icon
               name="download"
@@ -133,6 +134,7 @@ class ImageViewer extends React.Component {
       }
     </Appbar.Header>
     <View style={{ flex: 1, justifyContent: 'center', backgroundColor: stores.themeStore.colors.bg }}>
+      { Boolean(uploadProgress) && <ProgressBar progress={uploadProgress} />}
       { downloading && <ProgressBar progress={progress} />}
       { loadingImage && <ProgressBar indeterminate /> }
       {
