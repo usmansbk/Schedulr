@@ -14,8 +14,9 @@ import {
   FOLLOW_TYPE,
   BOOKMARK_TYPE,
 } from 'lib/constants';
-import { COMMENT_TYPE } from 'lib/constants';
+import { COMMENT_TYPE, notifications_list } from 'lib/constants';
 
+const { AVATAR_SIZE } = notifications_list;
 class Item extends React.Component {
 
   _onPressItems = () => {
@@ -77,7 +78,7 @@ class Item extends React.Component {
       <TouchableRipple onPress={this._onPressItems} style={[styles.itemContainer, mark]}>
         <View style={styles.itemContent}>
           <View>
-            <UserAvatar src={pictureUrl} name={subject} size={32} />
+            <UserAvatar src={pictureUrl} name={subject} size={AVATAR_SIZE} />
           </View>
           <View style={styles.itemBody}>
             <Text ellipsizeMode="tail" numberOfLines={2}>

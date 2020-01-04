@@ -13,6 +13,7 @@ export default ({ disabled, loading, onPress }) => (
     <View style={styles.content}>
       <Image style={styles.logo} source={require('./img/logo.png')} />
       <Text
+        allowFontScaling={false}
         style={styles.text}>
       {
         loading ? I18n.get("BUTTON_loggingIn") : I18n.get("BUTTON_continueWithFacebook")

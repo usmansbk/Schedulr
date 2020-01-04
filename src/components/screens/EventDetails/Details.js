@@ -80,7 +80,7 @@ export default inject('stores')(observer(
             }
             <View style={stores.appStyles.eventDetails.item}>
               <Text style={stores.appStyles.eventDetails.label}>{I18n.get("VENUE")}</Text>
-              <Text style={stores.appStyles.eventDetails.value}>{address || I18n.get("No location set")}</Text>
+              <Text style={stores.appStyles.eventDetails.value}>{address || I18n.get("EVENT_noLocationSet")}</Text>
             </View>
             <Carousel
               id={id}
@@ -143,7 +143,7 @@ export default inject('stores')(observer(
             <View style={stores.appStyles.eventDetails.item}>
               <Text style={stores.appStyles.eventDetails.label}>{I18n.get("DESCRIPTION")}</Text>
               <Hyperlink linkStyle={stores.appStyles.eventDetails.linkStyle} linkDefault={true}>
-                <Text style={stores.appStyles.eventDetails.value}>{description || I18n.get("No description")}</Text>
+                <Text style={stores.appStyles.eventDetails.value}>{description || I18n.get("EVENT_noDescription")}</Text>
               </Hyperlink>
             </View>
             {

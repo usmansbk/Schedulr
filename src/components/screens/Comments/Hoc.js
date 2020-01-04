@@ -37,7 +37,8 @@ export default inject("stores")(observer(
       }),
       props: ({ data, ownProps }) => ({
         loading: data && (data.loading || data.networkStatus === 4 || data.networkStatus === 3),
-        error: !(data && data.getEventComments),
+        notFound: !(data && data.getEventComments) && !data.error,
+        error: data && data.error,
         onRefresh: () => data.refetch({
           nextToken: null
         }),

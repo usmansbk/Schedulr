@@ -4157,10 +4157,10 @@ formidable@^1.2.1:
   resolved "https://registry.yarnpkg.com/formidable/-/formidable-1.2.1.tgz#70fb7ca0290ee6ff961090415f4b3df3d2082659"
   integrity sha512-Fs9VRguL0gqGHkXS5GQiMCr1VhZBxz0JnJs4JmMp/2jL18Fmbzvv7vOFRU+U8TBkHEE/CX1qDXzJplVULgsLeg==
 
-formik@^2.0.8:
-  version "2.0.8"
-  resolved "https://registry.yarnpkg.com/formik/-/formik-2.0.8.tgz#a17740007a9a1394360142c128bb686acb5dbc7c"
-  integrity sha512-PxC9G6EvLdJzMv7z+bsvpI/Euplv2vVgTQebD5yNza4t3fiMBB+iD90VOVTLCyH5Pnv3bljsZiKsIqGp/UNKKg==
+formik@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/formik/-/formik-2.1.1.tgz#a0f436d088e0aecaaa2e619682c323408a9e2c79"
+  integrity sha512-PdpgIPn7ipCzU5KBA+ED6Yy0kPqpZsWzoqI69ZJvcMtUfTzWrNfDeEdv2kd5aMAU3Iqs4PYFREAZjcthS/nqQw==
   dependencies:
     deepmerge "^2.1.1"
     hoist-non-react-statics "^3.3.0"
@@ -7305,6 +7305,11 @@ react-native-app-intro-slider@^3.0.0:
   resolved "https://registry.yarnpkg.com/react-native-app-intro-slider/-/react-native-app-intro-slider-3.0.0.tgz#c3620b967503ce410b3d767252392bb6fb2edf97"
   integrity sha512-2XXUYnSeMYZTLhdRYHSwv8mhoyuEaYxmQfXrWQInH1QvjsnJtKgvORI3bJuJN+tNPg3aut6JYYCNOFsI5of32A==
 
+react-native-calendar-events@^1.7.3:
+  version "1.7.3"
+  resolved "https://registry.yarnpkg.com/react-native-calendar-events/-/react-native-calendar-events-1.7.3.tgz#1c9f9989bfec5ae7c3a3c72572f0d68d43de0d41"
+  integrity sha512-IbtfPDpD6PLx6XQQK0X5f9gIt12iyItoSlMbPgfalz646KUqppU2L0xo4v7kZFy1D2tVDX0gpuPlwJMT2dTeNg==
+
 react-native-code-push@^6.0.0:
   version "6.0.0"
   resolved "https://registry.yarnpkg.com/react-native-code-push/-/react-native-code-push-6.0.0.tgz#4b91159b3ed9495fd8cbf39b07a93e921f810420"
@@ -7376,15 +7381,15 @@ react-native-fs@^2.16.2:
     base-64 "^0.1.0"
     utf8 "^3.0.0"
 
-react-native-gallery-swiper@^1.23.1:
-  version "1.23.1"
-  resolved "https://registry.yarnpkg.com/react-native-gallery-swiper/-/react-native-gallery-swiper-1.23.1.tgz#3f9fa2c4424a868eabfeac0398da75ed8a317898"
-  integrity sha512-cjaG5JZhRe65gXUE3cWBr97aMI898C7eN9bYnivu5F9F/djz4F1zXCdCUAfsz62ljcOtGx4hTfbzYGqv/rAeHQ==
+react-native-gallery-swiper@^1.24.1:
+  version "1.24.1"
+  resolved "https://registry.yarnpkg.com/react-native-gallery-swiper/-/react-native-gallery-swiper-1.24.1.tgz#85f585dd3a541fd5be8e91089f15fa24c7cac967"
+  integrity sha512-rp+dexfNVfaJHoPZvJWDRQV48JbNG3zhBim45ad6od7zILbytdeuFMn2q6NtpyqUzmFRRrfU7qInnzwLGTutJw==
   dependencies:
     prop-types "^15.6.2"
     react-native-easy-guesture-responder "^1.1.3"
     react-native-image-transformer "^1.2.1"
-    react-native-page-list "^1.0.4"
+    react-native-page-list "^1.1.1"
 
 react-native-geodb@^1.5.0:
   version "1.5.0"
@@ -7401,10 +7406,10 @@ react-native-geolocation-service@^3.1.0:
   dependencies:
     "@react-native-community/geolocation" "^1.4.2"
 
-react-native-gesture-handler@^1.5.2:
-  version "1.5.2"
-  resolved "https://registry.yarnpkg.com/react-native-gesture-handler/-/react-native-gesture-handler-1.5.2.tgz#281111550bf1eee10b7feba5278d142169892731"
-  integrity sha512-Xp03dq4XYVTD0xmWx4DW4eX+ox1NQLjHmbykspTdS5FCNIVIOekVXRLFCw1698/v8dYUHApNo6K3s3BCD8fqPA==
+react-native-gesture-handler@^1.5.3:
+  version "1.5.3"
+  resolved "https://registry.yarnpkg.com/react-native-gesture-handler/-/react-native-gesture-handler-1.5.3.tgz#191b44701fab7ba54c27a2438cb5eaa252666e66"
+  integrity sha512-y2/jw0uHAQtEPR02PHAah6tdMymrVtZFoHqjlEWdhK807w2sgU5CySYINK/nOTczd+zB4GMX+9euA3VfbGJ5aA==
   dependencies:
     hammerjs "^2.0.8"
     hoist-non-react-statics "^2.3.1"
@@ -7431,6 +7436,11 @@ react-native-image-transformer@^1.2.1:
   dependencies:
     prop-types "^15.6.2"
     react-native-easy-view-transformer "^1.1.1"
+
+react-native-localize@^1.3.1:
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/react-native-localize/-/react-native-localize-1.3.1.tgz#d0b7046acd4214ac2bcb61102317374351400c76"
+  integrity sha512-Y3LzTHyrgsIsDYvjWSRguARBKjiLaahcbJg663ZqP1Tcpan4LYn/f3iusM+Oh6qYvClnlo9AlBkLdCZbWwe7Tw==
 
 react-native-modal-datetime-picker@^7.6.1:
   version "7.6.1"
@@ -7467,10 +7477,10 @@ react-native-open-maps@^0.3.4:
   dependencies:
     query-string "^6.1.0"
 
-react-native-page-list@^1.0.4:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/react-native-page-list/-/react-native-page-list-1.1.0.tgz#12aa17efa9a53eea024fb367814165e21d7f542f"
-  integrity sha512-WeO09bIUHqvm3J56LO+pELw7ZbNUSeQHAOrhIXoXZlDlyg/1MrjKg5WvtUVYBjQzCf7vZliL9Z04Ek/J9HqIUw==
+react-native-page-list@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/react-native-page-list/-/react-native-page-list-1.1.1.tgz#b66cec532e1494eb296037872d0beb360822d022"
+  integrity sha512-5k7emludG6ZIrmrtbzhdNXNEQVuZIDbKqOYo/AaqaVbwiZZz7VmKhs4NU/Re6Oxp4ptuqlCvBnXkXBVNf/3fnA==
   dependencies:
     prop-types "^15.6.2"
     react-native-easy-guesture-responder "^1.1.2"
@@ -7485,10 +7495,9 @@ react-native-paper@^3.4.0:
     color "^3.1.2"
     react-native-safe-area-view "^0.14.6"
 
-react-native-photo-view@^1.5.2:
+"react-native-photo-view@https://github.com/alwx/react-native-photo-view":
   version "1.5.2"
-  resolved "https://registry.yarnpkg.com/react-native-photo-view/-/react-native-photo-view-1.5.2.tgz#5d7f406ed5532a5a8a78c8ef8f40e81f688de1e2"
-  integrity sha1-XX9AbtVTKlqKeMjvj0DoH2iN4eI=
+  resolved "https://github.com/alwx/react-native-photo-view#e28f5416574cbfa07b2d4fa862c0048df56f7b02"
   dependencies:
     prop-types "^15.5.10"
 

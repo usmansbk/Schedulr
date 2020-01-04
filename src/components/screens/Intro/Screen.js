@@ -4,7 +4,6 @@ import { Text, Headline } from 'react-native-paper';
 import AppIntroSlider from 'react-native-app-intro-slider';
 import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
-import walkthrough from 'i18n/walkthrough';
 import colors from 'config/colors';
 
 const styles = StyleSheet.create({
@@ -40,7 +39,7 @@ class Intro extends React.Component {
   };
 
   get slides() {
-    return walkthrough(this.props.stores.settingsStore.language);
+    return I18n.get('walkthrough');
   }
 
   _renderItem = ({ item, dimensions }) => {

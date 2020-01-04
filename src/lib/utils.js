@@ -87,8 +87,9 @@ export function getInitials(name) {
   return avatarName;
 }
 
-export function mergeEvents(data) {
-  let allEvents = [];
+export function mergeEvents(data, calendarEvents=[]) {
+
+  let allEvents = injectAds([]).concat(calendarEvents);
 
   if (!data) return allEvents;
 
@@ -190,7 +191,7 @@ export function ellipsisMode(str) {
   return trimmed;
 }
 
-export function injectAds(events, index, recurrence="NEVER") {
+export function injectAds(events, index=0, recurrence="NEVER") {
   const ad = {
     id: '__ads__',
     __typename: 'Advert',
@@ -205,4 +206,19 @@ export function injectAds(events, index, recurrence="NEVER") {
 
 export function filterBlacklist(filters, blacklist) {
   return filters.filter(item => !blacklist.includes(item))
+}
+
+export function getSeason() {
+  const m = moment();
+  const month = m.month();
+  switch(month) {
+    case 11: case 0: case 1:
+      return 'winter';
+    case 2: case 3: case 4:
+      return 'spring';
+    case 5: case 6: case 7:
+      return 'summer';
+    default:
+      return 'fall';
+  }
 }

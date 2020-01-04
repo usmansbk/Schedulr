@@ -61,7 +61,7 @@ class Form extends React.Component {
       startAt: moment().toISOString(),
       endAt: moment().add(2, 'hours').toISOString(),
       allDay: false,
-      category: 'Normal',
+      category: 'Event',
       recurrence: recurrence[0].id,
       until: null,
       forever: false,

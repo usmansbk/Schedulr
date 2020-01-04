@@ -30,6 +30,7 @@ export default class Picker extends React.Component {
       visible,
       hideModal,
       language,
+      location,
       iconColor,
     } = this.props;
 
@@ -50,7 +51,10 @@ export default class Picker extends React.Component {
               key: env.GEODB_API_KEY
             }}
             params={{
-              language
+              languageCode: language,
+              location,
+              radius: '2000',
+              distanceUnit: 'KM'
             }}
             renderLeftButton={() => <IconButton
               onPress={hideModal}

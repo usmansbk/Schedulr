@@ -13,7 +13,8 @@ import {
   schedule_search,
   WIDTH,
   MEDIUM_RECTANGLE,
-  BANNER
+  BANNER,
+  dp
 } from 'lib/constants';
 
 export default class AppStyles {
@@ -94,7 +95,7 @@ export default class AppStyles {
     return StyleSheet.create({
       container: {
         backgroundColor: colors.bg,
-        height: 36,
+        height: dp(36),
       },
       itemContent: {
         flex: 1,
@@ -105,7 +106,7 @@ export default class AppStyles {
         borderColor: colors.light_gray_3,
         margin: 4,
         paddingHorizontal: 12,
-        borderRadius: 16
+        borderRadius: dp(16)
       },
       selected : {
         backgroundColor: colors.primary_light,
@@ -133,7 +134,7 @@ export default class AppStyles {
         borderRadius: 4,
         borderWidth: 1 * StyleSheet.hairlineWidth,
         padding: 4,
-        height: 48,
+        height: dp(48),
         flexDirection: 'row',
         alignItems: 'center',
       },
@@ -197,23 +198,23 @@ export default class AppStyles {
         fontFamily: 'sans-serif-bold',
         fontWeight: 'bold'
       },
-      Cancelled: {
+      cancelled: {
         color: colors.light_red,
       },
-      Ongoing: {
+      ongoing: {
         color: colors.green
       },
-      Done: {
+      done: {
         color: colors.tint,
       },
-      Upcoming: {
+      upcoming: {
         color: colors.yellow,
       },
-      Closed: {
+      closed: {
         color: colors.light_red,
         fontSize: 12
       },
-      Concluded: {
+      concluded: {
         color: colors.tint,
       }
     });
@@ -227,7 +228,7 @@ export default class AppStyles {
         justifyContent: 'center'
       },
       content: {
-        height: 48,
+        height: dp(48),
         justifyContent: 'center'
       },
       text: {
@@ -247,7 +248,8 @@ export default class AppStyles {
         backgroundColor: colors.bg
       },
       textInputContainer: {
-        backgroundColor: colors.light_gray_2
+        backgroundColor: colors.light_gray_2,
+        height: dp(54)
       },
       textInput: {
         backgroundColor: colors.textInput,
@@ -278,7 +280,7 @@ export default class AppStyles {
         flex: 1
       },
       button: {
-        height: 48,
+        height: dp(48),
         justifyContent: 'center',
         paddingHorizontal: 8,
         borderWidth,
@@ -319,7 +321,7 @@ export default class AppStyles {
         flex: 1,
         borderWidth,
         borderColor: colors.placeholder,
-        height: 48,
+        height: dp(48),
         justifyContent: 'center',
         paddingHorizontal: 8,
         borderRightWidth: 0,
@@ -329,7 +331,7 @@ export default class AppStyles {
       timeButton: {
         borderWidth,
         borderColor: colors.placeholder,
-        height: 48,
+        height: dp(48),
         justifyContent: 'center',
         paddingHorizontal: 8,
         borderLeftWidth: 0,
@@ -371,8 +373,8 @@ export default class AppStyles {
       },
       text: {
         fontSize: 16,
-        color: colors.placeholder,
-        fontFamily: 'sans-serif-bold'
+        fontWeight: 'bold',
+        color: colors.primary,
       },
       textInput: {
         backgroundColor: colors.bg
@@ -432,7 +434,7 @@ export default class AppStyles {
         marginVertical: 8
       },
       picker: {
-        height: 48,
+        height: dp(48),
         color: colors.black,
         borderWidth: 1,
         borderColor: colors.gray,
@@ -625,8 +627,8 @@ export default class AppStyles {
         backgroundColor: colors.bg
       },
       menuButton: {
-        width: 48,
-        height: 48,
+        width: dp(48),
+        height: dp(48),
         borderRadius: 24,
         justifyContent: 'center',
         alignItems: 'center',
@@ -816,7 +818,7 @@ export default class AppStyles {
         backgroundColor: colors.light_gray
       },
       footer: {
-        height: 80,
+        height: dp(80),
         justifyContent: 'center',
         alignItems: 'center'
       },
@@ -921,7 +923,7 @@ export default class AppStyles {
         fontSize: 16
       },
       footer: {
-        height: 80,
+        height: dp(80),
         justifyContent: 'center',
         alignItems: 'center'
       },
@@ -941,7 +943,7 @@ export default class AppStyles {
         backgroundColor: colors.light_gray_4
       },
       itemContent: {
-        height: 80,
+        height: dp(80),
         paddingVertical: 4,
         paddingHorizontal: 8,
         flexDirection: 'row',
@@ -1011,7 +1013,7 @@ export default class AppStyles {
       },
       item: {
         width: '100%',
-        height: 50,
+        height: dp(50),
         borderBottomColor: '#0002',
         borderBottomWidth: 0.5,
         paddingHorizontal: 20,
@@ -1349,7 +1351,7 @@ export default class AppStyles {
       },
       unavailableItemContent: {
         paddingTop: 4,
-        height: 40,
+        height: dp(40),
         flexDirection: 'row',
         paddingHorizontal: 8,
         justifyContent: 'space-between'
@@ -1411,8 +1413,8 @@ export default class AppStyles {
     const colors = this.settings.dark ? dark : light;
     return StyleSheet.create({
       container: {
-        width: 300,
-        height: 250,
+        width: dp(300),
+        height: dp(250),
         justifyContent: 'center',
         alignItems: 'center',
         margin: 4,
@@ -1634,13 +1636,13 @@ export default class AppStyles {
       privateIcon: {
         borderRadius: 5,
         position: 'absolute',
-        top: 17,
-        right: 17,
+        top: dp(17),
+        right: dp(17),
       },
       authorAvatar: {
         position: 'absolute',
-        bottom: 8,
-        left: 36
+        bottom: dp(8),
+        left: dp(36)
       }
     });
   }
@@ -1702,7 +1704,7 @@ export default class AppStyles {
         fontWeight: 'bold'
       },
       loadPrevHeaderContainer: {
-        height: 32
+        height: dp(32)
       },
       footerContainer: {
         height: FOOTER_HEIGHT
@@ -1819,7 +1821,7 @@ export default class AppStyles {
   @computed get moreList () {
     const colors = this.settings.dark ? dark : light;
     const SEPARATOR_HEIGHT = 1;
-    const HEADER_HEIGHT = 100;
+    const HEADER_HEIGHT = dp(100);
 
     return StyleSheet.create({
       container: {
@@ -1872,7 +1874,7 @@ export default class AppStyles {
         backgroundColor: colors.actionsheet
       },
       titleBox: {
-        height: 40,
+        height: dp(40),
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: colors.bg
@@ -1882,7 +1884,7 @@ export default class AppStyles {
         fontSize: 14
       },
       messageBox: {
-        height: 30,
+        height: dp(30),
         paddingLeft: 10,
         paddingRight: 10,
         paddingBottom: 10,
@@ -1895,7 +1897,7 @@ export default class AppStyles {
         fontSize: 12
       },
       buttonBox: {
-        height: 50,
+        height: dp(50),
         marginTop: hairlineWidth,
         alignItems: 'center',
         justifyContent: 'center',
@@ -1905,7 +1907,7 @@ export default class AppStyles {
         fontSize: 18
       },
       cancelButtonBox: {
-        height: 50,
+        height: dp(50),
         marginTop: 6,
         alignItems: 'center',
         justifyContent: 'center',

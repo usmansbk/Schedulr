@@ -20,6 +20,7 @@ class ImageViewer extends React.Component {
   };
 
   _toggleLoadingImage = () => this.setState(prev => ({ loadingImage: !prev.loadingImage }));
+  _onError = (error) => logger.log(error.message);
 
   _downloadImage = async () => {
     const { stores, s3Object: { key, name } } = this.props;
@@ -142,6 +143,7 @@ class ImageViewer extends React.Component {
             style={ uri ? {flex: 1} : { alignSelf: 'center', width: 400, height: 400 }}
             onLoadStart={this._toggleLoadingImage}
             onLoadEnd={this._toggleLoadingImage}
+            onError={this._onError}
           />
         )
       }

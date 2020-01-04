@@ -53,7 +53,7 @@ class Item extends React.Component {
         onPress={this._onPress}
         style={styles.itemContainer}
       >
-        <View useNativeDriver style={styles.itemContentSmall}>
+        <View style={styles.itemContentSmall}>
           <View style={styles.left}>
             <Avatar
               size={AVATAR_SIZE}

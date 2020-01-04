@@ -11,7 +11,9 @@ export default ({ disabled, onPress }) => (
     style={styles.container}
   >
     <View style={styles.content}>
-      <Text style={styles.text}>
+      <Text
+        allowFontScaling={false}
+        style={styles.text}>
         {I18n.get("BUTTON_continueWithEmail")}
       </Text>
     </View>

@@ -5,6 +5,7 @@ import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
 import LogoutDialog from 'components/dialogs/Logout';
 import SyncDialog from 'components/dialogs/Sync';
+import CalendarDialog from 'components/dialogs/Calendar';
 import Header from './Header';
 import Footer from './Footer';
 import Item from './Item';
@@ -15,10 +16,15 @@ import { shareApp } from 'helpers/share';
 class List extends React.Component {
   state = {
     visible: false,
-    showSyncAlert: false
+    showSyncAlert: false,
+    showImportDialog: false
   };
   _openDialog = () => this.setState({ visible: true });
-  _hideDialog = () => this.setState({ visible: false, showSyncAlert: false });
+  _hideDialog = () => this.setState({
+    visible: false,
+    showSyncAlert: false,
+    showImportDialog: false
+  });
   _onPressHeader = () => {
     const id = this.props.stores.appState.userId;
     this.props.navigation.navigate('UserProfile', {
@@ -40,6 +46,9 @@ class List extends React.Component {
         break;
       case 'sync':
         this.setState({ showSyncAlert: true });
+        break;
+      case 'import-calendar':
+        this.setState({ showImportDialog: true });
         break;
       default:
         break;
@@ -82,6 +91,11 @@ class List extends React.Component {
         />
         <LogoutDialog
           visible={this.state.visible}
+          handleDismiss={this._hideDialog}
+          onConfirm={this._hideDialog}
+        />
+        <CalendarDialog
+          visible={this.state.showImportDialog}
           handleDismiss={this._hideDialog}
           onConfirm={this._hideDialog}
         />

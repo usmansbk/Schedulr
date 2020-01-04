@@ -6,8 +6,7 @@ import { momentCounter } from './time';
 
 export const getCategory = (category) => {
   if (!category) return '';
-  if (category.toLowerCase().trim() === 'normal') return '';
-  return category;
+  return I18n.get(category);
 };
 
 export const isEventCancelled = (event) => {
@@ -23,14 +22,14 @@ export const getStatus = ({
   endAt,
   isConcluded
 }) => {
-  if (isConcluded) return I18n.get("STATUS_concluded");
+  if (isConcluded) return "concluded";
   const cancelled =  isEventCancelled({ cancelledDates, startAt, isCancelled });
-  if (cancelled) return I18n.get("STATUS_cancelled");
+  if (cancelled) return "cancelled";
   const isEnded = moment().twix(endAt).isPast();
-  if (isEnded) return I18n.get("STATUS_done");
+  if (isEnded) return "done";
   const isOngoing = moment(startAt).twix(endAt).isCurrent();
-  if (isOngoing) return I18n.get('STATUS_ongoing');
-  return I18n.get("STATUS_upcoming");
+  if (isOngoing) return "ongoing";
+  return "upcoming";
 };
 
 export const isEventValid = (event) => {
@@ -62,20 +61,23 @@ export const captionDetails = ({
   ref_date
 }) => {
   const isSameDay = moment(startAt).isSame(endAt, 'D');
-  const startMoment = moment(startAt).startOf('D');
-  const endMoment = moment(endAt).endOf('D');
 
-  let span;
+  let currentDayCount, totalDayCount;
   if (!isSameDay) {
-    span = startMoment.from(endMoment, true);
     const count = momentCounter({ startAt, ref_date });
-    if (count) {
-      span = `${count + 1} of ${span}`;
+    currentDayCount = count + 1;
+    totalDayCount = momentCounter({ startAt, ref_date: endAt }) + 1;
+  }
+  let caption;
+  if (allDay) {
+    caption = I18n.get("EVENT_CAPTION_allDay")({ type: category, recurrence: I18n.get(recurrence) });
+  } else {
+    if (currentDayCount) {
+      caption = I18n.get("EVENT_CAPTION_xthDayOfType")({ currentDayCount, totalDayCount, type: category });
+    } else {
+      caption = I18n.get("EVENT_CAPTION_xDurationRecurrenceType")({ duration, recurrence: I18n.get(recurrence), type: category });
     }
   }
-  const validCategory = category ? ' ' + category : '';
-  const caption = allDay ? (`${recurrence}${validCategory}`) : (
-    `${span || duration}${recurrence ? ' ' + recurrence : ''}${validCategory}`);
   let formatted = capitalize(caption.trim());
   return formatted;
 };

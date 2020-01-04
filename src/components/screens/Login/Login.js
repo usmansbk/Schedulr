@@ -2,6 +2,7 @@ import React from 'react';
 import { View, StatusBar } from 'react-native';
 import { Caption, Headline, ActivityIndicator } from 'react-native-paper';
 import { inject, observer } from 'mobx-react';
+import { I18n } from 'aws-amplify';
 import GLoginButton from 'components/social_buttons/GLoginButton';
 import FBLoginButton from 'components/social_buttons/FBLoginButton';
 import EmailLoginButton from 'components/social_buttons/EmailLoginButton';
@@ -15,9 +16,9 @@ export default inject("stores")(observer((props) => (
         barStyle="dark-content"
       />
       <Logo />
-      <Headline style={styles.h1}>Welcome to Schdlr!</Headline>
-      <Caption style={styles.caption}>
-        The event scheduler
+      <Headline allowFontScaling={false} style={styles.h1}>{I18n.get("APP_welcome")}</Headline>
+      <Caption allowFontScaling={false} style={styles.caption}>
+        {I18n.get("APP_caption")}
       </Caption>
       <View style={styles.content}>
         {
@@ -30,8 +31,8 @@ export default inject("stores")(observer((props) => (
           )
         }
       </View>
-      <Caption style={styles.caption}>
-        Share your schedules!
+      <Caption allowFontScaling={false} style={styles.caption}>
+        {I18n.get("APP_footerCaption")}
       </Caption>
     </View>
 )));

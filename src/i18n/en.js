@@ -1,5 +1,15 @@
 import { capitalize } from 'lib/utils';
+
+const DATE_FORMAT = 'MMMM DD, YYYY';
+const DAY_FORMAT = 'dddd';
+const NEXT_LAST_FORMAT = 'dddd, Do';
+const CAL_TIME_FORMAT = 'DD MMM YYYY hh:mm';
+
 export default {
+  APP_welcome: 'Welcome to Schdlr!',
+  APP_caption: 'The event scheduler',
+  APP_footerCaption: 'Share your schedules!',
+
   ACTION_filterByType: filter => "Filter By Type: " + capitalize(filter),
   ACTION_all: "All",
   ACTION_events: "Events",
@@ -19,6 +29,8 @@ export default {
   FOLLOWERS_loadMore: "Load more",
 
   EVENTS_emptyList: "No upcoming events",
+  EVENT_noLocationSet: "No location set",
+  EVENT_noDescription: "No description",
   EVENTS_SECTIONLIST_after: date => `After ${date}`,
   EVENTS_SECTIONLIST_noMoreEvents: () => "No more events",
   EVENTS_SECTIONLIST_before: date => `Before ${date}`,
@@ -44,6 +56,7 @@ export default {
   MORE_help: "Help",
   MORE_signOut: "Sign out",
   MORE_sync: "Sync",
+  MORE_importCalendar: "Import Calendar",
 
   DISCOVER_emptyList: "Discover",
   DISCOVER_turnOnLocation: "Use your location",
@@ -78,11 +91,11 @@ export default {
   SETTINGS_darkTheme: "Dark theme",
   SETTINGS_location: "Location",
   SETTINGS_reminderSectionTitle: "Reminder",
-  SETTINGS_reminderDisable: "Mute all events",
+  SETTINGS_disableReminders: "Mute all events",
   SETTINGS_remindMe: "Remind me",
   SETTINGS_pushSectionTitle: "Push notification",
-  SETTINGS_pushDisable: "Disable",
-  SETTINGS_disableComment: "Disable comments",
+  SETTINGS_disablePush: "Disable",
+  SETTINGS_disableComments: "Disable comments",
   SETTINGS_disableAdminComment: "Disable admin comments",
   SETTINGS_enableMembersComment: "Enable members comments",
   SETTINGS_disableReplies: "Disable replies",
@@ -111,12 +124,13 @@ export default {
   HELP_build: "Build version",
   HELP_privacy: "Privacy Policy",
 
+  BUTTON_import: "Import",
   BUTTON_cancel: "Cancel",
   BUTTON_create: "create",
   BUTTON_save: "save",
   BUTTON_signout: "Sign out",
   BUTTON_ok: "Ok",
-  BUTTON_help: "Help",
+  BUTTON_help: "HELP",
   BUTTON_dontShowAgain: "Don't show again",
   BUTTON_askMeLater: "Ask me later",
   BUTTON_yes: "Yes",
@@ -129,6 +143,7 @@ export default {
   BUTTON_back: "Back",
   BUTTON_loading: "Loading...",
   BUTTON_tryAgain: "Try again",
+  BUTTON_addMyCalendar: "Add My Calendar",
   BUTTON_continueWithEmail: "Continue with email",
   BUTTON_continueWithGoogle: "Continue with Google",
   BUTTON_continueWithFacebook: "Continue with Facebook",
@@ -144,6 +159,7 @@ export default {
   BUTTON_unmute: "Unmute",
   BUTTON_unmuteEvents: "Unmute Reminder",
   BUTTON_unfollow: "Unfollow",
+  BUTTON_sync: "Sync",
   BUTTON_turnOnLocation: "Turn on",
 
   ALERT_repeat: "Repeat",
@@ -198,24 +214,41 @@ export default {
   PROFILE_FORM_bio: "Bio",
   PROFILE_joined: date => `Joined ${date}`,
 
+  VENUE: "VENUE",
+  REPEAT: "REPEAT",
+  CREATED: "CREATED",
+  UNTIL: "UNTIL",
+  STARTED: "STARTED",
+  AUTHOR: "AUTHOR",
+  EDITED: "EDITED",
+  
   EVENT_FORM_title: "Title",
   EVENT_FORM_description: "Description",
   EVENT_FORM_venue: "Venue",
-  EVENT_FORM_category: "Event Type",
-  EVENT_FORM_from: "From",
-  EVENT_FORM_to: "To",
-  EVENT_FORM_allDay: "All-day",
-  EVENT_FORM_repetition: "Repetition",
+  EVENT_FORM_category: "EVENT TYPE",
+  EVENT_FORM_from: "FROM",
+  EVENT_FORM_to: "TO",
+  EVENT_FORM_allDay: "ALL DAY EVENT",
+  EVENT_FORM_repetition: "RECURRENCE",
   EVENT_FORM_public: "Public",
-  EVENT_FORM_schedule: "Schedule",
-  EVENT_FORM_repeat: "Repeat",
-  EVENT_FORM_repeatForever: "Repeat forever",
-  EVENT_FORM_repeatUntil: "Repeat until",
+  EVENT_FORM_schedule: "SCHEDULE",
+  EVENT_FORM_repeat: "REPEAT",
+  EVENT_FORM_repeatForever: "REPEAT FOREVER",
+  EVENT_FORM_repeatUntil: "REPEAT UNTIL",
   EVENT_FORM_selectASchedule: "Select a schedule",
   EVENT_FORM_noSchedule: "No schedule",
   EVENT_FORM_addToASchedule: "Add to a schedule",
 
   EVENT_ITEM_allDay: "All day",
+  EVENT_CAPTION_allDay: ({ type, recurrence }) => {
+    return `${recurrence} ${type}`;
+  },
+  EVENT_CAPTION_xthDayOfType: ({ type, totalDayCount, currentDayCount }) => {
+    return `${type ? type + ' day' : 'Day'} ${currentDayCount} of ${totalDayCount}`;
+  },
+  EVENT_CAPTION_xDurationRecurrenceType: ({ duration, recurrence, type }) => {
+    return `${duration}${recurrence ? ` ${recurrence}` : ''}${type ? ` ${type}` : '' }`;
+  },
 
   SCHEDULE: "SCHEDULE",
   SCHEDULE_public: "Public schedule",
@@ -223,7 +256,7 @@ export default {
   SCHEDULE_FORM_name: "Name",
   SCHEDULE_FORM_description: "Description",
   SCHEDULE_FORM_private: "Private",
-  SCHEDULE_FORM_public: "Public",
+  SCHEDULE_FORM_public: "PUBLIC",
 
   SCHEDULE_followerCount: "Follower",
   SCHEDULE_followerCounts: "Followers",
@@ -331,5 +364,124 @@ export default {
   TEXT_addImagesToAlbum: "Add Images to album",
   TEXT_noAlbum: "Photo Album Empty",
   TEXT_noBanner: "No Event Banner",
-  TEXT_album: "Album"
+  TEXT_album: "Album",
+
+  MOMENT_left: from => `${from} left`,
+  Today: 'Today',
+
+  calendarFormats: {
+    sameDay: '[Today], ddd Do',
+    nextDay: '[Tomorrow], ddd Do',
+    nextWeek: 'dddd, Do',
+    lastDay: '[Yesterday], ddd Do',
+    lastWeek: '[Last] dddd, Do',
+    sameElse: 'ddd, Do MMM YYYY',
+  },
+
+  headingCalendarFormats : {
+    sameDay: '[Today]',
+    nextDay: '[Tomorrow]',
+    nextWeek: DAY_FORMAT,
+    lastDay: '[Yesterday]',
+    lastWeek: '[Last] dddd',
+    sameElse: DATE_FORMAT
+  },
+  calendarTimeFormats : {
+    sameDay: '[Today] [at] HH:mm',
+    nextDay: '[Tomorrow]',
+    nextWeek: DAY_FORMAT,
+    lastDay: '[Yesterday] [at] hh:mm',
+    lastWeek: CAL_TIME_FORMAT,
+    sameElse: CAL_TIME_FORMAT 
+  },
+  subheadingCalendarFormats : {
+    sameDay: NEXT_LAST_FORMAT,
+    nextDay: NEXT_LAST_FORMAT,
+    nextWeek: DATE_FORMAT,
+    lastDay: NEXT_LAST_FORMAT,
+    lastWeek: DATE_FORMAT,
+    sameElse: DAY_FORMAT
+  },
+  categories : [
+    'Event',
+    'Lecture',
+    'Examination',
+    'Test',
+    'Meetup',
+    'Studies',
+    'Work',
+    'Sport',
+    'Meeting',
+    'Festivity',
+    'Competition',
+    'Hackathon'
+  ],
+  blacklist :[
+    'Test',
+    'Lecture',
+    'Studies',
+    'Examination',
+    'Event',
+    'Meeting'
+  ],
+  personalSchedule: {
+    name: "Personal List 📝",
+    description: "My appointments.",
+    isPublic: false
+  },
+  timeLabels: {
+    d: 'Days',
+    h: 'Hours',
+    m: 'Mins',
+    s: 'Sec'
+  },
+  daily: 'daily',
+  weekly: 'weekly',
+  weekdays: 'weekdays',
+  monthly: 'monthly',
+  yearly: 'yearly',
+  walkthrough : [
+    {
+      key: 'p1',
+      title: 'Schdlr',
+      text: 'Schdlr is a social event scheduler',
+      image: require('../assets/student.png'),
+      backgroundColor: '#22bcb5',
+    },
+    {
+      key: 'p2',
+      title: 'Create schedules easily!',
+      text: 'Enter a schedule name and your schedule is ready to be used and shared.',
+      image: require('../assets/list-app.png'),
+      backgroundColor: '#63a4ff',
+    },
+    {
+      key: 'p3',
+      title: 'Add events to your schedules!',
+      text: 'Organize your events by grouping them in specific schedules.',
+      image: require('../assets/calendar.png'),
+      backgroundColor: '#00897b',
+    },
+    {
+      key: 'p4',
+      title: 'Keep everyone Up-to-date!',
+      text: 'Create schedules for events in your life and invite people to follow and share them.',
+      image: require('../assets/handshake.png'),
+      backgroundColor: '#ab47bc',
+    },
+    {
+      key: 'p5',
+      title: "Follow schedules of interest!",
+      text: 'Follow schedules and get their events offline reminders and real-time updates.',
+      image: require('../assets/app-user.png'),
+      backgroundColor: '#673ab7',
+    },
+    {
+      key: 'p6',
+      title: "Welcome to Schdlr!",
+      text: 'Schdlr helps you to organize your events, by creating schedules to keep everyone up-to-date.',
+      image: require('../assets/schoolbooks.png'),
+      backgroundColor: '#22bcb5',
+    },
+  ]
 };

@@ -39,6 +39,7 @@ class Footer extends React.Component {
 
 const withApi = graphql(gql(getAlbum), {
   options: props => ({
+    fetchPolicy: 'cache-first',
     variables: {
       id: props.navigation.getParam('id')
     }

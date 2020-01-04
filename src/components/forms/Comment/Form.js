@@ -165,7 +165,7 @@ class CommentInput extends React.Component {
                 numberOfLines={1}
                 ellipsizeMode="tail"
                 style={styles.alertTitle}
-              >{I18n.get('Replying')} <Text style={styles.targetName}>{targetName}</Text>
+              >{I18n.get('@')}<Text style={styles.targetName}>{targetName}</Text>
               </Text>
               <Button compact mode="text" onPress={cancelReply}>{I18n.get("BUTTON_cancel")}</Button>
             </View>

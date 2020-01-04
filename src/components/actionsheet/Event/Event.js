@@ -35,24 +35,28 @@ class EventAction extends React.Component {
       isBookmarked,
       removeBookmark,
       bookmarkEvent,
-      bookmarkScheduleId
+      bookmarkScheduleId,
+      isCalendarEvent
     } = this.props;
-    const input = {
-      id: `${stores.appState.userId}-${id}`,
-    };
-    try {
-      if (isBookmarked) {
-        await removeBookmark(input, id);
-      } else {
-        input.bookmarkEventId = id,
-        input.bookmarkScheduleId = bookmarkScheduleId;
-        await bookmarkEvent(input);
+    if (isCalendarEvent) {
+    } else {
+      const input = {
+        id: `${stores.appState.userId}-${id}`,
+      };
+      try {
+        if (isBookmarked) {
+          await removeBookmark(input, id);
+        } else {
+          input.bookmarkEventId = id,
+          input.bookmarkScheduleId = bookmarkScheduleId;
+          await bookmarkEvent(input);
+        }
+        if (!isBookmarked) {
+          stores.snackbar.show(I18n.get(`TOAST_${isBookmarked ? "removed" : "saved"}`));
+        }
+      } catch (error) {
+        logger.logError(error);
       }
-      if (!isBookmarked) {
-        stores.snackbar.show(I18n.get(`TOAST_${isBookmarked ? "removed" : "saved"}`));
-      }
-    } catch (error) {
-      logger.logError(error);
     }
   };
 
@@ -66,10 +70,10 @@ class EventAction extends React.Component {
         InteractionManager.runAfterInteractions(this._handleShare);
         break;
       case 1:
-        InteractionManager.runAfterInteractions(this._handleBookmark);
+        InteractionManager.runAfterInteractions(this._toggleMute);
         break;
       case 2:
-        InteractionManager.runAfterInteractions(this._toggleMute);
+        InteractionManager.runAfterInteractions(this._handleBookmark);
         break;
     }
   };
@@ -78,14 +82,19 @@ class EventAction extends React.Component {
     const { 
       title,
       isBookmarked,
+      isCalendarEvent,
       isMuted,
       stores
     } = this.props;
 
     const options = [I18n.get('BUTTON_back')];
+    if (!isCalendarEvent) {
+      options.unshift(
+        isBookmarked ? I18n.get('BUTTON_removeBookmark') : I18n.get('BUTTON_bookmark')
+      )
+    }
     options.unshift(
       I18n.get('BUTTON_shareVia'),
-      isBookmarked ? I18n.get('BUTTON_removeBookmark') : I18n.get('BUTTON_bookmark'),
       isMuted ? I18n.get('BUTTON_unmute') : I18n.get('BUTTON_mute')
     );
     const cancelButtonIndex = options.length - 1;

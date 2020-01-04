@@ -8,9 +8,11 @@ export default class RemindMe {
   @persist @observable thirtyMin = false;
   @persist @observable oneHour = false;
   @persist @observable oneDay = false;
+  @observable extraData = 0;
 
   @action toggle(key) {
     this[key] = !this[key];
+    this.extraData += 1;
   }
 
   @action reset() {

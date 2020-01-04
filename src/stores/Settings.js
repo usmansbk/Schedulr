@@ -15,11 +15,15 @@ export default class SettingsState {
   @persist @observable vibrate = true;
   @persist @observable disableReminders = false;
   @persist @observable headsUp = false;
+  @persist @observable darkTheme = false;
   @persist @observable bookmarkedEventsOnly = false;
   @persist('object') @observable userPreference = null;
+  @observable extraData = 0;
 
   @action toggle (value) {
     this[value] = !this[value];
+    if (value === 'darkTheme') this.toggleTheme();
+    this.extraData += 1;
   }
 
   @action async toggleTheme () {
@@ -31,6 +35,7 @@ export default class SettingsState {
     } catch (error) {
       logger.logError(error);
     }
+    this.extraData += 1;
   }
 
   @action reset() {
@@ -59,6 +64,7 @@ export default class SettingsState {
     if (key === 'disablePush') {
       OneSignal.setSubscription(!optimisticResponse.disablePush);
     }
+    this.extraData += 1;
   }
 
   @action setUserPreference = (pref) => {

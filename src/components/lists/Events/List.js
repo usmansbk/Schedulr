@@ -12,7 +12,7 @@ import Separator from './Separator';
 import SectionHeader from './SectionHeader';
 import SectionFooter from './SectionFooter';
 import Item from './Item';
-import AdItem from './AdItem';
+import Banner from 'components/common/Banner';
 import {
   getStatus,
   parseRepeat,
@@ -24,7 +24,7 @@ import {
   getTime,
   isPast
 } from 'lib/time';
-import { eventsChanged, injectAds } from 'lib/utils';
+import { eventsChanged } from 'lib/utils';
 import {
   generatePreviousEvents,
   generateNextEvents,
@@ -106,6 +106,7 @@ class List extends React.Component {
   _renderSectionFooter = ({ section }) => <SectionFooter section={section} />;
   _onPressItem = (id, refStartAt, refEndAt) => this.props.navigation.navigate('EventDetails', { id, refStartAt, refEndAt });
   _navigateToBanner = (id) => this.props.navigation.navigate('Banner', { id });
+  _navigateToCalendarEvent = (id) => this.props.navigation.navigate('CalendarEvent', { id });
   _onPressSectionHeader = (targetDate) => {
     let id = uuidv5(this.props.stores.appState.userId, uuidv5.DNS);
     if (this.props.isOwner && this.props.id) {
@@ -196,9 +197,6 @@ class List extends React.Component {
 
   static getDerivedStateFromProps(props, state) {
     let events = props.events;
-    if (events.length) {
-      events = injectAds(events, 0);
-    }
     if (eventsChanged(state.events, events)) {
       const today = moment().startOf('day').toISOString();
       const yesterday = moment().subtract(1, 'day').endOf('day').toISOString();
@@ -253,7 +251,7 @@ class List extends React.Component {
     isOwner,
     isOffline,
     ref_date
-  }}) => __typename === 'Advert' ? <AdItem /> : (<Item
+  }}) => __typename === 'Advert' ? <Banner /> : (<Item
     id={id}
     title={title}
     startAt={startAt}
@@ -277,11 +275,7 @@ class List extends React.Component {
       cancelledDates
     })}
     address={venue}
-    isMuted={
-      this.props.stores.appState.mutedEvents.includes(id) ||
-      (!this.props.stores.appState.allowedEvents.includes(id) &&
-      this.props.stores.appState.mutedSchedules.includes(schedule.id))
-    }
+    isMuted={this.props.stores.appState.isEventMuted(id, schedule.id)}
     eventScheduleId={schedule && schedule.id}
     isBookmarked={isBookmarked}
     bookmarksCount={bookmarksCount}
@@ -291,6 +285,8 @@ class List extends React.Component {
     onPressItem={this._onPressItem}
     onPressCommentButton={this._onPressCommentItem}
     navigateToBanner={this._navigateToBanner}
+    navigateToCalendarEvent={this._navigateToCalendarEvent}
+    __typename={__typename}
   />);
 
 
@@ -306,10 +302,6 @@ class List extends React.Component {
   render() {
     const { stores, loading } = this.props;
     const { sections } = this.state;
-    const extraData = 
-          (stores.appState.mutedEvents.length +
-          stores.appState.mutedSchedules.length +
-          stores.appState.allowedEvents.length);
 
     return (
       <SectionList
@@ -320,7 +312,7 @@ class List extends React.Component {
         style={stores.appStyles.eventsList.list}
         stickySectionHeadersEnabled
         sections={sections}
-        extraData={extraData}
+        extraData={stores.appState.extraData}
         ListHeaderComponent={this._renderHeader}
         ListEmptyComponent={this._renderEmptyList}
         ItemSeparatorComponent={this._renderSeparator}

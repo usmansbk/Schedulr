@@ -4,15 +4,7 @@ import DateTimePicker from 'react-native-modal-datetime-picker';
 import { View } from 'react-native';
 import { inject, observer } from 'mobx-react';
 import Button from './Picker';
-
-const calendarFormats = {
-  sameDay: '[Today], ddd Do',
-  nextDay: '[Tomorrow], ddd Do',
-  nextWeek: 'dddd, Do',
-  lastDay: '[Yesterday], ddd Do',
-  lastWeek: '[Last] dddd, Do',
-  sameElse: 'ddd, Do MMM YYYY'
-};
+import { I18n } from 'aws-amplify';
 
 class Input extends React.Component {
 
@@ -28,7 +20,7 @@ class Input extends React.Component {
     (nextState.mode !== this.state.mode)
   );
   
-  _formatDate = (date) => moment(date).calendar(null, calendarFormats);
+  _formatDate = (date) => moment(date).calendar(null, I18n.get('calendarFormats'));
   _formatTime = (time) => moment(time).format('hh:mm a');
 
   _hidePicker = () => this.setState({ showPicker: false });

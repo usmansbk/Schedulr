@@ -106,6 +106,13 @@ export const updateEvent = `mutation UpdateEvent($input: UpdateEventInput!) {
       key
       name
     }
+    updatedAt
+  }
+}
+`;
+export const updateEventWithAlbum = `mutation UpdateEvent($input: UpdateEventInput!) {
+  updateEventWithAlbum: updateEvent(input: $input) {
+    id
     album {
       key
       bucket
@@ -114,7 +121,6 @@ export const updateEvent = `mutation UpdateEvent($input: UpdateEventInput!) {
       size
       name
     }
-    updatedAt
   }
 }
 `;

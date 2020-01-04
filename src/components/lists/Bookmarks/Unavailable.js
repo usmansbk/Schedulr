@@ -22,7 +22,7 @@ class Item extends React.Component {
 
     return (
       <TouchableRipple style={styles.itemContainer}>
-        <View useNativeDriver style={styles.unavailableItemContent}>
+        <View style={styles.unavailableItemContent}>
           <Caption
             numberOfLines={1}
             ellipsizeMode="tail">

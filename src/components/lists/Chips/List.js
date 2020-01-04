@@ -3,11 +3,10 @@ import { FlatList } from 'react-native';
 import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
 import { filterBlacklist } from 'lib/utils';
-import { ALL_FILTER } from 'lib/constants';
-import { getBlacklist } from 'i18n/categories';
+import { ALL_FILTER, chips } from 'lib/constants';
 import Item from './Item';
 
-const ITEM_HEIGHT = 48;
+const { ITEM_HEIGHT } = chips;
 
 class List extends React.Component {
   static defaultProps = {
@@ -38,7 +37,7 @@ class List extends React.Component {
 
   render() {
     const { stores, data } = this.props;
-    const blacklist = getBlacklist(stores.settingsStore.language);
+    const blacklist = I18n.get('blacklist');
     return (
       <FlatList
         horizontal

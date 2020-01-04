@@ -1,6 +1,9 @@
 import React from 'react';
 import { Image } from 'react-native';
 import { TouchableRipple, Surface } from 'react-native-paper';
+import { album } from 'lib/constants';
+
+const { ITEM_WIDTH } = album
 
 export default class Item extends React.Component {
   shouldComponentUpdate = nextProps => this.props.selected !== nextProps.selected;
@@ -15,7 +18,7 @@ export default class Item extends React.Component {
         <Surface style={[{
           elevation: 4,
           margin: 8,
-          width: 175
+          width: ITEM_WIDTH, 
         }, selected ? { borderWidth: 2, borderColor: color } : {}]}>
           <Image source={source} style={{
             height: style.height

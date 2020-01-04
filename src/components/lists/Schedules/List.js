@@ -100,7 +100,6 @@ class List extends Component {
         renderItem={this._renderItem}
         ListEmptyComponent={this._renderEmptyList}
         ListFooterComponent={this._renderFooter}
-        ListHeaderComponent={this._renderHeader}
         stickyHeaderIndices={[0]}
       />
     )

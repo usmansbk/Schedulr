@@ -16,7 +16,13 @@ import { formatDate } from 'lib/time';
 import { captionDetails } from 'lib/parseItem';
 
 class Item extends React.Component {
-  _onPress = () => this.props.onPressItem(this.props.id, this.props.startAt, this.props.endAt);
+  _onPress = () => {
+    if (this.props.__typename === 'Calendar') {
+      this.props.navigateToCalendarEvent(this.props.id);
+    } else {
+      this.props.onPressItem(this.props.id, this.props.startAt, this.props.endAt);
+    }
+  };
   _onLongPress = () => {
     this.ActionSheet &&
       this.ActionSheet.getWrappedInstance().wrappedInstance.showActionSheet();
@@ -24,19 +30,25 @@ class Item extends React.Component {
   _onMute = () => {
     this.props.stores.appState.toggleMute(this.props.id, this.props.isMuted);
   };
-  _navigateToBanner = () => this.props.navigateToBanner(this.props.id);
+  _navigateToBanner = () => {
+    if (this.props.__typename === 'Calendar') {
+      this.props.navigateToCalendarEvent(this.props.id);
+    } else {
+      this.props.navigateToBanner(this.props.id);
+    }
+  };
 
   shouldComponentUpdate = (nextProps) => {
     return (
       nextProps.isOffline !== this.props.isOffline ||
+      nextProps.isBookmarked !== this.props.isBookmarked ||
+      nextProps.isMuted !== this.props.isMuted ||
       nextProps.title !== this.props.title ||
       nextProps.time !== this.props.time ||
       nextProps.status !== this.props.status ||
       nextProps.recurrence !== this.props.recurrence ||
       nextProps.category !== this.props.category ||
-      nextProps.isMuted !== this.props.isMuted ||
-      nextProps.pictureUrl !== this.props.pictureUrl ||
-      nextProps.isBookmarked !== this.props.isBookmarked
+      nextProps.pictureUrl !== this.props.pictureUrl
     );
   };
 
@@ -61,6 +73,7 @@ class Item extends React.Component {
       isOffline,
       bookmarksCount,
       eventScheduleId,
+      __typename
     } = this.props;
     
     const styles = stores.appStyles.eventsList;
@@ -80,7 +93,7 @@ class Item extends React.Component {
         style={styles.itemContainer}
         onLongPress={this._onLongPress}
       >
-        <View useNativeDriver style={styles.itemContentSmall}>
+        <View style={styles.itemContentSmall}>
           <View style={styles.left}>
             <Avatar
               size={events.AVATAR_SIZE}
@@ -127,6 +140,7 @@ class Item extends React.Component {
             isBookmarked={isBookmarked}
             startAt={startAt}
             isMuted={isMuted}
+            isCalendarEvent={__typename === 'Calendar'}
             bookmarksCount={bookmarksCount}
             bookmarkScheduleId={eventScheduleId}
             ref={ref => this.ActionSheet = ref}

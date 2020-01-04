@@ -115,13 +115,13 @@ class UserProfile extends React.Component {
           <TouchableRipple onPress={this._toFollowingTab}>
               <View style={styles.item}>
                 <Text style={styles.count}>{numeral(followingCount).format('0a')}</Text>
-                <Text style={styles.label}>{I18n.get("PROFILE_followingLabel")}</Text>
+                <Text ellipsizeMode="tail" numberOfLines={1} style={styles.label}>{I18n.get("PROFILE_followingLabel")}</Text>
               </View>
           </TouchableRipple>
           <TouchableRipple onPress={this._toCreatedTab}>
             <View style={styles.item}>
               <Text style={styles.count}>{numeral(createdCount).format('0a')}</Text>
-              <Text style={styles.label}>{I18n.get("PROFILE_createdLabel")}</Text>
+              <Text ellipsizeMode="tail" numberOfLines={1} style={styles.label}>{I18n.get("PROFILE_createdLabel")}</Text>
             </View>
           </TouchableRipple>
         </View>

@@ -9,7 +9,6 @@ import gql from 'graphql-tag';
 import changeNavigationBarColor from 'react-native-navigation-bar-color';
 import { getUserData } from 'api/queries';
 import { createUser, createSchedule, createPreference } from 'api/mutations';
-import defaultSchedule from 'i18n/schedule';
 import Login from './Login';
 import logger from 'config/logger';
 import { baseEventsFilter } from 'graphql/filters';
@@ -92,7 +91,7 @@ class Container extends React.Component {
             const id = uuidv5(email, uuidv5.DNS);
             const input = {
               id,
-              ...defaultSchedule(this.props.stores.settingsStore.language)
+              ...I18n.get('personalSchedule')
             };
 
             await client.mutate({

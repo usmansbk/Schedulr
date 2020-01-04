@@ -4,31 +4,38 @@ import {
   StyleSheet
 } from 'react-native';
 import colors from 'config/colors';
+import { badge } from 'lib/constants';
+
+const {
+  HEIGHT,
+  WIDTH,
+  BORDER_RADIUS
+} = badge;
 
 const styles = StyleSheet.create({
   container: {
-    height: 10,
-    width: 10,
-    borderRadius: 5,
+    height: HEIGHT,
+    width: WIDTH,
+    borderRadius: BORDER_RADIUS,
     position: 'absolute',
     top: 17,
     right: 8,
     borderWidth: 1,
     borderColor: 'white'
   },
-  Cancelled: {
+  cancelled: {
     backgroundColor: colors.error,
   },
-  Ongoing: {
+  ongoing: {
     backgroundColor: colors.success
   },
-  Done: {
+  done: {
     backgroundColor: colors.tint
   },
-  Concluded: {
+  concluded: {
     backgroundColor: colors.tint
   },
-  Upcoming: {
+  upcoming: {
     backgroundColor: colors.warning,
   },
 });

@@ -12,21 +12,22 @@ import Loading from 'components/common/Hydrating';
 import NavigationService from 'config/navigation';
 import aws_config from 'aws_config';
 import client from 'config/client';
-import stores from 'stores';
 import env from 'config/env';
 import push from 'config/pushnotification';
 import i18n from 'config/i18n';
+import stores from 'stores';
 import logger from 'config/logger';
 
 console.disableYellowBox = true;
 Amplify.configure(aws_config);
+i18n(stores);
+stores.init();
 
 @codepush
 @observer
 export default class App extends React.Component {
   componentDidMount = () => {
     SplashScreen.hide();
-    i18n(stores.settingsStore.language);
     push.init();
     if (__DEV__) {
       codepush.sync({

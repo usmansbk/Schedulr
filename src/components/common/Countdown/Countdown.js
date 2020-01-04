@@ -1,9 +1,12 @@
 import React from 'react';
 import CountDown from 'react-native-countdown-component';
 import moment from 'moment';
+import { I18n } from 'aws-amplify';
 import { inject, observer } from 'mobx-react';
 import { capitalize } from 'lib/utils';
+import { countdown } from 'lib/constants';
 
+const { SIZE } = countdown;
 class DateCountdown extends React.Component {
   state = {
     finished: false
@@ -18,7 +21,7 @@ class DateCountdown extends React.Component {
     } else if (moment().isAfter(moment(end))) {
       timeAgo = moment(end).fromNow();
     } else {
-      timeAgo = `${moment(end).fromNow(true)} left`;
+      timeAgo = I18n.get('MOMENT_left')(moment(end).fromNow(true));
     }
     return capitalize(timeAgo);
   };
@@ -37,7 +40,7 @@ class DateCountdown extends React.Component {
     let digitStyle;
     let digitTxtStyle;
     let timeLabelStyle = {
-      color: stores.themeStore.colors.gray
+      color: stores.themeStore.colors.gray,
     };
 
     let until = Math.floor((start - now) / 1000);
@@ -68,7 +71,8 @@ class DateCountdown extends React.Component {
         digitStyle={digitStyle}
         digitTxtStyle={digitTxtStyle}
         timeLabelStyle={timeLabelStyle}
-        size={20}
+        timeLabels={I18n.get('timeLabels')}
+        size={SIZE}
       />
     );
   }

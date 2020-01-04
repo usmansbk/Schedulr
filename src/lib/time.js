@@ -15,37 +15,6 @@ export const FIFTEEN_MINUTES = 3 * FIVE_MINUTES;
 export const THIRTY_MINUTES = 3 * TEN_MINUTES;
 export const FORTY_FIVE_MINUTES = 3 * FIFTEEN_MINUTES;
 
-const DATE_FORMAT = 'MMMM DD, YYYY';
-const DAY_FORMAT = 'dddd';
-const NEXT_LAST_FORMAT = 'dddd, Do';
-const CAL_TIME_FORMAT = 'DD MMM YYYY hh:mm';
-
-const headingCalendarFormats = {
-  sameDay: '[Today]',
-  nextDay: '[Tomorrow]',
-  nextWeek: DAY_FORMAT,
-  lastDay: '[Yesterday]',
-  lastWeek: '[Last] dddd',
-  sameElse: DATE_FORMAT
-};
-const calendarTimeFormats = {
-  sameDay: '[Today] [at] HH:mm',
-  nextDay: '[Tomorrow]',
-  nextWeek: DAY_FORMAT,
-  lastDay: '[Yesterday] [at] hh:mm',
-  lastWeek: CAL_TIME_FORMAT,
-  sameElse: CAL_TIME_FORMAT 
-};
-
-const subheadingCalendarFormats = {
-  sameDay: NEXT_LAST_FORMAT,
-  nextDay: NEXT_LAST_FORMAT,
-  nextWeek: DATE_FORMAT,
-  lastDay: NEXT_LAST_FORMAT,
-  lastWeek: DATE_FORMAT,
-  sameElse: DAY_FORMAT
-};
-
 export const repeatLength = (recurrence) => {
   switch(recurrence) {
     case 'DAILY': return ONE_DAY;
@@ -66,21 +35,17 @@ export const formatDate = (startAt, endAt, allDay) => {
   }); 
 };
 
-export const calendarTime = (date) => moment(date).calendar(null, calendarTimeFormats);
+export const calendarTime = (date) => moment(date).calendar(null, I18n.get('calendarTimeFormats'));
 
 export const getNextDate = (event) => {
   const { startAt, endAt } = event;
   return moment(startAt).twix(endAt).format();
 };
 
-export const timeAgo = (date) => {
-  return moment(date).fromNow(true);
-};
-
 export const getSectionHeaderData = (date) => {
   const momentDate = moment(date);
-  const heading = momentDate.calendar(null, headingCalendarFormats);
-  const subheading = momentDate.calendar(null, subheadingCalendarFormats);
+  const heading = capitalize(momentDate.calendar(null, I18n.get('headingCalendarFormats')));
+  const subheading = capitalize(momentDate.calendar(null, I18n.get('subheadingCalendarFormats')));
   let timeAgo = '';
   if (Math.abs(momentDate.diff(moment().startOf('D'), 'hours')) > 24) {
     timeAgo = capitalize(momentDate.from(moment().startOf('D')));
@@ -96,6 +61,7 @@ export function getRepeatLabel(id, date) {
   const val = id.toLowerCase();
   switch(val) {
     case 'never': return I18n.get(`RECUR_${val}`);
+    case 'daily': return I18n.get(`RECUR_daily`);
     case 'weekly': return I18n.get(`RECUR_${val}`)(moment(date).format('dddd'));
     case 'weekdays': return I18n.get(`RECUR_${val}`);
     case 'monthly': return I18n.get(`RECUR_${val}`);

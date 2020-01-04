@@ -1,14 +1,14 @@
 import React from 'react';
-import { ScrollView } from 'react-native';
+import { SectionList } from 'react-native';
 import {
   Appbar,
-  List,
-  Switch,
-  Divider
+  Text,
 } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/Feather';
 import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
+import Item from './Item';
+import items from './items';
 
 class Settings extends React.Component {
   static defaultProps = {
@@ -19,20 +19,17 @@ class Settings extends React.Component {
     switch(value) {
       case 'disablePush':
       case 'disableComments':
-      case 'disableReplies':
-      case 'disableAdminComments':
-      case 'enableMembersComments':
         this.props.stores.settingsStore.togglePref(value);
         break;
       default:
         this.props.stores.settingsStore.toggle(value);
         break;
     }
-  }
+  };
 
   toggleTheme = () => {
     this.props.stores.settingsStore.toggleTheme();
-  }
+  };
 
   _handleRemindMeDialog = () => {
     const { openRemindMeDialog, stores } = this.props;
@@ -41,29 +38,43 @@ class Settings extends React.Component {
     } else {
       openRemindMeDialog();
     }
-  }
+  };
+
+  _keyExtractor = item => item.key;
+
+  _renderItem = ({ item }) => {
+    let keys = this.props.stores.settingsStore;
+    switch(item.key) {
+      case 'disablePush':
+      case 'disableComments':
+        keys = this.props.stores.settingsStore.userPreference;
+        break;
+    }
+
+    return <Item
+      item={item}
+      value={keys[item.key]}
+      handleValueChange={this.handleValueChange}
+      handleRemindMeDialog={this._handleRemindMeDialog}
+      color={this.props.stores.themeStore.colors.gray}
+    />;
+  };
+
+  _renderSectionHeader = ({ section: { title } }) => (
+    <Text style={{
+      paddingTop: 16,
+      paddingHorizontal:16,
+      fontWeight: 'bold',
+      color: this.props.stores.themeStore.colors.gray 
+    }}>{I18n.get(`SETTINGS_${title}SectionTitle`)}</Text>
+  );
 
   render() {
     const {
       goBack,
       stores,
     } = this.props;
-    const {
-      dark,
-      sound,
-      vibrate,
-      disableReminders,
-      userPreference,
-    } = stores.settingsStore;
     const { styles } = stores.appStyles;
-
-    const {
-      disableAdminComments,
-      disableComments,
-      disablePush,
-      disableReplies,
-      enableMembersComments
-    } = userPreference || {};
 
     return (
       <>
@@ -83,120 +94,14 @@ class Settings extends React.Component {
             titleStyle={styles.headerColor}
           />
         </Appbar>
-        <ScrollView style={styles.bg}>
-          <List.Section title={I18n.get("SETTINGS_generalSectionTitle")}>
-            <List.Item
-              title={I18n.get("SETTINGS_sound")}
-              right={() => (
-                <Switch
-                  value={sound}
-                  onValueChange={() => this.handleValueChange('sound')}
-                />
-              )}
-            />
-            <Divider />
-            <List.Item
-              title={I18n.get("SETTINGS_vibrate")}
-              right={() => (
-                <Switch
-                  value={vibrate}
-                  onValueChange={() => this.handleValueChange('vibrate')}
-                />
-              )}
-            />
-            <Divider />
-            <List.Item
-              title={I18n.get("SETTINGS_darkTheme")}
-              right={() => (
-                <Switch
-                  value={dark}
-                  onValueChange={this.toggleTheme}
-                />
-              )}
-            />
-            <Divider />
-          </List.Section>
-          <List.Section title={I18n.get("SETTINGS_reminderSectionTitle")}>
-            <List.Item
-              title={I18n.get("SETTINGS_reminderDisable")}
-              description={I18n.get("WARNING_dontMissOut")}
-              right={() => (
-                <Switch
-                  value={disableReminders}
-                  onValueChange={() => this.handleValueChange('disableReminders')}
-                />
-              )}
-            />
-            <Divider />
-            <List.Item
-              title={I18n.get("SETTINGS_remindMe")}
-              right={() => <List.Icon
-                icon={() => <Icon
-                  name="chevron-right"
-                  color={stores.themeStore.colors.gray}
-                  size={24}
-                />}
-              />}
-              onPress={this._handleRemindMeDialog}
-            />
-            <Divider />
-          </List.Section>
-          <List.Section title={I18n.get("SETTINGS_pushSectionTitle")}>
-            <List.Item
-              title={I18n.get("SETTINGS_pushDisable")}
-              right={() => (
-                <Switch
-                  value={disablePush}
-                  onValueChange={() => this.handleValueChange('disablePush')}
-                />
-              )}
-            />
-            <List.Item
-              title={I18n.get("SETTINGS_disableComment")}
-              right={() => (
-                <Switch
-                  disabled={disablePush}
-                  value={disableComments}
-                  onValueChange={() => this.handleValueChange('disableComments')}
-                />
-              )}
-            />
-          </List.Section>
-          {false && (
-          <List.Section title={I18n.get("SETTINGS_commentSectionTitle")}>
-            <List.Item
-              title={I18n.get("SETTINGS_disableAdminComment")}
-              right={() => (
-                <Switch
-                  disabled={disablePush || disableComments}
-                  value={disableAdminComments}
-                  onValueChange={() => this.handleValueChange('disableAdminComments')}
-                />
-              )}
-            />
-            <List.Item
-              title={I18n.get("SETTINGS_disableReplies")}
-              right={() => (
-                <Switch
-                  disabled={disablePush || disableComments}
-                  value={disableReplies}
-                  onValueChange={() => this.handleValueChange('disableReplies')}
-                />
-              )}
-            />
-            <List.Item
-              title={I18n.get("SETTINGS_enableMembersComment")}
-              right={() => (
-                <Switch
-                  disabled={disablePush || disableComments}
-                  value={enableMembersComments}
-                  onValueChange={() => this.handleValueChange('enableMembersComments')}
-                />
-              )}
-            />
-          </List.Section>
-          )}
-        </ScrollView>
+        <SectionList
+          contentContainerStyle={[styles.bg, { flex: 1}]}
+          sections={items}
+          keyExtractor={this._keyExtractor}
+          renderItem={this._renderItem}
+          renderSectionHeader={this._renderSectionHeader}
+          extraData={stores.settingsStore.extraData}
+        />
       </>
     );
   }

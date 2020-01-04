@@ -10,6 +10,7 @@ import Notifications from './Notifications';
 import Location from './Location';
 import Admob from './AdMob';
 import Snackbar from './Snackbar';
+import Calendar from './Calendar';
 
 class RootStore {
   constructor() {
@@ -24,6 +25,7 @@ class RootStore {
     const locationStore = new Location;
     const adsStore = new Admob;
     const snackbarStore = new Snackbar;
+    const calendarStore = new Calendar;
     
     hydrate('settings', settingsStore);
     hydrate('remindMe', remindMeStore);
@@ -31,6 +33,7 @@ class RootStore {
     // Create theme store after hydrating the settings store
     const appState = new AppState(settingsStore);
     hydrate('appState', appState);
+    hydrate('calendarStore', calendarStore)
     hydrate('locationStore', locationStore);
     
     const themeStore = new Theme(settingsStore);
@@ -45,6 +48,7 @@ class RootStore {
     this.locationStore = locationStore;
     this.adsStore = adsStore;
     this.snackbar = snackbarStore;
+    this.calendar = calendarStore;
   }
 
   @action reset = () => {
@@ -54,6 +58,11 @@ class RootStore {
     this.notificationsStore.reset();
     this.locationStore.reset();
     this.adsStore.reset();
+    this.calendar.reset();
+  }
+
+  @action init = () => {
+    this.appState.setDefaults();
   }
 }
 

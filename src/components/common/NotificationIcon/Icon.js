@@ -15,7 +15,7 @@ const NotificationIcon = ({ name, color, size, stores }) => {
         color={color}
         size={size}
       />
-        <Badge visible={!!stores.notificationsStore.count} size={16} style={stores.appStyles.notifications.indicator}>
+        <Badge visible={!!stores.notificationsStore.count} allowFontScaling={false} size={16} style={stores.appStyles.notifications.indicator}>
           {numeral(stores.notificationsStore.count || 3).format('0a')}
         </Badge>
     </View>

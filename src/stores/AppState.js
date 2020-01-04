@@ -4,7 +4,7 @@ import { persist } from 'mobx-persist';
 import debounce from 'lodash.debounce';
 import moment from 'moment';
 import gql from 'graphql-tag';
-import categories from 'i18n/categories';
+import { I18n } from 'aws-amplify';
 import { ALL_FILTER } from 'lib/constants';
 import { getDeltaUpdates, getUserData } from 'api/queries';
 import updateBaseQuery from 'helpers/deltaSync';
@@ -19,6 +19,7 @@ export default class AppState {
     this.settings = settingsStore;
   }
 
+  @observable extraData = 0;
   @observable isConnected = false;
   @observable searchText = '';
   @observable query = '';
@@ -38,8 +39,9 @@ export default class AppState {
     showPrivateScheduleAlert: true,
     showAppIntro: true
   };
-  @persist('list') @observable categories =  categories(this.settings.language);
+  @persist('list') @observable categories =  [];
 
+  @action updateExtraData = () => this.extraData += 1;
   @action setUserId = id => this.userId = id;
   @action updateLastSyncTimestamp = () => this.lastSyncTimestamp = moment().unix();
   @action setLoginState = state => this.loggingIn = Boolean(state);
@@ -63,6 +65,10 @@ export default class AppState {
     }
   };
 
+  @action setDefaults = () => {
+    this.categories = I18n.get('categories');
+  }
+
   isChecked(id) {
     return this.checkedList.includes(id);
   }
@@ -79,7 +85,7 @@ export default class AppState {
       showPrivateScheduleAlert: true,
       showAppIntro: false
     };
-    this.categories = categories(this.settings.language);
+    this.categories = Array.from(I18n.get('categories'));
     this.loggingIn = false;
     this.userId = null;
     this.lastSyncTimestamp = moment().unix();
@@ -109,6 +115,7 @@ export default class AppState {
       this.mutedEvents.push(id);
       this.allowedEvents = this.allowedEvents.filter(currentId => currentId !== id);
     }
+    this.updateExtraData()
   };
 
   @action toggleMuteSchedule = (mutedId, isMuted) => {
@@ -117,6 +124,7 @@ export default class AppState {
     } else {
       this.mutedSchedules.push(mutedId);
     }
+    this.updateExtraData();
   };
 
   @action onChangeText (searchText) {
@@ -172,5 +180,11 @@ export default class AppState {
   }
 
   isToggled = (id) => this.discoverFilter === id.toLowerCase();
+  isEventMuted = (id, and) => {
+    return (
+      this.mutedEvents.includes(id) ||
+      (!this.allowedEvents.includes(id) &&
+      this.mutedSchedules.includes(and)))
+  };
   debounceQuery = debounce(val => this.query = val, 250);
 }

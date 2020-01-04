@@ -56,6 +56,13 @@ export default class Container extends React.Component {
       input.commentAtId = this.state.at;
     }
     this.props.onSubmit && this.props.onSubmit(input);
+    this.setState({
+      targetName: null,
+      commentToId: null,
+      commentAtId: null,
+      at: null,
+      meta: null
+    });
   };
   _navigateToViewEmbed = ({ subtitle, uri, s3Object }) => this.props.navigation.navigate('ViewEmbed', {
     subtitle,
@@ -81,7 +88,7 @@ export default class Container extends React.Component {
   render() {
     const {
       visibleDialog,
-      targetName
+      targetName,
     } = this.state;
     
     const {
@@ -94,16 +101,15 @@ export default class Container extends React.Component {
       comments,
       noReply,
       isOwner,
-      commentEventId
+      commentEventId,
+      notFound
     } = this.props;
 
     if (error && !loading && !comments.length) return (
       <Error
         onRefresh={onRefresh}
         loading={loading}
-        notFound
-        message={I18n.get("ERROR_404")}
-        caption={I18n.get("ERROR_404_caption")}
+        notFound={notFound}
       />
     );
 
