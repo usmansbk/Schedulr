@@ -140,6 +140,8 @@ class Form extends React.Component {
                 placeholder={I18n.get("SCHEDULE_FORM_description")}
                 label={I18n.get("SCHEDULE_FORM_description")}
                 value={values.description}
+                multiline
+                maxHeight={120}
                 onChangeText={handleChange('description')}
                 onBlur={handleBlur('description')}
                 mode="outlined"

@@ -141,7 +141,8 @@ class CommentInput extends React.Component {
       targetName,
       cancelReply,
       stores,
-      disabled
+      disabled,
+      isOwner
     } = this.props;
     
     const {
@@ -206,6 +207,7 @@ class CommentInput extends React.Component {
               value={message}
               multiline
               maxHeight={120}
+              maxLength={isOwner ? undefined : MAX_LENGTH}
               onChangeText={this._onChangeText}
               onBlur={() => this._onChangeText(message)}
               placeholderTextColor={colors.placeholder}
