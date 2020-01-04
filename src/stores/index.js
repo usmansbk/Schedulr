@@ -8,7 +8,6 @@ import AppStyles from './Styles';
 import AppState from './AppState';
 import Notifications from './Notifications';
 import Location from './Location';
-import Admob from './AdMob';
 import Snackbar from './Snackbar';
 import Calendar from './Calendar';
 
@@ -23,7 +22,6 @@ class RootStore {
     const remindMeStore = new RemindMe;
     const notificationsStore = new Notifications;
     const locationStore = new Location;
-    const adsStore = new Admob;
     const snackbarStore = new Snackbar;
     const calendarStore = new Calendar;
     
@@ -46,7 +44,6 @@ class RootStore {
     this.appState = appState;
     this.notificationsStore = notificationsStore;
     this.locationStore = locationStore;
-    this.adsStore = adsStore;
     this.snackbar = snackbarStore;
     this.calendar = calendarStore;
   }
