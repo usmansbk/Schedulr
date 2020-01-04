@@ -15,8 +15,11 @@ export default class Events extends React.Component {
   };
 
   shouldComponentUpdate = (nextProps) => {
-    return nextProps.navigation.isFocused() && (nextProps.data !== this.props.data);
-  }
+    return (
+      (nextProps.data !== this.props.data) ||
+      (nextProps.calendarEvents.length !== this.props.calendarEvents.length)
+    );
+  };
   
   componentDidUpdate = () => {
     const { mutedEvents, allowedEvents } = this.props;
@@ -34,7 +37,7 @@ export default class Events extends React.Component {
   };
 
   get events() {
-    return mergeEvents(this.props.data, stores.calendar.transform);
+    return mergeEvents(this.props.data, this.props.calendarEvents);
   }
 
   _sync = () => {
@@ -53,6 +56,7 @@ export default class Events extends React.Component {
   };
 
   render() {
+    console.log(this.events.length);
     return (
       <>
         <List
