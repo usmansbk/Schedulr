@@ -4,7 +4,7 @@ import { ApolloProvider } from 'react-apollo';
 import { Provider as MobxProvider } from 'mobx-react';
 import { Rehydrated } from 'aws-appsync-react';
 import SplashScreen from 'react-native-splash-screen';
-import codepush from 'react-native-code-push';
+// import codepush from 'react-native-code-push';
 import { observer } from 'mobx-react';
 import Amplify from 'aws-amplify';
 import AppContainer from './src/App';
@@ -23,17 +23,17 @@ Amplify.configure(aws_config);
 i18n(stores);
 stores.init();
 
-@codepush
+// @codepush
 @observer
 export default class App extends React.Component {
   componentDidMount = () => {
     SplashScreen.hide();
     push.init();
-    if (__DEV__) {
-      codepush.sync({
-        deploymentKey: env.CODE_PUSH_STAGING
-      });
-    }
+    // if (__DEV__) {
+    //   codepush.sync({
+    //     deploymentKey: env.CODE_PUSH_STAGING
+    //   });
+    // }
   };
 
   componentDidCatch = (error) => {
