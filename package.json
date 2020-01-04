@@ -22,7 +22,6 @@
   "dependencies": {
     "@react-native-community/async-storage": "^1.7.1",
     "@react-native-community/netinfo": "^4.6.1",
-    "@react-native-firebase/admob": "^6.2.0",
     "@react-native-firebase/app": "^6.2.0",
     "@react-native-firebase/crashlytics": "^6.2.0",
     "apollo-link": "^1.2.13",
