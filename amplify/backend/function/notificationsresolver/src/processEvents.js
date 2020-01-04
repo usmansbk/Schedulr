@@ -114,7 +114,7 @@ async function processDifference({ oldest, latest, getItem }) {
         }
 
         const oldAlbum = oldImage.album || [];
-        const newAlbum = newAlbum.album || [];
+        const newAlbum = newImage.album || [];
         if (newAlbum.length > oldAlbum.length) {
           const user = await getItem({
             TableName: USER_TABLE_NAME,
