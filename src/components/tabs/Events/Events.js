@@ -1,6 +1,5 @@
 import React from 'react';
 import uuidv5 from 'uuid/v5';
-import memoize from 'memoize-one';
 import { I18n } from 'aws-amplify';
 import List from 'components/lists/Events';
 import FAB from 'components/common/Fab';
