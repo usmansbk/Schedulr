@@ -56,7 +56,6 @@ export default class Events extends React.Component {
   };
 
   render() {
-    console.log(this.events.length);
     return (
       <>
         <List
