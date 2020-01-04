@@ -24,7 +24,7 @@ import {
   getTime,
   isPast
 } from 'lib/time';
-import { eventsChanged, injectAds } from 'lib/utils';
+import { eventsChanged } from 'lib/utils';
 import {
   generatePreviousEvents,
   generateNextEvents,
@@ -197,9 +197,6 @@ class List extends React.Component {
 
   static getDerivedStateFromProps(props, state) {
     let events = props.events;
-    if (events.length) {
-      events = injectAds(events, 0);
-    }
     if (eventsChanged(state.events, events)) {
       const today = moment().startOf('day').toISOString();
       const yesterday = moment().subtract(1, 'day').endOf('day').toISOString();
