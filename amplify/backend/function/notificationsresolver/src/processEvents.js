@@ -112,6 +112,39 @@ async function processDifference({ oldest, latest, getItem }) {
           };
           diffs.push(notification);
         }
+
+        const oldAlbum = oldImage.album || [];
+        const newAlbum = newAlbum.album || [];
+        if (newAlbum.length > oldAlbum.length) {
+          const user = await getItem({
+            TableName: USER_TABLE_NAME,
+            id: eventAuthorId
+          });
+          if (user) {
+            const count = newAlbum.length - oldAlbum.length;
+            let message;
+            if (count === 1) {
+              message = `added a new photo to`;
+            } else {
+              message = `added ${count} new photos to`;
+            }
+            const notification = {
+              id: uuid(),
+              type: newImage.__typename,
+              subject: user.name,
+              message,
+              topic: newImage.title,
+              image: user.avatar,
+              timestamp,
+              entityId: id,
+              extraData: {
+                pictureUrl: user.pictureUrl
+              }
+            };
+            diffs.push(notification);
+          }  
+        }
+
         const oldCancelledDates = oldImage.cancelledDates || [];
         const newCancelledDates = newImage.cancelledDates || [];
         if (newCancelledDates.length !== oldCancelledDates.length) {
