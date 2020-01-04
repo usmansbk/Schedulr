@@ -12,7 +12,7 @@ import Loading from 'components/common/Loading';
 import Error from 'components/common/Error';
 import logger from 'config/logger';
 import config from 'aws_config';
-import { updateEvent } from 'graphql/mutations';
+import { updateEventWithAlbum } from 'graphql/mutations';
 import { getAlbum } from 'graphql/queries';
 
 const MAX_FILE_SIZE = 8000 * 1024;
@@ -202,7 +202,7 @@ const withGraphql = compose(
       ...ownProps
     })
   }),
-  graphql(gql(updateEvent), {
+  graphql(gql(updateEventWithAlbum), {
     alias: 'withUpdateAlbum',
     props: ({ mutate, ownProps }) => ({
       updateAlbum: (id, album) => mutate({
