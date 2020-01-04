@@ -89,7 +89,7 @@ export function getInitials(name) {
 
 export function mergeEvents(data, calendarEvents=[]) {
 
-  let allEvents = [].concat(calendarEvents);
+  let allEvents = injectAds([]).concat(calendarEvents);
 
   if (!data) return allEvents;
 
@@ -191,7 +191,7 @@ export function ellipsisMode(str) {
   return trimmed;
 }
 
-export function injectAds(events, index, recurrence="NEVER") {
+export function injectAds(events, index=0, recurrence="NEVER") {
   const ad = {
     id: '__ads__',
     __typename: 'Advert',
