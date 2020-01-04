@@ -121,6 +121,7 @@ class Container extends React.Component {
       deltaSync={this._deltaSync}
       fetchNotifications={this._fetchNotifications}
       calendarSync={stores.calendar.sync}
+      calendarEvents={stores.calendar.transform}
     />
   }
 }
