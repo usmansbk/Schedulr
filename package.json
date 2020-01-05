@@ -1,6 +1,6 @@
 {
   "name": "Schdlr",
-  "version": "0.1.11",
+  "version": "0.1.12",
   "private": true,
   "scripts": {
     "start": "npx react-native start",
