@@ -138,7 +138,7 @@
 						]
 					},
 					"S3DeploymentBucket": "amplify-schdlr-prod-21214-deployment",
-					"S3DeploymentRootKey": "amplify-appsync-files/e7800118c5c6a81e00534ce0706349de4fb5e35f",
+					"S3DeploymentRootKey": "amplify-appsync-files/31bc639176b5922421c899d7c575a5c08294ab0a",
 					"env": "prod"
 				}
 			}

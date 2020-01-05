@@ -39,7 +39,7 @@ type AppState
   @model(
     subscriptions: null,
     queries: { get: "state" },
-    mutations: { create: "presistState", update: "setState" })
+    mutations: { create: "persistState", update: "setState" })
   @auth(
     rules: [
       {
