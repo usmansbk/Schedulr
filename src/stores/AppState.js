@@ -8,6 +8,7 @@ import { I18n } from 'aws-amplify';
 import { ALL_FILTER } from 'lib/constants';
 import { getDeltaUpdates, getUserData } from 'api/queries';
 import updateBaseQuery from 'helpers/deltaSync';
+import persistState from 'helpers/persistAppState';
 import client from 'config/client';
 import logger from 'config/logger';
 
@@ -63,6 +64,7 @@ export default class AppState {
     } else {
       this.checkedList.push(id);
     }
+    this._persistState();
   };
 
   @action setDefaults = () => {
@@ -115,7 +117,8 @@ export default class AppState {
       this.mutedEvents.push(id);
       this.allowedEvents = this.allowedEvents.filter(currentId => currentId !== id);
     }
-    this.updateExtraData()
+    this.updateExtraData();
+    this._persistState();
   };
 
   @action toggleMuteSchedule = (mutedId, isMuted) => {
@@ -125,6 +128,7 @@ export default class AppState {
       this.mutedSchedules.push(mutedId);
     }
     this.updateExtraData();
+    this._persistState();
   };
 
   @action onChangeText (searchText) {
@@ -177,6 +181,16 @@ export default class AppState {
     });
     const filtered = queue.filter(key => removed.includes(key));
     this.keysToRemove = filtered;
+    this._persistState();
+  }
+
+  @action setState(userState) {
+    const state = userState || {};
+    this.allowedEvents = state.allowedEvents || [];
+    this.mutedEvents = state.mutedEvents || [];
+    this.mutedSchedules = state.mutedSchedules || [];
+    this.keysToRemove = state.keysToRemove || [];
+    this.checkedList = state.checkedList || [];
   }
 
   isToggled = (id) => this.discoverFilter === id.toLowerCase();
@@ -185,6 +199,16 @@ export default class AppState {
       this.mutedEvents.includes(id) ||
       (!this.allowedEvents.includes(id) &&
       this.mutedSchedules.includes(and)))
+  };
+  _persistState = () => {
+    persistState({
+      id: this.userId,
+      allowedEvents: this.allowedEvents || [],
+      mutedEvents: this.mutedEvents || [],
+      mutedSchedules: this.mutedSchedules || [],
+      keysToRemove: this.keysToRemove || [],
+      checkedList: this.checkedList || []
+    });
   };
   debounceQuery = debounce(val => this.query = val, 250);
 }

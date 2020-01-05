@@ -30,6 +30,17 @@ export const me = `query {
 }
 `;
 
+export const state = `query GetAppState($id: ID!) {
+  state(id: $id) {
+    id
+    allowedEvents
+    mutedEvents
+    mutedSchedules
+    keysToRemove
+    checkedList
+  }
+}`;
+
 export const myPref = `query GetPreference($id: ID!) {
   userPref(id: $id) {
     id
@@ -442,6 +453,14 @@ export const getUserData = `query GetUserData($filter: ModelEventFilterInput, $l
       disableReplies
       disableComments
       enableMembersComments
+    }
+    state {
+      id
+      allowedEvents
+      mutedEvents
+      mutedSchedules
+      keysToRemove
+      checkedList
     }
     created {
       items {

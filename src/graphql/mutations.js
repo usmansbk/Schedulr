@@ -45,6 +45,26 @@ export const updateUser = `mutation UpdateUser($input: UpdateUserInput!) {
   }
 }
 `;
+export const createState = `mutation CreateState($input: CreateAppStateInput!) {
+  persistState(input: $input) {
+    id
+    allowedEvents
+    mutedEvents
+    mutedSchedules
+    keysToRemove
+    checkedList
+  }
+}`;
+export const setState = `mutation SetState($input: UpdateAppStateInput!) {
+  setState(input: $input) {
+    id
+    allowedEvents
+    mutedEvents
+    mutedSchedules
+    keysToRemove
+    checkedList
+  }
+}`;
 export const createEvent = `mutation CreateEvent($input: CreateEventInput!) {
   createEvent(input: $input) {
     id
