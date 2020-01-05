@@ -44,7 +44,7 @@ type AppState
     rules: [
       {
         allow: owner,
-        ownerField: "userStateId",
+        ownerField: "id",
         identityClaim: "email"
       }
     ]
