@@ -28,11 +28,9 @@ function updateData({
     const data = cache.readQuery({ query, variables: { id } });
     const { items } = data[rootField][connectionField];
     const removeDuplicate = items.filter(item => item.id !== updatedItem.id);
-    let newItems;
+    let newItems = removeDuplicate;
     if (operationType === ADD) {
-      newItems = [...removeDuplicate, updatedItem];
-    } else {
-      newItems = removeDuplicate;
+      newItems.push(updatedItem);
     }
     const newData = Object.assign({}, data, {
       [rootField]: Object.assign({}, data[rootField], {
