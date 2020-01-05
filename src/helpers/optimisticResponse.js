@@ -118,6 +118,7 @@ function createEvent(input, typename) {
     id
     name
     eventsCount
+    isFollowing
   }`;
   const fragmentId = `Schedule:${input.eventScheduleId}`;
   const schedule = client.readFragment({
