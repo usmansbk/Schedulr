@@ -30,8 +30,32 @@ type User
     @connection(name: "UserBookmarks", sortField: "createdAt", limit: 25)
     @auth(rules: [{allow: owner, ownerField: "id", identityClaim: "email"}])
   preference: UserPreference! @connection
+  state: AppState @connection
   createdAt: String
   updatedAt: String
+}
+
+type AppState
+  @model(
+    subscriptions: null,
+    queries: { get: "state" },
+    mutations: { create: "presistState", update: "setState" })
+  @auth(
+    rules: [
+      {
+        allow: owner,
+        ownerField: "id",
+        identityClaim: "email"
+      }
+    ]
+  )
+{
+  id: ID
+  mutedEvents: [ID]
+  allowedEvents: [ID]
+  mutedSchedules: [ID]
+  checkedList: [ID]
+  keysToRemove: [String]
 }
 
 type UserPreference
