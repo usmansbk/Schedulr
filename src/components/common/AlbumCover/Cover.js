@@ -15,15 +15,15 @@ export default class Cover extends React.Component {
           flexDirection: 'row',
           justifyContent: 'space-between'
         }}>
-          <Image style={{width: 100, height: 100, margin: 4}} source={sources[0]} />
-          <Image style={{width: 100, height: 100, margin: 4}} source={sources[1]} />
+          <Image defaultSource={require('../../../assets/placeholder.png')} style={{width: 100, height: 100, margin: 4}} source={sources[0]} />
+          <Image defaultSource={require('../../../assets/placeholder.png')} style={{width: 100, height: 100, margin: 4}} source={sources[1]} />
         </View>
         <View style={{
           flexDirection: 'row',
           justifyContent: 'space-between'
         }}>
-          <Image style={{width: 100, height: 100, margin: 4}}source={sources[2]} />
-          <Image style={{width: 100, height: 100, margin: 4}}source={sources[3]} />
+          <Image defaultSource={require('../../../assets/placeholder.png')} style={{width: 100, height: 100, margin: 4}}source={sources[2]} />
+          <Image defaultSource={require('../../../assets/placeholder.png')} style={{width: 100, height: 100, margin: 4}}source={sources[3]} />
         </View>
       </View>
     )

@@ -16,7 +16,9 @@ class Item extends React.Component {
       <TouchableRipple onPress={this._onPress}>
         <Surface style={styles.container}>
           {
-            Boolean(source) ? <Image resizeMode="contain" source={source} style={styles.image} /> : (
+            Boolean(source) ? <Image resizeMode="contain"
+              defaultSource={require('../../../assets/placeholder.png')}
+              source={source} style={styles.image} /> : (
               <>
               <Text style={styles.text}>{I18n.get(`TEXT_noBanner`)}</Text>
               <Icon name="image" size={24} color={stores.themeStore.colors.gray}/>

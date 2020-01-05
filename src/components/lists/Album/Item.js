@@ -20,9 +20,13 @@ export default class Item extends React.Component {
           margin: 8,
           width: ITEM_WIDTH, 
         }, selected ? { borderWidth: 2, borderColor: color } : {}]}>
-          <Image source={source} style={{
-            height: style.height
-          }}/>
+          <Image
+            source={source}
+            defaultSource={require('../../../assets/placeholder.png')}
+            style={{
+              height: style.height
+            }}
+          />
         </Surface>
       </TouchableRipple>
     );

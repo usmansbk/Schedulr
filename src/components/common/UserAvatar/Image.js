@@ -31,7 +31,7 @@ export default class CustomImage extends React.Component {
         source={{ uri }}
         imageStyle={this._imageStyle}
         style={this._style}
-        defaultSource={require('./img/placeholder.png')}
+        defaultSource={require('../../../assets/placeholder.png')}
       />
     );
   }
