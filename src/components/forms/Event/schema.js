@@ -4,11 +4,9 @@ export default Yup.object().shape({
   title: Yup.string()
     .trim()
     .min(2, 'tooShort')
-    .max(51, 'tooLong')
     .required('titleIsRequired'),
   description: Yup.string()
-    .trim()
-    .max(700, 'tooLong'),
+    .trim(),
   eventScheduleId: Yup.string()
     .required()
 });
