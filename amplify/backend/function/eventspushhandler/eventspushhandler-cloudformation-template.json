@@ -172,7 +172,7 @@
 				"Timeout": "25",
 				"Code": {
 					"S3Bucket": "amplify-schdlr-prod-21214-deployment",
-					"S3Key": "amplify-builds/eventspushhandler-5255656a736339773249-build.zip"
+					"S3Key": "amplify-builds/eventspushhandler-6a376a52494e5661674b-build.zip"
 				}
 			}
 		},
