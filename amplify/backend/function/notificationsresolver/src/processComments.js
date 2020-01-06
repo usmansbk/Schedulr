@@ -35,7 +35,10 @@ async function processComments({ items, currentUserId, getItemById }) {
 async function processNotification({ items, currentUserId, getItemById }) {
   const notifications = [];
   const uniqAuthorIds = Array.from(new Set(items.map(item => item.commentAuthorId)));
-  const uniqItems = items.filter(item => uniqAuthorIds.includes(item.commentAuthorId));
+  const uniqItems = uniqAuthorIds.map(id => {
+    const item = items.find(elem => elem.commentAuthorId === id);
+    return item;
+  });
   if (uniqItems.length) {
     const replies = uniqItems.filter(item => item.commentAtId === currentUserId);
     if (replies.length) {
