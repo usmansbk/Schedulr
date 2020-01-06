@@ -7056,10 +7056,10 @@ react-native-fs@^2.16.2:
     base-64 "^0.1.0"
     utf8 "^3.0.0"
 
-react-native-gallery-swiper@^1.24.3:
-  version "1.24.3"
-  resolved "https://registry.yarnpkg.com/react-native-gallery-swiper/-/react-native-gallery-swiper-1.24.3.tgz#0064d0161d187a6a5a6195fe972edad0c4962151"
-  integrity sha512-kjlBzgzFkafA7WhQ89hdcmc1fDP8NcCxDzT6JDM4IJgXc+CQrzwfbD2eyEGuzZohx+ArZovCkSHOQdIKeH7vbA==
+react-native-gallery-swiper@^1.24.4:
+  version "1.24.4"
+  resolved "https://registry.yarnpkg.com/react-native-gallery-swiper/-/react-native-gallery-swiper-1.24.4.tgz#ac3c43a641dcf1d25adf53cc382b883a50635d8a"
+  integrity sha512-16MsmZeO60vspUSdlegjqI71MN37S1gdTFTsmJsNFpwATTM1cHTdiwdAIzwnXh6rdzbrUAUJcMxAvRLXN6Flyw==
   dependencies:
     prop-types "^15.6.2"
     react-native-easy-guesture-responder "^1.1.3"
@@ -7112,10 +7112,10 @@ react-native-image-transformer@^1.3.2:
     prop-types "^15.6.2"
     react-native-easy-view-transformer "^1.1.4"
 
-react-native-localize@^1.3.1:
-  version "1.3.1"
-  resolved "https://registry.yarnpkg.com/react-native-localize/-/react-native-localize-1.3.1.tgz#d0b7046acd4214ac2bcb61102317374351400c76"
-  integrity sha512-Y3LzTHyrgsIsDYvjWSRguARBKjiLaahcbJg663ZqP1Tcpan4LYn/f3iusM+Oh6qYvClnlo9AlBkLdCZbWwe7Tw==
+react-native-localize@^1.3.2:
+  version "1.3.2"
+  resolved "https://registry.yarnpkg.com/react-native-localize/-/react-native-localize-1.3.2.tgz#ba2aa99f590b392329f5beed0f68b8e008145831"
+  integrity sha512-SjWHiA0r90zV8KUd6j9VDWm9nfXuBQP1fgTW+cdKVkiX2D+YuojVDNml5D+Ngv+hIOBZ3eqtpO6oZaHoZ83tcw==
 
 react-native-modal-datetime-picker@^7.6.1:
   version "7.6.1"
