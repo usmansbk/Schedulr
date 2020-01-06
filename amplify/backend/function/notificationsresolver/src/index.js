@@ -16,6 +16,7 @@ const dynamodb = new AWS.DynamoDB.DocumentClient();
 
 const FOLLOW_TABLE_NAME = process.env.FOLLOW_TABLE_NAME;
 const SCHEDULE_TABLE_NAME = process.env.SCHEDULE_TABLE_NAME;
+const USER_PREF_TABLE_NAME = process.env.USER_PREF_TABLE_NAME;
 const EVENT_DELTA_TABLE_NAME = process.env.EVENT_DELTA_TABLE_NAME;
 const BOOKMARK_TABLE_NAME = process.env.BOOKMARK_TABLE_NAME;
 const SCHEDULE_DELTA_TABLE_NAME = process.env.SCHEDULE_DELTA_TABLE_NAME;
@@ -41,6 +42,11 @@ const gsiUserBookmarksKey = process.env.GSI_USER_BOOKMARKS_KEY;
 exports.handler = async function (event) { //eslint-disable-line
   const id = event.identity.claims.email;
   const lastSync = Number(event.arguments.lastSync);
+
+  const userPref = await getItemById({
+    id,
+    TableName: USER_PREF_TABLE_NAME
+  });
 
   const followingIds = await getFieldsById({
     id,
@@ -184,25 +190,30 @@ exports.handler = async function (event) { //eslint-disable-line
   const followingScheduleEventsNotifications = await processEvents({
     followingScheduleEventsUpdates,
     bookmarkedEventsUpdates,
-    getItemById
+    getItemById,
+    language: userPref.language
   });
   const followingScheduleNotifications = await processSchedules({
     followingSchedulesUpdates,
-    getItemById
+    getItemById,
+    language: userPref.language
   });
   const newCommentNotifications = await processComments({
     followingSchedulesComments,
     createdSchedulesComments,
     currentUserId: id,
-    getItemById
+    getItemById,
+    language: userPref.language
   });
   const newFollowerNotifications = await processFollows({
     followersUpdates,
-    getItemById
+    getItemById,
+    language: userPref.language
   });
   const newBookmarkNotifications = await processBookmarks({
     bookmarksUpdates,
-    getItemById
+    getItemById,
+    language: userPref.language
   });
   
   return [

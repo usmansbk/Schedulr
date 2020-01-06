@@ -17,6 +17,9 @@
 		"userTableName": {
 			"Type": "String"
 		},
+		"userPrefTableName": {
+			"Type": "String"
+		},
 		"eventTableName": {
 			"Type": "String"
 		},
@@ -152,6 +155,9 @@
 						},
 						"USER_TABLE_NAME": {
 							"Ref": "userTableName"
+						},
+						"USER_PREF_TABLE_NAME": {
+							"Ref": "userPrefTableName"
 						},
 						"EVENT_TABLE_NAME": {
 							"Ref": "eventTableName"
