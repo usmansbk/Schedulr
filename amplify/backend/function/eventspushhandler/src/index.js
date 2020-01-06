@@ -179,12 +179,12 @@ function formatNotification(item) {
   	} else if (oldImage.startAt !== newImage.startAt) {
       en = `${category} was rescheduled for ${formatDate(newImage.startAt)}.`.trim();
       es = `${category ? category : "el evento"} fue reprogramado para el ${formatDate(foundDate, 'es')}.`;
-      fr = `${category} a été reporté à ${formatDate(newImage.startAt, 'fr')}`.trim();
+      fr = `${category} a été reporté à ${formatDate(newImage.startAt, 'fr')}.`.trim();
       foundDate = newImage.startAt;
   	} else if (Boolean(newImage.venue) && (oldImage.venue !== newImage.venue)) {
       en = `${category} venue changed to ${newImage.venue}.`.trim();
       es = `el lugar del ${category ? category : "evento"} cambió a ${newImage.venue}.`.trim();
-      fr = `lieu de ${category ? category : "l'événement"} changé en ${newImage.venue}`.trim();
+      fr = `lieu de ${category ? category : "l'événement"} changé en ${newImage.venue}.`.trim();
   	}
   }
 

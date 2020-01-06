@@ -7024,10 +7024,10 @@ react-native-easy-guesture-responder@^1.1.2, react-native-easy-guesture-responde
   dependencies:
     prop-types "^15.6.2"
 
-react-native-easy-view-transformer@^1.1.1:
-  version "1.1.3"
-  resolved "https://registry.yarnpkg.com/react-native-easy-view-transformer/-/react-native-easy-view-transformer-1.1.3.tgz#870f1927e08aecb53e228a22367111b8f822f154"
-  integrity sha512-nYBVFjWknIZInPPrdEYtnOyIDxZaeXxgygEU/y0WoSappDARwraDOoT7tCWH1uVTtIRyAiwcK5I+gj2MEq2n8w==
+react-native-easy-view-transformer@^1.1.4:
+  version "1.1.4"
+  resolved "https://registry.yarnpkg.com/react-native-easy-view-transformer/-/react-native-easy-view-transformer-1.1.4.tgz#e4afc8f35f12e1dbc9e2cbb1b001b560a727bee3"
+  integrity sha512-KFADdsNYh1j+7dzZqlk6y/h8IgKbsDDLrJBc3ybYgP8wOBc1QoXNVmEid9sW/jc7ogzMsVFENkWIbMtEuo+kIQ==
   dependencies:
     prop-types "^15.6.2"
     react-native-easy-guesture-responder "^1.1.2"
@@ -7056,14 +7056,14 @@ react-native-fs@^2.16.2:
     base-64 "^0.1.0"
     utf8 "^3.0.0"
 
-react-native-gallery-swiper@^1.24.1:
-  version "1.24.1"
-  resolved "https://registry.yarnpkg.com/react-native-gallery-swiper/-/react-native-gallery-swiper-1.24.1.tgz#85f585dd3a541fd5be8e91089f15fa24c7cac967"
-  integrity sha512-rp+dexfNVfaJHoPZvJWDRQV48JbNG3zhBim45ad6od7zILbytdeuFMn2q6NtpyqUzmFRRrfU7qInnzwLGTutJw==
+react-native-gallery-swiper@^1.24.3:
+  version "1.24.3"
+  resolved "https://registry.yarnpkg.com/react-native-gallery-swiper/-/react-native-gallery-swiper-1.24.3.tgz#0064d0161d187a6a5a6195fe972edad0c4962151"
+  integrity sha512-kjlBzgzFkafA7WhQ89hdcmc1fDP8NcCxDzT6JDM4IJgXc+CQrzwfbD2eyEGuzZohx+ArZovCkSHOQdIKeH7vbA==
   dependencies:
     prop-types "^15.6.2"
     react-native-easy-guesture-responder "^1.1.3"
-    react-native-image-transformer "^1.2.1"
+    react-native-image-transformer "^1.3.2"
     react-native-page-list "^1.1.1"
 
 react-native-geodb@^1.5.0:
@@ -7104,13 +7104,13 @@ react-native-image-picker@^1.1.0:
   resolved "https://registry.yarnpkg.com/react-native-image-picker/-/react-native-image-picker-1.1.0.tgz#c2a0523886edb4cf2cdc008ad0a71433142a4d53"
   integrity sha512-/KjHf4NNAjl6XM7FQuqvGDz1wB9sRdLf86+2yksLW/QTRR7CitX4TLCM8ZF9CX6Y0MsCTndkZia3zWE+nt/GiA==
 
-react-native-image-transformer@^1.2.1:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/react-native-image-transformer/-/react-native-image-transformer-1.2.1.tgz#4ae4608b644c10dc3abf6461b32d15d3b72c2690"
-  integrity sha512-GR/pRuSK90XnVBn0SMsKH7wwS9UGREQcQQzLBevLmSx2loFcHgfLpGFtTCqSp5W7jMx60Oh1p0clnHEovZU7Yw==
+react-native-image-transformer@^1.3.2:
+  version "1.3.2"
+  resolved "https://registry.yarnpkg.com/react-native-image-transformer/-/react-native-image-transformer-1.3.2.tgz#cbd273e51af49f5ceacacdd583edd0c9e54192b5"
+  integrity sha512-ZcjlGYxVsekyE1H3rTEkVzyMTgiM+4XOlkQOYrSDDZY4Y3f3vZTvhE/yRJp3jtNVvTuWPML13ofNaj1e6sl5LA==
   dependencies:
     prop-types "^15.6.2"
-    react-native-easy-view-transformer "^1.1.1"
+    react-native-easy-view-transformer "^1.1.4"
 
 react-native-localize@^1.3.1:
   version "1.3.1"
