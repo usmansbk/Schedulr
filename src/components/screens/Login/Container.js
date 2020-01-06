@@ -71,7 +71,7 @@ class Container extends React.Component {
               variables: {
                 input: {
                   disablePush: false,
-                  language: stores.settingsStore.language
+                  language: stores.settingsStore.userPreference.language || 'en'
                 }
               }
             });

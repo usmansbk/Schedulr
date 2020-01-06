@@ -14,7 +14,7 @@ export default inject("stores")(observer(({
     location={stores.locationStore.parsedLocation}
     styles={stores.appStyles.places}
     modalStyle={stores.appStyles.picker}
-    language={stores.settingsStore.language}
+    language={stores.settingsStore.userPreference.language}
     placeholderTextColor={stores.themeStore.colors.placeholder}
     iconColor={stores.themeStore.colors.gray}
     onSelectLocation={onSelect}

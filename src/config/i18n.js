@@ -6,7 +6,7 @@ import dicts from 'i18n';
 
 export default (stores) => {
   const { isRTL, languageCode } = RNLocalize.getLocales()[0];
-  stores.settingsStore.language = languageCode;
+  stores.settingsStore.userPreference.language = languageCode;
   moment.locale(languageCode);
   I18n.setLanguage(languageCode);
   const dict = {

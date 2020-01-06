@@ -9,7 +9,6 @@ import logger from 'config/logger';
 import stores from 'stores';
 
 export default class SettingsState {
-  @persist @observable language = "en";
   @persist @observable dark = false;
   @persist @observable sound = true;
   @persist @observable vibrate = true;
@@ -17,7 +16,9 @@ export default class SettingsState {
   @persist @observable headsUp = false;
   @persist @observable darkTheme = false;
   @persist @observable bookmarkedEventsOnly = false;
-  @persist('object') @observable userPreference = null;
+  @persist('object') @observable userPreference = {
+    language: 'en'
+  };
   @observable extraData = 0;
 
   @action toggle (value) {
@@ -39,20 +40,21 @@ export default class SettingsState {
   }
 
   @action reset() {
-    this.language = "en";
     this.dark = false;
     this.sound = true;
     this.vibrate = true;
     this.disableReminders = false;
     this.headsUp = false;
     this.bookmarkedEventsOnly = false;
-    this.userPreference = null;
+    this.userPreference = {
+      language: 'en'
+    };
   }
 
   @action async togglePref(key) {
     const prev = this.userPreference;
     let optimisticResponse = {};
-    if (prev) {
+    if (prev && prev.id) {
       const toggled = !prev[key];
       optimisticResponse = Object.assign({}, prev, {
         [key]: toggled
