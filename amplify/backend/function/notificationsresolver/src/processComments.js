@@ -34,8 +34,10 @@ async function processComments({ items, currentUserId, getItemById }) {
 
 async function processNotification({ items, currentUserId, getItemById }) {
   const notifications = [];
-  if (items.length) {
-    const replies = items.filter(item => item.commentAtId === currentUserId);
+  const uniqAuthorIds = Array.from(new Set(items.map(item => item.commentAuthorId)));
+  const uniqItems = items.filter(item => uniqAuthorIds.includes(item.commentAuthorId));
+  if (uniqItems.length) {
+    const replies = uniqItems.filter(item => item.commentAtId === currentUserId);
     if (replies.length) {
       const at = replies[0];
       const { timestamp, commentAuthorId, commentEventId, newImage: { __typename, content, attachment } } = at;
@@ -71,7 +73,7 @@ async function processNotification({ items, currentUserId, getItemById }) {
       }
     }
 
-    const newComments = items.filter(item => item.commentAtId !== currentUserId);
+    const newComments = uniqItems.filter(item => item.commentAtId !== currentUserId);
     if (newComments.length) {
       const firstComment = newComments[0];
       const { timestamp, commentAuthorId, commentEventId,newImage: { __typename, content, attachment } } = firstComment;
