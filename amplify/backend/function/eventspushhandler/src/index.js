@@ -125,9 +125,20 @@ function unmarshall(object) {
   return AWS.DynamoDB.Converter.unmarshall(object);
 }
 
-function formatDate(date) {
+function formatDate(date, lang) {
   // return moment(date).add(1, 'h').format('MMM DD, YYYY hh:mm A');
-  return moment(date).add(1, 'h').calendar();
+  let locale, m;
+  switch(lang) {
+    case 'es':
+      locale = require('moment/locale/es');
+      m = moment(date).locale(lang);
+    case 'fr':
+      locale = require('moment/locale/fr');
+      m = moment(date).locale(lang);
+    default:
+      m = moment(date);
+  }
+  return m.add(1, 'h').calendar();
 }
 
 function formatNotification(item) {
@@ -147,34 +158,45 @@ function formatNotification(item) {
     ttl = Math.floor((Date.parse(entity.endAt) - Date.parse(entity.startAt)) / 1000);
   }
 
-  let message;
+  let en, es, fr;
   if (eventName === 'INSERT') {
-  	const date = formatDate(entity.startAt);
-  	message = `${category} scheduled for ${date}.`.trim();
+    en = `${category} scheduled for ${formatDate(entity.startAt)}.`.trim();
+    es = `${category} programado para el ${formatDate(entity.startAt, 'es')}.`.trim();
+    fr = `prévu pour ${formatDate(entity.startAt, 'fr')}.`.trim();
   } else {
   	const oldCancelledDates = oldImage.cancelledDates || [];
   	const newCancelledDates = newImage.cancelledDates || [];
 
   	if (entity.isCancelled) {
-  		message = `${category} was cancelled.`.trim();
+      en = `${category} was cancelled.`.trim();
+      es = `${category} fue cancelado`.trim();
+      fr = `${category} a été annulé`.trim();
   	} else if (oldCancelledDates.length !== newCancelledDates.length) {
 	  	foundDate = newCancelledDates.find(date => !oldCancelledDates.includes(date));
-	    const cancelledDate = formatDate(foundDate);
-	    message = `cancelled ${category ? category : 'event'} scheduled for ${cancelledDate}.`;
+      en = `cancelled ${category ? category : 'event'} scheduled for ${formatDate(foundDate)}.`;
+      es = `${category ? category : 'evento'} cancelado programado para el ${formatDate(foundDate, 'es')}.`;
+      fr = `${category ? `${category}` : 'événement'} annulé prévu pour ${formatDate(foundDate, 'fr')}.`;
   	} else if (oldImage.startAt !== newImage.startAt) {
-      const newDate = formatDate(newImage.startAt);
-      message = `${category} was rescheduled for ${newDate}.`.trim();
+      en = `${category} was rescheduled for ${formatDate(newImage.startAt)}.`.trim();
+      es = `${category ? category : "el evento"} fue reprogramado para el ${formatDate(foundDate, 'es')}.`;
+      fr = `${category} a été reporté à ${formatDate(newImage.startAt, 'fr')}`.trim();
       foundDate = newImage.startAt;
   	} else if (Boolean(newImage.venue) && (oldImage.venue !== newImage.venue)) {
-  		message = `${category} venue changed to ${newImage.venue}.`.trim();
+      en = `${category} venue changed to ${newImage.venue}.`.trim();
+      es = `el lugar del ${category ? category : "evento"} cambió a ${newImage.venue}.`.trim();
+      fr = `lieu de ${category ? category : "l'événement"} changé en ${newImage.venue}`.trim();
   	}
   }
 
-  if (!message || (ttl <= 0) ) return null;
+  if (!en || (ttl <= 0) ) return null;
 
   return {
     title,
-    message: capitalize(message),
+    contents: {
+      en: capitalize(en),
+      es,
+      fr,
+    },
     ttl,
     data: {
       type: 'Event',

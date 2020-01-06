@@ -18,12 +18,10 @@ const playersLimit = Number(process.env.PLAYERS_LIMIT);
 const web_url = process.env.WEB_URL;
 
 function CreateNotification(notif, include_player_ids) {
-  const { message, title, ttl, data } = notif;
+  const { contents, title, ttl, data } = notif;
 
   const notification = new OneSignal.Notification({
-    contents: {
-      en: message
-    },
+    contents,
     headings: {
       en: title
     },
