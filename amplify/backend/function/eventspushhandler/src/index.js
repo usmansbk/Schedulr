@@ -132,11 +132,14 @@ function formatDate(date, lang) {
     case 'es':
       locale = require('moment/locale/es');
       m = moment(date).locale(lang);
+      break;
     case 'fr':
       locale = require('moment/locale/fr');
       m = moment(date).locale(lang);
+      break;
     default:
       m = moment(date);
+      break;
   }
   return m.add(1, 'h').calendar();
 }
