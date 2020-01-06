@@ -1,4 +1,3 @@
-const AWS = require('aws-sdk');
 const OneSignal = require('onesignal-node');
 
 const appId = process.env.APPLICATION_ID;
