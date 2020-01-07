@@ -1,6 +1,6 @@
 const AWS = require("aws-sdk");
-const moment = require('moment');
-const sendMessage = require('./push'); 
+const sendMessage = require('./push');
+const I18n = require('./i18n');
    
 const dynamodb = new AWS.DynamoDB.DocumentClient();
 const userPrefTableName = process.env.USER_PREF_TABLE_NAME;
@@ -90,12 +90,6 @@ async function getUsers(ids) {
   return users;
 }
 
-function capitalize(string) {
-  if (!string) return '';
-  const firstLetter = string[0].toUpperCase();
-  return firstLetter + string.substring(1);
-}
-
 async function getScheduleFollowersId(id) {
   const params = {
     TableName: followTableName,
@@ -125,25 +119,6 @@ function unmarshall(object) {
   return AWS.DynamoDB.Converter.unmarshall(object);
 }
 
-function formatDate(date, lang) {
-  // return moment(date).add(1, 'h').format('MMM DD, YYYY hh:mm A');
-  let locale, m;
-  switch(lang) {
-    case 'es':
-      locale = require('moment/locale/es');
-      m = moment(date).locale(lang);
-      break;
-    case 'fr':
-      locale = require('moment/locale/fr');
-      m = moment(date).locale(lang);
-      break;
-    default:
-      m = moment(date);
-      break;
-  }
-  return m.add(1, 'h').calendar();
-}
-
 function formatNotification(item) {
   const {
     eventName,
@@ -163,31 +138,31 @@ function formatNotification(item) {
 
   let en, es, fr;
   if (eventName === 'INSERT') {
-    en = `${category} scheduled for ${formatDate(entity.startAt)}.`.trim();
-    es = `${category} programado para el ${formatDate(entity.startAt, 'es')}.`.trim();
-    fr = `prévu pour ${formatDate(entity.startAt, 'fr')}.`.trim();
+    en = I18n.get('EVENT_scheduled')(category, entity.startAt);
+    es = I18n.get('EVENT_scheduled', 'es')(category, entity.startAt);
+    fr = I18n.get('EVENT_scheduled', 'fr')(category, entity.startAt);
   } else {
   	const oldCancelledDates = oldImage.cancelledDates || [];
   	const newCancelledDates = newImage.cancelledDates || [];
 
   	if (entity.isCancelled) {
-      en = `${category} was cancelled.`.trim();
-      es = `${category} fue cancelado`.trim();
-      fr = `${category} a été annulé`.trim();
+      en = I18n.get('EVENT_cancelled')(category);
+      es = I18n.get('EVENT_cancelled', 'es')(category);
+      fr = I18n.get('EVENT_cancelled', 'fr')(category);
   	} else if (oldCancelledDates.length !== newCancelledDates.length) {
 	  	foundDate = newCancelledDates.find(date => !oldCancelledDates.includes(date));
-      en = `cancelled ${category ? category : 'event'} scheduled for ${formatDate(foundDate)}.`;
-      es = `${category ? category : 'evento'} cancelado programado para el ${formatDate(foundDate, 'es')}.`;
-      fr = `${category ? `${category}` : 'événement'} annulé prévu pour ${formatDate(foundDate, 'fr')}.`;
+      en = I18n.get('EVENT_cancelledDate')(category, foundDate);
+      es = I18n.get('EVENT_cancelledDate', 'es')(category, foundDate);
+      fr = I18n.get('EVENT_cancelledDate', 'fr')(category, foundDate);
   	} else if (oldImage.startAt !== newImage.startAt) {
-      en = `${category} was rescheduled for ${formatDate(newImage.startAt)}.`.trim();
-      es = `${category ? category : "el evento"} fue reprogramado para el ${formatDate(foundDate, 'es')}.`;
-      fr = `${category} a été reprogrammé pour ${formatDate(newImage.startAt, 'fr')}.`.trim();
+      en = I18n.get('EVENT_rescheduled')(category, newImage.startAt);
+      es = I18n.get('EVENT_rescheduled', 'es')(category, newImage.startAt);
+      fr = I18n.get('EVENT_rescheduled', 'fr')(category, newImage.startAt);
       foundDate = newImage.startAt;
   	} else if (Boolean(newImage.venue) && (oldImage.venue !== newImage.venue)) {
-      en = `${category} venue changed to ${newImage.venue}.`.trim();
-      es = `el lugar del ${category ? category : "evento"} cambió a ${newImage.venue}.`.trim();
-      fr = `lieu de ${category ? category : "l'événement"} changé pour ${newImage.venue}.`.trim();
+      en = I18n.get('EVENT_venueChanged')(category, newImage.venue);
+      es = I18n.get('EVENT_venueChanged', 'es')(category, newImage.venue);
+      fr = I18n.get('EVENT_venueChanged', 'fr')(category, newImage.venue);
   	}
   }
 
@@ -196,9 +171,9 @@ function formatNotification(item) {
   return {
     title,
     contents: {
-      en: capitalize(en),
-      es: capitalize(es),
-      fr: capitalize(fr),
+      en,
+      es,
+      fr
     },
     ttl,
     data: {
