@@ -69,10 +69,11 @@ export default class SettingsState {
     this.extraData += 1;
   }
 
-  @action setUserPreference = (pref) => {
+  @action setUserPreference = async (pref) => {
     if (pref) {
       this.userPreference = pref;
       OneSignal.setSubscription(!pref.disablePush);
+      await updateUserPreference(pref);
     }
   };
 }
