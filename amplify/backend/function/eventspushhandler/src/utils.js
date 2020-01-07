@@ -18,7 +18,8 @@ function formatDate(date, lang) {
       m = moment(date).locale(lang);
       break;
     default:
-      m = moment(date);
+      require('moment/locale/en');
+      m = moment(date).locale('en');
       break;
   }
   return m.add(1, 'h').calendar();
