@@ -75,6 +75,7 @@ export default class SettingsState {
     if (pref) {
       OneSignal.setSubscription(!pref.disablePush);
       pref.language = this.currentLanguage;
+      this.userPreference = pref;
     }
   };
 

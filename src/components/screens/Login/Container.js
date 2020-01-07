@@ -106,9 +106,9 @@ class Container extends React.Component {
               fetchPolicy: 'network-only'
             });
           }
-          this.props.stores.settingsStore.setUserPreference(user.preference);
           this.props.stores.appState.setState(user.state);
           this.props.stores.appState.setUserId(email);
+          this.props.stores.settingsStore.setUserPreference(user.preference);
           crashlytics().setUserEmail(email);
           logger.log('sign-in');
           this.props.navigation.navigate('App');
