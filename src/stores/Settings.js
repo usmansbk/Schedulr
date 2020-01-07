@@ -10,7 +10,7 @@ import stores from 'stores';
 
 export default class SettingsState {
 
-  @persist @observable currentLanguage = 'en';
+  @observable currentLanguage = 'en';
   @persist @observable dark = false;
   @persist @observable sound = true;
   @persist @observable vibrate = true;
