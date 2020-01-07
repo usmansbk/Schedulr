@@ -9,6 +9,8 @@ import logger from 'config/logger';
 import stores from 'stores';
 
 export default class SettingsState {
+
+  @persist @observable currentLanguage = 'en';
   @persist @observable dark = false;
   @persist @observable sound = true;
   @persist @observable vibrate = true;
@@ -17,7 +19,7 @@ export default class SettingsState {
   @persist @observable darkTheme = false;
   @persist @observable bookmarkedEventsOnly = false;
   @persist('object') @observable userPreference = {
-    language: 'en'
+    language: this.currentLanguage
   };
   @observable extraData = 0;
 
@@ -47,7 +49,7 @@ export default class SettingsState {
     this.headsUp = false;
     this.bookmarkedEventsOnly = false;
     this.userPreference = {
-      language: 'en'
+      language: this.currentLanguage
     };
   }
 
@@ -71,9 +73,16 @@ export default class SettingsState {
 
   @action setUserPreference = async (pref) => {
     if (pref) {
-      this.userPreference = pref;
       OneSignal.setSubscription(!pref.disablePush);
-      await updateUserPreference(pref);
+      pref.language = this.currentLanguage;
     }
   };
+
+  @action updateLanguage = async () => {
+    if (this.userPreference) {
+      const pref = this.userPreference;
+      pref.language = this.currentLanguage;
+      await updateUserPreference(pref);
+    }
+  }
 }

@@ -96,7 +96,10 @@ class Container extends React.Component {
   componentDidMount = async () => {
     this._initNetInfo();
     await this._handleNavBarColor();
-    InteractionManager.runAfterInteractions(this.props.stores.calendar.sync);
+    InteractionManager.runAfterInteractions(() => {
+      this.props.stores.calendar.sync();
+      this.props.stores.settingsStore.updateLanguage();
+    });
   };
 
   componentWillUnmount = () => {
