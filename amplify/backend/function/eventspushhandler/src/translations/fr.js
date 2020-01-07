@@ -2,18 +2,21 @@ const { formatDate } = require('../i18n');
 
 module.exports = {
   EVENT_scheduled: (category, date) => {
-    return  `${category} scheduled for ${formatDate(date, 'fr')}.`.trim();
+    return  `${category} était prévu pour ${formatDate(date, 'fr')}.`.trim();
   },
   EVENT_rescheduled: (category, date) => {
-    return `${category} was rescheduled for ${formatDate(date, 'fr')}.`.trim();
+    return `${category} a été reprogrammé pour ${formatDate(date, 'fr')}.`.trim();
   },
   EVENT_cancelled: (category) => {
-    return `${category} was cancelled.`.trim();
+    return `${category} a été annulé.`.trim();
   }, 
   EVENT_cancelledDate: (category, date) => {
-    return `cancelled ${category ? category : 'event'} scheduled for ${formatDate(date, 'fr')}.`;
+    return `${category ? category : 'événement'} annulée prévue pour ${formatDate(date, 'fr')}.`;
   }, 
   EVENT_venueChanged: (category, venue) => {
-    return `${category} venue changed to ${venue}.`.trim();
+    if (category) {
+      return `lieu de ${category} a été changé pour ${venue}`;
+    }
+    return `le lieu a été changé pour ${venue}`;
   }
 };

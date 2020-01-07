@@ -2,7 +2,7 @@ const { formatDate } = require('../i18n');
 
 module.exports = {
   EVENT_scheduled: (category, date) => {
-    return  `${category} scheduled for ${formatDate(date)}.`.trim();
+    return  `${category} was scheduled for ${formatDate(date)}.`.trim();
   },
   EVENT_rescheduled: (category, date) => {
     return `${category} was rescheduled for ${formatDate(date)}.`.trim();
