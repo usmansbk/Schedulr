@@ -1,4 +1,4 @@
-const { formatDate } = require('../i18n');
+const { formatDate } = require('../utils');
 
 module.exports = {
   EVENT_scheduled: (category, date) => {
