@@ -1,4 +1,5 @@
 const uuid = require('uuid/v1');
+const I18n = require('./i18n');
 const { groupCommentsByEvent } = require('./utils');
 
 const EVENT_TABLE_NAME = process.env.EVENT_TABLE_NAME;
@@ -9,30 +10,31 @@ async function processUpdates({
   followingSchedulesComments,
   createdSchedulesComments,
   currentUserId,
-  getItemById
+  getItemById,
+  language
 }) {
   const set = ([...followingSchedulesComments, ...createdSchedulesComments]);
   let allNotifications = [];
   for (let schedule of set) {
     const { items } = schedule;
-    const notifications = await processComments({items, currentUserId, getItemById });
+    const notifications = await processComments({items, currentUserId, getItemById, language });
     allNotifications = [...allNotifications, ...notifications];
   }
   return allNotifications;
 }
 
-async function processComments({ items, currentUserId, getItemById }) {
+async function processComments({ items, currentUserId, getItemById, language }) {
   let allNotifications = [];
   const commentsByEvent = groupCommentsByEvent({ comments: items });
   for (let event of commentsByEvent) {
     const { items } = event;
-    const notifications = await processNotification({ items, currentUserId, getItemById });
+    const notifications = await processNotification({ items, currentUserId, getItemById, language });
     allNotifications = [...allNotifications, ...notifications];
   }
   return allNotifications;
 }
 
-async function processNotification({ items, currentUserId, getItemById }) {
+async function processNotification({ items, currentUserId, getItemById, language }) {
   const notifications = [];
   const uniqAuthorIds = Array.from(new Set(items.map(item => item.commentAuthorId)));
   const uniqItems = uniqAuthorIds.map(id => {
@@ -53,16 +55,13 @@ async function processNotification({ items, currentUserId, getItemById }) {
         extraContent = `[${type.slice(0, type.indexOf('/'))}]`;
       }
       const others = replies.length - 1;
-      let message = 'replied to your comment on';
-      if (others > 0) {
-        message = `and ${others} other${others > 1 ? 's' : ''} ${message}`;
-      }
+
       if (author && event) {
         const notification = {
           id: uuid(),
           type: __typename,
           subject: author.name,
-          message,
+          message: I18n.get('COMMENT_reply', language)(others),
           topic: event.title,
           timestamp,
           image: author.avatar,
@@ -84,10 +83,7 @@ async function processNotification({ items, currentUserId, getItemById }) {
       const event = await getItemById({ TableName: EVENT_TABLE_NAME, id: commentEventId });
       if (author && event) {
         const others = newComments.length - 1;
-        let message = 'commented on';
-        if (others > 0) {
-          message = `and ${others} other${others > 1 ? 's' : ''} ${message}`;
-        }
+
         let extraContent = content;
         if (attachment && attachment.length) {
           const { type } = attachment[0];
@@ -97,7 +93,7 @@ async function processNotification({ items, currentUserId, getItemById }) {
           id: uuid(),
           type: __typename,
           subject: author.name,
-          message,
+          message: I18n.get('COMMENT_new', language)(others),
           topic: event.title,
           timestamp,
           image: author.avatar,

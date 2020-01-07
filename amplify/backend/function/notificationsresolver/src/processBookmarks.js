@@ -1,21 +1,22 @@
 const uuid = require('uuid/v1');
+const I18n = require('./i18n');
 const { uniqueFlat } = require('./utils');
 
 const USER_TABLE_NAME = process.env.USER_TABLE_NAME;
 const EVENT_TABLE_NAME = process.env.EVENT_TABLE_NAME;
 
-async function processUpdates({ bookmarksUpdates, getItemById }) {
+async function processUpdates({ bookmarksUpdates, getItemById, language }) {
   let allNotifications = [];
   for (let schedule of bookmarksUpdates) {
     const { items } = schedule;
     const bookmarks = uniqueFlat(items);
-    const notifications = await processBookmarks(bookmarks, getItemById);
+    const notifications = await processBookmarks(bookmarks, getItemById, language);
     allNotifications = [...allNotifications, ...notifications];
   }
   return allNotifications; 
 }
 
-async function processBookmarks(bookmarks, getItem) {
+async function processBookmarks(bookmarks, getItem, language) {
   let notifications = [];
   const count = bookmarks.length;
   if (count) {
@@ -39,7 +40,7 @@ async function processBookmarks(bookmarks, getItem) {
         id: uuid(),
         subject: user.name,
         topic: event.title,
-        message: parseMessage(count, 'en'),
+        message: I18n.get('EVENT_bookmarked', language)(count),
         type: newImage.__typename,
         timestamp,
         entityId: event.id, 
@@ -52,15 +53,6 @@ async function processBookmarks(bookmarks, getItem) {
     }
   }
   return notifications;
-}
-
-function parseMessage(count, lang) {
-  const others = count - 1;
-  let message = 'bookmarked';
-  if (others > 0) {
-    message = `and ${others} other${others > 1 ? 's' : ''} ${message}`;
-  }
-  return message;
 }
 
 module.exports = processUpdates;

@@ -1,20 +1,21 @@
 const uuid = require('uuid/v1');
+const I18n = require('./i18n');
 
 const USER_TABLE_NAME = process.env.USER_TABLE_NAME;
 
 const CLOSED = 'CLOSED';
 
-async function processUpdates({ followingSchedulesUpdates, getItemById }) {
+async function processUpdates({ followingSchedulesUpdates, getItemById, language }) {
   let allNotifications = [];
   for (let schedule of followingSchedulesUpdates) {
     const { items } = schedule;
-    const notifications = await processChanges(items, getItemById);
+    const notifications = await processChanges(items, getItemById, language);
     allNotifications = [...allNotifications, ...notifications];
   }
   return allNotifications; 
 }
 
-async function processChanges(changes, getItemById) {
+async function processChanges(changes, getItemById, language) {
   let notifications = [];
   const count = changes.length;
   if (count) {
@@ -23,20 +24,20 @@ async function processChanges(changes, getItemById) {
     const { oldImage } = oldest;
     const { newImage, timestamp } = latest;
     if (oldImage.__typename && newImage.__typename) {
-      const diffs = await processDifference({ oldImage, newImage, timestamp, getItemById });
+      const diffs = await processDifference({ oldImage, newImage, timestamp, getItemById, language });
       notifications = [...notifications, ...diffs];
     }
   }
   return notifications;
 }
 
-async function processDifference({ oldImage, newImage, getItemById, timestamp }) {
+async function processDifference({ oldImage, newImage, getItemById, timestamp, language }) {
   let diffs = [];
   if (oldImage.name !== newImage.name) {
     const notification = {
       id: uuid(),
       subject: oldImage.name,
-      message: 'was renamed as',
+      message: I18n.get('SCHEDULE_renamed', language),
       topic: newImage.name,
       entityId: newImage.id,
       type: newImage.__typename,
@@ -55,7 +56,7 @@ async function processDifference({ oldImage, newImage, getItemById, timestamp })
       const notification = {
         id: uuid(),
         subject: user.name,
-        message: newImage.status === CLOSED ? 'archived' : 'unarchived',
+        message: I18n.get(`SCHEDULE_${newImage.status === CLOSED ? 'archived' : 'unarchived'}`, language),
         topic: newImage.name,
         entityId: newImage.id,
         type: newImage.__typename,

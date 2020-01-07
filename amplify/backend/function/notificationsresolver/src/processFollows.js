@@ -1,21 +1,22 @@
 const uuid = require('uuid/v1');
+const I18n = require('./i18n');
 const { uniqueFlat } = require('./utils');
 
 const USER_TABLE_NAME = process.env.USER_TABLE_NAME;
 const SCHEDULE_TABLE_NAME = process.env.SCHEDULE_TABLE_NAME;
 
-async function processUpdates({ followersUpdates, getItemById }) {
+async function processUpdates({ followersUpdates, getItemById, language }) {
   let allNotifications = [];
   for (let schedule of followersUpdates) {
     const { items } = schedule;
     const followers = uniqueFlat(items);
-    const notifications = await processFollowers(followers, getItemById);
+    const notifications = await processFollowers(followers, getItemById, language);
     allNotifications = [...allNotifications, ...notifications];
   }
   return allNotifications; 
 }
 
-async function processFollowers(followers, getItem) {
+async function processFollowers(followers, getItem, language) {
   let notifications = [];
   const count = followers.length;
   if (count) {
@@ -39,7 +40,7 @@ async function processFollowers(followers, getItem) {
         id: uuid(),
         subject: user.name,
         topic: schedule.name,
-        message: parseMessage(count, 'en'),
+        message: I18n.get('FOLLOW_new', language)(count),
         type: newImage.__typename,
         timestamp,
         entityId: schedule.id, 
@@ -52,15 +53,6 @@ async function processFollowers(followers, getItem) {
     }
   }
   return notifications;
-}
-
-function parseMessage(count, lang) {
-  const others = count - 1;
-  let message = 'started following';
-  if (others > 0) {
-    message = `and ${others} other${others > 1 ? 's' : ''} ${message}`;
-  }
-  return message;
 }
 
 module.exports = processUpdates;
