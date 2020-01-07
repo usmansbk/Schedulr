@@ -1,6 +1,6 @@
 const uuid = require('uuid/v1');
-const moment = require('moment');
-const { transformFollowing } = require('./utils');
+const I18n = require('./i18n');
+const { transformFollowing, formatDate } = require('./utils');
 
 const USER_TABLE_NAME = process.env.USER_TABLE_NAME;
 const DELETE = 'DELETE';
@@ -8,32 +8,33 @@ const DELETE = 'DELETE';
 async function processUpdates({
   followingScheduleEventsUpdates,
   bookmarkedEventsUpdates,
-  getItemById
+  getItemById,
+  language
 }) {
   let allNotifications = [];
   const followingEvents = transformFollowing(followingScheduleEventsUpdates);
   const allUpdates = [...followingEvents, ...bookmarkedEventsUpdates];
   for (let update of allUpdates) {
-    notifications = await processChanges(update, getItemById);
+    notifications = await processChanges(update, getItemById, language);
     allNotifications = [...allNotifications, ...notifications];
   }
   return allNotifications;
 }
 
-async function processChanges(update, getItem) {
+async function processChanges(update, getItem, language) {
   let notifications = [];
   const { items } = update;
   const count = items.length;
   if (count) {
     const oldest = items[0];
     const latest = items[count - 1];
-    const diffs = await processDifference({ oldest, latest, getItem });
+    const diffs = await processDifference({ oldest, latest, getItem, language });
     notifications = [...notifications, ...diffs];
   }
   return notifications;
 }
 
-async function processDifference({ oldest, latest, getItem }) {
+async function processDifference({ oldest, latest, getItem, language }) {
   let diffs = [];
   const { oldImage } = oldest;
   const { newImage, timestamp, eventAuthorId, aws_ds, id } = latest;
@@ -43,8 +44,8 @@ async function processDifference({ oldest, latest, getItem }) {
         id: uuid(),
         type: newImage.__typename,
         subject: newImage.title,
-        message: 'was scheduled for',
-        topic: moment(newImage.startAt).add(1, 'hour').calendar(),
+        message: I18n.get('EVENT_scheduled', language),
+        topic: formatDate(newImage.startAt, language),
         image: newImage.banner,
         timestamp,
         entityId: id,
@@ -61,7 +62,7 @@ async function processDifference({ oldest, latest, getItem }) {
             id: uuid(),
             type: newImage.__typename,
             subject: user.name,
-            message: 'cancelled',
+            message: I18n.get('EVENT_cancelled', language),
             topic: newImage.title,
             image: user.avatar,
             timestamp,
@@ -78,8 +79,8 @@ async function processDifference({ oldest, latest, getItem }) {
             id: uuid(),
             type: newImage.__typename,
             subject: newImage.title,
-            message: 'was rescheduled for',
-            topic: moment(newImage.startAt).add(1, 'hour').calendar(),
+            message: I18n.get('EVENT_rescheduled', language),
+            topic: formatDate(newImage.startAt, language),
             image: newImage.banner,
             timestamp,
             entityId: id,
@@ -91,7 +92,7 @@ async function processDifference({ oldest, latest, getItem }) {
             id: uuid(),
             type: newImage.__typename,
             subject: newImage.title,
-            message: 'venue changed to',
+            message: I18n.get('EVENT_venueChanged', language),
             topic: newImage.venue,
             image: newImage.banner,
             timestamp,
@@ -104,7 +105,7 @@ async function processDifference({ oldest, latest, getItem }) {
             id: uuid(),
             type: newImage.__typename,
             subject: oldImage.title,
-            message: 'was renamed as',
+            message: I18n.get('EVENT_renamed', language),
             topic: newImage.title,
             image: newImage.banner,
             timestamp,
@@ -122,17 +123,12 @@ async function processDifference({ oldest, latest, getItem }) {
           });
           if (user) {
             const count = newAlbum.length - oldAlbum.length;
-            let message;
-            if (count === 1) {
-              message = `added a new photo to`;
-            } else {
-              message = `added ${count} new photos to`;
-            }
+
             const notification = {
               id: uuid(),
               type: newImage.__typename,
               subject: user.name,
-              message,
+              message: I18n.get('EVENT_newPhoto', language)(count),
               topic: newImage.title,
               image: user.avatar,
               timestamp,
@@ -155,13 +151,12 @@ async function processDifference({ oldest, latest, getItem }) {
           });
           if (user) {
             const category = newImage.category ? newImage.category.toLowerCase() : 'event';
-            const article = ['a','e','i','o','u'].includes(category[0]) ? 'an' : 'a';
             const notification = {
               id: uuid(),
               type: newImage.__typename,
               subject: user.name,
-              message: `cancelled ${article} ${category} scheduled for`,
-              topic: moment(cancelledDate).add(1, 'hour').calendar(),
+              message: I18n.get('EVENT_cancelledDate', language)(category),
+              topic: formatDate(cancelledDate, language),
               image: user.avatar,
               timestamp,
               entityId: id,
@@ -178,7 +173,7 @@ async function processDifference({ oldest, latest, getItem }) {
             id: uuid(),
             type: newImage.__typename,
             subject: newImage.title,
-            message: `changed to`,
+            message: I18n.get('EVENT_categoryChanged', language),
             topic: newImage.category,
             image: newImage.banner,
             timestamp,

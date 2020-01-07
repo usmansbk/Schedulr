@@ -18,7 +18,6 @@ function formatDate(date, lang) {
       m = moment(date).locale(lang);
       break;
     default:
-      require('moment/locale/en');
       m = moment(date).locale('en');
       break;
   }

@@ -1,19 +1,22 @@
 const { formatDate } = require('../utils');
 
 module.exports = {
-  EVENT_scheduled: (category, date) => {
-    return  `${category} was scheduled for ${formatDate(date)}.`.trim();
+  EVENT_cancelled: `cancelled`,
+  EVENT_scheduled: 'was scheduled for',
+  EVENT_rescheduled:  'was rescheduled for',
+  EVENT_venueChanged:  'venue changed to',
+  EVENT_renamed: 'was renamed as',
+  EVENT_newPhoto: count => {
+    let message;
+    if (count === 1) {
+      message = `added a new photo to`;
+    } else {
+      message = `added ${count} new photos to`;
+    }
+    return message;
   },
-  EVENT_rescheduled: (category, date) => {
-    return `${category} was rescheduled for ${formatDate(date)}.`.trim();
+  EVENT_cancelledDate: category => {
+    return `cancelled ${category} scheduled for`;
   },
-  EVENT_cancelled: (category) => {
-    return `${category} was cancelled.`.trim();
-  }, 
-  EVENT_cancelledDate: (category, date) => {
-    return `cancelled ${category ? category : 'event'} scheduled for ${formatDate(date)}.`;
-  }, 
-  EVENT_venueChanged: (category, venue) => {
-    return `${category} venue changed to ${venue}.`.trim();
-  }
+  EVENT_categoryChanged: 'changed to'
 };
