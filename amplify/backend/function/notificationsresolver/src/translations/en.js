@@ -1,53 +1,53 @@
 module.exports = {
-  EVENT_cancelled: `annulé`,
-  EVENT_scheduled: 'était prévu pour',
-  EVENT_rescheduled:  'a été reprogrammé pour',
-  EVENT_venueChanged:  'lieu changé pour',
-  EVENT_renamed: 'a été renommé en',
+  EVENT_cancelled: `cancelled`,
+  EVENT_scheduled: 'was scheduled for',
+  EVENT_rescheduled:  'was rescheduled for',
+  EVENT_venueChanged:  'venue changed to',
+  EVENT_renamed: 'was renamed as',
   EVENT_newPhoto: count => {
     let message;
     if (count === 1) {
-      message = `a ajouté une nouvelle photo à`;
+      message = `added a new photo to`;
     } else {
-      message = `a ajouté ${count} nouvelles photos à`;
+      message = `added ${count} new photos to`;
     }
     return message;
   },
   EVENT_cancelledDate: category => {
-    return `${category} annulé prévu pour`;
+    return `cancelled ${category} scheduled for`;
   },
-  EVENT_categoryChanged: 'changé en',
+  EVENT_categoryChanged: 'changed to',
   EVENT_bookmarked: (count) => {
     const others = count - 1;
-    let message = 'mis en signet';
+    let message = 'bookmarked';
     if (others > 0) {
-      message = `et ${others} autres favoris`;
+      message = `and ${others} other${others > 1 ? 's' : ''} ${message}`;
     }
     return message;
   },
   COMMENT_reply: (others) => {
-    let message = 'répondu à votre commentaire';
+    let message = 'replied to your comment on';
     if (others > 0) {
-      message = `et ${others} autres ont répondu à votre commentaire`;
+      message = `and ${others} other${others > 1 ? 's' : ''} ${message}`;
     }
     return message;
   },
   COMMENT_new: (others) => {
-    let message = `commenté sur`;
+    let message = 'commented on';
     if (others > 0) {
-      message = `et ${others} autres personnes ont commenté`;
+      message = `and ${others} other${others > 1 ? 's' : ''} ${message}`;
     }
     return message;
   },
   FOLLOW_new: (count) => {
     const others = count - 1;
-    let message = `commencé à suivre`;
+    let message = 'started following';
     if (others > 0) {
-      message = `et ${others} autres ont commencé à suivre`;
+      message = `and ${others} other${others > 1 ? 's' : ''} ${message}`;
     }
     return message;
   },
-  SCHEDULE_renamed:  'a été renommé en',
-  SCHEDULE_archived: 'archivé',
-  SCHEDULE_unarchived: 'désarchivé',
+  SCHEDULE_renamed:  'was renamed as',
+  SCHEDULE_archived: 'archived',
+  SCHEDULE_unarchived: 'unarchived',
 };
