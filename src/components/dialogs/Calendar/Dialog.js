@@ -22,6 +22,8 @@ class CalendarDialog extends React.Component {
 
   _keyExtractor = item => item.id;
 
+  _renderFooter = () => <Button onPress={this._authorize}>{I18n.get("BUTTON_addMyCalendar")}</Button>;
+
   _renderItem = ({ item: calendar }) => {
     const { stores } = this.props;
     return (
@@ -73,10 +75,8 @@ class CalendarDialog extends React.Component {
               keyExtractor={this._keyExtractor}
               renderItem={this._renderItem}
               extraData={stores.calendar.calendars.length}
+              ListFooterComponent={calendars.length ? undefined : this._renderFooter}
             />
-            {
-              Boolean(!calendars.length) && (<Button onPress={this._authorize}>{I18n.get("BUTTON_addMyCalendar")}</Button>)
-            }
           </Dialog.Content>
           {
             Boolean(calendars.length) && (
