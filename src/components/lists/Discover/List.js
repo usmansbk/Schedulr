@@ -58,6 +58,7 @@ class List extends Component{
       endAt,
       venue,
       isBookmarked,
+      schedule
     } = item;
     if (__typename === 'Event') return <EventItem
       id={id}
@@ -70,6 +71,7 @@ class List extends Component{
       isBookmarked={isBookmarked}
       month={getHumanMonth(startAt)}
       day={new Date(startAt).getDate()}
+      bookmarkScheduleId={schedule && schedule.id}
       onPressItem={this._onPressItem}
       navigateToBanner={this._navigateToBanner}
     />;

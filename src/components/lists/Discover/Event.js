@@ -5,7 +5,8 @@ import {
   Caption,
   TouchableRipple
 } from 'react-native-paper';
-import { inject, observer } from 'mobx-react';
+import BookmarkButton from 'components/common/BookmarkButton';
+import colors from 'config/colors';
 
 const styles  = StyleSheet.create({
   container: {
@@ -19,13 +20,13 @@ const styles  = StyleSheet.create({
   },
   image: {
     height: 150,
-    width: 300,
+    width: 350,
     borderRadius: 4
   },
   body:{
     flexDirection: 'row',
     justifyContent: 'center',
-    width: 300
+    width: 350
   },
   date: {
     paddingRight: 12,
@@ -53,12 +54,15 @@ export default class EventItem extends React.Component {
   _onPressAvatar = () => this.props.navigateToBanner(this.props.id);
   render() {
     const {
+      id,
+      isBookmarked,
       title,
       month,
       day,
       venue,
       description,
-      pictureUrl
+      pictureUrl,
+      bookmarkScheduleId
     } = this.props;
     let source = pictureUrl ? {uri: pictureUrl} : require('../../../assets/placeholder.png');
     return (
@@ -76,11 +80,18 @@ export default class EventItem extends React.Component {
               <Text style={{fontSize: 20}} numberOfLines={2}>{title}</Text>
               <Caption numberOfLines={1}>{venue || description}</Caption>
             </View>
+            <View>
+              <BookmarkButton
+                id={id}
+                size={24}
+                activeColor={colors.primary}
+                isBookmarked={isBookmarked}
+                bookmarkScheduleId={bookmarkScheduleId}
+              />
+            </View>
           </View>
         </View>
       </TouchableRipple>
     );
   }
 }
-
-// export default inject('stores')(observer(EventItem));
