@@ -16,7 +16,7 @@ const styles  = StyleSheet.create({
     marginTop: 16
   },
   content: {
-    paddingBottom: 24,
+    paddingBottom: 8,
   },
   image: {
     height: 150,
