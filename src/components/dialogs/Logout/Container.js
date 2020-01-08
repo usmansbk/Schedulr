@@ -1,5 +1,5 @@
 import React from 'react';
-import { Auth } from'aws-amplify';
+import { withOAuth } from 'aws-amplify-react-native';
 import { withNavigation } from 'react-navigation';
 import { inject, observer } from 'mobx-react';
 import { withApollo } from 'react-apollo';
@@ -13,7 +13,7 @@ class Container extends React.Component {
   _signOut = async () => {
     this.setState({ loading: true });
     try { await this.props.client.clearStore(); } catch(error){}
-    try { await Auth.signOut(); } catch(error) {}
+    try { await this.props.signOut(); } catch(error) {}
     this._handleDimiss();
     this.props.stores.reset();
     this.props.navigation.navigate('Auth');
@@ -33,6 +33,6 @@ class Container extends React.Component {
   }
 }
 
-const withStores = inject("stores")(observer(withApollo(Container)));
+const withStores = inject("stores")(observer(withApollo(withOAuth(Container))));
 
 export default withNavigation(withStores);

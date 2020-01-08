@@ -84,7 +84,7 @@ export default class EventItem extends React.Component {
               <BookmarkButton
                 id={id}
                 size={24}
-                color={colors.light_gray}
+                color={colors.gray}
                 activeColor={colors.primary}
                 isBookmarked={isBookmarked}
                 bookmarkScheduleId={bookmarkScheduleId}
