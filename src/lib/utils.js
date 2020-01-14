@@ -204,10 +204,6 @@ export function injectAds(events, index=0, recurrence="NEVER") {
   return withAds;
 }
 
-export function filterBlacklist(filters, blacklist) {
-  return filters.filter(item => !blacklist.includes(item))
-}
-
 export function getSeason() {
   const m = moment();
   const month = m.month();

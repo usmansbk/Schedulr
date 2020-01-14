@@ -2,7 +2,6 @@ import React from 'react';
 import { FlatList } from 'react-native';
 import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
-import { filterBlacklist } from 'lib/utils';
 import { ALL_FILTER, chips } from 'lib/constants';
 import Item from './Item';
 
@@ -42,7 +41,7 @@ class List extends React.Component {
       <FlatList
         horizontal
         contentContainerStyle={stores.appStyles.chipList.container}
-        data={[ALL_FILTER, ...filterBlacklist(data, blacklist)]}
+        data={[ALL_FILTER, ...data]}
         renderItem={this._renderItem}
         initialNumToRender={5}
         keyExtractor={this._keyExtractor}
