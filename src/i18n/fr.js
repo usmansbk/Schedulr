@@ -425,14 +425,6 @@ export default {
     'Compétition',
     'Hackathon'
   ],
-  blacklist :[
-    'Tester',
-    'Conférence',
-    'Études',
-    'Examen',
-    'un événement',
-    'Réunion'
-  ],
   personalSchedule: {
     name: "Liste personnelle 📝",
     description: "Mes rendez-vous.",
