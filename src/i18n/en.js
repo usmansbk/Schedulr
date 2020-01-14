@@ -422,6 +422,7 @@ export default {
     'Workshop',
   ],
   topics: [
+    "Other",
     "Business & Professional",
     "Charity & Causes",
     "Community & Culture",
@@ -434,7 +435,6 @@ export default {
     "Hobbies & Special Interest",
     "Family Lifestyle",
     "Music",
-    "Other",
     "Religion & Spirituality",
     "School Activities",
     "Science & Technology",
