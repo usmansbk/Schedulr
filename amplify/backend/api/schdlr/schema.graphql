@@ -96,6 +96,7 @@ type Schedule
   id: ID!
   name: String!
   description: String
+  topic: String
   isPublic: Boolean
   isOwner: Boolean
   isFollowing: Boolean 
