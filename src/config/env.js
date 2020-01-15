@@ -1,4 +1,4 @@
-const date = '2019-11-18T22:57';
+const date = '2020-01-14T23:13';
 const DOMAIN = 'https://get-schdlr.com';
 
 const common = {
