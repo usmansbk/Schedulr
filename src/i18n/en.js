@@ -256,7 +256,9 @@ export default {
   SCHEDULE_FORM_name: "Name",
   SCHEDULE_FORM_description: "Description",
   SCHEDULE_FORM_private: "Private",
-  SCHEDULE_FORM_public: "PUBLIC",
+  SCHEDULE_FORM_public: "Public",
+  SCHEDULE_FORM_topic: "Topic",
+  SCHEDULE_FORM_selectTopic: "Select Topic",
 
   SCHEDULE_followerCount: "Follower",
   SCHEDULE_followerCounts: "Followers",
@@ -403,7 +405,7 @@ export default {
     sameElse: DAY_FORMAT
   },
   categories : [
-    'Event',
+    'Default',// Default category should always be the first item
     'Class',
     'Lecture',
     'Conference',

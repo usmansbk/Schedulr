@@ -16,6 +16,7 @@ import {
 } from 'react-native-paper';
 import Alert from 'components/dialogs/Alert';
 import LocationPicker, { LocationPickerInput } from 'components/common/LocationInput';
+import Picker from 'components/common/Picker';
 import { Formik } from 'formik';
 import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
@@ -29,6 +30,7 @@ class Form extends React.Component {
       description: '',
       location: null,
       isPublic: true,
+      topic: null,
     }
   };
 
@@ -158,6 +160,19 @@ class Form extends React.Component {
                 placeholder={I18n.get("PICKER_location")}
                 onPress={() => this.setState({ showLocationPicker: true })}
               />
+              <View style={{marginVertical: 4 }}>
+                <Text style={[styles.text, { marginVertical: 4 }]}>{I18n.get("SCHEDULE_FORM_topic")}</Text>
+                <Picker
+                  value={values.topic}
+                  prompt={I18n.get("SCHEDULE_FORM_selectTopic")}
+                  items={I18n.get('topics').map(item => ({
+                    key: item,
+                    label: item,
+                    value: item
+                  }))}
+                  onValueChange={itemValue => setFieldValue('topic', itemValue)}
+                />
+              </View>
               <View style={styles.switchButton}>
                 <Text style={styles.text}>{I18n.get("SCHEDULE_FORM_public")}</Text>
                 <Switch

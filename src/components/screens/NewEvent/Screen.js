@@ -2,7 +2,6 @@ import React from 'react';
 import moment from 'moment';
 import uuidv5 from 'uuid/v5';
 import shortid from 'shortid';
-import { I18n } from 'aws-amplify';
 import { withApollo } from 'react-apollo';
 import memoize from 'memoize-one';
 import Form from 'components/forms/Event';
@@ -82,7 +81,7 @@ class NewEventScreen extends React.Component {
       startAt: start,
       endAt: end,
       allDay,
-      category: category || I18n.get('categories')[0],
+      category,
       recurrence: recurrence || recurrences[0].id,
       until,
       forever: forever !== undefined ? forever : true,

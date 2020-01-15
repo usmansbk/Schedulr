@@ -6,5 +6,6 @@ export default Yup.object().shape({
     .min(2, 'tooShort')
     .required('nameIsRequired'),
   description: Yup.string()
-    .trim()
+    .trim(),
+  topic: Yup.string().trim()
 });

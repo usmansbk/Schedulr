@@ -56,7 +56,14 @@ class Input extends React.Component {
   _clearText = () => this.setState({ text: '' });
   _hideModal = () => this.props.hideModal();
   _onChangeText = text => this.setState({ text });
-  _onValueChange = (value) => this.props.onValueChange(value);
+  _onValueChange = (value) => {
+    const defaultType = I18n.get('categories')[0];
+    if (value === defaultType) {
+      this.props.onValueChange(null);
+    } else {
+      this.props.onValueChange(value);
+    }
+  };
   _handleSubmit = () => {
     const { text } = this.state;
     const trimmedText = text.trim();
