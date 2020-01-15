@@ -53,7 +53,7 @@ class Input extends React.Component {
     return null;
   }
 
-  _clearText = () => this.setState({ text: '' });
+  _clearText = () => this.setState({ text: '' }, () => this.props.onValueChange(''));
   _hideModal = () => this.props.hideModal();
   _onChangeText = text => this.setState({ text });
   _onValueChange = (value) => {
@@ -111,18 +111,6 @@ class Input extends React.Component {
               />
               <Divider />
               <View style={styles.textInputContainer}>
-                <View style={styles.textInput}>
-                  <TextInput
-                    placeholder={I18n.get("PLACEHOLDER_customType")}
-                    label={I18n.get("PLACEHOLDER_customType")}
-                    mode="outlined"
-                    style={styles.placeholder}
-                    placeholderTextColor={colors.placeholder}
-                    value={text}
-                    onChangeText={this._onChangeText}
-                    onSubmitEditing={this._handleSubmit}
-                  />
-                </View>
                 {
                   !!length && (
                     <IconButton
@@ -137,6 +125,28 @@ class Input extends React.Component {
                     />
                   )
                 }
+                <View style={styles.textInput}>
+                  <TextInput
+                    placeholder={I18n.get("PLACEHOLDER_customType")}
+                    label={I18n.get("PLACEHOLDER_customType")}
+                    mode="outlined"
+                    style={styles.placeholder}
+                    placeholderTextColor={colors.placeholder}
+                    value={text}
+                    onChangeText={this._onChangeText}
+                    onSubmitEditing={this._handleSubmit}
+                  />
+                </View>
+                <IconButton
+                  size={24}
+                  color={colors.primary}
+                  icon={({ size, color }) => <Icon
+                    name="plus"
+                    size={size}
+                    color={color}
+                  />}
+                  onPress={this._handleSubmit}
+                />
               </View>
               <HelperText
                 type="error"

@@ -164,13 +164,16 @@ class Form extends React.Component {
                 <Text style={[styles.text, { marginVertical: 4 }]}>{I18n.get("SCHEDULE_FORM_topic")}</Text>
                 <Picker
                   value={values.topic}
-                  default={I18n.get("topics")[0]}
                   prompt={I18n.get("SCHEDULE_FORM_selectTopic")}
                   items={I18n.get('topics').map(item => ({
                     key: item,
                     label: item,
                     value: item
-                  }))}
+                  })).concat({
+                    key: '__no__topic__',
+                    label: I18n.get('SCHEDULE_FORM_selectTopic'),
+                    value: ''
+                  })}
                   onValueChange={itemValue => setFieldValue('topic', itemValue)}
                 />
               </View>
