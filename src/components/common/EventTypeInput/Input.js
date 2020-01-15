@@ -72,7 +72,7 @@ class Input extends React.Component {
       this._onValueChange(null);
       this._hideModal();
     }
-  }
+  };
   _filterData = (data) => data.filter(item => item.toLowerCase().includes(this.state.text.toLowerCase()));
 
   render() {
