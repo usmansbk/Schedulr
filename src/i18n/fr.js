@@ -424,7 +424,6 @@ export default {
     'Tournoi'
   ],
   topics: [
-    "Aucune catégorie",
     "Affaires et professionnels",
     "Charité et causes",
     "Communauté et culture",
