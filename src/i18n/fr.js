@@ -412,18 +412,38 @@ export default {
     sameElse: DAY_FORMAT
   },
   categories : [
-    'un événement',
+    'Événement normal',// Default category should always be the first item
     'Conférence',
-    'Examen',
-    'Tester',
-    'Se rencontrer',
-    'Études',
-    'Travail',
-    'Sport',
-    'Réunion',
-    'Festivité',
     'Compétition',
-    'Hackathon'
+    'Examen',
+    'Festival',
+    'Se rencontrer',
+    'Réunion',
+    'Fête',
+    'Se rallier',
+    'Tour',
+    'Tournoi'
+  ],
+  topics: [
+    "Aucune catégorie",
+    "Affaires et professionnels",
+    "Charité et causes",
+    "Communauté et culture",
+    "Éducation",
+    "Fashion beauté",
+    "Cinéma, médias et divertissement",
+    "Nourriture boisson",
+    "Gouvernement et politique",
+    "Santé et bien-être",
+    "Loisirs et intérêts spéciaux",
+    "Mode de vie familial",
+    "La musique",
+    "Religion et spiritualité",
+    "Activités scolaires",
+    "Technologie scientifique",
+    "Saisonnier et vacances",
+    "Sports et fitness",
+    "Voyage et plein air"
   ],
   personalSchedule: {
     name: "Liste personnelle 📝",
