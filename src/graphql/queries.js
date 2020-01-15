@@ -219,6 +219,7 @@ export const getSchedule = `query GetSchedule($id: ID!) {
     id
     name
     description
+    topic
     isPublic
     isOwner
     isFollowing
@@ -356,6 +357,7 @@ export const getUserSchedules = `query GetUserSchedules($id: ID!) {
         id
         name
         description
+        topic
         isPublic
         isOwner
         isFollowing
@@ -391,6 +393,7 @@ export const getUserSchedules = `query GetUserSchedules($id: ID!) {
           id
           name
           description
+          topic
           isPublic
           isOwner
           isFollowing
@@ -467,6 +470,7 @@ export const getUserData = `query GetUserData($filter: ModelEventFilterInput, $l
         id
         name
         description
+        topic
         isPublic
         isOwner
         isFollowing
@@ -538,6 +542,7 @@ export const getUserData = `query GetUserData($filter: ModelEventFilterInput, $l
           id
           name
           description
+          topic
           isPublic
           isOwner
           isFollowing
@@ -700,6 +705,7 @@ export const getDeltaUpdates = `query GetDeltaUpdates($lastSync: String!) {
       id
       name
       description
+      topic
       isPublic
       status
       updatedAt
@@ -770,6 +776,7 @@ export const searchSchedules = `query SearchSchedules($filter: SearchableSchedul
       id
       name
       description
+      topic
       isPublic
       isOwner
       isFollowing
@@ -941,6 +948,7 @@ export const nearbySchedules = `query GetNearbySchedules($location: LocationInpu
       id
       name
       description
+      topic
       isPublic
       isOwner
       isFollowing

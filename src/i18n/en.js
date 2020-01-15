@@ -432,7 +432,7 @@ export default {
     "Fashion & Beauty",
     "Film, Media & Entertainment",
     "Food & Drink",
-    "Government & Polictics",
+    "Government & Politics",
     "Health and Wellness",
     "Hobbies & Special Interest",
     "Family Lifestyle",

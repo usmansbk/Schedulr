@@ -30,7 +30,7 @@ class Form extends React.Component {
       description: '',
       location: null,
       isPublic: true,
-      topic: null,
+      topic: '',
     }
   };
 
@@ -164,6 +164,7 @@ class Form extends React.Component {
                 <Text style={[styles.text, { marginVertical: 4 }]}>{I18n.get("SCHEDULE_FORM_topic")}</Text>
                 <Picker
                   value={values.topic}
+                  default={I18n.get("topics")[0]}
                   prompt={I18n.get("SCHEDULE_FORM_selectTopic")}
                   items={I18n.get('topics').map(item => ({
                     key: item,

@@ -7,30 +7,11 @@ export const getUserSchedules = gql`
         id
         name
         description
+        topic
         isPublic
         status
         location
       }
-    }
-  }
-`;
-
-export const listNotifications = gql`
-  fragment myNotifications on User {
-    id
-    notifications {
-      id
-      subjectId
-      subject
-      message
-      topic
-      type
-      image {
-        key
-        bucket
-      }
-      aws_ds
-      timestamp
     }
   }
 `;

@@ -212,6 +212,7 @@ export const createSchedule = `mutation CreateSchedule($input: CreateScheduleInp
     id
     name
     description
+    topic
     isPublic
     isOwner
     isFollowing
@@ -279,6 +280,7 @@ export const updateSchedule = `mutation UpdateSchedule($input: UpdateScheduleInp
     id
     name
     description
+    topic
     location
     isPublic
     status
@@ -308,6 +310,7 @@ export const createFollow = `mutation CreateFollow($input: CreateFollowInput!, $
       id
       name
       description
+      topic
       isPublic
       isOwner
       isFollowing

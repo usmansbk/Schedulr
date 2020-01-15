@@ -36,7 +36,13 @@ class Button extends React.Component {
     );
   };
 
-  _onValueChange = item => this.props.onValueChange(item.value);
+  _onValueChange = item => {
+    if (item.value === this.props.default) {
+      this.props.onValueChange('');
+    } else {
+      this.props.onValueChange(item.value);
+    }
+  };
 
   render() {
     const {

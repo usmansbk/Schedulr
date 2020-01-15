@@ -381,6 +381,7 @@ function createFollow(input, typename) {
       id
       name
       description
+      topic
       isPublic
       isOwner
       isFollowing
@@ -688,6 +689,7 @@ function updateSchedule(input, typename) {
       name
       description
       isPublic
+      topic
       status
       location
       updatedAt

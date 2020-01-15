@@ -70,6 +70,7 @@ class Info extends React.Component {
     const {
       id,
       name,
+      topic,
       description,
       status,
       picture,
@@ -205,6 +206,13 @@ class Info extends React.Component {
               </View>
             </View>
             <View style={styles.body}>
+              {
+                Boolean(topic) && (
+                  <Hyperlink linkStyle={styles.linkStyle} linkDefault={true}>
+                    <Text style={styles.description}>{topic}</Text>
+                  </Hyperlink>
+                )
+              }
               <View style={styles.noteView}>
                 <Icon
                   color={colors.black}
