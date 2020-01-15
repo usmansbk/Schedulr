@@ -428,7 +428,6 @@ export default {
     'Formación'
   ],
   topics: [
-    "Sin tema",
     "Profesional de negocios",
     "Caridad y causas",
     "Comunidad y cultura",

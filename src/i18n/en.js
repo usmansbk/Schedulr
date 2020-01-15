@@ -405,7 +405,6 @@ export default {
     sameElse: DAY_FORMAT
   },
   categories : [
-    'Default',// Default category should always be the first item
     'Class',
     'Lecture',
     'Conference',

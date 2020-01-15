@@ -57,12 +57,7 @@ class Input extends React.Component {
   _hideModal = () => this.props.hideModal();
   _onChangeText = text => this.setState({ text });
   _onValueChange = (value) => {
-    const defaultType = I18n.get('categories')[0];
-    if (value === defaultType) {
-      this.props.onValueChange(null);
-    } else {
-      this.props.onValueChange(value);
-    }
+    this.props.onValueChange(value);
   };
   _handleSubmit = () => {
     const { text } = this.state;

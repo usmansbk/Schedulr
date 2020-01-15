@@ -412,7 +412,6 @@ export default {
     sameElse: DAY_FORMAT
   },
   categories : [
-    'Événement normal',// Default category should always be the first item
     'Conférence',
     'Compétition',
     'Examen',
