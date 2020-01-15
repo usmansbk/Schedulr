@@ -260,6 +260,7 @@ export default {
   SCHEDULE_FORM_description: "La description",
   SCHEDULE_FORM_private: "Horaire privé",
   SCHEDULE_FORM_public: "Horaire public",
+  SCHEDULE_FORM_selectTopic: "Choisissez un sujet",
 
   SCHEDULE_followerCount: "Suiveuses",
   SCHEDULE_followerCounts: "Suiveuses",
