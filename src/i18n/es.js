@@ -429,6 +429,7 @@ export default {
     'Formación'
   ],
   topics: [
+    "Nombramientos personales",
     "Profesional de negocios",
     "Caridad y causas",
     "Comunidad y cultura",
@@ -451,6 +452,7 @@ export default {
   personalSchedule: {
     name: "Lista personal 📝",
     description: "Mis citas",
+    topic: "Mis citas",
     isPublic: false
   },
   timeLabels: {

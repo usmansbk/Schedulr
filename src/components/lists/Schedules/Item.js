@@ -24,6 +24,7 @@ class Item extends React.Component {
       this.props.isOffline !== nextProps.isOffline ||
       this.props.name !== nextProps.name ||
       this.props.description !== nextProps.description ||
+      this.props.topic !== nextProps.topic ||
       this.props.isClosed !== nextProps.isClosed ||
       this.props.isMuted !== nextProps.isMuted ||
       this.props.pictureUrl !== nextProps.pictureUrl ||
@@ -36,6 +37,7 @@ class Item extends React.Component {
       id,
       name,
       description,
+      topic,
       pictureUrl,
       isClosed,
       isPublic,
@@ -96,10 +98,10 @@ class Item extends React.Component {
                 ellipsizeMode="tail"
                 style={styles.itemName}>{name}</Text>
             </View>
-            { Boolean(description) && <Caption
+            { Boolean(description || topic) && <Caption
               numberOfLines={1}
               ellipsizeMode="tail"
-              style={styles.itemDescription}>{description}</Caption> }
+              style={styles.itemDescription}>{topic || description}</Caption> }
             <View style={styles.itemFooter}>
               { isClosed && <Tag status="Closed" /> }
             </View>

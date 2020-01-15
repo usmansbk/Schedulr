@@ -47,6 +47,7 @@ class List extends Component {
       id,
       name,
       description,
+      topic,
       picture,
       isPublic,
       status,
@@ -59,6 +60,7 @@ class List extends Component {
         id={id}
         name={name}
         description={description}
+        topic={topic}
         pictureUrl={picture && getImageUrl(picture)}
         isPublic={isPublic}
         isClosed={status === SCHEDULE_CLOSED}

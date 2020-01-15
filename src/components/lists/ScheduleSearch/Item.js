@@ -27,6 +27,7 @@ class Item extends React.Component {
       id,
       name,
       description,
+      topic,
       pictureUrl,
       isPublic,
       isOwner,
@@ -51,7 +52,7 @@ class Item extends React.Component {
             <View style={styles.nameRow}>
               <Text numberOfLines={1} ellipsizeMode="tail" style={styles.itemName}>{name}</Text>
             </View>
-            { Boolean(description) && <Caption numberOfLines={1} ellipsizeMode="tail" style={styles.itemDescription}>{description}</Caption> }
+            { Boolean(description || topic) && <Caption numberOfLines={1} ellipsizeMode="tail" style={styles.itemDescription}>{topic || description}</Caption> }
             <View style={styles.itemFooter}>
               { isClosed && <Tag status="Closed" /> }
             </View>

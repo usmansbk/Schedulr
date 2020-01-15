@@ -425,6 +425,7 @@ export default {
     'Tournoi'
   ],
   topics: [
+    "Rendez-vous personnels",
     "Affaires et professionnels",
     "Charité et causes",
     "Communauté et culture",
@@ -447,6 +448,7 @@ export default {
   personalSchedule: {
     name: "Liste personnelle 📝",
     description: "Mes rendez-vous.",
+    topic: "Mes rendez-vous.",
     isPublic: false
   },
   timeLabels: {

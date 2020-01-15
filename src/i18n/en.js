@@ -423,6 +423,7 @@ export default {
     'Workshop',
   ],
   topics: [
+    "Personal Appointments",
     "Business & Professional",
     "Charity & Causes",
     "Community & Culture",
