@@ -277,6 +277,7 @@ export default {
   SCHEDULES_noUpcomingEvents: "No hay eventos próximos.",
   SCHEDULES_loadPastEvents: count => `Carga${count > 1 ? '' : 'r'} ${count} evento${count > 1 ? 's' : ''} pasado${count > 1 ? 's' : ''}`,
   SCHEDULES_noMoreEvents: "No mas eventos",
+  SCHEDULE_FORM_selectTopic: "elige un tema",
 
   HELPER_TEXT_titleIsRequired: "Título es requerido",
   HELPER_TEXT_nameIsRequired: "Se requiere el nombre",
