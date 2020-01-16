@@ -87,9 +87,12 @@ export function getInitials(name) {
   return avatarName;
 }
 
-export function mergeEvents(data, calendarEvents=[]) {
+export function mergeEvents(data, calendarEvents=[], shouldInjectAds=true) {
 
-  let allEvents = injectAds([]).concat(calendarEvents);
+  let allEvents = calendarEvents;
+  if (shouldInjectAds) {
+    allEvents = injectAds([]).concat(allEvents);
+  }
 
   if (!data) return allEvents;
 
