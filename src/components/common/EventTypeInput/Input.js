@@ -111,20 +111,17 @@ class Input extends React.Component {
               />
               <Divider />
               <View style={styles.textInputContainer}>
-                {
-                  !!length && (
-                    <IconButton
-                      size={24}
-                      color={colors.primary}
-                      icon={({ size, color }) => <Icon
-                        name="x"
-                        size={size}
-                        color={color}
-                      />}
-                      onPress={this._clearText}
-                    />
-                  )
-                }
+                <IconButton
+                  size={24}
+                  disabled={!length}
+                  color={colors.primary}
+                  icon={({ size, color }) => <Icon
+                    name="x"
+                    size={size}
+                    color={color}
+                  />}
+                  onPress={this._clearText}
+                />
                 <View style={styles.textInput}>
                   <TextInput
                     placeholder={I18n.get("PLACEHOLDER_customType")}
