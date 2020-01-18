@@ -38,6 +38,7 @@ export default class List extends React.Component {
         data={data}
         keyExtractor={this._keyExtractor}
         getItemLayout={this._getItemLayout}
+        keyboardShouldPersistTaps="always"
       />
     )
   }

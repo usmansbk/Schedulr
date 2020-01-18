@@ -142,6 +142,7 @@ class Input extends React.Component {
                     size={size}
                     color={color}
                   />}
+                  disabled={!length}
                   onPress={this._handleSubmit}
                 />
               </View>
