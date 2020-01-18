@@ -96,6 +96,7 @@ class Form extends React.Component {
         validationSchema={formSchema}
         onSubmit={async (values, { setSubmitting }) => {
           if (isEventValid(values)) {
+            values.venue = values.venue || values.location;
             const input = buildForm(values);
             input.geo_point = stores.locationStore.point;
             onSubmit && await onSubmit(input);
