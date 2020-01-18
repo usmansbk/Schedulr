@@ -7036,10 +7036,10 @@ react-native-easy-guesture-responder@^1.1.2, react-native-easy-guesture-responde
   dependencies:
     prop-types "^15.6.2"
 
-react-native-easy-view-transformer@^1.1.4:
-  version "1.1.4"
-  resolved "https://registry.yarnpkg.com/react-native-easy-view-transformer/-/react-native-easy-view-transformer-1.1.4.tgz#e4afc8f35f12e1dbc9e2cbb1b001b560a727bee3"
-  integrity sha512-KFADdsNYh1j+7dzZqlk6y/h8IgKbsDDLrJBc3ybYgP8wOBc1QoXNVmEid9sW/jc7ogzMsVFENkWIbMtEuo+kIQ==
+react-native-easy-view-transformer@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/react-native-easy-view-transformer/-/react-native-easy-view-transformer-1.2.0.tgz#4281b351c169a38763bdcdf00138cb1f40c69e07"
+  integrity sha512-SawalQrXWQ6M5WOnWhTV8y3cyhRlrTgH2VC2+qPEk7GE10vLkH5/9ncM8lNjHKiXCgWrVk+0DI3pmEouDYd/GQ==
   dependencies:
     prop-types "^15.6.2"
     react-native-easy-guesture-responder "^1.1.2"
@@ -7068,15 +7068,15 @@ react-native-fs@^2.16.2:
     base-64 "^0.1.0"
     utf8 "^3.0.0"
 
-react-native-gallery-swiper@^1.24.4:
-  version "1.24.4"
-  resolved "https://registry.yarnpkg.com/react-native-gallery-swiper/-/react-native-gallery-swiper-1.24.4.tgz#ac3c43a641dcf1d25adf53cc382b883a50635d8a"
-  integrity sha512-16MsmZeO60vspUSdlegjqI71MN37S1gdTFTsmJsNFpwATTM1cHTdiwdAIzwnXh6rdzbrUAUJcMxAvRLXN6Flyw==
+react-native-gallery-swiper@^1.25.1:
+  version "1.25.1"
+  resolved "https://registry.yarnpkg.com/react-native-gallery-swiper/-/react-native-gallery-swiper-1.25.1.tgz#c2fc4546b05f088d9035faee68ce59d797e496a5"
+  integrity sha512-Aw725yPiCIxwhxgkx0pWZ1a00F5NpE3ULOlR4wbdUU//BWIFsF/7T4HZcKKzxvHYOQJX4+g0GgdxGT1kGGXbgw==
   dependencies:
     prop-types "^15.6.2"
     react-native-easy-guesture-responder "^1.1.3"
-    react-native-image-transformer "^1.3.2"
-    react-native-page-list "^1.1.1"
+    react-native-image-transformer "^1.5.0"
+    react-native-page-list "^1.1.2"
 
 react-native-geodb@^1.5.0:
   version "1.5.0"
@@ -7116,13 +7116,13 @@ react-native-image-picker@^2.0.0:
   resolved "https://registry.yarnpkg.com/react-native-image-picker/-/react-native-image-picker-2.0.0.tgz#237f08109ec6824607de2458847700242186bd2a"
   integrity sha512-svmQJ5bBuCgX9RG5DU3A38udgemze1/HtYUXgUAvP2i3LzrzW5ub5GT3L8n87pg/DNj2rRHi1wLtNaNEoV4ZAw==
 
-react-native-image-transformer@^1.3.2:
-  version "1.3.2"
-  resolved "https://registry.yarnpkg.com/react-native-image-transformer/-/react-native-image-transformer-1.3.2.tgz#cbd273e51af49f5ceacacdd583edd0c9e54192b5"
-  integrity sha512-ZcjlGYxVsekyE1H3rTEkVzyMTgiM+4XOlkQOYrSDDZY4Y3f3vZTvhE/yRJp3jtNVvTuWPML13ofNaj1e6sl5LA==
+react-native-image-transformer@^1.5.0:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/react-native-image-transformer/-/react-native-image-transformer-1.5.0.tgz#2d62b3957bb7610c921ddd41d08524ff490b8532"
+  integrity sha512-9na7NAPO0y7laSRTEUOoLWboADg7tUiGpQIFEpwu0Lb/wUCe0CkYu1m0eTcrqkhRmtZNM18eIu1thMsN/rsW1Q==
   dependencies:
     prop-types "^15.6.2"
-    react-native-easy-view-transformer "^1.1.4"
+    react-native-easy-view-transformer "^1.2.0"
 
 react-native-localize@^1.3.2:
   version "1.3.2"
@@ -7150,10 +7150,10 @@ react-native-navigation-bar-color@^1.0.0:
   resolved "https://registry.yarnpkg.com/react-native-navigation-bar-color/-/react-native-navigation-bar-color-1.0.0.tgz#04ff752a58049af93ceea9ccf266b8d3fbc6514a"
   integrity sha512-djBE0zSp+JT65VeUm4UpIpr9DA9SpE9YTLwDAcqkWfB9JI8l3djSx+SmrIYfc7dUs216Y6qo2dr0qR3+M5qbOQ==
 
-react-native-onesignal@^3.6.2:
-  version "3.6.2"
-  resolved "https://registry.yarnpkg.com/react-native-onesignal/-/react-native-onesignal-3.6.2.tgz#75af4ff4a30f633c43395a4091b8dc615ccaa63d"
-  integrity sha512-Ht/bs9/ls5SmVPljLlNtIVZ2fbLFpovsiNxtc2usFQc7UgpaBcmJmwufo8o75Z/LImST7g+9yWUqf6GUwZnTVQ==
+react-native-onesignal@^3.6.3:
+  version "3.6.3"
+  resolved "https://registry.yarnpkg.com/react-native-onesignal/-/react-native-onesignal-3.6.3.tgz#977179936822a35766a4de590021c0e354b5842a"
+  integrity sha512-zGSDGx14owcntn5XZ7DvaakVcu0yu4GrsIpNdhpCVDKK5+RmgU2+ALit8m16KWSA6QTfOSzEZPUJyS7VOQlSVg==
   dependencies:
     invariant "^2.2.2"
 
@@ -7164,10 +7164,10 @@ react-native-open-maps@^0.3.4:
   dependencies:
     query-string "^6.1.0"
 
-react-native-page-list@^1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/react-native-page-list/-/react-native-page-list-1.1.1.tgz#b66cec532e1494eb296037872d0beb360822d022"
-  integrity sha512-5k7emludG6ZIrmrtbzhdNXNEQVuZIDbKqOYo/AaqaVbwiZZz7VmKhs4NU/Re6Oxp4ptuqlCvBnXkXBVNf/3fnA==
+react-native-page-list@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/react-native-page-list/-/react-native-page-list-1.1.2.tgz#a0bef09cd6722d30efa17bfa8a05d7eb09f0530e"
+  integrity sha512-sFUYpDU1taUUer1d6ZPtC+5pq4C5BJ6CqcZjqCx3D+CPUF87JqAkn1AIaw+txAEMXbPklOElDnYMow6zAIbS6g==
   dependencies:
     prop-types "^15.6.2"
     react-native-easy-guesture-responder "^1.1.2"
@@ -7238,10 +7238,10 @@ react-native-share@^2.0.0:
   resolved "https://registry.yarnpkg.com/react-native-share/-/react-native-share-2.0.0.tgz#4543a746013e0d8fa9f765fb8937007cfbcffcf7"
   integrity sha512-J8Xl3mq0L9KDFtSYtKsQDAnZWw/niZIpAD1PRiNfZFHo44Rc+oS2bEIhskNnoQXKEgBNdPzCl/DenMXYAHXRYg==
 
-react-native-snackbar@^2.0.5:
-  version "2.0.5"
-  resolved "https://registry.yarnpkg.com/react-native-snackbar/-/react-native-snackbar-2.0.5.tgz#a545df35bdbe6a1e73c230f742d36935228b53ea"
-  integrity sha512-XR6u4EVnlp6BN9+K9fS/DhE1BwN7vLAgUrYohbWDaRguH0x5DIA9n/Vl4Gsfl6QkA/B3R6pW6a0jHpozipo2CA==
+react-native-snackbar@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/react-native-snackbar/-/react-native-snackbar-2.1.1.tgz#74641d967c8345f7f515ae02a0297271bceb6231"
+  integrity sha512-YMlyZzB3cvezNTAoQ5bwMZJAOF/Vrkv2F0AW/KNhLnOSqOW6zH2HrlPDi8aR2yHz83cV/wrgpfks1XM9Xx+3Fw==
 
 react-native-splash-screen@^3.2.0:
   version "3.2.0"
