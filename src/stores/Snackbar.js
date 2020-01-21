@@ -9,7 +9,7 @@ export default class SnackbarStore {
   @action show(message, error) {
     if (message) {
       Snackbar.show({
-        title: message,
+        text: message,
         duration: Snackbar.LENGTH_SHORT,
         backgroundColor: error ? colors.error : colors.primary
       });
