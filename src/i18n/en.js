@@ -295,7 +295,7 @@ export default {
   RECUR_weekly: day => `Weekly (every ${day})`,
   RECUR_weekdays: "Weekdays (Mon - Fri)",
   RECUR_monthly: "Monthly (on the same day)",
-  RECUR_yearly: date => `Yearly ( every ${date})`,
+  RECUR_yearly: date => `Yearly (every ${date})`,
 
   STATUS_concluded: "Concluded",
   STATUS_ongoing: "Ongoing",
