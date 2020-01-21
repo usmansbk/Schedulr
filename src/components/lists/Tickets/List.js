@@ -11,7 +11,7 @@ import {
 import { discover } from 'lib/constants';
 import getImageUrl from 'helpers/getImageUrl';
 
-const { ITEM_HEIGHT, SEPARATOR_HEIGHT, OFFSET } = discover;
+const { ITEM_HEIGHT, SEPARATOR_HEIGHT } = discover;
 
 class List extends Component{
   static defaultProps = {
@@ -40,7 +40,6 @@ class List extends Component{
 
   _renderItem = ({ item }) => {
     const {
-      __typename,
       id,
       title,
       description,
@@ -51,7 +50,7 @@ class List extends Component{
       isBookmarked,
       schedule
     } = item;
-    if (__typename === 'Event') return <EventItem
+    return <EventItem
       id={id}
       title={title}
       pictureUrl={banner && getImageUrl(banner, 320)}
@@ -81,7 +80,6 @@ class List extends Component{
         style={styles.list}
         refreshControl={
           <RefreshControl
-            progressViewOffset={OFFSET}
             onRefresh={this._onRefresh}
             refreshing={this.props.loading}
             colors={[this.props.stores.themeStore.colors.primary]}
@@ -92,7 +90,7 @@ class List extends Component{
         renderItem={this._renderItem}
         keyExtractor={this._keyExtractor}
         ListEmptyComponent={this._renderEmptyList}
-        initialNumToRender={2}
+        initialNumToRender={1}
         getItemLayout={this._getItemLayout}
         contentContainerStyle={styles.contentContainer}
         onEndReached={this._onEndReached}
