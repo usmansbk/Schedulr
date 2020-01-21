@@ -7111,10 +7111,10 @@ react-native-hyperlink@^0.0.19:
     linkify-it "^2.2.0"
     mdurl "^1.0.0"
 
-react-native-image-picker@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/react-native-image-picker/-/react-native-image-picker-2.0.0.tgz#237f08109ec6824607de2458847700242186bd2a"
-  integrity sha512-svmQJ5bBuCgX9RG5DU3A38udgemze1/HtYUXgUAvP2i3LzrzW5ub5GT3L8n87pg/DNj2rRHi1wLtNaNEoV4ZAw==
+react-native-image-picker@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/react-native-image-picker/-/react-native-image-picker-2.1.0.tgz#5e1eec36a8c547236fe54c1b0657e89dd0502360"
+  integrity sha512-ng5g9G5GvEsDpNz+ObUYTU2muJ1drngv9U+XEx2haD9iIudh18C5eL1V+a21vDKtccsqqpYX1U393zNzdZl1fA==
 
 react-native-image-transformer@^1.5.0:
   version "1.5.0"
@@ -7173,10 +7173,10 @@ react-native-page-list@^1.1.2:
     react-native-easy-guesture-responder "^1.1.2"
     react-native-scrolling "^1.0.2"
 
-react-native-paper@^3.4.0:
-  version "3.4.0"
-  resolved "https://registry.yarnpkg.com/react-native-paper/-/react-native-paper-3.4.0.tgz#b8d3643b33177ff41a2505aaa801d313defaf707"
-  integrity sha512-QVd6vZ4iJbUqp1OI1DY/0HwBS4y0SVixa2IeBIVyYM4ZZeoeOOlWCXdgtQk7tlf1ju5t1MJunyRGPOXOXTLGNg==
+react-native-paper@^3.4.1:
+  version "3.4.1"
+  resolved "https://registry.yarnpkg.com/react-native-paper/-/react-native-paper-3.4.1.tgz#85dbaa6c7bbd1728419c0545efcee213fe432348"
+  integrity sha512-Jx71GnjnmVtJhPfNUgYp1uBjdGc2GImMJLP60MF8DkCzZBJuvfykKUk5ZU0+DXIPfUOH9DRTlncid7YG9kRYfA==
   dependencies:
     "@callstack/react-theme-provider" "^3.0.5"
     color "^3.1.2"
@@ -7233,15 +7233,15 @@ react-native-scrolling@^1.0.2:
   dependencies:
     prop-types "^15.6.2"
 
-react-native-share@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/react-native-share/-/react-native-share-2.0.0.tgz#4543a746013e0d8fa9f765fb8937007cfbcffcf7"
-  integrity sha512-J8Xl3mq0L9KDFtSYtKsQDAnZWw/niZIpAD1PRiNfZFHo44Rc+oS2bEIhskNnoQXKEgBNdPzCl/DenMXYAHXRYg==
+react-native-share@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/react-native-share/-/react-native-share-3.0.0.tgz#5e158f773ebc91e35fbe48ffe21c0073c2c8f41a"
+  integrity sha512-5P/Fhou5jW1yY475h+wIR+VZAUZ1Gnx8N4QKGToOLNo1yUhDeLxYRhm3bGCcS/MEy35NOZ222/43SQGfUzCl/g==
 
-react-native-snackbar@^2.1.1:
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/react-native-snackbar/-/react-native-snackbar-2.1.1.tgz#74641d967c8345f7f515ae02a0297271bceb6231"
-  integrity sha512-YMlyZzB3cvezNTAoQ5bwMZJAOF/Vrkv2F0AW/KNhLnOSqOW6zH2HrlPDi8aR2yHz83cV/wrgpfks1XM9Xx+3Fw==
+react-native-snackbar@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/react-native-snackbar/-/react-native-snackbar-2.2.0.tgz#8b4daf9e16523d61f0152d816ba39982fcbf1198"
+  integrity sha512-j2qVtuXuk3FGNxUjnBqHiQLnz2lYVwCyrsvxpCCxif7ddMqY0sfbACXUwRLTEB5d3aliSN/6EZInGCJ93e4cMQ==
 
 react-native-splash-screen@^3.2.0:
   version "3.2.0"
