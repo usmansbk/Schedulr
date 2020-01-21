@@ -41,7 +41,7 @@ export default {
   BOARD_emptyList: "Your board is empty",
   BOARD_emptyListCaption: "Follow or create a schedule",
 
-  PROFILE_boardEmptyList: "No schedules",
+  PROFILE_boardEmptyList: "No Schedules",
   PROFILE_followingLabel: "Following",
   PROFILE_createdLabel: "Created",
   PROFILE_notVisibleToPublic: "Events not visible to public",
@@ -114,6 +114,8 @@ export default {
 
   SIGN_OUT_title: "Sign out?",
   SIGN_OUT_message: "Will clear data",
+
+  TICKETS_emptyList: "No Tickets",
 
   HELP_title: "Help",
   HELP_contactUs: "Contact Developer",

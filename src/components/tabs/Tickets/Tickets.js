@@ -1,15 +1,10 @@
 import React from 'react';
-import { View } from 'react-native';
-import { inject, observer } from 'mobx-react';
+import List from 'components/lists/Tickets';
 
-class Tickets extends React.Component {
+export default class Tickets extends React.Component {
   render() {
     return (
-      <View>
-
-      </View>
+      <List />
     );
   }
 }
-
-export default inject('stores')(observer(Tickets));
