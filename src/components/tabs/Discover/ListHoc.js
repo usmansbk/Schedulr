@@ -19,7 +19,7 @@ export default compose(
         city: props.city,
         location: props.location,
         category: props.category,
-        km: 200,
+        km: 250,
         limit: 50
       },
       notifyOnNetworkStatusChange: true
