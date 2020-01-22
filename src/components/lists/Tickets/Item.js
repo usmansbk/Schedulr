@@ -5,8 +5,6 @@ import {
   Caption,
   TouchableRipple
 } from 'react-native-paper';
-import BookmarkButton from 'components/common/BookmarkButton';
-import colors from 'config/colors';
 
 const styles  = StyleSheet.create({
   container: {
@@ -54,22 +52,24 @@ export default class EventItem extends React.Component {
   _onPressAvatar = () => this.props.navigateToBanner(this.props.id);
   render() {
     const {
-      id,
-      isBookmarked,
       title,
       month,
       day,
       venue,
       description,
       pictureUrl,
-      bookmarkScheduleId
     } = this.props;
     let source = pictureUrl ? {uri: pictureUrl} : require('../../../assets/placeholder.png');
     return (
       <TouchableRipple onPress={this._onPress}>
         <View style={styles.container}>
           <View style={styles.content}>
-            <Image defaultSource={require('../../../assets/placeholder.png')} resizeMode="cover" style={styles.image} source={source}/>
+            <Image
+              defaultSource={require('../../../assets/placeholder.png')}
+              resizeMode="cover"
+              style={styles.image}
+              source={source}
+            />
           </View>
           <View style={styles.body}>
             <View style={styles.date}>
@@ -79,16 +79,6 @@ export default class EventItem extends React.Component {
             <View style={{flex: 1}}>
               <Text style={{fontSize: 20}} numberOfLines={2}>{title}</Text>
               <Caption numberOfLines={1}>{venue || description}</Caption>
-            </View>
-            <View>
-              <BookmarkButton
-                id={id}
-                size={24}
-                color={colors.gray}
-                activeColor={colors.primary}
-                isBookmarked={isBookmarked}
-                bookmarkScheduleId={bookmarkScheduleId}
-              />
             </View>
           </View>
         </View>

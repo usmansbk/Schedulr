@@ -47,7 +47,6 @@ class List extends Component{
       startAt,
       endAt,
       venue,
-      isBookmarked,
       schedule
     } = item;
     return <EventItem
@@ -58,7 +57,6 @@ class List extends Component{
       startAt={startAt}
       endAt={endAt}
       description={description}
-      isBookmarked={isBookmarked}
       month={getHumanMonth(startAt)}
       day={new Date(startAt).getDate()}
       bookmarkScheduleId={schedule && schedule.id}
