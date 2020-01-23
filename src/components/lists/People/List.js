@@ -114,6 +114,7 @@ class List extends React.Component {
         data={people}
         onEndReachedThreshold={0.5}
         onEndReached={this._onEndReached}
+        keyboardShouldPersistTaps="always"
         refreshControl={
           <RefreshControl
             refreshing={loading}
