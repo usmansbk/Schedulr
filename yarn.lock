@@ -7068,14 +7068,14 @@ react-native-fs@^2.16.2:
     base-64 "^0.1.0"
     utf8 "^3.0.0"
 
-react-native-gallery-swiper@^1.25.1:
-  version "1.25.1"
-  resolved "https://registry.yarnpkg.com/react-native-gallery-swiper/-/react-native-gallery-swiper-1.25.1.tgz#c2fc4546b05f088d9035faee68ce59d797e496a5"
-  integrity sha512-Aw725yPiCIxwhxgkx0pWZ1a00F5NpE3ULOlR4wbdUU//BWIFsF/7T4HZcKKzxvHYOQJX4+g0GgdxGT1kGGXbgw==
+react-native-gallery-swiper@^1.25.2:
+  version "1.25.2"
+  resolved "https://registry.yarnpkg.com/react-native-gallery-swiper/-/react-native-gallery-swiper-1.25.2.tgz#9106a3d0581de383f3a9a5f129c7be3a251e1f21"
+  integrity sha512-tf8yXxItpDzP52OaeoN4I2yVRzXWK4vEylf/vIW+sB1E/FiuazRTfS7l7nIR9IC4XMhrXQD15U/cVQuOlHmuGQ==
   dependencies:
     prop-types "^15.6.2"
     react-native-easy-guesture-responder "^1.1.3"
-    react-native-image-transformer "^1.5.0"
+    react-native-image-transformer "^1.5.1"
     react-native-page-list "^1.1.2"
 
 react-native-geodb@^1.5.0:
@@ -7116,10 +7116,10 @@ react-native-image-picker@^2.2.0:
   resolved "https://registry.yarnpkg.com/react-native-image-picker/-/react-native-image-picker-2.2.0.tgz#12b5a29f5f21f4f7868e2a1e551b5528733f2d3e"
   integrity sha512-G0wNa92J6ADLrAraLfhl+AoaLDP0FE4YpYlSh6sguLTCTUzNDi0xfpEvpxxZgZ6Wl0anuRrCkcWm7LmJNLHI2Q==
 
-react-native-image-transformer@^1.5.0:
-  version "1.5.0"
-  resolved "https://registry.yarnpkg.com/react-native-image-transformer/-/react-native-image-transformer-1.5.0.tgz#2d62b3957bb7610c921ddd41d08524ff490b8532"
-  integrity sha512-9na7NAPO0y7laSRTEUOoLWboADg7tUiGpQIFEpwu0Lb/wUCe0CkYu1m0eTcrqkhRmtZNM18eIu1thMsN/rsW1Q==
+react-native-image-transformer@^1.5.1:
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/react-native-image-transformer/-/react-native-image-transformer-1.5.1.tgz#33e7061d4312e79f459529e2bfc10a83dd21adc9"
+  integrity sha512-CNwjnJxf4DUqQu+vWi/a+MA8jgw46ss80UKeSjoHwdzlt9JnGA6z4VABLURTFytN15LaemZomUEwZ81B9I8SuA==
   dependencies:
     prop-types "^15.6.2"
     react-native-easy-view-transformer "^1.2.0"
@@ -7164,10 +7164,10 @@ react-native-page-list@^1.1.2:
     react-native-easy-guesture-responder "^1.1.2"
     react-native-scrolling "^1.0.2"
 
-react-native-paper@^3.5.0:
-  version "3.5.0"
-  resolved "https://registry.yarnpkg.com/react-native-paper/-/react-native-paper-3.5.0.tgz#d74db26fa1714911ec1c9187c430726c680f4b52"
-  integrity sha512-W347plzhV/EsVzC8aT8se6s/jmIx1kSF7E4fpbptA950OHxb4gPFFruHZkffHTByLUiZEgKl3nXKqXkRDDp1UA==
+react-native-paper@^3.5.1:
+  version "3.5.1"
+  resolved "https://registry.yarnpkg.com/react-native-paper/-/react-native-paper-3.5.1.tgz#1fac594d1cfdb2bb9bce37bdd48c09a1f4aed3cb"
+  integrity sha512-TiJvuzqsaXrmNBxOvwVMdhxpjuMK2BuJ7Gzgu+vNNHRnGvtgmKkGRWfh7s8BKTYbluar91s3Fpee9ptniwea6g==
   dependencies:
     "@callstack/react-theme-provider" "^3.0.5"
     color "^3.1.2"
