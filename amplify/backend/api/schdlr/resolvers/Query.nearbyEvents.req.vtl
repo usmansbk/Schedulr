@@ -21,17 +21,10 @@
                             "range": {
                                 "startAt": {
                                     "gt": "now",
-                                    "lte": "now+3d"
+                                    "lte": "now+31d"
                                 }
                             }
                         }
-                        #if($ctx.args.city)
-                        ,{
-                            "match": {
-                                "location": "${ctx.args.city}"
-                            }
-                        }
-                        #end
                         #if($ctx.args.category)
                         ,{
                             "match": {
