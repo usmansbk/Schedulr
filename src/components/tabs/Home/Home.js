@@ -15,7 +15,7 @@ const Home = createMaterialTopTabNavigator({
   Events: { screen: EventsRoute },
   Schedules: { screen: SchedulesRoute },
   Bookmarks: { screen: BookmarksRoute },
-  Tickets: { screen: TicketsRoute }
+  // Tickets: { screen: TicketsRoute }
 }, {
   initialRouteName: 'Events',
   initialLayout: { height: 0, width: Dimensions.get('window').width },
