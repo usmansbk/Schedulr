@@ -484,47 +484,51 @@ function createFollow(input, typename) {
     logger.logError(error);
   }
   // ********************************************************  
-  if (!schedule.isFollowing) {
-    if (typeof schedule.followersCount === 'number') {
-      schedule.followersCount += 1;
-    } else {
-      schedule.followersCount = 1;
+  if (schedule) {
+    console.log('has schedule');
+    if (!schedule.isFollowing) {
+      if (typeof schedule.followersCount === 'number') {
+        schedule.followersCount += 1;
+      } else {
+        schedule.followersCount = 1;
+      }
     }
-  }
-  const optimisticSchedule = Object.assign({}, schedule, {
-    isFollowing: true,
-    events: scheduleEventsConnection
-  });
-  //=========== Update user following count ======================
-  const userId = stores.appState.userId;
-  const userFragment = gql`fragment currentUser on User {
-    id
-    followingCount
-  }`;
-  const currentUser = client.readFragment({
-    fragment: userFragment,
-    id: `User:${userId}`
-  });
-  if (currentUser) {
-    if (typeof currentUser.followingCount === 'number') {
-      currentUser.followingCount += 1;
-    } else {
-      currentUser.followingCount = 1;
+    const optimisticSchedule = Object.assign({}, schedule, {
+      isFollowing: true,
+      events: scheduleEventsConnection
+    });
+    //=========== Update user following count ======================
+    const userId = stores.appState.userId;
+    const userFragment = gql`fragment currentUser on User {
+      id
+      followingCount
+    }`;
+    const currentUser = client.readFragment({
+      fragment: userFragment,
+      id: `User:${userId}`
+    });
+    if (currentUser) {
+      if (typeof currentUser.followingCount === 'number') {
+        currentUser.followingCount += 1;
+      } else {
+        currentUser.followingCount = 1;
+      }
     }
-  }
-  client.writeFragment({
-    fragment: userFragment,
-    id: `User:${userId}`,
-    data: currentUser
-  });
-  // ==============================================================
+    client.writeFragment({
+      fragment: userFragment,
+      id: `User:${userId}`,
+      data: currentUser
+    });
+    // ==============================================================
 
-  const follow = {
-    __typename: typename,
-    id: input.id,
-    schedule: optimisticSchedule
-  };
-  return follow;
+    const follow = {
+      __typename: typename,
+      id: input.id,
+      schedule: optimisticSchedule
+    };
+    return follow;
+  }
+  return null;
 }
 
 // ********************** DELETE *******************************
