@@ -1,3 +1,15 @@
-import Search from './Screen';
+import React from 'react';
+import Search, { SearchBar } from './Screen';
 
-export default Search;
+export default class SearchScreen extends React.Component {
+  render() {
+    return (
+      <>
+      <SearchBar
+        navigation={this.props.navigation}
+      />
+      <Search />
+      </>
+    )
+  }
+}

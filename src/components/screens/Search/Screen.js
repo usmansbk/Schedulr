@@ -1,5 +1,6 @@
 import React from 'react';
 import { Searchbar } from 'react-native-paper';
+import { createAppContainer  } from "react-navigation";
 import { createMaterialTopTabNavigator, MaterialTopTabBar } from 'react-navigation-tabs';
 import { Dimensions } from 'react-native';
 import { inject, observer } from 'mobx-react';
@@ -26,11 +27,6 @@ const Tabs = createMaterialTopTabNavigator(
         fontWeight: 'bold'
       }
     },
-    navigationOptions: ({ navigation }) => {
-      return ({
-        header: <SearchBar navigation={navigation} />
-      })
-    },
     lazy: true,
   }
 );
@@ -45,7 +41,7 @@ const TabBarComponent = inject('stores')(observer(
 ));
 
 
-const SearchBar = inject('stores')(observer(
+export const SearchBar = inject('stores')(observer(
   ({ navigation, stores }) => (
     <Searchbar
       icon={({ size, color }) => <Icon
@@ -76,4 +72,4 @@ const SearchBar = inject('stores')(observer(
   )
 ));
 
-export default Tabs;
+export default createAppContainer(Tabs);

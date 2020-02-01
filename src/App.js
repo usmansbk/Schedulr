@@ -163,6 +163,9 @@ const AppStack = createStackNavigator({
   },
   SearchScreen: {
     screen: SearchScreen,
+    navigationOptions: {
+      headerShown: false
+    }
   },
   AvatarViewer: {
     screen: AvatarViewer,
