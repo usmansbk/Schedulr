@@ -82,7 +82,7 @@
     "react-native-user-avatar": "^1.0.4",
     "react-native-vector-icons": "^6.6.0",
     "react-navigation": "^4.1.0",
-    "react-navigation-stack": "^1.10.3",
+    "react-navigation-stack": "^2.0.16",
     "react-navigation-tabs": "^2.7.0",
     "sectionlist-get-itemlayout": "^1.0.8",
     "shortid": "^2.2.15",

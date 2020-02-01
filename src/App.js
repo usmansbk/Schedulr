@@ -40,116 +40,125 @@ import colors from 'config/colors';
 const AppStack = createStackNavigator({
   Home: {
     screen: Home,
-    path: ''
+    path: '',
+    navigationOptions: {
+      headerShown: false
+    }
   },
   CalendarEvent: {
     screen: CalendarEvent,
     navigationOptions: {
-      header: null
+      headerShown: false
     }
   },
   EditEvent: {
     screen: EditEvent,
     navigationOptions: {
-      header: null
+      headerShown: false
     }
   },
   EditSchedule: {
     screen: EditSchedule,
     navigationOptions: {
-      header: null
+      headerShown: false
     }
   },
   NewEvent: {
     screen: NewEvent,
     navigationOptions: {
-      header: null
+      headerShown: false
     }
   },
   NewSchedule: {
     screen: NewSchedule,
     navigationOptions: {
-      header: null
+      headerShown: false
     }
   },
   EventDetails: {
     screen: EventDetails,
     path: 'event/:id',
     navigationOptions: {
-      header: null
+      headerShown: false
     }
   },
   Schedule: {
     screen: Schedule,
     navigationOptions: {
-      header: null
+      headerShown: false
     }
   },
   ScheduleEvents: {
     screen: ScheduleEvents,
     navigationOptions: {
-      header: null
+      headerShown: false
     }
   },
   EventBookmarks: {
     screen: EventBookmarks,
     navigationOptions: {
-      header: null
+      headerShown: false
     }
   },
   ScheduleInfo: {
     screen: ScheduleInfo,
     path: 'schdl/:id',
     navigationOptions: {
-      header: null
+      headerShown: false
     }
   },
   Help: {
     screen: Help,
     navigationOptions: {
-      header: null
+      headerShown: false
     }
   },
   Settings: {
     screen: Settings,
     navigationOptions: {
-      header: null
+      headerShown: false
     }
   },
   ViewEmbed: {
     screen: ViewEmbed,
     navigationOptions: {
-      header: null
+      headerShown: false
     }
   },
   UserProfile: {
     screen: UserProfile,
+    navigationOptions: {
+      headerShown: false
+    }
   },
   EditProfile: {
     screen: EditProfile,
     navigationOptions: {
-      header: null
+      headerShown: false
     }
   },
   UserSchedules: {
     screen: UserSchedules,
+    navigationOptions: {
+      headerShown: false
+    }
   },
   Thread: {
     screen: Thread,
     navigationOptions: {
-      header: null
+      headerShown: false
     }
   },
   Comments: {
     screen: Comments,
     navigationOptions: {
-      header: null
+      headerShown: false
     }
   },
   Followers: {
     screen: Followers,
     navigationOptions: {
-      header: null
+      headerShown: false
     }
   },
   SearchScreen: {
@@ -158,31 +167,31 @@ const AppStack = createStackNavigator({
   AvatarViewer: {
     screen: AvatarViewer,
     navigationOptions: {
-      header: null
+      headerShown: false
     }
   },
   Banner: {
     screen: Banner,
     navigationOptions: {
-      header: null
+      headerShown: false
     }
   },
   SchedulePicture: {
     screen: SchedulePicture,
     navigationOptions: {
-      header: null
+      headerShown: false
     }
   },
   Album: {
     screen: Album,
     navigationOptions: {
-      header: null
+      headerShown: false
     }
   },
   AlbumViewer: {
     screen: AlbumViewer,
     navigationOptions: {
-      header: null
+      headerShown: false
     }
   },
 }, {
