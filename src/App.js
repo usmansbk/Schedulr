@@ -139,9 +139,6 @@ const AppStack = createStackNavigator({
   },
   UserSchedules: {
     screen: UserSchedules,
-    navigationOptions: {
-      headerShown: false
-    }
   },
   Thread: {
     screen: Thread,

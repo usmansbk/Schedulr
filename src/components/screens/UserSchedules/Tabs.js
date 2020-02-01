@@ -22,6 +22,12 @@ const Tabs = createMaterialTopTabNavigator(
         fontWeight: 'bold'
       }
     },
+    navigationOptions: ({ navigation }) => ({
+      header: () => <HeaderComponent
+        title={navigation.getParam('name')}
+        goBack={() => navigation.goBack()}
+      />
+    })
   }
 );
 
@@ -49,9 +55,9 @@ const TabBarComponent = inject('stores')(observer(
     activeTintColor={props.stores.themeStore.colors.primary}
     inactiveTintColor={props.stores.themeStore.colors.tint}
     indicatorStyle={props.stores.appStyles.userSchedulesTab.indicatorStyle}
-    style={props.stores.appStyles.userSchedulesTab.barStyle}
+    style={[props.stores.appStyles.userSchedulesTab.barStyle, { marginTop: 48 }]}
     {...props}
   />
 ));
 
-export default createAppContainer(Tabs);
+export default (Tabs);
