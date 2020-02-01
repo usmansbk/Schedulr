@@ -73,12 +73,6 @@ class FollowingSchedules extends Component{
     )
   };
 
-  // componentDidMount = () => {
-  //   if (this.props.navigation.getParam('toCreatedTab')) {
-  //     this.props.navigation.navigate('Created')
-  //   }
-  // };
-
   get data() {
     const following = this.props.following;
     if (!following) return [];
@@ -130,7 +124,7 @@ export default inject("stores")(observer(
         fetchPolicy: 'cache-first',
         notifyOnNetworkStatusChange: true,
         variables: {
-          id: props.navigation.getParam('id'),
+          id: props.screenProps.id,
         }
       }),
       props: ({ data, ownProps }) => ({

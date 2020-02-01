@@ -2,6 +2,7 @@ import React from 'react';
 import { Dimensions } from 'react-native';
 import { Appbar } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/Feather';
+import { createAppContainer } from 'react-navigation';
 import { createMaterialTopTabNavigator, MaterialTopTabBar } from 'react-navigation-tabs';
 import { inject, observer } from 'mobx-react';
 import Following from './Following';
@@ -14,12 +15,6 @@ const Tabs = createMaterialTopTabNavigator(
   },
   {
     initialLayout: { height: 0, width: Dimensions.get('window').width },
-    navigationOptions: ({ navigation }) => ({
-      header: <HeaderComponent
-        title={navigation.getParam('name', 'Schedules')}
-        goBack={() => navigation.goBack()}
-      />
-    }),
     tabBarComponent: props => <TabBarComponent {...props} />,
     tabBarOptions: {
       upperCaseLabel: false,
@@ -30,7 +25,7 @@ const Tabs = createMaterialTopTabNavigator(
   }
 );
 
-const HeaderComponent = inject('stores')(observer(
+export const HeaderComponent = inject('stores')(observer(
   ({ stores, title, goBack }) => (
     <Appbar.Header style={stores.appStyles.styles.header}>
       <Appbar.Action
@@ -59,6 +54,4 @@ const TabBarComponent = inject('stores')(observer(
   />
 ));
 
-// export default withCollapsibleForTab(Tabs, collapsibleParams);
-
-export default Tabs;
+export default createAppContainer(Tabs);

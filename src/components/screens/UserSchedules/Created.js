@@ -119,7 +119,7 @@ export default inject('stores')(observer(
         fetchPolicy: 'cache-first',
         notifyOnNetworkStatusChange: true,
         variables: {
-          id: props.navigation.getParam('id'),
+          id: props.screenProps.id,
         }
       }),
       props: ({ data, ownProps }) => ({
