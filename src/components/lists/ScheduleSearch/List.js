@@ -80,7 +80,7 @@ class List extends Component {
     hasMore={this.props.from}
   />;
 
-  shouldComponentUpdate = (nextProps) => nextProps.navigation.isFocused();
+  shouldComponentUpdate = (nextProps) => nextProps.isFocused;
   
   render() {
     const {

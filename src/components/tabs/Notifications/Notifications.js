@@ -11,8 +11,8 @@ class Notifications extends React.Component {
     isFocused: false
   };
 
-  static getDerivedStateFromProps = (props, state) => {
-    if (!props.navigation.isFocused()) {
+  static getDerivedStateFromProps = (props) => {
+    if (!props.isFocused) {
       return {
         isFocused: false
       };
@@ -35,12 +35,12 @@ class Notifications extends React.Component {
   };
 
   componentDidUpdate = (_, prevState) => {
-    if (prevState.isFocused && !this.props.navigation.isFocused()) {
+    if (prevState.isFocused && !this.props.isFocused) {
       if (this.props.hasNotification) {
         this.props.clearIndicator();
       }
     }
-    if (!prevState.isFocused && this.props.isConnected && this.props.navigation.isFocused()) {
+    if (!prevState.isFocused && this.props.isConnected && this.props.isFocused) {
       this.props.fetchUpdates();
     }
   };

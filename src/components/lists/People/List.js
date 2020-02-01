@@ -28,7 +28,7 @@ class List extends React.Component {
     fetchMore: () => null
   };
   shouldComponentUpdate = (nextProps, nextState) => { 
-    return (nextProps.navigation.isFocused() &&
+    return (nextProps.isFocused &&
       (
         nextProps.people !== this.props.people ||
         nextProps.loading !== this.props.loading ||
