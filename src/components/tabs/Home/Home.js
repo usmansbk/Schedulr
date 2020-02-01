@@ -6,7 +6,7 @@ import Icon from 'react-native-vector-icons/Feather';
 import EventsRoute from '../Events';
 import SchedulesRoute from '../Schedules';
 import BookmarksRoute from '../Bookmarks';
-import TicketsRoute from '../Tickets';
+// import TicketsRoute from '../Tickets';
 import TicketIcon from 'components/common/TicketIcon';
 
 const FONT_SIZE = 24;
