@@ -2,7 +2,6 @@ import React from 'react';
 import { Dimensions } from 'react-native';
 import { Appbar } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/Feather';
-import { createAppContainer } from 'react-navigation';
 import { createMaterialTopTabNavigator, MaterialTopTabBar } from 'react-navigation-tabs';
 import { inject, observer } from 'mobx-react';
 import Following from './Following';
@@ -55,9 +54,9 @@ const TabBarComponent = inject('stores')(observer(
     activeTintColor={props.stores.themeStore.colors.primary}
     inactiveTintColor={props.stores.themeStore.colors.tint}
     indicatorStyle={props.stores.appStyles.userSchedulesTab.indicatorStyle}
-    style={[props.stores.appStyles.userSchedulesTab.barStyle, { marginTop: 48 }]}
+    style={props.stores.appStyles.userSchedulesTab.barStyle}
     {...props}
   />
 ));
 
-export default (Tabs);
+export default Tabs;
