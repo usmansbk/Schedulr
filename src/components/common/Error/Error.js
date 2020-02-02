@@ -27,11 +27,9 @@ export default inject('stores')(observer(
       <Headline style={stores.appStyles.error.headline}>
         { (message) ? message : I18n.get(`ERROR_${stores.appState.isConnected ? 'somethingWentWrong' : 'offline'}`)}
       </Headline>
+      { (caption) && <Caption>{caption}</Caption> }
       {
-        (caption) && <Caption>{caption}</Caption>
-      }
-      {
-        onRefresh && (
+        (onRefresh && stores.appState.isConnected) && (
           <View style={stores.appStyles.error.content}>
             <Button
               icon={(props) => <Icon
