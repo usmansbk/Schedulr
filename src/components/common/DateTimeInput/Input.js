@@ -30,8 +30,10 @@ class Input extends React.Component {
   _timePicker = () => this._showPicker('time');
 
   _handleChange = (date) => {
-    this.props.onChangeDate(date)
-    this._hidePicker();
+    this.setState(
+      { showPicker: false },
+      () => this.props.onChangeDate(date)
+    );
   };
 
   render() {
@@ -69,7 +71,6 @@ class Input extends React.Component {
             isVisible={this.state.showPicker}
             onConfirm={this._handleChange}
             onCancel={this._hidePicker}
-            isDarkModeEnabled={stores.settingsStore.dark}
           />
         </View>
       </View>
