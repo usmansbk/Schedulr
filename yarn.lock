@@ -1464,24 +1464,24 @@
   dependencies:
     invariant "^2.2.4"
 
-"@react-native-firebase/app-types@6.3.1":
-  version "6.3.1"
-  resolved "https://registry.yarnpkg.com/@react-native-firebase/app-types/-/app-types-6.3.1.tgz#a6fbf16f928841b6e6d68e17853ee9f4e43bc172"
-  integrity sha512-JTPgl3jYZ7IRwEn8mXKJWIdOCo1zbMm/oPHWt+pxlywj/tVx8So6jywgE4prURxYBMvSCEDusfm3vL/Bo86+Jw==
+"@react-native-firebase/app-types@6.3.2":
+  version "6.3.2"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/app-types/-/app-types-6.3.2.tgz#49be37c332d020b45ead4ffb1708d839d76c6751"
+  integrity sha512-POY3EwNvo0bswEBxMdl7ZDVMS+22N5kyrWKozRXDp+1VtNoKanmJJq8j5OML7aiPClLm2cw6baVn/x0+Lc7XPA==
 
-"@react-native-firebase/app@^6.3.1":
-  version "6.3.1"
-  resolved "https://registry.yarnpkg.com/@react-native-firebase/app/-/app-6.3.1.tgz#9fe693aaa9b73510dfd5b4a61b5bcc0b8d009852"
-  integrity sha512-JRsDEea4IXSrqEcRnf6JJE/lpIQR+cOBg3xW56Rn1hvF0hLBlLJ+CElMZ9KpVaH5Fn+ad8t37qMj3rv1lqjLlA==
+"@react-native-firebase/app@^6.3.2":
+  version "6.3.2"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/app/-/app-6.3.2.tgz#069aea7a0b30997779f5906c2f4229262b18cb91"
+  integrity sha512-UQVM1tb4b1uf5sKeNCz9B9jowAlS8kXFz8dVQ9wYdqpR7eb+N8xtEocEgX+RDHdiTTEOmEJACUiRfUln+I0dsg==
   dependencies:
-    "@react-native-firebase/app-types" "6.3.1"
+    "@react-native-firebase/app-types" "6.3.2"
     opencollective-postinstall "^2.0.1"
     superstruct "^0.6.2"
 
-"@react-native-firebase/crashlytics@^6.3.1":
-  version "6.3.1"
-  resolved "https://registry.yarnpkg.com/@react-native-firebase/crashlytics/-/crashlytics-6.3.1.tgz#b236c477ca17126e0483bec1729c7e97a187bd43"
-  integrity sha512-KZCD6tcqXsOkc6gm/GGtuy3RYTzlEhJl/i/fSqg6xQVBgeB22LCwvpegJTmDQ/8L6wIwvn/+L9P+mjEhcU5dVg==
+"@react-native-firebase/crashlytics@^6.3.2":
+  version "6.3.2"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/crashlytics/-/crashlytics-6.3.2.tgz#e24d5bb387288fa882e23b47f6bf15cd18d2ce42"
+  integrity sha512-eaPOq5hhaabN/EvoqZ1SnGJUkAaVwH34Pu+MflNJhsLdFQ7h4iZZ9WsXPYd5WLdYe/Ny5ZAohzUB7OBbUuVopQ==
   dependencies:
     stacktrace-js "^2.0.0"
 
@@ -7541,10 +7541,10 @@ react-native-elements@^0.19.1:
     opencollective "^1.0.3"
     prop-types "^15.5.8"
 
-react-native-file-viewer@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/react-native-file-viewer/-/react-native-file-viewer-2.0.1.tgz#2e173637825f007af3bf003caa1a9047ef7e0e58"
-  integrity sha512-Mu1HSyc53RBbda6Y5mO8By92urjlz/faqFhE4GyQWVHLXfcX7IXwG7STVFfq5qYfIrQbWuDn+LjOIT2VDpF07g==
+react-native-file-viewer@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/react-native-file-viewer/-/react-native-file-viewer-2.0.2.tgz#55fb73d611d8f5468c887f6dc4e9ff1e69668512"
+  integrity sha512-5xxT6T7bT4vgnt0iVVhULlk2HOmNcOj3UJHkxgv57xDmiRVkEVySZYvmXMpw9n3k+U0iuFHlKPt4D7hnF/I2FQ==
 
 react-native-fs@^2.16.4:
   version "2.16.4"
@@ -7598,10 +7598,10 @@ react-native-hyperlink@^0.0.19:
     linkify-it "^2.2.0"
     mdurl "^1.0.0"
 
-react-native-image-picker@^2.2.1:
-  version "2.2.1"
-  resolved "https://registry.yarnpkg.com/react-native-image-picker/-/react-native-image-picker-2.2.1.tgz#0d8551e171338c1f79c0950112c82ced86c664a6"
-  integrity sha512-r0RZtMxYFPOW+NbRBiN68/8pazVDBO+GUeqBQ0B+SQQPz/hgrW4ikXHoQn3R0mp3Qp1xNboHzfQDVW4VVyI6bQ==
+react-native-image-picker@^2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/react-native-image-picker/-/react-native-image-picker-2.3.0.tgz#cd8941261c03df999e8abcd4ad1ce99785cfef44"
+  integrity sha512-6B4OBkBjyyYs+LGJWAe+6bzfBHB4Np/rbdIPgN/WpK8sGNJ1FiabZ9GCH4TI71Nlg+xncKCgDL1P9InMoXBd1w==
 
 react-native-image-transformer@^1.5.1:
   version "1.5.1"
