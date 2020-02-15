@@ -51,7 +51,6 @@ class List extends React.Component {
         onDelete={this.props.onDelete}
         handleReplyComment={this.props.handleReply}
         noReply={this.props.noReply}
-        checked={this.props.stores.appState.isChecked(id)}
       />
     );
   }

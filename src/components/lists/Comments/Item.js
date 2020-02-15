@@ -21,7 +21,6 @@ class Item extends React.Component {
   state = {
     showOptions: false
   };
-  _onCheck = () => this.props.stores.appState.checkItem(this.props.id);
   _onReply = () => this.props.handleReplyComment(this.props.id, this.props.authorName, this.props.authorId);
   _navigateToProfile = () => this.props.navigateToProfile(this.props.authorId);
   _navigateToThread = () => this.props.navigateToThread(this.props.commentEventId, this.props.toCommentId, this.props.id);
@@ -53,7 +52,6 @@ class Item extends React.Component {
 
   render() {
     const {
-      id,
       authorName,
       content,
       timeAgo,
@@ -129,14 +127,6 @@ class Item extends React.Component {
             )
             }
             <View style={styles.footer}>
-              <IconButton
-                icon={() => <Icon
-                  size={18}
-                  name="check-square"
-                  color={colors.light_gray_3}
-                />}
-                onPress={this._onCheck}
-              />
               {
                 noReply ? null : (
                   <View style={styles.actions}>
