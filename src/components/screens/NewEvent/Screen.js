@@ -24,14 +24,18 @@ class NewEventScreen extends React.Component {
     };
 
     this.props.onSubmit(input);
+    this.waitAMoment = setTimeout(() => this.props.navigation.pop(), 100);
     // this.props.navigation.replace('EventDetails', { id });
-    this.props.navigation.pop();
     logger.log('create_event');
   };
 
   get schedules() {
     return this._schedules();
   }
+
+  componentWillUnmount = () => {
+    if (this.waitAMoment) clearTimeout(this.waitAMoment);
+  };
   
   get getInitialValues() {
     const { event={}, navigation } = this.props;
