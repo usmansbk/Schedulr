@@ -15,9 +15,13 @@ export default class NewScheduleScreen extends React.Component {
       id,
       ...form
     };
-    await this.props.onSubmit(input);
-    this.props.navigation.replace('Schedule', { id });
+    this.props.onSubmit(input);
+    this.waitAMoment = setTimeout(() => this.props.navigation.replace('Schedule', { id }), 100);
     logger.log('create_schedule');
+  };
+
+  componentWillUnmount = () => {
+    if (this.waitAMoment) clearTimeout(this.waitAMoment);
   };
 
   render() {
