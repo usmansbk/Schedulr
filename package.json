@@ -58,7 +58,7 @@
     "react-native-custom-picker": "^0.4.0",
     "react-native-document-picker": "^3.2.4",
     "react-native-file-viewer": "^2.0.2",
-    "react-native-fs": "^2.16.4",
+    "react-native-fs": "^2.16.6",
     "react-native-gallery-swiper": "^1.25.2",
     "react-native-geodb": "^1.5.0",
     "react-native-geolocation-service": "^4.0.0",
