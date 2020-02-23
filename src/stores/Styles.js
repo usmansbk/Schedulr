@@ -144,6 +144,34 @@ export default class AppStyles {
     });
   }
 
+  @computed get login() {
+    const colors = this.settings.dark ? dark : light;
+
+    return StyleSheet.create({
+      container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: 32,
+        backgroundColor: colors.bg
+      },
+      content: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginVertical: 32
+      },
+      h1: {
+        fontSize: 27,
+        color: colors.black,
+        textAlign: 'center'
+      },
+      caption: {
+        textAlign: 'center',
+        color: colors.gray
+      }
+    });
+  }
+
   @computed get userSchedulesTab () {
     const colors = this.settings.dark ? dark : light;
     

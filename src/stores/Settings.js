@@ -42,7 +42,7 @@ export default class SettingsState {
   }
 
   @action reset() {
-    this.dark = false;
+    // this.dark = false;
     this.sound = true;
     this.vibrate = true;
     this.disableReminders = false;

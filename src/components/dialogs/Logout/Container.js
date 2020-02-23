@@ -4,6 +4,7 @@ import { withNavigation } from 'react-navigation';
 import { inject, observer } from 'mobx-react';
 import { withApollo } from 'react-apollo';
 import Dialog from './Dialog';
+import logger from 'config/logger';
 
 class Container extends React.Component {
   state = {
@@ -13,8 +14,12 @@ class Container extends React.Component {
   _signOut = async () => {
     this.setState({ loading: true });
     try { await this.props.client.clearStore(); } catch(error){}
-    this.props.stores.reset();
-    try { await this.props.signOut(); } catch(error) {}
+    try {
+      await this.props.signOut();
+      this.props.stores.reset();
+    } catch(error) {
+      logger.logError(error);
+    }
     this._handleDimiss();
     this.props.navigation.navigate('Auth');
   };

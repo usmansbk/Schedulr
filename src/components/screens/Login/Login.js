@@ -7,20 +7,19 @@ import GLoginButton from 'components/social_buttons/GLoginButton';
 import FBLoginButton from 'components/social_buttons/FBLoginButton';
 import EmailLoginButton from 'components/social_buttons/EmailLoginButton';
 import Logo from 'components/common/Logo';
-import styles from './styles';
 
 export default inject("stores")(observer((props) => (
-    <View style={styles.container}>
+    <View style={props.stores.appStyles.login.container}>
       <StatusBar
-        backgroundColor="white"
-        barStyle="dark-content"
+        backgroundColor={props.stores.settingsStore.dark ? 'black' : 'white'}
+        barStyle={props.stores.settingsStore.dark ? "light-content" : "dark-content"}
       />
       <Logo />
-      <Headline allowFontScaling={false} style={styles.h1}>{I18n.get("APP_welcome")}</Headline>
-      <Caption allowFontScaling={false} style={styles.caption}>
+      <Headline allowFontScaling={false} style={props.stores.appStyles.login.h1}>{I18n.get("APP_welcome")}</Headline>
+      <Caption allowFontScaling={false} style={props.stores.appStyles.login.caption}>
         {I18n.get("APP_caption")}
       </Caption>
-      <View style={styles.content}>
+      <View style={props.stores.appStyles.login.content}>
         {
           props.stores.appState.loggingIn ? <ActivityIndicator animating /> : (
           <>
@@ -31,7 +30,7 @@ export default inject("stores")(observer((props) => (
           )
         }
       </View>
-      <Caption allowFontScaling={false} style={styles.caption}>
+      <Caption allowFontScaling={false} style={props.stores.appStyles.login.caption}>
         {I18n.get("APP_footerCaption")}
       </Caption>
     </View>
