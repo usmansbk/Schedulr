@@ -7614,10 +7614,10 @@ react-native-localize@^1.3.3:
   resolved "https://registry.yarnpkg.com/react-native-localize/-/react-native-localize-1.3.3.tgz#3e29520b4c7907227729326dfbf2f2643a07495a"
   integrity sha512-lpKx/iqDKQ7dC58fb/vGGERLT4ZYfk+H2AXMg6aaVkgv8eEIgApQAzB2Oaotx7FIM/RopJponUFyJ4PMIHi4Rw==
 
-react-native-modal-datetime-picker@^8.4.0:
-  version "8.4.0"
-  resolved "https://registry.yarnpkg.com/react-native-modal-datetime-picker/-/react-native-modal-datetime-picker-8.4.0.tgz#cc047548060d5295b2d3c0013c67ef5ec04b86d1"
-  integrity sha512-arjU8ih01AXrU2afNwJEST5MLznvJFPuxCd6AQtlB86yPfXn1XFqlydVdlWe1mzPb/69Sx6jSZGvnkVl3Tb2JA==
+react-native-modal-datetime-picker@^8.5.0:
+  version "8.5.0"
+  resolved "https://registry.yarnpkg.com/react-native-modal-datetime-picker/-/react-native-modal-datetime-picker-8.5.0.tgz#18609adaebe4df140825a9ecd399b578d6e35bee"
+  integrity sha512-Y83w7Oe8jwepjQ5w//8a+z3ziEmQ5UblKa09o/ZdoedWDSu13nipKThR4NNnR2y6fcaSKm+K7FMKl+2FPVjk+w==
   dependencies:
     prop-types "^15.7.2"
 
