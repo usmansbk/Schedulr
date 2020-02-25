@@ -53,7 +53,7 @@ export default (error, success) => {
       const { createEvent } = data;
       stores.snackbar.show(I18n.get('TOAST_eventAdded'));
       /**
-       * For some reason offline mutation removes optimistic response
+       * For some reason offline mutation on cold start removes optimistic response
        * without calling the update function and needs to be written back after a moment delay.
        * This is a temporary work around before it is fixed.
        */
@@ -63,10 +63,12 @@ export default (error, success) => {
       }, 2000);
     } else if (mutation === 'createSchedule') {
       const { createSchedule } = data;
-      const timeout = setTimeout(() => {
-        updateApolloCache(client, createSchedule, ADD);
-        clearTimeout(timeout);
-      }, 2000);
+      console.log('********** BEFORE ***********');
+      updateApolloCache(client, createSchedule, ADD);
+      console.log('********** AFTER ***********');
+      // const timeout = setTimeout(() => {
+      //   clearTimeout(timeout);
+      // }, 2000);
     } else if (mutation === 'createFollow') {
       const { createFollow } = data;
       const timeout = setTimeout(() => {
