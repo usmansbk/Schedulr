@@ -27,7 +27,7 @@ class Item extends React.Component {
           }
         </Surface>
       </TouchableRipple>
-    )
+    );
   }
 }
 
