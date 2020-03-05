@@ -109,7 +109,7 @@ def enableSeparateBuildPerCPUArchitecture = true
 /**
  * Run Proguard to shrink the Java bytecode in release builds.
  */
-def enableProguardInReleaseBuilds = true 
+def enableProguardInReleaseBuilds = false 
 
 def jscFlavor = 'org.webkit:android-jsc:+'
 
