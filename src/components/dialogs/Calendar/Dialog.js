@@ -31,6 +31,7 @@ class CalendarDialog extends React.Component {
         titleNumberOfLines={1}
         titleEllipsizeMode="tail"
         title={calendar.title}
+        description={calendar.source}
         right={() => (
           <Switch
             value={Boolean(stores.calendar.includes(calendar.id))}
