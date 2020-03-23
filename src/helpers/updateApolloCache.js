@@ -44,6 +44,7 @@ function updateData({
 }
 
 export default function(cache, result, operationType) {
+  // console.log(JSON.stringify(result, null, 2), operationType);
   if (result) {
     switch(result.__typename) {
       case EVENT_TYPE:

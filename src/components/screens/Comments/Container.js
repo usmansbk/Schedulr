@@ -1,7 +1,6 @@
 import React from 'react';
 import uuidv5 from 'uuid/v5';
 import shortid from 'shortid';
-import { I18n } from 'aws-amplify';
 import Screen from './Screen';
 import DeleteCommentDialog from 'components/dialogs/DeleteComment';
 import Error from 'components/common/Error';

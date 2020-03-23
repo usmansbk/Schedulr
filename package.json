@@ -1,6 +1,6 @@
 {
   "name": "Schdlr",
-  "version": "0.2.1",
+  "version": "1.0.2",
   "private": true,
   "scripts": {
     "start": "npx react-native start",
@@ -81,9 +81,9 @@
     "react-native-splash-screen": "^3.2.0",
     "react-native-user-avatar": "^1.0.4",
     "react-native-vector-icons": "^6.6.0",
-    "react-navigation": "^4.3.2",
-    "react-navigation-stack": "^2.3.4",
-    "react-navigation-tabs": "^2.8.6",
+    "react-navigation": "^4.3.3",
+    "react-navigation-stack": "^2.3.5",
+    "react-navigation-tabs": "^2.8.7",
     "sectionlist-get-itemlayout": "^1.0.8",
     "shortid": "^2.2.15",
     "twix": "^1.3.0",

@@ -5,7 +5,7 @@ import { onError } from 'apollo-link-error';
 import aws_config from 'aws_config';
 import logger from './logger';
 import stores from 'stores';
-import callback from 'helpers/offlineConfig';
+// import callback from 'helpers/offlineConfig';
 import {
   EVENT_TYPE,
   SCHEDULE_TYPE,
@@ -56,9 +56,9 @@ const client = new AWSAppSyncClient({
       },
     }
   },
-  offlineConfig: {
-    callback 
-  }
+  // offlineConfig: {
+  //   callback 
+  // }
 }, { link });
 
 export default client;
