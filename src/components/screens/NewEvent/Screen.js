@@ -14,18 +14,16 @@ import logger from 'config/logger';
 class NewEventScreen extends React.Component {
   _newSchedule = () => this.props.navigation.navigate("NewSchedule");
   _handleBack = () => this.props.navigation.goBack();
-  _handleSubmit = async (form) => {
+  _handleSubmit = (form) => {
     const hash = uuidv5(this.props.stores.appState.userId, uuidv5.DNS);
     const sort = shortid.generate();
     const id = `${hash}-${sort}`;
-    const input = {
-      id,
-      ...form
-    };
+    const input = { id,...form };
 
-    this.props.onSubmit(input);
-    this.waitAMoment = setTimeout(() => this.props.navigation.pop(), 200);
-    // this.props.navigation.replace('EventDetails', { id });
+    this.waitAMoment = setTimeout(() => {
+      this.props.onSubmit(input);
+      this.props.navigation.pop()
+    }, 1000);
     logger.log('create_event');
   };
 
