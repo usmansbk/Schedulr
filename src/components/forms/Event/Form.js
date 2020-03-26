@@ -94,14 +94,13 @@ class Form extends React.Component {
       <Formik
         initialValues={initialValues}
         validationSchema={formSchema}
-        onSubmit={(values, { setSubmitting }) => {
+        onSubmit={(values) => {
           if (isEventValid(values)) {
             values.venue = values.venue || values.location;
             const input = buildForm(values);
             input.geo_point = stores.locationStore.point;
             onSubmit && onSubmit(input);
           }
-          // setSubmitting(false);
         }}
       >
         {({

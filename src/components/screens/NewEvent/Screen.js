@@ -20,10 +20,8 @@ class NewEventScreen extends React.Component {
     const id = `${hash}-${sort}`;
     const input = { id,...form };
 
-    this.waitAMoment = setTimeout(() => {
-      this.props.onSubmit(input);
-      this.props.navigation.pop()
-    }, 1000);
+    this.props.navigation.pop();
+    this.props.onSubmit(input);
     logger.log('create_event');
   };
 
