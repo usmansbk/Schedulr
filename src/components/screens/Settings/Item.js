@@ -14,6 +14,7 @@ class Item extends React.Component {
 
   render() {
     const { color, item, value } = this.props;
+    console.log(item.key, value);
     
     if (item.key === 'remindMe') {
       return (

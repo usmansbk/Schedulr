@@ -9,7 +9,7 @@ export default [
         key: 'vibrate'
       },
       {
-        key: 'darkTheme'
+        key: 'dark'
       }
     ]
   },

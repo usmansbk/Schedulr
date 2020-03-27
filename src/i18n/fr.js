@@ -87,7 +87,7 @@ export default {
   SETTINGS_commentSectionTitle: "Commentaires",
   SETTINGS_sound: "Du son",
   SETTINGS_vibrate: "Vibrer",
-  SETTINGS_darkTheme: "Thème sombre",
+  SETTINGS_dark: "Thème sombre",
   SETTINGS_location: "Emplacement",
   SETTINGS_reminderSectionTitle: "Rappel",
   SETTINGS_disableReminders: "Désactiver tous les événements",

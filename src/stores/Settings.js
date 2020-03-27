@@ -1,3 +1,4 @@
+import { Appearance } from 'react-native';
 import { observable, action } from 'mobx';
 import { persist } from 'mobx-persist';
 import changeNavigationBarColor from 'react-native-navigation-bar-color';
@@ -11,12 +12,11 @@ import stores from 'stores';
 export default class SettingsState {
 
   @observable currentLanguage = 'en';
-  @persist @observable dark = false;
+  @observable dark = Appearance.getColorScheme() === 'dark';
   @persist @observable sound = true;
   @persist @observable vibrate = true;
   @persist @observable disableReminders = false;
   @persist @observable headsUp = false;
-  @persist @observable darkTheme = false;
   @persist @observable bookmarkedEventsOnly = false;
   @persist('object') @observable userPreference = {
     language: this.currentLanguage
