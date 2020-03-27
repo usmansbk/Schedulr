@@ -13,7 +13,7 @@ import com.facebook.hermes.reactexecutor.HermesExecutorFactory;
 import com.facebook.react.bridge.JavaScriptExecutorFactory;
 
 import com.facebook.react.ReactApplication;
-
+import com.facebook.react.ReactInstanceManager;
 
 import com.amazonaws.RNAWSCognitoPackage;
 
@@ -62,7 +62,7 @@ public class MainApplication extends MultiDexApplication implements ReactApplica
     super.onCreate();
     SoLoader.init(this, /* native exopackage */ false);
     MultiDex.install(this);
-    initializeFlipper(this); // Remove this line if you don't want Flipper enabled
+    initializeFlipper(this, getReactNativeHost().getReactInstanceManager()); // Remove this line if you don't want Flipper enabled
   }
 
   /**
@@ -70,15 +70,17 @@ public class MainApplication extends MultiDexApplication implements ReactApplica
   *
   * @param context
   */
-  private static void initializeFlipper(Context context) {
+  private static void initializeFlipper(
+    Context context, ReactInstanceManager reactInstanceManager) {
     if (BuildConfig.DEBUG) {
       try {
         /*
         We use reflection here to pick up the class that initializes Flipper,
         since Flipper library is not available in release mode
         */
-        Class<?> aClass = Class.forName("com.facebook.flipper.ReactNativeFlipper");
-        aClass.getMethod("initializeFlipper", Context.class).invoke(null, context);
+        Class<?> aClass = Class.forName("com.schdlr.ReactNativeFlipper");
+        aClass.getMethod("initializeFlipper", Context.class, ReactInstanceManager.class)
+        .invoke(null, context, reactInstanceManager);
       } catch (ClassNotFoundException e) {
         e.printStackTrace();
       } catch (NoSuchMethodException e) {
