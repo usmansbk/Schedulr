@@ -6,7 +6,7 @@ import gql from 'graphql-tag';
 import { getUserData } from 'api/queries';
 import { baseEventsFilter } from 'api/filters';
 import logger from 'config/logger';
-import stores from 'stores';
+import snackbar from 'helpers/snackbar';
 
 class Dialog extends React.Component {
   state = {
@@ -29,9 +29,9 @@ class Dialog extends React.Component {
         fetchPolicy: 'network-only',
         variables
       });
-      stores.snackbar.show(I18n.get("SYNC_complete"));
+      snackbar(I18n.get("SYNC_complete"));
     } catch (error) {
-      stores.snackbar.show(I18n.get("ERROR_noConnection"), error);
+      snackbar(I18n.get("ERROR_noConnection"), error);
       logger.logError(error);
     }
     this.setState({ loading: false });

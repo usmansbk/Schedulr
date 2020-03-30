@@ -5,8 +5,8 @@ import List from 'components/lists/Events';
 import FAB from 'components/common/Fab';
 import schdlAll from 'helpers/setReminders';
 import { mergeEvents } from 'lib/utils';
-import stores from 'stores';
 import { InteractionManager } from 'react-native';
+import snackbar from 'helpers/snackbar';
 
 export default class Events extends React.Component {
   static defaultProps = {
@@ -42,7 +42,7 @@ export default class Events extends React.Component {
 
   _sync = () => {
     if (this.props.isConnected) {
-      stores.snackbar.show(I18n.get('TOAST_fetchingUpdates'));
+      snackbar(I18n.get('TOAST_fetchingUpdates'));
       this.props.fetchNotifications();
       this.props.deltaSync();
       this.props.calendarSync();

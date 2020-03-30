@@ -10,6 +10,7 @@ import Icon from 'react-native-vector-icons/Feather';
 import Loading from '../Loading';
 import logger from 'config/logger';
 import downloadPath from 'helpers/fs';
+import snackbar from 'helpers/snackbar';
 
 class ImageViewer extends React.Component {
 
@@ -43,7 +44,7 @@ class ImageViewer extends React.Component {
         FileViewer.open(toFile);
         this.setState({ downloading: false });
       } else {
-        stores.snackbar.show(I18n.get('TOAST_downloading'));
+        snackbar(I18n.get('TOAST_downloading'));
         await RNFS.downloadFile(options).promise
           .then(() => {
             FileViewer.open(toFile);
@@ -52,7 +53,7 @@ class ImageViewer extends React.Component {
       }
     } catch (error) {
       this.setState({ downloading: false });
-      stores.snackbar.show(I18n.get('TOAST_downloadFailed'), true);
+      snackbar(I18n.get('TOAST_downloadFailed'), true);
       logger.logError(error);
     }
   };

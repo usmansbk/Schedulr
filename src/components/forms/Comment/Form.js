@@ -9,6 +9,7 @@ import shortid from 'shortid';
 import FileSelect from 'components/lists/FileSelect';
 import logger from 'config/logger';
 import config from 'aws_config';
+import snackbar from 'helpers/snackbar';
 
 const MAX_LENGTH = 240;
 const MAX_FILE_SIZE = 8000 * 1024;
@@ -81,7 +82,7 @@ class CommentInput extends React.Component {
             });
             docs.push(fileForUpload);
           } else {
-            this.props.stores.snackbar.show(I18n.get('TOAST_fileTooLarge')(name));
+            snackbar(I18n.get('TOAST_fileTooLarge')(name));
           }
         } catch(error) {
           failed.push(doc);
@@ -102,7 +103,7 @@ class CommentInput extends React.Component {
         });
       }
       if (failed.length) {
-        this.props.stores.snackbar.show(I18n.get('ERROR_failedToSendFiles')(failed.length), true);
+        snackbar(I18n.get('ERROR_failedToSendFiles')(failed.length), true);
       }
 
     } else if (message) {
@@ -119,7 +120,7 @@ class CommentInput extends React.Component {
       this.setState({ message });
     } else {
       this.setState({ message: message.slice(0, MAX_LENGTH)});
-      this.props.stores.snackbar.show(I18n.get('COMMENT_tooLong'));
+      snackbar(I18n.get('COMMENT_tooLong'));
     }
   };
 

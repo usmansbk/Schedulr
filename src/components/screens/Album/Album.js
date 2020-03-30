@@ -14,6 +14,7 @@ import logger from 'config/logger';
 import config from 'aws_config';
 import { updateEventWithAlbum } from 'graphql/mutations';
 import { getAlbum } from 'graphql/queries';
+import snackbar from 'helpers/snackbar';
 
 const MAX_FILE_SIZE = 8000 * 1024;
 const {
@@ -113,7 +114,7 @@ class Album extends React.Component {
             });
             docs.push(fileForUpload);
           } else {
-            this.props.stores.snackbar.show(I18n.get('TOAST_fileTooLarge')(name));
+            snackbar(I18n.get('TOAST_fileTooLarge')(name));
           }
         } catch(error) {
           failed.push(doc);
@@ -130,7 +131,7 @@ class Album extends React.Component {
       }
       this.setState({ isSubmitting: false });
       if (failed.length) {
-        this.props.stores.snackbar.show(I18n.get('ERROR_failedToSendFiles')(failed.length), true);
+        snackbar(I18n.get('ERROR_failedToSendFiles')(failed.length), true);
       }
     }
   };

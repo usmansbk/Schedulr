@@ -2,7 +2,6 @@ import moment from 'moment';
 import 'moment-recur';
 import uniqWith from 'lodash.uniqwith';
 import memoize from 'lodash.memoize';
-import { sortBy } from 'lib/utils';
 
 export const weekdays = [
   "Monday",
@@ -11,6 +10,16 @@ export const weekdays = [
   "Thursday",
   "Friday"
 ];
+
+export const sortBy = (arr, key, extraKey) => {
+  return arr.sort((a, b) => {
+    if (extraKey) {
+      if (a[extraKey] === 'Advert') return -1;
+      if (b[extraKey] === 'Advert') return 1;
+    }
+    return moment(a[key]) - moment(b[key]);
+  });
+};
 
 function getInterval(recurrence) {
   switch (recurrence) {

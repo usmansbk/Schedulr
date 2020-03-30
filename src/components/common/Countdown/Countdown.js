@@ -5,6 +5,7 @@ import { I18n } from 'aws-amplify';
 import { inject, observer } from 'mobx-react';
 import { capitalize } from 'lib/utils';
 import { countdown } from 'lib/constants';
+import snackbar from 'helpers/snackbar';
 
 const { SIZE } = countdown;
 class DateCountdown extends React.Component {
@@ -25,7 +26,7 @@ class DateCountdown extends React.Component {
     }
     return capitalize(timeAgo);
   };
-  _onPress = () => this.props.stores.snackbar.show(this._timeAgo());
+  _onPress = () => snackbar(this._timeAgo());
   _onFinish = () => {
     this.setState({
       finished: true

@@ -9,6 +9,7 @@ import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
 import Item from './Item';
 import items from './items';
+import snackbar from 'helpers/snackbar';
 
 class Settings extends React.Component {
   static defaultProps = {
@@ -34,7 +35,7 @@ class Settings extends React.Component {
   _handleRemindMeDialog = () => {
     const { openRemindMeDialog, stores } = this.props;
     if (stores.settingsStore.disableReminders) {
-      stores.snackbar.show(I18n.get("TOAST_enableReminder"));
+      snackbar(I18n.get("TOAST_enableReminder"));
     } else {
       openRemindMeDialog();
     }

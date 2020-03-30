@@ -1,8 +1,8 @@
 import { I18n } from 'aws-amplify';
-import stores from 'stores';
 import updateApolloCache from 'helpers/updateApolloCache';
 import client from 'config/client';
 import { ADD, DELETE } from 'lib/constants';
+import snackbar from 'helpers/snackbar';
 
 export default (error, success) => {
   if (error) {
@@ -46,12 +46,12 @@ export default (error, success) => {
         break;
     }
     message = message + I18n.get('ERROR_configHint');
-    stores.snackbar.show(message, true);
+    snackbar(message, true);
   } else {
     const { mutation, data } = success;
     if (mutation === 'createEvent') {
       const { createEvent } = data;
-      stores.snackbar.show(I18n.get('TOAST_eventAdded'));
+      snackbar(I18n.get('TOAST_eventAdded'));
       /**
        * For some reason offline mutation on cold start removes optimistic response
        * without calling the update function and needs to be written back after a moment delay.

@@ -6,7 +6,7 @@ import { requestLocationPermission } from 'helpers/permissions';
 import numeral from 'numeral';
 import Geocoder from 'helpers/geocoder';
 import logger from 'config/logger';
-import stores from 'stores';
+import snackbar from '../helpers/snackbar';
 
 export default class Location {
   @persist('object') @observable point = null; 
@@ -54,11 +54,11 @@ export default class Location {
               this.countryCode = countryCode;
             }).catch((error) => {
               logger.logError(error);
-              stores.snackbar.show(I18n.get("ERROR_failedToGetLocation"), true);
+              snackbar(I18n.get("ERROR_failedToGetLocation"), true);
             });
           },
           (error) => {
-            stores.snackbar.show(error.message);
+            snackbar(error.message);
           },
           { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
         );

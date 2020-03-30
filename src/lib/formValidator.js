@@ -2,7 +2,7 @@ import moment from 'moment';
 import { I18n } from 'aws-amplify';
 import { repeatLength, FIVE_MINUTES } from 'lib/time';
 import { ONE_TIME_EVENT } from 'lib/constants';
-import stores from 'stores';
+import snackbar from 'helpers/snackbar';
 
 export const canRepeat = ({ recurrence, endAt, startAt }) => {
   if (recurrence === ONE_TIME_EVENT ) return true; // One-time event can be repeated
@@ -16,20 +16,20 @@ export function isEventValid(event) {
 
   let validity = true
   if (!canRepeat(event)) {
-    stores.snackbar.show(I18n.get("HELPER_TEXT_invalidDatesAndRecur"));
+    snackbar(I18n.get("HELPER_TEXT_invalidDatesAndRecur"));
     validity = false;
   } else if (startAt.isAfter(endAt)) {
-    stores.snackbar.show(I18n.get("ALERT_invalidStart"));
+    snackbar(I18n.get("ALERT_invalidStart"));
     validity = false;
   } else if (endAt.diff(startAt) < FIVE_MINUTES) {
-    stores.snackbar.show(I18n.get("ALERT_durationTooShort"));
+    snackbar(I18n.get("ALERT_durationTooShort"));
     validity = false;
   } else if (untilAt) {
     const length = repeatLength(event.recurrence);
     const duration = moment.duration(length);
     const secondTime = endAt.clone().add(duration, 'ms');
     if (secondTime.isAfter(untilAt)) {
-      stores.snackbar.show(I18n.get("ALERT_shortUntil"));
+      snackbar(I18n.get("ALERT_shortUntil"));
       validity = false;
     }
   }

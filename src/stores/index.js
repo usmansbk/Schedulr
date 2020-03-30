@@ -8,7 +8,6 @@ import AppStyles from './Styles';
 import AppState from './AppState';
 import Notifications from './Notifications';
 import Location from './Location';
-import Snackbar from './Snackbar';
 import Calendar from './Calendar';
 
 class RootStore {
@@ -22,7 +21,6 @@ class RootStore {
     const remindMeStore = new RemindMe;
     const notificationsStore = new Notifications;
     const locationStore = new Location;
-    const snackbarStore = new Snackbar;
     const calendarStore = new Calendar;
     
     hydrate('settings', settingsStore);
@@ -44,7 +42,6 @@ class RootStore {
     this.appState = appState;
     this.notificationsStore = notificationsStore;
     this.locationStore = locationStore;
-    this.snackbar = snackbarStore;
     this.calendar = calendarStore;
   }
 

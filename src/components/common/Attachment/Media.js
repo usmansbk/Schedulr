@@ -10,6 +10,7 @@ import getImageUrl from 'helpers/getImageUrl';
 import getFilePath from 'helpers/fs';
 import logger from 'config/logger';
 import MediaIcon from '../MediaIcon';
+import snackbar from 'helpers/snackbar';
 
 const Doc = inject('stores')(observer(({ stores, onPress, file, downloading, progress }) => {
   const { name, size, type } = file;
@@ -77,7 +78,7 @@ class MediaItem extends React.Component {
       }
     } catch (error) {
       this.setState({ downloading: false });
-      stores.snackbar.show(I18n.get('TOAST_downloadFailed'), true);
+      snackbar(I18n.get('TOAST_downloadFailed'), true);
       logger.logError(error);
     }
   };

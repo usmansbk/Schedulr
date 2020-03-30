@@ -9,6 +9,7 @@ import {
 } from 'react-native-paper';
 import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
+import snackbar from 'helpers/snackbar';
 
 class CalendarDialog extends React.Component {
   state = {
@@ -47,7 +48,7 @@ class CalendarDialog extends React.Component {
     this.setState({ loading: true });
     await this.props.stores.calendar.fetchEvents();
     this.setState({ loading: false }, this._dimiss);
-    this.props.stores.snackbar.show(I18n.get('SYNC_complete'));
+    snackbar(I18n.get('SYNC_complete'));
   };
 
   render() {

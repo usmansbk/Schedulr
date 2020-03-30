@@ -5,6 +5,7 @@ import { I18n } from 'aws-amplify';
 import { inject, observer } from 'mobx-react';
 import handleShareEvent from 'helpers/share';
 import logger from 'config/logger';
+import snackbar from 'helpers/snackbar';
 
 class EventAction extends React.Component {
   showActionSheet = () => {
@@ -52,7 +53,7 @@ class EventAction extends React.Component {
           await bookmarkEvent(input);
         }
         if (!isBookmarked) {
-          stores.snackbar.show(I18n.get(`TOAST_${isBookmarked ? "removed" : "saved"}`));
+          snackbar(I18n.get(`TOAST_${isBookmarked ? "removed" : "saved"}`));
         }
       } catch (error) {
         logger.logError(error);

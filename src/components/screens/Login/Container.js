@@ -13,6 +13,7 @@ import { createUser, createSchedule, createPreference } from 'api/mutations';
 import Login from './Login';
 import logger from 'config/logger';
 import { baseEventsFilter } from 'graphql/filters';
+import snackbar from 'helpers/snackbar';
 
 const GET_USER = gql(getUserData);
 const CREATE_USER = gql(createUser);
@@ -40,7 +41,7 @@ class Container extends React.Component {
     switch(event) {
       case 'signIn_failure':
         this.props.stores.appState.setLoginState(false);
-        this.props.stores.snackbar.show(I18n.get('ERROR_signInFailure'), true);
+        snackbar(I18n.get('ERROR_signInFailure'), true);
         break;
       case "signIn":
         try {
@@ -114,7 +115,7 @@ class Container extends React.Component {
           logger.log('sign-in');
           this.props.navigation.navigate('App');
         } catch(error) {
-          this.props.stores.snackbar.show(I18n.get('ERROR_signInFailure'));
+          snackbar(I18n.get('ERROR_signInFailure'));
           logger.logError(error);
         }
         this.props.stores.appState.setLoginState(false);

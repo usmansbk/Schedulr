@@ -1,7 +1,7 @@
 import { PermissionsAndroid } from 'react-native';
 import { I18n } from 'aws-amplify';
-import stores from 'stores';
 import logger from 'config/logger';
+import snackbar from 'helpers/snackbar';
 
 async function requestReadWritePermission() {
   try {
@@ -37,7 +37,7 @@ async function requestLocationPermission() {
     );
     return granted === PermissionsAndroid.RESULTS.GRANTED;
   } catch (error) {
-    stores.snackbar.show(error.message);
+    snackbar(error.message);
     return false;
   }
 }

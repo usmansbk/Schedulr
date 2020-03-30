@@ -5,7 +5,7 @@ import gql from 'graphql-tag';
 import { I18n } from 'aws-amplify';
 import { getNotifications } from 'api/queries';
 import client from 'config/client';
-import stores from 'stores';
+import snackbar from '../helpers/snackbar';
 
 export default class Notifications {
   @persist @observable count = 0;
@@ -85,7 +85,7 @@ export default class Notifications {
           this.appendNotifications(notifications);
           const latest = notifications.sort((a, b) => b.timestamp - a.timestamp)[0];
           this.updateLastSyncTimestamp(latest.timestamp);
-          stores.snackbar.show(I18n.get('TOAST_newNotifications')(this.count));
+          snackbar(I18n.get('TOAST_newNotifications')(this.count));
         }
         this.loading = false;
       }).catch(() => {

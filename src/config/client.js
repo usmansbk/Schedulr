@@ -12,6 +12,7 @@ import {
   USER_TYPE,
   COMMENT_TYPE
 } from 'lib/constants';
+import snackbar from 'helpers/snackbar';
 
 const errorLink = onError(({ graphQLErrors }) => {
   if (graphQLErrors) {
@@ -20,7 +21,7 @@ const errorLink = onError(({ graphQLErrors }) => {
       if (message.includes("Not Found")) {
         // Dont log elasticsearch "Not found"
       } else {
-        stores.snackbar.show(I18n.get('ERROR_serverError')(error.message), true);
+        snackbar(I18n.get('ERROR_serverError')(error.message), true);
         logger.logError(error);
       }
     });  

@@ -8,6 +8,7 @@ import getImageUrl from 'helpers/getImageUrl';
 import Alert from 'components/dialogs/Alert';
 import Screen from './Screen';
 import logger from 'config/logger';
+import snackbar from 'helpers/snackbar';
 
 const {
   aws_user_files_s3_bucket: bucket,
@@ -38,13 +39,13 @@ class ImageViewerContainer extends React.Component {
           this.props.stores.appState.removeKeysFromStorage([s3Object.key]);
           await onRemovePhoto();
         } catch(error) {
-          this.props.stores.snackbar.show(I18n.get('ERROR_failedToRemoveImage'), true);
+          snackbar(I18n.get('ERROR_failedToRemoveImage'), true);
           logger.logError(error)
         }
       }
       this.setState({ loading: false, showRemoveImageAlert: false });
     } else {
-      this.props.stores.snackbar.show(I18n.get("ERROR_noConnection"));
+      snackbar(I18n.get("ERROR_noConnection"));
     }
   };
 
@@ -60,11 +61,11 @@ class ImageViewerContainer extends React.Component {
       };
       ImagePicker.showImagePicker(options, async (response) => {
         if (response.error) {
-          this.props.stores.snackbar.show(response.error.message);
+          snackbar(response.error.message);
         } else {
           const { type, uri, fileName, fileSize } = response;
           if (fileSize > (MAX_FILE_SIZE + EPSILON)) {
-            this.props.stores.snackbar.show(I18n.get("WARNING_fileTooLarge"), true);
+            snackbar(I18n.get("WARNING_fileTooLarge"), true);
           } else {
             try {
               const name = `${id}_${shortid.generate()}_${fileName}`;
@@ -95,14 +96,14 @@ class ImageViewerContainer extends React.Component {
               }
             } catch (error) {
               this.setState({ loading: false });
-              this.props.stores.snackbar.show(I18n.get('ERROR_failedToUploadImage'), true);
+              snackbar(I18n.get('ERROR_failedToUploadImage'), true);
               logger.logError(error);
             }
           }
         }
       });
     } else {
-      this.props.stores.snackbar.show(I18n.get("ERROR_noConnection"));
+      snackbar(I18n.get("ERROR_noConnection"));
     }
   };
 
