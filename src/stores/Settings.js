@@ -3,11 +3,32 @@ import { observable, action } from 'mobx';
 import { persist } from 'mobx-persist';
 import changeNavigationBarColor from 'react-native-navigation-bar-color';
 import OneSignal from 'react-native-onesignal';
+import { updatePreference } from 'api/mutations';
 import { I18n } from 'aws-amplify';
 import { dark, light } from 'config/colors';
-import { updateUserPreference } from 'helpers/updatePreference';
 import logger from 'config/logger';
 import snackbar from '../helpers/snackbar';
+
+function updateUserPreference(optimisticResponse) {
+  try {
+    let input = Object.assign({}, optimisticResponse);
+    delete input.__typename;
+    client.mutate({
+      mutation: gql(updatePreference),
+      variables: {
+        input
+      },
+      optimisticResponse: {
+        __typename: 'Mutation',
+        updateUserPreference: optimisticResponse
+      }
+    });
+    return optimisticResponse;
+  } catch (error) {
+    logger.logError(error);
+  }
+  return null;
+}
 
 export default class SettingsState {
 

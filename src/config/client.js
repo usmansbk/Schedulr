@@ -4,7 +4,6 @@ import { ApolloLink } from 'apollo-link';
 import { onError } from 'apollo-link-error';
 import aws_config from 'aws_config';
 import logger from './logger';
-import stores from 'stores';
 // import callback from 'helpers/offlineConfig';
 import {
   EVENT_TYPE,

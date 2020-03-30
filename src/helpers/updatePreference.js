@@ -19,28 +19,7 @@ async function updateUserPushToken({ userId }) {
     logger.logError(error);
   }
 }
-function updateUserPreference(optimisticResponse) {
-  try {
-    let input = Object.assign({}, optimisticResponse);
-    delete input.__typename;
-    client.mutate({
-      mutation: gql(updatePreference),
-      variables: {
-        input
-      },
-      optimisticResponse: {
-        __typename: 'Mutation',
-        updateUserPreference: optimisticResponse
-      }
-    });
-    return optimisticResponse;
-  } catch (error) {
-    logger.logError(error);
-  }
-  return null;
-}
 
 export {
   updateUserPushToken,
-  updateUserPreference
 };
