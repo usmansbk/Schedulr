@@ -103,7 +103,7 @@ apply from: "../../node_modules/react-native/react.gradle"
  * Upload all the APKs to the Play Store and people will download
  * the correct one based on the CPU architecture of their device.
  */
-def enableSeparateBuildPerCPUArchitecture = true
+def enableSeparateBuildPerCPUArchitecture = true 
 
 /**
  * Run Proguard to shrink the Java bytecode in release builds.
@@ -129,7 +129,7 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 50
         versionName "0.1.37"
-        multiDexEnabled true
+        // multiDexEnabled true
     }
     signingConfigs {
         release {
@@ -180,8 +180,8 @@ android {
 }
 
 dependencies {
-    def multidex_version = "2.0.1"
-    implementation "androidx.multidex:multidex:$multidex_version"
+    // def multidex_version = "2.0.1"
+    // implementation "androidx.multidex:multidex:$multidex_version"
     implementation 'androidx.appcompat:appcompat:1.1.0-rc01'
     implementation project(':amazon-cognito-identity-js')
 
