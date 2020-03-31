@@ -26,7 +26,7 @@ import colors from 'config/colors';
 
 class UserProfile extends React.Component {
 
-  _toFollowingTab = () => {
+  _toCreatedFollowingTab = () => {
     const { user, navigation } = this.props;
     if (user) {
       const { id, name } = user; 
@@ -37,17 +37,17 @@ class UserProfile extends React.Component {
     }
   };
 
-  _toCreatedTab = () => {
-    const { user, navigation } = this.props;
-    if (user) {
-      const { id, name } = user; 
-      navigation.push('UserSchedules', {
-        id,
-        name,
-        toCreatedTab: true
-      });
-    }
-  };
+  // _toCreatedTab = () => {
+  //   const { user, navigation } = this.props;
+  //   if (user) {
+  //     const { id, name } = user; 
+  //     navigation.push('UserSchedules', {
+  //       id,
+  //       name,
+  //       toCreatedTab: true
+  //     });
+  //   }
+  // };
 
   _editProfile = () => this.props.navigation.navigate('EditProfile');
 
@@ -111,20 +111,18 @@ class UserProfile extends React.Component {
           </View>
           <Headline numberOfLines={2} ellipsizeMode="tail" style={styles.headline}>{name}</Headline>
         </View>
-        <View style={styles.countRow}>
-          <TouchableRipple onPress={this._toFollowingTab}>
-              <View style={styles.item}>
-                <Text style={styles.count}>{numeral(followingCount).format('0a')}</Text>
-                <Text ellipsizeMode="tail" numberOfLines={1} style={styles.label}>{I18n.get("PROFILE_followingLabel")}</Text>
-              </View>
-          </TouchableRipple>
-          <TouchableRipple onPress={this._toCreatedTab}>
+        <TouchableRipple onPress={this._toCreatedFollowingTab}>
+          <View style={styles.countRow}>
+            <View style={styles.item}>
+              <Text style={styles.count}>{numeral(followingCount).format('0a')}</Text>
+              <Text ellipsizeMode="tail" numberOfLines={1} style={styles.label}>{I18n.get("PROFILE_followingLabel")}</Text>
+            </View>
             <View style={styles.item}>
               <Text style={styles.count}>{numeral(createdCount).format('0a')}</Text>
               <Text ellipsizeMode="tail" numberOfLines={1} style={styles.label}>{I18n.get("PROFILE_createdLabel")}</Text>
             </View>
-          </TouchableRipple>
-        </View>
+          </View>
+        </TouchableRipple>
         <View style={styles.link}>
           <Icon size={16} style={styles.linkIcon} name="calendar" color={stores.themeStore.colors.black} />
           <Caption style={styles.linkLabel} numberOfLines={1} ellipsizeMode="tail">{I18n.get("PROFILE_joined")(date)}</Caption>
