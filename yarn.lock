@@ -1620,10 +1620,10 @@
     wcwidth "^1.0.1"
     ws "^1.1.0"
 
-"@react-native-community/datetimepicker@^2.3.0":
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/@react-native-community/datetimepicker/-/datetimepicker-2.3.0.tgz#fd3e430ef608a92af77f841f2a4593d8f03693c4"
-  integrity sha512-kEmhnvkVm0/WJxle2Oze1Wu5pSO65jeP6vdVJzglgQDI3X9bHUlId0JTKZPpDAB9nFUM8cp5X5RSR0KW0SbFsA==
+"@react-native-community/datetimepicker@^2.3.1":
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/@react-native-community/datetimepicker/-/datetimepicker-2.3.1.tgz#375a9aaac19303424e30330f9f20e4b08d2ec086"
+  integrity sha512-Vz5ogawyP7uVPsYjlqXR8rn66cFX8FbvRVCLbwPm1s8x4VSOSEZCqasm1nwX4ULLA+UMCI0tYa5efRd6lDrZ2g==
   dependencies:
     invariant "^2.2.4"
 
@@ -1694,20 +1694,20 @@
   dependencies:
     stacktrace-js "^2.0.0"
 
-"@react-navigation/core@^3.7.3":
-  version "3.7.3"
-  resolved "https://registry.yarnpkg.com/@react-navigation/core/-/core-3.7.3.tgz#4d905a873ce31f162ccdee3c83235f4c008acad4"
-  integrity sha512-JMw4lU97cu8J5THKgDGtXKzdpJxEpW7aN4kjPX0jOsux/uWs4VMX8gkK13nYI7rogxlEi9GOQVnUM2FsXe3tTQ==
+"@react-navigation/core@^3.7.4":
+  version "3.7.4"
+  resolved "https://registry.yarnpkg.com/@react-navigation/core/-/core-3.7.4.tgz#eaa4c4216baddba86a992054f39ad4084ad3563d"
+  integrity sha512-b5PDfYbnXMQT/A/cu9wL1jV1AFdxDsRnNYjsJ+H/Xjpspc1VkAPmOJuZhO2BfogwYedMHXmFp+bku9CJ+lxhuQ==
   dependencies:
     hoist-non-react-statics "^3.3.2"
     path-to-regexp "^1.8.0"
     query-string "^6.11.1"
     react-is "^16.13.0"
 
-"@react-navigation/native@^3.7.9":
-  version "3.7.9"
-  resolved "https://registry.yarnpkg.com/@react-navigation/native/-/native-3.7.9.tgz#a9929a611639fca08d2478a17316eccbc1852083"
-  integrity sha512-+90VzQDZHd6WlptnNvRFtGWnYvz4sWqROhTGotqrzMo926w9c22d4X8YPja2gMgrAW3or/DP2YzSjQYMngifWw==
+"@react-navigation/native@^3.7.10":
+  version "3.7.10"
+  resolved "https://registry.yarnpkg.com/@react-navigation/native/-/native-3.7.10.tgz#8879a67c9e998c6c75a259d170cfb6806b600476"
+  integrity sha512-P7SL3z6/4UPChfQeEFjbKxt6sEM+MajRfgS9Aq9G/tuIuExY3XC8omzEpnEFEZt1Bx7fbN0lsh4PTzWfGTbUng==
   dependencies:
     hoist-non-react-statics "^3.3.2"
     react-native-safe-area-view "^0.14.8"
@@ -7771,10 +7771,10 @@ react-native-localize@^1.3.4:
   resolved "https://registry.yarnpkg.com/react-native-localize/-/react-native-localize-1.3.4.tgz#7d5c7b7ea30548d777a641457434d363cfac48db"
   integrity sha512-ZVdapfTIcizCQ6nfbkTzjN/+D1eFb3aRtmOSC6d4LtjYRovUnv0QmNSg35CI/Q8Jy3nx4bHg6M9QyQ75MHzf7Q==
 
-react-native-modal-datetime-picker@^8.5.1:
-  version "8.5.1"
-  resolved "https://registry.yarnpkg.com/react-native-modal-datetime-picker/-/react-native-modal-datetime-picker-8.5.1.tgz#61e18b114c265964fdf6b2e39f4874028f96d06f"
-  integrity sha512-ZV3dCKDXLRcyRiUWmmQCeuRulY5fr0RVO2rS0Tt+dUA+1gg8ral+NG4LoqPsrVPJgrf3RKWSmU+O0fZXyw2Vow==
+react-native-modal-datetime-picker@^8.5.2:
+  version "8.5.2"
+  resolved "https://registry.yarnpkg.com/react-native-modal-datetime-picker/-/react-native-modal-datetime-picker-8.5.2.tgz#7bf6bd488903bfa3cc69e9ce9feb01c9144bf3f4"
+  integrity sha512-P9O0iNFn+vPROXLl/aHFndDh0sxxMdGJDTQfA0i6DHxW0v/Pu3vpBHYQVy0tPr26gn/l513/E82LrjlcWctz9g==
   dependencies:
     prop-types "^15.7.2"
 
@@ -7953,31 +7953,31 @@ react-native@^0.62.0:
     use-subscription "^1.0.0"
     whatwg-fetch "^3.0.0"
 
-react-navigation-stack@^2.3.9:
-  version "2.3.9"
-  resolved "https://registry.yarnpkg.com/react-navigation-stack/-/react-navigation-stack-2.3.9.tgz#0cf838cdd2feeb7a8fff703d3ae45ad778ee824d"
-  integrity sha512-IAzMNrhUiUxxVcbE8fmTTHg0EJnzwF3jEK6NypCR6s1Aj0Yjs2hz8Eo96m7Yeuwhe4ca6uxjIRFhZwmm9uNxaA==
+react-navigation-stack@^2.3.10:
+  version "2.3.10"
+  resolved "https://registry.yarnpkg.com/react-navigation-stack/-/react-navigation-stack-2.3.10.tgz#7aab98d5168798405c3f37710bc6b221e58ac107"
+  integrity sha512-uSkf+fnXGppyuIVYng5gwIeR0a2fjR5v0p34SscNxGxFGDvDuqJjAcBzCUBxxQfZm4CZrRMQbgx2yid6ejfTdA==
   dependencies:
     color "^3.1.2"
     react-native-iphone-x-helper "^1.2.1"
 
-react-navigation-tabs@^2.8.9:
-  version "2.8.9"
-  resolved "https://registry.yarnpkg.com/react-navigation-tabs/-/react-navigation-tabs-2.8.9.tgz#d3d038d40ec0bbb3dc25f747a157d89570da3654"
-  integrity sha512-+M/Cezr6vImhOYdAcu0o9TolDj2c1dJ49d1e5lGe7cv/pWwFugkLIUtmR2IBjcEV4OgLjLJZtXwGDJNPX5f37Q==
+react-navigation-tabs@^2.8.10:
+  version "2.8.10"
+  resolved "https://registry.yarnpkg.com/react-navigation-tabs/-/react-navigation-tabs-2.8.10.tgz#76c8a6179f2132412d36db1f0b721238cc806e09"
+  integrity sha512-pFw7TKxvQWXuisQQ9w8sKt7nnljaz11cd/hk5KUkApo5GgozdQFZl7vMFjlyD/vq6dlKWuuK4kcxJj2KYkHHaA==
   dependencies:
     hoist-non-react-statics "^3.3.2"
     react-lifecycles-compat "^3.0.4"
     react-native-safe-area-view "^0.14.8"
     react-native-tab-view "^2.11.0"
 
-react-navigation@^4.3.5:
-  version "4.3.5"
-  resolved "https://registry.yarnpkg.com/react-navigation/-/react-navigation-4.3.5.tgz#c1794cecd3c30e887c6e317891c4485da95b99c0"
-  integrity sha512-ZmDsbOa15Il8T+etDsfjdFxhzVXCaFDN0O0AYYTbpKWY1cuaBefBd84D4a9W85w+TsA1IorBzzJSnz6TlvXijw==
+react-navigation@^4.3.6:
+  version "4.3.6"
+  resolved "https://registry.yarnpkg.com/react-navigation/-/react-navigation-4.3.6.tgz#3f90d6277f82dc54cc2fbf0184c18b83e37a641b"
+  integrity sha512-jHdKENerU3Ogtn3QIBCE00mMW0wXPtUHmrdbUh3TpJNd5j1APu1b0kTC9rxyWOvuCSm2zXsGrwCXXKvzgFBbWg==
   dependencies:
-    "@react-navigation/core" "^3.7.3"
-    "@react-navigation/native" "^3.7.9"
+    "@react-navigation/core" "^3.7.4"
+    "@react-navigation/native" "^3.7.10"
 
 react-refresh@^0.4.0:
   version "0.4.2"
