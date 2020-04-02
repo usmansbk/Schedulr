@@ -42,7 +42,7 @@ class Intro extends React.Component {
     return I18n.get('walkthrough');
   }
 
-  _renderItem = ({ item, dimensions }) => {
+  _renderItem = ({ item }) => {
     return (
       <View style={[styles.container, { backgroundColor: item.backgroundColor}]}>
         <Headline style={styles.titleStyle}>{item.title}</Headline>
@@ -68,7 +68,7 @@ class Intro extends React.Component {
       <>
       <StatusBar hidden />
       <AppIntroSlider
-        slides={this.slides}
+        data={this.slides}
         onDone={this._onDone}
         onSkip={this._onDone}
         showSkipButton
