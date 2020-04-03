@@ -2,69 +2,69 @@
 # yarn lockfile v1
 
 
-"@aws-amplify/analytics@^3.1.3":
-  version "3.1.3"
-  resolved "https://registry.yarnpkg.com/@aws-amplify/analytics/-/analytics-3.1.3.tgz#0e490ebd67a8fca3598472842f1a03ec2a511cef"
-  integrity sha512-TUN83Vn6jDrcl9mpELZwiit8MO+GmpFdWq9b94iewhF6HzdzOCXPj66ailUZB8O3ARFZisDobG/HD2PsWnfo1A==
+"@aws-amplify/analytics@^3.1.4":
+  version "3.1.4"
+  resolved "https://registry.yarnpkg.com/@aws-amplify/analytics/-/analytics-3.1.4.tgz#f68db041214977fe91d5e8073fb17ea82c121a45"
+  integrity sha512-4Cqmho0JTCTvArnSgwXpJlpgAcDKYzuodVlNJtt0FZ0JuvEj5t0oOQ+XV+z8mhHOTIaOQWcFI704jgplhNuXtw==
   dependencies:
-    "@aws-amplify/cache" "^3.1.3"
-    "@aws-amplify/core" "^3.2.0"
+    "@aws-amplify/cache" "^3.1.4"
+    "@aws-amplify/core" "^3.2.1"
     "@aws-sdk/client-firehose" "1.0.0-beta.3"
     "@aws-sdk/client-kinesis" "1.0.0-beta.3"
     "@aws-sdk/client-personalize-events" "1.0.0-beta.3"
     "@aws-sdk/client-pinpoint" "1.0.0-beta.3"
     uuid "^3.2.1"
 
-"@aws-amplify/api-graphql@^1.0.5":
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/@aws-amplify/api-graphql/-/api-graphql-1.0.5.tgz#b7179ae6691190230bcf38e99a90f6eca00c5d78"
-  integrity sha512-3ugxeMK11YrE02h6WrIy5U3DA4dUDr9t3hz9i0v4UuxQe2m536oJMDaJleC/vIp62Jjqw7N5xo3jXRpArO/OTw==
+"@aws-amplify/api-graphql@^1.0.6":
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/@aws-amplify/api-graphql/-/api-graphql-1.0.6.tgz#8af278b340f9764dad6fc2cd5552be60e3cf480b"
+  integrity sha512-fLKWTGinFZFxh52/Z4fEqb34VhRwbqziYSiFdT6oj7nW5pSAGhybl+iPIUlbhW8r1JHVtwCijo0167ekoTuKbg==
   dependencies:
-    "@aws-amplify/api-rest" "^1.0.5"
-    "@aws-amplify/auth" "^3.2.0"
-    "@aws-amplify/cache" "^3.1.3"
-    "@aws-amplify/core" "^3.2.0"
+    "@aws-amplify/api-rest" "^1.0.6"
+    "@aws-amplify/auth" "^3.2.1"
+    "@aws-amplify/cache" "^3.1.4"
+    "@aws-amplify/core" "^3.2.1"
     graphql "14.0.0"
     uuid "^3.2.1"
     zen-observable-ts "0.8.19"
 
-"@aws-amplify/api-rest@^1.0.5":
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/@aws-amplify/api-rest/-/api-rest-1.0.5.tgz#8ee3fa29ef2525514118257a25152babcf6c08ac"
-  integrity sha512-EOieR466iS/pY2aO4Oi/3WYsoxvoCyJ14EeBzhV4MduHrZm3E/Opu1bYKiBbOQO7UuYzCHvK3bo4esCg1nO6vQ==
+"@aws-amplify/api-rest@^1.0.6":
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/@aws-amplify/api-rest/-/api-rest-1.0.6.tgz#9a6e1e0720fc97b3e42b1bfb4b6cc6747bac11d5"
+  integrity sha512-2/vprYwHIjhAH53uXWqwc8e4mnVCIJLTsdHF8l6gza4mihM/qbDtFP/do/+Fsy59SQuq+tFZC91uDJFFx604iw==
   dependencies:
-    "@aws-amplify/core" "^3.2.0"
+    "@aws-amplify/core" "^3.2.1"
     axios "^0.19.0"
 
-"@aws-amplify/api@^3.1.3":
-  version "3.1.3"
-  resolved "https://registry.yarnpkg.com/@aws-amplify/api/-/api-3.1.3.tgz#81b56dd72078fbc9ce8453035b54b860ea52919a"
-  integrity sha512-htAAT6I0Gv9fsZNFX6CwQPmzgdbR00j5bnVIH3gf/0uEset+flRL24GpsUrH0EfVL3PwdBJC40cgv3iJA0ykkw==
+"@aws-amplify/api@^3.1.4":
+  version "3.1.4"
+  resolved "https://registry.yarnpkg.com/@aws-amplify/api/-/api-3.1.4.tgz#b5f9dfbe8246302520c3a9655d9c3d6cbfa10648"
+  integrity sha512-TVBv+r42fbaTfuycjU1B5CoQDa9jMzWqdpwXjvCBynY2cZNg2Lf1Lm35TnilzgjcnuqORdDDxVTrxOBumNXL3g==
   dependencies:
-    "@aws-amplify/api-graphql" "^1.0.5"
-    "@aws-amplify/api-rest" "^1.0.5"
+    "@aws-amplify/api-graphql" "^1.0.6"
+    "@aws-amplify/api-rest" "^1.0.6"
 
-"@aws-amplify/auth@^3.2.0":
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/@aws-amplify/auth/-/auth-3.2.0.tgz#45391c7c8e28318c220e889f39eeff06a806fc5c"
-  integrity sha512-eK96FwRV1k+ScEuECoxkPsiVThG+WbW515rAvVVvIMUb5/eyshJSUPbum+FF2/r+QH8E28DNY5AD1ZA0oViL+g==
+"@aws-amplify/auth@^3.2.1":
+  version "3.2.1"
+  resolved "https://registry.yarnpkg.com/@aws-amplify/auth/-/auth-3.2.1.tgz#058a79e676d69e2506a4509f39eaa7c49d511be7"
+  integrity sha512-AaygX0huO7Mcq4s1wZ191wiS9H2CHp1L0yvfTvHT+Iuvl6cat1AkIj7cIJSDS+ST6s5sP0YuD80QLSvkueAKVg==
   dependencies:
-    "@aws-amplify/cache" "^3.1.3"
-    "@aws-amplify/core" "^3.2.0"
+    "@aws-amplify/cache" "^3.1.4"
+    "@aws-amplify/core" "^3.2.1"
     amazon-cognito-identity-js "^4.2.0"
     crypto-js "^3.3.0"
 
-"@aws-amplify/cache@^3.1.3":
-  version "3.1.3"
-  resolved "https://registry.yarnpkg.com/@aws-amplify/cache/-/cache-3.1.3.tgz#5b899a2dc2b0e6e005e9c5d7a5ecd24c0b6d8ab5"
-  integrity sha512-h04VBAEKTu1miOjY/q2KDh+W4TDShUzb/7FGcrx/uGz3NQ4Z3zHAQS0xYcvdtOI2tNH7tIBb82iujd0r2p0Peg==
+"@aws-amplify/cache@^3.1.4":
+  version "3.1.4"
+  resolved "https://registry.yarnpkg.com/@aws-amplify/cache/-/cache-3.1.4.tgz#76d70731692a8a64e0ae9a7e92bcb48fbb981cf8"
+  integrity sha512-6Eke07pZeSqlb8IrsB8cJFzY8fRxBxt1tm7UihFPnu8O3Y+q5gWZacHajwjp29sqJGWpF8YRCfKHmz49zpROeQ==
   dependencies:
-    "@aws-amplify/core" "^3.2.0"
+    "@aws-amplify/core" "^3.2.1"
 
-"@aws-amplify/core@^3.2.0":
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/@aws-amplify/core/-/core-3.2.0.tgz#ca0cf02737d20140c2afaea6c33ee91823b8eef2"
-  integrity sha512-VBlBOj78V/sLVOe4spA+DNXJaf6AxBoZEMjzbPPMHwXC11CAQNxYG3q9wgB0X1ffwqn7gsl96BVsRfZHQyBFuw==
+"@aws-amplify/core@^3.2.1":
+  version "3.2.1"
+  resolved "https://registry.yarnpkg.com/@aws-amplify/core/-/core-3.2.1.tgz#f3a8445ff2a631bb7c79bde82dcfd558e2bc449b"
+  integrity sha512-uOCzZ8ULT6zjKEJRWwJGHmQYl2CXKxNw6owMuHDDl3e9w7xTLVr22Ky7J1glMmrVX9n7oLzfqbP55WDRX3ydrg==
   dependencies:
     "@aws-crypto/sha256-js" "1.0.0-alpha.0"
     "@aws-sdk/client-cognito-identity" "1.0.0-beta.3"
@@ -76,35 +76,35 @@
     url "^0.11.0"
     zen-observable-ts "0.8.19"
 
-"@aws-amplify/datastore@^2.0.4":
-  version "2.0.4"
-  resolved "https://registry.yarnpkg.com/@aws-amplify/datastore/-/datastore-2.0.4.tgz#9076301aef2d28988909b70cd35e6c9361a01ede"
-  integrity sha512-XmHGQmuHQwk72cfFwnXoZNMgXqXC7IOxBvXVuL30FxMMGssx+3kJqh2FDsqdjb2012i5kEysvbxIKcKB2ygzRw==
+"@aws-amplify/datastore@^2.0.5":
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/@aws-amplify/datastore/-/datastore-2.0.5.tgz#27fd00c22ceba05de8d7237c68a5674fbce88856"
+  integrity sha512-XN7lgZcGnoWsHWUCz5tzx9zDbd6XPMlofWNeFJO578CSc1aBr6HwxiT26rXe/GZHX+WjQJjI0IN2dCbkTtB2Tg==
   dependencies:
-    "@aws-amplify/api" "^3.1.3"
-    "@aws-amplify/core" "^3.2.0"
-    "@aws-amplify/pubsub" "^3.0.4"
+    "@aws-amplify/api" "^3.1.4"
+    "@aws-amplify/core" "^3.2.1"
+    "@aws-amplify/pubsub" "^3.0.5"
     idb "4.0.4"
     immer "6.0.1"
     uuid "3.3.2"
     zen-observable-ts "0.8.19"
     zen-push "0.2.1"
 
-"@aws-amplify/interactions@^3.1.3":
-  version "3.1.3"
-  resolved "https://registry.yarnpkg.com/@aws-amplify/interactions/-/interactions-3.1.3.tgz#3097dfec4b2e6fa026b523dbc4b46e036a00689e"
-  integrity sha512-GTJ84jfbY3wEeAEoKvDPlYeqRl810D/9hv7XgOBixrRX3+LoDmp4SOSyK9X/tfIfcGN9VElYiAE+o8enahrvvQ==
+"@aws-amplify/interactions@^3.1.4":
+  version "3.1.4"
+  resolved "https://registry.yarnpkg.com/@aws-amplify/interactions/-/interactions-3.1.4.tgz#4e1829f4cb72a09103a8c6541edf714e79d1d506"
+  integrity sha512-nwX4cnyj6f5CPLhboLGStZcor7iU8QPTRa0z0EEzVbs6rFQujdlksQwZgk3rCCgSQojOwrc4bWUHqfMXH0tQgA==
   dependencies:
-    "@aws-amplify/core" "^3.2.0"
+    "@aws-amplify/core" "^3.2.1"
     "@aws-sdk/client-lex-runtime-service" "1.0.0-beta.3"
 
-"@aws-amplify/predictions@^3.1.3":
-  version "3.1.3"
-  resolved "https://registry.yarnpkg.com/@aws-amplify/predictions/-/predictions-3.1.3.tgz#a695a2304ba38e2d260b2afbb8cbbdd176596583"
-  integrity sha512-OtDKdu3TJNhe+2ouGEyAPB1awbH6LjqaQlM0WT1aJ4WYKLZ+EzG2A5/gIUl10QEzJXUhuQ267O8+Es52/W9JFQ==
+"@aws-amplify/predictions@^3.1.4":
+  version "3.1.4"
+  resolved "https://registry.yarnpkg.com/@aws-amplify/predictions/-/predictions-3.1.4.tgz#57fa8948cc61ab995ac463c44afa1275e808d118"
+  integrity sha512-k/qfcVKdbTqMDePeiwO4Ov29zIK3mfLotCi+CBdyiT6lc36hqLd3a/1hOeRuGo/TdIDSGM0z0bkA5oVdbx+8aw==
   dependencies:
-    "@aws-amplify/core" "^3.2.0"
-    "@aws-amplify/storage" "^3.1.3"
+    "@aws-amplify/core" "^3.2.1"
+    "@aws-amplify/storage" "^3.1.4"
     "@aws-sdk/client-comprehend" "1.0.0-beta.3"
     "@aws-sdk/client-polly" "1.0.0-beta.3"
     "@aws-sdk/client-rekognition" "1.0.0-beta.3"
@@ -114,29 +114,30 @@
     "@aws-sdk/util-utf8-node" "1.0.0-beta.2"
     uuid "^3.2.1"
 
-"@aws-amplify/pubsub@^3.0.4":
-  version "3.0.4"
-  resolved "https://registry.yarnpkg.com/@aws-amplify/pubsub/-/pubsub-3.0.4.tgz#ae6658b8c9cbaa848f40649d24e46d069775ffa2"
-  integrity sha512-wHYFD7sx+Bsh86pQ6oWuvulHmMn7cPNJjB0gTXO3NeNrjfT0XJgPgszMNY13K6XGrznrAUOPd4ETIe5MJBgTZw==
+"@aws-amplify/pubsub@^3.0.5":
+  version "3.0.5"
+  resolved "https://registry.yarnpkg.com/@aws-amplify/pubsub/-/pubsub-3.0.5.tgz#284b3d28df91511d495c80330260b5349a03dc68"
+  integrity sha512-iqryULbVFDwY3+6Clb4UGT2mPM1hbGYfDKGol2cplAApb2SZk28R409D9TE7vLmHvF9lFbDsgaE0SHZfrwr9+g==
   dependencies:
-    "@aws-amplify/auth" "^3.2.0"
-    "@aws-amplify/cache" "^3.1.3"
-    "@aws-amplify/core" "^3.2.0"
+    "@aws-amplify/auth" "^3.2.1"
+    "@aws-amplify/cache" "^3.1.4"
+    "@aws-amplify/core" "^3.2.1"
     graphql "14.0.0"
     paho-mqtt "^1.1.0"
     uuid "^3.2.1"
     zen-observable-ts "0.8.19"
 
-"@aws-amplify/storage@^3.1.3":
-  version "3.1.3"
-  resolved "https://registry.yarnpkg.com/@aws-amplify/storage/-/storage-3.1.3.tgz#ef7119b9466348be96238c97da5c731e8e6a443f"
-  integrity sha512-VxcWznjrHdQH0mdXEv5sp1Z1lAeIqi5VSvFcy2EL34aLubarGlszxZexAvmxlPkO5xGoMfcQJKIETN4/9EDBYQ==
+"@aws-amplify/storage@^3.1.4":
+  version "3.1.4"
+  resolved "https://registry.yarnpkg.com/@aws-amplify/storage/-/storage-3.1.4.tgz#f1d01a0fc98f17542ee95c1d321ab13a7d8c3d1b"
+  integrity sha512-IBX7G9/jYsmcb1j84t7ZePzl1VT+v40N9g+j+UQtR721E7wwvgmBFc+AVs47defluzdaEHrWhDkfDQ49At6nmA==
   dependencies:
-    "@aws-amplify/core" "^3.2.0"
+    "@aws-amplify/core" "^3.2.1"
     "@aws-sdk/client-s3" "1.0.0-beta.3"
     "@aws-sdk/s3-request-presigner" "1.0.0-beta.3"
     "@aws-sdk/util-create-request" "1.0.0-beta.3"
     "@aws-sdk/util-format-url" "1.0.0-beta.2"
+    axios "^0.19.0"
     events "^3.1.0"
     sinon "^7.5.0"
 
@@ -145,12 +146,12 @@
   resolved "https://registry.yarnpkg.com/@aws-amplify/ui/-/ui-2.0.2.tgz#56bfc3674454f2a12d1cec247f38a444aa13ea09"
   integrity sha512-OLdZmUCVK29+JV8PrkgVPjg+GIFtBnNjhC0JSRgrps+ynOFkibMQQPKeFXlTYtlukuCuepCelPSkjxvhcLq2ZA==
 
-"@aws-amplify/xr@^2.1.3":
-  version "2.1.3"
-  resolved "https://registry.yarnpkg.com/@aws-amplify/xr/-/xr-2.1.3.tgz#90f48acbe5271a8605f6ec4cdc0b93ad5e40ee2f"
-  integrity sha512-HB/0yVnKrxuCf1BF5OFHoR6NHBkZ6pUu2fbTLyn6wQw0sISylbCL/MI9IVJiHaav4LPlzprNXIKoWLsTiH6ZIg==
+"@aws-amplify/xr@^2.1.4":
+  version "2.1.4"
+  resolved "https://registry.yarnpkg.com/@aws-amplify/xr/-/xr-2.1.4.tgz#e55db147de4e4f81b818fb1357e3e2b88de88c32"
+  integrity sha512-3phQCd/Z86k5o0tcgj7c+fjyCkg0rqz1qLzlndOyxX2Jlr4PbvbVQ4EuO0kJ1qbbI0HcpiSUTLyqNKFiNOrdpg==
   dependencies:
-    "@aws-amplify/core" "^3.2.0"
+    "@aws-amplify/core" "^3.2.1"
 
 "@aws-crypto/crc32@^1.0.0-alpha.0":
   version "1.0.0-alpha.0"
@@ -2428,10 +2429,10 @@
     jest-util "^25.2.6"
     slash "^3.0.0"
 
-"@jest/core@^25.2.6":
-  version "25.2.6"
-  resolved "https://registry.yarnpkg.com/@jest/core/-/core-25.2.6.tgz#4bcb2919268d92c3813e1ff7c97443cde7a2873a"
-  integrity sha512-uMwUtpS4CWc7SadHcHEQ3VdrZ8A5u+UVbHIVUqhXcxlQ/bBC5+/T9IJGSu0o8e+/EXmFrTtl4zGr1nRPFq0Wlg==
+"@jest/core@^25.2.7":
+  version "25.2.7"
+  resolved "https://registry.yarnpkg.com/@jest/core/-/core-25.2.7.tgz#58d697687e94ee644273d15e4eed6a20e27187cd"
+  integrity sha512-Nd6ELJyR+j0zlwhzkfzY70m04hAur0VnMwJXVe4VmmD/SaQ6DEyal++ERQ1sgyKIKKEqRuui6k/R0wHLez4P+g==
   dependencies:
     "@jest/console" "^25.2.6"
     "@jest/reporters" "^25.2.6"
@@ -2443,18 +2444,18 @@
     exit "^0.1.2"
     graceful-fs "^4.2.3"
     jest-changed-files "^25.2.6"
-    jest-config "^25.2.6"
+    jest-config "^25.2.7"
     jest-haste-map "^25.2.6"
     jest-message-util "^25.2.6"
     jest-regex-util "^25.2.6"
     jest-resolve "^25.2.6"
-    jest-resolve-dependencies "^25.2.6"
-    jest-runner "^25.2.6"
-    jest-runtime "^25.2.6"
-    jest-snapshot "^25.2.6"
+    jest-resolve-dependencies "^25.2.7"
+    jest-runner "^25.2.7"
+    jest-runtime "^25.2.7"
+    jest-snapshot "^25.2.7"
     jest-util "^25.2.6"
     jest-validate "^25.2.6"
-    jest-watcher "^25.2.6"
+    jest-watcher "^25.2.7"
     micromatch "^4.0.2"
     p-each-series "^2.1.0"
     realpath-native "^2.0.0"
@@ -2559,15 +2560,15 @@
     "@types/istanbul-lib-coverage" "^2.0.0"
     collect-v8-coverage "^1.0.0"
 
-"@jest/test-sequencer@^25.2.6":
-  version "25.2.6"
-  resolved "https://registry.yarnpkg.com/@jest/test-sequencer/-/test-sequencer-25.2.6.tgz#62026007610b0323e646ad70db59c69c7ed4785c"
-  integrity sha512-6sHqVeXbEapfxoGb77NKCywNn9jc4WlIPtFqhwCKGhigGnpl42AuyLxclRWxbFx+V63ozzfjnemYxqHlkcoikQ==
+"@jest/test-sequencer@^25.2.7":
+  version "25.2.7"
+  resolved "https://registry.yarnpkg.com/@jest/test-sequencer/-/test-sequencer-25.2.7.tgz#e4331f7b4850e34289b9a5c8ec8a2c03b400da8f"
+  integrity sha512-s2uYGOXONDSTJQcZJ9A3Zkg3hwe53RlX1HjUNqjUy3HIqwgwCKJbnAKYsORPbhxXi3ARMKA7JNBi9arsTxXoYw==
   dependencies:
     "@jest/test-result" "^25.2.6"
     jest-haste-map "^25.2.6"
-    jest-runner "^25.2.6"
-    jest-runtime "^25.2.6"
+    jest-runner "^25.2.7"
+    jest-runtime "^25.2.7"
 
 "@jest/transform@^25.2.6":
   version "25.2.6"
@@ -2600,16 +2601,6 @@
     "@types/istanbul-reports" "^1.1.1"
     "@types/yargs" "^13.0.0"
 
-"@jest/types@^25.2.3":
-  version "25.2.3"
-  resolved "https://registry.yarnpkg.com/@jest/types/-/types-25.2.3.tgz#035c4fb94e2da472f359ff9a211915d59987f6b6"
-  integrity sha512-6oLQwO9mKif3Uph3RX5J1i3S7X7xtDHWBaaaoeKw8hOzV6YUd0qDcYcHZ6QXMHDIzSr7zzrEa51o2Ovlj6AtKQ==
-  dependencies:
-    "@types/istanbul-lib-coverage" "^2.0.0"
-    "@types/istanbul-reports" "^1.1.1"
-    "@types/yargs" "^15.0.0"
-    chalk "^3.0.0"
-
 "@jest/types@^25.2.6":
   version "25.2.6"
   resolved "https://registry.yarnpkg.com/@jest/types/-/types-25.2.6.tgz#c12f44af9bed444438091e4b59e7ed05f8659cb6"
@@ -2634,10 +2625,10 @@
   dependencies:
     serve-static "^1.13.1"
 
-"@react-native-community/cli-platform-android@^4.2.0":
-  version "4.4.0"
-  resolved "https://registry.yarnpkg.com/@react-native-community/cli-platform-android/-/cli-platform-android-4.4.0.tgz#8b836a89df65b323f540a8ba55daa34e4243f753"
-  integrity sha512-ETvCnUSvp1Zmq7hr6AFHbuMpfrUhBs2lwNwnCPhyxZ1Jh01FRk8HUJybN/xhUBhY7ShC7s451+rz1Kx/ni4nnA==
+"@react-native-community/cli-platform-android@^4.5.1":
+  version "4.5.1"
+  resolved "https://registry.yarnpkg.com/@react-native-community/cli-platform-android/-/cli-platform-android-4.5.1.tgz#51e1eb0e90d38d52a25ff1f7702f86fe0971a793"
+  integrity sha512-JVGBhuHx7NBITJZYaYJkgVoWQXlZ/71eCRbxYcG8OdhdXpkqlJxYrCubOdswj2tJBzXe3pin+nvRZAanDPY2Rw==
   dependencies:
     "@react-native-community/cli-tools" "^4.4.0"
     chalk "^3.0.0"
@@ -2650,10 +2641,10 @@
     slash "^3.0.0"
     xmldoc "^1.1.2"
 
-"@react-native-community/cli-platform-ios@^4.2.0":
-  version "4.4.0"
-  resolved "https://registry.yarnpkg.com/@react-native-community/cli-platform-ios/-/cli-platform-ios-4.4.0.tgz#233508b9967b33ee9cbf7c2bd3bc328814b217bd"
-  integrity sha512-uoDoylEBTRX8scm6obQrPrISSEh74b1ZIYbIv70dH3A88NLZbGtr0qDZT5Nfywh94vQkKsUIkM4/PlogOffTXw==
+"@react-native-community/cli-platform-ios@^4.5.0":
+  version "4.5.0"
+  resolved "https://registry.yarnpkg.com/@react-native-community/cli-platform-ios/-/cli-platform-ios-4.5.0.tgz#6ff5bb2258ad9962cc140c2c9cae7bfbc0f66e37"
+  integrity sha512-G7eOFyWeUn9gSjaRRmtr4jHruhCCkAXNBvKrSX04JVbty6NzhGlG/wz4bulc/PgWWCrHlkZyEYnqMQC+yMJ/xg==
   dependencies:
     "@react-native-community/cli-tools" "^4.4.0"
     chalk "^3.0.0"
@@ -2678,10 +2669,10 @@
   resolved "https://registry.yarnpkg.com/@react-native-community/cli-types/-/cli-types-4.4.0.tgz#c030af8c970a98e9360645f18890a85ddb9a8f37"
   integrity sha512-H1XsjQ6imMZKK+IsehDnhVhxP0FyUKX6UMWMeUkSk6Ox5M7HZ2q8kvlxVqdgZM9ry8yb6RJtCIjgBT7w8eiSug==
 
-"@react-native-community/cli@^4.2.0":
-  version "4.4.0"
-  resolved "https://registry.yarnpkg.com/@react-native-community/cli/-/cli-4.4.0.tgz#6d3464baee332ea16c23da32ec4c16b74fd480cd"
-  integrity sha512-jFNbSk8oRlRdiTFKPsJcAq6sUib9aV5bTCxOMvRWXdRWJGDPNQp3FuDXEefCxERxrn+Qra4K45VYqjkUWWIHOg==
+"@react-native-community/cli@^4.5.1":
+  version "4.5.1"
+  resolved "https://registry.yarnpkg.com/@react-native-community/cli/-/cli-4.5.1.tgz#f48dfd2244b6b40248732dd1cb9234770d43d950"
+  integrity sha512-cWTLNCSmTa32wi5+idP6S14p34Pz9V8wBAj2yJ97EhcM6ztETRY5rWAkUtcU9AKnL49sYkP2TfmaMMNw2qRG+g==
   dependencies:
     "@hapi/joi" "^15.0.3"
     "@react-native-community/cli-debugger-ui" "^4.2.1"
@@ -2712,7 +2703,7 @@
     mkdirp "^0.5.1"
     open "^6.2.0"
     ora "^3.4.0"
-    pretty-format "^25.1.0"
+    pretty-format "^25.2.0"
     semver "^6.3.0"
     serve-static "^1.13.1"
     shell-quote "1.6.1"
@@ -2774,24 +2765,24 @@
   dependencies:
     invariant "^2.2.4"
 
-"@react-native-firebase/app-types@6.3.4":
-  version "6.3.4"
-  resolved "https://registry.yarnpkg.com/@react-native-firebase/app-types/-/app-types-6.3.4.tgz#e54a3de33455417db63a7b1de2b7795af1c25cae"
-  integrity sha512-xZ1rVo+GvAfQ/fk6PalYgfsAoV6bd09Vh6SNqR7RPVf9PltaBS0gNxfITXAx6fR+7OyZ1H54orSBjyOIhM+g5Q==
+"@react-native-firebase/app-types@6.4.0":
+  version "6.4.0"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/app-types/-/app-types-6.4.0.tgz#f3d8c1d63f5bc5f6d5f9683caa428b189a968839"
+  integrity sha512-c8rYdh4DJReKjTl/jUjPNrCwhbAlNcgCch3n3rCOuATjYleiSt3zhskn37aRQeCOKohvNzuxvYy5ZYtzAxMYmw==
 
-"@react-native-firebase/app@^6.3.4":
-  version "6.3.4"
-  resolved "https://registry.yarnpkg.com/@react-native-firebase/app/-/app-6.3.4.tgz#5beee0f8ffb1e58bfc8edc054988c3a4007c5984"
-  integrity sha512-hDV3kjBn1X0KAR5kj2DVnm+65K3WVVPtIpcM4TDQIbXudsKsxoG8Z1lGZ4EY89K6EHgCouapdJf5aoqVQ4UDNw==
+"@react-native-firebase/app@^6.4.0":
+  version "6.4.0"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/app/-/app-6.4.0.tgz#cc3f22ebed03397fc85e855634f4db3729d242d9"
+  integrity sha512-QCV+SY0hdx3OTR+KQngvF/ejuPkEP8V5pr0ie8hic/yV6vcGtrMEN/NGSvgILjbPYRhspYDZSi4HdTgc70WUIA==
   dependencies:
-    "@react-native-firebase/app-types" "6.3.4"
+    "@react-native-firebase/app-types" "6.4.0"
     opencollective-postinstall "^2.0.1"
     superstruct "^0.6.2"
 
-"@react-native-firebase/crashlytics@^6.3.4":
-  version "6.3.4"
-  resolved "https://registry.yarnpkg.com/@react-native-firebase/crashlytics/-/crashlytics-6.3.4.tgz#775767ce60828fedc923242a459310e2282e54e1"
-  integrity sha512-ddOvaJr2xlz1lVyFG4OZP2KchCzbc2oCZo2/n3EKuFoYSgNAoMXknk/ab+aT4ZMAnCrK0Wvsy8PE/aDGVDeODg==
+"@react-native-firebase/crashlytics@^6.4.0":
+  version "6.4.0"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/crashlytics/-/crashlytics-6.4.0.tgz#76618ab91282ded00abffc3cebbd6d92abc79155"
+  integrity sha512-dn2lM4782JRyUN+WEPNEZkMfGCyfR7vmxv4AGMZC6RMtEOMgaTSRq5YXdCWk/7bLVl9SVUdWyBZJ/PFePbr8wg==
   dependencies:
     stacktrace-js "^2.0.0"
 
@@ -3518,23 +3509,23 @@ aws-amplify-react-native@^4.0.2:
     react-native-elements "^0.19.1"
     react-native-vector-icons "^6.6.0"
 
-aws-amplify@^3.0.4:
-  version "3.0.4"
-  resolved "https://registry.yarnpkg.com/aws-amplify/-/aws-amplify-3.0.4.tgz#6f52c81c2ebe836013f09bc677127f45a5907df0"
-  integrity sha512-0HmT7DTKG/jA5l+nw/PFxzpTz76nQurb8+u3xQJ9gcOqJ27r7Bl5eOZSQjVwJnsxNOCwFVYJdaZA0WgUZFVBvA==
+aws-amplify@^3.0.5:
+  version "3.0.5"
+  resolved "https://registry.yarnpkg.com/aws-amplify/-/aws-amplify-3.0.5.tgz#a2c0edfa3161724dd446cda3b430303fabf79d67"
+  integrity sha512-RAiNVZrOjNhek1INKbJ0m4QkWbaojVq8kNCR2hMLanQhwCCvgQW7TfiZ1TkO/5hV2wpgt1S9GLVRWoc4ZdK6KQ==
   dependencies:
-    "@aws-amplify/analytics" "^3.1.3"
-    "@aws-amplify/api" "^3.1.3"
-    "@aws-amplify/auth" "^3.2.0"
-    "@aws-amplify/cache" "^3.1.3"
-    "@aws-amplify/core" "^3.2.0"
-    "@aws-amplify/datastore" "^2.0.4"
-    "@aws-amplify/interactions" "^3.1.3"
-    "@aws-amplify/predictions" "^3.1.3"
-    "@aws-amplify/pubsub" "^3.0.4"
-    "@aws-amplify/storage" "^3.1.3"
+    "@aws-amplify/analytics" "^3.1.4"
+    "@aws-amplify/api" "^3.1.4"
+    "@aws-amplify/auth" "^3.2.1"
+    "@aws-amplify/cache" "^3.1.4"
+    "@aws-amplify/core" "^3.2.1"
+    "@aws-amplify/datastore" "^2.0.5"
+    "@aws-amplify/interactions" "^3.1.4"
+    "@aws-amplify/predictions" "^3.1.4"
+    "@aws-amplify/pubsub" "^3.0.5"
+    "@aws-amplify/storage" "^3.1.4"
     "@aws-amplify/ui" "^2.0.2"
-    "@aws-amplify/xr" "^2.1.3"
+    "@aws-amplify/xr" "^2.1.4"
 
 aws-appsync-auth-link@^2.0.1:
   version "2.0.1"
@@ -5389,15 +5380,15 @@ expand-brackets@^2.1.4:
     snapdragon "^0.8.1"
     to-regex "^3.0.1"
 
-expect@^25.2.6:
-  version "25.2.6"
-  resolved "https://registry.yarnpkg.com/expect/-/expect-25.2.6.tgz#85f022097e8ed3c5666c1bd7f9076d3a790a8a47"
-  integrity sha512-hMqqX3OX5Erw7CLoXXcawqi6xThhz/rYk+vEufhoCAyzDC2PW99ypYc/pvcgKjyuwbOB1wjqqClmwvlOL36Inw==
+expect@^25.2.7:
+  version "25.2.7"
+  resolved "https://registry.yarnpkg.com/expect/-/expect-25.2.7.tgz#509b79f47502835f4071ff3ecc401f2eaecca709"
+  integrity sha512-yA+U2Ph0MkMsJ9N8q5hs9WgWI6oJYfecdXta6LkP/alY/jZZL1MHlJ2wbLh60Ucqf3G+51ytbqV3mlGfmxkpNw==
   dependencies:
     "@jest/types" "^25.2.6"
     ansi-styles "^4.0.0"
     jest-get-type "^25.2.6"
-    jest-matcher-utils "^25.2.6"
+    jest-matcher-utils "^25.2.7"
     jest-message-util "^25.2.6"
     jest-regex-util "^25.2.6"
 
@@ -6584,32 +6575,32 @@ jest-changed-files@^25.2.6:
     execa "^3.2.0"
     throat "^5.0.0"
 
-jest-cli@^25.2.6:
-  version "25.2.6"
-  resolved "https://registry.yarnpkg.com/jest-cli/-/jest-cli-25.2.6.tgz#972356e70663e9b4faa07c507704441786e524e8"
-  integrity sha512-i31HkagK5veFOUg1ZqxxfP+ZeKDggmI5qZhK6/Cp0ohuaKFQdtS43AqqnXg13JWKCV0E38Nu/K0W4NsFlXLNEA==
+jest-cli@^25.2.7:
+  version "25.2.7"
+  resolved "https://registry.yarnpkg.com/jest-cli/-/jest-cli-25.2.7.tgz#515b61fee402c397ffa8d570532f7b039c3159f4"
+  integrity sha512-OOAZwY4Jkd3r5WhVM5L3JeLNFaylvHUczMLxQDVLrrVyb1Cy+DNJ6MVsb5TLh6iBklB42m5TOP+IbOgKGGOtMw==
   dependencies:
-    "@jest/core" "^25.2.6"
+    "@jest/core" "^25.2.7"
     "@jest/test-result" "^25.2.6"
     "@jest/types" "^25.2.6"
     chalk "^3.0.0"
     exit "^0.1.2"
     import-local "^3.0.2"
     is-ci "^2.0.0"
-    jest-config "^25.2.6"
+    jest-config "^25.2.7"
     jest-util "^25.2.6"
     jest-validate "^25.2.6"
     prompts "^2.0.1"
     realpath-native "^2.0.0"
     yargs "^15.3.1"
 
-jest-config@^25.2.6:
-  version "25.2.6"
-  resolved "https://registry.yarnpkg.com/jest-config/-/jest-config-25.2.6.tgz#fecff70f9fb083db1a25e7a624c3cd3035d01546"
-  integrity sha512-R82bUaOHU/2nPSXmvrwLZtQRRr5x1V7qEXE0i4Pybv55XDqVl2/yKNBkYPneG3uSL3n5f6EJeP0/9HNxQu/SZg==
+jest-config@^25.2.7:
+  version "25.2.7"
+  resolved "https://registry.yarnpkg.com/jest-config/-/jest-config-25.2.7.tgz#a14e5b96575987ce913dd9fc20ac8cd4b35a8c29"
+  integrity sha512-rIdPPXR6XUxi+7xO4CbmXXkE6YWprvlKc4kg1SrkCL2YV5m/8MkHstq9gBZJ19Qoa3iz/GP+0sTG/PcIwkFojg==
   dependencies:
     "@babel/core" "^7.1.0"
-    "@jest/test-sequencer" "^25.2.6"
+    "@jest/test-sequencer" "^25.2.7"
     "@jest/types" "^25.2.6"
     babel-jest "^25.2.6"
     chalk "^3.0.0"
@@ -6618,7 +6609,7 @@ jest-config@^25.2.6:
     jest-environment-jsdom "^25.2.6"
     jest-environment-node "^25.2.6"
     jest-get-type "^25.2.6"
-    jest-jasmine2 "^25.2.6"
+    jest-jasmine2 "^25.2.7"
     jest-regex-util "^25.2.6"
     jest-resolve "^25.2.6"
     jest-util "^25.2.6"
@@ -6727,10 +6718,10 @@ jest-haste-map@^25.2.6:
   optionalDependencies:
     fsevents "^2.1.2"
 
-jest-jasmine2@^25.2.6:
-  version "25.2.6"
-  resolved "https://registry.yarnpkg.com/jest-jasmine2/-/jest-jasmine2-25.2.6.tgz#f0de8e922de421444e34be23a66e8887fee9b2a1"
-  integrity sha512-0429YtThQjol9EElh0mLMsfMBB++yFCjWuGv3xNK4QPrvralJRlpHbuhfSVaOsHC91RrRBbKfM7jSA+FiVG+Jg==
+jest-jasmine2@^25.2.7:
+  version "25.2.7"
+  resolved "https://registry.yarnpkg.com/jest-jasmine2/-/jest-jasmine2-25.2.7.tgz#55ff87f8f462ef0e2f16fd19430b8be8bcebef0e"
+  integrity sha512-HeQxEbonp8fUvik9jF0lkU9ab1u5TQdIb7YSU9Fj7SxWtqHNDGyCpF6ZZ3r/5yuertxi+R95Ba9eA91GMQ38eA==
   dependencies:
     "@babel/traverse" "^7.1.0"
     "@jest/environment" "^25.2.6"
@@ -6739,13 +6730,13 @@ jest-jasmine2@^25.2.6:
     "@jest/types" "^25.2.6"
     chalk "^3.0.0"
     co "^4.6.0"
-    expect "^25.2.6"
+    expect "^25.2.7"
     is-generator-fn "^2.0.0"
     jest-each "^25.2.6"
-    jest-matcher-utils "^25.2.6"
+    jest-matcher-utils "^25.2.7"
     jest-message-util "^25.2.6"
-    jest-runtime "^25.2.6"
-    jest-snapshot "^25.2.6"
+    jest-runtime "^25.2.7"
+    jest-snapshot "^25.2.7"
     jest-util "^25.2.6"
     pretty-format "^25.2.6"
     throat "^5.0.0"
@@ -6758,10 +6749,10 @@ jest-leak-detector@^25.2.6:
     jest-get-type "^25.2.6"
     pretty-format "^25.2.6"
 
-jest-matcher-utils@^25.2.6:
-  version "25.2.6"
-  resolved "https://registry.yarnpkg.com/jest-matcher-utils/-/jest-matcher-utils-25.2.6.tgz#a5156c1daa16e13ff6c55117f798b285a294a3e6"
-  integrity sha512-+6IbC98ZBw3X7hsfUvt+7VIYBdI0FEvhSBjWo9XTHOc1KAAHDsrSHdeyHH/Su0r/pf4OEGuWRRLPnjkhS2S19A==
+jest-matcher-utils@^25.2.7:
+  version "25.2.7"
+  resolved "https://registry.yarnpkg.com/jest-matcher-utils/-/jest-matcher-utils-25.2.7.tgz#53fad3c11fc42e92e374306df543026712c957a3"
+  integrity sha512-jNYmKQPRyPO3ny0KY1I4f0XW4XnpJ3Nx5ovT4ik0TYDOYzuXJW40axqOyS61l/voWbVT9y9nZ1THL1DlpaBVpA==
   dependencies:
     chalk "^3.0.0"
     jest-diff "^25.2.6"
@@ -6819,14 +6810,14 @@ jest-regex-util@^25.2.6:
   resolved "https://registry.yarnpkg.com/jest-regex-util/-/jest-regex-util-25.2.6.tgz#d847d38ba15d2118d3b06390056028d0f2fd3964"
   integrity sha512-KQqf7a0NrtCkYmZZzodPftn7fL1cq3GQAFVMn5Hg8uKx/fIenLEobNanUxb7abQ1sjADHBseG/2FGpsv/wr+Qw==
 
-jest-resolve-dependencies@^25.2.6:
-  version "25.2.6"
-  resolved "https://registry.yarnpkg.com/jest-resolve-dependencies/-/jest-resolve-dependencies-25.2.6.tgz#c42272ff49e6be83a8ed9366b4c6e563a1e5604c"
-  integrity sha512-SJeRBCDZzXVy/DjbwBH3KzjxPw5Q/j3foDkWZYu2GIa6SHqy34qVaw1mL7SJg9r6GApwjIoKP6fGwU6c/afg0A==
+jest-resolve-dependencies@^25.2.7:
+  version "25.2.7"
+  resolved "https://registry.yarnpkg.com/jest-resolve-dependencies/-/jest-resolve-dependencies-25.2.7.tgz#9ca4c62d67cce031a27fa5d5705b4b5b5c029d23"
+  integrity sha512-IrnMzCAh11Xd2gAOJL+ThEW6QO8DyqNdvNkQcaCticDrOAr9wtKT7yT6QBFFjqKFgjjvaVKDs59WdgUhgYnHnQ==
   dependencies:
     "@jest/types" "^25.2.6"
     jest-regex-util "^25.2.6"
-    jest-snapshot "^25.2.6"
+    jest-snapshot "^25.2.7"
 
 jest-resolve@^25.2.6:
   version "25.2.6"
@@ -6840,10 +6831,10 @@ jest-resolve@^25.2.6:
     realpath-native "^2.0.0"
     resolve "^1.15.1"
 
-jest-runner@^25.2.6:
-  version "25.2.6"
-  resolved "https://registry.yarnpkg.com/jest-runner/-/jest-runner-25.2.6.tgz#5ee1607e66890ccd798695cfaa708e322087c50b"
-  integrity sha512-sN45p3jxvpsG7UjeQFqyC+JR5+THLrIT9oXAHwQQIDWfpmZBFko2RROn1fvdQNWhuPzDeUf/oHykbhNRGo9eWg==
+jest-runner@^25.2.7:
+  version "25.2.7"
+  resolved "https://registry.yarnpkg.com/jest-runner/-/jest-runner-25.2.7.tgz#3676c01dc0104caa8a0ebb8507df382c88f2a1e2"
+  integrity sha512-RFEr71nMrtNwcpoHzie5+fe1w3JQCGMyT2xzNwKe3f88+bK+frM2o1v24gEcPxQ2QqB3COMCe2+1EkElP+qqqQ==
   dependencies:
     "@jest/console" "^25.2.6"
     "@jest/environment" "^25.2.6"
@@ -6852,23 +6843,23 @@ jest-runner@^25.2.6:
     chalk "^3.0.0"
     exit "^0.1.2"
     graceful-fs "^4.2.3"
-    jest-config "^25.2.6"
+    jest-config "^25.2.7"
     jest-docblock "^25.2.6"
     jest-haste-map "^25.2.6"
-    jest-jasmine2 "^25.2.6"
+    jest-jasmine2 "^25.2.7"
     jest-leak-detector "^25.2.6"
     jest-message-util "^25.2.6"
     jest-resolve "^25.2.6"
-    jest-runtime "^25.2.6"
+    jest-runtime "^25.2.7"
     jest-util "^25.2.6"
     jest-worker "^25.2.6"
     source-map-support "^0.5.6"
     throat "^5.0.0"
 
-jest-runtime@^25.2.6:
-  version "25.2.6"
-  resolved "https://registry.yarnpkg.com/jest-runtime/-/jest-runtime-25.2.6.tgz#417e8d548c92bd10e659393a3bd5aa8cbdd71e6d"
-  integrity sha512-u0iNjO7VvI46341igiQP/bnm1TwdXV6IjVEo7DMVqRbTDTz4teTNOUXChuSMdoyjQcfJ3zmI7/jVktUpjnZhYw==
+jest-runtime@^25.2.7:
+  version "25.2.7"
+  resolved "https://registry.yarnpkg.com/jest-runtime/-/jest-runtime-25.2.7.tgz#cb10e695d036671a83aec3a3803163c354043ac9"
+  integrity sha512-Gw3X8KxTTFylu2T/iDSNKRUQXQiPIYUY0b66GwVYa7W8wySkUljKhibQHSq0VhmCAN7vRBEQjlVQ+NFGNmQeBw==
   dependencies:
     "@jest/console" "^25.2.6"
     "@jest/environment" "^25.2.6"
@@ -6882,13 +6873,13 @@ jest-runtime@^25.2.6:
     exit "^0.1.2"
     glob "^7.1.3"
     graceful-fs "^4.2.3"
-    jest-config "^25.2.6"
+    jest-config "^25.2.7"
     jest-haste-map "^25.2.6"
     jest-message-util "^25.2.6"
     jest-mock "^25.2.6"
     jest-regex-util "^25.2.6"
     jest-resolve "^25.2.6"
-    jest-snapshot "^25.2.6"
+    jest-snapshot "^25.2.7"
     jest-util "^25.2.6"
     jest-validate "^25.2.6"
     realpath-native "^2.0.0"
@@ -6906,19 +6897,19 @@ jest-serializer@^25.2.6:
   resolved "https://registry.yarnpkg.com/jest-serializer/-/jest-serializer-25.2.6.tgz#3bb4cc14fe0d8358489dbbefbb8a4e708ce039b7"
   integrity sha512-RMVCfZsezQS2Ww4kB5HJTMaMJ0asmC0BHlnobQC6yEtxiFKIxohFA4QSXSabKwSggaNkqxn6Z2VwdFCjhUWuiQ==
 
-jest-snapshot@^25.2.6:
-  version "25.2.6"
-  resolved "https://registry.yarnpkg.com/jest-snapshot/-/jest-snapshot-25.2.6.tgz#a3b99fa6fea4955b6a5fcb38c657e4daaba363f9"
-  integrity sha512-Zw/Ba6op5zInjPHoA2xGUrCw1G/iTHOGMhV02PzlrWhF9uTl2/jjk/bpOMkPaW8EyylmQbjQ2oj4jCfYwpDKng==
+jest-snapshot@^25.2.7:
+  version "25.2.7"
+  resolved "https://registry.yarnpkg.com/jest-snapshot/-/jest-snapshot-25.2.7.tgz#7eeafeef4dcbda1c47c8503d2bf5212b6430aac6"
+  integrity sha512-Rm8k7xpGM4tzmYhB6IeRjsOMkXaU8/FOz5XlU6oYwhy53mq6txVNqIKqN1VSiexzpC80oWVxVDfUDt71M6XPOA==
   dependencies:
     "@babel/types" "^7.0.0"
     "@jest/types" "^25.2.6"
     "@types/prettier" "^1.19.0"
     chalk "^3.0.0"
-    expect "^25.2.6"
+    expect "^25.2.7"
     jest-diff "^25.2.6"
     jest-get-type "^25.2.6"
-    jest-matcher-utils "^25.2.6"
+    jest-matcher-utils "^25.2.7"
     jest-message-util "^25.2.6"
     jest-resolve "^25.2.6"
     make-dir "^3.0.0"
@@ -6978,10 +6969,10 @@ jest-validate@^25.2.6:
     leven "^3.1.0"
     pretty-format "^25.2.6"
 
-jest-watcher@^25.2.6:
-  version "25.2.6"
-  resolved "https://registry.yarnpkg.com/jest-watcher/-/jest-watcher-25.2.6.tgz#19fc571d27f89a238ef497b9e037d8d41cf4a204"
-  integrity sha512-yzv5DBeo03dQnSsSrn1mdOU1LSDd1tZaCTvSE5JYfcv6Z66PdDNhO9MNDdLKA/oQlJNj0S6TiYgLdOY5wL5cMA==
+jest-watcher@^25.2.7:
+  version "25.2.7"
+  resolved "https://registry.yarnpkg.com/jest-watcher/-/jest-watcher-25.2.7.tgz#01db4332d34d14c03c9ef22255125a3b07f997bc"
+  integrity sha512-RdHuW+f49tahWtluTnUdZ2iPliebleROI2L/J5phYrUS6DPC9RB3SuUtqYyYhGZJsbvRSuLMIlY/cICJ+PIecw==
   dependencies:
     "@jest/test-result" "^25.2.6"
     "@jest/types" "^25.2.6"
@@ -7006,14 +6997,14 @@ jest-worker@^25.2.6:
     merge-stream "^2.0.0"
     supports-color "^7.0.0"
 
-jest@^25.2.6:
-  version "25.2.6"
-  resolved "https://registry.yarnpkg.com/jest/-/jest-25.2.6.tgz#da597f3563dceba12913965ea398fe7f8804fb12"
-  integrity sha512-AA9U1qmYViBTfoKWzQBbBmck53Tsw8av7zRYdE4EUBU6r04mddPQaflpPBy/KC308HF7u8fLLxEJFt/LiFzYFQ==
+jest@^25.2.7:
+  version "25.2.7"
+  resolved "https://registry.yarnpkg.com/jest/-/jest-25.2.7.tgz#3929a5f35cdd496f7756876a206b99a94e1e09ae"
+  integrity sha512-XV1n/CE2McCikl4tfpCY950RytHYvxdo/wvtgmn/qwA8z1s16fuvgFL/KoPrrmkqJTaPMUlLVE58pwiaTX5TdA==
   dependencies:
-    "@jest/core" "^25.2.6"
+    "@jest/core" "^25.2.7"
     import-local "^3.0.2"
-    jest-cli "^25.2.6"
+    jest-cli "^25.2.7"
 
 jetifier@^1.6.2:
   version "1.6.4"
@@ -8633,17 +8624,7 @@ pretty-format@^24.7.0, pretty-format@^24.9.0:
     ansi-styles "^3.2.0"
     react-is "^16.8.4"
 
-pretty-format@^25.1.0:
-  version "25.2.3"
-  resolved "https://registry.yarnpkg.com/pretty-format/-/pretty-format-25.2.3.tgz#ba6e9603a0d80fa2e470b1fed55de1f9bfd81421"
-  integrity sha512-IP4+5UOAVGoyqC/DiomOeHBUKN6q00gfyT2qpAsRH64tgOKB2yF7FHJXC18OCiU0/YFierACup/zdCOWw0F/0w==
-  dependencies:
-    "@jest/types" "^25.2.3"
-    ansi-regex "^5.0.0"
-    ansi-styles "^4.0.0"
-    react-is "^16.12.0"
-
-pretty-format@^25.2.6:
+pretty-format@^25.2.0, pretty-format@^25.2.6:
   version "25.2.6"
   resolved "https://registry.yarnpkg.com/pretty-format/-/pretty-format-25.2.6.tgz#542a1c418d019bbf1cca2e3620443bc1323cb8d7"
   integrity sha512-DEiWxLBaCHneffrIT4B+TpMvkV9RNvvJrd3lY9ew1CEQobDzEXmYT1mg0hJhljZty7kCc10z13ohOFAE8jrUDg==
@@ -8853,10 +8834,10 @@ react-native-custom-picker@^0.4.0:
   resolved "https://registry.yarnpkg.com/react-native-custom-picker/-/react-native-custom-picker-0.4.0.tgz#258896b1eae65f95e4122b4bbdf6bfd68a27d0e3"
   integrity sha512-zhpt3pEYo/6xH2F0+G//SCo3Q7QddAS8/Xrrwc8Cif/PfaPU15cEMUakBGyJ/5vAv67RtF74WQcGhfA4RS09xg==
 
-react-native-document-picker@^3.3.2:
-  version "3.3.2"
-  resolved "https://registry.yarnpkg.com/react-native-document-picker/-/react-native-document-picker-3.3.2.tgz#2ad30361dd25c0a2501170ac1b0d857b396118f7"
-  integrity sha512-l/f7xtUG0EhW0lbACJZkAm4MSS0kuw62/wrJNAAdF+NmC7g7FN3FlhtiyFjhbt5qL7xgTrZOyxA/9+WuAmMkXA==
+react-native-document-picker@^3.3.3:
+  version "3.3.3"
+  resolved "https://registry.yarnpkg.com/react-native-document-picker/-/react-native-document-picker-3.3.3.tgz#7c980ddc069c752b3566081c364536f3347d5eb7"
+  integrity sha512-lPJVCPsxa22yvSvWVDP9GSd6DwSXvU5RDcqbqJuJrFN0KHXTP3CwFNvdYCM9Jq2aUaGVxzi3UBKYTSKmyPoS9A==
 
 react-native-easy-guesture-responder@^1.1.2, react-native-easy-guesture-responder@^1.1.3:
   version "1.1.3"
@@ -8998,10 +8979,10 @@ react-native-page-list@^1.1.3:
     react-native-easy-guesture-responder "^1.1.2"
     react-native-scrolling "^1.0.2"
 
-react-native-paper@^3.6.0:
-  version "3.6.0"
-  resolved "https://registry.yarnpkg.com/react-native-paper/-/react-native-paper-3.6.0.tgz#9f8452387bc6e6dae84db90c9c4715af5c7bd142"
-  integrity sha512-amsZpN8vUJIGBiHMf1sQm0dtJMUhNFAPkXkt/9XMR1mKneEUfWGIap1KBZdOHLIVp1iACigpV8g9R3j+MaxWOg==
+react-native-paper@^3.7.0:
+  version "3.7.0"
+  resolved "https://registry.yarnpkg.com/react-native-paper/-/react-native-paper-3.7.0.tgz#4d122cef43c80202d559810ae6171ecb9e23c90c"
+  integrity sha512-cRmQwbTPx8Si7h1r+vH0cHfNeUoSZrU/OeStaNm1I1SFtmLmGbdLUThShY/Y4VYU4A4QRmh3UmEGmpH4YVypHQ==
   dependencies:
     "@callstack/react-theme-provider" "^3.0.5"
     color "^3.1.2"
@@ -9108,15 +9089,15 @@ react-native-version@^4.0.0:
     resolve-from "^5.0.0"
     semver "^7.0.0"
 
-react-native@^0.62.0:
-  version "0.62.0"
-  resolved "https://registry.yarnpkg.com/react-native/-/react-native-0.62.0.tgz#166dcab76f0b5ae36a4d7046de2cbfecfdc610f1"
-  integrity sha512-P21YHLaRkXTiS4xuC0BAdpwIJc8r0acYWUAOCBApqG3H4eiBe/d3b0oADz8EwTu6jBtoebydabJlScu0b/59bg==
+react-native@^0.62.1:
+  version "0.62.1"
+  resolved "https://registry.yarnpkg.com/react-native/-/react-native-0.62.1.tgz#fd0324bedf4c3237c928de582c29403f1e46ea80"
+  integrity sha512-EhTmCYsLfIfyLAa6cuJBGgpTPj9LHiCS7fhCKMJZJ4p38+j4NOY4+Z40s/gbZIHr91j1DPNiomsBltQMUdd23g==
   dependencies:
     "@babel/runtime" "^7.0.0"
-    "@react-native-community/cli" "^4.2.0"
-    "@react-native-community/cli-platform-android" "^4.2.0"
-    "@react-native-community/cli-platform-ios" "^4.2.0"
+    "@react-native-community/cli" "^4.5.1"
+    "@react-native-community/cli-platform-android" "^4.5.1"
+    "@react-native-community/cli-platform-ios" "^4.5.0"
     abort-controller "^3.0.0"
     anser "^1.4.9"
     base64-js "^1.1.2"
