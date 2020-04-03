@@ -111,5 +111,9 @@ export default class SettingsState {
       pref.language = this.currentLanguage;
       await updateUserPreference(pref);
     }
-  }
+  };
+
+  @action init = () => {
+    this.dark = this.dark && isDark();
+  };
 }

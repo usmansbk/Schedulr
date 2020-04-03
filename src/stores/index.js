@@ -56,6 +56,7 @@ class RootStore {
 
   @action init = () => {
     this.appState.setDefaults();
+    this.settingsStore.init();
   }
 }
 
