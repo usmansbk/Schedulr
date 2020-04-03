@@ -8,9 +8,9 @@ export default [
       {
         key: 'vibrate'
       },
-      // {
-      //   key: 'dark'
-      // }
+      {
+        key: 'dark'
+      }
     ]
   },
   {

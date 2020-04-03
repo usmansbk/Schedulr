@@ -9,6 +9,11 @@ import { dark, light } from 'config/colors';
 import logger from 'config/logger';
 import snackbar from '../helpers/snackbar';
 
+function isDark() {
+  const scheme = Appearance.getColorScheme();
+  return (scheme === 'dark' | scheme === null);
+}
+
 function updateUserPreference(optimisticResponse) {
   try {
     let input = Object.assign({}, optimisticResponse);
@@ -33,7 +38,7 @@ function updateUserPreference(optimisticResponse) {
 export default class SettingsState {
 
   @observable currentLanguage = 'en';
-  @observable dark = Appearance.getColorScheme() === 'dark';
+  @persist @observable dark = false && isDark();
   @persist @observable sound = true;
   @persist @observable vibrate = true;
   @persist @observable disableReminders = false;
@@ -46,12 +51,12 @@ export default class SettingsState {
 
   @action toggle (value) {
     this[value] = !this[value];
-    if (value === 'darkTheme') this.toggleTheme();
+    console.log('toggle', value);
+    if (value === 'dark') this.toggleTheme();
     this.extraData += 1;
   }
 
   @action async toggleTheme () {
-    this.dark = !this.dark;
     const colors = this.dark ? dark : light;
     try {
       snackbar(I18n.get('TOAST_justAmoment'));
@@ -63,7 +68,7 @@ export default class SettingsState {
   }
 
   @action reset() {
-    // this.dark = false;
+    this.dark = false;
     this.sound = true;
     this.vibrate = true;
     this.disableReminders = false;
