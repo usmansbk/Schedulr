@@ -38,7 +38,7 @@ function updateUserPreference(optimisticResponse) {
 export default class SettingsState {
 
   @observable currentLanguage = 'en';
-  @persist @observable dark = true && isDark();
+  @observable dark = true && isDark();
   @persist @observable sound = true;
   @persist @observable vibrate = true;
   @persist @observable disableReminders = false;
