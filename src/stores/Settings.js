@@ -38,7 +38,7 @@ function updateUserPreference(optimisticResponse) {
 export default class SettingsState {
 
   @observable currentLanguage = 'en';
-  @persist @observable dark = false && isDark();
+  @persist @observable dark = true && isDark();
   @persist @observable sound = true;
   @persist @observable vibrate = true;
   @persist @observable disableReminders = false;
@@ -51,7 +51,6 @@ export default class SettingsState {
 
   @action toggle (value) {
     this[value] = !this[value];
-    console.log('toggle', value);
     if (value === 'dark') this.toggleTheme();
     this.extraData += 1;
   }
@@ -68,7 +67,6 @@ export default class SettingsState {
   }
 
   @action reset() {
-    this.dark = false;
     this.sound = true;
     this.vibrate = true;
     this.disableReminders = false;
@@ -111,9 +109,5 @@ export default class SettingsState {
       pref.language = this.currentLanguage;
       await updateUserPreference(pref);
     }
-  };
-
-  @action init = () => {
-    this.dark = this.dark && isDark();
   };
 }
