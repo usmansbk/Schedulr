@@ -11,7 +11,7 @@ import snackbar from '../helpers/snackbar';
 
 function isDark() {
   const scheme = Appearance.getColorScheme();
-  return (scheme === 'dark' | scheme === null);
+  return (scheme === 'dark' || scheme === null);
 }
 
 function updateUserPreference(optimisticResponse) {
