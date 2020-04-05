@@ -9,6 +9,7 @@ import { I18n } from 'aws-amplify';
 
 class Item extends React.Component {
   _handleRemindMeDialog = () => this.props.handleRemindMeDialog();
+  _handleThemeDialog = () => this.props.handleThemeDialog();
   _handleValueChange = () => this.props.handleValueChange(this.props.item.key);
   shouldComponentUpdate = nextProps => Boolean(nextProps.value !== this.props.value);
 
@@ -30,6 +31,23 @@ class Item extends React.Component {
         />
       )
     }
+
+    if (item.key === 'dark') {
+      return (
+        <List.Item
+          title={I18n.get(`SETTINGS_${item.key}`)}
+          right={() => <List.Icon
+            icon={() => <Icon
+              name="chevron-right"
+              color={color}
+              size={24}
+            />}
+          />}
+          onPress={this._handleThemeDialog}
+        />
+      );
+    }
+
     return (
       <List.Item
         title={I18n.get(`SETTINGS_${item.key}`)}

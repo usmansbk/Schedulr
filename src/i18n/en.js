@@ -370,6 +370,11 @@ export default {
   TEXT_noBanner: "No Event Banner",
   TEXT_album: "Album",
 
+  THEME_title: "Theme",
+  THEME_auto: "Use my System Theme",
+  THEME_light: "Light",
+  THEME_dark: "Dark",
+
   MOMENT_left: from => `${from} left`,
   Today: 'Today',
 

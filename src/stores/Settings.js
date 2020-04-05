@@ -1,5 +1,5 @@
 import { Appearance } from 'react-native';
-import { observable, action } from 'mobx';
+import { observable, action, computed } from 'mobx';
 import { persist } from 'mobx-persist';
 import changeNavigationBarColor from 'react-native-navigation-bar-color';
 import OneSignal from 'react-native-onesignal';
@@ -38,7 +38,7 @@ function updateUserPreference(optimisticResponse) {
 export default class SettingsState {
 
   @observable currentLanguage = 'en';
-  @observable dark = true && isDark();
+  @persist @observable theme = 'light';
   @persist @observable sound = true;
   @persist @observable vibrate = true;
   @persist @observable disableReminders = false;
@@ -77,6 +77,12 @@ export default class SettingsState {
     };
   }
 
+  @computed get dark() {
+    if (this.theme === 'auto') return isDark();
+    if (this.theme === 'dark') return true;
+    return false;
+  }
+
   @action async togglePref(key) {
     const prev = this.userPreference;
     let optimisticResponse = {};
@@ -109,5 +115,10 @@ export default class SettingsState {
       pref.language = this.currentLanguage;
       await updateUserPreference(pref);
     }
+  };
+
+  @action setTheme = (theme) => {
+    console.log(theme);
+    this.theme = theme;
   };
 }

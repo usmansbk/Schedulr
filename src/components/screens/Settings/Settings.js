@@ -41,6 +41,10 @@ class Settings extends React.Component {
     }
   };
 
+  _handleThemeDialog = () => {
+    this.props.openThemeDialog();
+  };
+
   _keyExtractor = item => item.key;
 
   _renderItem = ({ item }) => {
@@ -57,6 +61,7 @@ class Settings extends React.Component {
       value={keys[item.key]}
       handleValueChange={this.handleValueChange}
       handleRemindMeDialog={this._handleRemindMeDialog}
+      handleThemeDialog={this._handleThemeDialog}
       color={this.props.stores.themeStore.colors.gray}
     />;
   };
