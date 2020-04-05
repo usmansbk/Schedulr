@@ -5,7 +5,6 @@ import {
   Dialog,
   Portal,
   List,
-  Switch,
   RadioButton
 } from 'react-native-paper';
 import { inject, observer } from 'mobx-react';
