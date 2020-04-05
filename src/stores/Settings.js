@@ -4,10 +4,8 @@ import { persist } from 'mobx-persist';
 import changeNavigationBarColor from 'react-native-navigation-bar-color';
 import OneSignal from 'react-native-onesignal';
 import { updatePreference } from 'api/mutations';
-import { I18n } from 'aws-amplify';
 import { dark, light } from 'config/colors';
 import logger from 'config/logger';
-import snackbar from '../helpers/snackbar';
 
 function isDark() {
   const scheme = Appearance.getColorScheme();
@@ -51,14 +49,12 @@ export default class SettingsState {
 
   @action toggle (value) {
     this[value] = !this[value];
-    if (value === 'dark') this.toggleTheme();
     this.extraData += 1;
   }
 
   @action async toggleTheme () {
     const colors = this.dark ? dark : light;
     try {
-      snackbar(I18n.get('TOAST_justAmoment'));
       await changeNavigationBarColor(this.dark ? colors.light_gray_2 : colors.bg, !this.dark);
     } catch (error) {
       logger.logError(error);
@@ -118,7 +114,7 @@ export default class SettingsState {
   };
 
   @action setTheme = (theme) => {
-    console.log(theme);
     this.theme = theme;
+    this.toggleTheme();
   };
 }
