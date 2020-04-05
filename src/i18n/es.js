@@ -374,6 +374,11 @@ export default {
   TEXT_noBanner: "Banner sin evento",
   TEXT_album: "Álbum",
 
+  THEME_title: "Theme",
+  THEME_auto: "Use my System Theme",
+  THEME_light: "Light",
+  THEME_dark: "Dark",
+
   MOMENT_left: from => `Quedan ${from}`,
   Today: 'Hoy',
 

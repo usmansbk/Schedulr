@@ -376,6 +376,11 @@ export default {
   TEXT_noBanner: "Aucune bannière d'événement",
   TEXT_album: "Album",
 
+  THEME_title: "Theme",
+  THEME_auto: "Use my System Theme",
+  THEME_light: "Light",
+  THEME_dark: "Dark",
+
   MOMENT_left: from => `${from} restantes`,
   Today: `Aujourd'hui`,
 
