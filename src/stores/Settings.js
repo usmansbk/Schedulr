@@ -7,9 +7,13 @@ import { updatePreference } from 'api/mutations';
 import { dark, light } from 'config/colors';
 import logger from 'config/logger';
 
+const SYSTEM_THEME = 'auto';
+// const LIGHT_THEME = 'light';
+const DARK_THEME = 'dark';
+
 function isDark() {
   const scheme = Appearance.getColorScheme();
-  return (scheme === 'dark' || scheme === null);
+  return (scheme === DARK_THEME || scheme === null);
 }
 
 function updateUserPreference(optimisticResponse) {
@@ -36,7 +40,7 @@ function updateUserPreference(optimisticResponse) {
 export default class SettingsState {
 
   @observable currentLanguage = 'en';
-  @persist @observable theme = 'light';
+  @persist @observable theme = SYSTEM_THEME;
   @persist @observable sound = true;
   @persist @observable vibrate = true;
   @persist @observable disableReminders = false;
@@ -74,8 +78,8 @@ export default class SettingsState {
   }
 
   @computed get dark() {
-    if (this.theme === 'auto') return isDark();
-    if (this.theme === 'dark') return true;
+    if (this.theme === SYSTEM_THEME) return isDark();
+    if (this.theme === DARK_THEME) return true;
     return false;
   }
 
