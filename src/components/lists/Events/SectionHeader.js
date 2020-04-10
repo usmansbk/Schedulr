@@ -33,7 +33,7 @@ class SectionHeader extends React.Component {
     } = this.props;
 
     const { heading, subheading, timeAgo } = getSectionHeaderData(title);
-    let count = heading === I18n.get('Today') ? data.length - 1 : data.length;
+    let count = data.length;
     let itemsCount = '';
     let time = '';
     if (count) {

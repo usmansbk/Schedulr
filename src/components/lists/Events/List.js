@@ -12,7 +12,6 @@ import Separator from './Separator';
 import SectionHeader from './SectionHeader';
 import SectionFooter from './SectionFooter';
 import Item from './Item';
-import Banner from 'components/common/Banner';
 import {
   getStatus,
   parseRepeat,
@@ -163,15 +162,16 @@ class List extends React.Component {
 
   _processEvents = (events) => {
     if (events) {
-      const today = moment().startOf('day').format();
-      const yesterday = moment().subtract(1, 'day').startOf('day').format();
+      const today = moment().startOf('day').toISOString();
+      const yesterday = moment().subtract(1, 'day').startOf('day').toISOString();
       let sections = generateNextEvents(events, yesterday, DAYS_PER_PAGE);
-      if (!sections.length && events.length) {
-        sections = [{ data: [], title: today }];
+      const todaysSection = sections.find(section => section.title === today);
+      if (!todaysSection) {
+        sections = [{ data: [], title: today }, ...sections];
       }
       const sectionLength = sections.length;
-      const afterDate = (sectionLength === DAYS_PER_PAGE) && moment(sections[sectionLength - 1].title).format();
-      const beforeDate = sectionLength && moment(sections[0].title).format();
+      const afterDate = (sectionLength === DAYS_PER_PAGE) && moment(sections[sectionLength - 1].title).toISOString();
+      const beforeDate = sectionLength && moment(sections[0].title).toISOString();
       
       this.setState({
         sections,
@@ -201,10 +201,11 @@ class List extends React.Component {
       const today = moment().startOf('day').toISOString();
       const yesterday = moment().subtract(1, 'day').endOf('day').toISOString();
       let sections = generateNextEvents(events, yesterday, DAYS_PER_PAGE);
-      if (!sections.length && events.length) {
-        sections = [{ data: [], title: today }];
-      }
       const sectionLength = sections.length;
+      const todaysSection = sections.find(section => section.title === today);
+      if (!todaysSection) {
+        sections = [{ data: [], title: today }, ...sections];
+      }
       const afterDate = (sectionLength === DAYS_PER_PAGE) && moment(sections[sectionLength - 1].title).toISOString();
       const beforeDate = sectionLength && moment(sections[0].title).toISOString();
 
@@ -251,7 +252,7 @@ class List extends React.Component {
     isOwner,
     isOffline,
     ref_date
-  }}) => __typename === 'Advert' ? <Banner /> : (<Item
+  }}) => (<Item
     id={id}
     title={title}
     startAt={startAt}

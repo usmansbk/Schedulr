@@ -37,7 +37,7 @@ export default class Events extends React.Component {
   };
 
   get events() {
-    return mergeEvents(this.props.data, this.props.calendarEvents);
+    return mergeEvents(this.props.data, this.props.calendarEvents, false);
   }
 
   _sync = () => {
