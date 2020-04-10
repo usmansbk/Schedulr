@@ -2,7 +2,7 @@ import crashlytics from '@react-native-firebase/crashlytics';
 
 function logError(error) {
   let e = error;
-  if (!(error instanceof Error) && __DEV__) {
+  if (!(error instanceof Error)) {
     if (typeof error === 'object') e = JSON.stringify(error);
     e = new Error(e);
     console.log(e);
