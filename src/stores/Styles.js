@@ -1719,7 +1719,8 @@ export default class AppStyles {
       sectionFooter: {
         height: SECTION_FOOTER_HEIGHT,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        backgroundColor: colors.white,
       },
       header:{
         height: HEADER_HEIGHT,
