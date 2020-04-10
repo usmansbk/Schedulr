@@ -11,7 +11,7 @@ function logError(error) {
 }
 
 function log(message) {
-  if (message && __DEV__) {
+  if (__DEV__ && message) {
     console.log(message);
     crashlytics().log(message);
   }
