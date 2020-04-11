@@ -9,9 +9,9 @@
     "test": "jest",
     "lint": "eslint .",
     "clean": "cd ./android && ./gradlew clean && cd ./",
-    "build": "cd ./android && ./gradlew bundleRelease",
-    "release": "(yarn clean) & (react-native run-android --variant release)",
-    "debug": "(yarn clean-android) & (react-native run-android)",
+    "build": "cd ./android && ./gradlew clean && ./gradlew bundleRelease",
+    "release": "(yarn clean) && (react-native run-android --variant release)",
+    "debug": "(yarn clean-android) && (react-native run-android)",
     "bump": "RNV=android npm version patch",
     "postversion": "react-native-version"
   },
