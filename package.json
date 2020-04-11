@@ -10,7 +10,7 @@
     "lint": "eslint .",
     "clean": "cd ./android && ./gradlew clean && cd ./",
     "bundle": "cd ./android && ./gradlew bundleRelease",
-    "release": "(yarn clean-android) & (react-native run-android --variant release)",
+    "release": "(yarn clean) & (react-native run-android --variant release)",
     "debug": "(yarn clean-android) & (react-native run-android)",
     "bump": "RNV=android npm version patch"
   },
