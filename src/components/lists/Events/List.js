@@ -169,9 +169,8 @@ class List extends React.Component {
       if (!todaysSection) {
         sections = [{ data: [], title: today }, ...sections];
       }
-      const sectionLength = sections.length;
-      const afterDate = (sectionLength === DAYS_PER_PAGE) && moment(sections[sectionLength - 1].title).toISOString();
-      const beforeDate = sectionLength && moment(sections[0].title).toISOString();
+      const afterDate = moment(sections[sections.length - 1].title).toISOString();
+      const beforeDate = moment(sections[0].title).toISOString();
       
       this.setState({
         sections,
@@ -201,13 +200,12 @@ class List extends React.Component {
       const today = moment().startOf('day').toISOString();
       const yesterday = moment().subtract(1, 'day').endOf('day').toISOString();
       let sections = generateNextEvents(events, yesterday, DAYS_PER_PAGE);
-      const sectionLength = sections.length;
       const todaysSection = sections.find(section => section.title === today);
       if (!todaysSection) {
         sections = [{ data: [], title: today }, ...sections];
       }
-      const afterDate = (sectionLength === DAYS_PER_PAGE) && moment(sections[sectionLength - 1].title).toISOString();
-      const beforeDate = sectionLength && moment(sections[0].title).toISOString();
+      const afterDate = moment(sections[sections.length- 1].title).toISOString();
+      const beforeDate = moment(sections[0].title).toISOString();
 
       return {
         sections,
