@@ -12,7 +12,8 @@
     "bundle": "cd ./android && ./gradlew bundleRelease",
     "release": "(yarn clean) & (react-native run-android --variant release)",
     "debug": "(yarn clean-android) & (react-native run-android)",
-    "bump": "RNV=android npm version patch"
+    "bump": "RNV=android npm version patch",
+    "postversion": "react-native-version"
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.9.0",
