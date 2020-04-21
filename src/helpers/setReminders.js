@@ -54,7 +54,6 @@ const setReminder = (event, before, settings) => {
     message,
     color,
     playSound: sound,
-    soundName: 'notification_sound.mp3',
     vibrate,
     tag: 'local',
     group: id,
