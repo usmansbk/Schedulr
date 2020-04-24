@@ -5,7 +5,6 @@ function logError(error) {
   if (!(error instanceof Error)) {
     if (typeof error === 'object') e = JSON.stringify(error);
     e = new Error(e);
-    console.log(e);
   }
   if (__DEV__) {
     console.log(error.message);
