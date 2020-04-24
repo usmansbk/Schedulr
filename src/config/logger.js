@@ -7,7 +7,7 @@ function logError(error) {
     e = new Error(e);
   }
   if (__DEV__) {
-    console.log(error.message);
+    console.log(e.message);
   }
   crashlytics().recordError(e);
 }
