@@ -4,7 +4,6 @@ import { ApolloLink } from 'apollo-link';
 import { onError } from 'apollo-link-error';
 import aws_config from 'aws_config';
 import logger from './logger';
-// import callback from 'helpers/offlineConfig';
 import {
   EVENT_TYPE,
   SCHEDULE_TYPE,
@@ -17,8 +16,9 @@ const errorLink = onError(({ graphQLErrors }) => {
   if (graphQLErrors) {
     graphQLErrors.map(error => {
       const message = error.message;
-      if (message.includes("Not Found")) {
+      if (message.includes("Not Found") || message.includes("Server token")) {
         // Dont log elasticsearch "Not found"
+        // Dont log server token expired
       } else {
         snackbar(I18n.get('ERROR_serverError')(error.message), true);
         logger.logError(error);
@@ -56,9 +56,6 @@ const client = new AWSAppSyncClient({
       },
     }
   },
-  // offlineConfig: {
-  //   callback 
-  // }
 }, { link });
 
 export default client;
