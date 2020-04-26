@@ -1,4 +1,5 @@
 import React from 'react';
+import { I18n } from 'aws-amplify';
 import uuidv5 from 'uuid/v5';
 import shortid from 'shortid';
 import Screen from './Screen';
@@ -74,7 +75,7 @@ export default class Container extends React.Component {
   _navigateToThread = (eventId, commentToId) => this.props.navigation.navigate('Thread', {
     id: eventId,
     commentToId,
-    title: 'Replies',
+    title: I18n.get('Thread'),
   });
 
   shouldComponentUpdate = (nextProps, nextState) => {
