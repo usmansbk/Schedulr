@@ -57,7 +57,7 @@
     "react-native-file-viewer": "^2.0.2",
     "react-native-fs": "^2.16.6",
     "react-native-gallery-swiper": "^1.25.3",
-    "react-native-geodb": "^1.5.0",
+    "react-native-geodb": "^1.5.5",
     "react-native-geolocation-service": "^4.0.0",
     "react-native-gesture-handler": "^1.6.1",
     "react-native-hyperlink": "^0.0.19",

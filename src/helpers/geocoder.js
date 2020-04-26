@@ -10,22 +10,21 @@ const parseLocation = location => {
     return `${printableNumber(lat)}${printableNumber(lng)}`
 };
 
-export default function(location) {
+export default async function(location) {
     const locationId = parseLocation(location);
     const url = `https://${HOST}/v1/geo/locations/${locationId}/nearbyCities?limit=1&radius=100`;
     const headers = {
         "x-rapidapi-host": HOST,
         "x-rapidapi-key": KEY
     };
-    return fetch(url, {
+    const response = await fetch(url, {
         method: 'GET',
         headers
-    }).then(response => response.json())
-    .then(json => {
-        const { data, errors } = json;
-        if (errors) {
-            throw new Error(JSON.stringify(errors));
-        }
-        return data;
     });
+    let json = await response.json();
+    const { data, errors } = json;
+    if (errors) {
+        throw new Error(JSON.stringify(errors));
+    }
+    return data;
 }

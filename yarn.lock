@@ -9035,10 +9035,10 @@ react-native-gallery-swiper@^1.25.3:
     react-native-image-transformer "^1.5.1"
     react-native-page-list "^1.1.3"
 
-react-native-geodb@^1.5.0:
-  version "1.5.0"
-  resolved "https://registry.yarnpkg.com/react-native-geodb/-/react-native-geodb-1.5.0.tgz#9819aed0e5adb8ea73989f6e20d230175c7e4cab"
-  integrity sha512-x9nbPsvlDZh4Ev6IEs71M3lPmCc+3djgpOWzy+TZqDDTUpPzsrGxa9GhyZO5O9igZvJ2olWDCrVCOgEHkK8GLQ==
+react-native-geodb@^1.5.5:
+  version "1.5.5"
+  resolved "https://registry.yarnpkg.com/react-native-geodb/-/react-native-geodb-1.5.5.tgz#51a538d1a456331c0b145651d870c6b696a671ad"
+  integrity sha512-w2EG3S/QAhBomq79HyEJKavJfs1OZdIr8l/cO65Fc3vTLpDYQYiNdiqiBIKwa2p35TcsQ5kmFn2t9S2qCsH4qw==
   dependencies:
     lodash.debounce "^4.0.8"
     prop-types "^15.7.2"
