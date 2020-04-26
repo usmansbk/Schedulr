@@ -7,14 +7,14 @@ function logError(error) {
     e = new Error(e);
   }
   if (__DEV__) {
-    console.log(e.message);
+    console.log('[Schdlr]', e.message);
   }
   crashlytics().recordError(e);
 }
 
 function log(message) {
   if (__DEV__ && message) {
-    console.log(message);
+    console.log('[Schdlr]', message);
     crashlytics().log(message);
   }
 }

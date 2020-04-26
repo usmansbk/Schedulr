@@ -27,7 +27,6 @@ export default class Location {
       if (hasLocationPermission) {
         Geolocation.getCurrentPosition(
           (position) => {
-            console.log(position);
             const { coords: {
               latitude,
               longitude
