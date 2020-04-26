@@ -20,7 +20,7 @@ export default inject("stores")(observer(
         }
       }),
       props: ({ data, ownProps }) => ({
-        user: data && data.getUser,
+        user: data && (data.getUser || {}) ,
         commentEventId: ownProps.navigation.getParam('id'),
         ...ownProps
       })
