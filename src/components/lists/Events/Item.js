@@ -20,7 +20,11 @@ class Item extends React.Component {
     if (this.props.__typename === 'Calendar') {
       this.props.navigateToCalendarEvent(this.props.id);
     } else {
-      this.props.onPressItem(this.props.id, this.props.startAt, this.props.endAt);
+      let startAt = this.props.startAt;
+      if (this.props.isExtended) {
+        startAt = this.props.ref_date;
+      }
+      this.props.onPressItem(this.props.id, startAt, this.props.endAt);
     }
   };
   _onLongPress = () => {

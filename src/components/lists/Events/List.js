@@ -249,13 +249,15 @@ class List extends React.Component {
     bookmarksCount,
     isOwner,
     isOffline,
-    ref_date
+    ref_date,
+    isExtended
   }}) => (<Item
     id={id}
     title={title}
     startAt={startAt}
     endAt={endAt}
     ref_date={ref_date}
+    isExtended={isExtended}
     allDay={allDay}
     pictureUrl={banner && getImageUrl(banner)}
     category={getCategory(category)}

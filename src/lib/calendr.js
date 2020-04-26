@@ -11,7 +11,7 @@ export const weekdays = [
   "Friday"
 ];
 
-export const sortBy = (arr, key /*, extraKey */) => {
+export const sortBy = (arr, key) => {
   return arr.sort((a, b) => {
     return moment(a[key]) - moment(b[key]);
   });
@@ -150,7 +150,8 @@ const processNextDayEvents = memoize((initialEvents, nextDate) => {
 
     if (eventDate.isSame(refDate, 'day') || isExtended) {
       const currentEventWithMeta = Object.assign({}, currentEvent, {
-        ref_date: refDate.toISOString()
+        ref_date: refDate.toISOString(),
+        isExtended
       });
       accumulator.data.push(currentEventWithMeta);
     } else if (interval && !currentEvent.isCancelled && isValid) {
