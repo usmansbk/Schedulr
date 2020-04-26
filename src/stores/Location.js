@@ -1,12 +1,13 @@
 import Geolocation from 'react-native-geolocation-service';
+import { Geocoder } from 'react-native-geodb';
 import { observable, action, computed } from 'mobx';
 import { persist } from 'mobx-persist';
 import { I18n } from 'aws-amplify';
 import { requestLocationPermission } from 'helpers/permissions';
 import numeral from 'numeral';
-import Geocoder from 'helpers/geocoder';
 import logger from 'config/logger';
 import snackbar from '../helpers/snackbar';
+import env from 'config/env';
 
 export default class Location {
   @persist('object') @observable point = null; 
@@ -42,7 +43,7 @@ export default class Location {
               lng: longitude
             };
             this.currentLocation = loc;
-            Geocoder(loc).then((locations) => {
+            Geocoder(loc, env.GEODB_API_KEY).then((locations) => {
               const bestLocation = locations[0];
               const {
                 city,
