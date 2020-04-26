@@ -8,10 +8,6 @@ import CommentForm from 'components/forms/Comment';
 
 class Screen extends React.Component {
 
-  state = {
-    id: null
-  };
-
   focusCommentInput = () => this._inputRef && this._inputRef.focusInput();
 
   blurCommentInput = () => this._inputRef && this._inputRef.blurInput();

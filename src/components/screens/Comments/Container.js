@@ -3,7 +3,6 @@ import uuidv5 from 'uuid/v5';
 import shortid from 'shortid';
 import Screen from './Screen';
 import DeleteCommentDialog from 'components/dialogs/DeleteComment';
-import Error from 'components/common/Error';
 
 export default class Container extends React.Component {
   state = {
@@ -104,17 +103,10 @@ export default class Container extends React.Component {
       notFound
     } = this.props;
 
-    if (error && !loading && !comments.length) return (
-      <Error
-        onRefresh={onRefresh}
-        loading={loading}
-        notFound={notFound}
-      />
-    );
-
     return (
       <>
       <Screen
+        notFound={notFound}
         id={commentEventId}
         isOwner={isOwner}
         noReply={noReply}
@@ -145,6 +137,6 @@ export default class Container extends React.Component {
         attachment={this.state.meta}
       />
       </>
-    )
+    );
   }
 }
