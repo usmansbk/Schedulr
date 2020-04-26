@@ -11,12 +11,12 @@ export const weekdays = [
   "Friday"
 ];
 
-export const sortBy = (arr, key, extraKey) => {
+export const sortBy = (arr, key /*, extraKey */) => {
   return arr.sort((a, b) => {
-    if (extraKey) {
-      if (a[extraKey] === 'Advert') return -1;
-      if (b[extraKey] === 'Advert') return 1;
-    }
+    // if (extraKey) {
+    //   if (a[extraKey] === 'Advert') return -1;
+    //   if (b[extraKey] === 'Advert') return 1;
+    // }
     return moment(a[key]) - moment(b[key]);
   });
 };
@@ -245,4 +245,4 @@ export {
   getNextDate,
   generateNextEvents,
   generatePreviousEvents
-}
+};

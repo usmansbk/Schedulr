@@ -485,7 +485,6 @@ function createFollow(input, typename) {
   }
   // ********************************************************  
   if (schedule) {
-    console.log('has schedule');
     if (!schedule.isFollowing) {
       if (typeof schedule.followersCount === 'number') {
         schedule.followersCount += 1;

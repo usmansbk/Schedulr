@@ -7,11 +7,13 @@ import {
 } from 'react-native-paper';
 import BookmarkButton from 'components/common/BookmarkButton';
 import colors from 'config/colors';
+import {dp} from 'lib/constants';
+
 
 const styles  = StyleSheet.create({
   container: {
     alignItems: 'center',
-    height: 250,
+    height: dp(250),
     margin: 4,
     marginTop: 16
   },
@@ -19,14 +21,14 @@ const styles  = StyleSheet.create({
     paddingBottom: 8,
   },
   image: {
-    height: 150,
-    width: 350,
+    height: dp(150),
+    width: dp(350),
     borderRadius: 4
   },
   body:{
     flexDirection: 'row',
     justifyContent: 'center',
-    width: 350
+    width: dp(350)
   },
   date: {
     paddingRight: 12,
@@ -36,15 +38,15 @@ const styles  = StyleSheet.create({
   day: {fontSize: 20, fontWeight: 'bold'},
   button: {
     backgroundColor: 'white',
-    width: 48,
-    height: 48,
-    borderRadius: 24,
+    width: dp(48),
+    height: dp(48),
+    borderRadius: dp(24),
     borderWidth: 1,
     borderColor: 'gray',
     justifyContent: 'center',
     alignItems: 'center',
     position: 'absolute',
-    right: 16,
+    right: dp(16),
     bottom: 0
   }
 });

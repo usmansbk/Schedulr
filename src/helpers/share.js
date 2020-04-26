@@ -1,6 +1,7 @@
 import Share from 'react-native-share';
 import { I18n } from 'aws-amplify';
 import env from 'config/env';
+import logger from 'config/logger';
 
 export default function handleShareEvent({
 	id,
@@ -16,7 +17,7 @@ export default function handleShareEvent({
 	    url: `${env.APP_URL}/event/${id}`
 	  };
 	  Share.open(shareOptions).catch(error => {
-	    // Ignore
+      logger.logError(error);
 	  });
 }
 
@@ -31,7 +32,7 @@ export function handleShareSchedule({
       url: `${env.APP_URL}/schdl/${id}`
     };
     Share.open(shareOptions).catch(error => {
-      // Ignore
+      logger.logError(error);
     });
 }
 
@@ -45,6 +46,6 @@ export function shareApp() {
     url
   }
   Share.open(options).catch(error => {
-    // Ignore
+    logger.logError(error);
   });
 }
