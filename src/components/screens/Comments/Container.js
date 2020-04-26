@@ -15,7 +15,10 @@ export default class Container extends React.Component {
   }
   _goBack = () => this.props.navigation.goBack();
   _onDelete = (id, keys) => this._openDialog(id, 'delete', keys);
-  _onReply = (commentToId, targetName, at) => this.setState({ commentToId, targetName, at }, this._focusCommentInput);
+  _onReply = (commentToId, targetName, at) => {
+    this._cancelReply();
+    this.setState({ commentToId, targetName, at }, this._focusCommentInput);
+  };
   _cancelReply = () => this.setState({ commentToId: null, targetName: null }, this._blurCommentInput);
   _openDialog = (id, visibleDialog, meta) => this.setState({
     visibleDialog,
