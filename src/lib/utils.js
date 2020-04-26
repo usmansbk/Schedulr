@@ -181,19 +181,6 @@ export function ellipsisMode(str) {
   return trimmed;
 }
 
-export function injectAds(events, index=0, recurrence="NEVER") {
-  const ad = {
-    id: '__ads__',
-    __typename: 'Advert',
-    title: 'Ads Space',
-    recurrence,
-    startAt: moment().startOf('day').toISOString(),
-    endAt: moment().endOf('day').toISOString(),
-  };
-  const withAds = events.slice(0, index).concat([ad]).concat(events.slice(index));
-  return withAds;
-}
-
 export function getSeason() {
   const m = moment();
   const month = m.month();

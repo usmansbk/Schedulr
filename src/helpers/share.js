@@ -17,7 +17,7 @@ export default function handleShareEvent({
 	    url: `${env.APP_URL}/event/${id}`
 	  };
 	  Share.open(shareOptions).catch(error => {
-      logger.logError(error);
+      logger.devLog(error);
 	  });
 }
 
@@ -32,7 +32,7 @@ export function handleShareSchedule({
       url: `${env.APP_URL}/schdl/${id}`
     };
     Share.open(shareOptions).catch(error => {
-      logger.logError(error);
+      logger.devLog(error.message);
     });
 }
 
@@ -46,6 +46,6 @@ export function shareApp() {
     url
   }
   Share.open(options).catch(error => {
-    logger.logError(error);
+    logger.devLog(error.message);
   });
 }

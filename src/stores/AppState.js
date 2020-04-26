@@ -58,8 +58,7 @@ export default class AppState {
   };
 
   @action checkItem = id => {
-    const isChecked = this.checkedList.includes(id);
-    if (isChecked) {
+    if (this.isChecked(id)) {
       this.checkedList = this.checkedList.filter(currentId => currentId !== id);
     } else {
       this.checkedList.push(id);

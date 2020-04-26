@@ -100,7 +100,7 @@ export default class Calendar {
         return cals;
       }
     } catch(e) {
-      return [];
+      logger.logError(e);
     }
     return [];
   };

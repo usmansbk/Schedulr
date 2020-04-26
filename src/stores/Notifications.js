@@ -24,7 +24,8 @@ export default class Notifications {
   @action appendNotifications = newNotifications => {
     if (newNotifications.length) {
       this.count += newNotifications.length;
-      this.allNotifications = this.allNotifications.concat(newNotifications.map(notif => Object.assign(notif, { seen: false })));
+      this.allNotifications = this.allNotifications.concat(
+        newNotifications.map(notif => Object.assign(notif, { seen: false })));
     }
   };
   
@@ -56,7 +57,8 @@ export default class Notifications {
     if (this.filter === 'all') {
       return this.allNotifications.sort((a, b) => (b.timestamp - a.timestamp));
     }
-    return this.allNotifications.filter(notif => notif.type === this.filter).sort((a, b) => (b.timestamp - a.timestamp));
+    return this.allNotifications.filter(
+      notif => notif.type === this.filter).sort((a, b) => (b.timestamp - a.timestamp));
   }
 
   @action handleFilterAction = (filter) => {
