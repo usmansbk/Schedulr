@@ -26,6 +26,7 @@ export default class Location {
       if (hasLocationPermission) {
         Geolocation.getCurrentPosition(
           (position) => {
+            console.log(position);
             const { coords: {
               latitude,
               longitude
@@ -53,8 +54,8 @@ export default class Location {
               this.searchLocation = city;
               this.countryCode = countryCode;
             }).catch((error) => {
-              logger.logError(error);
               snackbar(I18n.get("ERROR_failedToGetLocation"), true);
+              logger.logError(error);
             });
           },
           (error) => {
