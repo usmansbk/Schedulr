@@ -21,14 +21,14 @@ const styles  = StyleSheet.create({
     paddingBottom: 8,
   },
   image: {
-    height: dp(150),
-    width: dp(350),
+    height: 150,
+    width: 350,
     borderRadius: 4
   },
   body:{
     flexDirection: 'row',
     justifyContent: 'center',
-    width: dp(350)
+    width: 350
   },
   date: {
     paddingRight: 12,
