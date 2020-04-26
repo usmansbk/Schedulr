@@ -6,6 +6,8 @@ import OneSignal from 'react-native-onesignal';
 import { updatePreference } from 'api/mutations';
 import { dark, light } from 'config/colors';
 import logger from 'config/logger';
+import client from 'config/client';
+import gql from 'graphql-tag';
 
 const SYSTEM_THEME = 'auto';
 // const LIGHT_THEME = 'light';
