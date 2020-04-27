@@ -7,6 +7,7 @@ import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
 import Item from 'components/lists/ScheduleSearch/Item';
 import Separator from 'components/lists/Schedules/Separator';
+import Suspense from 'components/common/Suspense';
 import Footer from 'components/lists/Schedules/Footer';
 import Empty from 'components/lists/Schedules/Empty';
 import { sortSchedules,filterPrivate } from 'lib/utils';
@@ -21,6 +22,16 @@ const {
 } = schedules;
 
 class FollowingSchedules extends Component{
+
+  state = {
+    display: false
+  };
+
+  componentDidMount = () => {
+    setTimeout(() => this.setState({
+      display: true
+    }), 0);
+  };
 
   static navigationOptions() {
     return {
@@ -80,6 +91,7 @@ class FollowingSchedules extends Component{
   }
 
   render(){
+    if (!this.state.display) return <Suspense />;
     const {
       loading,
       onRefresh,

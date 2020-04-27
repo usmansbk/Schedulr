@@ -22,9 +22,20 @@ import getImageUrl from 'helpers/getImageUrl';
 import UserAvatar from 'components/common/UserAvatar';
 import Loading from 'components/common/Loading';
 import Error from 'components/common/Error';
+import Suspense from 'components/common/Suspense';
 import colors from 'config/colors';
 
 class UserProfile extends React.Component {
+
+  state = {
+    display: false
+  };
+
+  componentDidMount = () => {
+    setTimeout(() => this.setState({
+      display: true
+    }), 0);
+  };
 
   _toCreatedFollowingTab = () => {
     const { user, navigation } = this.props;
@@ -54,6 +65,8 @@ class UserProfile extends React.Component {
   _viewAvatar = () => this.props.navigation.navigate('AvatarViewer', { id: this.props.user.id });
 
   render() {
+    if (!this.state.display) return <Suspense />;
+
     const {
       loading,
       error,

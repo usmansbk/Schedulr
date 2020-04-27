@@ -12,12 +12,16 @@ import {
   Appbar,
 } from 'react-native-paper';
 import { Formik } from 'formik';
+import Suspense from 'components/common/Suspense';
 import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
 import { buildForm } from 'lib/formValidator';
 import formSchema from './schema';
 
 class Form extends React.Component {
+  state = {
+    display: false,
+  };
 
   static defaultProps = {
     initialValues: {
@@ -27,7 +31,15 @@ class Form extends React.Component {
     }
   };
 
+  componentDidMount = () => {
+    setTimeout(() => this.setState({
+      display: true
+    }), 0);
+  };
+
   render() {
+    if (!this.state.display) return <Suspense />;
+
     const {
       initialValues,
       onSubmit,

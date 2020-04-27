@@ -9,6 +9,7 @@ import Item from 'components/lists/ScheduleSearch/Item';
 import Separator from 'components/lists/Schedules/Separator';
 import Footer from 'components/lists/Schedules/Footer';
 import Empty from 'components/lists/Schedules/Empty';
+import Suspense from 'components/common/Suspense';
 import { sortSchedules, filterPrivate } from 'lib/utils';
 import { schedules } from 'lib/constants';
 import { getUserSchedules } from 'api/queries';
@@ -23,6 +24,16 @@ const {
 const alias = 'withUserSchedules';
 
 class CreatedSchedules extends Component{
+
+  state = {
+    display: false
+  };
+
+  componentDidMount = () => {
+    setTimeout(() => this.setState({
+      display: true
+    }), 0);
+  };
 
   static navigationOptions() {
     return {
@@ -76,6 +87,7 @@ class CreatedSchedules extends Component{
   }
 
   render(){
+    if (!this.state.display) return <Suspense />;
     const {
       loading,
       onRefresh,
