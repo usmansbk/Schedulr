@@ -7,7 +7,7 @@ import EventsRoute from '../Events';
 import SchedulesRoute from '../Schedules';
 import BookmarksRoute from '../Bookmarks';
 // import TicketsRoute from '../Tickets';
-import TicketIcon from 'components/common/TicketIcon';
+// import TicketIcon from 'components/common/TicketIcon';
 
 const FONT_SIZE = 24;
 
@@ -35,9 +35,10 @@ const Home = createMaterialTopTabNavigator({
         iconName = 'clipboard';
       } else if (routeName === 'Bookmarks') {
         iconName = `bookmark`;
-      } else if (routeName === 'Tickets') {
-        return <TicketIcon active={focused} />;
       }
+      // else if (routeName === 'Tickets') {
+      //   return <TicketIcon active={focused} />;
+      // }
       return <Icon name={iconName} size={FONT_SIZE} color={tintColor} />
     }
   })
