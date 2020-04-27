@@ -213,13 +213,23 @@ function getFilePrefix(type) {
     return 'DOC';
   }
 } 
+
+function getFileExtension(type) {
+  const separatorIndex = type.toLowerCase().lastIndexOf('/');
+  const ext = type.slice(separatorIndex + 1);
+  return ext;
+}
  
-export function getFileName(type) {
+export function getFileName(type, withExtension) {
   const m = moment();
   const year = m.format('YYYY');
   const month = m.format('MM');
   const day = m.format('D');
   const dateTag = `${year}${month}${day}`;
-  const name = `${getFilePrefix(type)}-${dateTag}-${shortid.generate()}`;
+  name = `${getFilePrefix(type)}-${dateTag}-${shortid.generate()}`;
+  if (withExtension) {
+    const ext = getFileExtension(type);
+    name = `${name}.${ext}`;
+  }
   return name;
 }

@@ -67,12 +67,12 @@ class MediaItem extends React.Component {
 
       const exists = await RNFS.exists(toFile);
       if (exists) {
-        FileViewer.open(toFile);
+        FileViewer.open(toFile).catch(logger.log);
         this.setState({ downloading: false });
       } else {
         await RNFS.downloadFile(options).promise
-          .then((res) => {
-            FileViewer.open(toFile);
+          .then(() => {
+            FileViewer.open(toFile).catch(logger.log);
             this.setState({ downloading: false });
           });
       }

@@ -56,7 +56,7 @@ class CommentInput extends React.Component {
       this.setState({ isSubmitting: true });
       for (let doc of uploads) {
         const { type, uri, name, size} = doc;
-        const fileName = getFileName(type);
+        const fileName = getFileName(type, true);
         const key = `uploads/${fileName}`;
         const fileForUpload = {
           key,
