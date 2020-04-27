@@ -8,13 +8,24 @@ import Icon from 'react-native-vector-icons/Feather';
 import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
 import Item from './Item';
+import Suspense from 'components/common/Suspense';
 import items from './items';
 import snackbar from 'helpers/snackbar';
 
 class Settings extends React.Component {
+  state = {
+    display: false,
+  };
+
   static defaultProps = {
     stores: {}
-  }
+  };
+
+  componentDidMount = () => {
+    setTimeout(() => this.setState({
+      display: true
+    }), 0);
+  };
 
   handleValueChange = (value) => {
     switch(value) {
@@ -76,6 +87,8 @@ class Settings extends React.Component {
   );
 
   render() {
+    if (!this.state.display) return <Suspense />;
+
     const {
       goBack,
       stores,

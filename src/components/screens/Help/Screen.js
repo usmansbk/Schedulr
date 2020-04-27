@@ -3,8 +3,19 @@ import { Linking, Platform } from 'react-native';
 import Help from './Help';
 import env from 'config/env';
 import logger from 'config/logger';
+import Suspense from 'components/common/Suspense';
 
 export default class Screen extends React.Component {
+  state = {
+    display: false 
+  };
+
+  componentDidMount = () => {
+    setTimeout(() => this.setState({
+      display: true
+    }), 0);
+  };
+
   _goBack = () => this.props.navigation.goBack();
   _onPressItem = (id) => {
     let url;
@@ -33,6 +44,7 @@ export default class Screen extends React.Component {
   };
 
   render() {
+    if (!this.state.display) return <Suspense />;
     return (
       <Help
         goBack={this._goBack}
