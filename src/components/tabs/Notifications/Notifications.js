@@ -67,7 +67,7 @@ class Notifications extends React.Component {
           color={color}
           size={24}
           icon={({ size, color }) => <Icon
-            name="sliders"
+            name="filter"
             color={color}
             size={size}
           />}

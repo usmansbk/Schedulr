@@ -32,7 +32,7 @@ const Home = createMaterialTopTabNavigator({
       if (routeName === 'Events') {
         iconName = 'calendar'
       } else if (routeName === 'Schedules') {
-        iconName = 'clipboard';
+        iconName = 'list';
       } else if (routeName === 'Bookmarks') {
         iconName = `bookmark`;
       }
