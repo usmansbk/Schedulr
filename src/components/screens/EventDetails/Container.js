@@ -4,6 +4,7 @@ import isEqual from 'lodash.isequal';
 import { Appbar } from 'react-native-paper';
 import { inject, observer } from 'mobx-react';
 import Icon from 'react-native-vector-icons/Feather';
+import Suspense from 'components/common/Suspense';
 import Details from './Details';
 import { formatDate, getRepeatLabel, getDuration } from 'lib/time';
 import { isEventValid, isEventCancelled, getStatus } from 'lib/parseItem';
@@ -16,7 +17,8 @@ const FONT_SIZE = 24;
 
 class EventDetails extends React.Component {
   state = {
-    count: 0
+    count: 0,
+    display: false 
   };
   _handleCancel = () => {
     const isRecurring = this.props.event.recurrence !== ONE_TIME_EVENT;
@@ -25,13 +27,20 @@ class EventDetails extends React.Component {
   _getDuration = (start, end) => getDuration(start, end);
  _incrementCount = () => this.setState(prev => ({ count: prev.count + 1 }));
 
- componentDidMount = () => logger.log('event_details_screen');
+ componentDidMount = () => {
+   setTimeout(() => this.setState({
+     display: true
+   }), 0);
+   logger.log('event_details_screen');
+ };
 
  shouldComponentUpdate = (nextProps, nextState) => (
+   (nextState.display !== this.state.display) ||
    (this.state.count !== nextState.count) || !isEqual(nextProps.event, this.props.event)
  );
 
   render() {
+    if (!this.state.display) return <Suspense/>;
     const {
       event,
       refStartAt,
