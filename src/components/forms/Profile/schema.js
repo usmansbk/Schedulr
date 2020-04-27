@@ -4,10 +4,10 @@ export default Yup.object().shape({
   name: Yup.string()
     .trim()
     .min(2, 'tooShort')
-    .max(50, 'tooLong')
+    .max(51, 'tooLong')
     .required('nameIsRequired'),
   bio: Yup.string()
     .trim()
     .min(5, 'tooShort')
-    .max(81, 'tooLong')
+    .max(250, 'tooLong')
 });

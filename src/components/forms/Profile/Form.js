@@ -127,6 +127,8 @@ class Form extends React.Component {
                 onBlur={handleBlur('bio')}
                 mode="outlined"
                 style={styles.textInput}
+                multiline
+                maxHeight={200}
               />
               <HelperText
                 type="error"
