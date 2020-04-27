@@ -20,8 +20,8 @@ import Picker from 'components/common/Picker';
 import { Formik } from 'formik';
 import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
+import{ buildForm } from 'lib/formValidator';
 import validationSchema from './schema';
-import buildForm from 'helpers/buildForm';
 
 class Form extends React.Component {
   static defaultProps = {

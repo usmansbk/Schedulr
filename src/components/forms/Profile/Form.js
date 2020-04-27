@@ -14,7 +14,7 @@ import {
 import { Formik } from 'formik';
 import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
-import buildForm from 'helpers/buildForm';
+import { buildForm } from 'lib/formValidator';
 import formSchema from './schema';
 
 class Form extends React.Component {

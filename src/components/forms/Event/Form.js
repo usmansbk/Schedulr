@@ -24,12 +24,12 @@ import PickerButton from 'components/common/PickerButton';
 import Alert from 'components/dialogs/Alert';
 import {
   isEventValid,
-  canRepeat
+  canRepeat,
+  buildForm
 } from 'lib/formValidator';
 import { getRepeatLabel, getTimeUnit } from 'lib/time';
 import formSchema from './schema';
 import recurrence from './recurrence';
-import buildForm from 'helpers/buildForm';
 
 class Form extends React.Component {
 
