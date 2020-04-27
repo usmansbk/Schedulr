@@ -262,7 +262,12 @@ class List extends React.Component {
     pictureUrl={banner && getImageUrl(banner)}
     category={getCategory(category)}
     recurrence={parseRepeat(recurrence)}
-    time={getTime({ allDay, startAt, endAt })}
+    time={getTime({
+      isExtended,
+      allDay,
+      startAt,
+      endAt
+    })}
     status={getStatus({
       isCancelled,
       cancelledDates,

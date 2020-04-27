@@ -85,8 +85,8 @@ export function getTimeUnit(recurrence) {
   }
 }
 
-export const getTime = ({ startAt, endAt, allDay }) => {
-  const t = moment(startAt).twix(endAt, allDay);
+export const getTime = ({ startAt, endAt, allDay, isExtended }) => {
+  const t = moment(startAt).twix(endAt, allDay || isExtended);
   const isSameDay = t.isSame('day');
   return t.format({
     hideDate: true && isSameDay,
