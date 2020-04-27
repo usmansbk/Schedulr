@@ -22,6 +22,7 @@ import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
 import{ buildForm } from 'lib/formValidator';
 import validationSchema from './schema';
+import Suspense from 'components/common/Suspense';
 
 class Form extends React.Component {
   static defaultProps = {
@@ -37,10 +38,14 @@ class Form extends React.Component {
   state = {
     showInfoAlert: false,
     showPrivacyAlert: false,
-    showLocationPicker: false
+    showLocationPicker: false,
+    display: false
   };
 
   componentDidMount = () => {
+    setTimeout(() => this.setState({
+      display: true
+    }), 0);
     this.locationTimeout = setTimeout(this.props.stores.locationStore.fetchLocation, 200);
   };
 
@@ -57,6 +62,7 @@ class Form extends React.Component {
   };
 
   render() {
+    if (!this.state.display) return <Suspense />;
     const {
       initialValues,
       handleCancel,

@@ -22,6 +22,7 @@ import DateTimeInput from 'components/common/DateTimeInput';
 import EventTypeInput from 'components/common/EventTypeInput';
 import PickerButton from 'components/common/PickerButton';
 import Alert from 'components/dialogs/Alert';
+import Suspense from 'components/common/Suspense';
 import {
   isEventValid,
   canRepeat,
@@ -36,6 +37,7 @@ class Form extends React.Component {
   state = {
     showEventTypePicker: false,
     showScheduleHelpAlert: false,
+    display: false
   };
 
   _showEventTypePicker = () => this.setState({ showEventTypePicker: true });
@@ -47,6 +49,9 @@ class Form extends React.Component {
   _scheduleHelp = () => this.setState({ showScheduleHelpAlert: true });
 
   componentDidMount = () => {
+    setTimeout(() => this.setState({
+      display: true
+    }), 0);
     this.locationTimeout = setTimeout(this.props.stores.locationStore.fetchLocation, 200);
   };
 
@@ -73,6 +78,14 @@ class Form extends React.Component {
 
   render() {
     const {
+      showEventTypePicker,
+      showScheduleHelpAlert,
+      display
+    } = this.state;
+
+    if (!display) return <Suspense />;
+
+    const {
       schedules,
       locked,
       initialValues,
@@ -82,10 +95,6 @@ class Form extends React.Component {
       isNew,
       stores
     } = this.props;
-    const {
-      showEventTypePicker,
-      showScheduleHelpAlert
-    } = this.state;
 
     const styles = stores.appStyles.eventForm;
     const navButtonColor = stores.themeStore.colors.primary;
