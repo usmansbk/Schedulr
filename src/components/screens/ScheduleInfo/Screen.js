@@ -3,10 +3,22 @@ import ScheduleInfo from './Hoc';
 import DeleteDialog from 'components/dialogs/DeleteSchedule';
 import OpenDialog from 'components/dialogs/OpenSchedule';
 import CloseDialog from 'components/dialogs/CloseSchedule';
+import Suspense from 'components/common/Suspense';
 import { handleShareSchedule } from 'helpers/share';
 
 export default class Screen extends React.Component {
-  state = { visibleDialog: null, pictureKey: null };
+  state = {
+    visibleDialog: null,
+    pictureKey: null,
+    display: false
+  };
+
+  componentDidMount = () => {
+    setTimeout(() => this.setState({
+      display: true
+    }), 0);
+  };
+
   _goBack = () => this.props.navigation.goBack();
   _hideDialog = () => this.setState({ visibleDialog: null, pictureKey: null });
   _handleShare = ({ id, name }) => {
@@ -32,7 +44,9 @@ export default class Screen extends React.Component {
   _navigateToPicture = (id) => this.props.navigation.navigate('SchedulePicture', { id });
 
   render() {
-    const { visibleDialog, pictureKey } = this.state;
+    const { display, visibleDialog, pictureKey } = this.state;
+    if (!display) return <Suspense/>;
+
     const id = this.props.navigation.getParam('id');
     return (
       <>

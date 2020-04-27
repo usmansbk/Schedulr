@@ -24,12 +24,14 @@ import FollowButton from 'components/common/FollowButton';
 import Loading from 'components/common/Loading';
 import Alert from 'components/dialogs/Alert';
 import Error from 'components/common/Error';
+import Suspense from 'components/common/Suspense';
 
 const { AVATAR_SIZE } = schedule_info;
 
 class Info extends React.Component {
   state = {
-    showAboutPrivacyAlert: false
+    showAboutPrivacyAlert: false,
+    display: false
   };
 
   _showAboutPrivacyAlert = () => this.setState({ showAboutPrivacyAlert: true });
@@ -38,13 +40,22 @@ class Info extends React.Component {
   _onEdit = () => this.props.handleSelectMenu('edit');
   _onArchive = () => this.props.handleSelectMenu(this.props.schedule.status === SCHEDULE_CLOSED ? 'open' : 'close');
 
+  componentDidMount = () => {
+    setTimeout(() => this.setState({
+      display: true
+    }), 0);
+  };
+
   shouldComponentUpdate = (nextProps, nextState) => (
+    nextState.display !== this.state.display ||
     !isEqual(nextProps.schedule, this.props.schedule) ||
     nextProps.loading !== this.props.loading ||
     nextState.showAboutPrivacyAlert !== this.state.showAboutPrivacyAlert
   );
 
   render() {
+    if (!this.state.display) return <Suspense />;
+
     const {
       schedule,
       loading,
