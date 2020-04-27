@@ -11,20 +11,28 @@ import Loading from '../Loading';
 import logger from 'config/logger';
 import downloadPath from 'helpers/fs';
 import snackbar from 'helpers/snackbar';
+import Suspense from '../Suspense';
 
 class ImageViewer extends React.Component {
 
   state = {
     progress: 0,
     loadingImage: false,
-    downloading: false
+    downloading: false,
+    display: false
+  };
+
+  componentDidMount = () => {
+    setTimeout(() => this.setState({
+      display: true
+    }), 0);
   };
 
   _toggleLoadingImage = () => this.setState(prev => ({ loadingImage: !prev.loadingImage }));
   _onError = (error) => logger.log(error.message);
 
   _downloadImage = async () => {
-    const { stores, s3Object: { key, name } } = this.props;
+    const { s3Object: { key, name } } = this.props;
     this.setState({ downloading: true, progress: 0 });
     try {
       const fromUrl = await Storage.get(key);
@@ -59,6 +67,8 @@ class ImageViewer extends React.Component {
   };
 
   render() {
+    const { display, downloading, progress, loadingImage } = this.state;
+    if (!display) return <Suspense />;
     const {
       s3Object,
       goBack,
@@ -72,7 +82,6 @@ class ImageViewer extends React.Component {
       me,
       loading
     } = this.props;
-    const { downloading, progress, loadingImage } = this.state;
 
     return (
     <>

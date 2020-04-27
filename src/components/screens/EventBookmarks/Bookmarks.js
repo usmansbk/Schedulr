@@ -4,9 +4,21 @@ import Icon from 'react-native-vector-icons/Feather';
 import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
 import List from './ListHoc';
+import Suspense from 'components/common/Suspense';
 
 class Bookmarks extends React.Component {
+  state = {
+    display: false
+  };
+
+  componentDidMount = () => {
+    setTimeout(() => this.setState({
+      display: true
+    }), 0);
+  };
+
   render() {
+    if (!this.state.display) return <Suspense />;
     const {
       id,
       goBack,
