@@ -151,7 +151,7 @@ const processNextDayEvents = memoize((initialEvents, nextDate) => {
     if (eventDate.isSame(refDate, 'day') || isExtended) {
       const currentEventWithMeta = Object.assign({}, currentEvent, {
         ref_date: refDate.toISOString(),
-        isExtended
+        isExtended: isExtended && !eventDate.isSame(refDate, 'D')
       });
       accumulator.data.push(currentEventWithMeta);
     } else if (interval && !currentEvent.isCancelled && isValid) {
