@@ -8,13 +8,15 @@ import { I18n } from 'aws-amplify';
 import CountDown from 'components/common/Countdown';
 import Alert from 'components/dialogs/Alert';
 import Error from 'components/common/Error';
+import Suspense from 'components/common/Suspense';
 import { formatDate } from 'lib/time';
 
 
 class CalendarEvent extends React.Component {
   state = {
     event: null,
-    showAlert: false
+    showAlert: false,
+    display: false
   };
 
   _hideDialogs = () => this.setState({ showAlert: false });
@@ -31,15 +33,21 @@ class CalendarEvent extends React.Component {
   componentDidMount = () => {
     const id = this.props.navigation.getParam('id');
     const event = this.props.stores.calendar.findEventById(id);
+    setTimeout(() => this.setState({
+      event,
+      display: true
+    }), 0);
     this.setState({ event });
   };
 
   render() {
+    const { event, showAlert, display } = this.state;
+    if (!display) return <Suspense />;
+
     const { stores } = this.props;
     const colors = stores.themeStore.colors;
     const styles = stores.appStyles.styles;
 
-    const { event, showAlert } = this.state;
     if (!event) return <Error
       notFound
       message={I18n.get("ERROR_404")}

@@ -8,15 +8,27 @@ import List from 'components/lists/ScheduleEvents';
 import { baseEventsFilter, pastEventsFilter } from 'graphql/filters';
 import { PAGINATION_LIMIT } from 'lib/constants';
 import updateQuery from 'helpers/updateQuery';
+import Suspense from 'components/common/Suspense';
 
 const alias = 'withScheduleEventsContainer';
 
 class ListHoc extends React.Component {
+  state = {
+    display: false
+  };
 
   _onRefresh = () => this.props.onRefresh && this.props.onRefresh();
   _fetchPastEvents = (nextToken, time) => this.props.fetchMore && this.props.fetchMore(nextToken, time);
 
+  componentDidMount = () => {
+    setTimeout(() =>
+      this.setState({
+        display: true
+      }), 0);
+  };
+
   render() {
+    if (!this.state.display) return <Suspense />;
     const {
       loading,
       error,

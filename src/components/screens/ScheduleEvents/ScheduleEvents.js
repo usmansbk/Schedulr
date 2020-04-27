@@ -5,10 +5,22 @@ import Icon from 'react-native-vector-icons/Feather';
 import Loading from 'components/common/Loading';
 import Error from 'components/common/Error';
 import List from './ListHoc';
+import Suspense from 'components/common/Suspense';
 
 export default class ScheduleEvents extends React.Component {
+  state = {
+    display: 0
+  };
+
+  componentDidMount = () => {
+    setTimeout(() => this.setState({
+      display: true
+    }), 0);
+  };
 
   render() {
+
+    if (!this.state.display) return <Suspense />;
     const {
       schedule,
       error,

@@ -28,7 +28,7 @@ class EventDetails extends React.Component {
  _incrementCount = () => this.setState(prev => ({ count: prev.count + 1 }));
 
  componentDidMount = () => {
-   setTimeout(() => this.setState({
+   this.displayTimer = setTimeout(() => this.setState({
      display: true
    }), 0);
    logger.log('event_details_screen');
@@ -38,6 +38,9 @@ class EventDetails extends React.Component {
    (nextState.display !== this.state.display) ||
    (this.state.count !== nextState.count) || !isEqual(nextProps.event, this.props.event)
  );
+
+ componentWillUnmount = () => clearTimeout(this.displayTimer);
+
 
   render() {
     if (!this.state.display) return <Suspense/>;
