@@ -9,7 +9,7 @@ import Suspense from 'components/common/Suspense';
 
 export default class ScheduleEvents extends React.Component {
   state = {
-    display: 0
+    display: false 
   };
 
   componentDidMount = () => {
