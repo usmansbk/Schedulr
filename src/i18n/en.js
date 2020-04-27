@@ -174,7 +174,7 @@ export default {
   ALERT_shortUntil: "Event should happen at least twice before final date",
   ALERT_whatIsASchedule: "What is a schedule?",
   ALERT_whatIsAScheduleA: schdl => `A Schedule is a list of events, like a class timetable. ${schdl ? `"${schdl.name}"` : "Your schedule"} followers will be informed of this event.`,
-  ALERT_whatIsAScheduleA2: "A Schedule is a list of events. Add events to your list and people who follow your list will be informed of your events.",
+  ALERT_whatIsAScheduleA2: "A Schedule is a list of events. People who follow this list will be informed of your events.",
   ALERT_privateSchedule: "Private schedule",
   ALERT_privateScheduleA: "Events will only be visible to those with invite link.",
   ALERT_publicScheduleA: "Events will be visible to everyone.",
