@@ -4,6 +4,7 @@ import uuidv5 from 'uuid/v5';
 import shortid from 'shortid';
 import Screen from './Screen';
 import DeleteCommentDialog from 'components/dialogs/DeleteComment';
+import Suspense from 'components/common/Suspense';
 
 export default class Container extends React.Component {
   state = {
@@ -12,8 +13,16 @@ export default class Container extends React.Component {
     commentToId: null,
     at: null,
     targetName: null,
-    meta: null
-  }
+    meta: null,
+    display: false
+  };
+
+  componentDidMount = () => {
+    setTimeout(() => this.setState({
+      display: true
+    }), 0);
+  };
+
   _goBack = () => this.props.navigation.goBack();
   _onDelete = (id, keys) => this._openDialog(id, 'delete', keys);
   _onReply = (commentToId, targetName, at) => {
@@ -80,6 +89,7 @@ export default class Container extends React.Component {
 
   shouldComponentUpdate = (nextProps, nextState) => {
     return (
+      this.state.display !== nextState.display ||
       this.props.comments.length !== nextProps.comments.length ||
       this.props.loading !== nextProps.loading ||
       this.state.visibleDialog !== nextState.visibleDialog ||
@@ -91,7 +101,10 @@ export default class Container extends React.Component {
     const {
       visibleDialog,
       targetName,
+      display
     } = this.state;
+    
+    if (!display) return <Suspense />;
     
     const {
       loading,
