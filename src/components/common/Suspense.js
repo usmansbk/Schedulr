@@ -11,6 +11,6 @@ export default inject("stores")(observer(
           backgroundColor: stores.themeStore.colors.bg
         }}
       />
-    )
+    );
   }
 ));
