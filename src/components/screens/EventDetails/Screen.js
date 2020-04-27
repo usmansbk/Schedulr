@@ -4,12 +4,19 @@ import DeleteDialog from 'components/dialogs/DeleteEvent';
 import CancelDialog from 'components/dialogs/CancelEvent';
 import Loading from 'components/common/Loading';
 import Error from 'components/common/Error';
+import Suspense from 'components/common/Suspense';
 import { ONE_TIME_EVENT } from 'lib/constants';
 import { I18n } from 'aws-amplify';
 
 export default class Screen extends React.Component {
-  state = { visibleDialog: null };
+  state = { visibleDialog: null, display: false };
   _goBack = () => this.props.navigation.goBack();
+
+  componentDidMount = () => {
+    setTimeout(() => this.setState({
+      display: true
+    }), 0);
+  };
 
   _navigateToRepeat = () => this.props.navigation.navigate('NewEvent', { id: this.props.navigation.getParam('id'), isNew: true });
   _navigateToEdit = ({ id }) => this.props.navigation.navigate('EditEvent', { id });
@@ -25,8 +32,11 @@ export default class Screen extends React.Component {
   
   render() {
     const {
-      visibleDialog
+      visibleDialog,
+      display
     } = this.state;
+    if (!display) return <Suspense />;
+
     const {
       navigation,
       event,
