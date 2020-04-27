@@ -254,7 +254,7 @@ export default {
   SCHEDULE: "SCHEDULE",
   SCHEDULE_public: "Public schedule",
   SCHEDULE_private: "Private schedule",
-  SCHEDULE_FORM_name: "Name",
+  SCHEDULE_FORM_name: "List Name",
   SCHEDULE_FORM_description: "Description",
   SCHEDULE_FORM_private: "Private",
   SCHEDULE_FORM_public: "Public",
