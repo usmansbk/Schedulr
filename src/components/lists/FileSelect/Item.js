@@ -14,7 +14,7 @@ class Item extends React.Component {
     return (
       <TouchableRipple disabled={disabled} style={styles.itemContainer} onPress={this._onPress}>
         <View style={styles.itemContent}>
-          <MediaIcon type={type} style={{width: 60, height: 60}} uri={uri} />
+          <MediaIcon type={type.toLowerCase()} style={{width: 60, height: 60}} uri={uri} />
         </View>
       </TouchableRipple>
     );
