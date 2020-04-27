@@ -10,8 +10,13 @@ import { searchScheduleFilter } from 'api/filters';
 import { SEARCH_LIMIT } from "lib/constants";
 import updateQuery from 'helpers/updateQuery';
 import logger from 'config/logger';
+import Suspense from 'components/common/Suspense';
 
 class Schedules extends React.Component {
+
+  state = {
+    display: false
+  };
 
   static navigationOptions() {
     return {
@@ -19,11 +24,17 @@ class Schedules extends React.Component {
     };
   }
 
-  componentDidMount = () => logger.log('search_screen');
+  componentDidMount = () => {
+    setTimeout(() => this.setState({
+      display: true
+    }), 0);
+    logger.log('search_screen');
+  };
 
   componentWillUnmount = () => this.props.stores.appState.onChangeText('');
 
   render() {
+    if (!this.state.display) return <Suspense />;
     const { stores } = this.props;
 
     const { query, isConnected, userId } = stores.appState;

@@ -4,6 +4,7 @@ import gql from 'graphql-tag';
 import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
 import List from 'components/lists/EventSearch';
+import Suspense from 'components/common/Suspense';
 import { processEvents } from 'lib/calendr';
 import { getUserData, searchEvents } from 'api/queries';
 import { mergeEvents, filterEvents } from 'lib/utils';
@@ -12,6 +13,15 @@ import { SEARCH_LIMIT } from 'lib/constants';
 import updateQuery from 'helpers/updateQuery';
 
 class Events extends React.Component {
+  state = {
+    display: false
+  };
+
+  componentDidMount = () => {
+    setTimeout(() => this.setState({
+      display: true
+    }), 0);
+  };
 
   static navigationOptions() {
     return {
@@ -20,6 +30,7 @@ class Events extends React.Component {
   }
 
   render() {
+    if (!this.state.display) return <Suspense />;
     const { stores } = this.props;
 
     const { query, isConnected, userId } = stores.appState;
