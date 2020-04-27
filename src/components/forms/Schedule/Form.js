@@ -205,7 +205,7 @@ class Form extends React.Component {
           />
           <Alert
             title={I18n.get("ALERT_privateSchedule")}
-            message={I18n.get("ALERT_privateScheduleWarn")}
+            message={I18n.get("ALERT_privateScheduleA")}
             visible={this.state.showPrivacyAlert}
             handleDismiss={this._hideDialog}
           />

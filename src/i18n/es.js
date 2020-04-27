@@ -183,7 +183,6 @@ export default {
   ALERT_whatIsAScheduleA2: "Un horario es un grupo de eventos. Agregue eventos aquí y las personas que sigan este cronograma serán informadas de sus eventos.",
   ALERT_privateSchedule: "Horario privado",
   ALERT_privateScheduleA: "Los eventos creados después de establecer el horario en 'Privado' no son visibles para todos.",
-  ALERT_privateScheduleWarn: "Los eventos futuros de este cronograma no serán visibles para el público.",
   ALERT_publicScheduleA: "Los eventos creados después de establecer el horario en 'Público' son visibles para todos.",
   ALERT_permissionLocationTitle: "Permiso de ubicación",
   ALERT_permissionLocationMessage: "Schdlr necesita acceso a su ubicación para una mejor experiencia.",

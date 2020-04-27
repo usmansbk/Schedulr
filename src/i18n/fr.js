@@ -174,7 +174,6 @@ export default {
   ALERT_whatIsAScheduleA2: "Un calendrier est un groupe d'événements. Ajoutez des événements ici et les personnes qui suivent ce calendrier seront informées de vos événements.",
   ALERT_privateSchedule: "Horaire privé",
   ALERT_privateScheduleA: "Les événements créés après avoir défini le calendrier sur «Privé» ne sont pas visibles par tout le monde.",
-  ALERT_privateScheduleWarn: "Les événements futurs de ce calendrier ne seront pas visibles au public.",
   ALERT_publicScheduleA: "Les événements créés après avoir défini le calendrier sur «Public» sont visibles par tous.",
   ALERT_permissionLocationTitle: "Autorisation de localisation",
   ALERT_permissionLocationMessage: "Schdlr a besoin d'accéder à votre emplacement pour une meilleure expérience.",
