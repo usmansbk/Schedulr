@@ -17,12 +17,14 @@ import {
 } from 'lib/time';
 import { bookmarkedEvents } from 'lib/constants';
 import getImageUrl from 'helpers/getImageUrl';
+import Suspense from 'components/common/Suspense';
 
 const { ITEM_HEIGHT, SEPARATOR_HEIGHT } = bookmarkedEvents;
 
 class List extends Component {
   state = {
-    fetchingMore: false
+    fetchingMore: false,
+    display: false
   };
 
   static defaultProps = {
@@ -38,6 +40,12 @@ class List extends Component {
       index
     }
   );
+  componentDidMount = () => {
+    setTimeout(() => this.setState({
+      display: true
+    }), 0);
+  };
+
   shouldComponentUpdate = (nextProps) => nextProps.isFocused;
   _onPressItem = (id, refStartAt, refEndAt) => this.props.navigation.navigate('EventDetails', { id, refStartAt, refEndAt });
   _navigateToInfo = (id) => this.props.navigation.navigate('ScheduleInfo', { id });
@@ -114,9 +122,9 @@ class List extends Component {
   />;
 
   render() {
+    if (!this.state.display) return <Suspense />;
     const {
       events,
-      nextToken,
       loading,
       onRefresh,
       stores

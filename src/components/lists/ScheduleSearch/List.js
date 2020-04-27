@@ -8,6 +8,7 @@ import Footer from './Footer';
 import Empty from './Empty';
 import { schedule_search, SCHEDULE_CLOSED } from 'lib/constants';
 import getImageUrl from 'helpers/getImageUrl';
+import Suspense from 'components/common/Suspense';
 
 const {
   ITEM_HEIGHT,
@@ -16,8 +17,16 @@ const {
 
 class List extends Component {
   state = {
-    fetchingMore: false
+    fetchingMore: false,
+    display: false,
   };
+
+  componentDidMount = () => {
+    setTimeout(() => this.setState({
+      display: true
+    }), 0);
+  };
+
   static defaultProps = {
     schedules: [],
     loading: false,
@@ -83,6 +92,7 @@ class List extends Component {
   shouldComponentUpdate = (nextProps) => nextProps.isFocused;
   
   render() {
+    if (!this.state.display) return <Suspense />;
     const {
       schedules,
       loading,
