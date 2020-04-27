@@ -6,13 +6,21 @@ import { getScheduleEvents } from 'api/queries';
 import List from 'components/lists/Events';
 import Fab from 'components/common/Fab';
 import { baseEventsFilter } from 'graphql/filters';
+import Suspense from 'components/common/Suspense';
 
 const HEIGHT = Dimensions.get('window').height / 2;
 const alias = 'withScheduleEventsContainer';
 
 class ListHoc extends React.Component {
   state = {
-    offsetY: 0
+    offsetY: 0,
+    display: false
+  };
+
+  componentDidMount = () => {
+    setTimeout(() => this.setState({
+      display: true
+    }), 0);
   };
 
   _onScroll = (offsetY) => {
@@ -26,6 +34,7 @@ class ListHoc extends React.Component {
   };
 
   render() {
+    if (!this.state.display) return <Suspense />;
     const {
       id,
       loading,

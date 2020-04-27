@@ -6,13 +6,24 @@ import { I18n } from 'aws-amplify';
 import Fab from 'components/common/Fab';
 import Loading from 'components/common/Loading';
 import Error from 'components/common/Error';
+import Suspense from 'components/common/Suspense';
 import { SCHEDULE_CLOSED } from 'lib/constants';
 import List from './ListHoc';
 import { handleShareSchedule } from 'helpers/share';
 
 class Schedule extends React.Component {
 
+  state = {
+    display: false
+  };
+
   shouldComponentUpdate = (nextProps) => nextProps.navigation.isFocused();
+
+  componentDidMount = () => {
+    setTimeout(() => this.setState({
+      display: true
+    }), 0);
+  };
 
   _navigateToScheduleInfo = () => {
     const id = this.props.schedule.id;
@@ -32,6 +43,7 @@ class Schedule extends React.Component {
   };
 
   render() {
+    if (!this.state.display) return <Suspense />;
     const {
       schedule,
       error,
