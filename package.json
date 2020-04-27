@@ -63,7 +63,7 @@
     "react-native-hyperlink": "^0.0.19",
     "react-native-image-picker": "^2.3.1",
     "react-native-localize": "^1.4.0",
-    "react-native-modal-datetime-picker": "^8.5.4",
+    "react-native-modal-datetime-picker": "^8.6.0",
     "react-native-navigation-bar-color": "^2.0.1",
     "react-native-onesignal": "^3.7.2",
     "react-native-open-maps": "^0.3.5",
