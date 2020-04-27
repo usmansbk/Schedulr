@@ -2,13 +2,13 @@ import React from 'react';
 import ImagePicker from 'react-native-image-picker';
 import { inject, observer } from 'mobx-react';
 import { Storage, I18n } from 'aws-amplify';
-import shortid from 'shortid';
 import config from 'aws_config';
 import getImageUrl from 'helpers/getImageUrl';
 import Alert from 'components/dialogs/Alert';
 import Screen from './Screen';
 import logger from 'config/logger';
 import snackbar from 'helpers/snackbar';
+import { getFileName } from 'lib/utils';
 
 const {
   aws_user_files_s3_bucket: bucket,
@@ -68,7 +68,7 @@ class ImageViewerContainer extends React.Component {
             snackbar(I18n.get("WARNING_fileTooLarge"), true);
           } else {
             try {
-              const name = `${id}_${shortid.generate()}_${fileName}`;
+              const name = getFileName(type);
               const key = `${folder}/${name}`;
               const fileForUpload = {
                 key,

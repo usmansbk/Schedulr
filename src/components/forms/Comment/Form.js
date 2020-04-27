@@ -5,11 +5,11 @@ import Icon from 'react-native-vector-icons/Feather';
 import DocumentPicker from 'react-native-document-picker';
 import { inject, observer } from 'mobx-react';
 import { I18n, Storage } from 'aws-amplify';
-import shortid from 'shortid';
 import FileSelect from 'components/lists/FileSelect';
 import logger from 'config/logger';
 import config from 'aws_config';
 import snackbar from 'helpers/snackbar';
+import { getFileName } from 'lib/utils';
 
 const MAX_LENGTH = 240;
 const MAX_FILE_SIZE = 8000 * 1024;
@@ -50,14 +50,13 @@ class CommentInput extends React.Component {
     const { uploads } = this.state;
     let message = this.state.message.trim();
     if (uploads.length) {
-      const { id } = this.props;
       let docs = [];
       let failed = [];
 
       this.setState({ isSubmitting: true });
       for (let doc of uploads) {
         const { type, uri, name, size} = doc;
-        const fileName = `${id}_${shortid.generate()}_${name}`;
+        const fileName = getFileName(type);
         const key = `uploads/${fileName}`;
         const fileForUpload = {
           key,

@@ -5,7 +5,6 @@ import { inject, observer } from 'mobx-react';
 import { I18n, Storage } from 'aws-amplify';
 import { compose, graphql } from 'react-apollo';
 import gql from 'graphql-tag';
-import shortid from 'shortid';
 import MasonryList from 'components/lists/Album';
 import Fab from 'components/common/Fab';
 import Loading from 'components/common/Loading';
@@ -15,6 +14,7 @@ import config from 'aws_config';
 import { updateEventWithAlbum } from 'graphql/mutations';
 import { getAlbum } from 'graphql/queries';
 import snackbar from 'helpers/snackbar';
+import { getFileName } from 'lib/utils';
 
 const MAX_FILE_SIZE = 8000 * 1024;
 const {
@@ -89,7 +89,7 @@ class Album extends React.Component {
 
       for (let doc of uploads) {
         const { type, uri, name, size} = doc;
-        const fileName = `${id}_${shortid.generate()}_${name}`;
+        const fileName = getFileName(type);
         const key = `uploads/${fileName}`;
         const fileForUpload = {
           key,

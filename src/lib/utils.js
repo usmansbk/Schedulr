@@ -1,6 +1,7 @@
 import memoize from 'lodash.memoize';
 import emojiRegex from 'emoji-regex';
 import moment from 'moment';
+import shortid from 'shortid';
 import { processEvents } from 'lib/calendr';
 import { SCHEDULE_CLOSED } from 'lib/constants';
 
@@ -194,4 +195,31 @@ export function getSeason() {
     default:
       return 'fall';
   }
+}
+
+function getFilePrefix(type) {
+  const t = type.toLowerCase();
+  if (t.includes('image')) {
+    return 'IMG';
+  } else if (t.includes('video')) {
+    return 'VID';
+  } else if (t.includes('audio')) {
+    return 'AUD';
+  } else if (t.includes('text')) {
+    return 'TXT';
+  } else if (t.includes('zip') || (t.includes('compressed') || t.includes('archive'))) {
+    return 'ZIP';
+  } else {
+    return 'DOC';
+  }
+} 
+ 
+export function getFileName(type) {
+  const m = moment();
+  const year = m.format('YYYY');
+  const month = m.format('MM');
+  const day = m.format('D');
+  const dateTag = `${year}${month}${day}`;
+  const name = `${getFilePrefix(type)}-${dateTag}-${shortid.generate()}`;
+  return name;
 }
