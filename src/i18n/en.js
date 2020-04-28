@@ -30,9 +30,9 @@ export default {
 
   EVENTS_emptyList: "No upcoming events",
   EVENT_noLocationSet: "No location set",
-  EVENT_creating: "Creating event",
-  EVENT_updating: "Updating event",
-  EVENT_cancelling: "Cancelling event",
+  EVENT_creating: "Creating event...",
+  EVENT_updating: "Updating event...",
+  EVENT_cancelling: "Cancelling event...",
   EVENT_noDescription: "No description",
   EVENTS_SECTIONLIST_after: date => `After ${date}`,
   EVENTS_SECTIONLIST_noMoreEvents: () => "No more events",
