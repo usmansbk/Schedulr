@@ -10,6 +10,7 @@ import {
 import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
 import { SINGLE_EVENT, ALL_EVENTS } from 'lib/constants';
+import snackbar from 'helpers/snackbar';
 
 class CancelEvent extends React.Component {
   state = {
@@ -45,10 +46,11 @@ class CancelEvent extends React.Component {
       ]));
     }
     setTimeout(() => {
+      snackbar(I18n.get("EVENT_cancelling"));
       onSubmit(input);
     }, 0);
-    handleDismiss();
     this.setState({ loading: false });
+    handleDismiss();
   };
 
   _handleDismiss = () => this.props.handleDismiss();

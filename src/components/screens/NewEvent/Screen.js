@@ -4,12 +4,14 @@ import uuidv5 from 'uuid/v5';
 import shortid from 'shortid';
 import { withApollo } from 'react-apollo';
 import memoize from 'memoize-one';
+import { I18n } from 'aws-amplify';
 import Form from 'components/forms/Event';
 import recurrences from 'components/forms/Event/recurrence';
 import { isPastExact } from 'lib/time';
 import { getUserSchedules } from 'api/fragments';
 import { SCHEDULE_CLOSED } from "lib/constants";
 import logger from 'config/logger';
+import snackbar from 'helpers/snackbar';
 
 class NewEventScreen extends React.Component {
   _newSchedule = () => this.props.navigation.navigate("NewSchedule");
@@ -21,6 +23,7 @@ class NewEventScreen extends React.Component {
     const input = { id,...form };
 
     setTimeout(() => {
+      snackbar(I18n.get("EVENT_creating"));
       this.props.onSubmit(input);
       logger.log('create_event');
     }, 0);

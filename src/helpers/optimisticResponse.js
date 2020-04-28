@@ -725,7 +725,6 @@ function updateEvent(input, typename) {
       until
       forever
       isPublic
-      isOwner
       isCancelled
       cancelledDates
       banner {
@@ -733,8 +732,6 @@ function updateEvent(input, typename) {
         bucket
         name
       }
-      commentsCount
-      bookmarksCount
       updatedAt
     }`,
     id: `${typename}:${input.id}`
