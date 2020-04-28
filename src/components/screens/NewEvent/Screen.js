@@ -81,18 +81,18 @@ class NewEventScreen extends React.Component {
 
     return ({
       title,
-      description: description || '',
-      venue: venue || '',
+      description,
+      venue,
       startAt: start,
       endAt: end,
       allDay,
       category,
       recurrence: recurrence || recurrences[0].id,
       until,
-      forever: forever !== undefined ? forever : true,
-      location: currentSchedule ? currentSchedule.location : null,
+      forever,
       eventScheduleId,
-      isPublic: Boolean(currentSchedule && currentSchedule.isPublic)
+      location: currentSchedule && currentSchedule.location,
+      isPublic: currentSchedule && currentSchedule.isPublic
     });
   }
 

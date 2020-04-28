@@ -37,21 +37,21 @@ class EditEventScreen extends React.Component {
       schedule,
       isPublic
     } = event;
-    const currentSchedule = this.schedules.find(item => item.id === schedule.id);
+    const currentSchedule = this.schedules.find(item => item.id === schedule.id) || {};
     return ({
       title,
-      description: description || '',
-      venue: venue || '',
+      description,
+      venue,
       startAt: refStartAt || startAt,
       endAt: refEndAt || endAt,
-      allDay: Boolean(allDay),
+      allDay,
       category,
       recurrence,
       until,
-      forever: forever !== undefined ? forever : true,
-      eventScheduleId: currentSchedule ? currentSchedule.id : null,
-      isPublic: Boolean(isPublic),
-      location: currentSchedule ? currentSchedule.location : null
+      forever,
+      isPublic,
+      location: currentSchedule.location,
+      eventScheduleId: currentSchedule.id
     });
   };
   
