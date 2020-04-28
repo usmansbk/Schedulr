@@ -20,9 +20,11 @@ class NewEventScreen extends React.Component {
     const id = `${hash}-${sort}`;
     const input = { id,...form };
 
+    setTimeout(() => {
+      this.props.onSubmit(input);
+      logger.log('create_event');
+    }, 0);
     this.props.navigation.pop();
-    this.props.onSubmit(input);
-    logger.log('create_event');
   };
 
   get schedules() {

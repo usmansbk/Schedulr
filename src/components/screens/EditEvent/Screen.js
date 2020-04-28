@@ -53,10 +53,12 @@ class EditEventScreen extends React.Component {
     });
   };
   
-  _onSubmit = async (form) => {
+  _onSubmit = (form) => {
     const id = this.props.navigation.getParam('id');
-    this.props.onSubmit({ id, ...form });
-    this.props.navigation.pop(2);
+    setTimeout(() => {
+      this.props.onSubmit({ id, ...form });
+    }, 0);
+    this.props.navigation.pop();
   };
   
   get schedules() {

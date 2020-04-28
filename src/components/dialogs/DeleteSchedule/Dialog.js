@@ -30,11 +30,13 @@ class DeleteSchedule extends React.Component {
     if (pictureKey) {
       stores.appState.removeKeysFromStorage([pictureKey])
     }
-    onSubmit && onSubmit({ id });
     handleDismiss();
-    this.props.navigation.popToTop();
+    setTimeout(() => {
+      onSubmit && onSubmit({ id });
+    }, 0);
     this.setState({ loading: false });
-  }
+    this.props.navigation.popToTop();
+  };
 
   render() {
     const {

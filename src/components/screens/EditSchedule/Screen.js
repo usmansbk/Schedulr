@@ -4,9 +4,11 @@ import Form from 'components/forms/Schedule';
 export default class EditScheduleScreen extends React.Component {
   _handleBack = () => this.props.navigation.goBack();
   
-  _onSubmit = async (form) => {
+  _onSubmit = (form) => {
     const id = this.props.navigation.getParam('id');
-    this.props.onSubmit({ id, ...form });
+    setTimeout(() => {
+      this.props.onSubmit({ id, ...form });
+    }, 0);
     this.props.navigation.pop();
   };
 

@@ -44,7 +44,9 @@ class CancelEvent extends React.Component {
         date
       ]));
     }
-    onSubmit(input);
+    setTimeout(() => {
+      onSubmit(input);
+    }, 0);
     handleDismiss();
     this.setState({ loading: false });
   };

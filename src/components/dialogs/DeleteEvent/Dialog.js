@@ -32,10 +32,12 @@ class DeleteEvent extends React.Component {
     if (banner) {
       stores.appState.removeKeysFromStorage([banner.key])
     }
-    onSubmit && onSubmit({ id });
     handleDismiss();
-    this.props.navigation.pop();
     this.setState({ loading: false });
+    setTimeout(() => {
+      onSubmit && onSubmit({ id });
+    }, 0);
+    this.props.navigation.pop();
   };
 
   render() {

@@ -25,7 +25,9 @@ class OpenSchedule extends React.Component {
       handleDismiss
     } = this.props;
     this.setState({ loading: true });
-    onSubmit({ id, status: SCHEDULE_OPEN });
+    setTimeout(() => {
+      onSubmit({ id, status: SCHEDULE_OPEN });
+    }, 0);
     handleDismiss();
     this.setState({ loading: false });
   };

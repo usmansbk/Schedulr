@@ -52,10 +52,9 @@ class Form extends React.Component {
     setTimeout(() => this.setState({
       display: true
     }), 0);
-    this.locationTimeout = setTimeout(this.props.stores.locationStore.fetchLocation, 200);
+    setTimeout(
+      this.props.stores.locationStore.fetchLocation, 0);
   };
-
-  componentWillUnmount = () => clearTimeout(this.locationTimeout);
 
   static defaultProps = {
     schedules: [], 
@@ -108,7 +107,9 @@ class Form extends React.Component {
             values.venue = values.venue || values.location;
             const input = buildForm(values);
             input.geo_point = stores.locationStore.point;
-            onSubmit && onSubmit(input);
+            setTimeout(() => {
+              onSubmit && onSubmit(input);
+            },0);
           }
         }}
       >
