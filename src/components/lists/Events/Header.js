@@ -1,23 +1,29 @@
 import React from 'react';
 import { View } from 'react-native';
+import moment from 'moment';
+import 'twix';
 import {
   TouchableRipple,
   ActivityIndicator,
   Caption
 } from 'react-native-paper';
-import moment from 'moment';
-import 'twix';
 import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
 
-export default inject('stores')(observer(
-  ({ onPress, loading, stores, hasPrev, hide }) => {
-    const prevMoment = hasPrev ? moment(hasPrev) : moment();
+class Header extends React.Component {
+  render() {
+    const { onPress, loading, stores, hide, beforeDate } = this.props;
     if (hide) return null;
-    
+
+    let prevDate;
+    if (beforeDate) {
+      const prevMoment = beforeDate ? moment(beforeDate) : moment();
+      prevDate = prevMoment.twix(prevMoment, { allDay: true }).format();
+    }
+
     return (
       <TouchableRipple
-        disabled={!hasPrev || loading}
+        disabled={!prevDate || loading}
         onPress={onPress}
         style={stores.appStyles.eventsList.header}
       >
@@ -35,7 +41,7 @@ export default inject('stores')(observer(
             ) : (
               <Caption style={stores.appStyles.eventsList.footerText}>
                 {
-                  I18n.get(`EVENTS_SECTIONLIST_${hasPrev ? 'before' : 'noPrevEvents'}`)(prevMoment.twix(prevMoment, { allDay: true }).format())
+                  I18n.get(`EVENTS_SECTIONLIST_${prevDate ? 'before' : 'noPrevEvents'}`)(prevDate)
                 }
               </Caption>
             )
@@ -44,4 +50,6 @@ export default inject('stores')(observer(
       </TouchableRipple>
     );
   }
-));
+}
+
+export default inject('stores')(observer(Header));

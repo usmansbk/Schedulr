@@ -80,7 +80,7 @@ class List extends React.Component {
     (this.state.sections.length && this.props.isAuth) ?
     <Header
       hide={this.props.error || !this.state.events.length}
-      hasPrev={this.state.beforeDate}
+      beforeDate={this.state.beforeDate}
       loading={this.state.loadingPrev}
       onPress={this._onLoadPrevious}
     />
