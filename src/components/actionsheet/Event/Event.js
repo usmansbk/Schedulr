@@ -29,7 +29,7 @@ class EventAction extends React.Component {
     });
   };
 
-  _handleBookmark = async () => {
+  _handleBookmark = () => {
     const {
       id,
       stores,
@@ -46,11 +46,15 @@ class EventAction extends React.Component {
       };
       try {
         if (isBookmarked) {
-          await removeBookmark(input, id);
+          setTimeout(() => {
+            removeBookmark(input, id);
+          }, 0);
         } else {
           input.bookmarkEventId = id,
           input.bookmarkScheduleId = bookmarkScheduleId;
-          await bookmarkEvent(input);
+          setTimeout(() => {
+            bookmarkEvent(input);
+          }, 0);
         }
         if (!isBookmarked) {
           snackbar(I18n.get(`TOAST_${isBookmarked ? "removed" : "saved"}`));

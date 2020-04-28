@@ -8,7 +8,7 @@ export default class Button extends React.Component {
     return nextProps.isBookmarked !== this.props.isBookmarked
   };
 
-  _onPress = async () => {
+  _onPress = () => {
     const {
       id,
       stores,
@@ -22,11 +22,15 @@ export default class Button extends React.Component {
     };
     try {
       if (isBookmarked) {
-        await removeBookmark(input, id);
+        setTimeout(() => {
+          removeBookmark(input, id);
+        }, 0);
       } else {
         input.bookmarkEventId = id,
         input.bookmarkScheduleId = bookmarkScheduleId;
-        await bookmarkEvent(input);
+        setTimeout(() => {
+          bookmarkEvent(input);
+        }, 0);
       }
     } catch (error) {
       logger.logError(error);

@@ -21,13 +21,12 @@ class NewEventScreen extends React.Component {
     const sort = shortid.generate();
     const id = `${hash}-${sort}`;
     const input = { id,...form };
-
+    this.props.navigation.popToTop();
     setTimeout(() => {
       snackbar(I18n.get("EVENT_creating"));
       this.props.onSubmit(input);
       logger.log('create_event');
     }, 0);
-    this.props.navigation.pop();
   };
 
   get schedules() {
