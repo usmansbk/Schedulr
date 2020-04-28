@@ -23,15 +23,11 @@ import EventTypeInput from 'components/common/EventTypeInput';
 import PickerButton from 'components/common/PickerButton';
 import Alert from 'components/dialogs/Alert';
 import Suspense from 'components/common/Suspense';
-import {
-  isEventValid,
-  canRepeat,
-  buildForm
-} from 'lib/formValidator';
 import { getRepeatLabel, getTimeUnit } from 'lib/time';
 import formSchema from './schema';
 import recurrence from './recurrence';
 
+const MIN_UNTIL_DATE = 2;
 class Form extends React.Component {
 
   state = {
@@ -103,14 +99,12 @@ class Form extends React.Component {
         initialValues={initialValues}
         validationSchema={formSchema}
         onSubmit={(values) => {
-          if (isEventValid(values)) {
-            values.venue = values.venue || values.location;
-            const input = buildForm(values);
-            input.geo_point = stores.locationStore.point;
-            setTimeout(() => {
-              onSubmit && onSubmit(input);
-            },0);
-          }
+          values.venue = values.venue || values.location;
+          values.geo_point = stores.locationStore.point;
+          setTimeout(() => {
+            // onSubmit && onSubmit(values);
+            console.log(JSON.stringify(values));
+          },0);
         }}
       >
         {({
@@ -294,9 +288,9 @@ class Form extends React.Component {
                     if (itemValue === recurrence[0].id) {
                       setFieldValue('until', null);
                       setFieldValue('forever', false);
-                    } else if (values.until) {
+                    } else if (!values.forever) {
                       const unit = getTimeUnit(itemValue);
-                      setFieldValue('until', moment(values.startAt).add(1, unit).toISOString());
+                      setFieldValue('until', moment(values.startAt).add(MIN_UNTIL_DATE, unit).toISOString());
                     }
                   }}
                   items={recurrence.map(recur => ({
@@ -305,16 +299,6 @@ class Form extends React.Component {
                     value: recur.id
                   }))}
                 />
-                {
-                  (!canRepeat(values)) && (
-                    <HelperText
-                      type="error"
-                      visible={true}
-                    >
-                      {I18n.get("HELPER_TEXT_invalidDatesAndRecur")}
-                    </HelperText>
-                  )
-                }
               </View>
               {
                 (values.recurrence !== recurrence[0].id) && (
@@ -328,7 +312,7 @@ class Form extends React.Component {
                           setFieldValue('until', null);
                         } else {
                           const unit = getTimeUnit(values.recurrence);
-                          setFieldValue('until', moment(values.startAt).add(2, unit).toISOString());
+                          setFieldValue('until', moment(values.startAt).add(MIN_UNTIL_DATE, unit).toISOString());
                         }
                         setFieldValue('forever', !forever);
                       }}
