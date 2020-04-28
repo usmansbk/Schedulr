@@ -4,6 +4,7 @@ import { I18n } from 'aws-amplify';
 import memoize from 'memoize-one';
 import Form from 'components/forms/Event';
 import { getUserSchedules } from 'api/fragments';
+import snackbar from 'helpers/snackbar';
 
 class EditEventScreen extends React.Component {
   _handleBack = () => this.props.navigation.goBack();
