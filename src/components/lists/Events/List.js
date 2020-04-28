@@ -168,22 +168,24 @@ class List extends React.Component {
 
   _processEvents = (events) => {
     if (events) {
-      const today = moment().startOf('day').toISOString();
-      const yesterday = moment().subtract(1, 'day').startOf('day').toISOString();
-      let sections = generateNextEvents(events, yesterday, DAYS_PER_PAGE);
-      const todaysSection = sections.find(section => section.title === today);
-      if (!todaysSection) {
-        sections = [{ data: [], title: today }, ...sections];
-      }
-      const afterDate = moment(sections[sections.length - 1].title).toISOString();
-      const beforeDate = moment(sections[0].title).toISOString();
-      
-      this.setState({
-        sections,
-        afterDate,
-        beforeDate,
-        events,
-      });
+      setTimeout(() => {
+        const today = moment().startOf('day').toISOString();
+        const yesterday = moment().subtract(1, 'day').startOf('day').toISOString();
+        let sections = generateNextEvents(events, yesterday, DAYS_PER_PAGE);
+        const todaysSection = sections.find(section => section.title === today);
+        if (!todaysSection) {
+          sections = [{ data: [], title: today }, ...sections];
+        }
+        const afterDate = moment(sections[sections.length - 1].title).toISOString();
+        const beforeDate = moment(sections[0].title).toISOString();
+        
+        this.setState({
+          sections,
+          afterDate,
+          beforeDate,
+          events,
+        });
+      }, 0);
     }
   };
   
