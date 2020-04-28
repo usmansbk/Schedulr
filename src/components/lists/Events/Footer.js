@@ -14,25 +14,33 @@ export default inject('stores')(observer(
   ({ loading, onPress, stores, hasMore, hide }) => {
     const nextMoment = hasMore ? moment(hasMore) : moment();
     if (hide) return null;
-    return loading ? (
-    <ActivityIndicator
-      animating
-      size={12}
-      color={stores.themeStore.colors.primary}
-    /> ) : (
+    return (
       <TouchableRipple
-        disabled={!hasMore}
+        disabled={!hasMore || loading}
         onPress={onPress}
         style={stores.appStyles.eventsList.footerContainer}
       >
         <View style={stores.appStyles.eventsList.footerContent}>
-          <Caption style={stores.appStyles.eventsList.footerText}>
-            {
-             I18n.get(`EVENTS_SECTIONLIST_${hasMore ? 'after' : 'noMoreEvents'}`)(nextMoment.twix(nextMoment, { allDay: true }).format())
-            }
-          </Caption>
+          {
+            loading ? (
+              <ActivityIndicator
+                animating
+                size={20}
+                color={stores.themeStore.colors.primary}
+                style={{
+                  margin: 4
+                }}
+              />
+            ) : (
+              <Caption style={stores.appStyles.eventsList.footerText}>
+                {
+                I18n.get(`EVENTS_SECTIONLIST_${hasMore ? 'after' : 'noMoreEvents'}`)(nextMoment.twix(nextMoment, { allDay: true }).format())
+                }
+              </Caption>
+            )
+          }
         </View>
       </TouchableRipple>
-    )
+    );
   }
 ))

@@ -69,7 +69,9 @@ class List extends React.Component {
       this.props.updateListEveryMinute !== nextProps.updateListEveryMinute ||
       this.state.sections !== nextState.sections ||
       this.state.afterDate !== nextState.afterDate ||
-      this.state.beforeDate !== nextState.beforeDate
+      this.state.beforeDate !== nextState.beforeDate ||
+      this.state.loadingMore !== nextState.loadingMore ||
+      this.state.loadingPrev !== nextState.loadingPrev
     );
   };
 
@@ -122,41 +124,45 @@ class List extends React.Component {
   loadPreviousEvents = (events) => {
     if (this.state.beforeDate) {
       this.setState({ loadingPrev: true });
-      const prevSections = generatePreviousEvents(events, this.state.beforeDate, DAYS_PER_PAGE);
-      const sectionLength = prevSections.length;
-      const beforeDate = (sectionLength === DAYS_PER_PAGE) && moment(prevSections[0].title).format();
-      const afterDate = (sectionLength) && moment(prevSections[sectionLength - 1].title).format();
+      setTimeout(() => {
+        const prevSections = generatePreviousEvents(events, this.state.beforeDate, DAYS_PER_PAGE);
+        const sectionLength = prevSections.length;
+        const beforeDate = (sectionLength === DAYS_PER_PAGE) && moment(prevSections[0].title).format();
+        const afterDate = (sectionLength) && moment(prevSections[sectionLength - 1].title).format();
 
-      if (sectionLength) {
-        this.setState({
-          sections: prevSections,
-          beforeDate,
-          afterDate,
-          loadingPrev: false
-        });
-      } else {
-        this.setState({
-          beforeDate: false,
-          loadingPrev: false
-        });
-      }
+        if (sectionLength) {
+          this.setState({
+            sections: prevSections,
+            beforeDate,
+            afterDate,
+            loadingPrev: false
+          });
+        } else {
+          this.setState({
+            beforeDate: false,
+            loadingPrev: false
+          });
+        }
+      }, 0);
     }
   };
 
   loadMoreEvents = (events=[]) => {  
     if (this.state.afterDate) {
       this.setState({ loadingMore: true });
-      const moreSections = generateNextEvents(events, this.state.afterDate, DAYS_PER_PAGE);
-      const sectionLength = moreSections.length;
-      const afterDate = (sectionLength === DAYS_PER_PAGE) && moment(moreSections[sectionLength - 1].title).format();
+      setTimeout(() => {
+        const moreSections = generateNextEvents(events, this.state.afterDate, DAYS_PER_PAGE);
+        const sectionLength = moreSections.length;
+        const afterDate = (sectionLength === DAYS_PER_PAGE) && moment(moreSections[sectionLength - 1].title).format();
 
-      this.setState(state => {
-        return ({
-          sections: [...state.sections, ...moreSections],
-          afterDate,
-          loadingMore: false
-        })
-      });
+        this.setState(state => {
+          return ({
+            sections: [...state.sections, ...moreSections],
+            afterDate,
+            loadingMore: false
+          })
+        });
+      }, 0);
     }
   };
 

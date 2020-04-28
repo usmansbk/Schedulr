@@ -1,4 +1,5 @@
 import React from 'react';
+import { View } from 'react-native';
 import {
   TouchableRipple,
   ActivityIndicator,
@@ -14,23 +15,33 @@ export default inject('stores')(observer(
     const prevMoment = hasPrev ? moment(hasPrev) : moment();
     if (hide) return null;
     
-    return loading ? (
-      <ActivityIndicator
-        size={12}
-        animating
-        color={stores.themeStore.colors.primary}
-      /> ) : (
+    return (
       <TouchableRipple
-        disabled={!hasPrev}
+        disabled={!hasPrev || loading}
         onPress={onPress}
         style={stores.appStyles.eventsList.header}
       >
-        <Caption style={stores.appStyles.eventsList.footerText}>
+        <View>
           {
-             I18n.get(`EVENTS_SECTIONLIST_${hasPrev ? 'before' : 'noPrevEvents'}`)(prevMoment.twix(prevMoment, { allDay: true }).format())
+            loading ? (
+              <ActivityIndicator
+                size={20}
+                animating
+                color={stores.themeStore.colors.primary}
+                style={{
+                  margin: 4
+                }}
+              />
+            ) : (
+              <Caption style={stores.appStyles.eventsList.footerText}>
+                {
+                  I18n.get(`EVENTS_SECTIONLIST_${hasPrev ? 'before' : 'noPrevEvents'}`)(prevMoment.twix(prevMoment, { allDay: true }).format())
+                }
+              </Caption>
+            )
           }
-        </Caption>
+        </View>
       </TouchableRipple>
-    )
+    );
   }
 ));
