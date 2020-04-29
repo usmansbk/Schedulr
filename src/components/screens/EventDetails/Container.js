@@ -37,7 +37,8 @@ class EventDetails extends React.Component {
    (nextState.display !== this.state.display) ||
    (this.state.count !== nextState.count) ||
    (nextProps.event.updatedAt !== this.props.event.updatedAt) ||
-   (nextProps.event.isBookmarked !== this.props.event.isBookmarked)
+   (nextProps.event.isBookmarked !== this.props.event.isBookmarked) ||
+   (nextProps.event.commentsCount !== this.props.event.commentsCount)
  );
 
  componentWillUnmount = () => clearTimeout(this.displayTimer);
