@@ -15,7 +15,6 @@ export default Yup.object().shape({
     .nullable()
     .default(null)
     .trim()
-    .nullable()
     .min(10, 'tooShort')
     .max(300, 'tooLong')
     .transform(emptyToNull)

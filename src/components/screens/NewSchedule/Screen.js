@@ -7,14 +7,17 @@ import logger from 'config/logger';
 export default class NewScheduleScreen extends React.Component {
   
   _handleBack = () => this.props.navigation.goBack();
-  _handleSubmit = async (form) => {
+  _handleSubmit = (form) => {
     const hash = uuidv5(this.props.stores.appState.userId, uuidv5.DNS);
     const sort = shortid.generate();
     const id = `${hash}-${sort}`;
     const input = { id, ...form };
-    await this.props.onSubmit(input);
-    this.props.navigation.replace('Schedule', { id })
-    logger.log('create_schedule');
+    setTimeout(() => {
+      this.props.onSubmit(input);
+      logger.log('create_schedule');
+    }, 0);
+    this.props.navigation.popToTop();
+    // this.props.navigation.replace('Schedule', { id })
   };
 
   componentWillUnmount = () => {

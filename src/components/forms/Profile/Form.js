@@ -15,8 +15,7 @@ import { Formik } from 'formik';
 import Suspense from 'components/common/Suspense';
 import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
-import { buildForm } from 'lib/formValidator';
-import formSchema from './schema';
+import schema  from './schema';
 
 class Form extends React.Component {
   state = {
@@ -53,9 +52,11 @@ class Form extends React.Component {
     return (
       <Formik
         initialValues={initialValues}
-        validationSchema={formSchema}
+        validationSchema={schema}
         onSubmit={async (values, { setSubmitting }) => {
-          onSubmit && await onSubmit(buildForm(values));
+          const castVal = schema.cast(values);
+          // console.log(JSON.stringify(castVal, null, 2));
+          onSubmit && await onSubmit(castVal);
           setSubmitting(false);
         }}
       >

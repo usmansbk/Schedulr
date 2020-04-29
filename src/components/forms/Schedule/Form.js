@@ -20,9 +20,8 @@ import Picker from 'components/common/Picker';
 import { Formik } from 'formik';
 import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
-import{ buildForm } from 'lib/formValidator';
-import validationSchema from './schema';
 import Suspense from 'components/common/Suspense';
+import schema from './schema';
 
 class Form extends React.Component {
   static defaultProps = {
@@ -46,10 +45,9 @@ class Form extends React.Component {
     setTimeout(() => this.setState({
       display: true
     }), 0);
-    this.locationTimeout = setTimeout(this.props.stores.locationStore.fetchLocation, 200);
+    setTimeout(
+      this.props.stores.locationStore.fetchLocation, 0);
   };
-
-  componentWillUnmount = () => clearTimeout(this.locationTimeout);
 
   _showInfoAlert = () => this.setState({ showInfoAlert: true });
   _showPrivacyAlert = () => this.setState({ showPrivacyAlert: true });
@@ -78,11 +76,12 @@ class Form extends React.Component {
     return (
       <Formik
         initialValues={initialValues}
-        validationSchema={validationSchema}
-        onSubmit={async (values) => {
-          const input = buildForm(values);
-          input.geo_point = stores.locationStore.point;
-          onSubmit && await onSubmit(input);
+        validationSchema={schema}
+        onSubmit={(values) => {
+          values.geo_point = stores.locationStore.point;
+          const castVal = schema.cast(values);
+          // console.log(JSON.stringify(castVal, null, 2));
+          onSubmit && onSubmit(castVal);
         }}
       > 
         {({
@@ -166,7 +165,10 @@ class Form extends React.Component {
                 onPress={() => this.setState({ showLocationPicker: true })}
               />
               <View style={{marginVertical: 4 }}>
-                <Text style={[styles.text, { marginVertical: 4 }]}>{I18n.get("SCHEDULE_FORM_topic")}</Text>
+                <Text
+                  style={
+                    [styles.text, { marginVertical: 4 }]}
+                   >{I18n.get("SCHEDULE_FORM_topic")}</Text>
                 <Picker
                   value={values.topic}
                   prompt={I18n.get("SCHEDULE_FORM_selectTopic")}
@@ -179,29 +181,31 @@ class Form extends React.Component {
                     label: I18n.get('SCHEDULE_FORM_selectTopic'),
                     value: ''
                   })}
-                  onValueChange={itemValue => setFieldValue('topic', itemValue)}
+                  onValueChange={handleChange('topic')}
                 />
               </View>
               <View style={styles.switchButton}>
                 <Text style={styles.text}>{I18n.get("SCHEDULE_FORM_public")}</Text>
                 <Switch
                   value={values.isPublic}
-                  onValueChange={() => {
+                  onValueChange={(value) => {
                     const isPublic = values.isPublic;
                     if (isPublic) this._showPrivacyAlert();
-                    setFieldValue('isPublic', !isPublic);
+                    setFieldValue('isPublic', value);
                   }}
                 />
               </View>
               <View style={styles.info}>
-                <Caption style={styles.primary} onPress={this._showInfoAlert}>{I18n.get("SCHEDULE_whatIsASchedule")}</Caption>
+                <Caption
+                  style={styles.primary}
+                  onPress={this._showInfoAlert}>{I18n.get("SCHEDULE_whatIsASchedule")}</Caption>
               </View>
             </View>
           </ScrollView>
           <LocationPicker
             visible={this.state.showLocationPicker}
             hideModal={this._hideDialog}
-            onSelect={location => setFieldValue('location', location)}
+            onSelect={handleChange('location')}
           />
           <Alert
             title={I18n.get("ALERT_whatIsASchedule")}

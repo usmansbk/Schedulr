@@ -14,8 +14,8 @@ export default class EditProfileScreen extends React.Component {
     } = user;
     return ({
       name,
-      website: website || '',
-      bio: bio || ''
+      website,
+      bio
     });
   };
   
