@@ -59,7 +59,7 @@ export default class Location {
             });
           },
           (error) => {
-            snackbar(error.message);
+            snackbar(error.message, true);
           },
           { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
         );
