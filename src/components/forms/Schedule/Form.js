@@ -120,7 +120,7 @@ class Form extends React.Component {
             refreshControl={
               <RefreshControl
                 refreshing={false}
-                onRefresh={() => resetForm()}
+                onRefresh={resetForm}
                 colors={[stores.themeStore.colors.primary]}
                 progressBackgroundColor={stores.themeStore.colors.bg}
               />
