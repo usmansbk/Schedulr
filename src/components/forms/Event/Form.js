@@ -27,7 +27,7 @@ import { getRepeatLabel, getTimeUnit } from 'lib/time';
 import recurrence from './recurrence';
 import schema from './schema';
 
-const MIN_UNTIL_DATE = 2
+const MIN_UNTIL_DATE = 1
 class Form extends React.Component {
 
   state = {

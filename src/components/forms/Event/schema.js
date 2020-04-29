@@ -1,6 +1,6 @@
 import * as Yup from 'yup';
 import moment from 'moment';
-import { repeatLength, canRecur } from 'lib/time';
+import { canRecur, getTimeUnit } from 'lib/time';
 
 const emptyToNull= val => !val ? null : val;
 
@@ -37,12 +37,11 @@ export default Yup.object().shape({
   ,
   until: Yup.date()
     .nullable()
-    .when(['endAt', 'recurrence'],
-    (endAt, recurrence, schema) => {
-      const length = repeatLength(recurrence);
-      const duration = moment.duration(length);
-      const minFinalDate = moment(endAt).add(duration, 'ms');
-      return schema.min(minFinalDate.toDate(), 'shortUntil');
+    .when(['startAt', 'recurrence'],
+    (startAt, recurrence, schema) => {
+      const unit = getTimeUnit(recurrence);
+      const nextDate = moment(startAt).add(1, unit);
+      return schema.min(nextDate.toDate(), 'shortUntil');
     })
   ,
   recurrence: Yup.string()
