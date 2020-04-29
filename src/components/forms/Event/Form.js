@@ -102,9 +102,9 @@ class Form extends React.Component {
           values.venue = values.venue || values.location;
           values.geo_point = stores.locationStore.point;
           setTimeout(() => {
-            // onSubmit && onSubmit(values);
             const castVal = schema.cast(values);
-            console.log(JSON.stringify(castVal, null, 2));
+            onSubmit && onSubmit(castVal);
+            // console.log(JSON.stringify(castVal, null, 2));
             setSubmitting(false);
           },0);
         }}
