@@ -11,7 +11,17 @@ import Tag from 'components/common/Tag';
 import Avatar from 'components/common/UserAvatar';
 import Actions from 'components/common/Actions';
 import { bookmarkedEvents } from 'lib/constants';
-import { captionDetails } from 'lib/parseItem';
+import {
+  parseRepeat,
+  getStatus,
+  getCategory,
+  captionDetails
+} from 'lib/parseItem';
+import {
+  getDuration,
+  getHumanTime
+} from 'lib/time';
+import getImageUrl from 'helpers/getImageUrl';
 
 const { AVATAR_SIZE } = bookmarkedEvents;
 
@@ -34,23 +44,33 @@ class Item extends React.Component {
     const {
       id,
       title,
-      recurrence,
-      time,
-      status,
+      startAt,
+      endAt,
       allDay,
-      duration,
-      category,
       isAuth,
-      pictureUrl,
+      banner,
       isBookmarked,
       bookmarksCount,
       commentsCount,
       address,
       scheduleId,
+      isCancelled,
+      isConcluded,
+      cancelledDates,
       stores
     } = this.props;
 
     const styles = stores.appStyles.searchEventsList;
+    const category = getCategory(this.props.category);
+    const recurrence = parseRepeat(this.props.recurrence);
+    const time = getHumanTime({ allDay, startAt, endAt });
+    const duration = getDuration(startAt, endAt, allDay);
+    const pictureUrl = banner && getImageUrl(banner);
+    const status = getStatus({
+      isCancelled,
+      cancelledDates,
+      startAt, endAt, isConcluded
+    });
     const caption = captionDetails({
       allDay,
       recurrence,

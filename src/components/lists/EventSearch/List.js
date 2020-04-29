@@ -6,17 +6,7 @@ import Item from './Item';
 import Separator from './Separator';
 import Footer from './Footer';
 import Empty from './Empty';
-import {
-  parseRepeat,
-  getStatus,
-  getCategory
-} from 'lib/parseItem';
-import {
-  getDuration,
-  getHumanTime
-} from 'lib/time';
 import { bookmarkedEvents } from 'lib/constants';
-import getImageUrl from 'helpers/getImageUrl';
 import Suspense from 'components/common/Suspense';
 
 const { ITEM_HEIGHT, SEPARATOR_HEIGHT } = bookmarkedEvents;
@@ -84,25 +74,21 @@ class List extends Component {
   }}) => (<Item
     id={id}
     title={title}
-    status={getStatus({
-      isCancelled,
-      cancelledDates,
-      startAt, endAt, isConcluded
-    })}
+    isCancelled={isCancelled}
+    cancelledDates={cancelledDates}
+    isConcluded={isConcluded}
     allDay={allDay}
-    pictureUrl={banner && getImageUrl(banner)}
+    banner={banner}
     startAt={startAt}
     endAt={endAt}
     ref_date={ref_date}
     bookmarksCount={bookmarksCount}
     commentsCount={commentsCount}
     isBookmarked={isBookmarked}
-    category={getCategory(category)}
-    recurrence={parseRepeat(recurrence)}
+    category={category}
+    recurrence={recurrence}
     isAuth={isPublic || isOwner || (schedule && schedule.isFollowing)}
-    time={getHumanTime({ allDay, startAt, endAt })}
     scheduleId={schedule && schedule.id}
-    duration={getDuration(startAt, endAt, allDay)}
     address={venue}
     onPressItem={this._onPressItem}
     onPressComment={this._navigateToComments}
