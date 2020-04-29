@@ -44,15 +44,10 @@ class Item extends React.Component {
 
   shouldComponentUpdate = (nextProps) => {
     return (
+      nextProps.updatedAt !== this.props.updatedAt ||
       nextProps.isOffline !== this.props.isOffline ||
       nextProps.isBookmarked !== this.props.isBookmarked ||
-      nextProps.isMuted !== this.props.isMuted ||
-      nextProps.title !== this.props.title ||
-      nextProps.time !== this.props.time ||
-      nextProps.status !== this.props.status ||
-      nextProps.recurrence !== this.props.recurrence ||
-      nextProps.category !== this.props.category ||
-      nextProps.pictureUrl !== this.props.pictureUrl
+      nextProps.isMuted !== this.props.isMuted
     );
   };
 

@@ -67,10 +67,10 @@ class List extends React.Component {
     return (
       this.props.loading !== nextProps.loading ||
       this.state.sections !== nextState.sections ||
-      this.state.afterDate !== nextState.afterDate ||
-      this.state.beforeDate !== nextState.beforeDate ||
       this.state.loadingMore !== nextState.loadingMore ||
-      this.state.loadingPrev !== nextState.loadingPrev
+      this.state.loadingPrev !== nextState.loadingPrev ||
+      this.state.afterDate !== nextState.afterDate ||
+      this.state.beforeDate !== nextState.beforeDate
     );
   };
 
@@ -249,6 +249,7 @@ class List extends React.Component {
     cancelledDates,
     startAt,
     endAt,
+    updatedAt,
     recurrence,
     banner,
     venue,
@@ -302,6 +303,7 @@ class List extends React.Component {
     navigateToBanner={this._navigateToBanner}
     navigateToCalendarEvent={this._navigateToCalendarEvent}
     __typename={__typename}
+    updatedAt={updatedAt}
   />);
 
 

@@ -21,14 +21,9 @@ class Item extends React.Component {
   _navigateToInfo = () => this.props.navigateToScheduleInfo(this.props.id);
   shouldComponentUpdate = (nextProps) => {
     return (
+      this.props.updatedAt !== nextProps.updatedAt ||
       this.props.isOffline !== nextProps.isOffline ||
-      this.props.name !== nextProps.name ||
-      this.props.description !== nextProps.description ||
-      this.props.topic !== nextProps.topic ||
-      this.props.isClosed !== nextProps.isClosed ||
-      this.props.isMuted !== nextProps.isMuted ||
-      this.props.pictureUrl !== nextProps.pictureUrl ||
-      this.props.isPublic !== nextProps.isPublic
+      this.props.isMuted !== nextProps.isMuted 
     );
   };
   

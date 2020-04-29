@@ -55,6 +55,7 @@ class List extends Component {
       isFollowing,
       isOffline,
       author,
+      updatedAt
     } = item;
 
     return (
@@ -74,6 +75,7 @@ class List extends Component {
         isFollowing={isFollowing}
         onPressItem={this._onPressItem}
         navigateToScheduleInfo={this._navigateToInfo}
+        updatedAt={updatedAt}
       />
     )
   }

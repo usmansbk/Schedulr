@@ -21,14 +21,8 @@ class Item extends React.Component {
   _onPressAvatar = () => this.props.navigateToBanner(this.props.id);
   shouldComponentUpdate = (nextProps) => {
     return (
-      this.props.title !== nextProps.title ||
-      this.props.time !== nextProps.time ||
-      this.props.status !== nextProps.status ||
-      this.props.category !== nextProps.category ||
-      this.props.bookmarksCount !== nextProps.bookmarksCount ||
-      this.props.commentsCount !== nextProps.commentsCount ||
-      this.props.address !== nextProps.address ||
-      this.props.pictureUrl !== nextProps.pictureUrl
+      this.props.updatedAt !== nextProps.updatedAt ||
+      this.props.bookmarksCount !== nextProps.bookmarksCount
     );
   }
 

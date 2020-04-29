@@ -68,6 +68,7 @@ class List extends Component {
     isConcluded,
     isCancelled,
     cancelledDates,
+    updatedAt
   }}) => (<Item
     id={id}
     title={title}
@@ -87,6 +88,7 @@ class List extends Component {
     scheduleId={schedule && schedule.id}
     duration={getDuration(startAt, endAt, allDay)}
     onPressItem={this._onPressItem}
+    updatedAt={updatedAt}
   />);
 
   _renderEmptyList = () => <Empty

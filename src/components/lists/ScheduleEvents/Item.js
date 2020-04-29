@@ -19,13 +19,7 @@ const {
 class Item extends React.Component {
   _onPress = () => this.props.onPressItem(this.props.id, this.props.startAt, this.props.endAt);
   shouldComponentUpdate = (nextProps) => {
-    return (
-      nextProps.title !== this.props.title ||
-      nextProps.time !== this.props.time ||
-      nextProps.status !== this.props.status ||
-      nextProps.recurrence !== this.props.recurrence ||
-      nextProps.category !== this.props.category
-    );
+    return (nextProps.updatedAt !== this.props.updatedAt);
   }
   render() {
     const {

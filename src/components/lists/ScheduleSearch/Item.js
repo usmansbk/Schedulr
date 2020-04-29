@@ -15,11 +15,8 @@ class Item extends React.Component {
   };
   shouldComponentUpdate = (nextProps) => {
     return (
-      this.props.name !== nextProps.name ||
-      this.props.description !== nextProps.description ||
-      this.props.isClosed !== nextProps.isClosed ||
-      this.props.isFollowing !== nextProps.isFollowing ||
-      this.props.pictureUrl !== nextProps.pictureUrl
+      this.props.updatedAt !== nextProps.updatedAt ||
+      this.props.isFollowing !== nextProps.isFollowing
     );
   };
   render() {

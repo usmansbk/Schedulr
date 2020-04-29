@@ -80,6 +80,7 @@ class List extends Component {
     isBookmarked,
     bookmarksCount,
     commentsCount,
+    updatedAt
   }}) => (<Item
     id={id}
     title={title}
@@ -106,6 +107,7 @@ class List extends Component {
     onPressItem={this._onPressItem}
     onPressComment={this._navigateToComments}
     navigateToInfo={this._navigateToInfo}
+    updatedAt={updatedAt}
   />);
 
   _renderEmptyList = () => <Empty

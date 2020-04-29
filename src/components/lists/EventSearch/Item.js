@@ -24,13 +24,8 @@ class Item extends React.Component {
   };
   shouldComponentUpdate = (nextProps) => {
     return (
-      this.props.title !== nextProps.title ||
-      this.props.time !== nextProps.time ||
-      this.props.status !== nextProps.status ||
-      this.props.category !== nextProps.category ||
+      this.props.updatedAt !== nextProps.updatedAt ||
       this.props.isBookmarked !== nextProps.isBookmarked ||
-      this.props.commentsCount !== nextProps.commentsCount ||
-      this.props.address !== nextProps.address ||
       this.props.isAuth !== nextProps.isAuth
     );
   };

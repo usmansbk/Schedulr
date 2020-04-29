@@ -61,7 +61,8 @@ class List extends Component {
       isPublic,
       status,
       isOwner,
-      isFollowing
+      isFollowing,
+      updatedAt
     } = item;
 
     return (
@@ -77,6 +78,7 @@ class List extends Component {
         isFollowing={isFollowing}
         onPressItem={this._onPressItem}
         navigateToScheduleInfo={this._navigateToInfo}
+        updatedAt={updatedAt}
       />
     )
   };

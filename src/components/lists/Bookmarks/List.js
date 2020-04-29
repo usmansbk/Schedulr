@@ -70,7 +70,8 @@ class List extends Component {
       isConcluded,
       isBookmarked,
       bookmarksCount,
-      commentsCount
+      commentsCount,
+      updatedAt
     } = item;
 
     return (<Item
@@ -99,6 +100,7 @@ class List extends Component {
       onPressItem={this._onPressItem}
       onPressComment={this._navigateToComments}
       navigateToBanner={this._navigateToBanner}
+      updatedAt={updatedAt}
     />);
   };
 
