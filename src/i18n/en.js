@@ -278,7 +278,7 @@ export default {
   HELPER_TEXT_tooLong: "Too long",
   HELPER_TEXT_recommended: "Recommended",
   HELPER_TEXT_required: "Required",
-  HELPER_TEXT_invalidDatesAndRecur: "Event duration too long to repeat",
+  HELPER_TEXT_invalidDatesAndRecur: "End date should be before next recurrence",
   HELPER_TEXT_description: "Too long",
   HELPER_TEXT_nameIsRequired: "Name is required",
   HELPER_TEXT_website: "Invalid string",
