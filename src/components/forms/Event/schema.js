@@ -33,7 +33,7 @@ export default Yup.object().shape({
   ,
   endAt: Yup.date()
     .required()
-    .min(moment().toDate(), 'eventDate')
+    .min(moment().toDate(), 'invalidEndDate')
   ,
   until: Yup.date()
     .nullable()
@@ -50,7 +50,7 @@ export default Yup.object().shape({
     .when(['startAt', 'endAt'],
     (startAt, endAt, schema) => {
       const possibleRecurrence = canRecur({ startAt, endAt });
-      return schema.oneOf(possibleRecurrence);
+      return schema.oneOf(possibleRecurrence, 'invalidDatesAndRecur');
     })
   ,
   forever: Yup.boolean()

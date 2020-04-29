@@ -256,16 +256,30 @@ class Form extends React.Component {
                   }}
                 />
               </View>
+              <HelperText
+                type="error"
+                visible={errors.startAt && touched.startAt}
+              >
+              {errors.startAt && I18n.get(`HELPER_TEXT_${errors.startAt}`)}
+              </HelperText>
+
               <View style={styles.pickerSpacing}>
                 <Text style={styles.radioText}>{I18n.get("EVENT_FORM_to")}</Text>
                 <DateTimeInput
-                  noMin
+                  minDate={new Date()}
                   value={values.endAt}
                   disabled={values.allDay}
                   hideTime={values.allDay}
                   onValueChange={handleChange('endAt')}
                 />
               </View>
+              <HelperText
+                type="error"
+                visible={errors.endAt && touched.endAt}
+              >
+              {errors.endAt && I18n.get(`HELPER_TEXT_${errors.endAt}`)}
+              </HelperText>
+              
               <View style={styles.radio}>
                 <Text style={styles.radioText}>{I18n.get("EVENT_FORM_allDay")}</Text>
                 <Switch
@@ -302,6 +316,13 @@ class Form extends React.Component {
                   }))}
                 />
               </View>
+              <HelperText
+                type="error"
+                visible={errors.recurrence && touched.recurrence}
+              >
+              {errors.recurrence && I18n.get(`HELPER_TEXT_${errors.recurrence}`)}
+              </HelperText>
+
               {
                 (values.recurrence !== recurrence[0].id) && (
                   <View style={styles.radio}>
@@ -324,14 +345,22 @@ class Form extends React.Component {
               }
               {
                 (values.recurrence !== recurrence[0].id && !values.forever) && (
+                  <>
                   <View style={styles.pickerSpacing}>
                     <Text style={styles.radioText}>{I18n.get("EVENT_FORM_repeatUntil")}</Text>
                     <DateTimeInput
-                      noMin
+                      minDate={new Date()}
                       value={values.until}
                       onValueChange={handleChange('until')}
                     />
                   </View>
+                  <HelperText
+                    type="error"
+                    visible={errors.until && touched.until }
+                  >
+                  {errors.until && I18n.get(`HELPER_TEXT_${errors.until}`)}
+                  </HelperText>
+                  </>
                 )
               }
             </View>
