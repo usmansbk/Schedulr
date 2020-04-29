@@ -1,6 +1,5 @@
 import React from 'react';
 import moment from 'moment';
-import isEqual from 'lodash.isequal';
 import { Appbar } from 'react-native-paper';
 import { inject, observer } from 'mobx-react';
 import Icon from 'react-native-vector-icons/Feather';
@@ -36,7 +35,9 @@ class EventDetails extends React.Component {
 
  shouldComponentUpdate = (nextProps, nextState) => (
    (nextState.display !== this.state.display) ||
-   (this.state.count !== nextState.count) || !isEqual(nextProps.event, this.props.event)
+   (this.state.count !== nextState.count) ||
+   (nextProps.event.updatedAt !== this.props.event.updatedAt) ||
+   (nextProps.event.isBookmarked !== this.props.event.isBookmarked)
  );
 
  componentWillUnmount = () => clearTimeout(this.displayTimer);

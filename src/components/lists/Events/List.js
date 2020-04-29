@@ -66,7 +66,6 @@ class List extends React.Component {
   shouldComponentUpdate = (nextProps, nextState) => {
     return (
       this.props.loading !== nextProps.loading ||
-      this.props.updateListEveryMinute !== nextProps.updateListEveryMinute ||
       this.state.sections !== nextState.sections ||
       this.state.afterDate !== nextState.afterDate ||
       this.state.beforeDate !== nextState.beforeDate ||
@@ -204,7 +203,9 @@ class List extends React.Component {
 
   static getDerivedStateFromProps(props, state) {
     let events = props.events;
-    if (eventsChanged(state.events, events)) {
+    const hasChanged = eventsChanged(state.events, events)
+    console.log('eventsChanged', hasChanged)
+    if (hasChanged) {
       const today = moment().startOf('day').toISOString();
       const yesterday = moment().subtract(1, 'day').endOf('day').toISOString();
       let sections = generateNextEvents(events, yesterday, DAYS_PER_PAGE);

@@ -43,30 +43,15 @@ export const sortBookmarks = memoize((data) => {
 
 export function eventsChanged(prev, next=[]) {
   if (prev.length !== next.length) return true;
-  return !next.every((nextVal, index) => {
+  return next.some((nextVal, index) => {
     const prevVal = prev[index];
-    if (!prevVal) return false;
-    const prevBanner = prevVal.banner || {};
-    const nextBanner = nextVal.banner || {};
-    const prevCancelledDates = prevVal.cancelledDates || [];
-    const nextCancelledDates = nextVal.cancelledDates || [];
-    return (prevVal.title === nextVal.title) &&
-      (prevVal.startAt === nextVal.startAt) &&
-      (prevVal.endAt === nextVal.endAt) &&
-      (prevVal.category === nextVal.category) &&
-      (prevVal.recurrence === nextVal.recurrence) &&
-      (prevVal.until === nextVal.until) &&
-      (prevVal.allDay === nextVal.allDay) &&
-      (prevVal.isCancelled === nextVal.isCancelled) &&
-      (prevVal.isBookmarked === nextVal.isBookmarked) &&
-      (prevCancelledDates.length === nextCancelledDates.length) &&
-      (prevVal.description === nextVal.description) &&
-      (prevBanner.key === nextBanner.key)
+    return (nextVal.updatedAt !== prevVal.updatedAt) ||
+      (nextVal.isBookmarked !== prevVal.isBookmarked);
   });
 }
 
 export function getInitials(name) {
-  if (!name) return '🐱‍👤';
+  if (!name) return '‍👤';
   const emojiMatch = emojiRegex().exec(name);
   let avatarName;
   if (emojiMatch) {

@@ -1,7 +1,6 @@
 import React from 'react';
 import moment from 'moment';
 import uuidv5 from 'uuid/v5';
-import isEqual from 'lodash.isequal';
 import {
   View,
   ScrollView,
@@ -48,7 +47,8 @@ class Info extends React.Component {
 
   shouldComponentUpdate = (nextProps, nextState) => (
     nextState.display !== this.state.display ||
-    !isEqual(nextProps.schedule, this.props.schedule) ||
+    (nextProps.schedule.updatedAt !== this.props.schedule.updatedAt) ||
+    (nextProps.schedule.isFollowing !== this.props.schedule.isFollowing) ||
     nextProps.loading !== this.props.loading ||
     nextState.showAboutPrivacyAlert !== this.state.showAboutPrivacyAlert
   );
