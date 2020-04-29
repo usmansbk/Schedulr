@@ -14,6 +14,7 @@ import UserAvatar from 'components/common/UserAvatar';
 import { comments_list } from 'lib/constants';
 import Attachment from 'components/common/Attachment';
 import MediaIcon from 'components/common/MediaIcon';
+import { calendarTime } from 'lib/time';
 
 const { AVATAR_SIZE } = comments_list;
 
@@ -42,7 +43,6 @@ class Item extends React.Component {
   shouldComponentUpdate = (nextProps) => {
     return (
       nextProps.content !== this.props.content ||
-      nextProps.timeAgo !== this.props.timeAgo ||
       nextProps.authorPictureUrl !== this.props.authorPictureUrl ||
       nextProps.toCommentContent !== this.props.toCommentContent ||
       nextProps.toAttachment !== this.props.toAttachment ||
@@ -54,7 +54,7 @@ class Item extends React.Component {
     const {
       authorName,
       content,
-      timeAgo,
+      createdAt,
       isOwner,
       attachment,
       authorPictureUrl,
@@ -62,10 +62,11 @@ class Item extends React.Component {
       toCommentContent,
       toAttachment,
       stores,
-      noReply,
       checked
     } = this.props;
 
+    const timeAgo= calendarTime(createdAt);
+    
     const styles = stores.appStyles.commentsList;
     const colors = stores.themeStore.colors;
     return (
@@ -127,29 +128,25 @@ class Item extends React.Component {
             )
             }
             <View style={styles.footer}>
-              {
-                noReply ? null : (
-                  <View style={styles.actions}>
-                    {isOwner && <IconButton
-                      color={colors.light_gray_3}
-                      icon={() => <Icon
-                        size={18}
-                        name="trash-2"
-                        color={colors.light_gray_3}
-                      />}
-                      onPress={this._onDelete}
-                    />}
-                    <IconButton
-                      icon={() => <Icon
-                        size={18}
-                        name="feather"
-                        color={colors.light_gray_3}
-                      />}
-                      onPress={this._onReply}
-                    />
-                  </View>
-                )
-              }
+              <View style={styles.actions}>
+                {isOwner && <IconButton
+                  color={colors.light_gray_3}
+                  icon={() => <Icon
+                    size={18}
+                    name="trash-2"
+                    color={colors.light_gray_3}
+                  />}
+                  onPress={this._onDelete}
+                />}
+                <IconButton
+                  icon={() => <Icon
+                    size={18}
+                    name="feather"
+                    color={colors.light_gray_3}
+                  />}
+                  onPress={this._onReply}
+                />
+              </View>
             </View>
           </View>
         </View>

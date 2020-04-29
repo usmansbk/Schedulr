@@ -7,7 +7,6 @@ import Empty from './Empty';
 import Header from './Header';
 import Separator from './Separator';
 import getImageUrl from 'helpers/getImageUrl';
-import { calendarTime } from 'lib/time';
 
 class List extends React.Component {
   state = {
@@ -39,22 +38,27 @@ class List extends React.Component {
         isOwner={isOwner}
         content={content}
         attachment={attachment}
+        createdAt={createdAt}
         commentEventId={event.id}
         toCommentId={to && to.id}
         toCommentAuthorName={to && to.author.name}
         toCommentContent={to && to.content}
         toAttachment={to && to.attachment}
-        timeAgo={calendarTime(createdAt)}
         navigateToProfile={this.props.navigateToProfile}
         navigateToThread={this.props.navigateToThread}
         navigateToViewEmbed={this.props.navigateToViewEmbed}
         onDelete={this.props.onDelete}
         handleReplyComment={this.props.handleReply}
-        noReply={this.props.noReply}
       />
     );
   }
-  _renderHeader = () => <Header />;
+  _renderHeader = () => <Header 
+    navigateToProfile={this.props.navigateToProfile}
+    navigateToThread={this.props.navigateToThread}
+    navigateToViewEmbed={this.props.navigateToViewEmbed}
+    onDelete={this.props.onDelete}
+    handleReply={this.props.handleReply}
+    threadId={this.props.threadId} />;
   _renderSeparator = () => <Separator />;
   _renderFooter = () => <Footer
     hide={!this.props.comments.length}
@@ -104,9 +108,9 @@ class List extends React.Component {
         style={styles.list}
         contentContainerStyle={styles.contentContainer}
         data={comments}
-        extraData={stores.appState.checkedList.length}
         keyExtractor={this._keyExtractor}
         renderItem={this._renderItem}
+        ListHeaderComponent={this._renderHeader}
         ListFooterComponent={this._renderFooter}
         ListEmptyComponent={this._renderEmpty}
         ItemSeparatorComponent={this._renderSeparator}

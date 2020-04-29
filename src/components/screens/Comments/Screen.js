@@ -43,7 +43,7 @@ class Screen extends React.Component {
       navigateToViewEmbed,
       stores,
       fetchMoreComments,
-      noReply,
+      threadId,
       isOwner
     } = this.props;
 
@@ -71,7 +71,8 @@ class Screen extends React.Component {
         <List
           ref={commentsRef => this._commentsListRef = commentsRef}
           error={error}
-          noReply={noReply}
+          id={id}
+          threadId={threadId}
           loading={loading}
           comments={comments}
           nextToken={nextToken}
@@ -83,19 +84,15 @@ class Screen extends React.Component {
           navigateToViewEmbed={navigateToViewEmbed}
           fetchMoreComments={fetchMoreComments}
         />
-        {
-          noReply ? null : (
-          <CommentForm
-            id={id}
-            isOwner={isOwner}
-            ref={inputRef => this._inputRef = inputRef}
-            handleSubmit={this._handleSubmit}
-            targetName={targetName}
-            cancelReply={cancelReply}
-            disabled={!comments.length && (loading || error)}
-          />
-          )
-        }
+        <CommentForm
+          id={id}
+          isOwner={isOwner}
+          ref={inputRef => this._inputRef = inputRef}
+          handleSubmit={this._handleSubmit}
+          targetName={targetName}
+          cancelReply={cancelReply}
+          disabled={!comments.length && (loading || error)}
+        />
       </>
     );
   }

@@ -21,6 +21,7 @@ export default inject("stores")(observer(
       }),
       props: ({ data, ownProps }) => ({
         user: data && data.getUser,
+        threadId: ownProps.navigation.getParam('commentToId'),
         commentEventId: ownProps.navigation.getParam('id'),
         isThread: true,
         ...ownProps

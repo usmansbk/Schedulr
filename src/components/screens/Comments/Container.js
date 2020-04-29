@@ -114,7 +114,7 @@ export default class Container extends React.Component {
       nextToken,
       user,
       comments,
-      noReply,
+      threadId,
       isOwner,
       commentEventId,
       notFound
@@ -125,8 +125,8 @@ export default class Container extends React.Component {
       <Screen
         notFound={notFound}
         id={commentEventId}
+        threadId={threadId}
         isOwner={isOwner}
-        noReply={noReply}
         loading={loading}
         title={this.props.navigation.getParam('title')}
         error={Boolean(error)}
