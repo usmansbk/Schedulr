@@ -152,34 +152,12 @@ export function decapitalize(string, all=false) {
   return head + tail;
 }
 
-export function singularMomentUnit(unit) {
-  if (!unit) return unit;
-  const isPlural = unit.slice(-1) === 's';
-  if (!isPlural) return unit;
-  return unit.slice(0, -1);
-}
-
 export function ellipsisMode(str) {
   let trimmed = str;
   if (str && (str.length >= 21)) {
     trimmed = str.slice(0, 21) + '...';
   }
   return trimmed;
-}
-
-export function getSeason() {
-  const m = moment();
-  const month = m.month();
-  switch(month) {
-    case 11: case 0: case 1:
-      return 'winter';
-    case 2: case 3: case 4:
-      return 'spring';
-    case 5: case 6: case 7:
-      return 'summer';
-    default:
-      return 'fall';
-  }
 }
 
 function getFilePrefix(type) {
