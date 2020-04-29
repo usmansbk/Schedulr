@@ -24,7 +24,7 @@ class ListHoc extends React.Component {
     setTimeout(() =>
       this.setState({
         display: true
-      }), 0);
+    }), 0);
   };
 
   render() {

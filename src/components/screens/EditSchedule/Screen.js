@@ -17,10 +17,10 @@ export default class EditScheduleScreen extends React.Component {
     if (!schedule) return undefined;
     return ({
       name: schedule.name,
-      description: schedule.description || '',
-      isPublic: Boolean(schedule.isPublic),
-      location: schedule.location || '',
-      topic: schedule.topic || ''
+      description: schedule.description,
+      isPublic: schedule.isPublic,
+      location: schedule.location,
+      topic: schedule.topic
     });
   };
 
