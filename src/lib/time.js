@@ -15,11 +15,17 @@ export const FIFTEEN_MINUTES = 3 * FIVE_MINUTES;
 export const THIRTY_MINUTES = 3 * TEN_MINUTES;
 export const FORTY_FIVE_MINUTES = 3 * FIFTEEN_MINUTES;
 
+export const canRecur = ({ startAt, endAt })  => {
+  const recurrence = [
+    'NEVER',
+  ];
+  return recurrence;
+}
+
 export const repeatLength = (recurrence) => {
   switch(recurrence) {
     case 'DAILY': return ONE_DAY;
-    case 'WEEKDAYS': return ONE_DAY;
-    case 'WEEKLY': return ONE_WEEK;
+    case 'WEEKLY': case 'WEEKDAYS': return ONE_WEEK;
     case 'MONTHLY': return moment().daysInMonth() * ONE_DAY;
     case 'YEARLY': return moment().weeksInYear() * ONE_WEEK;
     default: return 0;

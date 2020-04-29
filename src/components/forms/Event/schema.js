@@ -12,8 +12,8 @@ export default Yup.object().shape({
   ,
   description: Yup.string()
     .trim()
-    .min(20, 'tooShort')
-    .max(200, 'tooLong')
+    .min(10, 'tooShort')
+    .max(300, 'tooLong')
     .transform(emptyToNull)
     .nullable()
   ,
