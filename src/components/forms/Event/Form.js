@@ -370,7 +370,7 @@ class Form extends React.Component {
             prompt={I18n.get("EVENT_FORM_category")}
             selectedValue={values.category || ''}
             hideModal={this._hideModal}
-            onValueChange={itemValue => setFieldValue('category', itemValue)}
+            onValueChange={handleChange('category')}
           />
           <Alert
             visible={showScheduleHelpAlert}
