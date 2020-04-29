@@ -306,7 +306,10 @@ class Form extends React.Component {
                       setFieldValue('forever', false);
                     } else if (!values.forever) {
                       const unit = getTimeUnit(itemValue);
-                      setFieldValue('until', moment(values.startAt).add(MIN_UNTIL_DATE, unit).toISOString());
+                      setFieldValue(
+                        'until',
+                        moment(values.startAt).add(MIN_UNTIL_DATE, unit).toISOString()
+                      );
                     }
                   }}
                   items={recurrence.map(recur => ({
@@ -335,7 +338,10 @@ class Form extends React.Component {
                           setFieldValue('until', null);
                         } else {
                           const unit = getTimeUnit(values.recurrence);
-                          setFieldValue('until', moment(values.startAt).add(MIN_UNTIL_DATE, unit).toISOString());
+                          setFieldValue(
+                            'until',
+                            moment(values.startAt).add(MIN_UNTIL_DATE, unit).toISOString()
+                          );
                         }
                         setFieldValue('forever', value);
                       }}
@@ -375,7 +381,10 @@ class Form extends React.Component {
           <Alert
             visible={showScheduleHelpAlert}
             title={I18n.get("ALERT_whatIsASchedule")}
-            message={I18n.get("ALERT_whatIsAScheduleA")(schedules.find(schdl => schdl.id === values.eventScheduleId))}
+            message={
+              I18n.get("ALERT_whatIsAScheduleA")(schedules.find(
+                schdl => schdl.id === values.eventScheduleId))
+            }
             handleDismiss={this._hideModal}
           />
           </>

@@ -204,7 +204,6 @@ class List extends React.Component {
   static getDerivedStateFromProps(props, state) {
     let events = props.events;
     const hasChanged = eventsChanged(state.events, events)
-    console.log('eventsChanged', hasChanged)
     if (hasChanged) {
       const today = moment().startOf('day').toISOString();
       const yesterday = moment().subtract(1, 'day').endOf('day').toISOString();
