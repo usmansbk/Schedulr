@@ -43,8 +43,8 @@ class Button extends React.Component {
       this.props.onValueChange(item.value);
     }
     setTimeout(() => {
-      if (this.props.runAfterChange) {
-        this.props.runAfterChange(item.value);
+      if (this.props.onItemChange) {
+        this.props.onItemChange(item.value);
       }
     }, 0)
   };

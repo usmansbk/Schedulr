@@ -24,10 +24,10 @@ import PickerButton from 'components/common/PickerButton';
 import Alert from 'components/dialogs/Alert';
 import Suspense from 'components/common/Suspense';
 import { getRepeatLabel, getTimeUnit } from 'lib/time';
-import formSchema from './schema';
 import recurrence from './recurrence';
+import schema from './schema';
 
-const MIN_UNTIL_DATE = 2;
+const MIN_UNTIL_DATE = 2
 class Form extends React.Component {
 
   state = {
@@ -97,13 +97,15 @@ class Form extends React.Component {
     return (
       <Formik
         initialValues={initialValues}
-        validationSchema={formSchema}
-        onSubmit={(values) => {
+        validationSchema={schema}
+        onSubmit={(values, { setSubmitting }) => {
           values.venue = values.venue || values.location;
           values.geo_point = stores.locationStore.point;
           setTimeout(() => {
             // onSubmit && onSubmit(values);
-            console.log(JSON.stringify(values));
+            const castVal = schema.cast(values);
+            console.log(JSON.stringify(castVal, null, 2));
+            setSubmitting(false);
           },0);
         }}
       >
@@ -208,8 +210,8 @@ class Form extends React.Component {
                       prompt={I18n.get("EVENT_FORM_selectASchedule")}
                       value={values.eventScheduleId}
                       disabled={locked}
-                      onValueChange={itemValue => {
-                        setFieldValue('eventScheduleId', itemValue);
+                      onValueChange={handleChange('eventScheduleId')}
+                      onItemChange={itemValue => {
                         const found = schedules.find(item => item.id === itemValue);
                         if (found) {
                           setFieldValue('location', found.location);
@@ -239,11 +241,11 @@ class Form extends React.Component {
                   disabled={values.allDay}
                   value={values.startAt}
                   hideTime={values.allDay}
-                  onChangeDate={(date) => {
+                  onValueChange={handleChange('startAt')}
+                  onDateChange={(date) => {
                     const prevStartAt = moment(values.startAt);
                     const prevEndAt = moment(values.endAt);
 
-                    setFieldValue('startAt', date);
                     if (values.allDay) {
                       setFieldValue('endAt', moment(date).endOf('day').toISOString());
                     } else {
@@ -261,7 +263,7 @@ class Form extends React.Component {
                   value={values.endAt}
                   disabled={values.allDay}
                   hideTime={values.allDay}
-                  onChangeDate={(date) => setFieldValue('endAt', date)}
+                  onValueChange={handleChange('endAt')}
                 />
               </View>
               <View style={styles.radio}>
@@ -283,8 +285,8 @@ class Form extends React.Component {
                 <Picker
                   prompt={I18n.get("EVENT_FORM_repeat")}
                   value={values.recurrence}
-                  onValueChange={itemValue => {
-                    setFieldValue('recurrence', itemValue);
+                  onValueChange={handleChange('recurrence')}
+                  onItemChange={itemValue => {
                     if (itemValue === recurrence[0].id) {
                       setFieldValue('until', null);
                       setFieldValue('forever', false);
@@ -306,7 +308,7 @@ class Form extends React.Component {
                     <Text style={styles.radioText}>{I18n.get("EVENT_FORM_repeatForever")}</Text>
                     <Switch
                       value={values.forever}
-                      onValueChange={() => {
+                      onValueChange={(value) => {
                         const forever = values.forever;
                         if (!forever) {
                           setFieldValue('until', null);
@@ -314,7 +316,7 @@ class Form extends React.Component {
                           const unit = getTimeUnit(values.recurrence);
                           setFieldValue('until', moment(values.startAt).add(MIN_UNTIL_DATE, unit).toISOString());
                         }
-                        setFieldValue('forever', !forever);
+                        setFieldValue('forever', value);
                       }}
                     />
                   </View>
@@ -327,7 +329,7 @@ class Form extends React.Component {
                     <DateTimeInput
                       noMin
                       value={values.until}
-                      onChangeDate={(date) => setFieldValue('until', date)}
+                      onValueChange={handleChange('until')}
                     />
                   </View>
                 )
