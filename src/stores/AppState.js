@@ -104,20 +104,41 @@ export default class AppState {
     this.categories = this.categories.filter(item => item.toLowerCase() !== category.toLowerCase());
   };
 
-  @action toggleMute = (id, isMuted) => {
-    if (isMuted) {
-      const inMutedList = this.mutedEvents.includes(id);
-      if (inMutedList) {
-        this.mutedEvents = this.mutedEvents.filter(currentId => currentId !== id);
+  @action toggleMute = (id, eventScheduleId) => {
+    const isEventMuted = this.mutedEvents.includes(id);
+    const isEventAllowed = this.allowedEvents.includes(id);
+    const isScheduleMuted = this.mutedSchedules.includes(eventScheduleId);
+    
+    if (isEventMuted) {
+      this.mutedEvents = this.mutedEvents.filter(cid => cid !== id);
+    } else if (isScheduleMuted) {
+      if (isEventAllowed) {
+        this.allowedEvents = this.allowedEvents.filter(cid => cid !== id);
       } else {
-        this.allowedEvents.push(id);
+        this.allowedEvents = [...this.allowedEvents, id];
       }
     } else {
-      this.mutedEvents.push(id);
-      this.allowedEvents = this.allowedEvents.filter(currentId => currentId !== id);
+      this.mutedEvents = [...this.mutedEvents, id];
     }
+
     this.updateExtraData();
-    this._persistState();
+    setTimeout(() => {
+      this._persistState();
+    }, 0);
+  };
+  
+  @action destroy = () => {
+    this.mutedEvents = [];
+    this.mutedSchedules = [];
+    this.allowedEvents = []
+  };
+
+  isEventMuted = (id, scheduleId) => {
+    const isEventMuted = this.mutedEvents.includes(id);
+    const isScheduleMuted = this.mutedSchedules.includes(scheduleId);
+    const isEventAllowed = this.allowedEvents.includes(id);
+
+    return isEventMuted || (isScheduleMuted && !isEventAllowed);
   };
 
   @action toggleMuteSchedule = (mutedId, isMuted) => {
@@ -127,7 +148,9 @@ export default class AppState {
       this.mutedSchedules.push(mutedId);
     }
     this.updateExtraData();
-    this._persistState();
+    setTimeout(() => {
+      this._persistState();
+    }, 0);
   };
 
   @action onChangeText (searchText) {
@@ -183,8 +206,7 @@ export default class AppState {
     this._persistState();
   }
 
-  @action setState(userState) {
-    const state = userState || {};
+  @action setState(state= {}) {
     this.allowedEvents = state.allowedEvents || [];
     this.mutedEvents = state.mutedEvents || [];
     this.mutedSchedules = state.mutedSchedules || [];
@@ -193,12 +215,6 @@ export default class AppState {
   }
 
   isToggled = (id) => this.discoverFilter === id.toLowerCase();
-  isEventMuted = (id, and) => {
-    return (
-      this.mutedEvents.includes(id) ||
-      (!this.allowedEvents.includes(id) &&
-      this.mutedSchedules.includes(and)))
-  };
   _persistState = () => {
     persistState({
       id: this.userId,
