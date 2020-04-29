@@ -7,18 +7,8 @@ import Separator from './Separator';
 import Footer from 'components/lists/Events/Footer';
 import Header from './Header';
 import Empty from './Empty';
-import {
-  parseRepeat,
-  getStatus,
-  getCategory
-} from 'lib/parseItem';
-import {
-  getDuration,
-  getHumanTime
-} from 'lib/time';
 import { eventsChanged } from 'lib/utils';
 import { schedule_events } from 'lib/constants';
-import getImageUrl from 'helpers/getImageUrl';
 
 const {
   ITEM_HEIGHT,
@@ -75,18 +65,14 @@ class List extends Component {
     startAt={startAt}
     endAt={endAt}
     ref_date={ref_date}
-    pictureUrl={banner && getImageUrl(banner)}
-    status={getStatus({
-      isCancelled,
-      cancelledDates,
-      startAt, endAt, isConcluded
-    })}
+    banner={banner}
+    isCancelled={isCancelled}
+    cancelledDates={cancelledDates}
+    isConcluded={isConcluded}
     allDay={allDay}
-    category={getCategory(category)}
-    recurrence={parseRepeat(recurrence)}
-    time={getHumanTime({ allDay, startAt, endAt })}
+    recurrence={recurrence}
+    category={category}
     scheduleId={schedule && schedule.id}
-    duration={getDuration(startAt, endAt, allDay)}
     onPressItem={this._onPressItem}
     updatedAt={updatedAt}
   />);

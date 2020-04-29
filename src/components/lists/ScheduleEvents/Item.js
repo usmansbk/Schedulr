@@ -10,7 +10,17 @@ import { inject, observer } from 'mobx-react';
 import Avatar from 'components/common/UserAvatar';
 import Tag from 'components/common/Tag';
 import { schedule_events } from 'lib/constants';
-import { captionDetails } from 'lib/parseItem';
+import {
+  parseRepeat,
+  getStatus,
+  getCategory,
+  captionDetails
+} from 'lib/parseItem';
+import {
+  getDuration,
+  getHumanTime
+} from 'lib/time';
+import getImageUrl from 'helpers/getImageUrl';
 
 const {
   AVATAR_SIZE,
@@ -25,16 +35,26 @@ class Item extends React.Component {
     const {
       title,
       allDay,
-      recurrence,
-      time,
-      duration,
-      category,
-      pictureUrl,
-      status,
+      startAt,
+      endAt,
+      isCancelled,
+      cancelledDates,
+      isConcluded,
+      banner,
       stores
     } = this.props;
     
     const styles = stores.appStyles.scheduleEvents;
+    const pictureUrl= banner && getImageUrl(banner);
+    const status = getStatus({
+      isCancelled,
+      cancelledDates,
+      startAt, endAt, isConcluded
+    });
+    const category= getCategory(this.props.category);
+    const recurrence = parseRepeat(this.props.recurrence);
+    const time = getHumanTime({ allDay, startAt, endAt });
+    const duration = getDuration(startAt, endAt, allDay);
     const caption = captionDetails({
       allDay,
       category,
