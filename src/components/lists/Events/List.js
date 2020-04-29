@@ -143,11 +143,12 @@ class List extends React.Component {
       setTimeout(() => {
         const moreSections = generateNextEvents(events, this.state.afterDate, DAYS_PER_PAGE);
         const sectionLength = moreSections.length;
-        const afterDate = (sectionLength === DAYS_PER_PAGE) && moment(moreSections[sectionLength - 1].title).format();
+        const afterDate = (sectionLength === DAYS_PER_PAGE) &&
+          moment(moreSections[sectionLength - 1].title).format();
 
         this.setState(state => {
           return ({
-            sections: [...state.sections, ...moreSections],
+            sections: state.sections.concat(moreSections),
             afterDate,
             loadingMore: false
           })
@@ -164,7 +165,7 @@ class List extends React.Component {
         let sections = generateNextEvents(events, yesterday, DAYS_PER_PAGE);
         const todaysSection = sections.find(section => section.title === today);
         if (!todaysSection) {
-          sections = [{ data: [], title: today }, ...sections];
+          sections = [{ data: [], title: today }].concat(sections);
         }
         const afterDate = moment(sections[sections.length - 1].title).toISOString();
         const beforeDate = moment(sections[0].title).toISOString();
@@ -201,7 +202,7 @@ class List extends React.Component {
       let sections = generateNextEvents(events, yesterday, DAYS_PER_PAGE);
       const todaysSection = sections.find(section => section.title === today);
       if (!todaysSection) {
-        sections = [{ data: [], title: today }, ...sections];
+        sections = [{ data: [], title: today }].concat(sections);
       }
       const afterDate = moment(sections[sections.length- 1].title).toISOString();
       const beforeDate = moment(sections[0].title).toISOString();
