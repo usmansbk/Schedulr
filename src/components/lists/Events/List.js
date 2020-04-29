@@ -13,14 +13,6 @@ import SectionHeader from './SectionHeader';
 import SectionFooter from './SectionFooter';
 import Item from './Item';
 import {
-  getStatus,
-  parseRepeat,
-  getCategory,
-  isEventValid
-} from 'lib/parseItem';
-import {
-  getDuration,
-  getTime,
   isPast
 } from 'lib/time';
 import { eventsChanged } from 'lib/utils';
@@ -29,7 +21,6 @@ import {
   generateNextEvents,
 } from 'lib/calendr';
 import { events } from 'lib/constants';
-import getImageUrl from 'helpers/getImageUrl';
 
 const {
   ITEM_HEIGHT,
@@ -266,29 +257,13 @@ class List extends React.Component {
     startAt={startAt}
     endAt={endAt}
     ref_date={ref_date}
+    category={category}
+    isCancelled={isCancelled}
+    cancelledDates={cancelledDates}
+    recurrence={recurrence}
+    banner={banner}
     isExtended={isExtended}
     allDay={allDay}
-    pictureUrl={banner && getImageUrl(banner)}
-    category={getCategory(category)}
-    recurrence={parseRepeat(recurrence)}
-    time={getTime({
-      isExtended,
-      allDay,
-      startAt,
-      endAt
-    })}
-    status={getStatus({
-      isCancelled,
-      cancelledDates,
-      startAt,
-      endAt
-    })}
-    isValid={isEventValid({
-      isCancelled,
-      endAt,
-      startAt,
-      cancelledDates
-    })}
     address={venue}
     isMuted={this.props.stores.appState.isEventMuted(id, schedule.id)}
     eventScheduleId={schedule && schedule.id}
@@ -296,7 +271,6 @@ class List extends React.Component {
     bookmarksCount={bookmarksCount}
     isOwner={isOwner}
     isOffline={isOffline}
-    duration={getDuration(startAt, endAt, allDay)}
     onPressItem={this._onPressItem}
     onPressCommentButton={this._onPressCommentItem}
     navigateToBanner={this._navigateToBanner}

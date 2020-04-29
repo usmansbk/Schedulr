@@ -12,8 +12,18 @@ import Avatar from 'components/common/UserAvatar';
 import Badge from 'components/common/Badge';
 import ActionSheet from 'components/actionsheet/Event';
 import { events } from 'lib/constants';
-import { formatDate } from 'lib/time';
-import { captionDetails } from 'lib/parseItem';
+import {
+  formatDate,
+  getTime,
+  getDuration
+} from 'lib/time';
+import {
+  getStatus,
+  parseRepeat,
+  getCategory,
+  captionDetails
+} from 'lib/parseItem';
+import getImageUrl from 'helpers/getImageUrl';
 
 class Item extends React.Component {
   _onPress = () => {
@@ -32,7 +42,7 @@ class Item extends React.Component {
       this.ActionSheet.getWrappedInstance().wrappedInstance.showActionSheet();
   };
   _onMute = () => {
-    this.props.stores.appState.toggleMute(this.props.id, this.props.isMuted);
+    this.props.stores.appState.toggleMute(this.props.id, this.props.eventScheduleId);
   };
   _navigateToBanner = () => {
     if (this.props.__typename === 'Calendar') {
@@ -55,25 +65,40 @@ class Item extends React.Component {
     const {
       id,
       title,
-      recurrence,
-      time,
       startAt,
       endAt,
       ref_date,
-      allDay,
-      duration,
-      status,
-      category,
       address,
-      pictureUrl,
       stores,
+      bookmarksCount,
+      banner,
+      eventScheduleId,
+      allDay,
       isMuted,
       isBookmarked,
       isOffline,
-      bookmarksCount,
-      eventScheduleId,
+      isExtended,
+      isCancelled,
+      cancelledDates,
       __typename
     } = this.props;
+
+    const pictureUrl = banner && getImageUrl(banner);
+    const category = getCategory(this.props.category);
+    const recurrence = parseRepeat(this.props.recurrence);
+    const time = getTime({
+      isExtended,
+      allDay,
+      startAt,
+      endAt
+    });
+    const status = getStatus({
+      isCancelled,
+      cancelledDates,
+      startAt,
+      endAt
+    });
+    const duration= getDuration(startAt, endAt, allDay);
     
     const styles = stores.appStyles.eventsList;
     const caption = captionDetails({
