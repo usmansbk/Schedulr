@@ -2,10 +2,10 @@ import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
 import { inject, observer } from 'mobx-react';
 import { getUser, getCommentThread } from 'api/queries';
-// import { createComment } from 'api/mutations';
-// import updateApolloCache from 'helpers/updateApolloCache';
+import { createComment } from 'api/mutations';
+import updateApolloCache from 'helpers/updateApolloCache';
 import Container from './Container';
-// import buildOptimisticResponse from 'helpers/optimisticResponse';
+import buildOptimisticResponse from 'helpers/optimisticResponse';
 import { ADD, PAGINATION_LIMIT } from 'lib/constants';
 import updateQuery from 'helpers/updateQuery';
 
@@ -22,7 +22,7 @@ export default inject("stores")(observer(
       props: ({ data, ownProps }) => ({
         user: data && data.getUser,
         commentEventId: ownProps.navigation.getParam('id'),
-        noReply: true,
+        isThread: true,
         ...ownProps
       })
     }),
@@ -61,28 +61,28 @@ export default inject("stores")(observer(
         ...ownProps
       })
     }),
-    // graphql(gql(createComment), {
-    //   alias: 'withCreateCommentScreenContainer',
-    //   props: ({ mutate, ownProps }) => ({
-    //     onSubmit: (input) => mutate({
-    //       variables: {
-    //         input: {
-    //           ...input,
-    //           commentToId: ownProps.navigation.getParam('commentToId')
-    //         }
-    //       },
-    //       update: (cache, { data: { createComment } }) => (
-    //         updateApolloCache(cache, createComment, ADD)
-    //       ),
-    //       optimisticResponse: buildOptimisticResponse({
-    //         input,
-    //         mutationName: 'createComment',
-    //         responseType: 'Comment',
-    //         operationType: ADD
-    //       })
-    //     }),
-    //     ...ownProps
-    //   })
-    // }),
+    graphql(gql(createComment), {
+      alias: 'withCreateCommentScreenContainer',
+      props: ({ mutate, ownProps }) => ({
+        onSubmit: (input) => mutate({
+          variables: {
+            input: {
+              ...input,
+              commentToId: ownProps.navigation.getParam('commentToId')
+            }
+          },
+          update: (cache, { data: { createComment } }) => (
+            updateApolloCache(cache, createComment, ADD)
+          ),
+          optimisticResponse: buildOptimisticResponse({
+            input,
+            mutationName: 'createComment',
+            responseType: 'Comment',
+            operationType: ADD
+          })
+        }),
+        ...ownProps
+      })
+    }),
   )(Container)
 ));
