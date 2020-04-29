@@ -50,7 +50,8 @@ class Container extends React.Component {
         if (Platform.OS === 'ios') {
           notification.finish(PushNotificationIOS.FetchResult.NoData);
         }
-      }
+      },
+      requestPermissions: true
     });
   };
   
