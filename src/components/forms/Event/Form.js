@@ -104,7 +104,6 @@ class Form extends React.Component {
           setTimeout(() => {
             const castVal = schema.cast(values);
             onSubmit && onSubmit(castVal);
-            // console.log(JSON.stringify(castVal, null, 2));
             setSubmitting(false);
           },0);
         }}

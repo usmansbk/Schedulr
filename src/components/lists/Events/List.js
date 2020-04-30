@@ -293,7 +293,6 @@ class List extends React.Component {
   render() {
     const { stores, loading } = this.props;
     const { sections } = this.state;
-
     return (
       <SectionList
         ref={this.listRef}

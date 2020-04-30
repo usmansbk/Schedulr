@@ -55,7 +55,6 @@ class Form extends React.Component {
         validationSchema={schema}
         onSubmit={async (values, { setSubmitting }) => {
           const castVal = schema.cast(values);
-          // console.log(JSON.stringify(castVal, null, 2));
           onSubmit && await onSubmit(castVal);
           setSubmitting(false);
         }}

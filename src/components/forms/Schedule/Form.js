@@ -80,7 +80,6 @@ class Form extends React.Component {
         onSubmit={(values) => {
           values.geo_point = stores.locationStore.point;
           const castVal = schema.cast(values);
-          // console.log(JSON.stringify(castVal, null, 2));
           onSubmit && onSubmit(castVal);
         }}
       > 
