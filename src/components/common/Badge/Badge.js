@@ -42,7 +42,7 @@ export default ({ status, size=SIZE, src, name }) => {
   let statusStyle = styles[status];
   return (
     <View style={[styles.container, statusStyle]}>
-      {(src || name) && <UserAvatar src={src} name={name} size={size} />}
+      {(src || name) && <UserAvatar src={src} name={name} size={size - 1} />}
     </View>
   )
 }

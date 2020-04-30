@@ -24,7 +24,6 @@ export default class Avatar extends React.Component {
       style,
       name,
       badge,
-      badgeLocation
     } = this.props;
   
     return (

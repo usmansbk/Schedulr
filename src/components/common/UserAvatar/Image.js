@@ -4,9 +4,9 @@ import { Image } from 'react-native';
 export default class CustomImage extends React.Component {
 
   _style = {
-    borderRadius: (this.props.size - 1) / 2,
-    width: this.props.size - 1,
-    height: this.props.size - 1,  
+    borderRadius: (this.props.size) / 2,
+    width: this.props.size,
+    height: this.props.size,  
   };
 
   shouldComponentUpdate = (nextProps) => (this.props.uri !== nextProps.uri);
