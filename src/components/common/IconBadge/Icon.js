@@ -11,8 +11,8 @@ import { inject, observer } from 'mobx-react';
 class IconBagdeButton extends React.Component {
   _onPress = () => this.props.onPress();
 
-  shouldComponentUpdate = nextProps => nextProps.count !== this.props.count ||
-    nextProps.color !== this.props.color
+  shouldComponentUpdate = nextProps => ((nextProps.count !== this.props.count) ||
+    (nextProps.color !== this.props.color) || (nextProps.disabled !== this.props.disabled))
   ;
 
   _renderIcon = () => <Icon
