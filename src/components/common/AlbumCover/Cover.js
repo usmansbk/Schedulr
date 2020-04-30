@@ -8,7 +8,10 @@ export default class Cover extends React.Component {
     const sources = images.map(img => ({ uri: getImageUrl(img, 320)}))
     return (
       <View style={{
+        flexDirection: 'row',
         justifyContent: 'center',
+        flexWrap: 'wrap',
+        alignItems: 'center',
         padding: 4,
       }}>
         {
