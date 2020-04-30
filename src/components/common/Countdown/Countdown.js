@@ -27,9 +27,9 @@ class DateCountdown extends React.Component {
 
   render() {
     const { startAt, endAt, status, stores } = this.props;
-    const start = moment(startAt).valueOf();
-    const end = moment(endAt).valueOf();
-    const now = moment().valueOf();
+    const start = moment(startAt);
+    const end = moment(endAt);
+    const now = moment();
     const digitStyle = {
       backgroundColor: stores.themeStore.colors.bg
     };
@@ -38,12 +38,13 @@ class DateCountdown extends React.Component {
     };
 
     let color = stores.themeStore.colors.gray;
+    let until;
 
-    let until = Math.floor((start - now) / 1000);
     if (status === 'ongoing') {
-      until = Math.floor((end - now) / 1000);
+      until = end.diff(now, 'seconds');
       color = stores.themeStore.colors.green;
     } else if (status === 'upcoming') {
+      until = start.diff(now, 'seconds');
       color = stores.themeStore.colors.yellow;
     } else if (status === 'cancelled') {
       color = stores.themeStore.colors.light_red;
