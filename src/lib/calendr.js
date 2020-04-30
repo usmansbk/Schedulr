@@ -36,6 +36,7 @@ function getInterval(recurrence) {
  * @returns a SectionListData of events with empty days omitted
  */
 function generateNextEvents(events=[], refDate, DAYS_PER_PAGE=3, before=false) {
+  // const t = Date.now();
   const sections = [];
   let nextDate = getNextDate(events, moment(refDate), before);
   if (events.length && nextDate) {
@@ -45,6 +46,7 @@ function generateNextEvents(events=[], refDate, DAYS_PER_PAGE=3, before=false) {
       if (!nextDate) break;
     }
   }
+  // console.log(Date.now() - t);
   return sections;
 }
 
