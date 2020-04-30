@@ -46,17 +46,16 @@ export default inject('stores')(observer(
     navigateToBanner,
     cardView,
     stores,
-    onFinish
   }) => (
     <View style={stores.appStyles.eventDetails.container}>
       <ScrollView style={stores.appStyles.eventDetails.bg}>
         <View style={stores.appStyles.eventDetails.content}>
           <View style={stores.appStyles.eventDetails.head}>
-            { !(cardView || isCancelled) && (
+            { !(cardView) && (
                 <CountDown
                   startAt={startAt}
                   endAt={endAt}
-                  onFinish={onFinish}
+                  status={status}
                 />
               )
             }

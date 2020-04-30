@@ -16,7 +16,6 @@ const FONT_SIZE = 24;
 
 class EventDetails extends React.Component {
   state = {
-    count: 0,
     display: false 
   };
   _handleCancel = () => {
@@ -35,7 +34,6 @@ class EventDetails extends React.Component {
 
  shouldComponentUpdate = (nextProps, nextState) => (
    (nextState.display !== this.state.display) ||
-   (this.state.count !== nextState.count) ||
    (nextProps.event.updatedAt !== this.props.event.updatedAt) ||
    (nextProps.event.isBookmarked !== this.props.event.isBookmarked) ||
    (nextProps.event.commentsCount !== this.props.event.commentsCount)
@@ -217,8 +215,6 @@ class EventDetails extends React.Component {
           navigateToBookmarks={navigateToBookmarks}
           navigateToBanner={navigateToBanner}
           cardView={cardView}
-          count={this.state.count}
-          onFinish={this._incrementCount}
         />
       </>
     )

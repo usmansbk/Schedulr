@@ -171,5 +171,5 @@ export const banner = {
 };
 
 export const countdown = {
-  SIZE: dp(20)
+  SIZE: dp(28)
 };

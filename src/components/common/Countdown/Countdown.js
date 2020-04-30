@@ -9,9 +9,6 @@ import snackbar from 'helpers/snackbar';
 
 const { SIZE } = countdown;
 class DateCountdown extends React.Component {
-  state = {
-    finished: false
-  };
 
   _timeAgo = () => {
     const start = this.props.startAt;
@@ -27,53 +24,46 @@ class DateCountdown extends React.Component {
     return capitalize(timeAgo);
   };
   _onPress = () => snackbar(this._timeAgo());
-  _onFinish = () => {
-    this.setState({
-      finished: true
-    }, () => this.props.onFinish && this.props.onFinish());
-  };
 
   render() {
-    const { startAt, endAt, stores } = this.props;
+    const { startAt, endAt, status, stores } = this.props;
     const start = moment(startAt).valueOf();
     const end = moment(endAt).valueOf();
     const now = moment().valueOf();
-    let digitStyle;
-    let digitTxtStyle;
-    let timeLabelStyle = {
+    const digitStyle = {
+      backgroundColor: stores.themeStore.colors.bg
+    };
+    const timeLabelStyle = {
       color: stores.themeStore.colors.gray,
     };
 
+    let color = stores.themeStore.colors.gray;
+
     let until = Math.floor((start - now) / 1000);
-    if (until < 0) {
-      if (end > now) {
-        until = Math.floor((end - now) / 1000);
-        digitStyle = {
-          backgroundColor: stores.themeStore.colors.green,
-        };
-        digitTxtStyle = {
-          color: 'white'
-        };
-      } else {
-        until = 0;
-        digitStyle = {
-          backgroundColor: stores.themeStore.colors.tint
-        }
-        digitTxtStyle = {
-          color: 'white'
-        };
-      }
+    if (status === 'ongoing') {
+      until = Math.floor((end - now) / 1000);
+      color = stores.themeStore.colors.green;
+    } else if (status === 'upcoming') {
+      color = stores.themeStore.colors.yellow;
+    } else if (status === 'cancelled') {
+      color = stores.themeStore.colors.light_red;
+      until = 0;
     }
+
+    const digitTxtStyle = {
+      color 
+    };
+
     return (
       <CountDown
         until={until}
-        onFinish={this._onFinish}
         onPress={this._onPress}
         digitStyle={digitStyle}
         digitTxtStyle={digitTxtStyle}
         timeLabelStyle={timeLabelStyle}
         timeLabels={I18n.get('timeLabels')}
         size={SIZE}
+        key={status}
       />
     );
   }
