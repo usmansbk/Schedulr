@@ -18,10 +18,8 @@ export default class Button extends React.Component {
     return null;
   }
 
-  shouldComponentUpdate = (nextProps, nextState) => {
-    return (nextProps.isBookmarked !== this.props.isBookmarked) ||
-    (nextState.isBookmarked !== this.state.isBookmarked)
-  };
+  shouldComponentUpdate = (_, nextState) => (
+    nextState.isBookmarked !== this.state.isBookmarked);
 
   _onPress = async () => {
     const {
@@ -69,7 +67,8 @@ export default class Button extends React.Component {
     } = this.props;
     const { isBookmarked } = this.state;
 
-    const count = (this.props.isBookmarked && (bookmarksCount === 1)) ? 0 : bookmarksCount;
+    const count = (this.props.isBookmarked &&
+      (bookmarksCount === 1)) ? 0 : bookmarksCount;
 
     return (
       <IconBadge
