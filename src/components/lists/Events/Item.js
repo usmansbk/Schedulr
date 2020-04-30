@@ -127,33 +127,31 @@ class Item extends React.Component {
             />
             <Badge status={status} />
           </View>
-          <View style={styles.right}>
-            <View style={styles.itemBody}>
-              {
-                (isOffline) && <Icon
-                  style={styles.privateIcon}
-                  name="cloud-off"
-                  size={16}
-                  color={stores.themeStore.colors.light_gray_3}
+          <View style={styles.itemBody}>
+            {
+              (isOffline) && <Icon
+                style={styles.privateIcon}
+                name="cloud-off"
+                size={16}
+                color={stores.themeStore.colors.light_gray_3}
+              />
+            }
+            <Headline
+              style={styles.itemHeadline}
+              numberOfLines={1}
+              ellipsizeMode="tail"
+            >
+              { isMuted && <Icon
+                  name="volume-x"
+                  size={18}
+                  style={styles.muteIcon}
+                  color={stores.themeStore.colors.light_red}
                 />
               }
-              <Headline
-                style={styles.itemHeadline}
-                numberOfLines={1}
-                ellipsizeMode="tail"
-              >
-                { isMuted && <Icon
-                    name="volume-x"
-                    size={18}
-                    style={styles.muteIcon}
-                    color={stores.themeStore.colors.light_red}
-                  />
-                }
-                {title}
-              </Headline>
-              <Text style={styles.time}>{time}</Text>
-              <Caption ellipsizeMode="tail" numberOfLines={1}>{caption}</Caption>
-            </View>
+              {title}
+            </Headline>
+            <Text style={styles.time}>{time}</Text>
+            <Caption ellipsizeMode="tail" numberOfLines={1}>{caption}</Caption>
           </View>
           <ActionSheet
             id={id}

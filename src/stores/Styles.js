@@ -1741,7 +1741,7 @@ export default class AppStyles {
       },
       itemBody: {
         paddingTop: 4,
-        marginLeft: 8,
+        paddingLeft: 12,
         flex: 1,
       },
       itemHeadline: {
@@ -1754,10 +1754,6 @@ export default class AppStyles {
       },
       left: {
         paddingTop: 16
-      },
-      right: {
-        justifyContent: 'space-between',
-        flex: 1
       },
       cancelled: {
         fontSize: 16,
