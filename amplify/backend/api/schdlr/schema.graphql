@@ -29,9 +29,6 @@ type User
   bookmarks: [Bookmark]
     @connection(name: "UserBookmarks", sortField: "createdAt", limit: 25)
     @auth(rules: [{allow: owner, ownerField: "id", identityClaim: "email"}])
-  tickets: [Ticket]
-    @connection(name: "UserTickets", sortField: "createdAt", limit: 150)
-    @auth(rules: [{allow: owner, ownerField: "id", identityClaim: "email"}])
   preference: UserPreference! @connection
   state: AppState @connection
   createdAt: String
@@ -161,9 +158,6 @@ type Event
   comments: [Comment] @connection(name: "EventComments", sortField: "createdAt", limit: 20)
   commentsCount: Int
   bookmarks: [Bookmark] @connection(name: "EventBookmarks", sortField: "createdAt", limit: 20)
-  tickets: [Ticket]
-    @connection(name: "EventTickets", sortField: "createdAt", limit: 150)
-    @auth(rules: [{allow: owner, ownerField: "eventAuthorId", identityClaim: "email"}])
   bookmarksCount: Int
   location: String
   geo_point: Location
@@ -317,60 +311,4 @@ type Follow
   schedule: Schedule @connection(name: "Followers", sortField: "createdAt")
   user: User @connection(name: "Followings", sortField: "createdAt")
   createdAt: String
-}
-
-type Ticket
-  @model(subscriptions: null, queries: null)
-  @auth(
-    rules: [
-      {
-        allow: owner,
-        ownerField: "ticketAttendeeId",
-        identityClaim: "email",
-        operations: [create, update, delete]
-      }
-    ])
-{
-  id: ID!
-  ticketId: ID!
-  event: Event @connection(name: "EventTickets")
-  category: TicketCategory @connection(name: "TicketCategory")
-  attendee: User @connection(name: "UserTickets")
-  purchasedAt: String
-  createdAt: String
-  updatedAt: String
-}
-
-type TicketCategory
-  @model(subscriptions: null, queries: null)
-  @auth(
-    rules: [
-      {
-        allow: owner,
-        ownerField: "owner",
-        identityClaim: "email",
-        operations: [create, update, delete]
-      }
-    ])
-{
-  id: ID!
-  name: String!
-  description: String
-  quantity: Int
-  price: String
-  currency: String
-  channel: TicketChannel
-  startAt: String
-  endAt: String
-  minOrder: Int
-  maxOrder: Int
-  tickets: [Ticket] @connection(name: "TicketCategory", sortField: "createdAt")
-  createdAt: String
-  updatedAt: String
-}
-
-enum TicketChannel {
-  Everywhere
-  OnlineOnly
-  AtDoorOnly
 }
