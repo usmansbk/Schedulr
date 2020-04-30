@@ -8,7 +8,7 @@ import {
 } from 'react-native-paper';
 import { inject, observer } from 'mobx-react';
 import Avatar from 'components/common/UserAvatar';
-import Tag from 'components/common/Tag';
+import Badge from 'components/common/Badge';
 import { schedule_events } from 'lib/constants';
 import {
   parseRepeat,
@@ -73,26 +73,24 @@ class Item extends React.Component {
               size={AVATAR_SIZE}
               name={title}
               src={pictureUrl}
+              badge={<Badge status={status} />}
             />
           </View>
-          <View style={styles.right}>
-            <View style={styles.itemBody}>
-              <Headline
-                style={styles.itemHeadline}
-                numberOfLines={1}
-                ellipsizeMode="tail">
-                {title}
-              </Headline>
-              <Text style={styles.time}>{time}</Text>
-              {
-                Boolean(caption) && (
-                  <Caption numberOfLines={1}
-                    ellipsizeMode="tail"
-                  >{caption}</Caption>
-                )
-              }
-              <Tag status={status} /> 
-            </View>
+          <View style={styles.itemBody}>
+            <Headline
+              style={styles.itemHeadline}
+              numberOfLines={1}
+              ellipsizeMode="tail">
+              {title}
+            </Headline>
+            <Text style={styles.time}>{time}</Text>
+            {
+              Boolean(caption) && (
+                <Caption numberOfLines={1}
+                  ellipsizeMode="tail"
+                >{caption}</Caption>
+              )
+            }
           </View>
         </View>
       </TouchableRipple>

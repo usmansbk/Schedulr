@@ -7,7 +7,7 @@ import {
   Headline,
 } from 'react-native-paper';
 import { inject, observer } from 'mobx-react';
-import Tag from 'components/common/Tag';
+import Badge from 'components/common/Badge';
 import Avatar from 'components/common/UserAvatar';
 import Actions from 'components/common/Actions';
 import { bookmarkedEvents } from 'lib/constants';
@@ -91,6 +91,7 @@ class Item extends React.Component {
               name={title}
               src={pictureUrl}
               onPress={this._onPressAvatar}
+              badge={<Badge status={status} />}
             />
           </View>
           <View style={styles.right}>
@@ -109,7 +110,6 @@ class Item extends React.Component {
                   >{caption}</Caption>
                 )
               }
-              <Tag status={status} /> 
             </View>
             <Actions
               id={id}

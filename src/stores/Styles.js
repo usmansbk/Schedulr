@@ -1066,21 +1066,20 @@ export default class AppStyles {
   @computed get scheduleEvents () {
     const colors = this.settings.dark ? dark : light;
     const {
-      ITEM_HEIGHT,
+      ITEM_HEIGHT_SMALL,
       SEPARATOR_HEIGHT,
     } = schedule_events;
 
     return StyleSheet.create({
       contentContainer: {
         backgroundColor: colors.light_gray,
-        marginTop: 1,
         flexGrow: 1
       },
       list: {
         backgroundColor: colors.light_gray,
       },
       footer: {
-        height: ITEM_HEIGHT,
+        height: ITEM_HEIGHT_SMALL,
         justifyContent: 'center',
         alignItems: 'center'
       },
@@ -1113,12 +1112,12 @@ export default class AppStyles {
       },
       itemContent: {
         paddingTop: 4,
-        height: ITEM_HEIGHT,
+        height: ITEM_HEIGHT_SMALL,
         flexDirection: 'row',
       },
       itemBody: {
         paddingTop: 4,
-        marginLeft: 8,
+        paddingLeft: 8,
         flex: 1,
       },
       itemHeadline: {
@@ -1131,10 +1130,6 @@ export default class AppStyles {
       },
       left: {
         paddingTop: 16
-      },
-      right: {
-        justifyContent: 'space-between',
-        flex: 1
       },
       cancelled: {
         fontSize: 16,

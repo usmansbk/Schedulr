@@ -11,20 +11,19 @@ export default class Cover extends React.Component {
         justifyContent: 'center',
         padding: 4,
       }}>
-        <View style={{
-          flexDirection: 'row',
-          justifyContent: 'space-between'
-        }}>
-          <Image defaultSource={require('../../../assets/placeholder.png')} style={{width: 100, height: 100, margin: 4}} source={sources[0]} />
-          <Image defaultSource={require('../../../assets/placeholder.png')} style={{width: 100, height: 100, margin: 4}} source={sources[1]} />
-        </View>
-        <View style={{
-          flexDirection: 'row',
-          justifyContent: 'space-between'
-        }}>
-          <Image defaultSource={require('../../../assets/placeholder.png')} style={{width: 100, height: 100, margin: 4}}source={sources[2]} />
-          <Image defaultSource={require('../../../assets/placeholder.png')} style={{width: 100, height: 100, margin: 4}}source={sources[3]} />
-        </View>
+        {
+          sources.slice(0, 4).map(img => (
+            <Image
+              defaultSource={require('../../../assets/placeholder.png')}
+              style={{
+                width: 100,
+                height: 100,
+                margin: 4
+              }}
+              source={img}
+            />
+          ))
+        }
       </View>
     )
   }
