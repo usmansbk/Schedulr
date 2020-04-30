@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Image } from 'react-native';
+import { Badge } from 'react-native-paper';
 import getImageUrl from 'helpers/getImageUrl';
 
 export default class Cover extends React.Component {
@@ -7,6 +8,7 @@ export default class Cover extends React.Component {
     const { images } = this.props;
     const sources = images.map(img => ({ uri: getImageUrl(img, 320)}))
     return (
+      <>
       <View style={{
         flexDirection: 'row',
         justifyContent: 'center',
@@ -28,6 +30,10 @@ export default class Cover extends React.Component {
           ))
         }
       </View>
+      {
+        Boolean(images.length) && (<Badge style={{margin: 4}}>{images.length}</Badge>)
+      }
+      </>
     )
   }
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Surface, Text, TouchableRipple, Badge } from 'react-native-paper';
+import { Surface, Text, TouchableRipple } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/Feather';
 import { withNavigation } from 'react-navigation';
 import { I18n } from 'aws-amplify';
@@ -27,9 +27,6 @@ class Footer extends React.Component {
                 <Icon name="image" size={24} color={stores.themeStore.colors.gray}/>
               </>
             )
-          }
-          {
-            Boolean(images.length) && (<Badge style={{margin: 4}}>{images.length}</Badge>)
           }
         </Surface>
       </TouchableRipple>
