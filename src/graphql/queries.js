@@ -125,35 +125,6 @@ export const getEvent = `query GetEvent($id: ID!) {
   }
 }
 `;
-export const getComment = `query GetComment($id: ID!) {
-  getComment(id: $id) {
-    id
-    content
-    isOwner
-    attachment {
-      key
-      bucket
-      name
-      size
-      type
-    }
-    author {
-      id
-      name
-      pictureUrl
-      avatar {
-        key
-        bucket
-        name
-      }
-    }
-    event {
-      id
-      commentsCount
-    }
-    createdAt
-  }
-}`;
 export const getCommentThread = `query GetCommentThread($id: ID!, $limit: Int, $nextToken: String) {
   getCommentThread: getComment(id: $id) {
     id
@@ -175,10 +146,6 @@ export const getCommentThread = `query GetCommentThread($id: ID!, $limit: Int, $
         bucket
         name
       }
-    }
-    event {
-      id
-      commentsCount
     }
     schedule {
       id
@@ -206,46 +173,33 @@ export const getCommentThread = `query GetCommentThread($id: ID!, $limit: Int, $
             name
           }
         }
-        event {
-          id
-          commentsCount
-        }
         createdAt
       }
       nextToken
     }
   }
 }`;
-export const getEventComments = `query GetEventComments($id: ID!, $limit: Int, $nextToken: String) {
+export const getEventComments = `query GetEventComments($id: ID!, $limit: Int, $nextToken: String, $filter: ModelCommentFilterInput) {
   getEventComments: getEvent(id: $id) {
     id
     isOwner
     schedule {
       id
     }
-    comments(sortDirection: DESC, limit: $limit, nextToken: $nextToken) @connection(key: "comments") {
+    commentsCount
+    comments(sortDirection: DESC, limit: $limit, nextToken: $nextToken, filter: $filter) @connection(key: "comments") {
       items {
         id
         content
         isOwner
         isOffline
+        repliesCount
         attachment {
           key
           bucket
           name
           size
           type
-        }
-        to {
-          id
-          content
-          attachment {
-            name
-          }
-          author {
-            id
-            name
-          }
         }
         author {
           id
@@ -256,10 +210,6 @@ export const getEventComments = `query GetEventComments($id: ID!, $limit: Int, $
             bucket
             name
           }
-        }
-        event {
-          id
-          commentsCount
         }
         createdAt
       }

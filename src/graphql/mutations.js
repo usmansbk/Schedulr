@@ -406,23 +406,13 @@ export const createComment = `mutation CreateComment($input: CreateCommentInput!
     content
     isOwner
     isOffline
+    repliesCount
     attachment {
       key
       bucket
       name
       size
       type
-    }
-    to {
-      id
-      content
-      attachment {
-        name
-      }
-      author {
-        id
-        name
-      }
     }
     author {
       id
@@ -433,10 +423,6 @@ export const createComment = `mutation CreateComment($input: CreateCommentInput!
         bucket
         name
       }
-    }
-    event {
-      id
-      commentsCount
     }
     createdAt
   }
