@@ -3,12 +3,27 @@ import IconBadge from '../IconBadge';
 import logger from 'config/logger';
 
 export default class Button extends React.Component {
-
-  shouldComponentUpdate = (nextProps) => {
-    return nextProps.isBookmarked !== this.props.isBookmarked
+  state = {
+    loading: false,
+    isBookmarked: false
   };
 
-  _onPress = () => {
+  static getDerivedStateFromProps(props, state) {
+    if ((props.isBookmarked !== state.isBookmarked) && !state.loading) {
+      return {
+        isBookmarked: props.isBookmarked,
+        loading: state.loading
+      };
+    }
+    return null;
+  }
+
+  shouldComponentUpdate = (nextProps, nextState) => {
+    return (nextProps.isBookmarked !== this.props.isBookmarked) ||
+    (nextState.isBookmarked !== this.state.isBookmarked)
+  };
+
+  _onPress = async () => {
     const {
       id,
       stores,
@@ -17,36 +32,44 @@ export default class Button extends React.Component {
       bookmarkEvent,
       bookmarkScheduleId,
     } = this.props;
-    const input = {
-      id: `${stores.appState.userId}-${id}`,
-    };
-    try {
-      if (isBookmarked) {
-        setTimeout(() => {
-          removeBookmark(input, id);
-        }, 0);
-      } else {
-        input.bookmarkEventId = id,
-        input.bookmarkScheduleId = bookmarkScheduleId;
-        setTimeout(() => {
-          bookmarkEvent(input);
-        }, 0);
+    this.setState(
+      prevState => ({
+        loading: true,
+        isBookmarked: !prevState.isBookmarked
+      })
+    );
+    const { loading } = this.state;
+    setTimeout(async () => {
+      if (!loading) {
+        const input = {
+          id: `${stores.appState.userId}-${id}`,
+        };
+        try {
+          if (isBookmarked) {
+            await removeBookmark(input, id);
+          } else {
+            input.bookmarkEventId = id,
+            input.bookmarkScheduleId = bookmarkScheduleId;
+            await bookmarkEvent(input);
+          }
+        } catch (error) {
+          logger.logError(error);
+        }
+        this.setState({ loading: false });
       }
-    } catch (error) {
-      logger.logError(error);
-    }
+    }, 0);
   };
 
   render() {
     const {
       color,
       size,
-      isBookmarked,
       activeColor,
       bookmarksCount
     } = this.props;
+    const { isBookmarked } = this.state;
 
-    const count = (isBookmarked && (bookmarksCount === 1)) ? 0 : bookmarksCount;
+    const count = (this.props.isBookmarked && (bookmarksCount === 1)) ? 0 : bookmarksCount;
 
     return (
       <IconBadge
