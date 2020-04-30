@@ -59,17 +59,17 @@ class Item extends React.Component {
             src={pictureUrl}
             name={name}
             style={styles.itemAvatar}
+            badge={
+              !isOwner && (
+                <UserAvatar
+                  size={SUB_AVATAR_SIZE}
+                  src={authorPictureUrl}
+                  name={authorName}
+                />
+              )
+            }
+            badgeLocation="bottomRight"
           />
-          {
-            !isOwner && (
-              <UserAvatar
-                size={SUB_AVATAR_SIZE}
-                src={authorPictureUrl}
-                name={authorName}
-                style={styles.authorAvatar}
-              />
-            )
-          }
           {
             (isOffline) && <Icon
               style={styles.privateIcon}

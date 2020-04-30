@@ -66,8 +66,8 @@ class Item extends React.Component {
               name={title}
               src={pictureUrl}
               onPress={this._onPressAvatar}
+              badge={<Badge status={status}/>}
             />
-            <Badge status={status}/>
           </View>
           <View style={styles.right}>
             <View style={styles.itemBody}>

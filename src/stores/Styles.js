@@ -1300,7 +1300,6 @@ export default class AppStyles {
 
     const {
       ITEM_HEIGHT,
-      ITEM_HEIGHT_SMALL,
       SEPARATOR_HEIGHT,
     } = bookmarkedEvents;
 
@@ -1359,7 +1358,7 @@ export default class AppStyles {
       },
       itemBody: {
         paddingTop: 4,
-        marginLeft: 8,
+        paddingLeft: 8,
         flex: 1,
       },
       itemHeadline: {
@@ -1374,14 +1373,10 @@ export default class AppStyles {
       left: {
         paddingTop: 16
       },
-      uleft: {
-        justifyContent: 'center',
-        backgroundColor: 'red',
-        paddingTop: 16
-      },
       right: {
         justifyContent: 'space-between',
-        flex: 1
+        flex: 1,
+        paddingLeft: 4
       },
       cancelled: {
         fontSize: 16,
@@ -1632,11 +1627,6 @@ export default class AppStyles {
         top: dp(17),
         right: dp(17),
       },
-      authorAvatar: {
-        position: 'absolute',
-        bottom: dp(8),
-        left: dp(36)
-      }
     });
   }
   
