@@ -35,7 +35,6 @@ export default class AppState {
   @persist('list') @observable mutedEvents = [];
   @persist('list') @observable mutedSchedules = [];
   @persist('list') @observable allowedEvents = [];
-  @persist('list') @observable checkedList = [];
   @persist('object') @observable prefs = {
     showPrivateScheduleAlert: true,
     showAppIntro: true
@@ -57,21 +56,8 @@ export default class AppState {
     this.discoverFilter = id.toLowerCase();
   };
 
-  @action checkItem = id => {
-    if (this.isChecked(id)) {
-      this.checkedList = this.checkedList.filter(currentId => currentId !== id);
-    } else {
-      this.checkedList.push(id);
-    }
-    this._persistState();
-  };
-
   @action setDefaults = () => {
     this.categories = I18n.get('categories');
-  }
-
-  isChecked(id) {
-    return this.checkedList.includes(id);
   }
 
   @action reset() {
@@ -115,12 +101,11 @@ export default class AppState {
       if (isEventAllowed) {
         this.allowedEvents = this.allowedEvents.filter(cid => cid !== id);
       } else {
-        this.allowedEvents = [...this.allowedEvents, id];
+        this.allowedEvents = Array.from(new Set([...this.allowedEvents, id]));
       }
     } else {
-      this.mutedEvents = [...this.mutedEvents, id];
+      this.mutedEvents = Array.from(new Set([...this.mutedEvents, id]));
     }
-
     this.updateExtraData();
     setTimeout(() => {
       this._persistState();
@@ -145,7 +130,7 @@ export default class AppState {
     if (isMuted) {
       this.mutedSchedules = this.mutedSchedules.filter(id => id !== mutedId);
     } else {
-      this.mutedSchedules.push(mutedId);
+      this.mutedSchedules = Array.from(new Set([...this.mutedSchedules, mutedId]));
     }
     this.updateExtraData();
     setTimeout(() => {
@@ -211,16 +196,15 @@ export default class AppState {
     this.mutedEvents = state.mutedEvents || [];
     this.mutedSchedules = state.mutedSchedules || [];
     this.keysToRemove = state.keysToRemove || [];
-    this.checkedList = state.checkedList || [];
   }
 
   isToggled = (id) => this.discoverFilter === id.toLowerCase();
   _persistState = () => {
     persistState({
       id: this.userId,
-      allowedEvents: this.allowedEvents || [],
-      mutedEvents: this.mutedEvents || [],
-      mutedSchedules: this.mutedSchedules || [],
+      // allowedEvents: this.allowedEvents || [],
+      // mutedEvents: this.mutedEvents || [],
+      // mutedSchedules: this.mutedSchedules || [],
       keysToRemove: this.keysToRemove || [],
       checkedList: this.checkedList || []
     });
