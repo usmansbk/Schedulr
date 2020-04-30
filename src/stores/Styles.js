@@ -1590,7 +1590,8 @@ export default class AppStyles {
       },
       itemBody: {
         width: 250,
-        alignItems: 'flex-start'
+        alignItems: 'flex-start',
+        paddingLeft: 8
       },
       itemAvatar: {
         height: AVATAR_SIZE,
