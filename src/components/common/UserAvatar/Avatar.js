@@ -1,4 +1,5 @@
 import React from 'react';
+import { View } from 'react-native';
 import { TouchableRipple } from 'react-native-paper';
 import UserAvatar from 'react-native-user-avatar';
 import { getInitials } from 'lib/utils';
@@ -21,17 +22,26 @@ export default class Avatar extends React.Component {
       onPress,
       size=48,
       style,
-      name
+      name,
+      badge,
+      badgeLocation
     } = this.props;
   
     return (
       <TouchableRipple onPress={onPress} style={style}>
-        <UserAvatar
-          name={getInitials(name)}
-          src={src}
-          size={size}
-          component={this._renderImageComponent}
-        />
+        <View>
+          <UserAvatar
+            name={getInitials(name)}
+            src={src}
+            size={size}
+            component={this._renderImageComponent}
+          />
+          <View style={{
+            position: 'absolute',
+            top: 0,
+            right: 0
+          }}>{badge}</View>
+        </View>
       </TouchableRipple>
     )
   }

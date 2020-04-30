@@ -6,6 +6,7 @@ import { inject, observer } from 'mobx-react';
 import UserAvatar from 'components/common/UserAvatar';
 import Tag from 'components/common/Tag';
 import ActionSheet from 'components/actionsheet/Schedule';
+import Badge from 'components/common/Badge';
 import { schedules } from 'lib/constants';
 
 const { AVATAR_SIZE, SUB_AVATAR_SIZE } = schedules
@@ -61,10 +62,10 @@ class Item extends React.Component {
             style={styles.itemAvatar}
             badge={
               !isOwner && (
-                <UserAvatar
-                  size={SUB_AVATAR_SIZE}
+                <Badge
                   src={authorPictureUrl}
                   name={authorName}
+                  size={20}
                 />
               )
             }

@@ -157,9 +157,7 @@ export const schedule_search = {
 };
 
 export const badge = {
-  HEIGHT: dp(10),
-  WIDTH: dp(10),
-  BORDER_RADIUS: dp(5)
+  SIZE: dp(16),
 };
 
 export const more_list = {
