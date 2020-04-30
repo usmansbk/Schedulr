@@ -1110,12 +1110,6 @@ export default class AppStyles {
       itemContainer: {
         backgroundColor: colors.white,
       },
-      itemContentSmall: {
-        paddingTop: 4,
-        height: ITEM_HEIGHT,
-        flexDirection: 'row',
-        paddingHorizontal: 8,
-      },
       itemContent: {
         paddingTop: 4,
         height: ITEM_HEIGHT,
@@ -1350,13 +1344,7 @@ export default class AppStyles {
       },
       itemContainer: {
         backgroundColor: colors.white,
-        paddingHorizontal: 8,
-      },
-      itemContentSmall: {
-        paddingTop: 4,
-        height: ITEM_HEIGHT_SMALL,
-        flexDirection: 'row',
-        paddingHorizontal: 8,
+        paddingHorizontal: 16,
       },
       itemContent: {
         paddingTop: 4,
@@ -1384,7 +1372,6 @@ export default class AppStyles {
       itemNote: {
         fontSize: 16,
         color: colors.gray,
-        width: 200
       },
       left: {
         paddingTop: 16
@@ -1453,7 +1440,6 @@ export default class AppStyles {
 
     const {
       ITEM_HEIGHT,
-      ITEM_HEIGHT_SMALL,
       SEPARATOR_HEIGHT,
     } = searchEvents;
 
@@ -1496,12 +1482,6 @@ export default class AppStyles {
       },
       itemContainer: {
         backgroundColor: colors.white,
-      },
-      itemContentSmall: {
-        paddingTop: 4,
-        height: ITEM_HEIGHT_SMALL,
-        flexDirection: 'row',
-        paddingHorizontal: 8,
       },
       itemContent: {
         paddingTop: 4,
@@ -1756,17 +1736,11 @@ export default class AppStyles {
       },
       itemContainer: {
         backgroundColor: colors.white,
-        paddingHorizontal: 8 
-      },
-      itemContentSmall: {
-        paddingTop: 4,
-        height: ITEM_HEIGHT_SMALL,
-        flexDirection: 'row',
-        paddingHorizontal: 8,
+        paddingHorizontal: 16 
       },
       itemContent: {
         paddingTop: 4,
-        height: ITEM_HEIGHT,
+        height: ITEM_HEIGHT_SMALL,
         flexDirection: 'row',
         paddingHorizontal: 8,
       },
@@ -1782,7 +1756,6 @@ export default class AppStyles {
       itemNote: {
         fontSize: 16,
         color: colors.gray,
-        width: 200
       },
       left: {
         paddingTop: 16

@@ -117,7 +117,7 @@ class Item extends React.Component {
         style={styles.itemContainer}
         onLongPress={this._onLongPress}
       >
-        <View style={styles.itemContentSmall}>
+        <View style={styles.itemContent}>
           <View style={styles.left}>
             <Avatar
               size={events.AVATAR_SIZE}
