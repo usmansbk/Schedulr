@@ -37,7 +37,7 @@ class DateCountdown extends React.Component {
       color: stores.themeStore.colors.gray,
     };
 
-    let color = stores.themeStore.colors.gray;
+    let color = stores.themeStore.colors.tint;
     let until;
 
     if (status === 'ongoing') {
