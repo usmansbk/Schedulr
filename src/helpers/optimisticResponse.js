@@ -265,37 +265,7 @@ function createComment(input, typename) {
     }`,
     id: `User:${stores.appState.userId}`
   });
-  const event = client.readFragment({
-    fragment: gql`fragment createCommentEvent on Event {
-      id
-      commentsCount
-    }`,
-    id: `Event:${input.commentEventId}`
-  });
-  let to = null;
-  if (input.commentToId) {
-    to = client.readFragment({
-      fragment: gql`fragment toComment on Comment {    
-        id
-        content
-        attachment {
-          name
-        }
-        author {
-          id
-          name
-        }
-      }`,
-      id: `${typename}:${input.commentToId}`
-    });
-  }
 
-  const count = event.commentsCount;
-  if (typeof count === 'number') {
-    event.commentsCount = count + 1;
-  } else {
-    event.commentsCount = 1;
-  }
   let attachment = null;
   if (input.attachment) {
     attachment = input.attachment.map(file => {
@@ -311,9 +281,9 @@ function createComment(input, typename) {
     attachment,
     isOwner: true,
     isOffline: true,
-    to,
+    isReply: Boolean(input.commentToId),
+    repliesCount: 0,
     author,
-    event,
     createdAt: moment().toISOString(),
     __typename: typename
   };

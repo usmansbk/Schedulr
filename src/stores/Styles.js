@@ -1350,6 +1350,7 @@ export default class AppStyles {
       },
       itemContainer: {
         backgroundColor: colors.white,
+        paddingHorizontal: 8,
       },
       itemContentSmall: {
         paddingTop: 4,
@@ -1603,6 +1604,7 @@ export default class AppStyles {
       },
       itemContainer: {
         backgroundColor: colors.white,
+        paddingHorizontal: 8,
       },
       itemContent: {
         height: ITEM_HEIGHT,
@@ -1754,6 +1756,7 @@ export default class AppStyles {
       },
       itemContainer: {
         backgroundColor: colors.white,
+        paddingHorizontal: 8 
       },
       itemContentSmall: {
         paddingTop: 4,
