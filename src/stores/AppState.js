@@ -80,10 +80,7 @@ export default class AppState {
   }
 
   @action addCustomType = (category) => {
-    const hasType = this.categories.findIndex(item => item.toLowerCase() === category.toLowerCase());
-    if (hasType === -1) {
-      this.categories.push(category);
-    }
+    this.categories = Array.from(new Set([...this.categories, category]));
   };
 
   @action removeCustomType = (category) => {
@@ -177,7 +174,7 @@ export default class AppState {
   }
 
   @action removeKeysFromStorage(keys=[]) {
-    const queue = this.keysToRemove.concat(keys);
+    const queue = Array.from(new Set(this.keysToRemove.concat(keys)));
     const removed = [];
     queue.forEach(key => {
       Storage.remove(key).then(() => {
@@ -202,9 +199,9 @@ export default class AppState {
   _persistState = () => {
     persistState({
       id: this.userId,
-      // allowedEvents: this.allowedEvents || [],
-      // mutedEvents: this.mutedEvents || [],
-      // mutedSchedules: this.mutedSchedules || [],
+      allowedEvents: this.allowedEvents || [],
+      mutedEvents: this.mutedEvents || [],
+      mutedSchedules: this.mutedSchedules || [],
       keysToRemove: this.keysToRemove || [],
       checkedList: this.checkedList || []
     });
