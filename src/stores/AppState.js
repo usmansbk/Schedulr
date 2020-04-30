@@ -41,10 +41,7 @@ export default class AppState {
   };
   @persist('list') @observable categories =  [];
 
-  @action updateExtraData = () => {
-    this.extraData += 1;
-    console.log('done', this.extraData)
-  };
+  @action updateExtraData = () => this.extraData += 1;
   @action setUserId = id => this.userId = id;
   @action updateLastSyncTimestamp = () => this.lastSyncTimestamp = moment().unix();
   @action setLoginState = state => this.loggingIn = Boolean(state);
@@ -106,19 +103,10 @@ export default class AppState {
     } else {
       this.mutedEvents = Array.from(new Set([...this.mutedEvents, id]));
     }
-    console.log('mutedEvents', this.mutedEvents);
-    console.log('mutedSchedules', this.mutedSchedules);
-    console.log('allowedEvents', this.allowedEvents);
     this.updateExtraData();
     setTimeout(() => {
       this._persistState();
     }, 0);
-  };
-  
-  @action destroy = () => {
-    this.mutedEvents = [];
-    this.mutedSchedules = [];
-    this.allowedEvents = []
   };
 
   isEventMuted = (id, scheduleId) => {
@@ -127,7 +115,6 @@ export default class AppState {
     const isEventAllowed = this.allowedEvents.includes(id);
 
     const isMuted = isEventMuted || (isScheduleMuted && !isEventAllowed);
-    console.log(id, isMuted);
     return isMuted;
   };
 

@@ -55,14 +55,13 @@ class List extends React.Component {
   };
 
   shouldComponentUpdate = (nextProps, nextState) => {
-    return (
+    const should = (
       this.props.loading !== nextProps.loading ||
       this.state.sections !== nextState.sections ||
       this.state.loadingMore !== nextState.loadingMore ||
-      this.state.loadingPrev !== nextState.loadingPrev ||
-      this.state.afterDate !== nextState.afterDate ||
-      this.state.beforeDate !== nextState.beforeDate
+      this.state.loadingPrev !== nextState.loadingPrev
     );
+    return should;
   };
 
   _keyExtractor = (item) => item.id + item.ref_date;
@@ -293,6 +292,7 @@ class List extends React.Component {
   render() {
     const { stores, loading } = this.props;
     const { sections } = this.state;
+
     return (
       <SectionList
         ref={this.listRef}
