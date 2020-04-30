@@ -784,6 +784,7 @@ export default class AppStyles {
       },
       itemContainer: {
         backgroundColor: colors.white,
+        paddingHorizontal: 8
       },
       itemContent: {
         height: ITEM_HEIGHT,
@@ -868,9 +869,9 @@ export default class AppStyles {
       itemContainer: {
         height: ITEM_HEIGHT,
         backgroundColor: colors.white,
+        paddingHorizontal: 16
       },
       itemContent: {
-        marginHorizontal: 8,
         flexDirection: 'row',
         flex: 1
       },
@@ -926,7 +927,6 @@ export default class AppStyles {
 
   @computed get notifications () {
     const colors = this.settings.dark ? dark : light;
-    const SIZE = 10;
 
     return StyleSheet.create({
       list: {
@@ -1109,12 +1109,12 @@ export default class AppStyles {
       },
       itemContainer: {
         backgroundColor: colors.white,
+        paddingHorizontal: 16,
       },
       itemContent: {
         paddingTop: 4,
         height: ITEM_HEIGHT,
         flexDirection: 'row',
-        paddingHorizontal: 8,
       },
       itemBody: {
         paddingTop: 4,
@@ -1350,7 +1350,6 @@ export default class AppStyles {
         paddingTop: 4,
         height: ITEM_HEIGHT,
         flexDirection: 'row',
-        paddingHorizontal: 8,
       },
       unavailableItemContent: {
         paddingTop: 4,
@@ -1482,12 +1481,12 @@ export default class AppStyles {
       },
       itemContainer: {
         backgroundColor: colors.white,
+        paddingHorizontal: 16,
       },
       itemContent: {
         paddingTop: 4,
         height: ITEM_HEIGHT,
         flexDirection: 'row',
-        paddingHorizontal: 8,
       },
       itemBody: {
         paddingTop: 4,
@@ -1584,11 +1583,10 @@ export default class AppStyles {
       },
       itemContainer: {
         backgroundColor: colors.white,
-        paddingHorizontal: 8,
+        paddingHorizontal: 16,
       },
       itemContent: {
         height: ITEM_HEIGHT,
-        paddingHorizontal: 8,
         alignItems: 'center',
         flexDirection: 'row',
       },
@@ -1741,7 +1739,6 @@ export default class AppStyles {
         paddingTop: 4,
         height: ITEM_HEIGHT_SMALL,
         flexDirection: 'row',
-        paddingHorizontal: 8,
       },
       itemBody: {
         paddingTop: 4,
