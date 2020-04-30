@@ -193,7 +193,6 @@ export const getEventComments = `query GetEventComments($id: ID!, $limit: Int, $
         content
         isOwner
         isOffline
-        repliesCount
         attachment {
           key
           bucket
