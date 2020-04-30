@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, TextInput } from 'react-native';
-import { IconButton, Text, Button, ProgressBar, ActivityIndicator } from 'react-native-paper';
+import { IconButton, ProgressBar, ActivityIndicator } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/Feather';
 import DocumentPicker from 'react-native-document-picker';
 import { inject, observer } from 'mobx-react';

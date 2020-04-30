@@ -35,7 +35,6 @@ class Item extends React.Component {
       topic,
       pictureUrl,
       isClosed,
-      isPublic,
       authorPictureUrl,
       authorName,
       stores,
@@ -72,9 +71,9 @@ class Item extends React.Component {
             )
           }
           {
-            (!isPublic || isOffline) && <Icon
+            (isOffline) && <Icon
               style={styles.privateIcon}
-              name={isOffline ? "cloud-off" : "eye-off"}
+              name="cloud-off"
               size={16}
               color={stores.themeStore.colors.light_gray_3}
             />

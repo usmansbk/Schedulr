@@ -1187,7 +1187,6 @@ export default class AppStyles {
       itemContainer: {
         flex: 1,
         flexDirection: 'row',
-        paddingHorizontal: 8,
         paddingVertical: 4,
         backgroundColor: colors.bg,
       },
@@ -1198,7 +1197,7 @@ export default class AppStyles {
         justifyContent: 'space-between',
       },
       itemLeft: {
-        marginRight: 4,
+        marginHorizontal: 8,
         paddingTop: 10,
       },
       itemRight: {
@@ -1217,25 +1216,11 @@ export default class AppStyles {
       footer: {
         flexDirection: 'row',
         justifyContent: 'flex-end',
-        marginTop: 4
+        // marginTop: 2
       },
       actions: {
-        justifyContent: 'flex-end',
+        // justifyContent: 'flex-end',
         flexDirection: 'row',
-      },
-      replyBox: {
-        backgroundColor: colors.light_gray,
-        flexDirection: 'row',
-        justifyContent: 'center',
-        padding:4
-      },
-      replyContent: {
-        flex: 1,
-        justifyContent: 'center',
-      },
-      replyName: {
-        color: colors.gray,
-        fontWeight: 'bold',
       },
       empty: {
         flex: 1,
