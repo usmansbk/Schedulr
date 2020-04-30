@@ -69,7 +69,7 @@ class Item extends React.Component {
               ellipsizeMode="middle"
               style={styles.authorName}
             >
-              {authorName} {BULLET} <Caption>{timeAgo}</Caption>
+              {authorName} <Caption>{BULLET} {timeAgo}</Caption>
             </Text>
           </View>
           <View style={styles.itemContent}>  
