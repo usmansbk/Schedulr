@@ -65,7 +65,6 @@ class Item extends React.Component {
                 <Badge
                   src={authorPictureUrl}
                   name={authorName}
-                  size={20}
                 />
               )
             }
