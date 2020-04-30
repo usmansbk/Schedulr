@@ -1128,7 +1128,6 @@ export default class AppStyles {
       itemNote: {
         fontSize: 16,
         color: colors.gray,
-        width: 200
       },
       left: {
         paddingTop: 16
@@ -1500,7 +1499,6 @@ export default class AppStyles {
       itemNote: {
         fontSize: 16,
         color: colors.gray,
-        width: 200
       },
       left: {
         paddingTop: 16
