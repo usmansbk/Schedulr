@@ -35,6 +35,7 @@ class EventDetails extends React.Component {
    (nextState.display !== this.state.display) ||
    (nextProps.event.updatedAt !== this.props.event.updatedAt) ||
    (nextProps.event.isBookmarked !== this.props.event.isBookmarked) ||
+   (nextProps.event.isOffline !== this.props.event.isOffline) ||
    (nextProps.event.commentsCount !== this.props.event.commentsCount)
  );
 

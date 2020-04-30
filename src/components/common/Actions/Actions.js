@@ -10,6 +10,7 @@ const DEFAULT_FONT_SIZE = 22;
 export default class Actions extends React.Component {
 
   shouldComponentUpdate = (nextProps) => (
+    (this.props.isOffline !== nextProps.isOffline) ||
     (this.props.date !== nextProps.date) ||
     (this.props.title !== nextProps.title) ||
     (this.props.commentsCount !== nextProps.commentsCount) ||
