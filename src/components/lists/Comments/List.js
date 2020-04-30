@@ -85,7 +85,6 @@ class List extends React.Component {
       loading,
       comments,
       stores,
-      id
     } = this.props;
     const { fetchingMore } = this.state;
 
