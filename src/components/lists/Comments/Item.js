@@ -66,11 +66,11 @@ class Item extends React.Component {
           <View style={styles.itemHeader}>
             <Text
               numberOfLines={1}
-              ellipsizeMode="tail"
+              ellipsizeMode="middle"
               style={styles.authorName}
-              onPress={this._navigateToProfile}
-            >{authorName}</Text>
-            <Caption>{timeAgo}</Caption>
+            >
+              {authorName} <Caption>{timeAgo}</Caption>
+            </Text>
           </View>
           <View style={styles.itemContent}>  
             {

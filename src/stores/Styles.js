@@ -1193,9 +1193,9 @@ export default class AppStyles {
       },
       linkStyle: { color: '#2980b9' },
       itemHeader: {
-        flexDirection: 'row',
+        // flexDirection: 'row',
+
         justifyContent: 'space-between',
-        alignItems: 'center'
       },
       itemLeft: {
         marginRight: 4,
@@ -2022,7 +2022,8 @@ export default class AppStyles {
         fontFamily: 'sans-serif-bold',
         textAlign: 'center',
         color: 'white',
-        paddingBottom: 10
+        paddingBottom: 10,
+        paddingHorizontal: 12,
       },
       count: {
         color: colors.black,
