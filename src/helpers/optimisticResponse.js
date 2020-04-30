@@ -11,7 +11,7 @@ import {
   COMMENT_TYPE,
   FOLLOW_TYPE
 } from 'lib/constants';
-import { getScheduleEvents, getEventComments } from 'api/queries';
+import { getScheduleEvents, /*getEventComments*/ } from 'api/queries';
 import { deleteBookmark as deleteBookmarkQuery } from 'api/mutations';
 import logger from 'config/logger';
 
@@ -23,11 +23,11 @@ const eventConnection = {
   __typename: "ModelEventConnection"
 };
 
-const commentConnection = {
-  items: [],
-  nextToken: null,
-  __typename: "ModelCommentConnection"
-};
+// const commentConnection = {
+//   items: [],
+//   nextToken: null,
+//   __typename: "ModelCommentConnection"
+// };
 
 export default function buildOptimisticResponse({
   input,
@@ -117,7 +117,7 @@ function createEvent(input, typename) {
   const scheduleFragment = gql`fragment createEventSchedule on Schedule {
     id
     name
-    eventsCount
+    # eventsCount
     isFollowing
   }`;
   const fragmentId = `Schedule:${input.eventScheduleId}`;
@@ -125,56 +125,56 @@ function createEvent(input, typename) {
     fragment: scheduleFragment,
     id: fragmentId
   });
-  let updatedSchedule = null;
-  if (schedule) {
-    const count = schedule.eventsCount;
-    if (typeof count === 'number') {
-      schedule.eventsCount = count + 1;
-    } else {
-      schedule.eventsCount = 1;
-    }
-    try {
-      client.writeFragment({
-        fragment: scheduleFragment,
-        id: fragmentId,
-        data: schedule
-      });
-    } catch(error) {
-      logger.logError(error);
-    }
-    updatedSchedule = {
-      __typename: SCHEDULE_TYPE,
-      id: schedule.id,
-      name: schedule.name,
-      isFollowing: false
-    };
-  }
+  // let updatedSchedule = null;
+  // if (schedule) {
+  //   const count = schedule.eventsCount;
+  //   if (typeof count === 'number') {
+  //     schedule.eventsCount = count + 1;
+  //   } else {
+  //     schedule.eventsCount = 1;
+  //   }
+  //   try {
+  //     client.writeFragment({
+  //       fragment: scheduleFragment,
+  //       id: fragmentId,
+  //       data: schedule
+  //     });
+  //   } catch(error) {
+  //     logger.logError(error);
+  //   }
+  //   updatedSchedule = {
+  //     __typename: SCHEDULE_TYPE,
+  //     id: schedule.id,
+  //     name: schedule.name,
+  //     isFollowing: false
+  //   };
+  // }
   // ======================================================================
 
   // ============================ Create comments =================================
-  try {
-    client.writeQuery({
-      query: gql(getEventComments),
-      variables: {
-        id: input.id
-      },
-      data: {
-        getEventComments: {
-          __typename: EVENT_TYPE,
-          id: input.id,
-          isOwner: true,
-          schedule: {
-            __typename: SCHEDULE_TYPE,
-            id: input.eventScheduleId
-          },
-          commentsCount: 0,
-          comments: commentConnection
-        }
-      }
-    });
-  } catch(error) {
-    logger.logError(error);
-  }
+  // try {
+  //   client.writeQuery({
+  //     query: gql(getEventComments),
+  //     variables: {
+  //       id: input.id
+  //     },
+  //     data: {
+  //       getEventComments: {
+  //         __typename: EVENT_TYPE,
+  //         id: input.id,
+  //         isOwner: true,
+  //         schedule: {
+  //           __typename: SCHEDULE_TYPE,
+  //           id: input.eventScheduleId
+  //         },
+  //         commentsCount: 0,
+  //         comments: commentConnection
+  //       }
+  //     }
+  //   });
+  // } catch(error) {
+  //   logger.logError(error);
+  // }
   // ==============================================================================
   const createdAt = moment().toISOString();
 
@@ -188,16 +188,17 @@ function createEvent(input, typename) {
     cancelledDates: null,
     banner: null,
     author,
-    schedule: updatedSchedule,
+    // schedule: updatedSchedule,
+    schedule,
     bookmarksCount: 0,
     commentsCount: 0,
     createdAt,
     updatedAt: createdAt,
   };
 
-  delete event.eventScheduleId;
-  delete event.location;
-  delete event.geo_point;
+  // delete event.eventScheduleId;
+  // delete event.location;
+  // delete event.geo_point;
 
   return event;
 }

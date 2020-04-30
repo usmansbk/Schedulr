@@ -31,7 +31,7 @@ export default inject('stores')(observer(
     status,
     startAt,
     endAt,
-    isCancelled,
+    isOffline,
     isBookmarked,
     authorId,
     isAuth,
@@ -173,6 +173,7 @@ export default inject('stores')(observer(
         activeColor={stores.themeStore.colors.like}
         date={date}
         navigateToComments={navigateToComments}
+        isOffline={isOffline}
       />
     </View>
   )

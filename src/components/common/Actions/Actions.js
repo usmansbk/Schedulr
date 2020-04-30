@@ -29,6 +29,7 @@ export default class Actions extends React.Component {
       date,
       title,
       isBookmarked,
+      isOffline,
       bookmarksCount,
       bookmarkScheduleId,
       commentsCount,
@@ -57,6 +58,7 @@ export default class Actions extends React.Component {
         <CommentButton
           id={id}
           commentsCount={commentsCount}
+          disabled={isOffline}
           size={FONT_SIZE}
           color={color}
           onPress={this._onPressCommentButton}

@@ -1,4 +1,4 @@
-import { Dimensions, PixelRatio } from 'react-native';
+import { Dimensions, PixelRatio, StyleSheet } from 'react-native';
 
 /**
  * Make sure every component is scaled to
@@ -11,7 +11,8 @@ export const dp = (val) => {
   return val * fontScale;
 };
 
-const thinLine = 1 / PixelRatio.get();
+// const thinLine = 1 / PixelRatio.get();
+const thinLine = StyleSheet.hairlineWidth;
 
 export const ALL_FILTER = '';
 

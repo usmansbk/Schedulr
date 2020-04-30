@@ -68,6 +68,7 @@ class List extends Component {
     isOwner,
     isConcluded,
     isBookmarked,
+    isOffline,
     bookmarksCount,
     commentsCount,
     updatedAt
@@ -85,6 +86,7 @@ class List extends Component {
     bookmarksCount={bookmarksCount}
     commentsCount={commentsCount}
     isBookmarked={isBookmarked}
+    isOffline={isOffline}
     category={category}
     recurrence={recurrence}
     isAuth={isPublic || isOwner || (schedule && schedule.isFollowing)}

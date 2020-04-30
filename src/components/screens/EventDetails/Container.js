@@ -80,6 +80,7 @@ class EventDetails extends React.Component {
       isBookmarked,
       cancelledDates,
       isPublic,
+      isOffline,
       banner,
       author
     } = event;
@@ -189,6 +190,7 @@ class EventDetails extends React.Component {
           category={category}
           address={venue}
           isPublic={isPublic}
+          isOffline={isOffline}
           publicSchedule={schedule && schedule.isPublic}
           scheduleName={schedule && schedule.name}
           scheduleId={schedule && schedule.id}

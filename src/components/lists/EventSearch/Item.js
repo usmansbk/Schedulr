@@ -48,6 +48,7 @@ class Item extends React.Component {
       endAt,
       allDay,
       isAuth,
+      isOffline,
       banner,
       isBookmarked,
       bookmarksCount,
@@ -116,6 +117,7 @@ class Item extends React.Component {
               address={address}
               isBookmarked={isBookmarked}
               isAuth={isAuth}
+              isOffline={isOffline}
               bookmarksCount={bookmarksCount}
               commentsCount={commentsCount}
               color={stores.themeStore.colors.light_gray_3}

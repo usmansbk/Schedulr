@@ -100,6 +100,7 @@ export const getEvent = `query GetEvent($id: ID!) {
     until
     forever
     isPublic
+    isOffline
     isOwner
     isCancelled
     isBookmarked
