@@ -10,7 +10,7 @@ import Hyperlink from 'react-native-hyperlink';
 import { inject, observer } from 'mobx-react';
 import Icon from 'react-native-vector-icons/Feather';
 import UserAvatar from 'components/common/UserAvatar';
-import { comments_list } from 'lib/constants';
+import { comments_list, BULLET } from 'lib/constants';
 import Attachment from 'components/common/Attachment';
 
 const { AVATAR_SIZE } = comments_list;
@@ -69,7 +69,7 @@ class Item extends React.Component {
               ellipsizeMode="middle"
               style={styles.authorName}
             >
-              {authorName} <Caption>{timeAgo}</Caption>
+              {authorName} {BULLET} <Caption>{timeAgo}</Caption>
             </Text>
           </View>
           <View style={styles.itemContent}>  
