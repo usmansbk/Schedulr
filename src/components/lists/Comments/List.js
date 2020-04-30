@@ -51,20 +51,9 @@ class List extends React.Component {
       />
     );
   }
-  _renderHeader = () => <Header 
-    navigateToProfile={this.props.navigateToProfile}
-    navigateToThread={this.props.navigateToThread}
-    navigateToViewEmbed={this.props.navigateToViewEmbed}
-    onDelete={this.props.onDelete}
-    handleReply={this.props.handleReply}
-    threadId={this.props.threadId} />;
+  _renderHeader = () => <Header />;
   _renderSeparator = () => <Separator />;
-  _renderFooter = () => <Footer
-    // // hide={!this.props.comments.length}
-    // loading={this.props.loading && this.state.fetchingMore}
-    // hasMore={this.props.nextToken}
-    // onPress={this._onEndReached}
-  />;
+  _renderFooter = () => <Footer />;
   _renderEmpty = () => <Empty error={this.props.error} loading={this.props.loading} />;
   scrollDown = () => {
     if (this.props.comments.length) {
