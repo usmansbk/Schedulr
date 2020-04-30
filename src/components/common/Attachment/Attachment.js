@@ -9,7 +9,8 @@ export default class Attachment extends React.Component {
     return (
       <View>
         {
-          Boolean(attachment) && attachment.map(file => <Media navigateToViewEmbed={navigateToViewEmbed} file={file} />)
+          Boolean(attachment) &&
+            attachment.map(file => <Media navigateToViewEmbed={navigateToViewEmbed} file={file} />)
         }
       </View>
     )

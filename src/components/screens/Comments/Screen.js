@@ -18,7 +18,7 @@ class Screen extends React.Component {
 
   _handleSubmit = async (message, uploads) => {
     await this.props.onSubmit(message, uploads);
-    this.scrollTop();
+    this.scrollDown();
   };
 
   _handleDelete = (id, keys) => {
@@ -74,7 +74,7 @@ class Screen extends React.Component {
           id={id}
           threadId={threadId}
           loading={loading}
-          comments={comments}
+          comments={comments.reverse()}
           nextToken={nextToken}
           onRefresh={onRefresh}
           handleReply={handleReply}

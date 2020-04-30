@@ -5,7 +5,6 @@ import {
   Paragraph,
   Caption,
   IconButton,
-  TouchableRipple
 } from 'react-native-paper';
 import Hyperlink from 'react-native-hyperlink';
 import { inject, observer } from 'mobx-react';
@@ -13,8 +12,6 @@ import Icon from 'react-native-vector-icons/Feather';
 import UserAvatar from 'components/common/UserAvatar';
 import { comments_list } from 'lib/constants';
 import Attachment from 'components/common/Attachment';
-import MediaIcon from 'components/common/MediaIcon';
-import { calendarTime } from 'lib/time';
 
 const { AVATAR_SIZE } = comments_list;
 
@@ -40,32 +37,18 @@ class Item extends React.Component {
       }));
     }
   };
-  shouldComponentUpdate = (nextProps) => {
-    return (
-      nextProps.content !== this.props.content ||
-      nextProps.authorPictureUrl !== this.props.authorPictureUrl ||
-      nextProps.toCommentContent !== this.props.toCommentContent ||
-      nextProps.toAttachment !== this.props.toAttachment ||
-      nextProps.checked !== this.props.checked
-    );
-  };
+  shouldComponentUpdate = nextProps => this.props.timeAgo !== nextProps.timeAgo;
 
   render() {
     const {
       authorName,
       content,
-      createdAt,
       isOwner,
       attachment,
       authorPictureUrl,
-      toCommentAuthorName,
-      toCommentContent,
-      toAttachment,
       stores,
-      checked
+      timeAgo,
     } = this.props;
-
-    const timeAgo= calendarTime(createdAt);
     
     const styles = stores.appStyles.commentsList;
     const colors = stores.themeStore.colors;
@@ -89,32 +72,11 @@ class Item extends React.Component {
             >{authorName}</Text>
             <Caption>{timeAgo}</Caption>
           </View>
-          {
-            (Boolean(toCommentContent) || Boolean(toAttachment)) && (
-              <TouchableRipple onPress={this._navigateToThread}>
-                <View style={styles.replyBox}>
-                  {
-                    Boolean(toAttachment && toAttachment.length) && (
-                      <MediaIcon style={{width: 24, height: 24}} />
-                    )
-                  }
-                  <View style={styles.replyContent}>
-                    <Text
-                      numberOfLines={1}
-                      ellipsizeMode="tail"
-                      style={styles.replyName}
-                    >{toCommentAuthorName}</Text>
-                    <Caption numberOfLines={3} ellipsizeMode="tail">{toCommentContent || toAttachment[0].name}</Caption>
-                  </View>
-                </View>
-              </TouchableRipple>
-            )
-          }
           <View style={styles.itemContent}>  
             {
               Boolean(content) && (
                 <Hyperlink linkStyle={styles.linkStyle} linkDefault={true}>
-                  <Paragraph style={[styles.message, checked ? { textDecorationLine: 'line-through'} : {}]}>
+                  <Paragraph style={styles.message}>
                     {content}
                   </Paragraph>
                 </Hyperlink>
@@ -132,7 +94,7 @@ class Item extends React.Component {
                 {isOwner && <IconButton
                   color={colors.light_gray_3}
                   icon={() => <Icon
-                    size={18}
+                    size={16}
                     name="trash-2"
                     color={colors.light_gray_3}
                   />}
@@ -140,7 +102,7 @@ class Item extends React.Component {
                 />}
                 <IconButton
                   icon={() => <Icon
-                    size={18}
+                    size={16}
                     name="feather"
                     color={colors.light_gray_3}
                   />}

@@ -10,9 +10,9 @@ import {
   schedule_events,
   comments_list,
   event_search,
+  more_list,
   schedule_search,
   WIDTH,
-  MEDIUM_RECTANGLE,
   BANNER,
   dp
 } from 'lib/constants';
@@ -27,7 +27,7 @@ export default class AppStyles {
 
     return StyleSheet.create({
       view: {
-        marginVertical: 8,
+        // marginVertical: 8,
         borderWidth: 1,
         borderColor: colors.light_gray,
         justifyContent: 'center',
@@ -1181,14 +1181,15 @@ export default class AppStyles {
       contentContainer: {
         flexGrow: 1,
         margin: 1,
-        backgroundColor: colors.light_gray
+        paddingHorizontal: 8,
+        backgroundColor: colors.bg
       },
       itemContainer: {
         flex: 1,
         flexDirection: 'row',
         paddingHorizontal: 8,
         paddingVertical: 4,
-        backgroundColor: colors.white,
+        backgroundColor: colors.bg,
       },
       linkStyle: { color: '#2980b9' },
       itemHeader: {
@@ -1216,7 +1217,7 @@ export default class AppStyles {
       footer: {
         flexDirection: 'row',
         justifyContent: 'flex-end',
-        marginTop: 8
+        marginTop: 4
       },
       actions: {
         justifyContent: 'flex-end',
@@ -1775,16 +1776,6 @@ export default class AppStyles {
         flexDirection: 'row',
         paddingHorizontal: 8,
       },
-      ad: {
-        height: ITEM_HEIGHT_SMALL,
-        justifyContent: 'center',
-        alignItems: 'center'
-      },
-      mediumRect: {
-        height: MEDIUM_RECTANGLE,
-        justifyContent: 'center',
-        alignItems: 'center'
-      },
       itemContent: {
         paddingTop: 4,
         height: ITEM_HEIGHT,
@@ -1849,8 +1840,10 @@ export default class AppStyles {
 
   @computed get moreList () {
     const colors = this.settings.dark ? dark : light;
-    const SEPARATOR_HEIGHT = 1;
-    const HEADER_HEIGHT = dp(100);
+    const {
+      SEPARATOR_HEIGHT,
+      HEADER_HEIGHT
+    } = more_list;
 
     return StyleSheet.create({
       container: {

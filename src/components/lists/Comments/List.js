@@ -7,6 +7,7 @@ import Empty from './Empty';
 import Header from './Header';
 import Separator from './Separator';
 import getImageUrl from 'helpers/getImageUrl';
+import { calendarTime } from 'lib/time';
 
 class List extends React.Component {
   state = {
@@ -40,10 +41,8 @@ class List extends React.Component {
         attachment={attachment}
         createdAt={createdAt}
         commentEventId={event.id}
+        timeAgo={calendarTime(createdAt)}
         toCommentId={to && to.id}
-        toCommentAuthorName={to && to.author.name}
-        toCommentContent={to && to.content}
-        toAttachment={to && to.attachment}
         navigateToProfile={this.props.navigateToProfile}
         navigateToThread={this.props.navigateToThread}
         navigateToViewEmbed={this.props.navigateToViewEmbed}
@@ -61,10 +60,11 @@ class List extends React.Component {
     threadId={this.props.threadId} />;
   _renderSeparator = () => <Separator />;
   _renderFooter = () => <Footer
-    hide={!this.props.comments.length}
-    loading={this.props.loading && this.state.fetchingMore}
-    hasMore={this.props.nextToken}
-    onPress={this._onEndReached}/>;
+    // // hide={!this.props.comments.length}
+    // loading={this.props.loading && this.state.fetchingMore}
+    // hasMore={this.props.nextToken}
+    // onPress={this._onEndReached}
+  />;
   _renderEmpty = () => <Empty error={this.props.error} loading={this.props.loading} />;
   scrollDown = () => {
     if (this.props.comments.length) {
