@@ -1648,7 +1648,6 @@ export default class AppStyles {
     const colors = this.settings.dark ? dark : light;
     
     const {
-      ITEM_HEIGHT,
       ITEM_HEIGHT_SMALL,
       SEPARATOR_HEIGHT,
       SECTION_HEADER_HEIGHT,
