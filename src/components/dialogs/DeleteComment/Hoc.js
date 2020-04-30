@@ -15,7 +15,9 @@ export default graphql(gql(deleteComment), {
         }
       },
       update: (cache, { data: { deleteComment } }) => (
-        updateApolloCache(cache, deleteComment, DELETE)
+        updateApolloCache(cache, deleteComment, DELETE, {
+          commentEventId: ownProps.commentEventId
+        })
       ),
       optimisticResponse: buildOptimisticResponse({
         input: { id: ownProps.id, eventId: ownProps.commentEventId },

@@ -24,7 +24,6 @@ class List extends React.Component {
       content,
       attachment,
       author,
-      event,
       to,
       isOwner,
       createdAt,
@@ -40,7 +39,7 @@ class List extends React.Component {
         content={content}
         attachment={attachment}
         createdAt={createdAt}
-        commentEventId={event.id}
+        commentEventId={this.props.id}
         timeAgo={calendarTime(createdAt)}
         toCommentId={to && to.id}
         navigateToProfile={this.props.navigateToProfile}
@@ -85,7 +84,8 @@ class List extends React.Component {
     const {
       loading,
       comments,
-      stores
+      stores,
+      id
     } = this.props;
     const { fetchingMore } = this.state;
 

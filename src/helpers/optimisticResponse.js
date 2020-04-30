@@ -281,8 +281,6 @@ function createComment(input, typename) {
     attachment,
     isOwner: true,
     isOffline: true,
-    isReply: Boolean(input.commentToId),
-    repliesCount: 0,
     author,
     createdAt: moment().toISOString(),
     __typename: typename

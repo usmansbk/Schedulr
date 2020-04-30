@@ -406,7 +406,6 @@ export const createComment = `mutation CreateComment($input: CreateCommentInput!
     content
     isOwner
     isOffline
-    repliesCount
     attachment {
       key
       bucket

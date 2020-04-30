@@ -43,7 +43,7 @@ function updateData({
   }
 }
 
-export default function(cache, result, operationType) {
+export default function(cache, result, operationType, extraData) {
   if (result) {
     switch(result.__typename) {
       case EVENT_TYPE:
@@ -86,7 +86,7 @@ export default function(cache, result, operationType) {
           updatedItem: result,
           rootField: 'getEventComments',
           connectionField: 'comments',
-          id: result.event.id,
+          id: extraData.commentEventId,
           cacheUpdateQuery: getEventComments
         });
         break;

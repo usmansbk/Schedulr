@@ -70,7 +70,14 @@ export default inject("stores")(observer(
             input
           },
           update: (cache, { data: { createComment } }) => (
-            updateApolloCache(cache, createComment, ADD)
+            updateApolloCache(
+              cache,
+              createComment,
+              ADD,
+              {
+                commentEventId: ownProps.navigation.getParam('id')
+              }
+            )
           ),
           optimisticResponse: buildOptimisticResponse({
             input,
