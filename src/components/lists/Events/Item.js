@@ -95,7 +95,7 @@ class Item extends React.Component {
     const status = getStatus({
       isCancelled,
       cancelledDates,
-      startAt,
+      startAt: isExtended ? ref_date : startAt,
       endAt
     });
     const duration= getDuration(startAt, endAt, allDay);
