@@ -37,8 +37,8 @@ export default class Avatar extends React.Component {
           />
           <View style={{
             position: 'absolute',
-            top: 0,
-            right: 0
+            top: 1,
+            right: 1
           }}>{badge}</View>
         </View>
       </TouchableRipple>
