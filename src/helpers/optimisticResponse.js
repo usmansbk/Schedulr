@@ -133,11 +133,15 @@ function createEvent(input, typename) {
     } else {
       schedule.eventsCount = 1;
     }
-    client.writeFragment({
-      fragment: scheduleFragment,
-      id: fragmentId,
-      data: schedule
-    });
+    try {
+      client.writeFragment({
+        fragment: scheduleFragment,
+        id: fragmentId,
+        data: schedule
+      });
+    } catch(error) {
+      logger.logError(error);
+    }
     updatedSchedule = {
       __typename: SCHEDULE_TYPE,
       id: schedule.id,
@@ -163,6 +167,7 @@ function createEvent(input, typename) {
             __typename: SCHEDULE_TYPE,
             id: input.eventScheduleId
           },
+          commentsCount: 0,
           comments: commentConnection
         }
       }
@@ -189,8 +194,11 @@ function createEvent(input, typename) {
     createdAt,
     updatedAt: createdAt,
   };
+
   delete event.eventScheduleId;
   delete event.location;
+  delete event.geo_point;
+
   return event;
 }
 
