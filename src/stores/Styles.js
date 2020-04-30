@@ -1066,7 +1066,7 @@ export default class AppStyles {
   @computed get scheduleEvents () {
     const colors = this.settings.dark ? dark : light;
     const {
-      ITEM_HEIGHT_SMALL,
+      ITEM_HEIGHT,
       SEPARATOR_HEIGHT,
     } = schedule_events;
 
@@ -1079,7 +1079,7 @@ export default class AppStyles {
         backgroundColor: colors.light_gray,
       },
       footer: {
-        height: ITEM_HEIGHT_SMALL,
+        height: ITEM_HEIGHT,
         justifyContent: 'center',
         alignItems: 'center'
       },
@@ -1112,7 +1112,7 @@ export default class AppStyles {
       },
       itemContent: {
         paddingTop: 4,
-        height: ITEM_HEIGHT_SMALL,
+        height: ITEM_HEIGHT,
         flexDirection: 'row',
       },
       itemBody: {
@@ -1624,13 +1624,12 @@ export default class AppStyles {
       },
     });
   }
-  
 
   @computed get eventsList () {
     const colors = this.settings.dark ? dark : light;
     
     const {
-      ITEM_HEIGHT_SMALL,
+      ITEM_HEIGHT,
       SEPARATOR_HEIGHT,
       SECTION_HEADER_HEIGHT,
       SECTION_FOOTER_HEIGHT,
@@ -1721,7 +1720,7 @@ export default class AppStyles {
       },
       itemContent: {
         paddingTop: 4,
-        height: ITEM_HEIGHT_SMALL,
+        height: ITEM_HEIGHT,
         flexDirection: 'row',
       },
       itemBody: {

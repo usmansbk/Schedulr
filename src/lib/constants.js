@@ -60,7 +60,6 @@ export const chips = {
 export const events = {
   AVATAR_SIZE : dp(54),
   ITEM_HEIGHT : dp(100),
-  ITEM_HEIGHT_SMALL : dp(100),
   SEPARATOR_HEIGHT : dp(thinLine),
   SECTION_HEADER_HEIGHT : dp(70),
   SECTION_FOOTER_HEIGHT : dp(40),
@@ -86,8 +85,7 @@ export const discover = {
 // list/bookmarkedEvents
 export const bookmarkedEvents = {
   AVATAR_SIZE : dp(54),
-  ITEM_HEIGHT : dp(136),
-  ITEM_HEIGHT_SMALL : dp(102),
+  ITEM_HEIGHT: dp(136),
   SEPARATOR_HEIGHT : dp(thinLine),
   FOOTER_HEIGHT : dp(80),
 };
@@ -95,8 +93,7 @@ export const bookmarkedEvents = {
 // list/bookmarkedEvents
 export const searchEvents = {
   AVATAR_SIZE : dp(54),
-  ITEM_HEIGHT : dp(148),
-  ITEM_HEIGHT_SMALL : dp(102),
+  ITEM_HEIGHT: dp(136),
   SEPARATOR_HEIGHT : dp(thinLine),
   FOOTER_HEIGHT : dp(80),
 };
@@ -125,8 +122,7 @@ export const notifications_list = {
 // list/scheduleEvents
 export const schedule_events = {
   AVATAR_SIZE : dp(54),
-  ITEM_HEIGHT : dp(122),
-  ITEM_HEIGHT_SMALL : dp(102),
+  ITEM_HEIGHT : dp(102),
   SEPARATOR_HEIGHT : dp(thinLine),
   FOOTER_HEIGHT : dp(80),
 };
