@@ -1,5 +1,6 @@
 import React from 'react';
-import { StatusBar, Image, View, StyleSheet } from 'react-native';
+import { StatusBar, View, StyleSheet } from 'react-native';
+import Image from 'react-native-fast-image';
 import { Text, Headline } from 'react-native-paper';
 import AppIntroSlider from 'react-native-app-intro-slider';
 import { inject, observer } from 'mobx-react';

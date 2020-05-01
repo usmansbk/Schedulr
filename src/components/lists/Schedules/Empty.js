@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, Image } from 'react-native';
+import { View } from 'react-native';
+import Image from 'react-native-fast-image';
 import { Headline, Caption } from 'react-native-paper';
 import { I18n } from 'aws-amplify';
 import { inject, observer } from 'mobx-react';
