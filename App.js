@@ -4,7 +4,7 @@ import { ApolloProvider } from 'react-apollo';
 import { Provider as MobxProvider } from 'mobx-react';
 import { Rehydrated } from 'aws-appsync-react';
 import SplashScreen from 'react-native-splash-screen';
-import { enableScreens } from 'react-native-screens';
+// import { enableScreens } from 'react-native-screens';
 import { observer } from 'mobx-react';
 import Amplify from 'aws-amplify';
 import AppContainer from './src/App';
@@ -18,7 +18,7 @@ import i18n from 'config/i18n';
 import stores from 'stores';
 import logger from 'config/logger';
 
-enableScreens();
+// enableScreens();
 
 console.disableYellowBox = true;
 Amplify.configure(aws_config);
