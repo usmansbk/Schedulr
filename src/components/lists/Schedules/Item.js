@@ -9,7 +9,7 @@ import ActionSheet from 'components/actionsheet/Schedule';
 import Badge from 'components/common/Badge';
 import { schedules } from 'lib/constants';
 
-const { AVATAR_SIZE, SUB_AVATAR_SIZE } = schedules
+const { AVATAR_SIZE } = schedules
 
 class Item extends React.Component {
   _onPress = () => this.props.onPressItem(this.props.id);
@@ -68,7 +68,6 @@ class Item extends React.Component {
                 />
               )
             }
-            badgeLocation="bottomRight"
           />
           {
             (isOffline) && <Icon

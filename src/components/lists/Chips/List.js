@@ -10,7 +10,6 @@ const { ITEM_HEIGHT } = chips;
 class List extends React.Component {
   static defaultProps = {
     data: [],
-    filters: []
   };
 
   _getItemLayout = (_, index) => (
@@ -36,7 +35,6 @@ class List extends React.Component {
 
   render() {
     const { stores, data } = this.props;
-    const blacklist = I18n.get('blacklist');
     return (
       <FlatList
         horizontal

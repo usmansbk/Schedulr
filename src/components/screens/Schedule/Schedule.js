@@ -4,7 +4,6 @@ import { inject, observer } from 'mobx-react';
 import Icon from 'react-native-vector-icons/Feather';
 import { I18n } from 'aws-amplify';
 import Fab from 'components/common/Fab';
-import Loading from 'components/common/Loading';
 import Error from 'components/common/Error';
 import Suspense from 'components/common/Suspense';
 import { SCHEDULE_CLOSED } from 'lib/constants';
@@ -17,7 +16,7 @@ class Schedule extends React.Component {
     display: false
   };
 
-  shouldComponentUpdate = (nextProps) => nextProps.navigation.isFocused();
+  shouldComponentUpdate = (nextProps) => nextProps.isFocused;
 
   componentDidMount = () => {
     setTimeout(() => this.setState({
@@ -54,9 +53,8 @@ class Schedule extends React.Component {
       stores
     } = this.props;
 
-    if (loading && !schedule) return <Loading loading={loading} />;
     if (error && !schedule) return <Error onRefresh={onRefresh} loading={loading} />;
-    if (!schedule) return <Error
+    if (!loading && !schedule) return <Error
       notFound
       message={I18n.get("ERROR_404")}
       caption={I18n.get("ERROR_404_caption")}
@@ -70,7 +68,7 @@ class Schedule extends React.Component {
       isFollowing,
       isPublic,
       status,
-    } = schedule;
+    } = schedule || {};
 
     const styles = stores.appStyles.styles;
     const colors = stores.themeStore.colors;
@@ -122,6 +120,8 @@ class Schedule extends React.Component {
           navigation={navigation}
           isAuth={isAuth}
           isOwner={isOwner}
+          loading={loading}
+          error={error}
         />
         {
           !(Boolean(error) && this.events.length) && isOwner && (status !== SCHEDULE_CLOSED ) && (
