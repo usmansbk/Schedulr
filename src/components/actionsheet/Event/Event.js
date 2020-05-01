@@ -1,5 +1,4 @@
 import React from 'react';
-import { InteractionManager } from 'react-native';
 import ActionSheet from 'react-native-actionsheet';
 import { I18n } from 'aws-amplify';
 import { inject, observer } from 'mobx-react';
@@ -72,13 +71,13 @@ class EventAction extends React.Component {
   _handleActionSheet = (index) => {
     switch (index) {
       case 0:
-        InteractionManager.runAfterInteractions(this._handleShare);
+        setTimeout(this._handleShare, 0);
         break;
       case 1:
-        InteractionManager.runAfterInteractions(this._toggleMute);
+        setTimeout(this._toggleMute, 0);
         break;
       case 2:
-        InteractionManager.runAfterInteractions(this._handleBookmark);
+        setTimeout(this._handleBookmark, 0);
         break;
     }
   };

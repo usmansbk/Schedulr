@@ -14,20 +14,28 @@ class Events extends React.Component {
     mutedEvents: [],
     allowedEvents: []
   };
-
-  shouldComponentUpdate = (nextProps) => {
-    return (
-      nextProps.isFocused && (
-        (nextProps.data !== this.props.data) ||
-        (nextProps.calendarEvents.length !== this.props.calendarEvents.length)
-      )
-    );
+  state = {
+    data: null,
+    events: []
   };
+
+  static getDerivedStateFromProps(props, state) {
+    if (props.data !== state.data) {
+      console.log('state changed');
+      return {
+        data: props.data,
+        events: mergeEvents(props.data, props.calendarEvents)
+      };
+    }
+    return null;
+  }
+
+  shouldComponentUpdate = (nextProps) => nextProps.isFocused;
   
   componentDidUpdate = () => {
     const { mutedEvents, allowedEvents } = this.props;
     InteractionManager.runAfterInteractions(() => schdlAll(
-      this.events,
+      this.state.events,
       mutedEvents,
       allowedEvents
     ));
@@ -38,10 +46,6 @@ class Events extends React.Component {
       eventScheduleId : uuidv5(this.props.id, uuidv5.DNS)
     });
   };
-
-  get events() {
-    return mergeEvents(this.props.data, this.props.calendarEvents, false);
-  }
 
   _sync = () => {
     if (this.props.isConnected) {
@@ -54,7 +58,7 @@ class Events extends React.Component {
 
   componentDidMount = () => {
     if (!this.props.loading && this.props.isConnected) {
-      this._sync();
+      InteractionManager.runAfterInteractions(this._sync);
     }
   };
 
@@ -63,11 +67,10 @@ class Events extends React.Component {
       <>
         <List
           isAuth
-          events={this.events}
+          events={this.state.events}
           navigation={this.props.navigation}
           loading={this.props.loading}
           fetchMore={this._sync}
-          updateListEveryMinute={new Date().getMinutes()}
         />
         <FAB
           icon="edit-2"

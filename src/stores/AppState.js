@@ -104,9 +104,6 @@ export default class AppState {
       this.mutedEvents = Array.from(new Set([...this.mutedEvents, id]));
     }
     this.updateExtraData();
-    setTimeout(() => {
-      this._persistState();
-    }, 0);
   };
 
   isEventMuted = (id, scheduleId) => {
@@ -125,9 +122,6 @@ export default class AppState {
       this.mutedSchedules = Array.from(new Set([...this.mutedSchedules, mutedId]));
     }
     this.updateExtraData();
-    setTimeout(() => {
-      this._persistState();
-    }, 0);
   };
 
   @action onChangeText (searchText) {
@@ -191,6 +185,7 @@ export default class AppState {
   }
 
   isToggled = (id) => this.discoverFilter === id.toLowerCase();
+
   _persistState = () => {
     persistState({
       id: this.userId,
