@@ -1,5 +1,4 @@
 import memoize from 'lodash.memoize';
-import emojiRegex from 'emoji-regex';
 import moment from 'moment';
 import shortid from 'shortid';
 import { processEvents } from 'lib/calendr';
@@ -48,19 +47,6 @@ export function eventsChanged(prev, next=[]) {
     return (nextVal.updatedAt !== prevVal.updatedAt) ||
       (nextVal.isBookmarked !== prevVal.isBookmarked);
   });
-}
-
-export function getInitials(name) {
-  if (!name) return '‍👤';
-  const emojiMatch = emojiRegex().exec(name);
-  let avatarName;
-  if (emojiMatch) {
-    avatarName = emojiMatch[0];
-  } else {
-    const [ first, second ] = name.split(' ');
-    avatarName = `${first[0]} ${second ? second[0] : ''}`.toUpperCase();
-  }
-  return avatarName;
 }
 
 export function mergeEvents(data, calendarEvents=[]) {

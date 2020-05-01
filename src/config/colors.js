@@ -1,3 +1,14 @@
+export const avatarColors = [
+  '#8e44ad', //Wisteria
+  '#2980b9', // belize hole
+  '#27ae60', // nephritis,
+  '#2c3e50', // midnight blue
+  '#16a085', // green sea
+  '#e67e22', // carrot
+  '#d35400', // pumpkin
+  '#2ecc71' // emeral
+];
+
 export const light = {
   tint: '#84939e',
   nav: '#e3f1fc',
