@@ -29,14 +29,14 @@ class ScheduleAction extends React.Component {
   _handleActionSheet = (index) => {
     switch (index) {
       case 0:
-        this._handleShare();
+        setTimeout(this._handleShare, 0);
         break;
       case 1:
-        this._toggleMute();
+        setTimeout(this._toggleMute, 0);
         break;
       case 2: {
         if (this.props.isFollowing) {
-          this._unfollowSchedule();
+          setTimeout(this._unfollowSchedule, 0);
         }
         break;
       }

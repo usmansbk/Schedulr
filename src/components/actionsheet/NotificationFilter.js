@@ -42,7 +42,9 @@ class FilterAction extends React.Component {
         break;
     }
     if (filter) {
-      this.props.stores.notificationsStore.handleFilterAction(filter);
+      setTimeout(() => {
+        this.props.stores.notificationsStore.handleFilterAction(filter);
+      }, 0);
     }
   }
 
