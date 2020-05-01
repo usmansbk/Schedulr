@@ -12,7 +12,7 @@ export default class Schedules extends React.Component {
     return this._mergeAllSchedules(this.props.data)
   }
 
-  shouldComponentUpdate = (nextProps) => nextProps.navigation.isFocused();
+  shouldComponentUpdate = (nextProps) => nextProps.isFocused;
 
   _navigateToNewSchedule = () => this.props.navigation.navigate('NewSchedule');
   

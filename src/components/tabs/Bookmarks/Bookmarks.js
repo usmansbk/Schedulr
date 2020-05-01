@@ -3,6 +3,8 @@ import List from 'components/lists/Bookmarks';
 import logger from 'config/logger';
 
 export default class Bookmarks extends React.Component {
+  shouldComponentUpdate = nextProps => nextProps.isFocused;
+
   componentDidMount = () => logger.log('bookmarks');
 
   _processEvents = (data) => {
