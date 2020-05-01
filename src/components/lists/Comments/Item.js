@@ -60,6 +60,9 @@ class Item extends React.Component {
             src={authorPictureUrl}
             size={AVATAR_SIZE}
             onPress={this._navigateToProfile}
+            style={{
+              padding: 8
+            }}
           />
         </View>
         <View style={styles.itemRight}>

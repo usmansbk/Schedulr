@@ -1175,18 +1175,14 @@ export default class AppStyles {
       itemContainer: {
         flex: 1,
         flexDirection: 'row',
-        paddingVertical: 4,
         backgroundColor: colors.bg,
       },
       linkStyle: { color: '#2980b9' },
       itemHeader: {
-        // flexDirection: 'row',
-
         justifyContent: 'space-between',
       },
       itemLeft: {
         marginHorizontal: 8,
-        paddingTop: 10,
       },
       itemRight: {
         flex: 1,
