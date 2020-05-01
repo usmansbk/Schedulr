@@ -52,8 +52,10 @@ class ListHoc extends React.Component {
         isOwner={isOwner}
         loading={loading}
         error={error}
-        onRef={this._eventsListRef}
+        // onRef={this._eventsListRef}
+        ref={this._eventsListRef}
         events={events}
+        navigation={navigation}
         listType="schedule"
         handleScroll={this._onScroll}
       /> 
