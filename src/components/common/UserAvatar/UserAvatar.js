@@ -29,7 +29,7 @@ export default ({
             source={{uri: src}}
           />
         ) : (
-          <Title adjustsFontSizeToFit>{initials}</Title>
+          <Title style={{ color: 'white'}} adjustsFontSizeToFit>{initials}</Title>
         )
       }
     </View>
