@@ -44,6 +44,8 @@ export default inject('stores')(observer(
     navigateToUser,
     navigateToBookmarks,
     navigateToBanner,
+    onCountDownFinish,
+    countDownReset,
     cardView,
     stores,
   }) => (
@@ -56,6 +58,8 @@ export default inject('stores')(observer(
                   startAt={startAt}
                   endAt={endAt}
                   status={status}
+                  onFinish={onCountDownFinish}
+                  key={countDownReset}
                 />
               )
             }

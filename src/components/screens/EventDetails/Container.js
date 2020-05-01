@@ -16,7 +16,8 @@ const FONT_SIZE = 24;
 
 class EventDetails extends React.Component {
   state = {
-    display: false 
+    display: false,
+    countDownExpire: 0
   };
   _handleCancel = () => {
     const isRecurring = this.props.event.recurrence !== ONE_TIME_EVENT;
@@ -31,8 +32,15 @@ class EventDetails extends React.Component {
    logger.log('event_details_screen');
  };
 
+ _onCountDownFinish = () => {
+    this.setState(prev => ({
+      countDownExpire: prev.countDownExpire + 1
+    }));
+  };
+
  shouldComponentUpdate = (nextProps, nextState) => (
    (nextState.display !== this.state.display) ||
+   (nextState.countDownExpire !== this.state.countDownExpire) ||
    (nextProps.event.updatedAt !== this.props.event.updatedAt) ||
    (nextProps.event.isBookmarked !== this.props.event.isBookmarked) ||
    (nextProps.event.isOffline !== this.props.event.isOffline) ||
@@ -216,6 +224,8 @@ class EventDetails extends React.Component {
           navigateToUser={navigateToUser}
           navigateToBookmarks={navigateToBookmarks}
           navigateToBanner={navigateToBanner}
+          onCountDownFinish={this._onCountDownFinish}
+          countDownReset={this.state.countDownExpire}
           cardView={cardView}
         />
       </>

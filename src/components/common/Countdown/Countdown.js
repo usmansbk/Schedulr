@@ -9,6 +9,9 @@ import snackbar from 'helpers/snackbar';
 
 const { SIZE } = countdown;
 class DateCountdown extends React.Component {
+  _onFinish = () => {
+    this.props.onFinish && this.props.onFinish();
+  };
 
   _timeAgo = () => {
     const start = this.props.startAt;
@@ -63,8 +66,8 @@ class DateCountdown extends React.Component {
         digitTxtStyle={digitTxtStyle}
         timeLabelStyle={timeLabelStyle}
         timeLabels={I18n.get('timeLabels')}
+        onFinish={this._onFinish}
         size={SIZE}
-        key={status}
       />
     );
   }
