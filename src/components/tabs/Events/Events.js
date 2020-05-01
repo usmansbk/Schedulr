@@ -69,6 +69,7 @@ class Events extends React.Component {
           events={this.state.events}
           loading={this.props.loading}
           fetchMore={this._sync}
+          navigation={this.props.navigation}
         />
         <FAB
           icon="edit-2"
