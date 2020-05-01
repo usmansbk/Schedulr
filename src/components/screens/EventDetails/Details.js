@@ -59,7 +59,7 @@ export default inject('stores')(observer(
                   endAt={endAt}
                   status={status}
                   onFinish={onCountDownFinish}
-                  key={countDownReset}
+                  key={status+countDownReset}
                 />
               )
             }
