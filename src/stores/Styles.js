@@ -1715,17 +1715,18 @@ export default class AppStyles {
         height: SEPARATOR_HEIGHT,
       },
       itemContainer: {
+        height: ITEM_HEIGHT,
         backgroundColor: colors.white,
-        paddingHorizontal: 16 
+        paddingLeft: 12,
+        paddingRight: 16 
       },
       itemContent: {
         paddingTop: 4,
-        height: ITEM_HEIGHT,
         flexDirection: 'row',
       },
       itemBody: {
         paddingTop: 4,
-        paddingLeft: 12,
+        paddingLeft: 8,
         flex: 1,
       },
       itemHeadline: {
@@ -1737,7 +1738,9 @@ export default class AppStyles {
         color: colors.gray,
       },
       left: {
-        paddingTop: 16
+        padding: 8,
+        justifyContent: 'center',
+        alignItems: 'center'
       },
       cancelled: {
         fontSize: 16,

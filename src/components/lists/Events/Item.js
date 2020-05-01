@@ -118,15 +118,14 @@ class Item extends React.Component {
         onLongPress={this._onLongPress}
       >
         <View style={styles.itemContent}>
-          <View style={styles.left}>
-            <Avatar
-              size={events.AVATAR_SIZE}
-              name={title}
-              src={pictureUrl}
-              onPress={this._navigateToBanner}
-              badge={<Badge status={status} />}
-            />
-          </View>
+          <Avatar
+            size={events.AVATAR_SIZE}
+            name={title}
+            src={pictureUrl}
+            style={styles.left}
+            onPress={this._navigateToBanner}
+            badge={<Badge status={status} />}
+          />
           <View style={styles.itemBody}>
             {
               (isOffline) && <Icon
