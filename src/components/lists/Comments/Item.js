@@ -103,14 +103,18 @@ class Item extends React.Component {
                   />}
                   onPress={this._onDelete}
                 />}
-                <IconButton
-                  icon={() => <Icon
-                    size={16}
-                    name="feather"
-                    color={colors.light_gray_3}
-                  />}
-                  onPress={this._onReply}
-                />
+                {
+                  false && (
+                    <IconButton
+                      icon={() => <Icon
+                        size={16}
+                        name="feather"
+                        color={colors.light_gray_3}
+                      />}
+                      onPress={this._onReply}
+                    />
+                  )
+                }
               </View>
             </View>
           </View>
