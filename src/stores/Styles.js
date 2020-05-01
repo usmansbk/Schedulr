@@ -1340,7 +1340,7 @@ export default class AppStyles {
         paddingHorizontal: 16,
       },
       itemContent: {
-        paddingTop: 4,
+        paddingVertical: 4,
         height: ITEM_HEIGHT,
         flexDirection: 'row',
       },
@@ -1366,7 +1366,10 @@ export default class AppStyles {
         color: colors.gray,
       },
       left: {
-        paddingTop: 16
+        padding: 8,
+        paddingTop: 16,
+        alignItems: 'center',
+        // justifyContent: 'center'
       },
       right: {
         justifyContent: 'space-between',
@@ -1473,7 +1476,7 @@ export default class AppStyles {
         paddingHorizontal: 16,
       },
       itemContent: {
-        paddingTop: 4,
+        paddingVertical: 4,
         height: ITEM_HEIGHT,
         flexDirection: 'row',
       },
@@ -1491,6 +1494,7 @@ export default class AppStyles {
         color: colors.gray,
       },
       left: {
+        padding: 8,
         paddingTop: 16
       },
       right: {
@@ -1584,9 +1588,9 @@ export default class AppStyles {
         paddingLeft: 8
       },
       itemAvatar: {
-        height: AVATAR_SIZE,
-        width: AVATAR_SIZE,
-        marginRight: 8
+        padding: 8,
+        justifyContent: 'center',
+        alignItems: 'center'
       },
       itemName: {
         fontFamily: 'sans-serif-bold',
