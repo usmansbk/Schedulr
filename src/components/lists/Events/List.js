@@ -33,10 +33,12 @@ const DAYS_PER_PAGE = 3;
 
 class List extends React.Component {
 
-  constructor(props) {
-    super(props);
-    this.listRef = React.createRef();
-  }
+  static defaultProps = {
+    loading: false,
+    events: [],
+    onRefresh: () => null,
+  };
+
   state = {
     events: [],
     loadingMore: false,
@@ -46,11 +48,12 @@ class List extends React.Component {
     beforeDate: null
   };
 
-  static defaultProps = {
-    loading: false,
-    events: [],
-    onRefresh: () => null,
-  };
+  constructor(props) {
+    super(props);
+    this.listRef = React.createRef();
+  }
+
+  componentDidMount = () => this._processEvents();
 
   shouldComponentUpdate = (nextProps, nextState) => {
     return (
@@ -61,7 +64,12 @@ class List extends React.Component {
     );
   };
 
+  componentWillReceiveProps() {
+    setTimeout(this._processEvents, 0);
+  }
+
   _keyExtractor = (item) => item.id + item.ref_date;
+
   _renderHeader = () => (
     (this.state.sections.length && this.props.isAuth) ?
     <Header
@@ -72,6 +80,7 @@ class List extends React.Component {
     />
     : null
   );
+  
   _renderFooter = () => (
     this.state.sections.length ?
     <Footer
@@ -82,18 +91,80 @@ class List extends React.Component {
     />
     : null
   );
+
   _renderEmptyList = () => <Empty
     error={this.props.error && !this.state.events.length}
     loading={this.props.loading}
     onRefresh={this.props.onRefresh}
     isAuth={this.props.isAuth}
   />;
+
   _renderSeparator = () => <Separator />;
+
   _renderSectionHeader = ({ section }) => <SectionHeader onPress={this._onPressSectionHeader} section={section} />;
+
   _renderSectionFooter = ({ section }) => <SectionFooter section={section} />;
+
+  _renderItem = ({ item }) => {
+      const {
+        __typename,
+        id,
+        title,
+        category,
+        isCancelled,
+        cancelledDates,
+        startAt,
+        endAt,
+        updatedAt,
+        recurrence,
+        banner,
+        venue,
+        schedule,
+        allDay,
+        isBookmarked,
+        bookmarksCount,
+        isOwner,
+        isOffline,
+        ref_date,
+        isExtended
+      } = item;
+
+      return (<Item
+        id={id}
+        title={title}
+        startAt={startAt}
+        endAt={endAt}
+        ref_date={ref_date}
+        category={category}
+        isCancelled={isCancelled}
+        cancelledDates={cancelledDates}
+        recurrence={recurrence}
+        banner={banner}
+        isExtended={isExtended}
+        allDay={allDay}
+        address={venue}
+        isMuted={this.props.stores.appState.isEventMuted(id, schedule.id)}
+        eventScheduleId={schedule && schedule.id}
+        isBookmarked={isBookmarked}
+        bookmarksCount={bookmarksCount}
+        isOwner={isOwner}
+        isOffline={isOffline}
+        onPressItem={this._onPressItem}
+        onPressCommentButton={this._onPressCommentItem}
+        navigateToBanner={this._navigateToBanner}
+        navigateToCalendarEvent={this._navigateToCalendarEvent}
+        __typename={__typename}
+        updatedAt={updatedAt}
+      />
+    );
+  };
+
   _onPressItem = (id, refStartAt, refEndAt) => this.props.navigation.navigate('EventDetails', { id, refStartAt, refEndAt });
+
   _navigateToBanner = (id) => this.props.navigation.navigate('Banner', { id });
+
   _navigateToCalendarEvent = (id) => this.props.navigation.navigate('CalendarEvent', { id });
+
   _onPressSectionHeader = (targetDate) => {
     let id = uuidv5(this.props.stores.appState.userId, uuidv5.DNS);
     if (this.props.isOwner && this.props.id) {
@@ -153,7 +224,6 @@ class List extends React.Component {
     }
   };
 
-
   _processEvents = () => {
     const events = this.props.events;
     if (eventsChanged(events, this.state.events)) {
@@ -189,29 +259,6 @@ class List extends React.Component {
     this.loadPreviousEvents(this.state.events);
   };
 
-  static getDerivedStateFromProps(props, state) {
-    let events = props.events;
-    if (eventsChanged(state.events, events)) {
-      const today = moment().startOf('day').toISOString();
-      const yesterday = moment().subtract(1, 'day').endOf('day').toISOString();
-      let sections = generateNextEvents(events, yesterday, DAYS_PER_PAGE);
-      const todaysSection = sections.find(section => section.title === today);
-      if (!todaysSection) {
-        sections = [{ data: [], title: today }].concat(sections);
-      }
-      const afterDate = moment(sections[sections.length- 1].title).toISOString();
-      const beforeDate = moment(sections[0].title).toISOString();
-
-      return {
-        sections,
-        afterDate,
-        beforeDate,
-        events
-      };
-    }
-    return null;
-  }
-
   _onScroll = (event) => {
     this.props.handleScroll && this.props.handleScroll(event.nativeEvent.contentOffset.y)
   };
@@ -225,56 +272,6 @@ class List extends React.Component {
       });
     }
   };
-
-  _renderItem = ({ item: {
-    __typename,
-    id,
-    title,
-    category,
-    isCancelled,
-    cancelledDates,
-    startAt,
-    endAt,
-    updatedAt,
-    recurrence,
-    banner,
-    venue,
-    schedule,
-    allDay,
-    isBookmarked,
-    bookmarksCount,
-    isOwner,
-    isOffline,
-    ref_date,
-    isExtended
-  }}) => (<Item
-    id={id}
-    title={title}
-    startAt={startAt}
-    endAt={endAt}
-    ref_date={ref_date}
-    category={category}
-    isCancelled={isCancelled}
-    cancelledDates={cancelledDates}
-    recurrence={recurrence}
-    banner={banner}
-    isExtended={isExtended}
-    allDay={allDay}
-    address={venue}
-    isMuted={this.props.stores.appState.isEventMuted(id, schedule.id)}
-    eventScheduleId={schedule && schedule.id}
-    isBookmarked={isBookmarked}
-    bookmarksCount={bookmarksCount}
-    isOwner={isOwner}
-    isOffline={isOffline}
-    onPressItem={this._onPressItem}
-    onPressCommentButton={this._onPressCommentItem}
-    navigateToBanner={this._navigateToBanner}
-    navigateToCalendarEvent={this._navigateToCalendarEvent}
-    __typename={__typename}
-    updatedAt={updatedAt}
-  />);
-
 
   _getItemLayout = sectionListGetItemLayout({
     getItemHeight: () => ITEM_HEIGHT,
