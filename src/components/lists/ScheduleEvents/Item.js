@@ -68,14 +68,13 @@ class Item extends React.Component {
         style={styles.itemContainer}
       >
         <View style={styles.itemContent}>
-          <View style={styles.left}>
-            <Avatar
-              size={AVATAR_SIZE}
-              name={title}
-              src={pictureUrl}
-              badge={<Badge status={status} />}
-            />
-          </View>
+          <Avatar
+            size={AVATAR_SIZE}
+            name={title}
+            src={pictureUrl}
+            badge={<Badge status={status} />}
+            style={styles.left}
+          />
           <View style={styles.itemBody}>
             <Headline
               style={styles.itemHeadline}

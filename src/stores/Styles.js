@@ -1129,6 +1129,7 @@ export default class AppStyles {
         color: colors.gray,
       },
       left: {
+        padding: 8,
         paddingTop: 16
       },
       cancelled: {
