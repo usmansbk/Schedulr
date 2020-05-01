@@ -47,9 +47,6 @@ class EventDetails extends React.Component {
    (nextProps.event.commentsCount !== this.props.event.commentsCount)
  );
 
- componentWillUnmount = () => clearTimeout(this.displayTimer);
-
-
   render() {
     if (!this.state.display) return <Suspense/>;
     const {
