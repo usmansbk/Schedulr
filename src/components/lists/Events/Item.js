@@ -125,6 +125,7 @@ class Item extends React.Component {
             style={styles.left}
             onPress={this._navigateToBanner}
             badge={<Badge status={status} />}
+            key={status}
           />
           <View style={styles.itemBody}>
             {

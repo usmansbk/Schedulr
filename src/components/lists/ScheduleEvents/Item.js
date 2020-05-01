@@ -74,6 +74,7 @@ class Item extends React.Component {
             src={pictureUrl}
             badge={<Badge status={status} />}
             style={styles.left}
+            key={status}
           />
           <View style={styles.itemBody}>
             <Headline
