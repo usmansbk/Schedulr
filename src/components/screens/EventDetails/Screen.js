@@ -1,5 +1,6 @@
 import React from 'react';
 import Details from './Container';
+import { withNavigationFocus } from 'react-navigation';
 import DeleteDialog from 'components/dialogs/DeleteEvent';
 import CancelDialog from 'components/dialogs/CancelEvent';
 import Loading from 'components/common/Loading';
@@ -8,7 +9,7 @@ import Suspense from 'components/common/Suspense';
 import { ONE_TIME_EVENT } from 'lib/constants';
 import { I18n } from 'aws-amplify';
 
-export default class Screen extends React.Component {
+class Screen extends React.Component {
   state = { visibleDialog: null, display: false };
   _goBack = () => this.props.navigation.goBack();
 
@@ -17,6 +18,8 @@ export default class Screen extends React.Component {
       display: true
     }), 0);
   };
+
+  shouldComponentUpdate = nextProps => nextProps.isFocused;
 
   _navigateToRepeat = () => this.props.navigation.navigate('NewEvent', { id: this.props.navigation.getParam('id'), isNew: true });
   _navigateToEdit = ({ id }) => this.props.navigation.navigate('EditEvent', { id });
@@ -94,3 +97,5 @@ export default class Screen extends React.Component {
     )
   }
 }
+
+export default withNavigationFocus(Screen);
