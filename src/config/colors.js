@@ -2,11 +2,11 @@ export const avatarColors = [
   '#8e44ad', //Wisteria
   '#2980b9', // belize hole
   '#27ae60', // nephritis,
-  '#2c3e50', // midnight blue
+  '#2d3436', //dracula orchid
   '#16a085', // green sea
   '#e67e22', // carrot
   '#d35400', // pumpkin
-  '#2ecc71' // emeral
+  '#00cec9' // robin's egg blue 
 ];
 
 export const light = {
