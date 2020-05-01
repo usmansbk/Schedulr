@@ -41,7 +41,7 @@
     "mobx": "4.15.4",
     "mobx-persist": "^0.4.1",
     "mobx-react": "^6.2.2",
-    "moment": "2.24.0",
+    "moment": "^2.25.0",
     "moment-business": "^3.0.1",
     "moment-recur": "^1.0.7",
     "numeral": "^2.0.6",
@@ -69,7 +69,7 @@
     "react-native-open-maps": "^0.3.5",
     "react-native-paper": "^3.9.0",
     "react-native-photo-view": "https://github.com/alwx/react-native-photo-view",
-    "react-native-push-notification": "^3.3.0",
+    "react-native-push-notification": "^3.3.1",
     "react-native-reanimated": "^1.8.0",
     "react-native-safe-area-context": "^0.7.3",
     "react-native-screens": "^2.7.0",
@@ -103,5 +103,8 @@
   },
   "jest": {
     "preset": "react-native"
+  },
+  "resolutions": {
+    "moment": "2.24.0"
   }
 }
