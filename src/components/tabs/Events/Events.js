@@ -67,7 +67,6 @@ class Events extends React.Component {
         <List
           isAuth
           events={this.state.events}
-          navigation={this.props.navigation}
           loading={this.props.loading}
           fetchMore={this._sync}
         />

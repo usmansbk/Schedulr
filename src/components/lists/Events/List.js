@@ -1,6 +1,6 @@
 import React from 'react';
 import { RefreshControl } from 'react-native';
-import { SectionList } from 'react-navigation';
+import { SectionList, withNavigationFocus } from 'react-navigation';
 import { inject, observer } from 'mobx-react';
 import moment from 'moment';
 import uuidv5 from 'uuid/v5';
@@ -55,7 +55,7 @@ class List extends React.Component {
   };
 
   shouldComponentUpdate = (nextProps, nextState) => {
-    const should = (
+    const should = nextProps.isFocused & (
       this.props.loading !== nextProps.loading ||
       this.state.sections !== nextState.sections ||
       this.state.loadingMore !== nextState.loadingMore ||
@@ -156,6 +156,10 @@ class List extends React.Component {
     }
   };
 
+  componentDidMount() {
+    this._processEvents(this.props.events)
+  }
+
   _processEvents = (events) => {
     if (events) {
       setTimeout(() => {
@@ -192,28 +196,28 @@ class List extends React.Component {
     this.loadPreviousEvents(this.state.events);
   };
 
-  static getDerivedStateFromProps(props, state) {
-    let events = props.events;
-    if (eventsChanged(state.events, events)) {
-      const today = moment().startOf('day').toISOString();
-      const yesterday = moment().subtract(1, 'day').endOf('day').toISOString();
-      let sections = generateNextEvents(events, yesterday, DAYS_PER_PAGE);
-      const todaysSection = sections.find(section => section.title === today);
-      if (!todaysSection) {
-        sections = [{ data: [], title: today }].concat(sections);
-      }
-      const afterDate = moment(sections[sections.length- 1].title).toISOString();
-      const beforeDate = moment(sections[0].title).toISOString();
+  // static getDerivedStateFromProps(props, state) {
+  //   let events = props.events;
+  //   if (eventsChanged(state.events, events)) {
+  //     const today = moment().startOf('day').toISOString();
+  //     const yesterday = moment().subtract(1, 'day').endOf('day').toISOString();
+  //     let sections = generateNextEvents(events, yesterday, DAYS_PER_PAGE);
+  //     const todaysSection = sections.find(section => section.title === today);
+  //     if (!todaysSection) {
+  //       sections = [{ data: [], title: today }].concat(sections);
+  //     }
+  //     const afterDate = moment(sections[sections.length- 1].title).toISOString();
+  //     const beforeDate = moment(sections[0].title).toISOString();
 
-      return {
-        sections,
-        afterDate,
-        beforeDate,
-        events
-      };
-    }
-    return null;
-  }
+  //     return {
+  //       sections,
+  //       afterDate,
+  //       beforeDate,
+  //       events
+  //     };
+  //   }
+  //   return null;
+  // }
 
   _onScroll = (event) => {
     this.props.handleScroll && this.props.handleScroll(event.nativeEvent.contentOffset.y)
@@ -327,4 +331,4 @@ class List extends React.Component {
   }
 }
 
-export default inject("stores")(observer(List));
+export default inject("stores")(observer(withNavigationFocus(List)));

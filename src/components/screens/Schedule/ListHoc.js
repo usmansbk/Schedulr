@@ -52,12 +52,10 @@ class ListHoc extends React.Component {
         isOwner={isOwner}
         loading={loading}
         error={error}
-        ref={this._eventsListRef}
+        onRef={this._eventsListRef}
         events={events}
         listType="schedule"
-        navigation={navigation}
         handleScroll={this._onScroll}
-        updateListEveryMinute={new Date().getMinutes()}
       /> 
       {
         Boolean(this.state.offsetY > HEIGHT) && (
