@@ -1,6 +1,7 @@
 import React from 'react';
 import uuidv5 from 'uuid/v5';
 import { I18n } from 'aws-amplify';
+import { withNavigationFocus } from 'react-navigation';
 import List from 'components/lists/Events';
 import FAB from 'components/common/Fab';
 import schdlAll from 'helpers/setReminders';
@@ -8,7 +9,7 @@ import { mergeEvents } from 'lib/utils';
 import { InteractionManager } from 'react-native';
 import snackbar from 'helpers/snackbar';
 
-export default class Events extends React.Component {
+class Events extends React.Component {
   static defaultProps = {
     mutedEvents: [],
     allowedEvents: []
@@ -16,8 +17,10 @@ export default class Events extends React.Component {
 
   shouldComponentUpdate = (nextProps) => {
     return (
-      (nextProps.data !== this.props.data) ||
-      (nextProps.calendarEvents.length !== this.props.calendarEvents.length)
+      nextProps.isFocused && (
+        (nextProps.data !== this.props.data) ||
+        (nextProps.calendarEvents.length !== this.props.calendarEvents.length)
+      )
     );
   };
   
@@ -74,3 +77,5 @@ export default class Events extends React.Component {
     )
   }
 }
+
+export default withNavigationFocus(Events);

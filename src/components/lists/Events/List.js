@@ -1,6 +1,6 @@
 import React from 'react';
 import { RefreshControl } from 'react-native';
-import { SectionList } from 'react-navigation';
+import { SectionList, withNavigationFocus } from 'react-navigation';
 import { inject, observer } from 'mobx-react';
 import moment from 'moment';
 import uuidv5 from 'uuid/v5';
@@ -56,6 +56,7 @@ class List extends React.Component {
 
   shouldComponentUpdate = (nextProps, nextState) => {
     const should = (
+      nextProps.isFocused &&
       this.props.loading !== nextProps.loading ||
       this.state.sections !== nextState.sections ||
       this.state.loadingMore !== nextState.loadingMore ||
@@ -328,4 +329,4 @@ class List extends React.Component {
   }
 }
 
-export default inject("stores")(observer(List));
+export default inject("stores")(observer(withNavigationFocus(List)));
