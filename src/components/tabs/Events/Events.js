@@ -16,14 +16,17 @@ class Events extends React.Component {
   };
   state = {
     data: null,
-    events: []
+    events: [],
+    calendarEvents: []
   };
 
   static getDerivedStateFromProps(props, state) {
-    if (props.data !== state.data) {
+    if ((props.data !== state.data) || (props.calendarEvents.length !== state.calendarEvents.length)) {
+      console.log('changed');
       return {
         data: props.data,
-        events: mergeEvents(props.data, props.calendarEvents)
+        events: mergeEvents(props.data, props.calendarEvents),
+        calendarEvents: props.calendarEvents
       };
     }
     return null;

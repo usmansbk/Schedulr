@@ -33,11 +33,13 @@ class Container extends React.Component {
   onOpened = processRemoteNotification;
 
   onReceived = (result) => {
-    const { payload: { additionalData } } = result;
-    this.props.stores.notificationsStore.fetchNotifications();
-    if (additionalData && (additionalData.type === 'Event')) {
-      this.props.stores.appState.deltaSync();
-    }
+    InteractionManager.runAfterInteractions(() => {
+      const { payload: { additionalData } } = result;
+      this.props.stores.notificationsStore.fetchNotifications();
+      if (additionalData && (additionalData.type === 'Event')) {
+        this.props.stores.appState.deltaSync();
+      }
+    });
   };
   
   _handleLocalNotifications = () => {
