@@ -40,7 +40,6 @@ class List extends Component {
   _onRefresh = () => this.props.refresh();
   _onPressItem = (id, refStartAt, refEndAt) => this.props.navigation.navigate('EventDetails', { id, refStartAt, refEndAt });
   _navigateToBanner = (id) => this.props.navigation.navigate('Banner', { id });
-  _navigateToComments = (id, title, date) => this.props.navigation.navigate('Comments', { id, title, date });
   _keyExtractor = (item) => typeof item === 'string' ? item : String(item.id); 
   _onEndReached = async () => {
     if (!this.props.loading && this.props.nextToken) {
@@ -65,12 +64,9 @@ class List extends Component {
       endAt,
       ref_date,
       recurrence,
-      venue,
       schedule,
       isConcluded,
       isBookmarked,
-      bookmarksCount,
-      commentsCount,
       updatedAt
     } = item;
 
@@ -89,16 +85,12 @@ class List extends Component {
       pictureUrl={banner && getImageUrl(banner)}
       isBookmarked={isBookmarked}
       isAuth={isPublic || isOwner || (schedule && schedule.isFollowing)}
-      bookmarksCount={bookmarksCount}
-      commentsCount={commentsCount}
       category={getCategory(category)}
       recurrence={parseRepeat(recurrence)}
       time={getHumanTime({ allDay, startAt, endAt })}
       eventScheduleId={schedule && schedule.id}
       duration={getDuration(startAt, endAt, allDay)}
-      address={venue}
       onPressItem={this._onPressItem}
-      onPressComment={this._navigateToComments}
       navigateToBanner={this._navigateToBanner}
       updatedAt={updatedAt}
     />);
