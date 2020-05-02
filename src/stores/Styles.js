@@ -827,7 +827,13 @@ export default class AppStyles {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center'
-      }
+      },
+      rightIcon: {
+        borderRadius: 5,
+        position: 'absolute',
+        top: dp(17),
+        right: dp(17),
+      },
     });
   }
 

@@ -74,6 +74,7 @@ function generatePreviousEvents(events=[], beforeDate, DAYS_PER_PAGE) {
 
 /* Return next available event date */
 const getNextDate = (events=[], refDate, before) => {
+  console.log(JSON.stringify(events, null, 2))
   return uniqWith(events.map((currentEvent) => {
     const eventDate = moment(currentEvent.startAt).startOf('D');
     const endDate = moment(currentEvent.endAt).endOf('D');
