@@ -27,7 +27,7 @@ class Header extends React.Component {
     } = this.props;
     const previousCommentsCount = commentsCount - currentCount;
     let caption = CIRCLE; 
-    if (previousCommentsCount) {
+    if (previousCommentsCount > 0) {
       caption = I18n.get("COMMENTS_loadMore")(previousCommentsCount % PAGINATION_LIMIT); 
     }
     return (
