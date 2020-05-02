@@ -21,7 +21,7 @@ export default {
 
   COMMENTS: 'Commentaires',
   COMMENTS_emptyList: "Sans commentaires",
-  COMMENTS_loadMore: "Charger plus de commentaires",
+  COMMENTS_loadMore: (count) => `Afficher ${count} autre${count > 1 ? 's' : ''} commentaire${count > 1 ? 's' : ''}`,
   COMMENTS_noMoreComments: "Pas d'autres commentaires",
   COMMENT_tooLong: "Commentaire trop long",
 
@@ -287,6 +287,10 @@ export default {
   HELPER_TEXT_description: "Trop long",
   HELPER_TEXT_website: "Texte invalide",
   HELPER_TEXT_location: "Votre position nous aide à améliorer votre expérience avec de meilleurs résultats de recherche.",
+  HELPER_TEXT_invalidEndDate: "L'événement devrait se terminer dans une date future",
+  HELPER_TEXT_invalidStart: "La date de fin doit être supérieure à la date de début",
+  HELPER_TEXT_durationTooShort: "L'événement doit durer au moins cinq minutes",
+  HELPER_TEXT_shortUntil: "L'événement doit se répéter au moins une fois",
 
   MENU_edit: "Edit",
   MENU_close: "Close",

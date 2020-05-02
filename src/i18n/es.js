@@ -21,7 +21,7 @@ export default {
 
   COMMENTS: 'Comentarios',
   COMMENTS_emptyList: "Sin comentarios",
-  COMMENTS_loadMore: "Cargar más comentarios",
+  COMMENTS_loadMore: (count) => `Ver ${count} comentarios más`,
   COMMENTS_noMoreComments: "No mas comentarios",
   COMMENT_tooLong: "Comenta demasiado",
 
@@ -292,6 +292,10 @@ export default {
   HELPER_TEXT_nameIsRequired: "Se requiere el nombre",
   HELPER_TEXT_website: "Entrada inválida",
   HELPER_TEXT_location: "Su ubicación nos ayuda a mejorar su experiencia con mejores resultados de búsqueda.",
+  HELPER_TEXT_invalidEndDate: "El evento debe terminar en una fecha futura",
+  HELPER_TEXT_invalidStart: "La fecha de finalización debe ser mayor que la fecha de inicio",
+  HELPER_TEXT_durationTooShort: "El evento debe durar al menos cinco minutos.",
+  HELPER_TEXT_shortUntil: "El evento debe repetirse al menos una vez",
 
   MENU_edit: "Edit",
   MENU_close: "Close",

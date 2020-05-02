@@ -21,7 +21,7 @@ export default {
 
   COMMENTS: 'Comments',
   COMMENTS_emptyList: "No comments",
-  COMMENTS_loadMore: (count) => `View ${count} more comments`,
+  COMMENTS_loadMore: (count) => `View ${count} more comment${count > 1 ? 's' : ''}`,
   COMMENTS_noMoreComments: "No more comments",
   COMMENT_tooLong: "Comment too long",
 
