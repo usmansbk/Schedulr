@@ -96,12 +96,14 @@ class MediaItem extends React.Component {
         uri
       };
       Item = (
-        <TouchableRipple onPress={this._onPress}>
-          <View style={styles.view}>
-            <Image source={source} style={styles.image} />
-            <Caption style={styles.caption} numberOfLines={1}>{numeral(file.size).format('0b')}</Caption>
-          </View>
-        </TouchableRipple>
+        <View style={styles.view}>
+          <TouchableRipple onPress={this._onPress}>
+            <View>
+              <Image source={source} style={styles.image} />
+              <Caption style={styles.caption} numberOfLines={1}>{numeral(file.size).format('0b')}</Caption>
+            </View>
+          </TouchableRipple>
+        </View>
       );
     } else {
       Item = (

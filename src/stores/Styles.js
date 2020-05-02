@@ -27,13 +27,13 @@ export default class AppStyles {
 
     return StyleSheet.create({
       view: {
-        // marginVertical: 8,
+        paddingTop: 8,
         borderWidth: 1,
         borderColor: colors.light_gray,
         justifyContent: 'center',
       },
       image: {
-        height: 200
+        height: 200,
       },
       caption: {
         paddingHorizontal: 4
