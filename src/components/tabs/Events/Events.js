@@ -21,8 +21,8 @@ class Events extends React.Component {
   };
 
   static getDerivedStateFromProps(props, state) {
-    if ((props.data !== state.data) || (props.calendarEvents.length !== state.calendarEvents.length)) {
-      console.log('changed');
+    if ((props.data !== state.data) || (
+      props.calendarEvents.length !== state.calendarEvents.length)) {
       return {
         data: props.data,
         events: mergeEvents(props.data, props.calendarEvents),

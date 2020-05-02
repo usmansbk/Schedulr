@@ -75,7 +75,6 @@ class CalendarEvent extends React.Component {
       startAt ,
       endAt 
     });
-    console.log(status, startAt, endAt);
 
     return (
       <>
