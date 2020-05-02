@@ -7,6 +7,7 @@ import {
 } from 'react-native-paper';
 import { I18n } from 'aws-amplify';
 import {CIRCLE, PAGINATION_LIMIT} from 'lib/constants';
+import numeral from 'numeral';
 
 const styles = StyleSheet.create({
   container: {
@@ -29,7 +30,7 @@ class Header extends React.Component {
     const hasMore = previousCommentsCount > 0;
     let caption = CIRCLE; 
     if (hasMore) {
-      caption = I18n.get("COMMENTS_loadMore")(previousCommentsCount % PAGINATION_LIMIT); 
+      caption = I18n.get("COMMENTS_loadMore")(numeral(previousCommentsCount % PAGINATION_LIMIT).format('0b')); 
     }
     return (
       <TouchableRipple onPress={this._onPress} disabled={loading || !hasMore}>
