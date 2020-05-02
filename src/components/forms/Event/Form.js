@@ -166,38 +166,6 @@ class Form extends React.Component {
               >
               {errors.title && I18n.get(`HELPER_TEXT_${errors.title}`)}
               </HelperText>
-              <TextInput
-                placeholder={I18n.get("EVENT_FORM_description")}
-                label={I18n.get("EVENT_FORM_description")}
-                value={values.description}
-                multiline
-                maxHeight={120}
-                onChangeText={handleChange('description')}
-                onBlur={handleBlur('description')}
-                mode="outlined"
-                style={styles.textInput}
-              />
-              <HelperText
-                type="error"
-                visible={errors.description && touched.description}
-              >
-              {errors.description && I18n.get(`HELPER_TEXT_${errors.description}`)}
-              </HelperText>
-              <TextInput
-                placeholder={I18n.get("PLACEHOLDER_venue")(values.location)}
-                label={I18n.get("EVENT_FORM_venue")}
-                value={values.venue}
-                onChangeText={handleChange('venue')}
-                onBlur={handleBlur('venue')}
-                mode="outlined"
-                style={styles.textInput}
-              />
-              <HelperText
-                type="error"
-                visible={errors.venue && touched.venue}
-              >
-              {errors.venue && I18n.get(`HELPER_TEXT_${errors.venue}`)}
-              </HelperText>
               {
                 !locked && (
                   <View style={[styles.pickerSpacing, styles.firstPicker]}>
@@ -255,12 +223,16 @@ class Form extends React.Component {
                   }}
                 />
               </View>
-              <HelperText
-                type="error"
-                visible={errors.startAt && touched.startAt}
-              >
-              {errors.startAt && I18n.get(`HELPER_TEXT_${errors.startAt}`)}
-              </HelperText>
+              {
+                errors.startAt && (
+                  <HelperText
+                    type="error"
+                    visible={errors.startAt && touched.startAt}
+                  >
+                  {errors.startAt && I18n.get(`HELPER_TEXT_${errors.startAt}`)}
+                  </HelperText>
+                )
+              }
 
               <View style={styles.pickerSpacing}>
                 <Text style={styles.radioText}>{I18n.get("EVENT_FORM_to")}</Text>
@@ -272,12 +244,16 @@ class Form extends React.Component {
                   onValueChange={handleChange('endAt')}
                 />
               </View>
-              <HelperText
-                type="error"
-                visible={errors.endAt && touched.endAt}
-              >
-              {errors.endAt && I18n.get(`HELPER_TEXT_${errors.endAt}`)}
-              </HelperText>
+              {
+                errors.endAt && (
+                  <HelperText
+                    type="error"
+                    visible={errors.endAt && touched.endAt}
+                  >
+                  {errors.endAt && I18n.get(`HELPER_TEXT_${errors.endAt}`)}
+                  </HelperText>
+                )
+              }
               
               <View style={styles.radio}>
                 <Text style={styles.radioText}>{I18n.get("EVENT_FORM_allDay")}</Text>
@@ -318,13 +294,16 @@ class Form extends React.Component {
                   }))}
                 />
               </View>
-              <HelperText
-                type="error"
-                visible={errors.recurrence && touched.recurrence}
-              >
-              {errors.recurrence && I18n.get(`HELPER_TEXT_${errors.recurrence}`)}
-              </HelperText>
-
+              {
+                errors.recurrence && (
+                  <HelperText
+                    type="error"
+                    visible={errors.recurrence && touched.recurrence}
+                  >
+                  {errors.recurrence && I18n.get(`HELPER_TEXT_${errors.recurrence}`)}
+                  </HelperText>
+                )
+              }
               {
                 (values.recurrence !== recurrence[0].id) && (
                   <View style={styles.radio}>
@@ -368,6 +347,38 @@ class Form extends React.Component {
                   </>
                 )
               }
+              <TextInput
+                placeholder={I18n.get("PLACEHOLDER_venue")(values.location)}
+                label={I18n.get("EVENT_FORM_venue")}
+                value={values.venue}
+                onChangeText={handleChange('venue')}
+                onBlur={handleBlur('venue')}
+                mode="outlined"
+                style={styles.textInput}
+              />
+              <HelperText
+                type="error"
+                visible={errors.venue && touched.venue}
+              >
+              {errors.venue && I18n.get(`HELPER_TEXT_${errors.venue}`)}
+              </HelperText>
+              <TextInput
+                placeholder={I18n.get("EVENT_FORM_description")}
+                label={I18n.get("EVENT_FORM_description")}
+                value={values.description}
+                multiline
+                maxHeight={120}
+                onChangeText={handleChange('description')}
+                onBlur={handleBlur('description')}
+                mode="outlined"
+                style={styles.textInput}
+              />
+              <HelperText
+                type="error"
+                visible={errors.description && touched.description}
+              >
+              {errors.description && I18n.get(`HELPER_TEXT_${errors.description}`)}
+              </HelperText>
             </View>
           </ScrollView>
           <EventTypeInput
