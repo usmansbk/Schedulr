@@ -4,7 +4,6 @@ import { TouchableRipple, Text, Caption } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/Feather';
 import { inject, observer } from 'mobx-react';
 import UserAvatar from 'components/common/UserAvatar';
-import Tag from 'components/common/Tag';
 import ActionSheet from 'components/actionsheet/Schedule';
 import Badge from 'components/common/Badge';
 import { schedules } from 'lib/constants';
