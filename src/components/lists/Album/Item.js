@@ -1,5 +1,5 @@
 import React from 'react';
-import Image from 'react-native-fast-image';
+import { Image } from 'react-native';
 import { TouchableRipple, Surface } from 'react-native-paper';
 import { album } from 'lib/constants';
 

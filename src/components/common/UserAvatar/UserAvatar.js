@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { View } from 'react-native';
-import Image from 'react-native-fast-image';
+import { View, Image } from 'react-native';
 import { Title } from 'react-native-paper';
 import { getInitials, getAvatarBackgroundColor } from './helpers';
 
@@ -9,8 +8,7 @@ export default ({
   size=64,
   name="John Doe"
 }) => {
-  const [source, setSource] = useState({ uri: src });
-  const [isLoading, setLoading] = useState(true);
+  const source = {uri: src};
 
   const initials = getInitials(name);
   const bgColor = getAvatarBackgroundColor(name);
@@ -18,7 +16,7 @@ export default ({
     width: size,
     height: size,
     borderRadius: size / 2,
-    backgroundColor: isLoading ? bgColor : 'transparent',
+    backgroundColor: src ? 'transparent' : bgColor,
     justifyContent: 'center',
     alignItems: 'center'
   };
@@ -30,12 +28,7 @@ export default ({
           <Image
             style={style}
             source={source}
-            onLoad={() => {
-              setLoading(false);
-            }}
-            onError={() => {
-              setSource(require('../../../assets/placeholder.png'));
-            }}
+            defaultSource={require('../../../assets/placeholder.png')}
           />
         ) : (
           <Title style={{ color: 'white'}} adjustsFontSizeToFit>{initials}</Title>

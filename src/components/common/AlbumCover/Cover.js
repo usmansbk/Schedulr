@@ -1,6 +1,5 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
-import Image from 'react-native-fast-image';
+import { View, StyleSheet, Image } from 'react-native';
 import { Badge } from 'react-native-paper';
 import getImageUrl from 'helpers/getImageUrl';
 

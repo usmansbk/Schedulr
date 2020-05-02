@@ -3,9 +3,9 @@ import { View, StyleSheet } from 'react-native';
 import {
   Text,
   Caption,
-  TouchableRipple
+  TouchableRipple,
+  Image
 } from 'react-native-paper';
-import Image from 'react-native-fast-image';
 import BookmarkButton from 'components/common/BookmarkButton';
 import colors from 'config/colors';
 import {dp} from 'lib/constants';

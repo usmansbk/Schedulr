@@ -1,6 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
-import Image from 'react-native-fast-image';
+import { View, Image } from 'react-native';
 import { Text, Caption, TouchableRipple, ProgressBar } from 'react-native-paper';
 import RNFS from 'react-native-fs';
 import FileViewer from 'react-native-file-viewer';

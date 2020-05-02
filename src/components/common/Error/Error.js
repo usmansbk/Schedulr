@@ -1,6 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
-import Image from 'react-native-fast-image';
+import { View, Image } from 'react-native';
 import {
   Headline,
   Button,

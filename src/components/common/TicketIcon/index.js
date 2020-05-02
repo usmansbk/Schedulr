@@ -1,5 +1,5 @@
 import React from 'react';
-import Image from 'react-native-fast-image';
+import { Image } from 'react-native';
 
 export default ({ size=26, active }) => (
   <Image

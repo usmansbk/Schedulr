@@ -1,6 +1,5 @@
 import React from 'react';
-import { View, Text } from 'react-native';
-import Image from 'react-native-fast-image';
+import { View, Text, Image } from 'react-native';
 import { TouchableRipple } from 'react-native-paper';
 import { I18n } from 'aws-amplify';
 import styles from './styles';

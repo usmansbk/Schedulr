@@ -1,6 +1,5 @@
 import React from 'react';
-import { View, StatusBar, ActivityIndicator } from 'react-native';
-import Image from 'react-native-fast-image';
+import { View, StatusBar, ActivityIndicator, Image } from 'react-native';
 import { inject, observer } from 'mobx-react';
 
 class Loading extends React.Component {

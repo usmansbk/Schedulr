@@ -4,8 +4,8 @@ import {
   ScrollView,
   Text,
   RefreshControl,
+  Image
 } from 'react-native';
-import Image from 'react-native-fast-image';
 import {
   Headline,
   TouchableRipple,
