@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
 })
 
 class Header extends React.Component {
-  _onPress = () => this.props.onPress();
+  _onPress = () => setTimeout(this.props.onPress, 0);
 
   render() {
     const {

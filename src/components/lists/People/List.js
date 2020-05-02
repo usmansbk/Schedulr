@@ -82,7 +82,7 @@ class List extends React.Component {
     )
   };
 
-  _onEndReached = async () => {
+  _fetchMore = async () => {
     const { nextToken, fetchMoreFollowers, loading } = this.props;
     if (nextToken && !loading) {
       this.setState({ fetchingMore: true });
@@ -90,6 +90,8 @@ class List extends React.Component {
       this.setState({ fetchingMore: false });
     }
   };
+
+  _onEndReached = () => setTimeout(this._fetchMore, 0);
 
   render() {
     const {

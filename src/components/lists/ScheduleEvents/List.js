@@ -84,11 +84,13 @@ class List extends Component {
   />;
   _renderSeparator = () => <Separator />;
   _renderHeader = () => (this.props.pastEventsCount > 0 && this.props.isAuth) ? <Header
-    onPress={this._fetchPastEvents}
+    onPress={this._fetchMore}
     loading={this.props.loading && this.state.loadingPrev}
     count={this.props.pastEventsCount}
   /> : null;
   _renderFooter = () => this.props.events.length ? <Footer /> : null;
+
+  _fetchMore = () => setTimeout(this._fetchPastEvents, 0);
 
   _fetchPastEvents = async () => {
     const { loading, fetchPastEvents, nextToken, pastEventsCount } = this.props;
