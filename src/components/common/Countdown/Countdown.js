@@ -36,7 +36,7 @@ class DateCountdown extends React.Component {
     const start = moment(startAt);
     const end = moment(endAt);
     const now = moment();
-    console.log(status);
+
     const digitStyle = {
       backgroundColor: stores.themeStore.colors.bg
     };
@@ -72,7 +72,6 @@ class DateCountdown extends React.Component {
         timeLabels={I18n.get('timeLabels')}
         onFinish={this._onFinish}
         size={SIZE}
-        running={until}
       />
     );
   }
