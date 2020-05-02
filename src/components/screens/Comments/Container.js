@@ -81,11 +81,11 @@ export default class Container extends React.Component {
     s3Object
   });
   _navigateToProfile = (id) => this.props.navigation.navigate('UserProfile', { id });
-  _navigateToThread = (eventId, commentToId) => this.props.navigation.navigate('Thread', {
-    id: eventId,
-    commentToId,
-    title: I18n.get('Thread'),
-  });
+  // _navigateToThread = (eventId, commentToId) => this.props.navigation.navigate('Thread', {
+  //   id: eventId,
+  //   commentToId,
+  //   title: I18n.get('Thread'),
+  // });
 
   shouldComponentUpdate = (nextProps, nextState) => {
     return (

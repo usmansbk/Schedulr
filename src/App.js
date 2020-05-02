@@ -34,7 +34,6 @@ import {
   AlbumViewer,
   CalendarEvent
 } from 'components/screens';
-import Thread from 'components/screens/Comments/Thread';
 import colors from 'config/colors';
 
 const AppStack = createStackNavigator({
@@ -106,9 +105,6 @@ const AppStack = createStackNavigator({
     navigationOptions: {
       headerShown: true 
     }
-  },
-  Thread: {
-    screen: Thread,
   },
   Comments: {
     screen: Comments,
