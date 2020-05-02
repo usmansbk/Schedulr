@@ -1170,7 +1170,6 @@ export default class AppStyles {
       contentContainer: {
         flexGrow: 1,
         margin: 1,
-        paddingHorizontal: 8,
         backgroundColor: colors.bg
       },
       itemContainer: {
@@ -1178,12 +1177,15 @@ export default class AppStyles {
         flexDirection: 'row',
         backgroundColor: colors.bg,
       },
+      itemContent: {
+        marginRight: 8
+      },
       linkStyle: { color: '#2980b9' },
       itemHeader: {
         justifyContent: 'space-between',
       },
       itemLeft: {
-        marginHorizontal: 8,
+        paddingLeft: 8
       },
       itemRight: {
         flex: 1,

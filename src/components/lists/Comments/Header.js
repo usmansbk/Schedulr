@@ -26,12 +26,13 @@ class Header extends React.Component {
       loading 
     } = this.props;
     const previousCommentsCount = commentsCount - currentCount;
+    const hasMore = previousCommentsCount > 0;
     let caption = CIRCLE; 
-    if (previousCommentsCount > 0) {
+    if (hasMore) {
       caption = I18n.get("COMMENTS_loadMore")(previousCommentsCount % PAGINATION_LIMIT); 
     }
     return (
-      <TouchableRipple onPress={this._onPress} disabled={loading}>
+      <TouchableRipple onPress={this._onPress} disabled={loading || !hasMore}>
         <View style={styles.container}>
           {
             loading ? <ActivityIndicator size={16}/> : <Caption>{caption}</Caption>
