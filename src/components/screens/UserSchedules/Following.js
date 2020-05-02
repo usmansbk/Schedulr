@@ -46,8 +46,8 @@ class FollowingSchedules extends Component{
       index
     }
   );
-  _onPressItem = (id) => this.props.navigation.push('Schedule', { id });
-  _navigateToInfo = (id) => this.props.navigation.push('ScheduleInfo', { id });
+  _onPressItem = (id) => this.props.navigation.navigate('Schedule', { id });
+  _navigateToInfo = (id) => this.props.navigation.navigate('ScheduleInfo', { id });
   _keyExtractor = (item) => String(item.id);
   _renderSeparator = () => <Separator />;
   _renderFooter = () => <Footer visible={this.props.following.length} />;
