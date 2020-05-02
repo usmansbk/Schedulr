@@ -21,7 +21,6 @@ class Item extends React.Component {
   };
   _onReply = () => this.props.handleReplyComment(this.props.id, this.props.authorName, this.props.authorId);
   _navigateToProfile = () => this.props.navigateToProfile(this.props.authorId);
-  _navigateToThread = () => this.props.navigateToThread(this.props.commentEventId, this.props.toCommentId, this.props.id);
   _navigateToViewEmbed = (params) => this.props.navigateToViewEmbed(params);
   _onDelete = () => {
     let keys = [];
