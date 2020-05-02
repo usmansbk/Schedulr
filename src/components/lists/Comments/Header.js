@@ -30,7 +30,7 @@ class Header extends React.Component {
     const hasMore = previousCommentsCount > 0;
     let caption = CIRCLE; 
     if (hasMore) {
-      caption = I18n.get("COMMENTS_loadMore")(numeral(previousCommentsCount % PAGINATION_LIMIT).format('0b')); 
+      caption = I18n.get("COMMENTS_loadMore")(numeral(previousCommentsCount % PAGINATION_LIMIT).format('0 a')); 
     }
     return (
       <TouchableRipple onPress={this._onPress} disabled={loading || !hasMore}>
