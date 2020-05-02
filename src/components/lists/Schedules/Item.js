@@ -70,9 +70,9 @@ class Item extends React.Component {
             }
           />
           {
-            (isOffline) && <Icon
+            (isClosed || isOffline) && <Icon
               style={styles.privateIcon}
-              name="cloud-off"
+              name={isClosed ? "archive" : "cloud-off"}
               size={16}
               color={stores.themeStore.colors.light_gray_3}
             />
@@ -95,9 +95,6 @@ class Item extends React.Component {
               numberOfLines={1}
               ellipsizeMode="tail"
               style={styles.itemDescription}>{topic || description}</Caption> }
-            <View style={styles.itemFooter}>
-              { isClosed && <Tag status="Closed" /> }
-            </View>
           </View>
           <ActionSheet
             id={id}
