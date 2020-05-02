@@ -9,7 +9,7 @@ import {
 import { inject, observer } from 'mobx-react';
 import Badge from 'components/common/Badge';
 import Avatar from 'components/common/UserAvatar';
-import Actions from 'components/common/Actions';
+import BookmarkButton from 'components/common/BookmarkButton';
 import { bookmarkedEvents } from 'lib/constants';
 import { captionDetails } from 'lib/parseItem';
 
@@ -38,11 +38,6 @@ class Item extends React.Component {
       category,
       pictureUrl,
       isBookmarked,
-      isAuth,
-      bookmarksCount,
-      commentsCount,
-      eventScheduleId,
-      address,
       stores
     } = this.props;
     
@@ -80,20 +75,11 @@ class Item extends React.Component {
               <Text style={styles.time}>{time}</Text>
               <Caption>{caption}</Caption>
             </View>
-            <Actions
+            <BookmarkButton
               id={id}
-              title={title}
-              address={address}
+              size={24}
               isBookmarked={isBookmarked}
-              isAuth={isAuth}
-              bookmarksCount={bookmarksCount}
-              commentsCount={commentsCount}
-              bookmarkScheduleId={eventScheduleId}
-              color={stores.themeStore.colors.light_gray_3}
-              activeColor={stores.themeStore.colors.like}
-              navigateToComments={this._onPressComment}
-              size={18}
-              small
+              activeColor={stores.themeStore.colors.primary}
             />
           </View>
         </View>

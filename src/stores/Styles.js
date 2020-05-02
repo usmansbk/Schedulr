@@ -1306,12 +1306,12 @@ export default class AppStyles {
 
     return StyleSheet.create({
       contentContainer: {
-        backgroundColor: colors.light_gray,
+        backgroundColor: colors.bg,
         // marginTop: 1,
         flexGrow: 1
       },
       list: {
-        backgroundColor: colors.light_gray,
+        backgroundColor: colors.bg,
       },
       footer: {
         height: ITEM_HEIGHT,
@@ -1324,7 +1324,6 @@ export default class AppStyles {
       },
       offlineTitle: {
         fontSize: 20,
-        fontFamily: 'sans-serif-bold',
         color: colors.gray,
       },
       empty: {
@@ -1364,7 +1363,6 @@ export default class AppStyles {
       },
       itemHeadline: {
         fontSize: 20,
-        fontFamily: 'sans-serif-bold',
         textAlignVertical: 'center'
       },
       itemNote: {
@@ -1378,7 +1376,7 @@ export default class AppStyles {
         // justifyContent: 'center'
       },
       right: {
-        justifyContent: 'space-between',
+        flexDirection: 'row',
         flex: 1,
         paddingLeft: 4
       },
@@ -1387,16 +1385,13 @@ export default class AppStyles {
         color: colors.light_red
       },
       time: {
-        fontFamily: 'sans-serif-medium',
         fontSize: 14,
         color: colors.gray
       },
       status: {
         color: colors.gray,
-        fontFamily: 'sans-serif-bold'
       },
       duration: {
-        fontFamily: 'sans-serif-bold',
         color: colors.gray,
       },
       durationRow: {
@@ -1536,7 +1531,6 @@ export default class AppStyles {
   @computed get schedulesList () {
     const colors = this.settings.dark ? dark : light;
     const {
-      AVATAR_SIZE,
       ITEM_HEIGHT,
       SEPARATOR_HEIGHT,
     } = schedules;
@@ -1544,12 +1538,12 @@ export default class AppStyles {
     return StyleSheet.create({
       list: {
         flex: 1,
-        backgroundColor: colors.light_gray
+        backgroundColor: colors.bg
       },
       contentContainer: {
         flexGrow: 1,
         // marginTop: 1,
-        backgroundColor: colors.light_gray
+        backgroundColor: colors.bg
       },
       separator: {
         height: SEPARATOR_HEIGHT
@@ -1649,12 +1643,12 @@ export default class AppStyles {
 
     return StyleSheet.create({
       contentContainer: {
-        backgroundColor: colors.light_gray,
+        backgroundColor: colors.bg,
         // marginTop: 1,
         flexGrow: 1
       },
       list: {
-        backgroundColor: colors.light_gray,
+        backgroundColor: colors.bg,
       },
       sectionHeader: {
         backgroundColor: colors.light_gray,

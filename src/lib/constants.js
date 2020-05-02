@@ -85,7 +85,7 @@ export const discover = {
 // list/bookmarkedEvents
 export const bookmarkedEvents = {
   AVATAR_SIZE : dp(54),
-  ITEM_HEIGHT: dp(136),
+  ITEM_HEIGHT: dp(100),
   SEPARATOR_HEIGHT : dp(thinLine),
   FOOTER_HEIGHT : dp(80),
 };
