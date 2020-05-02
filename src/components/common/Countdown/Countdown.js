@@ -68,6 +68,7 @@ class DateCountdown extends React.Component {
         timeLabels={I18n.get('timeLabels')}
         onFinish={this._onFinish}
         size={SIZE}
+        running={until}
       />
     );
   }

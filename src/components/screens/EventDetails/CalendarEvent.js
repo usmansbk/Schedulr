@@ -10,14 +10,18 @@ import Alert from 'components/dialogs/Alert';
 import Error from 'components/common/Error';
 import Suspense from 'components/common/Suspense';
 import { formatDate } from 'lib/time';
+import { getStatus } from 'lib/parseItem';
 
 
 class CalendarEvent extends React.Component {
   state = {
     event: null,
     showAlert: false,
-    display: false
+    display: false,
+    countDownReset: 0
   };
+
+  _onCountDownFinish = () => this.setState(prev => ({countDownReset: prev.countDownReset + 1}));
 
   _hideDialogs = () => this.setState({ showAlert: false });
 
@@ -41,7 +45,7 @@ class CalendarEvent extends React.Component {
   };
 
   render() {
-    const { event, showAlert, display } = this.state;
+    const { event, showAlert, display, countDownReset } = this.state;
     if (!display) return <Suspense />;
 
     const { stores } = this.props;
@@ -67,6 +71,11 @@ class CalendarEvent extends React.Component {
       until
     } = event;
     const date = formatDate(startAt, endAt, allDay);
+    const status = getStatus({
+      startAt ,
+      endAt 
+    });
+    console.log(status, startAt, endAt);
 
     return (
       <>
@@ -102,6 +111,9 @@ class CalendarEvent extends React.Component {
               <CountDown
                 startAt={startAt}
                 endAt={endAt}
+                status={status}
+                onFinish={this._onCountDownFinish}
+                key={status+countDownReset}
               />
               <View style={stores.appStyles.eventDetails.headNote}>
               </View> 
