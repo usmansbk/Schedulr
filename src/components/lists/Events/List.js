@@ -224,9 +224,9 @@ class List extends React.Component {
     }
   };
 
-  _processEvents = () => {
+  _processEvents = (forceUpdate) => {
     const events = this.props.events;
-    if (eventsChanged(events, this.state.events)) {
+    if (forceUpdate || eventsChanged(events, this.state.events)) {
       const today = moment().startOf('day').toISOString();
       const yesterday = moment().subtract(1, 'day').startOf('day').toISOString();
       let sections = generateNextEvents(events, yesterday, DAYS_PER_PAGE);
@@ -247,7 +247,7 @@ class List extends React.Component {
   };
   
   _onRefresh = () => {
-    this._processEvents();
+    this._processEvents(true);
     this.props.fetchMore && this.props.fetchMore();
   };
   
