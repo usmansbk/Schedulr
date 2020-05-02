@@ -1,5 +1,4 @@
 import React from 'react';
-// import { I18n } from 'aws-amplify';
 import uuidv5 from 'uuid/v5';
 import shortid from 'shortid';
 import Screen from './Screen';
@@ -10,9 +9,6 @@ export default class Container extends React.Component {
   state = {
     visibleDialog: null,
     id: null,
-    commentToId: null,
-    at: null,
-    targetName: null,
     meta: null,
     display: false
   };
@@ -25,17 +21,9 @@ export default class Container extends React.Component {
 
   _goBack = () => this.props.navigation.goBack();
   _onDelete = (id, keys) => this._openDialog(id, 'delete', keys);
-  _onReply = (commentToId, targetName, at) => {
-    this._cancelReply();
-    this.setState({ commentToId, targetName, at }, this._focusCommentInput);
-  };
-  _cancelReply = () => this.setState({ commentToId: null, targetName: null }, this._blurCommentInput);
   _openDialog = (id, visibleDialog, meta) => this.setState({
     visibleDialog,
     id,
-    at: null,
-    targetName: null,
-    commentToId: null,
     meta
   });
   _hideDialog = () => this.setState({ visibleDialog: null, id: null });
@@ -62,18 +50,8 @@ export default class Container extends React.Component {
       input.attachment = attachment;
     }
     
-    if (this.state.commentToId) {
-      input.commentToId = this.state.commentToId;
-      input.commentAtId = this.state.at;
-    }
     this.props.onSubmit && this.props.onSubmit(input);
-    this.setState({
-      targetName: null,
-      commentToId: null,
-      commentAtId: null,
-      at: null,
-      meta: null
-    });
+    this.setState({ meta: null });
   };
   _navigateToViewEmbed = ({ subtitle, uri, s3Object }) => this.props.navigation.navigate('ViewEmbed', {
     subtitle,
@@ -81,26 +59,19 @@ export default class Container extends React.Component {
     s3Object
   });
   _navigateToProfile = (id) => this.props.navigation.navigate('UserProfile', { id });
-  // _navigateToThread = (eventId, commentToId) => this.props.navigation.navigate('Thread', {
-  //   id: eventId,
-  //   commentToId,
-  //   title: I18n.get('Thread'),
-  // });
 
   shouldComponentUpdate = (nextProps, nextState) => {
     return (
       this.state.display !== nextState.display ||
       this.props.comments.length !== nextProps.comments.length ||
       this.props.loading !== nextProps.loading ||
-      this.state.visibleDialog !== nextState.visibleDialog ||
-      this.state.commentToId !== nextState.commentToId
+      this.state.visibleDialog !== nextState.visibleDialog
     );
   };
 
   render() {
     const {
       visibleDialog,
-      targetName,
       display
     } = this.state;
     
@@ -114,7 +85,7 @@ export default class Container extends React.Component {
       nextToken,
       user,
       comments,
-      threadId,
+      commentsCount,
       isOwner,
       commentEventId,
       notFound
@@ -123,25 +94,21 @@ export default class Container extends React.Component {
     return (
       <>
       <Screen
+        ref={commentsRef => this._commentsRef = commentsRef}
         notFound={notFound}
         id={commentEventId}
-        threadId={threadId}
         isOwner={isOwner}
         loading={loading}
         title={this.props.navigation.getParam('title')}
         error={Boolean(error)}
-        comments={comments.sort((a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt))}
+        commentsCount={commentsCount}
+        comments={comments.sort((a, b) => Date.parse(a.createdAt) - Date.parse(b.createdAt))}
         userId={user.id}
-        ref={commentsRef => this._commentsRef = commentsRef}
-        targetName={targetName}
         goBack={this._goBack}
         handleDelete={this._onDelete}
-        handleReply={this._onReply}
-        cancelReply={this._cancelReply}
         onSubmit={this._onSubmit}
         onRefresh={onRefresh}
         navigateToProfile={this._navigateToProfile}
-        navigateToThread={this._navigateToThread}
         navigateToViewEmbed={this._navigateToViewEmbed}
         fetchMoreComments={fetchMore}
         nextToken={nextToken}

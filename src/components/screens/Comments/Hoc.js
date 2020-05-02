@@ -57,6 +57,7 @@ export default inject("stores")(observer(
         }),
         isOwner: data && data.getEventComments&& data.getEventComments.isOwner,
         commentScheduleId: data && data.getEventComments && data.getEventComments.schedule && data.getEventComments.schedule.id,
+        commentsCount: data && data.getEventComments && data.getEventComments.commentsCount,
         comments: (data && data.getEventComments && data.getEventComments.comments && data.getEventComments.comments.items) || [],
         nextToken: data && data.getEventComments && data.getEventComments.comments && data.getEventComments.comments.nextToken,
         ...ownProps

@@ -50,7 +50,12 @@ class List extends React.Component {
       />
     );
   }
-  _renderHeader = () => <Header />;
+  _renderHeader = () => <Header
+    commentsCount={this.props.commentsCount}
+    currentCount={this.props.comments.length}
+    loading={this.state.fetchingMore}
+    onPress={this._onEndReached}
+  />;
   _renderSeparator = () => <Separator />;
   _renderFooter = () => <Footer />;
   _renderEmpty = () => <Empty error={this.props.error} loading={this.props.loading} />;
@@ -111,8 +116,6 @@ class List extends React.Component {
             progressBackgroundColor={stores.themeStore.colors.bg}
           />
         }
-        onEndReachedThreshold={0.5}
-        onEndReached={this._onEndReached}
         keyboardShouldPersistTaps="always"
       />
     )

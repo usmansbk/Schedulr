@@ -29,21 +29,17 @@ class Screen extends React.Component {
     const {
       id,
       loading,
-      targetName,
       comments,
+      commentsCount,
       nextToken,
       error,
       onRefresh,
       goBack,
       title,
-      handleReply,
-      cancelReply,
       navigateToProfile,
-      navigateToThread,
       navigateToViewEmbed,
       stores,
       fetchMoreComments,
-      threadId,
       isOwner
     } = this.props;
 
@@ -72,15 +68,13 @@ class Screen extends React.Component {
           ref={commentsRef => this._commentsListRef = commentsRef}
           error={error}
           id={id}
-          threadId={threadId}
           loading={loading}
-          comments={comments.reverse()}
+          comments={comments}
+          commentsCount={commentsCount}
           nextToken={nextToken}
           onRefresh={onRefresh}
-          handleReply={handleReply}
           onDelete={this._handleDelete}
           navigateToProfile={navigateToProfile}
-          navigateToThread={navigateToThread}
           navigateToViewEmbed={navigateToViewEmbed}
           fetchMoreComments={fetchMoreComments}
         />
@@ -89,8 +83,6 @@ class Screen extends React.Component {
           isOwner={isOwner}
           ref={inputRef => this._inputRef = inputRef}
           handleSubmit={this._handleSubmit}
-          targetName={targetName}
-          cancelReply={cancelReply}
           disabled={!comments.length && (loading || error)}
         />
       </>
