@@ -1671,7 +1671,6 @@ export default class AppStyles {
         justifyContent: 'space-between'
       },
       sectionSubheading: {
-        fontFamily: 'sans-serif-bold',
         color: colors.gray
       },
       sectionFooter: {
@@ -1707,7 +1706,6 @@ export default class AppStyles {
       },
       offlineTitle: {
         fontSize: 20,
-        fontFamily: 'sans-serif-bold',
         color: colors.gray,
       },
       empty: {
@@ -1741,7 +1739,6 @@ export default class AppStyles {
       },
       itemHeadline: {
         fontSize: 18,
-        fontFamily: 'sans-serif-bold',
       },
       itemNote: {
         fontSize: 16,
@@ -1757,13 +1754,11 @@ export default class AppStyles {
         color: colors.light_red
       },
       time: {
-        fontFamily: 'sans-serif-medium',
         fontSize: 14,
         color: colors.gray
       },
       status: {
         color: colors.gray,
-        fontFamily: 'sans-serif-bold'
       },
       duration: {
         fontFamily: 'sans-serif-bold',
