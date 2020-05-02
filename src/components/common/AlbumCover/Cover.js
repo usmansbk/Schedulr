@@ -12,8 +12,8 @@ const styles = StyleSheet.create({
     padding: 4,
   },
   image: {
-    width: 100,
-    height: 100,
+    width: 80,
+    height: 80,
     margin: 4
   },
   badge: {
@@ -32,7 +32,7 @@ export default class Cover extends React.Component {
       <>
       <View style={styles.container}>
         {
-          sources.slice(0, 4).map(img => (
+          sources.slice(0, 2).map(img => (
             <Image
               defaultSource={require('../../../assets/placeholder.png')}
               style={styles.image}
