@@ -41,7 +41,7 @@ class UserProfile extends React.Component {
     const { user, navigation } = this.props;
     if (user) {
       const { id, name } = user; 
-      navigation.push('UserSchedules', {
+      navigation.navigate('UserSchedules', {
         id,
         name,
       });
