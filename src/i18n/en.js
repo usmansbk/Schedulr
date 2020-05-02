@@ -228,7 +228,7 @@ export default {
   EVENT_FORM_category: "EVENT TYPE",
   EVENT_FORM_from: "FROM",
   EVENT_FORM_to: "TO",
-  EVENT_FORM_allDay: "ALL DAY EVENT",
+  EVENT_FORM_allDay: "ALL DAY",
   EVENT_FORM_repetition: "REPEAT",
   EVENT_FORM_public: "Public",
   EVENT_FORM_schedule: "SCHEDULE",

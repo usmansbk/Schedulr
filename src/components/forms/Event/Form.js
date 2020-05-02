@@ -294,16 +294,12 @@ class Form extends React.Component {
                   }))}
                 />
               </View>
-              {
-                errors.recurrence && (
                   <HelperText
                     type="error"
                     visible={errors.recurrence && touched.recurrence}
                   >
                   {errors.recurrence && I18n.get(`HELPER_TEXT_${errors.recurrence}`)}
                   </HelperText>
-                )
-              }
               {
                 (values.recurrence !== recurrence[0].id) && (
                   <View style={styles.radio}>

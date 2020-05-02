@@ -447,7 +447,7 @@ export default class AppStyles {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
-        marginVertical: 16
+        marginVertical: 8 
       },
       radioText: {
         fontWeight: 'bold',
