@@ -1,5 +1,5 @@
 import React from 'react';
-import { I18n } from 'aws-amplify';
+// import { I18n } from 'aws-amplify';
 import uuidv5 from 'uuid/v5';
 import shortid from 'shortid';
 import Screen from './Screen';
