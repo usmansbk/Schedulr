@@ -1243,11 +1243,11 @@ export default class AppStyles {
 
     return StyleSheet.create({
       list: {
-        backgroundColor: colors.light_gray
+        backgroundColor: colors.bg
       },
       contentContainer: {
         flexGrow: 1,
-        backgroundColor: colors.light_gray
+        backgroundColor: colors.bg
       },
       separator: {
         height: SEPARATOR_HEIGHT,
