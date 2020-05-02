@@ -1201,6 +1201,7 @@ export default class AppStyles {
       footer: {
         flexDirection: 'row',
         justifyContent: 'flex-end',
+        height: dp(48) 
         // marginTop: 2
       },
       actions: {
