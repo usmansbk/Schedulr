@@ -16,7 +16,7 @@ class Item extends React.Component {
       <TouchableRipple onPress={this._onPress}>
         <Surface style={styles.container}>
           {
-            Boolean(source) ? <Image resizeMode="contain"
+            Boolean(source) ? <Image resizeMode="cover"
               defaultSource={require('../../../assets/placeholder.png')}
               source={source} style={styles.image} /> : (
               <>

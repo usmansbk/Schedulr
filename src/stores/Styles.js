@@ -1406,8 +1406,8 @@ export default class AppStyles {
     const colors = this.settings.dark ? dark : light;
     return StyleSheet.create({
       container: {
-        width: dp(300),
-        height: dp(250),
+        width: dp(200),
+        height: dp(150),
         justifyContent: 'center',
         alignItems: 'center',
         margin: 4,
@@ -1416,11 +1416,11 @@ export default class AppStyles {
       },
       image: {
         width: '100%',
-        height: 250
+        height: 150
       },
       text: {
         fontSize: 20,
-        fontWeight: 'bold',
+        // fontWeight: 'bold',
         color: colors.gray
       }
     });

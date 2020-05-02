@@ -378,8 +378,8 @@ export default {
   SYNC_complete: "Synchronisé",
 
   TEXT_addImagesToAlbum: "Album photo vide",
-  TEXT_noAlbum: "Album photo vide",
-  TEXT_noBanner: "Aucune bannière d'événement",
+  TEXT_noAlbum: "Album photo",
+  TEXT_noBanner: "Bannière d'événement",
   TEXT_album: "Album",
 
   THEME_title: "Theme",

@@ -376,8 +376,8 @@ export default {
   SYNC_complete: "Sincronizado",
 
   TEXT_addImagesToAlbum: "Agregar imágenes al álbum",
-  TEXT_noAlbum: "Álbum de fotos vacío",
-  TEXT_noBanner: "Banner sin evento",
+  TEXT_noAlbum: "Álbum de fotos",
+  TEXT_noBanner: "Banner de eventos",
   TEXT_album: "Álbum",
 
   THEME_title: "Theme",
