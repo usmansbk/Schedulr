@@ -237,7 +237,7 @@ class Form extends React.Component {
               <View style={styles.pickerSpacing}>
                 <Text style={styles.radioText}>{I18n.get("EVENT_FORM_to")}</Text>
                 <DateTimeInput
-                  noMin
+                  min={moment().toDate()}
                   value={values.endAt}
                   disabled={values.allDay}
                   hideTime={values.allDay}

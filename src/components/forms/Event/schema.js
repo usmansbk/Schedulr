@@ -36,7 +36,6 @@ export default Yup.object().shape({
   ,
   endAt: Yup.date()
     .required()
-    .min(moment().toDate(), 'invalidEndDate')
   ,
   until: Yup.date()
     .nullable()
