@@ -937,12 +937,12 @@ export default class AppStyles {
 
     return StyleSheet.create({
       list: {
-        backgroundColor: colors.light_gray,
+        backgroundColor: colors.bg,
         // paddingVertical: 8,
       },
       contentContainer: {
         flexGrow: 1,
-        backgroundColor: colors.light_gray
+        backgroundColor: colors.bg
       },
       empty: {
         flex: 1,
@@ -1041,7 +1041,7 @@ export default class AppStyles {
 
     return StyleSheet.create({
       list: {
-        backgroundColor: colors.light_gray
+        backgroundColor: colors.bg
       },
       contentContainer: {
         flexGrow: 1
@@ -1776,11 +1776,11 @@ export default class AppStyles {
 
     return StyleSheet.create({
       container: {
-        backgroundColor: colors.light_gray
+        backgroundColor: colors.bg
       },
       contentContainer: {
         flexGrow: 1,
-        backgroundColor: colors.light_gray
+        backgroundColor: colors.bg
       },
       header: {
         height: HEADER_HEIGHT,
