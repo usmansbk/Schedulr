@@ -15,12 +15,13 @@ export default class List extends React.Component {
   };
 
   _renderFooter = () => {
-    return <Footer id={this.props.id} />;
+    return <Footer id={this.props.id} isOwner={this.props.isOwner} />;
   };
 
   _keyExtractor = item => item.key;
 
   render() {
+    const { isOwner, pictureUrl } = this.props;
     return (
       <FlatList
         horizontal
@@ -28,7 +29,9 @@ export default class List extends React.Component {
         data={[]}
         renderItem={this._renderItem}
         keyExtractor={this._keyExtractor}
-        ListHeaderComponent={this._renderHeader}
+        ListHeaderComponent={
+          (isOwner || pictureUrl) ? this._renderHeader : undefined
+        }
         ListFooterComponent={this._renderFooter}
       />
     );

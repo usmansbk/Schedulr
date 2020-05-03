@@ -1078,11 +1078,11 @@ export default class AppStyles {
 
     return StyleSheet.create({
       contentContainer: {
-        backgroundColor: colors.light_gray,
+        backgroundColor: colors.bg,
         flexGrow: 1
       },
       list: {
-        backgroundColor: colors.light_gray,
+        backgroundColor: colors.bg,
       },
       footer: {
         height: ITEM_HEIGHT,
@@ -1095,7 +1095,6 @@ export default class AppStyles {
       },
       offlineTitle: {
         fontSize: 20,
-        fontFamily: 'sans-serif-bold',
         color: colors.gray,
       },
       empty: {
@@ -1128,7 +1127,6 @@ export default class AppStyles {
       },
       itemHeadline: {
         fontSize: 20,
-        fontFamily: 'sans-serif-bold',
       },
       itemNote: {
         fontSize: 16,
@@ -1143,16 +1141,13 @@ export default class AppStyles {
         color: colors.light_red
       },
       time: {
-        fontFamily: 'sans-serif-medium',
         fontSize: 14,
         color: colors.gray
       },
       status: {
         color: colors.gray,
-        fontFamily: 'sans-serif-bold'
       },
       duration: {
-        fontFamily: 'sans-serif-bold',
         color: colors.gray,
       },
       durationRow: {
@@ -1488,7 +1483,6 @@ export default class AppStyles {
       },
       itemHeadline: {
         fontSize: 20,
-        fontFamily: 'sans-serif-bold',
       },
       itemNote: {
         fontSize: 16,
@@ -1507,16 +1501,13 @@ export default class AppStyles {
         color: colors.light_red
       },
       time: {
-        fontFamily: 'sans-serif-medium',
         fontSize: 14,
         color: colors.gray
       },
       status: {
         color: colors.gray,
-        fontFamily: 'sans-serif-bold'
       },
       duration: {
-        fontFamily: 'sans-serif-bold',
         color: colors.gray,
       },
       durationRow: {

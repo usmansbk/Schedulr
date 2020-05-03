@@ -54,7 +54,7 @@ class Schedule extends React.Component {
     } = this.props;
 
     if (error && !schedule) return <Error onRefresh={onRefresh} loading={loading} />;
-    if (!loading && !schedule) return <Error
+    if (!(loading || schedule)) return <Error
       notFound
       message={I18n.get("ERROR_404")}
       caption={I18n.get("ERROR_404_caption")}

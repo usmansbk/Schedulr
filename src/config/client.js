@@ -16,7 +16,7 @@ const errorLink = onError(({ graphQLErrors }) => {
   if (graphQLErrors) {
     graphQLErrors.map(error => {
       const message = error.message;
-      if (message.includes("Not Found") || message.includes("Server token")) {
+      if (message.includes("Not Found") || message.includes("token")) {
         // Dont log elasticsearch "Not found"
         // Dont log server token expired
       } else if (message.includes("The conditional request failed")) {

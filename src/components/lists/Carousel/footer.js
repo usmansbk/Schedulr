@@ -13,7 +13,9 @@ class Footer extends React.Component {
   _navigateToAlbum = () => this.props.navigation.navigate('Album', { id: this.props.id });
 
   render() {
-    const { stores, images } = this.props;
+    const { stores, images, isOwner } = this.props;
+    if (!(isOwner || images.length)) return null;
+
     const styles = stores.appStyles.carousel;
     return (
       <TouchableRipple onPress={this._navigateToAlbum}>
