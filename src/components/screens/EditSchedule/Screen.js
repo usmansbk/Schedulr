@@ -9,7 +9,7 @@ export default class EditScheduleScreen extends React.Component {
     setTimeout(() => {
       this.props.onSubmit({ id, ...form });
     }, 0);
-    this.props.navigation.pop();
+    this.props.navigation.goBack();
   };
 
   get initialValues() {

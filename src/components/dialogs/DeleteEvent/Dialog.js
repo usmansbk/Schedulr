@@ -37,7 +37,7 @@ class DeleteEvent extends React.Component {
     setTimeout(() => {
       onSubmit && onSubmit({ id });
     }, 0);
-    this.props.navigation.pop();
+    this.props.navigation.goBack();
   };
 
   render() {

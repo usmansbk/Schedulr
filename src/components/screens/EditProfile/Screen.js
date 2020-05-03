@@ -22,7 +22,7 @@ export default class EditProfileScreen extends React.Component {
   _onSubmit = async (form) => {
     const id = this.props.user.id;
     await this.props.onSubmit({ id, ...form });
-    this.props.navigation.pop();
+    this.props.navigation.goBack();
   };
   
   render() {

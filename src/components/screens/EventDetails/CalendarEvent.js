@@ -29,7 +29,7 @@ class CalendarEvent extends React.Component {
 
   _onRemoveEvent = async () => {
     await this.props.stores.calendar.removeEvent(this.props.navigation.getParam('id'));
-    this.props.navigation.pop();
+    this.props.navigation.goBack();
   };
 
   _removeEvent = () => this.setState({ showAlert: true });
