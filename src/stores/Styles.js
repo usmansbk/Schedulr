@@ -1255,12 +1255,11 @@ export default class AppStyles {
         flex: 1,
         flexDirection: 'row',
         alignItems: 'center',
-        marginHorizontal: 8
+        paddingHorizontal: 16
       },
       itemRight: {
         justifyContent: 'center',
-        // alignItems: 'center',
-        marginLeft: 8
+        marginLeft: 16
       },
       itemText: {
         fontFamily: 'sans-serif-bold',
