@@ -21,7 +21,7 @@ class NewEventScreen extends React.Component {
     const sort = shortid.generate();
     const id = `${hash}-${sort}`;
     const input = { id,...form };
-    this.props.navigation.popToTop();
+    this.props.navigation.pop();
     setTimeout(() => {
       snackbar(I18n.get("EVENT_creating"));
       this.props.onSubmit(input);

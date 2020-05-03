@@ -46,6 +46,12 @@ export const COMMENT_TYPE = 'Comment';
 export const FOLLOW_TYPE = 'Follow';
 export const USER_TYPE = 'User';
 
+// file size
+export const file = {
+  MAX_FILE_SIZE : 1024 * 6000, // 6MB
+  EPSILON : 1024 * 100
+};
+
 //list/album
 export const album = {
   ITEM_WIDTH:  dp(175)
@@ -54,7 +60,7 @@ export const album = {
 //list/chips
 export const chips = {
   ITEM_HEIGHT: dp(48)
-}
+};
 
 // list/events
 export const events = {

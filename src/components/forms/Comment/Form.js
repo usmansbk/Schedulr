@@ -10,9 +10,10 @@ import logger from 'config/logger';
 import config from 'aws_config';
 import snackbar from 'helpers/snackbar';
 import { getFileName } from 'lib/utils';
+import { file } from 'lib/constants';
+const { MAX_FILE_SIZE } = file;
 
 const MAX_LENGTH = 240;
-const MAX_FILE_SIZE = 8000 * 1024;
 
 const {
   aws_user_files_s3_bucket: bucket,
@@ -138,8 +139,6 @@ class CommentInput extends React.Component {
 
   render() {
     const {
-      targetName,
-      cancelReply,
       stores,
       disabled,
       isOwner

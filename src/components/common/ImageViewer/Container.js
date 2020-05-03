@@ -9,14 +9,14 @@ import Screen from './Screen';
 import logger from 'config/logger';
 import snackbar from 'helpers/snackbar';
 import { getFileName } from 'lib/utils';
+import { file } from 'lib/constants';
 
 const {
   aws_user_files_s3_bucket: bucket,
   aws_user_files_s3_bucket_region: region
 } = config;
 
-const MAX_FILE_SIZE = 1024 * 6000; // 6MB
-const EPSILON = 1024 * 100;
+const { MAX_FILE_SIZE, EPSILON } = file;
 
 class ImageViewerContainer extends React.Component {
   state = {
@@ -51,7 +51,7 @@ class ImageViewerContainer extends React.Component {
 
   _uploadPhoto = () => {
     if (this.props.stores.appState.isConnected) {
-      const { id, onUploadPhoto, s3Object, folder="public" } = this.props;
+      const { onUploadPhoto, s3Object, folder="public" } = this.props;
       const options = {
         title: 'Select image',
         storageOptions: {
@@ -60,10 +60,12 @@ class ImageViewerContainer extends React.Component {
         }
       };
       ImagePicker.showImagePicker(options, async (response) => {
-        if (response.error) {
+        if (response.didCancel) {
+          // Do nothing
+        } else if (response.error) {
           snackbar(response.error.message);
         } else {
-          const { type, uri, fileName, fileSize } = response;
+          const { type, uri, fileSize } = response;
           if (fileSize > (MAX_FILE_SIZE + EPSILON)) {
             snackbar(I18n.get("WARNING_fileTooLarge"), true);
           } else {
