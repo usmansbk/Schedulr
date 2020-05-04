@@ -15,6 +15,11 @@ export const isEventCancelled = (event) => {
   return isCancelled || cancelledDates.includes(startAt);
 }
 
+/**
+ * 
+ * @param {{startAt: string, endAt: string, cancelledDates: string[], isCancelled: boolean, isConcluded: boolean}} event 
+ * @return {string} Returns the current status of an event
+ */
 export const getStatus = ({
   isCancelled,
   cancelledDates = [],
@@ -32,12 +37,22 @@ export const getStatus = ({
   return "upcoming";
 };
 
+/**
+ * 
+ * @param {{startAt: string, endAt: string, cancelledDates: string[], isCancelled: boolean}} event 
+ * @return { boolean} Whether an event is cancelled or date expired
+ */
 export const isEventValid = (event) => {
   const { isCancelled, startAt, endAt } = event;
   const cancelledDates = event.cancelledDates || [];
   return moment().twix(endAt).isCurrent() && !isEventCancelled({ cancelledDates, startAt, isCancelled });
 };
 
+/**
+ * 
+ * @param {string} recurrence 
+ * @returns {string} daily, weekly, every weekday, monthly, or yearly
+ */
 export const parseRepeat = (recurrence) => {
   const val = recurrence.toLowerCase();
   switch(val) {
@@ -51,6 +66,11 @@ export const parseRepeat = (recurrence) => {
   }
 };
 
+/**
+ * 
+ * @param {{allDay: boolean, recurrence: string, category: string, duration: string, startAt: string, endAt: string, ref_date: ?string}} event 
+ * @returns {string} Formatted event date in human friendly form
+ */
 export const captionDetails = ({
   allDay,
   recurrence,
