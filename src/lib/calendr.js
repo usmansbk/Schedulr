@@ -74,7 +74,6 @@ function generatePreviousEvents(events=[], beforeDate, DAYS_PER_PAGE) {
 
 /* Return next available event date */
 const getNextDate = (events=[], refDate, before) => {
-  console.log(JSON.stringify(events, null, 2))
   return uniqWith(events.map((currentEvent) => {
     const eventDate = moment(currentEvent.startAt).startOf('D');
     const endDate = moment(currentEvent.endAt).endOf('D');
@@ -177,23 +176,8 @@ const processNextDayEvents = memoize((initialEvents, nextDate) => {
       }
       const hasNext = recurrence.matches(refDate);
       if (hasNext) {
-        const start = moment(currentEvent.startAt);
-        const startSec = start.seconds();
-        const startMins = start.minutes();
-        const startHours = start.hours();
-
-        const end = moment(currentEvent.endAt);
-
-        const duration = Math.abs(moment.duration(start.diff(end)));
-
-        const startAt = refDate.clone().seconds(startSec).minutes(startMins).hours(startHours).toISOString();
-
-        const endAt = moment(startAt).add(duration).toISOString();
-        accumulator.data.push(Object.assign({}, currentEvent, {
-          startAt,
-          endAt,
-          ref_date: refDate.toISOString()
-        }));
+        const nextEvent = process(currentEvent, refDate.toISOString());
+        accumulator.data.push(nextEvent);
       }
     }
     accumulator.data = sortBy(accumulator.data, 'startAt', '__typename');
@@ -211,7 +195,6 @@ function processEvents(events) {
     if (typeof currentEvent === 'string') return currentEvent;
     const eventDate = moment(currentEvent.startAt);
     const interval = getInterval(currentEvent.recurrence);
-    const untilAt = currentEvent.until ? moment(currentEvent.until) : undefined;
     let recurrence;
     if (interval) {
       if (interval === 'weekdays') {
@@ -220,33 +203,50 @@ function processEvents(events) {
         recurrence = eventDate.recur().every(1, interval);
       }
       recurrence.fromDate(moment().add(-1, 'day')); // it exclusive so minus one day to include today
-      const end = moment(currentEvent.endAt);
-      
-      const startSec = eventDate.seconds();
-      const startMins = eventDate.minutes();
-      const startHours = eventDate.hours();
-
-      const duration = Math.abs(moment.duration(eventDate.diff(end)));
-
       const nextDates = recurrence.next(1);
-      let nextDate = nextDates[0];
-      const isConcluded = untilAt ? moment(nextDate).isAfter(untilAt) : false;
-      nextDate = isConcluded ? untilAt : nextDate;
-      const startAt = nextDate.local().seconds(startSec).minutes(startMins).hours(startHours).toISOString();
-      const endAt = moment(startAt).local().add(duration).toISOString();
-
-      return  Object.assign({}, currentEvent, {
-        startAt,
-        endAt,
-        ref_date: moment().startOf('D').toISOString(),
-        isConcluded
-      });
+      return process(currentEvent, nextDates[0].toISOString());
     }
     return Object.assign({}, currentEvent, {
       ref_date: moment().startOf('D').toISOString(),
     });
   });
 };
+
+/**
+ * @param { object } event - target event
+ * @param { date } date - next event date
+ * @return { object } event - a new event with the given next valid start and end date
+ */
+function process(event, date) {
+	const previousStartMoment = moment(event.startAt);
+
+  const hr = previousStartMoment.hour();
+	const min = previousStartMoment.minute();
+	const sec = previousStartMoment.second();
+
+	const nextMoment = moment(date).hour(hr).minute(min).second(sec);
+	const startAt = nextMoment.toISOString();
+
+	const previousEndMoment = moment(event.endAt);
+	const isExtended = nextMoment.isBetween(previousStartMoment, previousEndMoment, 'day', '[]');
+
+  const duration = moment.duration(previousEndMoment.diff(previousStartMoment));
+  const endAt = nextMoment.clone().add(duration).toISOString();
+
+	let isConcluded = false;
+	if (event.until) {
+		const finalMoment = moment(event.until);
+		isConcluded = nextMoment.isAfter(finalMoment);
+	}
+
+	return Object.assign({}, event, {
+		startAt,
+		endAt,
+		isExtended,
+		isConcluded,
+		ref_date: date
+	});
+}
 
 export {
   processEvents,
