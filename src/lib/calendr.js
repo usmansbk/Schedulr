@@ -229,23 +229,20 @@ function processEvents(events) {
       const duration = Math.abs(moment.duration(eventDate.diff(end)));
 
       const nextDates = recurrence.next(1);
-      const isConcluded = untilAt ? moment(startAt).isAfter(untilAt) : false;
-      const nextDate = isConcluded ? untilAt : nextDates[0]
+      let nextDate = nextDates[0];
+      const isConcluded = untilAt ? moment(nextDate).isAfter(untilAt) : false;
+      nextDate = isConcluded ? untilAt : nextDate;
       const startAt = nextDate.local().seconds(startSec).minutes(startMins).hours(startHours).toISOString();
       const endAt = moment(startAt).local().add(duration).toISOString();
 
       return  Object.assign({}, currentEvent, {
         startAt,
         endAt,
-        raw_startAt: currentEvent.startAt,
-        raw_endAt: currentEvent.endAt,
         ref_date: moment().startOf('D').toISOString(),
         isConcluded
       });
     }
     return Object.assign({}, currentEvent, {
-      raw_startAt: currentEvent.startAt,
-      raw_endAt: currentEvent.endAt,
       ref_date: moment().startOf('D').toISOString(),
     });
   });
