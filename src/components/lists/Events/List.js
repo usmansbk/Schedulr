@@ -23,7 +23,7 @@ const {
   SECTION_FOOTER_HEIGHT,
   HEADER_HEIGHT,
   FOOTER_HEIGHT,
-  DAYS_PER_PAGE
+  NUMBER_OF_DAYS
 } = events;
 
 class List extends React.Component {
@@ -221,8 +221,8 @@ class List extends React.Component {
 
   _processEvents(events, forceUpdate) {
     if (forceUpdate || eventsChanged(events, this.state.events)) {
-      const nextIterator = EventsGenerator(events, false, DAYS_PER_PAGE);
-      const prevIterator = EventsGenerator(events, true, DAYS_PER_PAGE);
+      const nextIterator = EventsGenerator(events, false, NUMBER_OF_DAYS);
+      const prevIterator = EventsGenerator(events, true, NUMBER_OF_DAYS);
       let result =  nextIterator.next();
       if (!result.done) {
         const { items, afterDate, beforeDate } = result.value;
