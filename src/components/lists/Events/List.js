@@ -18,6 +18,7 @@ import {
   generatePreviousEvents,
   generateNextEvents,
 } from 'lib/calendr';
+import { NextDayEventsIterator } from 'lib/eventsGenerator';
 import { events } from 'lib/constants';
 
 const {
@@ -53,7 +54,11 @@ class List extends React.Component {
     this.listRef = React.createRef();
   }
 
-  componentDidMount = () => this._processEvents();
+  componentDidMount = () => {
+    const eventsIterator = NextDayEventsIterator(this.props.events);
+    console.log(JSON.stringify(eventsIterator.next().value, null, 2));
+    this._processEvents();
+  };
 
   shouldComponentUpdate = (nextProps, nextState) => {
     return (
