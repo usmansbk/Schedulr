@@ -36,28 +36,15 @@ function getInterval(recurrence) {
  * @returns a SectionListData of events with empty days omitted
  */
 function generateNextEvents(events=[], refDate, DAYS_PER_PAGE=3, before=false) {
-  console.log('calling generateNextEvents function');
-  const totalStart = Date.now();
   const sections = [];
-  let start = Date.now();
   let nextDate = getNextDate(events, moment(refDate), before);
-  let stop = Date.now();
-  console.log('getNextDate#0', stop - start);
   if (events.length && nextDate) {
     for (let i = 0; i < DAYS_PER_PAGE; i++) {
-      start = Date.now();
       sections.push(processNextDayEvents(events, nextDate));
-      stop = Date.now();
-      console.log('processNextDayEvents#'+(i+1), stop - start);
-      start = Date.now();
       nextDate = getNextDate(events, nextDate, before);
-      stop = Date.now();
-      console.log('getNextDate#'+(i+1), stop - start);
       if (!nextDate) break;
     }
   }
-  const totalStop = Date.now();
-  console.log('Total time:', (totalStop - totalStart) + 'ms\n');
   return sections;
 }
 
@@ -74,7 +61,7 @@ function generatePreviousEvents(events=[], beforeDate, DAYS_PER_PAGE) {
 
 /* Return next available event date */
 const getNextDate = (events=[], refDate, before) => {
-  return uniqWith(events.map((currentEvent) => {
+  return Array.from(new Set(events.map(currentEvent => {
     const eventDate = moment(currentEvent.startAt).startOf('D');
     const endDate = moment(currentEvent.endAt).endOf('D');
     const untilAt = currentEvent.until ? moment(currentEvent.until).endOf('day') : undefined;
@@ -133,15 +120,15 @@ const getNextDate = (events=[], refDate, before) => {
         return null;
       }
     }
-    return eventDate;
-  }).filter(date => {
+    return eventDate.local().startOf('day').toISOString();
+  }))).filter(date => {
     if (!date) return false;
     if (before) return date.isBefore(refDate, 'day');
     return date.isAfter(refDate, 'day');
   }).sort((a, b) => {
     if (before) return -(a - b);
     return a - b;
-  }), (a, b) => a.toISOString() === b.toISOString())[0];
+  });
 };
 
 /**
