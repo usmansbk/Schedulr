@@ -41,7 +41,9 @@ export const sortBookmarks = memoize((data) => {
 });
 
 export function eventsChanged(prev, next=[]) {
+  if (prev === next) return false;
   if (prev.length !== next.length) return true;
+
   return next.some((nextVal, index) => {
     const prevVal = prev[index];
     return (nextVal.updatedAt !== prevVal.updatedAt) ||
