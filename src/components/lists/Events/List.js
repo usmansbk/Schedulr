@@ -2,7 +2,6 @@ import React from 'react';
 import { RefreshControl } from 'react-native';
 import { SectionList } from 'react-navigation';
 import { inject, observer } from 'mobx-react';
-import moment from 'moment';
 import uuidv5 from 'uuid/v5';
 import sectionListGetItemLayout from 'sectionlist-get-itemlayout';
 import Header from './Header';
@@ -14,11 +13,7 @@ import SectionFooter from './SectionFooter';
 import Item from './Item';
 import { isPast } from 'lib/time';
 import { eventsChanged } from 'lib/utils';
-import {
-  generatePreviousEvents,
-  generateNextEvents,
-} from 'lib/calendr';
-import { NextDayEventsIterator } from 'lib/eventsGenerator';
+import { EventsGenerator } from 'lib/eventsGenerator';
 import { events } from 'lib/constants';
 
 const {
@@ -27,10 +22,9 @@ const {
   SECTION_HEADER_HEIGHT,
   SECTION_FOOTER_HEIGHT,
   HEADER_HEIGHT,
-  FOOTER_HEIGHT
+  FOOTER_HEIGHT,
+  DAYS_PER_PAGE
 } = events;
-
-const DAYS_PER_PAGE = 3;
 
 class List extends React.Component {
 
@@ -42,9 +36,9 @@ class List extends React.Component {
 
   state = {
     events: [],
+    sections: [],
     loadingMore: false,
     loadingPrev: false,
-    sections: [],
     afterDate: null,
     beforeDate: null
   };
@@ -53,12 +47,6 @@ class List extends React.Component {
     super(props);
     this.listRef = React.createRef();
   }
-
-  componentDidMount = () => {
-    const eventsIterator = NextDayEventsIterator(this.props.events);
-    console.log(JSON.stringify(eventsIterator.next().value, null, 2));
-    this._processEvents();
-  };
 
   shouldComponentUpdate = (nextProps, nextState) => {
     return (
@@ -69,9 +57,9 @@ class List extends React.Component {
     );
   };
 
-  componentWillReceiveProps() {
-    setTimeout(this._processEvents, 0);
-  }
+  componentWillReceiveProps = (nextProps) => this._processEvents(nextProps.events)
+
+  componentDidMount = () => this._processEvents(this.props.events);
 
   _keyExtractor = (item) => item.id + item.ref_date;
 
@@ -183,76 +171,73 @@ class List extends React.Component {
     }
   };
   
-  loadPreviousEvents = (events) => {
+  loadPreviousEvents = () => {
     if (this.state.beforeDate) {
       this.setState({ loadingPrev: true });
       setTimeout(() => {
-        const prevSections = generatePreviousEvents(events, this.state.beforeDate, DAYS_PER_PAGE);
-        const sectionLength = prevSections.length;
-        const beforeDate = (sectionLength === DAYS_PER_PAGE) && moment(prevSections[0].title).format();
-        const afterDate = (sectionLength) && moment(prevSections[sectionLength - 1].title).format();
-
-        if (sectionLength) {
+        const result = this.state.prevIterator.next(this.state.beforeDate);
+        if (!result.done) {
+          const { beforeDate, items} = result.value;
+          const sections = items.concat(this.state.sections);
           this.setState({
-            sections: prevSections,
+            sections,
             beforeDate,
-            afterDate,
             loadingPrev: false
           });
         } else {
           this.setState({
-            beforeDate: false,
-            loadingPrev: false
+            loadingPrev: false,
+            beforeDate: null
           });
         }
       }, 0);
     }
   };
 
-  loadMoreEvents = (events=[]) => {  
+  loadMoreEvents = () => {  
     if (this.state.afterDate) {
       this.setState({ loadingMore: true });
       setTimeout(() => {
-        const moreSections = generateNextEvents(events, this.state.afterDate, DAYS_PER_PAGE);
-        const sectionLength = moreSections.length;
-        const afterDate = (sectionLength === DAYS_PER_PAGE) &&
-          moment(moreSections[sectionLength - 1].title).format();
-
-        this.setState(state => {
-          return ({
-            sections: state.sections.concat(moreSections),
+        const result = this.state.nextIterator.next(this.state.afterDate);
+        if (!result.done) {
+        const { items, afterDate } = result.value;
+        const sections = this.state.sections.concat(items);
+          this.setState({
+            sections,
             afterDate,
             loadingMore: false
-          })
-        });
+          });
+        } else {
+          this.setState({
+            loadingMore: false,
+            afterDate: null
+          });
+        }
       }, 0);
     }
   };
 
-  _processEvents = (forceUpdate) => {
-    const events = this.props.events;
+  _processEvents(events, forceUpdate) {
     if (forceUpdate || eventsChanged(events, this.state.events)) {
-      const today = moment().startOf('day').toISOString();
-      const yesterday = moment().subtract(1, 'day').startOf('day').toISOString();
-      let sections = generateNextEvents(events, yesterday, DAYS_PER_PAGE);
-      const todaysSection = sections.find(section => section.title === today);
-      if (!todaysSection) {
-        sections = [{ data: [], title: today }].concat(sections);
+      const nextIterator = EventsGenerator(events, false, DAYS_PER_PAGE);
+      const prevIterator = EventsGenerator(events, true, DAYS_PER_PAGE);
+      let result =  nextIterator.next();
+      if (!result.done) {
+        const { items, afterDate, beforeDate } = result.value;
+        this.setState({
+          nextIterator,
+          prevIterator,
+          sections: items,
+          afterDate,
+          beforeDate,
+          events,
+        });
       }
-      const afterDate = moment(sections[sections.length - 1].title).toISOString();
-      const beforeDate = moment(sections[0].title).toISOString();
-      
-      this.setState({
-        sections,
-        afterDate,
-        beforeDate,
-        events,
-      });
     }
-  };
+  }
   
   _onRefresh = () => {
-    this._processEvents(true);
+    this._processEvents(this.state.events, true);
     this.props.fetchMore && this.props.fetchMore();
   };
   
