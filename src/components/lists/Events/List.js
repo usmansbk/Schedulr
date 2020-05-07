@@ -94,7 +94,8 @@ class List extends React.Component {
 
   _renderSeparator = () => <Separator />;
 
-  _renderSectionHeader = ({ section }) => <SectionHeader onPress={this._onPressSectionHeader} section={section} />;
+  _renderSectionHeader = ({ section }) => (
+    <SectionHeader onPress={this._onPressSectionHeader} section={section} />);
 
   _renderSectionFooter = ({ section }) => <SectionFooter section={section} />;
 
@@ -152,7 +153,8 @@ class List extends React.Component {
     );
   };
 
-  _onPressItem = (id, refStartAt, refEndAt) => this.props.navigation.navigate('EventDetails', { id, refStartAt, refEndAt });
+  _onPressItem = (id, refStartAt, refEndAt) => (
+    this.props.navigation.navigate('EventDetails', { id, refStartAt, refEndAt }));
 
   _navigateToBanner = (id) => this.props.navigation.navigate('Banner', { id });
 
