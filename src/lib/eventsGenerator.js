@@ -21,9 +21,6 @@ import { nextSevenDays } from './time';
  */
 function* EventsGenerator(events, previous) {
 	let dates = nextSevenDays(previous);
-	let mydates = events.map(event => moment(event.startAt).startOf('day').toISOString());
-	dates = Array.from(new Set(dates.concat(mydates))).sort((a, b) => moment(a).diff(moment(b))); 
-	console.log(JSON.stringify(dates, null, 2));
 	for (let date of dates) {
 		const data = [];
 		events.forEach(event => {

@@ -155,7 +155,8 @@ export const momentCounter = ({ startAt, ref_date }) => {
 export const nextSevenDays = (previous) => {
   let dates = [];
   const direction = previous ? -1 : 1;
-  for (let i = 0; i < 7; i++) {
+  let start = previous ? 1 : 0;
+  for (let i = start; i < 7; i++) {
     const date = moment().add(i * direction, 'day').startOf('day').toISOString();
     dates.push(date);
   }
