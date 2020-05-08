@@ -293,12 +293,12 @@ export default {
   MENU_open: "Open",
   MENU_delete: "Delete",
 
-  RECUR_never: "One-time event",
-  RECUR_daily: "Daily",
-  RECUR_weekly: day => `Weekly (every ${day})`,
-  RECUR_weekdays: "Weekdays (Mon - Fri)",
-  RECUR_monthly: "Monthly (on the same day)",
-  RECUR_yearly: date => `Yearly (every ${date})`,
+  RECUR_never: "Never",
+  RECUR_daily: "Every day",
+  RECUR_weekly: day => `Every week ( ${day} )`,
+  RECUR_weekdays: "Every weekday ( Mon - Fri )",
+  RECUR_monthly: "Every month",
+  RECUR_yearly: date => `Every year ( ${date} )`,
 
   STATUS_concluded: "Concluded",
   STATUS_ongoing: "Ongoing",

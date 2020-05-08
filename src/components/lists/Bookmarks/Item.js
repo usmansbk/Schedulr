@@ -77,7 +77,7 @@ class Item extends React.Component {
             </View>
             <BookmarkButton
               id={id}
-              size={24}
+              size={20}
               isBookmarked={isBookmarked}
               activeColor={stores.themeStore.colors.primary}
             />
