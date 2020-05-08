@@ -1,5 +1,5 @@
 
-![logo](![logo](https://user-images.githubusercontent.com/10219539/81441576-eeab0380-9169-11ea-8227-d35b93f512ba.png))
+![Logo](https://user-images.githubusercontent.com/10219539/81441576-eeab0380-9169-11ea-8227-d35b93f512ba.png)
 
 # Schdlr Mobile
 
