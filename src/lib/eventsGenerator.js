@@ -1,4 +1,5 @@
 import moment from 'moment';
+import { nextSevenDays } from './time';
 /**
  * 
  * A calendar event
@@ -15,32 +16,32 @@ import moment from 'moment';
  * @param { Event[] } events
  * @param { Date } date - start date 
  * @param { boolean= } previous - Get previous day events if true
+ * @param { number } [size=1] - number of days to fetch 
  * @return { Event[] } events 
  */
-function* NextDayEventsIterator(events, previous) {
-
-	const order = previous ? -1 : 1;
-
-	// sort the events in ascending order. If previous param is set, then sort in descending order
-	const sorted = events.sort((a, b) => moment(a.startAt).diff(moment(b.startAt)) * order);
-
-	// get a set of dates including [next 7 days]
-	const dates = new Set(sorted.map(e => moment(e.startAt).startOf('day').toISOString()));
-
-	// for each date in dates yield the events that are valid
+function* EventsGenerator(events, previous) {
+	let dates = nextSevenDays(previous);
+	let mydates = events.map(event => moment(event.startAt).startOf('day').toISOString());
+	dates = Array.from(new Set(dates.concat(mydates))).sort((a, b) => moment(a).diff(moment(b))); 
+	console.log(JSON.stringify(dates, null, 2));
 	for (let date of dates) {
-		let nextEvents = [];
-		sorted.forEach(event => {
+		const data = [];
+		events.forEach(event => {
 			if (match(event, date)) {
-				nextEvents.push(process(event, date));
+				data.push(process(event, date));
 			}
 		});
-		if (nextEvents.length){
-			yield ({
-				data: nextEvents,
+		const items = [
+			{
+				data,
 				title: date
-			});
-		}
+			}
+		] ;
+		yield ({
+			items,
+			afterDate: date,
+			beforeDate: date
+		});
 	}
 }
 
@@ -49,16 +50,17 @@ function match(event, date) {
 	const startMoment = moment(event.startAt);
 	const endMoment = moment(event.endAt);
 	const dateMoment = moment(date);
+	// isSameDay- date is same as start date
+	// isOngoing - date is between start and end dates
 
-	const isSameDay = startMoment.isSame(dateMoment, 'day');
-	const isOngoing = dateMoment.isSameOrBefore(endMoment, 'day');
+	const isValid= dateMoment.isBetween(startMoment, endMoment, 'day', '[]');
 	const isCancelled = event.isCancelled;
-	let isRecurring = true;
+	let isRecurring = false;
 	if (event.recurrence !== 'NEVER') {
-		const finalMoment = moment(event.until);
-		isRecurring = dateMoment.isSameOrBefore(finalMoment, 'day');
+
 	}
-	return !isCancelled && (isSameDay || isOngoing || isRecurring);
+
+	return !isCancelled && (isValid || isRecurring);
 }
 
 /**
@@ -74,13 +76,18 @@ function process(event, date) {
 	const sec = previousStartMoment.second();
 
 	const nextMoment = moment(date).hour(hr).minute(min).second(sec);
-	const startAt = nextMoment.toISOString();
+	let startAt = nextMoment.toISOString();
 
 	const previousEndMoment = moment(event.endAt);
-	const isExtended = nextMoment.isBetween(previousStartMoment, previousEndMoment, 'day', '[]');
-
 	const duration = moment.duration(previousEndMoment.diff(previousStartMoment));
-	const endAt = nextMoment.clone().add(duration).toISOString();
+	let endAt = nextMoment.clone().add(duration).toISOString();
+
+	const isExtended = nextMoment.isBetween(previousStartMoment, previousEndMoment, 'day', '[]');
+	if (isExtended) {
+		startAt = previousStartMoment.toISOString();
+		endAt = previousEndMoment.toISOString();
+	}
+	
 	let isConcluded = false;
 	if (event.until) {
 		const finalMoment = moment(event.until);
@@ -97,5 +104,5 @@ function process(event, date) {
 }
 
 export {
-  NextDayEventsIterator
+  EventsGenerator
 };

@@ -1648,7 +1648,7 @@ export default class AppStyles {
         height: SECTION_HEADER_HEIGHT
       },
       sectionHeading: {
-        fontSize: 24,
+        fontSize: 22,
         color: colors.primary
       },
       sectionSubheadingContent: {
