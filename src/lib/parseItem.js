@@ -4,11 +4,32 @@ import { I18n } from 'aws-amplify';
 import { capitalize } from './utils';
 import { momentCounter } from './time';
 
+/**
+ * 
+ * A calendar event
+ * @typedef {Object} Event
+ * @property {Date} startAt - ISO string of event start date and time
+ * @property {Date} endAt - ISO string of end date and time
+ * @property {boolean} isCancelled - Indicates whether event is cancelled
+ * @property {string} recurrence - How often even should repeat (DAILY, WEEKLY, MONTHLY, YEARLY)
+ * @property {Date=} until - Final date of event, if repeating
+ * @property {boolean=} forever - Indicates whether event should repeat forever
+ */
+
+ /**
+  * 
+  * @param {string} category 
+  */
 export const getCategory = (category) => {
   if (!category) return '';
   return I18n.get(category);
 };
 
+/**
+ * 
+ * @param {Event} event 
+ * @returns { boolean } - check where event is cancelled
+ */
 export const isEventCancelled = (event) => {
   const { startAt, isCancelled } = event;
   const cancelledDates = event.cancelledDates || [];
@@ -17,7 +38,7 @@ export const isEventCancelled = (event) => {
 
 /**
  * 
- * @param {{startAt: string, endAt: string, cancelledDates: string[], isCancelled: boolean, isConcluded: boolean}} event 
+ * @param { Event } event
  * @return {string} Returns the current status of an event
  */
 export const getStatus = ({
@@ -39,7 +60,7 @@ export const getStatus = ({
 
 /**
  * 
- * @param {{startAt: string, endAt: string, cancelledDates: string[], isCancelled: boolean}} event 
+ * @param { Event } event
  * @return { boolean} Whether an event is cancelled or date expired
  */
 export const isEventValid = (event) => {
@@ -68,7 +89,7 @@ export const parseRepeat = (recurrence) => {
 
 /**
  * 
- * @param {{allDay: boolean, recurrence: string, category: string, duration: string, startAt: string, endAt: string, ref_date: ?string}} event 
+ * @param { Event } event
  * @returns {string} Formatted event date in human friendly form
  */
 export const captionDetails = ({

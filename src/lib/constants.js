@@ -5,6 +5,7 @@ import { Dimensions, PixelRatio, StyleSheet } from 'react-native';
  * to match the font when user changes the
  * device font size
  * @param { number } val 
+ * @return { number } - convert size to fit device font scale
  */
 export const dp = (val) => {
   const fontScale = PixelRatio.getFontScale();

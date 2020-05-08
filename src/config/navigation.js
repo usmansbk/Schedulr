@@ -1,3 +1,4 @@
+import { Linking } from 'react-native';
 import { NavigationActions } from 'react-navigation';
 
 let _navigator;
@@ -19,7 +20,9 @@ function deepLinkNavigate(url) {
   const route = url.replace(/.*?:\/\//g, '');
   const id = route.match(/\/([^\/]+)\/?$/)[1];
   let routeName;
-  if (id.indexOf('-') === -1) {
+  if (id === 'terms' || id === 'privacy') {
+    Linking.openURL(url);
+  } else if (id.indexOf('-') === -1) {
     routeName = 'calendr';
   } else {
     routeName = route.split('/')[1];
