@@ -123,11 +123,11 @@ const getNextDate = (events=[], refDate, before) => {
     return eventDate.local().startOf('day').toISOString();
   }))).filter(date => {
     if (!date) return false;
-    if (before) return date.isBefore(refDate, 'day');
+    if (before) return moment(date).isBefore(refDate, 'day');
     return date.isAfter(refDate, 'day');
   }).sort((a, b) => {
-    if (before) return -(a - b);
-    return a - b;
+    const order = before ? -1 : 1;
+    return order * moment(a).diff(moment(b));
   });
 };
 

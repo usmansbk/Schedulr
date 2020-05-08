@@ -47,13 +47,14 @@ function match(event, date) {
 	const startMoment = moment(event.startAt);
 	const endMoment = moment(event.endAt);
 	const dateMoment = moment(date);
-	// isSameDay- date is same as start date
-	// isOngoing - date is between start and end dates
+	// isValid - date is same as or between start and end date
 
 	const isValid= dateMoment.isBetween(startMoment, endMoment, 'day', '[]');
 	const isCancelled = event.isCancelled;
 	let isRecurring = false;
-	if (event.recurrence !== 'NEVER') {
+	if (event.recurrence === 'DAILY') {
+		isRecurring = true;
+	} else if (event.recurrence === 'WEEKDAYS') {
 
 	}
 
