@@ -1,4 +1,4 @@
-const date = '2020-04-26T18:21';
+const date = '2020-05-09T12:30';
 const DOMAIN = 'https://get-schdlr.com';
 
 export default {
