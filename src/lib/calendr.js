@@ -199,18 +199,16 @@ function processEvents(events) {
 function process(event, date) {
 	const previousStartMoment = moment(event.startAt);
 
-  const hr = previousStartMoment.hour();
+	const hr = previousStartMoment.hour();
 	const min = previousStartMoment.minute();
 	const sec = previousStartMoment.second();
 
 	const nextMoment = moment(date).hour(hr).minute(min).second(sec);
-	const startAt = nextMoment.toISOString();
+	let startAt = nextMoment.toISOString();
 
 	const previousEndMoment = moment(event.endAt);
-	const isExtended = nextMoment.isBetween(previousStartMoment, previousEndMoment, 'day', '[]');
-
-  const duration = moment.duration(previousEndMoment.diff(previousStartMoment));
-  const endAt = nextMoment.clone().add(duration).toISOString();
+	const duration = moment.duration(previousEndMoment.diff(previousStartMoment));
+  let endAt = nextMoment.clone().add(duration).toISOString();
 
 	let isConcluded = false;
 	if (event.until) {
@@ -218,6 +216,12 @@ function process(event, date) {
 		isConcluded = nextMoment.isAfter(finalMoment);
 	}
 
+	const isExtended = nextMoment.isBetween(previousStartMoment, previousEndMoment, 'day', '[]');
+	if (isExtended || isConcluded) {
+		startAt = previousStartMoment.toISOString();
+		endAt = previousEndMoment.toISOString();
+	}
+	
 	return Object.assign({}, event, {
 		startAt,
 		endAt,
@@ -226,6 +230,8 @@ function process(event, date) {
 		ref_date: date
 	});
 }
+
+
 
 export {
   processEvents,

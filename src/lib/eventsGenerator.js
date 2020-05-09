@@ -80,16 +80,16 @@ function process(event, date) {
 	const duration = moment.duration(previousEndMoment.diff(previousStartMoment));
 	let endAt = nextMoment.clone().add(duration).toISOString();
 
-	const isExtended = nextMoment.isBetween(previousStartMoment, previousEndMoment, 'day', '[]');
-	if (isExtended) {
-		startAt = previousStartMoment.toISOString();
-		endAt = previousEndMoment.toISOString();
-	}
-	
 	let isConcluded = false;
 	if (event.until) {
 		const finalMoment = moment(event.until);
 		isConcluded = nextMoment.isAfter(finalMoment);
+	}
+
+	const isExtended = nextMoment.isBetween(previousStartMoment, previousEndMoment, 'day', '[]');
+	if (isExtended || isConcluded) {
+		startAt = previousStartMoment.toISOString();
+		endAt = previousEndMoment.toISOString();
 	}
 
 	return Object.assign({}, event, {
