@@ -250,7 +250,7 @@ export default {
     return `${duration}${recurrence ? ` ${recurrence}` : ''}${type ? ` ${type}` : '' }`;
   },
 
-  SCHEDULE: "SCHEDULE",
+  SCHEDULE: "LIST",
   SCHEDULE_public: "Public List",
   SCHEDULE_private: "Private List",
   SCHEDULE_FORM_name: "List Name",
