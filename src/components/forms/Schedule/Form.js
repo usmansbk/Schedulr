@@ -143,7 +143,7 @@ class Form extends React.Component {
               >
               {errors.name && I18n.get(`HELPER_TEXT_${errors.name}`)}
               </HelperText>
-              <View>
+              <View style={{paddingHorizontal: 10}}>
                 <Text
                   style={
                     [styles.text, { marginVertical: 4 }]}
@@ -162,24 +162,24 @@ class Form extends React.Component {
                   })}
                   onValueChange={handleChange('topic')}
                 />
-              </View>
-              <View style={styles.switchButton}>
-                <Text style={styles.text}>{I18n.get("SCHEDULE_FORM_public")}</Text>
-                <Switch
-                  value={values.isPublic}
-                  onValueChange={(value) => {
-                    const isPublic = values.isPublic;
-                    if (isPublic) this._showPrivacyAlert();
-                    setFieldValue('isPublic', value);
-                  }}
-                />
-              </View>
-              <View style={{marginVertical: 16}}>
-                <Text style={styles.text}>{I18n.get("SCHEDULE_FORM_location")}</Text>
-                <PickerButton
-                  value={values.location}
-                  onPress={() => this.setState({ showLocationPicker: true })}
-                />
+                <View style={styles.switchButton}>
+                  <Text style={styles.text}>{I18n.get("SCHEDULE_FORM_public")}</Text>
+                  <Switch
+                    value={values.isPublic}
+                    onValueChange={(value) => {
+                      const isPublic = values.isPublic;
+                      if (isPublic) this._showPrivacyAlert();
+                      setFieldValue('isPublic', value);
+                    }}
+                  />
+                </View>
+                <View style={{marginVertical: 16}}>
+                  <Text style={styles.text}>{I18n.get("SCHEDULE_FORM_location")}</Text>
+                  <PickerButton
+                    value={values.location}
+                    onPress={() => this.setState({ showLocationPicker: true })}
+                  />
+                </View>
               </View>
               <TextInput
                 // placeholder={I18n.get("SCHEDULE_FORM_description")}

@@ -2866,10 +2866,10 @@
   resolved "https://registry.yarnpkg.com/@react-native-community/netinfo/-/netinfo-4.7.0.tgz#7482d36836cac69d0a0ae25581f65bc472639930"
   integrity sha512-a/sDB+AsLEUNmhAUlAaTYeXKyQdFGBUfatqKkX5jluBo2CB3OAuTHfm7rSjcaLB9EmG5iSq3fOTpync2E7EYTA==
 
-"@react-native-community/push-notification-ios@^1.0.1":
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/@react-native-community/push-notification-ios/-/push-notification-ios-1.1.1.tgz#80d5684d05d211a832f88d78720d63e53119a027"
-  integrity sha512-kgm8BKlru5OjwxxynReC1MM/JXwXZ/zOSGYORhbmnrBC8LTlogYA1ZMJ9HY9ltEpw6gDndQEsfFOkXHYeAPSCw==
+"@react-native-community/push-notification-ios@^1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@react-native-community/push-notification-ios/-/push-notification-ios-1.2.0.tgz#3353598450a39c42d079603aad2d1c0f9c2c1729"
+  integrity sha512-B5qPb9P/6vvxGGQDePlK/q6NxoZPWSVFtKCQ9jlboP7gNZmf3AAyBhTzrb++s2NSXXogjkGi6vt9df1ipZiawQ==
   dependencies:
     invariant "^2.2.4"
 
@@ -9202,12 +9202,12 @@ react-native-paper@^3.10.1:
   dependencies:
     prop-types "^15.5.10"
 
-react-native-push-notification@^3.3.1:
-  version "3.3.1"
-  resolved "https://registry.yarnpkg.com/react-native-push-notification/-/react-native-push-notification-3.3.1.tgz#318492cab079872f68988348d3331d9c4fcd871a"
-  integrity sha512-Mn28c3gos5y4kWLz9vP/VzO6GpEOMNVGrSleqnf3I0+6eiALQWs+BtyBwH+7wIn0ztDYclh5vQRjyy6b3vya7g==
+react-native-push-notification@^3.4.0:
+  version "3.4.0"
+  resolved "https://registry.yarnpkg.com/react-native-push-notification/-/react-native-push-notification-3.4.0.tgz#7d8f857f9905a646c398a3eb0fa6402965e2c78c"
+  integrity sha512-J5VzpmQT9uIbXGpt5SjKqIhuOrcsTCYKPgRPzQ9j0Gz1SuphuhtTfQr7D8+UNPxqYbzQOJ1DytfcF3far4dHRw==
   dependencies:
-    "@react-native-community/push-notification-ios" "^1.0.1"
+    "@react-native-community/push-notification-ios" "^1.2.0"
 
 react-native-reanimated@^1.8.0:
   version "1.8.0"

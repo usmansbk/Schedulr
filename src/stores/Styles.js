@@ -390,7 +390,7 @@ export default class AppStyles {
         elevation: 0
       },
       form: {
-        margin: 16
+        padding: 16
       },
       switchButton: {
         flexDirection: 'row',
@@ -435,7 +435,7 @@ export default class AppStyles {
         justifyContent: "space-between"
       },
       form: {
-        margin: 16
+        padding: 16
       },
       text: {
         color: colors.primary,
@@ -460,9 +460,6 @@ export default class AppStyles {
         marginRight: 16,
         // marginVertical: 4
       },
-      firstPicker: {
-        marginTop: 0
-      },
       pickerSpacing: {
         marginVertical: 10
       },
@@ -473,10 +470,6 @@ export default class AppStyles {
         borderColor: colors.gray,
         backgroundColor: colors.bg
       },
-      pickerItem: {
-        color: colors.black,
-        backgroundColor: colors.bg
-      },
       header: {
         flexDirection: 'row',
         justifyContent: 'space-between',
@@ -484,18 +477,6 @@ export default class AppStyles {
         paddingHorizontal: 16,
         elevation: 0,
       },
-      checkbox: {
-        flexDirection: 'row',
-        justifyContent: 'flex-start',
-        alignItems: 'center',
-      },
-      checkboxLabel: {
-        color: colors.primary
-      },
-      checkboxItem: {
-        flexDirection: 'row',
-        justifyContent: 'space-between'
-      }
     });    
   }
 

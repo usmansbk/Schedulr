@@ -169,6 +169,7 @@ class Form extends React.Component {
               >
               {errors.title && I18n.get(`HELPER_TEXT_${errors.title}`)}
               </HelperText>
+              <View style={{paddingHorizontal: 10}}>
               {
                 !locked && (
                   <View style={styles.pickerSpacing}>
@@ -352,6 +353,7 @@ class Form extends React.Component {
                   </>
                 )
               }
+              </View>
               <TextInput
                 placeholder={I18n.get("PLACEHOLDER_venue")(values.location)}
                 label={I18n.get("EVENT_FORM_venue")}
