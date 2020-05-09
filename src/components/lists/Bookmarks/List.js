@@ -11,7 +11,7 @@ import {
   parseRepeat,
   getStatus,
   getCategory
-} from 'lib/parseItem';
+} from 'lib/formatEvent';
 import {
   getDuration,
   getHumanTime

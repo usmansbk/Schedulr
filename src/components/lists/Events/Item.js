@@ -22,7 +22,7 @@ import {
   parseRepeat,
   getCategory,
   captionDetails
-} from 'lib/parseItem';
+} from 'lib/formatEvent';
 import getImageUrl from 'helpers/getImageUrl';
 
 class Item extends React.Component {

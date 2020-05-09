@@ -6,7 +6,7 @@ import Icon from 'react-native-vector-icons/Feather';
 import Suspense from 'components/common/Suspense';
 import Details from './Details';
 import { formatDate, getRepeatLabel, getDuration } from 'lib/time';
-import { isEventValid, isEventCancelled, getStatus } from 'lib/parseItem';
+import { isEventValid, isEventCancelled, getStatus } from 'lib/formatEvent';
 import { ONE_TIME_EVENT } from 'lib/constants';
 import getImageUrl from 'helpers/getImageUrl';
 import logger from 'config/logger';

@@ -15,7 +15,7 @@ import {
   getStatus,
   getCategory,
   captionDetails
-} from 'lib/parseItem';
+} from 'lib/formatEvent';
 import {
   getDuration,
   getHumanTime

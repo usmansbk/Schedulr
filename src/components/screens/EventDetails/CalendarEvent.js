@@ -10,7 +10,7 @@ import Alert from 'components/dialogs/Alert';
 import Error from 'components/common/Error';
 import Suspense from 'components/common/Suspense';
 import { formatDate } from 'lib/time';
-import { getStatus } from 'lib/parseItem';
+import { getStatus } from 'lib/formatEvent';
 
 
 class CalendarEvent extends React.Component {

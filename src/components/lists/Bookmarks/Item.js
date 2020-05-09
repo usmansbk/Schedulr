@@ -11,7 +11,7 @@ import Badge from 'components/common/Badge';
 import Avatar from 'components/common/UserAvatar';
 import BookmarkButton from 'components/common/BookmarkButton';
 import { bookmarkedEvents } from 'lib/constants';
-import { captionDetails } from 'lib/parseItem';
+import { captionDetails } from 'lib/formatEvent';
 
 const { AVATAR_SIZE } = bookmarkedEvents;
 
