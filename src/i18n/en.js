@@ -44,7 +44,7 @@ export default {
   BOARD_emptyList: "Your board is empty",
   BOARD_emptyListCaption: "Follow or create a schedule",
 
-  PROFILE_boardEmptyList: "No Schedules",
+  PROFILE_boardEmptyList: "Nothing here yet...",
   PROFILE_followingLabel: "Following",
   PROFILE_createdLabel: "Created",
   PROFILE_notVisibleToPublic: "Events not visible to public",
@@ -236,7 +236,7 @@ export default {
   EVENT_FORM_repeatForever: "REPEAT FOREVER",
   EVENT_FORM_repeatUntil: "REPEAT UNTIL",
   EVENT_FORM_selectASchedule: "Select a schedule",
-  EVENT_FORM_noSchedule: "No schedule",
+  EVENT_FORM_noSchedule: "No List",
   EVENT_FORM_addToASchedule: "Add to a schedule",
 
   EVENT_ITEM_allDay: "All day",
