@@ -4801,13 +4801,6 @@ console-control-strings@^1.0.0, console-control-strings@~1.1.0:
   resolved "https://registry.yarnpkg.com/console-control-strings/-/console-control-strings-1.1.0.tgz#3d7cf4464db6446ea644bf4b39507f9851008e8e"
   integrity sha1-PXz0Rk22RG6mRL9LOVB/mFEAjo4=
 
-contained-periodic-values@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/contained-periodic-values/-/contained-periodic-values-1.0.0.tgz#a81dd8e84e0a5513d590a1e6581bfe55c00f9c4d"
-  integrity sha1-qB3Y6E4KVRPVkKHmWBv+VcAPnE0=
-  dependencies:
-    nearest-periodic-value "^1.0.0"
-
 convert-source-map@^1.1.0, convert-source-map@^1.4.0:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/convert-source-map/-/convert-source-map-1.6.0.tgz#51b537a8c43e0f04dec1993bffcdd504e758ac20"
@@ -8090,14 +8083,6 @@ mobx@4.15.4:
   resolved "https://registry.yarnpkg.com/mobx/-/mobx-4.15.4.tgz#644eac80bdd15793855194e764c475041101b406"
   integrity sha512-nyuHPqmKnVOnbvkjR8OrijBtovxAHYC+JU8/qBqvBw4Dez/n+zzxqNHbZNFy7/07+wwc/Qz7JS9WSfy1LcYISA==
 
-moment-business@^3.0.1:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/moment-business/-/moment-business-3.0.1.tgz#df0de1a8a074060652b5688d3cc99c9d8b76dcc4"
-  integrity sha1-3w3hqKB0BgZStWiNPMmcnYt23MQ=
-  dependencies:
-    contained-periodic-values "^1.0.0"
-    skipped-periodic-values "^1.0.0"
-
 moment-recur@^1.0.7:
   version "1.0.7"
   resolved "https://registry.yarnpkg.com/moment-recur/-/moment-recur-1.0.7.tgz#4d5092af648aeded6afe5c13ef38c52901c99419"
@@ -8166,11 +8151,6 @@ natural-compare@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/natural-compare/-/natural-compare-1.4.0.tgz#4abebfeed7541f2c27acfb29bdbbd15c8d5ba4f7"
   integrity sha1-Sr6/7tdUHywnrPspvbvRXI1bpPc=
-
-nearest-periodic-value@^1.0.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/nearest-periodic-value/-/nearest-periodic-value-1.2.0.tgz#a84fd52919a89692864d20a41468313d255905c6"
-  integrity sha1-qE/VKRmolpKGTSCkFGgxPSVZBcY=
 
 needle@^2.2.1:
   version "2.4.0"
@@ -10084,13 +10064,6 @@ sisteransi@^1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/sisteransi/-/sisteransi-1.0.3.tgz#98168d62b79e3a5e758e27ae63c4a053d748f4eb"
   integrity sha512-SbEG75TzH8G7eVXFSN5f9EExILKfly7SUvVY5DhhYLvfhKqhDFY0OzevWa/zwak0RLRfWS5AvfMWpd9gJvr5Yg==
-
-skipped-periodic-values@^1.0.0:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/skipped-periodic-values/-/skipped-periodic-values-1.0.1.tgz#d3a0a4d93ac134c4550db2a8823ed9d9739ceca2"
-  integrity sha1-06Ck2TrBNMRVDbKogj7Z2XOc7KI=
-  dependencies:
-    nearest-periodic-value "^1.0.0"
 
 slash@^2.0.0:
   version "2.0.0"

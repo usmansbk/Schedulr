@@ -3,7 +3,6 @@ import { InteractionManager } from 'react-native';
 import moment from 'moment';
 import 'moment-recur';
 import 'twix';
-import business from 'moment-business';
 import { decapitalize } from 'lib/utils';
 import {
   FIVE_MINUTES,
@@ -11,9 +10,10 @@ import {
   FIFTEEN_MINUTES,
   THIRTY_MINUTES,
   ONE_HOUR,
-  ONE_DAY
+  ONE_DAY,
+  isWeekDay,
+  weekdays
 } from 'lib/time';
-import { weekdays } from 'lib/calendr';
 import { ONE_TIME_EVENT } from 'lib/constants';
 import stores from 'stores';
 import colors from 'config/colors';
@@ -202,7 +202,7 @@ function schdlWeekdaysEvent(event, remindMeBefore, settings) {
     schdl(nextEvent, remindMeBefore, settings);
   });
 
-  const isWeekday = business.isWeekDay(start);
+  const isWeekday = isWeekDay(start);
   const isToday = start.isSame(moment(), 'day');
   const isPending = start.twix(end).isFuture();
 

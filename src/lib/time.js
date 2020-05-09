@@ -15,6 +15,14 @@ export const FIFTEEN_MINUTES = 3 * FIVE_MINUTES;
 export const THIRTY_MINUTES = 3 * TEN_MINUTES;
 export const FORTY_FIVE_MINUTES = 3 * FIFTEEN_MINUTES;
 
+export const weekdays = [
+  'Monday',
+  'Tuesday',
+  'Wednesday',
+  'Thursday',
+  'Friday'
+];
+
 export const canRecur = ({ startAt, endAt })  => {
   const recurrence = [
     'NEVER',
@@ -127,6 +135,10 @@ export const isPastExact = date => moment().twix(date).isPast();
 export const isStarted = ({ isCancelled, startAt, endAt }) => {
   const t = moment(startAt).twix(endAt);
   return (!isCancelled && t.isCurrent());
+};
+
+export const isWeekDay = (momentDate) => {
+  return momentDate.isoWeekday() < 6;
 };
 
 export const isToday = (event) => {

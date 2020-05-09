@@ -1,15 +1,7 @@
 import moment from 'moment';
 import 'moment-recur';
-import uniqWith from 'lodash.uniqwith';
 import memoize from 'lodash.memoize';
-
-export const weekdays = [
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday"
-];
+import { weekdays } from './time';
 
 export const sortBy = (arr, key) => {
   return arr.sort((a, b) => {
