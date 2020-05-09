@@ -79,7 +79,7 @@ class Item extends React.Component {
               id={id}
               size={20}
               isBookmarked={isBookmarked}
-              activeColor={stores.themeStore.colors.primary}
+              activeColor={stores.themeStore.colors.like}
             />
           </View>
         </View>
