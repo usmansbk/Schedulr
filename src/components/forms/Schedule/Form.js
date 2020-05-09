@@ -143,7 +143,7 @@ class Form extends React.Component {
               >
               {errors.name && I18n.get(`HELPER_TEXT_${errors.name}`)}
               </HelperText>
-              <View style={{paddingHorizontal: 10}}>
+              <View style={{paddingLeft: 10}}>
                 <Text
                   style={
                     [styles.text, { marginVertical: 4 }]}

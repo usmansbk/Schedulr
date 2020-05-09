@@ -169,7 +169,7 @@ class Form extends React.Component {
               >
               {errors.title && I18n.get(`HELPER_TEXT_${errors.title}`)}
               </HelperText>
-              <View style={{paddingHorizontal: 10}}>
+              <View style={{paddingLeft: 10}}>
               {
                 !locked && (
                   <View style={styles.pickerSpacing}>
