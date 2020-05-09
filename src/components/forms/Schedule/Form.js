@@ -127,7 +127,7 @@ class Form extends React.Component {
             }>
             <View style={styles.form}>
               <TextInput
-                placeholder={I18n.get("SCHEDULE_FORM_name")}
+                // placeholder={I18n.get("SCHEDULE_FORM_name")}
                 label={I18n.get("SCHEDULE_FORM_name")}
                 value={values.name}
                 onChangeText={handleChange('name')}
@@ -182,7 +182,7 @@ class Form extends React.Component {
                 />
               </View>
               <TextInput
-                placeholder={I18n.get("SCHEDULE_FORM_description")}
+                // placeholder={I18n.get("SCHEDULE_FORM_description")}
                 label={I18n.get("SCHEDULE_FORM_description")}
                 value={values.description}
                 multiline
