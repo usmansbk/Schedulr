@@ -31,7 +31,7 @@ class Button extends React.Component {
     
     return (
       <View style={styles.button}>
-        <Text>{label}</Text>
+        <Text style={styles.text}>{label}</Text>
       </View>
     );
   };

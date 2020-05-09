@@ -222,9 +222,9 @@ export default {
   AUTHOR: "AUTHOR",
   EDITED: "EDITED",
   
-  EVENT_FORM_title: "Title",
-  EVENT_FORM_description: "Description",
-  EVENT_FORM_venue: "Venue",
+  EVENT_FORM_title: "EVENT TITLE",
+  EVENT_FORM_description: "DESCRIPTION",
+  EVENT_FORM_venue: "LOCATION",
   EVENT_FORM_category: "EVENT TYPE",
   EVENT_FORM_from: "FROM",
   EVENT_FORM_to: "TO",
@@ -256,8 +256,8 @@ export default {
   SCHEDULE_FORM_name: "List Name",
   SCHEDULE_FORM_description: "Description",
   SCHEDULE_FORM_private: "Private",
-  SCHEDULE_FORM_public: "Public",
-  SCHEDULE_FORM_topic: "Topic",
+  SCHEDULE_FORM_public: "PUBLIC LIST",
+  SCHEDULE_FORM_topic: "TOPIC",
   SCHEDULE_FORM_selectTopic: "Select Topic",
 
   SCHEDULE_followerCount: "Follower",

@@ -152,13 +152,16 @@ class Form extends React.Component {
           >
             <View style={styles.form}>
               <TextInput
-                placeholder={I18n.get("EVENT_FORM_title")}
+                // placeholder={I18n.get("EVENT_FORM_title")}
                 label={I18n.get("EVENT_FORM_title")}
                 value={values.title}
                 onChangeText={handleChange('title')}
                 onBlur={handleBlur('title')}
-                mode="outlined"
                 style={styles.textInput}
+                underlineColor="transparent"
+                theme={{
+                  roundness: 0
+                }}
               />
               <HelperText
                 type="error"
@@ -168,7 +171,7 @@ class Form extends React.Component {
               </HelperText>
               {
                 !locked && (
-                  <View style={[styles.pickerSpacing, styles.firstPicker]}>
+                  <View style={styles.pickerSpacing}>
                     <View style={styles.row}>
                       <Text style={styles.radioText}>{I18n.get("EVENT_FORM_schedule")}</Text>
                       <Text style={styles.radioText} onPress={this._scheduleHelp}>{I18n.get("BUTTON_help")}</Text>
@@ -194,7 +197,7 @@ class Form extends React.Component {
                   </View>
                 )
               }
-              <View style={[styles.pickerSpacing, styles.firstPicker]}>
+              <View style={styles.pickerSpacing}>
                 <Text style={styles.radioText}>{I18n.get("EVENT_FORM_category")}</Text>
                 <PickerButton
                   value={values.category}
@@ -255,7 +258,7 @@ class Form extends React.Component {
                 )
               }
               
-              <View style={styles.radio}>
+              <View style={[styles.radio, styles.pickerSpacing]}>
                 <Text style={styles.radioText}>{I18n.get("EVENT_FORM_allDay")}</Text>
                 <Switch
                   value={values.allDay}
@@ -294,15 +297,19 @@ class Form extends React.Component {
                   }))}
                 />
               </View>
+              {
+                Boolean(errors.recurrence) && (
                   <HelperText
                     type="error"
                     visible={errors.recurrence && touched.recurrence}
                   >
-                  {errors.recurrence && I18n.get(`HELPER_TEXT_${errors.recurrence}`)}
+                    {errors.recurrence && I18n.get(`HELPER_TEXT_${errors.recurrence}`)}
                   </HelperText>
+                )
+              }
               {
                 (values.recurrence !== recurrence[0].id) && (
-                  <View style={styles.radio}>
+                  <View style={[styles.radio, styles.pickerSpacing]}>
                     <Text style={styles.radioText}>{I18n.get("EVENT_FORM_repeatForever")}</Text>
                     <Switch
                       value={values.forever}
@@ -334,12 +341,14 @@ class Form extends React.Component {
                       onValueChange={handleChange('until')}
                     />
                   </View>
-                  <HelperText
-                    type="error"
-                    visible={errors.until && touched.until }
-                  >
-                  {errors.until && I18n.get(`HELPER_TEXT_${errors.until}`)}
-                  </HelperText>
+                  {Boolean(errors.until) && (
+                    <HelperText
+                      type="error"
+                      visible={errors.until && touched.until }
+                    >
+                    {errors.until && I18n.get(`HELPER_TEXT_${errors.until}`)}
+                    </HelperText>
+                  )}
                   </>
                 )
               }
@@ -349,8 +358,11 @@ class Form extends React.Component {
                 value={values.venue}
                 onChangeText={handleChange('venue')}
                 onBlur={handleBlur('venue')}
-                mode="outlined"
                 style={styles.textInput}
+                underlineColor="transparent"
+                theme={{
+                  roundness: 0
+                }}
               />
               <HelperText
                 type="error"
@@ -359,15 +371,16 @@ class Form extends React.Component {
               {errors.venue && I18n.get(`HELPER_TEXT_${errors.venue}`)}
               </HelperText>
               <TextInput
-                placeholder={I18n.get("EVENT_FORM_description")}
+                // placeholder={I18n.get("EVENT_FORM_description")}
                 label={I18n.get("EVENT_FORM_description")}
                 value={values.description}
-                multiline
-                maxHeight={120}
                 onChangeText={handleChange('description')}
                 onBlur={handleBlur('description')}
-                mode="outlined"
                 style={styles.textInput}
+                theme={{
+                  roundness: 0
+                }}
+                underlineColor="transparent"
               />
               <HelperText
                 type="error"

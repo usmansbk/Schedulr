@@ -9,9 +9,10 @@ export default inject('stores')(observer(
       onPress={props.onPress}
       style={[props.stores.appStyles.datePicker.pickerButton, props.style]}
     >
-      <Text style={{
+      <Text style={[
+        {
         color: props.disabled ? props.stores.themeStore.colors.gray : props.stores.themeStore.colors.black
-      }}>{props.children}</Text>
+      }, props.stores.appStyles.datePicker.pickerButton]}>{props.children}</Text>
     </TouchableRipple>
   )
 ));

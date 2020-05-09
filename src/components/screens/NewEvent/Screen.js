@@ -112,7 +112,7 @@ class NewEventScreen extends React.Component {
     return (
       <Form
         initialValues={this.getInitialValues}
-        isNew={this.props.isNew}
+        isNew
         schedules={this._filterSchedules(this.schedules)}
         handleCancel={this._handleBack}
         onSubmit={this._handleSubmit}

@@ -14,7 +14,7 @@ export default inject('stores')(observer(({ stores, value, onPress }) => {
       onPress={onPress}
       style={styles.button}
     >
-      <Text>{value || I18n.get("Normal")}</Text>
+      <Text style={styles.text}>{value || I18n.get("Normal")}</Text>
     </TouchableRipple>
   )
 }));

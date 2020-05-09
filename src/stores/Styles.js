@@ -307,12 +307,15 @@ export default class AppStyles {
       textInput: {
         flex: 1
       },
+      text: {
+        fontFamily: 'sans-serif-medium'
+      },
       button: {
         height: dp(48),
         justifyContent: 'center',
-        paddingHorizontal: 8,
-        borderWidth,
-        borderRadius: 4,
+        // paddingHorizontal: 8,
+        // borderWidth,
+        // borderRadius: 4,
         borderColor: colors.placeholder
       },
       container: {
@@ -342,29 +345,32 @@ export default class AppStyles {
       },
       text: {
         color: colors.primary,
-        marginVertical: 8,
+        // marginVertical: 8,
         fontWeight: 'bold'
+      },
+      pickerButton: {
+        fontFamily: 'sans-serif-medium'
       },
       dateButton: {
         flex: 1,
-        borderWidth,
-        borderColor: colors.placeholder,
+        // borderWidth,
+        // borderColor: colors.placeholder,
         height: dp(48),
         justifyContent: 'center',
-        paddingHorizontal: 8,
-        borderRightWidth: 0,
-        borderTopLeftRadius: 4,
-        borderBottomLeftRadius: 4,
+        // paddingHorizontal: 8,
+        // borderRightWidth: 0,
+        // borderTopLeftRadius: 4,
+        // borderBottomLeftRadius: 4,
       },
       timeButton: {
-        borderWidth,
+        // borderWidth,
         borderColor: colors.placeholder,
         height: dp(48),
         justifyContent: 'center',
-        paddingHorizontal: 8,
-        borderLeftWidth: 0,
-        borderTopRightRadius: 4,
-        borderBottomRightRadius: 4,
+        // paddingHorizontal: 8,
+        // borderLeftWidth: 0,
+        // borderTopRightRadius: 4,
+        // borderBottomRightRadius: 4,
       }
     });    
   }
@@ -400,9 +406,7 @@ export default class AppStyles {
         paddingBottom: 4
       },
       text: {
-        fontSize: 16,
-        fontWeight: 'bold',
-        color: colors.primary,
+        fontSize: 12,
       },
       textInput: {
         backgroundColor: colors.bg
@@ -438,7 +442,8 @@ export default class AppStyles {
         marginVertical: 8,
       },
       textInput: {
-        backgroundColor: colors.bg
+        backgroundColor: colors.light_gray,
+        fontFamily: 'sans-serif-medium',
       },
       input: {
         marginVertical: 8,
@@ -447,19 +452,19 @@ export default class AppStyles {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
-        marginVertical: 8 
       },
       radioText: {
-        fontWeight: 'bold',
-        color: colors.primary,
+        // fontFamily: 'sans-serif-light',
+        fontSize: 12,
+        // color: colors.primary,
         marginRight: 16,
-        marginVertical: 8
+        // marginVertical: 4
       },
       firstPicker: {
         marginTop: 0
       },
       pickerSpacing: {
-        marginVertical: 8
+        marginVertical: 10
       },
       picker: {
         height: dp(48),

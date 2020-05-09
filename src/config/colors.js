@@ -76,7 +76,7 @@ export const dark = {
   actionsheet: '#212121',
   actionsheetTitleText: 'white',
   selectedButton: 'black',
-  textInput: light.light_gray_3,
+  textInput: '#303030',
   primaryOpaque : opacity => `rgba(25, 118, 210, ${opacity})`
 };
 
