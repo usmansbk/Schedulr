@@ -106,9 +106,10 @@ class Form extends React.Component {
                 value={values.name}
                 onChangeText={handleChange('name')}
                 onBlur={handleBlur('name')}
-                mode="outlined"
                 autoFocus
+                underlineColor="transparent"
                 style={styles.textInput}
+                theme={{roundness: 0}}
               />
               <HelperText
                 type="error"
@@ -122,7 +123,8 @@ class Form extends React.Component {
                 value={values.website}
                 onChangeText={handleChange('website')}
                 onBlur={handleBlur('website')}
-                mode="outlined"
+                underlineColor="transparent"
+                theme={{roundness: 0}}
                 style={styles.textInput}
               />
               <HelperText
@@ -137,7 +139,8 @@ class Form extends React.Component {
                 value={values.bio}
                 onChangeText={handleChange('bio')}
                 onBlur={handleBlur('bio')}
-                mode="outlined"
+                underlineColor="transparent"
+                theme={{roundness: 0}}
                 style={styles.textInput}
                 multiline
                 maxHeight={200}

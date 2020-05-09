@@ -409,7 +409,7 @@ export default class AppStyles {
         fontSize: 12,
       },
       textInput: {
-        backgroundColor: colors.light_gray
+        backgroundColor: colors.textInput
       },
       primary: {
         color: colors.primary
@@ -442,7 +442,7 @@ export default class AppStyles {
         marginVertical: 8,
       },
       textInput: {
-        backgroundColor: colors.light_gray,
+        backgroundColor: colors.textInput,
         fontFamily: 'sans-serif-medium',
       },
       input: {
