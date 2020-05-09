@@ -55,7 +55,9 @@ const ListHoc = compose(
       fetchPolicy: 'cache-only',
     }),
     props: ({ data, ownProps }) => ({
-      events: data && data.getUserData && filterEvents(mergeEvents(data.getUserData, [], false), ownProps.query),
+      events: data && data.getUserData && filterEvents(
+        processEvents(mergeEvents(data.getUserData, [], false)),
+        ownProps.query),
       ...ownProps
     })
   }),

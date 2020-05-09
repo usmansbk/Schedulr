@@ -1,7 +1,6 @@
 import memoize from 'lodash.memoize';
 import moment from 'moment';
 import shortid from 'shortid';
-import { processEvents } from 'lib/calendr';
 import { SCHEDULE_CLOSED } from 'lib/constants';
 
 function sortList(list) {
@@ -115,9 +114,9 @@ export function filterPrivate(schedules) {
 }
 
 export function filterEvents(events, query) {
-  return sortBookmarks(processEvents(events.filter(
+  return sortBookmarks(events.filter(
     item => item.title.toLowerCase().includes(query.toLowerCase()) ||
-     (item.category && item.category.toLowerCase().includes(query.toLowerCase())))));
+     (item.category && item.category.toLowerCase().includes(query.toLowerCase()))));
 }
 
 export function filterSchedules(schedules, query) {
