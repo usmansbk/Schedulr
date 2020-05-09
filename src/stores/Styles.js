@@ -409,7 +409,7 @@ export default class AppStyles {
         fontSize: 12,
       },
       textInput: {
-        backgroundColor: colors.bg
+        backgroundColor: colors.light_gray
       },
       primary: {
         color: colors.primary

@@ -15,8 +15,9 @@ import {
   Caption
 } from 'react-native-paper';
 import Alert from 'components/dialogs/Alert';
-import LocationPicker, { LocationPickerInput } from 'components/common/LocationInput';
+import LocationPicker from 'components/common/LocationInput';
 import Picker from 'components/common/Picker';
+import PickerButton from 'components/common/PickerButton';
 import { Formik } from 'formik';
 import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
@@ -131,9 +132,10 @@ class Form extends React.Component {
                 value={values.name}
                 onChangeText={handleChange('name')}
                 onBlur={handleBlur('name')}
-                mode="outlined"
+                underlineColor="transparent"
                 autoFocus
                 style={styles.textInput}
+                theme={{roundness: 0}}
               />
               <HelperText
                 type="error"
@@ -141,29 +143,7 @@ class Form extends React.Component {
               >
               {errors.name && I18n.get(`HELPER_TEXT_${errors.name}`)}
               </HelperText>
-              <TextInput
-                placeholder={I18n.get("SCHEDULE_FORM_description")}
-                label={I18n.get("SCHEDULE_FORM_description")}
-                value={values.description}
-                multiline
-                maxHeight={120}
-                onChangeText={handleChange('description')}
-                onBlur={handleBlur('description')}
-                mode="outlined"
-                style={styles.textInput}
-              />
-              <HelperText
-                type="error"
-                visible={errors.description && touched.description}
-              >
-              {errors.description && I18n.get(`HELPER_TEXT_${errors.description}`)}
-              </HelperText>
-              <LocationPickerInput
-                location={values.location}
-                placeholder={I18n.get("PICKER_location")}
-                onPress={() => this.setState({ showLocationPicker: true })}
-              />
-              <View style={{marginVertical: 4 }}>
+              <View>
                 <Text
                   style={
                     [styles.text, { marginVertical: 4 }]}
@@ -194,6 +174,31 @@ class Form extends React.Component {
                   }}
                 />
               </View>
+              <View style={{marginVertical: 16}}>
+                <Text style={styles.text}>{I18n.get("SCHEDULE_FORM_location")}</Text>
+                <PickerButton
+                  value={values.location}
+                  onPress={() => this.setState({ showLocationPicker: true })}
+                />
+              </View>
+              <TextInput
+                placeholder={I18n.get("SCHEDULE_FORM_description")}
+                label={I18n.get("SCHEDULE_FORM_description")}
+                value={values.description}
+                multiline
+                maxHeight={120}
+                underlineColor="transparent"
+                onChangeText={handleChange('description')}
+                onBlur={handleBlur('description')}
+                style={styles.textInput}
+                theme={{roundness: 0}}
+              />
+              <HelperText
+                type="error"
+                visible={errors.description && touched.description}
+              >
+              {errors.description && I18n.get(`HELPER_TEXT_${errors.description}`)}
+              </HelperText>
               <View style={styles.info}>
                 <Caption
                   style={styles.primary}

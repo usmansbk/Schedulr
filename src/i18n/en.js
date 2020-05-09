@@ -258,6 +258,7 @@ export default {
   SCHEDULE_FORM_private: "Private",
   SCHEDULE_FORM_public: "PUBLIC LIST",
   SCHEDULE_FORM_topic: "TOPIC",
+  SCHEDULE_FORM_location: "LOCATION",
   SCHEDULE_FORM_selectTopic: "Select Topic",
 
   SCHEDULE_followerCount: "Follower",
