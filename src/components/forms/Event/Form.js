@@ -21,7 +21,6 @@ import Picker from 'components/common/Picker';
 import DateTimeInput from 'components/common/DateTimeInput';
 import EventTypeInput from 'components/common/EventTypeInput';
 import PickerButton from 'components/common/PickerButton';
-import Alert from 'components/dialogs/Alert';
 import Suspense from 'components/common/Suspense';
 import { getRepeatLabel, getTimeUnit } from 'lib/time';
 import recurrence from './recurrence';
@@ -32,17 +31,14 @@ class Form extends React.Component {
 
   state = {
     showEventTypePicker: false,
-    showScheduleHelpAlert: false,
     display: false
   };
 
   _showEventTypePicker = () => this.setState({ showEventTypePicker: true });
 
   _hideModal = () => this.setState({
-    showScheduleHelpAlert: false,
     showEventTypePicker: false,
   });
-  _scheduleHelp = () => this.setState({ showScheduleHelpAlert: true });
 
   componentDidMount = () => {
     setTimeout(() => this.setState({
@@ -74,7 +70,6 @@ class Form extends React.Component {
   render() {
     const {
       showEventTypePicker,
-      showScheduleHelpAlert,
       display
     } = this.state;
 
@@ -173,10 +168,7 @@ class Form extends React.Component {
               {
                 !locked && (
                   <View style={styles.pickerSpacing}>
-                    <View style={styles.row}>
-                      <Text style={styles.radioText}>{I18n.get("EVENT_FORM_schedule")}</Text>
-                      <Text style={styles.radioText} onPress={this._scheduleHelp}>{I18n.get("BUTTON_help")}</Text>
-                    </View>
+                    <Text style={styles.radioText}>{I18n.get("EVENT_FORM_schedule")}</Text>
                     <Picker
                       prompt={I18n.get("EVENT_FORM_selectASchedule")}
                       value={values.eventScheduleId}
@@ -398,15 +390,6 @@ class Form extends React.Component {
             selectedValue={values.category || ''}
             hideModal={this._hideModal}
             onValueChange={handleChange('category')}
-          />
-          <Alert
-            visible={showScheduleHelpAlert}
-            title={I18n.get("ALERT_whatIsASchedule")}
-            message={
-              I18n.get("ALERT_whatIsAScheduleA")(schedules.find(
-                schdl => schdl.id === values.eventScheduleId))
-            }
-            handleDismiss={this._hideModal}
           />
           </>
         )}
