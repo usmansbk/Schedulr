@@ -26,7 +26,7 @@ class Footer extends React.Component {
             ) : (
               <>
                 <Text style={styles.text}>{I18n.get(`TEXT_noAlbum`)}</Text>
-                <Icon name="image" size={24} color={stores.themeStore.colors.gray}/>
+                <Icon name="camera" size={24} color={stores.themeStore.colors.gray}/>
               </>
             )
           }
