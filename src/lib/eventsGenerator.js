@@ -49,16 +49,23 @@ function match(event, date) {
 	const dateMoment = moment(date);
 	// isValid - date is same as or between start and end date
 
+	const isValidStart = startMoment.isSame(dateMoment, 'day');
 	const isValid= dateMoment.isBetween(startMoment, endMoment, 'day', '[]');
 	const isCancelled = event.isCancelled;
 	let isRecurring = false;
-	if (event.recurrence === 'DAILY') {
-		isRecurring = true;
-	} else if (event.recurrence === 'WEEKDAYS') {
-
+	if (event.recurrence !== 'NEVER') {
+		if (event.recurrence === 'WEEKDAYS') {
+			isRecurring = dateMoment.isoWeekday() < 6;
+		} else {
+			isRecurring = true;
+		}
+	}
+	if (event.until) {
+		const finalMoment = moment(event.until);
+		isRecurring = dateMoment.isSameOrBefore(finalMoment, 'day');
 	}
 
-	return !isCancelled && (isValid || isRecurring);
+	return !isCancelled && (isValid || (isValidStart && isRecurring));
 }
 
 /**
