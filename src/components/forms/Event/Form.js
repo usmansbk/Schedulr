@@ -279,7 +279,9 @@ class Form extends React.Component {
                       const unit = getTimeUnit(itemValue);
                       setFieldValue(
                         'until',
-                        moment(values.startAt).add(MIN_UNTIL_DATE, unit).toISOString()
+                        moment(values.startAt)
+                          .add(MIN_UNTIL_DATE, unit)
+                          .endOf('day').toISOString()
                       );
                     }
                   }}
@@ -314,7 +316,9 @@ class Form extends React.Component {
                           const unit = getTimeUnit(values.recurrence);
                           setFieldValue(
                             'until',
-                            moment(values.startAt).add(MIN_UNTIL_DATE, unit).toISOString()
+                            moment(values.startAt)
+                              .add(MIN_UNTIL_DATE, unit)
+                              .endOf('day').toISOString()
                           );
                         }
                         setFieldValue('forever', value);
@@ -332,6 +336,7 @@ class Form extends React.Component {
                       minDate={new Date()}
                       value={values.until}
                       onValueChange={handleChange('until')}
+                      hideTime
                     />
                   </View>
                   {Boolean(errors.until) && (
