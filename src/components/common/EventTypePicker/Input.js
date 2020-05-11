@@ -47,6 +47,7 @@ class Input extends React.Component {
           maxLength={51}
           onBlur={onBlur}
           onChangeText={onValueChange}
+          clearButtonMode="while-editing"
         />
       ) : (
       <Picker
