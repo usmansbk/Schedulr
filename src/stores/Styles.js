@@ -318,6 +318,7 @@ export default class AppStyles {
         borderColor: colors.placeholder
       },
       container: {
+        flex: 1
       },
       content: {
         flex: 1,
