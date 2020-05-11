@@ -3,7 +3,6 @@ import isEqual from 'lodash.isequal';
 import {
   View,
   ScrollView,
-  RefreshControl,
 } from 'react-native';
 import {
   Button,
@@ -67,7 +66,6 @@ class Form extends React.Component {
           submitForm,
           handleChange,
           handleBlur,
-          resetForm,
           initialValues,
           isValid
         }) => (
@@ -89,14 +87,6 @@ class Form extends React.Component {
             >{I18n.get("BUTTON_save")}</Button>
           </Appbar.Header>
           <ScrollView
-            refreshControl={
-              <RefreshControl
-                refreshing={false}
-                onRefresh={resetForm}
-                colors={[stores.themeStore.colors.primary]}
-                progressBackgroundColor={stores.themeStore.colors.bg}
-              />
-            }
             style={styles.container}
           >
             <View style={styles.form}>

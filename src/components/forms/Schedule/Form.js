@@ -2,7 +2,6 @@ import React from 'react';
 import {
   View,
   ScrollView,
-  RefreshControl
 } from 'react-native';
 import isEqual from 'lodash.isequal';
 import {
@@ -93,7 +92,6 @@ class Form extends React.Component {
           handleChange,
           handleBlur,
           setFieldValue,
-          resetForm,
           initialValues,
           isValid
         }) => (
@@ -117,14 +115,7 @@ class Form extends React.Component {
           <ScrollView
             style={styles.container}
             keyboardShouldPersistTaps="always"
-            refreshControl={
-              <RefreshControl
-                refreshing={false}
-                onRefresh={resetForm}
-                colors={[stores.themeStore.colors.primary]}
-                progressBackgroundColor={stores.themeStore.colors.bg}
-              />
-            }>
+          >
             <View style={styles.form}>
               <TextInput
                 // placeholder={I18n.get("SCHEDULE_FORM_name")}
