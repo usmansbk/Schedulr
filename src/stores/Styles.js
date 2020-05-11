@@ -294,7 +294,6 @@ export default class AppStyles {
 
   @computed get picker () {
     const colors = this.settings.dark ? dark : light;
-    const borderWidth = 1 * StyleSheet.hairlineWidth;
     
     return StyleSheet.create({
       contentContainer: {
@@ -319,7 +318,6 @@ export default class AppStyles {
         borderColor: colors.placeholder
       },
       container: {
-        flex: 1,
       },
       content: {
         flex: 1,

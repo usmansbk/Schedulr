@@ -19,8 +19,7 @@ import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
 import Picker from 'components/common/Picker';
 import DateTimeInput from 'components/common/DateTimeInput';
-import EventTypeInput from 'components/common/EventTypeInput';
-import PickerButton from 'components/common/PickerButton';
+import EventTypePicker from 'components/common/EventTypePicker';
 import Suspense from 'components/common/Suspense';
 import { getRepeatLabel, getTimeUnit } from 'lib/time';
 import recurrence from './recurrence';
@@ -30,15 +29,8 @@ const MIN_UNTIL_DATE = 1
 class Form extends React.Component {
 
   state = {
-    showEventTypePicker: false,
     display: false
   };
-
-  _showEventTypePicker = () => this.setState({ showEventTypePicker: true });
-
-  _hideModal = () => this.setState({
-    showEventTypePicker: false,
-  });
 
   componentDidMount = () => {
     setTimeout(() => this.setState({
@@ -69,7 +61,6 @@ class Form extends React.Component {
 
   render() {
     const {
-      showEventTypePicker,
       display
     } = this.state;
 
@@ -192,9 +183,10 @@ class Form extends React.Component {
               }
               <View style={styles.pickerSpacing}>
                 <Text style={styles.radioText}>{I18n.get("EVENT_FORM_category")}</Text>
-                <PickerButton
+                <EventTypePicker
+                  prompt={I18n.get("EVENT_FORM_category")}
                   value={values.category}
-                  onPress={this._showEventTypePicker}
+                  onValueChange={handleChange('category')}
                 />
               </View>
               <View style={styles.pickerSpacing}>
@@ -381,21 +373,18 @@ class Form extends React.Component {
                 }}
                 underlineColor="transparent"
               />
-              <HelperText
-                type="error"
-                visible={errors.description && touched.description}
-              >
-              {errors.description && I18n.get(`HELPER_TEXT_${errors.description}`)}
-              </HelperText>
+              {
+                Boolean(errors.description) && (
+                  <HelperText
+                    type="error"
+                    visible={errors.description && touched.description}
+                  >
+                  {errors.description && I18n.get(`HELPER_TEXT_${errors.description}`)}
+                  </HelperText>
+                )
+              }
             </View>
           </ScrollView>
-          <EventTypeInput
-            visible={showEventTypePicker}
-            prompt={I18n.get("EVENT_FORM_category")}
-            selectedValue={values.category || ''}
-            hideModal={this._hideModal}
-            onValueChange={handleChange('category')}
-          />
           </>
         )}
       </Formik>

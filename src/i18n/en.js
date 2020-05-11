@@ -222,6 +222,7 @@ export default {
   AUTHOR: "AUTHOR",
   EDITED: "EDITED",
   
+  Event: "Normal",
   EVENT_FORM_title: "EVENT TITLE",
   EVENT_FORM_description: "DESCRIPTION",
   EVENT_FORM_venue: "LOCATION",
