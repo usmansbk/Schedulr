@@ -435,7 +435,9 @@ export default {
     'Tour',
     'Tournoi'
   ],
+  customTypeKey: 'Custom type',
   topics: [
+    "Custom type",
     "Rendez-vous personnels",
     "Affaires et professionnels",
     "Charité et causes",

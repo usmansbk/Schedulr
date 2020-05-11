@@ -187,6 +187,7 @@ class Form extends React.Component {
                   prompt={I18n.get("EVENT_FORM_category")}
                   value={values.category}
                   onValueChange={handleChange('category')}
+                  onBlur={handleBlur('category')}
                 />
               </View>
               <View style={styles.pickerSpacing}>

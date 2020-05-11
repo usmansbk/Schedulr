@@ -439,7 +439,9 @@ export default {
     'Torneo',
     'Formación'
   ],
+  customTypeKey: 'Custom type',
   topics: [
+    'Custom type',
     "Nombramientos personales",
     "Profesional de negocios",
     "Caridad y causas",

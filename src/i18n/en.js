@@ -340,7 +340,7 @@ export default {
   PLACEHOLDER_addYourWebsite: "Add your website",
   PLACEHOLDER_bio: "About me",
   PLACEHOLDER_venue: city => city ? `In ${city}` : "Venue",
-  PLACEHOLDER_customType: "Add a custom type",
+  PLACEHOLDER_customType: "Custom type...",
   PLACEHOLDER_searchCities: "Search cities",
 
   WARNING_dontMissOut: "Don't miss out!",
@@ -414,7 +414,9 @@ export default {
     lastWeek: DATE_FORMAT,
     sameElse: DAY_FORMAT
   },
+  customTypeKey: "Custom type...",
   categories : [
+    'Custom type...',
     'Class',
     'Lecture',
     'Conference',
