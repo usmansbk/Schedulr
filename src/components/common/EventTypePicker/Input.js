@@ -5,13 +5,10 @@ import { I18n } from 'aws-amplify';
 import Picker from 'components/common/Picker';
 
 class Input extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      id: null,
-      custom: false,
-    }
-  }
+
+  state = {
+    custom: false
+  };
 
   _onValueChange = (value) => {
     if (value.toLowerCase() === I18n.get('customTypeKey').toLowerCase()) {
@@ -29,40 +26,38 @@ class Input extends React.Component {
       onValueChange,
       onBlur
     } = this.props;
-    const { custom } = this.state; 
 
     const items = stores.appState.categories.map(value => ({ value, label: value}));
 
-
     return (
-        custom ? (
-          <TextInput
-            theme={{
-              roundness: 0
-            }}
-            dense
-            style={{
-              marginTop: 8,
-              backgroundColor: stores.themeStore.colors.textInput
-            }}
-            underlineColor="transparent"
-            placeholder={I18n.get('PLACEHOLDER_customType')}
-            value={value}
-            editable={!disabled}
-            maxLength={51}
-            onBlur={onBlur}
-            onChangeText={onValueChange}
-          />
-        ) : (
-        <Picker
+      this.state.custom ? (
+        <TextInput
+          theme={{
+            roundness: 0
+          }}
+          dense
+          style={{
+            marginTop: 8,
+            backgroundColor: stores.themeStore.colors.textInput
+          }}
+          underlineColor="transparent"
+          placeholder={I18n.get('PLACEHOLDER_customType')}
           value={value}
-          items={items}
-          prompt={value || I18n.get('PLACEHOLDER_normal')}
-          disabled={disabled}
-          onValueChange={this._onValueChange}
+          editable={!disabled}
+          maxLength={51}
+          onBlur={onBlur}
+          onChangeText={onValueChange}
         />
-        )
-    )
+      ) : (
+      <Picker
+        value={value}
+        items={items}
+        prompt={value || I18n.get('PLACEHOLDER_normal')}
+        disabled={disabled}
+        onValueChange={this._onValueChange}
+      />
+      )
+    );
   }
 }
 
