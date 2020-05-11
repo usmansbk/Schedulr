@@ -48,6 +48,7 @@ class Input extends React.Component {
           onBlur={onBlur}
           onChangeText={onValueChange}
           clearButtonMode="while-editing"
+          autoFocus={this.state.custom}
         />
       ) : (
       <Picker
