@@ -13,7 +13,7 @@ import SectionFooter from './SectionFooter';
 import Item from './Item';
 import { isPast } from 'lib/time';
 import { eventsChanged } from 'lib/utils';
-import { EventsGenerator } from 'lib/eventsGenerator';
+import { EventsGenerator } from 'lib/calendar';
 import { events } from 'lib/constants';
 
 const {
