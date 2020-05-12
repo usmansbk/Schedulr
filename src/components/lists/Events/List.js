@@ -286,7 +286,7 @@ class List extends React.Component {
         style={stores.appStyles.eventsList.list}
         stickySectionHeadersEnabled
         sections={sections}
-        extraData={stores.appState.extraData + new Date().getMinutes()}
+        extraData={stores.appState.extraData}
         ListHeaderComponent={this._renderHeader}
         ListEmptyComponent={this._renderEmptyList}
         ItemSeparatorComponent={this._renderSeparator}
