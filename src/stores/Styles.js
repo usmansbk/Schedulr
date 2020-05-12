@@ -593,7 +593,7 @@ export default class AppStyles {
         fontSize: 18,
       },
       note: {
-        fontFamily: 'sans-serif-bold',
+        // fontFamily: 'sans-serif-bold',
         color: colors.gray,
         fontWeight: 'bold'
       },
@@ -608,13 +608,11 @@ export default class AppStyles {
         marginVertical: 4
       },
       label: {
-        fontSize: 14,
-        fontFamily: 'sans-serif-light',
+        fontSize: 13,
         marginVertical: 2
       },
       value: {
-        fontSize: 20,
-        fontFamily: 'sans-serif-bold',
+        fontSize: 18,
         fontWeight: 'bold',
       },
       linkStyle: { color: '#2980b9' },
