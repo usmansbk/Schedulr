@@ -28,6 +28,7 @@ function* EventsGenerator(events, previous) {
 				data.push(process(event, date));
 			}
 		});
+		data.sort((a, b) => moment(a.startAt).diff(b.startAt));
 		const items = [
 			{
 				data,
