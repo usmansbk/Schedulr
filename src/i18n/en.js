@@ -458,10 +458,10 @@ export default {
     isPublic: false
   },
   timeLabels: {
-    d: 'Days',
-    h: 'Hours',
-    m: 'Mins',
-    s: 'Sec'
+    d: 'D',
+    h: 'H',
+    m: 'M',
+    s: 'S'
   },
   daily: 'daily',
   weekly: 'weekly',
