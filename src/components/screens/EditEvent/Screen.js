@@ -57,7 +57,13 @@ class EditEventScreen extends React.Component {
   
   _onSubmit = (form) => {
     const id = this.props.navigation.getParam('id');
-    this.props.navigation.goBack();
+    if ((this.props.event.startAt !== form.startAt.toISOString()) ||
+    (this.props.event.endAt !== form.endAt.toISOString())) {
+      this.props.navigation.popToTop();
+    } else {
+      this.props.navigation.goBack();
+    }
+
     setTimeout(() => {
       snackbar(I18n.get("EVENT_updating"));
       this.props.onSubmit({ id, ...form });
