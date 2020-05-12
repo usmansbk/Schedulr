@@ -144,7 +144,6 @@ class List extends React.Component {
         isOwner={isOwner}
         isOffline={isOffline}
         onPressItem={this._onPressItem}
-        onPressCommentButton={this._onPressCommentItem}
         navigateToBanner={this._navigateToBanner}
         navigateToCalendarEvent={this._navigateToCalendarEvent}
         __typename={__typename}
@@ -287,7 +286,7 @@ class List extends React.Component {
         style={stores.appStyles.eventsList.list}
         stickySectionHeadersEnabled
         sections={sections}
-        extraData={stores.appState.extraData}
+        extraData={stores.appState.extraData + new Date().getMinutes()}
         ListHeaderComponent={this._renderHeader}
         ListEmptyComponent={this._renderEmptyList}
         ItemSeparatorComponent={this._renderSeparator}
