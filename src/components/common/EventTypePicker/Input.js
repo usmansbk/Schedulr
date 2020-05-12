@@ -5,7 +5,6 @@ import { I18n } from 'aws-amplify';
 import Picker from 'components/common/Picker';
 
 const customValue = "__custom__event__type__schdlr__mobile__";
-const customType = I18n.get("SELECT_customType");
 
 class Input extends React.Component {
 
@@ -29,6 +28,7 @@ class Input extends React.Component {
       onValueChange,
       onBlur
     } = this.props;
+    const customType = I18n.get("SELECT_customType");
 
     const items = [
       {value: customValue, label: customType } 
