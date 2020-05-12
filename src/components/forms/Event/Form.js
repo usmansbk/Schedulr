@@ -139,12 +139,14 @@ class Form extends React.Component {
                   roundness: 0
                 }}
               />
-              <HelperText
-                type="error"
-                visible={errors.title && touched.title}
-              >
-              {errors.title && I18n.get(`HELPER_TEXT_${errors.title}`)}
-              </HelperText>
+              {Boolean(errors.title) && (
+                <HelperText
+                  type="error"
+                  visible={errors.title && touched.title}
+                >
+                {errors.title && I18n.get(`HELPER_TEXT_${errors.title}`)}
+                </HelperText>
+              )}
               <View style={{paddingLeft: 10}}>
               {
                 !locked && (
