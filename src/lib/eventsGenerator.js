@@ -99,7 +99,6 @@ function process(event, date) {
 		endAt = previousEndMoment.toISOString();
 	}
 
-	console.log(event.title, isExtended, isConcluded, startAt, endAt)
 	return Object.assign({}, event, {
 		startAt,
 		endAt,
