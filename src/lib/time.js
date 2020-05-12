@@ -174,3 +174,14 @@ export const nextSevenDays = (previous) => {
   }
   return dates;
 }
+
+/**
+ * 
+ * Check if event extends to next day
+ * @param {date} start 
+ * @param {date} end 
+ * @return { boolean}
+ */
+export const isStretched = (start, end) => {
+  return moment(end).diff(start) > ONE_DAY;
+};

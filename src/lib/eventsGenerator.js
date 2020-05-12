@@ -1,5 +1,5 @@
 import moment from 'moment';
-import { nextSevenDays } from './time';
+import { nextSevenDays, isStretched } from './time';
 /**
  * 
  * A calendar event
@@ -93,12 +93,13 @@ function process(event, date) {
 		isConcluded = nextMoment.isAfter(finalMoment);
 	}
 
-	const isExtended = nextMoment.isBetween(previousStartMoment, previousEndMoment, 'day', '[]');
+	const isExtended = isStretched(previousStartMoment, previousEndMoment);
 	if (isExtended || isConcluded) {
 		startAt = previousStartMoment.toISOString();
 		endAt = previousEndMoment.toISOString();
 	}
 
+	console.log(event.title, isExtended, isConcluded, startAt, endAt)
 	return Object.assign({}, event, {
 		startAt,
 		endAt,

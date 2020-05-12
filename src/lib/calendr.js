@@ -1,7 +1,7 @@
 import moment from 'moment';
 import 'moment-recur';
 import memoize from 'lodash.memoize';
-import { weekdays } from './time';
+import { weekdays, isStretched } from './time';
 
 export const sortBy = (arr, key) => {
   return arr.sort((a, b) => {
@@ -216,7 +216,7 @@ function process(event, date) {
 		isConcluded = nextMoment.isAfter(finalMoment);
 	}
 
-	const isExtended = nextMoment.isBetween(previousStartMoment, previousEndMoment, 'day', '[]');
+	const isExtended = isStretched(previousStartMoment, previousEndMoment);
 	if (isExtended || isConcluded) {
 		startAt = previousStartMoment.toISOString();
 		endAt = previousEndMoment.toISOString();
