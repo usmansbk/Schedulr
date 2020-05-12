@@ -439,9 +439,8 @@ export default {
     'Torneo',
     'Formación'
   ],
-  customTypeKey: "Tipo personalizado...",
+  SELECT_customType: "Tipo personalizado...",
   topics: [
-    "Tipo personalizado...",
     "Nombramientos personales",
     "Profesional de negocios",
     "Caridad y causas",

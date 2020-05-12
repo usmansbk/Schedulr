@@ -4,6 +4,9 @@ import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
 import Picker from 'components/common/Picker';
 
+const customValue = "__custom__event__type__schdlr__mobile__";
+const customType = I18n.get("SELECT_customType");
+
 class Input extends React.Component {
 
   state = {
@@ -11,7 +14,7 @@ class Input extends React.Component {
   };
 
   _onValueChange = (value) => {
-    if (value.toLowerCase() === I18n.get('customTypeKey').toLowerCase()) {
+    if (value === customValue) {
       this.setState({ custom: true });
     } else {
       this.props.onValueChange(value);
@@ -27,7 +30,9 @@ class Input extends React.Component {
       onBlur
     } = this.props;
 
-    const items = stores.appState.categories.map(value => ({ value, label: value}));
+    const items = [
+      {value: customValue, label: customType } 
+    ].concat(stores.appState.categories.map(value => ({ value, label: value})));
 
     return (
       this.state.custom ? (
