@@ -57,7 +57,7 @@ class List extends React.Component {
     );
   };
 
-  componentWillReceiveProps = (nextProps) => this._processEvents(nextProps.events)
+  UNSAFE_componentWillReceiveProps = (nextProps) => this._processEvents(nextProps.events)
 
   componentDidMount = () => this._processEvents(this.props.events);
 

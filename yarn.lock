@@ -2878,19 +2878,19 @@
   resolved "https://registry.yarnpkg.com/@react-native-firebase/app-types/-/app-types-6.7.1.tgz#93497885e6c112203db310636616647c16478da9"
   integrity sha512-jfP2wdBUaptGXO6BC0g3RYMgmGLGOkdWhkGxPhZZy1uxIxN4IXPfeUKEPL0as6ZJqfdx0IMvSvtcp7ywoFNxyg==
 
-"@react-native-firebase/app@^6.7.1":
-  version "6.7.1"
-  resolved "https://registry.yarnpkg.com/@react-native-firebase/app/-/app-6.7.1.tgz#0fe8bb9a82292d672da524763dc42e224dda4fde"
-  integrity sha512-MzRlcR+5+RCU3Za+QMV064oPpZhkXvLoZbB8CdYxI66Qd2XKAGUT0FoQlFaeXZxkrfisdhLbvRUYJo1TY/Iuxg==
+"@react-native-firebase/app@^7.0.0":
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/app/-/app-7.0.0.tgz#fd501b9d9a293e7023a483366471a9e452a3208d"
+  integrity sha512-3gf14M6se58/jZeFWmvcrM9EqrkbOqZuC1RWStWVW5oKlSWT1LZ2EB9VyaBKVa/FR6YWlOZPCXeMXbkg1MYUOg==
   dependencies:
     "@react-native-firebase/app-types" "6.7.1"
     opencollective-postinstall "^2.0.1"
     superstruct "^0.6.2"
 
-"@react-native-firebase/crashlytics@^6.7.1":
-  version "6.7.1"
-  resolved "https://registry.yarnpkg.com/@react-native-firebase/crashlytics/-/crashlytics-6.7.1.tgz#211f4a9a8738f3cc16cf4252f0dd90f96802f9c5"
-  integrity sha512-gqIiHldl9U4TEUiDkgTye6IT6PjFVuq533NeQc1OZ0xZVsJQzzdK01Ecp8CzrtTUhJWtKLH7TRLCMf8RPBUe6A==
+"@react-native-firebase/crashlytics@^7.0.0":
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/crashlytics/-/crashlytics-7.0.0.tgz#68488ed6fa79c678e6b2484da6c603e5621b5a35"
+  integrity sha512-aMETmMsMzvD/qYnzx2beDAlgyZiB9g7lmGHyUNL7oyUlnR+gVLt6VI689g2hkyAGZaBc8rjsIaJQiAhZcEaIdg==
   dependencies:
     stacktrace-js "^2.0.0"
 
@@ -9087,10 +9087,10 @@ react-native-elements@^0.19.1:
     opencollective "^1.0.3"
     prop-types "^15.5.8"
 
-react-native-file-viewer@^2.0.2:
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/react-native-file-viewer/-/react-native-file-viewer-2.0.2.tgz#55fb73d611d8f5468c887f6dc4e9ff1e69668512"
-  integrity sha512-5xxT6T7bT4vgnt0iVVhULlk2HOmNcOj3UJHkxgv57xDmiRVkEVySZYvmXMpw9n3k+U0iuFHlKPt4D7hnF/I2FQ==
+react-native-file-viewer@^2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/react-native-file-viewer/-/react-native-file-viewer-2.0.3.tgz#097378f311c249d4e2c6c60dfc112bd3cfdd2dbc"
+  integrity sha512-5l0wSM3kXrzZTRznH/X2b9OzCrvhegpcFEDGbG4Sl4D/i8imausCIrqoT6aIYZDV1pQ4/xdaKZa5Ld1K6u9d+A==
 
 react-native-fs@^2.16.6:
   version "2.16.6"
