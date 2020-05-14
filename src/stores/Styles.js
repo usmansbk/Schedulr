@@ -389,7 +389,8 @@ export default class AppStyles {
         elevation: 0
       },
       form: {
-        paddingHorizontal: 16
+        paddingHorizontal: 16,
+        marginBottom: 10
       },
       switchButton: {
         flexDirection: 'row',
@@ -434,7 +435,8 @@ export default class AppStyles {
         justifyContent: "space-between"
       },
       form: {
-        paddingHorizontal: 16 
+        paddingHorizontal: 16,
+        marginBottom: 10
       },
       text: {
         color: colors.primary,
