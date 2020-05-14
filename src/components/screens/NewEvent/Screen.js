@@ -6,7 +6,6 @@ import { withApollo } from 'react-apollo';
 import memoize from 'memoize-one';
 import { I18n } from 'aws-amplify';
 import Form from 'components/forms/Event';
-import recurrences from 'components/forms/Event/recurrence';
 import { isPastExact } from 'lib/time';
 import { getUserSchedules } from 'api/fragments';
 import { SCHEDULE_CLOSED } from "lib/constants";
@@ -87,7 +86,7 @@ class NewEventScreen extends React.Component {
       endAt: end,
       allDay,
       category,
-      recurrence: recurrence || recurrences[0].id,
+      recurrence,
       until,
       forever,
       eventScheduleId,

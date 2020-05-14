@@ -304,7 +304,7 @@ class Form extends React.Component {
                   <>
                   <View style={styles.pickerSpacing}>
                     <Text style={styles.radioText}>{I18n.get("EVENT_FORM_repeatUntil")}</Text>
-                    <DateTimeInput
+                    <DateTimePicker
                       minDate={new Date()}
                       value={values.until}
                       onValueChange={handleChange('until')}
