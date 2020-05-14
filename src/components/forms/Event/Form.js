@@ -16,9 +16,8 @@ import {
 import { Formik } from 'formik';
 import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
-import Picker from 'components/common/Picker';
-import DateTimeInput from 'components/common/DateTimeInput';
-import EventTypePicker from 'components/common/EventTypePicker';
+import Picker, { CustomPicker } from 'components/common/Picker';
+import DateTimePicker from 'components/common/DateTimePicker';
 import Suspense from 'components/common/Suspense';
 import { getRepeatLabel, getTimeUnit } from 'lib/time';
 import recurrence from './recurrence';
@@ -173,16 +172,17 @@ class Form extends React.Component {
               }
               <View style={styles.pickerSpacing}>
                 <Text style={styles.radioText}>{I18n.get("EVENT_FORM_category")}</Text>
-                <EventTypePicker
+                <CustomPicker
                   prompt={I18n.get("EVENT_FORM_category")}
                   value={values.category}
                   onValueChange={handleChange('category')}
                   onBlur={handleBlur('category')}
+                  data={stores.appState.categories}
                 />
               </View>
               <View style={styles.pickerSpacing}>
                 <Text style={styles.radioText}>{I18n.get("EVENT_FORM_from")}</Text>
-                <DateTimeInput
+                <DateTimePicker
                   noMin
                   disabled={values.allDay}
                   value={values.startAt}
@@ -204,7 +204,7 @@ class Form extends React.Component {
               </View>
               <View style={styles.pickerSpacing}>
                 <Text style={styles.radioText}>{I18n.get("EVENT_FORM_to")}</Text>
-                <DateTimeInput
+                <DateTimePicker
                   min={moment().toDate()}
                   noMin
                   value={values.endAt}

@@ -14,8 +14,8 @@ import {
   Caption
 } from 'react-native-paper';
 import Alert from 'components/dialogs/Alert';
-import LocationPicker from 'components/common/LocationInput';
-import Picker, { PickerInput } from 'components/common/Picker';
+import LocationPicker from 'components/common/LocationPicker';
+import { PickerInput, CustomPicker } from 'components/common/Picker';
 import { Formik } from 'formik';
 import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
@@ -117,7 +117,6 @@ class Form extends React.Component {
           >
             <View style={styles.form}>
               <TextInput
-                // placeholder={I18n.get("SCHEDULE_FORM_name")}
                 label={I18n.get("SCHEDULE_FORM_name")}
                 value={values.name}
                 onChangeText={handleChange('name')}
@@ -138,18 +137,10 @@ class Form extends React.Component {
                   style={
                     [styles.text, { marginVertical: 4 }]}
                    >{I18n.get("SCHEDULE_FORM_topic")}</Text>
-                <Picker
+                <CustomPicker
                   value={values.topic}
                   prompt={I18n.get("SCHEDULE_FORM_selectTopic")}
-                  items={I18n.get('topics').map(item => ({
-                    key: item,
-                    label: item,
-                    value: item
-                  })).concat({
-                    key: '__no__topic__',
-                    label: I18n.get('SCHEDULE_FORM_selectTopic'),
-                    value: ''
-                  })}
+                  data={I18n.get('topics')}
                   onValueChange={handleChange('topic')}
                 />
                 <View style={styles.switchButton}>
@@ -172,7 +163,6 @@ class Form extends React.Component {
                 </View>
               </View>
               <TextInput
-                // placeholder={I18n.get("SCHEDULE_FORM_description")}
                 label={I18n.get("SCHEDULE_FORM_description")}
                 value={values.description}
                 multiline

@@ -1,7 +1,7 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
 import List from './ListHoc';
-import LocationInput from 'components/common/LocationInput';
+import LocationPicker from 'components/common/LocationPicker';
 
 class Discover extends React.Component {
   state = {
@@ -32,7 +32,7 @@ class Discover extends React.Component {
         location={location}
         onPressLocationButton={this._openLocationPicker}
       />
-      <LocationInput
+      <LocationPicker
         visible={this.state.showLocationPicker}
         hideModal={this._hideLocationPicker}
         onSelect={this._handleSelect}
