@@ -30,9 +30,9 @@ export default Yup.object().shape({
   ,
   startAt: Yup.date()
     .required()
-    .when('endAt', (endAt, schema) => (
-      schema.max(moment(endAt).subtract(5, 'minutes').toDate(), 'durationTooShort')
-    ))
+    // .when('endAt', (endAt, schema) => (
+    //   schema.max(moment(endAt).subtract(5, 'minutes').toDate(), 'durationTooShort')
+    // ))
   ,
   endAt: Yup.date()
     .required()

@@ -139,14 +139,12 @@ class Form extends React.Component {
                   roundness: 0
                 }}
               />
-              {Boolean(errors.title) && (
-                <HelperText
-                  type="error"
-                  visible={errors.title && touched.title}
-                >
-                {errors.title && I18n.get(`HELPER_TEXT_${errors.title}`)}
-                </HelperText>
-              )}
+              <HelperText
+                type="error"
+                visible={errors.title && touched.title}
+              >
+              {errors.title && I18n.get(`HELPER_TEXT_${errors.title}`)}
+              </HelperText>
               <View style={{paddingLeft: 10}}>
               {
                 !locked && (
@@ -197,44 +195,33 @@ class Form extends React.Component {
                     if (values.allDay) {
                       setFieldValue('endAt', moment(date).endOf('day').toISOString());
                     } else {
-                      const prevDuration = Math.abs(prevEndAt.valueOf() - prevStartAt.valueOf());
-                      const newEnd = moment(date).add(prevDuration, 'milliseconds').toISOString();
-                      setFieldValue('endAt', newEnd);
+                      const duration = prevEndAt.diff(prevStartAt);
+                      const endAt = moment(date).add(duration).toISOString();
+                      setFieldValue('endAt', endAt);
                     }
                   }}
                 />
               </View>
-              {
-                errors.startAt && (
-                  <HelperText
-                    type="error"
-                    visible={errors.startAt && touched.startAt}
-                  >
-                  {errors.startAt && I18n.get(`HELPER_TEXT_${errors.startAt}`)}
-                  </HelperText>
-                )
-              }
-
               <View style={styles.pickerSpacing}>
                 <Text style={styles.radioText}>{I18n.get("EVENT_FORM_to")}</Text>
                 <DateTimeInput
                   min={moment().toDate()}
+                  noMin
                   value={values.endAt}
                   disabled={values.allDay}
                   hideTime={values.allDay}
                   onValueChange={handleChange('endAt')}
+                  onDateChange={(date) => {
+                    const prevStartAt = moment(values.startAt);
+                    const prevEndAt = moment(values.endAt);
+                    if (prevStartAt.isAfter(moment(date))) {
+                      const duration = prevEndAt.diff(prevStartAt);
+                      const startAt = moment(date).subtract(duration).toISOString();
+                      setFieldValue('startAt', startAt);
+                    }
+                  }}
                 />
               </View>
-              {
-                errors.endAt && (
-                  <HelperText
-                    type="error"
-                    visible={errors.endAt && touched.endAt}
-                  >
-                  {errors.endAt && I18n.get(`HELPER_TEXT_${errors.endAt}`)}
-                  </HelperText>
-                )
-              }
               
               <View style={[styles.radio, styles.pickerSpacing]}>
                 <Text style={styles.radioText}>{I18n.get("EVENT_FORM_allDay")}</Text>
@@ -283,7 +270,7 @@ class Form extends React.Component {
                     type="error"
                     visible={errors.recurrence && touched.recurrence}
                   >
-                    {errors.recurrence && I18n.get(`HELPER_TEXT_${errors.recurrence}`)}
+                    {I18n.get(`HELPER_TEXT_${errors.recurrence}`)}
                   </HelperText>
                 )
               }
@@ -329,7 +316,7 @@ class Form extends React.Component {
                       type="error"
                       visible={errors.until && touched.until }
                     >
-                    {errors.until && I18n.get(`HELPER_TEXT_${errors.until}`)}
+                    {I18n.get(`HELPER_TEXT_${errors.until}`)}
                     </HelperText>
                   )}
                   </>
@@ -372,7 +359,7 @@ class Form extends React.Component {
                     type="error"
                     visible={errors.description && touched.description}
                   >
-                  {errors.description && I18n.get(`HELPER_TEXT_${errors.description}`)}
+                  {I18n.get(`HELPER_TEXT_${errors.description}`)}
                   </HelperText>
                 )
               }

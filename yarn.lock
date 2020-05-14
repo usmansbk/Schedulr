@@ -2719,10 +2719,10 @@
     "@types/yargs" "^15.0.0"
     chalk "^4.0.0"
 
-"@react-native-community/async-storage@^1.10.0":
-  version "1.10.0"
-  resolved "https://registry.yarnpkg.com/@react-native-community/async-storage/-/async-storage-1.10.0.tgz#fd6a9737f3c227ef4e28858b8201ad793a022296"
-  integrity sha512-kPJwhUpBKLXGrBnUjx0JVSJvSEl5nPO+puJ3Uy9pMvika9uWeniRGZPQjUWWQimU5M7xhQ41d5I1OP82Q3Xx9A==
+"@react-native-community/async-storage@^1.10.1":
+  version "1.10.1"
+  resolved "https://registry.yarnpkg.com/@react-native-community/async-storage/-/async-storage-1.10.1.tgz#23902625cf146a25b2929d72558caa437c72c4a8"
+  integrity sha512-9wjW4lNAKkNgeQtj4dG2graKoJoiAELvh6QDXZ55ld5J58kOfJIe6ELaGBUtIAoXPpmjsddjpXrfV6af3mN2JA==
   dependencies:
     deep-assign "^3.0.0"
 
@@ -2873,24 +2873,24 @@
   dependencies:
     invariant "^2.2.4"
 
-"@react-native-firebase/app-types@6.7.1":
-  version "6.7.1"
-  resolved "https://registry.yarnpkg.com/@react-native-firebase/app-types/-/app-types-6.7.1.tgz#93497885e6c112203db310636616647c16478da9"
-  integrity sha512-jfP2wdBUaptGXO6BC0g3RYMgmGLGOkdWhkGxPhZZy1uxIxN4IXPfeUKEPL0as6ZJqfdx0IMvSvtcp7ywoFNxyg==
+"@react-native-firebase/app-types@6.7.2":
+  version "6.7.2"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/app-types/-/app-types-6.7.2.tgz#d2e1530af5702e00578914b41468898c10d3289c"
+  integrity sha512-pIwc6e0ZINw6PJqNVsAxzOVJUDg6au2TdulY+ZOYQ11SPDs5I2n9likoGrElPmJjajT4s9h87uz/6PWP2k9PxQ==
 
-"@react-native-firebase/app@^7.0.0":
-  version "7.0.0"
-  resolved "https://registry.yarnpkg.com/@react-native-firebase/app/-/app-7.0.0.tgz#fd501b9d9a293e7023a483366471a9e452a3208d"
-  integrity sha512-3gf14M6se58/jZeFWmvcrM9EqrkbOqZuC1RWStWVW5oKlSWT1LZ2EB9VyaBKVa/FR6YWlOZPCXeMXbkg1MYUOg==
+"@react-native-firebase/app@^7.0.1":
+  version "7.0.1"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/app/-/app-7.0.1.tgz#9cf1836138e9ef3770139a9d3ce35d43c5c53bf1"
+  integrity sha512-OTjTSxk2erJKCuURdN7cwc6wB7SFyBPuuFFDoKl3tg7NdQQS1vDNor2uvFC4WSjfDiaR4/UUNZEBtwtOuG1Fwg==
   dependencies:
-    "@react-native-firebase/app-types" "6.7.1"
+    "@react-native-firebase/app-types" "6.7.2"
     opencollective-postinstall "^2.0.1"
     superstruct "^0.6.2"
 
-"@react-native-firebase/crashlytics@^7.0.0":
-  version "7.0.0"
-  resolved "https://registry.yarnpkg.com/@react-native-firebase/crashlytics/-/crashlytics-7.0.0.tgz#68488ed6fa79c678e6b2484da6c603e5621b5a35"
-  integrity sha512-aMETmMsMzvD/qYnzx2beDAlgyZiB9g7lmGHyUNL7oyUlnR+gVLt6VI689g2hkyAGZaBc8rjsIaJQiAhZcEaIdg==
+"@react-native-firebase/crashlytics@^7.0.1":
+  version "7.0.1"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/crashlytics/-/crashlytics-7.0.1.tgz#96d45045a2b6ace1df4b280eedf7d7f2961c0370"
+  integrity sha512-wm++YqqsrCYtut+927Hrg56qVgUZHqBndiaH+MBWe1lOX55hJPkvqGtZh3ZmGw4kR+icM0EEuqTY9iDXtGgSag==
   dependencies:
     stacktrace-js "^2.0.0"
 
@@ -9087,10 +9087,10 @@ react-native-elements@^0.19.1:
     opencollective "^1.0.3"
     prop-types "^15.5.8"
 
-react-native-file-viewer@^2.0.3:
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/react-native-file-viewer/-/react-native-file-viewer-2.0.3.tgz#097378f311c249d4e2c6c60dfc112bd3cfdd2dbc"
-  integrity sha512-5l0wSM3kXrzZTRznH/X2b9OzCrvhegpcFEDGbG4Sl4D/i8imausCIrqoT6aIYZDV1pQ4/xdaKZa5Ld1K6u9d+A==
+react-native-file-viewer@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/react-native-file-viewer/-/react-native-file-viewer-2.1.0.tgz#770d7474fa0e45cee429aaffd240df1784608806"
+  integrity sha512-fK0b8nk5c/e2eWrU+qz/2j89PiHbxU9MI3YneDVSuFioficAgGyPjNisH5c2PQkhDzQznWmFsg7oxPaefYVoyA==
 
 react-native-fs@^2.16.6:
   version "2.16.6"

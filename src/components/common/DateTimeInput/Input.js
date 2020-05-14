@@ -30,24 +30,12 @@ class Input extends React.Component {
   _timePicker = () => this._showPicker('time');
 
   _handleChange = (date) => {
-    // if (this.state.mode === 'time') {
-    //   const initialDate = moment(this.props.value);
-    //   const currentTime = moment(date);
-
-    //   const hours = currentTime.hour();
-    //   const minutes = currentTime.minutes();
-    //   const seconds = currentTime.seconds();
-      
-    //   initialDate.hours(hours).minute(minutes).seconds(seconds);
-    //   newValue = initialDate.toISOString();
-    // }
-
     this.setState({ showPicker: false });
-    this.props.onValueChange(moment(date).toISOString());
     setTimeout(() => {
       if (this.props.onDateChange) {
         this.props.onDateChange(date);
       }
+      this.props.onValueChange(moment(date).toISOString());
     }, 0);
   };
 
