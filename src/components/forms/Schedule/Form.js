@@ -15,8 +15,7 @@ import {
 } from 'react-native-paper';
 import Alert from 'components/dialogs/Alert';
 import LocationPicker from 'components/common/LocationInput';
-import Picker from 'components/common/Picker';
-import PickerButton from 'components/common/PickerButton';
+import Picker, { PickerInput } from 'components/common/Picker';
 import { Formik } from 'formik';
 import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
@@ -166,7 +165,7 @@ class Form extends React.Component {
                 </View>
                 <View style={{marginVertical: 16}}>
                   <Text style={styles.text}>{I18n.get("SCHEDULE_FORM_location")}</Text>
-                  <PickerButton
+                  <PickerInput
                     value={values.location}
                     onPress={() => this.setState({ showLocationPicker: true })}
                   />

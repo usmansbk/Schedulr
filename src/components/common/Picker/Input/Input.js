@@ -1,6 +1,6 @@
 import React from 'react';
+import { TouchableOpacity } from 'react-native';
 import {
-  TouchableRipple,
   Text,
 } from 'react-native-paper';
 import { inject, observer} from 'mobx-react';
@@ -10,11 +10,11 @@ export default inject('stores')(observer(({ stores, value, onPress }) => {
   const styles = stores.appStyles.picker;
 
   return (    
-    <TouchableRipple
+    <TouchableOpacity
       onPress={onPress}
       style={styles.button}
     >
       <Text style={styles.text}>{value || I18n.get("Normal")}</Text>
-    </TouchableRipple>
+    </TouchableOpacity>
   )
 }));
