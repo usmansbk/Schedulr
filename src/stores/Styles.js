@@ -389,7 +389,7 @@ export default class AppStyles {
         elevation: 0
       },
       form: {
-        padding: 16
+        paddingHorizontal: 16
       },
       switchButton: {
         flexDirection: 'row',
