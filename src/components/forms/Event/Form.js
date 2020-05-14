@@ -347,6 +347,7 @@ class Form extends React.Component {
                 value={values.description}
                 onChangeText={handleChange('description')}
                 onBlur={handleBlur('description')}
+                multiline
                 style={styles.textInput}
                 theme={{
                   roundness: 0

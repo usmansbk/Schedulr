@@ -16,7 +16,7 @@ export default Yup.object().shape({
     .default(null)
     .trim()
     .min(10, 'tooShort')
-    .max(300, 'tooLong')
+    .max(700, 'tooLong')
     .transform(emptyToNull)
   ,
   venue: Yup.string()

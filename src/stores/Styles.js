@@ -434,7 +434,7 @@ export default class AppStyles {
         justifyContent: "space-between"
       },
       form: {
-        padding: 16
+        paddingHorizontal: 16 
       },
       text: {
         color: colors.primary,
