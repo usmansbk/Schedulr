@@ -8,7 +8,7 @@ import { I18n } from 'aws-amplify';
 import Form from 'components/forms/Event';
 import { isPastExact } from 'lib/time';
 import { getUserSchedules } from 'api/fragments';
-import { SCHEDULE_CLOSED } from "lib/constants";
+import { SCHEDULE_CLOSED, ONE_TIME_EVENT } from "lib/constants";
 import logger from 'config/logger';
 import snackbar from 'helpers/snackbar';
 
@@ -86,7 +86,7 @@ class NewEventScreen extends React.Component {
       endAt: end,
       allDay,
       category,
-      recurrence,
+      recurrence: recurrence || ONE_TIME_EVENT,
       until,
       forever,
       eventScheduleId,
