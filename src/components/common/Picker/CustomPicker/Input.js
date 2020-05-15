@@ -2,7 +2,7 @@ import React from 'react';
 import { TextInput } from 'react-native-paper';
 import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
-import Picker from 'components/common/Picker';
+import Picker from '../Picker';
 
 const customValue = "__custom__type__schdlr__mobile__";
 
