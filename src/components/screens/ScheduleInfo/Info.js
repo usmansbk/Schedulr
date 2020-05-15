@@ -268,7 +268,7 @@ class Info extends React.Component {
       </ScrollView>
       <Alert
         visible={this.state.showAboutPrivacyAlert}
-        title={I18n.get(`SCHEDULE_FORM_${isPublic ? "public" : "private"}`)}
+        title={I18n.get(`SCHEDULE_${isPublic ? "public" : "private"}`)}
         message={I18n.get(`ALERT_${isPublic ? 'public' : 'private'}ScheduleA`)}
         handleDismiss={this._hideAlert}
       />
