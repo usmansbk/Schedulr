@@ -252,13 +252,15 @@ class Info extends React.Component {
                   </Text>
                 </View>
               </TouchableRipple>
-              {
-                Boolean(description) && (
-                  <Hyperlink linkStyle={styles.linkStyle} linkDefault={true}>
-                    <Text style={styles.description}>{description}</Text>
-                  </Hyperlink>
-                )
-              }
+            </View>
+            <View style={styles.tail}>
+            {
+              Boolean(description) && (
+                <Hyperlink linkStyle={styles.linkStyle} linkDefault={true}>
+                  <Text style={styles.description}>{description}</Text>
+                </Hyperlink>
+              )
+            }
             </View>
           </View>
       </ScrollView>

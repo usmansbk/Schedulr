@@ -665,6 +665,9 @@ export default class AppStyles {
         justifyContent: 'center',
         alignItems: 'center'
       },
+      tail: {
+        paddingHorizontal: 16
+      },
       name: {
         fontSize: 27,
         fontWeight: 'bold'
