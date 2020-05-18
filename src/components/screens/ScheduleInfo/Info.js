@@ -188,32 +188,28 @@ class Info extends React.Component {
           }
         >
           <View style={styles.container}>
-            <View style={styles.avatar}>
-              <View style={styles.userAvatar}>
+            <View style={styles.head}>
               <UserAvater
                 name={name}
                 size={AVATAR_SIZE}
                 src={picture && getImageUrl(picture)}
                 onPress={() => navigateToPicture(id)}
               />
-              </View>
-              <View style={styles.right}>
-                <Text style={styles.name}>{name}</Text>
-                <View style={styles.countRow}>
-                  <Text
-                    style={styles.count}
-                    onPress={() => navigateToFollowers(id)}
-                  >
-                    {numeral(followersCount).format('0a')} {I18n.get(`SCHEDULE_followerCount${followersCount > 1 ? 's' : ''}`)}
-                  </Text>
-                  <Text style={styles.middot}>{` ${CIRCLE} `}</Text>
-                  <Text
-                    style={styles.count}
-                    onPress={() => navigateToEvents(id)}
-                  >
-                    {numeral(eventsCount).format('0a')} {I18n.get(`SCHEDULE_eventsCount${eventsCount > 1 ? 's' : ''}`)}
-                  </Text>
-                </View>
+              <Text style={styles.name}>{name}</Text>
+              <View style={styles.countRow}>
+                <Text
+                  style={styles.count}
+                  onPress={() => navigateToEvents(id)}
+                >
+                  {numeral(eventsCount).format('0a')} {I18n.get(`SCHEDULE_eventsCount${eventsCount > 1 ? 's' : ''}`)}
+                </Text>
+                <Text style={styles.middot}>{` ${CIRCLE} `}</Text>
+                <Text
+                  style={styles.count}
+                  onPress={() => navigateToFollowers(id)}
+                >
+                  {numeral(followersCount).format('0a')} {I18n.get(`SCHEDULE_followerCount${followersCount > 1 ? 's' : ''}`)}
+                </Text>
               </View>
             </View>
             <View style={styles.body}>

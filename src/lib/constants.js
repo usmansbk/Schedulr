@@ -117,7 +117,7 @@ export const people_list = {
 
 // screen/scheduleInfo
 export const schedule_info = {
-  AVATAR_SIZE : dp(64)
+  AVATAR_SIZE : dp(100)
 };
 
 // list/notifications_list

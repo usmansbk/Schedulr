@@ -661,9 +661,9 @@ export default class AppStyles {
         alignSelf: 'flex-start',
         marginVertical: 8
       },
-      right: {
-        marginLeft: 8,
-        width: 250
+      head: {
+        justifyContent: 'center',
+        alignItems: 'center'
       },
       name: {
         fontSize: 27,
