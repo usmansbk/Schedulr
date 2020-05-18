@@ -768,7 +768,7 @@ export default class AppStyles {
         color: colors.light_gray_3
       },
       itemContainer: {
-        backgroundColor: colors.white,
+        backgroundColor: colors.bg,
         paddingHorizontal: 8
       },
       itemContent: {
@@ -860,7 +860,7 @@ export default class AppStyles {
       },
       itemContainer: {
         height: ITEM_HEIGHT,
-        backgroundColor: colors.white,
+        backgroundColor: colors.bg,
         paddingHorizontal: 16
       },
       itemContent: {
@@ -955,7 +955,7 @@ export default class AppStyles {
         textAlign: 'center'
       },
       itemContainer: {
-        backgroundColor: colors.white,
+        backgroundColor: colors.bg,
         maxWidth: WIDTH,
         minWidth: WIDTH,
       },
@@ -1012,7 +1012,7 @@ export default class AppStyles {
       },
       divider: {
         height: 2,
-        backgroundColor: colors.white
+        backgroundColor: colors.bg
       },
       counter: {
         margin: 8,
@@ -1098,7 +1098,7 @@ export default class AppStyles {
         height: SEPARATOR_HEIGHT,
       },
       itemContainer: {
-        backgroundColor: colors.white,
+        backgroundColor: colors.bg,
         paddingHorizontal: 16,
       },
       itemContent: {
@@ -1234,7 +1234,7 @@ export default class AppStyles {
         height: SEPARATOR_HEIGHT,
       },
       itemContainer: {
-        backgroundColor: colors.white,
+        backgroundColor: colors.bg,
         height: ITEM_HEIGHT
       },
       itemContent: {
@@ -1321,7 +1321,7 @@ export default class AppStyles {
         height: SEPARATOR_HEIGHT,
       },
       itemContainer: {
-        backgroundColor: colors.white,
+        backgroundColor: colors.bg,
         paddingHorizontal: 16,
       },
       itemContent: {
@@ -1453,7 +1453,7 @@ export default class AppStyles {
         height: SEPARATOR_HEIGHT,
       },
       itemContainer: {
-        backgroundColor: colors.white,
+        backgroundColor: colors.bg,
         paddingHorizontal: 16,
       },
       itemContent: {
@@ -1550,7 +1550,7 @@ export default class AppStyles {
         color: colors.light_gray_3
       },
       itemContainer: {
-        backgroundColor: colors.white,
+        backgroundColor: colors.bg,
         paddingHorizontal: 16,
       },
       itemContent: {
@@ -1647,13 +1647,13 @@ export default class AppStyles {
         height: SECTION_FOOTER_HEIGHT,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: colors.white,
+        backgroundColor: colors.bg,
       },
       header:{
         height: HEADER_HEIGHT,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: colors.white,
+        backgroundColor: colors.bg,
       },
       headerText:{
         color: colors.primary,
@@ -1694,7 +1694,7 @@ export default class AppStyles {
       },
       itemContainer: {
         height: ITEM_HEIGHT,
-        backgroundColor: colors.white,
+        backgroundColor: colors.bg,
         paddingLeft: 12,
         paddingRight: 16 
       },
@@ -1769,18 +1769,18 @@ export default class AppStyles {
       },
       header: {
         height: HEADER_HEIGHT,
-        backgroundColor: colors.white,
+        backgroundColor: colors.bg,
         marginBottom: 8,
       },
       separator: {
         height: SEPARATOR_HEIGHT,
       },
       footer: {
-        backgroundColor: colors.white,
+        backgroundColor: colors.bg,
         marginVertical: 8,
       },
       item: {
-        backgroundColor: colors.white,
+        backgroundColor: colors.bg,
       }
     });
   }
@@ -1900,7 +1900,7 @@ export default class AppStyles {
       container: {
         width: '100%',
         height: '100%',
-        backgroundColor: colors.white
+        backgroundColor: colors.bg
       },
       header: {
         width: '100%',
@@ -1918,7 +1918,7 @@ export default class AppStyles {
         height: AVATAR_HEIGHT,
         borderRadius: AVATAR_HEIGHT / 2,
         borderWidth: 4,
-        borderColor: colors.white,
+        borderColor: colors.bg,
         alignItems: 'center',
         justifyContent: 'center',
         overflow: 'hidden'
