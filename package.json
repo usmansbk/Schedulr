@@ -17,7 +17,7 @@
     "postversion": "react-native-version"
   },
   "dependencies": {
-    "@react-native-community/async-storage": "^1.10.1",
+    "@react-native-community/async-storage": "^1.10.3",
     "@react-native-community/datetimepicker": "^2.4.0",
     "@react-native-community/masked-view": "^0.1.10",
     "@react-native-community/netinfo": "~4.7.0",
@@ -70,7 +70,7 @@
     "react-native-photo-view": "https://github.com/alwx/react-native-photo-view",
     "react-native-push-notification": "^3.4.0",
     "react-native-reanimated": "^1.8.0",
-    "react-native-safe-area-context": "^1.0.0",
+    "react-native-safe-area-context": "^1.0.2",
     "react-native-screens": "^2.7.0",
     "react-native-share": "^3.3.2",
     "react-native-snackbar": "^2.2.0",
