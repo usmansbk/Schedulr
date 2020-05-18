@@ -74,6 +74,7 @@ class Input extends React.Component {
             isVisible={this.state.showPicker}
             onConfirm={this._handleChange}
             onCancel={this._hidePicker}
+            isDarkModeEnabled={stores.settingsStore.dark}
           />
         </View>
       </View>
