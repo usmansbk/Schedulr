@@ -157,7 +157,7 @@ export const getDuration = (startAt, endAt, allDay) => {
   return decapitalize(t.humanizeLength());
 };
 
-export const momentCounter = ({ startAt, ref_date }) => {
+export const dayCounter = ({ startAt, ref_date }) => {
   const currentMoment = moment(ref_date).startOf('D');
   const startMoment = moment(startAt).startOf('D');
   const count = currentMoment.diff(startMoment, 'd');
