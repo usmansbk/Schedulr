@@ -186,6 +186,9 @@ export const isStretched = (start, end) => {
   return moment(end).diff(start) > ONE_DAY;
 };
 
+/**
+ * @return { moment[] } - [Mon-Fri]
+ */
 export const getWeekdays = () => {
   const today = moment().isoWeekday();
   const lastday = today + 7;
