@@ -187,9 +187,14 @@ export const isStretched = (start, end) => {
 };
 
 export const getWeekdays = () => {
+  const today = moment().isoWeekday();
+  const lastday = today + 7;
+
   const dates = [];
-  for (let i = 1; i < 6; i++) {
-    dates.push(moment().isoWeekday(i));
+  for (let i = today; i < lastday; i++) {
+    if ((i % 6 !== 0) && (i % 7 !== 0)) { // Exclude Weekends
+      dates.push(moment().isoWeekday(i));
+    }
   }
   return dates;
 };
