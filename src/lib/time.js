@@ -114,6 +114,7 @@ export const getDaysCount = ({ startAt, ref_date }) => {
   return count;
 };
 
+// Get next seven days starting from today 
 export const getWeekFromNow = (previous) => {
   let dates = [];
   const direction = previous ? -1 : 1;
