@@ -185,3 +185,11 @@ export const nextSevenDays = (previous) => {
 export const isStretched = (start, end) => {
   return moment(end).diff(start) > ONE_DAY;
 };
+
+export const getWeekdays = () => {
+  const dates = [];
+  for (let i = 1; i < 6; i++) {
+    dates.push(moment().isoWeekday(i));
+  }
+  return dates;
+};

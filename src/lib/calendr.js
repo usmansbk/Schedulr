@@ -1,5 +1,5 @@
 import moment from 'moment';
-import 'moment-recur';
+// import 'moment-recur';
 import memoize from 'lodash.memoize';
 import { weekdays, isStretched } from './time';
 

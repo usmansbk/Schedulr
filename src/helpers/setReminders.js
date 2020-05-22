@@ -1,7 +1,6 @@
 import PushNotification from 'react-native-push-notification';
 import { InteractionManager } from 'react-native';
 import moment from 'moment';
-import 'moment-recur';
 import 'twix';
 import { decapitalize } from 'lib/utils';
 import {
@@ -11,10 +10,8 @@ import {
   THIRTY_MINUTES,
   ONE_HOUR,
   ONE_DAY,
-  isWeekDay,
-  weekdays
+  getWeekdays,
 } from 'lib/time';
-import { ONE_TIME_EVENT } from 'lib/constants';
 import stores from 'stores';
 import colors from 'config/colors';
 
@@ -187,31 +184,17 @@ function schdlWeekdaysEvent(event, remindMeBefore, settings) {
   const minute = start.minute();
   const second = start.second();
 
-  const recurrence = start.recur(end).every(weekdays).daysOfWeek(); // Exclusive operation
-  const days = recurrence.next(5);
-  days.forEach(nextDay => {
-    nextDay.hour(hour);
-    nextDay.minute(minute);
-    nextDay.second(second);
+  const days = getWeekdays();
+  days.forEach(date=> {
+    const startAt = date.clone().hour(hour).minute(minute).second(second);
+    const endAt = startAt.clone().add(duration);
 
-    const endAt = nextDay.clone().add(duration).toISOString();
     const nextEvent = Object.assign({}, event, {
-      startAt: nextDay.toISOString(),
-      endAt
+      startAt: startAt.toISOString(),
+      endAt: endAt.toISOString()
     });
     schdl(nextEvent, remindMeBefore, settings);
   });
-
-  const isWeekday = isWeekDay(start);
-  const isToday = start.isSame(moment(), 'day');
-  const isPending = start.twix(end).isFuture();
-
-  if (isWeekday && isToday && isPending) {
-    const todayEvent = Object.assign({}, event, {
-      recurrence: ONE_TIME_EVENT
-    });
-    schdl(todayEvent, remindMeBefore, settings);
-  }
 }
 
 function getRepeatType(recurrence) {
