@@ -6,7 +6,7 @@ import { withApollo } from 'react-apollo';
 import memoize from 'memoize-one';
 import { I18n } from 'aws-amplify';
 import Form from 'components/forms/Event';
-import { isPastExact } from 'lib/time';
+import { isPastDate } from 'lib/time';
 import { getUserSchedules } from 'api/fragments';
 import { SCHEDULE_CLOSED, ONE_TIME_EVENT } from "lib/constants";
 import logger from 'config/logger';
@@ -70,7 +70,7 @@ class NewEventScreen extends React.Component {
       const startHours = currentStart.hours();
       
       newStart = moment().seconds(startSec).minutes(startMins).hours(startHours).toISOString();
-      if (isPastExact(newStart)) {
+      if (isPastDate(newStart)) {
         newStart = moment(newStart).add(1, 'day').toISOString();
       }
       newEnd = moment(newStart).add(duration).toISOString();

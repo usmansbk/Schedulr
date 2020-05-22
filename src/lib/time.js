@@ -75,25 +75,10 @@ export const isStretched = (start, end) => {
   return moment(end).diff(start) > ONE_DAY;
 };
 
-export const isPastExact = date => moment().twix(date).isPast();
-
-export const isStarted = ({ isCancelled, startAt, endAt }) => {
-  const t = moment(startAt).twix(endAt);
-  return (!isCancelled && t.isCurrent());
-};
+export const isPastDate = date => moment().twix(date).isPast();
 
 export const isWeekDay = (momentDate) => {
   return momentDate.isoWeekday() < 6;
-};
-
-export const isToday = (event) => {
-  const { startAt, endAt, isCancelled } = event;
-  const cancelledDates = event.cancelledDates || [];
-  return (
-    moment(startAt).twix(endAt).isSame('day') ||
-    moment(startAt).twix(endAt).isCurrent() ||
-    isCancelled || cancelledDates.includes(startAt)
-  );
 };
 
 export function getTimeUnit(recurrence) {
@@ -163,11 +148,6 @@ export const getWeekdays = () => {
     }
   }
   return dates;
-};
-
-export const getNextDate = (event) => {
-  const { startAt, endAt } = event;
-  return moment(startAt).twix(endAt).format();
 };
 
 export const getSectionHeaderData = (date) => {
