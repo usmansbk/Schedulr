@@ -36,7 +36,7 @@ export const canRecur = ({ startAt, endAt })  => {
   if (duration <= ONE_YEAR) recurrence.push("YEARLY");
 
   return recurrence;
-}
+};
 
 export const repeatLength = (recurrence) => {
   switch(recurrence) {
@@ -123,7 +123,7 @@ export const getWeekFromNow = (previous) => {
     dates.push(date);
   }
   return dates;
-}
+};
 
 /**
  * @return { moment[] } - [Mon-Fri]
