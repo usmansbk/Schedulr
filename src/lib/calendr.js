@@ -74,7 +74,7 @@ const getNextDate = (events=[], refDate, before) => {
         } else {
           recurrence = repeat(eventDate).every(interval);
         }
-        recurrence.fromDate(refDate);
+        recurrence.from(refDate);
         const nextDate = before ? recurrence.previousDate() : recurrence.nextDate();
         const start = moment(currentEvent.startAt);
         const startSec = start.seconds();
@@ -97,7 +97,7 @@ const getNextDate = (events=[], refDate, before) => {
       } else {
         recurrence = repeat(eventDate).every(interval);
       }
-      recurrence.fromDate(refDate);
+      recurrence.from(refDate);
       const nextDate = before ? recurrence.previousDate() : recurrence.nextDate();
       const validStart = nextDate.isAfter(eventDate, 'day');
       if (untilAt && nextDate.isAfter(untilAt, 'day')) {
@@ -176,9 +176,9 @@ function processEvents(events) {
       if (interval === 'weekdays') {
         recurrence = repeat(eventDate).every(repeat.WEEKDAY);
       } else {
-        recurrence = recur(eventDate).every(interval);
+        recurrence = repeat(eventDate).every(interval);
       }
-      recurrence.fromDate(moment().add(-1, 'day')); // it exclusive so minus one day to include today
+      recurrence.from(moment().add(-1, 'day')); // it exclusive so minus one day to include today
       const nextDate = recurrence.nextDate();
       return process(currentEvent, nextDate.toISOString());
     }

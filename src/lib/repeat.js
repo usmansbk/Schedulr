@@ -7,29 +7,29 @@ export default function repeat(date) {
   _from = moment().startOf('day');
 
   const rule = {
-    every(date) {
-      _every = moment(date);
+    every(recurrence) {
+      _every = recurrence;
       return this;
     },
     from(date) {
-      _from = moment(date);
+      _from = moment(date).startOf('day');
       return this;
     },
     until(date) {
       _until = moment(date);
       return this;
     },
-    next(numberOfDates, from) {
+    next(numberOfDates) {
       return [moment()];
     },
-    previous(numberOfDates, before) {
+    previous(numberOfDates) {
       return [moment()];
     },
     nextDate() {
-      return this.next(1, moment().startOf('day'))[0];
+      return this.next(1)[0];
     },
     previousDate() {
-      return this.previous(1, moment().startOf('day'))[0];
+      return this.previous(1)[0];
     },
     matches(date) {
       return false;
