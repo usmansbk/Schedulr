@@ -2,7 +2,7 @@ import moment from 'moment';
 import 'twix';
 import { I18n } from 'aws-amplify';
 import { capitalize } from './utils';
-import { dayCounter } from './time';
+import { getDaysCount } from './time';
 
 /**
  * 
@@ -105,9 +105,9 @@ export const captionDetails = ({
 
   let currentDayCount, totalDayCount;
   if (!isSameDay) {
-    const count = dayCounter({ startAt, ref_date });
+    const count = getDaysCount({ startAt, ref_date });
     currentDayCount = count + 1;
-    totalDayCount = dayCounter({ startAt, ref_date: endAt }) + 1;
+    totalDayCount = getDaysCount({ startAt, ref_date: endAt }) + 1;
   }
   let caption;
   if (allDay) {

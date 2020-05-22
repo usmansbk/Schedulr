@@ -1,5 +1,5 @@
 import moment from 'moment';
-import { nextSevenDays, isStretched } from './time';
+import { getWeekFromNow, isStretched } from './time';
 /**
  * 
  * A calendar event
@@ -20,7 +20,7 @@ import { nextSevenDays, isStretched } from './time';
  * @return { Event[] } events 
  */
 function* EventsGenerator(events, previous) {
-	let dates = nextSevenDays(previous);
+	let dates = getWeekFromNow(previous);
 	for (let date of dates) {
 		const data = [];
 		events.forEach(event => {

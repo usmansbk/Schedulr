@@ -59,6 +59,112 @@ export const formatDate = (startAt, endAt, allDay) => {
 
 export const calendarTime = (date) => moment(date).calendar(null, I18n.get('calendarTimeFormats'));
 
+export const isPast = (date) => {
+  const d = moment(date).endOf('day');
+  return moment().twix(d).isPast();
+};
+
+/**
+ * 
+ * Check if event extends to next day
+ * @param {date} start 
+ * @param {date} end 
+ * @return { boolean}
+ */
+export const isStretched = (start, end) => {
+  return moment(end).diff(start) > ONE_DAY;
+};
+
+export const isPastExact = date => moment().twix(date).isPast();
+
+export const isStarted = ({ isCancelled, startAt, endAt }) => {
+  const t = moment(startAt).twix(endAt);
+  return (!isCancelled && t.isCurrent());
+};
+
+export const isWeekDay = (momentDate) => {
+  return momentDate.isoWeekday() < 6;
+};
+
+export const isToday = (event) => {
+  const { startAt, endAt, isCancelled } = event;
+  const cancelledDates = event.cancelledDates || [];
+  return (
+    moment(startAt).twix(endAt).isSame('day') ||
+    moment(startAt).twix(endAt).isCurrent() ||
+    isCancelled || cancelledDates.includes(startAt)
+  );
+};
+
+export function getTimeUnit(recurrence) {
+  const val = recurrence.toLowerCase();
+  switch (val) {
+    case 'daily': return 'days';
+    case 'weekly': case 'weekdays': return 'weeks';
+    case 'monthly': return 'months';
+    case 'yearly': return 'years';
+    default: return 'seconds';
+  }
+}
+
+export const getTime = ({ startAt, endAt, allDay, isExtended }) => {
+  const t = moment(startAt).twix(endAt, allDay);
+  const isSameDay = t.isSame('day');
+  return t.format({
+    hideTime: isExtended,
+    hideDate: isSameDay,
+    allDay: I18n.get("EVENT_ITEM_allDay"),
+    explicitAllDay: true,
+    implicitMinutes: false,
+    groupMeridiems: false
+  });
+};
+
+export const getHumanTime = ({ startAt, endAt, allDay }) => {
+  const t = moment(startAt).twix(endAt, allDay).format();
+  return t;
+};
+
+export const getDuration = (startAt, endAt, allDay) => {
+  if (allDay) return '';
+  const t = moment(startAt).twix(endAt);
+  return decapitalize(t.humanizeLength());
+};
+
+export const getDaysCount = ({ startAt, ref_date }) => {
+  const currentMoment = moment(ref_date).startOf('D');
+  const startMoment = moment(startAt).startOf('D');
+  const count = currentMoment.diff(startMoment, 'd');
+  return count;
+};
+
+export const getWeekFromNow = (previous) => {
+  let dates = [];
+  const direction = previous ? -1 : 1;
+  let start = previous ? 1 : 0;
+  for (let i = start; i < 7; i++) {
+    const date = moment().add(i * direction, 'day').startOf('day').toISOString();
+    dates.push(date);
+  }
+  return dates;
+}
+
+/**
+ * @return { moment[] } - [Mon-Fri]
+ */
+export const getWeekdays = () => {
+  const today = moment().isoWeekday();
+  const lastday = today + 7;
+
+  const dates = [];
+  for (let i = today; i < lastday; i++) {
+    if ((i % 6 !== 0) && (i % 7 !== 0)) { // Exclude Weekends
+      dates.push(moment().isoWeekday(i));
+    }
+  }
+  return dates;
+};
+
 export const getNextDate = (event) => {
   const { startAt, endAt } = event;
   return moment(startAt).twix(endAt).format();
@@ -94,110 +200,4 @@ export function getRepeatLabel(id, date) {
 
 export const getHumanMonth = (startAt) => {
   return moment(startAt).format('MMM').toUpperCase();
-};
-
-export function getTimeUnit(recurrence) {
-  const val = recurrence.toLowerCase();
-  switch (val) {
-    case 'daily': return 'days';
-    case 'weekly': case 'weekdays': return 'weeks';
-    case 'monthly': return 'months';
-    case 'yearly': return 'years';
-    default: return 'seconds';
-  }
-}
-
-export const getTime = ({ startAt, endAt, allDay, isExtended }) => {
-  const t = moment(startAt).twix(endAt, allDay);
-  const isSameDay = t.isSame('day');
-  return t.format({
-    hideTime: isExtended,
-    hideDate: isSameDay,
-    allDay: I18n.get("EVENT_ITEM_allDay"),
-    explicitAllDay: true,
-    implicitMinutes: false,
-    groupMeridiems: false
-  });
-};
-
-export const getHumanTime = ({ startAt, endAt, allDay }) => {
-  const t = moment(startAt).twix(endAt, allDay).format();
-  return t;
-};
-
-export const isPast = (date) => {
-  const d = moment(date).endOf('day');
-  return moment().twix(d).isPast();
-};
-
-export const isPastExact = date => moment().twix(date).isPast();
-
-export const isStarted = ({ isCancelled, startAt, endAt }) => {
-  const t = moment(startAt).twix(endAt);
-  return (!isCancelled && t.isCurrent());
-};
-
-export const isWeekDay = (momentDate) => {
-  return momentDate.isoWeekday() < 6;
-};
-
-export const isToday = (event) => {
-  const { startAt, endAt, isCancelled } = event;
-  const cancelledDates = event.cancelledDates || [];
-  return (
-    moment(startAt).twix(endAt).isSame('day') ||
-    moment(startAt).twix(endAt).isCurrent() ||
-    isCancelled || cancelledDates.includes(startAt)
-  );
-};
-
-export const getDuration = (startAt, endAt, allDay) => {
-  if (allDay) return '';
-  const t = moment(startAt).twix(endAt);
-  return decapitalize(t.humanizeLength());
-};
-
-export const dayCounter = ({ startAt, ref_date }) => {
-  const currentMoment = moment(ref_date).startOf('D');
-  const startMoment = moment(startAt).startOf('D');
-  const count = currentMoment.diff(startMoment, 'd');
-  return count;
-};
-
-export const nextSevenDays = (previous) => {
-  let dates = [];
-  const direction = previous ? -1 : 1;
-  let start = previous ? 1 : 0;
-  for (let i = start; i < 7; i++) {
-    const date = moment().add(i * direction, 'day').startOf('day').toISOString();
-    dates.push(date);
-  }
-  return dates;
-}
-
-/**
- * 
- * Check if event extends to next day
- * @param {date} start 
- * @param {date} end 
- * @return { boolean}
- */
-export const isStretched = (start, end) => {
-  return moment(end).diff(start) > ONE_DAY;
-};
-
-/**
- * @return { moment[] } - [Mon-Fri]
- */
-export const getWeekdays = () => {
-  const today = moment().isoWeekday();
-  const lastday = today + 7;
-
-  const dates = [];
-  for (let i = today; i < lastday; i++) {
-    if ((i % 6 !== 0) && (i % 7 !== 0)) { // Exclude Weekends
-      dates.push(moment().isoWeekday(i));
-    }
-  }
-  return dates;
 };
