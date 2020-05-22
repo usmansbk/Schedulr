@@ -13,7 +13,7 @@ import SectionFooter from './SectionFooter';
 import Item from './Item';
 import { isPastDate } from 'lib/time';
 import { eventsChanged } from 'lib/utils';
-import { EventsGenerator } from 'lib/calendar';
+import { EventSectionGenerator } from 'lib/calendar';
 import { events } from 'lib/constants';
 
 const {
@@ -220,8 +220,8 @@ class List extends React.Component {
 
   _processEvents(events, forceUpdate) {
     if (forceUpdate || eventsChanged(events, this.state.events)) {
-      const nextIterator = EventsGenerator(events, false, NUMBER_OF_DAYS);
-      const prevIterator = EventsGenerator(events, true, NUMBER_OF_DAYS);
+      const nextIterator = EventSectionGenerator(events, false, NUMBER_OF_DAYS);
+      const prevIterator = EventSectionGenerator(events, true, NUMBER_OF_DAYS);
       let result =  nextIterator.next();
       if (!result.done) {
         const { items, afterDate, beforeDate } = result.value;

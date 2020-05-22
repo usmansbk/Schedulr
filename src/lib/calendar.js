@@ -1,25 +1,7 @@
 import moment from 'moment';
 import { getWeekFromNow, isMultipleDays } from './time';
-/**
- * 
- * A calendar event
- * @typedef {Object} Event
- * @property {Date} startAt - ISO string of event start date and time
- * @property {Date} endAt - ISO string of end date and time
- * @property {boolean} isCancelled - Indicates whether event is cancelled
- * @property {string} recurrence - How often even should repeat (DAILY, WEEKLY, MONTHLY, YEARLY)
- * @property {Date=} until - Final date of event, if repeating
- * @property {boolean=} forever - Indicates whether event should repeat forever
- */
 
-/**
- * @param { Event[] } events
- * @param { Date } date - start date 
- * @param { boolean= } previous - Get previous day events if true
- * @param { number } [size=1] - number of days to fetch 
- * @return { Event[] } events 
- */
-function* EventsGenerator(events, previous) {
+function* EventSectionGenerator(events, previous) {
 	let dates = getWeekFromNow(previous);
 	for (let date of dates) {
 		const data = [];
@@ -69,11 +51,6 @@ function match(event, date) {
 	return !isCancelled && (isValid || (isValidStart && isRecurring));
 }
 
-/**
- * @param { Event } event - Previous event
- * @param { Date } date - Next event date
- * @return { Event } event - Creates a new event with the given next date
- */
 function process(event, date) {
 	const previousStartMoment = moment(event.startAt);
 
@@ -110,5 +87,5 @@ function process(event, date) {
 }
 
 export {
-  EventsGenerator
+  EventSectionGenerator
 };
