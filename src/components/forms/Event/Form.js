@@ -305,7 +305,7 @@ class Form extends React.Component {
                   <View style={styles.pickerSpacing}>
                     <Text style={styles.radioText}>{I18n.get("EVENT_FORM_repeatUntil")}</Text>
                     <DateTimePicker
-                      minDate={new Date()}
+                      minDate={moment().toDate()}
                       value={values.until}
                       onValueChange={handleChange('until')}
                       hideTime
