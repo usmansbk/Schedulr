@@ -1,7 +1,7 @@
 import moment from 'moment';
-// import 'moment-recur';
 import memoize from 'lodash.memoize';
-import { weekdays, isMultipleDays } from './time';
+import repeat from './repeat';
+import { isMultipleDays } from './time';
 
 export const sortBy = (arr, key) => {
   return arr.sort((a, b) => {
@@ -63,21 +63,19 @@ const getNextDate = (events=[], refDate, before) => {
 
     let recurrence;
     if (isValid && isExtended) {
-      recurrence = eventDate.recur(endDate).every(1).day().fromDate(refDate);
-      const nextDates = before ? recurrence.previous(1) : recurrence.next(1);
-      const nextDate = nextDates[0];
+      recurrence = repeat(eventDate).every(repeat.DAY).from(refDate);
+      const nextDate = before ? recurrence.previousDate() : recurrence.nextDate();
       const shouldReturn = nextDate.isBetween(eventDate, endDate, null, '[]');
 
-      if (shouldReturn) return nextDate.local().startOf('day');
+      if (shouldReturn) return nextDate.startOf('day');
       if (interval) {
         if (interval === 'weekdays') {
-          recurrence = eventDate.recur().every(weekdays).daysOfWeek();
+          recurrence = repeat(eventDate).every(repeat.WEEKDAY);
         } else {
-          recurrence = eventDate.recur().every(1, interval);
+          recurrence = repeat(eventDate).every(interval);
         }
         recurrence.fromDate(refDate);
-        const nextDates = before ? recurrence.previous(1) : recurrence.next(1);
-        const nextDate = nextDates[0];
+        const nextDate = before ? recurrence.previousDate() : recurrence.nextDate();
         const start = moment(currentEvent.startAt);
         const startSec = start.seconds();
         const startMins = start.minutes();
@@ -91,28 +89,27 @@ const getNextDate = (events=[], refDate, before) => {
 
         const endAt = moment(startAt).add(duration);
         const shouldReturn = nextDate.isBetween(eventDate, endAt, null, '[]');
-        if (shouldReturn) return nextDate.local().startOf('day');
+        if (shouldReturn) return nextDate.startOf('day');
       }
     } else if (interval && isValid) {
       if (interval === 'weekdays') {
-        recurrence = eventDate.recur().every(weekdays).daysOfWeek();
+        recurrence = repeat(eventDate).every(repeat.WEEKDAY);
       } else {
-        recurrence = eventDate.recur().every(1, interval);
+        recurrence = repeat(eventDate).every(interval);
       }
       recurrence.fromDate(refDate);
-      const nextDates = before ? recurrence.previous(1) : recurrence.next(1);
-      const nextDate = nextDates[0];
+      const nextDate = before ? recurrence.previousDate() : recurrence.nextDate();
       const validStart = nextDate.isAfter(eventDate, 'day');
       if (untilAt && nextDate.isAfter(untilAt, 'day')) {
         // do nothing
       } else if (validStart) {
-        return nextDate.local().startOf('day');
+        return nextDate.startOf('day');
       } else if (interval === 'weekdays') {
         // Prevent weekends
         return null;
       }
     }
-    return eventDate.local().startOf('day').toISOString();
+    return eventDate.startOf('day').toISOString();
   }))).filter(date => {
     if (!date) return false;
     if (before) return moment(date).isBefore(refDate, 'day');
@@ -149,9 +146,9 @@ const processNextDayEvents = memoize((initialEvents, nextDate) => {
     } else if (interval && !currentEvent.isCancelled && isValid) {
       let recurrence;
       if (interval === 'weekdays') {
-        recurrence = eventDate.recur().every(weekdays).daysOfWeek();
+        recurrence = repeat(eventDate).every(repeat.WEEKDAY);
       } else {
-        recurrence = eventDate.recur().every(1, interval);
+        recurrence = repeat(eventDate).every(interval);
       }
       const hasNext = recurrence.matches(refDate);
       if (hasNext) {
@@ -177,13 +174,13 @@ function processEvents(events) {
     let recurrence;
     if (interval) {
       if (interval === 'weekdays') {
-        recurrence = eventDate.recur().every(weekdays).daysOfWeek();
+        recurrence = repeat(eventDate).every(repeat.WEEKDAY);
       } else {
-        recurrence = eventDate.recur().every(1, interval);
+        recurrence = recur(eventDate).every(interval);
       }
       recurrence.fromDate(moment().add(-1, 'day')); // it exclusive so minus one day to include today
-      const nextDates = recurrence.next(1);
-      return process(currentEvent, nextDates[0].toISOString());
+      const nextDate = recurrence.nextDate();
+      return process(currentEvent, nextDate.toISOString());
     }
     return Object.assign({}, currentEvent, {
       ref_date: moment().startOf('D').toISOString(),
