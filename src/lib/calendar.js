@@ -1,5 +1,5 @@
 import moment from 'moment';
-import { getWeekFromNow, isStretched } from './time';
+import { getWeekFromNow, isMultipleDays } from './time';
 /**
  * 
  * A calendar event
@@ -94,7 +94,7 @@ function process(event, date) {
 		isConcluded = nextMoment.isAfter(finalMoment);
 	}
 
-	const isExtended = isStretched(previousStartMoment, previousEndMoment);
+	const isExtended = isMultipleDays(previousStartMoment, previousEndMoment);
 	if (isExtended || isConcluded) {
 		startAt = previousStartMoment.toISOString();
 		endAt = previousEndMoment.toISOString();

@@ -11,7 +11,7 @@ import Separator from './Separator';
 import SectionHeader from './SectionHeader';
 import SectionFooter from './SectionFooter';
 import Item from './Item';
-import { isPast } from 'lib/time';
+import { isPastDate } from 'lib/time';
 import { eventsChanged } from 'lib/utils';
 import { EventsGenerator } from 'lib/calendar';
 import { events } from 'lib/constants';
@@ -164,7 +164,7 @@ class List extends React.Component {
     if (this.props.isOwner && this.props.id) {
       id = this.props.id;
     } 
-    if (!isPast(targetDate)) {
+    if (!isPastDate(targetDate, true)) {
       this.props.navigation.navigate('NewEvent', {
         targetDate,
         eventScheduleId : id

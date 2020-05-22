@@ -59,23 +59,14 @@ export const formatDate = (startAt, endAt, allDay) => {
 
 export const calendarTime = (date) => moment(date).calendar(null, I18n.get('calendarTimeFormats'));
 
-export const isPast = (date) => {
-  const d = moment(date).endOf('day');
-  return moment().twix(d).isPast();
+export const isMultipleDays = (from, to) => {
+  return moment(to).diff(from) > ONE_DAY;
 };
 
-/**
- * 
- * Check if event extends to next day
- * @param {date} start 
- * @param {date} end 
- * @return { boolean}
- */
-export const isStretched = (start, end) => {
-  return moment(end).diff(start) > ONE_DAY;
+export const isPastDate = (date, endOfDay) => {
+  const d = endOfDay ? moment(date).endOf('day') : date;
+  moment().twix(d).isPast();
 };
-
-export const isPastDate = date => moment().twix(date).isPast();
 
 export const isWeekDay = (momentDate) => {
   return momentDate.isoWeekday() < 6;
