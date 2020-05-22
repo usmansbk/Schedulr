@@ -12,6 +12,7 @@ import getImageUrl from 'helpers/getImageUrl';
 import logger from 'config/logger';
 
 const DATE_FORMAT = "ddd DD, MMM YYYY, hh:mm a";
+const DATE_ONLY_FORMAT = "ddd DD, MMM YYYY";
 const FONT_SIZE = 24;
 
 class EventDetails extends React.Component {
@@ -203,7 +204,7 @@ class EventDetails extends React.Component {
           authorId={author.id}
           authorName={author.name}
           recurrence={getRepeatLabel(recurrence, start)}
-          until={until && moment(until).format(DATE_FORMAT)}
+          until={until && moment(until).format(DATE_ONLY_FORMAT)}
           createdAt={moment(createdAt).format(DATE_FORMAT)}
           updatedAt={(updatedAt !== createdAt) && moment(updatedAt).format(DATE_FORMAT)}
           description={description}
