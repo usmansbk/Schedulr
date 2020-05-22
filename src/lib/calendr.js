@@ -1,5 +1,4 @@
 import moment from 'moment';
-import memoize from 'lodash.memoize';
 import repeat from './repeat';
 import { isMultipleDays } from './time';
 
@@ -126,7 +125,7 @@ const getNextDate = (events=[], refDate, before) => {
   * @param { Date } afterDate - date to start from
   * @return 
 */
-const processNextDayEvents = memoize((initialEvents, nextDate) => {
+const processNextDayEvents = (initialEvents, nextDate) => {
   let refDate = moment().startOf('D');
   if (nextDate) refDate = moment(nextDate).startOf('D');
 
@@ -162,7 +161,7 @@ const processNextDayEvents = memoize((initialEvents, nextDate) => {
     data: [],
     title: refDate.toISOString(),
   });
-}, (...args) => JSON.stringify(args));
+};
 
 // Returns a flat list of latest events dates
 function processEvents(events) {
