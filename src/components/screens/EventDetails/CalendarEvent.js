@@ -8,6 +8,7 @@ import { I18n } from 'aws-amplify';
 import CountDown from 'components/common/Countdown';
 import Alert from 'components/dialogs/Alert';
 import Error from 'components/common/Error';
+import Tag from 'components/common/Tag';
 import Suspense from 'components/common/Suspense';
 import { formatDate } from 'lib/time';
 import { getStatus } from 'lib/formatEvent';
@@ -115,6 +116,7 @@ class CalendarEvent extends React.Component {
                 key={status+countDownReset}
               />
               <View style={stores.appStyles.eventDetails.headNote}>
+                <Tag status={status} />
               </View> 
               <Headline style={stores.appStyles.eventDetails.title}>{title}</Headline>
               <Text style={stores.appStyles.eventDetails.date}>{date}</Text>
