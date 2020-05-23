@@ -70,7 +70,7 @@ class ImageViewerContainer extends React.Component {
             snackbar(I18n.get("WARNING_fileTooLarge"), true);
           } else {
             try {
-              const name = getFileName(type);
+              const name = getFileName(type, true);
               const key = `${folder}/${name}`;
               const fileForUpload = {
                 key,

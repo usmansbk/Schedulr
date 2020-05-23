@@ -1,5 +1,5 @@
 import React from 'react';
-import PhotoView from 'react-native-photo-view';
+import PhotoView from 'react-native-image-zoom-viewer';
 import { Appbar, ProgressBar } from 'react-native-paper';
 import { View } from 'react-native';
 import { inject, observer } from 'mobx-react';
@@ -27,9 +27,6 @@ class ImageViewer extends React.Component {
       display: true
     }), 0);
   };
-
-  _toggleLoadingImage = () => this.setState(prev => ({ loadingImage: !prev.loadingImage }));
-  _onError = (error) => logger.log(error.message);
 
   _downloadImage = async () => {
     const { s3Object: { key, name } } = this.props;
@@ -82,6 +79,13 @@ class ImageViewer extends React.Component {
       me,
       loading
     } = this.props;
+
+    const source = {
+      url : uri,
+      props: {
+        source: uri ? undefined : require('../../../assets/photographer.png')
+      }
+    };
 
     return (
     <>
@@ -150,12 +154,11 @@ class ImageViewer extends React.Component {
       {
         loading ? <Loading loading /> : (
           <PhotoView
-            source={uri ? {uri} : require('../../../assets/photographer.png')}
-            androidScaleType="fitCenter"
-            style={ uri ? {flex: 1} : { alignSelf: 'center', width: 400, height: 400 }}
-            onLoadStart={this._toggleLoadingImage}
-            onLoadEnd={this._toggleLoadingImage}
-            onError={this._onError}
+            imageUrls={[source]}
+            enableImageZoom={Boolean(uri)}
+            useNativeDriver
+            renderIndicator={() => null}
+            saveToLocalByLongPress={false}
           />
         )
       }

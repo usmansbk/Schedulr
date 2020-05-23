@@ -1,5 +1,5 @@
 import React from 'react';
-import GallerySwiper from 'react-native-gallery-swiper';
+import GallerySwiper from 'react-native-image-zoom-viewer';
 import { Appbar } from 'react-native-paper';
 import { inject, observer } from 'mobx-react';
 import Icon from 'react-native-vector-icons/Feather';
@@ -15,7 +15,7 @@ class AlbumViewer extends React.Component {
   render() {
     const { album, s3Key, stores } = this.props;
     const index = album.findIndex(img => img.key === s3Key);
-    const images = album.map(img => ({ uri: getImageUrl(img, 1040, 'contain') }));
+    const images = album.map(img => ({ url: getImageUrl(img, 1040, 'contain') }));
     const appStyles = stores.appStyles.styles;
     const colors = stores.themeStore.colors;
     
@@ -38,12 +38,11 @@ class AlbumViewer extends React.Component {
         />
       </Appbar.Header>
       <GallerySwiper
-        images={images || []}
-        initialPage={index}
-        sensitiveScroll={false}
-        style={{
-          backgroundColor: colors.bg
-        }}
+        imageUrls={images}
+        index={index}
+        backgroundColor={colors.bg}
+        useNativeDriver
+        saveToLocalByLongPress={false}
       />
       </>
     );

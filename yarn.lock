@@ -8825,7 +8825,7 @@ prompts@^2.0.1:
     kleur "^3.0.3"
     sisteransi "^1.0.3"
 
-prop-types@^15.5.10, prop-types@^15.5.8, prop-types@^15.6.0, prop-types@^15.6.2, prop-types@^15.7.2:
+prop-types@^15.5.8, prop-types@^15.6.0, prop-types@^15.6.2, prop-types@^15.7.2:
   version "15.7.2"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
   integrity sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ==
@@ -8995,22 +8995,6 @@ react-native-document-picker@^3.4.0:
   resolved "https://registry.yarnpkg.com/react-native-document-picker/-/react-native-document-picker-3.4.0.tgz#7bbd110b8474a3322ac3178ec5446e2df64c8339"
   integrity sha512-YdjiiElDdvOj55IDPNJ0kxXxzDRWyDymV/iYZJt34ueRWWFLIff+DymSjBc0QljrIFv7pODws2lo81+5Y0ww0w==
 
-react-native-easy-guesture-responder@^1.1.2, react-native-easy-guesture-responder@^1.1.3:
-  version "1.1.3"
-  resolved "https://registry.yarnpkg.com/react-native-easy-guesture-responder/-/react-native-easy-guesture-responder-1.1.3.tgz#0a9c0e8eb68b9b43b4f86e4689786ba7525cc1b9"
-  integrity sha512-/1yHMRcslMWQJc1iRNCSjJ32npPrY3Atme0lzKxmhYJg67E7Douowq2FalGEegdid8yeZVnPKk+BkyIGyx2dCw==
-  dependencies:
-    prop-types "^15.6.2"
-
-react-native-easy-view-transformer@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/react-native-easy-view-transformer/-/react-native-easy-view-transformer-1.2.0.tgz#4281b351c169a38763bdcdf00138cb1f40c69e07"
-  integrity sha512-SawalQrXWQ6M5WOnWhTV8y3cyhRlrTgH2VC2+qPEk7GE10vLkH5/9ncM8lNjHKiXCgWrVk+0DI3pmEouDYd/GQ==
-  dependencies:
-    prop-types "^15.6.2"
-    react-native-easy-guesture-responder "^1.1.2"
-    react-native-scrolling "^1.0.2"
-
 react-native-elements@^0.19.1:
   version "0.19.1"
   resolved "https://registry.yarnpkg.com/react-native-elements/-/react-native-elements-0.19.1.tgz#f92b69d864a150215d01f81fe3c52a9cada83e45"
@@ -9033,16 +9017,6 @@ react-native-fs@^2.16.6:
   dependencies:
     base-64 "^0.1.0"
     utf8 "^3.0.0"
-
-react-native-gallery-swiper@^1.26.0:
-  version "1.26.0"
-  resolved "https://registry.yarnpkg.com/react-native-gallery-swiper/-/react-native-gallery-swiper-1.26.0.tgz#d89c5c584021c033d0611c8bdfa37015521670d3"
-  integrity sha512-zp0IZ2ZgOqhYO0Q3PcfWFXqkQIed12N6vJUXDjDAVla6JcuuttMX3hchpaFK7zoMxhRJyuZQX7BNFkehGq4Cmg==
-  dependencies:
-    prop-types "^15.6.2"
-    react-native-easy-guesture-responder "^1.1.3"
-    react-native-image-transformer "^1.5.1"
-    react-native-page-list "^1.1.3"
 
 react-native-geodb@^1.5.5:
   version "1.5.5"
@@ -9077,18 +9051,22 @@ react-native-hyperlink@^0.0.19:
     linkify-it "^2.2.0"
     mdurl "^1.0.0"
 
+react-native-image-pan-zoom@^2.1.12:
+  version "2.1.12"
+  resolved "https://registry.yarnpkg.com/react-native-image-pan-zoom/-/react-native-image-pan-zoom-2.1.12.tgz#eb98bf56fb5610379bdbfdb63219cc1baca98fd2"
+  integrity sha512-BF66XeP6dzuANsPmmFsJshM2Jyh/Mo1t8FsGc1L9Q9/sVP8MJULDabB1hms+eAoqgtyhMr5BuXV3E1hJ5U5H6Q==
+
 react-native-image-picker@^2.3.1:
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/react-native-image-picker/-/react-native-image-picker-2.3.1.tgz#1977b65e07793d2c0b2d1976fb675c5f75ad7f11"
   integrity sha512-c/a2h7/T7yBo5KlNQhcSn4xf4+6Li6LfJ59+GZT1ZzzWrj/6X8DiJ/TJBOlOZMC5tJriZKuRkWSsr74k6z+brw==
 
-react-native-image-transformer@^1.5.1:
-  version "1.5.1"
-  resolved "https://registry.yarnpkg.com/react-native-image-transformer/-/react-native-image-transformer-1.5.1.tgz#33e7061d4312e79f459529e2bfc10a83dd21adc9"
-  integrity sha512-CNwjnJxf4DUqQu+vWi/a+MA8jgw46ss80UKeSjoHwdzlt9JnGA6z4VABLURTFytN15LaemZomUEwZ81B9I8SuA==
+react-native-image-zoom-viewer@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/react-native-image-zoom-viewer/-/react-native-image-zoom-viewer-3.0.1.tgz#a2bd5fb3bda15e0686ce88fcde8576726495d7fb"
+  integrity sha512-la6s5DNSuq4GCRLsi5CZ29FPjgTpdCuGIRdO5T9rUrAtxrlpBPhhSnHrbmPVxsdtOUvxHacTh2Gfa9+RraMZQA==
   dependencies:
-    prop-types "^15.6.2"
-    react-native-easy-view-transformer "^1.2.0"
+    react-native-image-pan-zoom "^2.1.12"
 
 react-native-iphone-x-helper@^1.2.1:
   version "1.2.1"
@@ -9126,15 +9104,6 @@ react-native-open-maps@^0.3.5:
   dependencies:
     query-string "^6.1.0"
 
-react-native-page-list@^1.1.3:
-  version "1.1.3"
-  resolved "https://registry.yarnpkg.com/react-native-page-list/-/react-native-page-list-1.1.3.tgz#4b90895ca4bb2da07529f36f57e545db99671e03"
-  integrity sha512-LvbU9qxxLTujQV6/IKUbzKkosSDGBG6enhf3cb/5oSy0wG50TTloXKaeZY75/ssp/mX7qSZiU9aayV7Q+Q8iUQ==
-  dependencies:
-    prop-types "^15.6.2"
-    react-native-easy-guesture-responder "^1.1.2"
-    react-native-scrolling "^1.0.2"
-
 react-native-paper@^3.10.1:
   version "3.10.1"
   resolved "https://registry.yarnpkg.com/react-native-paper/-/react-native-paper-3.10.1.tgz#4fca72b9f154fc5ad3710d633787c55e878e8f36"
@@ -9143,12 +9112,6 @@ react-native-paper@^3.10.1:
     "@callstack/react-theme-provider" "^3.0.5"
     color "^3.1.2"
     react-native-safe-area-view "^0.14.9"
-
-"react-native-photo-view@https://github.com/alwx/react-native-photo-view":
-  version "1.5.2"
-  resolved "https://github.com/alwx/react-native-photo-view#e28f5416574cbfa07b2d4fa862c0048df56f7b02"
-  dependencies:
-    prop-types "^15.5.10"
 
 react-native-push-notification@^3.5.1:
   version "3.5.1"
@@ -9180,13 +9143,6 @@ react-native-screens@^2.8.0:
   version "2.8.0"
   resolved "https://registry.yarnpkg.com/react-native-screens/-/react-native-screens-2.8.0.tgz#9f989096fc5ccf248e0dfa93a74f1a64057e15f1"
   integrity sha512-fUCIQLZX+5XB0ypWX038P3zso54IFFjTsQUZJWEsjC3pp5rPItAt5SzqtJn+uVjcJaczZ+dpIuvj6IFLqkWLZQ==
-
-react-native-scrolling@^1.0.2:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/react-native-scrolling/-/react-native-scrolling-1.0.3.tgz#ad3e964070d6a8c713f1bd703171ab26d83ab5d5"
-  integrity sha512-V8ORRnRA4sdOREJlDHxnPfM/7IK6rj/HZejgTaym1ACjKr9a3Pej4ZDOQA9qnBgNac8kMVhDup40HgJxYG//EA==
-  dependencies:
-    prop-types "^15.6.2"
 
 react-native-share@^3.3.2:
   version "3.3.2"
