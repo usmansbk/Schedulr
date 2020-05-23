@@ -159,6 +159,7 @@ class ImageViewer extends React.Component {
             useNativeDriver
             renderIndicator={() => null}
             saveToLocalByLongPress={false}
+            backgroundColor={stores.themeStore.colors.bg}
           />
         )
       }
