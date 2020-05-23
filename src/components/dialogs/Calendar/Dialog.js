@@ -12,13 +12,9 @@ import { I18n } from 'aws-amplify';
 import snackbar from 'helpers/snackbar';
 
 class CalendarDialog extends React.Component {
-  state = {
-    calendars: []
-  };
 
   _authorize = async () => {
-    const calendars = await this.props.stores.calendar.findCalendars();
-    this.setState({ calendars });
+    await this.props.stores.calendar.authorize();
   };
 
   _keyExtractor = item => item.id;
@@ -57,11 +53,7 @@ class CalendarDialog extends React.Component {
       visible,
     } = this.props;
     const { colors } = stores.themeStore;
-
-    const {
-      calendars,
-      loading
-    } = this.state;
+    const allCalendars = stores.calendar.allCalendars;
     
     return (
       <Portal>
@@ -73,18 +65,18 @@ class CalendarDialog extends React.Component {
           <Dialog.Title>{I18n.get("MORE_importCalendar")}</Dialog.Title>
           <Dialog.Content>
             <FlatList
-              data={calendars}
+              data={allCalendars}
               keyExtractor={this._keyExtractor}
               renderItem={this._renderItem}
               extraData={stores.calendar.calendars.length}
-              ListFooterComponent={calendars.length ? undefined : this._renderFooter}
+              ListFooterComponent={allCalendars.length ? undefined : this._renderFooter}
             />
           </Dialog.Content>
           {
-            Boolean(calendars.length) && (
+            Boolean(allCalendars.length) && (
               <Dialog.Actions>
                 <Button onPress={this._dimiss}>{I18n.get('BUTTON_dismiss')}</Button>
-                <Button onPress={this._import} loading={loading}>{I18n.get('BUTTON_sync')}</Button>
+                <Button onPress={this._import}>{I18n.get('BUTTON_sync')}</Button>
               </Dialog.Actions>
             )
           }

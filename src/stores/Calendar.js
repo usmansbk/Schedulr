@@ -7,6 +7,7 @@ import logger from 'config/logger';
 export default class Calendar {
   @persist('list') @observable calendars = [];
   @persist('list') @observable events = [];
+  @persist('list') @observable allCalendars = [];
 
   @action sync = async () => {
     const isAuthorized = await this.isAuthorized();
@@ -48,11 +49,9 @@ export default class Calendar {
   };
 
   @action authorize = async () => {
-    try {
-      const granted = await RNCalendarEvents.authorizeEventStore();
-      return granted === 'authorized';
-    } catch(e) {
-      return false;
+    const granted = await RNCalendarEvents.authorizeEventStore();
+    if (granted === 'authorized') {
+      this.allCalendars = await RNCalendarEvents.findCalendars();
     }
   };
 
@@ -90,19 +89,6 @@ export default class Calendar {
     const event = this.events.find(e => e.id === id);
     if (!event) return null;
     return this.transformEvent(event);
-  };
-
-  @action findCalendars = async () => {
-    try {
-      let isAuth = await this.authorize();
-      if (isAuth) {
-        const cals = await RNCalendarEvents.findCalendars();
-        return cals;
-      }
-    } catch(e) {
-      logger.logError(e);
-    }
-    return [];
   };
 
   @action reset = () => {
