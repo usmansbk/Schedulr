@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Image } from 'react-native';
-import { Title } from 'react-native-paper';
+import { Text } from 'react-native-paper';
 import { getInitials, getAvatarBackgroundColor } from './helpers';
 import { avatarColorsWithOpacity } from 'config/colors';
 
@@ -32,12 +32,12 @@ export default ({
             defaultSource={require('../../../assets/placeholder.png')}
           />
         ) : (
-          <Title
+          <Text
             style={{
               color: bgColor,
-              fontSize: 24,
+              fontSize: size / 2,
               fontFamily: 'sans-serif-light',
-            }} adjustsFontSizeToFit>{initials}</Title>
+            }} adjustsFontSizeToFit>{initials}</Text>
         )
       }
     </View>
