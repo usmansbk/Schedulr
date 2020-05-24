@@ -9,6 +9,17 @@ export const avatarColors = [
   '#00cec9' // robin's egg blue 
 ];
 
+export const avatarColorsWithOpacity = {
+  '#8e44ad': `rgba(142, 68, 173, 0.3)`,
+  '#2980b9': `rgba(41, 128, 185, 0.3)`,
+  '#27ae60': `rgba(39, 174, 96, 0.3)`,
+  '#2d3436': `rgba(45, 52, 54, 0.3)`,
+  '#16a085': `rgba(22, 160, 133, 0.3)`,
+  '#e67e22': `rgba(230, 126, 34, 0.3)`,
+  '#d35400': `rgba(211, 84, 0, 0.3)`,
+  '#00cec9': `rgba(0, 206, 201, 0.3)`
+}
+
 export const light = {
   tint: '#84939e',
   nav: '#e3f1fc',

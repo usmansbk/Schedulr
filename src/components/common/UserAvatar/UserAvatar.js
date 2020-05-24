@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { View, Image } from 'react-native';
 import { Title } from 'react-native-paper';
 import { getInitials, getAvatarBackgroundColor } from './helpers';
+import { avatarColorsWithOpacity } from 'config/colors';
 
 export default ({
   src,
@@ -16,9 +17,9 @@ export default ({
     width: size,
     height: size,
     borderRadius: size / 2,
-    backgroundColor: src ? 'transparent' : bgColor,
+    backgroundColor: src ? 'transparent' : avatarColorsWithOpacity[bgColor],
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   };
 
   return (
@@ -31,7 +32,7 @@ export default ({
             defaultSource={require('../../../assets/placeholder.png')}
           />
         ) : (
-          <Title style={{ color: 'white'}} adjustsFontSizeToFit>{initials}</Title>
+          <Title style={{ color: bgColor }} adjustsFontSizeToFit>{initials}</Title>
         )
       }
     </View>
