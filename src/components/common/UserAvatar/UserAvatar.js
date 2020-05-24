@@ -32,7 +32,12 @@ export default ({
             defaultSource={require('../../../assets/placeholder.png')}
           />
         ) : (
-          <Title style={{ color: bgColor }} adjustsFontSizeToFit>{initials}</Title>
+          <Title
+            style={{
+              color: bgColor,
+              fontSize: 24,
+              fontFamily: 'sans-serif-light',
+            }} adjustsFontSizeToFit>{initials}</Title>
         )
       }
     </View>

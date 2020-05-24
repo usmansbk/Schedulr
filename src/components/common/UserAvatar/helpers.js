@@ -14,7 +14,8 @@ export function getInitials(name) {
     avatarName = emojiMatch[0];
   } else {
     const [ first, second ] = name.split(' ');
-    avatarName = `${first[0]} ${second ? second[0] : ''}`.toUpperCase();
+    // avatarName = `${first[0]} ${second ? second[0] : ''}`.toUpperCase();
+    avatarName = first[0].toUpperCase();
   }
   return avatarName;
 }
