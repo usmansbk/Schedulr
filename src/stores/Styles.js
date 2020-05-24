@@ -1328,7 +1328,7 @@ export default class AppStyles {
         paddingHorizontal: 16,
       },
       itemContent: {
-        paddingVertical: 4,
+        // paddingVertical: 4,
         height: ITEM_HEIGHT,
         flexDirection: 'row',
       },
@@ -1340,7 +1340,6 @@ export default class AppStyles {
         justifyContent: 'space-between'
       },
       itemBody: {
-        paddingTop: 4,
         paddingLeft: 8,
         flex: 1,
       },
@@ -1354,9 +1353,8 @@ export default class AppStyles {
       },
       left: {
         padding: 8,
-        paddingTop: 16,
+        paddingTop: 12,
         alignItems: 'center',
-        // justifyContent: 'center'
       },
       right: {
         flexDirection: 'row',
