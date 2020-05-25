@@ -1,6 +1,6 @@
 import moment from 'moment';
 import repeat from './repeat';
-import { isMultipleDays } from './time';
+import { isSpanDays } from './time';
 
 export const sortBy = (arr, key) => {
   return arr.sort((a, b) => {
@@ -212,7 +212,7 @@ function process(event, date) {
 		isConcluded = nextMoment.isAfter(finalMoment);
 	}
 
-	const isExtended = isMultipleDays(previousStartMoment, previousEndMoment);
+	const isExtended = isSpanDays(previousStartMoment, previousEndMoment);
 	if (isExtended || isConcluded) {
 		startAt = previousStartMoment.toISOString();
 		endAt = previousEndMoment.toISOString();

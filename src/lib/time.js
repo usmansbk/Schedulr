@@ -68,7 +68,7 @@ export const formatDate = (startAt, endAt, allDay) => {
 
 export const calendarTime = (date) => moment(date).calendar(null, I18n.get('calendarTimeFormats'));
 
-export const isMultipleDays = (from, to) => {
+export const isSpanDays = (from, to) => {
   return moment(to).diff(from) > ONE_DAY;
 };
 

@@ -1,5 +1,5 @@
 import moment from 'moment';
-import { getWeekFromNow, isMultipleDays } from './time';
+import { getWeekFromNow, isSpanDays } from './time';
 
 function* EventSectionGenerator(events, previous) {
 	let dates = getWeekFromNow(previous);
@@ -71,7 +71,7 @@ function process(event, date) {
 		isConcluded = nextMoment.isAfter(finalMoment);
 	}
 
-	const isExtended = isMultipleDays(previousStartMoment, previousEndMoment);
+	const isExtended = isSpanDays(previousStartMoment, previousEndMoment);
 	if (isExtended || isConcluded) {
 		startAt = previousStartMoment.toISOString();
 		endAt = previousEndMoment.toISOString();
