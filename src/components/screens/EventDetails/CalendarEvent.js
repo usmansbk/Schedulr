@@ -69,7 +69,8 @@ class CalendarEvent extends React.Component {
         name: scheduleName
       },
       description,
-      until
+      until,
+      author
     } = event;
     const date = formatDate(startAt, endAt, allDay);
     const status = getStatus({
@@ -135,8 +136,8 @@ class CalendarEvent extends React.Component {
                   style={stores.appStyles.eventDetails.value}>{scheduleName}</Text>
               </View>
               <View style={stores.appStyles.eventDetails.item}>
-                <Text style={stores.appStyles.eventDetails.label}>{I18n.get("AUTHOR")}</Text>
-                <Text style={stores.appStyles.eventDetails.value}>{I18n.get("Calendar")}</Text>
+                <Text style={stores.appStyles.eventDetails.label}>{I18n.get("SOURCE")}</Text>
+                <Text style={stores.appStyles.eventDetails.value}>{author.name || I18n.get("Calendar")}</Text>
               </View>
               {
                 Boolean(until) && (
