@@ -192,7 +192,6 @@ class EventDetails extends React.Component {
           })}
           startAt={start}
           endAt={end}
-          weekDay={moment(start).format('dddd')}
           firstAt={moment(startAt).format(DATE_FORMAT)}
           category={category}
           address={venue}

@@ -14,7 +14,6 @@ export default inject('stores')(observer(
   ({
     id,
     title,
-    weekDay,
     date,
     category,
     address,
@@ -67,7 +66,6 @@ export default inject('stores')(observer(
               { !cardView && <Tag status={status} /> }
             </View> 
             <Headline style={stores.appStyles.eventDetails.title}>{title}</Headline>
-            <Text style={stores.appStyles.eventDetails.date}>{weekDay}</Text>
             <Text style={stores.appStyles.eventDetails.date}>{date}</Text>
             {(duration !== I18n.get('A day')) && <Text style={stores.appStyles.eventDetails.date}>{duration}</Text>}
           </View>

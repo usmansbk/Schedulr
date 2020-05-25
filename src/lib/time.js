@@ -56,10 +56,13 @@ export const repeatLength = (recurrence) => {
 
 export const formatDate = (startAt, endAt, allDay) => {
   return moment(startAt).twix(endAt, allDay).format({
-    explicitAllDay: true,
+    // explicitAllDay: true,
     allDay: I18n.get("EVENT_ITEM_allDay"),
     implicitMinutes: false,
-    groupMeridiems: false
+    groupMeridiems: false,
+    showDayOfWeek: true,
+    weekdayFormat: 'dddd',
+    // hideDate: isToday && !isExtended
   }); 
 };
 
