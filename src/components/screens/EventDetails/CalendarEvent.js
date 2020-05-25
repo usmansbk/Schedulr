@@ -129,7 +129,7 @@ class CalendarEvent extends React.Component {
                 <Text style={stores.appStyles.eventDetails.value}>{address || I18n.get("No location set")}</Text>
               </View>
               <View style={stores.appStyles.eventDetails.item}>
-                <Text style={stores.appStyles.eventDetails.label}>{I18n.get("SCHEDULE")}</Text>
+                <Text style={stores.appStyles.eventDetails.label}>{I18n.get("CALENDAR")}</Text>
                 <Text
                   ellipsizeMode="tail"
                   numberOfLines={1}
