@@ -35,7 +35,12 @@ class Input extends React.Component {
       if (this.props.onDateChange) {
         this.props.onDateChange(date);
       }
-      this.props.onValueChange(moment(date).toISOString());
+      this.props.onValueChange(
+        moment(date)
+          .seconds(0)
+          .milliseconds(0)
+          .toISOString()
+        );
     }, 0);
   };
 

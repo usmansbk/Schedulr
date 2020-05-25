@@ -11,7 +11,7 @@ import Separator from './Separator';
 import SectionHeader from './SectionHeader';
 import SectionFooter from './SectionFooter';
 import Item from './Item';
-import { isPastDate } from 'lib/time';
+import { isPastDate, tick } from 'lib/time';
 import { eventsChanged } from 'lib/utils';
 import { EventSectionGenerator } from 'lib/calendar';
 import { events } from 'lib/constants';
@@ -146,7 +146,7 @@ class List extends React.Component {
         onPressItem={this._onPressItem}
         navigateToBanner={this._navigateToBanner}
         navigateToCalendarEvent={this._navigateToCalendarEvent}
-        timerTick={new Date().getMinutes()}
+        timerTick={tick(startAt, endAt)}
         __typename={__typename}
         updatedAt={updatedAt}
       />

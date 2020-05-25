@@ -23,6 +23,12 @@ export const weekdays = [
   'Friday'
 ];
 
+export const tick = (start, end) => {
+  const startAt = moment(start);
+  const endAt = moment(end);
+  return moment().isBetween(startAt, endAt, "[]") ? moment().minutes() : 0;
+};
+
 export const canRecur = ({ startAt, endAt })  => {
   const recurrence = [
     'NEVER',
