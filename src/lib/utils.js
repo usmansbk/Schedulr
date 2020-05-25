@@ -1,4 +1,3 @@
-import memoize from 'lodash.memoize';
 import moment from 'moment';
 import shortid from 'shortid';
 import { SCHEDULE_CLOSED } from 'lib/constants';
@@ -17,27 +16,27 @@ function sortList(list) {
   });
 }
 
-export const sortSchedules = memoize((data) => {
+export const sortSchedules = (data) => {
   const closed = sortList(data.filter(a => a.status === SCHEDULE_CLOSED));
   const opened = sortList(data.filter(a => a.status !== SCHEDULE_CLOSED));
 
   return opened.concat(closed);
-});
+};
 
-export const sortEvents = memoize((events, reverse) => {
+export const sortEvents = (events, reverse) => {
   const sorted = events.sort((a, b) => moment(a.startAt) - moment(b.startAt));
   if (reverse) return sorted.reverse();
   return sorted;
-});
+};
 
-export const sortBookmarks = memoize((data) => {
+export const sortBookmarks = (data) => {
   const events = data.filter(item => typeof item !== 'string');
   const deleted = data.filter(item => typeof item === 'string');
   const pending = events.filter(a => moment(a.endAt) > moment());
   const expired = events.filter(a => moment(a.endAt) < moment());
   const sorted = sortEvents(pending).concat(sortEvents(expired, true).concat(deleted));
   return sorted;
-});
+};
 
 export function eventsChanged(prev, next=[]) {
   if (prev === next) return false;
