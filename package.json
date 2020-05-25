@@ -17,7 +17,7 @@
     "postversion": "react-native-version"
   },
   "dependencies": {
-    "@react-native-community/async-storage": "^1.10.3",
+    "@react-native-community/async-storage": "^1.11.0",
     "@react-native-community/datetimepicker": "^2.4.0",
     "@react-native-community/masked-view": "^0.1.10",
     "@react-native-community/netinfo": "~4.7.0",
@@ -65,7 +65,7 @@
     "react-native-onesignal": "^3.7.3",
     "react-native-open-maps": "^0.3.5",
     "react-native-paper": "^3.10.1",
-    "react-native-push-notification": "^3.5.1",
+    "react-native-push-notification": "^3.5.2",
     "react-native-reanimated": "^1.9.0",
     "react-native-safe-area-context": "^2.0.0",
     "react-native-screens": "^2.8.0",
