@@ -134,6 +134,10 @@ class CalendarEvent extends React.Component {
                   numberOfLines={1}
                   style={stores.appStyles.eventDetails.value}>{scheduleName}</Text>
               </View>
+              <View style={stores.appStyles.eventDetails.item}>
+                <Text style={stores.appStyles.eventDetails.label}>{I18n.get("AUTHOR")}</Text>
+                <Text style={stores.appStyles.eventDetails.value}>{I18n.get("Calendar")}</Text>
+              </View>
               {
                 Boolean(until) && (
                   <View style={stores.appStyles.eventDetails.item}>
