@@ -122,7 +122,7 @@ class CalendarEvent extends React.Component {
               </View> 
               <Headline style={stores.appStyles.eventDetails.title}>{title}</Headline>
               <Text style={stores.appStyles.eventDetails.date}>{date}</Text>
-              {(duration !== I18n.get('A day')) && <Text style={stores.appStyles.eventDetails.date}>{duration}</Text>}
+              <Text style={stores.appStyles.eventDetails.date}>{duration}</Text>
             </View>
             <Divider />
             <View style={stores.appStyles.eventDetails.body}>

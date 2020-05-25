@@ -110,9 +110,15 @@ export const getHumanTime = ({ startAt, endAt, allDay }) => {
   return t;
 };
 
-export const getDuration = (startAt, endAt, allDay) => {
-  if (allDay) return '';
-  const t = moment(startAt).twix(endAt);
+export const getDuration = (startAt, endAt) => {
+  const start = moment(startAt);
+  const end = moment(endAt);
+  const isSameDay = start.isSame(end, 'day');
+  const allDay = isSameDay && moment(endAt).diff(moment(startAt), 'hour') > 20;
+
+  const t = moment(startAt).twix(endAt, {
+    allDay: allDay ? I18n.get("EVENT_ITEM_allDay") : null,
+  });
   return decapitalize(t.humanizeLength());
 };
 
