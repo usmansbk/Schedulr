@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, ScrollView } from 'react-native';
 import { Text, Headline, Divider } from 'react-native-paper';
 import Hyperlink from 'react-native-hyperlink';
@@ -47,7 +47,10 @@ export default inject('stores')(observer(
     countDownReset,
     cardView,
     stores,
-  }) => (
+  }) => {
+    const [ expandDescription, setExpand ] = useState(false);
+    const expandText = () => setExpand(!expandDescription);
+    return (
     <View style={stores.appStyles.eventDetails.container}>
       <ScrollView style={stores.appStyles.eventDetails.bg}>
         <View style={stores.appStyles.eventDetails.content}>
@@ -83,13 +86,6 @@ export default inject('stores')(observer(
               <Text style={stores.appStyles.eventDetails.label}>{I18n.get("VENUE")}</Text>
               <Text style={stores.appStyles.eventDetails.value}>{address || I18n.get("EVENT_noLocationSet")}</Text>
             </View>
-            <Carousel
-              id={id}
-              isOwner={isOwner}
-              data={[]}
-              banner={pictureUrl}
-              navigateToBanner={navigateToBanner}
-            />
             {
               (isAuth && scheduleName) && (
                 <View style={stores.appStyles.eventDetails.item}>
@@ -144,9 +140,20 @@ export default inject('stores')(observer(
             <View style={stores.appStyles.eventDetails.item}>
               <Text style={stores.appStyles.eventDetails.label}>{I18n.get("DESCRIPTION")}</Text>
               <Hyperlink linkStyle={stores.appStyles.eventDetails.linkStyle} linkDefault={true}>
-                <Text style={stores.appStyles.eventDetails.value}>{description || I18n.get("EVENT_noDescription")}</Text>
+                <Text
+                  numberOfLines={expandDescription ? undefined : 2}
+                  ellipsizeMode="tail"
+                  onPress={expandText}
+                  style={stores.appStyles.eventDetails.value}>{description || I18n.get("EVENT_noDescription")}</Text>
               </Hyperlink>
             </View>
+            <Carousel
+              id={id}
+              isOwner={isOwner}
+              data={[]}
+              banner={pictureUrl}
+              navigateToBanner={navigateToBanner}
+            />
             {
               (Boolean(bookmarksCount)) && (
                 <>
@@ -178,5 +185,5 @@ export default inject('stores')(observer(
         isOffline={isOffline}
       />
     </View>
-  )
+  );}
 ));
