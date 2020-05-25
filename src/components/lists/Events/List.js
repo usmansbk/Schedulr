@@ -146,6 +146,7 @@ class List extends React.Component {
         onPressItem={this._onPressItem}
         navigateToBanner={this._navigateToBanner}
         navigateToCalendarEvent={this._navigateToCalendarEvent}
+        timerTick={new Date().getMinutes()}
         __typename={__typename}
         updatedAt={updatedAt}
       />

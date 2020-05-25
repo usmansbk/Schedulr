@@ -46,6 +46,7 @@ export const BOOKMARK_TYPE = 'Bookmark';
 export const COMMENT_TYPE = 'Comment';
 export const FOLLOW_TYPE = 'Follow';
 export const USER_TYPE = 'User';
+export const CALENDAR_TYPE = 'Calendar';
 
 // file size
 export const file = {

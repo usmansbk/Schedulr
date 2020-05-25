@@ -11,7 +11,7 @@ import { inject, observer } from 'mobx-react';
 import Avatar from 'components/common/UserAvatar';
 import Badge from 'components/common/Badge';
 import ActionSheet from 'components/actionsheet/Event';
-import { events } from 'lib/constants';
+import { events, CALENDAR_TYPE } from 'lib/constants';
 import {
   formatDate,
   getTime,
@@ -27,7 +27,7 @@ import getImageUrl from 'helpers/getImageUrl';
 
 class Item extends React.Component {
   _onPress = () => {
-    if (this.props.__typename === 'Calendar') {
+    if (this.props.__typename === CALENDAR_TYPE) {
       this.props.navigateToCalendarEvent(this.props.id);
     } else {
       let startAt = this.props.startAt;
@@ -45,7 +45,7 @@ class Item extends React.Component {
     this.props.stores.appState.toggleMute(this.props.id, this.props.eventScheduleId);
   };
   _navigateToBanner = () => {
-    if (this.props.__typename === 'Calendar') {
+    if (this.props.__typename === CALENDAR_TYPE) {
       this.props.navigateToCalendarEvent(this.props.id);
     } else {
       this.props.navigateToBanner(this.props.id);
@@ -54,6 +54,7 @@ class Item extends React.Component {
 
   shouldComponentUpdate = (nextProps) => {
     return (
+      nextProps.timerTick !== this.props.timerTick ||
       nextProps.updatedAt !== this.props.updatedAt ||
       nextProps.isOffline !== this.props.isOffline ||
       nextProps.isBookmarked !== this.props.isBookmarked ||
@@ -162,7 +163,7 @@ class Item extends React.Component {
             isBookmarked={isBookmarked}
             startAt={startAt}
             isMuted={isMuted}
-            isCalendarEvent={__typename === 'Calendar'}
+            isCalendarEvent={__typename === CALENDAR_TYPE}
             bookmarksCount={bookmarksCount}
             bookmarkScheduleId={eventScheduleId}
             ref={ref => this.ActionSheet = ref}
