@@ -21,13 +21,11 @@ class CloseSchedule extends React.Component {
     const {
       id,
       onSubmit,
-      handleDismiss,
     } = this.props;
     this.setState({ loading: true });
     setTimeout(() => {
       onSubmit({ id, status: SCHEDULE_CLOSED }).catch(() => {});
     }, 0);
-    handleDismiss();
     this.setState({ loading: false });
   }
 

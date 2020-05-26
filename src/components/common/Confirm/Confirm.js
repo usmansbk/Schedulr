@@ -22,7 +22,6 @@ export default class Confirm extends React.Component {
       title,
       message,
       confirmText=I18n.get("BUTTON_confirm"),
-      onConfirm
     } = this.props;
     return (
       <RBSheet

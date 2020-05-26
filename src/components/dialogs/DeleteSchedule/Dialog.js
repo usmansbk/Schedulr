@@ -21,7 +21,6 @@ class DeleteSchedule extends React.Component {
     const {
       id,
       onSubmit,
-      handleDismiss,
       pictureKey,
       stores
     } = this.props;
@@ -29,11 +28,10 @@ class DeleteSchedule extends React.Component {
     if (pictureKey) {
       stores.appState.removeKeysFromStorage([pictureKey])
     }
-    handleDismiss();
     setTimeout(() => {
       onSubmit && onSubmit({ id });
     }, 0);
-    this.setState({ loading: false });
+    // this.setState({ loading: false });
     this.props.navigation.popToTop();
   };
 

@@ -1,14 +1,13 @@
 import React from 'react';
 import ScheduleInfo from './Hoc';
 import DeleteConfirm from 'components/dialogs/DeleteSchedule';
-import OpenDialog from 'components/dialogs/OpenSchedule';
+import UnarchiveConfirm from 'components/dialogs/OpenSchedule';
 import ArchiveConfirm from 'components/dialogs/CloseSchedule';
 import Suspense from 'components/common/Suspense';
 import { handleShareSchedule } from 'helpers/share';
 
 export default class Screen extends React.Component {
   state = {
-    visibleDialog: null,
     pictureKey: null,
     display: false
   };
@@ -20,7 +19,6 @@ export default class Screen extends React.Component {
   };
 
   _goBack = () => this.props.navigation.goBack();
-  _hideDialog = () => this.setState({ visibleDialog: null, pictureKey: null });
   _handleShare = ({ id, name }) => {
     handleShareSchedule({
       id,
@@ -40,6 +38,9 @@ export default class Screen extends React.Component {
         // console.log(this.archiveConfirmRef.getWrappedInstance());
         this.archiveConfirmRef.getWrappedInstance().open();
         break;
+      case 'open':
+        this.unarchiveConfirmRef.getWrappedInstance().open();
+        break;
       default:
         this.setState({ visibleDialog: option, pictureKey});
         break;
@@ -51,7 +52,7 @@ export default class Screen extends React.Component {
   _navigateToPicture = (id) => this.props.navigation.navigate('SchedulePicture', { id });
 
   render() {
-    const { display, visibleDialog, pictureKey } = this.state;
+    const { display, pictureKey } = this.state;
     if (!display) return <Suspense/>;
 
     const id = this.props.navigation.getParam('id');
@@ -69,20 +70,15 @@ export default class Screen extends React.Component {
         />
         <DeleteConfirm
           id={id}
-          visible={visibleDialog === 'delete' }
-          handleDismiss={this._hideDialog}
           pictureKey={pictureKey}
           onRef={ref => this.deleteConfirmRef = ref}
         />
-        <OpenDialog
+        <UnarchiveConfirm
           id={id}
-          visible={visibleDialog === 'open' }
-          handleDismiss={this._hideDialog}
+          ref={ref => this.unarchiveConfirmRef = ref}
         />
         <ArchiveConfirm
           id={id}
-          visible={visibleDialog === 'close' }
-          handleDismiss={this._hideDialog}
           ref={ref => this.archiveConfirmRef = ref}
         />
       </>
