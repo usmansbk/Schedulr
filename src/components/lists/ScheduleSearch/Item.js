@@ -44,6 +44,7 @@ class Item extends React.Component {
             name={name}
             style={styles.itemAvatar}
             src={pictureUrl}
+            onPress={this._onPress}
           />
           {
             (isClosed) && <Icon

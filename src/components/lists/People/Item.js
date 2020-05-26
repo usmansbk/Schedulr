@@ -31,6 +31,7 @@ class Item extends React.Component {
               name={name}
               size={AVATAR_SIZE}
               src={pictureUrl}
+              onPress={this._onPress}
             />
           </View>
           <View style={styles.itemRight}>

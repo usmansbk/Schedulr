@@ -75,6 +75,7 @@ class Item extends React.Component {
             badge={<Badge status={status} />}
             style={styles.left}
             key={status}
+            onPress={this._onPress}
           />
           <View style={styles.itemBody}>
             <Headline

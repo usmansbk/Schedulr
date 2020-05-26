@@ -18,7 +18,7 @@ import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
 import { schedule_info, CIRCLE, SCHEDULE_CLOSED } from 'lib/constants';
 import getImageUrl from 'helpers/getImageUrl';
-import UserAvater from 'components/common/UserAvatar';
+import UserAvatar from 'components/common/UserAvatar';
 import FollowButton from 'components/common/FollowButton';
 import Loading from 'components/common/Loading';
 import Alert from 'components/dialogs/Alert';
@@ -189,7 +189,7 @@ class Info extends React.Component {
         >
           <View style={styles.container}>
             <View style={styles.head}>
-              <UserAvater
+              <UserAvatar
                 name={name}
                 size={AVATAR_SIZE}
                 src={picture && getImageUrl(picture)}
@@ -246,7 +246,11 @@ class Info extends React.Component {
               </View>
               <TouchableRipple onPress={() => navigateToProfile(ownerId)}>
                 <View style={styles.admin} >
-                  <UserAvater size={32} name={ownerName} src={pictureUrl}/>
+                  <UserAvatar 
+                    size={32}
+                    name={ownerName}
+                    src={pictureUrl}
+                    onPress={() => navigateToProfile(ownerId)}/>
                   <Text style={styles.byLine}>
                     {I18n.get("SCHEDULE_by")} <Text style={styles.adminName}>{ownerName}</Text>
                   </Text>
