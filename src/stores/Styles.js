@@ -1595,7 +1595,7 @@ export default class AppStyles {
         textAlign: 'center'
       },
       muteIcon: {
-        marginRight: 4
+        marginRight: 8
       },
       privateIcon: {
         borderRadius: 5,
@@ -1746,9 +1746,6 @@ export default class AppStyles {
         position: 'absolute',
         top: 17,
         right: 17,
-      },
-      muteIcon: {
-        marginRight: 4
       },
     });
   }

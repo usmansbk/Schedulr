@@ -9,9 +9,9 @@ export default inject('stores')(observer(
     <List.Item
       left={() => <List.Icon
         icon={() => <Icon
-          color={stores.themeStore.colors.gray}
+          color={stores.themeStore.colors.light_red}
           size={24}
-          name="log-out"
+          name="logout"
         />}
       />}
       title={I18n.get("BUTTON_signout")}

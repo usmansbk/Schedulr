@@ -76,7 +76,7 @@ class CalendarDialog extends React.Component {
             Boolean(allCalendars.length) && (
               <Dialog.Actions>
                 <Button onPress={this._dimiss}>{I18n.get('BUTTON_dismiss')}</Button>
-                <Button onPress={this._import}>{I18n.get('BUTTON_sync')}</Button>
+                <Button onPress={this._import}>{I18n.get('BUTTON_import')}</Button>
               </Dialog.Actions>
             )
           }

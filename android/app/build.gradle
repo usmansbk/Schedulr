@@ -12,7 +12,7 @@ apply plugin: 'com.onesignal.androidsdk.onesignal-gradle-plugin'
 apply plugin: "com.android.application"
 apply plugin: 'io.fabric'
 project.ext.vectoricons = [
-    iconFontNames: [ 'Feather.ttf' ] // Name of the font files you want to copy
+    iconFontNames: [ 'AntDesign.ttf' ] // Name of the font files you want to copy
 ]
 
 apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"

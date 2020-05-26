@@ -21,7 +21,7 @@ class Item extends React.Component {
               source={source} style={styles.image} /> : (
               <>
               <Text style={styles.text}>{I18n.get(`TEXT_noBanner`)}</Text>
-              <Icon name="image" size={24} color={stores.themeStore.colors.gray}/>
+              <Icon name="picture" size={24} color={stores.themeStore.colors.gray}/>
               </>
             )
           }

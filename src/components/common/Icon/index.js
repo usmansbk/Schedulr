@@ -1,16 +1,32 @@
 import React from 'react';
-import Icon from 'react-native-vector-icons/Feather';
+import Icon from 'react-native-vector-icons/AntDesign';
 
 const names = {
-  "arrow-left": "arrow-left",
+  "arrow-left": "arrowleft",
   "add": "plus-a",
-  "calendar": "calendar",
-  "search": "search",
-  "list": "pinboard",
-  "share": "share-2",
-  "map": "map-pin",
-  "trash": "trash",
-  "list": "list"
+  "search": "search1",
+  "pin": "pushpin",
+  "pino": "pushpino",
+  "share": "sharealt",
+  "map": "enviromento",
+  "mapo": "enviromento",
+  "trash": "delete",
+  "edit-2": "edit",
+  "bookmark": "star",
+  "bookmarko": "staro",
+  "notification": "bells",
+  "settings": "setting",
+  "sync": "sync",
+  "import": "export2",
+  "help": "questioncircleo",
+  "comments": "message1",
+  "logout": "logout",
+  "mute": "sound",
+  "x": "close",
+  "copy": "copy1",
+  "picture": "picture",
+  "archive": "hourglass",
+  "send": "pluscircleo"
 };
 
 export default ({ name, color, size, style }) => {

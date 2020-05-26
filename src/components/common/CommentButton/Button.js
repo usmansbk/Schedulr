@@ -3,7 +3,7 @@ import IconBadge from '../IconBadge';
 
 export default ({ color, size, commentsCount, onPress, disabled}) => (
   <IconBadge
-    icon="message-circle"
+    icon="comments"
     onPress={onPress}
     size={size}
     color={color}

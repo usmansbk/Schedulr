@@ -45,7 +45,7 @@ export default inject('stores')(observer(
             color={stores.themeStore.colors.primary}
             onPress={onPressLocationButton}
             icon={({ size, color }) => <Icon
-              name="map-pin"
+              name="map"
               size={size}
               color={color}
              />

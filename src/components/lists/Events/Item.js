@@ -130,11 +130,15 @@ class Item extends React.Component {
           />
           <View style={styles.itemBody}>
             {
-              (isOffline) && <Icon
+              (isOffline || isMuted) && <Icon
                 style={styles.privateIcon}
-                name="cloud-off"
+                name={isMuted ? "mute" : "sync"}
                 size={16}
-                color={stores.themeStore.colors.light_gray_3}
+                color={
+                  isMuted ?
+                  stores.themeStore.colors.light_red :
+                  stores.themeStore.colors.light_gray_3
+                }
               />
             }
             <Headline
@@ -142,13 +146,6 @@ class Item extends React.Component {
               numberOfLines={1}
               ellipsizeMode="tail"
             >
-              { isMuted && <Icon
-                  name="volume-x"
-                  size={18}
-                  style={styles.muteIcon}
-                  color={stores.themeStore.colors.light_red}
-                />
-              }
               {title}
             </Headline>
             <Text style={styles.time}>{time}</Text>

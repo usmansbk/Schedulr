@@ -97,10 +97,10 @@ class CalendarEvent extends React.Component {
         />
         <Appbar.Action
           onPress={this._removeEvent}
-          color={colors.error}
+          color={colors.light_red}
           size={24}
           icon={({ color, size }) => <Icon
-            name="trash-2"
+            name="trash"
             color={color}
             size={size}
           />}

@@ -72,7 +72,7 @@ export default class Button extends React.Component {
 
     return (
       <IconBadge
-        icon="bookmark"
+        icon={`bookmark${isBookmarked ? '' : 'o'}`}
         onPress={this._onPress}
         size={size}
         count={count}

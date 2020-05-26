@@ -43,7 +43,7 @@ const Home = createBottomTabNavigator({
         return <NotificationsIcon
           focused={focused}
           size={FONT_SIZE} color={tintColor}
-          name="bell"
+          name="notification"
         />;
       }
       return <Icon name={iconName} size={FONT_SIZE} color={tintColor} />;

@@ -44,7 +44,7 @@ export default class Button extends React.Component {
     return (
       <>
       <Fab
-        icon={isFollowing ? "check" : "plus"}
+        icon={isFollowing ? "pin" : "pino"}
         label={label}
         onPress={this._onPress}
         small={small}

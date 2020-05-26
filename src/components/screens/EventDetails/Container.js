@@ -129,7 +129,7 @@ class EventDetails extends React.Component {
                   size={FONT_SIZE}
                   color={colors.gray}
                   icon={({ size, color }) => <Icon
-                    name="trash-2"
+                    name="trash"
                     size={size}
                     color={color}
                   />}
@@ -153,7 +153,7 @@ class EventDetails extends React.Component {
                         color={colors.gray}
                         icon={({ color, size }) => <Icon
                           size={size}
-                          name="edit-3"
+                          name="edit"
                           color={color}
                         />}
                         onPress={() => handleEdit({

@@ -140,7 +140,7 @@ class UserProfile extends React.Component {
           {
             website && (
               <View style={styles.link}>
-                <Icon size={16} style={styles.linkIcon} name="link-2" color={stores.themeStore.colors.black} />
+                <Icon size={16} style={styles.linkIcon} name="link" color={stores.themeStore.colors.black} />
                 <Hyperlink linkStyle={styles.linkStyle} linkDefault={true}>
                   <Caption style={styles.linkLabel} numberOfLines={1} ellipsizeMode="tail">{website}</Caption>
                 </Hyperlink>

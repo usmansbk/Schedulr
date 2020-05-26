@@ -6,22 +6,22 @@ export default [
   },
   {
     id: 'invite',
-    icon: 'share',
+    icon: 'adduser',
     name: 'inviteAFriend',
   },
   {
     id: 'sync',
-    icon: 'download-cloud',
+    icon: 'sync',
     name: 'sync'
   },
   {
     id: 'help',
-    icon: 'help-circle',
+    icon: 'help',
     name: 'help',
   },
   {
     id: 'import-calendar',
-    icon: 'calendar',
+    icon: 'import',
     name: 'importCalendar'
   }
 ];
