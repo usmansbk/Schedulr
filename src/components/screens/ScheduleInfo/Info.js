@@ -208,6 +208,14 @@ class Info extends React.Component {
                   onPress={this._showAboutPrivacyAlert}
                 >{I18n.get(`SCHEDULE_${ isPublic ? 'public' : 'private'}`)}</Text>
               </View>
+              {
+                isClosed && (
+                  <View style={styles.noteView}>
+                    <Icon color={colors.black} name="archive" size={18} />
+                    <Text style={styles.note}>{I18n.get("SCHEDULE_thisScheduleIsClosed")}</Text>
+                  </View>
+                )
+              }
             </View>
             <View style={styles.countRow}>
               <TouchableOpacity onPress={() => navigateToEvents(id)}>
@@ -232,14 +240,6 @@ class Info extends React.Component {
                   </View>
                 )
               }
-              {
-                isClosed && (
-                  <View style={styles.noteView}>
-                    <Icon color={colors.black} name="archive" size={18} />
-                    <Text style={styles.note}>{I18n.get("SCHEDULE_thisScheduleIsClosed")}</Text>
-                  </View>
-                )
-              }
               <View style={stores.appStyles.eventDetails.item}>
                 <Text style={stores.appStyles.eventDetails.label}>{I18n.get("CREATED")}</Text>
                 <Text style={stores.appStyles.eventDetails.value}>{moment(createdAt).toDate().toDateString()}</Text>
@@ -254,7 +254,7 @@ class Info extends React.Component {
             <View style={stores.appStyles.eventDetails.item}>
               <Text style={stores.appStyles.eventDetails.label}>{I18n.get("ABOUT")}</Text>
               <Hyperlink linkStyle={styles.linkStyle} linkDefault={true}>
-                <Text style={styles.description}>{description}</Text>
+                <Text style={styles.description}>{description || I18n.get("EVENT_noDescription")}</Text>
               </Hyperlink>
             </View>
           </View>

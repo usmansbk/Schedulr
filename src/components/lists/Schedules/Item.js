@@ -71,7 +71,7 @@ class Item extends React.Component {
           {
             (isClosed || isOffline) && <Icon
               style={styles.privateIcon}
-              name={isClosed ? "archive" : "cloud-off"}
+              name={isClosed ? "archive" : "sync"}
               size={16}
               color={stores.themeStore.colors.light_gray_3}
             />
@@ -79,7 +79,7 @@ class Item extends React.Component {
           <View style={styles.itemBody}>
             <View style={styles.nameRow}>
               { isMuted && <Icon
-                  name="volume-x"
+                  name="mute"
                   size={18}
                   style={styles.muteIcon}
                   color={stores.themeStore.colors.light_red}
