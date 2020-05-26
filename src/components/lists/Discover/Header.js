@@ -3,7 +3,6 @@ import { View } from 'react-native';
 import {
   TouchableRipple,
   Searchbar,
-  Divider,
   IconButton
 } from 'react-native-paper';
 import { I18n } from 'aws-amplify';
@@ -53,9 +52,7 @@ export default inject('stores')(observer(
           />
         </View>
       </TouchableRipple>
-      <Divider />
       <Chips data={stores.appState.categories} />
-      <Divider />
       </>
     );
   }

@@ -102,8 +102,6 @@ export default class AppStyles {
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: colors.light_gray,
-        borderWidth: 1,
-        borderColor: colors.light_gray_3,
         margin: 4,
         paddingHorizontal: 12,
         borderRadius: dp(16)
