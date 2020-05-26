@@ -4,19 +4,19 @@ import uuidv5 from 'uuid/v5';
 import {
   View,
   ScrollView,
-  RefreshControl
+  RefreshControl,
+  TouchableOpacity
 } from 'react-native';
 import numeral from 'numeral';
 import {
   Appbar,
   Text,
-  TouchableRipple
 } from 'react-native-paper';
 import Icon from 'components/common/Icon';
 import Hyperlink from 'react-native-hyperlink';
 import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
-import { schedule_info, CIRCLE, SCHEDULE_CLOSED } from 'lib/constants';
+import { schedule_info, SCHEDULE_CLOSED } from 'lib/constants';
 import getImageUrl from 'helpers/getImageUrl';
 import UserAvatar from 'components/common/UserAvatar';
 import FollowButton from 'components/common/FollowButton';
@@ -194,36 +194,13 @@ class Info extends React.Component {
                 size={AVATAR_SIZE}
                 src={picture && getImageUrl(picture)}
                 onPress={() => navigateToPicture(id)}
+                style={styles.avatar}
               />
               <Text style={styles.name}>{name}</Text>
-              <View style={styles.countRow}>
-                <Text
-                  style={styles.count}
-                  onPress={() => navigateToEvents(id)}
-                >
-                  {numeral(eventsCount).format('0a')} {I18n.get(`SCHEDULE_eventsCount${eventsCount > 1 ? 's' : ''}`)}
-                </Text>
-                <Text style={styles.middot}>{` ${CIRCLE} `}</Text>
-                <Text
-                  style={styles.count}
-                  onPress={() => navigateToFollowers(id)}
-                >
-                  {numeral(followersCount).format('0a')} {I18n.get(`SCHEDULE_followerCount${followersCount > 1 ? 's' : ''}`)}
-                </Text>
-              </View>
-            </View>
-            <View style={styles.body}>
-              {
-                Boolean(topic) && (
-                  <Hyperlink linkStyle={styles.linkStyle} linkDefault={true}>
-                    <Text style={styles.description}>{topic}</Text>
-                  </Hyperlink>
-                )
-              }
               <View style={styles.noteView}>
                 <Icon
                   color={colors.black}
-                  name={`eye${isPublic ? '' : 'o'}`}
+                  name={`eye${isPublic ? 'o' : ''}`}
                   size={18}
                 />
                 <Text
@@ -231,6 +208,30 @@ class Info extends React.Component {
                   onPress={this._showAboutPrivacyAlert}
                 >{I18n.get(`SCHEDULE_${ isPublic ? 'public' : 'private'}`)}</Text>
               </View>
+            </View>
+            <View style={styles.countRow}>
+              <TouchableOpacity onPress={() => navigateToEvents(id)}>
+                <View style={styles.item} >
+                  <Text style={styles.count}>{numeral(eventsCount).format('0a')}</Text>
+                  <Text ellipsizeMode="tail" numberOfLines={1} style={styles.label}>{I18n.get(`SCHEDULE_eventsCount${eventsCount > 1 ? 's' : ''}`)}</Text>
+                </View>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => navigateToFollowers(id)}>
+                <View style={styles.item}>
+                  <Text style={styles.count}>{numeral(followersCount).format('0a')}</Text>
+                  <Text ellipsizeMode="tail" numberOfLines={1} style={styles.label}>{I18n.get(`SCHEDULE_followerCount${followersCount > 1 ? 's' : ''}`)}</Text>
+                </View>
+              </TouchableOpacity>
+            </View>
+            <View style={styles.body}>
+              {
+                Boolean(topic) && (
+                  <View style={stores.appStyles.eventDetails.item}>
+                    <Text style={stores.appStyles.eventDetails.label}>{I18n.get("TOPIC")}</Text>
+                    <Text style={stores.appStyles.eventDetails.value}>{topic}</Text>
+                  </View>
+                )
+              }
               {
                 isClosed && (
                   <View style={styles.noteView}>
@@ -239,32 +240,22 @@ class Info extends React.Component {
                   </View>
                 )
               }
-              <View style={styles.date}>
-                <Text style={styles.byLine}>
-                  {I18n.get("SCHEDULE_createdOn")} <Text style={styles.adminName}>{moment(createdAt).toDate().toDateString()}</Text>
-                </Text>
+              <View style={stores.appStyles.eventDetails.item}>
+                <Text style={stores.appStyles.eventDetails.label}>{I18n.get("CREATED")}</Text>
+                <Text style={stores.appStyles.eventDetails.value}>{moment(createdAt).toDate().toDateString()}</Text>
               </View>
-              <TouchableRipple onPress={() => navigateToProfile(ownerId)}>
-                <View style={styles.admin} >
-                  <UserAvatar 
-                    size={32}
-                    name={ownerName}
-                    src={pictureUrl}
-                    onPress={() => navigateToProfile(ownerId)}/>
-                  <Text style={styles.byLine}>
-                    {I18n.get("SCHEDULE_by")} <Text style={styles.adminName}>{ownerName}</Text>
-                  </Text>
+              <TouchableOpacity onPress={() => navigateToProfile(ownerId)}>
+                <View style={stores.appStyles.eventDetails.item}>
+                  <Text style={stores.appStyles.eventDetails.label}>{I18n.get("AUTHOR")}</Text>
+                  <Text style={stores.appStyles.eventDetails.value}>{ownerName}</Text>
                 </View>
-              </TouchableRipple>
+              </TouchableOpacity>
             </View>
-            <View style={styles.tail}>
-            {
-              Boolean(description) && (
-                <Hyperlink linkStyle={styles.linkStyle} linkDefault={true}>
-                  <Text style={styles.description}>{description}</Text>
-                </Hyperlink>
-              )
-            }
+            <View style={stores.appStyles.eventDetails.item}>
+              <Text style={stores.appStyles.eventDetails.label}>{I18n.get("ABOUT")}</Text>
+              <Hyperlink linkStyle={styles.linkStyle} linkDefault={true}>
+                <Text style={styles.description}>{description}</Text>
+              </Hyperlink>
             </View>
           </View>
       </ScrollView>

@@ -622,7 +622,7 @@ export default class AppStyles {
         marginVertical: 12
       },
       nav: {
-        color: colors.primary
+        // color: colors.primary
       },
       red: {
         color: colors.light_red
@@ -636,62 +636,47 @@ export default class AppStyles {
     return StyleSheet.create({
       container: {
         flex: 1,
-        paddingVertical: 8,
-        backgroundColor: colors.bg
-      },
-      menuButton: {
-        width: dp(48),
-        height: dp(48),
-        borderRadius: 24,
-        justifyContent: 'center',
-        alignItems: 'center',
-      },
-      menuText: {
-        margin: 8,
-        fontSize: 16
+        backgroundColor: colors.bg,
+        paddingBottom: 12,
+        paddingHorizontal: 12
       },
       linkStyle: { color: '#2980b9' },
       avatar: {
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-        paddingBottom: 8,
-      },
-      userAvatar: {
-        alignSelf: 'flex-start',
-        marginVertical: 8
+        padding: 10
       },
       head: {
         justifyContent: 'center',
         alignItems: 'center'
       },
-      tail: {
-        paddingHorizontal: 16
-      },
       name: {
         fontSize: 27,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        textAlign: "center"
+      },
+      label: {
+        color: colors.black,
+        fontSize: 16,
+      },
+      item: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingHorizontal: 16
       },
       count: {
-        color: colors.light_gray_3,
+        color: colors.black,
         fontWeight: 'bold',
-        fontSize: 16,
-        marginVertical: 16
-      },
-      middot: {
-        color: colors.light_gray_3,
-        fontWeight: 'bold',
-        fontSize: 20,
-        marginVertical: 16
+        fontSize: 25,
       },
       countRow: {
         flexDirection: 'row',
-        alignItems: 'center'
+        alignItems: 'center',
+        justifyContent: 'space-evenly',
+        backgroundColor: colors.light_gray,
+        padding: 16,
+        borderRadius: 8
       },
       body: {
         flex: 2,
-        padding: 16,
-        backgroundColor: colors.light_gray_2
       },
       note: {
         textAlign: 'left',
@@ -703,29 +688,13 @@ export default class AppStyles {
         justifyContent: 'flex-start',
         alignItems: 'center',
         flexDirection: 'row',
-        marginVertical: 4
+        marginVertical: 8
       },
       description: {
         fontSize: 18,
         fontFamily: 'sans-serif-bold',
         marginVertical: 8
       },
-      byLine: {
-        fontFamily: 'sans-serif-light',
-        marginHorizontal: 4
-      },
-      admin: {
-        flexDirection: 'row',
-        marginVertical: 8,
-        alignItems: 'center'
-      },
-      adminName: {
-        fontFamily: 'sans-serif-bold',
-        marginHorizontal: 4
-      },
-      date: {
-        marginTop: 8,
-      }
     });
   }
 
@@ -1937,7 +1906,8 @@ export default class AppStyles {
         alignItems: 'center',
         justifyContent: 'space-evenly',
         backgroundColor: colors.light_gray,
-        paddingBottom: 16
+        paddingBottom: 16,
+        borderRadius: 8
       },
       item: {
         justifyContent: 'center',

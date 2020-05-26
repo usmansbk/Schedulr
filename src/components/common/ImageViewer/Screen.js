@@ -92,9 +92,9 @@ class ImageViewer extends React.Component {
     <Appbar.Header style={stores.appStyles.styles.header}>
       <Appbar.Action
         color={stores.themeStore.colors.primary}
+        onPress={goBack}
         icon={({color, size}) => <Icon
           name="arrow-left"
-          onPress={goBack}
           color={color}
           size={size}
         />}
