@@ -40,6 +40,7 @@ export default {
   EVENTS_SECTIONLIST_noPrevEvents: () => "No previous events",
   EVENTS_SECTION_FOOTER: "No upcoming events",
   EVENTS_SECTION_ITEM_COUNT: count => count ? `${count} events` : '',
+  EVENT_interested: "Interested",
   
   BOARD_emptyList: "Your board is empty",
   BOARD_emptyListCaption: "Follow or create a schedule",
@@ -50,9 +51,8 @@ export default {
   PROFILE_notVisibleToPublic: "Events not visible to public",
 
   BOOKMARKS_emptyList: "You haven't saved any events yet",
-  BOOKMARKS_COUNT: count => `bookmark${count > 1 ? 's' : ''}`,
   BOOKMARKS_BY_emptyList: "No bookmarks yet",
-  BOOKMARKED_BY: "Bookmarked by",
+  BOOKMARKED_BY: "Interested",
 
   MORE_settings: "Settings",
   MORE_inviteAFriend: "Tell A Friend",

@@ -159,7 +159,8 @@ export default inject('stores')(observer(
                 <>
                 <Divider />
                 <View style={stores.appStyles.eventDetails.item}>
-                  <Text onPress={() => navigateToBookmarks(id)}><Text style={stores.appStyles.eventDetails.date}>{numeral(bookmarksCount).format('0 a')}</Text> {I18n.get("BOOKMARKS_COUNT")(bookmarksCount)}</Text>
+                  <Text
+                    onPress={() => navigateToBookmarks(id)}><Text style={stores.appStyles.eventDetails.date}>{numeral(bookmarksCount).format('0 a')}</Text> {I18n.get("EVENT_interested")}</Text>
                 </View>
                 </>
               )

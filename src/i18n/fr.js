@@ -48,7 +48,7 @@ export default {
   BOOKMARKS_emptyList: "Vous n'avez encore enregistré aucun événement",
   BOOKMARKS_COUNT: count => `signet${count > 1 ? 's' : ''}`,
   BOOKMARKS_BY_emptyList: "Pas encore de signets",
-  BOOKMARKED_BY: "Marqué par",
+  BOOKMARKED_BY: "Interested",
 
   MORE_settings: "Réglages",
   MORE_inviteAFriend: "Dire à un ami",
@@ -243,6 +243,7 @@ export default {
   EVENT_FORM_selectASchedule: "Sélectionnez un horaire",
   EVENT_FORM_noSchedule: "Pas d'horaire",
   EVENT_FORM_addToASchedule: "Ajouter à un calendrier",
+  EVENT_interested: "Interested",
 
   EVENT_ITEM_allDay: "Toute la journée",
   EVENT_CAPTION_allDay: ({ type, recurrence }) => {

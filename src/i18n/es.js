@@ -48,6 +48,7 @@ export default {
   EVENTS_SECTIONLIST_noPrevEvents: () => "No hay eventos previos.",
   EVENTS_SECTION_FOOTER: "No hay eventos próximos.",
   EVENTS_SECTION_ITEM_COUNT: count => count ? `${count} eventos` : '',
+  EVENT_interested: "Interested",
   
   BOARD_emptyList: "Tu tabla esta vacia",
   BOARD_emptyListCaption: "Sigue o crea un horario",
@@ -60,7 +61,7 @@ export default {
   BOOKMARKS_emptyList: "Aún no has guardado ningún evento",
   BOOKMARKS_COUNT: count => `marcador${count > 1 ? 'es' : ''}`,
   BOOKMARKS_BY_emptyList: "Aún no hay marcadores",
-  BOOKMARKED_BY: "Marcado por",
+  BOOKMARKED_BY: "Interested",
 
   MORE_settings: "Configuraciones",
   MORE_inviteAFriend: "Dile a un amigo",
