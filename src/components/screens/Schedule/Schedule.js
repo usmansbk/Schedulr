@@ -96,7 +96,7 @@ class Schedule extends React.Component {
                 size={24}
                 color={colors.primary}
                 icon={({ size, color }) => <Icon
-                  name="share-2"
+                  name="share"
                   size={size}
                   color={color}
                 />}
@@ -126,7 +126,7 @@ class Schedule extends React.Component {
         {
           !(Boolean(error) && this.events.length) && isOwner && (status !== SCHEDULE_CLOSED ) && (
             <Fab
-              icon="edit-2"
+              icon="edit"
               onPress={this._navigateToNewEvent}
             />
           )

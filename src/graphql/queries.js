@@ -211,6 +211,10 @@ export const getEventComments = `query GetEventComments($id: ID!, $limit: Int, $
             name
           }
         }
+        event {
+          id
+          commentsCount
+        }
         createdAt
       }
       nextToken

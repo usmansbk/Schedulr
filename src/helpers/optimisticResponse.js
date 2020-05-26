@@ -274,7 +274,19 @@ function createComment(input, typename) {
     }`,
     id: `User:${stores.appState.userId}`
   });
-
+  const event = client.readFragment({
+    fragment: gql`fragment createCommentEvent on Event {
+      id
+      commentsCount
+    }`,
+    id: `Event:${input.commentEventId}`
+  });
+  const count = event.commentsCount;
+  if (typeof count === 'number') {
+    event.commentsCount = count + 1;
+  } else {
+    event.commentsCount = 1;
+  }
   let attachment = null;
   if (input.attachment) {
     attachment = input.attachment.map(file => {
@@ -292,6 +304,7 @@ function createComment(input, typename) {
     isOffline: true,
     author,
     createdAt: moment().toISOString(),
+    event,
     __typename: typename
   };
   return comment;

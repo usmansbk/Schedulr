@@ -423,6 +423,10 @@ export const createComment = `mutation CreateComment($input: CreateCommentInput!
         name
       }
     }
+    event {
+      id
+      commentsCount
+    }
     createdAt
   }
 }

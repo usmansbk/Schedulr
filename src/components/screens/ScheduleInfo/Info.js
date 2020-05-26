@@ -127,7 +127,7 @@ class Info extends React.Component {
                 size={24}
                 color={colors.primary}
                 icon={({ size, color }) => <Icon
-                  name="share-2"
+                  name="share"
                   size={size}
                   color={color}
                 />}
@@ -164,7 +164,7 @@ class Info extends React.Component {
                     size={24}
                     color={colors.primary}
                     icon={({ size, color }) => <Icon
-                      name="trash-2"
+                      name="trash"
                       size={size}
                       color={color}
                     />}
@@ -223,7 +223,7 @@ class Info extends React.Component {
               <View style={styles.noteView}>
                 <Icon
                   color={colors.black}
-                  name={`eye${isPublic ? '' : '-off'}`}
+                  name={`eye${isPublic ? '' : 'o'}`}
                   size={18}
                 />
                 <Text

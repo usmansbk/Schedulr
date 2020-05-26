@@ -14,7 +14,7 @@ const names = {
   "edit-2": "edit",
   "bookmark": "star",
   "bookmarko": "staro",
-  "notification": "bells",
+  "notification": "notification",
   "settings": "setting",
   "sync": "sync",
   "import": "export2",
@@ -27,7 +27,8 @@ const names = {
   "picture": "picture",
   "archive": "hourglass",
   "send": "pluscircleo",
-  "chevron-right": "right"
+  "chevron-right": "right",
+  "info": "infocirlceo"
 };
 
 export default ({ name, color, size, style, onPress }) => {
