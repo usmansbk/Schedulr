@@ -21,7 +21,7 @@ export default class List extends React.Component {
   _keyExtractor = item => item.key;
 
   render() {
-    const { isOwner, pictureUrl } = this.props;
+    const { isOwner, banner} = this.props;
     return (
       <FlatList
         horizontal
@@ -30,7 +30,7 @@ export default class List extends React.Component {
         renderItem={this._renderItem}
         keyExtractor={this._keyExtractor}
         ListHeaderComponent={
-          (isOwner || pictureUrl) ? this._renderHeader : undefined
+          (isOwner || banner) ? this._renderHeader : undefined
         }
         ListFooterComponent={this._renderFooter}
       />

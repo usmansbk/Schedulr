@@ -29,11 +29,12 @@ const names = {
   "send": "pluscircleo"
 };
 
-export default ({ name, color, size, style }) => {
+export default ({ name, color, size, style, onPress }) => {
   return <Icon
     size={size}
     name={names[name] || name}
     color={color}
     style={style}
+    onPress={onPress}
   />;
 };
