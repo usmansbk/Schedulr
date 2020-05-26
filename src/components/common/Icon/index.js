@@ -31,12 +31,11 @@ const names = {
   "info": "infocirlceo"
 };
 
-export default ({ name, color, size, style, onPress }) => {
+export default ({ name, color, size, style }) => {
   return <Icon
     size={size}
     name={names[name] || name}
     color={color}
     style={style}
-    onPress={onPress}
   />;
 };
