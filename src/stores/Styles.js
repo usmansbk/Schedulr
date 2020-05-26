@@ -1601,7 +1601,9 @@ export default class AppStyles {
         backgroundColor: colors.light_gray,
         padding: 5,
         paddingLeft: 16,
-        height: SECTION_HEADER_HEIGHT
+        height: SECTION_HEADER_HEIGHT,
+        marginHorizontal: 8,
+        borderRadius: 8
       },
       sectionHeading: {
         fontSize: 22,

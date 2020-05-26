@@ -1,5 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, TouchableOpacity } from 'react-native';
 import {
   Text,
   Caption,
@@ -46,7 +46,7 @@ class SectionHeader extends React.Component {
     const styles = stores.appStyles.eventsList;
 
     return (
-      <TouchableRipple onPress={this._onPress}>
+      <TouchableOpacity onPress={this._onPress}>
         <View style={styles.sectionHeader}>
           <Headline ellipsizeMode="tail" numberOfLines={1} style={styles.sectionHeading}>{heading}</Headline>
           <View style={styles.sectionSubheadingContent}>
@@ -54,7 +54,7 @@ class SectionHeader extends React.Component {
             <Caption>{itemsCount}{time}</Caption>
           </View>
         </View>
-      </TouchableRipple>
+      </TouchableOpacity>
     )
   }
 }

@@ -127,7 +127,7 @@ class EventDetails extends React.Component {
               <>
                 <Appbar.Action
                   size={FONT_SIZE}
-                  color={colors.gray}
+                  color={colors.light_red}
                   icon={({ size, color }) => <Icon
                     name="trash"
                     size={size}
