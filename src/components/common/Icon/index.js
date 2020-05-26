@@ -26,7 +26,8 @@ const names = {
   "copy": "copy1",
   "picture": "picture",
   "archive": "hourglass",
-  "send": "pluscircleo"
+  "send": "pluscircleo",
+  "chevron-right": "right"
 };
 
 export default ({ name, color, size, style, onPress }) => {
