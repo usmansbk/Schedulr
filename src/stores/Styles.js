@@ -1362,7 +1362,8 @@ export default class AppStyles {
         justifyContent: 'center',
         alignItems: 'center',
         margin: 4,
-        elevation: 4,
+        elevation: 2,
+        borderRadius: 8,
         backgroundColor: colors.bg
       },
       image: {
