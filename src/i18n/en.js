@@ -166,6 +166,8 @@ export default {
   BUTTON_unfollow: "Unfollow",
   BUTTON_sync: "Sync",
   BUTTON_turnOnLocation: "Turn on",
+  BUTTON_confirm: "Confirm",
+  BUTTON_delete: "DELETE",
 
   ALERT_repeat: "Repeat",
   ALERT_duration: "Duration",
@@ -354,7 +356,7 @@ export default {
   DIALOG_deleteComment: "Delete this comment?",
   DIALOG_deleteEvent: "Delete this event?",
   DIALOG_deleteEventWarning: "Always cancel events before deleting them to notify your followers.",
-  DIALOG_deleteSchedule: "Delete List?",
+  DIALOG_deleteSchedule: "Delete this list?",
   DIALOG_deleteScheduleWarning: "Delete this list and all of its Events forever. You can't undo this.",
   DIALOG_openSchedule: "Unarchive this list?",
 

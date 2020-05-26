@@ -11,6 +11,7 @@ export default compose(
   withNavigation,
   graphql(gql(deleteSchedule), {
     alias: 'withDeleteScheduleDialog',
+    withRef: true,
     props: ({ mutate, ownProps }) => ({
       onSubmit: (input) => mutate({
         variables: {

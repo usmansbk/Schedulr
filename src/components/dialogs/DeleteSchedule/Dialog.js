@@ -1,10 +1,5 @@
 import React from 'react';
-import {
-  Button,
-  Dialog,
-  Portal,
-  Caption
-} from 'react-native-paper';
+import Confirm from 'components/common/Confirm';
 import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
 
@@ -17,6 +12,10 @@ class DeleteSchedule extends React.Component {
     nextProps.visible !== this.props.visible ||
     nextState.loading !== this.state.loading
   );
+
+  _confirmRef = ref => this.confirmRef = ref;
+
+  open = () => this.confirmRef.open();
 
   _onContinue = () => {
     const {
@@ -39,32 +38,17 @@ class DeleteSchedule extends React.Component {
   };
 
   render() {
-    const {
-      visible,
-      handleDismiss,
-      stores
-    } = this.props;
-
-    const { loading } = this.state;
+    // const { stores } = this.props;
 
     return (
-      <Portal>
-        <Dialog
-          visible={visible}
-          onDismiss={handleDismiss}
-          style={{backgroundColor: stores.themeStore.colors.bg}}
-        >
-          <Dialog.Title>{I18n.get("DIALOG_deleteSchedule")}</Dialog.Title>
-          <Dialog.Content>
-            <Caption>{I18n.get("DIALOG_deleteScheduleWarning")}</Caption>
-          </Dialog.Content>
-          <Dialog.Actions>
-            <Button disabled={loading} onPress={handleDismiss}>{I18n.get("BUTTON_dismiss")}</Button>
-            <Button loading={loading} disabled={loading} onPress={this._onContinue}>{I18n.get("BUTTON_continue")}</Button>
-          </Dialog.Actions>
-        </Dialog>
-      </Portal>
-    )
+      <Confirm
+        ref={this._confirmRef}
+        title={I18n.get("DIALOG_deleteSchedule")}
+        message={I18n.get("DIALOG_deleteScheduleWarning")}
+        confirmText={I18n.get("BUTTON_delete")}
+        onConfirm={this._onContinue}
+      />
+    );
   }
 }
 

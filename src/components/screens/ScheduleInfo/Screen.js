@@ -1,6 +1,6 @@
 import React from 'react';
 import ScheduleInfo from './Hoc';
-import DeleteDialog from 'components/dialogs/DeleteSchedule';
+import DeleteConfirm from 'components/dialogs/DeleteSchedule';
 import OpenDialog from 'components/dialogs/OpenSchedule';
 import CloseDialog from 'components/dialogs/CloseSchedule';
 import Suspense from 'components/common/Suspense';
@@ -33,6 +33,10 @@ export default class Screen extends React.Component {
       case 'edit':
         this.props.navigation.navigate('EditSchedule', { id });
         break;
+      case 'delete':
+        console.log(this.deleteConfirmRef.wrappedInstance.open)
+        this.deleteConfirmRef.wrappedInstance.open();
+        break;
       default:
         this.setState({ visibleDialog: option, pictureKey});
         break;
@@ -60,11 +64,13 @@ export default class Screen extends React.Component {
           navigateToEvents={this._navigateToEvents}
           navigateToPicture={this._navigateToPicture}
         />
-        <DeleteDialog
+        <DeleteConfirm
           id={id}
           visible={visibleDialog === 'delete' }
           handleDismiss={this._hideDialog}
           pictureKey={pictureKey}
+          onRef={ref => this.deleteConfirmRef = ref}
+          // onRef={ref => console.log('ref', ref)}
         />
         <OpenDialog
           id={id}
