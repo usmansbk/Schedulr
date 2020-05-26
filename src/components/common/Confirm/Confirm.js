@@ -5,20 +5,22 @@ import { I18n } from 'aws-amplify';
 import RBSheet from 'react-native-raw-bottom-sheet';
 import styles from './styles';
 
-const defaultTitle = "Archive this board?";
-const defaultMessage = "If you archive, we'll hide it from your profile and you won't be able to save"
-
 export default class Confirm extends React.Component {
 
   open = () => this.RBSheet.open();
 
   _cancel = () => this.RBSheet.close();
 
+  _onConfirm = () => {
+    this._cancel();
+    setTimeout(this.props.onConfirm, 0);
+  };
+
   _refRBSheet = ref => this.RBSheet = ref;
   render() {
     const {
-      title=defaultTitle,
-      message=defaultMessage,
+      title,
+      message,
       confirmText=I18n.get("BUTTON_confirm"),
       onConfirm
     } = this.props;
@@ -41,7 +43,7 @@ export default class Confirm extends React.Component {
           </View>
           <View style={styles.footer}>
             <Button onPress={this._cancel}>{I18n.get("BUTTON_cancel")}</Button>
-            <Button onPress={onConfirm}>{confirmText}</Button>
+            <Button onPress={this._onConfirm}>{confirmText}</Button>
           </View>
         </View>
       </RBSheet>

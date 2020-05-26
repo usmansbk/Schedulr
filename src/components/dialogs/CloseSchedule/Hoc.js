@@ -7,6 +7,7 @@ import { UPDATE } from 'lib/constants';
 
 export default graphql(gql(updateSchedule), {
   alias: 'withCloseScheduleDialog',
+  withRef: true,
   props: ({ mutate, ownProps }) => ({
     onSubmit: (input) => mutate({
       variables: {

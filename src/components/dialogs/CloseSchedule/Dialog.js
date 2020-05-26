@@ -1,11 +1,6 @@
 import React from 'react';
-import {
-  Button,
-  Dialog,
-  Portal,
-  Caption
-} from 'react-native-paper';
 import { inject, observer } from 'mobx-react';
+import Confirm from 'components/common/Confirm';
 import { I18n } from 'aws-amplify';
 import { SCHEDULE_CLOSED } from 'lib/constants';
 
@@ -13,6 +8,9 @@ class CloseSchedule extends React.Component {
   state = {
     loading: false
   };
+
+  _confirmRef = ref => this.confirmRef = ref;
+  open = () => this.confirmRef.open();
   
   shouldComponentUpdate = (nextProps, nextState) => (
     nextProps.visible !== this.props.visible ||
@@ -34,30 +32,16 @@ class CloseSchedule extends React.Component {
   }
 
   render() {
-    const {
-      visible,
-      handleDismiss,
-      stores
-    } = this.props;
-    const { loading } = this.state;
+    // const { stores } = this.props;
 
     return (
-      <Portal>
-        <Dialog
-          visible={visible}
-          onDismiss={handleDismiss}
-          style={{backgroundColor: stores.themeStore.colors.bg}}
-        >
-          <Dialog.Title>{I18n.get("DIALOG_closeSchedule")}</Dialog.Title>
-          <Dialog.Content>
-            <Caption>{I18n.get("DIALOG_closeScheduleWarning")}</Caption>
-          </Dialog.Content>
-          <Dialog.Actions>
-            <Button disabled={loading} onPress={handleDismiss}>{I18n.get("BUTTON_dismiss")}</Button>
-            <Button loading={loading} disabled={loading} onPress={this._onContinue}>{I18n.get("BUTTON_continue")}</Button>
-          </Dialog.Actions>
-        </Dialog>
-      </Portal>
+      <Confirm
+        title={I18n.get("DIALOG_closeSchedule")}
+        message={I18n.get("DIALOG_closeScheduleWarning")}
+        onConfirm={this._onContinue}
+        confirmText={"Archive"}
+        ref={this._confirmRef}
+      />
     );
   }
 }

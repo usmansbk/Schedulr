@@ -2,7 +2,7 @@ import React from 'react';
 import ScheduleInfo from './Hoc';
 import DeleteConfirm from 'components/dialogs/DeleteSchedule';
 import OpenDialog from 'components/dialogs/OpenSchedule';
-import CloseDialog from 'components/dialogs/CloseSchedule';
+import ArchiveConfirm from 'components/dialogs/CloseSchedule';
 import Suspense from 'components/common/Suspense';
 import { handleShareSchedule } from 'helpers/share';
 
@@ -34,8 +34,11 @@ export default class Screen extends React.Component {
         this.props.navigation.navigate('EditSchedule', { id });
         break;
       case 'delete':
-        console.log(this.deleteConfirmRef.wrappedInstance.open)
         this.deleteConfirmRef.wrappedInstance.open();
+        break;
+      case 'close':
+        // console.log(this.archiveConfirmRef.getWrappedInstance());
+        this.archiveConfirmRef.getWrappedInstance().open();
         break;
       default:
         this.setState({ visibleDialog: option, pictureKey});
@@ -70,17 +73,17 @@ export default class Screen extends React.Component {
           handleDismiss={this._hideDialog}
           pictureKey={pictureKey}
           onRef={ref => this.deleteConfirmRef = ref}
-          // onRef={ref => console.log('ref', ref)}
         />
         <OpenDialog
           id={id}
           visible={visibleDialog === 'open' }
           handleDismiss={this._hideDialog}
         />
-        <CloseDialog
+        <ArchiveConfirm
           id={id}
           visible={visibleDialog === 'close' }
           handleDismiss={this._hideDialog}
+          ref={ref => this.archiveConfirmRef = ref}
         />
       </>
     );
