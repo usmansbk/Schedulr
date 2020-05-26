@@ -9,6 +9,7 @@ import { UPDATE } from 'lib/constants';
 export default compose(
   graphql(gql(updateEvent), {
     alias: 'withCancelEventDialog',
+    withRef: true,
     props: ({ mutate, ownProps }) => ({
       onSubmit: (input) => mutate({
         variables: {
@@ -25,6 +26,7 @@ export default compose(
     })
   }),
   graphql(gql(getEvent), {
+    withRef: true,
     options: props => ({
       fetchPolicy: 'cache-only',
       variables : {

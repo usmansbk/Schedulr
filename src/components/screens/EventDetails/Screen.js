@@ -1,8 +1,8 @@
 import React from 'react';
 import Details from './Container';
 import { withNavigationFocus } from 'react-navigation';
-import DeleteDialog from 'components/dialogs/DeleteEvent';
-import CancelDialog from 'components/dialogs/CancelEvent';
+import DeleteConfirm from 'components/dialogs/DeleteEvent';
+import CancelConfirm from 'components/dialogs/CancelEvent';
 import Loading from 'components/common/Loading';
 import Error from 'components/common/Error';
 import Suspense from 'components/common/Suspense';
@@ -10,7 +10,7 @@ import { ONE_TIME_EVENT } from 'lib/constants';
 import { I18n } from 'aws-amplify';
 
 class Screen extends React.Component {
-  state = { visibleDialog: null, display: false };
+  state = { display: false };
   _goBack = () => this.props.navigation.goBack();
 
   componentDidMount = () => {
@@ -29,13 +29,11 @@ class Screen extends React.Component {
   _navigateToBanner = (id) => this.props.navigation.navigate('Banner', { id });
   _navigateToBookmarks = (id) => this.props.navigation.navigate('EventBookmarks', { id });
 
-  _openDeleteDialog = () => this.setState({ visibleDialog: 'delete' });
+  _openDeleteDialog = () => this.deleteConfirmRef.getWrappedInstance().open();
   _openCancelDialog = () => this.setState({ visibleDialog: 'cancel' });
-  _hideDialog = () => this.setState({ visibleDialog: null });
   
   render() {
     const {
-      visibleDialog,
       display
     } = this.state;
     if (!display) return <Suspense />;
@@ -81,17 +79,14 @@ class Screen extends React.Component {
           navigateToUser={this._navigateToUser}
           navigateToBookmarks={this._navigateToBookmarks}
         />
-        <DeleteDialog
+        <DeleteConfirm
           id={id}
           banner={event.banner}
-          visible={visibleDialog === 'delete'}
-          handleDismiss={this._hideDialog}
+          onRef={ref => this.deleteConfirmRef = ref}
         />
-        <CancelDialog
+        <CancelConfirm
           id={id}
           date={isRecurring ? refStartAt : null}
-          visible={visibleDialog === 'cancel'}
-          handleDismiss={this._hideDialog}
         />
       </>
     )

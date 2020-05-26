@@ -8,8 +8,7 @@ class DeleteSchedule extends React.Component {
     loading: false
   };
   
-  shouldComponentUpdate = (nextProps, nextState) => (
-    nextProps.visible !== this.props.visible ||
+  shouldComponentUpdate = (_, nextState) => (
     nextState.loading !== this.state.loading
   );
 

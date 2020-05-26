@@ -12,8 +12,7 @@ class CloseSchedule extends React.Component {
   _confirmRef = ref => this.confirmRef = ref;
   open = () => this.confirmRef.open();
   
-  shouldComponentUpdate = (nextProps, nextState) => (
-    nextProps.visible !== this.props.visible ||
+  shouldComponentUpdate = (_, nextState) => (
     nextState.loading !== this.state.loading
   );
 
