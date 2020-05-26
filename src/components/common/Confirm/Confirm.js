@@ -13,7 +13,7 @@ export default class Confirm extends React.Component {
 
   _onConfirm = () => {
     this._cancel();
-    setTimeout(this.props.onConfirm, 0);
+    setTimeout(this.props.onConfirm, 200); // 200ms allows the sheet to close
   };
 
   _refRBSheet = ref => this.RBSheet = ref;
