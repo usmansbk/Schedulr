@@ -1,6 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
-import { TouchableRipple } from 'react-native-paper';
+import { View, TouchableOpacity } from 'react-native';
 import UserAvatar from './UserAvatar';
 
 export default class Avatar extends React.Component {
@@ -21,7 +20,13 @@ export default class Avatar extends React.Component {
     } = this.props;
   
     return (
-      <TouchableRipple onPress={onPress} style={style}>
+      <TouchableOpacity style={{
+        borderRadius: size / 2,
+        height: size,
+        width: size,
+        justifyContent: 'center',
+        alignItems: 'center'
+      }} onPress={onPress} style={style}>
         <View>
           <UserAvatar
             name={name}
@@ -34,7 +39,7 @@ export default class Avatar extends React.Component {
             right: 1
           }}>{badge}</View>
         </View>
-      </TouchableRipple>
+      </TouchableOpacity>
     )
   }
 }

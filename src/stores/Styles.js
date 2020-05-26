@@ -1894,51 +1894,30 @@ export default class AppStyles {
     
     const colors = this.settings.dark ? dark : light;
 
-    const AVATAR_HEIGHT = 120;
-    const HEADER_HEIGHT = 220;
-
     return StyleSheet.create({
       container: {
-        width: '100%',
-        height: '100%',
-        backgroundColor: colors.bg
+        backgroundColor: colors.bg,
+        padding: 16,
+        flex: 1
       },
       header: {
-        width: '100%',
-        height: HEADER_HEIGHT,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#303030'
       },
-      avatar: {
-        width: AVATAR_HEIGHT,
-        height: AVATAR_HEIGHT,
+      textLabel: {
+        fontSize: 13,
+        marginVertical: 4,
+        fontWeight: 'bold'
       },
-      image: {
-        width: AVATAR_HEIGHT,
-        height: AVATAR_HEIGHT,
-        borderRadius: AVATAR_HEIGHT / 2,
-        borderWidth: 4,
-        borderColor: colors.bg,
-        alignItems: 'center',
-        justifyContent: 'center',
-        overflow: 'hidden'
-      },
-      backgroundImage: {
-        position: 'absolute',
-        width: '100%',
-        height: HEADER_HEIGHT,
-        top: 0,
-        left: 0,
-        opacity: 0.5
+      value: {
+        fontSize: 16,
+        color: colors.black
       },
       headline: {
         fontWeight: 'bold',
         fontFamily: 'sans-serif-bold',
         textAlign: 'center',
-        color: 'white',
-        paddingBottom: 10,
-        paddingHorizontal: 12,
+        padding: 12
       },
       count: {
         color: colors.black,
@@ -1977,6 +1956,17 @@ export default class AppStyles {
       },
       linkIcon: {
         paddingRight: 8
+      },
+      body: {
+        justifyContent: 'flex-start',
+        alignItems: 'flex-start',
+        paddingVertical: 16
+      },
+      fab:{
+        position: 'absolute',
+        bottom: 0,
+        right: 0,
+        margin: 16
       }
     })
   }

@@ -42,6 +42,7 @@ export default class Avatar extends React.Component {
             name={name || email}
             style={styles.avatar}
             src={uri}
+            onPress={this.onPress}
           />
           <View style={styles.text}>
             { name && <Text numberOfLines={1} ellipsizeMode="tail" style={styles.name}>{name}</Text>}

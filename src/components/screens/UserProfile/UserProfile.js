@@ -2,15 +2,15 @@ import React from 'react';
 import {
   View,
   ScrollView,
-  Text,
   RefreshControl,
-  Image
 } from 'react-native';
 import {
   Headline,
   TouchableRipple,
   FAB,
-  Caption
+  Caption,
+  Appbar,
+  Text
 } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/Feather';
 import Hyperlink from 'react-native-hyperlink';
@@ -48,17 +48,7 @@ class UserProfile extends React.Component {
     }
   };
 
-  // _toCreatedTab = () => {
-  //   const { user, navigation } = this.props;
-  //   if (user) {
-  //     const { id, name } = user; 
-  //     navigation.push('UserSchedules', {
-  //       id,
-  //       name,
-  //       toCreatedTab: true
-  //     });
-  //   }
-  // };
+  _goBack = () => this.props.navigation.goBack();
 
   _editProfile = () => this.props.navigation.navigate('EditProfile');
 
@@ -98,6 +88,19 @@ class UserProfile extends React.Component {
     const styles = stores.appStyles.profile;
     
     return  (
+      <>
+      <Appbar.Header style={stores.appStyles.styles.header} collapsable>
+        <Appbar.Action
+          onPress={this._goBack}
+          size={24}
+          color={stores.themeStore.colors.primary}
+          icon={({ size, color }) => <Icon
+            name="arrow-left"
+            color={color}
+            size={size}
+          />}
+        />
+      </Appbar.Header>
       <ScrollView
         refreshControl={
           <RefreshControl
@@ -107,21 +110,14 @@ class UserProfile extends React.Component {
             progressBackgroundColor={stores.themeStore.colors.bg}
           />
         }
-        contentContainerStyle={styles.container}>
+        style={styles.container}>
         <View style={styles.header}>  
-          <Image
-            source={{uri: uriSmall}}
-            resizeMode="cover"
-            style={styles.backgroundImage}
-          />  
-          <View style={styles.image}> 
-            <UserAvatar
-              src={uriBig}
-              size={AVATAR_HEIGHT}
-              name={name}
-              onPress={this._viewAvatar}
-            />
-          </View>
+          <UserAvatar
+            src={uriBig}
+            size={AVATAR_HEIGHT}
+            name={name}
+            onPress={this._viewAvatar}
+          />
           <Headline numberOfLines={2} ellipsizeMode="tail" style={styles.headline}>{name}</Headline>
         </View>
         <TouchableRipple onPress={this._toCreatedFollowingTab}>
@@ -136,48 +132,51 @@ class UserProfile extends React.Component {
             </View>
           </View>
         </TouchableRipple>
-        <View style={styles.link}>
-          <Icon size={16} style={styles.linkIcon} name="calendar" color={stores.themeStore.colors.black} />
-          <Caption style={styles.linkLabel} numberOfLines={1} ellipsizeMode="tail">{I18n.get("PROFILE_joined")(date)}</Caption>
-        </View>   
-        {
-          !!bio && (      
-            <View style={styles.link}>
-              <Caption style={styles.linkLabel} numberOfLines={4} ellipsizeMode="tail">{bio}</Caption>
-            </View>
-          )
-        }
-        {
-          website && (
-            <View style={styles.link}>
-              <Icon size={16} style={styles.linkIcon} name="link-2" color={stores.themeStore.colors.black} />
-              <Hyperlink linkStyle={styles.linkStyle} linkDefault={true}>
-                <Caption style={styles.linkLabel} numberOfLines={1} ellipsizeMode="tail">{website}</Caption>
-              </Hyperlink>
-            </View>
-          )
-        }
-        {
-          me && (
-            <View style={styles.link}>
-              <FAB
-                label={I18n.get("BUTTON_editProfile")}
-                color={colors.white}
-                onPress={this._editProfile}
-                theme={{
-                  colors: {
-                    accent: colors.primary_dark
-                  }
-                }}
-              />
-            </View>
-          )
-        }
+        <View style={styles.body}>
+          <View style={styles.link}>
+            <Icon size={16} style={styles.linkIcon} name="calendar" color={stores.themeStore.colors.black} />
+            <Caption style={styles.linkLabel} numberOfLines={1} ellipsizeMode="tail">{I18n.get("PROFILE_joined")(date)}</Caption>
+          </View>   
+          {
+            website && (
+              <View style={styles.link}>
+                <Icon size={16} style={styles.linkIcon} name="link-2" color={stores.themeStore.colors.black} />
+                <Hyperlink linkStyle={styles.linkStyle} linkDefault={true}>
+                  <Caption style={styles.linkLabel} numberOfLines={1} ellipsizeMode="tail">{website}</Caption>
+                </Hyperlink>
+              </View>
+            )
+          }
+          {
+            !!bio && (      
+              <View style={{margin: 16, justifyContent: 'flex-start', alignItems: 'flex-start'}}>
+                <Text style={styles.textLabel}>{I18n.get("BIO")}</Text>
+                <Caption style={styles.value}>{bio}</Caption>
+              </View>
+            )
+          }
+        </View>
       </ScrollView>
+      {
+        me && (
+          <FAB
+            label={I18n.get("BUTTON_editProfile")}
+            color={colors.white}
+            onPress={this._editProfile}
+            theme={{
+              colors: {
+                accent: colors.primary_dark
+              }
+            }}
+            style={styles.fab}
+          />
+        )
+      }
+      </>
     );
   }
 }
 
 export default inject("stores")(observer(UserProfile));
 
-const AVATAR_HEIGHT = 120;
+const AVATAR_HEIGHT = 140;

@@ -84,18 +84,6 @@ const AppStack = createStackNavigator({
   },
   UserProfile: {
     screen: UserProfile,
-    navigationOptions: {
-      headerShown: true,
-      title: null,
-      headerStyle: {
-        borderBottomColor: 'transparent',
-        borderBottomWidth: 0,
-        elevation: 0
-      },
-      headerTitleStyle: { color: colors.white },
-      headerTintColor: colors.white,
-      headerTransparent: true,
-    }
   },
   EditProfile: {
     screen: EditProfile,

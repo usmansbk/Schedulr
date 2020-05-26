@@ -154,7 +154,7 @@ export default {
   BUTTON_continueWithFacebook: "Continue with Facebook",
   BUTTON_loggingIn: "Logging in...",
   BUTTON_signingIn: "Signing in...",
-  BUTTON_editProfile: "Edit details",
+  BUTTON_editProfile: "Edit Profile",
   BUTTON_shareVia: "Share via",
   BUTTON_shareInviteLink: "Share invite link",
   BUTTON_removeBookmark: "Remove bookmark",
