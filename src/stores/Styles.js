@@ -1863,7 +1863,7 @@ export default class AppStyles {
     return StyleSheet.create({
       container: {
         backgroundColor: colors.bg,
-        padding: 16,
+        padding: 24,
         flex: 1
       },
       header: {
@@ -1912,7 +1912,7 @@ export default class AppStyles {
         alignItems: 'center',
       },
       link: {
-        margin: 16,
+        marginVertical: 16,
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center'

@@ -149,8 +149,8 @@ class UserProfile extends React.Component {
           }
           {
             !!bio && (      
-              <View style={{margin: 16, justifyContent: 'flex-start', alignItems: 'flex-start'}}>
-                <Text style={styles.textLabel}>{I18n.get("BIO")}</Text>
+              <View style={{ justifyContent: 'flex-start', alignItems: 'flex-start'}}>
+                <Text style={styles.textLabel}>{I18n.get("ABOUT")}</Text>
                 <Caption style={styles.value}>{bio}</Caption>
               </View>
             )
