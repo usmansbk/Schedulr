@@ -710,11 +710,11 @@ export default class AppStyles {
     return StyleSheet.create({
       list: {
         flex: 1,
-        backgroundColor: colors.light_gray
+        backgroundColor: colors.bg
       },
       contentContainer: {
         flexGrow: 1,
-        backgroundColor: colors.light_gray
+        backgroundColor: colors.bg
       },
       separator: {
         height: SEPARATOR_HEIGHT
@@ -804,11 +804,11 @@ export default class AppStyles {
 
     return StyleSheet.create({
       list: {
-        backgroundColor: colors.light_gray
+        backgroundColor: colors.bg
       },
       contentContainer: {
         flexGrow: 1,
-        backgroundColor: colors.light_gray
+        backgroundColor: colors.bg
       },
       footer: {
         height: dp(80),
@@ -1124,7 +1124,7 @@ export default class AppStyles {
 
     return StyleSheet.create({
       list: {
-        backgroundColor: colors.light_gray,
+        backgroundColor: colors.bg,
       },
       contentContainer: {
         flexGrow: 1,
@@ -1388,12 +1388,12 @@ export default class AppStyles {
 
     return StyleSheet.create({
       contentContainer: {
-        backgroundColor: colors.light_gray,
+        backgroundColor: colors.bg,
         marginTop: 1,
         flexGrow: 1
       },
       list: {
-        backgroundColor: colors.light_gray,
+        backgroundColor: colors.bg,
       },
       footer: {
         height: ITEM_HEIGHT,

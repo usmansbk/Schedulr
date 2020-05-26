@@ -1,6 +1,6 @@
 import React from 'react';
-import { View } from 'react-native';
-import { TouchableRipple, Text } from 'react-native-paper';
+import { View, TouchableOpacity } from 'react-native';
+import { Text } from 'react-native-paper';
 import { inject, observer } from 'mobx-react';
 
 class Item extends React.Component {
@@ -13,11 +13,11 @@ class Item extends React.Component {
     const styles = stores.appStyles.chipList;
 
     return (
-      <TouchableRipple style={styles.itemContainer} onPress={this._onPress}>
+      <TouchableOpacity style={styles.itemContainer} onPress={this._onPress}>
         <View style={[styles.itemContent, selected ? styles.selected : {}]}> 
           <Text numberOfLines={1} ellipsizeMode="tail" style={[styles.itemText, selected ? styles.selectedText : {}]}>{text}</Text>
         </View>
-      </TouchableRipple>
+      </TouchableOpacity>
     )
   }
 }

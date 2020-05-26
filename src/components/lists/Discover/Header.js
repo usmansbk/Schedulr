@@ -21,7 +21,7 @@ export default inject('stores')(observer(
       >
         <View style={{
           flexDirection: 'row',
-          backgroundColor: stores.themeStore.colors.white,
+          backgroundColor: stores.themeStore.colors.bg,
         }}>
           <Searchbar
             icon={({ size, color }) => <Icon
@@ -35,7 +35,7 @@ export default inject('stores')(observer(
             placeholder={ellipsisMode(I18n.get("SEARCH_inputPlaceholder")(stores.locationStore.searchLocation))}
             theme={{ roundness: 0 }}
             style={{
-              backgroundColor: stores.themeStore.colors.white,
+              backgroundColor: stores.themeStore.colors.bg,
               elevation: 0,
               flex: 1
             }}
