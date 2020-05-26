@@ -1939,6 +1939,8 @@ export default class AppStyles {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-evenly',
+        backgroundColor: colors.light_gray,
+        paddingBottom: 16
       },
       item: {
         justifyContent: 'center',
