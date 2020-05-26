@@ -91,7 +91,7 @@ class Item extends React.Component {
               />
             )
             }
-            <View style={styles.footer}>
+            {/* <View style={styles.footer}>
               <View style={styles.actions}>
                 {isOwner && <IconButton
                   color={colors.light_gray_3}
@@ -115,7 +115,7 @@ class Item extends React.Component {
                   )
                 }
               </View>
-            </View>
+            </View> */}
           </View>
         </View>
       </View>

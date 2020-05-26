@@ -1135,6 +1135,8 @@ export default class AppStyles {
         flex: 1,
         flexDirection: 'row',
         backgroundColor: colors.bg,
+        paddingVertical: 8,
+        marginVertical: 8
       },
       itemContent: {
         marginRight: 8
@@ -1367,8 +1369,8 @@ export default class AppStyles {
         backgroundColor: colors.bg
       },
       image: {
-        width: '100%',
-        height: 150
+        width: '94%',
+        height: 148
       },
       text: {
         fontSize: 20,
