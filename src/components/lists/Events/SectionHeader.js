@@ -4,7 +4,6 @@ import {
   Text,
   Caption,
   Headline,
-  TouchableRipple
 } from 'react-native-paper';
 import { inject, observer } from 'mobx-react';
 import moment from 'moment';
