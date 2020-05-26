@@ -2,7 +2,7 @@ import React from 'react';
 import { View, ScrollView } from 'react-native';
 import { Text, Headline, Divider, Appbar } from 'react-native-paper';
 import Hyperlink from 'react-native-hyperlink';
-import Icon from 'react-native-vector-icons/Feather';
+import Icon from 'components/common/Icon';
 import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
 import CountDown from 'components/common/Countdown';

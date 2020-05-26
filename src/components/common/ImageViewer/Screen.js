@@ -6,7 +6,7 @@ import { inject, observer } from 'mobx-react';
 import { Storage, I18n } from 'aws-amplify';
 import RNFS from 'react-native-fs';
 import FileViewer from 'react-native-file-viewer';
-import Icon from 'react-native-vector-icons/Feather';
+import Icon from 'components/common/Icon';
 import Loading from '../Loading';
 import logger from 'config/logger';
 import downloadPath from 'helpers/fs';
@@ -127,7 +127,7 @@ class ImageViewer extends React.Component {
                 onPress={deletePhoto}
                 color={stores.themeStore.colors.primary}
                 icon={({ color, size }) => <Icon
-                  name="trash-2"
+                  name="trash"
                   size={size}
                   color={color}
                 />}

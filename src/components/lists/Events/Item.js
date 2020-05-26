@@ -6,7 +6,7 @@ import {
   Caption,
   Headline,
 } from 'react-native-paper';
-import Icon from 'react-native-vector-icons/Feather';
+import Icon from 'components/common/Icon';
 import { inject, observer } from 'mobx-react';
 import Avatar from 'components/common/UserAvatar';
 import Badge from 'components/common/Badge';

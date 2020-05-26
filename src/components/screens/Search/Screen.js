@@ -3,7 +3,7 @@ import { Searchbar } from 'react-native-paper';
 import { createMaterialTopTabNavigator, MaterialTopTabBar } from 'react-navigation-tabs';
 import { Dimensions } from 'react-native';
 import { inject, observer } from 'mobx-react';
-import Icon from 'react-native-vector-icons/Feather';
+import Icon from 'components/common/Icon';
 import { I18n } from 'aws-amplify';
 import Events from './Events';
 import Schedules from './Schedules';

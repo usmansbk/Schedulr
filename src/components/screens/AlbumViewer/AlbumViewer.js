@@ -2,7 +2,7 @@ import React from 'react';
 import GallerySwiper from 'react-native-image-zoom-viewer';
 import { Appbar } from 'react-native-paper';
 import { inject, observer } from 'mobx-react';
-import Icon from 'react-native-vector-icons/Feather';
+import Icon from 'components/common/Icon';
 import { I18n } from 'aws-amplify';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';

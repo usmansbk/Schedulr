@@ -2,7 +2,7 @@ import React from 'react';
 import moment from 'moment';
 import { Appbar } from 'react-native-paper';
 import { inject, observer } from 'mobx-react';
-import Icon from 'react-native-vector-icons/Feather';
+import Icon from 'components/common/Icon';
 import Suspense from 'components/common/Suspense';
 import Details from './Details';
 import { formatDate, getRepeatLabel, getDuration } from 'lib/time';

@@ -1,7 +1,7 @@
 import React from 'react';
 import { List } from 'react-native-paper';
 import { inject, observer } from 'mobx-react';
-import Icon from 'react-native-vector-icons/Feather';
+import Icon from 'components/common/Icon';
 
 class Item extends React.Component {
   _onPress = () => this.props.onPressItem(this.props.id);

@@ -1,6 +1,6 @@
 import React from 'react';
 import { IconButton } from 'react-native-paper';
-import Icon from 'react-native-vector-icons/Feather';
+import Icon from 'components/common/Icon';
 import { createOpenLink } from 'react-native-open-maps';
 
 export default ({
@@ -11,7 +11,7 @@ export default ({
   <IconButton
     disabled={!address}
     icon={() => <Icon
-      name="map-pin"
+      name="map"
       size={size}
       color={color}
     />}

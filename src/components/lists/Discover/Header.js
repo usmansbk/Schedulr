@@ -7,7 +7,7 @@ import {
   IconButton
 } from 'react-native-paper';
 import { I18n } from 'aws-amplify';
-import Icon from 'react-native-vector-icons/Feather';
+import Icon from 'components/common/Icon';
 import Chips from 'components/lists/Chips';
 import { inject, observer } from 'mobx-react';
 import { ellipsisMode } from 'lib/utils';

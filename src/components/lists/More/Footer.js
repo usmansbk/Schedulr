@@ -1,7 +1,7 @@
 import React from 'react';
 import { List } from 'react-native-paper';
 import { observer, inject } from 'mobx-react';
-import Icon from 'react-native-vector-icons/Feather';
+import Icon from 'components/common/Icon';
 import { I18n } from 'aws-amplify';
 
 export default inject('stores')(observer(

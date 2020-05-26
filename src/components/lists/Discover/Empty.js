@@ -3,7 +3,7 @@ import { View, Image } from 'react-native';
 import { Headline, Caption, Button } from 'react-native-paper';
 import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
-import Icon from 'react-native-vector-icons/Feather';
+import Icon from 'components/common/Icon';
 
 export default inject('stores')(observer(
   ({ stores }) => (

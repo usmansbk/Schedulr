@@ -5,7 +5,7 @@ import {
   IconButton
 } from 'react-native-paper';
 import { View } from 'react-native';
-import Icon from 'react-native-vector-icons/Feather';
+import Icon from 'components/common/Icon';
 import { inject, observer } from 'mobx-react';
 
 class IconBagdeButton extends React.Component {

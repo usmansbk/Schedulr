@@ -4,7 +4,7 @@ import {
   Appbar,
   Text,
 } from 'react-native-paper';
-import Icon from 'react-native-vector-icons/Feather';
+import Icon from 'components/common/Icon';
 import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
 import Item from './Item';

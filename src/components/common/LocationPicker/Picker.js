@@ -6,7 +6,7 @@ import {
 } from 'react-native-paper';
 import { I18n } from 'aws-amplify';
 import GeoDBCitiesSearch from 'react-native-geodb';
-import Icon from 'react-native-vector-icons/Feather';
+import Icon from 'components/common/Icon';
 import colors from 'config/colors';
 import env from 'config/env';
 

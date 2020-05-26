@@ -4,7 +4,7 @@ import { TouchableRipple, Text, Caption } from 'react-native-paper';
 import { inject, observer } from 'mobx-react';
 import UserAvatar from 'components/common/UserAvatar';
 import FollowButton from 'components/common/FollowButton';
-import Icon from 'react-native-vector-icons/Feather';
+import Icon from 'components/common/Icon';
 import { schedule_search } from 'lib/constants';
 
 const { AVATAR_SIZE } = schedule_search;

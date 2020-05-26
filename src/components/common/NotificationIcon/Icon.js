@@ -3,7 +3,7 @@ import numeral from 'numeral';
 import { View } from 'react-native';
 import { Badge } from 'react-native-paper';
 import { inject, observer } from 'mobx-react';
-import Icon from 'react-native-vector-icons/Feather';
+import Icon from 'components/common/Icon';
 
 const NotificationIcon = ({ name, color, size, stores }) => {
   return (

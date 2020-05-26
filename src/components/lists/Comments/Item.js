@@ -8,7 +8,7 @@ import {
 } from 'react-native-paper';
 import Hyperlink from 'react-native-hyperlink';
 import { inject, observer } from 'mobx-react';
-import Icon from 'react-native-vector-icons/Feather';
+import Icon from 'components/common/Icon';
 import UserAvatar from 'components/common/UserAvatar';
 import { comments_list, BULLET } from 'lib/constants';
 import Attachment from 'components/common/Attachment';
@@ -97,7 +97,7 @@ class Item extends React.Component {
                   color={colors.light_gray_3}
                   icon={() => <Icon
                     size={16}
-                    name="trash-2"
+                    name="trash"
                     color={colors.light_gray_3}
                   />}
                   onPress={this._onDelete}
@@ -107,7 +107,7 @@ class Item extends React.Component {
                     <IconButton
                       icon={() => <Icon
                         size={16}
-                        name="feather"
+                        name="reply"
                         color={colors.light_gray_3}
                       />}
                       onPress={this._onReply}

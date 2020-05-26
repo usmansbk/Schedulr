@@ -1,7 +1,7 @@
 import React from 'react';
 import { Appbar } from 'react-native-paper';
 import { I18n } from 'aws-amplify';
-import Icon from 'react-native-vector-icons/Feather';
+import Icon from 'components/common/Icon';
 import Loading from 'components/common/Loading';
 import Error from 'components/common/Error';
 import List from './ListHoc';

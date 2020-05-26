@@ -5,7 +5,7 @@ import {
   Button,
   Caption
 } from 'react-native-paper';
-import Icon from 'react-native-vector-icons/Feather';
+import Icon from 'components/common/Icon';
 import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
 
@@ -30,7 +30,7 @@ export default inject('stores')(observer(
           <View style={stores.appStyles.error.content}>
             <Button
               icon={(props) => <Icon
-                name="refresh-cw"
+                name="refresh"
                 size={16}
                 color={props.color}
               />}

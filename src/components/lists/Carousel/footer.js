@@ -1,6 +1,6 @@
 import React from 'react';
 import { Surface, Text, TouchableRipple } from 'react-native-paper';
-import Icon from 'react-native-vector-icons/Feather';
+import Icon from 'components/common/Icon';
 import { withNavigation } from 'react-navigation';
 import { I18n } from 'aws-amplify';
 import { inject, observer } from 'mobx-react';
