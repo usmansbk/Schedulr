@@ -30,7 +30,9 @@ class Screen extends React.Component {
   _navigateToBookmarks = (id) => this.props.navigation.navigate('EventBookmarks', { id });
 
   _openDeleteDialog = () => this.deleteConfirmRef.getWrappedInstance().open();
-  _openCancelDialog = () => this.setState({ visibleDialog: 'cancel' });
+  _openCancelDialog = () => {
+    console.log(this.cancelConfirmRef.wrappedInstance.wrappedInstance.open())
+  };
   
   render() {
     const {
@@ -87,6 +89,7 @@ class Screen extends React.Component {
         <CancelConfirm
           id={id}
           date={isRecurring ? refStartAt : null}
+          ref={ref => this.cancelConfirmRef = ref}
         />
       </>
     )

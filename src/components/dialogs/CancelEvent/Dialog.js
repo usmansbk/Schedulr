@@ -1,15 +1,9 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
-import {
-  Button,
-  Dialog,
-  Portal,
-  RadioButton,
-  Text
-} from 'react-native-paper';
+import { StyleSheet } from 'react-native';
 import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
 import { SINGLE_EVENT, ALL_EVENTS } from 'lib/constants';
+import Confirm from 'components/common/Confirm';
 import snackbar from 'helpers/snackbar';
 
 class CancelEvent extends React.Component {
@@ -17,6 +11,9 @@ class CancelEvent extends React.Component {
     checked: SINGLE_EVENT,
     loading: false,
   };
+
+  _confirmRef = ref => this.confirmRef = ref;
+  open = () => this.confirmRef.open();
 
   shouldComponentUpdate = (nextProps, nextState) => (
     nextProps.visible !== this.props.visible ||
@@ -31,7 +28,6 @@ class CancelEvent extends React.Component {
       date,
       onSubmit,
       cancelledDates,
-      handleDismiss,
     } = this.props;
     this.setState({ loading: true });
     const input = {id};
@@ -50,7 +46,6 @@ class CancelEvent extends React.Component {
       onSubmit(input);
     }, 0);
     this.setState({ loading: false });
-    handleDismiss();
   };
 
   _handleDismiss = () => this.props.handleDismiss();
@@ -64,37 +59,46 @@ class CancelEvent extends React.Component {
       stores
     } = this.props;
     const { checked, loading } = this.state;
+
     return (
-      <Portal>
-        <Dialog
-          visible={visible}
-          onDismiss={this._handleDismiss}
-          style={{backgroundColor: stores.themeStore.colors.bg}}
-        >
-          <Dialog.Title>{I18n.get("DIALOG_cancelEvent")}</Dialog.Title>
-          {
-            Boolean(date) && (
-              <Dialog.Content>
-                <RadioButton.Group onValueChange={this._toggleButton} value={checked}>
-                  <View style={styles.row}>
-                    <Text>{I18n.get("DIALOG_onlyThisEvent")}</Text>
-                    <RadioButton value={SINGLE_EVENT} />
-                  </View>
-                  <View style={styles.row}>
-                    <Text>{I18n.get("DIALOG_allOfThisEvent")}</Text>
-                    <RadioButton value={ALL_EVENTS} />
-                  </View>
-                </RadioButton.Group>
-              </Dialog.Content>
-            )
-          }
-          <Dialog.Actions>
-            <Button disabled={loading} onPress={this._handleDismiss}>{I18n.get("BUTTON_dismiss")}</Button>
-            <Button disabled={loading} loading={loading} onPress={this._onContinue}>{I18n.get("BUTTON_continue")}</Button>
-          </Dialog.Actions>
-        </Dialog>
-      </Portal>
-    )
+      <Confirm
+        title={I18n.get("DIALOG_cancelEvent")}
+        onConfirm={this._onContinue}
+        confirmText={I18n.get("BUTTON_cancel")}
+        ref={this._confirmRef}
+      />
+    );
+    // return (
+    //   <Portal>
+    //     <Dialog
+    //       visible={visible}
+    //       onDismiss={this._handleDismiss}
+    //       style={{backgroundColor: stores.themeStore.colors.bg}}
+    //     >
+    //       <Dialog.Title>{I18n.get("DIALOG_cancelEvent")}</Dialog.Title>
+    //       {
+    //         Boolean(date) && (
+    //           <Dialog.Content>
+    //             <RadioButton.Group onValueChange={this._toggleButton} value={checked}>
+    //               <View style={styles.row}>
+    //                 <Text>{I18n.get("DIALOG_onlyThisEvent")}</Text>
+    //                 <RadioButton value={SINGLE_EVENT} />
+    //               </View>
+    //               <View style={styles.row}>
+    //                 <Text>{I18n.get("DIALOG_allOfThisEvent")}</Text>
+    //                 <RadioButton value={ALL_EVENTS} />
+    //               </View>
+    //             </RadioButton.Group>
+    //           </Dialog.Content>
+    //         )
+    //       }
+    //       <Dialog.Actions>
+    //         <Button disabled={loading} onPress={this._handleDismiss}>{I18n.get("BUTTON_dismiss")}</Button>
+    //         <Button disabled={loading} loading={loading} onPress={this._onContinue}>{I18n.get("BUTTON_continue")}</Button>
+    //       </Dialog.Actions>
+    //     </Dialog>
+    //   </Portal>
+    // )
   }
 }
 

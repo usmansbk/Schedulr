@@ -348,7 +348,7 @@ export default {
   WARNING_dontMissOut: "Don't miss out!",
   WARNING_fileTooLarge: "File is too large",
 
-  DIALOG_cancelEvent: "Cancel event?",
+  DIALOG_cancelEvent: "Cancel this event?",
   DIALOG_onlyThisEvent: "Only this event?",
   DIALOG_allOfThisEvent: "All of this event",
   DIALOG_closeSchedule: "Archive this list?",
