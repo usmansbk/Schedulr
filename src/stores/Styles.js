@@ -1889,8 +1889,6 @@ export default class AppStyles {
         color: colors.black,
         fontWeight: 'bold',
         fontSize: 25,
-        marginTop: 8,
-        marginBottom: 4 
       },
       label: {
         color: colors.black,
@@ -1906,13 +1904,12 @@ export default class AppStyles {
         alignItems: 'center',
         justifyContent: 'space-evenly',
         backgroundColor: colors.light_gray,
-        paddingBottom: 16,
+        padding: 16,
         borderRadius: 8
       },
       item: {
         justifyContent: 'center',
         alignItems: 'center',
-        paddingHorizontal: 16
       },
       link: {
         margin: 16,
