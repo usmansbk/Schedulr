@@ -47,12 +47,11 @@ class CommentInput extends React.Component {
     }
   };
 
-  _onSubmit = async () => {
+  _processDocs = async () => {
     const { uploads } = this.state;
-    let message = this.state.message.trim();
+    let docs = [];
+    let failed = [];
     if (uploads.length) {
-      let docs = [];
-      let failed = [];
 
       this.setState({ isSubmitting: true });
       for (let doc of uploads) {
@@ -89,29 +88,24 @@ class CommentInput extends React.Component {
           logger.logError(error);
         }
       }
-      if (docs.length) {
-        this.props.handleSubmit(message || null, docs);
-        this.setState({
-          isSubmitting: false,
-          message: '',
-          uploads: failed,
-        });
-      } else {
-        this.setState({
-          isSubmitting: false,
-          message: '',
-        });
-      }
-      if (failed.length) {
-        snackbar(I18n.get('ERROR_failedToSendFiles')(failed.length), true);
-      }
+    }
+    return [docs, failed];
+  }
 
-    } else if (message) {
-      this.props.handleSubmit(message || null);
-      this.setState({
-        isSubmitting: false,
-        message: '',
-      });
+  _onSubmit = async () => {
+    const message = this.state.message.trim();
+    const [docs, failed] = await this._processDocs();
+    this.props.handleSubmit(
+      message || null,
+      docs.length ? docs : null
+    );
+    this.setState({
+      isSubmitting: false,
+      message: '',
+      uploads: failed,
+    });
+    if (failed.length) {
+      snackbar(I18n.get('ERROR_failedToSendFiles')(failed.length), true);
     }
   };
 
