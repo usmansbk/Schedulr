@@ -15,16 +15,6 @@ export default class Container extends React.Component {
     }), 0);
   };
 
-  _goBack = () => this.props.navigation.goBack();
-  _focusCommentInput = () => {
-    this._commentsRef && this._commentsRef.focusCommentInput();
-  };
-  _blurCommentInput = () => {
-    this._commentsRef && this._commentsRef.blurCommentInput();
-  };
-  _scrollDown = () => {
-    this._commentsRef && this._commentsRef.scrollDown();
-  };
   _onSubmit = async (message, attachment) => {
     const hash = uuidv5(this.props.stores.appState.userId, uuidv5.DNS);
     const sort = shortid.generate();
@@ -41,6 +31,7 @@ export default class Container extends React.Component {
     
     this.props.onSubmit && this.props.onSubmit(input);
   };
+  _goBack = () => this.props.navigation.goBack();
   _navigateToViewEmbed = ({ subtitle, uri, s3Object }) => this.props.navigation.navigate('ViewEmbed', {
     subtitle,
     uri,
@@ -69,7 +60,6 @@ export default class Container extends React.Component {
       error,
       fetchMore,
       nextToken,
-      user,
       comments,
       commentsCount,
       isOwner,
@@ -79,7 +69,6 @@ export default class Container extends React.Component {
 
     return (
       <Screen
-        ref={commentsRef => this._commentsRef = commentsRef}
         notFound={notFound}
         id={commentEventId}
         isOwner={isOwner}
@@ -88,7 +77,6 @@ export default class Container extends React.Component {
         error={Boolean(error)}
         commentsCount={commentsCount}
         comments={comments.sort((a, b) => Date.parse(a.createdAt) - Date.parse(b.createdAt))}
-        userId={user.id}
         goBack={this._goBack}
         onSubmit={this._onSubmit}
         onRefresh={onRefresh}

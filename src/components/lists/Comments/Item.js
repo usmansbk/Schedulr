@@ -19,8 +19,11 @@ class Item extends React.Component {
   };
 
   _commentActions = ref => this.commentActions = ref;
+  _showOptions = () => this.commentActions.open();
+
   _navigateToProfile = () => this.props.navigateToProfile(this.props.authorId);
   _navigateToViewEmbed = (params) => this.props.navigateToViewEmbed(params);
+
   _onLongPress = () => this.props.onLongPress();
   _onDelete = () => {
     let keys = [];
@@ -28,9 +31,6 @@ class Item extends React.Component {
       keys = this.props.attachment.map(file => file.key);
     }
     this.props.onDelete(this.props.id, keys);
-  };
-  _showOptions = () => {
-    this.commentActions.open();
   };
   shouldComponentUpdate = nextProps => this.props.timeAgo !== nextProps.timeAgo;
 

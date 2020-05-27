@@ -1,7 +1,7 @@
 import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
 import { inject, observer } from 'mobx-react';
-import { getUser, getEventComments } from 'api/queries';
+import { getEventComments } from 'api/queries';
 import { createComment } from 'api/mutations';
 import updateApolloCache from 'helpers/updateApolloCache';
 import Container from './Container';
@@ -11,20 +11,6 @@ import updateQuery from 'helpers/updateQuery';
 
 export default inject("stores")(observer(
   compose(
-    graphql(gql(getUser), {
-      alias: 'withCommentsUserScreenContainer',
-      options: props => ({
-        fetchPolicy: 'cache-only',
-        variables: {
-          id: props.stores.appState.userId
-        }
-      }),
-      props: ({ data, ownProps }) => ({
-        user: data && (data.getUser || {}) ,
-        commentEventId: ownProps.navigation.getParam('id'),
-        ...ownProps
-      })
-    }),
     graphql(gql(getEventComments), {
       alias: 'withGetEventCommentsScreenContainer',
       options: props => ({
@@ -56,6 +42,7 @@ export default inject("stores")(observer(
           )
         }),
         isOwner: data && data.getEventComments&& data.getEventComments.isOwner,
+        commentEventId: ownProps.navigation.getParam('id'),
         commentScheduleId: data && data.getEventComments && data.getEventComments.schedule && data.getEventComments.schedule.id,
         commentsCount: data && data.getEventComments && data.getEventComments.commentsCount,
         comments: (data && data.getEventComments && data.getEventComments.comments && data.getEventComments.comments.items) || [],
