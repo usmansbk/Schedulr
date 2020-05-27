@@ -97,28 +97,3 @@ class Item extends React.Component {
 }
 
 export default inject("stores")(observer(Item));
-            {/* <View style={styles.footer}>
-              <View style={styles.actions}>
-                {isOwner && <IconButton
-                  color={colors.light_gray_3}
-                  icon={() => <Icon
-                    size={16}
-                    name="trash"
-                    color={colors.light_gray_3}
-                  />}
-                  onPress={this._onDelete}
-                />}
-                {
-                  false && (
-                    <IconButton
-                      icon={() => <Icon
-                        size={16}
-                        name="reply"
-                        color={colors.light_gray_3}
-                      />}
-                      onPress={this._onReply}
-                    />
-                  )
-                }
-              </View>
-            </View> */}
