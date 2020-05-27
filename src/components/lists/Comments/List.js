@@ -43,7 +43,6 @@ class List extends React.Component {
         navigateToProfile={this.props.navigateToProfile}
         navigateToViewEmbed={this.props.navigateToViewEmbed}
         focusInput={this.props.focusInput}
-        blurInput={this.props.blurInput}
       />
     );
   }

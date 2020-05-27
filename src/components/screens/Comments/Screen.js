@@ -15,7 +15,10 @@ class Screen extends React.Component {
   _inputRef = ref => this.inputRef = ref ;
   _listRef = ref => this.listRef = ref; 
 
-  focusCommentInput = () => this.inputRef && this.inputRef.getWrappedInstance().focusInput();
+  focusCommentInput = () => {
+    this.blurCommentInput();
+    this.inputRef && this.inputRef.getWrappedInstance().focusInput();
+  };
 
   blurCommentInput = () => this.inputRef && this.inputRef.getWrappedInstance().blurInput();
 
@@ -103,7 +106,6 @@ class Screen extends React.Component {
           navigateToProfile={this._navigateToProfile}
           navigateToViewEmbed={this._navigateToViewEmbed}
           focusInput={this.focusCommentInput}
-          blurInput={this.blurCommentInput}
         />
         <CommentForm
           commentEventId={commentEventId}

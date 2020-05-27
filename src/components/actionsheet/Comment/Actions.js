@@ -16,7 +16,7 @@ export default class CommentActions extends React.Component {
         }
         break;
       case "reply":
-        this.props.onReply();
+        setTimeout(this.props.onReply, 500); // prevent actionsheet from distracting keyboard
         break;
     }
   }
