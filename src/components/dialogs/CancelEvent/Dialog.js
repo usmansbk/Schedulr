@@ -64,7 +64,7 @@ class CancelEvent extends React.Component {
     return (
       <RBSheet
         ref={this._confirmRef}
-        height={300}
+        height={date ? 300 : 250}
         closeOnDragDown
         customStyles={{
           container: styles.container
@@ -75,19 +75,21 @@ class CancelEvent extends React.Component {
             <Text style={styles.title}>{I18n.get("DIALOG_cancelEvent")}</Text>
           </View>
           {
-            Boolean(date) && (
+            Boolean(date) ? (
               <View style={styles.body}>
                 <RadioButton.Group onValueChange={this._toggleButton} value={checked}>
                   <View style={styles.row}>
-                    <Text style={styles.boldMessage}>{I18n.get("DIALOG_onlyThisEvent")}</Text>
+                    <Text style={styles.message}>{I18n.get("DIALOG_onlyThisEvent")}</Text>
                     <RadioButton value={SINGLE_EVENT} />
                   </View>
                   <View style={styles.row}>
-                    <Text style={styles.boldMessage}>{I18n.get("DIALOG_allOfThisEvent")}</Text>
+                    <Text style={styles.message}>{I18n.get("DIALOG_allOfThisEvent")}</Text>
                     <RadioButton value={ALL_EVENTS} />
                   </View>
                 </RadioButton.Group>
               </View>
+            ) : (
+              <Text style={styles.message}>{I18n.get("DIALOG_cancelWarning")}</Text>
             )
           }
           <View style={styles.footer}>

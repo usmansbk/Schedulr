@@ -33,9 +33,10 @@ class Form extends React.Component {
     }
   };
 
+  _alertRef = ref => this.alertRef = ref;
+
   state = {
     showInfoAlert: false,
-    showPrivacyAlert: false,
     showLocationPicker: false,
     display: false
   };
@@ -48,12 +49,10 @@ class Form extends React.Component {
       this.props.stores.locationStore.fetchLocation, 0);
   };
 
-  _showInfoAlert = () => this.setState({ showInfoAlert: true });
-  _showPrivacyAlert = () => this.setState({ showPrivacyAlert: true });
+  _showInfoAlert = () => this.alertRef.open();
   _hideDialog = () => {
     this.setState({
       showInfoAlert: false,
-      showPrivacyAlert: false,
       showLocationPicker: false,
     });
   };
@@ -70,7 +69,6 @@ class Form extends React.Component {
 
     initialValues.location = initialValues.location ? initialValues.location : stores.locationStore.location;
     const styles = stores.appStyles.scheduleForm;
-    const navButtonColor = stores.themeStore.colors.primary;
     
     return (
       <Formik
@@ -143,8 +141,6 @@ class Form extends React.Component {
                   <Switch
                     value={values.isPublic}
                     onValueChange={(value) => {
-                      const isPublic = values.isPublic;
-                      if (isPublic) this._showPrivacyAlert();
                       setFieldValue('isPublic', value);
                     }}
                   />
@@ -189,14 +185,8 @@ class Form extends React.Component {
           <Alert
             title={I18n.get("ALERT_whatIsASchedule")}
             message={I18n.get("ALERT_whatIsAScheduleA2")}
-            visible={this.state.showInfoAlert}
-            handleDismiss={this._hideDialog}
-          />
-          <Alert
-            title={I18n.get("ALERT_privateSchedule")}
-            message={I18n.get("ALERT_privateScheduleA")}
-            visible={this.state.showPrivacyAlert}
-            handleDismiss={this._hideDialog}
+            ref={this._alertRef}
+            alert
           />
           </>
         )}
