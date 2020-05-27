@@ -13,12 +13,12 @@ class ActionSheet extends React.Component {
 
   _actionSheet = ref => this.actionSheet = ref;
   open = () => this.actionSheet.open();
+  close = () => this.actionSheet.close();
 
-  _cancel = () => this.actionSheet.close();
   _onPress = (value) =>  {
     this.props.onPress(value);
     if (this.props.dismissOnPress) {
-      this._cancel();
+      this.close();
     }
   };
 
@@ -36,7 +36,7 @@ class ActionSheet extends React.Component {
       >
         <View style={styles.content}>
           <View style={[styles.header, styles.row]}>
-            <TouchableOpacity onPress={this._cancel}>
+            <TouchableOpacity onPress={this.close}>
               <Icon name="back" size={28} style={styles.icon} />
             </TouchableOpacity>
             <Text numberOfLines={1} ellipsizeMode="tail" style={styles.title}>{title}</Text>

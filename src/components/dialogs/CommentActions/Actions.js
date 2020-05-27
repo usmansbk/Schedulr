@@ -5,7 +5,7 @@ import ActionSheet from 'components/common/ActionSheet';
 export default class CommentActions extends React.Component {
   _actionsheetRef = ref => this.actionsheet = ref;
   open = () => this.actionsheet.open();
-  cancel = () => this.actionsheet.close();
+  close = () => this.actionsheet.close();
   _onPress = value => {
     switch(value) {
       case "delete":
@@ -15,11 +15,14 @@ export default class CommentActions extends React.Component {
           this.props.stores.appState.removeKeysFromStorage(keys);
         }
         break;
+      case "reply":
+        this.props.onReply();
+        break;
     }
   }
 
   render() {
-    const { title, isOwner, onPress } = this.props;
+    const { title, isOwner } = this.props;
     const options = [
       {
         value: "reply",
