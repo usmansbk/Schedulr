@@ -29,12 +29,11 @@ const { AVATAR_SIZE } = schedule_info;
 
 class Info extends React.Component {
   state = {
-    showAboutPrivacyAlert: false,
     display: false
   };
 
-  _showAboutPrivacyAlert = () => this.setState({ showAboutPrivacyAlert: true });
-  _hideAlert = () => this.setState({ showAboutPrivacyAlert: false });
+  _aboutPrivacyRef = ref => this.aboutPrivacyRef = ref;
+  _showAboutPrivacyAlert = () => this.aboutPrivacyRef.open();
   _onDelete = () => this.props.handleSelectMenu('delete', this.props.schedule.picture && this.props.schedule.picture.key);
   _onEdit = () => this.props.handleSelectMenu('edit');
   _onArchive = () => this.props.handleSelectMenu(this.props.schedule.status === SCHEDULE_CLOSED ? 'open' : 'close');
@@ -49,8 +48,7 @@ class Info extends React.Component {
     nextState.display !== this.state.display ||
     (nextProps.schedule.updatedAt !== this.props.schedule.updatedAt) ||
     (nextProps.schedule.isFollowing !== this.props.schedule.isFollowing) ||
-    nextProps.loading !== this.props.loading ||
-    nextState.showAboutPrivacyAlert !== this.state.showAboutPrivacyAlert
+    nextProps.loading !== this.props.loading
   );
 
   render() {
@@ -97,7 +95,6 @@ class Info extends React.Component {
     const ownerId = author && author.id;
     const ownerName = author && author.name;
     const isClosed = status === SCHEDULE_CLOSED;
-    const pictureUrl = author && (author.avatar ? getImageUrl(author.avatar) : author.pictureUrl);
 
     const appStyles = stores.appStyles.styles;
     const styles = stores.appStyles.scheduleInfo;
@@ -260,10 +257,9 @@ class Info extends React.Component {
           </View>
       </ScrollView>
       <Alert
-        visible={this.state.showAboutPrivacyAlert}
         title={I18n.get(`SCHEDULE_${isPublic ? "public" : "private"}`)}
         message={I18n.get(`ALERT_${isPublic ? 'public' : 'private'}ScheduleA`)}
-        handleDismiss={this._hideAlert}
+        ref={this._aboutPrivacyRef}
       />
       {
         !isOwner && (<FollowButton

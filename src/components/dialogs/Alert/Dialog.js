@@ -1,46 +1,29 @@
 import React from 'react';
-import {
-  Button,
-  Caption,
-  Dialog,
-  Portal,
-} from 'react-native-paper';
 import { inject, observer } from 'mobx-react';
-import { I18n } from 'aws-amplify';
+import Confirm from 'components/common/Confirm';
 
-export default inject('stores')(observer(
-  ({
-    loading,
-    visible,
-    handleDismiss,
-    title,
-    message,
-    cancelText=I18n.get('BUTTON_dismiss'),
-    confirmText=I18n.get('BUTTON_continue'),
-    onConfirm,
-    stores,
-    dismissable=true
-  }) => (
-    <Portal>
-      <Dialog
-        dismissable={dismissable}
-        style={{backgroundColor: stores.themeStore.colors.bg}}
-        visible={visible}
-        onDismiss={handleDismiss}
-      >
-        <Dialog.Title>{title}</Dialog.Title>
-        {
-          !!message && (
-            <Dialog.Content>
-              <Caption>{message}</Caption>
-            </Dialog.Content>
-          )
-        }
-        <Dialog.Actions>
-          <Button onPress={handleDismiss}>{cancelText}</Button>
-          { onConfirm && <Button disabled={loading} loading={loading} onPress={onConfirm}>{confirmText}</Button> }
-        </Dialog.Actions>
-      </Dialog>
-    </Portal>
-  )
-));
+class Alert extends React.Component {
+  _confirmRef = ref => this.confirmRef = ref;
+
+  open = () => this.confirmRef.open();
+
+  _dismiss = () => this.confirmRef.close();
+
+  render() {
+    const {
+      title,
+      message,
+    } = this.props;
+    return (
+      <Confirm
+        title={title}
+        message={message}
+        ref={this._confirmRef}
+        onConfirm={this._dismiss}
+        alert
+      />
+    );
+  }
+}
+
+export default inject('stores')(observer(Alert));

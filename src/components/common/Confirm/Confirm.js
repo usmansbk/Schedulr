@@ -14,7 +14,9 @@ class Confirm extends React.Component {
 
   _onConfirm = () => {
     this._cancel();
-    setTimeout(this.props.onConfirm, 200); // 200ms allows the sheet to close
+    if (!this.props.alert) {
+      setTimeout(this.props.onConfirm, 200); // 200ms allows the sheet to close
+    }
   };
 
   _refRBSheet = ref => this.RBSheet = ref;
@@ -24,7 +26,7 @@ class Confirm extends React.Component {
       message,
       confirmText=I18n.get("BUTTON_confirm"),
       stores,
-      sensitive,
+      alert
     } = this.props;
     const styles = stores.appStyles.sheet;
     return (
@@ -45,8 +47,8 @@ class Confirm extends React.Component {
             <Text style={styles.message}>{message}</Text>
           </View>
           <View style={styles.footer}>
-            <Button onPress={this._cancel}>{I18n.get("BUTTON_cancel")}</Button>
-            <Button danger onPress={this._onConfirm}>{confirmText}</Button>
+            {!alert && <Button onPress={this._cancel}>{I18n.get("BUTTON_cancel")}</Button>}
+            <Button danger={!alert} onPress={this._onConfirm}>{alert ? I18n.get("BUTTON_ok") : confirmText}</Button>
           </View>
         </View>
       </RBSheet>
