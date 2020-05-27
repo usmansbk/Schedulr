@@ -6,13 +6,24 @@ import Icon from '../Icon';
 import colors from 'config/colors';
 
 export default class ActionSheet extends React.Component {
+  static defaultProps = {
+    dismissOnPress: true,
+    onPress: () => null,
+  };
+
   _actionSheet = ref => this.actionSheet = ref;
   open = () => this.actionSheet.open();
 
   _cancel = () => this.actionSheet.close();
+  _onPress = (value) =>  {
+    this.props.onPress(value);
+    if (this.props.dismissOnPress) {
+      this._cancel();
+    }
+  };
 
   render() {
-    const { title, options=[], onPress } = this.props;
+    const { title, options=[] } = this.props;
     return (
       <RBSheet
         ref={this._actionSheet}
@@ -32,7 +43,7 @@ export default class ActionSheet extends React.Component {
           <View style={styles.body}>
             {
               options.map(option => (
-                <TouchableOpacity style={styles.option} onPress={() => onPress(option.value)}>
+                <TouchableOpacity style={styles.option} onPress={() => this._onPress(option.value)}>
                   <View style={styles.row}>
                     {option.icon ? <Icon style={styles.icon} name={option.icon} size={24} /> : null}
                     <Text style={styles.label}>{option.label}</Text>
