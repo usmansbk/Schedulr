@@ -1,5 +1,5 @@
 import React from 'react';
-import ActionSheet from 'react-native-actionsheet';
+import ActionSheet from 'components/common/ActionSheet';
 import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
 import {
@@ -13,31 +13,33 @@ import {
 
 class FilterAction extends React.Component {
   showActionSheet = () => {
-    this.actionSheet.show();
+    this.actionSheet.open();
   };
+
+  _actionSheetRef = ref => this.actionSheet = ref
   
   _handleActionSheet = (index) => {
     let filter;
     switch (index) {
-      case 0:
+      case "all":
         filter = 'all';
         break;
-      case 1:
+      case EVENT_TYPE:
         filter = EVENT_TYPE;
         break;
-      case 2:
+      case SCHEDULE_TYPE:
         filter = SCHEDULE_TYPE;
         break;
-      case 3:
+      case FOLLOW_TYPE:
         filter = FOLLOW_TYPE;
         break;
-      case 4:
+      case BOOKMARK_TYPE:
         filter = BOOKMARK_TYPE;
         break;
-      case 5:
+      case COMMENT_TYPE:
         filter = COMMENT_TYPE;
         break;
-      case 6:
+      case "clear":
         filter = 'clear';
         break;
     }
@@ -54,27 +56,21 @@ class FilterAction extends React.Component {
     } = this.props;
 
     const options = [
-      I18n.get('ACTION_all'),
-      I18n.get('ACTION_events'),
-      I18n.get('ACTION_schedules'),
-      I18n.get('ACTION_followers'),
-      I18n.get('ACTION_bookmarks'),
-      I18n.get('ACTION_comments'),
-      I18n.get('ACTION_clearAll'),
-      I18n.get('BUTTON_back')
+      { label: I18n.get('ACTION_all'), value: "all", icon: "bells" },
+      { label: I18n.get('ACTION_events'), value: EVENT_TYPE, icon: "calendar" },
+      { label: I18n.get('ACTION_schedules'), value: SCHEDULE_TYPE, icon: "pin" },
+      { label: I18n.get('ACTION_followers'), value: FOLLOW_TYPE, icon: "addusergroup" },
+      { label: I18n.get('ACTION_bookmarks'), value: BOOKMARK_TYPE, icon: "star" },
+      { label: I18n.get('ACTION_comments'), value: COMMENT_TYPE, icon: "comment" },
+      { label: I18n.get('ACTION_clearAll'), value: "clear", icon: "check" }
     ];
    
-    const cancelButtonIndex = options.length - 1;
-    const destructiveButtonIndex = cancelButtonIndex - 1;
     return (
       <ActionSheet
-        ref={ref => this.actionSheet = ref}
+        ref={this._actionSheetRef}
         title={I18n.get('ACTION_filterByType')(stores.notificationsStore.filter)}
         options={options}
-        destructiveButtonIndex={destructiveButtonIndex}
-        cancelButtonIndex={cancelButtonIndex}
         onPress={this._handleActionSheet}
-        styles={stores.appStyles.actionsheet}
       />
     )
   }
