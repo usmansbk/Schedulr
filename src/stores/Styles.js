@@ -938,11 +938,11 @@ export default class AppStyles {
     return StyleSheet.create({
       list: {
         backgroundColor: colors.bg,
-        // paddingVertical: 8,
       },
       contentContainer: {
         flexGrow: 1,
-        backgroundColor: colors.bg
+        backgroundColor: colors.bg,
+        padding: 16
       },
       empty: {
         flex: 1,
@@ -970,9 +970,10 @@ export default class AppStyles {
         textAlign: 'center'
       },
       itemContainer: {
-        backgroundColor: colors.bg,
-        maxWidth: WIDTH,
-        minWidth: WIDTH,
+        backgroundColor: colors.light_gray,
+        borderRadius: 8
+        // maxWidth: WIDTH,
+        // minWidth: WIDTH,
       },
       unseen: {
         backgroundColor: colors.light_gray_4
@@ -982,6 +983,7 @@ export default class AppStyles {
         paddingVertical: 4,
         paddingHorizontal: 8,
         flexDirection: 'row',
+        justifyContent: 'flex-start'
       },
       messageItemContent: {
         paddingVertical: 4,
