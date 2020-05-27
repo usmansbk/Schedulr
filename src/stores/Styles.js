@@ -1178,6 +1178,7 @@ export default class AppStyles {
         backgroundColor: colors.bg
       },
       itemContainer: {
+        flex: 1,
         flexDirection: 'row',
         backgroundColor: colors.bg,
         padding: 8
@@ -1224,6 +1225,19 @@ export default class AppStyles {
       actions: {
         // justifyContent: 'flex-end',
         flexDirection: 'row',
+      },
+      empty: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+      },
+      emptyTitle: {
+        fontSize: 25,
+        color: colors.light_gray_3,
+        textAlign: 'center'
+      },
+      paragraph: {
+        textAlign: 'center'
       },
     });    
   }
