@@ -17,14 +17,9 @@ export default inject("stores")(observer(
           input
         },
         update: (cache, { data: { createComment } }) => (
-          updateApolloCache(
-            cache,
-            createComment,
-            ADD,
-            {
-              commentEventId: ownProps.commentEventId
-            }
-          )
+          updateApolloCache(cache, createComment, ADD, {
+            commentEventId: ownProps.commentEventId
+          })
         ),
         optimisticResponse: buildOptimisticResponse({
           input,
