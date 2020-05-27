@@ -28,6 +28,12 @@ class CommentInput extends React.Component {
     total: 0,
     loaded: 0
   };
+
+  _textInputRef = ref => this.textInputRef = ref; 
+
+  focusInput = () => this.textInputRef && this.textInputRef.focus();
+
+  blurInput = () => this.textInputRef && this.textInputRef.blur();
   
   _openPicker = async () => {
     try {
@@ -117,10 +123,6 @@ class CommentInput extends React.Component {
       snackbar(I18n.get('COMMENT_tooLong'));
     }
   };
-
-  focusInput = () => this._textInputRef && this._textInputRef.focus();
-
-  blurInput = () => this._textInputRef && this._textInputRef.blur();
   
   _cancelUpload = () => this.setState({ uploads: [] });
 
@@ -182,7 +184,7 @@ class CommentInput extends React.Component {
           />
           <View style={styles.input}>
             <TextInput
-              ref={textInputRef => this._textInputRef = textInputRef}
+              ref={this._textInputRef}
               placeholder={I18n.get("PLACEHOLDER_aboutThisEvent")}
               value={message}
               multiline

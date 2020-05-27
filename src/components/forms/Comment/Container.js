@@ -5,6 +5,11 @@ import Form from './Form';
 
 export default class Container extends React.Component {
 
+  _formRef = ref => this.formRef = ref;
+
+  focusInput = () => this.formRef && this.formRef.focusInput();
+  blurInput = () => this.formRef && this.formRef.blurInput();
+
   _onSubmit = (message, attachment) => {
     const hash = uuidv5(this.props.stores.appState.userId, uuidv5.DNS);
     const sort = shortid.generate();
@@ -32,6 +37,7 @@ export default class Container extends React.Component {
         isOwner={isOwner}
         disabled={disabled}
         handleSubmit={this._onSubmit}
+        ref={this._formRef}
       />
     );
   }
