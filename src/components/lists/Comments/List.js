@@ -19,13 +19,11 @@ class List extends React.Component {
     onRefresh: () => null
   };
   _keyExtractor = (item) => String(item.id);
-  _onLongPress = () => this.props.openOptions();
   _renderItem = ({ item: {
       id,
       content,
       attachment,
       author,
-      to,
       isOwner,
       createdAt,
     }
@@ -42,10 +40,8 @@ class List extends React.Component {
         createdAt={createdAt}
         commentEventId={this.props.id}
         timeAgo={calendarTime(createdAt)}
-        toCommentId={to && to.id}
         navigateToProfile={this.props.navigateToProfile}
         navigateToViewEmbed={this.props.navigateToViewEmbed}
-        onLongPress={this._onLongPress}
       />
     );
   }

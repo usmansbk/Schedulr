@@ -1183,7 +1183,8 @@ export default class AppStyles {
         padding: 8
       },
       itemLeft: {
-        padding: 8
+        padding: 8,
+        alignSelf: 'flex-start'
       },
       itemContent: {
         padding: 4,
