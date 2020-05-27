@@ -1,10 +1,11 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { View } from 'react-native';
 import { inject, observer } from 'mobx-react';
-import { Text, Button, RadioButton } from 'react-native-paper';
+import { Text, RadioButton } from 'react-native-paper';
 import { I18n } from 'aws-amplify';
 import { SINGLE_EVENT, ALL_EVENTS } from 'lib/constants';
 import RBSheet from 'react-native-raw-bottom-sheet';
+import Button from 'components/common/Button';
 
 class CancelEvent extends React.Component {
   state = {
@@ -77,11 +78,11 @@ class CancelEvent extends React.Component {
               <View style={styles.body}>
                 <RadioButton.Group onValueChange={this._toggleButton} value={checked}>
                   <View style={styles.row}>
-                    <Text style={styles.message}>{I18n.get("DIALOG_onlyThisEvent")}</Text>
+                    <Text style={styles.boldMessage}>{I18n.get("DIALOG_onlyThisEvent")}</Text>
                     <RadioButton value={SINGLE_EVENT} />
                   </View>
                   <View style={styles.row}>
-                    <Text style={styles.message}>{I18n.get("DIALOG_allOfThisEvent")}</Text>
+                    <Text style={styles.boldMessage}>{I18n.get("DIALOG_allOfThisEvent")}</Text>
                     <RadioButton value={ALL_EVENTS} />
                   </View>
                 </RadioButton.Group>
@@ -90,7 +91,7 @@ class CancelEvent extends React.Component {
           }
           <View style={styles.footer}>
             <Button disabled={loading} onPress={this._handleDismiss}>{I18n.get("BUTTON_dismiss")}</Button>
-            <Button disabled={loading} loading={loading} onPress={this._onContinue}>{I18n.get("BUTTON_continue")}</Button>
+            <Button danger disabled={loading} loading={loading} onPress={this._onContinue}>{I18n.get("BUTTON_continue")}</Button>
           </View>
         </View>
       </RBSheet>

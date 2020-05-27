@@ -5,7 +5,6 @@ import {
 } from 'react-native';
 import isEqual from 'lodash.isequal';
 import {
-  Button,
   TextInput,
   Text,
   HelperText,
@@ -13,6 +12,7 @@ import {
   Appbar,
   Caption
 } from 'react-native-paper';
+import Button from 'components/common/Button';
 import Alert from 'components/dialogs/Alert';
 import LocationPicker from 'components/common/LocationPicker';
 import { PickerInput, CustomPicker } from 'components/common/Picker';

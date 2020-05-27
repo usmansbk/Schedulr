@@ -44,6 +44,7 @@ class DeleteSchedule extends React.Component {
         message={I18n.get("DIALOG_deleteScheduleWarning")}
         confirmText={I18n.get("BUTTON_delete")}
         onConfirm={this._onContinue}
+        sensitive
       />
     );
   }

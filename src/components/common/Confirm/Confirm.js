@@ -1,9 +1,10 @@
 import React from 'react';
 import { View } from 'react-native';
-import { Text, Button } from 'react-native-paper';
+import { Text } from 'react-native-paper';
 import { I18n } from 'aws-amplify';
 import RBSheet from 'react-native-raw-bottom-sheet';
 import { inject, observer } from 'mobx-react';
+import Button from '../Button';
 
 class Confirm extends React.Component {
 
@@ -22,7 +23,8 @@ class Confirm extends React.Component {
       title,
       message,
       confirmText=I18n.get("BUTTON_confirm"),
-      stores
+      stores,
+      sensitive,
     } = this.props;
     const styles = stores.appStyles.sheet;
     return (
@@ -44,7 +46,7 @@ class Confirm extends React.Component {
           </View>
           <View style={styles.footer}>
             <Button onPress={this._cancel}>{I18n.get("BUTTON_cancel")}</Button>
-            <Button onPress={this._onConfirm}>{confirmText}</Button>
+            <Button danger onPress={this._onConfirm}>{confirmText}</Button>
           </View>
         </View>
       </RBSheet>

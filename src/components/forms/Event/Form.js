@@ -6,7 +6,6 @@ import {
   ScrollView,
 } from 'react-native';
 import {
-  Button,
   TextInput,
   Text,
   HelperText,
@@ -16,6 +15,7 @@ import {
 import { Formik } from 'formik';
 import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
+import Button from 'components/common/Button';
 import Picker, { CustomPicker } from 'components/common/Picker';
 import DateTimePicker from 'components/common/DateTimePicker';
 import Suspense from 'components/common/Suspense';
@@ -107,18 +107,13 @@ class Form extends React.Component {
           <>
           <Appbar.Header style={styles.header}>
             <Button
-              mode="outlined"
               onPress={handleCancel}
               color={navButtonColor}
-              uppercase
             >{I18n.get("BUTTON_cancel")}</Button>
             <Button
               loading={isSubmitting}
               disabled={!isNew && (!isValid || isSubmitting || isEqual(initialValues, values))}
-              mode="outlined"
-              color={navButtonColor}
               onPress={submitForm}
-              uppercase
             >{ edit ? I18n.get("BUTTON_save") : I18n.get("BUTTON_create")}</Button>
           </Appbar.Header>
           <ScrollView

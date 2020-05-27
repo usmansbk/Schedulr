@@ -49,6 +49,12 @@ export default class AppStyles {
         textAlign: 'center',
         fontSize: 16
       },
+      boldMessage: {
+        textAlign: 'center',
+        fontSize: 16,
+        fontWeight: 'bold',
+        color: colors.light_gray_3
+      },
       footer: {
         flexDirection: 'row',
         justifyContent: 'space-between',
