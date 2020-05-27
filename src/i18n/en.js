@@ -168,6 +168,7 @@ export default {
   BUTTON_turnOnLocation: "Turn on",
   BUTTON_confirm: "Confirm",
   BUTTON_delete: "DELETE",
+  BUTTON_logout: "LOGOUT",
 
   ALERT_repeat: "Repeat",
   ALERT_duration: "Duration",

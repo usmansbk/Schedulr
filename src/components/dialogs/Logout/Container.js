@@ -1,5 +1,5 @@
 import React from 'react';
-import { withOAuth } from 'aws-amplify-react-native';
+import { Auth } from 'aws-amplify';
 import { withNavigation } from 'react-navigation';
 import { inject, observer } from 'mobx-react';
 import { withApollo } from 'react-apollo';
@@ -11,33 +11,31 @@ class Container extends React.Component {
     loading: false,
   };
 
+  _confirmRef = ref => this.confirmRef = ref;
+  open = () => this.confirmRef.open();
+
   _signOut = async () => {
     this.setState({ loading: true });
     try {
       await this.props.client.clearStore();
-      await this.props.signOut();
+      await Auth.signOut();
       this.props.stores.reset();
     } catch(error) {
       logger.logError(error);
     }
-    this._handleDimiss();
     this.props.navigation.navigate('Auth');
   };
-
-  _handleDimiss = () => this.props.handleDismiss();
 
   render() {
     return (
       <Dialog
-        visible={this.props.visible}
-        loading={this.state.loading}
         handleLogout={this._signOut}
-        handleDismiss={this._handleDimiss}
+        ref={this._confirmRef}
       />
     );
   }
 }
 
-const withStores = inject("stores")(observer(withApollo(withOAuth(Container))));
+const withStores = inject("stores")(observer(withApollo(Container, { withRef: true})));
 
 export default withNavigation(withStores);

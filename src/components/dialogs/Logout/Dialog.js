@@ -1,37 +1,23 @@
 import React from 'react';
-import {
-  Button,
-  Paragraph,
-  Dialog,
-  Portal,
-} from 'react-native-paper';
 import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
+import Confirm from 'components/common/Confirm';
 
-export default inject('stores')(observer(
-  ({
-    visible,
-    handleDismiss,
-    loading,
-    handleLogout,
-    stores
-  }) => (
-    <Portal>
-      <Dialog
-        style={{backgroundColor: stores.themeStore.colors.bg}}
-        dismissable={!loading}
-        visible={visible}
-        onDismiss={handleDismiss}
-      >
-        <Dialog.Title>{I18n.get("SIGN_OUT_title")}</Dialog.Title>
-        <Dialog.Content>
-          <Paragraph>{I18n.get("SIGN_OUT_message")}</Paragraph>
-        </Dialog.Content>
-        <Dialog.Actions>
-          <Button disabled={loading} onPress={handleDismiss}>{I18n.get("BUTTON_dismiss")}</Button>
-          <Button loading={loading} disabled={loading} onPress={handleLogout}>{I18n.get("BUTTON_continue")}</Button>
-        </Dialog.Actions>
-      </Dialog>
-    </Portal>
-  )
-));
+class Logout extends React.Component {
+  _confirmRef = ref => this.confirmRef = ref;
+  open = () => this.confirmRef.open();
+
+  render() {
+    return (
+      <Confirm
+        title={I18n.get("SIGN_OUT_title")}
+        message={I18n.get("SIGN_OUT_message")}
+        onConfirm={this.props.handleLogout}
+        confirmText={I18n.get("BUTTON_logout")}
+        ref={this._confirmRef}
+      />
+    );
+  }
+}
+
+export default inject("stores")(observer(Logout));

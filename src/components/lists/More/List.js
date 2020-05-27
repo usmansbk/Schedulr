@@ -15,14 +15,14 @@ import { shareApp } from 'helpers/share';
 
 class List extends React.Component {
   state = {
-    visible: false,
-    showSyncAlert: false,
     showImportDialog: false
   };
-  _openDialog = () => this.setState({ visible: true });
+
+  _syncRef = ref => this.syncRef = ref;
+  _logoutRef = ref => this.logoutRef = ref;
+  _logout = () => this.logoutRef.getWrappedInstance().open();
+
   _hideDialog = () => this.setState({
-    visible: false,
-    showSyncAlert: false,
     showImportDialog: false
   });
   _onPressHeader = () => {
@@ -45,7 +45,7 @@ class List extends React.Component {
         shareApp();
         break;
       case 'sync':
-        this.setState({ showSyncAlert: true });
+        this.syncRef.getWrappedInstance().open();
         break;
       case 'import-calendar':
         this.setState({ showImportDialog: true });
@@ -56,7 +56,7 @@ class List extends React.Component {
   };
   _keyExtractor = (item) => item.id;
   _renderHeader = () => <Header onPress={this._onPressHeader} />;
-  _renderFooter = () => <Footer openDialog={this._openDialog} />;
+  _renderFooter = () => <Footer openDialog={this._logout} />;
   _renderSeparator = () => <Separator />;
   _renderItem = ({
     item: {
@@ -89,9 +89,8 @@ class List extends React.Component {
           ListHeaderComponent={this._renderHeader}
         />
         <LogoutDialog
-          visible={this.state.visible}
-          handleDismiss={this._hideDialog}
           onConfirm={this._hideDialog}
+          onRef={this._logoutRef}
         />
         <CalendarDialog
           visible={this.state.showImportDialog}
@@ -100,9 +99,8 @@ class List extends React.Component {
         />
         <SyncDialog
           id={this.props.stores.appState.userId}
-          visible={this.state.showSyncAlert}
-          handleDismiss={this._hideDialog}
           onConfirm={this._hideDialog}
+          ref={this._syncRef}
         />
       </>
     );

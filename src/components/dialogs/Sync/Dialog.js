@@ -1,7 +1,7 @@
 import React from 'react';
-import Alert from 'components/dialogs/Alert';
 import { I18n } from 'aws-amplify';
 import { withApollo } from 'react-apollo';
+import Confirm from 'components/common/Confirm';
 import gql from 'graphql-tag';
 import { getUserData } from 'api/queries';
 import { baseEventsFilter } from 'api/filters';
@@ -13,9 +13,8 @@ class Dialog extends React.Component {
     loading: false
   };
 
-  _handleDismiss = () => {
-    this.setState({ loading: false }, this.props.handleDismiss);
-  };
+  open = () => this.confirmRef.open();
+  _confirmRef = ref => this.confirmRef = ref;
 
   _onConfirm = async () => {
     const variables = {
@@ -40,17 +39,14 @@ class Dialog extends React.Component {
 
   render() {
     return (
-      <Alert
-        visible={this.props.visible}
-        onConfirm={this._onConfirm}
-        handleDismiss={this._handleDismiss}
+      <Confirm
         title={I18n.get("MORE_sync")}
         message={I18n.get("SYNC_message")}
-        loading={this.state.loading}
-        dismissable={!this.state.loading}
+        onConfirm={this._onConfirm}
+        ref={this._confirmRef}
       />
     );
   }
 }
 
-export default withApollo(Dialog);
+export default withApollo(Dialog, { withRef: true });
