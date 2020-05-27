@@ -107,6 +107,7 @@ class Form extends React.Component {
           <>
           <Appbar.Header style={styles.header}>
             <Button
+              danger
               onPress={handleCancel}
               color={navButtonColor}
             >{I18n.get("BUTTON_cancel")}</Button>

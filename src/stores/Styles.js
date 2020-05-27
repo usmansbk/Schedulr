@@ -433,7 +433,7 @@ export default class AppStyles {
         elevation: 0
       },
       form: {
-        paddingHorizontal: 16,
+        padding: 16,
         marginBottom: 10
       },
       switchButton: {
@@ -479,7 +479,7 @@ export default class AppStyles {
         justifyContent: "space-between"
       },
       form: {
-        paddingHorizontal: 16,
+        padding: 16,
         marginBottom: 10
       },
       text: {

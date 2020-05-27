@@ -5,13 +5,13 @@ import {
   ScrollView,
 } from 'react-native';
 import {
-  Button,
   TextInput,
   HelperText,
   Appbar,
 } from 'react-native-paper';
 import { Formik } from 'formik';
 import Suspense from 'components/common/Suspense';
+import Button from 'components/common/Button';
 import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
 import schema  from './schema';
@@ -72,18 +72,13 @@ class Form extends React.Component {
           <>
           <Appbar.Header style={styles.header}>
             <Button
-              mode="outlined"
+              danger
               onPress={handleCancel}
-              color={navButtonColor}
-              uppercase
             >{I18n.get("BUTTON_cancel")}</Button>
             <Button
               loading={isSubmitting}
               disabled={(!isValid || isSubmitting || isEqual(initialValues, values))}
-              mode="outlined"
-              color={navButtonColor}
               onPress={submitForm}
-              uppercase
             >{I18n.get("BUTTON_save")}</Button>
           </Appbar.Header>
           <ScrollView

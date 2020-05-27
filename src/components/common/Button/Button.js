@@ -7,7 +7,6 @@ export default ({
   onPress,
   disabled,
   danger,
-  rounded,
   children,
   size=48,
   uppercase=true
