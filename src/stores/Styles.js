@@ -971,7 +971,8 @@ export default class AppStyles {
       },
       itemContainer: {
         backgroundColor: colors.light_gray,
-        borderRadius: 8
+        borderRadius: 8,
+        marginVertical: 8
         // maxWidth: WIDTH,
         // minWidth: WIDTH,
       },
