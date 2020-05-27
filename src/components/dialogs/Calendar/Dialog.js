@@ -1,12 +1,12 @@
 import React from 'react';
 import { FlatList } from 'react-native';
 import {
-  Button,
   Dialog,
   Portal,
   List,
   Switch
 } from 'react-native-paper';
+import Button from 'components/common/Button';
 import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
 import snackbar from 'helpers/snackbar';
@@ -75,7 +75,7 @@ class CalendarDialog extends React.Component {
           {
             Boolean(allCalendars.length) && (
               <Dialog.Actions>
-                <Button onPress={this._dimiss}>{I18n.get('BUTTON_dismiss')}</Button>
+                <Button danger onPress={this._dimiss}>{I18n.get('BUTTON_dismiss')}</Button>
                 <Button onPress={this._import}>{I18n.get('BUTTON_import')}</Button>
               </Dialog.Actions>
             )

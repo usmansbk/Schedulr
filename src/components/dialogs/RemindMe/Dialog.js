@@ -1,12 +1,12 @@
 import React from 'react';
 import { FlatList } from 'react-native';
 import {
-  Button,
   Dialog,
   Portal,
   List,
   Switch
 } from 'react-native-paper';
+import Button from 'components/common/Button';
 import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
 import items from './items';
