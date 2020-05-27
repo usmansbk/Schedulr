@@ -19,23 +19,19 @@ class Item extends React.Component {
   };
 
   _commentActions = ref => this.commentActions = ref;
-  _showOptions = () => this.commentActions.open();
+  _showOptions = () => {
+    this.commentActions.getWrappedInstance().open();
+  };
 
   _navigateToProfile = () => this.props.navigateToProfile(this.props.authorId);
   _navigateToViewEmbed = (params) => this.props.navigateToViewEmbed(params);
 
-  _onLongPress = () => this.props.onLongPress();
-  _onDelete = () => {
-    let keys = [];
-    if (this.props.attachment) {
-      keys = this.props.attachment.map(file => file.key);
-    }
-    this.props.onDelete(this.props.id, keys);
-  };
   shouldComponentUpdate = nextProps => this.props.timeAgo !== nextProps.timeAgo;
 
   render() {
     const {
+      id,
+      commentEventId,
       authorName,
       content,
       isOwner,
@@ -87,9 +83,12 @@ class Item extends React.Component {
           </View>
         </View>
         <Actions
+          id={id}
+          commentEventId={commentEventId}
           title={authorName}
           ref={this._commentActions}
           isOwner={isOwner}
+          attachment={attachment}
         />
       </TouchableOpacity>
     )

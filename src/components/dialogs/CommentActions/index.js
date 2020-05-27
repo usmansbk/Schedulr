@@ -1,3 +1,3 @@
-import Actions from './Actions';
+import Actions from './Hoc';
 
 export default Actions;

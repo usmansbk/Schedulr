@@ -6,12 +6,20 @@ export default class CommentActions extends React.Component {
   _actionsheetRef = ref => this.actionsheet = ref;
   open = () => this.actionsheet.open();
   cancel = () => this.actionsheet.close();
-  _onConfirm = value =>  {
-    console.log(value);
-  };
+  _onPress = value => {
+    switch(value) {
+      case "delete":
+        this.props.onSubmit();
+        if (this.props.attachment) {
+          const keys = this.props.attachment.map(file => file.key);
+          this.props.stores.appState.removeKeysFromStorage(keys);
+        }
+        break;
+    }
+  }
 
   render() {
-    const { title, isOwner } = this.props;
+    const { title, isOwner, onPress } = this.props;
     const options = [
       {
         value: "reply",
@@ -31,7 +39,7 @@ export default class CommentActions extends React.Component {
       <ActionSheet
         title={I18n.get("Options")}
         options={options}
-        onPress={this._onConfirm}
+        onPress={this._onPress}
         ref={this._actionsheetRef}
       />
     );
