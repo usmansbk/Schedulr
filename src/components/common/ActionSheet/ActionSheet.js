@@ -23,11 +23,11 @@ export default class ActionSheet extends React.Component {
   };
 
   render() {
-    const { title, options=[] } = this.props;
+    const { title, options=[], height=300 } = this.props;
     return (
       <RBSheet
         ref={this._actionSheet}
-        height={300}
+        height={height}
         closeOnDragDown
         customStyles={{
           container: styles.container

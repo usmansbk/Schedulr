@@ -61,7 +61,7 @@ class FilterAction extends React.Component {
       { label: I18n.get('ACTION_schedules'), value: SCHEDULE_TYPE, icon: "pin" },
       { label: I18n.get('ACTION_followers'), value: FOLLOW_TYPE, icon: "addusergroup" },
       { label: I18n.get('ACTION_bookmarks'), value: BOOKMARK_TYPE, icon: "star" },
-      { label: I18n.get('ACTION_comments'), value: COMMENT_TYPE, icon: "comment" },
+      { label: I18n.get('ACTION_comments'), value: COMMENT_TYPE, icon: "comments" },
       { label: I18n.get('ACTION_clearAll'), value: "clear", icon: "check" }
     ];
    
@@ -71,6 +71,7 @@ class FilterAction extends React.Component {
         title={I18n.get('ACTION_filterByType')(stores.notificationsStore.filter)}
         options={options}
         onPress={this._handleActionSheet}
+        height={600}
       />
     )
   }
