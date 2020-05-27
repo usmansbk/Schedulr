@@ -44,7 +44,7 @@ export default {
   EVENT_share: "Share this event...",
   EVENT_bookmark: "I'm interested",
   EVENT_unbookmark: "I'm not interested",
-  EVENT_mute: "Mute this event reminder",
+  EVENT_mute: "Mute this event",
   EVENT_unmute: "Unmute this event",
   
   
