@@ -64,6 +64,7 @@ class CancelEvent extends React.Component {
     return (
       <RBSheet
         ref={this._confirmRef}
+        height={300}
         closeOnDragDown
         customStyles={{
           container: styles.container
