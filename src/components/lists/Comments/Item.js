@@ -39,6 +39,7 @@ class Item extends React.Component {
       authorPictureUrl,
       stores,
       timeAgo,
+      focusInput
     } = this.props;
     
     const styles = stores.appStyles.commentsList;
@@ -89,6 +90,7 @@ class Item extends React.Component {
           ref={this._commentActions}
           isOwner={isOwner}
           attachment={attachment}
+          onReply={focusInput}
         />
       </TouchableOpacity>
     )
