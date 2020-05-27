@@ -33,10 +33,12 @@ export default class AppStyles {
       content: {
         justifyContent: 'center',
         alignItems: 'center',
-        padding: 12
+        padding: 12,
+        paddingTop: 8,
       },
       header: {
-        padding: 8
+        padding: 8,
+        paddingBottom: 16
       },
       body: {
         padding: 8

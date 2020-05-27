@@ -1,5 +1,6 @@
 import React from 'react';
-import ActionSheet from 'react-native-actionsheet';
+// import ActionSheet from 'react-native-actionsheet';
+import ActionSheet from 'components/common/ActionSheet';
 import { I18n } from 'aws-amplify';
 import { inject, observer } from 'mobx-react';
 import handleShareEvent from 'helpers/share';
@@ -8,8 +9,10 @@ import snackbar from 'helpers/snackbar';
 
 class EventAction extends React.Component {
   showActionSheet = () => {
-    this.actionSheet.show();
+    this.actionSheet.open();
   };
+
+  _actionSheetRef = ref => this.actionSheet = ref;
 
   _handleShare = () => {
     const {
@@ -88,10 +91,9 @@ class EventAction extends React.Component {
       isBookmarked,
       isCalendarEvent,
       isMuted,
-      stores
     } = this.props;
 
-    const options = [I18n.get('BUTTON_back')];
+    const options = [];
     if (!isCalendarEvent) {
       options.unshift(
         isBookmarked ? I18n.get('BUTTON_removeBookmark') : I18n.get('BUTTON_bookmark')
@@ -101,18 +103,13 @@ class EventAction extends React.Component {
       I18n.get('BUTTON_shareVia'),
       isMuted ? I18n.get('BUTTON_unmute') : I18n.get('BUTTON_mute')
     );
-    const cancelButtonIndex = options.length - 1;
-    const destructiveButtonIndex = cancelButtonIndex - 1;
 
     return (
       <ActionSheet
-        ref={ref => this.actionSheet = ref}
+        ref={this._actionSheetRef}
         title={title}
         options={options}
-        cancelButtonIndex={cancelButtonIndex}
-        destructiveButtonIndex={destructiveButtonIndex}
         onPress={this._handleActionSheet}
-        styles={stores.appStyles.actionsheet}
       />
     )
   }
