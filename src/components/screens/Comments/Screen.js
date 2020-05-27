@@ -103,6 +103,7 @@ class Screen extends React.Component {
           navigateToProfile={this._navigateToProfile}
           navigateToViewEmbed={this._navigateToViewEmbed}
           focusInput={this.focusCommentInput}
+          blurInput={this.blurCommentInput}
         />
         <CommentForm
           commentEventId={commentEventId}
