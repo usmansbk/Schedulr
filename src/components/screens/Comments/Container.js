@@ -2,13 +2,10 @@ import React from 'react';
 import uuidv5 from 'uuid/v5';
 import shortid from 'shortid';
 import Screen from './Screen';
-import CommentActions from 'components/dialogs/CommentActions';
 import Suspense from 'components/common/Suspense';
 
 export default class Container extends React.Component {
   state = {
-    id: null,
-    meta: null,
     display: false
   };
 
@@ -18,11 +15,6 @@ export default class Container extends React.Component {
     }), 0);
   };
 
-  _actionsRef = ref => this.actions = ref;
-
-  _openOptions = () => {
-    this.actions.open();
-  };
   _goBack = () => this.props.navigation.goBack();
   _focusCommentInput = () => {
     this._commentsRef && this._commentsRef.focusCommentInput();
@@ -86,7 +78,6 @@ export default class Container extends React.Component {
     } = this.props;
 
     return (
-      <>
       <Screen
         ref={commentsRef => this._commentsRef = commentsRef}
         notFound={notFound}
@@ -99,21 +90,13 @@ export default class Container extends React.Component {
         comments={comments.sort((a, b) => Date.parse(a.createdAt) - Date.parse(b.createdAt))}
         userId={user.id}
         goBack={this._goBack}
-        handleDelete={this._onDelete}
         onSubmit={this._onSubmit}
         onRefresh={onRefresh}
-        openOptions={this._openOptions}
         navigateToProfile={this._navigateToProfile}
         navigateToViewEmbed={this._navigateToViewEmbed}
         fetchMoreComments={fetchMore}
         nextToken={nextToken}
       />
-      <CommentActions
-        id={this.state.id}
-        commentEventId={this.props.commentEventId}
-        ref={this._actionsRef}
-      />
-      </>
     );
   }
 }

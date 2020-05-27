@@ -11,18 +11,22 @@ export default class CommentActions extends React.Component {
   };
 
   render() {
+    const { title, isOwner } = this.props;
     const options = [
       {
         value: "reply",
-        label: "Reply this comment",
+        label: "Reply " + title,
         icon: "comments"
-      },
+      }
+    ];
+    if (isOwner) {
+      options.push(
       {
         value: "delete",
         label: "Delete this comment",
         icon: "trash"
-      },
-    ];
+      })
+    }
     return (
       <ActionSheet
         title={I18n.get("Options")}

@@ -3,14 +3,13 @@ import { View, TouchableOpacity } from 'react-native';
 import {
   Text,
   Caption,
-  // IconButton,
 } from 'react-native-paper';
 import Hyperlink from 'react-native-hyperlink';
 import { inject, observer } from 'mobx-react';
-// import Icon from 'components/common/Icon';
 import UserAvatar from 'components/common/UserAvatar';
-import { comments_list, BULLET } from 'lib/constants';
 import Attachment from 'components/common/Attachment';
+import Actions from 'components/dialogs/CommentActions';
+import { comments_list, BULLET } from 'lib/constants';
 
 const { AVATAR_SIZE } = comments_list;
 
@@ -18,6 +17,8 @@ class Item extends React.Component {
   state = {
     showOptions: false
   };
+
+  _commentActions = ref => this.commentActions = ref;
   _navigateToProfile = () => this.props.navigateToProfile(this.props.authorId);
   _navigateToViewEmbed = (params) => this.props.navigateToViewEmbed(params);
   _onLongPress = () => this.props.onLongPress();
@@ -29,11 +30,7 @@ class Item extends React.Component {
     this.props.onDelete(this.props.id, keys);
   };
   _showOptions = () => {
-    if (this.props.isOwner) {
-      this.setState(prev =>({
-        showOptions: !prev.showOptions
-      }));
-    }
+    this.commentActions.open();
   };
   shouldComponentUpdate = nextProps => this.props.timeAgo !== nextProps.timeAgo;
 
@@ -41,7 +38,7 @@ class Item extends React.Component {
     const {
       authorName,
       content,
-      // isOwner,
+      isOwner,
       attachment,
       authorPictureUrl,
       stores,
@@ -50,7 +47,7 @@ class Item extends React.Component {
     
     const styles = stores.appStyles.commentsList;
     return (
-      <TouchableOpacity onLongPress={this._onLongPress}>
+      <TouchableOpacity onLongPress={this._showOptions}>
         <View style={styles.itemContainer}>
           <UserAvatar
             name={authorName}
@@ -89,6 +86,11 @@ class Item extends React.Component {
             )}
           </View>
         </View>
+        <Actions
+          title={authorName}
+          ref={this._commentActions}
+          isOwner={isOwner}
+        />
       </TouchableOpacity>
     )
   }

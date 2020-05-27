@@ -21,8 +21,6 @@ class Screen extends React.Component {
     this.scrollDown();
   };
 
-  _openOptions = () => this.props.openOptions();
-
   render() {
     const {
       id,
@@ -71,7 +69,6 @@ class Screen extends React.Component {
           commentsCount={commentsCount}
           nextToken={nextToken}
           onRefresh={onRefresh}
-          openOptions={this._openOptions}
           navigateToProfile={navigateToProfile}
           navigateToViewEmbed={navigateToViewEmbed}
           fetchMoreComments={fetchMoreComments}
