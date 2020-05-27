@@ -2,12 +2,11 @@ import React from 'react';
 import uuidv5 from 'uuid/v5';
 import shortid from 'shortid';
 import Screen from './Screen';
-import DeleteCommentDialog from 'components/dialogs/DeleteComment';
+import CommentActions from 'components/dialogs/CommentActions';
 import Suspense from 'components/common/Suspense';
 
 export default class Container extends React.Component {
   state = {
-    visibleDialog: null,
     id: null,
     meta: null,
     display: false
@@ -19,14 +18,12 @@ export default class Container extends React.Component {
     }), 0);
   };
 
+  _actionsRef = ref => this.actions = ref;
+
+  _openOptions = () => {
+    this.actions.open();
+  };
   _goBack = () => this.props.navigation.goBack();
-  _onDelete = (id, keys) => this._openDialog(id, 'delete', keys);
-  _openDialog = (id, visibleDialog, meta) => this.setState({
-    visibleDialog,
-    id,
-    meta
-  });
-  _hideDialog = () => this.setState({ visibleDialog: null, id: null });
   _focusCommentInput = () => {
     this._commentsRef && this._commentsRef.focusCommentInput();
   };
@@ -51,7 +48,6 @@ export default class Container extends React.Component {
     }
     
     this.props.onSubmit && this.props.onSubmit(input);
-    this.setState({ meta: null });
   };
   _navigateToViewEmbed = ({ subtitle, uri, s3Object }) => this.props.navigation.navigate('ViewEmbed', {
     subtitle,
@@ -64,14 +60,12 @@ export default class Container extends React.Component {
     return (
       this.state.display !== nextState.display ||
       this.props.comments.length !== nextProps.comments.length ||
-      this.props.loading !== nextProps.loading ||
-      this.state.visibleDialog !== nextState.visibleDialog
+      this.props.loading !== nextProps.loading
     );
   };
 
   render() {
     const {
-      visibleDialog,
       display
     } = this.state;
     
@@ -108,17 +102,16 @@ export default class Container extends React.Component {
         handleDelete={this._onDelete}
         onSubmit={this._onSubmit}
         onRefresh={onRefresh}
+        openOptions={this._openOptions}
         navigateToProfile={this._navigateToProfile}
         navigateToViewEmbed={this._navigateToViewEmbed}
         fetchMoreComments={fetchMore}
         nextToken={nextToken}
       />
-      <DeleteCommentDialog
+      <CommentActions
         id={this.state.id}
         commentEventId={this.props.commentEventId}
-        visible={visibleDialog === 'delete'}
-        handleDismiss={this._hideDialog}
-        attachment={this.state.meta}
+        ref={this._actionsRef}
       />
       </>
     );

@@ -19,6 +19,7 @@ class List extends React.Component {
     onRefresh: () => null
   };
   _keyExtractor = (item) => String(item.id);
+  _onLongPress = () => this.props.openOptions();
   _renderItem = ({ item: {
       id,
       content,
@@ -44,8 +45,7 @@ class List extends React.Component {
         toCommentId={to && to.id}
         navigateToProfile={this.props.navigateToProfile}
         navigateToViewEmbed={this.props.navigateToViewEmbed}
-        onDelete={this.props.onDelete}
-        handleReplyComment={this.props.handleReply}
+        onLongPress={this._onLongPress}
       />
     );
   }

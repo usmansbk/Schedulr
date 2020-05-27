@@ -18,9 +18,9 @@ class Item extends React.Component {
   state = {
     showOptions: false
   };
-  _onReply = () => this.props.handleReplyComment(this.props.id, this.props.authorName, this.props.authorId);
   _navigateToProfile = () => this.props.navigateToProfile(this.props.authorId);
   _navigateToViewEmbed = (params) => this.props.navigateToViewEmbed(params);
+  _onLongPress = () => this.props.onLongPress();
   _onDelete = () => {
     let keys = [];
     if (this.props.attachment) {
@@ -50,7 +50,7 @@ class Item extends React.Component {
     
     const styles = stores.appStyles.commentsList;
     return (
-      <TouchableOpacity>
+      <TouchableOpacity onLongPress={this._onLongPress}>
         <View style={styles.itemContainer}>
           <UserAvatar
             name={authorName}

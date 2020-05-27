@@ -21,9 +21,7 @@ class Screen extends React.Component {
     this.scrollDown();
   };
 
-  _handleDelete = (id, keys) => {
-    this.props.handleDelete(id, keys);
-  };
+  _openOptions = () => this.props.openOptions();
 
   render() {
     const {
@@ -73,7 +71,7 @@ class Screen extends React.Component {
           commentsCount={commentsCount}
           nextToken={nextToken}
           onRefresh={onRefresh}
-          onDelete={this._handleDelete}
+          openOptions={this._openOptions}
           navigateToProfile={navigateToProfile}
           navigateToViewEmbed={navigateToViewEmbed}
           fetchMoreComments={fetchMoreComments}
