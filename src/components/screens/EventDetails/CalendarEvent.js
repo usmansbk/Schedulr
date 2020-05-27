@@ -6,7 +6,7 @@ import Icon from 'components/common/Icon';
 import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
 import CountDown from 'components/common/Countdown';
-import Alert from 'components/dialogs/Alert';
+import Confirm from 'components/common/Confirm';
 import Error from 'components/common/Error';
 import Tag from 'components/common/Tag';
 import Suspense from 'components/common/Suspense';
@@ -17,14 +17,13 @@ import { getStatus } from 'lib/formatEvent';
 class CalendarEvent extends React.Component {
   state = {
     event: null,
-    showAlert: false,
     display: false,
     countDownReset: 0
   };
 
-  _onCountDownFinish = () => this.setState(prev => ({countDownReset: prev.countDownReset + 1}));
+  _deleteConfirmRef = ref => this.deleteConfirmRef = ref;
 
-  _hideDialogs = () => this.setState({ showAlert: false });
+  _onCountDownFinish = () => this.setState(prev => ({countDownReset: prev.countDownReset + 1}));
 
   _goBack = () => this.props.navigation.goBack();
 
@@ -33,7 +32,7 @@ class CalendarEvent extends React.Component {
     this.props.navigation.goBack();
   };
 
-  _removeEvent = () => this.setState({ showAlert: true });
+  _removeEvent = () => this.deleteConfirmRef.open();
 
   componentDidMount = () => {
     const id = this.props.navigation.getParam('id');
@@ -46,7 +45,7 @@ class CalendarEvent extends React.Component {
   };
 
   render() {
-    const { event, showAlert, display, countDownReset } = this.state;
+    const { event, display, countDownReset } = this.state;
     if (!display) return <Suspense />;
 
     const { stores } = this.props;
@@ -162,11 +161,11 @@ class CalendarEvent extends React.Component {
             </View>
           </View>
         </ScrollView>
-        <Alert
-          visible={showAlert}
-          handleDismiss={this._hideDialogs}
+        <Confirm
           onConfirm={this._onRemoveEvent}
           title={I18n.get('DIALOG_deleteEvent')}
+          message={I18n.get("WARNING_deleteCalendarEvent")}
+          ref={this._deleteConfirmRef}
         />
       </View>
       </>

@@ -348,6 +348,7 @@ export default {
 
   WARNING_dontMissOut: "Don't miss out!",
   WARNING_fileTooLarge: "File is too large",
+  WARNING_deleteCalendarEvent: "Event will be removed from the source calendar",
 
   DIALOG_cancelEvent: "Cancel this event?",
   DIALOG_onlyThisEvent: "Only this date",

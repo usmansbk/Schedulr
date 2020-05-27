@@ -27,7 +27,8 @@ export default class AppStyles {
 
     return StyleSheet.create({
       container: {
-        borderRadius: 16,
+        borderTopLeftRadius: 16,
+        borderTopRightRadius: 16,
         backgroundColor: colors.bg
       },
       content: {
