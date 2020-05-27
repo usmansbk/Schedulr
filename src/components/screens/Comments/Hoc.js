@@ -2,7 +2,7 @@ import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import { inject, observer } from 'mobx-react';
 import { getEventComments } from 'api/queries';
-import Container from './Container';
+import Screen from './Screen';
 import { PAGINATION_LIMIT } from 'lib/constants';
 import updateQuery from 'helpers/updateQuery';
 
@@ -45,5 +45,5 @@ export default inject("stores")(observer(
       nextToken: data && data.getEventComments && data.getEventComments.comments && data.getEventComments.comments.nextToken,
       ...ownProps
     })
-  })(Container)
+  })(Screen)
 ));

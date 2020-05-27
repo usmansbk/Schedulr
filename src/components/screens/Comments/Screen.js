@@ -5,8 +5,12 @@ import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
 import List from 'components/lists/Comments';
 import CommentForm from 'components/forms/Comment';
+import Suspense from 'components/common/Suspense';
 
 class Screen extends React.Component {
+  state = {
+    display: false
+  };
 
   _inputRef = ref => this.inputRef = ref ;
   _listRef = ref => this.listRef = ref; 
@@ -19,7 +23,37 @@ class Screen extends React.Component {
 
   scrollTop = () => this.listRef && this.listRef.scrollTop();
 
+  componentDidMount = () => {
+    setTimeout(() => this.setState({
+      display: true
+    }), 0);
+  };
+
+  _goBack = () => this.props.navigation.goBack();
+  _navigateToProfile = (id) => this.props.navigation.navigate('UserProfile', { id });
+  _navigateToViewEmbed = ({ subtitle, uri, s3Object }) => this.props.navigation.navigate(
+    'ViewEmbed', {
+      subtitle,
+      uri,
+      s3Object
+    }
+  );
+
+  shouldComponentUpdate = (nextProps, nextState) => {
+    return (
+      this.state.display !== nextState.display ||
+      this.props.comments.length !== nextProps.comments.length ||
+      this.props.loading !== nextProps.loading
+    );
+  };
+
   render() {
+    const {
+      display
+    } = this.state;
+    
+    if (!display) return <Suspense />;
+
     const {
       loading,
       comments,
@@ -27,15 +61,12 @@ class Screen extends React.Component {
       nextToken,
       error,
       onRefresh,
-      goBack,
       title,
-      navigateToProfile,
-      navigateToViewEmbed,
       stores,
       fetchMoreComments,
       isOwner,
-      eventId,
-      scheduleId
+      commentEventId,
+      commentScheduleId
     } = this.props;
 
     const styles = stores.appStyles.styles;
@@ -52,7 +83,7 @@ class Screen extends React.Component {
               size={size}
               name="arrow-left"
             />}
-            onPress={goBack}
+            onPress={this._goBack}
           />
           <Appbar.Content
             title={title || I18n.get('COMMENTS')}
@@ -62,19 +93,19 @@ class Screen extends React.Component {
         <List
           ref={this._listRef}
           error={error}
-          id={eventId}
+          id={commentEventId}
           loading={loading}
           comments={comments}
           commentsCount={commentsCount}
           nextToken={nextToken}
           onRefresh={onRefresh}
-          navigateToProfile={navigateToProfile}
-          navigateToViewEmbed={navigateToViewEmbed}
           fetchMoreComments={fetchMoreComments}
+          navigateToProfile={this._navigateToProfile}
+          navigateToViewEmbed={this._navigateToViewEmbed}
         />
         <CommentForm
-          commentEventId={eventId}
-          commentScheduleId={scheduleId}
+          commentEventId={commentEventId}
+          commentScheduleId={commentScheduleId}
           isOwner={isOwner}
           ref={this._inputRef}
           disabled={!comments.length && (loading || error)}
