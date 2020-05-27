@@ -5,7 +5,7 @@ import { createSchedule } from 'api/mutations';
 import updateApolloCache from 'helpers/updateApolloCache';
 import Screen from './Screen';
 import buildOptimisticResponse from 'helpers/optimisticResponse';
-import { ADD } from 'lib/constants';
+import { ADD, SCHEDULE_TYPE } from 'lib/constants';
 
 const alias =  'withNewScheduleContainer';
 
@@ -24,7 +24,7 @@ export default inject("stores")(observer(
           input,
           mutationName: 'createSchedule',
           operationType: ADD,
-          responseType: 'Schedule'
+          responseType: SCHEDULE_TYPE 
         })
       }),
       ...ownProps

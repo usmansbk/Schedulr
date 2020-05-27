@@ -6,7 +6,7 @@ import { createEvent } from 'api/mutations';
 import { getEvent } from 'api/queries';
 import updateApolloCache from 'helpers/updateApolloCache';
 import buildOptimisticResponse from 'helpers/optimisticResponse';
-import { ADD } from 'lib/constants';
+import { ADD, EVENT_TYPE } from 'lib/constants';
 
 export default inject("stores")(observer(
   compose(
@@ -44,7 +44,7 @@ export default inject("stores")(observer(
           optimisticResponse: buildOptimisticResponse({
             input,
             operationType: ADD,
-            responseType: "Event",
+            responseType: EVENT_TYPE,
             mutationName: "createEvent"
           })
         }),
