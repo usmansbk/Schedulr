@@ -1,10 +1,10 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { inject, observer } from 'mobx-react';
+import { Text, Button, RadioButton } from 'react-native-paper';
 import { I18n } from 'aws-amplify';
 import { SINGLE_EVENT, ALL_EVENTS } from 'lib/constants';
-import Confirm from 'components/common/Confirm';
-import snackbar from 'helpers/snackbar';
+import RBSheet from 'react-native-raw-bottom-sheet';
 
 class CancelEvent extends React.Component {
   state = {
@@ -16,7 +16,6 @@ class CancelEvent extends React.Component {
   open = () => this.confirmRef.open();
 
   shouldComponentUpdate = (nextProps, nextState) => (
-    nextProps.visible !== this.props.visible ||
     nextProps.date !== this.props.date ||
     nextState.checked !== this.state.checked ||
     nextState.loading !== this.state.loading
@@ -42,72 +41,61 @@ class CancelEvent extends React.Component {
       ]));
     }
     setTimeout(() => {
-      snackbar(I18n.get("EVENT_cancelling"));
+      // snackbar(I18n.get("EVENT_cancelling"));
       onSubmit(input);
-    }, 0);
+    }, 200);
     this.setState({ loading: false });
+    this._handleDismiss();
   };
 
-  _handleDismiss = () => this.props.handleDismiss();
+  _handleDismiss = () => this.confirmRef.close();
 
   _toggleButton = checked => this.setState({ checked });
 
   render() {
     const {
       date,
-      visible,
       stores
     } = this.props;
     const { checked, loading } = this.state;
+    const styles = stores.appStyles.sheet;
 
     return (
-      <Confirm
-        title={I18n.get("DIALOG_cancelEvent")}
-        onConfirm={this._onContinue}
-        confirmText={I18n.get("BUTTON_cancel")}
+      <RBSheet
         ref={this._confirmRef}
-      />
+        closeOnDragDown
+        customStyles={{
+          container: styles.container
+        }}
+      >
+        <View style={styles.content}>
+          <View style={styles.header}>
+            <Text style={styles.title}>{I18n.get("DIALOG_cancelEvent")}</Text>
+          </View>
+          {
+            Boolean(date) && (
+              <View style={styles.body}>
+                <RadioButton.Group onValueChange={this._toggleButton} value={checked}>
+                  <View style={styles.row}>
+                    <Text style={styles.message}>{I18n.get("DIALOG_onlyThisEvent")}</Text>
+                    <RadioButton value={SINGLE_EVENT} />
+                  </View>
+                  <View style={styles.row}>
+                    <Text style={styles.message}>{I18n.get("DIALOG_allOfThisEvent")}</Text>
+                    <RadioButton value={ALL_EVENTS} />
+                  </View>
+                </RadioButton.Group>
+              </View>
+            )
+          }
+          <View style={styles.footer}>
+            <Button disabled={loading} onPress={this._handleDismiss}>{I18n.get("BUTTON_dismiss")}</Button>
+            <Button disabled={loading} loading={loading} onPress={this._onContinue}>{I18n.get("BUTTON_continue")}</Button>
+          </View>
+        </View>
+      </RBSheet>
     );
-    // return (
-    //   <Portal>
-    //     <Dialog
-    //       visible={visible}
-    //       onDismiss={this._handleDismiss}
-    //       style={{backgroundColor: stores.themeStore.colors.bg}}
-    //     >
-    //       <Dialog.Title>{I18n.get("DIALOG_cancelEvent")}</Dialog.Title>
-    //       {
-    //         Boolean(date) && (
-    //           <Dialog.Content>
-    //             <RadioButton.Group onValueChange={this._toggleButton} value={checked}>
-    //               <View style={styles.row}>
-    //                 <Text>{I18n.get("DIALOG_onlyThisEvent")}</Text>
-    //                 <RadioButton value={SINGLE_EVENT} />
-    //               </View>
-    //               <View style={styles.row}>
-    //                 <Text>{I18n.get("DIALOG_allOfThisEvent")}</Text>
-    //                 <RadioButton value={ALL_EVENTS} />
-    //               </View>
-    //             </RadioButton.Group>
-    //           </Dialog.Content>
-    //         )
-    //       }
-    //       <Dialog.Actions>
-    //         <Button disabled={loading} onPress={this._handleDismiss}>{I18n.get("BUTTON_dismiss")}</Button>
-    //         <Button disabled={loading} loading={loading} onPress={this._onContinue}>{I18n.get("BUTTON_continue")}</Button>
-    //       </Dialog.Actions>
-    //     </Dialog>
-    //   </Portal>
-    // )
   }
 }
-
-const styles = StyleSheet.create({
-  row: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginVertical: 16
-  }
-});
 
 export default inject("stores")(observer(CancelEvent));

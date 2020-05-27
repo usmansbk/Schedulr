@@ -30,9 +30,7 @@ class Screen extends React.Component {
   _navigateToBookmarks = (id) => this.props.navigation.navigate('EventBookmarks', { id });
 
   _openDeleteDialog = () => this.deleteConfirmRef.getWrappedInstance().open();
-  _openCancelDialog = () => {
-    console.log(this.cancelConfirmRef.wrappedInstance.wrappedInstance.open())
-  };
+  _openCancelDialog = () => this.cancelConfirmRef.wrappedInstance.wrappedInstance.open();
   
   render() {
     const {

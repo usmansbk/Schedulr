@@ -3,9 +3,9 @@ import { View } from 'react-native';
 import { Text, Button } from 'react-native-paper';
 import { I18n } from 'aws-amplify';
 import RBSheet from 'react-native-raw-bottom-sheet';
-import styles from './styles';
+import { inject, observer } from 'mobx-react';
 
-export default class Confirm extends React.Component {
+class Confirm extends React.Component {
 
   open = () => this.RBSheet.open();
 
@@ -22,7 +22,9 @@ export default class Confirm extends React.Component {
       title,
       message,
       confirmText=I18n.get("BUTTON_confirm"),
+      stores
     } = this.props;
+    const styles = stores.appStyles.sheet;
     return (
       <RBSheet
         ref={this._refRBSheet}
@@ -49,3 +51,5 @@ export default class Confirm extends React.Component {
     );
   }
 }
+
+export default inject("stores")(observer(Confirm));
