@@ -94,7 +94,7 @@ class Form extends React.Component {
                 autoFocus
                 underlineColor="transparent"
                 style={styles.textInput}
-                theme={{roundness: 0}}
+                theme={{roundness: 16}}
               />
               <HelperText
                 type="error"
@@ -125,7 +125,7 @@ class Form extends React.Component {
                 onChangeText={handleChange('bio')}
                 onBlur={handleBlur('bio')}
                 underlineColor="transparent"
-                theme={{roundness: 0}}
+                theme={{roundness: 16}}
                 style={styles.textInput}
                 multiline
                 maxHeight={200}

@@ -131,7 +131,7 @@ class Form extends React.Component {
                 style={styles.textInput}
                 underlineColor="transparent"
                 theme={{
-                  roundness: 0
+                  roundness: 16 
                 }}
               />
               <HelperText
@@ -328,7 +328,7 @@ class Form extends React.Component {
                 style={styles.textInput}
                 underlineColor="transparent"
                 theme={{
-                  roundness: 0
+                  roundness: 16
                 }}
               />
               <HelperText
@@ -346,7 +346,7 @@ class Form extends React.Component {
                 multiline
                 style={styles.textInput}
                 theme={{
-                  roundness: 0
+                  roundness: 16
                 }}
                 underlineColor="transparent"
               />

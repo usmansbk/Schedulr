@@ -117,7 +117,7 @@ class Form extends React.Component {
                 underlineColor="transparent"
                 autoFocus
                 style={styles.textInput}
-                theme={{roundness: 0}}
+                theme={{roundness: 16}}
               />
               <HelperText
                 type="error"
@@ -162,7 +162,7 @@ class Form extends React.Component {
                 onChangeText={handleChange('description')}
                 onBlur={handleBlur('description')}
                 style={styles.textInput}
-                theme={{roundness: 0}}
+                theme={{roundness: 16}}
               />
               <HelperText
                 type="error"
