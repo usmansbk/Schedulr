@@ -5,7 +5,7 @@ import Form from './Form';
 
 export default class Container extends React.Component {
 
-  _onSubmit = async (message, attachment) => {
+  _onSubmit = (message, attachment) => {
     const hash = uuidv5(this.props.stores.appState.userId, uuidv5.DNS);
     const sort = shortid.generate();
     const id = `${hash}-${sort}`;
@@ -18,7 +18,8 @@ export default class Container extends React.Component {
     if (attachment) {
       input.attachment = attachment;
     }
-    this.props.onSubmit && await this.props.onSubmit(input);
+    this.props.onSubmit && this.props.onSubmit(input);
+    this.props.scrollDown && this.props.scrollDown();
   };
 
   render() {
