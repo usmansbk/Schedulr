@@ -14,11 +14,13 @@ export default class Container extends React.Component {
   };
 
   _goBack = () => this.props.navigation.goBack();
-  _navigateToViewEmbed = ({ subtitle, uri, s3Object }) => this.props.navigation.navigate('ViewEmbed', {
-    subtitle,
-    uri,
-    s3Object
-  });
+  _navigateToViewEmbed = ({ subtitle, uri, s3Object }) => this.props.navigation.navigate(
+    'ViewEmbed', {
+      subtitle,
+      uri,
+      s3Object
+    }
+  );
   _navigateToProfile = (id) => this.props.navigation.navigate('UserProfile', { id });
 
   shouldComponentUpdate = (nextProps, nextState) => {
