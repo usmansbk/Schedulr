@@ -98,7 +98,7 @@ class Screen extends React.Component {
           error={error}
           id={commentEventId}
           loading={loading}
-          comments={comments.reverse()}
+          comments={comments.sort((a, b) => Date.parse(a.createdAt) - Date.parse(b.createdAt))}
           commentsCount={commentsCount}
           nextToken={nextToken}
           onRefresh={onRefresh}
