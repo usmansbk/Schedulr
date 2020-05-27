@@ -279,6 +279,10 @@ export default {
   SCHEDULE_createdOn: "Created on",
   SCHEDULE_by: "by",
   SCHEDULE_whatIsASchedule: "Why create a list?",
+  SCHEDULE_mute: "Mute all events",
+  SCHEDULE_unmute: "Unmute all events",
+  SCHEDULE_share: "Share this list via...",
+  SCHEDULE_unfollow: "Unfollow this list",
   
   SCHEDULES_noUpcomingEvents: "No upcoming events",
   SCHEDULES_loadPastEvents: count => `Load (${count}) past event${count > 1 ? 's' : ''}`,

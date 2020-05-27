@@ -28,7 +28,8 @@ const names = {
   "archive": "hourglass",
   "send": "pluscircleo",
   "chevron-right": "right",
-  "info": "infocirlceo"
+  "info": "infocirlceo",
+  "alert": "exclamationcircle"
 };
 
 export default ({ name, color, size, style }) => {

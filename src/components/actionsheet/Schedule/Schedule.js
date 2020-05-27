@@ -1,13 +1,15 @@
 import React from 'react';
-import ActionSheet from 'react-native-actionsheet';
+import ActionSheet from 'components/common/ActionSheet';
 import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
 import { handleShareSchedule } from 'helpers/share';
 
 class ScheduleAction extends React.Component {
   showActionSheet = () => {
-    this.actionSheet.show();
+    this.actionSheet.open();
   };
+
+  _actionSheetRef = ref => this.actionSheet = ref;
 
   _handleShare = () => {
     const { id, title } = this.props;
@@ -26,15 +28,15 @@ class ScheduleAction extends React.Component {
     this.props.unfollow(input, this.props.id);
   };
 
-  _handleActionSheet = (index) => {
-    switch (index) {
-      case 0:
-        setTimeout(this._handleShare, 0);
+  _handleActionSheet = (value) => {
+    switch (value) {
+      case "share":
+        setTimeout(this._handleShare, 200);
         break;
-      case 1:
+      case "mute":
         setTimeout(this._toggleMute, 0);
         break;
-      case 2: {
+      case "follow": {
         if (this.props.isFollowing) {
           setTimeout(this._unfollowSchedule, 0);
         }
@@ -48,31 +50,34 @@ class ScheduleAction extends React.Component {
       title,
       isMuted,
       isFollowing,
-      stores
     } = this.props;
 
-    const options = [];
-    options.unshift(
-      I18n.get('BUTTON_shareInviteLink'),
-      I18n.get(`BUTTON_${isMuted ? 'unmuteEvents' : 'muteEvents'}`)
-    );
+    const options = [
+      {
+        value: "share",
+        label: I18n.get("SCHEDULE_share"),
+        icon: "share"
+      },
+      {
+        value: "mute",
+        label: I18n.get(`SCHEDULE_${isMuted ? 'unmute' : 'mute'}`),
+        icon: "sound"
+      }
+    ];
     if (isFollowing) {
-      options.push(I18n.get('BUTTON_unfollow'));
+      options.push({
+        value: "follow",
+        label: I18n.get('SCHEDULE_unfollow'),
+        icon: "pin"
+      });
     }
-    options.push(I18n.get('BUTTON_back'));
-
-    const cancelButtonIndex = options.length - 1;
-    const destructiveButtonIndex = cancelButtonIndex - 1;
 
     return (
       <ActionSheet
-        ref={ref => this.actionSheet = ref}
+        ref={this._actionSheetRef}
         title={title}
         options={options}
-        cancelButtonIndex={cancelButtonIndex}
-        destructiveButtonIndex={destructiveButtonIndex}
         onPress={this._handleActionSheet}
-        styles={stores.appStyles.actionsheet}
       />
     )
   }

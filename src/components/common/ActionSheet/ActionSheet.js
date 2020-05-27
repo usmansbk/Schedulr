@@ -36,7 +36,7 @@ export default class ActionSheet extends React.Component {
         <View style={styles.content}>
           <View style={[styles.header, styles.row]}>
             <TouchableOpacity onPress={this._cancel}>
-              <Icon name="x" size={28} style={styles.icon} />
+              <Icon name="back" size={28} style={styles.icon} />
             </TouchableOpacity>
             <Text numberOfLines={1} ellipsizeMode="tail" style={styles.title}>{title}</Text>
           </View>

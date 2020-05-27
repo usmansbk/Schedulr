@@ -69,7 +69,7 @@ class EventAction extends React.Component {
   _handleActionSheet = (value) => {
     switch (value) {
       case "share":
-        setTimeout(this._handleShare, 0);
+        setTimeout(this._handleShare, 200);
         break;
       case "mute":
         setTimeout(this._toggleMute, 0);
