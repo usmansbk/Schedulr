@@ -1178,31 +1178,34 @@ export default class AppStyles {
         backgroundColor: colors.bg
       },
       itemContainer: {
-        flex: 1,
         flexDirection: 'row',
         backgroundColor: colors.bg,
-        paddingVertical: 8,
+        padding: 8
+      },
+      itemLeft: {
+        padding: 8
       },
       itemContent: {
-        marginRight: 8,
-        backgroundColor: colors.light_gray,
+        padding: 4,
+        flex: 1
+      },
+      item: {
         padding: 16,
         borderTopRightRadius: 12,
         borderBottomStartRadius: 12,
-        borderBottomEndRadius: 12 
+        borderBottomEndRadius: 12,
+        backgroundColor: colors.light_gray,
+      },
+      message: {
+        alignSelf: 'flex-start',
+      },
+      attachment: {
+        paddingTop: 8
+      },
+      withAttachment: {
+        borderBottomStartRadius: 0,
       },
       linkStyle: { color: '#2980b9' },
-      itemHeader: {
-        justifyContent: 'space-between',
-      },
-      itemLeft: {
-        paddingLeft: 8
-      },
-      itemRight: {
-        flex: 1,
-        padding: 4,
-        borderRadius: 2
-      },
       authorName: {
         fontFamily: 'sans-serif-bold',
         color: colors.black,
@@ -1220,19 +1223,6 @@ export default class AppStyles {
       actions: {
         // justifyContent: 'flex-end',
         flexDirection: 'row',
-      },
-      empty: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-      },
-      emptyTitle: {
-        fontSize: 25,
-        color: colors.light_gray_3,
-        textAlign: 'center'
-      },
-      paragraph: {
-        textAlign: 'center'
       },
     });    
   }

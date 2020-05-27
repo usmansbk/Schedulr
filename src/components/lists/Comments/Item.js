@@ -1,14 +1,13 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, TouchableOpacity } from 'react-native';
 import {
   Text,
-  Paragraph,
   Caption,
-  IconButton,
+  // IconButton,
 } from 'react-native-paper';
 import Hyperlink from 'react-native-hyperlink';
 import { inject, observer } from 'mobx-react';
-import Icon from 'components/common/Icon';
+// import Icon from 'components/common/Icon';
 import UserAvatar from 'components/common/UserAvatar';
 import { comments_list, BULLET } from 'lib/constants';
 import Attachment from 'components/common/Attachment';
@@ -42,7 +41,7 @@ class Item extends React.Component {
     const {
       authorName,
       content,
-      isOwner,
+      // isOwner,
       attachment,
       authorPictureUrl,
       stores,
@@ -50,22 +49,17 @@ class Item extends React.Component {
     } = this.props;
     
     const styles = stores.appStyles.commentsList;
-    const colors = stores.themeStore.colors;
     return (
-      <View style={styles.itemContainer}>
-        <View style={styles.itemLeft}>
+      <TouchableOpacity>
+        <View style={styles.itemContainer}>
           <UserAvatar
             name={authorName}
             src={authorPictureUrl}
             size={AVATAR_SIZE}
             onPress={this._navigateToProfile}
-            style={{
-              padding: 8
-            }}
+            style={styles.itemLeft}
           />
-        </View>
-        <View style={styles.itemRight}>
-          <View style={styles.itemHeader}>
+          <View style={styles.itemContent}>
             <Text
               numberOfLines={1}
               ellipsizeMode="middle"
@@ -73,24 +67,34 @@ class Item extends React.Component {
             >
               {authorName} <Caption>{BULLET} {timeAgo}</Caption>
             </Text>
-          </View>
-          <View style={styles.itemContent}>  
-            {
-              Boolean(content) && (
-                <Hyperlink linkStyle={styles.linkStyle} linkDefault={true}>
-                  <Paragraph style={styles.message}>
-                    {content}
-                  </Paragraph>
+            {Boolean(content) && (
+              <View
+                style={[
+                  styles.item,
+                  styles.message,
+                  Boolean(attachment) ? styles.withAttachment : {}
+                ]}>
+                <Hyperlink linkStyle={styles.linkStyle} linkDefault>
+                  <Text>{content}</Text>
                 </Hyperlink>
-              )
-            }
+              </View>
+            )}
             { Boolean(attachment) && (
-              <Attachment
-                attachment={attachment}
-                navigateToViewEmbed={this._navigateToViewEmbed}
-              />
-            )
-            }
+              <View style={[styles.item, styles.attachment]}>
+                <Attachment
+                  attachment={attachment}
+                  navigateToViewEmbed={this._navigateToViewEmbed}
+                />
+              </View>
+            )}
+          </View>
+        </View>
+      </TouchableOpacity>
+    )
+  }
+}
+
+export default inject("stores")(observer(Item));
             {/* <View style={styles.footer}>
               <View style={styles.actions}>
                 {isOwner && <IconButton
@@ -116,11 +120,3 @@ class Item extends React.Component {
                 }
               </View>
             </View> */}
-          </View>
-        </View>
-      </View>
-    )
-  }
-}
-
-export default inject("stores")(observer(Item));
