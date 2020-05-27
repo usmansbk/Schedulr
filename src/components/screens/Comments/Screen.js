@@ -98,7 +98,7 @@ class Screen extends React.Component {
           error={error}
           id={commentEventId}
           loading={loading}
-          comments={comments}
+          comments={comments.reverse()}
           commentsCount={commentsCount}
           nextToken={nextToken}
           onRefresh={onRefresh}
