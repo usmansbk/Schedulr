@@ -11,7 +11,6 @@ class Logout extends React.Component {
     return (
       <Confirm
         title={I18n.get("SIGN_OUT_title")}
-        message={I18n.get("SIGN_OUT_message")}
         onConfirm={this.props.handleLogout}
         confirmText={I18n.get("BUTTON_logout")}
         ref={this._confirmRef}
