@@ -1,11 +1,11 @@
 import React from 'react';
-import { StyleSheet, View, TouchableOpacity } from 'react-native';
+import { View, TouchableOpacity } from 'react-native';
 import { Text } from 'react-native-paper';
 import RBSheet from 'react-native-raw-bottom-sheet'; 
+import { inject, observer } from 'mobx-react';
 import Icon from '../Icon';
-import colors from 'config/colors';
 
-export default class ActionSheet extends React.Component {
+class ActionSheet extends React.Component {
   static defaultProps = {
     dismissOnPress: true,
     onPress: () => null,
@@ -23,7 +23,8 @@ export default class ActionSheet extends React.Component {
   };
 
   render() {
-    const { title, options=[], height=300 } = this.props;
+    const { title, options=[], height=300, stores } = this.props;
+    const styles = stores.appStyles.actionsheet;
     return (
       <RBSheet
         ref={this._actionSheet}
@@ -58,40 +59,4 @@ export default class ActionSheet extends React.Component {
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    paddingHorizontal: 16,
-    borderTopStartRadius: 16,
-    borderTopEndRadius: 16,
-  },
-  content: {
-    padding: 16
-  },
-  header: {
-    // borderBottomWidth: StyleSheet.hairlineWidth,
-    // borderBottomColor: colors.light_gray_3,
-    paddingBottom: 16
-  },
-  body: {},
-  footer: {},
-  title: {
-    fontSize: 25,
-    fontWeight: 'bold',
-    color: colors.black
-  },
-  label: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: colors.light_gray_3
-  },
-  option: {
-    marginVertical: 16
-  },
-  row: {
-    flexDirection: 'row',
-    alignItems: 'center'
-  },
-  icon: {
-    marginRight: 16 
-  }
-});
+export default inject("stores")(observer(ActionSheet));

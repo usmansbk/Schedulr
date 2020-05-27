@@ -1803,66 +1803,39 @@ export default class AppStyles {
   @computed get actionsheet () {
     const colors = this.settings.dark ? dark : light;
 
-    const hairlineWidth = StyleSheet.hairlineWidth;
-
     return StyleSheet.create({
-      overlay: {
-        position: 'absolute',
-        top: 0,
-        right: 0,
-        bottom: 0,
-        left: 0,
-        opacity: 0.4,
-        backgroundColor: '#000'
-      },
-      wrapper: {
-        flex: 1,
-        flexDirection: 'row'
-      },
-      body: {
-        flex: 1,
-        alignSelf: 'flex-end',
-        backgroundColor: colors.actionsheet
-      },
-      titleBox: {
-        height: dp(40),
-        alignItems: 'center',
-        justifyContent: 'center',
+      container: {
+        paddingHorizontal: 16,
+        borderTopStartRadius: 16,
+        borderTopEndRadius: 16,
         backgroundColor: colors.bg
       },
-      titleText: {
-        color: colors.actionsheetTitleText,
-        fontSize: 14
+      content: {
+        padding: 16
       },
-      messageBox: {
-        height: dp(30),
-        paddingLeft: 10,
-        paddingRight: 10,
-        paddingBottom: 10,
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: colors.bg
+      header: {
+        paddingBottom: 16
       },
-      messageText: {
-        color: '#9a9a9a',
-        fontSize: 12
+      title: {
+        fontSize: 25,
+        fontWeight: 'bold',
+        color: colors.black
       },
-      buttonBox: {
-        height: dp(50),
-        marginTop: hairlineWidth,
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: colors.bg
+      label: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        color: colors.light_gray_3
       },
-      buttonText: {
-        fontSize: 18
+      option: {
+        marginVertical: 16
       },
-      cancelButtonBox: {
-        height: dp(50),
-        marginTop: 6,
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: colors.bg
+      row: {
+        flexDirection: 'row',
+        alignItems: 'center'
+      },
+      icon: {
+        marginRight: 16,
+        color: colors.light_gray_3
       }
     })
   }
