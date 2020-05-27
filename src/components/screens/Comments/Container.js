@@ -1,6 +1,4 @@
 import React from 'react';
-import uuidv5 from 'uuid/v5';
-import shortid from 'shortid';
 import Screen from './Screen';
 import Suspense from 'components/common/Suspense';
 
@@ -15,22 +13,6 @@ export default class Container extends React.Component {
     }), 0);
   };
 
-  _onSubmit = async (message, attachment) => {
-    const hash = uuidv5(this.props.stores.appState.userId, uuidv5.DNS);
-    const sort = shortid.generate();
-    const id = `${hash}-${sort}`;
-    const input = {
-      id,
-      content: message,
-      commentEventId: this.props.commentEventId,
-      commentScheduleId: this.props.commentScheduleId,
-    };
-    if (attachment) {
-      input.attachment = attachment;
-    }
-    
-    this.props.onSubmit && this.props.onSubmit(input);
-  };
   _goBack = () => this.props.navigation.goBack();
   _navigateToViewEmbed = ({ subtitle, uri, s3Object }) => this.props.navigation.navigate('ViewEmbed', {
     subtitle,
@@ -64,13 +46,15 @@ export default class Container extends React.Component {
       commentsCount,
       isOwner,
       commentEventId,
+      commentScheduleId,
       notFound
     } = this.props;
 
     return (
       <Screen
         notFound={notFound}
-        id={commentEventId}
+        eventId={commentEventId}
+        scheduleId={commentScheduleId}
         isOwner={isOwner}
         loading={loading}
         title={this.props.navigation.getParam('title')}
@@ -78,7 +62,6 @@ export default class Container extends React.Component {
         commentsCount={commentsCount}
         comments={comments.sort((a, b) => Date.parse(a.createdAt) - Date.parse(b.createdAt))}
         goBack={this._goBack}
-        onSubmit={this._onSubmit}
         onRefresh={onRefresh}
         navigateToProfile={this._navigateToProfile}
         navigateToViewEmbed={this._navigateToViewEmbed}

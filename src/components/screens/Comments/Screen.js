@@ -8,22 +8,19 @@ import CommentForm from 'components/forms/Comment';
 
 class Screen extends React.Component {
 
-  focusCommentInput = () => this._inputRef && this._inputRef.focusInput();
+  _inputRef = ref => this.inputRef = ref ;
+  _listRef = ref => this.listRef = ref; 
 
-  blurCommentInput = () => this._inputRef && this._inputRef.blurInput();
+  focusCommentInput = () => this.inputRef && this.inputRef.focusInput();
 
-  scrollDown = () => this._commentsListRef && this._commentsListRef.scrollDown();
+  blurCommentInput = () => this.inputRef && this.inputRef.blurInput();
 
-  scrollTop = () => this._commentsListRef && this._commentsListRef.scrollTop();
+  scrollDown = () => this.listRef && this.listRef.scrollDown();
 
-  _handleSubmit = async (message, uploads) => {
-    await this.props.onSubmit(message, uploads);
-    this.scrollDown();
-  };
+  scrollTop = () => this.listRef && this.listRef.scrollTop();
 
   render() {
     const {
-      id,
       loading,
       comments,
       commentsCount,
@@ -36,7 +33,9 @@ class Screen extends React.Component {
       navigateToViewEmbed,
       stores,
       fetchMoreComments,
-      isOwner
+      isOwner,
+      eventId,
+      scheduleId
     } = this.props;
 
     const styles = stores.appStyles.styles;
@@ -61,9 +60,9 @@ class Screen extends React.Component {
           />
         </Appbar.Header>
         <List
-          ref={commentsRef => this._commentsListRef = commentsRef}
+          ref={this._listRef}
           error={error}
-          id={id}
+          id={eventId}
           loading={loading}
           comments={comments}
           commentsCount={commentsCount}
@@ -74,11 +73,12 @@ class Screen extends React.Component {
           fetchMoreComments={fetchMoreComments}
         />
         <CommentForm
-          id={id}
+          commentEventId={eventId}
+          commentScheduleId={scheduleId}
           isOwner={isOwner}
-          ref={inputRef => this._inputRef = inputRef}
-          handleSubmit={this._handleSubmit}
+          ref={this._inputRef}
           disabled={!comments.length && (loading || error)}
+          onSubmit={this.scrollDown}
         />
       </>
     );
