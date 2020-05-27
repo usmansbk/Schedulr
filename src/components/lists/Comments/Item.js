@@ -8,7 +8,7 @@ import Hyperlink from 'react-native-hyperlink';
 import { inject, observer } from 'mobx-react';
 import UserAvatar from 'components/common/UserAvatar';
 import Attachment from 'components/common/Attachment';
-import Actions from 'components/dialogs/CommentActions';
+import Actions from 'components/actionsheet/Comment';
 import { comments_list, BULLET } from 'lib/constants';
 
 const { AVATAR_SIZE } = comments_list;
