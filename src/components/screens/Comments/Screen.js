@@ -109,7 +109,7 @@ class Screen extends React.Component {
           isOwner={isOwner}
           ref={this._inputRef}
           disabled={!comments.length && (loading || error)}
-          onSubmit={this.scrollDown}
+          scrollDown={this.scrollDown}
         />
       </>
     );
