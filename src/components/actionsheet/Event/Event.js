@@ -1,11 +1,10 @@
 import React from 'react';
-// import ActionSheet from 'react-native-actionsheet';
 import ActionSheet from 'components/common/ActionSheet';
 import { I18n } from 'aws-amplify';
 import { inject, observer } from 'mobx-react';
 import handleShareEvent from 'helpers/share';
 import logger from 'config/logger';
-import snackbar from 'helpers/snackbar';
+// import snackbar from 'helpers/snackbar';
 
 class EventAction extends React.Component {
   showActionSheet = () => {
@@ -58,9 +57,9 @@ class EventAction extends React.Component {
             bookmarkEvent(input);
           }, 0);
         }
-        if (!isBookmarked) {
-          snackbar(I18n.get(`TOAST_${isBookmarked ? "removed" : "saved"}`));
-        }
+        // if (!isBookmarked) {
+        //   snackbar(I18n.get(`TOAST_${isBookmarked ? "removed" : "saved"}`));
+        // }
       } catch (error) {
         logger.logError(error);
       }
@@ -71,15 +70,15 @@ class EventAction extends React.Component {
 
   _toggleMute = () => this.props.onMute(this.props.id);
 
-  _handleActionSheet = (index) => {
-    switch (index) {
-      case 0:
+  _handleActionSheet = (value) => {
+    switch (value) {
+      case "share":
         setTimeout(this._handleShare, 0);
         break;
-      case 1:
+      case "mute":
         setTimeout(this._toggleMute, 0);
         break;
-      case 2:
+      case "save":
         setTimeout(this._handleBookmark, 0);
         break;
     }
@@ -93,16 +92,27 @@ class EventAction extends React.Component {
       isMuted,
     } = this.props;
 
-    const options = [];
+    const options = [
+      {
+        value: "share",
+        label: I18n.get("EVENT_share"),
+        icon: "share"
+      },
+      {
+        value: "mute",
+        label: isMuted ? I18n.get('EVENT_unmute') : I18n.get('EVENT_mute'),
+        icon: "sound"
+      }
+    ];
     if (!isCalendarEvent) {
-      options.unshift(
-        isBookmarked ? I18n.get('BUTTON_removeBookmark') : I18n.get('BUTTON_bookmark')
+      options.push(
+        {
+          value: "save",
+          label: isBookmarked ? I18n.get('EVENT_unbookmark') : I18n.get('EVENT_bookmark'),
+          icon: `star${isBookmarked ? '' : 'o'}`
+        }
       )
     }
-    options.unshift(
-      I18n.get('BUTTON_shareVia'),
-      isMuted ? I18n.get('BUTTON_unmute') : I18n.get('BUTTON_mute')
-    );
 
     return (
       <ActionSheet

@@ -41,6 +41,12 @@ export default {
   EVENTS_SECTION_FOOTER: "No upcoming events",
   EVENTS_SECTION_ITEM_COUNT: count => count ? `${count} events` : '',
   EVENT_interested: "Interested",
+  EVENT_share: "Share this event...",
+  EVENT_bookmark: "I'm interested",
+  EVENT_unbookmark: "I'm not interested",
+  EVENT_mute: "Mute this event",
+  EVENT_unmute: "Unmute this event",
+  
   
   BOARD_emptyList: "Your board is empty",
   BOARD_emptyListCaption: "Follow or create a schedule",

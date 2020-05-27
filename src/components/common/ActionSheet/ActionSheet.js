@@ -2,8 +2,7 @@ import React from 'react';
 import { StyleSheet, View, TouchableOpacity } from 'react-native';
 import { Text } from 'react-native-paper';
 import RBSheet from 'react-native-raw-bottom-sheet'; 
-import { I18n } from 'aws-amplify';
-import Button from '../Button';
+import Icon from '../Icon';
 import colors from 'config/colors';
 
 export default class ActionSheet extends React.Component {
@@ -13,25 +12,31 @@ export default class ActionSheet extends React.Component {
   _cancel = () => this.actionSheet.close();
 
   render() {
-    const { title, options=[] } = this.props;
+    const { title, options=[], onPress } = this.props;
     return (
       <RBSheet
         ref={this._actionSheet}
-        height={options.length * 100}
+        height={300}
         closeOnDragDown
         customStyles={{
           container: styles.container
         }}
       >
         <View style={styles.content}>
-          <View style={styles.header}>
+          <View style={[styles.header, styles.row]}>
+            <TouchableOpacity onPress={this._cancel}>
+              <Icon name="x" size={28} style={styles.icon} />
+            </TouchableOpacity>
             <Text numberOfLines={1} ellipsizeMode="tail" style={styles.title}>{title}</Text>
           </View>
           <View style={styles.body}>
             {
               options.map(option => (
-                <TouchableOpacity style={styles.option}>
-                  <Text style={styles.label}>{option}</Text>
+                <TouchableOpacity style={styles.option} onPress={() => onPress(option.value)}>
+                  <View style={styles.row}>
+                    {option.icon ? <Icon style={styles.icon} name={option.icon} size={24} /> : null}
+                    <Text style={styles.label}>{option.label}</Text>
+                  </View>
                 </TouchableOpacity>
               ))
             }
@@ -44,8 +49,9 @@ export default class ActionSheet extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    borderRadius: 16,
-    padding: 16
+    paddingHorizontal: 16,
+    borderTopStartRadius: 16,
+    borderTopEndRadius: 16,
   },
   content: {
     padding: 16
@@ -53,6 +59,7 @@ const styles = StyleSheet.create({
   header: {
     // borderBottomWidth: StyleSheet.hairlineWidth,
     // borderBottomColor: colors.light_gray_3,
+    paddingBottom: 16
   },
   body: {},
   footer: {},
@@ -68,5 +75,12 @@ const styles = StyleSheet.create({
   },
   option: {
     marginVertical: 16
+  },
+  row: {
+    flexDirection: 'row',
+    alignItems: 'center'
+  },
+  icon: {
+    marginRight: 16 
   }
 });
