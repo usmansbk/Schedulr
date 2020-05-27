@@ -1182,10 +1182,14 @@ export default class AppStyles {
         flexDirection: 'row',
         backgroundColor: colors.bg,
         paddingVertical: 8,
-        marginVertical: 8
       },
       itemContent: {
-        marginRight: 8
+        marginRight: 8,
+        backgroundColor: colors.light_gray,
+        padding: 16,
+        borderTopRightRadius: 12,
+        borderBottomStartRadius: 12,
+        borderBottomEndRadius: 12 
       },
       linkStyle: { color: '#2980b9' },
       itemHeader: {
