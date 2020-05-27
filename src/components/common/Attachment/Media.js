@@ -1,6 +1,6 @@
 import React from 'react';
-import { View, Image } from 'react-native';
-import { Text, Caption, TouchableRipple, ProgressBar } from 'react-native-paper';
+import { View, Image, TouchableOpacity } from 'react-native';
+import { Text, Caption, ProgressBar } from 'react-native-paper';
 import RNFS from 'react-native-fs';
 import FileViewer from 'react-native-file-viewer';
 import { I18n, Storage } from 'aws-amplify';
@@ -16,7 +16,7 @@ const Doc = inject('stores')(observer(({ stores, onPress, file, downloading, pro
   const { name, size, type } = file;
   const styles = stores.appStyles.media;
   return (
-    <TouchableRipple onPress={onPress} disabled={downloading}>
+    <TouchableOpacity onPress={onPress} disabled={downloading}>
       <>
       <View style={styles.docContent}>
         <MediaIcon
@@ -30,7 +30,7 @@ const Doc = inject('stores')(observer(({ stores, onPress, file, downloading, pro
       </View>
       { Boolean(downloading) && <ProgressBar progress={progress} /> }
       </>
-    </TouchableRipple>
+    </TouchableOpacity>
   )
 }));
 
@@ -96,12 +96,12 @@ class MediaItem extends React.Component {
       };
       Item = (
         <View style={styles.view}>
-          <TouchableRipple onPress={this._onPress}>
+          <TouchableOpacity onPress={this._onPress}>
             <View>
               <Image source={source} style={styles.image} />
               <Caption style={styles.caption} numberOfLines={1}>{numeral(file.size).format('0b')}</Caption>
             </View>
-          </TouchableRipple>
+          </TouchableOpacity>
         </View>
       );
     } else {

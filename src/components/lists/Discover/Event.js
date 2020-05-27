@@ -1,9 +1,8 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import {
   Text,
   Caption,
-  TouchableRipple,
   Image
 } from 'react-native-paper';
 import BookmarkButton from 'components/common/BookmarkButton';
@@ -69,7 +68,7 @@ export default class EventItem extends React.Component {
     } = this.props;
     let source = pictureUrl ? {uri: pictureUrl} : require('../../../assets/placeholder.png');
     return (
-      <TouchableRipple onPress={this._onPress}>
+      <TouchableOpacity onPress={this._onPress}>
         <View style={styles.container}>
           <View style={styles.content}>
             <Image defaultSource={require('../../../assets/placeholder.png')} resizeMode="cover" style={styles.image} source={source}/>
@@ -95,7 +94,7 @@ export default class EventItem extends React.Component {
             </View>
           </View>
         </View>
-      </TouchableRipple>
+      </TouchableOpacity>
     );
   }
 }

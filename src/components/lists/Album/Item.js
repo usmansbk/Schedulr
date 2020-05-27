@@ -1,6 +1,6 @@
 import React from 'react';
-import { Image } from 'react-native';
-import { TouchableRipple, Surface } from 'react-native-paper';
+import { Image, TouchableOpacity } from 'react-native';
+import { Surface } from 'react-native-paper';
 import { album } from 'lib/constants';
 
 const { ITEM_WIDTH } = album
@@ -14,7 +14,7 @@ export default class Item extends React.Component {
   render() {
     const { style, source, selected, color } = this.props;
     return (
-      <TouchableRipple onPress={this._onPress} onLongPress={this._onLongPress}>
+      <TouchableOpacity onPress={this._onPress} onLongPress={this._onLongPress}>
         <Surface style={[{
           elevation: 4,
           margin: 8,
@@ -28,7 +28,7 @@ export default class Item extends React.Component {
             }}
           />
         </Surface>
-      </TouchableRipple>
+      </TouchableOpacity>
     );
   }
 }

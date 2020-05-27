@@ -1,7 +1,6 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import {
-  TouchableRipple,
   Caption,
   ActivityIndicator
 } from 'react-native-paper';
@@ -35,7 +34,7 @@ class Header extends React.Component {
       caption = I18n.get("COMMENTS_loadMore")(numeral(previousCommentsCount % PAGINATION_LIMIT).format('0 a')); 
     }
     return (
-      <TouchableRipple onPress={this._onPress} disabled={loading || !hasMore || hide}>
+      <TouchableOpacity onPress={this._onPress} disabled={loading || !hasMore || hide}>
         <View style={styles.container}>
           {
             hide ? null : (
@@ -43,7 +42,7 @@ class Header extends React.Component {
             )
           }
         </View>
-      </TouchableRipple>
+      </TouchableOpacity>
     );
   }
 }

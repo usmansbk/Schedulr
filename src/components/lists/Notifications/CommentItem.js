@@ -1,7 +1,6 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, TouchableOpacity } from 'react-native';
 import {
-  TouchableRipple,
   Caption,
   Text,
 } from 'react-native-paper';
@@ -42,7 +41,7 @@ class Item extends React.Component {
     const mark = seen ? {} : styles.unseen;
 
     return (
-      <TouchableRipple onPress={this._onPressItems} style={[styles.itemContainer, mark]}>
+      <TouchableOpacity onPress={this._onPressItems} style={[styles.itemContainer, mark]}>
         <View style={styles.messageItemContent}>
           <View>
             <UserAvatar onPress={this._onPressItems} src={pictureUrl} name={subject} size={32} />
@@ -73,7 +72,7 @@ class Item extends React.Component {
             </View>
           </View>
         </View>
-    </TouchableRipple>
+    </TouchableOpacity>
     )
   }
 }

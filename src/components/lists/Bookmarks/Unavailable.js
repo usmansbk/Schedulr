@@ -1,7 +1,6 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, TouchableOpacity } from 'react-native';
 import {
-  TouchableRipple,
   Caption,
 } from 'react-native-paper';
 import Icon from 'components/common/Icon';
@@ -21,7 +20,7 @@ class Item extends React.Component {
     const styles = stores.appStyles.bookmarkedEventsList;
 
     return (
-      <TouchableRipple style={styles.itemContainer}>
+      <TouchableOpacity style={styles.itemContainer}>
         <View style={styles.unavailableItemContent}>
           <Caption
             numberOfLines={1}
@@ -38,7 +37,7 @@ class Item extends React.Component {
             />
           </View>
         </View>
-      </TouchableRipple>
+      </TouchableOpacity>
     );
   }
 }

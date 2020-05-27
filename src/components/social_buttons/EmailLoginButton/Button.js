@@ -1,11 +1,10 @@
 import React from 'react';
-import { View, Text } from 'react-native';
-import { TouchableRipple } from 'react-native-paper';
+import { View, Text, TouchableOpacity } from 'react-native';
 import { I18n } from 'aws-amplify';
 import styles from './styles';
 
 export default ({ disabled, onPress }) => (
-  <TouchableRipple
+  <TouchableOpacity
     disabled={disabled}
     onPress={onPress}
     style={styles.container}
@@ -17,5 +16,5 @@ export default ({ disabled, onPress }) => (
         {I18n.get("BUTTON_continueWithEmail")}
       </Text>
     </View>
-  </TouchableRipple>
+  </TouchableOpacity>
 );

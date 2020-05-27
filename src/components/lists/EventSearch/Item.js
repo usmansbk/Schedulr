@@ -1,7 +1,6 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, TouchableOpacity } from 'react-native';
 import {
-  TouchableRipple,
   Text,
   Caption,
   Headline,
@@ -80,7 +79,7 @@ class Item extends React.Component {
     });
 
     return (
-      <TouchableRipple
+      <TouchableOpacity
         onPress={this._onPress}
         style={styles.itemContainer}
       >
@@ -129,7 +128,7 @@ class Item extends React.Component {
             />
           </View>
         </View>
-      </TouchableRipple>
+      </TouchableOpacity>
     );
   }
 }

@@ -1,6 +1,6 @@
 import React from 'react';
-import { View } from 'react-native';
-import { TouchableRipple, Text, Caption } from 'react-native-paper';
+import { View, TouchableOpacity } from 'react-native';
+import { Text, Caption } from 'react-native-paper';
 import Icon from 'components/common/Icon';
 import { inject, observer } from 'mobx-react';
 import UserAvatar from 'components/common/UserAvatar';
@@ -47,7 +47,7 @@ class Item extends React.Component {
     const styles = stores.appStyles.schedulesList;
 
     return (
-      <TouchableRipple
+      <TouchableOpacity
         style={styles.itemContainer}
         onPress={this._onPress}
         onLongPress={this._onLongPress}
@@ -104,7 +104,7 @@ class Item extends React.Component {
             onMute={this._onMute}
           />
         </View>
-      </TouchableRipple>
+      </TouchableOpacity>
     );
   }
 }

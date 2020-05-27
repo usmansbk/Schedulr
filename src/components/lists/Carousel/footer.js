@@ -1,5 +1,6 @@
 import React from 'react';
-import { Surface, Text, TouchableRipple } from 'react-native-paper';
+import { TouchableOpacity } from 'react-native';
+import { Surface, Text } from 'react-native-paper';
 import Icon from 'components/common/Icon';
 import { withNavigation } from 'react-navigation';
 import { I18n } from 'aws-amplify';
@@ -18,7 +19,7 @@ class Footer extends React.Component {
 
     const styles = stores.appStyles.carousel;
     return (
-      <TouchableRipple onPress={this._navigateToAlbum}>
+      <TouchableOpacity onPress={this._navigateToAlbum}>
         <Surface style={styles.container}>
           {
             Boolean(images.length) ? (
@@ -31,7 +32,7 @@ class Footer extends React.Component {
             )
           }
         </Surface>
-      </TouchableRipple>
+      </TouchableOpacity>
     );
   }
 }

@@ -1,11 +1,10 @@
 import React from 'react';
-import { View, Text, Image } from 'react-native';
-import { TouchableRipple } from 'react-native-paper';
+import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { I18n } from 'aws-amplify';
 import styles from './styles';
 
 export default ({ disabled, loading, onPress }) => (
-  <TouchableRipple
+  <TouchableOpacity
     disabled={disabled}
     onPress={onPress}
     style={styles.container}
@@ -18,5 +17,5 @@ export default ({ disabled, loading, onPress }) => (
           loading ? I18n.get("BUTTON_signingIn") : I18n.get("BUTTON_continueWithGoogle")
         }</Text>
     </View>
-  </TouchableRipple>
+  </TouchableOpacity>
 );

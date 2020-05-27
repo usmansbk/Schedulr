@@ -1,6 +1,6 @@
 import React from 'react';
-import { View, } from 'react-native';
-import { Text, TouchableRipple, Caption } from 'react-native-paper';
+import { View, TouchableOpacity } from 'react-native';
+import { Text, Caption } from 'react-native-paper';
 import { inject, observer } from 'mobx-react';
 import UserAvatar from 'components/common/UserAvatar';
 import { people_list } from 'lib/constants';
@@ -24,7 +24,7 @@ class Item extends React.Component {
     const styles = stores.appStyles.peopleList;
 
     return (
-      <TouchableRipple onPress={this._onPress} style={styles.itemContainer}>
+      <TouchableOpacity onPress={this._onPress} style={styles.itemContainer}>
         <View style={styles.itemContent}>
           <View style={styles.itemLeft}>
             <UserAvatar
@@ -39,7 +39,7 @@ class Item extends React.Component {
             { !!joined && <Caption>{joined}</Caption> }
           </View>
         </View>
-      </TouchableRipple>
+      </TouchableOpacity>
     )
   }
 }

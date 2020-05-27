@@ -1,6 +1,6 @@
 import React from 'react';
-import { View } from 'react-native';
-import { Text, Caption, TouchableRipple } from 'react-native-paper';
+import { View, TouchableOpacity } from 'react-native';
+import { Text, Caption } from 'react-native-paper';
 import getImageUrl from 'helpers/getImageUrl';
 import UserAvatar from '../UserAvatar';
 import styles from './styles';
@@ -32,7 +32,7 @@ export default class Avatar extends React.Component {
     const uri = avatar ? getImageUrl(avatar) : pictureUrl;
 
     return (
-      <TouchableRipple
+      <TouchableOpacity
         style={styles.container}
         onPress={this.onPress}
       >
@@ -49,7 +49,7 @@ export default class Avatar extends React.Component {
             <Caption numberOfLines={1} ellipsizeMode="tail" >{email}</Caption>
           </View>
         </View>
-      </TouchableRipple>
+      </TouchableOpacity>
     );
   }
 }

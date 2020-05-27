@@ -1,6 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
-import { TouchableRipple } from 'react-native-paper';
+import { View, TouchableOpacity } from 'react-native';
 import { inject, observer } from 'mobx-react';
 import MediaIcon from 'components/common/MediaIcon';
 
@@ -12,11 +11,11 @@ class Item extends React.Component {
     const styles = stores.appStyles.fileSelect;
 
     return (
-      <TouchableRipple disabled={disabled} style={styles.itemContainer} onPress={this._onPress}>
+      <TouchableOpacity disabled={disabled} style={styles.itemContainer} onPress={this._onPress}>
         <View style={styles.itemContent}>
           <MediaIcon type={type.toLowerCase()} style={{width: 60, height: 60}} uri={uri} />
         </View>
-      </TouchableRipple>
+      </TouchableOpacity>
     );
   }
 }

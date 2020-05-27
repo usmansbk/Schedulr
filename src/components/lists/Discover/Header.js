@@ -1,7 +1,6 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, TouchableOpacity } from 'react-native';
 import {
-  TouchableRipple,
   Searchbar,
   IconButton
 } from 'react-native-paper';
@@ -15,7 +14,7 @@ export default inject('stores')(observer(
   ({navigation, stores, onPressLocationButton }) => {
     return (
       <>
-      <TouchableRipple
+      <TouchableOpacity
         onPress={() => navigation.navigate('SearchScreen')}
       >
         <View style={{
@@ -51,7 +50,7 @@ export default inject('stores')(observer(
             }
           />
         </View>
-      </TouchableRipple>
+      </TouchableOpacity>
       <Chips data={stores.appState.categories} />
       </>
     );

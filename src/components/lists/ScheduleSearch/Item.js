@@ -1,6 +1,6 @@
 import React from 'react';
-import { View } from 'react-native';
-import { TouchableRipple, Text, Caption } from 'react-native-paper';
+import { View, TouchableOpacity } from 'react-native';
+import {  Text, Caption } from 'react-native-paper';
 import { inject, observer } from 'mobx-react';
 import UserAvatar from 'components/common/UserAvatar';
 import FollowButton from 'components/common/FollowButton';
@@ -37,7 +37,7 @@ class Item extends React.Component {
     const isAuth = (isPublic || isFollowing) && !isOwner;
     
     return (
-      <TouchableRipple style={styles.itemContainer} onPress={this._onPress}>
+      <TouchableOpacity style={styles.itemContainer} onPress={this._onPress}>
         <View style={styles.itemContent}>
           <UserAvatar
             size={AVATAR_SIZE}
@@ -71,7 +71,7 @@ class Item extends React.Component {
             )
           }
         </View>
-      </TouchableRipple>
+      </TouchableOpacity>
     );
   }
 }

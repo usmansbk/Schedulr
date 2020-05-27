@@ -1,9 +1,8 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, TouchableOpacity } from 'react-native';
 import moment from 'moment';
 import 'twix';
 import {
-  TouchableRipple,
   ActivityIndicator,
   Caption
 } from 'react-native-paper';
@@ -22,7 +21,7 @@ class Header extends React.Component {
     }
 
     return (
-      <TouchableRipple
+      <TouchableOpacity
         disabled={!prevDate || loading}
         onPress={onPress}
         style={stores.appStyles.eventsList.header}
@@ -47,7 +46,7 @@ class Header extends React.Component {
             )
           }
         </View>
-      </TouchableRipple>
+      </TouchableOpacity>
     );
   }
 }

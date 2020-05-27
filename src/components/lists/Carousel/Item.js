@@ -1,6 +1,6 @@
 import React from 'react';
-import { Image } from 'react-native';
-import { Surface, TouchableRipple, Text } from 'react-native-paper';
+import { Image, TouchableOpacity } from 'react-native';
+import { Surface, Text } from 'react-native-paper';
 import Icon from 'components/common/Icon';
 import { I18n } from 'aws-amplify';
 import { inject, observer } from 'mobx-react';
@@ -13,7 +13,7 @@ class Item extends React.Component {
     const source = pictureUrl && {uri: pictureUrl};
     const styles = stores.appStyles.carousel;
     return (
-      <TouchableRipple onPress={this._onPress}>
+      <TouchableOpacity onPress={this._onPress}>
         <Surface style={styles.container}>
           {
             Boolean(source) ? <Image resizeMode="cover"
@@ -26,7 +26,7 @@ class Item extends React.Component {
             )
           }
         </Surface>
-      </TouchableRipple>
+      </TouchableOpacity>
     );
   }
 }

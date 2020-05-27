@@ -1,17 +1,16 @@
 import React from 'react';
 import {
-  TouchableRipple,
   Caption,
   ActivityIndicator
 } from 'react-native-paper';
-import { View } from 'react-native';
+import { View, TouchableOpacity } from 'react-native';
 import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
 
 export default inject('stores')(observer(
   ({ loading, onPress, stores, count }) => {
     return (
-      <TouchableRipple 
+      <TouchableOpacity 
         disabled={!count || loading}
         onPress={onPress}
         style={stores.appStyles.eventsList.loadPrevHeaderContainer}
@@ -33,7 +32,7 @@ export default inject('stores')(observer(
             )
           }
         </View>
-      </TouchableRipple>
+      </TouchableOpacity>
     )
   }
 ))

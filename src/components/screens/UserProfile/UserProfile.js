@@ -3,10 +3,10 @@ import {
   View,
   ScrollView,
   RefreshControl,
+  TouchableOpacity
 } from 'react-native';
 import {
   Headline,
-  TouchableRipple,
   FAB,
   Caption,
   Appbar,
@@ -120,7 +120,7 @@ class UserProfile extends React.Component {
           />
           <Headline numberOfLines={2} ellipsizeMode="tail" style={styles.headline}>{name}</Headline>
         </View>
-        <TouchableRipple onPress={this._toCreatedFollowingTab}>
+        <TouchableOpacity onPress={this._toCreatedFollowingTab}>
           <View style={styles.countRow}>
             <View style={styles.item}>
               <Text style={styles.count}>{numeral(followingCount).format('0a')}</Text>
@@ -131,7 +131,7 @@ class UserProfile extends React.Component {
               <Text ellipsizeMode="tail" numberOfLines={1} style={styles.label}>{I18n.get("PROFILE_createdLabel")}</Text>
             </View>
           </View>
-        </TouchableRipple>
+        </TouchableOpacity>
         <View style={styles.body}>
           <View style={styles.link}>
             <Icon size={16} style={styles.linkIcon} name="calendar" color={stores.themeStore.colors.black} />
