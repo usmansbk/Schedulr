@@ -348,7 +348,12 @@ export default {
   ERROR_configHint: ' Sync now and try again.',
   ERROR_signInFailure: 'Failed to Sign In',
 
-  PLACEHOLDER_aboutThisEvent: "About this event...",
+  PLACEHOLDER_comment: addressee => {
+    if (addressee) {
+      return "Replying " + addressee;
+    }
+    return "About this event...";
+  },
   PLACEHOLDER_normal: "Normal",
   PLACEHOLDER_addYourWebsite: "Add your website",
   PLACEHOLDER_bio: "About me",

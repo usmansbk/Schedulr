@@ -20,23 +20,34 @@ export default class Container extends React.Component {
       commentEventId: this.props.commentEventId,
       commentScheduleId: this.props.commentScheduleId,
     };
+    if (this.props.commentAtId) {
+      input.commentAtId = this.props.commentAtId;
+    }
+    if (this.props.commentToId) {
+      input.commentToId = this.props.commentToId;
+    }
     if (attachment) {
       input.attachment = attachment;
     }
     this.props.onSubmit && this.props.onSubmit(input);
     this.props.scrollDown && this.props.scrollDown();
+    this.props.clear && this.props.clear();
   };
 
   render() {
     const {
+      addressee,
       isOwner,
-      disabled
+      disabled,
+      clear
     } = this.props;
     return (
       <Form
+        addressee={addressee}
         isOwner={isOwner}
         disabled={disabled}
         handleSubmit={this._onSubmit}
+        clear={clear}
         ref={this._formRef}
       />
     );

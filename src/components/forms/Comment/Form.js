@@ -2,6 +2,7 @@ import React from 'react';
 import { View, TextInput } from 'react-native';
 import { IconButton, ProgressBar, ActivityIndicator } from 'react-native-paper';
 import Icon from 'components/common/Icon';
+import Button from 'components/common/Button';
 import DocumentPicker from 'react-native-document-picker';
 import { inject, observer } from 'mobx-react';
 import { I18n, Storage } from 'aws-amplify';
@@ -135,9 +136,11 @@ class CommentInput extends React.Component {
 
   render() {
     const {
+      addressee,
       stores,
       disabled,
-      isOwner
+      isOwner,
+      clear
     } = this.props;
     
     const {
@@ -153,7 +156,14 @@ class CommentInput extends React.Component {
     const invalid = isSubmitting || !(message.trim() || uploads.length) || disabled;
 
     return (
-      <>
+      <View style={{backgroundColor: colors.bg}}>
+        {
+          Boolean(addressee) && (
+            <View style={{alignSelf: "flex-start"}}>
+              <Button onPress={clear} danger>{I18n.get("BUTTON_cancel")}</Button>
+            </View>
+          )
+        }
         { Boolean(this.state.uploads.length) && (
           <>
           <FileSelect
@@ -185,7 +195,7 @@ class CommentInput extends React.Component {
           <View style={styles.input}>
             <TextInput
               ref={this._textInputRef}
-              placeholder={I18n.get("PLACEHOLDER_aboutThisEvent")}
+              placeholder={I18n.get("PLACEHOLDER_comment")(addressee)}
               value={message}
               multiline
               maxHeight={120}
@@ -214,7 +224,7 @@ class CommentInput extends React.Component {
             )
           }
         </View>
-      </>
+      </View>
     );
   }
 }

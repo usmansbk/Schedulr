@@ -22,6 +22,13 @@ class Item extends React.Component {
   _showOptions = () => {
     this.commentActions.getWrappedInstance().open();
   };
+  _onReply = () => {
+    this.props.onReply([
+      this.props.id,
+      this.props.authorId,
+      this.props.authorName,
+    ]);
+  };
 
   _navigateToProfile = () => this.props.navigateToProfile(this.props.authorId);
   _navigateToViewEmbed = (params) => this.props.navigateToViewEmbed(params);
@@ -39,12 +46,11 @@ class Item extends React.Component {
       authorPictureUrl,
       stores,
       timeAgo,
-      focusInput
     } = this.props;
     
     const styles = stores.appStyles.commentsList;
     return (
-      <TouchableOpacity onLongPress={this._showOptions}>
+      <TouchableOpacity onPress={this._onReply} onLongPress={this._showOptions}>
         <View style={styles.itemContainer}>
           <UserAvatar
             name={authorName}
@@ -90,7 +96,7 @@ class Item extends React.Component {
           ref={this._commentActions}
           isOwner={isOwner}
           attachment={attachment}
-          onReply={focusInput}
+          onReply={this._onReply}
         />
       </TouchableOpacity>
     )

@@ -9,7 +9,10 @@ import Suspense from 'components/common/Suspense';
 
 class Screen extends React.Component {
   state = {
-    display: false
+    display: false,
+    commentAtId: null,
+    commentToId: null,
+    addressee: null
   };
 
   _inputRef = ref => this.inputRef = ref ;
@@ -42,9 +45,25 @@ class Screen extends React.Component {
     }
   );
 
+  _handleReply = ([commentToId, commentAtId, addressee]) => {
+    this.setState({
+      commentAtId,
+      commentToId,
+      addressee
+    }, this.focusCommentInput);
+  };
+  _clear = () => {
+    this.setState({
+      commentAtId: null,
+      commentToId: null,
+      addressee: null,
+    });
+  };
+
   shouldComponentUpdate = (nextProps, nextState) => {
     return (
       this.state.display !== nextState.display ||
+      this.state.addressee !== nextState.addressee ||
       this.props.comments.length !== nextProps.comments.length ||
       this.props.loading !== nextProps.loading
     );
@@ -52,7 +71,10 @@ class Screen extends React.Component {
 
   render() {
     const {
-      display
+      display,
+      addressee,
+      commentAtId,
+      commentToId
     } = this.state;
     
     if (!display) return <Suspense />;
@@ -105,15 +127,19 @@ class Screen extends React.Component {
           fetchMoreComments={fetchMoreComments}
           navigateToProfile={this._navigateToProfile}
           navigateToViewEmbed={this._navigateToViewEmbed}
-          focusInput={this.focusCommentInput}
+          onReply={this._handleReply}
         />
         <CommentForm
+          addressee={addressee}
+          commentAtId={commentAtId}
+          commentToId={commentToId}
           commentEventId={commentEventId}
           commentScheduleId={commentScheduleId}
           isOwner={isOwner}
           ref={this._inputRef}
           disabled={!comments.length && (loading || error)}
           scrollDown={this.scrollDown}
+          clear={this._clear}
         />
       </>
     );

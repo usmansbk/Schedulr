@@ -343,7 +343,12 @@ export default {
   ERROR_configHint: 'Sincronice ahora e intente nuevamente.',
   ERROR_signInFailure: 'Error al iniciar sesión',
 
-  PLACEHOLDER_aboutThisEvent: "Sobre este evento ...",
+  PLACEHOLDER_comment: addressee => {
+    if (addressee) {
+      return "Replying " + addressee;
+    }
+    return "About this event...";
+  },
   PLACEHOLDER_normal: "Normal",
   PLACEHOLDER_addYourWebsite: "Añade tu página web",
   PLACEHOLDER_bio: "Sobre mí",
