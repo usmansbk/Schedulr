@@ -1426,7 +1426,7 @@ export default class AppStyles {
         margin: 4,
         elevation: 2,
         borderRadius: 8,
-        backgroundColor: colors.bg
+        backgroundColor: colors.light_gray
       },
       image: {
         width: '94%',
