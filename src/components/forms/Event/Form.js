@@ -6,7 +6,7 @@ import {
   ScrollView,
 } from 'react-native';
 import {
-  TextInput,
+  // TextInput,
   Text,
   HelperText,
   Appbar,
@@ -15,6 +15,7 @@ import {
 import { Formik } from 'formik';
 import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
+import TextInput from 'components/common/TextInput';
 import Button from 'components/common/Button';
 import Picker, { CustomPicker } from 'components/common/Picker';
 import DateTimePicker from 'components/common/DateTimePicker';
@@ -123,24 +124,15 @@ class Form extends React.Component {
           >
             <View style={styles.form}>
               <TextInput
-                // placeholder={I18n.get("EVENT_FORM_title")}
+                bold
+                error={errors.title}
+                placeholder={I18n.get("PLACEHOLDER_title")}
                 label={I18n.get("EVENT_FORM_title")}
                 value={values.title}
                 onChangeText={handleChange('title')}
                 onBlur={handleBlur('title')}
-                style={styles.textInput}
-                underlineColor="transparent"
-                theme={{
-                  roundness: 16 
-                }}
               />
-              <HelperText
-                type="error"
-                visible={errors.title && touched.title}
-              >
-              {errors.title && I18n.get(`HELPER_TEXT_${errors.title}`)}
-              </HelperText>
-              <View style={{paddingLeft: 10}}>
+              <View style={{paddingHorizontal: 8}}>
               {
                 !locked && (
                   <View style={styles.pickerSpacing}>
@@ -320,46 +312,22 @@ class Form extends React.Component {
               }
               </View>
               <TextInput
+                error={errors.venue}
                 placeholder={I18n.get("PLACEHOLDER_venue")(values.location)}
                 label={I18n.get("EVENT_FORM_venue")}
                 value={values.venue}
                 onChangeText={handleChange('venue')}
                 onBlur={handleBlur('venue')}
-                style={styles.textInput}
-                underlineColor="transparent"
-                theme={{
-                  roundness: 16
-                }}
               />
-              <HelperText
-                type="error"
-                visible={errors.venue && touched.venue}
-              >
-              {errors.venue && I18n.get(`HELPER_TEXT_${errors.venue}`)}
-              </HelperText>
               <TextInput
-                // placeholder={I18n.get("EVENT_FORM_description")}
+                error={errors.description}
+                placeholder={I18n.get("PLACEHOLDER_description")}
                 label={I18n.get("EVENT_FORM_description")}
                 value={values.description}
                 onChangeText={handleChange('description')}
                 onBlur={handleBlur('description')}
                 multiline
-                style={styles.textInput}
-                theme={{
-                  roundness: 16
-                }}
-                underlineColor="transparent"
               />
-              {
-                Boolean(errors.description) && (
-                  <HelperText
-                    type="error"
-                    visible={errors.description && touched.description}
-                  >
-                  {I18n.get(`HELPER_TEXT_${errors.description}`)}
-                  </HelperText>
-                )
-              }
             </View>
           </ScrollView>
           </>

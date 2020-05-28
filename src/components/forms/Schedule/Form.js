@@ -5,13 +5,12 @@ import {
 } from 'react-native';
 import isEqual from 'lodash.isequal';
 import {
-  TextInput,
   Text,
-  HelperText,
   Switch,
   Appbar,
   Caption
 } from 'react-native-paper';
+import TextInput from 'components/common/TextInput';
 import Button from 'components/common/Button';
 import Alert from 'components/dialogs/Alert';
 import LocationPicker from 'components/common/LocationPicker';
@@ -110,22 +109,16 @@ class Form extends React.Component {
           >
             <View style={styles.form}>
               <TextInput
+                bold
                 label={I18n.get("SCHEDULE_FORM_name")}
+                placeholder={I18n.get("PLACEHOLDER_name")}
                 value={values.name}
                 onChangeText={handleChange('name')}
                 onBlur={handleBlur('name')}
-                underlineColor="transparent"
+                error={errors.name}
                 autoFocus
-                style={styles.textInput}
-                theme={{roundness: 16}}
               />
-              <HelperText
-                type="error"
-                visible={errors.name && touched.name}
-              >
-              {errors.name && I18n.get(`HELPER_TEXT_${errors.name}`)}
-              </HelperText>
-              <View style={{paddingLeft: 10}}>
+              <View style={{paddingLeft: 8}}>
                 <Text
                   style={
                     [styles.text, { marginVertical: 4 }]}
@@ -145,7 +138,7 @@ class Form extends React.Component {
                     }}
                   />
                 </View>
-                <View style={{marginVertical: 16}}>
+                <View style={{marginVertical: 10}}>
                   <Text style={styles.text}>{I18n.get("SCHEDULE_FORM_location")}</Text>
                   <PickerInput
                     value={values.location}
@@ -155,21 +148,14 @@ class Form extends React.Component {
               </View>
               <TextInput
                 label={I18n.get("SCHEDULE_FORM_description")}
+                placeholder={I18n.get("PLACEHOLDER_description")}
                 value={values.description}
                 multiline
                 maxHeight={120}
-                underlineColor="transparent"
                 onChangeText={handleChange('description')}
                 onBlur={handleBlur('description')}
-                style={styles.textInput}
-                theme={{roundness: 16}}
+                error={errors.description}
               />
-              <HelperText
-                type="error"
-                visible={errors.description && touched.description}
-              >
-              {errors.description && I18n.get(`HELPER_TEXT_${errors.description}`)}
-              </HelperText>
               <View style={styles.info}>
                 <Caption
                   style={styles.primary}

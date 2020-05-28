@@ -465,6 +465,28 @@ export default class AppStyles {
     });
   }
 
+  @computed get textInput() {
+    const colors = this.settings.dark ? dark : light;
+
+    return StyleSheet.create({
+      container: {
+        marginVertical: 10 
+      },
+      input: {
+        backgroundColor: colors.bg,
+        padding: 8,
+        margin: 0,
+        fontSize: 18,
+        color: colors.black
+      },
+      label: {
+        fontSize: 12,
+        marginLeft: 8,
+        color: colors.black
+      }
+    });
+  }
+
   @computed get eventForm () {
     const colors = this.settings.dark ? dark : light;
 
