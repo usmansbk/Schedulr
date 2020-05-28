@@ -180,7 +180,8 @@ class List extends React.Component {
         const result = this.state.prevIterator.next(this.state.beforeDate);
         if (!result.done) {
           const { beforeDate, items} = result.value;
-          const sections = items.concat(this.state.sections);
+          // const sections = items.concat(this.state.sections);
+          const sections = items;
           this.setState({
             sections,
             beforeDate,
