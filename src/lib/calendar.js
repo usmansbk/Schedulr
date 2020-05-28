@@ -5,19 +5,33 @@ import {
 	isSpanDays,
 } from './time';
 
+function extractDates(events) {
+	return events.map(e => {
+		const nextDate = repeat(e.startAt)
+			.every(e.recurrence)
+			.from(moment())
+			.until(e.until)
+			.nextDate().toISOString();
+		return nextDate;
+	});
+}
+
 function* EventSectionGenerator(events, previous) {
-	events.sort((a, b) => moment(a.startAt).diff(b.startAt));
-	let dates = getWeekFromNow(previous);
+	const someday = extractDates(events);
+	const dates = Array.from(new Set(getWeekFromNow(previous).concat(someday)));
+	dates.sort((a, b) => moment(a).diff(moment(b)));
+
 	for (let date of dates) {
 		const data = [];
 		events.forEach(event => {
 			const recur = repeat(event.startAt)
 											.every(event.recurrence)
 											.until(event.until);
-			if (recur.matches(date)) {
+			if (!event.isCancelled && recur.matches(date)) {
 				data.push(update(event, date));
 			}
 		});
+		data.sort((a, b) => moment(a.startAt).diff(b.startAt))
 		const items = [
 			{
 				data,
