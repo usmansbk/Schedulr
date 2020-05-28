@@ -33,7 +33,7 @@ class Item extends React.Component {
     } = this.props;
 
     const styles = stores.appStyles.notifications;
-    const icon = 'message-circle';
+    const icon = 'comments';
     const {
       content,
       title
