@@ -80,6 +80,7 @@ class Screen extends React.Component {
     if (!display) return <Suspense />;
 
     const {
+      notFound,
       loading,
       comments,
       commentsCount,
@@ -118,6 +119,7 @@ class Screen extends React.Component {
         <List
           ref={this._listRef}
           error={error}
+          notFound={notFound}
           id={commentEventId}
           loading={loading}
           comments={comments.sort((a, b) => Date.parse(a.createdAt) - Date.parse(b.createdAt))}
@@ -137,7 +139,7 @@ class Screen extends React.Component {
           commentScheduleId={commentScheduleId}
           isOwner={isOwner}
           ref={this._inputRef}
-          disabled={!comments.length && (loading || error)}
+          disabled={notFound || (!comments.length && (loading || error))}
           scrollDown={this.scrollDown}
           clear={this._clear}
         />

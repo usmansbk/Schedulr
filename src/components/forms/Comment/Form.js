@@ -204,7 +204,7 @@ class CommentInput extends React.Component {
               onBlur={() => this._onChangeText(message)}
               placeholderTextColor={colors.placeholder}
               style={styles.textInput}
-              disabled={disabled}
+              editable={!disabled}
             />
           </View>
           {

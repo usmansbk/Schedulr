@@ -7,9 +7,13 @@ import Error from 'components/common/Error';
 import Loading from 'components/common/Loading';
 
 export default inject('stores')(observer(
-  ({ error, loading, stores }) => {
+  ({ error, loading, stores, notFound }) => {
     if (loading) return <Loading />;
-    if (error) return <Error />;
+    if (error || notFound) return <Error
+      notFound={notFound}
+      message={I18n.get("ERROR_404")}
+      caption={I18n.get("ERROR_404_caption")}
+    />;
     return (
       <View style={stores.appStyles.commentsList.empty}>
         <Image

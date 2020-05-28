@@ -998,7 +998,6 @@ export default class AppStyles {
         backgroundColor: colors.light_gray_4
       },
       itemContent: {
-        height: dp(80),
         flexDirection: 'row',
         justifyContent: 'flex-start'
       },
@@ -1009,8 +1008,7 @@ export default class AppStyles {
       },
       itemBody: {
         borderRadius: 8,
-        paddingVertical: 4,
-        paddingHorizontal: 8,
+        padding: 8,
         backgroundColor: colors.light_gray,
         marginLeft: 8,
         flex: 1

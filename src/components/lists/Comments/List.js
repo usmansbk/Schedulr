@@ -57,7 +57,11 @@ class List extends React.Component {
   />;
   _renderSeparator = () => <Separator />;
   _renderFooter = () => <Footer />;
-  _renderEmpty = () => <Empty error={this.props.error} loading={this.props.loading} />;
+  _renderEmpty = () => <Empty
+    notFound={this.props.notFound}
+    error={this.props.error}
+    loading={this.props.loading}
+  />;
   scrollDown = () => {
     if (this.props.comments.length) {
       this._listRef && this._listRef.scrollToEnd();
