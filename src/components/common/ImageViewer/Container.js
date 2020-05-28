@@ -4,7 +4,7 @@ import { inject, observer } from 'mobx-react';
 import { Storage, I18n } from 'aws-amplify';
 import config from 'aws_config';
 import getImageUrl from 'helpers/getImageUrl';
-import Alert from 'components/dialogs/Alert';
+import Confirm from 'components/common/Confirm';
 import Screen from './Screen';
 import logger from 'config/logger';
 import snackbar from 'helpers/snackbar';
@@ -21,14 +21,12 @@ const { MAX_FILE_SIZE, EPSILON } = file;
 class ImageViewerContainer extends React.Component {
   state = {
     loading: false,
-    showRemoveImageAlert: false,
     progress: 0
   };
   
   _goBack = () => this.props.goBack();
-
-  _showRemoveImageAlert = () => this.setState({ showRemoveImageAlert: true });
-  _hideRemoveImageAlert = () => this.setState({ showRemoveImageAlert: false });
+  _confirmRef = ref => this.deleteConfirmRef = ref;
+  _confirmDelete = () => this.deleteConfirmRef.open();
 
   _removePhoto = async () => {
     if (this.props.stores.appState.isConnected) {
@@ -43,7 +41,7 @@ class ImageViewerContainer extends React.Component {
           logger.logError(error)
         }
       }
-      this.setState({ loading: false, showRemoveImageAlert: false });
+      this.setState({ loading: false });
     } else {
       snackbar(I18n.get("ERROR_noConnection"));
     }
@@ -123,17 +121,15 @@ class ImageViewerContainer extends React.Component {
         subtitle={subtitle}
         uri={url}
         uploadPhoto={this._uploadPhoto}
-        deletePhoto={this._showRemoveImageAlert}
+        deletePhoto={this._confirmDelete}
         uploadProgress={this.state.progress}
         me={me}
         s3Object={s3Object}
       />
-      <Alert
-        loading={this.state.loading}
-        visible={this.state.showRemoveImageAlert}
+      <Confirm
         title={I18n.get("ALERT_deleteImage")}
         onConfirm={this._removePhoto}
-        handleDismiss={this._hideRemoveImageAlert}
+        ref={this._confirmRef}
       />
       </>
     );
