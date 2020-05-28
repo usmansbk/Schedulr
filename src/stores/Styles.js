@@ -1201,6 +1201,11 @@ export default class AppStyles {
       message: {
         alignSelf: 'flex-start',
       },
+      to: {
+        marginBottom: 8,
+        borderTopLeftRadius: 12,
+        backgroundColor: colors.light_gray_2
+      },
       attachment: {
         paddingTop: 8
       },

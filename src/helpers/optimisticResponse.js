@@ -281,6 +281,26 @@ function createComment(input, typename) {
     }`,
     id: `Event:${input.commentEventId}`
   });
+  let to = null;
+  if (input.commentToId) {
+    to = client.readFragment({
+      fragment: gql`fragment toComment on Comment {
+        id
+        content
+        attachment {
+          key
+          bucket
+          name
+          type
+        }
+        author {
+          id
+          name
+        }
+      }`,
+      id: `Comment:${input.commentToId}`
+    });
+  }
   const count = event.commentsCount;
   if (typeof count === 'number') {
     event.commentsCount = count + 1;
@@ -305,6 +325,7 @@ function createComment(input, typename) {
     author,
     createdAt: moment().toISOString(),
     event,
+    to,
     __typename: typename
   };
   return comment;

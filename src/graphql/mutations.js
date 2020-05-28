@@ -427,6 +427,20 @@ export const createComment = `mutation CreateComment($input: CreateCommentInput!
       id
       commentsCount
     }
+    to {
+      id
+      content
+      attachment {
+        key
+        bucket
+        name
+        type
+      }
+      author {
+        id
+        name
+      }
+    }
     createdAt
   }
 }

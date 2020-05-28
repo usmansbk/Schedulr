@@ -23,6 +23,7 @@ class List extends React.Component {
       id,
       content,
       attachment,
+      to,
       author,
       isOwner,
       createdAt,
@@ -34,6 +35,7 @@ class List extends React.Component {
         authorId={author.id}
         authorName={author.name}
         authorPictureUrl={author.avatar ? getImageUrl(author.avatar) : author.pictureUrl}
+        to={to}
         isOwner={isOwner}
         content={content}
         attachment={attachment}

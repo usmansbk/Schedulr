@@ -146,7 +146,7 @@ export function ellipsisMode(str) {
   return trimmed;
 }
 
-function getFilePrefix(type) {
+export function getFilePrefix(type) {
   const t = type.toLowerCase();
   if (t.includes('image')) {
     return 'IMG';
