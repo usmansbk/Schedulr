@@ -3,7 +3,6 @@ import repeat from './repeat';
 import {
 	getWeekFromNow,
 	isSpanDays,
-	getTimeUnit
 } from './time';
 
 function* EventSectionGenerator(events, previous) {
@@ -13,7 +12,7 @@ function* EventSectionGenerator(events, previous) {
 		const data = [];
 		events.forEach(event => {
 			const recur = repeat(event.startAt)
-											.every(getTimeUnit(event.recurrence))
+											.every(event.recurrence)
 											.until(event.until);
 			if (recur.matches(date)) {
 				data.push(update(event, date));
