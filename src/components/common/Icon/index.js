@@ -28,6 +28,7 @@ const names = {
   "archive": "hourglass",
   "send": "pluscircleo",
   "chevron-right": "right",
+  "chevron-up": "up",
   "info": "infocirlceo",
   "alert": "exclamationcircle"
 };
