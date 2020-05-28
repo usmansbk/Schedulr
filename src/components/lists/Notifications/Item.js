@@ -74,10 +74,10 @@ class Item extends React.Component {
 
     const mark = seen ? {} : styles.unseen;
     return (
-      <TouchableOpacity onPress={this._onPressItems} style={[styles.itemContainer, mark]}>
+      <TouchableOpacity onPress={this._onPressItems} style={styles.itemContainer}>
         <View style={styles.itemContent}>
           <UserAvatar style={styles.avatar} onPress={this._onPressItems} src={pictureUrl} name={subject} size={AVATAR_SIZE} />
-          <View style={styles.itemBody}>
+          <View style={[styles.itemBody, mark]}>
             <Text ellipsizeMode="tail" numberOfLines={2}>
               <Caption style={styles.boldText}>{subject}</Caption>{' '}
               <Caption>{message}</Caption>

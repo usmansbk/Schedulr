@@ -992,19 +992,13 @@ export default class AppStyles {
         textAlign: 'center'
       },
       itemContainer: {
-        backgroundColor: colors.light_gray,
-        borderRadius: 8,
         marginVertical: 8
-        // maxWidth: WIDTH,
-        // minWidth: WIDTH,
       },
       unseen: {
         backgroundColor: colors.light_gray_4
       },
       itemContent: {
         height: dp(80),
-        paddingVertical: 4,
-        paddingHorizontal: 8,
         flexDirection: 'row',
         justifyContent: 'flex-start'
       },
@@ -1014,6 +1008,10 @@ export default class AppStyles {
         flexDirection: 'row',
       },
       itemBody: {
+        borderRadius: 8,
+        paddingVertical: 4,
+        paddingHorizontal: 8,
+        backgroundColor: colors.light_gray,
         marginLeft: 8,
         flex: 1
       },
