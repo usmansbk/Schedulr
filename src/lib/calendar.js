@@ -1,16 +1,24 @@
 import moment from 'moment';
-import { getWeekFromNow, isSpanDays } from './time';
+import repeat from './repeat';
+import {
+	getWeekFromNow,
+	isSpanDays,
+	getTimeUnit
+} from './time';
 
 function* EventSectionGenerator(events, previous) {
+	events.sort((a, b) => moment(a.startAt).diff(b.startAt));
 	let dates = getWeekFromNow(previous);
 	for (let date of dates) {
 		const data = [];
 		events.forEach(event => {
-			if (match(event, date)) {
-				data.push(process(event, date));
+			const recur = repeat(event.startAt)
+											.every(getTimeUnit(event.recurrence))
+											.until(event.until);
+			if (recur.matches(date)) {
+				data.push(update(event, date));
 			}
 		});
-		data.sort((a, b) => moment(a.startAt).diff(b.startAt));
 		const items = [
 			{
 				data,
@@ -25,33 +33,7 @@ function* EventSectionGenerator(events, previous) {
 	}
 }
 
-// Checks if event will occur in the given date
-function match(event, date) {
-	const startMoment = moment(event.startAt);
-	const endMoment = moment(event.endAt);
-	const dateMoment = moment(date);
-	// isValid - date is same as or between start and end date
-
-	const isValidStart = startMoment.isSame(dateMoment, 'day');
-	const isValid= dateMoment.isBetween(startMoment, endMoment, 'day', '[]');
-	const isCancelled = event.isCancelled;
-	let isRecurring = false;
-	if (event.recurrence !== 'NEVER') {
-		if (event.recurrence === 'WEEKDAYS') {
-			isRecurring = dateMoment.isoWeekday() < 6;
-		} else {
-			isRecurring = true;
-		}
-	}
-	if (event.until) {
-		const finalMoment = moment(event.until);
-		isRecurring = dateMoment.isSameOrBefore(finalMoment, 'day');
-	}
-
-	return !isCancelled && (isValid || (isValidStart && isRecurring));
-}
-
-function process(event, date) {
+function update(event, date) {
 	const previousStartMoment = moment(event.startAt);
 
 	const hr = previousStartMoment.hour();

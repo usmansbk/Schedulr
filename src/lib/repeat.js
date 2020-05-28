@@ -32,7 +32,7 @@ export default function repeat(date) {
       return this.previous(1)[0];
     },
     matches(date) {
-      return false;
+      return true;
     },
     moment() {
       return moment(_date);
