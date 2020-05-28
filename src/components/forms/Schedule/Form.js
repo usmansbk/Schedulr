@@ -118,7 +118,7 @@ class Form extends React.Component {
                 error={errors.name}
                 autoFocus
               />
-              <View style={{paddingLeft: 8}}>
+              <View style={{paddingHorizontal: 8}}>
                 <Text
                   style={
                     [styles.text, { marginVertical: 4 }]}
