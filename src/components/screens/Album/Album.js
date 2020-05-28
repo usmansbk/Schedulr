@@ -174,7 +174,7 @@ class Album extends React.Component {
           isOwner && (
             <Fab
               disabled={loading || isLoading || isSubmitting}
-              icon={selected.length ? "trash":"image"}
+              icon={selected.length ? "trash":"picture"}
               onPress={selected.length ? this._onDelete : this._openDocumentPicker}
             />
           )
