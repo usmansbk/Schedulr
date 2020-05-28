@@ -5,7 +5,7 @@ import {
   ActivityIndicator
 } from 'react-native-paper';
 import { I18n } from 'aws-amplify';
-import {CIRCLE, PAGINATION_LIMIT} from 'lib/constants';
+import {PAGINATION_LIMIT} from 'lib/constants';
 import numeral from 'numeral';
 
 const styles = StyleSheet.create({
@@ -26,20 +26,16 @@ class Header extends React.Component {
       loading,
       hide
     } = this.props;
+    if (!hasMore) return null;
 
     const previousCommentsCount = commentsCount - currentCount;
     const hasMore = previousCommentsCount > 0;
-    let caption = CIRCLE; 
-    if (hasMore) {
-      caption = I18n.get("COMMENTS_loadMore")(numeral(previousCommentsCount % PAGINATION_LIMIT).format('0 a')); 
-    }
+    const caption = I18n.get("COMMENTS_loadMore")(numeral(previousCommentsCount % PAGINATION_LIMIT).format('0 a')); 
     return (
       <TouchableOpacity onPress={this._onPress} disabled={loading || !hasMore || hide}>
         <View style={styles.container}>
           {
-            hide ? null : (
-              loading ? <ActivityIndicator size={16}/> : <Caption>{caption}</Caption>
-            )
+            loading ? <ActivityIndicator size={16}/> : <Caption>{caption}</Caption>
           }
         </View>
       </TouchableOpacity>
