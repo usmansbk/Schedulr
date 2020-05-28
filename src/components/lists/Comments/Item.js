@@ -10,6 +10,7 @@ import UserAvatar from 'components/common/UserAvatar';
 import Attachment from 'components/common/Attachment';
 import Actions from 'components/actionsheet/Comment';
 import { comments_list, BULLET } from 'lib/constants';
+import Thumbnail from './Thumbnail';
 
 const { AVATAR_SIZE } = comments_list;
 
@@ -46,6 +47,7 @@ class Item extends React.Component {
       authorPictureUrl,
       stores,
       timeAgo,
+      to,
     } = this.props;
     
     const styles = stores.appStyles.commentsList;
@@ -67,6 +69,15 @@ class Item extends React.Component {
             >
               {authorName} <Caption>{BULLET} {timeAgo}</Caption>
             </Text>
+            {Boolean(to) && (
+              <View style={[styles.item, styles.message, styles.to]}>
+                <Text numberOfLines={1} ellipsizeMode="tail" style={styles.authorName}>{to.author.name}</Text>
+                <Text numberOfLines={4} ellipsizeMode="tail">{to.content}</Text>
+                {Boolean(to.attachment && to.attachment.length) && (
+                  <Thumbnail attachment={to.attachment} />
+                )}
+              </View>
+            )}
             {Boolean(content) && (
               <View
                 style={[

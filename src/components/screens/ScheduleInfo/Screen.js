@@ -35,7 +35,6 @@ export default class Screen extends React.Component {
         this.deleteConfirmRef.wrappedInstance.open();
         break;
       case 'close':
-        // console.log(this.archiveConfirmRef.getWrappedInstance());
         this.archiveConfirmRef.getWrappedInstance().open();
         break;
       case 'open':
