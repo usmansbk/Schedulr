@@ -84,11 +84,11 @@ export const isWeekDay = (momentDate) => {
 export function getTimeUnit(recurrence) {
   const val = recurrence.toLowerCase();
   switch (val) {
-    case 'daily': return 'days';
-    case 'weekly': case 'weekdays': return 'weeks';
-    case 'monthly': return 'months';
-    case 'yearly': return 'years';
-    default: return 'seconds';
+    case 'daily': return 'day';
+    case 'weekly': case 'weekday': return 'week';
+    case 'monthly': return 'month';
+    case 'yearly': return 'year';
+    default: return 'second';
   }
 }
 
