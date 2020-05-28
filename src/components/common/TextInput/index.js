@@ -10,7 +10,6 @@ import { dark as colors } from 'config/colors';
 
 export default inject("stores")(observer(({error, stores, label, bold, ...rest}) => {
   const styles= stores.appStyles.textInput;
-  console.log(error);
   return (
     <View style={styles.container}>
       <Text style={styles.label}>{label}</Text>
