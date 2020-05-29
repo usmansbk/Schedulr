@@ -2881,19 +2881,19 @@
   resolved "https://registry.yarnpkg.com/@react-native-firebase/app-types/-/app-types-6.7.2.tgz#d2e1530af5702e00578914b41468898c10d3289c"
   integrity sha512-pIwc6e0ZINw6PJqNVsAxzOVJUDg6au2TdulY+ZOYQ11SPDs5I2n9likoGrElPmJjajT4s9h87uz/6PWP2k9PxQ==
 
-"@react-native-firebase/app@^7.1.0":
-  version "7.1.0"
-  resolved "https://registry.yarnpkg.com/@react-native-firebase/app/-/app-7.1.0.tgz#df56260b7861b700c5888a3865b217e17536dbff"
-  integrity sha512-C/SCrU/zzlYVUrqFar+a7zQ1qN01I39LREzD098Pl6gPi8ONhd5bda8ZX0Qq7fRwNmSZlQ1j93VLysagt41woA==
+"@react-native-firebase/app@^7.1.4":
+  version "7.1.4"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/app/-/app-7.1.4.tgz#394dd04bb2eedfa7cb6ea5301110cd16946cec67"
+  integrity sha512-9v4kTxrdLilqQZ1JmznEQNVYz8du/EGuBGeUPAODNL/slvREpveZeTvr7sbkM7jMLASxwGG5Iii+HucfJw3G+g==
   dependencies:
     "@react-native-firebase/app-types" "6.7.2"
     opencollective-postinstall "^2.0.1"
     superstruct "^0.6.2"
 
-"@react-native-firebase/crashlytics@^7.1.0":
-  version "7.1.0"
-  resolved "https://registry.yarnpkg.com/@react-native-firebase/crashlytics/-/crashlytics-7.1.0.tgz#a97c29b65b7433b33220554f903d37c18eb4266e"
-  integrity sha512-1Ex32kvkI9idSzwAeF+TFwuKgEd7XZeNLlhugTYoUw6cSQz2TK9wa0OUrCYCN4VeIgEz5di5GKw9V/XEq4BssQ==
+"@react-native-firebase/crashlytics@^7.1.3":
+  version "7.1.3"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/crashlytics/-/crashlytics-7.1.3.tgz#d2dc20b65735e188b620c1e667c829c304c63f61"
+  integrity sha512-8sRRi0iOcC+faxDzSUylxUkwmLdAIykIJWr0M15dOpp7GERCxo6kI95KBKyXvCiYMuQdAp50+7m31bfF5Pr5oQ==
   dependencies:
     stacktrace-js "^2.0.0"
 

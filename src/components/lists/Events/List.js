@@ -179,7 +179,7 @@ class List extends React.Component {
       setTimeout(() => {
         const result = this.state.prevIterator.next(this.state.beforeDate);
         if (!result.done) {
-          const { beforeDate, items} = result.value;
+          const { nextToken: beforeDate, items} = result.value;
           // const sections = items.concat(this.state.sections);
           const sections = items;
           this.setState({
@@ -203,7 +203,7 @@ class List extends React.Component {
       setTimeout(() => {
         const result = this.state.nextIterator.next(this.state.afterDate);
         if (!result.done) {
-        const { items, afterDate } = result.value;
+        const { items, nextToken: afterDate } = result.value;
         const sections = this.state.sections.concat(items);
           this.setState({
             sections,
@@ -226,13 +226,13 @@ class List extends React.Component {
       const prevIterator = EventSectionGenerator(events, true, NUMBER_OF_DAYS);
       let result =  nextIterator.next();
       if (!result.done) {
-        const { items, afterDate, beforeDate } = result.value;
+        const { items, nextToken } = result.value;
         this.setState({
           nextIterator,
           prevIterator,
           sections: items,
-          afterDate,
-          beforeDate,
+          afterDate: nextToken,
+          beforeDate: nextToken,
           events,
         });
       }

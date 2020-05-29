@@ -50,8 +50,7 @@ function* EventSectionGenerator(events, previous) {
 		] ;
 		yield ({
 			items,
-			afterDate: date,
-			beforeDate: date
+			nextToken: date
 		});
 	}
 }
