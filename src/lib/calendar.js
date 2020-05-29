@@ -63,11 +63,11 @@ export function update(event, date) {
 	const sec = previousStartMoment.second();
 
 	const nextMoment = moment(date).hour(hr).minute(min).second(sec);
-	let startAt = nextMoment.toISOString();
+	const startAt = nextMoment.toISOString();
 
 	const previousEndMoment = moment(event.endAt);
 	const duration = moment.duration(previousEndMoment.diff(previousStartMoment));
-	let endAt = nextMoment.clone().add(duration).toISOString();
+	const endAt = nextMoment.clone().add(duration).toISOString();
 	
 	return Object.assign({}, event, {
 		startAt,
