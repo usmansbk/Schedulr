@@ -26,7 +26,7 @@ function* EventSectionGenerator(events, previous) {
 	const someday =  extractDates(events, previous);
 	const dates = Array.from(new Set(getWeekFromNow(previous).concat(someday)));
 	const order = previous ? -1 : 1;
-	dates.sort((a, b) => moment(a).diff(moment(b)) * order);
+	// dates.sort((a, b) => moment(a).diff(moment(b)) * order);
 
 	for (let date of dates) {
 		const data = [];
@@ -39,7 +39,7 @@ function* EventSectionGenerator(events, previous) {
 				data.push(update(event, date));
 			}
 		});
-		// data.sort((a, b) => moment(a.startAt).diff(b.startAt))
+		data.sort((a, b) => moment(a.startAt).diff(b.startAt));
 		const items = [
 			{
 				data,
@@ -66,7 +66,7 @@ function update(event, date) {
 
 	const previousEndMoment = moment(event.endAt);
 	const duration = moment.duration(previousEndMoment.diff(previousStartMoment));
-	let endAt = nextMoment.clone().add(duration).toISOString();
+	let endAt = nextMoment.clone().add(duration);
 
 	let isConcluded = false;
 	if (event.until) {
@@ -78,19 +78,17 @@ function update(event, date) {
 		}
 	}
 
-	const isExtended = isSpanDays(previousStartMoment, previousEndMoment);
-	if (isExtended || isConcluded) {
-		startAt = previousStartMoment.toISOString();
-		endAt = previousEndMoment.toISOString();
-	}
+	// const isExtended = isSpanDays(previousStartMoment, previousEndMoment);
+	// if (isExtended) {
+		// startAt = previousStartMoment.toISOString();
+	// }
 	
 	return Object.assign({}, event, {
 		startAt,
-		endAt,
-		isExtended,
+		endAt: endAt.toISOString(),
 		isConcluded,
-		ref_date: date,
-		raw_startAt: event.startAt
+		// isExtended: isExtended,
+		// ref_date: date,
 	});
 }
 

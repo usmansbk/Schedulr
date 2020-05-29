@@ -30,9 +30,9 @@ class Item extends React.Component {
       this.props.navigateToCalendarEvent(this.props.id);
     } else {
       let startAt = this.props.startAt;
-      if (this.props.isExtended) {
-        startAt = this.props.ref_date;
-      }
+      // if (this.props.isExtended) {
+      //   startAt = this.props.ref_date;
+      // }
       this.props.onPressItem(this.props.id, startAt, this.props.endAt);
     }
   };
@@ -67,7 +67,7 @@ class Item extends React.Component {
       title,
       startAt,
       endAt,
-      ref_date,
+      // ref_date,
       address,
       stores,
       bookmarksCount,
@@ -77,7 +77,7 @@ class Item extends React.Component {
       isMuted,
       isBookmarked,
       isOffline,
-      isExtended,
+      // isExtended,
       isCancelled,
       cancelledDates,
       __typename
@@ -87,7 +87,7 @@ class Item extends React.Component {
     const category = getCategory(this.props.category);
     const recurrence = parseRepeat(this.props.recurrence);
     const time = getTime({
-      isExtended,
+      // isExtended,
       allDay,
       startAt,
       endAt
@@ -95,7 +95,8 @@ class Item extends React.Component {
     const status = getStatus({
       isCancelled,
       cancelledDates,
-      startAt: isExtended ? ref_date : startAt,
+      // startAt: isExtended ? ref_date : startAt,
+      startAt,
       endAt
     });
     const duration= getDuration(startAt, endAt, allDay);
@@ -108,7 +109,7 @@ class Item extends React.Component {
       duration,
       startAt,
       endAt,
-      ref_date
+      // ref_date
     });
     
     return (

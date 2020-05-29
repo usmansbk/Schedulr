@@ -56,13 +56,11 @@ export const repeatLength = (recurrence) => {
 
 export const formatDate = (startAt, endAt, allDay) => {
   return moment(startAt).twix(endAt, allDay).format({
-    // explicitAllDay: true,
     allDay: I18n.get("EVENT_ITEM_allDay"),
     implicitMinutes: false,
     groupMeridiems: false,
     showDayOfWeek: true,
     weekdayFormat: 'dddd',
-    // hideDate: isToday && !isExtended
   }); 
 };
 
@@ -92,11 +90,11 @@ export function getTimeUnit(recurrence) {
   }
 }
 
-export const getTime = ({ startAt, endAt, allDay, isExtended }) => {
+export const getTime = ({ startAt, endAt, allDay }) => {
   const t = moment(startAt).twix(endAt, allDay);
   const isSameDay = t.isSame('day');
   return t.format({
-    hideTime: isExtended,
+    // hideTime: isExtended,
     hideDate: isSameDay,
     allDay: I18n.get("EVENT_ITEM_allDay"),
     explicitAllDay: true,
