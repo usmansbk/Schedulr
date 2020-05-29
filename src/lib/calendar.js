@@ -55,7 +55,7 @@ function* EventSectionGenerator(events, previous) {
 	}
 }
 
-function update(event, date) {
+export function update(event, date) {
 	const previousStartMoment = moment(event.startAt);
 
 	const hr = previousStartMoment.hour();

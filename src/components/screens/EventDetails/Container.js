@@ -8,8 +8,10 @@ import DeleteConfirm from 'components/dialogs/DeleteEvent';
 import CancelConfirm from 'components/dialogs/CancelEvent';
 import Details from './Details';
 import { formatDate, getRepeatLabel, getDuration } from 'lib/time';
+import { update } from 'lib/calendar';
 import { isEventValid, isEventCancelled } from 'lib/formatEvent';
 import getImageUrl from 'helpers/getImageUrl';
+import repeat from 'lib/repeat';
 import logger from 'config/logger';
 
 const DATE_FORMAT = "ddd DD, MMM YYYY, hh:mm a";
@@ -53,6 +55,7 @@ class EventDetails extends React.Component {
     if (!this.state.display) return <Suspense/>;
     const {
       event,
+      from,
       handleBack,
       handleRepeat,
       handleEdit,
@@ -64,6 +67,13 @@ class EventDetails extends React.Component {
       cardView,
       stores
     } = this.props;
+    const date = repeat(event.startAt)
+                  .span(event.endAt)
+                  .every(event.recurrence)
+                  .until(event.until)
+                  .from(from)
+                  .nextDate();
+    const currentEvent = date ? update(event, date) : event;
     const {
       id,
       title,
@@ -88,7 +98,7 @@ class EventDetails extends React.Component {
       isOffline,
       banner,
       author
-    } = event;
+    } = currentEvent;
     const isValid = isEventValid({
       isCancelled,
       endAt,
