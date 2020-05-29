@@ -69,7 +69,7 @@ export const formatDate = (startAt, endAt, allDay) => {
 export const calendarTime = (date) => moment(date).calendar(null, I18n.get('calendarTimeFormats'));
 
 export const isSpanDays = (from, to) => {
-  return moment(to).diff(from) > ONE_DAY;
+  return !moment(from).isSame(moment(to), 'day');
 };
 
 export const isPastDate = (date, endOfDay) => {
@@ -122,11 +122,10 @@ export const getDuration = (startAt, endAt) => {
   return decapitalize(t.humanizeLength());
 };
 
-export const getDaysCount = ({ startAt, ref_date }) => {
-  const currentMoment = moment(ref_date).startOf('D');
-  const startMoment = moment(startAt).startOf('D');
-  const count = currentMoment.diff(startMoment, 'd');
-  return count;
+export function getDaysCount(from, to) {
+  const start = moment(from).startOf('day');
+  const end = moment(to).endOf('day');
+  return end.diff(start, 'days');
 };
 
 // Get next seven days starting from today 

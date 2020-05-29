@@ -3,6 +3,7 @@ import repeat from './repeat';
 import {
 	getWeekFromNow,
 	isSpanDays,
+	getDaysCount,
 } from './time';
 
 function extractDates(events, previous) {
@@ -26,10 +27,6 @@ function* EventSectionGenerator(events, previous) {
 	const dates = Array.from(new Set(getWeekFromNow(previous).concat(someday)));
 	const order = previous ? -1 : 1;
 	dates.sort((a, b) => moment(a).diff(moment(b)) * order);
-	// if (previous) {
-	// 	console.log("Previous");
-	// 	console.log(JSON.stringify(dates, null, 2));
-	// }
 
 	for (let date of dates) {
 		const data = [];
@@ -75,6 +72,10 @@ function update(event, date) {
 	if (event.until) {
 		const finalMoment = moment(event.until);
 		isConcluded = nextMoment.isAfter(finalMoment);
+		if (isConcluded) {
+			startAt = previousStartMoment.toISOString();
+			endAt = previousEndMoment.toISOString();
+		}
 	}
 
 	const isExtended = isSpanDays(previousStartMoment, previousEndMoment);
@@ -82,7 +83,7 @@ function update(event, date) {
 		startAt = previousStartMoment.toISOString();
 		endAt = previousEndMoment.toISOString();
 	}
-
+	
 	return Object.assign({}, event, {
 		startAt,
 		endAt,
