@@ -185,7 +185,8 @@ class EventDetails extends React.Component {
             isCancelled,
             cancelledDates,
             startAt,
-            endAt
+            endAt,
+            until
           })}
           startAt={startAt}
           endAt={endAt}

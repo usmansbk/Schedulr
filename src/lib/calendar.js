@@ -68,27 +68,10 @@ function update(event, date) {
 	const previousEndMoment = moment(event.endAt);
 	const duration = moment.duration(previousEndMoment.diff(previousStartMoment));
 	let endAt = nextMoment.clone().add(duration);
-
-	let isConcluded = false;
-	if (event.until) {
-		const finalMoment = moment(event.until);
-		isConcluded = nextMoment.isAfter(finalMoment);
-		if (isConcluded) {
-			startAt = previousStartMoment.toISOString();
-			endAt = previousEndMoment.toISOString();
-		}
-	}
-
-	// const isExtended = isSpanDays(previousStartMoment, previousEndMoment);
-	// if (isExtended) {
-		// startAt = previousStartMoment.toISOString();
-	// }
 	
 	return Object.assign({}, event, {
 		startAt,
 		endAt: endAt.toISOString(),
-		isConcluded,
-		// isExtended: isExtended,
 	});
 }
 

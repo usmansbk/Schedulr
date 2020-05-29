@@ -36,9 +36,9 @@ class Item extends React.Component {
       allDay,
       startAt,
       endAt,
+      until,
       isCancelled,
       cancelledDates,
-      isConcluded,
       banner,
       stores
     } = this.props;
@@ -48,7 +48,9 @@ class Item extends React.Component {
     const status = getStatus({
       isCancelled,
       cancelledDates,
-      startAt, endAt, isConcluded
+      startAt,
+      endAt,
+      until
     });
     const category= getCategory(this.props.category);
     const recurrence = parseRepeat(this.props.recurrence);

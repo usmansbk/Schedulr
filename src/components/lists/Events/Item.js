@@ -63,6 +63,7 @@ class Item extends React.Component {
       title,
       startAt,
       endAt,
+      until,
       address,
       stores,
       banner,
@@ -88,7 +89,8 @@ class Item extends React.Component {
       isCancelled,
       cancelledDates,
       startAt,
-      endAt
+      endAt,
+      until
     });
     const duration= getDuration(startAt, endAt, allDay);
     

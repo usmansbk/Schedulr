@@ -60,12 +60,12 @@ class List extends Component {
     banner,
     startAt,
     endAt,
+    until,
     recurrence,
     venue,
     schedule,
     allDay,
     isOwner,
-    isConcluded,
     isBookmarked,
     isOffline,
     bookmarksCount,
@@ -76,11 +76,11 @@ class List extends Component {
     title={title}
     isCancelled={isCancelled}
     cancelledDates={cancelledDates}
-    isConcluded={isConcluded}
     allDay={allDay}
     banner={banner}
     startAt={startAt}
     endAt={endAt}
+    until={until}
     bookmarksCount={bookmarksCount}
     commentsCount={commentsCount}
     isBookmarked={isBookmarked}

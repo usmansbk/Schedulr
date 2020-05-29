@@ -50,11 +50,11 @@ class List extends Component {
     category,
     startAt,
     endAt,
+    until,
     recurrence,
     schedule,
     allDay,
     banner,
-    isConcluded,
     isCancelled,
     cancelledDates,
     updatedAt
@@ -63,10 +63,10 @@ class List extends Component {
     title={title}
     startAt={startAt}
     endAt={endAt}
+    until={until}
     banner={banner}
     isCancelled={isCancelled}
     cancelledDates={cancelledDates}
-    isConcluded={isConcluded}
     allDay={allDay}
     recurrence={recurrence}
     category={category}

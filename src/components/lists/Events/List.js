@@ -109,6 +109,7 @@ class List extends React.Component {
         cancelledDates,
         startAt,
         endAt,
+        until,
         updatedAt,
         recurrence,
         banner,
@@ -125,6 +126,7 @@ class List extends React.Component {
         title={title}
         startAt={startAt}
         endAt={endAt}
+        until={until}
         from={section.title}
         category={category}
         isCancelled={isCancelled}

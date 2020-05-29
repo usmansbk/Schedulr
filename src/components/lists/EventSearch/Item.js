@@ -45,6 +45,7 @@ class Item extends React.Component {
       title,
       startAt,
       endAt,
+      until,
       allDay,
       isAuth,
       isOffline,
@@ -55,7 +56,6 @@ class Item extends React.Component {
       address,
       scheduleId,
       isCancelled,
-      isConcluded,
       cancelledDates,
       stores
     } = this.props;
@@ -69,7 +69,9 @@ class Item extends React.Component {
     const status = getStatus({
       isCancelled,
       cancelledDates,
-      startAt, endAt, isConcluded
+      startAt,
+      endAt,
+      until
     });
     const caption = captionDetails({
       allDay,

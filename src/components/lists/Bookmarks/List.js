@@ -62,9 +62,9 @@ class List extends Component {
       banner,
       startAt,
       endAt,
+      until,
       recurrence,
       schedule,
-      isConcluded,
       isBookmarked,
       updatedAt
     } = item;
@@ -75,7 +75,9 @@ class List extends Component {
       status={getStatus({
         isCancelled,
         cancelledDates,
-        startAt, endAt, isConcluded
+        startAt,
+        endAt,
+        until,
       })}
       startAt={startAt}
       endAt={endAt}
