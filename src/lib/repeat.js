@@ -66,8 +66,20 @@ function nextYear(date, from, isPrevious) {
   return nextDate;
 }
 
-function datesFrom({numberOfDates, date, from, every, until, isPrevious}) {
+function nextDay(date, length, from) {
+  if (length) { //
+    console.log("Length of", date, "is", length)
+    // return moment(from);
+  }
+  return moment(date);
+}
+
+function datesFrom({numberOfDates, date, from, every, until, isPrevious, span}) {
   const dates = [];
+  let length = 0;
+  if (span) {
+    length = moment(span).diff(date, 'days');
+  }
   
   switch(every) {
     case "day":
@@ -90,7 +102,7 @@ function datesFrom({numberOfDates, date, from, every, until, isPrevious}) {
       break;
     };
     default: {
-      nextDate = moment(date);
+      nextDate = nextDay(date, length, from);
       break;
     }
   }
@@ -141,6 +153,7 @@ export default function repeat(date) {
         date: _date,
         every: _every,
         from: _from,
+        span: _span,
         until: _until,
       });
     },
@@ -151,6 +164,7 @@ export default function repeat(date) {
         every: _every,
         from: _from,
         until: _until,
+        span: _span,
         isPrevious: true
       });
     },
@@ -162,12 +176,12 @@ export default function repeat(date) {
     },
     matches(date) {
       // edge cases
-      if (moment(date).isBefore(_from, 'day')) return false;
+      // if (moment(date).isBefore(_from, 'day')) return false;
       if (moment(date).isBefore(_date, 'day')) return false;
       if (_until) {
         if (moment(date).isAfter(_until, 'day')) return false;
       }
-      return match(_date, _every, date);
+      return match(_date, _every, date, _span);
     },
     span(date) {
       if (date) {
@@ -183,7 +197,7 @@ export default function repeat(date) {
   return rule;
 }
 
-function match(target, every, date) {
+function match(target, every, date, span) {
   switch(every) {
     case "day": return true;
     case "weekday": return moment(date).isoWeekday() < 6;
@@ -191,7 +205,9 @@ function match(target, every, date) {
     case "month": return moment(date).date() === target.date();
     case "year": return ((moment(date).date() === target.date()) &&
       (moment(date).month() === target.month()));
-    default: return moment(date).isSame(target, "day");
+    default: {
+      return moment(date).isBetween(target, span, "day", "[]");
+    };
   }
 }
 

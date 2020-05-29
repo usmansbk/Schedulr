@@ -26,7 +26,7 @@ export const weekdays = [
 export const tick = (start, end) => {
   const startAt = moment(start);
   const endAt = moment(end);
-  return moment().isBetween(startAt, endAt, "[]") ? moment().minutes() : 0;
+  return moment().isBetween(startAt, endAt, "minute", "[]") ? moment().minutes() : 0;
 };
 
 export const canRecur = ({ startAt, endAt })  => {
