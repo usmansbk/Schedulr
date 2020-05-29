@@ -72,7 +72,6 @@ export function update(event, date) {
 	return Object.assign({}, event, {
 		startAt,
 		endAt,
-		_startAt: event.startAt
 	});
 }
 

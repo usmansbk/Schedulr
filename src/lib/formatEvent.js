@@ -109,16 +109,12 @@ export const captionDetails = ({
   startAt,
   endAt,
 }) => {
-  const spanDays = isSpanDays(startAt, endAt);
-  const isToday = moment().isBetween(startAt, endAt, null, "[]");
-
-  let currentDayCount, totalDayCount;
-  if (spanDays && isToday) {
-    const count = getDaysCount(startAt, moment());
-    currentDayCount = count + 1;
-    totalDayCount = getDaysCount(startAt, endAt) + 1;
-  }
   let caption;
+  const [currentDayCount, totalDayCount] = count({
+    startAt,
+    endAt,
+  });
+
   if (allDay) {
     caption = I18n.get("EVENT_CAPTION_allDay")({ type: category, recurrence: I18n.get(recurrence) });
   } else {
@@ -131,3 +127,15 @@ export const captionDetails = ({
   let formatted = capitalize(caption.trim());
   return formatted;
 };
+
+function count({ startAt, endAt }) {
+  const spanDays = isSpanDays(startAt, endAt);
+
+  let currentDayCount, totalDayCount;
+  if (spanDays) {
+    totalDayCount = getDaysCount(startAt, endAt);
+    const count = getDaysCount(startAt, startAt);
+    currentDayCount = count;
+  }
+  return [currentDayCount, totalDayCount];
+}

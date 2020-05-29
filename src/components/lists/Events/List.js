@@ -119,7 +119,6 @@ class List extends React.Component {
         isBookmarked,
         isOwner,
         isOffline,
-        _startAt
       } = item;
 
       return (<Item
@@ -128,7 +127,6 @@ class List extends React.Component {
         startAt={startAt}
         endAt={endAt}
         until={until}
-        _startAt={_startAt}
         from={section.title}
         category={category}
         isCancelled={isCancelled}

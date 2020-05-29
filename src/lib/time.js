@@ -123,7 +123,7 @@ export const getDuration = (startAt, endAt) => {
 export function getDaysCount(from, to) {
   const start = moment(from).startOf('day');
   const end = moment(to).endOf('day');
-  return end.diff(start, 'days');
+  return Math.round(end.diff(start, 'days', true));
 };
 
 // Get next seven days starting from today 

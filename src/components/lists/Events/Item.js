@@ -63,7 +63,6 @@ class Item extends React.Component {
       title,
       startAt,
       endAt,
-      _startAt,
       until,
       address,
       stores,
