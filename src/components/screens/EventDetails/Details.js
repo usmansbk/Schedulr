@@ -5,6 +5,7 @@ import Hyperlink from 'react-native-hyperlink';
 import { inject, observer } from 'mobx-react';
 import numeral from 'numeral';
 import { I18n } from 'aws-amplify';
+import { getStatus } from 'lib/formatEvent';
 import Actions from 'components/common/Actions';
 import CountDown from 'components/common/Countdown';
 import Tag from 'components/common/Tag';
@@ -26,11 +27,11 @@ export default inject('stores')(observer(
     updatedAt,
     description,
     duration,
-    status,
     startAt,
     endAt,
     isOffline,
     isBookmarked,
+    isCancelled,
     authorId,
     isAuth,
     isOwner,
@@ -49,6 +50,12 @@ export default inject('stores')(observer(
   }) => {
     const [ expandDescription, setExpand ] = useState(false);
     const expandText = () => setExpand(!expandDescription);
+    const status= getStatus({
+      isCancelled,
+      startAt,
+      endAt,
+      until
+    });
     return (
     <View style={stores.appStyles.eventDetails.container}>
       <ScrollView style={stores.appStyles.eventDetails.bg}>

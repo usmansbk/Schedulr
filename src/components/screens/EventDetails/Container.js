@@ -8,7 +8,7 @@ import DeleteConfirm from 'components/dialogs/DeleteEvent';
 import CancelConfirm from 'components/dialogs/CancelEvent';
 import Details from './Details';
 import { formatDate, getRepeatLabel, getDuration } from 'lib/time';
-import { isEventValid, isEventCancelled, getStatus } from 'lib/formatEvent';
+import { isEventValid, isEventCancelled } from 'lib/formatEvent';
 import getImageUrl from 'helpers/getImageUrl';
 import logger from 'config/logger';
 
@@ -181,13 +181,6 @@ class EventDetails extends React.Component {
           title={title}
           date={formatDate(startAt, endAt, allDay)}
           duration={getDuration(startAt, endAt)}
-          status={getStatus({
-            isCancelled,
-            cancelledDates,
-            startAt,
-            endAt,
-            until
-          })}
           startAt={startAt}
           endAt={endAt}
           category={category}
