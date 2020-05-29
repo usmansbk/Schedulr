@@ -102,10 +102,11 @@ export const captionDetails = ({
   endAt,
 }) => {
   const spanDays = isSpanDays(startAt, endAt);
+  const isToday = moment().isBetween(startAt, endAt, null, "[]");
 
   let currentDayCount, totalDayCount;
-  if (spanDays) {
-    const count = getDaysCount(startAt, endAt);
+  if (spanDays && isToday) {
+    const count = getDaysCount(startAt, moment());
     currentDayCount = count + 1;
     totalDayCount = getDaysCount(startAt, endAt) + 1;
   }
