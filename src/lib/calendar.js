@@ -27,6 +27,7 @@ function extractDates(events, previous) {
 function* EventSectionGenerator(events, previous) {
 	const someday =  extractDates(events, previous);
 	const dates = Array.from(new Set(getWeekFromNow(previous).concat(someday)));
+	console.log(JSON.stringify(dates, null, 2))
 	const order = previous ? -1 : 1;
 	dates.sort((a, b) => moment(a).diff(b) * order); // dont delete no matter what
 
@@ -35,6 +36,7 @@ function* EventSectionGenerator(events, previous) {
 		events.forEach(event => {
 			const recur = repeat(event.startAt)
 											.span(event.endAt)
+											.from(date)
 											.every(event.recurrence)
 											.until(event.until);
 			if (!event.isCancelled && recur.matches(date)) {

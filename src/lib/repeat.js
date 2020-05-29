@@ -13,7 +13,7 @@ function momentUnit(unit) {
 
 function nextWeek(date, from, isPrevious) {
   let nextDate;
-  const day = moment(from).isoWeekday();
+  const day = moment(from).isoWeekday(); // from date
   const weekday = moment(date).isoWeekday();
   if (weekday < day) { // day passed
     const nextDay = isPrevious ? 7 - weekday : 7 + weekday;
@@ -73,7 +73,10 @@ function nextDay(from, date) {
   return moment(from);
 }
 
-function datesFrom({numberOfDates, date, from, every, until, isPrevious }) {
+function datesFrom({
+  numberOfDates, date, from,
+  every, until, isPrevious, span
+}) {
   const dates = [];
   
   switch(every) {
@@ -81,7 +84,7 @@ function datesFrom({numberOfDates, date, from, every, until, isPrevious }) {
       nextDate = nextDay(from, date);
       break;
     case "week": {
-      nextDate = nextWeek(date, from, isPrevious);
+      nextDate = nextWeek(date, from, isPrevious, span);
       break;
     };
     case "weekday": {
@@ -149,6 +152,7 @@ export default function repeat(date) {
         every: _every,
         from: _from,
         until: _until,
+        span: _span
       });
     },
     previous(numberOfDates) {
@@ -174,7 +178,7 @@ export default function repeat(date) {
       if (_until) {
         if (moment(date).isAfter(_until, 'day')) return false;
       }
-      return match(_date, _every, date, _span);
+      return match(_date, _every, date, _span, _from);
     },
     span(date) {
       if (date) {
@@ -190,16 +194,20 @@ export default function repeat(date) {
   return rule;
 }
 
-function match(target, every, date, span) {
-  switch(every) {
+function match(_date, _every, date, _span, _from) {
+  if (_span) {
+    const inRange = moment(date).isBetween(_date, _span, null, "[]");
+    if (inRange) return true;
+  }
+  switch(_every) {
     case "day": return true;
     case "weekday": return moment(date).isoWeekday() < 6;
-    case "week": return moment(date).isoWeekday() === target.isoWeekday();
-    case "month": return moment(date).date() === target.date();
-    case "year": return ((moment(date).date() === target.date()) &&
-      (moment(date).month() === target.month()));
+    case "week": return moment(date).isoWeekday() === _date.isoWeekday();
+    case "month": return moment(date).date() === _date.date();
+    case "year": return ((moment(date).date() === _date.date()) &&
+      (moment(date).month() === _date.month()));
     default: {
-      return moment(date).isBetween(target, span, "day", "[]");
+      return moment(date).isBetween(_date, _span, "day", "[]");
     };
   }
 }
