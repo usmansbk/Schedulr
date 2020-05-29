@@ -89,7 +89,6 @@ function update(event, date) {
 		endAt: endAt.toISOString(),
 		isConcluded,
 		// isExtended: isExtended,
-		// ref_date: date,
 	});
 }
 

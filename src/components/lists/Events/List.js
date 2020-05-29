@@ -119,7 +119,6 @@ class List extends React.Component {
         bookmarksCount,
         isOwner,
         isOffline,
-        // ref_date,
         // isExtended
       } = item;
 
@@ -128,7 +127,6 @@ class List extends React.Component {
         title={title}
         startAt={startAt}
         endAt={endAt}
-        // ref_date={ref_date}
         category={category}
         isCancelled={isCancelled}
         cancelledDates={cancelledDates}

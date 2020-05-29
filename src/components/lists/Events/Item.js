@@ -30,9 +30,6 @@ class Item extends React.Component {
       this.props.navigateToCalendarEvent(this.props.id);
     } else {
       let startAt = this.props.startAt;
-      // if (this.props.isExtended) {
-      //   startAt = this.props.ref_date;
-      // }
       this.props.onPressItem(this.props.id, startAt, this.props.endAt);
     }
   };
@@ -67,7 +64,6 @@ class Item extends React.Component {
       title,
       startAt,
       endAt,
-      // ref_date,
       address,
       stores,
       bookmarksCount,
@@ -95,7 +91,6 @@ class Item extends React.Component {
     const status = getStatus({
       isCancelled,
       cancelledDates,
-      // startAt: isExtended ? ref_date : startAt,
       startAt,
       endAt
     });
@@ -109,7 +104,6 @@ class Item extends React.Component {
       duration,
       startAt,
       endAt,
-      // ref_date
     });
     
     return (

@@ -62,7 +62,6 @@ class List extends Component {
       banner,
       startAt,
       endAt,
-      // ref_date,
       recurrence,
       schedule,
       isConcluded,
@@ -80,7 +79,6 @@ class List extends Component {
       })}
       startAt={startAt}
       endAt={endAt}
-      // ref_date={ref_date}
       allDay={allDay}
       pictureUrl={banner && getImageUrl(banner)}
       isBookmarked={isBookmarked}
