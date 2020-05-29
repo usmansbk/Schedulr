@@ -66,12 +66,19 @@ function nextYear(date, from, isPrevious) {
   return nextDate;
 }
 
+function nextDay(from, date) {
+  if (moment(from).isBefore(moment(date))) {
+    return moment(date);
+  }
+  return moment(from);
+}
+
 function datesFrom({numberOfDates, date, from, every, until, isPrevious }) {
   const dates = [];
   
   switch(every) {
     case "day":
-      nextDate = moment(from);
+      nextDate = nextDay(from, date);
       break;
     case "week": {
       nextDate = nextWeek(date, from, isPrevious);
@@ -162,6 +169,7 @@ export default function repeat(date) {
     },
     matches(date) {
       // edge cases
+      if (_from && moment(date).isBefore(_from, 'day')) return false;
       if (moment(date).isBefore(_date, 'day')) return false;
       if (_until) {
         if (moment(date).isAfter(_until, 'day')) return false;

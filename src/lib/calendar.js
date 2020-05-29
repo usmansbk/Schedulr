@@ -67,11 +67,11 @@ export function update(event, date) {
 
 	const previousEndMoment = moment(event.endAt);
 	const duration = moment.duration(previousEndMoment.diff(previousStartMoment));
-	let endAt = nextMoment.clone().add(duration);
+	let endAt = nextMoment.clone().add(duration).toISOString();
 	
 	return Object.assign({}, event, {
 		startAt,
-		endAt: endAt.toISOString(),
+		endAt
 	});
 }
 
