@@ -7,7 +7,7 @@ import {
 } from './time';
 
 function extractDates(events, previous) {
-	const direction = previous ? -1 : 1;
+	const direction = previous ? -1 : 0;
 	let dates = [];
 	events.forEach(e => {
 		const recur = repeat(e.startAt)
@@ -27,6 +27,8 @@ function extractDates(events, previous) {
 function* EventSectionGenerator(events, previous) {
 	const someday =  extractDates(events, previous);
 	const dates = Array.from(new Set(getWeekFromNow(previous).concat(someday)));
+	const order = previous ? -1 : 1;
+	dates.sort((a, b) => moment(a).diff(b) * order); // dont delete no matter what
 
 	for (let date of dates) {
 		const data = [];
