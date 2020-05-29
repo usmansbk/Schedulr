@@ -66,20 +66,8 @@ function nextYear(date, from, isPrevious) {
   return nextDate;
 }
 
-function nextDay(date, length, from) {
-  if (length) { //
-    console.log("Length of", date, "is", length)
-    // return moment(from);
-  }
-  return moment(date);
-}
-
-function datesFrom({numberOfDates, date, from, every, until, isPrevious, span}) {
+function datesFrom({numberOfDates, date, from, every, until, isPrevious }) {
   const dates = [];
-  let length = 0;
-  if (span) {
-    length = moment(span).diff(date, 'days');
-  }
   
   switch(every) {
     case "day":
@@ -102,7 +90,7 @@ function datesFrom({numberOfDates, date, from, every, until, isPrevious, span}) 
       break;
     };
     default: {
-      nextDate = nextDay(date, length, from);
+      nextDate = moment(date);
       break;
     }
   }
@@ -153,7 +141,6 @@ export default function repeat(date) {
         date: _date,
         every: _every,
         from: _from,
-        span: _span,
         until: _until,
       });
     },
@@ -164,7 +151,6 @@ export default function repeat(date) {
         every: _every,
         from: _from,
         until: _until,
-        span: _span,
         isPrevious: true
       });
     },
@@ -176,7 +162,6 @@ export default function repeat(date) {
     },
     matches(date) {
       // edge cases
-      // if (moment(date).isBefore(_from, 'day')) return false;
       if (moment(date).isBefore(_date, 'day')) return false;
       if (_until) {
         if (moment(date).isAfter(_until, 'day')) return false;
