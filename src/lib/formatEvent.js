@@ -3,6 +3,7 @@ import 'twix';
 import { I18n } from 'aws-amplify';
 import { capitalize } from './utils';
 import { getDaysCount, isSpanDays } from './time';
+const ONE_TIME_EVENT = "NEVER";
 
 /**
  * 
@@ -65,9 +66,16 @@ export const getStatus = ({
  * @return { boolean} Whether an event is cancelled or date expired
  */
 export const isEventValid = (event) => {
-  const { isCancelled, startAt, endAt } = event;
+  const { isCancelled, startAt, endAt, recurrence, until } = event;
   const cancelledDates = event.cancelledDates || [];
-  return moment().twix(endAt).isCurrent() && !isEventCancelled({ cancelledDates, startAt, isCancelled });
+  return (
+    (!isCancelled &&
+      recurrence !== ONE_TIME_EVENT &&
+      moment().twix(until).isCurrent()
+    ) || 
+    (moment().twix(endAt).isCurrent() &&
+    !isEventCancelled({ cancelledDates, startAt, isCancelled }))
+  );
 };
 
 /**

@@ -74,49 +74,62 @@ function nextDay(from, date) {
 }
 
 function datesFrom({
-  numberOfDates, date, from,
-  every, until, isPrevious, span
+  numberOfDates, _date, _from,
+  _every, _until, previous, _span
 }) {
   const dates = [];
+  let nextDate;
+
+  if (_span) {
+    const inRange = moment(_from).isBetween(_date, _span, null, "[]");
+    if (inRange) {
+      const length = Math.ceil(moment(_span).diff(_date, "days", true));
+      const count = Math.ceil(moment(_from).diff(_date, "days", true));
+      for (let i = count, j = 0; i <= length && j < numberOfDates; j++, i++) {
+        nextDate = moment(_date).add(i, 'days');
+        dates.push(nextDate);
+      }
+    };
+  }
   
-  switch(every) {
+  switch(_every) {
     case "day":
-      nextDate = nextDay(from, date);
+      nextDate = nextDay(_from, _date);
       break;
     case "week": {
-      nextDate = nextWeek(date, from, isPrevious, span);
+      nextDate = nextWeek(_date, _from, previous, _span);
       break;
     };
     case "weekday": {
-      nextDate = nextWeekday(from, isPrevious);
+      nextDate = nextWeekday(_from, previous);
       break;
     };
     case "month": {
-      nextDate = nextMonth(date, from, isPrevious);
+      nextDate = nextMonth(_date, _from, previous);
       break;
     }
     case "year": {
-      nextDate = nextYear(date, from, isPrevious);
+      nextDate = nextYear(_date, _from, previous);
       break;
     };
     default: {
-      nextDate = moment(date);
+      nextDate = moment(_date);
       break;
     }
   }
 
-  const amount = isPrevious ? -1 : 1;
+  const amount = previous ? -1 : 1;
   for (let i = 0; i <= numberOfDates; i++) {
-    if (isPrevious) {
-      if (nextDate.isAfter(from, 'day')) break;
+    if (previous) {
+      if (nextDate.isAfter(_from, 'day')) break;
     } else {
-      if (nextDate.isBefore(from, 'day')) break;
+      if (nextDate.isBefore(_from, 'day')) break;
     }
-    if (until) {
-      if (nextDate.isAfter(until, 'day')) break; 
+    if (_until) {
+      if (nextDate.isAfter(_until, 'day')) break; 
     }
     dates.push(nextDate);
-    nextDate = moment(nextDate).add(amount, every);
+    nextDate = moment(nextDate).add(amount, _every);
   }
   return dates;
 }
@@ -148,21 +161,21 @@ export default function repeat(date) {
     next(numberOfDates) {
       return datesFrom({
         numberOfDates,
-        date: _date,
-        every: _every,
-        from: _from,
-        until: _until,
-        span: _span
+        _date,
+        _every,
+        _from,
+        _until,
+        _span,
       });
     },
     previous(numberOfDates) {
       return datesFrom({
         numberOfDates,
-        date: _date,
-        every: _every,
-        from: _from,
-        until: _until,
-        isPrevious: true
+        _date,
+        _every,
+        _from,
+        _until,
+        previous: true
       });
     },
     nextDate() {
@@ -178,7 +191,7 @@ export default function repeat(date) {
       if (_until) {
         if (moment(date).isAfter(_until, 'day')) return false;
       }
-      return match(_date, _every, date, _span, _from);
+      return match(_date, _every, date, _span);
     },
     span(date) {
       if (date) {
@@ -194,7 +207,7 @@ export default function repeat(date) {
   return rule;
 }
 
-function match(_date, _every, date, _span, _from) {
+function match(_date, _every, date, _span) {
   if (_span) {
     const inRange = moment(date).isBetween(_date, _span, null, "[]");
     if (inRange) return true;
@@ -206,9 +219,7 @@ function match(_date, _every, date, _span, _from) {
     case "month": return moment(date).date() === _date.date();
     case "year": return ((moment(date).date() === _date.date()) &&
       (moment(date).month() === _date.month()));
-    default: {
-      return moment(date).isBetween(_date, _span, "day", "[]");
-    };
+    default: return moment(date).isSame(_date, "day");
   }
 }
 

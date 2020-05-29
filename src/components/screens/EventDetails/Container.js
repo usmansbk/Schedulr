@@ -100,7 +100,9 @@ class EventDetails extends React.Component {
       isCancelled,
       endAt,
       startAt,
-      cancelledDates
+      cancelledDates,
+      recurrence,
+      until
     });
 
     const colors = stores.themeStore.colors;
