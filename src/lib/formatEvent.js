@@ -99,13 +99,12 @@ export const captionDetails = ({
   duration,
   startAt,
   endAt,
-  ref_date
 }) => {
   const spanDays = isSpanDays(startAt, endAt);
 
   let currentDayCount, totalDayCount;
   if (spanDays) {
-    const count = getDaysCount(startAt, ref_date);
+    const count = getDaysCount(startAt, endAt);
     currentDayCount = count + 1;
     totalDayCount = getDaysCount(startAt, endAt) + 1;
   }

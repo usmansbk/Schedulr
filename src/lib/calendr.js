@@ -138,7 +138,6 @@ const processNextDayEvents = (initialEvents, nextDate) => {
 
     if (eventDate.isSame(refDate, 'day') || isExtended) {
       const currentEventWithMeta = Object.assign({}, currentEvent, {
-        ref_date: refDate.toISOString(),
         isExtended: isExtended && !eventDate.isSame(refDate, 'D')
       });
       accumulator.data.push(currentEventWithMeta);
@@ -177,13 +176,13 @@ function processEvents(events) {
       } else {
         recurrence = repeat(eventDate).every(interval);
       }
-      recurrence.from(moment().add(-1, 'day')); // it exclusive so minus one day to include today
+      recurrence.from(moment().subtract(1, 'day')); // it exclusive so minus one day to include today
       const nextDate = recurrence.nextDate();
-      return process(currentEvent, nextDate.toISOString());
+      if (nextDate) {
+        return process(currentEvent, nextDate.toISOString());
+      }
     }
-    return Object.assign({}, currentEvent, {
-      ref_date: moment().startOf('D').toISOString(),
-    });
+    return currentEvent;
   });
 };
 
@@ -223,7 +222,6 @@ function process(event, date) {
 		endAt,
 		isExtended,
 		isConcluded,
-		ref_date: date
 	});
 }
 
