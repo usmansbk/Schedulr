@@ -4,12 +4,16 @@ import { Text, Headline, Divider } from 'react-native-paper';
 import Hyperlink from 'react-native-hyperlink';
 import { inject, observer } from 'mobx-react';
 import numeral from 'numeral';
+import moment from 'moment';
 import { I18n } from 'aws-amplify';
 import { getStatus } from 'lib/formatEvent';
 import Actions from 'components/common/Actions';
 import CountDown from 'components/common/Countdown';
 import Tag from 'components/common/Tag';
 import Carousel from 'components/lists/Carousel';
+
+const DATE_ONLY_FORMAT = "ddd DD, MMM YYYY";
+const DATE_FORMAT = "ddd DD, MMM YYYY, hh:mm a";
 
 export default inject('stores')(observer(
   ({
@@ -32,6 +36,7 @@ export default inject('stores')(observer(
     isOffline,
     isBookmarked,
     isCancelled,
+    cancelledDates,
     authorId,
     isAuth,
     isOwner,
@@ -52,6 +57,7 @@ export default inject('stores')(observer(
     const expandText = () => setExpand(!expandDescription);
     const status= getStatus({
       isCancelled,
+      cancelledDates,
       startAt,
       endAt,
       until
@@ -112,19 +118,19 @@ export default inject('stores')(observer(
               Boolean(until) && (
                 <View style={stores.appStyles.eventDetails.item}>
                   <Text style={stores.appStyles.eventDetails.label}>{I18n.get("UNTIL")}</Text>
-                  <Text style={stores.appStyles.eventDetails.value}>{until}</Text>
+                  <Text style={stores.appStyles.eventDetails.value}>{moment(until).format(DATE_ONLY_FORMAT)}</Text>
                 </View>
               )
             }
             <View style={stores.appStyles.eventDetails.item}>
               <Text style={stores.appStyles.eventDetails.label}>{I18n.get("CREATED")}</Text>
-              <Text style={stores.appStyles.eventDetails.value}>{createdAt}</Text>
+              <Text style={stores.appStyles.eventDetails.value}>{moment(createdAt).format(DATE_FORMAT)}</Text>
             </View>
             {
               Boolean(updatedAt) && (
                 <View style={stores.appStyles.eventDetails.item}>
                   <Text style={stores.appStyles.eventDetails.label}>{I18n.get("EDITED")}</Text>
-                  <Text style={stores.appStyles.eventDetails.value}>{updatedAt}</Text>
+                  <Text style={stores.appStyles.eventDetails.value}>{moment(updatedAt).format(DATE_FORMAT)}</Text>
                 </View>
               )
             }

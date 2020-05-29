@@ -1,5 +1,4 @@
 import React from 'react';
-import moment from 'moment';
 import { Appbar } from 'react-native-paper';
 import { inject, observer } from 'mobx-react';
 import Icon from 'components/common/Icon';
@@ -9,13 +8,11 @@ import CancelConfirm from 'components/dialogs/CancelEvent';
 import Details from './Details';
 import { formatDate, getRepeatLabel, getDuration } from 'lib/time';
 import { update } from 'lib/calendar';
-import { isEventValid, isEventCancelled } from 'lib/formatEvent';
+import { isEventValid } from 'lib/formatEvent';
 import getImageUrl from 'helpers/getImageUrl';
 import repeat from 'lib/repeat';
 import logger from 'config/logger';
 
-const DATE_FORMAT = "ddd DD, MMM YYYY, hh:mm a";
-const DATE_ONLY_FORMAT = "ddd DD, MMM YYYY";
 const FONT_SIZE = 24;
 
 class EventDetails extends React.Component {
@@ -203,9 +200,9 @@ class EventDetails extends React.Component {
           authorId={author.id}
           authorName={author.name}
           recurrence={getRepeatLabel(recurrence, startAt)}
-          until={until && moment(until).format(DATE_ONLY_FORMAT)}
-          createdAt={moment(createdAt).format(DATE_FORMAT)}
-          updatedAt={(updatedAt !== createdAt) && moment(updatedAt).format(DATE_FORMAT)}
+          until={until}
+          createdAt={createdAt}
+          updatedAt={(updatedAt !== createdAt) && updatedAt}
           description={description}
           isBookmarked={isBookmarked}
           bookmarksCount={bookmarksCount || 0}
@@ -214,8 +211,7 @@ class EventDetails extends React.Component {
           isAuth={isAuth}
           banner={banner}
           isOwner={isOwner}
-          isValid={isValid}
-          isCancelled={isEventCancelled({ cancelledDates, isCancelled, startAt })}
+          isCancelled={isCancelled}
           navigateToSchedule={navigateToSchedule}
           navigateToComments={navigateToComments}
           navigateToUser={navigateToUser}
