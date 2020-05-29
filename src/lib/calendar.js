@@ -5,33 +5,44 @@ import {
 	isSpanDays,
 } from './time';
 
-function extractDates(events) {
-	return events.map(e => {
-		const nextDate = repeat(e.startAt)
+function extractDates(events, previous) {
+	let dates = [];
+	events.forEach(e => {
+		const recur = repeat(e.startAt)
 			.every(e.recurrence)
-			.from(moment())
-			.until(e.until)
-			.nextDate().toISOString();
-		return nextDate;
+			.from(moment().add(previous ? -1 : 1, 'd'))
+			.until(e.until);
+		
+		const nextDate = previous ? recur.previousDate() : recur.nextDate();
+		if (nextDate) {
+			dates.push(nextDate.toISOString());
+		}
 	});
+	return dates;
 }
 
 function* EventSectionGenerator(events, previous) {
-	const someday = extractDates(events);
+	const someday =  extractDates(events, previous);
 	const dates = Array.from(new Set(getWeekFromNow(previous).concat(someday)));
-	dates.sort((a, b) => moment(a).diff(moment(b)));
+	const order = previous ? -1 : 1;
+	dates.sort((a, b) => moment(a).diff(moment(b)) * order);
+	// if (previous) {
+	// 	console.log("Previous");
+	// 	console.log(JSON.stringify(dates, null, 2));
+	// }
 
 	for (let date of dates) {
 		const data = [];
 		events.forEach(event => {
 			const recur = repeat(event.startAt)
+											.span(event.endAt)
 											.every(event.recurrence)
 											.until(event.until);
 			if (!event.isCancelled && recur.matches(date)) {
 				data.push(update(event, date));
 			}
 		});
-		data.sort((a, b) => moment(a.startAt).diff(b.startAt))
+		// data.sort((a, b) => moment(a.startAt).diff(b.startAt))
 		const items = [
 			{
 				data,
@@ -77,7 +88,8 @@ function update(event, date) {
 		endAt,
 		isExtended,
 		isConcluded,
-		ref_date: date
+		ref_date: date,
+		raw_startAt: event.startAt
 	});
 }
 

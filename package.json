@@ -49,7 +49,7 @@
     "react-native-countdown-component": "^2.7.1",
     "react-native-custom-picker": "^0.4.0",
     "react-native-document-picker": "^3.4.0",
-    "react-native-file-viewer": "^2.1.0",
+    "react-native-file-viewer": "^2.1.1",
     "react-native-fs": "^2.16.6",
     "react-native-geodb": "^1.5.5",
     "react-native-geolocation-service": "^4.0.2",
