@@ -2,8 +2,6 @@ import moment from 'moment';
 import repeat from './repeat';
 import {
 	getWeekFromNow,
-	// isSpanDays,
-	// getDaysCount,
 } from './time';
 
 function extractDates(events, previous) {
@@ -73,7 +71,8 @@ export function update(event, date) {
 	
 	return Object.assign({}, event, {
 		startAt,
-		endAt
+		endAt,
+		_startAt: event.startAt
 	});
 }
 

@@ -61,7 +61,7 @@ class List extends React.Component {
 
   componentDidMount = () => this._processEvents(this.props.events);
 
-  _keyExtractor = (item, index) => item.id + index;
+  _keyExtractor = (item, index) => item.id + item.startAt + index;
 
   _renderHeader = () => (
     (this.state.sections.length && this.props.isAuth) ?
@@ -118,7 +118,8 @@ class List extends React.Component {
         allDay,
         isBookmarked,
         isOwner,
-        isOffline
+        isOffline,
+        _startAt
       } = item;
 
       return (<Item
@@ -127,6 +128,7 @@ class List extends React.Component {
         startAt={startAt}
         endAt={endAt}
         until={until}
+        _startAt={_startAt}
         from={section.title}
         category={category}
         isCancelled={isCancelled}

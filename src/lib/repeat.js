@@ -83,8 +83,8 @@ function datesFrom({
   if (_span) {
     const inRange = moment(_from).isBetween(_date, _span, null, "[]");
     if (inRange) {
-      const length = Math.ceil(moment(_span).diff(_date, "days", true));
-      const count = Math.ceil(moment(_from).diff(_date, "days", true));
+      const length = Math.round(moment(_span).diff(_date, "days", true));
+      const count = Math.round(moment(_from).diff(_date, "days", true));
       for (let i = count, j = 0; i <= length && j < numberOfDates; j++, i++) {
         nextDate = moment(_date).add(i, 'days');
         dates.push(nextDate);
