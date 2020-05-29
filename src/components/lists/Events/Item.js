@@ -29,8 +29,7 @@ class Item extends React.Component {
     if (this.props.__typename === CALENDAR_TYPE) {
       this.props.navigateToCalendarEvent(this.props.id);
     } else {
-      let startAt = this.props.startAt;
-      this.props.onPressItem(this.props.id, startAt, this.props.endAt);
+      this.props.onPressItem(this.props.id, this.props.from);
     }
   };
   _onLongPress = () => {
@@ -66,14 +65,12 @@ class Item extends React.Component {
       endAt,
       address,
       stores,
-      bookmarksCount,
       banner,
       eventScheduleId,
       allDay,
       isMuted,
       isBookmarked,
       isOffline,
-      // isExtended,
       isCancelled,
       cancelledDates,
       __typename
@@ -83,7 +80,6 @@ class Item extends React.Component {
     const category = getCategory(this.props.category);
     const recurrence = parseRepeat(this.props.recurrence);
     const time = getTime({
-      // isExtended,
       allDay,
       startAt,
       endAt
@@ -155,7 +151,6 @@ class Item extends React.Component {
             startAt={startAt}
             isMuted={isMuted}
             isCalendarEvent={__typename === CALENDAR_TYPE}
-            bookmarksCount={bookmarksCount}
             bookmarkScheduleId={eventScheduleId}
             ref={ref => this.ActionSheet = ref}
             onMute={this._onMute}

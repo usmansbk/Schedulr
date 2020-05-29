@@ -99,7 +99,7 @@ class List extends React.Component {
 
   _renderSectionFooter = ({ section }) => <SectionFooter section={section} />;
 
-  _renderItem = ({ item }) => {
+  _renderItem = ({ item, section }) => {
       const {
         __typename,
         id,
@@ -116,10 +116,8 @@ class List extends React.Component {
         schedule,
         allDay,
         isBookmarked,
-        bookmarksCount,
         isOwner,
-        isOffline,
-        // isExtended
+        isOffline
       } = item;
 
       return (<Item
@@ -127,18 +125,17 @@ class List extends React.Component {
         title={title}
         startAt={startAt}
         endAt={endAt}
+        from={section.title}
         category={category}
         isCancelled={isCancelled}
         cancelledDates={cancelledDates}
         recurrence={recurrence}
         banner={banner}
-        // isExtended={isExtended}
         allDay={allDay}
         address={venue}
         isMuted={this.props.stores.appState.isEventMuted(id, schedule.id)}
         eventScheduleId={schedule && schedule.id}
         isBookmarked={isBookmarked}
-        bookmarksCount={bookmarksCount}
         isOwner={isOwner}
         isOffline={isOffline}
         onPressItem={this._onPressItem}
@@ -151,8 +148,7 @@ class List extends React.Component {
     );
   };
 
-  _onPressItem = (id, refStartAt, refEndAt) => (
-    this.props.navigation.navigate('EventDetails', { id, refStartAt, refEndAt }));
+  _onPressItem = (id, from) => this.props.navigation.navigate('EventDetails', { id, from });
 
   _navigateToBanner = (id) => this.props.navigation.navigate('Banner', { id });
 

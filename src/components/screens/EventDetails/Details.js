@@ -22,7 +22,6 @@ export default inject('stores')(observer(
     scheduleId,
     recurrence,
     until,
-    firstAt,
     createdAt,
     updatedAt,
     description,
@@ -104,16 +103,10 @@ export default inject('stores')(observer(
             </View>
             {
               Boolean(until) && (
-                <>
-                <View style={stores.appStyles.eventDetails.item}>
-                  <Text style={stores.appStyles.eventDetails.label}>{I18n.get("STARTED")}</Text>
-                  <Text style={stores.appStyles.eventDetails.value}>{firstAt}</Text>
-                </View>
                 <View style={stores.appStyles.eventDetails.item}>
                   <Text style={stores.appStyles.eventDetails.label}>{I18n.get("UNTIL")}</Text>
                   <Text style={stores.appStyles.eventDetails.value}>{until}</Text>
                 </View>
-                </>
               )
             }
             <View style={stores.appStyles.eventDetails.item}>

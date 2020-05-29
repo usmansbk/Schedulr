@@ -62,8 +62,6 @@ class EventAction extends React.Component {
     }
   };
 
-  _hideDialog = () => this.setState({ visibleDialog: null });
-
   _toggleMute = () => this.props.onMute(this.props.id);
 
   _handleActionSheet = (value) => {

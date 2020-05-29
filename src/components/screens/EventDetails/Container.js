@@ -4,10 +4,11 @@ import { Appbar } from 'react-native-paper';
 import { inject, observer } from 'mobx-react';
 import Icon from 'components/common/Icon';
 import Suspense from 'components/common/Suspense';
+import DeleteConfirm from 'components/dialogs/DeleteEvent';
+import CancelConfirm from 'components/dialogs/CancelEvent';
 import Details from './Details';
 import { formatDate, getRepeatLabel, getDuration } from 'lib/time';
 import { isEventValid, isEventCancelled, getStatus } from 'lib/formatEvent';
-import { ONE_TIME_EVENT } from 'lib/constants';
 import getImageUrl from 'helpers/getImageUrl';
 import logger from 'config/logger';
 
@@ -20,18 +21,18 @@ class EventDetails extends React.Component {
     display: false,
     countDownExpire: 0
   };
-  _handleCancel = () => {
-    const isRecurring = this.props.event.recurrence !== ONE_TIME_EVENT;
-    this.props.handleCancel(isRecurring ? this.props.event.startAt : null);
-  };
-  _getDuration = (start, end) => getDuration(start, end);
 
- componentDidMount = () => {
-   this.displayTimer = setTimeout(() => this.setState({
-     display: true
-   }), 0);
-   logger.log('event_details_screen');
- };
+  _cancelRef = ref => this.cancelConfirmRef = ref;
+  _deleteRef = ref => this.deleteConfirmRef = ref;
+  _openCancelDialog = () => this.cancelConfirmRef.wrappedInstance.wrappedInstance.open();
+  _openDeleteDialog = () => this.deleteConfirmRef.getWrappedInstance().open();
+
+  componentDidMount = () => {
+    this.displayTimer = setTimeout(() => this.setState({
+      display: true
+    }), 0);
+    logger.log('event_details_screen');
+  };
 
  _onCountDownFinish = () => {
     this.setState(prev => ({
@@ -52,10 +53,7 @@ class EventDetails extends React.Component {
     if (!this.state.display) return <Suspense/>;
     const {
       event,
-      refStartAt,
-      refEndAt,
       handleBack,
-      handleDelete,
       handleRepeat,
       handleEdit,
       navigateToSchedule,
@@ -91,11 +89,10 @@ class EventDetails extends React.Component {
       banner,
       author
     } = event;
-    const start = refStartAt || startAt;
-    const end = refEndAt || endAt;
     const isValid = isEventValid({
-      isCancelled, endAt: end,
-      startAt: start,
+      isCancelled,
+      endAt,
+      startAt,
       cancelledDates
     });
 
@@ -133,7 +130,7 @@ class EventDetails extends React.Component {
                     size={size}
                     color={color}
                   />}
-                  onPress={handleDelete}
+                  onPress={this._openDeleteDialog}
                 />
                 <Appbar.Action
                   size={FONT_SIZE}
@@ -158,8 +155,8 @@ class EventDetails extends React.Component {
                         />}
                         onPress={() => handleEdit({
                           id,
-                          refStartAt: start,
-                          refEndAt: end
+                          startAt,
+                          endAt,
                         })}
                       />
                       <Appbar.Action
@@ -170,7 +167,7 @@ class EventDetails extends React.Component {
                           color={color}
                           size={size}
                         />}
-                        onPress={this._handleCancel}
+                        onPress={this._openCancelDialog}
                       />
                     </>
                   )
@@ -182,17 +179,16 @@ class EventDetails extends React.Component {
         <Details
           id={id}
           title={title}
-          date={formatDate(start, end, allDay)}
-          duration={this._getDuration(start, end)}
+          date={formatDate(startAt, endAt, allDay)}
+          duration={getDuration(startAt, endAt)}
           status={getStatus({
             isCancelled,
             cancelledDates,
-            startAt: start,
-            endAt: end
+            startAt,
+            endAt
           })}
-          startAt={start}
-          endAt={end}
-          firstAt={moment(startAt).format(DATE_FORMAT)}
+          startAt={startAt}
+          endAt={endAt}
           category={category}
           address={venue}
           isPublic={isPublic}
@@ -202,7 +198,7 @@ class EventDetails extends React.Component {
           scheduleId={schedule && schedule.id}
           authorId={author.id}
           authorName={author.name}
-          recurrence={getRepeatLabel(recurrence, start)}
+          recurrence={getRepeatLabel(recurrence, startAt)}
           until={until && moment(until).format(DATE_ONLY_FORMAT)}
           createdAt={moment(createdAt).format(DATE_FORMAT)}
           updatedAt={(updatedAt !== createdAt) && moment(updatedAt).format(DATE_FORMAT)}
@@ -215,7 +211,7 @@ class EventDetails extends React.Component {
           banner={banner}
           isOwner={isOwner}
           isValid={isValid}
-          isCancelled={isEventCancelled({ cancelledDates, isCancelled, startAt: start })}
+          isCancelled={isEventCancelled({ cancelledDates, isCancelled, startAt })}
           navigateToSchedule={navigateToSchedule}
           navigateToComments={navigateToComments}
           navigateToUser={navigateToUser}
@@ -224,6 +220,17 @@ class EventDetails extends React.Component {
           onCountDownFinish={this._onCountDownFinish}
           countDownReset={this.state.countDownExpire}
           cardView={cardView}
+        />
+        <DeleteConfirm
+          id={id}
+          banner={event.banner}
+          onRef={this._deleteRef}
+        />
+        <CancelConfirm
+          id={id}
+          recurrence={recurrence}
+          date={startAt}
+          ref={this._cancelRef}
         />
       </>
     )
