@@ -860,100 +860,6 @@ export default class AppStyles {
     });
   }
 
-  @computed get eventSearch () {
-    const colors = this.settings.dark ? dark : light;
-    const {
-      ITEM_HEIGHT,
-      SEPARATOR_HEIGHT,
-    } = event_search;
-
-    return StyleSheet.create({
-      list: {
-        backgroundColor: colors.bg
-      },
-      contentContainer: {
-        flexGrow: 1,
-        backgroundColor: colors.bg
-      },
-      footer: {
-        height: dp(80),
-        justifyContent: 'center',
-        alignItems: 'center'
-      },
-      footerText: {
-        fontWeight: 'bold',
-        color: colors.light_gray_3
-      },
-      empty: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        paddingHorizontal: 30
-      },
-      emptyTitle: {
-        fontSize: 25,
-        color: colors.light_gray_3,
-        textAlign: 'center'
-      },
-      itemContainer: {
-        height: ITEM_HEIGHT,
-        backgroundColor: colors.bg,
-        paddingHorizontal: 16
-      },
-      itemContent: {
-        flexDirection: 'row',
-        flex: 1
-      },
-      itemHeadline: {
-        fontSize: 20,
-        fontFamily: 'sans-serif',
-      },
-      left: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        paddingHorizontal: 8,
-      },
-      right: {
-        flex: 1,
-        justifyContent: 'center',
-        paddingHorizontal: 8,
-      },
-      cancelled: {
-        fontSize: 16,
-        color: colors.light_red
-      },
-      time: {
-        fontFamily: 'sans-serif-bold',
-        fontSize: 14,
-        color: colors.gray,
-      },
-      separator: {
-        height: SEPARATOR_HEIGHT
-      },
-      itemFooter: {
-        flexDirection: 'row',
-        justifyContent: 'space-between'
-      },
-      footerIcon: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        marginRight: 32
-      },
-      iconBadge: {
-        marginLeft: 4,
-      },
-      paragraph: {
-        textAlign: 'center'
-      },
-      counts: {
-        flexDirection: 'row'
-      },
-      scheduleName: {
-        width: 150
-      }
-    });
-  }
-
   @computed get notifications () {
     const colors = this.settings.dark ? dark : light;
 
@@ -1505,7 +1411,7 @@ export default class AppStyles {
       },
       itemContainer: {
         backgroundColor: colors.bg,
-        paddingHorizontal: 16,
+        paddingHorizontal: 12,
       },
       itemContent: {
         paddingVertical: 4,
@@ -1525,12 +1431,15 @@ export default class AppStyles {
         color: colors.gray,
       },
       left: {
-        padding: 8,
-        paddingTop: 16
+        paddingTop: 16,
+        marginRight: 8
       },
       right: {
         justifyContent: 'space-between',
-        flex: 1
+        flex: 1,
+        borderRadius: 16,
+        padding: 8,
+        backgroundColor: colors.light_gray
       },
       cancelled: {
         fontSize: 16,
