@@ -96,7 +96,6 @@ class Item extends React.Component {
     
     const styles = stores.appStyles.eventsList;
     const caption = captionDetails({
-      _startAt,
       allDay,
       recurrence,
       category,
