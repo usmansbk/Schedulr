@@ -68,7 +68,7 @@ function nextYear(date, from, isPrevious) {
 
 function datesFrom({numberOfDates, date, from, every, until, isPrevious}) {
   const dates = [];
-  let nextDate;
+  
   switch(every) {
     case "day":
       nextDate = moment(from);
@@ -95,6 +95,7 @@ function datesFrom({numberOfDates, date, from, every, until, isPrevious}) {
     }
   }
 
+  const amount = isPrevious ? -1 : 1;
   for (let i = 0; i <= numberOfDates; i++) {
     if (isPrevious) {
       if (nextDate.isAfter(from, 'day')) break;
@@ -105,7 +106,6 @@ function datesFrom({numberOfDates, date, from, every, until, isPrevious}) {
       if (nextDate.isAfter(until, 'day')) break; 
     }
     dates.push(nextDate);
-    const amount = isPrevious ? -1 : 1;
     nextDate = moment(nextDate).add(amount, every);
   }
   return dates;
@@ -141,7 +141,7 @@ export default function repeat(date) {
         date: _date,
         every: _every,
         from: _from,
-        until: _until
+        until: _until,
       });
     },
     previous(numberOfDates) {
@@ -167,7 +167,7 @@ export default function repeat(date) {
       if (_until) {
         if (moment(date).isAfter(_until, 'day')) return false;
       }
-      return match(date, _date, _every) || match(date, _span, _every);
+      return match(_date, _every, date);
     },
     span(date) {
       if (date) {
@@ -183,8 +183,7 @@ export default function repeat(date) {
   return rule;
 }
 
-function match(date, target,  every) {
-  if (!target) return false;
+function match(target, every, date) {
   switch(every) {
     case "day": return true;
     case "weekday": return moment(date).isoWeekday() < 6;

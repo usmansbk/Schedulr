@@ -2,16 +2,18 @@ import moment from 'moment';
 import repeat from './repeat';
 import {
 	getWeekFromNow,
-	isSpanDays,
-	getDaysCount,
+	// isSpanDays,
+	// getDaysCount,
 } from './time';
 
 function extractDates(events, previous) {
+	const direction = previous ? -1 : 1;
 	let dates = [];
 	events.forEach(e => {
 		const recur = repeat(e.startAt)
+			.span(e.endAt)
 			.every(e.recurrence)
-			.from(moment().add(previous ? -1 : 1, 'd'))
+			.from(moment().add(direction, 'day'))
 			.until(e.until);
 		
 		const nextDate = previous ? recur.previousDate() : recur.nextDate();
@@ -25,8 +27,6 @@ function extractDates(events, previous) {
 function* EventSectionGenerator(events, previous) {
 	const someday =  extractDates(events, previous);
 	const dates = Array.from(new Set(getWeekFromNow(previous).concat(someday)));
-	const order = previous ? -1 : 1;
-	// dates.sort((a, b) => moment(a).diff(moment(b)) * order);
 
 	for (let date of dates) {
 		const data = [];
