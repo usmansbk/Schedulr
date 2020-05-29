@@ -1,10 +1,8 @@
 import React from 'react';
 import { withApollo } from 'react-apollo';
-// import { I18n } from 'aws-amplify';
 import memoize from 'memoize-one';
 import Form from 'components/forms/Event';
 import { getUserSchedules } from 'api/fragments';
-// import snackbar from 'helpers/snackbar';
 
 class EditEventScreen extends React.Component {
   _handleBack = () => this.props.navigation.goBack();
@@ -55,15 +53,9 @@ class EditEventScreen extends React.Component {
   
   _onSubmit = (form) => {
     const id = this.props.navigation.getParam('id');
-    // if ((this.props.event.startAt !== form.startAt.toISOString()) ||
-    // // (this.props.event.endAt !== form.endAt.toISOString())) {
-    // //   this.props.navigation.popToTop();
-    // // } else {
-      this.props.navigation.goBack();
-    // }
+    this.props.navigation.goBack();
 
     setTimeout(() => {
-      // snackbar(I18n.get("EVENT_updating"));
       this.props.onSubmit({ id, ...form });
     }, 0);
   };
