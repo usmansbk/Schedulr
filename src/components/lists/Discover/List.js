@@ -23,7 +23,7 @@ class List extends Component{
     onRefresh: () => null
   };
 
-  _onPressItem = (id, refStartAt, refEndAt) => this.props.navigation.navigate('EventDetails', { id, refStartAt, refEndAt });
+  _onPressItem = (id) => this.props.navigation.navigate('EventDetails', { id });
   _navigateToBanner = (id) => this.props.navigation.navigate('Banner', { id });
   _navigateToComments = (id, title, date) => this.props.navigation.navigate('Comments', { id, title, date });
 

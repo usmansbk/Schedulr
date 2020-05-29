@@ -22,7 +22,7 @@ class Item extends React.Component {
     const {
       entityId,
       type,
-      refStartAt,
+      from,
       navigateToEvent,
       navigateToSchedule,
       navigateToFollowers,
@@ -32,7 +32,7 @@ class Item extends React.Component {
     if (entityId) {
       switch(type) {
         case EVENT_TYPE:
-          navigateToEvent(entityId, refStartAt);
+          navigateToEvent(entityId, from);
           break;
         case SCHEDULE_TYPE:
           navigateToSchedule(entityId);

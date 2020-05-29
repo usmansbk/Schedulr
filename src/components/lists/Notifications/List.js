@@ -25,7 +25,7 @@ class List extends React.Component {
   _renderSeparator = () => <Separator />;
   _keyExtractor = (item, index) => item.id + item.date + index;
   _renderFooter = () => <Footer visible={this.props.updates.length}/>;
-  _navigateToEvent = (id, refStartAt) => this.props.navigation.navigate('EventDetails', { id, refStartAt });
+  _navigateToEvent = (id, from) => this.props.navigation.navigate('EventDetails', { id, from });
   _navigateToSchedule = (id) => this.props.navigation.navigate('ScheduleInfo', { id });
   _navigateToFollowers = (id) => this.props.navigation.navigate('Followers', { id });
   _navigateToBookmarks = (id) => this.props.navigation.navigate('EventBookmarks', { id });
@@ -77,7 +77,7 @@ class List extends React.Component {
       seen={seen}
       pictureUrl={pictureUrl}
       date={date}
-      refStartAt={extraData && extraData.ref}
+      from={extraData && extraData.ref}
       navigateToSchedule={this._navigateToSchedule}
       navigateToEvent={this._navigateToEvent}
       navigateToFollowers={this._navigateToFollowers}

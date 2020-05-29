@@ -19,8 +19,6 @@ class EditEventScreen extends React.Component {
 
   get initialValues() {
     const { event } = this.props;
-    const refStartAt = this.props.navigation.getParam('refStartAt');
-    const refEndAt = this.props.navigation.getParam('refEndAt');
 
     if (!event) return undefined;
     const {
@@ -42,8 +40,8 @@ class EditEventScreen extends React.Component {
       title,
       description,
       venue,
-      startAt: refStartAt || startAt,
-      endAt: refEndAt || endAt,
+      startAt,
+      endAt,
       allDay,
       category,
       recurrence,
