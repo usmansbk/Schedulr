@@ -97,7 +97,7 @@ function datesFrom({
       nextDate = nextDay(_from, _date);
       break;
     case "week": {
-      nextDate = nextWeek(_date, _from, previous, _span);
+      nextDate = nextWeek(_date, _from, previous);
       break;
     };
     case "weekday": {
