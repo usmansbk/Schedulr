@@ -183,7 +183,7 @@ class Form extends React.Component {
                     if (values.allDay) {
                       setFieldValue('endAt', moment(date).endOf('day').toISOString());
                     } else {
-                      const duration = prevEndAt.diff(prevStartAt);
+                      const duration = prevEndAt.diff(prevStartAt, null, true);
                       const endAt = moment(date).add(duration).toISOString();
                       setFieldValue('endAt', endAt);
                     }
@@ -203,7 +203,7 @@ class Form extends React.Component {
                     const prevStartAt = moment(values.startAt);
                     const prevEndAt = moment(values.endAt);
                     if (prevStartAt.isAfter(moment(date))) {
-                      const duration = prevEndAt.diff(prevStartAt);
+                      const duration = prevEndAt.diff(prevStartAt, null, true);
                       const startAt = moment(date).subtract(duration).toISOString();
                       setFieldValue('startAt', startAt);
                     }

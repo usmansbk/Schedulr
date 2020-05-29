@@ -33,7 +33,7 @@ export const canRecur = ({ startAt, endAt })  => {
   const recurrence = [
     'NEVER',
   ];
-  const duration = moment(endAt).diff(moment(startAt));
+  const duration = moment(endAt).diff(moment(startAt), null, true);
   const ONE_MONTH = moment.duration(1, 'month').asMilliseconds();
   const ONE_YEAR = moment.duration(1, 'year').asMilliseconds();
   if (duration <= ONE_DAY) recurrence.push("DAILY")

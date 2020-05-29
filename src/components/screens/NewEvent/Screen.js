@@ -63,7 +63,7 @@ class NewEventScreen extends React.Component {
     if (startAt) {
       const currentStart = moment(startAt);
       const currentEnd = moment(endAt);
-      const duration = Math.abs(moment.duration(currentStart.diff(currentEnd)));
+      const duration = Math.abs(moment.duration(currentStart.diff(currentEnd, null, true)));
       
       const startSec = currentStart.seconds();
       const startMins = currentStart.minutes();

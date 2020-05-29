@@ -178,7 +178,7 @@ const schdlAll = (events, mutedList, allowedList) => {
 function schdlWeekdaysEvent(event, remindMeBefore, settings) {
   const start = moment(event.startAt);
   const end = moment(event.endAt);
-  const duration = Math.abs(moment.duration(start.diff(end)));
+  const duration = Math.abs(moment.duration(start.diff(end, null, true)));
   
   const hour = start.hour();
   const minute = start.minute();
