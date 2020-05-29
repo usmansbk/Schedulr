@@ -11,8 +11,8 @@ export default inject('stores')(observer(
     if (loading) return <Loading />;
     if (error || notFound) return <Error
       notFound={notFound}
-      message={I18n.get("ERROR_404")}
-      caption={I18n.get("ERROR_404_caption")}
+      message={notFound ? I18n.get("ERROR_404") : null}
+      caption={notFound ? I18n.get("ERROR_404_caption") : null}
     />;
     return (
       <View style={stores.appStyles.commentsList.empty}>
