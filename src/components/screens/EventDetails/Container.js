@@ -180,7 +180,7 @@ class EventDetails extends React.Component {
           id={id}
           title={title}
           date={formatDate(startAt, endAt, allDay)}
-          duration={getDuration(startAt, event.endAt)}
+          duration={getDuration(event.startAt, event.endAt)}
           from={from}
           startAt={startAt}
           endAt={endAt}
