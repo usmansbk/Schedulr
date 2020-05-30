@@ -1,13 +1,20 @@
 import moment from 'moment';
 
+const DAY = "day";
+const WEEK = "week";
+const WEEKDAY = "weekday";
+const MONTH = "month";
+const YEAR = "year";
+const EXACT = "exact";
+
 function momentUnit(unit) {
 	switch(unit) {
-		case "DAILY": return "day";
-		case "WEEKLY": return "week";
-		case "WEEKDAYS": return "weekday";
-		case "MONTHLY": return "month";
-		case "YEARLY": return "year";
-		default: return "exact";
+		case "DAILY": return DAY;
+		case "WEEKLY": return WEEK;
+		case "WEEKDAYS": return WEEKDAY;
+		case "MONTHLY": return MONTH;
+		case "YEARLY": return YEAR;
+		default: return EXACT;
 	}
 }
 
@@ -98,32 +105,32 @@ function datesFrom({
   if (_span) { // date span multiple days
     const inRange = moment(_from).isBetween(_date, _span, null, "[]");
     if (inRange) {
-      const length = Math.round(moment(_span).diff(_date, "days", true)); // total days span
-      const count = Math.round(moment(_from).diff(_date, "days", true)); // current days span
+      const length = Math.round(moment(_span).diff(_date, DAY, true)); // total days span
+      const count = Math.round(moment(_from).diff(_date, DAY, true)); // current days span
       for (let i = count, j = 0; i <= length && j < numberOfDates; j++, i++) { // get days span
-        nextDate = moment(_date).add(i, 'days');
+        nextDate = moment(_date).add(i, DAY);
         dates.push(nextDate);
       }
     };
   }
   
   switch(_every) {
-    case "day":
+    case DAY:
       nextDate = nextDay(_from, _date);
       break;
-    case "week": {
+    case WEEK: {
       nextDate = nextWeek(_date, _from, previous);
       break;
     };
-    case "weekday": {
+    case WEEKDAY: {
       nextDate = nextWeekday(_from, previous);
       break;
     };
-    case "month": {
+    case MONTH: {
       nextDate = nextMonth(_date, _from, previous);
       break;
     }
-    case "year": {
+    case YEAR: {
       nextDate = nextYear(_date, _from, previous);
       break;
     };
@@ -137,13 +144,13 @@ function datesFrom({
   for (let i = dates.length; i <= numberOfDates; i++) {
     // edge cases
     if (previous) {
-      if (nextDate.isAfter(_from, 'day')) break;
-      if (nextDate.isBefore(_date, 'day')) break;
+      if (nextDate.isAfter(_from, DAY)) break;
+      if (nextDate.isBefore(_date, DAY)) break;
     } else {
-      if (!_maybeFrom && nextDate.isBefore(_from, 'day')) break;
+      if (!_maybeFrom && nextDate.isBefore(_from, DAY)) break;
     }
     if (_until) { // expired date
-      if (nextDate.isAfter(_until, 'day')) break; 
+      if (nextDate.isAfter(_until, DAY)) break; 
     }
     dates.push(nextDate);
     nextDate = moment(nextDate).add(amount, _every);
@@ -152,11 +159,11 @@ function datesFrom({
 }
 
 export default function repeat(date) {
-  let _date = moment(date).startOf('day');
+  let _date = moment(date).startOf(DAY);
   let _every = null;
   let _until = null;
   let _span = null;
-  let _from = moment(date).startOf('day');
+  let _from = moment(date).startOf(DAY);
   let _maybeFrom = false;
 
   const rule = {
@@ -166,7 +173,7 @@ export default function repeat(date) {
     },
     from(date) {
       if (date) {
-        _from = moment(date).startOf('day');
+        _from = moment(date).startOf(DAY);
       }
       return this;
     },
@@ -210,10 +217,10 @@ export default function repeat(date) {
     },
     matches(date) {
       // edge cases
-      if (_from && moment(date).isBefore(_from, 'day')) return false;
-      if (moment(date).isBefore(_date, 'day')) return false;
+      if (_from && moment(date).isBefore(_from, DAY)) return false;
+      if (moment(date).isBefore(_date, DAY)) return false;
       if (_until) {
-        if (moment(date).isAfter(_until, 'day')) return false;
+        if (moment(date).isAfter(_until, DAY)) return false;
       }
       return match(_date, _every, date, _span);
     },
@@ -237,14 +244,14 @@ export default function repeat(date) {
 function nextSpan(_date, _span, _from) {
   let nextDate;
   if (_span) { // date span multiple days
-    const inRange = moment(_from).isBetween(_date, _span, "day", "(]"); // current date (_from) is one of the span days except (_date) the first date
+    const inRange = moment(_from).isBetween(_date, _span, DAY, "(]"); // current date (_from) is one of the span days except (_date) the first date
     if (inRange) {
-      const count = Math.round(moment(_from).diff(_date, "days", true));
-      const total = Math.round(moment(moment(_span).startOf("day")).diff(_date, "days", true));
+      const count = Math.round(moment(_from).diff(_date, DAY, true));
+      const total = Math.round(moment(moment(_span).startOf(DAY)).diff(_date, DAY, true));
       if (count === total) {
         nextDate = _span; // last date should have the correct end time
       } else {
-        nextDate = moment(_date).add(count, "days").endOf('day'); // in between dates should span the whole day
+        nextDate = moment(_date).add(count, DAY).endOf(DAY); // in between dates should span the whole day
       }
     }
   }
@@ -258,12 +265,12 @@ function match(_date, _every, date, _span) {
     if (inRange) return true;
   }
   switch(_every) {
-    case "day": return true;
-    case "weekday": return moment(date).isoWeekday() < 6;
-    case "week": return moment(date).isoWeekday() === _date.isoWeekday();
-    case "month": return moment(date).date() === _date.date();
-    case "year": return ((moment(date).date() === _date.date()) &&
+    case DAY: return true;
+    case WEEKDAY: return moment(date).isoWeekday() < 6;
+    case WEEK: return moment(date).isoWeekday() === _date.isoWeekday();
+    case MONTH: return moment(date).date() === _date.date();
+    case YEAR: return ((moment(date).date() === _date.date()) &&
       (moment(date).month() === _date.month()));
-    default: return moment(date).isSame(_date, "day");
+    default: return moment(date).isSame(_date, DAY);
   }
 }
