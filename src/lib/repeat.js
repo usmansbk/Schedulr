@@ -230,7 +230,7 @@ function nextSpan(_date, _span, _from) {
       if (count === total) {
         nextDate = _span; // last date should have the correct end time
       } else {
-        nextDate = moment(_date).add(count, "days").endOf('day'); // in between dates should take span the whole day
+        nextDate = moment(_date).add(count, "days").endOf('day'); // in between dates should span the whole day
       }
     }
   }
