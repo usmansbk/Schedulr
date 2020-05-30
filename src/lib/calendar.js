@@ -8,15 +8,17 @@ function extractDates(events, previous) {
 	const direction = previous ? -1 : 0;
 	let dates = [];
 	events.forEach(e => {
-		const recur = repeat(e.startAt)
-			.span(e.endAt)
-			.every(e.recurrence)
-			.from(moment().add(direction, 'day'))
-			.until(e.until);
-		
-		const nextDate = previous ? recur.previousDate() : recur.nextDate();
-		if (nextDate) {
-			dates.push(nextDate.toISOString());
+		if (!e.isCancelled) {
+			const recur = repeat(e.startAt)
+				.span(e.endAt)
+				.every(e.recurrence)
+				.from(moment().add(direction, 'day'))
+				.until(e.until);
+			
+			const nextDate = previous ? recur.previousDate() : recur.nextDate();
+			if (nextDate) {
+				dates.push(nextDate.toISOString());
+			}
 		}
 	});
 	return dates;
@@ -58,25 +60,32 @@ function* EventSectionGenerator(events, previous) {
 
 	for (let date of dates) {
 		const data = [];
-		console.log(events.length, "Items")
+		const s = Date.now();
 		events.forEach(event => {
-			const key = `${previous}-${event.id}-${event.updatedAt}-${date}`;
-			const cached = cache[key];
-			if (cached) {
-				data.push(cached);
-			} else {
-				const recur = repeat(event.startAt)
-					.span(event.endAt)
-					.from(date)
-					.every(event.recurrence)
-					.until(event.until);
-				if (!event.isCancelled && recur.matches(date)) {
-					const newEvent = update(event, date, recur.nextSpan());
-					data.push(newEvent);
-					cache[key] = newEvent;
+			if (!event.isCancelled) {
+				const key = `${previous}-${event.id}-${event.updatedAt}-${event.isBookmarked}-${date}`;
+				const cached = cache[key];
+				if (cached) {
+					if (typeof cached !== "string") {
+						data.push(cached);
+					}
+				} else {
+					const recur = repeat(event.startAt)
+						.span(event.endAt)
+						.from(date)
+						.every(event.recurrence)
+						.until(event.until);
+					if (recur.matches(date)) {
+						const newEvent = update(event, date, recur.nextSpan());
+						data.push(newEvent);
+						cache[key] = newEvent;
+					} else {
+						cache[key] = "__not__match__";
+					}
 				}
 			}
 		});
+		console.log(events.length, "Items:", Date.now() -s);
 		data.sort((a, b) => moment(a.startAt).diff(b.startAt));
 		const items = [
 			{
