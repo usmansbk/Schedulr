@@ -3,7 +3,6 @@ import moment from 'moment';
 import uuidv5 from 'uuid/v5';
 import shortid from 'shortid';
 import { withApollo } from 'react-apollo';
-import memoize from 'memoize-one';
 import { I18n } from 'aws-amplify';
 import Form from 'components/forms/Event';
 import { isPastDate } from 'lib/time';
@@ -95,17 +94,17 @@ class NewEventScreen extends React.Component {
     });
   }
 
-  _filterSchedules = memoize((list) => (
+  _filterSchedules = (list) => (
     list.filter(schedule => (schedule.status !== SCHEDULE_CLOSED))
-  ));
+  );
 
-  _schedules = memoize(() => {
+  _schedules = () => {
     const data = this.props.client.readFragment({
       fragment: getUserSchedules,
       id: `User:${this.props.stores.appState.userId}`
     });
     return (data && data.created && data.created.items) || [];
-  });
+  };
 
   render() {
     return (

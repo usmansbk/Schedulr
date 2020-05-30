@@ -1,19 +1,18 @@
 import React from 'react';
 import { withApollo } from 'react-apollo';
-import memoize from 'memoize-one';
 import Form from 'components/forms/Event';
 import { getUserSchedules } from 'api/fragments';
 
 class EditEventScreen extends React.Component {
   _handleBack = () => this.props.navigation.goBack();
 
-  _schedules = memoize(() => {
+  _schedules = () => {
     const data = this.props.client.readFragment({
       fragment: getUserSchedules,
       id: `User:${this.props.stores.appState.userId}`
     });
     return (data && data.created && data.created.items) || [];
-  });
+  };
 
   get initialValues() {
     const { event } = this.props;
