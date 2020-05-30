@@ -10,21 +10,19 @@ export default class Bookmarks extends React.Component {
 
   componentDidMount = () => logger.log('bookmarks');
 
-  _processEvents = (data) => {
-      if (!data) return [];
-      const { bookmarks } = data;
-      const events = bookmarks.items.map(item => {
-        if (!item.event) {
-          const start = item.id.indexOf('-') + 1;
-          return item.id.slice(start);
-        }
-        return item.event;
-      });
-      return events;
-    };
-
   get events() {
-    return this._processEvents(this.props.data);
+    const { data } = this.props;
+    if (!data) return [];
+    const { bookmarks } = data;
+    // some bookmarked events may be missing
+    const events = bookmarks.items.map(item => {
+      if (!item.event) {
+        const start = item.id.indexOf('-') + 1; // indicate missing events
+        return item.id.slice(start);
+      }
+      return item.event;
+    });
+    return events;
   }
   
   render() {
