@@ -83,8 +83,14 @@ function nextDay(from, date) {
 }
 
 function datesFrom({
-  numberOfDates, _date, _from,
-  _every, _until, previous, _span
+  numberOfDates,
+  _date,
+  _from,
+  _every,
+  _until,
+  _span,
+  _maybeFrom,
+  previous,
 }) {
   const dates = [];
   let nextDate;
@@ -132,8 +138,9 @@ function datesFrom({
     // edge cases
     if (previous) {
       if (nextDate.isAfter(_from, 'day')) break;
+      if (nextDate.isBefore(_date, 'day')) break;
     } else {
-      if (nextDate.isBefore(_from, 'day')) break;
+      if (!_maybeFrom && nextDate.isBefore(_from, 'day')) break;
     }
     if (_until) { // expired date
       if (nextDate.isAfter(_until, 'day')) break; 
@@ -150,6 +157,7 @@ export default function repeat(date) {
   let _until = null;
   let _span = null;
   let _from = moment(date).startOf('day');
+  let _maybeFrom = false;
 
   const rule = {
     every(recurrence) {
@@ -160,6 +168,11 @@ export default function repeat(date) {
       if (date) {
         _from = moment(date).startOf('day');
       }
+      return this;
+    },
+    maybeFrom(date) {
+      this.from(date);
+      _maybeFrom = true;
       return this;
     },
     until(date) {
@@ -176,6 +189,7 @@ export default function repeat(date) {
         _from,
         _until,
         _span,
+        _maybeFrom
       });
     },
     previous(numberOfDates) {

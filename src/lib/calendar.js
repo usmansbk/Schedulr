@@ -22,16 +22,31 @@ function extractDates(events, previous) {
 	return dates;
 }
 
+const flatCache = {};
 function EventFlatList(events=[]) {
 	const data = [];
 	events.forEach(event => {
-		const recur = repeat(event.startAt)
-			.span(event.endAt)
-			.from(moment())
-			.every(event.recurrence)
-			.until(event.until);
+		const date = moment().startOf('day').toISOString();
+		const key = `${event.id}-${event.startAt}-${event.endAt}-${date}-${event.recurrence}-${event.until}`;
+		const cached = flatCache[key];
+		if (cached) {
+			data.push(update(event, cached.nextDate, cached.nextSpan));
+		} else {
+			const recur = repeat(event.startAt)
+				.span(event.endAt)
+				.maybeFrom(date)
+				.every(event.recurrence)
+				.until(event.until);
+			
+			const nextDate = recur.nextDate();
+			const nextSpan = recur.nextSpan();
 
-		data.push(update(event, recur.nextDate(), recur.nextSpan()));
+			data.push(update(event, nextDate, nextSpan));
+			flatCache[key] = {
+				nextDate,
+				nextSpan
+			};
+		}
 	});
 	data.sort((a, b) => moment(a.startAt).diff(moment(b.startAt)));
 	return data;
@@ -48,7 +63,7 @@ function* EventSectionGenerator(events, previous) {
 	for (let date of dates) {
 		const data = [];
 		events.forEach(event => {
-			const key = `${event.startAt}-${event.endAt}-${date}-${event.recurrence}-${event.until}`;
+			const key = `${previous}-${event.startAt}-${event.endAt}-${date}-${event.recurrence}-${event.until}`;
 
 			const cached = cache[key];
 			if (cached) {
