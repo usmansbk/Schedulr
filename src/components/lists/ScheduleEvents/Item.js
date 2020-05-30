@@ -26,7 +26,7 @@ const {
 } = schedule_events;
 
 class Item extends React.Component {
-  _onPress = () => this.props.onPressItem(this.props.id, this.props.startAt, this.props.endAt);
+  _onPress = () => this.props.onPressItem(this.props.id, this.props.startAt);
   shouldComponentUpdate = (nextProps) => {
     return (nextProps.updatedAt !== this.props.updatedAt);
   }

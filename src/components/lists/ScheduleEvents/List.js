@@ -40,8 +40,8 @@ class List extends Component {
       )
     );
   };
-  _onPressItem = (id) => (
-    this.props.navigation.navigate('EventDetails', { id }));
+  _onPressItem = (id, from) => (
+    this.props.navigation.navigate('EventDetails', { id, from }));
   _keyExtractor = (item) => String(item.id);
 
   _renderItem = ({ item: {

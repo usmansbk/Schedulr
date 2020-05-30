@@ -15,7 +15,7 @@ import { captionDetails } from 'lib/formatEvent';
 const { AVATAR_SIZE } = bookmarkedEvents;
 
 class Item extends React.Component {
-  _onPress = () => this.props.onPressItem(this.props.id, this.props.startAt, this.props.endAt);
+  _onPress = () => this.props.onPressItem(this.props.id, this.props.startAt);
   _onPressComment = () => this.props.onPressComment(this.props.id, this.props.title, this.props.time);
   _onPressAvatar = () => this.props.navigateToBanner(this.props.id);
   shouldComponentUpdate = (nextProps) => {

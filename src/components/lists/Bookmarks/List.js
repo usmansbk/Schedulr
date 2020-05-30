@@ -37,7 +37,7 @@ class List extends Component {
   );
 
   _onRefresh = () => this.props.refresh();
-  _onPressItem = (id) => this.props.navigation.navigate('EventDetails', { id });
+  _onPressItem = (id, from) => this.props.navigation.navigate('EventDetails', { id, from });
   _navigateToBanner = (id) => this.props.navigation.navigate('Banner', { id });
   _keyExtractor = (item) => typeof item === 'string' ? item : String(item.id); 
   _onEndReached = async () => {
