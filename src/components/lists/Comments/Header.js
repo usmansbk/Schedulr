@@ -26,7 +26,7 @@ class Header extends React.Component {
       loading,
       hide
     } = this.props;
-    if (!hasMore) return null;
+    if (hide) return null;
 
     const previousCommentsCount = commentsCount - currentCount;
     const hasMore = previousCommentsCount > 0;
