@@ -3,7 +3,10 @@ import List from 'components/lists/Bookmarks';
 import logger from 'config/logger';
 
 export default class Bookmarks extends React.Component {
-  shouldComponentUpdate = nextProps => nextProps.isFocused;
+  shouldComponentUpdate = nextProps => {
+    // nextProps.isFocused;
+    return nextProps.data !== this.props.data;
+  };
 
   componentDidMount = () => logger.log('bookmarks');
 

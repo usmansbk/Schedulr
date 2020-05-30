@@ -1,18 +1,17 @@
 import React from 'react';
-import memoize from 'memoize-one';
 import List from 'components/lists/Schedules';
 import FAB from 'components/common/Fab';
 import { mergeSchedules } from 'lib/utils';
 
 export default class Schedules extends React.Component {
 
-  _mergeAllSchedules = memoize(mergeSchedules);
-
   get schedules() {
-    return this._mergeAllSchedules(this.props.data)
+    return mergeSchedules(this.props.data)
   }
 
-  shouldComponentUpdate = (nextProps) => nextProps.isFocused;
+  shouldComponentUpdate = (nextProps) => {
+    return this.props.data !== nextProps.data;
+  };
 
   _navigateToNewSchedule = () => this.props.navigation.navigate('NewSchedule');
   
