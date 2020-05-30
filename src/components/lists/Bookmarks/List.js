@@ -9,7 +9,6 @@ import Footer from './Footer';
 import Empty from './Empty';
 import {
   parseRepeat,
-  getStatus,
   getCategory
 } from 'lib/formatEvent';
 import {
@@ -71,16 +70,12 @@ class List extends Component {
     return (<Item
       id={id}
       title={title}
-      status={getStatus({
-        isCancelled,
-        cancelledDates,
-        startAt,
-        endAt,
-        until,
-      })}
       startAt={startAt}
       endAt={endAt}
       allDay={allDay}
+      isCancelled={isCancelled}
+      cancelledDates={cancelledDates}
+      until={until}
       pictureUrl={banner && getImageUrl(banner)}
       isBookmarked={isBookmarked}
       isAuth={isPublic || isOwner || (schedule && schedule.isFollowing)}

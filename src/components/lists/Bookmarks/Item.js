@@ -10,7 +10,7 @@ import Badge from 'components/common/Badge';
 import Avatar from 'components/common/UserAvatar';
 import BookmarkButton from 'components/common/BookmarkButton';
 import { bookmarkedEvents } from 'lib/constants';
-import { captionDetails } from 'lib/formatEvent';
+import { captionDetails, getStatus } from 'lib/formatEvent';
 
 const { AVATAR_SIZE } = bookmarkedEvents;
 
@@ -32,12 +32,16 @@ class Item extends React.Component {
       allDay,
       recurrence,
       time,
-      status,
       duration,
       category,
       pictureUrl,
       isBookmarked,
-      stores
+      stores,
+      isCancelled,
+      startAt,
+      endAt,
+      until,
+      cancelledDates
     } = this.props;
     
     const styles = stores.appStyles.bookmarkedEventsList;
@@ -48,6 +52,13 @@ class Item extends React.Component {
       duration
     });
 
+    const status = getStatus({
+      isCancelled,
+      cancelledDates,
+      startAt,
+      endAt,
+      until,
+    });
     return (
       <TouchableOpacity
         onPress={this._onPress}
