@@ -267,9 +267,3 @@ function match(_date, _every, date, _span) {
     default: return moment(date).isSame(_date, "day");
   }
 }
-
-repeat.DAY = 'day';
-repeat.WEEK = 'week';
-repeat.WEEKDAY = 'week';
-repeat.MONTH = 'month';
-repeat.YEAR = 'year';
