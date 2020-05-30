@@ -47,7 +47,6 @@ export default inject('stores')(observer(
     navigateToUser,
     navigateToBookmarks,
     navigateToBanner,
-    cardView,
     stores,
   }) => {
     const [ expandDescription, setExpand ] = useState(false);
@@ -65,7 +64,7 @@ export default inject('stores')(observer(
         <View style={stores.appStyles.eventDetails.content}>
           <View style={stores.appStyles.eventDetails.head}>
             <View style={stores.appStyles.eventDetails.headNote}>
-              { !cardView && <Tag status={status} /> }
+              <Tag status={status} />
             </View> 
             <Headline style={stores.appStyles.eventDetails.title}>{title}</Headline>
             <Text style={stores.appStyles.eventDetails.date}>{date}</Text>
