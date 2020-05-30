@@ -29,7 +29,7 @@ function EventFlatList(events=[]) {
 	const data = [];
 	events.forEach(event => {
 		const date = moment().startOf('day').toISOString();
-		const key = `${event.id}-${event.updatedAt}-${date}`;
+		const key = `${event.id}-${event.isBookmarked}-${event.updatedAt}-${date}`;
 		const cached = flatCache[key];
 		if (cached) {
 			data.push(cached);
@@ -41,7 +41,7 @@ function EventFlatList(events=[]) {
 				.until(event.until);
 
 			const newEvent = update(event, recur.nextDate(), recur.nextSpan());
-			data.push();
+			data.push(newEvent);
 			flatCache[key] = newEvent;
 		}
 	});
