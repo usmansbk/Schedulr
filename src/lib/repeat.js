@@ -56,12 +56,21 @@ function nextYear(date, from, isPrevious) {
   const month = moment(date).month();
   const dayOfMonth = moment(date).date();
   const currentMonth = moment(from).month();
+  const currentDay = moment(from).date();
 
+  const direction = isPrevious ? 0 : 1;
   if (currentMonth > month) { // month passed
-    const direction = isPrevious ? 0 : 1;
     nextDate = moment(from).year(year + direction).month(month).date(dayOfMonth); // set to upcoming year
-  } else {
+  } else if (currentMonth < month) {
     nextDate = moment(from).month(month).date(dayOfMonth);
+  } else { // same month
+    if (currentDay > dayOfMonth) { // passed
+      nextDate = moment(from).year(year + direction).month(month).date(dayOfMonth);
+    } else if (currentDay < dayOfMonth) { // upcoming
+      nextDate = moment(from).month(month).date(dayOfMonth);
+    } else { // same day
+      nextDate = moment(from);
+    }
   }
   return nextDate;
 }
