@@ -41,7 +41,6 @@ class Screen extends React.Component {
     } = this.props;
     const id = navigation.getParam('id');
     const from = navigation.getParam('from');
-    const cardView = navigation.getParam('cardView');
 
     if (loading && !event) return <Loading loading={loading} />;
     if (error && !event) return <Error onRefresh={onRefresh} loading={loading} />;
@@ -55,7 +54,6 @@ class Screen extends React.Component {
       <Details
         id={id}
         from={from}
-        cardView={cardView}
         event={event}
         handleBack={this._goBack}
         handleEdit={this._navigateToEdit}

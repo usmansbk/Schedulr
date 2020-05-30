@@ -53,7 +53,6 @@ class EventDetails extends React.Component {
       navigateToUser,
       navigateToBanner,
       navigateToBookmarks,
-      cardView,
       stores
     } = this.props;
     const recur = repeat(event.startAt)
@@ -212,7 +211,6 @@ class EventDetails extends React.Component {
           navigateToBookmarks={navigateToBookmarks}
           navigateToBanner={navigateToBanner}
           onCountDownFinish={this._onCountDownFinish}
-          cardView={cardView}
         />
         <DeleteConfirm
           id={id}
