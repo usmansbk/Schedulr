@@ -63,7 +63,9 @@ class Item extends React.Component {
       title,
       startAt,
       endAt,
+      _endAt,
       until,
+      from,
       address,
       stores,
       banner,
@@ -102,6 +104,8 @@ class Item extends React.Component {
       duration,
       startAt,
       endAt,
+      from,
+      _endAt
     });
     
     return (

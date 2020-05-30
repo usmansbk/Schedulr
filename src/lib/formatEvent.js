@@ -102,17 +102,21 @@ export const parseRepeat = (recurrence) => {
  * @returns {string} Formatted event date in human friendly form
  */
 export const captionDetails = ({
+  from,
   allDay,
   recurrence,
   category,
   duration,
   startAt,
   endAt,
+  _endAt,
 }) => {
   let caption;
   const [currentDayCount, totalDayCount] = count({
     startAt,
     endAt,
+    from,
+    _endAt
   });
 
   if (allDay) {
@@ -128,13 +132,13 @@ export const captionDetails = ({
   return formatted;
 };
 
-function count({ startAt, endAt }) {
+function count({ startAt, endAt, from, _endAt }) {
   const spanDays = isSpanDays(startAt, endAt);
 
   let currentDayCount, totalDayCount;
   if (spanDays) {
-    totalDayCount = getDaysCount(startAt, endAt);
-    const count = getDaysCount(startAt, startAt);
+    totalDayCount = getDaysCount(startAt, _endAt);
+    const count = getDaysCount(startAt, from);
     currentDayCount = count;
   }
   return [currentDayCount, totalDayCount];

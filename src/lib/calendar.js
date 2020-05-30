@@ -22,6 +22,7 @@ function extractDates(events, previous) {
 	return dates;
 }
 
+const cache = {};
 function* EventSectionGenerator(events, previous) {
 	const someday =  extractDates(events, previous);
 	const dates = Array.from(new Set(getWeekFromNow(previous).concat(someday)));
@@ -32,13 +33,22 @@ function* EventSectionGenerator(events, previous) {
 	for (let date of dates) {
 		const data = [];
 		events.forEach(event => {
-			const recur = repeat(event.startAt)
-											.span(event.endAt)
-											.from(date)
-											.every(event.recurrence)
-											.until(event.until);
-			if (!event.isCancelled && recur.matches(date)) {
-				data.push(update(event, date));
+			const key = `${event.id}-${event.title}-${date}`;
+
+			const cached = cache[key];
+			if (cached) {
+				data.push(cached);
+			} else {
+				const recur = repeat(event.startAt)
+												.span(event.endAt)
+												.from(date)
+												.every(event.recurrence)
+												.until(event.until);
+				if (!event.isCancelled && recur.matches(date)) {
+					const newEvent = update(event, date, recur.nextSpan());
+					cache[key] = newEvent;
+					data.push(newEvent);
+				}
 			}
 		});
 		data.sort((a, b) => moment(a.startAt).diff(b.startAt));
@@ -55,23 +65,33 @@ function* EventSectionGenerator(events, previous) {
 	}
 }
 
-export function update(event, date) {
-	const previousStartMoment = moment(event.startAt);
+export function update(event, date, span) {
+	let startAt, endAt, _endAt;
+	if (span) {
+		startAt = moment(event.startAt);
+		endAt = span;
+		_endAt = event.endAt;
+	} else {
+		const previousStartMoment = moment(event.startAt);
 
-	const hr = previousStartMoment.hour();
-	const min = previousStartMoment.minute();
-	const sec = previousStartMoment.second();
+		const hr = previousStartMoment.hour();
+		const min = previousStartMoment.minute();
+		const sec = previousStartMoment.second();
 
-	const nextMoment = moment(date).hour(hr).minute(min).second(sec);
-	const startAt = nextMoment.toISOString();
+		const nextMoment = moment(date).hour(hr).minute(min).second(sec);
+		startAt = nextMoment.toISOString();
 
-	const previousEndMoment = moment(event.endAt);
-	const duration = moment.duration(previousEndMoment.diff(previousStartMoment));
-	const endAt = nextMoment.clone().add(duration).toISOString();
+		const previousEndMoment = moment(event.endAt);
+		const duration = moment.duration(previousEndMoment.diff(previousStartMoment));
+		endAt = nextMoment.clone().add(duration).toISOString();
+		_endAt = endAt;
+	}
 	
 	return Object.assign({}, event, {
 		startAt,
 		endAt,
+		_startAt: event.startAt,
+		_endAt
 	});
 }
 
