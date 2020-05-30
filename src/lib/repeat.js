@@ -201,10 +201,31 @@ export default function repeat(date) {
     },
     moment() {
       return moment(_date);
+    },
+    nextSpan() {
+      return nextSpan(_date, _span, _from);
     }
   };
 
   return rule;
+}
+
+function nextSpan(_date, _span, _from) {
+  let nextDate;
+  if (_span) {
+    const inRange = moment(_from).isBetween(_date, _span, "day", "(]");
+    if (inRange) {
+      const count = Math.round(moment(_from).diff(_date, "days", true));
+      const total = Math.round(moment(_span).diff(_date, "days", true));
+      if (count === total) {
+        nextDate = _span;
+      } else {
+        nextDate = moment(_date).add(count, "days").endOf('day');
+      }
+    }
+  }
+
+  return nextDate;
 }
 
 function match(_date, _every, date, _span) {

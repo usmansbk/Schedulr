@@ -64,13 +64,13 @@ class EventDetails extends React.Component {
       cardView,
       stores
     } = this.props;
-    const date = repeat(event.startAt)
+    const recur = repeat(event.startAt)
                   .span(event.endAt)
                   .every(event.recurrence)
                   .until(event.until)
-                  .from(from)
-                  .nextDate();
-    const currentEvent = date ? update(event, date) : event;
+                  .from(from);
+    const date = recur.nextDate();
+    const currentEvent = date ? update(event, date, recur.nextSpan()) : event;
     const {
       id,
       title,
