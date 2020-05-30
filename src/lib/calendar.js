@@ -33,11 +33,11 @@ function* EventSectionGenerator(events, previous) {
 	for (let date of dates) {
 		const data = [];
 		events.forEach(event => {
-			const key = `${event.id}-${event.title}-${date}`;
+			const key = `${event.startAt}-${event.endAt}-${date}-${event.recurrence}-${event.until}`;
 
 			const cached = cache[key];
 			if (cached) {
-				data.push(update(event, date, cached.nextSpan));
+				data.push(update(event, date, cached));
 			} else {
 				const recur = repeat(event.startAt)
 												.span(event.endAt)
