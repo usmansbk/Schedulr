@@ -23,21 +23,6 @@ export const sortSchedules = (data) => {
   return opened.concat(closed);
 };
 
-export const sortEvents = (events, reverse) => {
-  const sorted = events.sort((a, b) => moment(a.startAt) - moment(b.startAt));
-  if (reverse) return sorted.reverse();
-  return sorted;
-};
-
-export const sortBookmarks = (data) => {
-  const events = data.filter(item => typeof item !== 'string');
-  const deleted = data.filter(item => typeof item === 'string');
-  const pending = events.filter(a => moment(a.endAt) > moment());
-  const expired = events.filter(a => moment(a.endAt) < moment());
-  const sorted = sortEvents(pending).concat(sortEvents(expired, true).concat(deleted));
-  return sorted;
-};
-
 export function eventsChanged(prev, next=[]) {
   if (prev === next) return false;
   if (prev.length !== next.length) return true;

@@ -22,6 +22,20 @@ function extractDates(events, previous) {
 	return dates;
 }
 
+function EventFlatList(events=[]) {
+	const data = [];
+	events.forEach(event => {
+		const recur = repeat(event.startAt)
+										.span(event.endAt)
+										.from(moment())
+										.every(event.recurrence)
+										.until(event.until);
+			data.push(update(event, recur.nextDate(), recur.nextSpan()));
+	});
+	data.sort((a, b) => moment(a.startAt).diff(moment(b.startAt)));
+	return data;
+}
+
 const cache = {};
 function* EventSectionGenerator(events, previous) {
 	const someday =  extractDates(events, previous);
@@ -96,5 +110,6 @@ export function update(event, date, span) {
 }
 
 export {
-  EventSectionGenerator
+	EventSectionGenerator,
+	EventFlatList
 };

@@ -5,7 +5,7 @@ import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
 import List from 'components/lists/EventSearch';
 import Suspense from 'components/common/Suspense';
-import { processEvents } from 'lib/calendr';
+import { EventFlatList } from 'lib/calendar';
 import { getUserData, searchEvents } from 'api/queries';
 import { mergeEvents, filterEvents } from 'lib/utils';
 import { searchEventFilter } from 'api/filters';
@@ -56,7 +56,7 @@ const ListHoc = compose(
     }),
     props: ({ data, ownProps }) => ({
       events: data && data.getUserData && filterEvents(
-        processEvents(mergeEvents(data.getUserData, [], false)),
+        EventFlatList(mergeEvents(data.getUserData, [], false)),
         ownProps.query),
       ...ownProps
     })
@@ -74,7 +74,7 @@ const ListHoc = compose(
     }),
     props: ({ data, ownProps }) => ({
       loading: data && (data.loading || data.networkStatus === 4 || data.networkStatus === 3),
-      events: data && data.searchEvents && processEvents(data.searchEvents.items) || [],
+      events: data && data.searchEvents && EventFlatList(data.searchEvents.items) || [],
       nextToken: data && data.searchEvents && data.searchEvents.nextToken,
       onRefresh: () => data.refetch(),
       fetchMore: (nextToken) => data.fetchMore({
