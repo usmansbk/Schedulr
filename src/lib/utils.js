@@ -98,9 +98,9 @@ export function filterPrivate(schedules) {
 }
 
 export function filterEvents(events, query) {
-  return sortBookmarks(events.filter(
+  return events.filter(
     item => item.title.toLowerCase().includes(query.toLowerCase()) ||
-     (item.category && item.category.toLowerCase().includes(query.toLowerCase()))));
+     (item.category && item.category.toLowerCase().includes(query.toLowerCase())));
 }
 
 export function filterSchedules(schedules, query) {
