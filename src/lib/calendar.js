@@ -27,25 +27,20 @@ function EventFlatList(events=[]) {
 	const data = [];
 	events.forEach(event => {
 		const date = moment().startOf('day').toISOString();
-		const key = `${event.id}-${event.startAt}-${event.endAt}-${date}-${event.recurrence}-${event.until}`;
+		const key = `${event.id}-${event.updatedAt}-${date}`;
 		const cached = flatCache[key];
 		if (cached) {
-			data.push(update(event, cached.nextDate, cached.nextSpan));
+			data.push(cached);
 		} else {
 			const recur = repeat(event.startAt)
 				.span(event.endAt)
 				.maybeFrom(date)
 				.every(event.recurrence)
 				.until(event.until);
-			
-			const nextDate = recur.nextDate();
-			const nextSpan = recur.nextSpan();
 
-			data.push(update(event, nextDate, nextSpan));
-			flatCache[key] = {
-				nextDate,
-				nextSpan
-			};
+			const newEvent = update(event, recur.nextDate(), recur.nextSpan());
+			data.push();
+			flatCache[key] = newEvent;
 		}
 	});
 	data.sort((a, b) => moment(a.startAt).diff(moment(b.startAt)));
@@ -55,19 +50,20 @@ function EventFlatList(events=[]) {
 const cache = {};
 function* EventSectionGenerator(events, previous) {
 	const someday =  extractDates(events, previous);
-	const dates = Array.from(new Set(getWeekFromNow(previous).concat(someday)));
-	// console.log(JSON.stringify(dates, null, 2))
 	const order = previous ? -1 : 1;
-	dates.sort((a, b) => moment(a).diff(b) * order); // dont delete no matter what
+	const dates = Array
+		.from(new Set(getWeekFromNow(previous).concat(someday))) // remove duplicates 
+		.sort((a, b) => moment(a).diff(b) * order);
+	// console.log(JSON.stringify(dates, null, 2))
 
 	for (let date of dates) {
 		const data = [];
+		console.log(events.length, "Items")
 		events.forEach(event => {
-			const key = `${previous}-${event.startAt}-${event.endAt}-${date}-${event.recurrence}-${event.until}`;
-
+			const key = `${previous}-${event.id}-${event.updatedAt}-${date}`;
 			const cached = cache[key];
 			if (cached) {
-				data.push(update(event, date, cached));
+				data.push(cached);
 			} else {
 				const recur = repeat(event.startAt)
 					.span(event.endAt)
@@ -75,9 +71,9 @@ function* EventSectionGenerator(events, previous) {
 					.every(event.recurrence)
 					.until(event.until);
 				if (!event.isCancelled && recur.matches(date)) {
-					const nextSpan = recur.nextSpan();
-					data.push(update(event, date, nextSpan));
-					cache[key] = nextSpan;
+					const newEvent = update(event, date, recur.nextSpan());
+					data.push(newEvent);
+					cache[key] = newEvent;
 				}
 			}
 		});
