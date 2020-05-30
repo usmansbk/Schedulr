@@ -70,10 +70,10 @@ function* EventSectionGenerator(events, previous) {
 				data.push(update(event, date, cached));
 			} else {
 				const recur = repeat(event.startAt)
-												.span(event.endAt)
-												.from(date)
-												.every(event.recurrence)
-												.until(event.until);
+					.span(event.endAt)
+					.from(date)
+					.every(event.recurrence)
+					.until(event.until);
 				if (!event.isCancelled && recur.matches(date)) {
 					const nextSpan = recur.nextSpan();
 					data.push(update(event, date, nextSpan));
