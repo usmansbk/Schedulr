@@ -55,7 +55,7 @@ export default inject('stores')(observer(
     const status= getStatus({
       isCancelled,
       cancelledDates,
-      startAt: from,
+      startAt,
       endAt,
       until
     });

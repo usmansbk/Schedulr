@@ -64,7 +64,7 @@
     "react-native-push-notification": "^3.5.2",
     "react-native-raw-bottom-sheet": "^2.2.0",
     "react-native-reanimated": "^1.9.0",
-    "react-native-safe-area-context": "^2.0.3",
+    "react-native-safe-area-context": "^3.0.2",
     "react-native-screens": "^2.8.0",
     "react-native-share": "^3.3.2",
     "react-native-snackbar": "^2.2.2",

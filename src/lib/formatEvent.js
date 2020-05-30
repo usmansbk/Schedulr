@@ -48,7 +48,10 @@ export const getStatus = ({
   endAt,
   until,
 }) => {
-  const isConcluded = moment().isAfter(moment(until));
+  let isConcluded = false;
+  if (until) {
+    isConcluded = moment().isAfter(moment(until));
+  }
   if (isConcluded) return "concluded";
   const cancelled =  isEventCancelled({ cancelledDates, startAt, isCancelled });
   if (cancelled) return "cancelled";

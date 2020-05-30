@@ -30,7 +30,8 @@ function EventFlatList(events=[]) {
 										.from(moment())
 										.every(event.recurrence)
 										.until(event.until);
-			data.push(update(event, recur.nextDate(), recur.nextSpan()));
+		
+		data.push(update(event, recur.nextDate(), recur.nextSpan()));
 	});
 	data.sort((a, b) => moment(a.startAt).diff(moment(b.startAt)));
 	return data;
