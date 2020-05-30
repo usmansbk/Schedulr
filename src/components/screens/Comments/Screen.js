@@ -89,7 +89,7 @@ class Screen extends React.Component {
       onRefresh,
       title,
       stores,
-      fetchMoreComments,
+      fetchMore,
       isOwner,
       commentEventId,
       commentScheduleId
@@ -126,7 +126,7 @@ class Screen extends React.Component {
           commentsCount={commentsCount}
           nextToken={nextToken}
           onRefresh={onRefresh}
-          fetchMoreComments={fetchMoreComments}
+          fetchMoreComments={fetchMore}
           navigateToProfile={this._navigateToProfile}
           navigateToViewEmbed={this._navigateToViewEmbed}
           onReply={this._handleReply}

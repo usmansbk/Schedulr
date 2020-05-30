@@ -53,7 +53,7 @@ class List extends React.Component {
     currentCount={this.props.comments.length}
     loading={this.state.fetchingMore}
     onPress={this._onEndReached}
-    hide={this.props.loading}
+    disable={this.props.loading}
   />;
   _renderSeparator = () => <Separator />;
   _renderFooter = () => <Footer />;
