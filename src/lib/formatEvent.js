@@ -3,8 +3,7 @@ import 'twix';
 import { I18n } from 'aws-amplify';
 import { capitalize } from './utils';
 import { getDaysCount, isSpanDays } from './time';
-const ONE_TIME_EVENT = "NEVER";
-
+import { ONE_TIME_EVENT } from './constants'; 
 /**
  * 
  * A calendar event
