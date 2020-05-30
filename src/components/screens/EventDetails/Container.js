@@ -181,6 +181,7 @@ class EventDetails extends React.Component {
           title={title}
           date={formatDate(startAt, endAt, allDay)}
           duration={getDuration(startAt, event.endAt)}
+          from={from}
           startAt={startAt}
           endAt={endAt}
           category={category}
@@ -205,12 +206,12 @@ class EventDetails extends React.Component {
           banner={banner}
           isOwner={isOwner}
           isCancelled={isCancelled}
+          cancelledDates={cancelledDates}
           navigateToSchedule={navigateToSchedule}
           navigateToComments={navigateToComments}
           navigateToUser={navigateToUser}
           navigateToBookmarks={navigateToBookmarks}
           navigateToBanner={navigateToBanner}
-          onCountDownFinish={this._onCountDownFinish}
         />
         <DeleteConfirm
           id={id}
@@ -219,8 +220,7 @@ class EventDetails extends React.Component {
         />
         <CancelConfirm
           id={id}
-          recurrence={recurrence}
-          date={startAt}
+          date={from}
           ref={this._cancelRef}
         />
       </>

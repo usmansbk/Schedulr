@@ -32,6 +32,7 @@ export default inject('stores')(observer(
     duration,
     startAt,
     endAt,
+    from,
     isOffline,
     isBookmarked,
     isCancelled,
@@ -54,7 +55,7 @@ export default inject('stores')(observer(
     const status= getStatus({
       isCancelled,
       cancelledDates,
-      startAt,
+      startAt: from,
       endAt,
       until
     });

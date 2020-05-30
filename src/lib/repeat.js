@@ -218,7 +218,6 @@ function nextSpan(_date, _span, _from) {
       const count = Math.round(moment(_from).diff(_date, "days", true));
       const total = Math.round(moment(moment(_span).startOf("day")).diff(_date, "days", true));
       if (count === total) {
-        console.log(_span)
         nextDate = _span;
       } else {
         nextDate = moment(_date).add(count, "days").endOf('day');
