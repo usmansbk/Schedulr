@@ -37,7 +37,7 @@ function* EventSectionGenerator(events, previous) {
 
 			const cached = cache[key];
 			if (cached) {
-				data.push(cached);
+				data.push(update(event, date, cached.nextSpan));
 			} else {
 				const recur = repeat(event.startAt)
 												.span(event.endAt)
@@ -45,9 +45,9 @@ function* EventSectionGenerator(events, previous) {
 												.every(event.recurrence)
 												.until(event.until);
 				if (!event.isCancelled && recur.matches(date)) {
-					const newEvent = update(event, date, recur.nextSpan());
-					cache[key] = newEvent;
-					data.push(newEvent);
+					const nextSpan = recur.nextSpan();
+					data.push(update(event, date, nextSpan));
+					cache[key] = nextSpan;
 				}
 			}
 		});

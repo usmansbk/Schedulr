@@ -5,7 +5,6 @@ import Hyperlink from 'react-native-hyperlink';
 import Icon from 'components/common/Icon';
 import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
-import CountDown from 'components/common/Countdown';
 import Confirm from 'components/common/Confirm';
 import Error from 'components/common/Error';
 import Tag from 'components/common/Tag';
@@ -18,12 +17,9 @@ class CalendarEvent extends React.Component {
   state = {
     event: null,
     display: false,
-    countDownReset: 0
   };
 
   _deleteConfirmRef = ref => this.deleteConfirmRef = ref;
-
-  _onCountDownFinish = () => this.setState(prev => ({countDownReset: prev.countDownReset + 1}));
 
   _goBack = () => this.props.navigation.goBack();
 
@@ -109,13 +105,6 @@ class CalendarEvent extends React.Component {
         <ScrollView style={stores.appStyles.eventDetails.bg}>
           <View style={stores.appStyles.eventDetails.content}>
             <View style={stores.appStyles.eventDetails.head}>
-              <CountDown
-                startAt={startAt}
-                endAt={endAt}
-                status={status}
-                onFinish={this._onCountDownFinish}
-                key={status+countDownReset}
-              />
               <View style={stores.appStyles.eventDetails.headNote}>
                 <Tag status={status} />
               </View> 

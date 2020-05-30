@@ -8,7 +8,6 @@ import moment from 'moment';
 import { I18n } from 'aws-amplify';
 import { getStatus } from 'lib/formatEvent';
 import Actions from 'components/common/Actions';
-import CountDown from 'components/common/Countdown';
 import Tag from 'components/common/Tag';
 import Carousel from 'components/lists/Carousel';
 
@@ -67,25 +66,18 @@ export default inject('stores')(observer(
       <ScrollView style={stores.appStyles.eventDetails.bg}>
         <View style={stores.appStyles.eventDetails.content}>
           <View style={stores.appStyles.eventDetails.head}>
-            { !(cardView) && (
-                <CountDown
-                  startAt={startAt}
-                  endAt={endAt}
-                  status={status}
-                  onFinish={onCountDownFinish}
-                  key={status+countDownReset}
-                />
-              )
-            }
             <View style={stores.appStyles.eventDetails.headNote}>
               { !cardView && <Tag status={status} /> }
             </View> 
             <Headline style={stores.appStyles.eventDetails.title}>{title}</Headline>
             <Text style={stores.appStyles.eventDetails.date}>{date}</Text>
-            <Text style={stores.appStyles.eventDetails.date}>{duration}</Text>
           </View>
           <Divider />
           <View style={stores.appStyles.eventDetails.body}>
+            <View style={stores.appStyles.eventDetails.item}>
+              <Text style={stores.appStyles.eventDetails.label}>{I18n.get("DURATION")}</Text>
+              <Text style={stores.appStyles.eventDetails.value}>{duration}</Text>
+            </View>
             {
               !!category && (
                 <View style={stores.appStyles.eventDetails.item}>

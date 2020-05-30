@@ -18,7 +18,6 @@ const FONT_SIZE = 24;
 class EventDetails extends React.Component {
   state = {
     display: false,
-    countDownExpire: 0
   };
 
   _cancelRef = ref => this.cancelConfirmRef = ref;
@@ -33,15 +32,8 @@ class EventDetails extends React.Component {
     logger.log('event_details_screen');
   };
 
- _onCountDownFinish = () => {
-    this.setState(prev => ({
-      countDownExpire: prev.countDownExpire + 1
-    }));
-  };
-
  shouldComponentUpdate = (nextProps, nextState) => (
    (nextState.display !== this.state.display) ||
-   (nextState.countDownExpire !== this.state.countDownExpire) ||
    (nextProps.event.updatedAt !== this.props.event.updatedAt) ||
    (nextProps.event.isBookmarked !== this.props.event.isBookmarked) ||
    (nextProps.event.isOffline !== this.props.event.isOffline) ||
@@ -189,7 +181,7 @@ class EventDetails extends React.Component {
           id={id}
           title={title}
           date={formatDate(startAt, endAt, allDay)}
-          duration={getDuration(startAt, endAt)}
+          duration={getDuration(startAt, event.endAt)}
           startAt={startAt}
           endAt={endAt}
           category={category}
@@ -220,7 +212,6 @@ class EventDetails extends React.Component {
           navigateToBookmarks={navigateToBookmarks}
           navigateToBanner={navigateToBanner}
           onCountDownFinish={this._onCountDownFinish}
-          countDownReset={this.state.countDownExpire}
           cardView={cardView}
         />
         <DeleteConfirm
