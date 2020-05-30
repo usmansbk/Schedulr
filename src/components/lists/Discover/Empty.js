@@ -29,7 +29,7 @@ export default inject('stores')(observer(
             </Caption>
             <Button
               icon={({ size, color }) => <Icon
-                name="map-pin"
+                name="map"
                 size={size}
                 color={color}
               />}
