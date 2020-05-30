@@ -15,9 +15,9 @@ function nextWeek(date, from, isPrevious) {
   let nextDate;
   const day = moment(from).isoWeekday(); // from date
   const weekday = moment(date).isoWeekday();
-  if (weekday < day) { // day passed
-    const nextDay = isPrevious ? 7 - weekday : 7 + weekday;
-    nextDate = moment(from).isoWeekday(nextDay); // set to upcoming week
+  if (day > weekday) { // day passed
+    const nextDay = isPrevious ? 7 - weekday : 7 + weekday; // previous week or next week
+    nextDate = moment(from).isoWeekday(nextDay);
   } else {
     nextDate = moment(from).isoWeekday(weekday)
   }
@@ -28,7 +28,7 @@ function nextWeekday(from, isPrevious) {
   let nextDate;
   const day = moment(from).isoWeekday();
   if (day >= 6) { // weekends
-    const nextDay = isPrevious ? 5 : 8;
+    const nextDay = isPrevious ? 5 : 8; // jump to prev friday or next monday
     nextDate = moment(from).isoWeekday(nextDay); // set to upcoming monday
   } else {
     nextDate = moment(from);
@@ -44,7 +44,7 @@ function nextMonth(date, from, isPrevious) {
   if (currentDate > dayOfMonth) { // date passed
     const direction = isPrevious ? 0 : 1;
     nextDate = moment(from).month(month + direction).date(dayOfMonth); // set to upcoming month
-  } else {
+  } else { // yet to happen, set to upcoming date in current month
     nextDate = moment(from).date(dayOfMonth);
   }
   return nextDate;
@@ -61,12 +61,12 @@ function nextYear(date, from, isPrevious) {
   const direction = isPrevious ? 0 : 1;
   if (currentMonth > month) { // month passed
     nextDate = moment(from).year(year + direction).month(month).date(dayOfMonth); // set to upcoming year
-  } else if (currentMonth < month) {
+  } else if (currentMonth < month) { // month upcoming
     nextDate = moment(from).month(month).date(dayOfMonth);
   } else { // same month
-    if (currentDay > dayOfMonth) { // passed
-      nextDate = moment(from).year(year + direction).month(month).date(dayOfMonth);
-    } else if (currentDay < dayOfMonth) { // upcoming
+    if (currentDay > dayOfMonth) { // day passed
+      nextDate = moment(from).year(year + direction).month(month).date(dayOfMonth); // set to upcoming year
+    } else if (currentDay < dayOfMonth) { // day upcoming
       nextDate = moment(from).month(month).date(dayOfMonth);
     } else { // same day
       nextDate = moment(from);
@@ -76,7 +76,7 @@ function nextYear(date, from, isPrevious) {
 }
 
 function nextDay(from, date) {
-  if (moment(from).isBefore(moment(date))) {
+  if (moment(from).isBefore(moment(date))) { // date upcoming (yet to happen)
     return moment(date);
   }
   return moment(from);
@@ -89,12 +89,12 @@ function datesFrom({
   const dates = [];
   let nextDate;
 
-  if (_span) {
+  if (_span) { // date span multiple days
     const inRange = moment(_from).isBetween(_date, _span, null, "[]");
     if (inRange) {
-      const length = Math.round(moment(_span).diff(_date, "days", true));
-      const count = Math.round(moment(_from).diff(_date, "days", true));
-      for (let i = count, j = 0; i <= length && j < numberOfDates; j++, i++) {
+      const length = Math.round(moment(_span).diff(_date, "days", true)); // total days span
+      const count = Math.round(moment(_from).diff(_date, "days", true)); // current days span
+      for (let i = count, j = 0; i <= length && j < numberOfDates; j++, i++) { // get days span
         nextDate = moment(_date).add(i, 'days');
         dates.push(nextDate);
       }
@@ -128,13 +128,14 @@ function datesFrom({
   }
 
   const amount = previous ? -1 : 1;
-  for (let i = 0; i <= numberOfDates; i++) {
+  for (let i = dates.length; i <= numberOfDates; i++) {
+    // edge cases
     if (previous) {
       if (nextDate.isAfter(_from, 'day')) break;
     } else {
       if (nextDate.isBefore(_from, 'day')) break;
     }
-    if (_until) {
+    if (_until) { // expired date
       if (nextDate.isAfter(_until, 'day')) break; 
     }
     dates.push(nextDate);
@@ -221,15 +222,15 @@ export default function repeat(date) {
 
 function nextSpan(_date, _span, _from) {
   let nextDate;
-  if (_span) {
-    const inRange = moment(_from).isBetween(_date, _span, "day", "(]");
+  if (_span) { // date span multiple days
+    const inRange = moment(_from).isBetween(_date, _span, "day", "(]"); // current date (_from) is one of the span days except (_date) the first date
     if (inRange) {
       const count = Math.round(moment(_from).diff(_date, "days", true));
       const total = Math.round(moment(moment(_span).startOf("day")).diff(_date, "days", true));
       if (count === total) {
-        nextDate = _span;
+        nextDate = _span; // last date should have the correct end time
       } else {
-        nextDate = moment(_date).add(count, "days").endOf('day');
+        nextDate = moment(_date).add(count, "days").endOf('day'); // in between dates should take span the whole day
       }
     }
   }

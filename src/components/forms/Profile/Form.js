@@ -5,13 +5,12 @@ import {
   ScrollView,
 } from 'react-native';
 import {
-  TextInput,
-  HelperText,
   Appbar,
 } from 'react-native-paper';
 import { Formik } from 'formik';
 import Suspense from 'components/common/Suspense';
 import Button from 'components/common/Button';
+import TextInput from 'components/common/TextInput';
 import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
 import schema  from './schema';
@@ -91,51 +90,28 @@ class Form extends React.Component {
                 value={values.name}
                 onChangeText={handleChange('name')}
                 onBlur={handleBlur('name')}
+                error={errors.name && touched.name}
                 autoFocus
-                underlineColor="transparent"
-                style={styles.textInput}
-                theme={{roundness: 16}}
+                bold
               />
-              <HelperText
-                type="error"
-                visible={errors.name && touched.name}
-              >
-              {errors.name && I18n.get(`HELPER_TEXT_${errors.name}`)}
-              </HelperText>
               <TextInput
                 placeholder={I18n.get("PLACEHOLDER_addYourWebsite")}
                 label={I18n.get("PROFILE_FORM_website")}
                 value={values.website}
                 onChangeText={handleChange('website')}
                 onBlur={handleBlur('website')}
-                underlineColor="transparent"
-                theme={{roundness: 0}}
-                style={styles.textInput}
+                error={errors.website && touched.website}
               />
-              <HelperText
-                type="error"
-                visible={errors.website && touched.website}
-              >
-              {errors.website && I18n.get(`HELPER_TEXT_${errors.website}`)}
-              </HelperText>
               <TextInput
                 placeholder={I18n.get("PLACEHOLDER_bio")}
                 label={I18n.get("PROFILE_FORM_bio")}
                 value={values.bio}
                 onChangeText={handleChange('bio')}
                 onBlur={handleBlur('bio')}
-                underlineColor="transparent"
-                theme={{roundness: 16}}
-                style={styles.textInput}
                 multiline
                 maxHeight={200}
+                error={errors.bio && touched.bio}
               />
-              <HelperText
-                type="error"
-                visible={errors.bio && touched.bio}
-              >
-              {errors.bio && I18n.get(`HELPER_TEXT_${errors.bio}`)}
-              </HelperText>
             </View>
           </ScrollView>
           </>

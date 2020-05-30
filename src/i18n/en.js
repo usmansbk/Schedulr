@@ -218,9 +218,9 @@ export default {
   TOAST_downloadFailed: "Download failed",
   TOAST_fileTooLarge: name => `"${name.slice(0, 20)}..." is larger than 8mb`,
 
-  PROFILE_FORM_name: "Name",
-  PROFILE_FORM_website: "Website",
-  PROFILE_FORM_bio: "Bio",
+  PROFILE_FORM_name: "NAME",
+  PROFILE_FORM_website: "WEBSITE",
+  PROFILE_FORM_bio: "ABOUT",
   PROFILE_joined: date => `Joined ${date}`,
 
   VENUE: "VENUE",

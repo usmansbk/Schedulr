@@ -91,6 +91,7 @@ const styles = StyleSheet.create({
   actions: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    backgroundColor: 'transparent'
+    backgroundColor: 'transparent',
+    paddingHorizontal: 8
   }
 });
