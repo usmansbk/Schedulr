@@ -41,7 +41,7 @@ class CalendarEvent extends React.Component {
   };
 
   render() {
-    const { event, display, countDownReset } = this.state;
+    const { event, display } = this.state;
     if (!display) return <Suspense />;
 
     const { stores } = this.props;
