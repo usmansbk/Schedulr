@@ -1,5 +1,6 @@
 import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
+import moment from 'moment';
 import { withNavigation } from 'react-navigation';
 import Dialog from './Dialog';
 import { updateEvent, deleteEvent } from 'api/mutations';
@@ -58,9 +59,11 @@ export default compose(
       }
     }),
     props: ({ data, ownProps }) => ({
-      isRecurring: data && (data.getEvent && data.getEvent.recurrence !== ONE_TIME_EVENT),
-      banner: data && data.getEvent && data.getEvent.banner,
-      cancelledDates: (data && data.getEvent && data.getEvent.cancelledDates) || [],
+      isRecurring: (data.getEvent.recurrence !== ONE_TIME_EVENT) || (
+        !moment(data.getEvent.startAt).isSame(moment(data.getEvent.endAt), 'day')
+      ),
+      banner: data.getEvent.banner,
+      cancelledDates: data.getEvent.cancelledDates || [],
       ...ownProps,
     })
   })

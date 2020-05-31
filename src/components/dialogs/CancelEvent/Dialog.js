@@ -10,7 +10,6 @@ import Button from 'components/common/Button';
 class CancelEvent extends React.Component {
   state = {
     checked: SINGLE_EVENT,
-    loading: false,
   };
 
   _confirmRef = ref => this.confirmRef = ref;
@@ -34,8 +33,6 @@ class CancelEvent extends React.Component {
       deleteEvent,
       cancelledDates,
     } = this.props;
-    console.log(cancelledDates);
-    this.setState({ loading: true });
     const { checked } = this.state;
     if ((checked === ALL_EVENTS) || !isRecurring) {
       const input = {id};
@@ -52,10 +49,9 @@ class CancelEvent extends React.Component {
           date
         ]))
       };
-      this._handleDismiss();
       setTimeout(() => cancelEvent(input), 200);
     }
-    this.setState({ loading: false });
+    this._handleDismiss();
   };
 
   _handleDismiss = () => this.confirmRef.close();
@@ -67,7 +63,7 @@ class CancelEvent extends React.Component {
       isRecurring,
       stores
     } = this.props;
-    const { checked, loading } = this.state;
+    const { checked } = this.state;
     const styles = stores.appStyles.sheet;
 
     return (
@@ -102,8 +98,8 @@ class CancelEvent extends React.Component {
             )
           }
           <View style={styles.footer}>
-            <Button disabled={loading} onPress={this._handleDismiss}>{I18n.get("BUTTON_dismiss")}</Button>
-            <Button danger disabled={loading} loading={loading} onPress={this._onContinue}>{I18n.get("BUTTON_continue")}</Button>
+            <Button onPress={this._handleDismiss}>{I18n.get("BUTTON_dismiss")}</Button>
+            <Button danger onPress={this._onContinue}>{I18n.get("BUTTON_continue")}</Button>
           </View>
         </View>
       </RBSheet>
