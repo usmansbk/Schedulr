@@ -56,7 +56,7 @@ class EventDetails extends React.Component {
                   .every(event.recurrence)
                   .until(event.until)
                   .from(from);
-    const currentEvent = update(event, recur.nextDate() || event.startAt, recur.nextSpan() || event.endAt);
+    const currentEvent = update(event, recur.nextDate(), recur.nextSpan());
     const {
       id,
       title,

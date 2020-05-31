@@ -52,7 +52,7 @@ export default inject('stores')(observer(
   }) => {
     const [ expandDescription, setExpand ] = useState(false);
     const expandText = () => setExpand(!expandDescription);
-    
+   
     const date = formatDate(startAt, endAt, allDay);
     const duration = getDuration(startAt, _endAt);
     const repeatLabel = getRepeatLabel(recurrence, startAt);
