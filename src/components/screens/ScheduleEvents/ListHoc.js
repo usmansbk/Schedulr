@@ -17,7 +17,11 @@ class ListHoc extends React.Component {
   };
 
   _onRefresh = () => this.props.onRefresh && this.props.onRefresh();
-  _fetchPastEvents = (nextToken, time) => this.props.fetchMore && this.props.fetchMore(nextToken, time);
+  _fetchPastEvents = (nextToken) => {
+    const first = this.props.events[0];
+    const before = first && first.startAt;
+    this.props.fetchMore && this.props.fetchMore(nextToken, before);
+  };
 
   componentDidMount = () => {
     setTimeout(() =>
@@ -36,7 +40,7 @@ class ListHoc extends React.Component {
       eventsCount
     } = this.props;
 
-    const eventsLength = events ? events.length : [];
+    const eventsLength = events ? events.length : 0;
 
     const pastEventsCount = eventsCount - eventsLength;
 
@@ -73,11 +77,11 @@ export default graphql(gql(getScheduleEvents), {
       limit: PAGINATION_LIMIT,
       nextToken: null
     }),
-    fetchMore: (nextToken) => data.fetchMore({
+    fetchMore: (nextToken, before) => data.fetchMore({
       variables: {
         limit: PAGINATION_LIMIT,
         nextToken,
-        filter: pastEventsFilter()
+        filter: pastEventsFilter(before)
       },
       updateQuery: (prev, { fetchMoreResult }) => (
         updateQuery({

@@ -1,7 +1,7 @@
 import moment from 'moment';
 
-export const pastEventsFilter = () => {
-	const time = moment().toISOString();
+export const pastEventsFilter = (before) => {
+	const time = moment(before).toISOString();
 	return {
 		or: [
 			{
@@ -73,6 +73,20 @@ export const baseEventsFilter = () => {
 								until: {
 									ge: now
 								}
+							},
+							{
+								and: [
+									{
+										forever: {
+											ne: true
+										}
+									},
+									{
+										until: {
+											notContains: ":" // equivalent of notExists(until) or until === null
+										}
+									}
+								]
 							}
 						]
 					}
