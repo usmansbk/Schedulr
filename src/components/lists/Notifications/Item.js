@@ -68,7 +68,7 @@ class Item extends React.Component {
     const styles = stores.appStyles.notifications;
     let icon = 'calendar';
     if (type === 'Schedule') icon = 'pin';
-    else if (type === 'Follow') icon = 'users';
+    else if (type === 'Follow') icon = 'addusergroup';
     else if (type === 'Bookmark') icon = 'bookmark';
     else if (type === 'Comment')  icon = 'comments';
 
