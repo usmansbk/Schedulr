@@ -26,13 +26,14 @@ class CancelEvent extends React.Component {
     const {
       id,
       date,
+      isRecurring,
       onSubmit,
       cancelledDates,
     } = this.props;
     this.setState({ loading: true });
     const input = {id};
     const { checked } = this.state;
-    if ((checked === ALL_EVENTS) || !date) {
+    if ((checked === ALL_EVENTS) || isRecurring) {
       input.isCancelled = true;
       input.cancelledDates = null;
     } else {
@@ -56,6 +57,7 @@ class CancelEvent extends React.Component {
   render() {
     const {
       date,
+      isRecurring,
       stores
     } = this.props;
     const { checked, loading } = this.state;
@@ -64,7 +66,7 @@ class CancelEvent extends React.Component {
     return (
       <RBSheet
         ref={this._confirmRef}
-        height={date ? 300 : 250}
+        height={350}
         closeOnDragDown
         customStyles={{
           container: styles.container
@@ -75,7 +77,7 @@ class CancelEvent extends React.Component {
             <Text style={styles.title}>{I18n.get("DIALOG_cancelEvent")}</Text>
           </View>
           {
-            Boolean(date) ? (
+            Boolean(isRecurring) ? (
               <View style={styles.body}>
                 <RadioButton.Group onValueChange={this._toggleButton} value={checked}>
                   <View style={styles.row}>
