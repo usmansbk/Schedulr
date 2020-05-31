@@ -1585,13 +1585,13 @@ export default class AppStyles {
       },
       list: {
         backgroundColor: colors.bg,
+        paddingHorizontal: 14 
       },
       sectionHeader: {
         backgroundColor: colors.light_gray,
-        padding: 5,
-        paddingLeft: 16,
+        paddingVertical: 5,
+        paddingHorizontal: 16,
         height: SECTION_HEADER_HEIGHT,
-        marginHorizontal: 8,
         borderRadius: 8
       },
       sectionHeading: {
@@ -1657,8 +1657,7 @@ export default class AppStyles {
       itemContainer: {
         height: ITEM_HEIGHT,
         backgroundColor: colors.bg,
-        paddingLeft: 12,
-        paddingRight: 16 
+        // paddingHorizontal: 10
       },
       itemContent: {
         paddingTop: 4,

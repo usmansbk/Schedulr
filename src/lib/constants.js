@@ -71,7 +71,7 @@ export const events = {
   SEPARATOR_HEIGHT : dp(thinLine),
   SECTION_HEADER_HEIGHT : dp(70),
   SECTION_FOOTER_HEIGHT : dp(40),
-  HEADER_HEIGHT : dp(32),
+  HEADER_HEIGHT : dp(40),
   FOOTER_HEIGHT : dp(80),
   NUMBER_OF_DAYS : 3
 };
