@@ -33,7 +33,7 @@ class CancelEvent extends React.Component {
     this.setState({ loading: true });
     const input = {id};
     const { checked } = this.state;
-    if ((checked === ALL_EVENTS) || isRecurring) {
+    if ((checked === ALL_EVENTS) || !isRecurring) {
       input.isCancelled = true;
       input.cancelledDates = null;
     } else {
