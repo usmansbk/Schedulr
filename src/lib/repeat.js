@@ -263,10 +263,8 @@ function nextSpan(_date, _span, _from) {
 }
 
 function match(_date, _every, date, _span) {
-  if (_span) {
-    const inRange = moment(date).isBetween(_date, _span, null, "[]");
-    if (inRange) return true;
-  }
+  if (_span && moment(date).isBetween(_date, _span, null, "[]")) return true; // first date is ongoing
+
   switch(_every) {
     case DAY: return true;
     case WEEKDAY: return moment(date).isoWeekday() < 6;
