@@ -128,10 +128,11 @@ export function getDaysCount(from, to) {
 
 // Get next seven days starting from today 
 export const getWeekFromNow = (previous) => {
-  let dates = [];
+  const days = previous ? 1 : 7;
+  const start = previous ? 1 : 0;
   const direction = previous ? -1 : 1;
-  let start = previous ? 1 : 0;
-  for (let i = start; i < 7; i++) {
+  let dates = [];
+  for (let i = start; i < days; i++) {
     const date = moment().add(i * direction, 'day').startOf('day').toISOString();
     dates.push(date);
   }
