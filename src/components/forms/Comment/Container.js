@@ -16,7 +16,7 @@ export default class Container extends React.Component {
     const id = `${hash}-${sort}`;
     const input = {
       id,
-      content: message,
+      content: message || null,
       commentEventId: this.props.commentEventId,
       commentScheduleId: this.props.commentScheduleId,
     };
@@ -26,7 +26,7 @@ export default class Container extends React.Component {
     if (this.props.commentToId) {
       input.commentToId = this.props.commentToId;
     }
-    if (attachment) {
+    if (attachment && attachment.length) {
       input.attachment = attachment;
     }
     this.props.onSubmit && this.props.onSubmit(input);

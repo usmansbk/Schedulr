@@ -102,10 +102,9 @@ class CommentInput extends React.Component {
   _onSubmit = async () => {
     const message = this.state.message.trim();
     const [docs, failed] = await this._processDocs();
-    await this.props.handleSubmit(
-      message || null,
-      docs.length ? docs : null
-    );
+    if (message || docs.length) {
+      await this.props.handleSubmit(message, docs)
+    }
     this.setState({
       isSubmitting: false,
       message: '',
