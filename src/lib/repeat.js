@@ -140,6 +140,8 @@ function datesFrom({
     }
   }
 
+  if (_every === EXACT) return dates;
+
   const amount = previous ? -1 : 1;
   for (let i = dates.length; i <= numberOfDates; i++) {
     // edge cases
