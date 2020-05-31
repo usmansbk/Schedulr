@@ -99,10 +99,10 @@ function* EventSectionGenerator(events, previous) {
 export function update(event, date, span) {
 	let startAt, endAt, _endAt, _startAt;
 	if (span) {
-		startAt = moment(event.startAt);
-		endAt = span;
-		_startAt = date,
-		_endAt = event.endAt;
+		startAt = moment(event.startAt).toISOString();
+		endAt = moment(span).toISOString();
+		_startAt = moment(date).toISOString(),
+		_endAt = moment(event.endAt).toISOString();
 	} else {
 		const previousStartMoment = moment(event.startAt);
 

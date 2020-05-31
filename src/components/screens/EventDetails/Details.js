@@ -7,6 +7,7 @@ import numeral from 'numeral';
 import moment from 'moment';
 import { I18n } from 'aws-amplify';
 import { getStatus } from 'lib/formatEvent';
+import { formatDate, getDuration, getRepeatLabel } from 'lib/time';
 import Actions from 'components/common/Actions';
 import Tag from 'components/common/Tag';
 import Carousel from 'components/lists/Carousel';
@@ -18,7 +19,6 @@ export default inject('stores')(observer(
   ({
     id,
     title,
-    date,
     category,
     address,
     scheduleName,
@@ -29,10 +29,11 @@ export default inject('stores')(observer(
     createdAt,
     updatedAt,
     description,
-    duration,
     startAt,
     endAt,
-    from,
+    _startAt,
+    _endAt,
+    allDay,
     isOffline,
     isBookmarked,
     cancelledDates,
@@ -51,9 +52,14 @@ export default inject('stores')(observer(
   }) => {
     const [ expandDescription, setExpand ] = useState(false);
     const expandText = () => setExpand(!expandDescription);
+    
+    const date = formatDate(startAt, endAt, allDay);
+    const duration = getDuration(startAt, _endAt);
+    const repeatLabel = getRepeatLabel(recurrence, startAt);
     const status= getStatus({
       cancelledDates,
       startAt,
+      _startAt,
       endAt,
       until
     });
@@ -100,7 +106,7 @@ export default inject('stores')(observer(
             }
             <View style={stores.appStyles.eventDetails.item}>
               <Text style={stores.appStyles.eventDetails.label}>{I18n.get("REPEAT")}</Text>
-              <Text style={stores.appStyles.eventDetails.value}>{recurrence}</Text>
+              <Text style={stores.appStyles.eventDetails.value}>{repeatLabel}</Text>
             </View>
             {
               Boolean(until) && (
