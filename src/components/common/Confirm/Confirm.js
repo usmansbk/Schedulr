@@ -26,7 +26,8 @@ class Confirm extends React.Component {
       message,
       confirmText=I18n.get("BUTTON_confirm"),
       stores,
-      alert
+      alert,
+      height=300
     } = this.props;
     const styles = stores.appStyles.sheet;
     return (
@@ -38,6 +39,7 @@ class Confirm extends React.Component {
           draggableIcon: styles.draggableIcon,
           container: styles.container
         }}
+        height={height}
       >
         <View style={styles.content}>
           <View style={styles.header}>
