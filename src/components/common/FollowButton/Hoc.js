@@ -12,6 +12,7 @@ export default inject("stores")(observer(
   compose(
     graphql(gql(createFollow), {
       alias: 'withCreateFollow',
+      withRef: true,
       props: ({ mutate, ownProps }) => ({
         ...ownProps,
         follow: (input) => mutate({
@@ -33,6 +34,7 @@ export default inject("stores")(observer(
     }),
     graphql(gql(deleteFollow), {
       alias: 'withDeleteFollow',
+      withRef: true,
       props: ({ mutate, ownProps }) => ({
         ...ownProps,
         unfollow: (input, followScheduleId) => mutate({

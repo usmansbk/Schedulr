@@ -1,32 +1,30 @@
 import React from 'react';
-import Alert from 'components/dialogs/Alert';
+import Confirm from 'components/common/Confirm';
 import { I18n } from 'aws-amplify';
 import Fab from '../Fab';
 
 export default class Button extends React.Component {
-  state = {
-    showUnfollowAlert: false,
-    input: null,
-    id: null,
+  _actionsheetRef = ref => this.actionSheet = ref;
+  _onPress= () => {
+    if (this.props.isFollowing) {
+      this.actionSheet.open(); 
+    } else {
+      this._onConfirm();
+    }
   };
-  _showUnfollowAlert = (input, id) => this.setState({ showUnfollowAlert: true, input, id });
-  _hideAlert = () => this.setState({ showUnfollowAlert: false });
-  _unfollow = () => {
-    this.props.unfollow(this.state.input, this.state.id);
-    this._hideAlert();
-  };
-  _onPress = () => {
+  _onConfirm = () => {
     const {
       id,
       stores,
       follow,
+      unfollow,
       isFollowing,
     } = this.props;
     const input = {
       id: `${stores.appState.userId}-${id}`,
     };
     if (isFollowing) {
-      this._showUnfollowAlert(input, id);
+      unfollow(input, id);
     } else {
       input.followScheduleId = id;
       follow(input);
@@ -50,13 +48,12 @@ export default class Button extends React.Component {
         small={small}
         disabled={disabled}
       />
-      <Alert
-        visible={this.state.showUnfollowAlert}
+      <Confirm
+        ref={this._actionsheetRef}
         title={I18n.get("ALERT_unfollow")(name)}
         message={I18n.get("ALERT_unfollowMessage")}
         confirmText={I18n.get("BUTTON_unfollow")}
-        onConfirm={this._unfollow}
-        handleDismiss={this._hideAlert}
+        onConfirm={this._onConfirm}
       />
       </>
     );
