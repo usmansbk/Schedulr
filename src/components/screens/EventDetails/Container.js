@@ -8,6 +8,7 @@ import CancelConfirm from 'components/dialogs/CancelEvent';
 import Details from './Details';
 import { formatDate, getRepeatLabel, getDuration } from 'lib/time';
 import { update } from 'lib/calendar';
+import { ONE_TIME_EVENT } from 'lib/constants';
 import { isEventValid } from 'lib/formatEvent';
 import getImageUrl from 'helpers/getImageUrl';
 import repeat from 'lib/repeat';
@@ -220,6 +221,7 @@ class EventDetails extends React.Component {
         />
         <CancelConfirm
           id={id}
+          isRecurring={recurrence !== ONE_TIME_EVENT}
           date={from}
           ref={this._cancelRef}
         />
