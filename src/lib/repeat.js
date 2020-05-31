@@ -103,7 +103,7 @@ function datesFrom({
   let nextDate;
 
   if (_span) { // date span multiple days
-    const inRange = moment(_from).isBetween(_date, _span, null, "[]");
+    const inRange = moment(_from).isBetween(_date, _span, DAY, "[]");
     if (inRange) {
       const length = Math.round(moment(_span).diff(_date, DAY, true)); // total days span
       const count = Math.round(moment(_from).diff(_date, DAY, true)); // current days span
@@ -140,7 +140,6 @@ function datesFrom({
     }
   }
 
-  if (_every === EXACT) return dates;
 
   const amount = previous ? -1 : 1;
   for (let i = dates.length; i <= numberOfDates; i++) {
@@ -155,6 +154,7 @@ function datesFrom({
       if (nextDate.isAfter(_until, DAY)) break; 
     }
     dates.push(nextDate);
+    if (_every === EXACT) break;
     nextDate = moment(nextDate).add(amount, _every);
   }
   return dates;
@@ -208,6 +208,7 @@ export default function repeat(date) {
         _every,
         _from,
         _until,
+        _span,
         previous: true
       });
     },
