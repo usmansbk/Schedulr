@@ -58,7 +58,7 @@ function* EventSectionGenerator(events, previous) {
 
 	for (let date of dates) {
 		const data = [];
-		const s = Date.now();
+		// const s = Date.now();
 		events.forEach(event => {
 			const key = `${previous}-${event.id}-${event.updatedAt}-${event.isBookmarked}-${date}`;
 			const cached = cache[key];
@@ -81,7 +81,7 @@ function* EventSectionGenerator(events, previous) {
 				}
 			}
 		});
-		console.log(events.length, "Items:", Date.now() -s);
+		// console.log(events.length, "Items:", Date.now() -s);
 		data.sort((a, b) => moment(a.startAt).diff(b.startAt));
 		const items = [
 			{
