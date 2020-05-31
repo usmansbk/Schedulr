@@ -97,10 +97,11 @@ function* EventSectionGenerator(events, previous) {
 }
 
 export function update(event, date, span) {
-	let startAt, endAt, _endAt;
+	let startAt, endAt, _endAt, _startAt;
 	if (span) {
 		startAt = moment(event.startAt);
 		endAt = span;
+		_startAt = date,
 		_endAt = event.endAt;
 	} else {
 		const previousStartMoment = moment(event.startAt);
@@ -115,13 +116,14 @@ export function update(event, date, span) {
 		const previousEndMoment = moment(event.endAt);
 		const duration = moment.duration(previousEndMoment.diff(previousStartMoment));
 		endAt = nextMoment.clone().add(duration).toISOString();
+		_startAt = event.startAt;
 		_endAt = endAt;
 	}
 	
 	return Object.assign({}, event, {
 		startAt,
 		endAt,
-		_startAt: event.startAt,
+		_startAt,
 		_endAt
 	});
 }

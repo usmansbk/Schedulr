@@ -5,7 +5,6 @@ import Icon from 'components/common/Icon';
 import Suspense from 'components/common/Suspense';
 import CancelConfirm from 'components/dialogs/CancelEvent';
 import Details from './Details';
-import { formatDate, getRepeatLabel, getDuration } from 'lib/time';
 import { update } from 'lib/calendar';
 import { isEventValid } from 'lib/formatEvent';
 import getImageUrl from 'helpers/getImageUrl';
@@ -57,14 +56,15 @@ class EventDetails extends React.Component {
                   .every(event.recurrence)
                   .until(event.until)
                   .from(from);
-    const date = recur.nextDate();
-    const currentEvent = date ? update(event, date, recur.nextSpan()) : event;
+    const currentEvent = update(event, recur.nextDate() || event.startAt, recur.nextSpan() || event.endAt);
     const {
       id,
       title,
       category,
       venue,
       startAt,
+      _startAt,
+      _endAt,
       endAt,
       allDay,
       schedule,
@@ -86,6 +86,7 @@ class EventDetails extends React.Component {
     const isValid = isEventValid({
       endAt,
       startAt,
+      _startAt,
       cancelledDates,
       recurrence,
       until
@@ -164,11 +165,12 @@ class EventDetails extends React.Component {
         <Details
           id={id}
           title={title}
-          date={formatDate(startAt, endAt, allDay)}
-          duration={getDuration(event.startAt, event.endAt)}
-          from={from}
+          _startAt={_startAt}
+          _endAt={_endAt}
           startAt={startAt}
           endAt={endAt}
+          allDay={allDay}
+          recurrence={recurrence}
           category={category}
           address={venue}
           isPublic={isPublic}
@@ -178,7 +180,6 @@ class EventDetails extends React.Component {
           scheduleId={schedule && schedule.id}
           authorId={author.id}
           authorName={author.name}
-          recurrence={getRepeatLabel(recurrence, startAt)}
           until={until}
           createdAt={createdAt}
           updatedAt={(updatedAt !== createdAt) && updatedAt}
@@ -199,7 +200,7 @@ class EventDetails extends React.Component {
         />
         <CancelConfirm
           id={id}
-          date={startAt}
+          date={_startAt}
           onRef={this._cancelRef}
         />
       </>

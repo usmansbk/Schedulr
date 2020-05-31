@@ -63,6 +63,7 @@ class Item extends React.Component {
       title,
       startAt,
       endAt,
+      _startAt,
       _endAt,
       until,
       from,
@@ -89,6 +90,7 @@ class Item extends React.Component {
     const status = getStatus({
       cancelledDates,
       startAt,
+      _startAt,
       endAt,
       until
     });
