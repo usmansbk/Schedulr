@@ -199,7 +199,7 @@ class EventDetails extends React.Component {
         />
         <CancelConfirm
           id={id}
-          date={from}
+          date={startAt}
           onRef={this._cancelRef}
         />
       </>

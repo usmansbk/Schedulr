@@ -29,10 +29,8 @@ export const getCategory = (category) => {
  * @param {Event} event 
  * @returns { boolean } - check where event is cancelled
  */
-export const isEventCancelled = (event) => {
-  const { startAt } = event;
-  const cancelledDates = event.cancelledDates || [];
-  return cancelledDates.includes(startAt);
+export const isEventCancelled = ({cancelledDates, startAt }) => {
+  return cancelledDates && cancelledDates.includes(startAt);
 }
 
 /**
@@ -46,11 +44,10 @@ export const getStatus = ({
   endAt,
   until,
 }) => {
-  let isConcluded = false;
   if (until) {
-    isConcluded = moment().isAfter(moment(until));
+    const isConcluded = moment().isAfter(moment(until));
+    if (isConcluded) return "concluded";
   }
-  if (isConcluded) return "concluded";
   const cancelled =  isEventCancelled({ cancelledDates, startAt });
   if (cancelled) return "cancelled";
   const isEnded = moment().twix(endAt).isPast();
