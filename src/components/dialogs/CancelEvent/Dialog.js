@@ -26,28 +26,36 @@ class CancelEvent extends React.Component {
     const {
       id,
       date,
+      stores,
+      banner,
       isRecurring,
-      onSubmit,
+      navigation,
+      cancelEvent,
+      deleteEvent,
       cancelledDates,
     } = this.props;
+    console.log(cancelledDates);
     this.setState({ loading: true });
-    const input = {id};
     const { checked } = this.state;
     if ((checked === ALL_EVENTS) || !isRecurring) {
-      input.isCancelled = true;
-      input.cancelledDates = null;
+      const input = {id};
+      if (banner) {
+        stores.appState.removeKeysFromStorage([banner.key])
+      }
+      setTimeout(() => deleteEvent(input), 200);
+      navigation.goBack();
     } else {
-      input.cancelledDates = Array.from(new Set([
-        ...cancelledDates,
-        date
-      ]));
+      const input = {
+        id,
+        cancelledDates : Array.from(new Set([
+          ...cancelledDates,
+          date
+        ]))
+      };
+      this._handleDismiss();
+      setTimeout(() => cancelEvent(input), 200);
     }
-    setTimeout(() => {
-      // snackbar(I18n.get("EVENT_cancelling"));
-      onSubmit(input);
-    }, 200);
     this.setState({ loading: false });
-    this._handleDismiss();
   };
 
   _handleDismiss = () => this.confirmRef.close();
@@ -56,7 +64,6 @@ class CancelEvent extends React.Component {
 
   render() {
     const {
-      date,
       isRecurring,
       stores
     } = this.props;

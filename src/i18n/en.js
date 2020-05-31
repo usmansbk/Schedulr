@@ -378,7 +378,7 @@ export default {
   DIALOG_deleteEventWarning: "Always cancel events before deleting them to notify your followers.",
   DIALOG_deleteSchedule: "Delete this list?",
   DIALOG_deleteScheduleWarning: "Delete this list and all of its Events forever. You can't undo this.",
-  DIALOG_cancelWarning: "Interest users will be informed of your decision",
+  DIALOG_cancelWarning: "You cannot undo this action",
   DIALOG_openSchedule: "Unarchive this list?",
 
   SNACKBAR_sync: "Sync",

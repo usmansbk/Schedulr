@@ -3,12 +3,10 @@ import { Appbar } from 'react-native-paper';
 import { inject, observer } from 'mobx-react';
 import Icon from 'components/common/Icon';
 import Suspense from 'components/common/Suspense';
-import DeleteConfirm from 'components/dialogs/DeleteEvent';
 import CancelConfirm from 'components/dialogs/CancelEvent';
 import Details from './Details';
 import { formatDate, getRepeatLabel, getDuration } from 'lib/time';
 import { update } from 'lib/calendar';
-import { ONE_TIME_EVENT } from 'lib/constants';
 import { isEventValid } from 'lib/formatEvent';
 import getImageUrl from 'helpers/getImageUrl';
 import repeat from 'lib/repeat';
@@ -22,9 +20,7 @@ class EventDetails extends React.Component {
   };
 
   _cancelRef = ref => this.cancelConfirmRef = ref;
-  _deleteRef = ref => this.deleteConfirmRef = ref;
-  _openCancelDialog = () => this.cancelConfirmRef.wrappedInstance.wrappedInstance.open();
-  _openDeleteDialog = () => this.deleteConfirmRef.getWrappedInstance().open();
+  _openCancelDialog = () => this.cancelConfirmRef.getWrappedInstance().wrappedInstance.wrappedInstance.open();
 
   componentDidMount = () => {
     this.displayTimer = setTimeout(() => this.setState({
@@ -123,16 +119,6 @@ class EventDetails extends React.Component {
               <>
                 <Appbar.Action
                   size={FONT_SIZE}
-                  color={colors.light_red}
-                  icon={({ size, color }) => <Icon
-                    name="trash"
-                    size={size}
-                    color={color}
-                  />}
-                  onPress={this._openDeleteDialog}
-                />
-                <Appbar.Action
-                  size={FONT_SIZE}
                   color={colors.gray}
                   icon={({ color, size }) => <Icon
                     size={size}
@@ -160,7 +146,7 @@ class EventDetails extends React.Component {
                       />
                       <Appbar.Action
                         size={FONT_SIZE}
-                        color={colors.gray}
+                        color={colors.light_red}
                         icon={({ color, size }) => <Icon
                           name="x"
                           color={color}
@@ -211,16 +197,10 @@ class EventDetails extends React.Component {
           navigateToBookmarks={navigateToBookmarks}
           navigateToBanner={navigateToBanner}
         />
-        <DeleteConfirm
-          id={id}
-          banner={event.banner}
-          onRef={this._deleteRef}
-        />
         <CancelConfirm
           id={id}
-          isRecurring={recurrence !== ONE_TIME_EVENT}
           date={from}
-          ref={this._cancelRef}
+          onRef={this._cancelRef}
         />
       </>
     )
