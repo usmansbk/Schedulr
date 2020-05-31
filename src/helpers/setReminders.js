@@ -118,9 +118,8 @@ const schdl = (event, before, settings) => {
 
   const start = event.startAt;
   const isStarted = (moment() > moment(start));
-  const isCancelled = event.isCancelled;
 
-  if (!(isStarted || isCancelled)) {
+  if (!isStarted) {
     schdlStart(event, settings);
     const distance = moment(start).valueOf() - moment.now();
     if (fiveMin && distance > FIVE_MINUTES) {

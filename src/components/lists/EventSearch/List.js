@@ -54,7 +54,6 @@ class List extends Component {
     id,
     title,
     category,
-    isCancelled,
     isPublic,
     cancelledDates,
     banner,
@@ -74,7 +73,6 @@ class List extends Component {
   }}) => (<Item
     id={id}
     title={title}
-    isCancelled={isCancelled}
     cancelledDates={cancelledDates}
     allDay={allDay}
     banner={banner}

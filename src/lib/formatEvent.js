@@ -10,7 +10,6 @@ import { ONE_TIME_EVENT } from './constants';
  * @typedef {Object} Event
  * @property {Date} startAt - ISO string of event start date and time
  * @property {Date} endAt - ISO string of end date and time
- * @property {boolean} isCancelled - Indicates whether event is cancelled
  * @property {string} recurrence - How often even should repeat (DAILY, WEEKLY, MONTHLY, YEARLY)
  * @property {Date=} until - Final date of event, if repeating
  * @property {boolean=} forever - Indicates whether event should repeat forever
@@ -31,9 +30,9 @@ export const getCategory = (category) => {
  * @returns { boolean } - check where event is cancelled
  */
 export const isEventCancelled = (event) => {
-  const { startAt, isCancelled } = event;
+  const { startAt } = event;
   const cancelledDates = event.cancelledDates || [];
-  return isCancelled || cancelledDates.includes(startAt);
+  return cancelledDates.includes(startAt);
 }
 
 /**
@@ -42,7 +41,6 @@ export const isEventCancelled = (event) => {
  * @return {string} Returns the current status of an event
  */
 export const getStatus = ({
-  isCancelled,
   cancelledDates = [],
   startAt,
   endAt,
@@ -53,7 +51,7 @@ export const getStatus = ({
     isConcluded = moment().isAfter(moment(until));
   }
   if (isConcluded) return "concluded";
-  const cancelled =  isEventCancelled({ cancelledDates, startAt, isCancelled });
+  const cancelled =  isEventCancelled({ cancelledDates, startAt });
   if (cancelled) return "cancelled";
   const isEnded = moment().twix(endAt).isPast();
   if (isEnded) return "done";
@@ -68,15 +66,15 @@ export const getStatus = ({
  * @return { boolean} Whether an event is cancelled or date expired
  */
 export const isEventValid = (event) => {
-  const { isCancelled, startAt, endAt, recurrence, until } = event;
+  const { startAt, endAt, recurrence, until } = event;
   const cancelledDates = event.cancelledDates || [];
   return (
-    (!isCancelled &&
+    (
       recurrence !== ONE_TIME_EVENT &&
       moment().twix(until).isCurrent()
     ) || 
     (moment().twix(endAt).isCurrent() &&
-    !isEventCancelled({ cancelledDates, startAt, isCancelled }))
+    !isEventCancelled({ cancelledDates, startAt }))
   );
 };
 

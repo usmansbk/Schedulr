@@ -74,7 +74,6 @@ class Item extends React.Component {
       isMuted,
       isBookmarked,
       isOffline,
-      isCancelled,
       cancelledDates,
       __typename
     } = this.props;
@@ -88,7 +87,6 @@ class Item extends React.Component {
       endAt
     });
     const status = getStatus({
-      isCancelled,
       cancelledDates,
       startAt,
       endAt,

@@ -80,7 +80,6 @@ export const createEvent = `mutation CreateEvent($input: CreateEventInput!) {
     forever
     isPublic
     isOwner
-    isCancelled
     isBookmarked
     isOffline
     cancelledDates
@@ -119,7 +118,6 @@ export const updateEvent = `mutation UpdateEvent($input: UpdateEventInput!) {
     until
     forever
     isPublic
-    isCancelled
     cancelledDates
     banner {
       bucket
@@ -171,7 +169,6 @@ export const createBookmark = `mutation CreateBookmark($input: CreateBookmarkInp
       forever
       isPublic
       isOwner
-      isCancelled
       isBookmarked
       cancelledDates
       banner {
@@ -248,7 +245,6 @@ export const createSchedule = `mutation CreateSchedule($input: CreateScheduleInp
         forever
         isPublic
         isOwner
-        isCancelled
         isBookmarked
         cancelledDates
         banner {
@@ -354,7 +350,6 @@ export const createFollow = `mutation CreateFollow($input: CreateFollowInput!, $
           isPublic
           isOwner
           isOffline
-          isCancelled
           isBookmarked
           cancelledDates
           banner {

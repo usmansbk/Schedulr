@@ -37,7 +37,6 @@ class Item extends React.Component {
       startAt,
       endAt,
       until,
-      isCancelled,
       cancelledDates,
       banner,
       stores
@@ -46,7 +45,6 @@ class Item extends React.Component {
     const styles = stores.appStyles.scheduleEvents;
     const pictureUrl= banner && getImageUrl(banner);
     const status = getStatus({
-      isCancelled,
       cancelledDates,
       startAt,
       endAt,

@@ -35,7 +35,6 @@ export default inject('stores')(observer(
     from,
     isOffline,
     isBookmarked,
-    isCancelled,
     cancelledDates,
     authorId,
     isAuth,
@@ -53,7 +52,6 @@ export default inject('stores')(observer(
     const [ expandDescription, setExpand ] = useState(false);
     const expandText = () => setExpand(!expandDescription);
     const status= getStatus({
-      isCancelled,
       cancelledDates,
       startAt,
       endAt,

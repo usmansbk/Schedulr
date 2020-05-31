@@ -181,7 +181,6 @@ function createEvent(input, typename) {
   const event = {
     __typename: typename,
     ...input,
-    isCancelled: null,
     isOwner: true,
     isBookmarked: false,
     isOffline: true,
@@ -347,7 +346,6 @@ function createBookmark(input, typename) {
       forever
       isPublic
       isOwner
-      isCancelled
       isBookmarked
       cancelledDates
       banner {
@@ -449,7 +447,6 @@ function createFollow(input, typename) {
             forever
             isPublic
             isOwner
-            isCancelled
             isBookmarked
             isOffline
             cancelledDates
@@ -736,7 +733,6 @@ function updateEvent(input, typename) {
       until
       forever
       isPublic
-      isCancelled
       cancelledDates
       banner {
         key

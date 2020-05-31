@@ -37,7 +37,6 @@ class Item extends React.Component {
       pictureUrl,
       isBookmarked,
       stores,
-      isCancelled,
       startAt,
       endAt,
       until,
@@ -53,7 +52,6 @@ class Item extends React.Component {
     });
 
     const status = getStatus({
-      isCancelled,
       cancelledDates,
       startAt,
       endAt,

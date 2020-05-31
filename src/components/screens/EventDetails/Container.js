@@ -80,7 +80,6 @@ class EventDetails extends React.Component {
       bookmarksCount,
       commentsCount,
       isOwner,
-      isCancelled,
       isBookmarked,
       cancelledDates,
       isPublic,
@@ -89,7 +88,6 @@ class EventDetails extends React.Component {
       author
     } = currentEvent;
     const isValid = isEventValid({
-      isCancelled,
       endAt,
       startAt,
       cancelledDates,
@@ -206,7 +204,6 @@ class EventDetails extends React.Component {
           isAuth={isAuth}
           banner={banner}
           isOwner={isOwner}
-          isCancelled={isCancelled}
           cancelledDates={cancelledDates}
           navigateToSchedule={navigateToSchedule}
           navigateToComments={navigateToComments}

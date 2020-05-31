@@ -102,7 +102,6 @@ export const getEvent = `query GetEvent($id: ID!) {
     isPublic
     isOffline
     isOwner
-    isCancelled
     isBookmarked
     cancelledDates
     banner {
@@ -296,7 +295,6 @@ export const getScheduleEvents = `query GetScheduleWithEvents($id: ID!, $limit: 
         isPublic
         isOwner
         isOffline
-        isCancelled
         isBookmarked
         cancelledDates
         banner {
@@ -343,7 +341,6 @@ export const getUserBookmarks = `query GetBookmarks($nextToken: String, $limit: 
           forever
           isPublic
           isOwner
-          isCancelled
           isBookmarked
           cancelledDates
           banner {
@@ -527,7 +524,6 @@ export const getUserData = `query GetUserData($filter: ModelEventFilterInput, $l
             forever
             isPublic
             isOwner
-            isCancelled
             isBookmarked
             isOffline
             cancelledDates
@@ -607,7 +603,6 @@ export const getUserData = `query GetUserData($filter: ModelEventFilterInput, $l
               isPublic
               isOwner
               isOffline
-              isCancelled
               isBookmarked
               cancelledDates
               banner {
@@ -654,7 +649,6 @@ export const getUserData = `query GetUserData($filter: ModelEventFilterInput, $l
           forever
           isPublic
           isOwner
-          isCancelled
           isBookmarked
           cancelledDates
           banner {
@@ -698,7 +692,6 @@ export const getDeltaUpdates = `query GetDeltaUpdates($lastSync: String!) {
       forever
       isPublic
       isOwner
-      isCancelled
       isBookmarked
       isOffline
       cancelledDates
@@ -847,7 +840,6 @@ export const searchEvents = `query SearchEvents($filter: SearchableEventFilterIn
       forever
       isPublic
       isOwner
-      isCancelled
       isBookmarked
       cancelledDates
       banner {
@@ -938,7 +930,6 @@ export const nearbyEvents = `query GetNearbyEvents($location: LocationInput!, $k
       forever
       isPublic
       isOwner
-      isCancelled
       isBookmarked
       cancelledDates
       banner {

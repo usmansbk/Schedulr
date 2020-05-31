@@ -55,7 +55,6 @@ class List extends Component {
     schedule,
     allDay,
     banner,
-    isCancelled,
     cancelledDates,
     updatedAt
   }}) => (<Item
@@ -65,7 +64,6 @@ class List extends Component {
     endAt={endAt}
     until={until}
     banner={banner}
-    isCancelled={isCancelled}
     cancelledDates={cancelledDates}
     allDay={allDay}
     recurrence={recurrence}
