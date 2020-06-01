@@ -3,7 +3,7 @@ import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import { getScheduleEvents } from 'api/queries';
 import { EventFlatList } from 'lib/calendar';
-import List from 'components/lists/ScheduleEvents';
+import List from 'components/lists/Bookmarks';
 import { baseEventsFilter, pastEventsFilter } from 'graphql/filters';
 import { PAGINATION_LIMIT } from 'lib/constants';
 import updateQuery from 'helpers/updateQuery';

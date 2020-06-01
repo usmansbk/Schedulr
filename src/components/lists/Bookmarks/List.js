@@ -59,6 +59,8 @@ class List extends Component {
       banner,
       startAt,
       endAt,
+      raw_startAt,
+      raw_endAt,
       until,
       recurrence,
       schedule,
@@ -81,7 +83,7 @@ class List extends Component {
       recurrence={parseRepeat(recurrence)}
       time={getHumanTime({ allDay, startAt, endAt })}
       eventScheduleId={schedule && schedule.id}
-      duration={getDuration(startAt, endAt, allDay)}
+      duration={getDuration(raw_startAt, raw_endAt, allDay)}
       onPressItem={this._onPressItem}
       navigateToBanner={this._navigateToBanner}
       updatedAt={updatedAt}
