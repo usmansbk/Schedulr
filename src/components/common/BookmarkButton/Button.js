@@ -60,15 +60,17 @@ export default class Button extends React.Component {
 
   render() {
     const {
-      color,
       size,
-      activeColor,
-      bookmarksCount
+      bookmarksCount,
+      stores
     } = this.props;
     const { isBookmarked } = this.state;
 
     const count = (this.props.isBookmarked &&
       (bookmarksCount === 1)) ? 0 : bookmarksCount;
+    
+    const activeColor = stores.themeStore.colors.like;
+    const color = stores.themeStore.colors.gray;
 
     return (
       <IconBadge

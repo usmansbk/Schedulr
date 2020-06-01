@@ -51,9 +51,7 @@ export default class Actions extends React.Component {
           isBookmarked={isBookmarked}
           bookmarksCount={bookmarksCount}
           bookmarkScheduleId={bookmarkScheduleId}
-          activeColor={activeColor}
           size={FONT_SIZE}
-          color={color}
           small={small}
         />
         <CommentButton
