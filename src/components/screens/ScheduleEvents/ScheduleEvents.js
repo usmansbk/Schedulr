@@ -28,6 +28,7 @@ export default class ScheduleEvents extends React.Component {
       onPress,
       onRefresh,
       stores,
+      navigation,
     } = this.props;
 
     if (loading && !schedule) return <Loading loading={loading} />;
@@ -76,6 +77,7 @@ export default class ScheduleEvents extends React.Component {
           id={id}
           eventsCount={eventsCount}
           isAuth={isAuth}
+          navigation={navigation}
         />
       </>
     );

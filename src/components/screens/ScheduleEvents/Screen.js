@@ -11,6 +11,7 @@ export default class Screen extends React.Component {
       <ScheduleEvents
         id={id}
         onPress={this._onBack}
+        navigation={this.props.navigation}
       />
     );
   }

@@ -37,7 +37,8 @@ class ListHoc extends React.Component {
       error,
       events,
       isAuth,
-      eventsCount
+      eventsCount,
+      navigation
     } = this.props;
 
     const eventsLength = events ? events.length : 0;
@@ -54,6 +55,7 @@ class ListHoc extends React.Component {
             onRefresh={this._onRefresh}
             fetchPastEvents={this._fetchPastEvents}
             isAuth={isAuth}
+            navigation={navigation}
           />;
   }
 }
