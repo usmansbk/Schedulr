@@ -98,24 +98,25 @@ function* EventSectionGenerator(events, previous) {
 
 export function update(event, date, span) {
 	let startAt, endAt;
-	const previousStartMoment = moment(event.startAt);
-
-	const hr = previousStartMoment.hour();
-	const min = previousStartMoment.minute();
-	const sec = previousStartMoment.second();
-	const nextMoment = moment(date).hour(hr).minute(min).second(sec);
-	startAt = nextMoment.toISOString();
 
 	const previousEndMoment = moment(event.endAt);
 
-	const duration = moment.duration(previousEndMoment.diff(previousStartMoment));
 	if (span) {
-		// startAt = moment(event.startAt).toISOString();
 		const hr = previousEndMoment.hour();
 		const min = previousEndMoment.minute();
 		const sec = previousEndMoment.second();
+		startAt = moment(date).toISOString();
 		endAt = moment(span).hour(hr).minute(min).second(sec).toISOString();
 	} else {
+		const previousStartMoment = moment(event.startAt);
+
+		const hr = previousStartMoment.hour();
+		const min = previousStartMoment.minute();
+		const sec = previousStartMoment.second();
+
+		const duration = moment.duration(previousEndMoment.diff(previousStartMoment));
+		const nextMoment = moment(date).hour(hr).minute(min).second(sec);
+		startAt = nextMoment.toISOString();
 		endAt = nextMoment.clone().add(duration).toISOString();
 	}
 	
