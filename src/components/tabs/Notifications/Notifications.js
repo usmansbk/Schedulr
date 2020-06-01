@@ -1,5 +1,5 @@
 import React from 'react';
-import { Appbar, Divider } from 'react-native-paper';
+import { Appbar } from 'react-native-paper';
 import Icon from 'components/common/Icon';
 import { I18n } from 'aws-amplify';
 import { withNavigationFocus } from 'react-navigation';
@@ -73,7 +73,6 @@ class Notifications extends React.Component {
           />}
         />
       </Appbar.Header>
-      <Divider />
       <List
         navigation={navigation}
         onRefresh={this._onRefresh}
