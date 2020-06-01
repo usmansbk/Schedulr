@@ -38,7 +38,6 @@ export default compose(
       },
     }),
     skip: props => {
-      console.log(props.schedule)
       const { isPublic, isOwner, isFollowing } = props.schedule || {};
       const isAuth = isPublic || isOwner || isFollowing;
       return !isAuth;
