@@ -29,9 +29,9 @@ export default class Bookmarks extends React.Component {
     const {
       navigation,
       fetchMore,
-      refresh,
       nextToken,
       loading,
+      onRefresh
     } = this.props;
     return (
       <List
@@ -39,7 +39,7 @@ export default class Bookmarks extends React.Component {
         events={this.events}
         nextToken={nextToken}
         fetchMore={fetchMore}
-        refresh={refresh}
+        onRefresh={onRefresh}
         loading={loading}
       />
     );

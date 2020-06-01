@@ -27,8 +27,10 @@ class List extends Component {
     events: [],
     loading: false,
     onRefresh: () => null,
-    loadingPrev: false
   };
+  state = {
+    loadingPrev: false
+  }
   _getItemLayout = (_, index) => (
     {
       length: ITEM_HEIGHT,
