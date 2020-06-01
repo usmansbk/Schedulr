@@ -36,8 +36,8 @@ export const canRecur = ({ startAt, endAt })  => {
   const duration = moment(endAt).diff(moment(startAt), null, true);
   const ONE_MONTH = moment.duration(1, 'month').asMilliseconds();
   const ONE_YEAR = moment.duration(1, 'year').asMilliseconds();
-  if (duration <= ONE_DAY) recurrence.push("DAILY")
-  if (duration <= ONE_WEEK) recurrence.push("WEEKLY", "WEEKDAYS");
+  if (duration <= ONE_DAY) recurrence.push("DAILY", "WEEKDAYS")
+  if (duration <= ONE_WEEK) recurrence.push("WEEKLY");
   if (duration <= ONE_MONTH) recurrence.push("MONTHLY");
   if (duration <= ONE_YEAR) recurrence.push("YEARLY");
 

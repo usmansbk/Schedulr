@@ -6,7 +6,6 @@ import {
   ScrollView,
 } from 'react-native';
 import {
-  // TextInput,
   Text,
   HelperText,
   Appbar,
@@ -251,17 +250,17 @@ class Form extends React.Component {
                     value: recur.id
                   }))}
                 />
+                {
+                  Boolean(errors.recurrence) && (
+                    <HelperText
+                      type="error"
+                      visible={errors.recurrence && touched.recurrence}
+                    >
+                      {I18n.get(`HELPER_TEXT_${errors.recurrence}`)}
+                    </HelperText>
+                  )
+                }
               </View>
-              {
-                Boolean(errors.recurrence) && (
-                  <HelperText
-                    type="error"
-                    visible={errors.recurrence && touched.recurrence}
-                  >
-                    {I18n.get(`HELPER_TEXT_${errors.recurrence}`)}
-                  </HelperText>
-                )
-              }
               {
                 (values.recurrence !== recurrence[0].id) && (
                   <View style={[styles.radio, styles.pickerSpacing]}>
@@ -289,7 +288,6 @@ class Form extends React.Component {
               }
               {
                 (values.recurrence !== recurrence[0].id && !values.forever) && (
-                  <>
                   <View style={styles.pickerSpacing}>
                     <Text style={styles.radioText}>{I18n.get("EVENT_FORM_repeatUntil")}</Text>
                     <DateTimePicker
@@ -298,16 +296,15 @@ class Form extends React.Component {
                       onValueChange={handleChange('until')}
                       hideTime
                     />
+                    {Boolean(errors.until) && (
+                      <HelperText
+                        type="error"
+                        visible={errors.until && touched.until }
+                      >
+                      {I18n.get(`HELPER_TEXT_${errors.until}`)}
+                      </HelperText>
+                    )}
                   </View>
-                  {Boolean(errors.until) && (
-                    <HelperText
-                      type="error"
-                      visible={errors.until && touched.until }
-                    >
-                    {I18n.get(`HELPER_TEXT_${errors.until}`)}
-                    </HelperText>
-                  )}
-                  </>
                 )
               }
               </View>

@@ -2,7 +2,6 @@ import React from 'react';
 import { View, TouchableOpacity } from 'react-native';
 import {
   Text,
-  Caption,
   Headline,
 } from 'react-native-paper';
 import Icon from 'components/common/Icon';
@@ -14,13 +13,10 @@ import { events, CALENDAR_TYPE } from 'lib/constants';
 import {
   formatDate,
   getTime,
-  getDuration
 } from 'lib/time';
 import {
   getStatus,
-  parseRepeat,
   getCategory,
-  captionDetails
 } from 'lib/formatEvent';
 import getImageUrl from 'helpers/getImageUrl';
 
@@ -64,9 +60,7 @@ class Item extends React.Component {
       startAt,
       endAt,
       _startAt,
-      _endAt,
       until,
-      from,
       address,
       stores,
       banner,
@@ -81,7 +75,6 @@ class Item extends React.Component {
 
     const pictureUrl = banner && getImageUrl(banner);
     const category = getCategory(this.props.category);
-    const recurrence = parseRepeat(this.props.recurrence);
     const time = getTime({
       allDay,
       startAt,
@@ -94,19 +87,8 @@ class Item extends React.Component {
       endAt,
       until
     });
-    const duration= getDuration(startAt, endAt, allDay);
     
     const styles = stores.appStyles.eventsList;
-    const caption = captionDetails({
-      allDay,
-      recurrence,
-      category,
-      duration,
-      startAt,
-      endAt,
-      from,
-      _endAt
-    });
     
     return (
       <TouchableOpacity
@@ -145,7 +127,6 @@ class Item extends React.Component {
               {title}
             </Headline>
             <Text style={styles.time}>{time}</Text>
-            <Caption ellipsizeMode="tail" numberOfLines={1}>{caption}</Caption>
           </View>
           <ActionSheet
             id={id}
