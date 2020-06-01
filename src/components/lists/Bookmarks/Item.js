@@ -52,7 +52,7 @@ class Item extends React.Component {
     });
 
     const status = getStatus({
-      cancelledDates,
+      cancelledDates: cancelledDates || [],
       startAt,
       endAt,
       until,

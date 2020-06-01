@@ -25,21 +25,24 @@ const flatCache = {};
 function EventFlatList(events=[]) {
 	const data = [];
 	events.forEach(event => {
-		const date = moment().startOf('day').toISOString();
-		const key = `${event.id}-${event.isBookmarked}-${event.updatedAt}-${date}`;
-		const cached = flatCache[key];
-		if (cached) {
-			data.push(cached);
-		} else {
-			const recur = repeat(event.startAt)
-				.span(event.endAt)
-				.maybeFrom(date)
-				.every(event.recurrence)
-				.until(event.until);
+		// deleted bookmarked events are represented as string ids
+		if (typeof event === "object") {
+			const date = moment().startOf('day').toISOString();
+			const key = `${event.id}-${event.isBookmarked}-${event.updatedAt}-${date}`;
+			const cached = flatCache[key];
+			if (cached) {
+				data.push(cached);
+			} else {
+				const recur = repeat(event.startAt)
+					.span(event.endAt)
+					.maybeFrom(date)
+					.every(event.recurrence)
+					.until(event.until);
 
-			const newEvent = update(event, recur.nextDate(), recur.nextSpan());
-			data.push(newEvent);
-			flatCache[key] = newEvent;
+				const newEvent = update(event, recur.nextDate(), recur.nextSpan());
+				data.push(newEvent);
+				flatCache[key] = newEvent;
+			}
 		}
 	});
 	data.sort((a, b) => moment(a.startAt).diff(moment(b.startAt)));

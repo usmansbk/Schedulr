@@ -120,6 +120,7 @@ class List extends Component {
     
     return (
       <FlatList
+        data={EventFlatList(events)}
         refreshControl={
           <RefreshControl
             onRefresh={this._onRefresh}
@@ -134,7 +135,6 @@ class List extends Component {
         getItemLayout={this._getItemLayout}
         ItemSeparatorComponent={this._renderSeparator}
         keyExtractor={this._keyExtractor}
-        data={EventFlatList(events)}
         renderItem={this._renderItem}
         ListEmptyComponent={this._renderEmptyList}
         ListFooterComponent={this._renderFooter}

@@ -93,7 +93,7 @@ class EventDetails extends React.Component {
     const styles = stores.appStyles.styles;
     const pictureUrl = banner && getImageUrl(banner, 320);
     const isFollowing = schedule && schedule.isFollowing;
-    const isCancelled = cancelledDates.includes(startAt);
+    const isCancelled = cancelledDates && cancelledDates.includes(startAt);
 
     const isAuth = isPublic || isFollowing || isOwner;
     
