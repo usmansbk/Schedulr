@@ -27,21 +27,13 @@ class CancelEvent extends React.Component {
       date,
       stores,
       banner,
-      isRecurring,
       navigation,
       cancelEvent,
       deleteEvent,
       cancelledDates,
     } = this.props;
     const { checked } = this.state;
-    if ((checked === ALL_EVENTS) || !isRecurring) {
-      const input = {id};
-      if (banner) {
-        stores.appState.removeKeysFromStorage([banner.key])
-      }
-      setTimeout(() => deleteEvent(input), 200);
-      navigation.goBack();
-    } else {
+    if ((checked === SINGLE_EVENT)) {
       const input = {
         id,
         cancelledDates : Array.from(new Set([
@@ -50,6 +42,13 @@ class CancelEvent extends React.Component {
         ]))
       };
       setTimeout(() => cancelEvent(input), 200);
+    } else {
+      const input = {id};
+      if (banner) {
+        stores.appState.removeKeysFromStorage([banner.key])
+      }
+      setTimeout(() => deleteEvent(input), 200);
+      navigation.goBack();
     }
     this._handleDismiss();
   };
@@ -60,11 +59,13 @@ class CancelEvent extends React.Component {
 
   render() {
     const {
-      isRecurring,
-      stores
+      date,
+      stores,
+      cancelledDates,
     } = this.props;
     const { checked } = this.state;
     const styles = stores.appStyles.sheet;
+    const isCancelled = cancelledDates.includes(date);
 
     return (
       <RBSheet
@@ -80,7 +81,7 @@ class CancelEvent extends React.Component {
             <Text style={styles.title}>{I18n.get("DIALOG_cancelEvent")}</Text>
           </View>
           {
-            Boolean(isRecurring) ? (
+            Boolean(!isCancelled) ? (
               <View style={styles.body}>
                 <RadioButton.Group onValueChange={this._toggleButton} value={checked}>
                   <View style={styles.row}>

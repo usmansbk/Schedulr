@@ -63,8 +63,6 @@ class EventDetails extends React.Component {
       category,
       venue,
       startAt,
-      _startAt,
-      _endAt,
       endAt,
       allDay,
       schedule,
@@ -86,7 +84,6 @@ class EventDetails extends React.Component {
     const isValid = isEventValid({
       endAt,
       startAt,
-      _startAt,
       cancelledDates,
       recurrence,
       until
@@ -130,7 +127,6 @@ class EventDetails extends React.Component {
                 />
                 {
                   isValid && (
-                    <>
                       <Appbar.Action
                         size={FONT_SIZE}
                         color={colors.gray}
@@ -145,19 +141,18 @@ class EventDetails extends React.Component {
                           endAt,
                         })}
                       />
-                      <Appbar.Action
-                        size={FONT_SIZE}
-                        color={colors.light_red}
-                        icon={({ color, size }) => <Icon
-                          name="x"
-                          color={color}
-                          size={size}
-                        />}
-                        onPress={this._openCancelDialog}
-                      />
-                    </>
                   )
                 }
+                <Appbar.Action
+                  size={FONT_SIZE}
+                  color={colors.light_red}
+                  icon={({ color, size }) => <Icon
+                    name="x"
+                    color={color}
+                    size={size}
+                  />}
+                  onPress={this._openCancelDialog}
+                />
               </>
             )
           }
@@ -165,8 +160,6 @@ class EventDetails extends React.Component {
         <Details
           id={id}
           title={title}
-          _startAt={_startAt}
-          _endAt={_endAt}
           startAt={startAt}
           endAt={endAt}
           allDay={allDay}
@@ -200,7 +193,7 @@ class EventDetails extends React.Component {
         />
         <CancelConfirm
           id={id}
-          date={_startAt}
+          date={isValid ? startAt : null}
           onRef={this._cancelRef}
         />
       </>

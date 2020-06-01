@@ -31,8 +31,6 @@ export default inject('stores')(observer(
     description,
     startAt,
     endAt,
-    _startAt,
-    _endAt,
     allDay,
     isOffline,
     isBookmarked,
@@ -54,12 +52,11 @@ export default inject('stores')(observer(
     const expandText = () => setExpand(!expandDescription);
    
     const date = formatDate(startAt, endAt, allDay);
-    const duration = getDuration(startAt, _endAt);
+    const duration = getDuration(startAt, endAt);
     const repeatLabel = getRepeatLabel(recurrence, startAt);
     const status= getStatus({
       cancelledDates,
       startAt,
-      _startAt,
       endAt,
       until
     });

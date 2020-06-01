@@ -9,7 +9,6 @@ function extractDates(events, previous) {
 	let dates = [];
 	events.forEach(e => {
 		const recur = repeat(e.startAt)
-			.span(e.endAt)
 			.every(e.recurrence)
 			.from(moment().add(direction, 'day'))
 			.until(e.until);
@@ -99,23 +98,19 @@ function* EventSectionGenerator(events, previous) {
 
 export function update(event, date, span) {
 	let startAt, endAt, _endAt, _startAt;
+	const previousStartMoment = moment(event.startAt);
+
+	const hr = previousStartMoment.hour(); const min = previousStartMoment.minute(); const sec = previousStartMoment.second(); const nextMoment = moment(date).hour(hr).minute(min).second(sec);
+	startAt = nextMoment.toISOString();
+
+	const previousEndMoment = moment(event.endAt);
+	const duration = moment.duration(previousEndMoment.diff(previousStartMoment));
 	if (span) {
-		startAt = moment(event.startAt).toISOString();
+		// startAt = moment(event.startAt).toISOString();
 		endAt = moment(span).toISOString();
 		_startAt = moment(date).toISOString(),
 		_endAt = moment(event.endAt).toISOString();
 	} else {
-		const previousStartMoment = moment(event.startAt);
-
-		const hr = previousStartMoment.hour();
-		const min = previousStartMoment.minute();
-		const sec = previousStartMoment.second();
-
-		const nextMoment = moment(date).hour(hr).minute(min).second(sec);
-		startAt = nextMoment.toISOString();
-
-		const previousEndMoment = moment(event.endAt);
-		const duration = moment.duration(previousEndMoment.diff(previousStartMoment));
 		endAt = nextMoment.clone().add(duration).toISOString();
 		_startAt = event.startAt;
 		_endAt = endAt;
