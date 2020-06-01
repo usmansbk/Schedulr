@@ -127,8 +127,8 @@ android {
         applicationId "com.schdlr"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 63
-        versionName "0.1.53"
+        versionCode 64
+        versionName "0.1.54"
         multiDexEnabled true
     }
     signingConfigs {
