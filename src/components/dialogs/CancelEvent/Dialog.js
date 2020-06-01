@@ -33,7 +33,7 @@ class CancelEvent extends React.Component {
       cancelledDates,
     } = this.props;
     const { checked } = this.state;
-    if ((checked === SINGLE_EVENT)) {
+    if ((checked === SINGLE_EVENT) && date) {
       const input = {
         id,
         cancelledDates : Array.from(new Set([
@@ -81,7 +81,7 @@ class CancelEvent extends React.Component {
             <Text style={styles.title}>{I18n.get("DIALOG_cancelEvent")}</Text>
           </View>
           {
-            Boolean(!isCancelled) ? (
+            Boolean(date) ? (
               <View style={styles.body}>
                 <RadioButton.Group onValueChange={this._toggleButton} value={checked}>
                   <View style={styles.row}>
