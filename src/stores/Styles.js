@@ -329,6 +329,9 @@ export default class AppStyles {
       itemText: {
         color: colors.black
       },
+      itemContainer: {
+        paddingHorizontal: 10
+      },
       poweredText: {
         color: colors.gray
       }
