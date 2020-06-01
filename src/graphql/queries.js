@@ -650,6 +650,7 @@ export const getUserData = `query GetUserData($filter: ModelEventFilterInput, $l
           isPublic
           isOwner
           isBookmarked
+          isOffline
           cancelledDates
           banner {
             bucket
