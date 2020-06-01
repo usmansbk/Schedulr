@@ -52,9 +52,7 @@ function* EventSectionGenerator(events, previous) {
 	const order = previous ? -1 : 1;
 	const dates = Array
 		.from(new Set(getWeekFromNow(previous).concat(someday))) // remove duplicates 
-		// .from(new Set([moment().startOf('day').toISOString()].concat(someday))) // remove duplicates 
 		.sort((a, b) => moment(a).diff(b) * order);
-	// console.log(JSON.stringify(dates, null, 2))
 
 	for (let date of dates) {
 		const data = [];
@@ -81,7 +79,6 @@ function* EventSectionGenerator(events, previous) {
 				}
 			}
 		});
-		// console.log(events.length, "Items:", Date.now() -s);
 		data.sort((a, b) => moment(a.startAt).diff(b.startAt));
 		const items = [
 			{

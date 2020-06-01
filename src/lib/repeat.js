@@ -259,7 +259,6 @@ function nextWeekSpan(_date, _span, _from) {
   const numberOfDaysFromDate = Math.round(moment(_from).diff(moment(_date), DAY, true)) + 1; // inclusive
   const daysLeft = numberOfDaysFromDate % 7;
   if (daysLeft && daysLeft < length) {
-    // console.log(numberOfDaysFromDate, daysLeft, length, length - daysLeft);
     nextDate = moment(_from).endOf('day')
   } else {
     nextDate = _span;
