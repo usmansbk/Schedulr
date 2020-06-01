@@ -17,6 +17,7 @@ class CancelEvent extends React.Component {
 
   shouldComponentUpdate = (nextProps, nextState) => (
     nextProps.date !== this.props.date ||
+    nextProps.isSingleEvent !== this.props.isSingleEvent ||
     nextState.checked !== this.state.checked ||
     nextState.loading !== this.state.loading
   );
@@ -61,11 +62,10 @@ class CancelEvent extends React.Component {
     const {
       date,
       stores,
-      cancelledDates,
+      isSingleEvent,
     } = this.props;
     const { checked } = this.state;
     const styles = stores.appStyles.sheet;
-    const isCancelled = cancelledDates.includes(date);
 
     return (
       <RBSheet
@@ -81,7 +81,7 @@ class CancelEvent extends React.Component {
             <Text style={styles.title}>{I18n.get("DIALOG_cancelEvent")}</Text>
           </View>
           {
-            Boolean(date) ? (
+            Boolean(date && !isSingleEvent) ? (
               <View style={styles.body}>
                 <RadioButton.Group onValueChange={this._toggleButton} value={checked}>
                   <View style={styles.row}>

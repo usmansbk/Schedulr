@@ -6,7 +6,7 @@ import { updateEvent, deleteEvent } from 'api/mutations';
 import { getEvent } from 'api/queries';
 import updateApolloCache from 'helpers/updateApolloCache';
 import buildOptimisticResponse from 'helpers/optimisticResponse';
-import { UPDATE, DELETE } from 'lib/constants';
+import { UPDATE, DELETE, ONE_TIME_EVENT } from 'lib/constants';
 
 export default compose(
   withNavigation,
@@ -59,6 +59,7 @@ export default compose(
     }),
     props: ({ data, ownProps }) => ({
       banner: data.getEvent.banner,
+      isSingleEvent: data.getEvent.recurrence === ONE_TIME_EVENT,
       cancelledDates: data.getEvent.cancelledDates || [],
       ...ownProps,
     })
