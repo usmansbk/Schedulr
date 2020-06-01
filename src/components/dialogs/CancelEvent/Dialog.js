@@ -3,7 +3,7 @@ import { View } from 'react-native';
 import { inject, observer } from 'mobx-react';
 import { Text, RadioButton } from 'react-native-paper';
 import { I18n } from 'aws-amplify';
-import { SINGLE_EVENT, ALL_EVENTS } from 'lib/constants';
+import { SINGLE_EVENT, ALL_EVENTS, ONE_TIME_EVENT } from 'lib/constants';
 import RBSheet from 'react-native-raw-bottom-sheet';
 import Button from 'components/common/Button';
 
@@ -17,7 +17,7 @@ class CancelEvent extends React.Component {
 
   shouldComponentUpdate = (nextProps, nextState) => (
     nextProps.date !== this.props.date ||
-    nextProps.isSingleEvent !== this.props.isSingleEvent ||
+    nextProps.recurrence !== this.props.recurrence ||
     nextState.checked !== this.state.checked ||
     nextState.loading !== this.state.loading
   );
@@ -62,10 +62,11 @@ class CancelEvent extends React.Component {
     const {
       date,
       stores,
-      isSingleEvent,
+      recurrence,
     } = this.props;
     const { checked } = this.state;
     const styles = stores.appStyles.sheet;
+    const isSingleEvent = recurrence === ONE_TIME_EVENT;
 
     return (
       <RBSheet
