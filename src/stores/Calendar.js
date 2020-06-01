@@ -116,7 +116,7 @@ export default class Calendar {
         const map  = {};
         // calendar returns individual recurring event
         // which may lead to perf issue
-        all.slice(0, 100).reverse().forEach(e => map[e.id] = e); // remove duplicates
+        all.forEach(e => map[e.id] = e); // remove duplicates
         this.events = Object.values(map);
         // this.events = all.slice(0, 100);
       } else {

@@ -389,6 +389,8 @@ export default {
 
   PICKER_location: "Location",
   SYNC_message: "Remove all deleted and expired events and fix missing events and schedules.",
+  SYNC_importingEvents: "Importing events... Please wait.",
+  SYNC_importingComplete: "Events imported",
   SYNC_complete: "Synchronized",
 
   TEXT_addImagesToAlbum: "Add Images to album",
