@@ -9,7 +9,7 @@ import Confirm from 'components/common/Confirm';
 import Error from 'components/common/Error';
 import Tag from 'components/common/Tag';
 import Suspense from 'components/common/Suspense';
-import { formatDate, getDuration } from 'lib/time';
+import { formatDate, getDuration, getRepeatLabel } from 'lib/time';
 import { getStatus } from 'lib/formatEvent';
 
 
@@ -59,6 +59,7 @@ class CalendarEvent extends React.Component {
       startAt,
       endAt,
       allDay,
+      recurrence,
       venue: address,
       schedule: {
         name: scheduleName
@@ -67,6 +68,8 @@ class CalendarEvent extends React.Component {
       until,
       author
     } = event;
+
+    const repeatLabel = getRepeatLabel(recurrence, startAt);
     const date = formatDate(startAt, endAt, allDay);
     const duration = getDuration(startAt, endAt);
     const status = getStatus({
@@ -117,6 +120,10 @@ class CalendarEvent extends React.Component {
               <View style={stores.appStyles.eventDetails.item}>
                 <Text style={stores.appStyles.eventDetails.label}>{I18n.get("VENUE")}</Text>
                 <Text style={stores.appStyles.eventDetails.value}>{address || I18n.get("No location set")}</Text>
+              </View>
+              <View style={stores.appStyles.eventDetails.item}>
+                <Text style={stores.appStyles.eventDetails.label}>{I18n.get("REPEAT")}</Text>
+                <Text style={stores.appStyles.eventDetails.value}>{repeatLabel}</Text>
               </View>
               <View style={stores.appStyles.eventDetails.item}>
                 <Text style={stores.appStyles.eventDetails.label}>{I18n.get("CALENDAR")}</Text>
