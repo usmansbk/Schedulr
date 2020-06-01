@@ -63,6 +63,8 @@ export default class Calendar {
     } else {
       endAt = moment(event.endDate).toISOString();
     }
+    const recurrenceRule = event.recurrenceRule;
+    const recurrence = getRecurrence(recurrenceRule);
     return ({
       id: event.id,
       schedule: {
@@ -73,7 +75,8 @@ export default class Calendar {
       endAt,
       allDay: event.allDay,
       title: event.title,
-      recurrence: 'NEVER',
+      recurrence,
+      forever: (recurrence !== "NEVER"),
       category: '',
       description: event.description,
       venue: event.location,
@@ -108,7 +111,14 @@ export default class Calendar {
         } else {
           endDate = m.clone().endOf('year').toDate().toISOString();
         }
-        this.events = await RNCalendarEvents.fetchAllEvents(startDate, endDate, this.calendars.map(cal => cal.id));
+        let all = await RNCalendarEvents
+          .fetchAllEvents(startDate, endDate, this.calendars.map(cal => cal.id));
+        const map  = {};
+        // calendar returns individual recurring event
+        // which may lead to perf issue
+        all.slice(0, 100).reverse().forEach(e => map[e.id] = e); // remove duplicates
+        this.events = Object.values(map);
+        // this.events = all.slice(0, 100);
       } else {
         this.reset();
       }
@@ -119,5 +129,17 @@ export default class Calendar {
 
   get transform() {
     return this.events.map(this.transformEvent);
+  }
+}
+
+function getRecurrence(rule={}) {
+  const frequency = rule.frequency;
+  switch(frequency) {
+    case "daily": case "day": return "DAILY";
+    case "weekly": case "week": return "WEEKLY";
+    case "weekday": case "workday": return "WEEKDAYS";
+    case "monthly": case "month": return "MONTHLY";
+    case "yearly": case "year": return "YEARLY";
+    default: return "NEVER";
   }
 }
