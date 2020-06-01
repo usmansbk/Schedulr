@@ -273,12 +273,8 @@ function getSpan(_date, _span, _from) {
     const inRange = moment(_from).isBetween(_date, _span, DAY, "(]"); // current date (_from) is one of the span days except (_date) the first date
     if (inRange) {
       const count = Math.round(moment(_from).diff(_date, DAY, true));
-      const total = Math.round(moment(moment(_span).startOf(DAY)).diff(_date, DAY, true));
-      if (count === total) {
-        nextDate = _span; // last date should have the correct end time
-      } else {
-        nextDate = moment(_date).add(count, DAY).endOf(DAY); // in between dates should span the whole day
-      }
+      // const total = Math.round(moment(moment(_span).startOf(DAY)).diff(_date, DAY, true));
+      nextDate = moment(_date).add(count, DAY).endOf(DAY);
     }
   }
   return nextDate;
