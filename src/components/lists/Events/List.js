@@ -61,7 +61,7 @@ class List extends React.Component {
 
   componentDidMount = () => this._processEvents(this.props.events);
 
-  _keyExtractor = (item) => item.id + item.startAt + item._startAt;
+  _keyExtractor = (item) => item.id;
 
   _renderHeader = () => (
     (this.state.sections.length && this.props.isAuth) ?
