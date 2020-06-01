@@ -5,7 +5,7 @@ import { EventFlatList } from 'lib/calendar';
 import { baseEventsFilter, pastEventsFilter } from 'graphql/filters';
 import updateQuery from 'helpers/updateQuery';
 import { PAGINATION_LIMIT } from 'lib/constants';
-import ScheduleEvents from './ScheduleEvents';
+import Container from './Container';
 
 const alias = 'withScheduleEventsContainer';
 
@@ -71,4 +71,4 @@ export default compose(
       ...ownProps
     }) 
   })
-)(ScheduleEvents);
+)(Container);
