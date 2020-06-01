@@ -101,31 +101,17 @@ export const parseRepeat = (recurrence) => {
  * @returns {string} Formatted event date in human friendly form
  */
 export const captionDetails = ({
-  from,
   allDay,
   recurrence,
   category,
   duration,
-  // startAt,
-  // endAt,
-  // _endAt,
 }) => {
   let caption;
-  // const [currentDayCount, totalDayCount] = count({
-  //   startAt,
-  //   endAt,
-  //   from,
-  //   _endAt
-  // });
 
   if (allDay) {
     caption = I18n.get("EVENT_CAPTION_allDay")({ type: category, recurrence: I18n.get(recurrence) });
   } else {
-    // if (currentDayCount) {
-    //   caption = I18n.get("EVENT_CAPTION_xthDayOfType")({ currentDayCount, totalDayCount, type: category });
-    // } else {
-      caption = I18n.get("EVENT_CAPTION_xDurationRecurrenceType")({ duration, recurrence: I18n.get(recurrence), type: category });
-    // }
+    caption = I18n.get("EVENT_CAPTION_xDurationRecurrenceType")({ duration, recurrence: I18n.get(recurrence), type: category });
   }
   let formatted = capitalize(caption.trim());
   return formatted;

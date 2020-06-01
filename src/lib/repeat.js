@@ -179,6 +179,7 @@ export default function repeat(date) {
       }
       return this;
     },
+    // prevent FlatList from making non-recurring past events as upcoming
     maybeFrom(date) {
       this.from(date);
       _maybeFrom = true;
@@ -219,13 +220,12 @@ export default function repeat(date) {
       return this.previous(1)[0];
     },
     matches(date) {
-      // edge cases
       if (_from && moment(date).isBefore(_from, DAY)) return false;
       if (moment(date).isBefore(_date, DAY)) return false;
       if (_until) {
         if (moment(date).isAfter(_until, DAY)) return false;
       }
-      return match(_date, _every, date, _span);
+      return match(_date, _every, date, _span, _from);
     },
     span(date) {
       if (date) {
@@ -237,14 +237,37 @@ export default function repeat(date) {
       return moment(_date);
     },
     nextSpan() {
-      return nextSpan(_date, _span, _from);
+      return nextSpan(_date, _span, _from, _every);
     }
   };
 
   return rule;
 }
 
-function nextSpan(_date, _span, _from) {
+function nextSpan(_date, _span, _from, _every) {
+  switch(_every) {
+    case WEEK: return nextWeekSpan(_date, _span, _from);
+    default: {
+      return getSpan(_date, _span, _from)
+    }
+  }
+}
+
+function nextWeekSpan(_date, _span, _from) {
+  let nextDate;
+  const length = Math.round(moment(_span).diff(moment(_date), DAY, true));
+  const numberOfDaysFromDate = Math.round(moment(_from).diff(moment(_date), DAY, true)) + 1; // inclusive
+  const daysLeft = numberOfDaysFromDate % 7;
+  if (daysLeft && daysLeft < length) {
+    // console.log(numberOfDaysFromDate, daysLeft, length, length - daysLeft);
+    nextDate = moment(_from).endOf('day')
+  } else {
+    nextDate = _span;
+  }
+  return nextDate;
+}
+
+function getSpan(_date, _span, _from) {
   let nextDate;
   if (_span) { // date span multiple days
     const inRange = moment(_from).isBetween(_date, _span, DAY, "(]"); // current date (_from) is one of the span days except (_date) the first date
@@ -258,20 +281,52 @@ function nextSpan(_date, _span, _from) {
       }
     }
   }
-
   return nextDate;
 }
 
-function match(_date, _every, date, _span) {
+function match(_date, _every, date, _span, _from) {
   if (_span && moment(date).isBetween(_date, _span, null, "[]")) return true; // first date is ongoing
 
   switch(_every) {
     case DAY: return true;
-    case WEEKDAY: return moment(date).isoWeekday() < 6;
-    case WEEK: return moment(date).isoWeekday() === _date.isoWeekday();
-    case MONTH: return moment(date).date() === _date.date();
-    case YEAR: return ((moment(date).date() === _date.date()) &&
-      (moment(date).month() === _date.month()));
-    default: return moment(date).isSame(_date, DAY);
+    case WEEKDAY: return matchWeekday(date, _date, _span);
+    case WEEK: return matchWeek(date, _date, _span, _from);
+    case MONTH: return matchMonth(date, _date, _span);
+    case YEAR: return matchYear(date, _date, _span);
+    default: return matchExact(date, _date, _span);
   }
+}
+
+function matchExact(date, _date) {
+  return moment(date).isSame(_date, DAY);
+}
+
+function matchYear(date, _date) {
+  return ((moment(date).date() === _date.date()) &&
+    (moment(date).month() === _date.month()));
+}
+
+function matchMonth(date, _date) {
+  return moment(date).date() === _date.date();
+}
+
+function matchWeekday(date, _date) {
+  return moment(date).isoWeekday() < 6;
+}
+
+function matchWeek(date, _date, _span, _from) {
+  if (_span) {
+    const spanDays = Math.round(moment(_span).diff(moment(_date), DAY, true));
+    if (spanDays) {
+      const numberOfDaysFromDate = Math.round(moment(date).diff(moment(_date), DAY, true));
+      const daysLeft = numberOfDaysFromDate % 7; // days left for current week to end
+      // Invariant: Event can't repeat until current one has ended
+      // Hence: days left should be less than length of the span
+      if (daysLeft < spanDays) return true;
+    } 
+  }
+
+  const day = moment(_date).isoWeekday();
+  const targetDay = moment(date).isoWeekday();
+  return (targetDay === day);
 }
