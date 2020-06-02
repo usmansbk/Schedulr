@@ -53,7 +53,6 @@ class Item extends React.Component {
       until,
       stores,
       banner,
-      allDay,
       isMuted,
       isOffline,
       cancelledDates,
@@ -61,7 +60,6 @@ class Item extends React.Component {
 
     const pictureUrl = banner && getImageUrl(banner);
     const time = getTime({
-      allDay,
       startAt,
       endAt
     });
