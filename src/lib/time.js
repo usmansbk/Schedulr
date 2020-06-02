@@ -92,7 +92,7 @@ export function getTimeUnit(recurrence) {
 
 export const getTime = ({ startAt, endAt }) => {
   const isSameDay = moment(startAt).isSame(moment(endAt), 'day');
-  const allDay = isSameDay && moment(endAt).diff(moment(startAt), 'hour') > 20;
+  const allDay = isSameDay && moment(endAt).diff(moment(startAt), 'hour') > 22;
   const t = moment(startAt).twix(endAt, allDay);
   return t.format({
     // hideTime: isExtended,
