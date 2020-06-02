@@ -246,11 +246,36 @@ export default function repeat(date) {
 
 function nextSpan(_date, _span, _from, _every) {
   switch(_every) {
+    case EXACT: return nextExactSpan(_date, _span, _from);
+    case DAY: case WEEKDAY: return nextDaySpan(_date, _span, _from);
     case WEEK: return nextWeekSpan(_date, _span, _from);
-    default: {
-      return getSpan(_date, _span, _from)
-    }
+    case MONTH: return nextMonthSpan(_date, _span, _from);
+    default: return _span; 
   }
+}
+
+function nextDaySpan(_date, _span, _from) {
+  const length = Math.round(moment(_span).diff(moment(_date), "hour", true));
+
+  const previousEndMoment = moment(_span);
+	const hr = previousEndMoment.hour();
+	const min = previousEndMoment.minute();
+  const sec = previousEndMoment.second();
+  const nextDate = moment(_from).add(length, "hour").hour(hr).minutes(min).seconds(sec);
+
+  return nextDate;
+}
+
+function nextExactSpan(_date, _span, _from) {
+  let nextDate;
+  const length = Math.round(moment(_span).diff(moment(_date), DAY, true));
+  const count = Math.round(moment(_from).diff(moment(_date), DAY, true));
+  if (count && count < length - 1) {
+    nextDate = moment(_from).endOf(DAY);
+  } else {
+    nextDate = _span;
+  }
+  return nextDate;
 }
 
 function nextWeekSpan(_date, _span, _from) {
@@ -259,23 +284,28 @@ function nextWeekSpan(_date, _span, _from) {
   const numberOfDaysFromDate = Math.round(moment(_from).diff(moment(_date), DAY, true)) + 1; // inclusive
   const daysLeft = numberOfDaysFromDate % 7;
   if (daysLeft && daysLeft < length) {
-    nextDate = moment(_from).endOf('day')
+    nextDate = moment(_from).endOf(DAY)
   } else {
     nextDate = _span;
   }
   return nextDate;
 }
 
-function getSpan(_date, _span, _from) {
+function nextMonthSpan(_date, _span, _from) {
   let nextDate;
-  if (_span) { // date span multiple days
-    const inRange = moment(_from).isBetween(_date, _span, DAY, "(]"); // current date (_from) is one of the span days except (_date) the first date
-    if (inRange) {
-      const count = Math.round(moment(_from).diff(_date, DAY, true));
-      // const total = Math.round(moment(moment(_span).startOf(DAY)).diff(_date, DAY, true));
-      nextDate = moment(_date).add(count, DAY).endOf(DAY);
-    }
+  console.log(left, length);
+  const startDate = moment(_date).date();
+  const endDate = moment(_span).date();
+  const currentDate = moment(_from).date();
+  const length = Math.round(moment(_span).diff(moment(_date), DAY, true));
+  const left = Math.abs(endDate - currentDate);
+
+  if (currentDate > startDate && left < length) {
+    nextDate = moment(_from).endOf(DAY);
+  } else {
+    nextDate = _span;
   }
+
   return nextDate;
 }
 
