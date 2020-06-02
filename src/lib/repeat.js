@@ -250,6 +250,7 @@ function nextSpan(_date, _span, _from, _every) {
     case DAY: case WEEKDAY: return nextDaySpan(_date, _span, _from);
     case WEEK: return nextWeekSpan(_date, _span, _from);
     case MONTH: return nextMonthSpan(_date, _span, _from);
+    case YEAR: return nextExactSpan(_date, _span, _from);
     default: return _span; 
   }
 }
@@ -293,7 +294,6 @@ function nextWeekSpan(_date, _span, _from) {
 
 function nextMonthSpan(_date, _span, _from) {
   let nextDate;
-  console.log(left, length);
   const startDate = moment(_date).date();
   const endDate = moment(_span).date();
   const currentDate = moment(_from).date();
