@@ -347,6 +347,7 @@ function createBookmark(input, typename) {
       isPublic
       isOwner
       isBookmarked
+      isOffline
       cancelledDates
       banner {
         bucket

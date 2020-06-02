@@ -1,6 +1,5 @@
 import React from 'react';
 import moment from "moment";
-import isEqual from 'lodash.isequal';
 import {
   View,
   ScrollView,

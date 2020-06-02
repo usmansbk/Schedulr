@@ -171,6 +171,7 @@ export const createBookmark = `mutation CreateBookmark($input: CreateBookmarkInp
       isOwner
       isBookmarked
       cancelledDates
+      isOffline
       banner {
         bucket
         key

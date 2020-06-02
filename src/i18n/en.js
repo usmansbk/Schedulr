@@ -224,6 +224,8 @@ export default {
   SCHEDULE_whatIsASchedule: "Why create a list?",
   SCHEDULE_share: "Share this list via...",
   SCHEDULE_unfollow: "Unfollow this list",
+  SCHEDULE_mute: "Mute events",
+  SCHEDULE_unmute: "Unmute events",
   
   SCHEDULES_noUpcomingEvents: "No upcoming events",
   SCHEDULES_loadPastEvents: count => `Load (${count}) past event${count > 1 ? 's' : ''}`,
