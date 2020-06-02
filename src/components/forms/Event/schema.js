@@ -1,17 +1,14 @@
 import * as Yup from 'yup';
 import moment from 'moment';
-import { I18n } from 'aws-amplify';
 import { canRecur, getTimeUnit } from 'lib/time';
 import recurrence from './recurrence';
 
 const emptyToNull= val => !val ? null : val;
 
-export default () => Yup.object().shape({
+export default Yup.object().shape({
   title: Yup.string()
     .required('titleIsRequired')
-    .default(I18n.get("PLACEHOLDER_untitledEvent"))
     .trim()
-    .min(2, 'tooShort')
   ,
   description: Yup.string()
     .nullable()
