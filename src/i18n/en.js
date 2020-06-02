@@ -205,6 +205,9 @@ export default {
     return `${duration}${recurrence ? ` ${recurrence}` : ''}${type ? ` ${type}` : '' }`;
   },
 
+  HELPER_TEXT_shortUntil: "Event should happen at least once",
+  HELPER_TEXT_invalidDatesAndRecur: "Event should end before repeating",
+
   SCHEDULE: "LIST",
   SCHEDULE_public: "Public List",
   SCHEDULE_private: "Private List",

@@ -140,11 +140,8 @@ export function update(event, date, span) {
 	const previousEndMoment = moment(event.endAt);
 
 	if (span) {
-		const hr = previousEndMoment.hour();
-		const min = previousEndMoment.minute();
-		const sec = previousEndMoment.second();
 		startAt = moment(date).toISOString();
-		endAt = moment(span).hour(hr).minute(min).second(sec).toISOString();
+		endAt = moment(span).toISOString();
 	} else {
 		const previousStartMoment = moment(event.startAt);
 
