@@ -7,7 +7,7 @@ import Loading from 'components/common/Loading';
 import Error from 'components/common/Error';
 
 export default inject('stores')(observer(
-  ({ error, loading, stores }) =>{
+  ({ error, loading, stores, isBookmarks }) =>{
     if (loading) return <Loading />;
     if (error) return <Error />;
     return (
@@ -18,7 +18,8 @@ export default inject('stores')(observer(
           source={require('../../../assets/calendar.png')}
         />
         <Headline style={stores.appStyles.bookmarkedEventsList.emptyTitle}>
-        {I18n.get("BOOKMARKS_emptyList")}
+        { !isBookmarks && I18n.get('SCHEDULES_noUpcomingEvents')}
+        { isBookmarks && I18n.get("BOOKMARKS_emptyList")}
         </Headline>
       </View>
     );  

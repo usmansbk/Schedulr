@@ -104,7 +104,7 @@ class List extends Component {
     />);
   };
 
-  _renderEmptyList = () => <Empty search={this.props.search} error={this.props.error} loading={this.props.loading} />;
+  _renderEmptyList = () => <Empty isBookmarks={this.props.isBookmarks} error={this.props.error} loading={this.props.loading} />;
   _renderSeparator = () => <Separator />;
   _renderFooter = () => <Footer loading={this.props.loading} visible={this.props.events.length} />;
   _renderHeader = () => (this.props.pastEventsCount > 0) ? <Header

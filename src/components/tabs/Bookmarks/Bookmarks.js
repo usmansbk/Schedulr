@@ -41,6 +41,7 @@ export default class Bookmarks extends React.Component {
         fetchMore={fetchMore}
         onRefresh={onRefresh}
         loading={loading}
+        isBookmarks
       />
     );
   }
