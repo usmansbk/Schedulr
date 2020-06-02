@@ -21,7 +21,8 @@ import DateTimePicker from 'components/common/DateTimePicker';
 import Suspense from 'components/common/Suspense';
 import { getRepeatLabel, getTimeUnit } from 'lib/time';
 import recurrence from './recurrence';
-import schema from './schema';
+import getSchema from './schema';
+const schema = getSchema();
 
 const MIN_UNTIL_DATE = 1
 class Form extends React.Component {
@@ -101,7 +102,6 @@ class Form extends React.Component {
           handleChange,
           handleBlur,
           setFieldValue,
-          initialValues,
           isValid
         }) => (
           <>
@@ -113,7 +113,7 @@ class Form extends React.Component {
             >{I18n.get("BUTTON_cancel")}</Button>
             <Button
               loading={isSubmitting}
-              disabled={!isNew && (!isValid || isSubmitting || isEqual(initialValues, values))}
+              disabled={!isNew && (!isValid || isSubmitting)}
               onPress={submitForm}
             >{ edit ? I18n.get("BUTTON_save") : I18n.get("BUTTON_create")}</Button>
           </Appbar.Header>
@@ -125,7 +125,7 @@ class Form extends React.Component {
               <TextInput
                 bold
                 error={errors.title}
-                placeholder={I18n.get("PLACEHOLDER_title")}
+                placeholder={I18n.get("PLACEHOLDER_untitledEvent")}
                 label={I18n.get("EVENT_FORM_title")}
                 value={values.title}
                 onChangeText={handleChange('title')}

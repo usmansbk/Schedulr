@@ -270,6 +270,7 @@ export default {
   PLACEHOLDER_searchCities: "Search cities",
   PLACEHOLDER_description: "Tap to add description",
   PLACEHOLDER_title: "Event Title",
+  PLACEHOLDER_untitledEvent: "(No Title)",
   PLACEHOLDER_name: "List Name",
 
   WARNING_dontMissOut: "Don't miss out!",

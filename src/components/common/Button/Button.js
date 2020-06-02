@@ -24,13 +24,16 @@ export default ({
     label: {
       fontWeight: 'bold',
       color: danger ? 'white' : colors.black
+    },
+    disable: {
+      color: colors.light_gray_4
     }
   });
 
   return (
     <TouchableOpacity disabled={disabled} onPress={onPress} style={styles.container}>
       <View style={styles.button}>
-        <Text style={styles.label}>{uppercase ? children.toUpperCase() : children}</Text>
+        <Text style={[styles.label, disabled ? styles.disable : {} ]}>{uppercase ? children.toUpperCase() : children}</Text>
       </View>
     </TouchableOpacity>
   );

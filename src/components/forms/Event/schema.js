@@ -1,13 +1,15 @@
 import * as Yup from 'yup';
 import moment from 'moment';
+import { I18n } from 'aws-amplify';
 import { canRecur, getTimeUnit } from 'lib/time';
 import recurrence from './recurrence';
 
 const emptyToNull= val => !val ? null : val;
 
-export default Yup.object().shape({
+export default () => Yup.object().shape({
   title: Yup.string()
     .required('titleIsRequired')
+    .default(I18n.get("PLACEHOLDER_untitledEvent"))
     .trim()
     .min(2, 'tooShort')
   ,
@@ -30,9 +32,6 @@ export default Yup.object().shape({
   ,
   startAt: Yup.date()
     .required()
-    // .when('endAt', (endAt, schema) => (
-    //   schema.max(moment(endAt).subtract(5, 'minutes').toDate(), 'durationTooShort')
-    // ))
   ,
   endAt: Yup.date()
     .required()
