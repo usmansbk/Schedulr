@@ -117,7 +117,7 @@ function* EventInfiniteSectionGenerator(events, previous) {
 
 function* EventFiniteSectionGenerator(events, previous) {
 	const order = previous ? -1 : 1;
-	const dates = extractDates(events, previous)
+	const dates = Array.from(new Set(extractDates(events, previous)))
 		.sort((a, b) => moment(a).diff(b) * order);
 
 	for (let date of dates) {
