@@ -170,7 +170,7 @@ class Form extends React.Component {
           />
           <Alert
             title={I18n.get("ALERT_whatIsASchedule")}
-            message={I18n.get("ALERT_whatIsAScheduleA2")}
+            message={I18n.get("ALERT_whatIsAScheduleA")}
             ref={this._alertRef}
             alert
           />

@@ -9,7 +9,6 @@ import { isPastDate } from 'lib/time';
 import { getUserSchedules } from 'api/fragments';
 import { SCHEDULE_CLOSED, ONE_TIME_EVENT } from "lib/constants";
 import logger from 'config/logger';
-import snackbar from 'helpers/snackbar';
 
 class NewEventScreen extends React.Component {
   _newSchedule = () => this.props.navigation.navigate("NewSchedule");
@@ -21,7 +20,6 @@ class NewEventScreen extends React.Component {
     const input = { id,...form };
     this.props.navigation.goBack();
     setTimeout(() => {
-      snackbar(I18n.get("EVENT_creating"));
       this.props.onSubmit(input);
       logger.log('create_event');
     }, 0);

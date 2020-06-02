@@ -30,9 +30,9 @@ async function requestLocationPermission() {
       {
         title: I18n.get('REQUEST_LOCATION_TITLE'),
         message: I18n.get('REQUEST_LOCATION_MESSAGE'),
-        buttonPositive: I18n.get("OK"),
-        buttonNegative: I18n.get("Cancel"),
-        buttonNeutral: I18n.get("Ask Me Later")
+        buttonPositive: I18n.get("BUTTON_ok"),
+        buttonNegative: I18n.get("BUTTON_cancel"),
+        buttonNeutral: I18n.get("BUTTON_askMeLater")
       }
     );
     return granted === PermissionsAndroid.RESULTS.GRANTED;
