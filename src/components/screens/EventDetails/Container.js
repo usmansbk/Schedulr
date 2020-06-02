@@ -79,7 +79,8 @@ class EventDetails extends React.Component {
       isPublic,
       isOffline,
       banner,
-      author
+      author,
+      raw_startAt
     } = currentEvent;
     const isValid = isEventValid({
       endAt,
@@ -161,6 +162,7 @@ class EventDetails extends React.Component {
           id={id}
           title={title}
           startAt={startAt}
+          raw_startAt={raw_startAt}
           endAt={endAt}
           allDay={allDay}
           recurrence={recurrence}
