@@ -23,7 +23,6 @@ const {
   SECTION_FOOTER_HEIGHT,
   HEADER_HEIGHT,
   FOOTER_HEIGHT,
-  NUMBER_OF_DAYS
 } = events;
 
 class List extends React.Component {
@@ -32,6 +31,7 @@ class List extends React.Component {
     loading: false,
     events: [],
     onRefresh: () => null,
+    finite: false 
   };
 
   state = {
@@ -216,8 +216,8 @@ class List extends React.Component {
 
   _processEvents(events, forceUpdate) {
     if (forceUpdate || eventsChanged(events, this.state.events)) {
-      const nextIterator = EventSectionGenerator(events, false, NUMBER_OF_DAYS);
-      const prevIterator = EventSectionGenerator(events, true, NUMBER_OF_DAYS);
+      const nextIterator = EventSectionGenerator(events, false, this.props.finite);
+      const prevIterator = EventSectionGenerator(events, true, this.props.finite);
       let result =  nextIterator.next();
       if (!result.done) {
         const { items, nextToken } = result.value;

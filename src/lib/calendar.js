@@ -1,8 +1,18 @@
 import moment from 'moment';
 import repeat from './repeat';
-import {
-	getWeekFromNow,
-} from './time';
+
+// Get next seven days starting from today 
+export const getDaysFromNow = (previous, num=1) => {
+	const days = num;
+  const start = previous ? 1 : 0;
+  const direction = previous ? -1 : 1;
+  let dates = [];
+  for (let i = start; i <= days; i++) {
+    const date = moment().add(i * direction, 'day').startOf('day').toISOString();
+    dates.push(date);
+  }
+  return dates;
+};
 
 function extractDates(events, previous) {
 	const direction = previous ? -1 : 0;
@@ -49,43 +59,71 @@ function EventFlatList(events=[]) {
 	return data;
 }
 
+function* EventSectionGenerator(events, previous, finite) {
+	if (finite) {
+		yield* EventFiniteSectionGenerator(events, previous);
+	} else {
+		yield* EventInfiniteSectionGenerator(events, previous);
+	}
+}
+
 const cache = {};
-function* EventSectionGenerator(events, previous) {
-	const someday =  extractDates(events, previous);
+function process(events, date, previous) {
+	const data = [];
+	events.forEach(event => {
+		const key = `${previous}-${event.id}-${event.updatedAt}-${event.isBookmarked}-${date}`;
+		const cached = cache[key];
+		if (cached) {
+			if (typeof cached !== "string") {
+				data.push(cached);
+			}
+		} else {
+			const recur = repeat(event.startAt)
+				.span(event.endAt)
+				.from(date)
+				.every(event.recurrence)
+				.until(event.until);
+			if (recur.matches(date)) {
+				const newEvent = update(event, date, recur.nextSpan());
+				data.push(newEvent);
+				cache[key] = newEvent;
+			} else {
+				cache[key] = "__not__match__";
+			}
+		}
+	});
+	data.sort((a, b) => moment(a.startAt).diff(b.startAt));
+	return data;
+}
+
+function* EventInfiniteSectionGenerator(events, previous) {
+	const direction = previous ? -1 : 1;
+	// previous should start from yesterday
+	let date = moment().add(previous ? -1 : 0, 'day').startOf('day');
+	while(date) {
+		const items = [
+			{
+				data: process(events, date, previous),
+				title: date
+			}
+		] ;
+		yield ({
+			items,
+			nextToken: date
+		});
+		date = moment(date).add(direction, 'day').toISOString();
+	}
+}
+
+function* EventFiniteSectionGenerator(events, previous) {
 	const order = previous ? -1 : 1;
-	const dates = Array
-		.from(new Set(getWeekFromNow(previous).concat(someday))) // remove duplicates 
+	const dates = extractDates(events, previous)
 		.sort((a, b) => moment(a).diff(b) * order);
 
 	for (let date of dates) {
-		const data = [];
-		// const s = Date.now();
-		events.forEach(event => {
-			const key = `${previous}-${event.id}-${event.updatedAt}-${event.isBookmarked}-${date}`;
-			const cached = cache[key];
-			if (cached) {
-				if (typeof cached !== "string") {
-					data.push(cached);
-				}
-			} else {
-				const recur = repeat(event.startAt)
-					.span(event.endAt)
-					.from(date)
-					.every(event.recurrence)
-					.until(event.until);
-				if (recur.matches(date)) {
-					const newEvent = update(event, date, recur.nextSpan());
-					data.push(newEvent);
-					cache[key] = newEvent;
-				} else {
-					cache[key] = "__not__match__";
-				}
-			}
-		});
-		data.sort((a, b) => moment(a.startAt).diff(b.startAt));
 		const items = [
 			{
-				data,
+				data: process(events, date, previous),
 				title: date
 			}
 		] ;

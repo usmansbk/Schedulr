@@ -58,6 +58,7 @@ class ListHoc extends React.Component {
         navigation={navigation}
         listType="schedule"
         handleScroll={this._onScroll}
+        finite
       /> 
       {
         Boolean(this.state.offsetY > HEIGHT) && (
