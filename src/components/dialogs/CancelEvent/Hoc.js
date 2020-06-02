@@ -59,7 +59,6 @@ export default compose(
     }),
     props: ({ data, ownProps }) => ({
       banner: data.getEvent.banner,
-      recurrence: data.getEvent.recurrence, 
       cancelledDates: data.getEvent.cancelledDates || [],
       ...ownProps,
     })

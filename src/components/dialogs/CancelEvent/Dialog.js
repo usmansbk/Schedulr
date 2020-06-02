@@ -3,7 +3,7 @@ import { View } from 'react-native';
 import { inject, observer } from 'mobx-react';
 import { Text, RadioButton } from 'react-native-paper';
 import { I18n } from 'aws-amplify';
-import { SINGLE_EVENT, ALL_EVENTS, ONE_TIME_EVENT } from 'lib/constants';
+import { SINGLE_EVENT, ALL_EVENTS } from 'lib/constants';
 import RBSheet from 'react-native-raw-bottom-sheet';
 import Button from 'components/common/Button';
 
@@ -17,7 +17,7 @@ class CancelEvent extends React.Component {
 
   shouldComponentUpdate = (nextProps, nextState) => (
     nextProps.date !== this.props.date ||
-    nextProps.recurrence !== this.props.recurrence ||
+    nextProps.cancelledDates !== this.props.cancelledDates ||
     nextState.checked !== this.state.checked ||
     nextState.loading !== this.state.loading
   );
@@ -34,7 +34,7 @@ class CancelEvent extends React.Component {
       cancelledDates,
     } = this.props;
     const { checked } = this.state;
-    if ((checked === SINGLE_EVENT) && date) {
+    if (checked === SINGLE_EVENT) {
       const input = {
         id,
         cancelledDates : Array.from(new Set([
@@ -62,11 +62,11 @@ class CancelEvent extends React.Component {
     const {
       date,
       stores,
-      recurrence,
+      cancelledDates
     } = this.props;
     const { checked } = this.state;
     const styles = stores.appStyles.sheet;
-    const isSingleEvent = recurrence === ONE_TIME_EVENT;
+    const isCancelled = cancelledDates && cancelledDates.includes(date);
 
     return (
       <RBSheet
@@ -81,24 +81,22 @@ class CancelEvent extends React.Component {
           <View style={styles.header}>
             <Text style={styles.title}>{I18n.get("DIALOG_cancelEvent")}</Text>
           </View>
-          {
-            Boolean(date && !isSingleEvent) ? (
-              <View style={styles.body}>
-                <RadioButton.Group onValueChange={this._toggleButton} value={checked}>
+          <View style={styles.body}>
+            <RadioButton.Group onValueChange={this._toggleButton} value={checked}>
+              {
+                !isCancelled && (
                   <View style={styles.row}>
                     <Text style={styles.message}>{I18n.get("DIALOG_onlyThisEvent")}</Text>
                     <RadioButton value={SINGLE_EVENT} />
                   </View>
-                  <View style={styles.row}>
-                    <Text style={styles.message}>{I18n.get("DIALOG_allOfThisEvent")}</Text>
-                    <RadioButton value={ALL_EVENTS} />
-                  </View>
-                </RadioButton.Group>
+                )
+              }
+              <View style={styles.row}>
+                <Text style={styles.message}>{I18n.get("DIALOG_allOfThisEvent")}</Text>
+                <RadioButton value={ALL_EVENTS} />
               </View>
-            ) : (
-              <Text style={styles.message}>{I18n.get("DIALOG_cancelWarning")}</Text>
-            )
-          }
+            </RadioButton.Group>
+          </View>
           <View style={styles.footer}>
             <Button onPress={this._handleDismiss}>{I18n.get("BUTTON_dismiss")}</Button>
             <Button danger onPress={this._onContinue}>{I18n.get("BUTTON_continue")}</Button>

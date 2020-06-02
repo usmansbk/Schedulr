@@ -370,7 +370,7 @@ export default {
 
   DIALOG_cancelEvent: "Cancel this event?",
   DIALOG_onlyThisEvent: "Only this date",
-  DIALOG_allOfThisEvent: "All of this event",
+  DIALOG_allOfThisEvent: "Cancel and delete all",
   DIALOG_closeSchedule: "Archive this list?",
   DIALOG_closeScheduleWarning: "If you archive this list, you won't be able to add new events ot it. If you change your mind, you can unarchive it.",
   DIALOG_deleteComment: "Delete this comment?",

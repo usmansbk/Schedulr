@@ -93,7 +93,6 @@ class EventDetails extends React.Component {
     const styles = stores.appStyles.styles;
     const pictureUrl = banner && getImageUrl(banner, 320);
     const isFollowing = schedule && schedule.isFollowing;
-    const isCancelled = cancelledDates && cancelledDates.includes(startAt);
 
     const isAuth = isPublic || isFollowing || isOwner;
     
@@ -194,7 +193,7 @@ class EventDetails extends React.Component {
         />
         <CancelConfirm
           id={id}
-          date={!isCancelled ? startAt : null}
+          date={startAt}
           onRef={this._cancelRef}
         />
       </>
