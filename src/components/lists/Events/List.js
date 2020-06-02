@@ -3,6 +3,7 @@ import { RefreshControl } from 'react-native';
 import { SectionList } from 'react-navigation';
 import { inject, observer } from 'mobx-react';
 import uuidv5 from 'uuid/v5';
+import moment from 'moment';
 import sectionListGetItemLayout from 'sectionlist-get-itemlayout';
 import Header from './Header';
 import Footer from './Footer';
@@ -198,7 +199,8 @@ class List extends React.Component {
         const result = this.state.nextIterator.next(this.state.afterDate);
         if (!result.done) {
         const { items, nextToken: afterDate } = result.value;
-        const sections = this.state.sections.concat(items);
+        const newMonth = (moment(afterDate).month() !== moment(this.state.afterDate).month());
+        const sections = newMonth ? items : this.state.sections.concat(items);
           this.setState({
             sections,
             afterDate,
