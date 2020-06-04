@@ -250,9 +250,28 @@ function nextSpan(_date, _span, _from, _every) {
     case DAY: case WEEKDAY: return nextDaySpan(_date, _span, _from);
     case WEEK: return nextWeekSpan(_date, _span, _from);
     case MONTH: return nextMonthSpan(_date, _span, _from);
-    case YEAR: return nextExactSpan(_date, _span, _from);
+    case YEAR: return nextYearSpan(_date, _span, _from);
     default: return _span; 
   }
+}
+
+function nextYearSpan(_date, _span, _from) {
+  let nextDate;
+  const day = moment(_date).dayOfYear();
+  const endDay = moment(_span).dayOfYear();
+  const length = endDay - day;
+  const temp = moment(_span);
+  if (!length) {
+    nextDate = moment(_from);
+    nextDate.hour(temp.hour()).minute(temp.minute()).second(temp.second());
+  } else if (length > 1) {
+    nextDate = moment(_from).endOf(DAY);
+  } else {
+    nextDate = moment(_from).dayOfYear(temp.dayOfYear());
+    nextDate.hour(temp.hour()).minute(temp.minute()).second(temp.second());
+  }
+
+  return nextDate;
 }
 
 function nextDaySpan(_date, _span, _from) {
