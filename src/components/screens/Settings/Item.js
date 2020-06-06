@@ -57,6 +57,7 @@ class Item extends React.Component {
             onValueChange={this._handleValueChange}
           />
         )}
+        onPress={this._handleValueChange}
       />
     );
   }

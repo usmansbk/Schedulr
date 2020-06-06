@@ -1,9 +1,8 @@
 import React from 'react';
-import { FlatList } from 'react-native';
+import { FlatList, View } from 'react-native';
 import {
   Dialog,
   Portal,
-  List,
 } from 'react-native-paper';
 import Button from 'components/common/Button';
 import Switch from 'components/common/Switch';
@@ -24,18 +23,17 @@ class CalendarDialog extends React.Component {
   _renderItem = ({ item: calendar }) => {
     const { stores } = this.props;
     return (
-      <List.Item
-        titleNumberOfLines={1}
-        titleEllipsizeMode="tail"
-        title={calendar.title}
-        description={calendar.source}
-        right={() => (
-          <Switch
-            value={Boolean(stores.calendar.includes(calendar.id))}
-            onValueChange={() => stores.calendar.toggleCalendar(calendar)}
-          />
-        )}
-      />
+      <View style={{marginVertical: 8}}>
+        <Switch
+          textStyle={{
+            fontSize: 16
+          }}
+          label={calendar.title}
+          description={calendar.source}
+          value={Boolean(stores.calendar.includes(calendar.id))}
+          onValueChange={() => stores.calendar.toggleCalendar(calendar)}
+        />
+      </View>
     );
   };
 
