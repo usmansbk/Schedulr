@@ -5,14 +5,14 @@ import {
 } from 'react-native-paper';
 import { View, TouchableOpacity } from 'react-native';
 import { inject, observer } from 'mobx-react';
-import moment from 'moment';
 import 'twix';
 import { I18n } from 'aws-amplify';
+import Icon from 'components/common/Icon';
 
 export default inject('stores')(observer(
   ({ loading, onPress, stores, hasMore, hide }) => {
-    const nextMoment = hasMore ? moment(hasMore) : moment();
     if (hide) return null;
+  
     return (
       <TouchableOpacity
         disabled={!hasMore || loading}
@@ -31,10 +31,9 @@ export default inject('stores')(observer(
                 }}
               />
             ) : (
+              hasMore ? <Icon name="down" size={20} /> :
               <Caption style={stores.appStyles.eventsList.footerText}>
-                {
-                I18n.get(`EVENTS_SECTIONLIST_${hasMore ? 'after' : 'noMoreEvents'}`)(nextMoment.twix(nextMoment, { allDay: true }).format())
-                }
+                {I18n.get(`EVENTS_SECTIONLIST_noMoreEvents`)}
               </Caption>
             )
           }
