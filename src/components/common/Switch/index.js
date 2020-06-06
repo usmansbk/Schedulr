@@ -33,10 +33,11 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'flex-start'
+    alignItems: 'center'
   },
   button: {
     flexDirection: 'row',
     justifyContent: 'flex-end',
+    alignItems: 'center'
   }
 });

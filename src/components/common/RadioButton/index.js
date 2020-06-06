@@ -27,10 +27,11 @@ const styles = StyleSheet.create({
   content: {
     flex: 1,
     flexDirection: 'row',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   button: {
-    flex: 1,
+    alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'flex-end'
   },

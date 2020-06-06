@@ -1,11 +1,12 @@
 import React from 'react';
 import { View } from 'react-native';
 import { inject, observer } from 'mobx-react';
-import { Text, RadioButton } from 'react-native-paper';
+import { Text } from 'react-native-paper';
 import { I18n } from 'aws-amplify';
 import { SINGLE_EVENT, ALL_EVENTS } from 'lib/constants';
 import RBSheet from 'react-native-raw-bottom-sheet';
 import Button from 'components/common/Button';
+import RadioButton from 'components/common/RadioButton';
 
 class CancelEvent extends React.Component {
   state = {
@@ -77,25 +78,27 @@ class CancelEvent extends React.Component {
           container: styles.container
         }}
       >
-        <View style={styles.content}>
-          <View style={styles.header}>
+        <View style={{justifyContent: 'center', flex: 1}}>
+          <View style={styles.header, {alignItems: 'center'}}>
             <Text style={styles.title}>{I18n.get("DIALOG_cancelEvent")}</Text>
           </View>
-          <View style={styles.body}>
-            <RadioButton.Group onValueChange={this._toggleButton} value={checked}>
-              {
-                !isCancelled && (
-                  <View style={styles.row}>
-                    <Text style={styles.message}>{I18n.get("DIALOG_onlyThisEvent")}</Text>
-                    <RadioButton value={SINGLE_EVENT} />
-                  </View>
-                )
-              }
-              <View style={styles.row}>
-                <Text style={styles.message}>{I18n.get("DIALOG_allOfThisEvent")}</Text>
-                <RadioButton value={ALL_EVENTS} />
-              </View>
-            </RadioButton.Group>
+          <View style={{flex: 1, padding: 40}}>
+            {
+              !isCancelled && (
+                <RadioButton
+                  label={I18n.get("DIALOG_onlyThisEvent")}
+                  checked={checked === SINGLE_EVENT}
+                  textStyle={styles.message}
+                  onPress={this._toggleButton} 
+                />
+              )
+            }
+            <RadioButton
+              checked={checked === ALL_EVENTS}
+              label={I18n.get("DIALOG_allOfThisEvent")}
+              textStyle={styles.message}
+              onPress={this._toggleButton} 
+            />
           </View>
           <View style={styles.footer}>
             <Button onPress={this._handleDismiss}>{I18n.get("BUTTON_dismiss")}</Button>
