@@ -8,13 +8,13 @@ import {
   Text,
   HelperText,
   Appbar,
-  Switch,
 } from 'react-native-paper';
 import { Formik } from 'formik';
 import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
 import TextInput from 'components/common/TextInput';
 import Button from 'components/common/Button';
+import Switch from 'components/common/Switch';
 import Picker, { CustomPicker } from 'components/common/Picker';
 import DateTimePicker from 'components/common/DateTimePicker';
 import Suspense from 'components/common/Suspense';
@@ -208,8 +208,9 @@ class Form extends React.Component {
               </View>
               
               <View style={[styles.radio, styles.pickerSpacing]}>
-                <Text style={styles.radioText}>{I18n.get("EVENT_FORM_allDay")}</Text>
                 <Switch
+                  textStyle={styles.radioText}
+                  label={I18n.get("EVENT_FORM_allDay")}
                   value={values.allDay}
                   onValueChange={() => {
                     const { allDay } = values;
