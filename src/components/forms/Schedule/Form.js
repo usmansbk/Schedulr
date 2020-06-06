@@ -6,12 +6,12 @@ import {
 import isEqual from 'lodash.isequal';
 import {
   Text,
-  Switch,
   Appbar,
   Caption
 } from 'react-native-paper';
 import TextInput from 'components/common/TextInput';
 import Button from 'components/common/Button';
+import Switch from 'components/common/Switch';
 import Alert from 'components/dialogs/Alert';
 import LocationPicker from 'components/common/LocationPicker';
 import { PickerInput, CustomPicker } from 'components/common/Picker';
@@ -130,11 +130,12 @@ class Form extends React.Component {
                   onValueChange={handleChange('topic')}
                 />
                 <View style={styles.switchButton}>
-                  <Text style={styles.text}>{I18n.get("SCHEDULE_FORM_public")}</Text>
                   <Switch
+                    textStyle={styles.text}
+                    label={I18n.get("SCHEDULE_FORM_public")}
                     value={values.isPublic}
-                    onValueChange={(value) => {
-                      setFieldValue('isPublic', value);
+                    onValueChange={() => {
+                      setFieldValue('isPublic', !values.isPublic);
                     }}
                   />
                 </View>
