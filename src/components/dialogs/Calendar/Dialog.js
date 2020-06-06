@@ -4,9 +4,9 @@ import {
   Dialog,
   Portal,
   List,
-  Switch
 } from 'react-native-paper';
 import Button from 'components/common/Button';
+import Switch from 'components/common/Switch';
 import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
 import snackbar from 'helpers/snackbar';

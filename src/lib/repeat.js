@@ -259,11 +259,13 @@ function nextYearSpan(_date, _span, _from) {
   let nextDate;
   const day = moment(_date).dayOfYear();
   const endDay = moment(_span).dayOfYear();
-  const length = endDay - day;
+  console.log(day, endDay);
+  const length = Math.abs(endDay - day);
   const temp = moment(_span);
   if (!length) {
     nextDate = moment(_from);
     nextDate.hour(temp.hour()).minute(temp.minute()).second(temp.second());
+    console.log(nextDate)
   } else if (length > 1) {
     nextDate = moment(_from).endOf(DAY);
   } else {
@@ -299,12 +301,13 @@ function nextExactSpan(_date, _span, _from) {
 }
 
 function nextWeekSpan(_date, _span, _from) {
+
   let nextDate;
   const length = Math.round(moment(_span).diff(moment(_date), DAY, true));
   const numberOfDaysFromDate = Math.round(moment(_from).diff(moment(_date), DAY, true)) + 1; // inclusive
   const daysLeft = numberOfDaysFromDate % 7;
   if (daysLeft && daysLeft < length) {
-    nextDate = moment(_from).endOf(DAY)
+    nextDate = nextYear(_span, _from);
   } else {
     nextDate = _span;
   }

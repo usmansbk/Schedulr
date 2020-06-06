@@ -4,9 +4,9 @@ import {
   Dialog,
   Portal,
   List,
-  RadioButton
 } from 'react-native-paper';
 import Button from 'components/common/Button';
+import RadioButton from 'components/common/RadioButton';
 import { inject, observer } from 'mobx-react';
 import { I18n } from 'aws-amplify';
 import items from './items';
@@ -31,8 +31,7 @@ class Theme extends React.Component {
         title={I18n.get(`THEME_${item.key}`)}
         right={() => (
           <RadioButton
-            value={item.key}
-            status={stores.settingsStore.theme === item.key ? 'checked' : 'unchecked'}
+            checked={stores.settingsStore.theme === item.key}
             onPress={() => this._toggle(item.key)}
           />
         )}
