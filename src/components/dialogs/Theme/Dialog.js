@@ -35,6 +35,7 @@ class Theme extends React.Component {
             onPress={() => this._toggle(item.key)}
           />
         )}
+        onPress={() => this._toggle(item.key)}
       />
     );
   };
