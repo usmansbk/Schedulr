@@ -256,6 +256,7 @@ function nextSpan(_date, _span, _from, _every) {
 }
 
 function nextYearSpan(_date, _span, _from) {
+  return null;
   let nextDate;
   const day = moment(_date).dayOfYear();
   const endDay = moment(_span).dayOfYear();
