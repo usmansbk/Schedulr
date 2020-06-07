@@ -256,24 +256,8 @@ function nextSpan(_date, _span, _from, _every) {
 }
 
 function nextYearSpan(_date, _span, _from) {
-  return null;
-  let nextDate;
-  const day = moment(_date).dayOfYear();
-  const endDay = moment(_span).dayOfYear();
-  console.log(day, endDay);
-  const length = Math.abs(endDay - day);
-  const temp = moment(_span);
-  if (!length) {
-    nextDate = moment(_from);
-    nextDate.hour(temp.hour()).minute(temp.minute()).second(temp.second());
-    console.log(nextDate)
-  } else if (length > 1) {
-    nextDate = moment(_from).endOf(DAY);
-  } else {
-    nextDate = moment(_from).dayOfYear(temp.dayOfYear());
-    nextDate.hour(temp.hour()).minute(temp.minute()).second(temp.second());
-  }
-
+  let nextDate = null;
+  // To-do
   return nextDate;
 }
 
