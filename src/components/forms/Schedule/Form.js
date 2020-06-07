@@ -129,7 +129,7 @@ class Form extends React.Component {
                   data={I18n.get('topics')}
                   onValueChange={handleChange('topic')}
                 />
-                <View style={styles.switchButton}>
+                <View style={{marginVertical: 12}}>
                   <Switch
                     textStyle={styles.text}
                     label={I18n.get("SCHEDULE_FORM_public")}
@@ -139,7 +139,7 @@ class Form extends React.Component {
                     }}
                   />
                 </View>
-                <View style={{marginVertical: 10}}>
+                <View style={{marginVertical: 12}}>
                   <Text style={styles.text}>{I18n.get("SCHEDULE_FORM_location")}</Text>
                   <PickerInput
                     value={values.location}
