@@ -57,7 +57,8 @@ class CancelEvent extends React.Component {
 
   _handleDismiss = () => this.confirmRef.close();
 
-  _toggleButton = checked => this.setState({ checked });
+  _toggleAll = () => this.setState({ checked: ALL_EVENTS });
+  _toggleSingle = () => this.setState({ checked: SINGLE_EVENT });
 
   render() {
     const {
@@ -89,7 +90,7 @@ class CancelEvent extends React.Component {
                   label={I18n.get("DIALOG_onlyThisEvent")}
                   checked={checked === SINGLE_EVENT}
                   textStyle={styles.message}
-                  onPress={this._toggleButton} 
+                  onPress={this._toggleSingle} 
                 />
               )
             }
@@ -97,7 +98,7 @@ class CancelEvent extends React.Component {
               checked={checked === ALL_EVENTS}
               label={I18n.get("DIALOG_allOfThisEvent")}
               textStyle={styles.message}
-              onPress={this._toggleButton} 
+              onPress={this._toggleAll} 
             />
           </View>
           <View style={styles.footer}>
