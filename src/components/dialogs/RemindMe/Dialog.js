@@ -42,6 +42,7 @@ class RemindMe extends React.Component {
             onValueChange={() => this._toggle(item.key)}
           />
         )}
+        onPress={() => this._toggle(item.key)}
       />
     );
   };
