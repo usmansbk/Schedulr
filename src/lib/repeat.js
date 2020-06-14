@@ -237,25 +237,25 @@ export default function repeat(date) {
       return moment(_date);
     },
     nextSpan() {
-      return nextSpan(_date, _span, _from, _every);
+      return nextSpan(_date, _span, _from, _every, _maybeFrom);
     }
   };
 
   return rule;
 }
 
-function nextSpan(_date, _span, _from, _every) {
+function nextSpan(_date, _span, _from, _every, _maybeFrom) {
   switch(_every) {
     case EXACT: return nextExactSpan(_date, _span, _from);
     case DAY: case WEEKDAY: return nextDaySpan(_date, _span, _from);
     case WEEK: return nextWeekSpan(_date, _span, _from);
     case MONTH: return nextMonthSpan(_date, _span, _from);
-    case YEAR: return nextYearSpan(_date, _span, _from);
+    case YEAR: return nextYearSpan(_date, _span, _from, _maybeFrom);
     default: return _span; 
   }
 }
 
-function nextYearSpan(_date, _span, _from) {
+function nextYearSpan(_date, _span, _from, _maybeFrom) {
   let nextDate = null;
   // To-do
   return nextDate;

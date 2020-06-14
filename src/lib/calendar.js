@@ -35,7 +35,7 @@ const flatCache = {};
 function EventFlatList(events=[]) {
 	const data = [];
 	events.forEach(event => {
-		// deleted bookmarked events are represented as string ids
+		// deleted bookmarks are represented as string 
 		if (typeof event === "object") {
 			const date = moment().startOf('day').toISOString();
 			const key = `${event.id}-${event.isBookmarked}-${event.updatedAt}-${date}`;
