@@ -58,7 +58,7 @@
     "react-native-localize": "^1.4.0",
     "react-native-modal-datetime-picker": "^8.7.1",
     "react-native-navigation-bar-color": "^2.0.1",
-    "react-native-onesignal": "^3.8.0",
+    "react-native-onesignal": "3.7.3",
     "react-native-open-maps": "^0.3.5",
     "react-native-paper": "^3.10.1",
     "react-native-push-notification": "^3.5.2",
