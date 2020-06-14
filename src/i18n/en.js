@@ -6,7 +6,7 @@ const NEXT_LAST_FORMAT = 'dddd, Do';
 const CAL_TIME_FORMAT = 'DD MMM YYYY hh:mm';
 
 export default {
-  APP_welcome: 'Welcome to Schdlr!',
+  APP_welcome: 'Welcome to Schedlr!',
   APP_caption: 'The event scheduler',
   APP_footerCaption: 'Share your schedules!',
 
@@ -61,10 +61,10 @@ export default {
 
   DISCOVER_emptyList: "Discover",
   DISCOVER_turnOnLocation: "Use your location",
-  DISCOVER_locationUsage: "Schdlr requires your location to find nearby events.",
+  DISCOVER_locationUsage: "Schedlr requires your location to find nearby events.",
   DISCOVER_emptyListCaption: "Events happening around you!",
 
-  SEARCH_inputPlaceholder: city => `Search${city ? (' ' + city) : ' Schdlr'}`,
+  SEARCH_inputPlaceholder: city => `Search${city ? (' ' + city) : ' Schedlr'}`,
   SEARCH_schedulesTabLabel: "Schedules",
   SEARCH_eventsTabLabel: "Events",
   SEARCH_peopleTabLabel: "People",
@@ -154,10 +154,10 @@ export default {
   ALERT_unfollowMessage: "You'll no longer receive updates about their events.",
 
   SHARE_SCHEDULE_inviteTitle: "Share invite link via...",
-  SHARE_SCHEDULE_subject: "You have been invited to follow a schedule on Schdlr.",
+  SHARE_SCHEDULE_subject: "You have been invited to follow a schedule on Schedlr.",
   SHARE_SCHEDULE_message: name => `Hello, I'm inviting you to follow "${name}" to see their latest events, receive updates and reminders.\n`,
   SHARE_EVENT_inviteTitle: "Share event via...",
-  SHARE_appMessage: `Hi! I'm inviting you to use Schdlr!\n\nWith Schdlr you can easily share events with communities, be it family, work or school.\n\nDownload Schdlr here:`,
+  SHARE_appMessage: `Hi! I'm inviting you to use Schdelr!\n\nWith Schedlr you can easily share events with communities, be it family, work or school.\n\nDownload Schedlr here:`,
   SHARE_appTitle: 'Invite a friend',
   SHARE_appSubject: "See events happening near you",
 
@@ -291,8 +291,8 @@ export default {
   DIALOG_deleteScheduleWarning: "Delete this list and all of its Events forever. You can't undo this.",
   DIALOG_cancelWarning: "Action will permanently delete this event. People interested in this event will be notified.",
 
-  REQUEST_LOCATION_TITLE: 'Schdlr Location Permission',
-  REQUEST_LOCATION_MESSAGE: "Schdlr App needs access to your location so events are easier to find.",
+  REQUEST_LOCATION_TITLE: 'Schdelr Location Permission',
+  REQUEST_LOCATION_MESSAGE: "Schedlr App needs access to your location so events are easier to find.",
 
   PICKER_location: "Location",
   SYNC_message: "Remove all deleted and expired events and fix missing events and schedules.",
@@ -402,8 +402,8 @@ export default {
   walkthrough : [
     {
       key: 'p1',
-      title: 'Schdlr',
-      text: 'Schdlr is a social event scheduler',
+      title: 'Schedlr',
+      text: 'Schedlr is a social event scheduler',
       image: require('../assets/student.png'),
       backgroundColor: '#22bcb5',
     },
@@ -437,8 +437,8 @@ export default {
     },
     {
       key: 'p6',
-      title: "Welcome to Schdlr!",
-      text: 'Schdlr helps you to organize your events, by creating schedules to keep everyone up-to-date.',
+      title: "Welcome to Schedlr!",
+      text: 'Schedlr helps you to organize your events, by creating schedules to keep everyone up-to-date.',
       image: require('../assets/schoolbooks.png'),
       backgroundColor: '#22bcb5',
     },
