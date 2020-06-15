@@ -39,6 +39,7 @@
     "mobx-persist": "^0.4.1",
     "mobx-react": "^6.2.2",
     "moment": "^2.26.0",
+    "moment-recur": "^1.0.7",
     "numeral": "^2.0.6",
     "react": "^16.13.1",
     "react-apollo": "2.5.8",
