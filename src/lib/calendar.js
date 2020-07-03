@@ -1,4 +1,5 @@
 import moment from 'moment';
+import 'moment-recur';
 import repeat from './repeat';
 
 // Get next seven days starting from today 
@@ -18,12 +19,12 @@ function extractDates(events, previous) {
 	const direction = previous ? -1 : 0;
 	let dates = [];
 	events.forEach(e => {
-		const recur = repeat(e.startAt)
+		const recur = repeat(e.startAt, e.endAt)
 			.every(e.recurrence)
 			.from(moment().add(direction, 'day'))
 			.until(e.until);
 		
-		const nextDate = previous ? recur.previousDate() : recur.nextDate();
+		const nextDate = previous ? recur.previousStartAt() : recur.nextStartAt();
 		if (nextDate) {
 			dates.push(nextDate.toISOString());
 		}
@@ -43,13 +44,13 @@ function EventFlatList(events=[]) {
 			if (cached) {
 				data.push(cached);
 			} else {
-				const recur = repeat(event.startAt)
-					.span(event.endAt)
-					.maybeFrom(date)
+				const recur = repeat(event.startAt, event.endAt)
 					.every(event.recurrence)
+					.maybeFrom(date)
 					.until(event.until);
 
-				const newEvent = update(event, recur.nextDate(), recur.nextSpan());
+				const [startAt, endAt] = recur.get();
+				const newEvent = update(event, startAt, endAt);
 				data.push(newEvent);
 				flatCache[key] = newEvent;
 			}
@@ -78,13 +79,13 @@ function process(events, date, previous) {
 				data.push(cached);
 			}
 		} else {
-			const recur = repeat(event.startAt)
-				.span(event.endAt)
-				.from(date)
+			const recur = repeat(event.startAt, event.endAt)
 				.every(event.recurrence)
+				.from(date)
 				.until(event.until);
+			const [startAt, endAt] = recur.next();
 			if (recur.matches(date)) {
-				const newEvent = update(event, date, recur.nextSpan());
+				const newEvent = update(event, startAt, endAt); 
 				data.push(newEvent);
 				cache[key] = newEvent;
 			} else {
@@ -134,27 +135,7 @@ function* EventFiniteSectionGenerator(events, previous) {
 	}
 }
 
-export function update(event, date, span) {
-	let startAt, endAt;
-
-	const previousEndMoment = moment(event.endAt);
-
-	if (span) {
-		startAt = moment(date).toISOString();
-		endAt = moment(span).toISOString();
-	} else {
-		const previousStartMoment = moment(event.startAt);
-
-		const hr = previousStartMoment.hour();
-		const min = previousStartMoment.minute();
-		const sec = previousStartMoment.second();
-
-		const duration = moment.duration(previousEndMoment.diff(previousStartMoment));
-		const nextMoment = moment(date).hour(hr).minute(min).second(sec);
-		startAt = nextMoment.toISOString();
-		endAt = nextMoment.clone().add(duration).toISOString();
-	}
-	
+export function update(event, startAt, endAt) {
 	return Object.assign({}, event, {
 		startAt,
 		endAt,

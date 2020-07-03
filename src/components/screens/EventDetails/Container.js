@@ -51,12 +51,11 @@ class EventDetails extends React.Component {
       navigateToBookmarks,
       stores
     } = this.props;
-    const recur = repeat(event.startAt)
-                  .span(event.endAt)
+    const recur = repeat(event.startAt, event.endAt)
                   .every(event.recurrence)
-                  .until(event.until)
-                  .from(from);
-    const currentEvent = update(event, recur.nextDate(), recur.nextSpan());
+                  .from(from)
+                  .until(event.until);
+    const currentEvent = update(event, recur.nextStartAt(), recur.nextEndAt());
     const {
       id,
       title,
