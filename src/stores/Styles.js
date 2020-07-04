@@ -56,11 +56,12 @@ export default class AppStyles {
       },
       footer: {
         flexDirection: 'row',
-        justifyContent: 'space-between',
         padding: 24,
+        justifyContent: 'center',
       },
       row: {
         flexDirection: 'row',
+        justifyContent: 'space-between',
         alignItems: 'center',
       },
     });
