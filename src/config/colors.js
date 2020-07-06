@@ -6,7 +6,7 @@ export const avatarColors = [
   '#16a085', // green sea
   '#e67e22', // carrot
   '#d35400', // pumpkin
-  '#00cec9' // robin's egg blue 
+  '#00cec9', // robin's egg blue
 ];
 
 export const avatarColorsWithOpacity = {
@@ -17,8 +17,8 @@ export const avatarColorsWithOpacity = {
   '#16a085': `rgba(22, 160, 133, 0.3)`,
   '#e67e22': `rgba(230, 126, 34, 0.3)`,
   '#d35400': `rgba(211, 84, 0, 0.3)`,
-  '#00cec9': `rgba(0, 206, 201, 0.3)`
-}
+  '#00cec9': `rgba(0, 206, 201, 0.3)`,
+};
 
 export const light = {
   tint: '#84939e',
@@ -26,13 +26,13 @@ export const light = {
   facebook: '#3b5998',
   google: '#4285F4',
   black: '#14171a',
-  bg: 'white',
+  bg: '#fcfcfc',
   gray: '#657786',
   light_gray: '#f5f8fa',
   light_gray_2: '#f8f8f8',
   light_gray_3: '#989898',
   light_gray_4: '#e1e8ed',
-  white: 'white',
+  white: '#fcfcfc',
   light_red: '#eb5a46',
   // primary: '#00acee',
   primary: '#008abe',
@@ -52,7 +52,7 @@ export const light = {
   actionsheetTitleText: '#757575',
   selectedButton: 'white',
   textInput: '#f5f8fa',
-  primaryOpaque : opacity => `rgba(25, 118, 210, ${opacity})`
+  primaryOpaque: (opacity) => `rgba(25, 118, 210, ${opacity})`,
 };
 
 export const dark = {
@@ -90,7 +90,7 @@ export const dark = {
   actionsheetTitleText: 'white',
   selectedButton: 'black',
   textInput: '#424242',
-  primaryOpaque : opacity => `rgba(25, 118, 210, ${opacity})`
+  primaryOpaque: (opacity) => `rgba(25, 118, 210, ${opacity})`,
 };
 
 export default light;
