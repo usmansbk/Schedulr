@@ -1,364 +1,215 @@
 import moment from 'moment';
 
-const DAY = "day";
-const WEEK = "week";
-const WEEKDAY = "weekday";
-const MONTH = "month";
-const YEAR = "year";
-const EXACT = "exact";
+const DAY = 'day';
+const WEEK = 'week';
+const MONTH = 'month';
+const YEAR = 'year';
 
-function momentUnit(unit) {
-	switch(unit) {
-		case "DAILY": return DAY;
-		case "WEEKLY": return WEEK;
-		case "WEEKDAYS": return WEEKDAY;
-		case "MONTHLY": return MONTH;
-		case "YEARLY": return YEAR;
-		default: return EXACT;
-	}
+function getUnit(recurrence) {
+  switch (recurrence) {
+    case 'daily':
+      return DAY;
+    case 'weekly':
+    case 'weekdays':
+      return WEEK;
+    case 'monthly':
+      return MONTH;
+    case 'yearly':
+      return YEAR;
+    default:
+      return null;
+  }
 }
 
-function nextWeek(date, from, isPrevious) {
-  let nextDate;
-  const day = moment(from).isoWeekday(); // from date
-  const weekday = moment(date).isoWeekday();
-  if (day > weekday) { // day passed
-    const nextDay = isPrevious ? 7 - weekday : 7 + weekday; // previous week or next week
-    nextDate = moment(from).isoWeekday(nextDay);
-  } else {
-    nextDate = moment(from).isoWeekday(weekday)
-  }
-  return nextDate;
-}
-
-function nextWeekday(from, isPrevious) {
-  let nextDate;
-  const day = moment(from).isoWeekday();
-  if (day >= 6) { // weekends
-    const nextDay = isPrevious ? 5 : 8; // jump to prev friday or next monday
-    nextDate = moment(from).isoWeekday(nextDay); // set to upcoming monday
-  } else {
-    nextDate = moment(from);
-  }
-  return nextDate;
-}
-
-function nextMonth(date, from, isPrevious) {
-  let nextDate;
-  const month = moment(from).month();
-  const dayOfMonth = moment(date).date();
-  const currentDate = moment(from).date();
-  if (currentDate > dayOfMonth) { // date passed
-    const direction = isPrevious ? 0 : 1;
-    nextDate = moment(from).month(month + direction).date(dayOfMonth); // set to upcoming month
-  } else { // yet to happen, set to upcoming date in current month
-    nextDate = moment(from).date(dayOfMonth);
-  }
-  return nextDate;
-}
-
-function nextYear(date, from, isPrevious) {
-  let nextDate;
-  const year = moment(date).year();
-  const month = moment(date).month();
-  const dayOfMonth = moment(date).date();
-  const currentMonth = moment(from).month();
-  const currentDay = moment(from).date();
-
-  const direction = isPrevious ? 0 : 1;
-  if (currentMonth > month) { // month passed
-    nextDate = moment(from).year(year + direction).month(month).date(dayOfMonth); // set to upcoming year
-  } else if (currentMonth < month) { // month upcoming
-    nextDate = moment(from).month(month).date(dayOfMonth);
-  } else { // same month
-    if (currentDay > dayOfMonth) { // day passed
-      nextDate = moment(from).year(year + direction).month(month).date(dayOfMonth); // set to upcoming year
-    } else if (currentDay < dayOfMonth) { // day upcoming
-      nextDate = moment(from).month(month).date(dayOfMonth);
-    } else { // same day
-      nextDate = moment(from);
-    }
-  }
-  return nextDate;
-}
-
-function nextDay(from, date) {
-  if (moment(from).isBefore(moment(date))) { // date upcoming (yet to happen)
-    return moment(date);
-  }
-  return moment(from);
-}
-
-function datesFrom({
-  numberOfDates,
-  _date,
-  _from,
-  _every,
-  _until,
-  _span,
-  _maybeFrom,
-  previous,
-}) {
-  const dates = [];
-  let nextDate;
-
-  if (_span) { // date span multiple days
-    const inRange = moment(_from).isBetween(_date, _span, DAY, "[]");
-    if (inRange) {
-      const length = Math.round(moment(_span).diff(_date, DAY, true)); // total days span
-      const count = Math.round(moment(_from).diff(_date, DAY, true)); // current days span
-      for (let i = count, j = 0; i <= length && j < numberOfDates; j++, i++) { // get days span
-        nextDate = moment(_date).add(i, DAY);
-        dates.push(nextDate);
-      }
-    };
-  }
-  
-  switch(_every) {
-    case DAY:
-      nextDate = nextDay(_from, _date);
-      break;
-    case WEEK: {
-      nextDate = nextWeek(_date, _from, previous);
-      break;
-    };
-    case WEEKDAY: {
-      nextDate = nextWeekday(_from, previous);
-      break;
-    };
-    case MONTH: {
-      nextDate = nextMonth(_date, _from, previous);
-      break;
-    }
-    case YEAR: {
-      nextDate = nextYear(_date, _from, previous);
-      break;
-    };
-    default: {
-      nextDate = moment(_date);
-      break;
-    }
-  }
-
-
-  const amount = previous ? -1 : 1;
-  for (let i = dates.length; i <= numberOfDates; i++) {
-    // edge cases
-    if (previous) {
-      if (nextDate.isAfter(_from, DAY)) break;
-      if (nextDate.isBefore(_date, DAY)) break;
-    } else {
-      if (!_maybeFrom && nextDate.isBefore(_from, DAY)) break;
-    }
-    if (_until) { // expired date
-      if (nextDate.isAfter(_until, DAY)) break; 
-    }
-    dates.push(nextDate);
-    if (_every === EXACT) break;
-    nextDate = moment(nextDate).add(amount, _every);
-  }
-  return dates;
-}
-
-export default function repeat(date) {
-  let _date = moment(date).startOf(DAY);
-  let _every = null;
-  let _until = null;
-  let _span = null;
-  let _from = moment(date).startOf(DAY);
-  let _maybeFrom = false;
+export default function repeat(startAt, endAt) {
+  const _startAt = moment(startAt);
+  const _endAt = moment(endAt);
+  let _from = moment();
+  let _until;
+  let _recurrence;
 
   const rule = {
-    every(recurrence) {
-      _every = momentUnit(recurrence);
-      return this;
+    from: function (date) {
+      _from = moment(date);
+      return rule;
     },
-    from(date) {
-      if (date) {
-        _from = moment(date).startOf(DAY);
+    every: function (recurrence = '') {
+      _recurrence = recurrence.toLowerCase();
+      return rule;
+    },
+    until: function (until) {
+      if (until) {
+        _until = moment(until);
       }
-      return this;
+      return rule;
     },
-    // prevent FlatList from making non-recurring past events as upcoming
-    maybeFrom(date) {
-      this.from(date);
-      _maybeFrom = true;
-      return this;
-    },
-    until(date) {
-      if (date) {
-        _until = moment(date);
-      }
-      return this;
-    },
-    next(numberOfDates) {
-      return datesFrom({
-        numberOfDates,
-        _date,
-        _every,
-        _from,
-        _until,
-        _span,
-        _maybeFrom
+    next: function () {
+      return next({
+        startAt: _startAt,
+        endAt: _endAt,
+        recurrence: _recurrence,
+        from: _from,
+        until: _until,
       });
     },
-    previous(numberOfDates) {
-      return datesFrom({
-        numberOfDates,
-        _date,
-        _every,
-        _from,
-        _until,
-        _span,
-        previous: true
+    previous: function () {
+      return next({
+        startAt: _startAt,
+        endAt: _endAt,
+        recurrence: _recurrence,
+        from: _from,
+        until: _until,
+        previous: true,
       });
     },
-    nextDate() {
-      return this.next(1)[0];
+    matches: function (date) {
+      return matches({
+        date,
+        startAt: _startAt,
+        endAt: _endAt,
+        recurrence: _recurrence,
+        from: _from,
+        until: _until,
+      });
     },
-    previousDate() {
-      return this.previous(1)[0];
-    },
-    matches(date) {
-      if (_from && moment(date).isBefore(_from, DAY)) return false;
-      if (moment(date).isBefore(_date, DAY)) return false;
-      if (_until) {
-        if (moment(date).isAfter(_until, DAY)) return false;
-      }
-      return match(_date, _every, date, _span, _from);
-    },
-    span(date) {
-      if (date) {
-        _span = moment(date);
-      }
-      return this;
-    },
-    moment() {
-      return moment(_date);
-    },
-    nextSpan() {
-      return nextSpan(_date, _span, _from, _every, _maybeFrom);
-    }
   };
-
   return rule;
 }
 
-function nextSpan(_date, _span, _from, _every, _maybeFrom) {
-  switch(_every) {
-    case EXACT: return nextExactSpan(_date, _span, _from);
-    case DAY: case WEEKDAY: return nextDaySpan(_date, _span, _from);
-    case WEEK: return nextWeekSpan(_date, _span, _from);
-    case MONTH: return nextMonthSpan(_date, _span, _from);
-    case YEAR: return nextYearSpan(_date, _span, _from, _maybeFrom);
-    default: return _span; 
+function next(rule) {
+  switch (rule.recurrence) {
+    case 'daily': {
+      return nextDay(rule);
+    }
+    case 'weekdays': {
+      return nextWeekday(rule);
+    }
+    case 'weekly': {
+    }
+    case 'monthly': {
+    }
+    case 'yearly': {
+    }
+    default:
+      return [rule.startAt, rule.endAt];
   }
 }
 
-function nextYearSpan(_date, _span, _from, _maybeFrom) {
-  let nextDate = null;
-  // To-do
-  return nextDate;
+function getDuration(startAt, endAt) {
+  return moment(endAt).diff(startAt, 'milliseconds', true);
 }
 
-function nextDaySpan(_date, _span, _from) {
-  const length = Math.round(moment(_span).diff(moment(_date), "hour", true));
+function setTime(date, target) {
+  const t = moment(target);
+  const d = moment(date);
 
-  const previousEndMoment = moment(_span);
-	const hr = previousEndMoment.hour();
-	const min = previousEndMoment.minute();
-  const sec = previousEndMoment.second();
-  const nextDate = moment(_from).add(length, "hour").hour(hr).minutes(min).seconds(sec);
+  const h = t.hour();
+  const m = t.minutes();
+  const s = t.seconds();
 
-  return nextDate;
+  return d.hour(h).minute(m).second(s);
 }
 
-function nextExactSpan(_date, _span, _from) {
-  let nextDate;
-  const length = Math.round(moment(_span).diff(moment(_date), DAY, true));
-  const count = Math.round(moment(_from).diff(moment(_date), DAY, true));
-  if (count && count < length - 1) {
-    nextDate = moment(_from).endOf(DAY);
+function nextDay({startAt, endAt, from, previous}) {
+  const start = setTime(from, startAt).add(previous ? -1 : 0, DAY);
+  const end = setTime(
+    start.clone().add(getDuration(startAt, endAt), 'milliseconds'),
+    endAt,
+  );
+
+  return [start.toISOString(), end.toISOString()];
+}
+
+function nextWeekday({startAt, endAt, from}) {
+  const day = moment(from).isoWeekday();
+  if (day > 5) {
+    const monday = moment().isoWeekday(1);
+    const end = monday.clone().add(getDuration(startAt, endAt), 'milliseconds');
+    return [monday, end];
   } else {
-    nextDate = _span;
-  }
-  return nextDate;
-}
-
-function nextWeekSpan(_date, _span, _from) {
-
-  let nextDate;
-  const length = Math.round(moment(_span).diff(moment(_date), DAY, true));
-  const numberOfDaysFromDate = Math.round(moment(_from).diff(moment(_date), DAY, true)) + 1; // inclusive
-  const daysLeft = numberOfDaysFromDate % 7;
-  if (daysLeft && daysLeft < length) {
-    nextDate = nextYear(_span, _from);
-  } else {
-    nextDate = _span;
-  }
-  return nextDate;
-}
-
-function nextMonthSpan(_date, _span, _from) {
-  let nextDate;
-  const startDate = moment(_date).date();
-  const endDate = moment(_span).date();
-  const currentDate = moment(_from).date();
-  const length = Math.round(moment(_span).diff(moment(_date), DAY, true));
-  const left = Math.abs(endDate - currentDate);
-
-  if (currentDate > startDate && left < length) {
-    nextDate = moment(_from).endOf(DAY);
-  } else {
-    nextDate = _span;
-  }
-
-  return nextDate;
-}
-
-function match(_date, _every, date, _span, _from) {
-  if (_span && moment(date).isBetween(_date, _span, null, "[]")) return true; // first date is ongoing
-
-  switch(_every) {
-    case DAY: return true;
-    case WEEKDAY: return matchWeekday(date, _date, _span);
-    case WEEK: return matchWeek(date, _date, _span, _from);
-    case MONTH: return matchMonth(date, _date, _span);
-    case YEAR: return matchYear(date, _date, _span);
-    default: return matchExact(date, _date, _span);
+    return nextDay({startAt, endAt, from});
   }
 }
 
-function matchExact(date, _date) {
-  return moment(date).isSame(_date, DAY);
-}
-
-function matchYear(date, _date) {
-  return ((moment(date).date() === _date.date()) &&
-    (moment(date).month() === _date.month()));
-}
-
-function matchMonth(date, _date) {
-  return moment(date).date() === _date.date();
-}
-
-function matchWeekday(date, _date) {
-  return moment(date).isoWeekday() < 6;
-}
-
-function matchWeek(date, _date, _span, _from) {
-  if (_span) {
-    const spanDays = Math.round(moment(_span).diff(moment(_date), DAY, true));
-    if (spanDays) {
-      const numberOfDaysFromDate = Math.round(moment(date).diff(moment(_date), DAY, true));
-      const daysLeft = numberOfDaysFromDate % 7; // days left for current week to end
-      // Invariant: Event can't repeat until current one has ended
-      // Hence: days left should be less than length of the span
-      if (daysLeft < spanDays) return true;
-    } 
+function matches(rule) {
+  if (!isValid(rule)) {
+    return false;
   }
+  switch (rule.recurrence) {
+    case 'daily': {
+      return true;
+    }
+    case 'weekly': {
+      return matchWeek(rule);
+    }
+    case 'weekdays': {
+      return matchWeekdays(rule);
+    }
+    case 'monthly': {
+      return matchMonth(rule);
+    }
+    case 'yearly': {
+      return matchYear(rule);
+    }
+    default:
+      return moment(rule.date).isBetween(rule.startAt, rule.endAt, DAY, []);
+  }
+}
 
-  const day = moment(_date).isoWeekday();
-  const targetDay = moment(date).isoWeekday();
-  return (targetDay === day);
+function isValid({date, from, startAt, until}) {
+  const _date = moment(date);
+  const _start = moment(startAt);
+  const _from = moment(from);
+  const matchStart = _date.isSameOrAfter(_start, DAY);
+  const matchFrom = _date.isSameOrAfter(_from, DAY);
+  const matchUntil = Boolean(until)
+    ? _date.isSameOrBefore(moment(until))
+    : true;
+
+  return matchFrom && matchStart && matchUntil;
+}
+
+function matchWeekdays({date}) {
+  const startDayOfWeek = 1;
+  const endDayOfWeek = 5;
+  const currentDayOfWeek = moment(date).isoWeekday();
+
+  return currentDayOfWeek >= startDayOfWeek && currentDayOfWeek <= endDayOfWeek;
+}
+
+function matchYear({date, startAt, endAt}) {
+  const start = moment(startAt);
+  const end = moment(endAt);
+  const _date = moment(date);
+
+  const currentMonth = _date.dayOfYear();
+  const startMonth = start.dayOfYear();
+  const endMonth = end.dayOfYear();
+  const length = Math.abs(startMonth - endMonth);
+
+  return currentMonth >= startMonth && currentMonth <= startMonth + length;
+}
+
+function matchMonth({date, startAt, endAt}) {
+  const start = moment(startAt);
+  const end = moment(endAt);
+  const _date = moment(date);
+
+  const currentDate = _date.date();
+  const startDate = start.date();
+  const length = Math.abs(Math.round(end.diff(start, DAY, true)));
+
+  return currentDate >= startDate && currentDate <= startDate + length;
+}
+
+function matchWeek({date, startAt, endAt}) {
+  const currentDayOfWeek = moment(date).isoWeekday();
+  const startDayOfWeek = moment(startAt).isoWeekday();
+  const endDayOfWeek = moment(endAt).isoWeekday();
+  const length = Math.abs(endDayOfWeek - startDayOfWeek);
+
+  return (
+    currentDayOfWeek >= startDayOfWeek &&
+    currentDayOfWeek <= currentDayOfWeek + length
+  );
 }

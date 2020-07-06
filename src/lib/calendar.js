@@ -85,7 +85,7 @@ function process(events, date, previous) {
         .from(date)
         .until(event.until);
       if (recur.matches(date)) {
-        const [startAt, endAt] = previous ? recur.next() : recur.previous();
+        const [startAt, endAt] = previous ? recur.previous() : recur.next();
         const newEvent = update(event, startAt, endAt);
         data.push(newEvent);
         cache[key] = newEvent;
