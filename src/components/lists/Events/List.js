@@ -1,7 +1,7 @@
 import React from 'react';
-import { RefreshControl } from 'react-native';
-import { SectionList } from 'react-navigation';
-import { inject, observer } from 'mobx-react';
+import {RefreshControl} from 'react-native';
+import {SectionList} from 'react-navigation';
+import {inject, observer} from 'mobx-react';
 import uuidv5 from 'uuid/v5';
 import sectionListGetItemLayout from 'sectionlist-get-itemlayout';
 import Header from './Header';
@@ -11,10 +11,10 @@ import Separator from './Separator';
 import SectionHeader from './SectionHeader';
 import SectionFooter from './SectionFooter';
 import Item from './Item';
-import { isPastDate, tick } from 'lib/time';
-import { eventsChanged } from 'lib/utils';
-import { EventSectionGenerator } from 'lib/calendar';
-import { events } from 'lib/constants';
+import {isPastDate, tick} from 'lib/time';
+import {eventsChanged} from 'lib/utils';
+import {EventSectionGenerator} from 'lib/calendar';
+import {events} from 'lib/constants';
 
 const {
   ITEM_HEIGHT,
@@ -26,12 +26,11 @@ const {
 } = events;
 
 class List extends React.Component {
-
   static defaultProps = {
     loading: false,
     events: [],
     onRefresh: () => null,
-    finite: false 
+    finite: false,
   };
 
   state = {
@@ -40,7 +39,7 @@ class List extends React.Component {
     loadingMore: false,
     loadingPrev: false,
     afterDate: null,
-    beforeDate: null
+    beforeDate: null,
   };
 
   constructor(props) {
@@ -57,70 +56,73 @@ class List extends React.Component {
     );
   };
 
-  UNSAFE_componentWillReceiveProps = (nextProps) => this._processEvents(nextProps.events)
+  UNSAFE_componentWillReceiveProps = (nextProps) =>
+    this._processEvents(nextProps.events);
 
   componentDidMount = () => this._processEvents(this.props.events);
 
-  _keyExtractor = (item) => item.id;
+  _keyExtractor = (item) => item.id + item.startAt;
 
-  _renderHeader = () => (
-    (this.state.sections.length && this.props.isAuth) ?
-    <Header
-      hide={this.props.error || !this.state.events.length}
-      beforeDate={this.state.beforeDate}
-      loading={this.state.loadingPrev}
-      onPress={this._onLoadPrevious}
-    />
-    : null
-  );
-  
-  _renderFooter = () => (
-    this.state.sections.length ?
-    <Footer
-      hide={(!this.state.afterDate && this.state.sections.length === 1)}
-      hasMore={this.state.afterDate}
-      onPress={this._onEndReached}
-      loading={this.state.loadingMore}
-    />
-    : null
-  );
+  _renderHeader = () =>
+    this.state.sections.length && this.props.isAuth ? (
+      <Header
+        hide={this.props.error || !this.state.events.length}
+        beforeDate={this.state.beforeDate}
+        loading={this.state.loadingPrev}
+        onPress={this._onLoadPrevious}
+      />
+    ) : null;
 
-  _renderEmptyList = () => <Empty
-    error={this.props.error && !this.state.events.length}
-    loading={this.props.loading}
-    onRefresh={this.props.onRefresh}
-    isAuth={this.props.isAuth}
-  />;
+  _renderFooter = () =>
+    this.state.sections.length ? (
+      <Footer
+        hide={!this.state.afterDate && this.state.sections.length === 1}
+        hasMore={this.state.afterDate}
+        onPress={this._onEndReached}
+        loading={this.state.loadingMore}
+      />
+    ) : null;
+
+  _renderEmptyList = () => (
+    <Empty
+      error={this.props.error && !this.state.events.length}
+      loading={this.props.loading}
+      onRefresh={this.props.onRefresh}
+      isAuth={this.props.isAuth}
+    />
+  );
 
   _renderSeparator = () => <Separator />;
 
-  _renderSectionHeader = ({ section }) => (
-    <SectionHeader onPress={this._onPressSectionHeader} section={section} />);
+  _renderSectionHeader = ({section}) => (
+    <SectionHeader onPress={this._onPressSectionHeader} section={section} />
+  );
 
-  _renderSectionFooter = ({ section }) => <SectionFooter section={section} />;
+  _renderSectionFooter = ({section}) => <SectionFooter section={section} />;
 
-  _renderItem = ({ item, section }) => {
-      const {
-        __typename,
-        id,
-        title,
-        category,
-        cancelledDates,
-        startAt,
-        endAt,
-        until,
-        updatedAt,
-        recurrence,
-        banner,
-        venue,
-        schedule,
-        allDay,
-        isBookmarked,
-        isOwner,
-        isOffline,
-      } = item;
+  _renderItem = ({item, section}) => {
+    const {
+      __typename,
+      id,
+      title,
+      category,
+      cancelledDates,
+      startAt,
+      endAt,
+      until,
+      updatedAt,
+      recurrence,
+      banner,
+      venue,
+      schedule,
+      allDay,
+      isBookmarked,
+      isOwner,
+      isOffline,
+    } = item;
 
-      return (<Item
+    return (
+      <Item
         id={id}
         title={title}
         startAt={startAt}
@@ -148,67 +150,70 @@ class List extends React.Component {
     );
   };
 
-  _onPressItem = (id, from) => this.props.navigation.navigate('EventDetails', { id, from });
+  _onPressItem = (id, from) =>
+    this.props.navigation.navigate('EventDetails', {id, from});
 
-  _navigateToBanner = (id) => this.props.navigation.navigate('Banner', { id });
+  _navigateToBanner = (id) => this.props.navigation.navigate('Banner', {id});
 
-  _navigateToCalendarEvent = (id) => this.props.navigation.navigate('CalendarEvent', { id });
+  _navigateToCalendarEvent = (id) =>
+    this.props.navigation.navigate('CalendarEvent', {id});
 
   _onPressSectionHeader = (targetDate) => {
     let id = uuidv5(this.props.stores.appState.userId, uuidv5.DNS);
     if (this.props.isOwner && this.props.id) {
       id = this.props.id;
-    } 
+    }
     if (!isPastDate(targetDate, true)) {
       this.props.navigation.navigate('NewEvent', {
         targetDate,
-        eventScheduleId : id
+        eventScheduleId: id,
       });
     }
   };
-  
+
   loadPreviousEvents = () => {
     if (this.state.beforeDate) {
-      this.setState({ loadingPrev: true });
+      this.setState({loadingPrev: true});
       setTimeout(() => {
         const result = this.state.prevIterator.next(this.state.beforeDate);
         if (!result.done) {
-          const { nextToken: beforeDate, items} = result.value;
+          const {nextToken: beforeDate, items} = result.value;
           // const sections = items.concat(this.state.sections);
           const sections = items;
           this.setState({
             sections,
             beforeDate,
-            loadingPrev: false
+            loadingPrev: false,
           });
         } else {
           this.setState({
             loadingPrev: false,
-            beforeDate: null
+            beforeDate: null,
           });
         }
       }, 0);
     }
   };
 
-  loadMoreEvents = () => {  
+  loadMoreEvents = () => {
     if (this.state.afterDate) {
-      this.setState({ loadingMore: true });
+      this.setState({loadingMore: true});
       setTimeout(() => {
         const result = this.state.nextIterator.next(this.state.afterDate);
         if (!result.done) {
-        const { items, nextToken: afterDate } = result.value;
-        const length = this.state.sections.length;
-        const sections = length < 20 ? this.state.sections.concat(items) : items;
+          const {items, nextToken: afterDate} = result.value;
+          const length = this.state.sections.length;
+          const sections =
+            length < 20 ? this.state.sections.concat(items) : items;
           this.setState({
             sections,
             afterDate,
-            loadingMore: false
+            loadingMore: false,
           });
         } else {
           this.setState({
             loadingMore: false,
-            afterDate: null
+            afterDate: null,
           });
         }
       }, 0);
@@ -217,11 +222,19 @@ class List extends React.Component {
 
   _processEvents(events, forceUpdate) {
     if (forceUpdate || eventsChanged(events, this.state.events)) {
-      const nextIterator = EventSectionGenerator(events, false, this.props.finite);
-      const prevIterator = EventSectionGenerator(events, true, this.props.finite);
-      let result =  nextIterator.next();
+      const nextIterator = EventSectionGenerator(
+        events,
+        false,
+        this.props.finite,
+      );
+      const prevIterator = EventSectionGenerator(
+        events,
+        true,
+        this.props.finite,
+      );
+      let result = nextIterator.next();
       if (!result.done) {
-        const { items, nextToken } = result.value;
+        const {items, nextToken} = result.value;
         this.setState({
           nextIterator,
           prevIterator,
@@ -233,12 +246,12 @@ class List extends React.Component {
       }
     }
   }
-  
+
   _onRefresh = () => {
     this._processEvents(this.state.events, true);
     this.props.fetchMore && this.props.fetchMore();
   };
-  
+
   _onEndReached = () => {
     this.loadMoreEvents(this.state.events);
   };
@@ -248,7 +261,8 @@ class List extends React.Component {
   };
 
   _onScroll = (event) => {
-    this.props.handleScroll && this.props.handleScroll(event.nativeEvent.contentOffset.y)
+    this.props.handleScroll &&
+      this.props.handleScroll(event.nativeEvent.contentOffset.y);
   };
 
   scrollToTop = () => {
@@ -256,7 +270,7 @@ class List extends React.Component {
       this.listRef.current.scrollToLocation({
         itemIndex: 0,
         sectionIndex: 0,
-        viewPosition: SECTION_HEADER_HEIGHT
+        viewPosition: SECTION_HEADER_HEIGHT,
       });
     }
   };
@@ -267,12 +281,12 @@ class List extends React.Component {
     getSectionHeaderHeight: () => SECTION_HEADER_HEIGHT,
     getSectionFooterHeight: () => SECTION_FOOTER_HEIGHT,
     listHeaderHeight: HEADER_HEIGHT,
-    listFooterHeight: FOOTER_HEIGHT
+    listFooterHeight: FOOTER_HEIGHT,
   });
 
   render() {
-    const { stores, loading } = this.props;
-    const { sections } = this.state;
+    const {stores, loading} = this.props;
+    const {sections} = this.state;
 
     return (
       <SectionList
@@ -309,4 +323,4 @@ class List extends React.Component {
   }
 }
 
-export default inject("stores")(observer(List));
+export default inject('stores')(observer(List));
