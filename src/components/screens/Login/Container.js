@@ -115,7 +115,7 @@ class Container extends React.Component {
           this.props.stores.appState.setState(user.state);
           this.props.stores.appState.setUserId(email);
           this.props.stores.settingsStore.setUserPreference(user.preference);
-          crashlytics().setUserEmail(email);
+          crashlytics().setAttribute('email', email);
           logger.log('sign-in');
           this.props.navigation.navigate('App');
         } catch (error) {
