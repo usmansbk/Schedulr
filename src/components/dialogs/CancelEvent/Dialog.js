@@ -3,7 +3,7 @@ import {View} from 'react-native';
 import {inject, observer} from 'mobx-react';
 import {Text} from 'react-native-paper';
 import {I18n} from 'aws-amplify';
-import {SINGLE_EVENT, ALL_EVENTS} from 'lib/constants';
+import {SINGLE_EVENT, ALL_EVENTS, ONE_TIME_EVENT} from 'lib/constants';
 import RBSheet from 'react-native-raw-bottom-sheet';
 import Button from 'components/common/Button';
 import RadioButton from 'components/common/RadioButton';
@@ -57,7 +57,7 @@ class CancelEvent extends React.Component {
   _toggleSingle = () => this.setState({checked: SINGLE_EVENT});
 
   render() {
-    const {date, stores, cancelledDates} = this.props;
+    const {date, stores, cancelledDates, recurrence} = this.props;
     const {checked} = this.state;
     const styles = stores.appStyles.sheet;
     const isCancelled = cancelledDates && cancelledDates.includes(date);
@@ -75,7 +75,7 @@ class CancelEvent extends React.Component {
             <Text style={styles.title}>{I18n.get('DIALOG_cancelEvent')}</Text>
           </View>
           <View style={{flex: 1, padding: 40}}>
-            {!isCancelled && (
+            {!(isCancelled || recurrence === ONE_TIME_EVENT) && (
               <RadioButton
                 label={I18n.get('DIALOG_onlyThisEvent')}
                 checked={checked === SINGLE_EVENT}

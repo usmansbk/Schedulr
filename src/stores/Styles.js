@@ -50,7 +50,7 @@ export default class AppStyles {
       },
       message: {
         textAlign: 'center',
-        fontSize: 16,
+        fontSize: 20,
         fontWeight: 'bold',
         color: colors.light_gray_3,
       },

@@ -27,7 +27,7 @@ class Confirm extends React.Component {
       confirmText=I18n.get("BUTTON_confirm"),
       stores,
       alert,
-      height=300
+      height=350
     } = this.props;
     const styles = stores.appStyles.sheet;
     return (
