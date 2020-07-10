@@ -85,6 +85,7 @@ function next(rule) {
       return nextWeekday(rule);
     }
     case 'weekly': {
+      return nextWeek(rule);
     }
     case 'monthly': {
     }
@@ -120,14 +121,25 @@ function nextDay({startAt, endAt, from, previous}) {
   return [start.toISOString(), end.toISOString()];
 }
 
-function nextWeekday({startAt, endAt, from}) {
+function nextWeek({startAt, endAt, from, previous}) {
+  const start = moment(startAt);
+  const end = moment(endAt);
+  const _from = moment(from);
+
+  const totalDaysFromNow = Math.abs(Math.round(_from.diff(start, DAY, true)));
+  const weekCount = totalDaysFromNow - (totalDaysFromNow % 7);
+
+  return [startAt, endAt];
+}
+
+function nextWeekday({startAt, endAt, from, previous}) {
   const day = moment(from).isoWeekday();
   if (day > 5) {
     const monday = moment().isoWeekday(1);
     const end = monday.clone().add(getDuration(startAt, endAt), 'milliseconds');
     return [monday, end];
   } else {
-    return nextDay({startAt, endAt, from});
+    return nextDay({startAt, endAt, from, previous});
   }
 }
 
