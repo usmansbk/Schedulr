@@ -2862,10 +2862,10 @@
   resolved "https://registry.yarnpkg.com/@react-native-community/masked-view/-/masked-view-0.1.10.tgz#5dda643e19e587793bc2034dd9bf7398ad43d401"
   integrity sha512-rk4sWFsmtOw8oyx8SD3KSvawwaK7gRBSEIy2TAwURyGt+3TizssXP1r8nx3zY+R7v2vYYHXZ+k2/GULAT/bcaQ==
 
-"@react-native-community/netinfo@4.7.0":
-  version "4.7.0"
-  resolved "https://registry.yarnpkg.com/@react-native-community/netinfo/-/netinfo-4.7.0.tgz#7482d36836cac69d0a0ae25581f65bc472639930"
-  integrity sha512-a/sDB+AsLEUNmhAUlAaTYeXKyQdFGBUfatqKkX5jluBo2CB3OAuTHfm7rSjcaLB9EmG5iSq3fOTpync2E7EYTA==
+"@react-native-community/netinfo@5.9.4":
+  version "5.9.4"
+  resolved "https://registry.yarnpkg.com/@react-native-community/netinfo/-/netinfo-5.9.4.tgz#a05a9403f8ee09c7d7f7c2dda850b79cac376691"
+  integrity sha512-mb664NOqPvyUZ4TznzdYEfdS3OhSXWGbZprgsDZn4THw2X/4wcBFcBUeWuMzeQ56KhY0rm/YBBlZWHrSf3C/Aw==
 
 "@react-native-community/push-notification-ios@^1.2.2":
   version "1.3.0"
@@ -2913,10 +2913,10 @@
     hoist-non-react-statics "^3.3.2"
     react-native-safe-area-view "^0.14.9"
 
-"@redux-offline/redux-offline@2.5.2-native.0":
-  version "2.5.2-native.0"
-  resolved "https://registry.yarnpkg.com/@redux-offline/redux-offline/-/redux-offline-2.5.2-native.0.tgz#e8c3c65038d20df13389a88eb6f4de4248c59cf4"
-  integrity sha512-ZRH1E0oz9VAnfBZJsyH8O2D3tjQOd0Yz/piPmRsbE1wuoUb+eVM9SZNQetIdJvqmiNs1n3VDfcEeADEbT2dhyg==
+"@redux-offline/redux-offline@2.5.2-native.3":
+  version "2.5.2-native.3"
+  resolved "https://registry.yarnpkg.com/@redux-offline/redux-offline/-/redux-offline-2.5.2-native.3.tgz#f444484ab8c7dad7533d0585a67cb4325f1d959f"
+  integrity sha512-xo1M4wFJDJjANn9w6faru0/8rerd28vQpbNTbEe7DX57RyRqSGsDilb0temH/kAg3GheQTlO59ipRum2bcmXvw==
   dependencies:
     "@babel/runtime" "^7.5.5"
     redux-persist "^4.6.0"
@@ -3700,10 +3700,10 @@ aws-appsync-auth-link@^2.0.2:
     aws-sdk "^2.518.0"
     debug "2.6.9"
 
-aws-appsync-react@^3.0.4:
-  version "3.0.4"
-  resolved "https://registry.yarnpkg.com/aws-appsync-react/-/aws-appsync-react-3.0.4.tgz#f4ea15406a0d1d7ccf197bad27228c606a2fcda8"
-  integrity sha512-kC10nUCsrsLqCzPL/98FrZLYu4SYeSi29hB0sZ8bzFHq4PjemfXw38KhCc05G65GJpReHHPxW9NguVESZU3ntg==
+aws-appsync-react@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/aws-appsync-react/-/aws-appsync-react-4.0.0.tgz#7e9bfeaf40c916b3406d4a7132bf37fb19823cfa"
+  integrity sha512-y6C351aWXTR+Bh7U1mtAQz/+CMheQCsRYTXnvPjbmCWTMhnnqOfiFNVBsbd9/b/124FbY3E8VzqlXVWVOt11AA==
   dependencies:
     prop-types "^15.6.0"
 
@@ -3720,12 +3720,12 @@ aws-appsync-subscription-link@^2.2.0:
     debug "2.6.9"
     url "^0.11.0"
 
-aws-appsync@^3.0.4:
-  version "3.0.4"
-  resolved "https://registry.yarnpkg.com/aws-appsync/-/aws-appsync-3.0.4.tgz#af41e50eeaf63f7136440f90136e6b7eea3f9ab0"
-  integrity sha512-tKWoo48t6tNe0qWW7RjIDnVpsFUWB9T/S3UEhHFJBowS8oEg5b+mrN6l0QYFUkNLGVcFA5wwRTvTaxOkPpJ5sQ==
+aws-appsync@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/aws-appsync/-/aws-appsync-4.0.0.tgz#754eedbc49b61640220293d479643e1e1aa82e76"
+  integrity sha512-gK9slaZaqAJEX7Of6zrGRevRi4KeriXMkmt4I/tMP5sV5x6f0J/l7rX/mJ3gNe/P+IWjKnNSp9d89caFXz/AhA==
   dependencies:
-    "@redux-offline/redux-offline" "2.5.2-native.0"
+    "@redux-offline/redux-offline" "2.5.2-native.3"
     apollo-cache-inmemory "1.3.12"
     apollo-client "2.4.6"
     apollo-link "1.2.3"
