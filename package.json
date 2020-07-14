@@ -31,7 +31,7 @@
     "aws-appsync-react": "^4.0.0",
     "btoa": "^1.2.1",
     "emoji-regex": "^9.0.0",
-    "formik": "^2.1.4",
+    "formik": "^2.1.5",
     "graphql-tag": "^2.10.4",
     "lodash.debounce": "^4.0.8",
     "lodash.isequal": "^4.5.0",
@@ -80,9 +80,9 @@
     "yup": "^0.29.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.10.4",
-    "@babel/plugin-proposal-decorators": "^7.10.4",
-    "@babel/runtime": "^7.10.4",
+    "@babel/core": "^7.10.5",
+    "@babel/plugin-proposal-decorators": "^7.10.5",
+    "@babel/runtime": "^7.10.5",
     "@react-native-community/eslint-config": "^2.0.0",
     "babel-jest": "^26.1.0",
     "babel-plugin-module-resolver": "^4.0.0",
