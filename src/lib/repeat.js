@@ -137,7 +137,7 @@ function nextWeekday({startAt, endAt, from, previous}) {
   if (day > 5) {
     const monday = moment().isoWeekday(1);
     const end = monday.clone().add(getDuration(startAt, endAt), 'milliseconds');
-    return [monday, end];
+    return [monday.toISOString(), end.toISOString()];
   } else {
     return nextDay({startAt, endAt, from, previous});
   }
