@@ -26,7 +26,7 @@ function extractDates(events, previous) {
       .from(moment().add(direction, 'day'))
       .until(e.until);
 
-    const [startAt] = recur.next();
+    const [startAt] = previous ? recur.previous() : recur.next();
     dates.push(moment(startAt).startOf('day').toISOString());
   });
   return dates;
