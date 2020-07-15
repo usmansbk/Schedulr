@@ -88,8 +88,10 @@ function next(rule) {
       return nextWeek(rule);
     }
     case 'monthly': {
+      return [];
     }
     case 'yearly': {
+      return [];
     }
     default:
       return [rule.startAt, rule.endAt];
@@ -121,15 +123,23 @@ function nextDay({startAt, endAt, from, previous}) {
   return [start.toISOString(), end.toISOString()];
 }
 
-function nextWeek({startAt, endAt, from, previous}) {
+function nextWeek({startAt, endAt, from}) {
   const start = moment(startAt);
-  const end = moment(endAt);
   const _from = moment(from);
+  const days = Math.round(Math.abs(_from.diff(start, 'day', true)));
+  const daysLeft = days % 7;
+  let _startAt, _endAt;
 
-  const totalDaysFromNow = Math.abs(Math.round(_from.diff(start, DAY, true)));
-  const weekCount = totalDaysFromNow - (totalDaysFromNow % 7);
+  if (!daysLeft) {
+    _startAt = _from.toISOString();
+  } else {
+    const dayOfWeek = start.isoWeekday();
+    _startAt = _from.clone().isoWeekday(dayOfWeek);
+  }
 
-  return [startAt, endAt];
+  _startAt = setTime(_startAt, startAt);
+  _endAt = _startAt.clone().add(getDuration(startAt, endAt), 'millisecond');
+  return [_startAt.toISOString(), _endAt.toISOString()];
 }
 
 function nextWeekday({startAt, endAt, from, previous}) {
@@ -222,6 +232,6 @@ function matchWeek({date, startAt, endAt}) {
 
   return (
     currentDayOfWeek >= startDayOfWeek &&
-    currentDayOfWeek <= currentDayOfWeek + length
+    currentDayOfWeek <= startDayOfWeek + length
   );
 }
