@@ -72,7 +72,7 @@ function next(rule) {
       return nextWeek(rule);
     }
     case 'monthly': {
-      return [];
+      return nextMonth(rule);
     }
     case 'yearly': {
       return [];
@@ -97,14 +97,9 @@ function setTime(date, target) {
   return d.hour(h).minute(m).second(s);
 }
 
-function nextDay({startAt, endAt, from, previous}) {
-  const start = setTime(from, startAt).add(previous ? -1 : 0, DAY);
-  const end = setTime(
-    start.clone().add(getDuration(startAt, endAt), 'milliseconds'),
-    endAt,
-  );
-
-  return [start.toISOString(), end.toISOString()];
+function nextMonth({startAt, endAt, from}) {
+  const start = moment(startAt);
+  const _from = moment(from);
 }
 
 function nextWeek({startAt, endAt, from}) {
@@ -129,12 +124,25 @@ function nextWeek({startAt, endAt, from}) {
 function nextWeekday({startAt, endAt, from, previous}) {
   const day = moment(from).isoWeekday();
   if (day > 5) {
-    const monday = moment().isoWeekday(1);
-    const end = monday.clone().add(getDuration(startAt, endAt), 'milliseconds');
-    return [monday.toISOString(), end.toISOString()];
+    // if it's weekends [sat, sun]
+    const start = previous
+      ? moment(from).isoWeekday(5) // friday
+      : moment(from).isoWeekday(1); // monday
+    const end = start.clone().add(getDuration(startAt, endAt), 'milliseconds');
+    return [start.toISOString(), end.toISOString()];
   } else {
     return nextDay({startAt, endAt, from, previous});
   }
+}
+
+function nextDay({startAt, endAt, from, previous}) {
+  const start = setTime(from, startAt).add(previous ? -1 : 0, DAY);
+  const end = setTime(
+    start.clone().add(getDuration(startAt, endAt), 'milliseconds'),
+    endAt,
+  );
+
+  return [start.toISOString(), end.toISOString()];
 }
 
 function matches(rule) {
