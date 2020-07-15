@@ -27,7 +27,7 @@ function extractDates(events, previous) {
       .until(e.until);
 
     const [startAt] = recur.next();
-    dates.push(startAt);
+    dates.push(moment(startAt).startOf('day').toISOString());
   });
   return dates;
 }
