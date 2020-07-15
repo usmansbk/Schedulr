@@ -5,22 +5,6 @@ const WEEK = 'week';
 const MONTH = 'month';
 const YEAR = 'year';
 
-function getUnit(recurrence) {
-  switch (recurrence) {
-    case 'daily':
-      return DAY;
-    case 'weekly':
-    case 'weekdays':
-      return WEEK;
-    case 'monthly':
-      return MONTH;
-    case 'yearly':
-      return YEAR;
-    default:
-      return null;
-  }
-}
-
 export default function repeat(startAt, endAt) {
   const _startAt = moment(startAt);
   const _endAt = moment(endAt);
@@ -126,7 +110,7 @@ function nextDay({startAt, endAt, from, previous}) {
 function nextWeek({startAt, endAt, from}) {
   const start = moment(startAt);
   const _from = moment(from);
-  const days = Math.round(Math.abs(_from.diff(start, 'day', true)));
+  const days = Math.round(Math.abs(_from.diff(start, DAY, true)));
   const daysLeft = days % 7;
   let _startAt, _endAt;
 
