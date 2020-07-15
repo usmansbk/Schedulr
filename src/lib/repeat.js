@@ -75,7 +75,7 @@ function next(rule) {
       return nextMonth(rule);
     }
     case 'yearly': {
-      return [];
+      return nextYear(rule);
     }
     default:
       return [rule.startAt, rule.endAt];
@@ -97,12 +97,35 @@ function setTime(date, target) {
   return d.hour(h).minute(m).second(s);
 }
 
-function nextMonth({startAt, endAt, from}) {
-  const start = moment(startAt);
-  const _from = moment(from);
+function nextYear({startAt, endAt}) {
+  return [startAt, endAt];
 }
 
-function nextWeek({startAt, endAt, from}) {
+function nextMonth({startAt, endAt, from, previous}) {
+  const start = moment(startAt);
+  const _from = moment(from);
+  const startDate = start.date();
+  const currentDate = _from.date();
+  let _startAt, _endAt;
+
+  if (currentDate === startDate) {
+    _startAt = previous ? _from.clone().subtract(1, MONTH) : _from;
+  } else {
+    const end = moment(endAt);
+    _startAt = _from.clone().date(startDate);
+    const length = Math.round(Math.abs(end.diff(start, DAY, true)));
+    const daysFromStart = Math.round(Math.abs(_from.diff(_startAt, DAY, true)));
+
+    if (daysFromStart > length) {
+      _startAt = _startAt.clone().add(previous ? -1 : 1, MONTH);
+    }
+  }
+  _startAt = setTime(_startAt, startAt);
+  _endAt = _startAt.clone().add(getDuration(startAt, endAt), 'millisecond');
+  return [_startAt.toISOString(), _endAt.toISOString()];
+}
+
+function nextWeek({startAt, endAt, from, previous}) {
   const start = moment(startAt);
   const _from = moment(from);
   const days = Math.round(Math.abs(_from.diff(start, DAY, true)));
@@ -114,6 +137,10 @@ function nextWeek({startAt, endAt, from}) {
   } else {
     const dayOfWeek = start.isoWeekday();
     _startAt = _from.clone().isoWeekday(dayOfWeek);
+  }
+
+  if (previous) {
+    _startAt = _startAt.clone().subtract(1, WEEK);
   }
 
   _startAt = setTime(_startAt, startAt);
