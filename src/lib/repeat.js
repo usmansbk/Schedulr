@@ -115,7 +115,7 @@ function nextWeek({startAt, endAt, from}) {
   let _startAt, _endAt;
 
   if (!daysLeft) {
-    _startAt = _from.toISOString();
+    _startAt = _from;
   } else {
     const dayOfWeek = start.isoWeekday();
     _startAt = _from.clone().isoWeekday(dayOfWeek);
