@@ -2,17 +2,37 @@ import React from 'react';
 import NetInfo from '@react-native-community/netinfo';
 import OneSignal from 'react-native-onesignal';
 import PushNotifications from 'react-native-push-notification';
-import { Linking, Platform, PushNotificationIOS, InteractionManager } from 'react-native';
+import {
+  Linking,
+  Platform,
+  PushNotificationIOS,
+  InteractionManager,
+} from 'react-native';
 import changeNavigationBarColor from 'react-native-navigation-bar-color';
-import { inject, observer } from 'mobx-react';
-import { I18n } from 'aws-amplify';
+import {inject, observer} from 'mobx-react';
+import {I18n} from 'aws-amplify';
 import NavigationService from 'config/navigation';
-import { processLocalNotification, processRemoteNotification } from 'helpers/notification';
+import {
+  processLocalNotification,
+  processRemoteNotification,
+} from 'helpers/notification';
 import Events from './Hoc';
-import { updateUserPushToken } from 'helpers/updatePreference';
+import {updateUserPushToken} from 'helpers/updatePreference';
 import logger from 'config/logger';
 import snackbar from 'helpers/snackbar';
 
+PushNotifications.configure({
+  onNotification: (notification) => {
+    const {data, tag} = notification;
+    if (tag === 'local') {
+      processLocalNotification(data);
+    }
+    if (Platform.OS === 'ios') {
+      notification.finish(PushNotificationIOS.FetchResult.NoData);
+    }
+  },
+  requestPermissions: true,
+});
 /**
  * This component handles Local Notifications
  */
@@ -20,7 +40,6 @@ class Container extends React.Component {
   constructor(props) {
     super(props);
     this._handleDeeplink();
-    this._handleLocalNotifications();
     this._handlePushNotifications();
   }
 
@@ -29,49 +48,36 @@ class Container extends React.Component {
     OneSignal.addEventListener('received', this.onReceived);
     OneSignal.addEventListener('opened', this.onOpened);
   };
-  
+
   onOpened = processRemoteNotification;
 
   onReceived = (result) => {
     InteractionManager.runAfterInteractions(() => {
-      const { payload: { additionalData } } = result;
+      const {
+        payload: {additionalData},
+      } = result;
       this.props.stores.notificationsStore.fetchNotifications();
-      if (additionalData && (additionalData.type === 'Event')) {
+      if (additionalData && additionalData.type === 'Event') {
         this.props.stores.appState.deltaSync();
       }
     });
   };
-  
-  _handleLocalNotifications = () => {
-    PushNotifications.configure({
-      onNotification: notification => {
-        const { data, tag } = notification;
-        if (tag === 'local') {
-          processLocalNotification(data);
-        }
-        if (Platform.OS === 'ios') {
-          notification.finish(PushNotificationIOS.FetchResult.NoData);
-        }
-      },
-      requestPermissions: true
-    });
-  };
-  
+
   _handleNavBarColor = async () => {
-    const { stores } = this.props;
+    const {stores} = this.props;
     const colors = stores.themeStore.colors;
 
     try {
       const isDark = stores.settingsStore.dark;
       const navColor = isDark ? colors.light_gray_2 : colors.bg;
-      await changeNavigationBarColor(navColor, !isDark);
+      changeNavigationBarColor(navColor, !isDark);
     } catch (error) {
       snackbar(I18n.get('ERROR_failedToApplyTheme'), true);
       logger.logError(error);
     }
   };
 
-  handleOpenURL = event => NavigationService.deepLinkNavigate(event.url);
+  handleOpenURL = (event) => NavigationService.deepLinkNavigate(event.url);
 
   _handleDeeplink = async () => {
     try {
@@ -86,10 +92,10 @@ class Container extends React.Component {
   };
 
   _initNetInfo = () => {
-    const { stores } = this.props;
+    const {stores} = this.props;
     Linking.addEventListener('url', this.handleOpenURL);
-    
-    this.unsubscribe = NetInfo.addEventListener(state => {
+
+    this.unsubscribe = NetInfo.addEventListener((state) => {
       stores.appState.toggleConnection(state.isConnected);
       if (state.isConnected) {
         stores.appState.removeKeysFromStorage();
@@ -115,22 +121,25 @@ class Container extends React.Component {
   };
 
   _deltaSync = () => this.props.stores.appState.deltaSync();
-  _fetchNotifications = () => this.props.stores.notificationsStore.fetchNotifications();
+  _fetchNotifications = () =>
+    this.props.stores.notificationsStore.fetchNotifications();
 
   render() {
-    const { stores } = this.props;
-    return <Events
-      id={stores.appState.userId}
-      mutedEvents={stores.appState.mutedEvents}
-      allowedEvents={stores.appState.allowedEvents}
-      isConnected={stores.appState.isConnected}
-      fetchingUpdates={stores.appState.loading}
-      deltaSync={this._deltaSync}
-      fetchNotifications={this._fetchNotifications}
-      calendarSync={stores.calendar.sync}
-      calendarEvents={stores.calendar.transform}
-    />
+    const {stores} = this.props;
+    return (
+      <Events
+        id={stores.appState.userId}
+        mutedEvents={stores.appState.mutedEvents}
+        allowedEvents={stores.appState.allowedEvents}
+        isConnected={stores.appState.isConnected}
+        fetchingUpdates={stores.appState.loading}
+        deltaSync={this._deltaSync}
+        fetchNotifications={this._fetchNotifications}
+        calendarSync={stores.calendar.sync}
+        calendarEvents={stores.calendar.transform}
+      />
+    );
   }
 }
 
-export default inject("stores")(observer(Container));
+export default inject('stores')(observer(Container));

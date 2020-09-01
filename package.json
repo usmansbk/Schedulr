@@ -61,7 +61,7 @@
     "react-native-onesignal": "^3.9.1",
     "react-native-open-maps": "^0.3.5",
     "react-native-paper": "^4.1.0",
-    "react-native-push-notification": "^3.5.2",
+    "react-native-push-notification": "^5.1.0",
     "react-native-raw-bottom-sheet": "^2.2.0",
     "react-native-reanimated": "^1.13.0",
     "react-native-safe-area-context": "^3.1.7",
