@@ -18,14 +18,16 @@ class Fab extends React.Component {
   _onPress = () => this.props.onPress();
 
   render() {
-    const {label, small, stores, secondary, disabled} = this.props;
+    const {label, small, stores, secondary, disabled, danger} = this.props;
     return (
       <FAB
         label={label}
         onPress={this._onPress}
         theme={{
           colors: {
-            accent: stores.theme.colors.primary_dark,
+            accent: danger
+              ? stores.theme.colors.light_red
+              : stores.theme.colors.primary_dark,
           },
         }}
         style={secondary ? styles.secondary : styles.fab}
