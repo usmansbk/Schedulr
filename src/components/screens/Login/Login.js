@@ -12,10 +12,8 @@ export default inject('stores')(
   observer((props) => (
     <View style={props.stores.appStyles.login.container}>
       <StatusBar
-        backgroundColor={props.stores.settingsStore.dark ? 'black' : 'white'}
-        barStyle={
-          props.stores.settingsStore.dark ? 'light-content' : 'dark-content'
-        }
+        backgroundColor={props.stores.settings.dark ? 'black' : 'white'}
+        barStyle={props.stores.settings.dark ? 'light-content' : 'dark-content'}
       />
       <Logo />
       <Headline

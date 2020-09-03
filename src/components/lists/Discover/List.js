@@ -1,53 +1,52 @@
 import React, {Component} from 'react';
-import { RefreshControl } from 'react-native';
-import { FlatList } from 'react-navigation';
-import { inject, observer } from 'mobx-react';
+import {RefreshControl} from 'react-native';
+import {FlatList} from 'react-navigation';
+import {inject, observer} from 'mobx-react';
 import Empty from './Empty';
 import Header from './Header';
 import EventItem from './Event';
 import Separator from 'components/lists/Bookmarks/Separator';
 import Footer from 'components/lists/Bookmarks/Footer';
-import {
-  getHumanMonth
-} from 'lib/time';
-import { discover } from 'lib/constants';
+import {getHumanMonth} from 'lib/time';
+import {discover} from 'lib/constants';
 import getImageUrl from 'helpers/getImageUrl';
 
-const { ITEM_HEIGHT, SEPARATOR_HEIGHT, OFFSET } = discover;
+const {ITEM_HEIGHT, SEPARATOR_HEIGHT, OFFSET} = discover;
 
-class List extends Component{
+class List extends Component {
   static defaultProps = {
     data: [],
     loading: false,
     error: false,
-    onRefresh: () => null
+    onRefresh: () => null,
   };
 
-  _onPressItem = (id) => this.props.navigation.navigate('EventDetails', { id });
-  _navigateToBanner = (id) => this.props.navigation.navigate('Banner', { id });
-  _navigateToComments = (id, title, date) => this.props.navigation.navigate('Comments', { id, title, date });
+  _onPressItem = (id) => this.props.navigation.navigate('EventDetails', {id});
+  _navigateToBanner = (id) => this.props.navigation.navigate('Banner', {id});
+  _navigateToComments = (id, title, date) =>
+    this.props.navigation.navigate('Comments', {id, title, date});
 
   _getItemLayout = (_, index) => {
     let length = ITEM_HEIGHT;
-    return (
-      {
-        length,
-        offset: ITEM_HEIGHT * index + SEPARATOR_HEIGHT,
-        index
-      }
-    );
+    return {
+      length,
+      offset: ITEM_HEIGHT * index + SEPARATOR_HEIGHT,
+      index,
+    };
   };
 
   _renderEmptyList = () => <Empty />;
 
-  _renderHeader = () => <Header
-    onPressLocationButton={this.props.onPressLocationButton}
-    navigation={this.props.navigation}
-  />;
+  _renderHeader = () => (
+    <Header
+      onPressLocationButton={this.props.onPressLocationButton}
+      navigation={this.props.navigation}
+    />
+  );
   _renderSeparator = () => <Separator />;
   _renderFooter = () => <Footer visible={this.props.data.length} />;
 
-  _renderItem = ({ item }) => {
+  _renderItem = ({item}) => {
     const {
       __typename,
       id,
@@ -58,23 +57,26 @@ class List extends Component{
       endAt,
       venue,
       isBookmarked,
-      schedule
+      schedule,
     } = item;
-    if (__typename === 'Event') return <EventItem
-      id={id}
-      title={title}
-      pictureUrl={banner && getImageUrl(banner, 320)}
-      venue={venue}
-      startAt={startAt}
-      endAt={endAt}
-      description={description}
-      isBookmarked={isBookmarked}
-      month={getHumanMonth(startAt)}
-      day={new Date(startAt).getDate()}
-      bookmarkScheduleId={schedule && schedule.id}
-      onPressItem={this._onPressItem}
-      navigateToBanner={this._navigateToBanner}
-    />;
+    if (__typename === 'Event')
+      return (
+        <EventItem
+          id={id}
+          title={title}
+          pictureUrl={banner && getImageUrl(banner, 320)}
+          venue={venue}
+          startAt={startAt}
+          endAt={endAt}
+          description={description}
+          isBookmarked={isBookmarked}
+          month={getHumanMonth(startAt)}
+          day={new Date(startAt).getDate()}
+          bookmarkScheduleId={schedule && schedule.id}
+          onPressItem={this._onPressItem}
+          navigateToBanner={this._navigateToBanner}
+        />
+      );
   };
 
   _keyExtractor = (item) => item.id;
@@ -93,8 +95,8 @@ class List extends Component{
             progressViewOffset={OFFSET}
             onRefresh={this._onRefresh}
             refreshing={this.props.loading}
-            colors={[this.props.stores.themeStore.colors.primary]}
-            progressBackgroundColor={this.props.stores.themeStore.colors.bg}
+            colors={[this.props.stores.theme.colors.primary]}
+            progressBackgroundColor={this.props.stores.theme.colors.bg}
           />
         }
         data={data}
@@ -110,8 +112,8 @@ class List extends Component{
         onEndReached={this._onEndReached}
         ItemSeparatorComponent={this._renderSeparator}
       />
-    )
+    );
   }
 }
 
-export default inject("stores")(observer(List));
+export default inject('stores')(observer(List));

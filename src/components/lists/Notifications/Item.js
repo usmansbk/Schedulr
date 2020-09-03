@@ -1,11 +1,8 @@
 import React from 'react';
-import { View, TouchableOpacity } from 'react-native';
-import {
-  Caption,
-  Text
-} from 'react-native-paper';
+import {View, TouchableOpacity} from 'react-native';
+import {Caption, Text} from 'react-native-paper';
 import Icon from 'components/common/Icon';
-import { inject, observer } from 'mobx-react';
+import {inject, observer} from 'mobx-react';
 import UserAvatar from 'components/common/UserAvatar';
 import {
   EVENT_TYPE,
@@ -13,11 +10,10 @@ import {
   FOLLOW_TYPE,
   BOOKMARK_TYPE,
 } from 'lib/constants';
-import { COMMENT_TYPE, notifications_list } from 'lib/constants';
+import {COMMENT_TYPE, notifications_list} from 'lib/constants';
 
-const { AVATAR_SIZE } = notifications_list;
+const {AVATAR_SIZE} = notifications_list;
 class Item extends React.Component {
-
   _onPressItems = () => {
     const {
       entityId,
@@ -27,10 +23,10 @@ class Item extends React.Component {
       navigateToSchedule,
       navigateToFollowers,
       navigateToBookmarks,
-      navigateToComments
+      navigateToComments,
     } = this.props;
     if (entityId) {
-      switch(type) {
+      switch (type) {
         case EVENT_TYPE:
           navigateToEvent(entityId, from);
           break;
@@ -60,7 +56,7 @@ class Item extends React.Component {
       stores,
       type,
       seen,
-      extraData
+      extraData,
     } = this.props;
 
     const content = extraData && extraData.content;
@@ -70,34 +66,50 @@ class Item extends React.Component {
     if (type === 'Schedule') icon = 'pin';
     else if (type === 'Follow') icon = 'addusergroup';
     else if (type === 'Bookmark') icon = 'bookmark';
-    else if (type === 'Comment')  icon = 'comments';
+    else if (type === 'Comment') icon = 'comments';
 
     const mark = seen ? {} : styles.unseen;
     return (
-      <TouchableOpacity onPress={this._onPressItems} style={styles.itemContainer}>
+      <TouchableOpacity
+        onPress={this._onPressItems}
+        style={styles.itemContainer}>
         <View style={styles.itemContent}>
-          <UserAvatar style={styles.avatar} onPress={this._onPressItems} src={pictureUrl} name={subject} size={AVATAR_SIZE} />
+          <UserAvatar
+            style={styles.avatar}
+            onPress={this._onPressItems}
+            src={pictureUrl}
+            name={subject}
+            size={AVATAR_SIZE}
+          />
           <View style={[styles.itemBody, mark]}>
             <Text ellipsizeMode="tail" numberOfLines={2}>
               <Caption style={styles.boldText}>{subject}</Caption>{' '}
               <Caption>{message}</Caption>
-              <Caption style={styles.boldText}>{topic ? ' ' + topic : ''}</Caption>
-              {content ? <Caption numberOfLines={1} ellipsizeMode="tail">: {content}</Caption> : '.'}
+              <Caption style={styles.boldText}>
+                {topic ? ' ' + topic : ''}
+              </Caption>
+              {content ? (
+                <Caption numberOfLines={1} ellipsizeMode="tail">
+                  : {content}
+                </Caption>
+              ) : (
+                '.'
+              )}
             </Text>
             <View style={styles.dateLine}>
               <Icon
                 style={styles.icon}
                 name={icon}
                 size={14}
-                color={stores.themeStore.colors.primary}
+                color={stores.theme.colors.primary}
               />
               <Caption style={styles.itemTag}>{date}</Caption>
             </View>
           </View>
         </View>
-    </TouchableOpacity>
-    )
+      </TouchableOpacity>
+    );
   }
 }
 
-export default inject("stores")(observer(Item));
+export default inject('stores')(observer(Item));

@@ -1,5 +1,5 @@
-import { action } from 'mobx';
-import { create } from 'mobx-persist';
+import {action} from 'mobx';
+import {create} from 'mobx-persist';
 import AsyncStorage from '@react-native-community/async-storage';
 import Settings from './Settings';
 import RemindMe from './RemindMe';
@@ -12,32 +12,31 @@ import Calendar from './Calendar';
 
 class RootStore {
   constructor() {
-    
     const hydrate = create({
-      storage: AsyncStorage
+      storage: AsyncStorage,
     });
 
-    const settingsStore = new Settings;
-    const remindMeStore = new RemindMe;
-    const notificationsStore = new Notifications;
-    const locationStore = new Location;
-    const calendarStore = new Calendar;
-    
-    hydrate('settings', settingsStore);
+    const settings = new Settings();
+    const remindMeStore = new RemindMe();
+    const notificationsStore = new Notifications();
+    const locationStore = new Location();
+    const calendarStore = new Calendar();
+
+    hydrate('settings', settings);
     hydrate('remindMe', remindMeStore);
     hydrate('notificationsStore', notificationsStore);
     // Create theme store after hydrating the settings store
-    const appState = new AppState(settingsStore);
+    const appState = new AppState(settings);
     hydrate('appState', appState);
-    hydrate('calendarStore', calendarStore)
+    hydrate('calendarStore', calendarStore);
     hydrate('locationStore', locationStore);
-    
-    const themeStore = new Theme(settingsStore);
-    const appStyles = new AppStyles(settingsStore);
 
-    this.settingsStore = settingsStore;
+    const theme = new Theme(settings);
+    const appStyles = new AppStyles(settings);
+
+    this.settings = settings;
     this.remindMeStore = remindMeStore;
-    this.themeStore = themeStore;
+    this.theme = theme;
     this.appStyles = appStyles;
     this.appState = appState;
     this.notificationsStore = notificationsStore;
@@ -46,17 +45,17 @@ class RootStore {
   }
 
   @action reset = () => {
-    this.settingsStore.reset();
+    this.settings.reset();
     this.remindMeStore.reset();
     this.appState.reset();
     this.notificationsStore.reset();
     this.locationStore.reset();
     this.calendar.reset();
-  }
+  };
 
   @action init = () => {
     this.appState.setDefaults();
-  }
+  };
 }
 
 export default new RootStore();

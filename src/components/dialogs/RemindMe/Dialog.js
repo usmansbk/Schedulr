@@ -1,14 +1,10 @@
 import React from 'react';
-import { FlatList } from 'react-native';
-import {
-  Dialog,
-  Portal,
-  List,
-} from 'react-native-paper';
+import {FlatList} from 'react-native';
+import {Dialog, Portal, List} from 'react-native-paper';
 import Button from 'components/common/Button';
 import Switch from 'components/common/Switch';
-import { inject, observer } from 'mobx-react';
-import { I18n } from 'aws-amplify';
+import {inject, observer} from 'mobx-react';
+import {I18n} from 'aws-amplify';
 import items from './items';
 
 class RemindMe extends React.Component {
@@ -21,18 +17,18 @@ class RemindMe extends React.Component {
         thirtyMin: false,
         oneHour: false,
         oneDay: false,
-      }
-    }
+      },
+    },
   };
 
   _toggle = async (key) => {
     await this.props.stores.remindMeStore.toggle(key);
   };
 
-  _keyExtractor = item => item.key;
+  _keyExtractor = (item) => item.key;
 
   _renderItem = ({item}) => {
-    const { stores } = this.props;
+    const {stores} = this.props;
     return (
       <List.Item
         title={I18n.get(`REMIND_ME_${item.text}`)}
@@ -48,13 +44,9 @@ class RemindMe extends React.Component {
   };
 
   render() {
-    const {
-      stores,
-      visible,
-      hideDialog,
-    } = this.props;
+    const {stores, visible, hideDialog} = this.props;
 
-    const { colors } = stores.themeStore;
+    const {colors} = stores.theme;
 
     return (
       <Portal>
@@ -62,9 +54,8 @@ class RemindMe extends React.Component {
           visible={visible}
           dismissable
           onDismiss={hideDialog}
-          style={{backgroundColor: colors.bg}}
-        >
-          <Dialog.Title>{I18n.get("REMIND_ME_title")}</Dialog.Title>
+          style={{backgroundColor: colors.bg}}>
+          <Dialog.Title>{I18n.get('REMIND_ME_title')}</Dialog.Title>
           <Dialog.Content>
             <FlatList
               data={items}
@@ -74,12 +65,12 @@ class RemindMe extends React.Component {
             />
           </Dialog.Content>
           <Dialog.Actions>
-            <Button onPress={hideDialog}>{I18n.get("BUTTON_done")}</Button>
+            <Button onPress={hideDialog}>{I18n.get('BUTTON_done')}</Button>
           </Dialog.Actions>
         </Dialog>
       </Portal>
-    )
+    );
   }
 }
 
-export default inject("stores")(observer(RemindMe));
+export default inject('stores')(observer(RemindMe));

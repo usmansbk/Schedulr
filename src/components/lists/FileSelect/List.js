@@ -1,27 +1,24 @@
 import React from 'react';
-import { FlatList, View } from 'react-native';
-import { IconButton } from 'react-native-paper';
-import { inject, observer } from 'mobx-react';
+import {FlatList, View} from 'react-native';
+import {IconButton} from 'react-native-paper';
+import {inject, observer} from 'mobx-react';
 import Icon from 'components/common/Icon';
 import Item from './Item';
 
 const ITEM_HEIGHT = 60;
 
 class FileSelect extends React.Component {
-
   static defaultProps = {
-    data: []
+    data: [],
   };
-  
-  _getItemLayout = (_, index) => (
-    {
-      length: ITEM_HEIGHT,
-      offset: ITEM_HEIGHT * index,
-      index
-    }
-  );
 
-  _renderItem = ({ item }) => {
+  _getItemLayout = (_, index) => ({
+    length: ITEM_HEIGHT,
+    offset: ITEM_HEIGHT * index,
+    index,
+  });
+
+  _renderItem = ({item}) => {
     return (
       <Item
         disabled={this.props.disabled}
@@ -36,7 +33,7 @@ class FileSelect extends React.Component {
   _keyExtractor = (item) => item.uri;
 
   render() {
-    const { stores, onCancel, disabled } = this.props;
+    const {stores, onCancel, disabled} = this.props;
     return (
       <View style={stores.appStyles.fileSelect.view}>
         <FlatList
@@ -53,16 +50,12 @@ class FileSelect extends React.Component {
         <IconButton
           disabled={disabled}
           onPress={onCancel}
-          color={stores.themeStore.colors.gray}
-          icon={({ size, color }) => <Icon
-            color={color}
-            size={size}
-            name="x"
-          />}
+          color={stores.theme.colors.gray}
+          icon={({size, color}) => <Icon color={color} size={size} name="x" />}
         />
       </View>
     );
   }
 }
 
-export default inject("stores")(observer(FileSelect));
+export default inject('stores')(observer(FileSelect));

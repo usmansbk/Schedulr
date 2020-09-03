@@ -1,7 +1,7 @@
 import React from 'react';
-import { inject, observer } from 'mobx-react';
-import { Appbar } from 'react-native-paper';
-import { I18n } from 'aws-amplify';
+import {inject, observer} from 'mobx-react';
+import {Appbar} from 'react-native-paper';
+import {I18n} from 'aws-amplify';
 import Icon from 'components/common/Icon';
 import Loading from 'components/common/Loading';
 import Error from 'components/common/Error';
@@ -10,7 +10,7 @@ import Suspense from 'components/common/Suspense';
 
 class ScheduleEvents extends React.Component {
   state = {
-    display: false 
+    display: false,
   };
 
   _onBack = () => this.props.navigation.goBack();
@@ -22,13 +22,16 @@ class ScheduleEvents extends React.Component {
   };
 
   componentDidMount = () => {
-    setTimeout(() => this.setState({
-      display: true
-    }), 0);
+    setTimeout(
+      () =>
+        this.setState({
+          display: true,
+        }),
+      0,
+    );
   };
 
   render() {
-
     if (!this.state.display) return <Suspense />;
     const {
       events,
@@ -43,22 +46,21 @@ class ScheduleEvents extends React.Component {
     } = this.props;
 
     if (loading && !schedule) return <Loading loading={loading} />;
-    if (!schedule && error) return <Error onRefresh={onRefresh} loading={loading} />;
-    if (!schedule) return <Error
-      notFound
-      message={I18n.get("ERROR_404")}
-      caption={I18n.get("ERROR_404_caption")}
-    />;
+    if (!schedule && error)
+      return <Error onRefresh={onRefresh} loading={loading} />;
+    if (!schedule)
+      return (
+        <Error
+          notFound
+          message={I18n.get('ERROR_404')}
+          caption={I18n.get('ERROR_404_caption')}
+        />
+      );
 
-    const {
-      id,
-      name,
-      description,
-      eventsCount
-    } = schedule;
+    const {id, name, description, eventsCount} = schedule;
 
     const styles = stores.appStyles.styles;
-    const colors = stores.themeStore.colors;
+    const colors = stores.theme.colors;
 
     const eventsLength = events ? events.length : 0;
 
@@ -71,11 +73,9 @@ class ScheduleEvents extends React.Component {
             onPress={this._onBack}
             size={24}
             color={colors.primary}
-            icon={({ size, color }) => <Icon
-              name="arrow-left"
-              color={color}
-              size={size}
-            />}
+            icon={({size, color}) => (
+              <Icon name="arrow-left" color={color} size={size} />
+            )}
           />
           <Appbar.Content
             title={name}
@@ -100,4 +100,4 @@ class ScheduleEvents extends React.Component {
   }
 }
 
-export default inject("stores")(observer(ScheduleEvents));
+export default inject('stores')(observer(ScheduleEvents));

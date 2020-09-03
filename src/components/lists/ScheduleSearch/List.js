@@ -1,19 +1,16 @@
-import React, { Component } from 'react';
-import { RefreshControl } from 'react-native';
-import { withNavigationFocus, FlatList } from 'react-navigation';
-import { inject, observer } from 'mobx-react';
+import React, {Component} from 'react';
+import {RefreshControl} from 'react-native';
+import {withNavigationFocus, FlatList} from 'react-navigation';
+import {inject, observer} from 'mobx-react';
 import Item from './Item';
 import Separator from './Separator';
 import Footer from './Footer';
 import Empty from './Empty';
-import { schedule_search, SCHEDULE_CLOSED } from 'lib/constants';
+import {schedule_search, SCHEDULE_CLOSED} from 'lib/constants';
 import getImageUrl from 'helpers/getImageUrl';
 import Suspense from 'components/common/Suspense';
 
-const {
-  ITEM_HEIGHT,
-  SEPARATOR_HEIGHT
-} = schedule_search;
+const {ITEM_HEIGHT, SEPARATOR_HEIGHT} = schedule_search;
 
 class List extends Component {
   state = {
@@ -22,9 +19,13 @@ class List extends Component {
   };
 
   componentDidMount = () => {
-    setTimeout(() => this.setState({
-      display: true
-    }), 0);
+    setTimeout(
+      () =>
+        this.setState({
+          display: true,
+        }),
+      0,
+    );
   };
 
   static defaultProps = {
@@ -33,21 +34,19 @@ class List extends Component {
     onRefresh: () => null,
     fetchMore: () => null,
   };
-  _getItemLayout = (_, index) => (
-    {
-      length: ITEM_HEIGHT,
-      offset: ITEM_HEIGHT * index + SEPARATOR_HEIGHT,
-      index
-    }
-  );
-  _onPressItem = (id) => this.props.navigation.navigate('ScheduleInfo', { id });
+  _getItemLayout = (_, index) => ({
+    length: ITEM_HEIGHT,
+    offset: ITEM_HEIGHT * index + SEPARATOR_HEIGHT,
+    index,
+  });
+  _onPressItem = (id) => this.props.navigation.navigate('ScheduleInfo', {id});
   _keyExtractor = (item) => String(item.id);
   _onEndReached = async () => {
-    const { fetchMore, loading, nextToken } = this.props;
+    const {fetchMore, loading, nextToken} = this.props;
     if (!loading && nextToken) {
-      this.setState({ fetchingMore: true });
+      this.setState({fetchingMore: true});
       await fetchMore(Number(nextToken));
-      this.setState({ fetchingMore: false });
+      this.setState({fetchingMore: false});
     }
   };
   _renderEmptyList = () => <Empty loading={this.props.loading} />;
@@ -62,7 +61,7 @@ class List extends Component {
       status,
       isOwner,
       isFollowing,
-      updatedAt
+      updatedAt,
     } = item;
 
     return (
@@ -80,28 +79,25 @@ class List extends Component {
         navigateToScheduleInfo={this._navigateToInfo}
         updatedAt={updatedAt}
       />
-    )
+    );
   };
 
   _renderSeparator = () => <Separator />;
-  _renderFooter = () => <Footer
-    visible={this.props.schedules.length}
-    loading={this.props.loading && this.state.fetchingMore}
-    onPress={this._onEndReached}
-    hasMore={this.props.from}
-  />;
+  _renderFooter = () => (
+    <Footer
+      visible={this.props.schedules.length}
+      loading={this.props.loading && this.state.fetchingMore}
+      onPress={this._onEndReached}
+      hasMore={this.props.from}
+    />
+  );
 
   shouldComponentUpdate = (nextProps) => nextProps.isFocused;
-  
+
   render() {
     if (!this.state.display) return <Suspense />;
-    const {
-      schedules,
-      loading,
-      onRefresh,
-      stores
-    } = this.props;
-    const { fetchingMore } = this.state;
+    const {schedules, loading, onRefresh, stores} = this.props;
+    const {fetchingMore} = this.state;
 
     const styles = stores.appStyles.scheduleSearch;
 
@@ -111,8 +107,8 @@ class List extends Component {
           <RefreshControl
             onRefresh={onRefresh}
             refreshing={loading && !fetchingMore}
-            colors={[stores.themeStore.colors.primary]}
-            progressBackgroundColor={stores.themeStore.colors.bg}
+            colors={[stores.theme.colors.primary]}
+            progressBackgroundColor={stores.theme.colors.bg}
           />
         }
         style={styles.list}
@@ -127,10 +123,10 @@ class List extends Component {
         ListFooterComponent={this._renderFooter}
         keyboardShouldPersistTaps="always"
       />
-    )
+    );
   }
 }
 
-const withStores = inject("stores")(observer(List));
+const withStores = inject('stores')(observer(List));
 
 export default withNavigationFocus(withStores);

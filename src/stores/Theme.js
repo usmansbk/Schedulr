@@ -19,9 +19,9 @@ const fontConfig = {
   },
 };
 
-export default class ThemeStore {
-  constructor(settingsStore) {
-    this.settings = settingsStore;
+export default class theme {
+  constructor(settings) {
+    this.settings = settings;
   }
 
   @computed get colors() {

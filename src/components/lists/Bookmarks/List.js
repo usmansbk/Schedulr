@@ -1,26 +1,20 @@
-import React, { Component } from 'react';
-import { FlatList } from 'react-navigation';
-import { RefreshControl } from 'react-native';
-import { inject, observer } from 'mobx-react';
+import React, {Component} from 'react';
+import {FlatList} from 'react-navigation';
+import {RefreshControl} from 'react-native';
+import {inject, observer} from 'mobx-react';
 import Item from './Item';
 import Header from './Header';
 import Unavailable from './Unavailable';
 import Separator from './Separator';
 import Footer from './Footer';
 import Empty from './Empty';
-import {
-  parseRepeat,
-  getCategory
-} from 'lib/formatEvent';
-import {
-  getDuration,
-  getHumanTime
-} from 'lib/time';
-import { EventFlatList } from 'lib/calendar';
-import { bookmarkedEvents } from 'lib/constants';
+import {parseRepeat, getCategory} from 'lib/formatEvent';
+import {getDuration, getHumanTime} from 'lib/time';
+import {EventFlatList} from 'lib/calendar';
+import {bookmarkedEvents} from 'lib/constants';
 import getImageUrl from 'helpers/getImageUrl';
 
-const { ITEM_HEIGHT, SEPARATOR_HEIGHT } = bookmarkedEvents;
+const {ITEM_HEIGHT, SEPARATOR_HEIGHT} = bookmarkedEvents;
 
 class List extends Component {
   static defaultProps = {
@@ -29,20 +23,19 @@ class List extends Component {
     onRefresh: () => null,
   };
   state = {
-    loadingPrev: false
-  }
-  _getItemLayout = (_, index) => (
-    {
-      length: ITEM_HEIGHT,
-      offset: ITEM_HEIGHT * index + SEPARATOR_HEIGHT,
-      index
-    }
-  );
+    loadingPrev: false,
+  };
+  _getItemLayout = (_, index) => ({
+    length: ITEM_HEIGHT,
+    offset: ITEM_HEIGHT * index + SEPARATOR_HEIGHT,
+    index,
+  });
 
   _onRefresh = () => this.props.onRefresh();
-  _onPressItem = (id, from) => this.props.navigation.navigate('EventDetails', { id, from });
-  _navigateToBanner = (id) => this.props.navigation.navigate('Banner', { id });
-  _keyExtractor = (item) => typeof item === 'string' ? item : String(item.id); 
+  _onPressItem = (id, from) =>
+    this.props.navigation.navigate('EventDetails', {id, from});
+  _navigateToBanner = (id) => this.props.navigation.navigate('Banner', {id});
+  _keyExtractor = (item) => (typeof item === 'string' ? item : String(item.id));
   _onEndReached = async () => {
     if (!this.props.loading && this.props.nextToken) {
       await this.props.fetchMore(this.props.nextToken);
@@ -51,15 +44,15 @@ class List extends Component {
   _fetchMore = () => setTimeout(this._fetchPastEvents, 0);
 
   _fetchPastEvents = async () => {
-    const { loading, fetchPastEvents, nextToken, pastEventsCount } = this.props;
-    if (fetchPastEvents && !loading && (pastEventsCount > 0)) {
-      this.setState({ loadingPrev: true });
+    const {loading, fetchPastEvents, nextToken, pastEventsCount} = this.props;
+    if (fetchPastEvents && !loading && pastEventsCount > 0) {
+      this.setState({loadingPrev: true});
       await fetchPastEvents(nextToken);
-      this.setState({ loadingPrev: false });
+      this.setState({loadingPrev: false});
     }
   };
 
-  _renderItem = ({ item }) => {
+  _renderItem = ({item}) => {
     if (typeof item === 'string') return <Unavailable id={item} />;
 
     const {
@@ -79,47 +72,56 @@ class List extends Component {
       recurrence,
       schedule,
       isBookmarked,
-      updatedAt
+      updatedAt,
     } = item;
 
-    return (<Item
-      id={id}
-      title={title}
-      startAt={startAt}
-      endAt={endAt}
-      allDay={allDay}
-      cancelledDates={cancelledDates}
-      until={until}
-      pictureUrl={banner && getImageUrl(banner)}
-      isBookmarked={isBookmarked}
-      isAuth={isPublic || isOwner || (schedule && schedule.isFollowing)}
-      category={getCategory(category)}
-      recurrence={parseRepeat(recurrence)}
-      time={getHumanTime({ allDay, startAt, endAt })}
-      eventScheduleId={schedule && schedule.id}
-      duration={getDuration(raw_startAt, raw_endAt, allDay)}
-      onPressItem={this._onPressItem}
-      navigateToBanner={this._navigateToBanner}
-      updatedAt={updatedAt}
-    />);
+    return (
+      <Item
+        id={id}
+        title={title}
+        startAt={startAt}
+        endAt={endAt}
+        allDay={allDay}
+        cancelledDates={cancelledDates}
+        until={until}
+        pictureUrl={banner && getImageUrl(banner)}
+        isBookmarked={isBookmarked}
+        isAuth={isPublic || isOwner || (schedule && schedule.isFollowing)}
+        category={getCategory(category)}
+        recurrence={parseRepeat(recurrence)}
+        time={getHumanTime({allDay, startAt, endAt})}
+        eventScheduleId={schedule && schedule.id}
+        duration={getDuration(raw_startAt, raw_endAt, allDay)}
+        onPressItem={this._onPressItem}
+        navigateToBanner={this._navigateToBanner}
+        updatedAt={updatedAt}
+      />
+    );
   };
 
-  _renderEmptyList = () => <Empty isBookmarks={this.props.isBookmarks} error={this.props.error} loading={this.props.loading} />;
+  _renderEmptyList = () => (
+    <Empty
+      isBookmarks={this.props.isBookmarks}
+      error={this.props.error}
+      loading={this.props.loading}
+    />
+  );
   _renderSeparator = () => <Separator />;
-  _renderFooter = () => <Footer loading={this.props.loading} visible={this.props.events.length} />;
-  _renderHeader = () => (this.props.pastEventsCount > 0) ? <Header
-    onPress={this._fetchMore}
-    loading={this.props.loading && this.state.loadingPrev}
-    count={this.props.pastEventsCount}
-  /> : null;
+  _renderFooter = () => (
+    <Footer loading={this.props.loading} visible={this.props.events.length} />
+  );
+  _renderHeader = () =>
+    this.props.pastEventsCount > 0 ? (
+      <Header
+        onPress={this._fetchMore}
+        loading={this.props.loading && this.state.loadingPrev}
+        count={this.props.pastEventsCount}
+      />
+    ) : null;
 
   render() {
-    const {
-      events,
-      stores,
-      loading
-    } = this.props;
-    
+    const {events, stores, loading} = this.props;
+
     return (
       <FlatList
         data={EventFlatList(events)}
@@ -127,12 +129,14 @@ class List extends Component {
           <RefreshControl
             onRefresh={this._onRefresh}
             refreshing={loading}
-            colors={[stores.themeStore.colors.primary]}
-            progressBackgroundColor={stores.themeStore.colors.bg}
+            colors={[stores.theme.colors.primary]}
+            progressBackgroundColor={stores.theme.colors.bg}
           />
         }
         style={stores.appStyles.bookmarkedEventsList.list}
-        contentContainerStyle={stores.appStyles.bookmarkedEventsList.contentContainer}
+        contentContainerStyle={
+          stores.appStyles.bookmarkedEventsList.contentContainer
+        }
         initialNumToRender={1}
         getItemLayout={this._getItemLayout}
         ItemSeparatorComponent={this._renderSeparator}
@@ -143,8 +147,8 @@ class List extends Component {
         ListHeaderComponent={this._renderHeader}
         onEndReached={this._onEndReached}
       />
-    )
+    );
   }
 }
 
-export default inject("stores")(observer(List));
+export default inject('stores')(observer(List));

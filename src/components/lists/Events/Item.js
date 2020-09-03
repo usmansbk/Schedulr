@@ -1,20 +1,13 @@
 import React from 'react';
-import { View, TouchableOpacity } from 'react-native';
-import {
-  Text,
-  Headline,
-} from 'react-native-paper';
+import {View, TouchableOpacity} from 'react-native';
+import {Text, Headline} from 'react-native-paper';
 import Icon from 'components/common/Icon';
-import { inject, observer } from 'mobx-react';
+import {inject, observer} from 'mobx-react';
 import Avatar from 'components/common/UserAvatar';
 import Badge from 'components/common/Badge';
-import { events, CALENDAR_TYPE } from 'lib/constants';
-import {
-  getTime,
-} from 'lib/time';
-import {
-  getStatus,
-} from 'lib/formatEvent';
+import {events, CALENDAR_TYPE} from 'lib/constants';
+import {getTime} from 'lib/time';
+import {getStatus} from 'lib/formatEvent';
 import getImageUrl from 'helpers/getImageUrl';
 
 class Item extends React.Component {
@@ -26,7 +19,10 @@ class Item extends React.Component {
     }
   };
   _onMute = () => {
-    this.props.stores.appState.toggleMute(this.props.id, this.props.eventScheduleId);
+    this.props.stores.appState.toggleMute(
+      this.props.id,
+      this.props.eventScheduleId,
+    );
   };
   _navigateToBanner = () => {
     if (this.props.__typename === CALENDAR_TYPE) {
@@ -61,22 +57,19 @@ class Item extends React.Component {
     const pictureUrl = banner && getImageUrl(banner);
     const time = getTime({
       startAt,
-      endAt
+      endAt,
     });
     const status = getStatus({
       cancelledDates,
       startAt,
       endAt,
-      until
+      until,
     });
-    
+
     const styles = stores.appStyles.eventsList;
-    
+
     return (
-      <TouchableOpacity
-        onPress={this._onPress}
-        style={styles.itemContainer}
-      >
+      <TouchableOpacity onPress={this._onPress} style={styles.itemContainer}>
         <View style={styles.itemContent}>
           <Avatar
             size={events.AVATAR_SIZE}
@@ -88,23 +81,22 @@ class Item extends React.Component {
             key={status}
           />
           <View style={styles.itemBody}>
-            {
-              (isOffline || isMuted) && <Icon
+            {(isOffline || isMuted) && (
+              <Icon
                 style={styles.privateIcon}
-                name={isMuted ? "mute" : "sync"}
+                name={isMuted ? 'mute' : 'sync'}
                 size={16}
                 color={
-                  isMuted ?
-                  stores.themeStore.colors.light_red :
-                  stores.themeStore.colors.light_gray_3
+                  isMuted
+                    ? stores.theme.colors.light_red
+                    : stores.theme.colors.light_gray_3
                 }
               />
-            }
+            )}
             <Headline
               style={styles.itemHeadline}
               numberOfLines={1}
-              ellipsizeMode="tail"
-            >
+              ellipsizeMode="tail">
               {title}
             </Headline>
             <Text style={styles.time}>{time}</Text>
@@ -115,4 +107,4 @@ class Item extends React.Component {
   }
 }
 
-export default inject("stores")(observer(Item));
+export default inject('stores')(observer(Item));

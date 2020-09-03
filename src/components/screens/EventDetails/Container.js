@@ -1,12 +1,12 @@
 import React from 'react';
-import { Appbar } from 'react-native-paper';
-import { inject, observer } from 'mobx-react';
+import {Appbar} from 'react-native-paper';
+import {inject, observer} from 'mobx-react';
 import Icon from 'components/common/Icon';
 import Suspense from 'components/common/Suspense';
 import CancelConfirm from 'components/dialogs/CancelEvent';
 import Details from './Details';
-import { update } from 'lib/calendar';
-import { isEventValid } from 'lib/formatEvent';
+import {update} from 'lib/calendar';
+import {isEventValid} from 'lib/formatEvent';
 import getImageUrl from 'helpers/getImageUrl';
 import repeat from 'lib/repeat';
 import logger from 'config/logger';
@@ -18,26 +18,32 @@ class EventDetails extends React.Component {
     display: false,
   };
 
-  _cancelRef = ref => this.cancelConfirmRef = ref;
-  _openCancelDialog = () => this.cancelConfirmRef.getWrappedInstance().wrappedInstance.wrappedInstance.open();
+  _cancelRef = (ref) => (this.cancelConfirmRef = ref);
+  _openCancelDialog = () =>
+    this.cancelConfirmRef
+      .getWrappedInstance()
+      .wrappedInstance.wrappedInstance.open();
 
   componentDidMount = () => {
-    this.displayTimer = setTimeout(() => this.setState({
-      display: true
-    }), 0);
+    this.displayTimer = setTimeout(
+      () =>
+        this.setState({
+          display: true,
+        }),
+      0,
+    );
     logger.log('event_details_screen');
   };
 
- shouldComponentUpdate = (nextProps, nextState) => (
-   (nextState.display !== this.state.display) ||
-   (nextProps.event.updatedAt !== this.props.event.updatedAt) ||
-   (nextProps.event.isBookmarked !== this.props.event.isBookmarked) ||
-   (nextProps.event.isOffline !== this.props.event.isOffline) ||
-   (nextProps.event.commentsCount !== this.props.event.commentsCount)
- );
+  shouldComponentUpdate = (nextProps, nextState) =>
+    nextState.display !== this.state.display ||
+    nextProps.event.updatedAt !== this.props.event.updatedAt ||
+    nextProps.event.isBookmarked !== this.props.event.isBookmarked ||
+    nextProps.event.isOffline !== this.props.event.isOffline ||
+    nextProps.event.commentsCount !== this.props.event.commentsCount;
 
   render() {
-    if (!this.state.display) return <Suspense/>;
+    if (!this.state.display) return <Suspense />;
     const {
       event,
       from,
@@ -49,13 +55,13 @@ class EventDetails extends React.Component {
       navigateToUser,
       navigateToBanner,
       navigateToBookmarks,
-      stores
+      stores,
     } = this.props;
     const recur = repeat(event.startAt)
-                  .span(event.endAt)
-                  .every(event.recurrence)
-                  .until(event.until)
-                  .from(from);
+      .span(event.endAt)
+      .every(event.recurrence)
+      .until(event.until)
+      .from(from);
     const currentEvent = update(event, recur.nextDate(), recur.nextSpan());
     const {
       id,
@@ -80,23 +86,23 @@ class EventDetails extends React.Component {
       isOffline,
       banner,
       author,
-      raw_startAt
+      raw_startAt,
     } = currentEvent;
     const isValid = isEventValid({
       endAt,
       startAt,
       cancelledDates,
       recurrence,
-      until
+      until,
     });
 
-    const colors = stores.themeStore.colors;
+    const colors = stores.theme.colors;
     const styles = stores.appStyles.styles;
     const pictureUrl = banner && getImageUrl(banner, 320);
     const isFollowing = schedule && schedule.isFollowing;
 
     const isAuth = isPublic || isFollowing || isOwner;
-    
+
     return (
       <>
         <Appbar.Header style={styles.header} collapsable>
@@ -104,59 +110,47 @@ class EventDetails extends React.Component {
             onPress={handleBack}
             color={colors.primary}
             size={FONT_SIZE}
-            icon={({ color, size }) => <Icon
-              name="arrow-left"
-              color={color}
-              size={size}
-            />}
+            icon={({color, size}) => (
+              <Icon name="arrow-left" color={color} size={size} />
+            )}
           />
-          <Appbar.Content
-            titleStyle={styles.headerColor}
-          />
-          {
-            isOwner && (
-              <>
+          <Appbar.Content titleStyle={styles.headerColor} />
+          {isOwner && (
+            <>
+              <Appbar.Action
+                size={FONT_SIZE}
+                color={colors.gray}
+                icon={({color, size}) => (
+                  <Icon size={size} name="copy" color={color} />
+                )}
+                onPress={handleRepeat}
+              />
+              {isValid && (
                 <Appbar.Action
                   size={FONT_SIZE}
                   color={colors.gray}
-                  icon={({ color, size }) => <Icon
-                    size={size}
-                    name="copy"
-                    color={color}
-                  />}
-                  onPress={handleRepeat}
+                  icon={({color, size}) => (
+                    <Icon size={size} name="edit" color={color} />
+                  )}
+                  onPress={() =>
+                    handleEdit({
+                      id,
+                      startAt,
+                      endAt,
+                    })
+                  }
                 />
-                {
-                  isValid && (
-                      <Appbar.Action
-                        size={FONT_SIZE}
-                        color={colors.gray}
-                        icon={({ color, size }) => <Icon
-                          size={size}
-                          name="edit"
-                          color={color}
-                        />}
-                        onPress={() => handleEdit({
-                          id,
-                          startAt,
-                          endAt,
-                        })}
-                      />
-                  )
-                }
-                <Appbar.Action
-                  size={FONT_SIZE}
-                  color={colors.light_red}
-                  icon={({ color, size }) => <Icon
-                    name="x"
-                    color={color}
-                    size={size}
-                  />}
-                  onPress={this._openCancelDialog}
-                />
-              </>
-            )
-          }
+              )}
+              <Appbar.Action
+                size={FONT_SIZE}
+                color={colors.light_red}
+                icon={({color, size}) => (
+                  <Icon name="x" color={color} size={size} />
+                )}
+                onPress={this._openCancelDialog}
+              />
+            </>
+          )}
         </Appbar.Header>
         <Details
           id={id}
@@ -177,7 +171,7 @@ class EventDetails extends React.Component {
           authorName={author.name}
           until={until}
           createdAt={createdAt}
-          updatedAt={(updatedAt !== createdAt) && updatedAt}
+          updatedAt={updatedAt !== createdAt && updatedAt}
           description={description}
           isBookmarked={isBookmarked}
           bookmarksCount={bookmarksCount || 0}
@@ -193,14 +187,10 @@ class EventDetails extends React.Component {
           navigateToBookmarks={navigateToBookmarks}
           navigateToBanner={navigateToBanner}
         />
-        <CancelConfirm
-          id={id}
-          date={startAt}
-          onRef={this._cancelRef}
-        />
+        <CancelConfirm id={id} date={startAt} onRef={this._cancelRef} />
       </>
-    )
+    );
   }
 }
 
-export default inject("stores")(observer(EventDetails));
+export default inject('stores')(observer(EventDetails));

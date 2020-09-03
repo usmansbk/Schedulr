@@ -1,6 +1,6 @@
-import { computed } from 'mobx';
-import { StyleSheet } from 'react-native';
-import { dark, light } from 'config/colors';
+import {computed} from 'mobx';
+import {StyleSheet} from 'react-native';
+import {dark, light} from 'config/colors';
 import {
   events,
   schedules,
@@ -14,12 +14,12 @@ import {
   schedule_search,
   WIDTH,
   BANNER,
-  dp
+  dp,
 } from 'lib/constants';
 
 export default class AppStyles {
-  constructor(settingsStore) {
-    this.settings = settingsStore;
+  constructor(settings) {
+    this.settings = settings;
   }
 
   @computed get sheet() {
@@ -29,7 +29,7 @@ export default class AppStyles {
       container: {
         borderTopLeftRadius: 16,
         borderTopRightRadius: 16,
-        backgroundColor: colors.bg
+        backgroundColor: colors.bg,
       },
       content: {
         justifyContent: 'center',
@@ -39,30 +39,30 @@ export default class AppStyles {
       },
       header: {
         padding: 8,
-        paddingBottom: 16
+        paddingBottom: 16,
       },
       body: {
-        padding: 8
+        padding: 8,
       },
       title: {
         fontSize: 25,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
       },
       message: {
         textAlign: 'center',
         fontSize: 16,
         fontWeight: 'bold',
-        color: colors.light_gray_3
+        color: colors.light_gray_3,
       },
       footer: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        padding: 24
+        padding: 24,
       },
       row: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        alignItems: 'center'
+        alignItems: 'center',
       },
     });
   }
@@ -81,12 +81,12 @@ export default class AppStyles {
         height: 200,
       },
       caption: {
-        paddingHorizontal: 4
+        paddingHorizontal: 4,
       },
       docName: {
         fontSize: 14,
         margin: 0,
-        padding: 0
+        padding: 0,
       },
       docContent: {
         flexDirection: 'row',
@@ -101,12 +101,12 @@ export default class AppStyles {
       },
       mediaIcon: {
         width: 40,
-        height: 40
-      }
+        height: 40,
+      },
     });
   }
 
-  @computed get fileSelect () {
+  @computed get fileSelect() {
     const colors = this.settings.dark ? dark : light;
     const ITEM_HEIGHT = 60;
 
@@ -130,13 +130,13 @@ export default class AppStyles {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-      }
+      },
     });
   }
 
   @computed get chipList() {
     const colors = this.settings.dark ? dark : light;
-    
+
     return StyleSheet.create({
       container: {
         backgroundColor: colors.bg,
@@ -149,28 +149,28 @@ export default class AppStyles {
         backgroundColor: colors.light_gray,
         margin: 4,
         paddingHorizontal: 12,
-        borderRadius: dp(16)
+        borderRadius: dp(16),
       },
-      selected : {
+      selected: {
         backgroundColor: colors.primary_light,
         borderColor: colors.light_gray,
       },
       itemText: {
         textAlign: 'center',
-        color: colors.gray
+        color: colors.gray,
       },
       selectedText: {
-        color: colors.white
-      }
+        color: colors.white,
+      },
     });
   }
 
   @computed get locationInput() {
     const colors = this.settings.dark ? dark : light;
-    
+
     return StyleSheet.create({
       inputContainer: {
-        marginBottom: 12
+        marginBottom: 12,
       },
       input: {
         borderColor: colors.placeholder,
@@ -182,8 +182,8 @@ export default class AppStyles {
         alignItems: 'center',
       },
       icon: {
-        marginRight: 8
-      }
+        marginRight: 8,
+      },
     });
   }
 
@@ -196,68 +196,68 @@ export default class AppStyles {
         justifyContent: 'center',
         alignItems: 'center',
         padding: 32,
-        backgroundColor: colors.bg
+        backgroundColor: colors.bg,
       },
       content: {
         justifyContent: 'center',
         alignItems: 'center',
-        marginVertical: 32
+        marginVertical: 32,
       },
       h1: {
         fontSize: 27,
         color: colors.black,
-        textAlign: 'center'
+        textAlign: 'center',
       },
       caption: {
         textAlign: 'center',
-        color: colors.gray
-      }
+        color: colors.gray,
+      },
     });
   }
 
-  @computed get userSchedulesTab () {
+  @computed get userSchedulesTab() {
     const colors = this.settings.dark ? dark : light;
-    
+
     return StyleSheet.create({
       barStyle: {
         elevation: 0,
         backgroundColor: colors.bg,
-        borderTopWidth: 0
+        borderTopWidth: 0,
       },
       indicatorStyle: {
-        backgroundColor: colors.primary
-      }
+        backgroundColor: colors.primary,
+      },
     });
   }
 
-  @computed get topTab () {
+  @computed get topTab() {
     const colors = this.settings.dark ? dark : light;
 
     return StyleSheet.create({
       container: {
-        flex: 1
+        flex: 1,
       },
       barStyle: {
         elevation: 0,
         backgroundColor: colors.bg,
       },
       indicatorStyle: {
-        backgroundColor: colors.primary
-      }
+        backgroundColor: colors.primary,
+      },
     });
   }
 
-  @computed get bottomTab () {
+  @computed get bottomTab() {
     const colors = this.settings.dark ? dark : light;
 
     return StyleSheet.create({
       container: {
-        flex: 1
+        flex: 1,
       },
       barStyle: {
         elevation: 0,
         backgroundColor: colors.bg,
-      }
+      },
     });
   }
 
@@ -267,13 +267,13 @@ export default class AppStyles {
     return StyleSheet.create({
       text: {
         fontFamily: 'sans-serif-bold',
-        fontWeight: 'bold'
+        fontWeight: 'bold',
       },
       cancelled: {
         color: colors.light_red,
       },
       ongoing: {
-        color: colors.green
+        color: colors.green,
       },
       done: {
         color: colors.tint,
@@ -283,77 +283,77 @@ export default class AppStyles {
       },
       closed: {
         color: colors.light_red,
-        fontSize: 12
+        fontSize: 12,
       },
       concluded: {
         color: colors.tint,
-      }
+      },
     });
   }
 
-  @computed get customTypes () {
+  @computed get customTypes() {
     const colors = this.settings.dark ? dark : light;
 
     return StyleSheet.create({
       container: {
-        justifyContent: 'center'
+        justifyContent: 'center',
       },
       content: {
         height: dp(48),
-        justifyContent: 'center'
+        justifyContent: 'center',
       },
       text: {
-        color: colors.black
+        color: colors.black,
       },
       row: {
         flexDirection: 'row',
-        justifyContent: 'space-between'
-      }
-    });    
+        justifyContent: 'space-between',
+      },
+    });
   }
 
   @computed get places() {
     const colors = this.settings.dark ? dark : light;
     return StyleSheet.create({
       contentContainer: {
-        backgroundColor: colors.bg
+        backgroundColor: colors.bg,
       },
       textInputContainer: {
         backgroundColor: colors.light_gray_2,
-        height: dp(54)
+        height: dp(54),
       },
       textInput: {
         backgroundColor: colors.textInput,
         color: colors.black,
       },
       itemText: {
-        color: colors.black
+        color: colors.black,
       },
       itemContainer: {
-        paddingHorizontal: 10
+        paddingHorizontal: 10,
       },
       poweredText: {
-        color: colors.gray
-      }
+        color: colors.gray,
+      },
     });
   }
 
-  @computed get picker () {
+  @computed get picker() {
     const colors = this.settings.dark ? dark : light;
-    
+
     return StyleSheet.create({
       contentContainer: {
         padding: 16,
         backgroundColor: colors.bg,
       },
       textInputContainer: {
-        flexDirection: 'row'
+        flexDirection: 'row',
       },
       textInput: {
-        flex: 1
+        flex: 1,
       },
       text: {
-        fontFamily: 'sans-serif-medium'
+        fontFamily: 'sans-serif-medium',
       },
       button: {
         height: dp(48),
@@ -361,10 +361,10 @@ export default class AppStyles {
         // paddingHorizontal: 8,
         // borderWidth,
         // borderRadius: 4,
-        borderColor: colors.placeholder
+        borderColor: colors.placeholder,
       },
       container: {
-        flex: 1
+        flex: 1,
       },
       content: {
         flex: 1,
@@ -372,12 +372,12 @@ export default class AppStyles {
         backgroundColor: colors.bg,
       },
       placeholder: {
-        color: colors.black
+        color: colors.black,
       },
     });
   }
 
-  @computed get datePicker () {
+  @computed get datePicker() {
     const colors = this.settings.dark ? dark : light;
     const borderWidth = 1 * StyleSheet.hairlineWidth;
 
@@ -386,15 +386,15 @@ export default class AppStyles {
         flexDirection: 'row',
       },
       button: {
-        flexGrow: 1
+        flexGrow: 1,
       },
       text: {
         color: colors.primary,
         // marginVertical: 8,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
       },
       pickerButton: {
-        fontFamily: 'sans-serif-medium'
+        fontFamily: 'sans-serif-medium',
       },
       dateButton: {
         flex: 1,
@@ -416,55 +416,55 @@ export default class AppStyles {
         // borderLeftWidth: 0,
         // borderTopRightRadius: 4,
         // borderBottomRightRadius: 4,
-      }
-    });    
+      },
+    });
   }
 
-  @computed get scheduleForm () {
+  @computed get scheduleForm() {
     const colors = this.settings.dark ? dark : light;
 
     return StyleSheet.create({
       container: {
-        backgroundColor: colors.bg
+        backgroundColor: colors.bg,
       },
       header: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         backgroundColor: colors.bg,
         paddingHorizontal: 16,
-        elevation: 0
+        elevation: 0,
       },
       form: {
         padding: 16,
-        marginBottom: 10
+        marginBottom: 10,
       },
       switchButton: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        paddingVertical: 8
+        paddingVertical: 8,
       },
       checkbox: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
         paddingTop: 16,
-        paddingBottom: 4
+        paddingBottom: 4,
       },
       text: {
         fontSize: 12,
       },
       textInput: {
-        backgroundColor: colors.textInput
+        backgroundColor: colors.textInput,
       },
       primary: {
-        color: colors.primary
+        color: colors.primary,
       },
       info: {
         flexDirection: 'row',
         justifyContent: 'flex-end',
-        paddingVertical: 16
-      }
+        paddingVertical: 16,
+      },
     });
   }
 
@@ -473,38 +473,38 @@ export default class AppStyles {
 
     return StyleSheet.create({
       container: {
-        marginVertical: 10 
+        marginVertical: 10,
       },
       input: {
         backgroundColor: colors.bg,
         padding: 8,
         margin: 0,
         fontSize: 18,
-        color: colors.black
+        color: colors.black,
       },
       label: {
         fontSize: 12,
         marginLeft: 8,
-        color: colors.black
-      }
+        color: colors.black,
+      },
     });
   }
 
-  @computed get eventForm () {
+  @computed get eventForm() {
     const colors = this.settings.dark ? dark : light;
 
     return StyleSheet.create({
       container: {
-        backgroundColor: colors.bg
+        backgroundColor: colors.bg,
       },
       row: {
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "space-between"
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
       },
       form: {
         padding: 16,
-        marginBottom: 10
+        marginBottom: 10,
       },
       text: {
         color: colors.primary,
@@ -530,14 +530,14 @@ export default class AppStyles {
         // marginVertical: 4
       },
       pickerSpacing: {
-        marginVertical: 10
+        marginVertical: 10,
       },
       picker: {
         height: dp(48),
         color: colors.black,
         borderWidth: 1,
         borderColor: colors.gray,
-        backgroundColor: colors.bg
+        backgroundColor: colors.bg,
       },
       header: {
         flexDirection: 'row',
@@ -546,10 +546,10 @@ export default class AppStyles {
         paddingHorizontal: 16,
         elevation: 0,
       },
-    });    
+    });
   }
 
-  @computed get loading () {
+  @computed get loading() {
     const colors = this.settings.dark ? dark : light;
 
     return StyleSheet.create({
@@ -557,12 +557,12 @@ export default class AppStyles {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: colors.bg
+        backgroundColor: colors.bg,
       },
     });
   }
 
-  @computed get error () {
+  @computed get error() {
     const colors = this.settings.dark ? dark : light;
 
     return StyleSheet.create({
@@ -571,20 +571,20 @@ export default class AppStyles {
         justifyContent: 'center',
         alignItems: 'center',
         paddingHorizontal: 16,
-        backgroundColor: colors.bg
+        backgroundColor: colors.bg,
       },
       headline: {
         fontSize: 25,
         color: colors.light_gray_3,
-        textAlign: 'center'
+        textAlign: 'center',
       },
       content: {
-        margin: 16
-      }
+        margin: 16,
+      },
     });
   }
 
-  @computed get commentInput () {
+  @computed get commentInput() {
     const colors = this.settings.dark ? dark : light;
 
     return StyleSheet.create({
@@ -599,20 +599,20 @@ export default class AppStyles {
         minWidth: WIDTH,
       },
       placeholder: {
-        color: colors.black
+        color: colors.black,
       },
       textInput: {
-        color: colors.black
+        color: colors.black,
       },
       right: {
         justifyContent: 'center',
         alignItems: 'center',
       },
       avatar: {
-        paddingRight: 4
+        paddingRight: 4,
       },
       input: {
-        flex: 1
+        flex: 1,
       },
       alert: {
         maxWidth: WIDTH,
@@ -621,42 +621,42 @@ export default class AppStyles {
         justifyContent: 'space-between',
         alignItems: 'center',
         backgroundColor: colors.light_gray,
-        padding: 16
+        padding: 16,
       },
       alertTitle: {
-        width: 250
+        width: 250,
       },
       cancelText: {
         color: colors.primary,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
       },
       targetName: {
-        fontWeight: 'bold'
-      }
+        fontWeight: 'bold',
+      },
     });
   }
 
-  @computed get eventDetails () {
+  @computed get eventDetails() {
     const colors = this.settings.dark ? dark : light;
 
-    return  StyleSheet.create({
+    return StyleSheet.create({
       container: {
         flex: 1,
-        backgroundColor: colors.bg
+        backgroundColor: colors.bg,
       },
       title: {
         fontWeight: 'bold',
         fontSize: 30,
-        paddingVertical: 4
+        paddingVertical: 4,
       },
       date: {
         color: colors.gray,
         fontWeight: 'bold',
         fontSize: 16,
-        paddingBottom: 4
+        paddingBottom: 4,
       },
       headNote: {
-        flexDirection: 'row'
+        flexDirection: 'row',
       },
       status: {
         fontFamily: 'sans-serif-light',
@@ -665,40 +665,40 @@ export default class AppStyles {
       note: {
         // fontFamily: 'sans-serif-bold',
         color: colors.gray,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
       },
       head: {
         marginVertical: 8,
       },
       body: {
-        marginVertical: 8
+        marginVertical: 8,
       },
       content: {
         marginHorizontal: 20,
-        marginVertical: 4
+        marginVertical: 4,
       },
       label: {
         fontSize: 13,
-        marginVertical: 2
+        marginVertical: 2,
       },
       value: {
         fontSize: 18,
         fontWeight: 'bold',
       },
-      linkStyle: { color: '#2980b9' },
+      linkStyle: {color: '#2980b9'},
       item: {
-        marginVertical: 12
+        marginVertical: 12,
       },
       nav: {
         // color: colors.primary
       },
       red: {
-        color: colors.light_red
-      }
+        color: colors.light_red,
+      },
     });
   }
 
-  @computed get scheduleInfo () {
+  @computed get scheduleInfo() {
     const colors = this.settings.dark ? dark : light;
 
     return StyleSheet.create({
@@ -706,20 +706,20 @@ export default class AppStyles {
         flex: 1,
         backgroundColor: colors.bg,
         paddingBottom: 12,
-        paddingHorizontal: 12
+        paddingHorizontal: 12,
       },
-      linkStyle: { color: '#2980b9' },
+      linkStyle: {color: '#2980b9'},
       avatar: {
-        padding: 10
+        padding: 10,
       },
       head: {
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
       },
       name: {
         fontSize: 27,
         fontWeight: 'bold',
-        textAlign: "center"
+        textAlign: 'center',
       },
       label: {
         color: colors.black,
@@ -728,7 +728,7 @@ export default class AppStyles {
       item: {
         justifyContent: 'center',
         alignItems: 'center',
-        paddingHorizontal: 16
+        paddingHorizontal: 16,
       },
       count: {
         color: colors.black,
@@ -741,7 +741,7 @@ export default class AppStyles {
         justifyContent: 'space-evenly',
         backgroundColor: colors.light_gray,
         padding: 16,
-        borderRadius: 8
+        borderRadius: 8,
       },
       body: {
         flex: 2,
@@ -756,17 +756,17 @@ export default class AppStyles {
         justifyContent: 'flex-start',
         alignItems: 'center',
         flexDirection: 'row',
-        marginVertical: 8
+        marginVertical: 8,
       },
       description: {
         fontSize: 18,
         fontFamily: 'sans-serif-bold',
-        marginVertical: 8
+        marginVertical: 8,
       },
     });
   }
 
-  @computed get scheduleSearch () {
+  @computed get scheduleSearch() {
     const colors = this.settings.dark ? dark : light;
     const {
       ITEM_HEIGHT,
@@ -778,38 +778,38 @@ export default class AppStyles {
     return StyleSheet.create({
       list: {
         flex: 1,
-        backgroundColor: colors.bg
+        backgroundColor: colors.bg,
       },
       contentContainer: {
         flexGrow: 1,
-        backgroundColor: colors.bg
+        backgroundColor: colors.bg,
       },
       separator: {
-        height: SEPARATOR_HEIGHT
+        height: SEPARATOR_HEIGHT,
       },
       empty: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        paddingHorizontal: 30
+        paddingHorizontal: 30,
       },
       emptyTitle: {
         fontSize: 25,
         color: colors.light_gray_3,
-        textAlign: 'center'
+        textAlign: 'center',
       },
       footer: {
         height: FOOTER_HEIGHT,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
       },
       footerText: {
         fontWeight: 'bold',
-        color: colors.light_gray_3
+        color: colors.light_gray_3,
       },
       itemContainer: {
         backgroundColor: colors.bg,
-        paddingHorizontal: 8
+        paddingHorizontal: 8,
       },
       itemContent: {
         height: ITEM_HEIGHT,
@@ -821,38 +821,38 @@ export default class AppStyles {
       itemBody: {
         width: 250,
         alignItems: 'flex-start',
-        marginLeft: 8
+        marginLeft: 8,
       },
       itemAvatar: {
         height: AVATAR_SIZE,
         width: AVATAR_SIZE,
-        marginRight: 8
+        marginRight: 8,
       },
       itemName: {
         fontFamily: 'sans-serif-bold',
-        fontSize: 16
+        fontSize: 16,
       },
       offlineName: {
         color: colors.gray,
         fontFamily: 'sans-serif-bold',
-        fontSize: 16
+        fontSize: 16,
       },
       danger: {
         color: colors.light_red,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
       },
       paragraph: {
-        textAlign: 'center'
+        textAlign: 'center',
       },
       nameRow: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        alignItems: 'flex-start'
+        alignItems: 'flex-start',
       },
       itemFooter: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        alignItems: 'center'
+        alignItems: 'center',
       },
       rightIcon: {
         borderRadius: 5,
@@ -863,7 +863,7 @@ export default class AppStyles {
     });
   }
 
-  @computed get notifications () {
+  @computed get notifications() {
     const colors = this.settings.dark ? dark : light;
 
     return StyleSheet.create({
@@ -873,7 +873,7 @@ export default class AppStyles {
       contentContainer: {
         flexGrow: 1,
         backgroundColor: colors.bg,
-        padding: 16
+        padding: 16,
       },
       empty: {
         flex: 1,
@@ -886,29 +886,29 @@ export default class AppStyles {
       },
       emptyMessage: {
         textAlign: 'center',
-        fontSize: 16
+        fontSize: 16,
       },
       footer: {
         height: dp(80),
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
       },
       footerText: {
         fontWeight: 'bold',
-        color: colors.light_gray_3
+        color: colors.light_gray_3,
       },
       paragraph: {
-        textAlign: 'center'
+        textAlign: 'center',
       },
       itemContainer: {
-        marginVertical: 8
+        marginVertical: 8,
       },
       unseen: {
-        backgroundColor: colors.light_gray_4
+        backgroundColor: colors.light_gray_4,
       },
       itemContent: {
         flexDirection: 'row',
-        justifyContent: 'flex-start'
+        justifyContent: 'flex-start',
       },
       messageItemContent: {
         paddingVertical: 4,
@@ -920,19 +920,19 @@ export default class AppStyles {
         padding: 8,
         backgroundColor: colors.light_gray,
         marginLeft: 8,
-        flex: 1
+        flex: 1,
       },
       boldText: {
         fontWeight: 'bold',
-        color: colors.black
+        color: colors.black,
       },
       dateLine: {
         flex: 1,
         flexDirection: 'row',
-        alignItems: 'center'
+        alignItems: 'center',
       },
       icon: {
-        marginRight: 8
+        marginRight: 8,
       },
       indicator: {
         backgroundColor: colors.primary,
@@ -941,7 +941,7 @@ export default class AppStyles {
         color: '#fff',
         position: 'absolute',
         top: 0,
-        right: 0
+        right: 0,
       },
       avatar: {
         alignSelf: 'flex-start',
@@ -949,32 +949,32 @@ export default class AppStyles {
       },
       message: {
         paddingHorizontal: 4,
-        backgroundColor: colors.light_gray
+        backgroundColor: colors.light_gray,
       },
       itemFooter: {
         flexDirection: 'row',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
       },
       divider: {
         height: 2,
-        backgroundColor: colors.bg
+        backgroundColor: colors.bg,
       },
       counter: {
         margin: 8,
-        right: 18
-      }
+        right: 18,
+      },
     });
   }
 
-  @computed get discover () {
+  @computed get discover() {
     const colors = this.settings.dark ? dark : light;
 
     return StyleSheet.create({
       list: {
-        backgroundColor: colors.bg
+        backgroundColor: colors.bg,
       },
       contentContainer: {
-        flexGrow: 1
+        flexGrow: 1,
       },
       item: {
         width: '100%',
@@ -982,7 +982,7 @@ export default class AppStyles {
         borderBottomColor: '#0002',
         borderBottomWidth: 0.5,
         paddingHorizontal: 20,
-        justifyContent: 'center'
+        justifyContent: 'center',
       },
       empty: {
         flex: 1,
@@ -992,25 +992,22 @@ export default class AppStyles {
       emptyTitle: {
         fontSize: 25,
         color: colors.light_gray_3,
-        textAlign: 'center'
+        textAlign: 'center',
       },
       paragraph: {
-        textAlign: 'center'
+        textAlign: 'center',
       },
     });
   }
 
-  @computed get scheduleEvents () {
+  @computed get scheduleEvents() {
     const colors = this.settings.dark ? dark : light;
-    const {
-      ITEM_HEIGHT,
-      SEPARATOR_HEIGHT,
-    } = schedule_events;
+    const {ITEM_HEIGHT, SEPARATOR_HEIGHT} = schedule_events;
 
     return StyleSheet.create({
       contentContainer: {
         backgroundColor: colors.bg,
-        flexGrow: 1
+        flexGrow: 1,
       },
       list: {
         backgroundColor: colors.bg,
@@ -1018,11 +1015,11 @@ export default class AppStyles {
       footer: {
         height: ITEM_HEIGHT,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
       },
       footerText: {
         fontWeight: 'bold',
-        color: colors.light_gray_3
+        color: colors.light_gray_3,
       },
       offlineTitle: {
         fontSize: 20,
@@ -1032,12 +1029,12 @@ export default class AppStyles {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        paddingHorizontal: 30
+        paddingHorizontal: 30,
       },
       emptyTitle: {
         fontSize: 25,
         color: colors.light_gray_3,
-        textAlign: 'center'
+        textAlign: 'center',
       },
       separator: {
         height: SEPARATOR_HEIGHT,
@@ -1065,15 +1062,15 @@ export default class AppStyles {
       },
       left: {
         padding: 8,
-        paddingTop: 16
+        paddingTop: 16,
       },
       cancelled: {
         fontSize: 16,
-        color: colors.light_red
+        color: colors.light_red,
       },
       time: {
         fontSize: 14,
-        color: colors.gray
+        color: colors.gray,
       },
       status: {
         color: colors.gray,
@@ -1082,18 +1079,18 @@ export default class AppStyles {
         color: colors.gray,
       },
       durationRow: {
-        flexDirection: 'row'
+        flexDirection: 'row',
       },
       paragraph: {
-        textAlign: 'center'
+        textAlign: 'center',
       },
     });
   }
 
-  @computed get commentsList () {
+  @computed get commentsList() {
     const colors = this.settings.dark ? dark : light;
 
-    const { SEPARATOR_HEIGHT } = comments_list;
+    const {SEPARATOR_HEIGHT} = comments_list;
 
     return StyleSheet.create({
       list: {
@@ -1102,21 +1099,21 @@ export default class AppStyles {
       contentContainer: {
         flexGrow: 1,
         margin: 1,
-        backgroundColor: colors.bg
+        backgroundColor: colors.bg,
       },
       itemContainer: {
         flex: 1,
         flexDirection: 'row',
         backgroundColor: colors.bg,
-        padding: 8
+        padding: 8,
       },
       itemLeft: {
         padding: 8,
-        alignSelf: 'flex-start'
+        alignSelf: 'flex-start',
       },
       itemContent: {
         padding: 4,
-        flex: 1
+        flex: 1,
       },
       item: {
         padding: 16,
@@ -1131,27 +1128,27 @@ export default class AppStyles {
       to: {
         marginBottom: 8,
         borderTopLeftRadius: 12,
-        backgroundColor: colors.light_gray_2
+        backgroundColor: colors.light_gray_2,
       },
       attachment: {
-        paddingTop: 8
+        paddingTop: 8,
       },
       withAttachment: {
         borderBottomStartRadius: 0,
       },
-      linkStyle: { color: '#2980b9' },
+      linkStyle: {color: '#2980b9'},
       authorName: {
         fontFamily: 'sans-serif-bold',
         color: colors.black,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
       },
       separator: {
-        height: SEPARATOR_HEIGHT
+        height: SEPARATOR_HEIGHT,
       },
       footer: {
         flexDirection: 'row',
         justifyContent: 'flex-end',
-        height: dp(48) 
+        height: dp(48),
         // marginTop: 2
       },
       actions: {
@@ -1166,63 +1163,59 @@ export default class AppStyles {
       emptyTitle: {
         fontSize: 25,
         color: colors.light_gray_3,
-        textAlign: 'center'
+        textAlign: 'center',
       },
       paragraph: {
-        textAlign: 'center'
+        textAlign: 'center',
       },
-    });    
+    });
   }
 
-  @computed get peopleList () {
+  @computed get peopleList() {
     const colors = this.settings.dark ? dark : light;
 
-    const {
-      ITEM_HEIGHT,
-      SEPARATOR_HEIGHT,
-      FOOTER_HEIGHT
-    } = people_list;
+    const {ITEM_HEIGHT, SEPARATOR_HEIGHT, FOOTER_HEIGHT} = people_list;
 
     return StyleSheet.create({
       list: {
-        backgroundColor: colors.bg
+        backgroundColor: colors.bg,
       },
       contentContainer: {
         flexGrow: 1,
-        backgroundColor: colors.bg
+        backgroundColor: colors.bg,
       },
       separator: {
         height: SEPARATOR_HEIGHT,
       },
       itemContainer: {
         backgroundColor: colors.bg,
-        height: ITEM_HEIGHT
+        height: ITEM_HEIGHT,
       },
       itemContent: {
         flex: 1,
         flexDirection: 'row',
         alignItems: 'center',
-        paddingHorizontal: 16
+        paddingHorizontal: 16,
       },
       itemRight: {
         justifyContent: 'center',
-        marginLeft: 16
+        marginLeft: 16,
       },
       itemText: {
         fontFamily: 'sans-serif-bold',
         fontWeight: 'bold',
         fontSize: 16,
-        width: 250
+        width: 250,
       },
       footer: {
         justifyContent: 'center',
         alignItems: 'center',
-        height: FOOTER_HEIGHT
+        height: FOOTER_HEIGHT,
       },
       footerText: {
         color: colors.primary,
         fontWeight: 'bold',
-        fontSize: 16
+        fontSize: 16,
       },
       empty: {
         flex: 1,
@@ -1232,24 +1225,21 @@ export default class AppStyles {
       emptyTitle: {
         fontSize: 25,
         color: colors.light_gray_3,
-        textAlign: 'center'
+        textAlign: 'center',
       },
     });
   }
 
-  @computed get bookmarkedEventsList () {
+  @computed get bookmarkedEventsList() {
     const colors = this.settings.dark ? dark : light;
 
-    const {
-      ITEM_HEIGHT,
-      SEPARATOR_HEIGHT,
-    } = bookmarkedEvents;
+    const {ITEM_HEIGHT, SEPARATOR_HEIGHT} = bookmarkedEvents;
 
     return StyleSheet.create({
       contentContainer: {
         backgroundColor: colors.bg,
         // marginTop: 1,
-        flexGrow: 1
+        flexGrow: 1,
       },
       list: {
         backgroundColor: colors.bg,
@@ -1257,11 +1247,11 @@ export default class AppStyles {
       footer: {
         height: ITEM_HEIGHT,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
       },
       footerText: {
         fontWeight: 'bold',
-        color: colors.light_gray_3
+        color: colors.light_gray_3,
       },
       offlineTitle: {
         fontSize: 20,
@@ -1271,12 +1261,12 @@ export default class AppStyles {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        paddingHorizontal: 30
+        paddingHorizontal: 30,
       },
       emptyTitle: {
         fontSize: 25,
         color: colors.light_gray_3,
-        textAlign: 'center'
+        textAlign: 'center',
       },
       separator: {
         height: SEPARATOR_HEIGHT,
@@ -1295,7 +1285,7 @@ export default class AppStyles {
         height: dp(40),
         flexDirection: 'row',
         paddingHorizontal: 8,
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
       },
       itemBody: {
         paddingLeft: 8,
@@ -1303,7 +1293,7 @@ export default class AppStyles {
       },
       itemHeadline: {
         fontSize: 20,
-        textAlignVertical: 'center'
+        textAlignVertical: 'center',
       },
       itemNote: {
         fontSize: 16,
@@ -1317,15 +1307,15 @@ export default class AppStyles {
       right: {
         flexDirection: 'row',
         flex: 1,
-        paddingLeft: 4
+        paddingLeft: 4,
       },
       cancelled: {
         fontSize: 16,
-        color: colors.light_red
+        color: colors.light_red,
       },
       time: {
         fontSize: 14,
-        color: colors.gray
+        color: colors.gray,
       },
       status: {
         color: colors.gray,
@@ -1334,10 +1324,10 @@ export default class AppStyles {
         color: colors.gray,
       },
       durationRow: {
-        flexDirection: 'row'
+        flexDirection: 'row',
       },
       paragraph: {
-        textAlign: 'center'
+        textAlign: 'center',
       },
     });
   }
@@ -1353,33 +1343,30 @@ export default class AppStyles {
         margin: 4,
         elevation: 2,
         borderRadius: 8,
-        backgroundColor: colors.light_gray
+        backgroundColor: colors.light_gray,
       },
       image: {
         width: '94%',
-        height: 148
+        height: 148,
       },
       text: {
         fontSize: 20,
         // fontWeight: 'bold',
-        color: colors.gray
-      }
+        color: colors.gray,
+      },
     });
   }
 
-  @computed get searchEventsList () {
+  @computed get searchEventsList() {
     const colors = this.settings.dark ? dark : light;
 
-    const {
-      ITEM_HEIGHT,
-      SEPARATOR_HEIGHT,
-    } = searchEvents;
+    const {ITEM_HEIGHT, SEPARATOR_HEIGHT} = searchEvents;
 
     return StyleSheet.create({
       contentContainer: {
         backgroundColor: colors.bg,
         marginTop: 1,
-        flexGrow: 1
+        flexGrow: 1,
       },
       list: {
         backgroundColor: colors.bg,
@@ -1387,11 +1374,11 @@ export default class AppStyles {
       footer: {
         height: ITEM_HEIGHT,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
       },
       footerText: {
         fontWeight: 'bold',
-        color: colors.light_gray_3
+        color: colors.light_gray_3,
       },
       offlineTitle: {
         fontSize: 20,
@@ -1402,12 +1389,12 @@ export default class AppStyles {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        paddingHorizontal: 30
+        paddingHorizontal: 30,
       },
       emptyTitle: {
         fontSize: 25,
         color: colors.light_gray_3,
-        textAlign: 'center'
+        textAlign: 'center',
       },
       separator: {
         height: SEPARATOR_HEIGHT,
@@ -1435,22 +1422,22 @@ export default class AppStyles {
       },
       left: {
         paddingTop: 16,
-        marginRight: 8
+        marginRight: 8,
       },
       right: {
         justifyContent: 'space-between',
         flex: 1,
         borderRadius: 16,
         padding: 8,
-        backgroundColor: colors.light_gray
+        backgroundColor: colors.light_gray,
       },
       cancelled: {
         fontSize: 16,
-        color: colors.light_red
+        color: colors.light_red,
       },
       time: {
         fontSize: 14,
-        color: colors.gray
+        color: colors.gray,
       },
       status: {
         color: colors.gray,
@@ -1459,58 +1446,55 @@ export default class AppStyles {
         color: colors.gray,
       },
       durationRow: {
-        flexDirection: 'row'
+        flexDirection: 'row',
       },
       paragraph: {
-        textAlign: 'center'
+        textAlign: 'center',
       },
     });
   }
 
-  @computed get schedulesList () {
+  @computed get schedulesList() {
     const colors = this.settings.dark ? dark : light;
-    const {
-      ITEM_HEIGHT,
-      SEPARATOR_HEIGHT,
-    } = schedules;
+    const {ITEM_HEIGHT, SEPARATOR_HEIGHT} = schedules;
 
     return StyleSheet.create({
       list: {
         flex: 1,
-        backgroundColor: colors.bg
+        backgroundColor: colors.bg,
       },
       contentContainer: {
         flexGrow: 1,
         // marginTop: 1,
-        backgroundColor: colors.bg
+        backgroundColor: colors.bg,
       },
       separator: {
-        height: SEPARATOR_HEIGHT
+        height: SEPARATOR_HEIGHT,
       },
       empty: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        paddingHorizontal: 30
+        paddingHorizontal: 30,
       },
       emptyTitle: {
         fontSize: 25,
         color: colors.light_gray_3,
-        textAlign: 'center'
+        textAlign: 'center',
       },
       header: {
         height: BANNER + 4,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
       },
       footer: {
         height: ITEM_HEIGHT,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
       },
       footerText: {
         fontWeight: 'bold',
-        color: colors.light_gray_3
+        color: colors.light_gray_3,
       },
       itemContainer: {
         backgroundColor: colors.bg,
@@ -1524,16 +1508,16 @@ export default class AppStyles {
       itemBody: {
         width: 250,
         alignItems: 'flex-start',
-        paddingLeft: 8
+        paddingLeft: 8,
       },
       itemAvatar: {
         padding: 8,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
       },
       itemName: {
         fontFamily: 'sans-serif-bold',
-        fontSize: 16
+        fontSize: 16,
       },
       offlineName: {
         fontFamily: 'sans-serif-bold',
@@ -1541,23 +1525,23 @@ export default class AppStyles {
       },
       danger: {
         color: colors.light_red,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
       },
       nameRow: {
         flexDirection: 'row',
         justifyContent: 'center',
-        alignItems: 'flex-start'
+        alignItems: 'flex-start',
       },
       itemFooter: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        alignItems: 'center'
+        alignItems: 'center',
       },
       paragraph: {
-        textAlign: 'center'
+        textAlign: 'center',
       },
       muteIcon: {
-        marginRight: 8
+        marginRight: 8,
       },
       privateIcon: {
         borderRadius: 5,
@@ -1568,45 +1552,45 @@ export default class AppStyles {
     });
   }
 
-  @computed get eventsList () {
+  @computed get eventsList() {
     const colors = this.settings.dark ? dark : light;
-    
+
     const {
       ITEM_HEIGHT,
       SEPARATOR_HEIGHT,
       SECTION_HEADER_HEIGHT,
       SECTION_FOOTER_HEIGHT,
       HEADER_HEIGHT,
-      FOOTER_HEIGHT
+      FOOTER_HEIGHT,
     } = events;
 
     return StyleSheet.create({
       contentContainer: {
         backgroundColor: colors.bg,
         // marginTop: 1,
-        flexGrow: 1
+        flexGrow: 1,
       },
       list: {
         backgroundColor: colors.bg,
-        paddingHorizontal: 14 
+        paddingHorizontal: 14,
       },
       sectionHeader: {
         backgroundColor: colors.light_gray,
         paddingVertical: 5,
         paddingHorizontal: 16,
         height: SECTION_HEADER_HEIGHT,
-        borderRadius: 8
+        borderRadius: 8,
       },
       sectionHeading: {
         fontSize: 22,
-        color: colors.primary
+        color: colors.primary,
       },
       sectionSubheadingContent: {
         flexDirection: 'row',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
       },
       sectionSubheading: {
-        color: colors.gray
+        color: colors.gray,
       },
       sectionFooter: {
         height: SECTION_FOOTER_HEIGHT,
@@ -1614,30 +1598,30 @@ export default class AppStyles {
         alignItems: 'center',
         backgroundColor: colors.bg,
       },
-      header:{
+      header: {
         height: HEADER_HEIGHT,
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: colors.bg,
       },
-      headerText:{
+      headerText: {
         color: colors.primary,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
       },
       loadPrevHeaderContainer: {
-        height: dp(32)
+        height: dp(32),
       },
       footerContainer: {
-        height: FOOTER_HEIGHT
+        height: FOOTER_HEIGHT,
       },
       footerContent: {
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
       },
       footerText: {
         fontWeight: 'bold',
-        color: colors.light_gray_3
+        color: colors.light_gray_3,
       },
       offlineTitle: {
         fontSize: 20,
@@ -1647,12 +1631,12 @@ export default class AppStyles {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        paddingHorizontal: 30
+        paddingHorizontal: 30,
       },
       emptyTitle: {
         fontSize: 25,
         color: colors.light_gray_3,
-        textAlign: 'center'
+        textAlign: 'center',
       },
       separator: {
         height: SEPARATOR_HEIGHT,
@@ -1681,15 +1665,15 @@ export default class AppStyles {
       left: {
         padding: 8,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
       },
       cancelled: {
         fontSize: 16,
-        color: colors.light_red
+        color: colors.light_red,
       },
       time: {
         fontSize: 14,
-        color: colors.gray
+        color: colors.gray,
       },
       status: {
         color: colors.gray,
@@ -1699,10 +1683,10 @@ export default class AppStyles {
         color: colors.gray,
       },
       durationRow: {
-        flexDirection: 'row'
+        flexDirection: 'row',
       },
       paragraph: {
-        textAlign: 'center'
+        textAlign: 'center',
       },
       privateIcon: {
         borderRadius: 5,
@@ -1713,20 +1697,17 @@ export default class AppStyles {
     });
   }
 
-  @computed get moreList () {
+  @computed get moreList() {
     const colors = this.settings.dark ? dark : light;
-    const {
-      SEPARATOR_HEIGHT,
-      HEADER_HEIGHT
-    } = more_list;
+    const {SEPARATOR_HEIGHT, HEADER_HEIGHT} = more_list;
 
     return StyleSheet.create({
       container: {
-        backgroundColor: colors.bg
+        backgroundColor: colors.bg,
       },
       contentContainer: {
         flexGrow: 1,
-        backgroundColor: colors.bg
+        backgroundColor: colors.bg,
       },
       header: {
         height: HEADER_HEIGHT,
@@ -1742,11 +1723,11 @@ export default class AppStyles {
       },
       item: {
         backgroundColor: colors.bg,
-      }
+      },
     });
   }
 
-  @computed get actionsheet () {
+  @computed get actionsheet() {
     const colors = this.settings.dark ? dark : light;
 
     return StyleSheet.create({
@@ -1754,39 +1735,39 @@ export default class AppStyles {
         paddingHorizontal: 16,
         borderTopStartRadius: 16,
         borderTopEndRadius: 16,
-        backgroundColor: colors.bg
+        backgroundColor: colors.bg,
       },
       content: {
-        padding: 16
+        padding: 16,
       },
       header: {
-        paddingBottom: 16
+        paddingBottom: 16,
       },
       title: {
         fontSize: 25,
         fontWeight: 'bold',
-        color: colors.black
+        color: colors.black,
       },
       label: {
         fontSize: 20,
         fontWeight: 'bold',
-        color: colors.light_gray_3
+        color: colors.light_gray_3,
       },
       option: {
-        marginVertical: 16
+        marginVertical: 16,
       },
       row: {
         flexDirection: 'row',
-        alignItems: 'center'
+        alignItems: 'center',
       },
       icon: {
         marginRight: 16,
-        color: colors.light_gray_3
-      }
-    })
+        color: colors.light_gray_3,
+      },
+    });
   }
 
-  @computed get styles () {
+  @computed get styles() {
     const colors = this.settings.dark ? dark : light;
 
     return StyleSheet.create({
@@ -1798,13 +1779,13 @@ export default class AppStyles {
         alignItems: 'center',
         justifyContent: 'flex-start',
         minWidth: 48,
-        maxWidth: 48
+        maxWidth: 48,
       },
       iconButton: {
-        marginRight: 0
+        marginRight: 0,
       },
       badge: {
-        color: colors.gray
+        color: colors.gray,
       },
       header: {
         elevation: 0,
@@ -1815,23 +1796,22 @@ export default class AppStyles {
         backgroundColor: colors.bg,
       },
       headerColor: {
-        color: colors.gray
+        color: colors.gray,
       },
       bg: {
-        backgroundColor: colors.bg
-      }
-    });    
+        backgroundColor: colors.bg,
+      },
+    });
   }
 
   @computed get profile() {
-    
     const colors = this.settings.dark ? dark : light;
 
     return StyleSheet.create({
       container: {
         backgroundColor: colors.bg,
         padding: 24,
-        flex: 1
+        flex: 1,
       },
       header: {
         justifyContent: 'center',
@@ -1840,17 +1820,17 @@ export default class AppStyles {
       textLabel: {
         fontSize: 13,
         marginVertical: 4,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
       },
       value: {
         fontSize: 16,
-        color: colors.black
+        color: colors.black,
       },
       headline: {
         fontWeight: 'bold',
         fontFamily: 'sans-serif-bold',
         textAlign: 'center',
-        padding: 12
+        padding: 12,
       },
       count: {
         color: colors.black,
@@ -1872,7 +1852,7 @@ export default class AppStyles {
         justifyContent: 'space-evenly',
         backgroundColor: colors.light_gray,
         padding: 16,
-        borderRadius: 8
+        borderRadius: 8,
       },
       item: {
         justifyContent: 'center',
@@ -1882,25 +1862,25 @@ export default class AppStyles {
         marginVertical: 16,
         flexDirection: 'row',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
       },
       linkStyle: {
         color: colors.link,
       },
       linkIcon: {
-        paddingRight: 8
+        paddingRight: 8,
       },
       body: {
         justifyContent: 'flex-start',
         alignItems: 'flex-start',
-        paddingVertical: 16
+        paddingVertical: 16,
       },
-      fab:{
+      fab: {
         position: 'absolute',
         bottom: 0,
         right: 0,
-        margin: 16
-      }
-    })
+        margin: 16,
+      },
+    });
   }
 }

@@ -1,58 +1,60 @@
 import React from 'react';
-import { RefreshControl } from 'react-native';
-import { FlatList } from 'react-navigation';
+import {RefreshControl} from 'react-native';
+import {FlatList} from 'react-navigation';
 import moment from 'moment';
-import { I18n } from 'aws-amplify';
-import { inject, observer } from 'mobx-react';
+import {I18n} from 'aws-amplify';
+import {inject, observer} from 'mobx-react';
 import Empty from './Empty';
 import Footer from './Footer';
 import Separator from './Separator';
 import NotifItem from './Item';
-import { notifications_list } from 'lib/constants';
+import {notifications_list} from 'lib/constants';
 import getImageUrl from 'helpers/getImageUrl';
 
-const {
-  ITEM_HEIGHT,
-  SEPARATOR_HEIGHT
-} = notifications_list;
+const {ITEM_HEIGHT, SEPARATOR_HEIGHT} = notifications_list;
 
 class List extends React.Component {
   static defaultProps = {
-    updates: []
+    updates: [],
   };
 
   _renderEmpty = () => <Empty />;
   _renderSeparator = () => <Separator />;
   _keyExtractor = (item, index) => item.id + item.date + index;
-  _renderFooter = () => <Footer visible={this.props.updates.length}/>;
-  _navigateToEvent = (id, from) => this.props.navigation.navigate('EventDetails', { id, from });
-  _navigateToSchedule = (id) => this.props.navigation.navigate('ScheduleInfo', { id });
-  _navigateToFollowers = (id) => this.props.navigation.navigate('Followers', { id });
-  _navigateToBookmarks = (id) => this.props.navigation.navigate('EventBookmarks', { id });
-  _navigateToComments = (id) => this.props.navigation.navigate('Comments', { id });
+  _renderFooter = () => <Footer visible={this.props.updates.length} />;
+  _navigateToEvent = (id, from) =>
+    this.props.navigation.navigate('EventDetails', {id, from});
+  _navigateToSchedule = (id) =>
+    this.props.navigation.navigate('ScheduleInfo', {id});
+  _navigateToFollowers = (id) =>
+    this.props.navigation.navigate('Followers', {id});
+  _navigateToBookmarks = (id) =>
+    this.props.navigation.navigate('EventBookmarks', {id});
+  _navigateToComments = (id) =>
+    this.props.navigation.navigate('Comments', {id});
   _onRefresh = () => {
     this.props.onRefresh && this.props.onRefresh();
     this.props.stores.notificationsStore.fetchNotifications();
   };
-  _getItemLayout = (_, index) => (
-    {
-      length: ITEM_HEIGHT,
-      offset: ITEM_HEIGHT * index + SEPARATOR_HEIGHT,
-      index
-    }
-  );
-  _renderItem = ({ item: {
-    id,
-    subject,
-    message,
-    image,
-    timestamp,
-    topic,
-    entityId,
-    type,
-    extraData,
-    seen
-  }}) => {
+  _getItemLayout = (_, index) => ({
+    length: ITEM_HEIGHT,
+    offset: ITEM_HEIGHT * index + SEPARATOR_HEIGHT,
+    index,
+  });
+  _renderItem = ({
+    item: {
+      id,
+      subject,
+      message,
+      image,
+      timestamp,
+      topic,
+      entityId,
+      type,
+      extraData,
+      seen,
+    },
+  }) => {
     let Item = NotifItem;
     let pictureUrl;
     if (image) {
@@ -66,31 +68,30 @@ class List extends React.Component {
     if (moment() > moment.unix(timestamp).add(1, 'minute')) {
       date = moment.unix(timestamp).fromNow();
     }
-    return <Item
-      id={id}
-      entityId={entityId}
-      subject={subject}
-      message={message}
-      topic={topic}
-      type={type}
-      extraData={extraData}
-      seen={seen}
-      pictureUrl={pictureUrl}
-      date={date}
-      from={extraData && extraData.ref}
-      navigateToSchedule={this._navigateToSchedule}
-      navigateToEvent={this._navigateToEvent}
-      navigateToFollowers={this._navigateToFollowers}
-      navigateToBookmarks={this._navigateToBookmarks}
-      navigateToComments={this._navigateToComments}
-    />
+    return (
+      <Item
+        id={id}
+        entityId={entityId}
+        subject={subject}
+        message={message}
+        topic={topic}
+        type={type}
+        extraData={extraData}
+        seen={seen}
+        pictureUrl={pictureUrl}
+        date={date}
+        from={extraData && extraData.ref}
+        navigateToSchedule={this._navigateToSchedule}
+        navigateToEvent={this._navigateToEvent}
+        navigateToFollowers={this._navigateToFollowers}
+        navigateToBookmarks={this._navigateToBookmarks}
+        navigateToComments={this._navigateToComments}
+      />
+    );
   };
 
   render() {
-    const {
-      stores,
-      refreshing
-    } = this.props;
+    const {stores, refreshing} = this.props;
     const styles = stores.appStyles.notifications;
     return (
       <FlatList
@@ -109,8 +110,8 @@ class List extends React.Component {
           <RefreshControl
             onRefresh={this._onRefresh}
             refreshing={stores.notificationsStore.loading && refreshing}
-            colors={[stores.themeStore.colors.primary]}
-            progressBackgroundColor={stores.themeStore.colors.bg}
+            colors={[stores.theme.colors.primary]}
+            progressBackgroundColor={stores.theme.colors.bg}
           />
         }
       />
@@ -118,4 +119,4 @@ class List extends React.Component {
   }
 }
 
-export default inject("stores")(observer(List));
+export default inject('stores')(observer(List));

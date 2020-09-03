@@ -5,21 +5,21 @@ import logger from 'config/logger';
 export default class Button extends React.Component {
   state = {
     loading: false,
-    isBookmarked: false
+    isBookmarked: false,
   };
 
   static getDerivedStateFromProps(props, state) {
-    if ((props.isBookmarked !== state.isBookmarked) && !state.loading) {
+    if (props.isBookmarked !== state.isBookmarked && !state.loading) {
       return {
         isBookmarked: props.isBookmarked,
-        loading: state.loading
+        loading: state.loading,
       };
     }
     return null;
   }
 
-  shouldComponentUpdate = (_, nextState) => (
-    nextState.isBookmarked !== this.state.isBookmarked);
+  shouldComponentUpdate = (_, nextState) =>
+    nextState.isBookmarked !== this.state.isBookmarked;
 
   _onPress = async () => {
     const {
@@ -30,13 +30,11 @@ export default class Button extends React.Component {
       bookmarkEvent,
       bookmarkScheduleId,
     } = this.props;
-    this.setState(
-      prevState => ({
-        loading: true,
-        isBookmarked: !prevState.isBookmarked
-      })
-    );
-    const { loading } = this.state;
+    this.setState((prevState) => ({
+      loading: true,
+      isBookmarked: !prevState.isBookmarked,
+    }));
+    const {loading} = this.state;
     setTimeout(async () => {
       if (!loading) {
         const input = {
@@ -46,31 +44,27 @@ export default class Button extends React.Component {
           if (isBookmarked) {
             await removeBookmark(input, id);
           } else {
-            input.bookmarkEventId = id,
-            input.bookmarkScheduleId = bookmarkScheduleId;
+            (input.bookmarkEventId = id),
+              (input.bookmarkScheduleId = bookmarkScheduleId);
             await bookmarkEvent(input);
           }
         } catch (error) {
           logger.logError(error);
         }
-        this.setState({ loading: false });
+        this.setState({loading: false});
       }
     }, 0);
   };
 
   render() {
-    const {
-      size,
-      bookmarksCount,
-      stores
-    } = this.props;
-    const { isBookmarked } = this.state;
+    const {size, bookmarksCount, stores} = this.props;
+    const {isBookmarked} = this.state;
 
-    const count = (this.props.isBookmarked &&
-      (bookmarksCount === 1)) ? 0 : bookmarksCount;
-    
-    const activeColor = stores.themeStore.colors.like;
-    const color = stores.themeStore.colors.gray;
+    const count =
+      this.props.isBookmarked && bookmarksCount === 1 ? 0 : bookmarksCount;
+
+    const activeColor = stores.theme.colors.like;
+    const color = stores.theme.colors.gray;
 
     return (
       <IconBadge

@@ -1,34 +1,28 @@
 import React from 'react';
-import { View, TouchableOpacity } from 'react-native';
-import {
-  Text,
-  Caption,
-  Headline,
-} from 'react-native-paper';
-import { inject, observer } from 'mobx-react';
+import {View, TouchableOpacity} from 'react-native';
+import {Text, Caption, Headline} from 'react-native-paper';
+import {inject, observer} from 'mobx-react';
 import Badge from 'components/common/Badge';
 import Avatar from 'components/common/UserAvatar';
 import Actions from 'components/common/Actions';
-import { bookmarkedEvents } from 'lib/constants';
+import {bookmarkedEvents} from 'lib/constants';
 import {
   parseRepeat,
   getStatus,
   getCategory,
-  captionDetails
+  captionDetails,
 } from 'lib/formatEvent';
-import {
-  getDuration,
-  getHumanTime
-} from 'lib/time';
+import {getDuration, getHumanTime} from 'lib/time';
 import getImageUrl from 'helpers/getImageUrl';
 
-const { AVATAR_SIZE } = bookmarkedEvents;
+const {AVATAR_SIZE} = bookmarkedEvents;
 
 class Item extends React.Component {
   _onPress = () => this.props.onPressItem(this.props.id, this.props.startAt);
-  _onPressComment = () => this.props.onPressComment(this.props.id, this.props.title, this.props.time);
+  _onPressComment = () =>
+    this.props.onPressComment(this.props.id, this.props.title, this.props.time);
   _onPressAvatar = () => {
-    const { scheduleId } = this.props;
+    const {scheduleId} = this.props;
     scheduleId ? this.props.navigateToInfo(scheduleId) : this._onPress();
   };
   shouldComponentUpdate = (nextProps) => {
@@ -56,33 +50,30 @@ class Item extends React.Component {
       address,
       scheduleId,
       cancelledDates,
-      stores
+      stores,
     } = this.props;
 
     const styles = stores.appStyles.searchEventsList;
     const category = getCategory(this.props.category);
     const recurrence = parseRepeat(this.props.recurrence);
-    const time = getHumanTime({ allDay, startAt, endAt });
+    const time = getHumanTime({allDay, startAt, endAt});
     const duration = getDuration(startAt, endAt, allDay);
     const pictureUrl = banner && getImageUrl(banner);
     const status = getStatus({
       cancelledDates,
       startAt,
       endAt,
-      until
+      until,
     });
     const caption = captionDetails({
       allDay,
       recurrence,
       category,
-      duration
+      duration,
     });
 
     return (
-      <TouchableOpacity
-        onPress={this._onPress}
-        style={styles.itemContainer}
-      >
+      <TouchableOpacity onPress={this._onPress} style={styles.itemContainer}>
         <View style={styles.itemContent}>
           <Avatar
             size={AVATAR_SIZE}
@@ -102,13 +93,11 @@ class Item extends React.Component {
                 {title}
               </Headline>
               <Text style={styles.time}>{time}</Text>
-              {
-                Boolean(caption) && (
-                  <Caption numberOfLines={1}
-                    ellipsizeMode="tail"
-                  >{caption}</Caption>
-                )
-              }
+              {Boolean(caption) && (
+                <Caption numberOfLines={1} ellipsizeMode="tail">
+                  {caption}
+                </Caption>
+              )}
             </View>
             <Actions
               id={id}
@@ -119,8 +108,8 @@ class Item extends React.Component {
               isOffline={isOffline}
               bookmarksCount={bookmarksCount}
               commentsCount={commentsCount}
-              color={stores.themeStore.colors.light_gray_3}
-              activeColor={stores.themeStore.colors.like}
+              color={stores.theme.colors.light_gray_3}
+              activeColor={stores.theme.colors.like}
               navigateToComments={this._onPressComment}
               bookmarkScheduleId={scheduleId}
               size={18}
@@ -133,4 +122,4 @@ class Item extends React.Component {
   }
 }
 
-export default inject("stores")(observer(Item));
+export default inject('stores')(observer(Item));

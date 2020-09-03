@@ -1,5 +1,5 @@
 import React from 'react';
-import { inject, observer } from 'mobx-react';
+import {inject, observer} from 'mobx-react';
 import OneSignal from 'react-native-onesignal';
 import Notifications from './Notifications';
 import logger from 'config/logger';
@@ -22,10 +22,10 @@ class Container extends React.Component {
   };
 
   render() {
-    const { stores } = this.props;
+    const {stores} = this.props;
     const title = stores.notificationsStore.filter;
     const styles = stores.appStyles.styles;
-    const color = stores.themeStore.colors.primary;
+    const color = stores.theme.colors.primary;
     const allNotifications = stores.notificationsStore.allNotifications;
     const isConnected = stores.appState.isConnected;
     const hasNotification = stores.notificationsStore.count;
@@ -45,4 +45,4 @@ class Container extends React.Component {
   }
 }
 
-export default inject("stores")(observer(Container));
+export default inject('stores')(observer(Container));

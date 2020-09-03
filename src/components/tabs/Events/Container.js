@@ -65,10 +65,10 @@ class Container extends React.Component {
 
   _handleNavBarColor = async () => {
     const {stores} = this.props;
-    const colors = stores.themeStore.colors;
+    const colors = stores.theme.colors;
 
     try {
-      const isDark = stores.settingsStore.dark;
+      const isDark = stores.settings.dark;
       const navColor = isDark ? colors.light_gray_2 : colors.bg;
       changeNavigationBarColor(navColor, !isDark);
     } catch (error) {
@@ -108,7 +108,7 @@ class Container extends React.Component {
     await this._handleNavBarColor();
     InteractionManager.runAfterInteractions(() => {
       this.props.stores.calendar.sync();
-      this.props.stores.settingsStore.updateLanguage();
+      this.props.stores.settings.updateLanguage();
     });
   };
 

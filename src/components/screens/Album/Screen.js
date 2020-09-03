@@ -1,18 +1,19 @@
 import React from 'react';
-import { Appbar } from 'react-native-paper';
-import { inject, observer } from 'mobx-react';
+import {Appbar} from 'react-native-paper';
+import {inject, observer} from 'mobx-react';
 import Icon from 'components/common/Icon';
-import { I18n } from 'aws-amplify';
+import {I18n} from 'aws-amplify';
 import Album from './Album';
 
 class Screen extends React.Component {
   _goBack = () => this.props.navigation.goBack();
-  _openViewer = (id, key) => this.props.navigation.navigate('AlbumViewer', { id, key });
+  _openViewer = (id, key) =>
+    this.props.navigation.navigate('AlbumViewer', {id, key});
 
   render() {
-    const { stores } = this.props;
+    const {stores} = this.props;
     const appStyles = stores.appStyles.styles;
-    const colors = stores.themeStore.colors;
+    const colors = stores.theme.colors;
     const id = this.props.navigation.getParam('id');
     return (
       <>
@@ -21,24 +22,19 @@ class Screen extends React.Component {
             onPress={this._goBack}
             color={colors.primary}
             size={24}
-            icon={({ size, color }) => <Icon
-              name="arrow-left"
-              size={size}
-              color={color}
-            />}
+            icon={({size, color}) => (
+              <Icon name="arrow-left" size={size} color={color} />
+            )}
           />
           <Appbar.Content
             titleStyle={appStyles.headerColor}
             title={I18n.get('TEXT_album')}
           />
         </Appbar.Header>
-        <Album
-          id={id}
-          navigateToViewer={this._openViewer}
-        /> 
+        <Album id={id} navigateToViewer={this._openViewer} />
       </>
-    )
+    );
   }
 }
 
-export default inject("stores")(observer(Screen));
+export default inject('stores')(observer(Screen));

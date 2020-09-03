@@ -33,9 +33,9 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <PaperProvider theme={stores.themeStore.theme}>
+      <PaperProvider theme={stores.theme.theme}>
         <ApolloProvider client={client}>
-          <Rehydrated loading={<Loading dark={stores.settingsStore.dark} />}>
+          <Rehydrated loading={<Loading dark={stores.settings.dark} />}>
             <MobxProvider stores={stores}>
               <AppContainer
                 uriPrefix={env.uriPrefix}
