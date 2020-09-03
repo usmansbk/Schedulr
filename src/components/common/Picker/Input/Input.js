@@ -10,7 +10,7 @@ export default inject('stores')(
 
     return (
       <TouchableOpacity onPress={onPress} style={styles.button}>
-        <Text style={styles.text}>{value || I18n.get('Normal')}</Text>
+        <Text style={styles.text}>{value || I18n.get('Event')}</Text>
       </TouchableOpacity>
     );
   }),

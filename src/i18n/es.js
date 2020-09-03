@@ -379,7 +379,7 @@ export default {
     }
     return 'About this event...';
   },
-  PLACEHOLDER_normal: 'Normal',
+  PLACEHOLDER_normal: 'Event',
   PLACEHOLDER_addYourWebsite: 'Añade tu página web',
   PLACEHOLDER_bio: 'Sobre mí',
   PLACEHOLDER_venue: (city) => (city ? `En ${city}` : 'Lugar de eventos'),

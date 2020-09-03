@@ -13,9 +13,9 @@ export default {
   ACTION_filterByType: (filter) => 'Filter By Type: ' + capitalize(filter),
   ACTION_all: 'All',
   ACTION_events: 'Events',
-  ACTION_schedules: 'Schedules',
+  ACTION_schedules: 'Groups',
   ACTION_bookmarks: 'Bookmarks',
-  ACTION_followers: 'Followers',
+  ACTION_followers: 'Members',
   ACTION_comments: 'Comments',
   ACTION_clearAll: 'Clear all',
 
@@ -24,8 +24,11 @@ export default {
   COMMENTS_loadMore: (count) =>
     `View ${count} more comment${count > 1 ? 's' : ''}`,
   COMMENT_tooLong: 'Comment too long',
-  FOLLOWERS_emptyList: 'No followers',
+  FOLLOWERS_emptyList: 'No members',
   FOLLOWERS_loadMore: 'Load more',
+  FOLLOWERS: 'Members',
+  BUTTON_leave: 'Leave',
+  BUTTON_join: 'Join',
 
   EVENTS_emptyList: 'No upcoming events',
   EVENT_noLocationSet: 'No location set',
@@ -41,11 +44,11 @@ export default {
   EVENT_mute: 'Mute this event',
   EVENT_unmute: 'Unmute this event',
 
-  BOARD_emptyList: 'Your board is empty',
-  BOARD_emptyListCaption: 'Follow or create a schedule',
+  BOARD_emptyList: "You don't belong to any group",
+  BOARD_emptyListCaption: 'Join or create a group',
 
   PROFILE_boardEmptyList: 'Nothing here yet...',
-  PROFILE_followingLabel: 'Following',
+  PROFILE_followingLabel: 'Joined',
   PROFILE_createdLabel: 'Created',
 
   BOOKMARKS_emptyList: "You haven't saved any events yet",
@@ -62,11 +65,11 @@ export default {
   DISCOVER_emptyList: 'Discover',
   DISCOVER_turnOnLocation: 'Use your location',
   DISCOVER_locationUsage:
-    'Schdlr requires your location to find nearby events.',
+    'Schedulr requires your location to find nearby events.',
   DISCOVER_emptyListCaption: 'Events happening around you!',
 
-  SEARCH_inputPlaceholder: (city) => `Search${city ? ' ' + city : ' Schdlr'}`,
-  SEARCH_schedulesTabLabel: 'Schedules',
+  SEARCH_inputPlaceholder: (city) => `Search${city ? ' ' + city : ' Schedulr'}`,
+  SEARCH_schedulesTabLabel: 'Groups',
   SEARCH_eventsTabLabel: 'Events',
   SEARCH_peopleTabLabel: 'People',
   SEARCH_emptyList: 'No results',
@@ -140,30 +143,28 @@ export default {
   BUTTON_signingIn: 'Signing in...',
   BUTTON_editProfile: 'Edit Profile',
   BUTTON_shareInviteLink: 'Share invite link',
-  BUTTON_unfollow: 'Unfollow',
+  BUTTON_unfollow: 'Leave',
   BUTTON_turnOnLocation: 'Turn on',
   BUTTON_confirm: 'Confirm',
   BUTTON_delete: 'DELETE',
   BUTTON_logout: 'LOGOUT',
 
-  ALERT_whatIsASchedule: 'Why create a list?',
+  ALERT_whatIsASchedule: 'What is a group?',
   ALERT_whatIsAScheduleA:
-    'Add your events to a specific list, and people who follow the list will be informed of your events.',
-  ALERT_privateSchedule: 'Private List',
-  ALERT_privateScheduleA:
-    'This list is only be visible to those with invite link.',
-  ALERT_publicScheduleA: 'This list is visible to everyone.',
+    'A group is where you add events, so your team mates can join and receive updates',
+  ALERT_privateSchedule: 'Private group',
+  ALERT_privateScheduleA: 'This group can only be shared via group link',
+  ALERT_publicScheduleA: 'This group is visible to everyone.',
   ALERT_deleteImage: 'Delete image?',
-  ALERT_unfollow: (name) => `Unfollow ${name}?`,
+  ALERT_unfollow: (name) => `Leave ${name}?`,
   ALERT_unfollowMessage: "You'll no longer receive updates about their events.",
 
   SHARE_SCHEDULE_inviteTitle: 'Share invite link via...',
-  SHARE_SCHEDULE_subject:
-    'You have been invited to follow a schedule on Schdlr.',
+  SHARE_SCHEDULE_subject: 'You have been invited to join a group on Schedulr.',
   SHARE_SCHEDULE_message: (name) =>
-    `Hello, I'm inviting you to follow "${name}" to see their latest events, receive updates and reminders.\n`,
+    `Hello, I'm inviting you to join "${name}" to see their latest events, receive updates and reminders.\n`,
   SHARE_EVENT_inviteTitle: 'Share event via...',
-  SHARE_appMessage: `Hi! I'm inviting you to use Schdlr!\n\nWith Schdlr you can easily share events with communities, be it family, work or school.\n\nDownload Schdlr here:`,
+  SHARE_appMessage: `Hi! I'm inviting you to use Schedulr!\n\nWith Schedulr you can easily share events with communities, be it family, work or school.\n\nDownload Schedulr here:`,
   SHARE_appTitle: 'Invite a friend',
   SHARE_appSubject: 'See events happening near you',
 
@@ -187,20 +188,20 @@ export default {
   AUTHOR: 'AUTHOR',
   EDITED: 'EDITED',
 
-  EVENT_FORM_normal: 'Normal',
-  EVENT_FORM_title: 'EVENT TITLE',
+  EVENT_FORM_normal: 'Event',
+  EVENT_FORM_title: 'TITLE',
   EVENT_FORM_description: 'DESCRIPTION',
   EVENT_FORM_venue: 'LOCATION',
-  EVENT_FORM_category: 'EVENT TYPE',
+  EVENT_FORM_category: 'TYPE',
   EVENT_FORM_from: 'FROM',
   EVENT_FORM_to: 'TO',
   EVENT_FORM_allDay: 'ALL DAY',
   EVENT_FORM_repetition: 'REPEAT',
-  EVENT_FORM_schedule: 'LIST',
+  EVENT_FORM_schedule: 'GROUP',
   EVENT_FORM_repeat: 'REPEAT',
   EVENT_FORM_repeatForever: 'REPEAT FOREVER',
   EVENT_FORM_repeatUntil: 'REPEAT UNTIL',
-  EVENT_FORM_selectASchedule: 'Select a schedule',
+  EVENT_FORM_selectASchedule: 'Select a group',
 
   EVENT_ITEM_allDay: 'All day',
   EVENT_CAPTION_allDay: ({type, recurrence}) => {
@@ -215,25 +216,25 @@ export default {
   HELPER_TEXT_shortUntil: 'Event should happen at least once',
   HELPER_TEXT_invalidDatesAndRecur: 'Event should end before repeating',
 
-  SCHEDULE: 'LIST',
-  SCHEDULE_public: 'Public List',
-  SCHEDULE_private: 'Private List',
-  SCHEDULE_FORM_name: 'LIST NAME',
+  SCHEDULE: 'GROUP',
+  SCHEDULE_public: 'Public Group',
+  SCHEDULE_private: 'Private Group',
+  SCHEDULE_FORM_name: 'GROUP NAME',
   SCHEDULE_FORM_description: 'DESCRIPTION',
   SCHEDULE_FORM_private: 'Private',
-  SCHEDULE_FORM_public: 'PUBLIC LIST',
+  SCHEDULE_FORM_public: 'PUBLIC GROUP',
   SCHEDULE_FORM_topic: 'TOPIC',
   SCHEDULE_FORM_location: 'LOCATION',
   SCHEDULE_FORM_selectTopic: 'Select Topic',
 
-  SCHEDULE_followerCount: 'Follower',
-  SCHEDULE_followerCounts: 'Followers',
+  SCHEDULE_followerCount: 'Member',
+  SCHEDULE_followerCounts: 'Members',
   SCHEDULE_eventsCount: 'Event',
   SCHEDULE_eventsCounts: 'Events',
-  SCHEDULE_thisScheduleIsClosed: 'This list is archived',
-  SCHEDULE_whatIsASchedule: 'Why create a list?',
-  SCHEDULE_share: 'Share this list via...',
-  SCHEDULE_unfollow: 'Unfollow this list',
+  SCHEDULE_thisScheduleIsClosed: 'This group is archived',
+  SCHEDULE_whatIsASchedule: 'Why create a group?',
+  SCHEDULE_share: 'Share this group via...',
+  SCHEDULE_unfollow: 'Leave this group',
   SCHEDULE_mute: 'Mute events',
   SCHEDULE_unmute: 'Unmute events',
 
@@ -277,7 +278,7 @@ export default {
     }
     return 'About this event...';
   },
-  PLACEHOLDER_normal: 'Normal',
+  PLACEHOLDER_normal: 'Event',
   PLACEHOLDER_addYourWebsite: 'Add your website',
   PLACEHOLDER_bio: 'About me',
   PLACEHOLDER_venue: (city) => (city ? `In ${city}` : 'Venue'),
@@ -286,7 +287,7 @@ export default {
   PLACEHOLDER_description: 'Tap to add description',
   PLACEHOLDER_title: 'Event Title',
   PLACEHOLDER_untitledEvent: '(No Title)',
-  PLACEHOLDER_name: 'List Name',
+  PLACEHOLDER_name: 'Group Name',
 
   WARNING_dontMissOut: "Don't miss out!",
   WARNING_fileTooLarge: 'File is too large',
@@ -295,24 +296,23 @@ export default {
   DIALOG_cancelEvent: 'Cancel this event?',
   DIALOG_onlyThisEvent: 'Only this date',
   DIALOG_allOfThisEvent: 'Cancel and delete all',
-  DIALOG_openSchedule: 'Unarchive this list?',
-  DIALOG_closeSchedule: 'Archive this list?',
+  DIALOG_openSchedule: 'Unarchive this group?',
+  DIALOG_closeSchedule: 'Archive this group?',
   DIALOG_closeScheduleWarning:
-    "If you archive this list, you won't be able to add new events ot it. If you change your mind, you can unarchive it.",
+    "If you archive this group, you won't be able to add new events ot it. If you change your mind, you can unarchive it.",
   DIALOG_deleteEvent: 'Delete this event?',
-  DIALOG_deleteSchedule: 'Delete this list?',
+  DIALOG_deleteSchedule: 'Delete this group?',
   DIALOG_deleteScheduleWarning:
-    "Delete this list and all of its Events forever. You can't undo this.",
+    "Delete this group and all of its Events forever. You can't undo this.",
   DIALOG_cancelWarning:
-    'Action will permanently delete this event. People interested in this event will be notified.',
+    'This will permanently delete event. People interested in this event will be notified.',
 
-  REQUEST_LOCATION_TITLE: 'Schdlr Location Permission',
+  REQUEST_LOCATION_TITLE: 'Schedulr Location Permission',
   REQUEST_LOCATION_MESSAGE:
-    'Schdlr App needs access to your location so events are easier to find.',
+    'Schedulr App needs access to your location so events are easier to find.',
 
   PICKER_location: 'Location',
-  SYNC_message:
-    'Remove all deleted and expired events and fix missing events and schedules.',
+  SYNC_message: 'Will refresh all your data',
   SYNC_importingEvents: 'Importing events... Please wait.',
   SYNC_importingComplete: 'Events imported',
   SYNC_complete: 'Synchronized',
@@ -364,6 +364,7 @@ export default {
   },
   SELECT_customType: 'Custom type...',
   categories: [
+    'Event',
     'Meetup',
     'Workshop',
     'Conference',

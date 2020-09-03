@@ -38,7 +38,7 @@ class Followers extends React.Component {
             )}
           />
           <Appbar.Content
-            title={I18n.get('Followers')}
+            title={I18n.get('FOLLOWERS')}
             titleStyle={stores.styles.appStyles.headerColor}
           />
         </Appbar>
