@@ -9,7 +9,6 @@ import Icon from 'components/common/Icon';
 import EventsRoute from '../Events';
 import SchedulesRoute from '../Schedules';
 import BookmarksRoute from '../Bookmarks';
-// import TicketIcon from 'components/common/TicketIcon';
 
 const FONT_SIZE = 24;
 
@@ -39,9 +38,6 @@ const Home = createMaterialTopTabNavigator(
         } else if (routeName === 'Bookmarks') {
           iconName = `bookmark${focused ? '' : 'o'}`;
         }
-        // else if (routeName === 'Tickets') {
-        //   return <TicketIcon active={focused} />;
-        // }
         return <Icon name={iconName} size={FONT_SIZE} color={tintColor} />;
       },
     }),
