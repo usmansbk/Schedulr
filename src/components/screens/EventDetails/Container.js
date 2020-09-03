@@ -1,6 +1,12 @@
 import React from 'react';
 import {Appbar} from 'react-native-paper';
 import {inject, observer} from 'mobx-react';
+import {
+  Menu,
+  MenuTrigger,
+  MenuOptions,
+  MenuOption,
+} from 'react-native-popup-menu';
 import Icon from 'components/common/Icon';
 import Suspense from 'components/common/Suspense';
 import CancelConfirm from 'components/dialogs/CancelEvent';
@@ -116,40 +122,40 @@ class EventDetails extends React.Component {
           />
           <Appbar.Content titleStyle={styles.headerColor} />
           {isOwner && (
-            <>
-              <Appbar.Action
-                size={FONT_SIZE}
-                color={colors.gray}
-                icon={({color, size}) => (
-                  <Icon size={size} name="copy" color={color} />
-                )}
-                onPress={handleRepeat}
-              />
-              {isValid && (
-                <Appbar.Action
-                  size={FONT_SIZE}
-                  color={colors.gray}
-                  icon={({color, size}) => (
-                    <Icon size={size} name="edit" color={color} />
-                  )}
-                  onPress={() =>
+            <Menu>
+              <MenuTrigger
+                customStyles={{
+                  triggerWrapper: {
+                    padding: 16,
+                  },
+                }}>
+                <Icon name="menu" size={FONT_SIZE} color={colors.primary} />
+              </MenuTrigger>
+              <MenuOptions
+                customStyles={{
+                  optionText: {
+                    fontFamily: 'SemiBold',
+                  },
+                  optionWrapper: {
+                    padding: 16,
+                  },
+                }}>
+                <MenuOption
+                  onSelect={() =>
                     handleEdit({
                       id,
                       startAt,
                       endAt,
                     })
                   }
+                  text="Edit"
                 />
-              )}
-              <Appbar.Action
-                size={FONT_SIZE}
-                color={colors.light_red}
-                icon={({color, size}) => (
-                  <Icon name="x" color={color} size={size} />
+                {isValid && (
+                  <MenuOption text="Cancel" onSelect={this._openCancelDialog} />
                 )}
-                onPress={this._openCancelDialog}
-              />
-            </>
+                <MenuOption text="Duplicate" onSelect={handleRepeat} />
+              </MenuOptions>
+            </Menu>
           )}
         </Appbar.Header>
         <Details
