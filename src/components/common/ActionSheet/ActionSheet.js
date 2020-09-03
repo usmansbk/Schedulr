@@ -45,6 +45,7 @@ class ActionSheet extends React.Component {
           <View style={styles.body}>
             {options.map((option) => (
               <TouchableOpacity
+                key={option.value}
                 style={styles.option}
                 onPress={() => this._onPress(option.value)}>
                 <View style={styles.row}>

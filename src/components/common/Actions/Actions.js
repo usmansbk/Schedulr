@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import BookmarkButton from '../BookmarkButton';
 import ShareButton from '../ShareButton';
 import LocationButton from '../LocationButton';
@@ -8,20 +8,18 @@ import CommentButton from '../CommentButton';
 const DEFAULT_FONT_SIZE = 22;
 
 export default class Actions extends React.Component {
-
-  shouldComponentUpdate = (nextProps) => (
-    (this.props.isOffline !== nextProps.isOffline) ||
-    (this.props.date !== nextProps.date) ||
-    (this.props.title !== nextProps.title) ||
-    (this.props.commentsCount !== nextProps.commentsCount) ||
-    (this.props.isBookmarked !== nextProps.isBookmarked) ||
-    (this.props.address !== nextProps.address) ||
-    (this.props.color !== nextProps.color) ||
-    (this.props.activeColor !== nextProps.activeColor)
-  );
+  shouldComponentUpdate = (nextProps) =>
+    this.props.isOffline !== nextProps.isOffline ||
+    this.props.date !== nextProps.date ||
+    this.props.title !== nextProps.title ||
+    this.props.commentsCount !== nextProps.commentsCount ||
+    this.props.isBookmarked !== nextProps.isBookmarked ||
+    this.props.address !== nextProps.address ||
+    this.props.color !== nextProps.color ||
+    this.props.activeColor !== nextProps.activeColor;
 
   _onPressCommentButton = () => {
-    const { id, title, navigateToComments } = this.props;
+    const {id, title, navigateToComments} = this.props;
     navigateToComments(id, title);
   };
 
@@ -39,10 +37,9 @@ export default class Actions extends React.Component {
       id,
       small,
       color,
-      activeColor,
-      size
+      size,
     } = this.props;
-    
+
     const FONT_SIZE = size || DEFAULT_FONT_SIZE;
     return (
       <View style={styles.actions}>
@@ -62,26 +59,20 @@ export default class Actions extends React.Component {
           color={color}
           onPress={this._onPressCommentButton}
         />
-        <LocationButton
-          address={address}
-          color={color}
-          size={FONT_SIZE}
-        />
-        {
-          !small && (
-            <ShareButton
-              color={color}
-              id={id}
-              date={date}
-              category={category}
-              title={title}
-              address={address}
-              size={FONT_SIZE}
-            />
-          )
-        }
+        <LocationButton address={address} color={color} size={FONT_SIZE} />
+        {!small && (
+          <ShareButton
+            color={color}
+            id={id}
+            date={date}
+            category={category}
+            title={title}
+            address={address}
+            size={FONT_SIZE}
+          />
+        )}
       </View>
-    )
+    );
   }
 }
 
@@ -90,6 +81,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     backgroundColor: 'transparent',
-    paddingHorizontal: 8
-  }
+    paddingHorizontal: 8,
+  },
 });
