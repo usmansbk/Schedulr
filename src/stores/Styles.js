@@ -449,6 +449,15 @@ export default class styles {
         justifyContent: 'flex-end',
         paddingVertical: 16,
       },
+      field: {
+        marginVertical: 12,
+      },
+      horizontalSpacing: {
+        paddingHorizontal: 8,
+      },
+      tightVerticalSpacing: {
+        marginVertical: 4,
+      },
     });
   }
 

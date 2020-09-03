@@ -1,11 +1,10 @@
 import React from 'react';
 import {View, ScrollView} from 'react-native';
 import isEqual from 'lodash.isequal';
-import {Text, Appbar, Caption} from 'react-native-paper';
+import {Text, Appbar, HelperText, Divider} from 'react-native-paper';
 import TextInput from 'components/common/TextInput';
 import Button from 'components/common/Button';
 import Switch from 'components/common/Switch';
-import Alert from 'components/dialogs/Alert';
 import LocationPicker from 'components/common/LocationPicker';
 import {PickerInput, CustomPicker} from 'components/common/Picker';
 import {Formik} from 'formik';
@@ -109,8 +108,8 @@ class Form extends React.Component {
                   error={errors.name}
                   autoFocus
                 />
-                <View style={{paddingHorizontal: 8}}>
-                  <Text style={[styles.text, {marginVertical: 4}]}>
+                <View style={styles.horizontalSpacing}>
+                  <Text style={[styles.text, styles.tightVerticalSpacing]}>
                     {I18n.get('SCHEDULE_FORM_topic')}
                   </Text>
                   <CustomPicker
@@ -119,7 +118,8 @@ class Form extends React.Component {
                     data={I18n.get('topics')}
                     onValueChange={handleChange('topic')}
                   />
-                  <View style={{marginVertical: 12}}>
+                  <Divider />
+                  <View style={styles.field}>
                     <Switch
                       textStyle={styles.text}
                       label={I18n.get('SCHEDULE_FORM_public')}
@@ -129,7 +129,8 @@ class Form extends React.Component {
                       }}
                     />
                   </View>
-                  <View style={{marginVertical: 12}}>
+                  <Divider />
+                  <View style={styles.field}>
                     <Text style={styles.text}>
                       {I18n.get('SCHEDULE_FORM_location')}
                     </Text>
@@ -137,7 +138,14 @@ class Form extends React.Component {
                       value={values.location}
                       onPress={() => this.setState({showLocationPicker: true})}
                     />
+                    {values.isPublic && (
+                      <HelperText>
+                        Location allows nearby people to find this group and
+                        it's events easily
+                      </HelperText>
+                    )}
                   </View>
+                  <Divider />
                 </View>
                 <TextInput
                   label={I18n.get('SCHEDULE_FORM_description')}
@@ -149,23 +157,12 @@ class Form extends React.Component {
                   onBlur={handleBlur('description')}
                   error={errors.description}
                 />
-                <View style={styles.info}>
-                  <Caption style={styles.primary} onPress={this._showInfoAlert}>
-                    {I18n.get('SCHEDULE_whatIsASchedule')}
-                  </Caption>
-                </View>
               </View>
             </ScrollView>
             <LocationPicker
               visible={this.state.showLocationPicker}
               hideModal={this._hideDialog}
               onSelect={handleChange('location')}
-            />
-            <Alert
-              title={I18n.get('ALERT_whatIsASchedule')}
-              message={I18n.get('ALERT_whatIsAScheduleA')}
-              ref={this._alertRef}
-              alert
             />
           </>
         )}

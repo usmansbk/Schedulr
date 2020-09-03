@@ -232,7 +232,7 @@ export default {
   SCHEDULE_eventsCount: 'Event',
   SCHEDULE_eventsCounts: 'Events',
   SCHEDULE_thisScheduleIsClosed: 'This group is archived',
-  SCHEDULE_whatIsASchedule: 'Why create a group?',
+  SCHEDULE_whatIsASchedule: 'What is a group?',
   SCHEDULE_share: 'Share this group via...',
   SCHEDULE_unfollow: 'Leave this group',
   SCHEDULE_mute: 'Mute events',
