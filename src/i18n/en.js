@@ -381,6 +381,7 @@ export default {
     'Rally',
   ],
   topics: [
+    'Events',
     'Personal Appointments',
     'Business & Professional',
     'Charity & Causes',

@@ -58,7 +58,7 @@ class Input extends React.Component {
       <Picker
         value={value}
         items={items}
-        prompt={value || I18n.get('PLACEHOLDER_normal')}
+        prompt={value}
         disabled={disabled}
         onValueChange={this._onValueChange}
       />

@@ -73,7 +73,6 @@ class Form extends React.Component {
         {({
           values,
           errors,
-          touched,
           isSubmitting,
           submitForm,
           handleChange,
