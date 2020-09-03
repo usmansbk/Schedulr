@@ -1,51 +1,51 @@
 import React from 'react';
 import uuidv5 from 'uuid/v5';
-import { I18n } from 'aws-amplify';
-import { withNavigationFocus } from 'react-navigation';
+import {I18n} from 'aws-amplify';
+import {withNavigationFocus} from 'react-navigation';
 import List from 'components/lists/Events';
 import FAB from 'components/common/Fab';
 import schdlAll from 'helpers/setReminders';
-import { mergeEvents } from 'lib/utils';
-import { InteractionManager } from 'react-native';
+import {mergeEvents} from 'lib/utils';
+import {InteractionManager} from 'react-native';
 import snackbar from 'helpers/snackbar';
 
 class Events extends React.Component {
   static defaultProps = {
     mutedEvents: [],
-    allowedEvents: []
+    allowedEvents: [],
   };
   state = {
     data: null,
     events: [],
-    calendarEvents: []
+    calendarEvents: [],
   };
 
   static getDerivedStateFromProps(props, state) {
-    if ((props.data !== state.data) || (
-      props.calendarEvents.length !== state.calendarEvents.length)) {
+    if (
+      props.data !== state.data ||
+      props.calendarEvents.length !== state.calendarEvents.length
+    ) {
       return {
         data: props.data,
         events: mergeEvents(props.data, props.calendarEvents),
-        calendarEvents: props.calendarEvents
+        calendarEvents: props.calendarEvents,
       };
     }
     return null;
   }
 
   shouldComponentUpdate = (nextProps) => nextProps.isFocused;
-  
+
   componentDidUpdate = () => {
-    const { mutedEvents, allowedEvents } = this.props;
-    InteractionManager.runAfterInteractions(() => schdlAll(
-      this.state.events,
-      mutedEvents,
-      allowedEvents
-    ));
+    const {mutedEvents, allowedEvents} = this.props;
+    InteractionManager.runAfterInteractions(() =>
+      schdlAll(this.state.events, mutedEvents, allowedEvents),
+    );
   };
- 
+
   _navigateToNewEvent = () => {
     this.props.navigation.navigate('NewEvent', {
-      eventScheduleId : uuidv5(this.props.id, uuidv5.DNS)
+      eventScheduleId: uuidv5(this.props.id, uuidv5.DNS),
     });
   };
 
@@ -74,12 +74,9 @@ class Events extends React.Component {
           fetchMore={this._sync}
           navigation={this.props.navigation}
         />
-        <FAB
-          icon="edit-2"
-          onPress={this._navigateToNewEvent}
-        />
+        <FAB icon="plus" onPress={this._navigateToNewEvent} />
       </>
-    )
+    );
   }
 }
 
