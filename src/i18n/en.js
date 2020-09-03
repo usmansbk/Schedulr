@@ -303,7 +303,7 @@ export default {
   DIALOG_deleteEvent: 'Delete this event?',
   DIALOG_deleteSchedule: 'Delete this group?',
   DIALOG_deleteScheduleWarning:
-    "Delete this group and all of its Events forever. You can't undo this.",
+    "Delete this group and all of its events. You can't undo this.",
   DIALOG_cancelWarning:
     'This will permanently delete event. People interested in this event will be notified.',
 
