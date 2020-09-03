@@ -7,8 +7,9 @@ const CAL_TIME_FORMAT = 'DD MMM YYYY hh:mm';
 
 export default {
   APP_welcome: 'Welcome to Schedulr',
-  APP_caption: 'Group Timetable',
-  APP_footerCaption: 'By signing in, you agree to our terms of use',
+  APP_footerCaption: 'By signing in, you agree to our',
+  APP_TERMS: 'Terms of Service',
+  APP_PRIVACY: 'Privacy Policy',
 
   ACTION_filterByType: (filter) => 'Filter By Type: ' + capitalize(filter),
   ACTION_all: 'All',

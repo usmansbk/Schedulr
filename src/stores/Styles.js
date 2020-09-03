@@ -211,6 +211,10 @@ export default class styles {
         textAlign: 'center',
         color: colors.gray,
       },
+      link: {
+        color: colors.primary,
+        fontFamily: 'SemiBold',
+      },
     });
   }
 

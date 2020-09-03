@@ -38,10 +38,20 @@ export default inject('stores')(
         )}
       </View>
       <Caption
-        onPress={() => Linking.openURL(env.TERMS_URL)}
         allowFontScaling={false}
         style={props.stores.styles.login.caption}>
-        {I18n.get('APP_footerCaption')}
+        {I18n.get('APP_footerCaption')}{' '}
+        <Caption
+          onPress={() => Linking.openURL(env.TERMS_URL)}
+          style={props.stores.styles.login.link}>
+          {I18n.get('APP_TERMS')}
+        </Caption>
+        {' and '}
+        <Caption
+          onPress={() => Linking.openURL(env.PRIVACY_URL)}
+          style={props.stores.styles.login.link}>
+          {I18n.get('APP_PRIVACY')}
+        </Caption>
       </Caption>
     </View>
   )),
