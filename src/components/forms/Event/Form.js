@@ -121,7 +121,7 @@ class Form extends React.Component {
                   onChangeText={handleChange('title')}
                   onBlur={handleBlur('title')}
                 />
-                <View style={{paddingHorizontal: 8}}>
+                <View style={styles.baseHorizonalSpacing}>
                   {!locked && (
                     <View style={styles.pickerSpacing}>
                       <Text style={styles.radioText}>
@@ -164,23 +164,14 @@ class Form extends React.Component {
 
                   <Divider />
 
-                  <View
-                    style={{
-                      flexDirection: 'row',
-                    }}>
+                  <View style={styles.iconRow}>
                     <Icon
                       color={stores.theme.colors.tint}
                       size={FONT_SIZE}
                       name="clock"
-                      style={{
-                        marginTop: 12,
-                      }}
+                      style={styles.icon}
                     />
-                    <View
-                      style={{
-                        flex: 1,
-                        marginLeft: 16,
-                      }}>
+                    <View style={styles.rowBody}>
                       <View style={styles.pickerSpacing}>
                         <Text style={styles.radioText}>
                           {I18n.get('EVENT_FORM_from')}
@@ -273,23 +264,14 @@ class Form extends React.Component {
 
                   <Divider />
 
-                  <View
-                    style={{
-                      flexDirection: 'row',
-                    }}>
+                  <View style={styles.iconRow}>
                     <Icon
                       size={FONT_SIZE}
                       color={stores.theme.colors.tint}
                       name="retweet"
-                      style={{
-                        marginTop: 12,
-                      }}
+                      style={styles.icon}
                     />
-                    <View
-                      style={{
-                        flex: 1,
-                        marginLeft: 16,
-                      }}>
+                    <View style={styles.rowBody}>
                       <View style={styles.pickerSpacing}>
                         <Text style={styles.radioText}>
                           {I18n.get('EVENT_FORM_repetition')}

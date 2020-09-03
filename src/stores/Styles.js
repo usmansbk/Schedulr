@@ -536,6 +536,19 @@ export default class styles {
         paddingHorizontal: 16,
         elevation: 0,
       },
+      baseHorizontalSpacing: {
+        paddingHorizontal: 8,
+      },
+      iconRow: {
+        flexDirection: 'row',
+      },
+      icon: {
+        marginTop: 12,
+      },
+      rowBody: {
+        flex: 1,
+        marginLeft: 16,
+      },
     });
   }
 
