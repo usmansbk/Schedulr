@@ -6,7 +6,7 @@ export default (message, isError) => {
     Snackbar.show({
       text: message,
       duration: Snackbar.LENGTH_SHORT,
-      backgroundColor: isError ? colors.error : colors.primary
+      backgroundColor: isError ? colors.error : colors.primary,
     });
   }
-}
+};
