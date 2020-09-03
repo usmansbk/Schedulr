@@ -1,7 +1,7 @@
 import RNCalendarEvents from 'react-native-calendar-events';
-import { observable, action } from 'mobx';
+import {observable, action} from 'mobx';
 import moment from 'moment';
-import { persist } from 'mobx-persist';
+import {persist} from 'mobx-persist';
 import logger from 'config/logger';
 
 export default class Calendar {
@@ -16,46 +16,46 @@ export default class Calendar {
     }
   };
 
-  @action removeEvent = async id => {
+  @action removeEvent = async (id) => {
     try {
-      await RNCalendarEvents.removeEvent(id, { futureEvents: true });
+      await RNCalendarEvents.removeEvent(id, {futureEvents: true});
     } catch (e) {
       logger.logError(e);
     }
-    this.events = this.events.filter(e => e.id !== id);
+    this.events = this.events.filter((e) => e.id !== id);
   };
 
   isAuthorized = async () => {
     try {
-      const granted = await RNCalendarEvents.authorizationStatus();
+      const granted = await RNCalendarEvents.checkPermissions();
       return granted === 'authorized';
-    } catch(e) {
+    } catch (e) {
       return false;
     }
   };
 
-  includes = id => {
-    const cal = this.calendars.find(cal => cal.id === id);
+  includes = (id) => {
+    const cal = this.calendars.find((cal) => cal.id === id);
     return Boolean(cal);
   };
 
   @action toggleCalendar = (calendar) => {
-    const cal = this.calendars.find(cal => cal.id === calendar.id);
+    const cal = this.calendars.find((cal) => cal.id === calendar.id);
     if (cal) {
-      this.calendars = this.calendars.filter(cal => cal.id !== calendar.id);
+      this.calendars = this.calendars.filter((cal) => cal.id !== calendar.id);
     } else {
       this.calendars = [...this.calendars, calendar];
     }
   };
 
   @action authorize = async () => {
-    const granted = await RNCalendarEvents.authorizeEventStore();
+    const granted = await RNCalendarEvents.requestPermissions();
     if (granted === 'authorized') {
       this.allCalendars = await RNCalendarEvents.findCalendars();
     }
   };
 
-  transformEvent = event => {
+  transformEvent = (event) => {
     const startAt = moment(event.startDate).toISOString();
     let endAt;
     if (event.allDay) {
@@ -65,7 +65,7 @@ export default class Calendar {
     }
     const recurrenceRule = event.recurrenceRule;
     const recurrence = getRecurrence(recurrenceRule);
-    return ({
+    return {
       id: event.id,
       schedule: {
         id: event.calendar.id,
@@ -76,20 +76,20 @@ export default class Calendar {
       allDay: event.allDay,
       title: event.title,
       recurrence,
-      forever: (recurrence !== "NEVER"),
+      forever: recurrence !== 'NEVER',
       category: '',
       description: event.description,
       venue: event.location,
       __typename: 'Calendar',
       author: {
         id: event.calendar.source,
-        name: event.calendar.source
-      }
-    });
-  }
+        name: event.calendar.source,
+      },
+    };
+  };
 
-  @action findEventById = id => {
-    const event = this.events.find(e => e.id === id);
+  @action findEventById = (id) => {
+    const event = this.events.find((e) => e.id === id);
     if (!event) return null;
     return this.transformEvent(event);
   };
@@ -111,18 +111,21 @@ export default class Calendar {
         } else {
           endDate = m.clone().endOf('year').toDate().toISOString();
         }
-        let all = await RNCalendarEvents
-          .fetchAllEvents(startDate, endDate, this.calendars.map(cal => cal.id));
-        const map  = {};
+        let all = await RNCalendarEvents.fetchAllEvents(
+          startDate,
+          endDate,
+          this.calendars.map((cal) => cal.id),
+        );
+        const map = {};
         // calendar returns individual recurring event
         // which may lead to perf issue
-        all.forEach(e => map[e.id] = e); // remove duplicates
+        all.forEach((e) => (map[e.id] = e)); // remove duplicates
         this.events = Object.values(map);
         // this.events = all.slice(0, 100);
       } else {
         this.reset();
       }
-    } catch(e) {
+    } catch (e) {
       logger.logError(e);
     }
   };
@@ -132,14 +135,25 @@ export default class Calendar {
   }
 }
 
-function getRecurrence(rule={}) {
+function getRecurrence(rule = {}) {
   const frequency = rule.frequency;
-  switch(frequency) {
-    case "daily": case "day": return "DAILY";
-    case "weekly": case "week": return "WEEKLY";
-    case "weekday": case "workday": return "WEEKDAYS";
-    case "monthly": case "month": return "MONTHLY";
-    case "yearly": case "year": return "YEARLY";
-    default: return "NEVER";
+  switch (frequency) {
+    case 'daily':
+    case 'day':
+      return 'DAILY';
+    case 'weekly':
+    case 'week':
+      return 'WEEKLY';
+    case 'weekday':
+    case 'workday':
+      return 'WEEKDAYS';
+    case 'monthly':
+    case 'month':
+      return 'MONTHLY';
+    case 'yearly':
+    case 'year':
+      return 'YEARLY';
+    default:
+      return 'NEVER';
   }
 }
