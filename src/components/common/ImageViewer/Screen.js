@@ -47,6 +47,8 @@ class ImageViewer extends React.Component {
             progress: bytesWritten / contentLength,
           });
         },
+        progressInterval: 200,
+        progressDivider: 10,
       };
 
       const exists = await RNFS.exists(toFile);
@@ -54,7 +56,6 @@ class ImageViewer extends React.Component {
         FileViewer.open(toFile);
         this.setState({downloading: false});
       } else {
-        snackbar(I18n.get('TOAST_downloading'));
         await RNFS.downloadFile(options).promise.then(() => {
           FileViewer.open(toFile);
           this.setState({downloading: false});
@@ -93,10 +94,11 @@ class ImageViewer extends React.Component {
 
     return (
       <>
-        <Appbar.Header style={stores.styles.appStyles.header}>
+        <Appbar.Header style={stores.styles.appStyles.header} collapsable>
           <Appbar.Action
             color={stores.theme.colors.primary}
             onPress={goBack}
+            animated={false}
             icon={({color, size}) => (
               <Icon name="arrow-left" color={color} size={size} />
             )}
@@ -108,6 +110,7 @@ class ImageViewer extends React.Component {
           />
           {Boolean(s3Object) && (
             <Appbar.Action
+              animated={false}
               onPress={this._downloadImage}
               disabled={downloading || loadingImage || uploadProgress}
               color={stores.theme.colors.primary}
@@ -120,6 +123,7 @@ class ImageViewer extends React.Component {
             <>
               {Boolean(s3Object) && (
                 <Appbar.Action
+                  animated={false}
                   onPress={deletePhoto}
                   color={stores.theme.colors.primary}
                   icon={({color, size}) => (
@@ -128,6 +132,7 @@ class ImageViewer extends React.Component {
                 />
               )}
               <Appbar.Action
+                animated={false}
                 onPress={uploadPhoto}
                 color={stores.theme.colors.primary}
                 icon={({color, size}) => (
