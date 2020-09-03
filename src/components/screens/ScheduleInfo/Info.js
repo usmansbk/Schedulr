@@ -2,6 +2,12 @@ import React from 'react';
 import moment from 'moment';
 import uuidv5 from 'uuid/v5';
 import {View, ScrollView, RefreshControl, TouchableOpacity} from 'react-native';
+import {
+  Menu,
+  MenuTrigger,
+  MenuOptions,
+  MenuOption,
+} from 'react-native-popup-menu';
 import numeral from 'numeral';
 import {Appbar, Text} from 'react-native-paper';
 import Icon from 'components/common/Icon';
@@ -129,39 +135,36 @@ class Info extends React.Component {
               onPress={() => handleShare({name, description, id})}
             />
           )}
-          {!!isOwner && (
-            <>
-              {!isClosed && (
-                <Appbar.Action
-                  size={24}
-                  color={colors.primary}
-                  icon={({size, color}) => (
-                    <Icon name="edit" size={size} color={color} />
-                  )}
-                  onPress={this._onEdit}
-                />
-              )}
-              {!isPersonal && (
-                <>
-                  <Appbar.Action
-                    size={24}
-                    color={colors.primary}
-                    icon={({size, color}) => (
-                      <Icon name="archive" size={size} color={color} />
-                    )}
-                    onPress={this._onArchive}
-                  />
-                  <Appbar.Action
-                    size={24}
-                    color={colors.primary}
-                    icon={({size, color}) => (
-                      <Icon name="trash" size={size} color={color} />
-                    )}
-                    onPress={this._onDelete}
-                  />
-                </>
-              )}
-            </>
+          {isOwner && (
+            <Menu>
+              <MenuTrigger
+                customStyles={{
+                  triggerWrapper: {
+                    padding: 16,
+                  },
+                }}>
+                <Icon name="menu" color={colors.primary} size={24} />
+              </MenuTrigger>
+              <MenuOptions
+                customStyles={{
+                  optionText: {
+                    fontFamily: 'SemiBold',
+                  },
+                  optionWrapper: {
+                    padding: 16,
+                  },
+                }}>
+                {!isClosed && (
+                  <MenuOption text="Edit" onSelect={this._onEdit} />
+                )}
+                {!isPersonal && (
+                  <>
+                    <MenuOption text="Archive" onSelect={this._onArchive} />
+                    <MenuOption text="Delete" onSelect={this._onDelete} />
+                  </>
+                )}
+              </MenuOptions>
+            </Menu>
           )}
         </Appbar.Header>
         <ScrollView
