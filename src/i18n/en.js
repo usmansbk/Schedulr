@@ -7,8 +7,7 @@ const CAL_TIME_FORMAT = 'DD MMM YYYY hh:mm';
 
 export default {
   APP_welcome: 'Welcome to Schedulr',
-  APP_caption: 'The event scheduler',
-  APP_footerCaption: 'Share your schedules!',
+  APP_footerCaption: 'By signing in, you agree to our terms of use',
 
   ACTION_filterByType: (filter) => 'Filter By Type: ' + capitalize(filter),
   ACTION_all: 'All',
