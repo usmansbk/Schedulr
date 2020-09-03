@@ -1,6 +1,6 @@
 import React from 'react';
-import { View, StyleSheet, Image } from 'react-native';
-import { Badge } from 'react-native-paper';
+import {View, StyleSheet, Image} from 'react-native';
+import {Badge} from 'react-native-paper';
 import getImageUrl from 'helpers/getImageUrl';
 
 const styles = StyleSheet.create({
@@ -14,37 +14,36 @@ const styles = StyleSheet.create({
   image: {
     width: 80,
     height: 80,
-    margin: 4
+    margin: 4,
   },
   badge: {
     margin: 4,
     position: 'absolute',
     bottom: 0,
-    right: 0
-  }
+    right: 0,
+  },
 });
 
 export default class Cover extends React.Component {
   render() {
-    const { images } = this.props;
-    const sources = images.map(img => ({ uri: getImageUrl(img, 320)}))
+    const {images} = this.props;
+    const sources = images.map((img) => ({uri: getImageUrl(img, 320)}));
     return (
       <>
-      <View style={styles.container}>
-        {
-          sources.slice(0, 2).map(img => (
+        <View style={styles.container}>
+          {sources.slice(0, 2).map((img, index) => (
             <Image
+              key={index}
               defaultSource={require('../../../assets/placeholder.png')}
               style={styles.image}
               source={img}
             />
-          ))
-        }
-      </View>
-      { Boolean(images.length) && (
-          <Badge style={styles.badge}>{images.length}</Badge>)
-      }
+          ))}
+        </View>
+        {Boolean(images.length) && (
+          <Badge style={styles.badge}>{images.length}</Badge>
+        )}
       </>
-    )
+    );
   }
 }
