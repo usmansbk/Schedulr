@@ -32,6 +32,8 @@ const names = {
   info: 'infocirlceo',
   alert: 'exclamationcircle',
   menu: 'menufold',
+  clock: 'clockcircleo',
+  find: 'find',
 };
 
 export default ({name, color, size, style}) => {

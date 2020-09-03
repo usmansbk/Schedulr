@@ -1,10 +1,11 @@
 import React from 'react';
 import moment from 'moment';
 import {View, ScrollView} from 'react-native';
-import {Text, HelperText, Appbar} from 'react-native-paper';
+import {Text, HelperText, Appbar, Divider} from 'react-native-paper';
 import {Formik} from 'formik';
 import {inject, observer} from 'mobx-react';
 import {I18n} from 'aws-amplify';
+import Icon from 'components/common/Icon';
 import TextInput from 'components/common/TextInput';
 import Button from 'components/common/Button';
 import Switch from 'components/common/Switch';
@@ -16,6 +17,8 @@ import recurrence from './recurrence';
 import schema from './schema';
 
 const MIN_UNTIL_DATE = 1;
+const FONT_SIZE = 24;
+
 class Form extends React.Component {
   state = {
     display: false,
@@ -158,173 +161,225 @@ class Form extends React.Component {
                       data={stores.appState.categories}
                     />
                   </View>
-                  <View style={styles.pickerSpacing}>
-                    <Text style={styles.radioText}>
-                      {I18n.get('EVENT_FORM_from')}
-                    </Text>
-                    <DateTimePicker
-                      noMin
-                      disabled={values.allDay}
-                      value={values.startAt}
-                      hideTime={values.allDay}
-                      onValueChange={handleChange('startAt')}
-                      onDateChange={(date) => {
-                        const prevStartAt = moment(values.startAt);
-                        const prevEndAt = moment(values.endAt);
 
-                        if (values.allDay) {
-                          setFieldValue(
-                            'endAt',
-                            moment(date).endOf('day').toISOString(),
-                          );
-                        } else {
-                          const duration = prevEndAt.diff(
-                            prevStartAt,
-                            null,
-                            true,
-                          );
-                          const endAt = moment(date)
-                            .add(duration)
-                            .toISOString();
-                          setFieldValue('endAt', endAt);
-                        }
-                      }}
-                    />
-                  </View>
-                  <View style={styles.pickerSpacing}>
-                    <Text style={styles.radioText}>
-                      {I18n.get('EVENT_FORM_to')}
-                    </Text>
-                    <DateTimePicker
-                      min={moment().toDate()}
-                      noMin
-                      value={values.endAt}
-                      disabled={values.allDay}
-                      hideTime={values.allDay}
-                      onValueChange={handleChange('endAt')}
-                      onDateChange={(date) => {
-                        const prevStartAt = moment(values.startAt);
-                        const prevEndAt = moment(values.endAt);
-                        if (prevStartAt.isAfter(moment(date))) {
-                          const duration = prevEndAt.diff(
-                            prevStartAt,
-                            null,
-                            true,
-                          );
-                          const startAt = moment(date)
-                            .subtract(duration)
-                            .toISOString();
-                          setFieldValue('startAt', startAt);
-                        }
-                      }}
-                    />
-                  </View>
+                  <Divider />
 
-                  <View style={[styles.radio, styles.pickerSpacing]}>
-                    <Switch
-                      textStyle={styles.radioText}
-                      label={I18n.get('EVENT_FORM_allDay')}
-                      value={values.allDay}
-                      onValueChange={() => {
-                        const {allDay} = values;
-                        setFieldValue('allDay', !allDay);
-                        if (!allDay) {
-                          setFieldValue(
-                            'startAt',
-                            moment(values.startAt).startOf('day').toISOString(),
-                          );
-                          setFieldValue(
-                            'endAt',
-                            moment(values.startAt).endOf('day').toISOString(),
-                          );
-                        }
+                  <View
+                    style={{
+                      flexDirection: 'row',
+                    }}>
+                    <Icon
+                      color={stores.theme.colors.tint}
+                      size={FONT_SIZE}
+                      name="clock"
+                      style={{
+                        marginTop: 12,
                       }}
                     />
-                  </View>
-                  <View style={styles.pickerSpacing}>
-                    <Text style={styles.radioText}>
-                      {I18n.get('EVENT_FORM_repetition')}
-                    </Text>
-                    <Picker
-                      prompt={I18n.get('EVENT_FORM_repeat')}
-                      value={values.recurrence}
-                      onValueChange={handleChange('recurrence')}
-                      onItemChange={(itemValue) => {
-                        if (itemValue === recurrence[0].id) {
-                          setFieldValue('until', null);
-                          setFieldValue('forever', false);
-                        } else if (!values.forever) {
-                          const unit = getTimeUnit(itemValue);
-                          setFieldValue(
-                            'until',
-                            moment(values.startAt)
-                              .add(MIN_UNTIL_DATE, unit)
-                              .endOf('day')
-                              .toISOString(),
-                          );
-                        }
-                      }}
-                      items={recurrence.map((recur) => ({
-                        key: recur.id,
-                        label: getRepeatLabel(recur.id, values.startAt),
-                        value: recur.id,
-                      }))}
-                    />
-                    {Boolean(errors.recurrence) && (
-                      <HelperText
-                        type="error"
-                        visible={errors.recurrence && touched.recurrence}>
-                        {I18n.get(`HELPER_TEXT_${errors.recurrence}`)}
-                      </HelperText>
-                    )}
-                  </View>
-                  {values.recurrence !== recurrence[0].id && (
-                    <View style={[styles.radio, styles.pickerSpacing]}>
-                      <Text style={styles.radioText}>
-                        {I18n.get('EVENT_FORM_repeatForever')}
-                      </Text>
-                      <Switch
-                        value={values.forever}
-                        onValueChange={(value) => {
-                          const forever = values.forever;
-                          if (!forever) {
-                            setFieldValue('until', null);
-                          } else {
-                            const unit = getTimeUnit(values.recurrence);
-                            setFieldValue(
-                              'until',
-                              moment(values.startAt)
-                                .add(MIN_UNTIL_DATE, unit)
-                                .endOf('day')
-                                .toISOString(),
-                            );
-                          }
-                          setFieldValue('forever', value);
-                        }}
-                      />
+                    <View
+                      style={{
+                        flex: 1,
+                        marginLeft: 16,
+                      }}>
+                      <View style={styles.pickerSpacing}>
+                        <Text style={styles.radioText}>
+                          {I18n.get('EVENT_FORM_from')}
+                        </Text>
+                        <DateTimePicker
+                          noMin
+                          disabled={values.allDay}
+                          value={values.startAt}
+                          hideTime={values.allDay}
+                          onValueChange={handleChange('startAt')}
+                          onDateChange={(date) => {
+                            const prevStartAt = moment(values.startAt);
+                            const prevEndAt = moment(values.endAt);
+
+                            if (values.allDay) {
+                              setFieldValue(
+                                'endAt',
+                                moment(date).endOf('day').toISOString(),
+                              );
+                            } else {
+                              const duration = prevEndAt.diff(
+                                prevStartAt,
+                                null,
+                                true,
+                              );
+                              const endAt = moment(date)
+                                .add(duration)
+                                .toISOString();
+                              setFieldValue('endAt', endAt);
+                            }
+                          }}
+                        />
+                      </View>
+                      <View style={styles.pickerSpacing}>
+                        <Text style={styles.radioText}>
+                          {I18n.get('EVENT_FORM_to')}
+                        </Text>
+                        <DateTimePicker
+                          min={moment().toDate()}
+                          noMin
+                          value={values.endAt}
+                          disabled={values.allDay}
+                          hideTime={values.allDay}
+                          onValueChange={handleChange('endAt')}
+                          onDateChange={(date) => {
+                            const prevStartAt = moment(values.startAt);
+                            const prevEndAt = moment(values.endAt);
+                            if (prevStartAt.isAfter(moment(date))) {
+                              const duration = prevEndAt.diff(
+                                prevStartAt,
+                                null,
+                                true,
+                              );
+                              const startAt = moment(date)
+                                .subtract(duration)
+                                .toISOString();
+                              setFieldValue('startAt', startAt);
+                            }
+                          }}
+                        />
+                      </View>
+
+                      <View style={[styles.radio, styles.pickerSpacing]}>
+                        <Switch
+                          textStyle={styles.radioText}
+                          label={I18n.get('EVENT_FORM_allDay')}
+                          value={values.allDay}
+                          onValueChange={() => {
+                            const {allDay} = values;
+                            setFieldValue('allDay', !allDay);
+                            if (!allDay) {
+                              setFieldValue(
+                                'startAt',
+                                moment(values.startAt)
+                                  .startOf('day')
+                                  .toISOString(),
+                              );
+                              setFieldValue(
+                                'endAt',
+                                moment(values.startAt)
+                                  .endOf('day')
+                                  .toISOString(),
+                              );
+                            }
+                          }}
+                        />
+                      </View>
                     </View>
-                  )}
-                  {values.recurrence !== recurrence[0].id && !values.forever && (
-                    <View style={styles.pickerSpacing}>
-                      <Text style={styles.radioText}>
-                        {I18n.get('EVENT_FORM_repeatUntil')}
-                      </Text>
-                      <DateTimePicker
-                        minDate={moment().toDate()}
-                        value={values.until}
-                        onValueChange={handleChange('until')}
-                        hideTime
-                      />
-                      {Boolean(errors.until) && (
-                        <HelperText
-                          type="error"
-                          visible={errors.until && touched.until}>
-                          {I18n.get(`HELPER_TEXT_${errors.until}`)}
-                        </HelperText>
+                  </View>
+
+                  <Divider />
+
+                  <View
+                    style={{
+                      flexDirection: 'row',
+                    }}>
+                    <Icon
+                      size={FONT_SIZE}
+                      color={stores.theme.colors.tint}
+                      name="retweet"
+                      style={{
+                        marginTop: 12,
+                      }}
+                    />
+                    <View
+                      style={{
+                        flex: 1,
+                        marginLeft: 16,
+                      }}>
+                      <View style={styles.pickerSpacing}>
+                        <Text style={styles.radioText}>
+                          {I18n.get('EVENT_FORM_repetition')}
+                        </Text>
+                        <Picker
+                          prompt={I18n.get('EVENT_FORM_repeat')}
+                          value={values.recurrence}
+                          onValueChange={handleChange('recurrence')}
+                          onItemChange={(itemValue) => {
+                            if (itemValue === recurrence[0].id) {
+                              setFieldValue('until', null);
+                              setFieldValue('forever', false);
+                            } else if (!values.forever) {
+                              const unit = getTimeUnit(itemValue);
+                              setFieldValue(
+                                'until',
+                                moment(values.startAt)
+                                  .add(MIN_UNTIL_DATE, unit)
+                                  .endOf('day')
+                                  .toISOString(),
+                              );
+                            }
+                          }}
+                          items={recurrence.map((recur) => ({
+                            key: recur.id,
+                            label: getRepeatLabel(recur.id, values.startAt),
+                            value: recur.id,
+                          }))}
+                        />
+                        {Boolean(errors.recurrence) && (
+                          <HelperText
+                            type="error"
+                            visible={errors.recurrence && touched.recurrence}>
+                            {I18n.get(`HELPER_TEXT_${errors.recurrence}`)}
+                          </HelperText>
+                        )}
+                      </View>
+                      {values.recurrence !== recurrence[0].id && (
+                        <View style={[styles.radio, styles.pickerSpacing]}>
+                          <Text style={styles.radioText}>
+                            {I18n.get('EVENT_FORM_repeatForever')}
+                          </Text>
+                          <Switch
+                            value={values.forever}
+                            onValueChange={(value) => {
+                              const forever = values.forever;
+                              if (!forever) {
+                                setFieldValue('until', null);
+                              } else {
+                                const unit = getTimeUnit(values.recurrence);
+                                setFieldValue(
+                                  'until',
+                                  moment(values.startAt)
+                                    .add(MIN_UNTIL_DATE, unit)
+                                    .endOf('day')
+                                    .toISOString(),
+                                );
+                              }
+                              setFieldValue('forever', value);
+                            }}
+                          />
+                        </View>
                       )}
+                      {values.recurrence !== recurrence[0].id &&
+                        !values.forever && (
+                          <View style={styles.pickerSpacing}>
+                            <Text style={styles.radioText}>
+                              {I18n.get('EVENT_FORM_repeatUntil')}
+                            </Text>
+                            <DateTimePicker
+                              minDate={moment().toDate()}
+                              value={values.until}
+                              onValueChange={handleChange('until')}
+                              hideTime
+                            />
+                            {Boolean(errors.until) && (
+                              <HelperText
+                                type="error"
+                                visible={errors.until && touched.until}>
+                                {I18n.get(`HELPER_TEXT_${errors.until}`)}
+                              </HelperText>
+                            )}
+                          </View>
+                        )}
                     </View>
-                  )}
+                  </View>
                 </View>
+
+                <Divider />
+
                 <TextInput
                   error={errors.venue}
                   placeholder={I18n.get('PLACEHOLDER_venue')(values.location)}
