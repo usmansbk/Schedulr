@@ -135,8 +135,12 @@ class EventDetails extends React.Component {
               </MenuTrigger>
               <MenuOptions
                 customStyles={{
+                  optionsWrapper: {
+                    backgroundColor: colors.menuBackground,
+                  },
                   optionText: {
                     fontFamily: 'SemiBold',
+                    color: colors.black,
                   },
                   optionWrapper: {
                     padding: 16,
