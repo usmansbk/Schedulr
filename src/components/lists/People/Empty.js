@@ -12,13 +12,7 @@ export default inject('stores')(
     if (loading) return <Loading />;
     return (
       <View style={stores.styles.eventsList.empty}>
-        {search ? (
-          <Image
-            resizeMode="contain"
-            style={{width: 200, height: 200}}
-            source={require('../../../assets/error-404.png')}
-          />
-        ) : (
+        {!search && (
           <Image
             resizeMode="contain"
             style={{width: 200, height: 200}}
