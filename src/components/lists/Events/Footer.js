@@ -26,7 +26,7 @@ export default inject('stores')(
               }}
             />
           ) : hasMore ? (
-            <Icon name="down" size={20} />
+            <Icon name="down" size={20} color={stores.theme.colors.tint} />
           ) : (
             <Caption style={stores.styles.eventsList.footerText}>
               {I18n.get(`EVENTS_SECTIONLIST_noMoreEvents`)}

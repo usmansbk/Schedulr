@@ -27,7 +27,7 @@ class Header extends React.Component {
               }}
             />
           ) : beforeDate ? (
-            <Icon name="up" size={20} />
+            <Icon name="up" size={20} color={stores.theme.colors.tint} />
           ) : (
             <Caption style={stores.styles.eventsList.footerText}>
               {I18n.get(`EVENTS_SECTIONLIST_noPrevEvents`)}
