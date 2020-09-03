@@ -4,7 +4,6 @@ import {ApolloProvider} from 'react-apollo';
 import {Provider as MobxProvider} from 'mobx-react';
 import {Rehydrated} from 'aws-appsync-react';
 import SplashScreen from 'react-native-splash-screen';
-import {observer} from 'mobx-react';
 import Amplify from 'aws-amplify';
 import AppContainer from './src/App';
 import Loading from 'components/common/Hydrating';
@@ -21,7 +20,6 @@ Amplify.configure(aws_config);
 i18n(stores);
 stores.init();
 
-@observer
 export default class App extends React.Component {
   componentDidMount = () => {
     SplashScreen.hide();
