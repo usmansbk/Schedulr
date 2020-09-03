@@ -152,18 +152,29 @@ class UserProfile extends React.Component {
               </Caption>
             </View>
             {website && (
-              <View style={styles.link}>
+              <View
+                style={[
+                  styles.link,
+                  {justifyContent: 'flex-start', alignItems: 'flex-start'},
+                ]}>
                 <Icon
                   size={16}
                   style={styles.linkIcon}
                   name="link"
                   color={stores.theme.colors.black}
                 />
-                <Hyperlink
-                  linkStyle={[styles.linkLabel, styles.linkStyle]}
-                  linkDefault={true}>
-                  {website}
-                </Hyperlink>
+                <View
+                  style={{
+                    flex: 1,
+                    alignItems: 'flex-start',
+                    justifyContent: 'flex-start',
+                  }}>
+                  <Hyperlink
+                    linkStyle={[styles.linkLabel, styles.linkStyle]}
+                    linkDefault={true}>
+                    {website}
+                  </Hyperlink>
+                </View>
               </View>
             )}
             {!!bio && (
