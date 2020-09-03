@@ -1,18 +1,35 @@
-import { computed } from 'mobx';
-import { DefaultTheme } from 'react-native-paper';
-import { dark, light } from 'config/colors';
+import {computed} from 'mobx';
+import {DefaultTheme, configureFonts} from 'react-native-paper';
+import {dark, light} from 'config/colors';
+
+const fontConfig = {
+  default: {
+    regular: {
+      fontFamily: 'Regular',
+    },
+  },
+  medium: {
+    fontFamily: 'SemiBold',
+  },
+  light: {
+    fontFamily: 'Light',
+  },
+  thin: {
+    fontFamily: 'Light',
+  },
+};
 
 export default class ThemeStore {
   constructor(settingsStore) {
     this.settings = settingsStore;
   }
 
-  @computed get colors () {
+  @computed get colors() {
     if (this.settings.dark) return dark;
     return light;
   }
 
-  @computed get theme () {
+  @computed get theme() {
     const colors = this.settings.dark ? dark : light;
     return {
       ...DefaultTheme,
@@ -24,8 +41,9 @@ export default class ThemeStore {
         error: colors.light_red,
         text: colors.black,
         placeholder: colors.placeholder,
-        disabled: colors.disabled || DefaultTheme.colors.disabled
-      }
+        disabled: colors.disabled || DefaultTheme.colors.disabled,
+      },
+      fonts: configureFonts(fontConfig),
     };
   }
 }

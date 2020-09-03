@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import {StyleSheet} from 'react-native';
 import colors from 'config/colors';
 
 export default StyleSheet.create({
@@ -7,9 +7,9 @@ export default StyleSheet.create({
     height: 48,
     elevation: 2,
     borderRadius: 2,
-    justifyContent:'center',
+    justifyContent: 'center',
     margin: 4,
-    backgroundColor: colors.facebook
+    backgroundColor: colors.facebook,
   },
   content: {
     marginVertical: 4,
@@ -19,13 +19,12 @@ export default StyleSheet.create({
   logo: {
     height: 32,
     width: 32,
-    marginHorizontal: 8
+    marginHorizontal: 8,
   },
   text: {
     fontSize: 14,
     color: '#fff',
     marginLeft: 4,
     textAlign: 'center',
-    fontWeight: 'bold'
   },
 });
