@@ -304,9 +304,9 @@ export default {
   WARNING_fileTooLarge: 'File is too large',
   WARNING_deleteCalendarEvent: 'Event will be removed from the source calendar',
 
-  DIALOG_cancelEvent: 'Cancel this event?',
+  DIALOG_cancelEvent: 'Cancel event?',
   DIALOG_onlyThisEvent: 'Only this date',
-  DIALOG_allOfThisEvent: 'Cancel and delete all',
+  DIALOG_allOfThisEvent: 'All events',
   DIALOG_openSchedule: 'Unarchive this group?',
   DIALOG_closeSchedule: 'Archive this group?',
   DIALOG_closeScheduleWarning:
