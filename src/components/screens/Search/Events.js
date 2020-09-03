@@ -1,46 +1,50 @@
 import React from 'react';
-import { graphql, compose } from 'react-apollo';
+import {graphql, compose} from 'react-apollo';
 import gql from 'graphql-tag';
-import { inject, observer } from 'mobx-react';
-import { I18n } from 'aws-amplify';
+import {inject, observer} from 'mobx-react';
+import {I18n} from 'aws-amplify';
 import List from 'components/lists/EventSearch';
 import Suspense from 'components/common/Suspense';
-import { EventFlatList } from 'lib/calendar';
-import { getUserData, searchEvents } from 'api/queries';
-import { mergeEvents, filterEvents } from 'lib/utils';
-import { searchEventFilter } from 'api/filters';
-import { SEARCH_LIMIT } from 'lib/constants';
+import {EventFlatList} from 'lib/calendar';
+import {getUserData, searchEvents} from 'api/queries';
+import {mergeEvents, filterEvents} from 'lib/utils';
+import {searchEventFilter} from 'api/filters';
+import {SEARCH_LIMIT} from 'lib/constants';
 import updateQuery from 'helpers/updateQuery';
 
 class Events extends React.Component {
   state = {
-    display: false
+    display: false,
   };
 
   componentDidMount = () => {
-    setTimeout(() => this.setState({
-      display: true
-    }), 0);
+    setTimeout(
+      () =>
+        this.setState({
+          display: true,
+        }),
+      0,
+    );
   };
 
   static navigationOptions() {
     return {
-      tabBarLabel: I18n.get("SEARCH_eventsTabLabel")
+      tabBarLabel: I18n.get('SEARCH_eventsTabLabel'),
     };
   }
 
   render() {
     if (!this.state.display) return <Suspense />;
-    const { stores } = this.props;
+    const {stores} = this.props;
 
-    const { query, isConnected, userId } = stores.appState;
-    
+    const {query, isConnected, userId} = stores.appState;
+
     return (
       <ListHoc
         query={query}
         id={userId}
         isConnected={isConnected}
-        location={stores.locationStore.searchLocation}
+        location={stores.location.searchLocation}
         search
       />
     );
@@ -50,48 +54,56 @@ class Events extends React.Component {
 const ListHoc = compose(
   graphql(gql(getUserData), {
     alias: 'withSearchEventsOffline',
-    skip: props => props.isConnected,
+    skip: (props) => props.isConnected,
     options: () => ({
       fetchPolicy: 'cache-only',
     }),
-    props: ({ data, ownProps }) => ({
-      events: data && data.getUserData && filterEvents(
-        EventFlatList(mergeEvents(data.getUserData, [], false)),
-        ownProps.query),
-      ...ownProps
-    })
+    props: ({data, ownProps}) => ({
+      events:
+        data &&
+        data.getUserData &&
+        filterEvents(
+          EventFlatList(mergeEvents(data.getUserData, [], false)),
+          ownProps.query,
+        ),
+      ...ownProps,
+    }),
   }),
   graphql(gql(searchEvents), {
     alias: 'withSearchEventsOnline',
-    skip: props => !(props.isConnected && props.query),
-    options: props => ({
+    skip: (props) => !(props.isConnected && props.query),
+    options: (props) => ({
       notifyOnNetworkStatusChange: true,
       fetchPolicy: 'cache-and-network',
       variables: {
         filter: searchEventFilter(props.query, props.location),
-        limit: SEARCH_LIMIT
-      }
+        limit: SEARCH_LIMIT,
+      },
     }),
-    props: ({ data, ownProps }) => ({
-      loading: data && (data.loading || data.networkStatus === 4 || data.networkStatus === 3),
-      events: data && data.searchEvents && EventFlatList(data.searchEvents.items) || [],
+    props: ({data, ownProps}) => ({
+      loading:
+        data &&
+        (data.loading || data.networkStatus === 4 || data.networkStatus === 3),
+      events:
+        (data && data.searchEvents && EventFlatList(data.searchEvents.items)) ||
+        [],
       nextToken: data && data.searchEvents && data.searchEvents.nextToken,
       onRefresh: () => data.refetch(),
-      fetchMore: (nextToken) => data.fetchMore({
-        variables: {
-          nextToken
-        },
-        updateQuery: (prev, { fetchMoreResult }) => (
-          updateQuery({
-            prev,
-            fetchMoreResult,
-            rootField: 'searchEvents'
-          })
-        )
-      }),
-      ...ownProps
-    })
-  })
+      fetchMore: (nextToken) =>
+        data.fetchMore({
+          variables: {
+            nextToken,
+          },
+          updateQuery: (prev, {fetchMoreResult}) =>
+            updateQuery({
+              prev,
+              fetchMoreResult,
+              rootField: 'searchEvents',
+            }),
+        }),
+      ...ownProps,
+    }),
+  }),
 )(List);
 
-export default inject("stores")(observer(Events));
+export default inject('stores')(observer(Events));

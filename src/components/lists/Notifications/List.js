@@ -34,7 +34,7 @@ class List extends React.Component {
     this.props.navigation.navigate('Comments', {id});
   _onRefresh = () => {
     this.props.onRefresh && this.props.onRefresh();
-    this.props.stores.notificationsStore.fetchNotifications();
+    this.props.stores.notifications.fetchNotifications();
   };
   _getItemLayout = (_, index) => ({
     length: ITEM_HEIGHT,
@@ -95,7 +95,7 @@ class List extends React.Component {
     const styles = stores.styles.notifications;
     return (
       <FlatList
-        data={stores.notificationsStore.updates}
+        data={stores.notifications.updates}
         style={styles}
         initialNumToRender={1}
         extraData={moment().format('mm')}
@@ -109,7 +109,7 @@ class List extends React.Component {
         refreshControl={
           <RefreshControl
             onRefresh={this._onRefresh}
-            refreshing={stores.notificationsStore.loading && refreshing}
+            refreshing={stores.notifications.loading && refreshing}
             colors={[stores.theme.colors.primary]}
             progressBackgroundColor={stores.theme.colors.bg}
           />

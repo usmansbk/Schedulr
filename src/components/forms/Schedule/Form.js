@@ -41,7 +41,7 @@ class Form extends React.Component {
         }),
       0,
     );
-    setTimeout(this.props.stores.locationStore.fetchLocation, 0);
+    setTimeout(this.props.stores.location.fetchLocation, 0);
   };
 
   _showInfoAlert = () => this.alertRef.open();
@@ -58,7 +58,7 @@ class Form extends React.Component {
 
     initialValues.location = initialValues.location
       ? initialValues.location
-      : stores.locationStore.location;
+      : stores.location.location;
     const styles = stores.styles.scheduleForm;
 
     return (
@@ -66,7 +66,7 @@ class Form extends React.Component {
         initialValues={initialValues}
         validationSchema={schema}
         onSubmit={(values) => {
-          values.geo_point = stores.locationStore.point;
+          values.geo_point = stores.location.point;
           const castVal = schema.cast(values);
           onSubmit && onSubmit(castVal);
         }}>

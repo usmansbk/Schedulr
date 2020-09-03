@@ -56,7 +56,7 @@ class Container extends React.Component {
       const {
         payload: {additionalData},
       } = result;
-      this.props.stores.notificationsStore.fetchNotifications();
+      this.props.stores.notifications.fetchNotifications();
       if (additionalData && additionalData.type === 'Event') {
         this.props.stores.appState.deltaSync();
       }
@@ -122,7 +122,7 @@ class Container extends React.Component {
 
   _deltaSync = () => this.props.stores.appState.deltaSync();
   _fetchNotifications = () =>
-    this.props.stores.notificationsStore.fetchNotifications();
+    this.props.stores.notifications.fetchNotifications();
 
   render() {
     const {stores} = this.props;

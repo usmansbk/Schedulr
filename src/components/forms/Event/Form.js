@@ -29,7 +29,7 @@ class Form extends React.Component {
         }),
       0,
     );
-    setTimeout(this.props.stores.locationStore.fetchLocation, 0);
+    setTimeout(this.props.stores.location.fetchLocation, 0);
   };
 
   static defaultProps = {
@@ -75,7 +75,7 @@ class Form extends React.Component {
         validationSchema={schema}
         onSubmit={(values, {setSubmitting}) => {
           values.venue = values.venue || values.location;
-          values.geo_point = stores.locationStore.point;
+          values.geo_point = stores.location.point;
           setTimeout(() => {
             const castVal = schema.cast(values);
             onSubmit && onSubmit(castVal);

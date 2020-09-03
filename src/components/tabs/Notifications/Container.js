@@ -12,23 +12,23 @@ class Container extends React.Component {
   };
 
   _fetchUpdates = () => {
-    this.props.stores.notificationsStore.fetchNotifications();
+    this.props.stores.notifications.fetchNotifications();
     this.props.stores.appState.deltaSync();
   };
 
   _clearIndicator = () => {
-    this.props.stores.notificationsStore.resetCounter(0);
-    this.props.stores.notificationsStore.markSeen();
+    this.props.stores.notifications.resetCounter(0);
+    this.props.stores.notifications.markSeen();
   };
 
   render() {
     const {stores} = this.props;
-    const title = stores.notificationsStore.filter;
+    const title = stores.notifications.filter;
     const styles = stores.styles.styles;
     const color = stores.theme.colors.primary;
-    const allNotifications = stores.notificationsStore.allNotifications;
+    const allNotifications = stores.notifications.allNotifications;
     const isConnected = stores.appState.isConnected;
-    const hasNotification = stores.notificationsStore.count;
+    const hasNotification = stores.notifications.count;
 
     return (
       <Notifications

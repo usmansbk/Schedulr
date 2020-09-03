@@ -130,7 +130,7 @@ const schdlAll = (events, mutedList, allowedList) => {
   InteractionManager.runAfterInteractions(() => {
     PushNotification.cancelAllLocalNotifications();
     const settings = stores.settings;
-    const remindMeBefore = stores.remindMeStore;
+    const remindMeBefore = stores.reminder;
     if (!settings.disableReminders) {
       events.forEach((event) => {
         const id = event.id;

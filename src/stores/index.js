@@ -17,39 +17,39 @@ class RootStore {
     });
 
     const settings = new Settings();
-    const remindMeStore = new RemindMe();
-    const notificationsStore = new Notifications();
-    const locationStore = new Location();
-    const calendarStore = new Calendar();
+    const reminder = new RemindMe();
+    const notifications = new Notifications();
+    const location = new Location();
+    const calendar = new Calendar();
 
     hydrate('settings', settings);
-    hydrate('remindMe', remindMeStore);
-    hydrate('notificationsStore', notificationsStore);
+    hydrate('remindMe', reminder);
+    hydrate('notifications', notifications);
     // Create theme store after hydrating the settings store
     const appState = new AppState(settings);
     hydrate('appState', appState);
-    hydrate('calendarStore', calendarStore);
-    hydrate('locationStore', locationStore);
+    hydrate('calendar', calendar);
+    hydrate('location', location);
 
     const theme = new Theme(settings);
     const styles = new styles(settings);
 
     this.settings = settings;
-    this.remindMeStore = remindMeStore;
+    this.reminder = reminder;
     this.theme = theme;
     this.styles = styles;
     this.appState = appState;
-    this.notificationsStore = notificationsStore;
-    this.locationStore = locationStore;
-    this.calendar = calendarStore;
+    this.notifications = notifications;
+    this.location = location;
+    this.calendar = calendar;
   }
 
   @action reset = () => {
     this.settings.reset();
-    this.remindMeStore.reset();
+    this.reminder.reset();
     this.appState.reset();
-    this.notificationsStore.reset();
-    this.locationStore.reset();
+    this.notifications.reset();
+    this.location.reset();
     this.calendar.reset();
   };
 

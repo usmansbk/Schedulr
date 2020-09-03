@@ -8,7 +8,7 @@ import Icon from 'components/common/Icon';
 export default inject('stores')(
   observer(({stores}) => (
     <View style={stores.styles.discover.empty}>
-      {stores.locationStore.currentLocation ? (
+      {stores.location.currentLocation ? (
         <>
           <Image
             resizeMode="contain"
@@ -34,7 +34,7 @@ export default inject('stores')(
             icon={({size, color}) => (
               <Icon name="map" size={size} color={color} />
             )}
-            onPress={stores.locationStore.fetchLocation}>
+            onPress={stores.location.fetchLocation}>
             {I18n.get('BUTTON_turnOnLocation')}
           </Button>
         </>

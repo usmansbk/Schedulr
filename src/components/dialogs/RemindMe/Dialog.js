@@ -22,7 +22,7 @@ class RemindMe extends React.Component {
   };
 
   _toggle = async (key) => {
-    await this.props.stores.remindMeStore.toggle(key);
+    await this.props.stores.reminder.toggle(key);
   };
 
   _keyExtractor = (item) => item.key;
@@ -34,7 +34,7 @@ class RemindMe extends React.Component {
         title={I18n.get(`REMIND_ME_${item.text}`)}
         right={() => (
           <Switch
-            value={stores.remindMeStore[item.key]}
+            value={stores.reminder[item.key]}
             onValueChange={() => this._toggle(item.key)}
           />
         )}
@@ -61,7 +61,7 @@ class RemindMe extends React.Component {
               data={items}
               keyExtractor={this._keyExtractor}
               renderItem={this._renderItem}
-              extraData={stores.remindMeStore.extraData}
+              extraData={stores.reminder.extraData}
             />
           </Dialog.Content>
           <Dialog.Actions>

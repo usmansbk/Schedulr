@@ -7,7 +7,7 @@ export default inject('stores')(
     <Picker
       hideModal={hideModal}
       visible={visible}
-      location={stores.locationStore.parsedLocation}
+      location={stores.location.parsedLocation}
       styles={stores.styles.places}
       modalStyle={stores.styles.picker}
       language={stores.settings.userPreference.language}

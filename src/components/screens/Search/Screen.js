@@ -59,7 +59,7 @@ export const SearchBar = inject('stores')(
       onIconPress={() => navigation.goBack()}
       autoFocus
       placeholder={I18n.get('SEARCH_inputPlaceholder')(
-        stores.locationStore.searchLocation,
+        stores.location.searchLocation,
       )}
       placeholderTextColor={stores.theme.colors.placeholder}
       value={stores.appState.searchText}

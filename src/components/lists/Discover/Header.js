@@ -26,7 +26,7 @@ export default inject('stores')(
               collapsable
               placeholder={ellipsisMode(
                 I18n.get('SEARCH_inputPlaceholder')(
-                  stores.locationStore.searchLocation,
+                  stores.location.searchLocation,
                 ),
               )}
               theme={{roundness: 0}}
