@@ -55,7 +55,6 @@
     "react-native-image-picker": "^2.3.3",
     "react-native-image-zoom-viewer": "^3.0.1",
     "react-native-localize": "^1.4.1",
-    "react-native-modal-datetime-picker": "^8.9.3",
     "react-native-navigation-bar-color": "^2.0.1",
     "react-native-onesignal": "^3.9.1",
     "react-native-open-maps": "^0.3.5",

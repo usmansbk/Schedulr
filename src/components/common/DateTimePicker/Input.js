@@ -1,6 +1,6 @@
 import React from 'react';
 import moment from 'moment';
-import DateTimePicker from 'react-native-modal-datetime-picker';
+import DateTimePicker from '@react-native-community/datetimepicker';
 import {View} from 'react-native';
 import {inject, observer} from 'mobx-react';
 import Button from './Picker';
@@ -28,16 +28,18 @@ class Input extends React.Component {
   _datePicker = () => this._showPicker('date');
   _timePicker = () => this._showPicker('time');
 
-  _handleChange = (date) => {
+  _handleChange = (_, date) => {
     this.setState({showPicker: false});
-    setTimeout(() => {
-      if (this.props.onDateChange) {
-        this.props.onDateChange(date);
-      }
-      this.props.onValueChange(
-        moment(date).seconds(0).milliseconds(0).toISOString(),
-      );
-    }, 0);
+    if (date) {
+      setTimeout(() => {
+        if (this.props.onDateChange) {
+          this.props.onDateChange(date);
+        }
+        this.props.onValueChange(
+          moment(date).seconds(0).milliseconds(0).toISOString(),
+        );
+      }, 0);
+    }
   };
 
   render() {
@@ -61,15 +63,14 @@ class Input extends React.Component {
             onPress={this._timePicker}>
             {hideTime ? '' : this._formatTime(value)}
           </Button>
-          <DateTimePicker
-            mode={this.state.mode}
-            date={moment(value).toDate()}
-            minimumDate={noMin ? undefined : moment(value).toDate()}
-            isVisible={this.state.showPicker}
-            onConfirm={this._handleChange}
-            onCancel={this._hidePicker}
-            isDarkModeEnabled={stores.settings.dark}
-          />
+          {this.state.showPicker && (
+            <DateTimePicker
+              mode={this.state.mode}
+              value={moment(value).toDate()}
+              minimumDate={noMin ? undefined : moment(value).toDate()}
+              onChange={this._handleChange}
+            />
+          )}
         </View>
       </View>
     );
