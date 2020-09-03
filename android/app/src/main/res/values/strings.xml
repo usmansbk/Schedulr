@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Schdlr</string>
+    <string name="app_name">Schedulr</string>
     <string name="facebook_app_id">203644060264792</string>
     <string moduleConfig="true" name="CodePushDeploymentKey">BhjWTlFyxLhOpJkIexCf1wIt4a00yjT4cNl3ZH</string>
 </resources>
