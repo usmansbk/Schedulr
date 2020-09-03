@@ -35,7 +35,7 @@ const Home = createMaterialTopTabNavigator(
         if (routeName === 'Events') {
           iconName = 'calendar';
         } else if (routeName === 'Schedules') {
-          iconName = `pin${focused ? '' : 'o'}`;
+          iconName = 'team';
         } else if (routeName === 'Bookmarks') {
           iconName = `bookmark${focused ? '' : 'o'}`;
         }
