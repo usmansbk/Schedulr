@@ -49,7 +49,7 @@ export default class styles {
       },
       message: {
         textAlign: 'center',
-        fontSize: 16,
+        fontSize: 20,
         fontFamily: 'Bold',
         color: colors.light_gray_3,
       },
