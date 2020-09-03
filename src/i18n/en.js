@@ -161,13 +161,13 @@ export default {
   ALERT_whatIsAScheduleA:
     'A group is where you add events, so your team mates can join and receive updates',
   ALERT_privateSchedule: 'Private group',
-  ALERT_privateScheduleA: 'This group can only be shared via group link',
+  ALERT_privateScheduleA: 'This group can only be joined via group link',
   ALERT_publicScheduleA: 'This group is visible to everyone.',
   ALERT_deleteImage: 'Delete image?',
   ALERT_unfollow: (name) => `Leave ${name}?`,
   ALERT_unfollowMessage: "You'll no longer receive updates about their events.",
 
-  SHARE_SCHEDULE_inviteTitle: 'Share invite link via...',
+  SHARE_SCHEDULE_inviteTitle: 'Share group link via...',
   SHARE_SCHEDULE_subject: 'You have been invited to join a group on Schedulr.',
   SHARE_SCHEDULE_message: (name) =>
     `Hello, I'm inviting you to join "${name}" to see their latest events, receive updates and reminders.\n`,
