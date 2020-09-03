@@ -27,9 +27,9 @@ export default class Button extends React.Component {
 
   render() {
     const {isFollowing, name, small, disabled} = this.props;
-    const label = I18n.get(
-      'BUTTON_' + (small ? undefined : isFollowing ? 'leave' : 'join'),
-    );
+    const label = small
+      ? undefined
+      : I18n.get('BUTTON_' + (isFollowing ? 'leave' : 'join'));
     return (
       <>
         <Fab
