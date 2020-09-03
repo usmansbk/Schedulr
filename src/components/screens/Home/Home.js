@@ -47,7 +47,7 @@ const Home = createBottomTabNavigator(
               focused={focused}
               size={FONT_SIZE}
               color={tintColor}
-              name="notification"
+              name="bells"
             />
           );
         }
