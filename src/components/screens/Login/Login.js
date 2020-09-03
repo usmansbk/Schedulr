@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, StatusBar} from 'react-native';
+import {View, StatusBar, Linking} from 'react-native';
 import {Caption, Headline, ActivityIndicator} from 'react-native-paper';
 import {inject, observer} from 'mobx-react';
 import {I18n} from 'aws-amplify';
@@ -7,6 +7,7 @@ import GLoginButton from 'components/social_buttons/GLoginButton';
 import FBLoginButton from 'components/social_buttons/FBLoginButton';
 import EmailLoginButton from 'components/social_buttons/EmailLoginButton';
 import Logo from 'components/common/Logo';
+import env from 'config/env';
 
 export default inject('stores')(
   observer((props) => (
@@ -37,6 +38,7 @@ export default inject('stores')(
         )}
       </View>
       <Caption
+        onPress={() => Linking.openURL(env.TERMS_URL)}
         allowFontScaling={false}
         style={props.stores.styles.login.caption}>
         {I18n.get('APP_footerCaption')}
