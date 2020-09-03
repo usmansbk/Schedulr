@@ -18,7 +18,7 @@ class AlbumViewer extends React.Component {
     const images = album.map((img) => ({
       url: getImageUrl(img, 1040, 'contain'),
     }));
-    const styles = stores.styles.styles;
+    const styles = stores.styles.appStyles;
     const colors = stores.theme.colors;
 
     return (

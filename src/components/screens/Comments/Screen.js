@@ -98,7 +98,7 @@ class Screen extends React.Component {
       commentScheduleId,
     } = this.props;
 
-    const styles = stores.styles.styles;
+    const styles = stores.styles.appStyles;
     const colors = stores.theme.colors;
 
     return (

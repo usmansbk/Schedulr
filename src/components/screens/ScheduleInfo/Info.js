@@ -109,7 +109,7 @@ class Info extends React.Component {
 
     return (
       <>
-        <Appbar.Header collapsable style={stores.styles.header}>
+        <Appbar.Header collapsable style={stores.styles.appStyles.header}>
           <Appbar.Action
             onPress={goBack}
             color={colors.primary}

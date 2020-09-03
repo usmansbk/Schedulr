@@ -37,7 +37,7 @@ const Tabs = createMaterialTopTabNavigator(
 
 export const HeaderComponent = inject('stores')(
   observer(({stores, title, goBack}) => (
-    <Appbar.Header style={stores.styles.styles.header}>
+    <Appbar.Header style={stores.styles.appStyles.header}>
       <Appbar.Action
         onPress={goBack}
         icon={() => (
@@ -50,7 +50,7 @@ export const HeaderComponent = inject('stores')(
       />
       <Appbar.Content
         title={title}
-        titleStyle={stores.styles.styles.headerColor}
+        titleStyle={stores.styles.appStyles.headerColor}
       />
     </Appbar.Header>
   )),

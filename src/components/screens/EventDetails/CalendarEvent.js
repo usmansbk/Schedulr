@@ -51,7 +51,7 @@ class CalendarEvent extends React.Component {
 
     const {stores} = this.props;
     const colors = stores.theme.colors;
-    const styles = stores.styles.styles;
+    const styles = stores.styles.appStyles;
 
     if (!event)
       return (

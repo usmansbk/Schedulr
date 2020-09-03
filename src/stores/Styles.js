@@ -1737,7 +1737,7 @@ export default class styles {
     });
   }
 
-  @computed get styles() {
+  @computed get appStyles() {
     const colors = this.settings.dark ? dark : light;
 
     return StyleSheet.create({

@@ -25,18 +25,18 @@ class IconBagdeButton extends React.Component {
     const {size, count, stores, color, disabled} = this.props;
 
     return (
-      <View style={stores.styles.styles.button}>
+      <View style={stores.styles.appStyles.button}>
         <IconButton
           onPress={this._onPress}
           icon={this._renderIcon}
           size={size}
-          style={stores.styles.styles.iconButton}
+          style={stores.styles.appStyles.iconButton}
           disabled={disabled}
         />
         {Boolean(count) && (
           <Text
             style={[
-              stores.styles.styles.badge,
+              stores.styles.appStyles.badge,
               {
                 color,
               },

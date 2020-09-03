@@ -59,7 +59,7 @@ class ScheduleEvents extends React.Component {
 
     const {id, name, description, eventsCount} = schedule;
 
-    const styles = stores.styles.styles;
+    const styles = stores.styles.appStyles;
     const colors = stores.theme.colors;
 
     const eventsLength = events ? events.length : 0;

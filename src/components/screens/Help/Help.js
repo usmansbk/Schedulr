@@ -9,7 +9,7 @@ import env from 'config/env';
 export default inject('stores')(
   observer((props) => (
     <>
-      <Appbar.Header style={props.stores.styles.styles.header} collapsable>
+      <Appbar.Header style={props.stores.styles.appStyles.header} collapsable>
         <Appbar.Action
           onPress={props.goBack}
           size={24}
@@ -20,10 +20,10 @@ export default inject('stores')(
         />
         <Appbar.Content
           title={I18n.get('HELP_title')}
-          titleStyle={props.stores.styles.styles.headerColor}
+          titleStyle={props.stores.styles.appStyles.headerColor}
         />
       </Appbar.Header>
-      <ScrollView style={props.stores.styles.styles.bg}>
+      <ScrollView style={props.stores.styles.appStyles.bg}>
         <List.Item
           title={I18n.get('HELP_contactUs')}
           description={I18n.get('HELP_contactUsSubtitle')}

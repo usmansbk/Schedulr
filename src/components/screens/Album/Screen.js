@@ -12,7 +12,7 @@ class Screen extends React.Component {
 
   render() {
     const {stores} = this.props;
-    const styles = stores.styles.styles;
+    const styles = stores.styles.appStyles;
     const colors = stores.theme.colors;
     const id = this.props.navigation.getParam('id');
     return (
