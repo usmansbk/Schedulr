@@ -257,6 +257,7 @@ export default class styles {
       barStyle: {
         elevation: 0,
         backgroundColor: colors.bg,
+        borderTopColor: 'transparent',
       },
     });
   }
