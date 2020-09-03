@@ -30,7 +30,6 @@ import {
   AlbumViewer,
   CalendarEvent,
 } from 'components/screens';
-import colors from 'config/colors';
 
 const AppStack = createStackNavigator(
   {

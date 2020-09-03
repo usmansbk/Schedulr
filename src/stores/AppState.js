@@ -37,7 +37,6 @@ export default class AppState {
   @persist('list') @observable allowedEvents = [];
   @persist('object') @observable prefs = {
     showPrivateScheduleAlert: true,
-    showAppIntro: true,
   };
   @persist('list') @observable categories = [];
 
