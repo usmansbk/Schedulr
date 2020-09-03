@@ -7,6 +7,7 @@ const CAL_TIME_FORMAT = 'DD MMM YYYY hh:mm';
 
 export default {
   APP_welcome: 'Welcome to Schedulr',
+  APP_caption: 'Group Timetable',
   APP_footerCaption: 'By signing in, you agree to our terms of use',
 
   ACTION_filterByType: (filter) => 'Filter By Type: ' + capitalize(filter),
@@ -415,27 +416,4 @@ export default {
   weekdays: 'weekdays',
   monthly: 'monthly',
   yearly: 'yearly',
-  walkthrough: [
-    {
-      key: 'p1',
-      title: 'Manage',
-      text: 'Manage events, get updates and reminders',
-      image: require('../assets/calendar.png'),
-      backgroundColor: '#fff',
-    },
-    {
-      key: 'p2',
-      title: 'Share',
-      text: 'Join a group of interest and stay up to date with their events',
-      image: require('../assets/app-user.png'),
-      backgroundColor: '#fff',
-    },
-    {
-      key: 'p3',
-      title: 'Discover',
-      text: 'See events happening around you',
-      image: require('../assets/student.png'),
-      backgroundColor: '#fff',
-    },
-  ],
 };

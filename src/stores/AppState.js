@@ -71,7 +71,6 @@ export default class AppState {
     this.checkedList = [];
     this.prefs = {
       showPrivateScheduleAlert: true,
-      showAppIntro: false,
     };
     this.categories = Array.from(I18n.get('categories'));
     this.loggingIn = false;

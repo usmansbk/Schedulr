@@ -43,7 +43,6 @@
     "react": "^16.13.1",
     "react-apollo": "2.5.8",
     "react-native": "^0.63.2",
-    "react-native-app-intro-slider": "^4.0.4",
     "react-native-calendar-events": "^2.1.0",
     "react-native-custom-picker": "^0.4.0",
     "react-native-document-picker": "^3.5.4",
