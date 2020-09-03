@@ -155,7 +155,7 @@ export default {
   BUTTON_confirm: 'Confirm',
   BUTTON_delete: 'DELETE',
 
-  BUTTON_logout: 'LOGOUT',
+  BUTTON_logout: 'SIGN OUT',
 
   ALERT_whatIsASchedule: 'What is a group?',
   ALERT_whatIsAScheduleA:
