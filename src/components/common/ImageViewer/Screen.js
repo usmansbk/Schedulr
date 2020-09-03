@@ -96,9 +96,9 @@ class ImageViewer extends React.Component {
       <>
         <Appbar.Header style={stores.styles.appStyles.header} collapsable>
           <Appbar.Action
+            animated={false}
             color={stores.theme.colors.primary}
             onPress={goBack}
-            animated={false}
             icon={({color, size}) => (
               <Icon name="arrow-left" color={color} size={size} />
             )}

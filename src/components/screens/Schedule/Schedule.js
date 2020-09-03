@@ -81,6 +81,7 @@ class Schedule extends React.Component {
       <>
         <Appbar.Header style={styles.header} collapsable>
           <Appbar.Action
+            animated={false}
             onPress={onPress}
             icon={() => (
               <Icon name="arrow-left" color={colors.primary} size={24} />
@@ -93,6 +94,7 @@ class Schedule extends React.Component {
           />
           {(isPublic || isOwner) && (
             <Appbar.Action
+              animated={false}
               size={24}
               color={colors.primary}
               icon={({size, color}) => (
@@ -102,6 +104,7 @@ class Schedule extends React.Component {
             />
           )}
           <Appbar.Action
+            animated={false}
             size={24}
             color={colors.primary}
             icon={({size, color}) => (

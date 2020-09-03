@@ -117,6 +117,7 @@ class Info extends React.Component {
       <>
         <Appbar.Header collapsable style={stores.styles.appStyles.header}>
           <Appbar.Action
+            animated={false}
             onPress={goBack}
             color={colors.primary}
             size={24}
@@ -127,6 +128,7 @@ class Info extends React.Component {
           <Appbar.Content titleStyle={stores.styles.headerColor} />
           {(isPublic || isOwner) && (
             <Appbar.Action
+              animated={false}
               size={24}
               color={colors.primary}
               icon={({size, color}) => (

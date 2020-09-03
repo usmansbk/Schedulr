@@ -102,6 +102,7 @@ class Settings extends React.Component {
       <>
         <Appbar style={styles.header} collapsable>
           <Appbar.Action
+            animated={false}
             onPress={goBack}
             size={24}
             color={stores.theme.colors.primary}

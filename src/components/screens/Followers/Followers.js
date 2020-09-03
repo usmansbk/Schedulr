@@ -30,6 +30,7 @@ class Followers extends React.Component {
       <>
         <Appbar style={stores.styles.appStyles.header}>
           <Appbar.Action
+            animated={false}
             color={stores.theme.colors.primary}
             size={24}
             onPress={goBack}

@@ -105,6 +105,7 @@ class Screen extends React.Component {
       <>
         <Appbar.Header style={styles.header}>
           <Appbar.Action
+            animated={false}
             size={24}
             color={colors.primary}
             icon={({size, color}) => (

@@ -78,6 +78,7 @@ class UserProfile extends React.Component {
       <>
         <Appbar.Header style={stores.styles.appStyles.header} collapsable>
           <Appbar.Action
+            animated={false}
             onPress={this._goBack}
             size={24}
             color={stores.theme.colors.primary}

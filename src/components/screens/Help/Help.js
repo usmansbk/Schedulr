@@ -11,6 +11,7 @@ export default inject('stores')(
     <>
       <Appbar.Header style={props.stores.styles.appStyles.header} collapsable>
         <Appbar.Action
+          animated={false}
           onPress={props.goBack}
           size={24}
           color={props.stores.theme.colors.primary}

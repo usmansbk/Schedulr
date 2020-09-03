@@ -87,6 +87,7 @@ class CalendarEvent extends React.Component {
       <>
         <Appbar.Header style={styles.header} collapsable>
           <Appbar.Action
+            animated={false}
             onPress={this._goBack}
             color={colors.primary}
             size={24}
@@ -96,6 +97,7 @@ class CalendarEvent extends React.Component {
           />
           <Appbar.Content titleStyle={styles.headerColor} />
           <Appbar.Action
+            animated={false}
             onPress={this._removeEvent}
             color={colors.light_red}
             size={24}

@@ -113,6 +113,7 @@ class EventDetails extends React.Component {
       <>
         <Appbar.Header style={styles.header} collapsable>
           <Appbar.Action
+            animated={false}
             onPress={handleBack}
             color={colors.primary}
             size={FONT_SIZE}

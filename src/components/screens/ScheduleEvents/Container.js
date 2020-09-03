@@ -70,6 +70,7 @@ class ScheduleEvents extends React.Component {
       <>
         <Appbar style={styles.header} collapsable>
           <Appbar.Action
+            animated={false}
             onPress={this._onBack}
             size={24}
             color={colors.primary}

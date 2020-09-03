@@ -19,6 +19,7 @@ class Screen extends React.Component {
       <>
         <Appbar.Header collapsable style={styles.header}>
           <Appbar.Action
+            animated={false}
             onPress={this._goBack}
             color={colors.primary}
             size={24}

@@ -39,6 +39,7 @@ export const HeaderComponent = inject('stores')(
   observer(({stores, title, goBack}) => (
     <Appbar.Header style={stores.styles.appStyles.header}>
       <Appbar.Action
+        animated={false}
         onPress={goBack}
         icon={() => (
           <Icon
