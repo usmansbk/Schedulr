@@ -1,7 +1,7 @@
 import React from 'react';
-import { withApollo } from 'react-apollo';
+import {withApollo} from 'react-apollo';
 import Form from 'components/forms/Event';
-import { getUserSchedules } from 'api/fragments';
+import {getUserSchedules} from 'api/fragments';
 
 class EditEventScreen extends React.Component {
   _handleBack = () => this.props.navigation.goBack();
@@ -9,13 +9,13 @@ class EditEventScreen extends React.Component {
   _schedules = () => {
     const data = this.props.client.readFragment({
       fragment: getUserSchedules,
-      id: `User:${this.props.stores.appState.userId}`
+      id: `User:${this.props.stores.appState.userId}`,
     });
     return (data && data.created && data.created.items) || [];
   };
 
   get initialValues() {
-    const { event } = this.props;
+    const {event} = this.props;
 
     if (!event) return undefined;
     const {
@@ -30,35 +30,36 @@ class EditEventScreen extends React.Component {
       until,
       forever,
       schedule,
-      isPublic
+      isPublic,
     } = event;
-    const currentSchedule = this.schedules.find(item => item.id === schedule.id) || {};
-    return ({
+    const currentSchedule =
+      this.schedules.find((item) => item.id === schedule.id) || {};
+    return {
       title,
       description,
       venue,
       startAt,
       endAt,
       allDay,
-      category,
+      category: category || this.props.stores.appState.categories[0],
       recurrence,
       until,
       forever,
       isPublic,
       location: currentSchedule.location,
-      eventScheduleId: currentSchedule.id
-    });
-  };
-  
+      eventScheduleId: currentSchedule.id,
+    };
+  }
+
   _onSubmit = (form) => {
     const id = this.props.navigation.getParam('id');
     this.props.navigation.goBack();
 
     setTimeout(() => {
-      this.props.onSubmit({ id, ...form });
+      this.props.onSubmit({id, ...form});
     }, 0);
   };
-  
+
   get schedules() {
     return this._schedules();
   }
@@ -73,7 +74,7 @@ class EditEventScreen extends React.Component {
         edit
         locked
       />
-    )
+    );
   }
 }
 

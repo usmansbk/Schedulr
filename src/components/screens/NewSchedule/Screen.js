@@ -17,7 +17,6 @@ export default class NewScheduleScreen extends React.Component {
       logger.log('create_schedule');
     }, 0);
     this.props.navigation.popToTop();
-    // this.props.navigation.replace('Schedule', { id })
   };
 
   componentWillUnmount = () => {
