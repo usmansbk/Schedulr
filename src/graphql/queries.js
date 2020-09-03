@@ -51,7 +51,7 @@ export const myPref = `query GetPreference($id: ID!) {
     disableComments
     enableMembersComments
   }
-}`
+}`;
 
 export const getUser = `query GetUser($id: ID!) {
   getUser(id: $id) {
@@ -675,7 +675,7 @@ export const getUserData = `query GetUserData($filter: ModelEventFilterInput, $l
       nextToken
     }
   }
-}`
+}`;
 
 export const getDeltaUpdates = `query GetDeltaUpdates($lastSync: String!) {
   deltaSync(lastSync: $lastSync) @connection(key: "deltaSync") {
@@ -840,6 +840,7 @@ export const searchEvents = `query SearchEvents($filter: SearchableEventFilterIn
       until
       forever
       isPublic
+      isOffline
       isOwner
       isBookmarked
       cancelledDates
