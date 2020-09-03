@@ -1,6 +1,6 @@
 import React from 'react';
 import {TouchableOpacity} from 'react-native';
-import {Surface, Text} from 'react-native-paper';
+import {Text} from 'react-native-paper';
 import Icon from 'components/common/Icon';
 import {withNavigation} from 'react-navigation';
 import {I18n} from 'aws-amplify';
@@ -20,17 +20,17 @@ class Footer extends React.Component {
 
     const styles = stores.styles.carousel;
     return (
-      <TouchableOpacity onPress={this._navigateToAlbum}>
-        <Surface style={styles.container}>
-          {Boolean(images.length) ? (
-            <Cover images={images} />
-          ) : (
-            <>
-              <Text style={styles.text}>{I18n.get(`TEXT_noAlbum`)}</Text>
-              <Icon name="camera" size={24} color={stores.theme.colors.gray} />
-            </>
-          )}
-        </Surface>
+      <TouchableOpacity
+        onPress={this._navigateToAlbum}
+        style={styles.container}>
+        {Boolean(images.length) ? (
+          <Cover images={images} />
+        ) : (
+          <>
+            <Text style={styles.text}>{I18n.get(`TEXT_noAlbum`)}</Text>
+            <Icon name="camera" size={24} color={stores.theme.colors.gray} />
+          </>
+        )}
       </TouchableOpacity>
     );
   }
