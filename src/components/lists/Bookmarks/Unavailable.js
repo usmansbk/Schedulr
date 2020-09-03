@@ -11,7 +11,7 @@ class Item extends React.Component {
 
   render() {
     const {id, stores} = this.props;
-    const styles = stores.appStyles.bookmarkedEventsList;
+    const styles = stores.styles.bookmarkedEventsList;
 
     return (
       <TouchableOpacity style={styles.itemContainer}>

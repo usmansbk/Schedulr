@@ -1,25 +1,22 @@
 import React from 'react';
-import { View, TouchableOpacity } from 'react-native';
-import {
-  Text,
-  Caption,
-} from 'react-native-paper';
+import {View, TouchableOpacity} from 'react-native';
+import {Text, Caption} from 'react-native-paper';
 import Hyperlink from 'react-native-hyperlink';
-import { inject, observer } from 'mobx-react';
+import {inject, observer} from 'mobx-react';
 import UserAvatar from 'components/common/UserAvatar';
 import Attachment from 'components/common/Attachment';
 import Actions from 'components/actionsheet/Comment';
-import { comments_list, BULLET } from 'lib/constants';
+import {comments_list, BULLET} from 'lib/constants';
 import Thumbnail from './Thumbnail';
 
-const { AVATAR_SIZE } = comments_list;
+const {AVATAR_SIZE} = comments_list;
 
 class Item extends React.Component {
   state = {
-    showOptions: false
+    showOptions: false,
   };
 
-  _commentActions = ref => this.commentActions = ref;
+  _commentActions = (ref) => (this.commentActions = ref);
   _showOptions = () => {
     this.commentActions.getWrappedInstance().open();
   };
@@ -34,7 +31,8 @@ class Item extends React.Component {
   _navigateToProfile = () => this.props.navigateToProfile(this.props.authorId);
   _navigateToViewEmbed = (params) => this.props.navigateToViewEmbed(params);
 
-  shouldComponentUpdate = nextProps => this.props.timeAgo !== nextProps.timeAgo;
+  shouldComponentUpdate = (nextProps) =>
+    this.props.timeAgo !== nextProps.timeAgo;
 
   render() {
     const {
@@ -49,8 +47,8 @@ class Item extends React.Component {
       timeAgo,
       to,
     } = this.props;
-    
-    const styles = stores.appStyles.commentsList;
+
+    const styles = stores.styles.commentsList;
     return (
       <TouchableOpacity onPress={this._onReply} onLongPress={this._showOptions}>
         <View style={styles.itemContainer}>
@@ -65,14 +63,23 @@ class Item extends React.Component {
             <Text
               numberOfLines={1}
               ellipsizeMode="middle"
-              style={styles.authorName}
-            >
-              {authorName} <Caption>{BULLET} {timeAgo}</Caption>
+              style={styles.authorName}>
+              {authorName}{' '}
+              <Caption>
+                {BULLET} {timeAgo}
+              </Caption>
             </Text>
             {Boolean(to) && (
               <View style={[styles.item, styles.message, styles.to]}>
-                <Text numberOfLines={1} ellipsizeMode="tail" style={styles.authorName}>{to.author.name}</Text>
-                <Text numberOfLines={4} ellipsizeMode="tail">{to.content}</Text>
+                <Text
+                  numberOfLines={1}
+                  ellipsizeMode="tail"
+                  style={styles.authorName}>
+                  {to.author.name}
+                </Text>
+                <Text numberOfLines={4} ellipsizeMode="tail">
+                  {to.content}
+                </Text>
                 {Boolean(to.attachment && to.attachment.length) && (
                   <Thumbnail attachment={to.attachment} />
                 )}
@@ -83,14 +90,14 @@ class Item extends React.Component {
                 style={[
                   styles.item,
                   styles.message,
-                  Boolean(attachment) ? styles.withAttachment : {}
+                  Boolean(attachment) ? styles.withAttachment : {},
                 ]}>
                 <Hyperlink linkStyle={styles.linkStyle} linkDefault>
                   <Text>{content}</Text>
                 </Hyperlink>
               </View>
             )}
-            { Boolean(attachment) && (
+            {Boolean(attachment) && (
               <View style={[styles.item, styles.attachment]}>
                 <Attachment
                   attachment={attachment}
@@ -110,8 +117,8 @@ class Item extends React.Component {
           onReply={this._onReply}
         />
       </TouchableOpacity>
-    )
+    );
   }
 }
 
-export default inject("stores")(observer(Item));
+export default inject('stores')(observer(Item));

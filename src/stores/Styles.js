@@ -17,7 +17,7 @@ import {
   dp,
 } from 'lib/constants';
 
-export default class AppStyles {
+export default class styles {
   constructor(settings) {
     this.settings = settings;
   }

@@ -96,7 +96,7 @@ class Settings extends React.Component {
     if (!this.state.display) return <Suspense />;
 
     const {goBack, stores} = this.props;
-    const {styles} = stores.appStyles;
+    const {styles} = stores.styles;
 
     return (
       <>

@@ -66,7 +66,7 @@ class Item extends React.Component {
       until,
     });
 
-    const styles = stores.appStyles.eventsList;
+    const styles = stores.styles.eventsList;
 
     return (
       <TouchableOpacity onPress={this._onPress} style={styles.itemContainer}>

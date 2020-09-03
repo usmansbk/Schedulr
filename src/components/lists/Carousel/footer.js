@@ -18,7 +18,7 @@ class Footer extends React.Component {
     const {stores, images, isOwner} = this.props;
     if (!(isOwner || images.length)) return null;
 
-    const styles = stores.appStyles.carousel;
+    const styles = stores.styles.carousel;
     return (
       <TouchableOpacity onPress={this._navigateToAlbum}>
         <Surface style={styles.container}>

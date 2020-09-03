@@ -12,12 +12,12 @@ class Screen extends React.Component {
 
   render() {
     const {stores} = this.props;
-    const appStyles = stores.appStyles.styles;
+    const styles = stores.styles.styles;
     const colors = stores.theme.colors;
     const id = this.props.navigation.getParam('id');
     return (
       <>
-        <Appbar.Header collapsable style={appStyles.header}>
+        <Appbar.Header collapsable style={styles.header}>
           <Appbar.Action
             onPress={this._goBack}
             color={colors.primary}
@@ -27,7 +27,7 @@ class Screen extends React.Component {
             )}
           />
           <Appbar.Content
-            titleStyle={appStyles.headerColor}
+            titleStyle={styles.headerColor}
             title={I18n.get('TEXT_album')}
           />
         </Appbar.Header>

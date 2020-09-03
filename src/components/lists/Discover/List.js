@@ -84,7 +84,7 @@ class List extends Component {
   _onRefresh = () => this.props.onRefresh();
 
   render() {
-    const styles = this.props.stores.appStyles.discover;
+    const styles = this.props.stores.styles.discover;
     let data = this.props.data;
 
     return (

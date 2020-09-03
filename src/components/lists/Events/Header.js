@@ -15,7 +15,7 @@ class Header extends React.Component {
       <TouchableOpacity
         disabled={!beforeDate || loading}
         onPress={onPress}
-        style={stores.appStyles.eventsList.header}>
+        style={stores.styles.eventsList.header}>
         <View>
           {loading ? (
             <ActivityIndicator
@@ -29,7 +29,7 @@ class Header extends React.Component {
           ) : beforeDate ? (
             <Icon name="up" size={20} />
           ) : (
-            <Caption style={stores.appStyles.eventsList.footerText}>
+            <Caption style={stores.styles.eventsList.footerText}>
               {I18n.get(`EVENTS_SECTIONLIST_noPrevEvents`)}
             </Caption>
           )}

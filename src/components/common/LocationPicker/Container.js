@@ -8,8 +8,8 @@ export default inject('stores')(
       hideModal={hideModal}
       visible={visible}
       location={stores.locationStore.parsedLocation}
-      styles={stores.appStyles.places}
-      modalStyle={stores.appStyles.picker}
+      styles={stores.styles.places}
+      modalStyle={stores.styles.picker}
       language={stores.settings.userPreference.language}
       placeholderTextColor={stores.theme.colors.placeholder}
       iconColor={stores.theme.colors.gray}

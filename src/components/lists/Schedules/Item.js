@@ -47,7 +47,7 @@ class Item extends React.Component {
       isOwner,
     } = this.props;
 
-    const styles = stores.appStyles.schedulesList;
+    const styles = stores.styles.schedulesList;
 
     return (
       <TouchableOpacity

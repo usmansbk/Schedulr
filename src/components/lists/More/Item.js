@@ -9,7 +9,7 @@ class Item extends React.Component {
 
   render() {
     const {name, icon, stores} = this.props;
-    const styles = stores.appStyles.moreList;
+    const styles = stores.styles.moreList;
     const color = stores.theme.colors.gray;
 
     return (

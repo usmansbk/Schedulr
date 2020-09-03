@@ -1,34 +1,33 @@
 import React from 'react';
-import { View } from 'react-native';
-import { Text } from 'react-native-paper';
+import {View} from 'react-native';
+import {Text} from 'react-native-paper';
 import PickerItem from './Item';
-import { CustomPicker } from 'react-native-custom-picker';
-import { inject, observer} from 'mobx-react';
+import {CustomPicker} from 'react-native-custom-picker';
+import {inject, observer} from 'mobx-react';
 
 class Button extends React.Component {
-  
-	_renderOption = ({ item: {
-		label,
-		value,	
-  }}) => <PickerItem
-		key={value}
-		value={value}
-		label={label}
-		marked={value === this.props.value}
-  />;
-  
-  _renderField = ({ selectedItem, defaultText }) => {
+  _renderOption = ({item: {label, value}}) => (
+    <PickerItem
+      key={value}
+      value={value}
+      label={label}
+      marked={value === this.props.value}
+    />
+  );
 
-    const styles = this.props.stores.appStyles.picker;
+  _renderField = ({selectedItem, defaultText}) => {
+    const styles = this.props.stores.styles.picker;
 
     let label;
     if (selectedItem) {
       label = selectedItem.label;
     } else {
-      const targetItem = this.props.items.find(item => item.value === this.props.value);
+      const targetItem = this.props.items.find(
+        (item) => item.value === this.props.value,
+      );
       label = !!targetItem ? targetItem.label : defaultText;
     }
-    
+
     return (
       <View style={styles.button}>
         <Text style={styles.text}>{label}</Text>
@@ -36,7 +35,7 @@ class Button extends React.Component {
     );
   };
 
-  _onValueChange = item => {
+  _onValueChange = (item) => {
     if (item.value === this.props.default) {
       this.props.onValueChange('');
     } else {
@@ -46,23 +45,18 @@ class Button extends React.Component {
       if (this.props.onItemChange) {
         this.props.onItemChange(item.value);
       }
-    }, 0)
+    }, 0);
   };
 
   render() {
-    const {
-      items,
-      stores, 
-      prompt,
-      disabled
-    } = this.props;
+    const {items, stores, prompt, disabled} = this.props;
 
-    const styles = stores.appStyles.picker;
+    const styles = stores.styles.picker;
     return (
       <CustomPicker
         placeholder={prompt}
         options={items}
-        getLabel={item => item.label}
+        getLabel={(item) => item.label}
         optionTemplate={this._renderOption}
         fieldTemplate={this._renderField}
         onValueChange={this._onValueChange}

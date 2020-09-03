@@ -93,7 +93,7 @@ class ImageViewer extends React.Component {
 
     return (
       <>
-        <Appbar.Header style={stores.appStyles.styles.header}>
+        <Appbar.Header style={stores.styles.styles.header}>
           <Appbar.Action
             color={stores.theme.colors.primary}
             onPress={goBack}
@@ -104,7 +104,7 @@ class ImageViewer extends React.Component {
           <Appbar.Content
             title={title}
             subtitle={subtitle}
-            titleStyle={stores.appStyles.styles.headerColor}
+            titleStyle={stores.styles.styles.headerColor}
           />
           {Boolean(s3Object) && (
             <Appbar.Action

@@ -1,59 +1,52 @@
 import React from 'react';
 import numeral from 'numeral';
-import {
-  Text,
-  IconButton
-} from 'react-native-paper';
-import { View } from 'react-native';
+import {Text, IconButton} from 'react-native-paper';
+import {View} from 'react-native';
 import Icon from 'components/common/Icon';
-import { inject, observer } from 'mobx-react';
+import {inject, observer} from 'mobx-react';
 
 class IconBagdeButton extends React.Component {
   _onPress = () => this.props.onPress();
 
-  shouldComponentUpdate = nextProps => ((nextProps.count !== this.props.count) ||
-    (nextProps.color !== this.props.color) || (nextProps.disabled !== this.props.disabled))
-  ;
+  shouldComponentUpdate = (nextProps) =>
+    nextProps.count !== this.props.count ||
+    nextProps.color !== this.props.color ||
+    nextProps.disabled !== this.props.disabled;
 
-  _renderIcon = () => <Icon
-    name={this.props.icon}
-    size={this.props.size}
-    color={this.props.color}
-  />;
-  
+  _renderIcon = () => (
+    <Icon
+      name={this.props.icon}
+      size={this.props.size}
+      color={this.props.color}
+    />
+  );
+
   render() {
-    const {
-      size,
-      count,
-      stores,
-      color,
-      disabled
-    } = this.props;
+    const {size, count, stores, color, disabled} = this.props;
 
-    return  (
-      <View style={stores.appStyles.styles.button}>
+    return (
+      <View style={stores.styles.styles.button}>
         <IconButton
           onPress={this._onPress}
           icon={this._renderIcon}
           size={size}
-          style={stores.appStyles.styles.iconButton}
+          style={stores.styles.styles.iconButton}
           disabled={disabled}
         />
-        {
-          Boolean(count) && (
-            <Text style={[
-              stores.appStyles.styles.badge,
+        {Boolean(count) && (
+          <Text
+            style={[
+              stores.styles.styles.badge,
               {
-                color
-              }
+                color,
+              },
             ]}>
-              {count && numeral(count).format('0a')}
-            </Text>
-          )
-        }
+            {count && numeral(count).format('0a')}
+          </Text>
+        )}
       </View>
-    )
+    );
   }
 }
 
-export default inject("stores")(observer(IconBagdeButton));
+export default inject('stores')(observer(IconBagdeButton));

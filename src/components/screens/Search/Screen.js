@@ -40,8 +40,8 @@ const TabBarComponent = inject('stores')(
     <MaterialTopTabBar
       activeTintColor={props.stores.theme.colors.primary}
       inactiveTintColor={props.stores.theme.colors.tint}
-      indicatorStyle={props.stores.appStyles.userSchedulesTab.indicatorStyle}
-      style={props.stores.appStyles.userSchedulesTab.barStyle}
+      indicatorStyle={props.stores.styles.userSchedulesTab.indicatorStyle}
+      style={props.stores.styles.userSchedulesTab.barStyle}
       {...props}
     />
   )),

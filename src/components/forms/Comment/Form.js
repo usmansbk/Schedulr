@@ -138,7 +138,7 @@ class CommentInput extends React.Component {
 
     const {isSubmitting, message, uploads, total, loaded} = this.state;
 
-    const styles = stores.appStyles.commentInput;
+    const styles = stores.styles.commentInput;
     const colors = stores.theme.colors;
     const invalid =
       isSubmitting || !(message.trim() || uploads.length) || disabled;

@@ -293,8 +293,8 @@ class List extends React.Component {
         ref={this.listRef}
         initialNumToRender={1}
         getItemLayout={this._getItemLayout}
-        contentContainerStyle={stores.appStyles.eventsList.contentContainer}
-        style={stores.appStyles.eventsList.list}
+        contentContainerStyle={stores.styles.eventsList.contentContainer}
+        style={stores.styles.eventsList.list}
         stickySectionHeadersEnabled
         sections={sections}
         extraData={stores.appState.extraData}

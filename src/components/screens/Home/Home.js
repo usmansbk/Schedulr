@@ -67,7 +67,7 @@ const TabBarComponent = inject('stores')(
       <BottomTabBar
         inactiveTintColor={props.stores.theme.colors.tint}
         activeTintColor={props.stores.theme.colors.primary}
-        style={props.stores.appStyles.bottomTab.barStyle}
+        style={props.stores.styles.bottomTab.barStyle}
         {...props}
       />
     </>

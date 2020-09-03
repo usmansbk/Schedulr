@@ -40,7 +40,7 @@ class Item extends React.Component {
       cancelledDates,
     } = this.props;
 
-    const styles = stores.appStyles.bookmarkedEventsList;
+    const styles = stores.styles.bookmarkedEventsList;
     const caption = captionDetails({
       allDay,
       recurrence,

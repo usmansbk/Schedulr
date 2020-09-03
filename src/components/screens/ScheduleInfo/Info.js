@@ -102,15 +102,14 @@ class Info extends React.Component {
     const ownerName = author && author.name;
     const isClosed = status === SCHEDULE_CLOSED;
 
-    const appStyles = stores.appStyles.styles;
-    const styles = stores.appStyles.scheduleInfo;
+    const styles = stores.styles.scheduleInfo;
     const colors = stores.theme.colors;
     // const isAuth = (isPublic || isFollowing) && !isOwner;
     const isPersonal = id === uuidv5(stores.appState.userId, uuidv5.DNS);
 
     return (
       <>
-        <Appbar.Header collapsable style={appStyles.header}>
+        <Appbar.Header collapsable style={stores.styles.header}>
           <Appbar.Action
             onPress={goBack}
             color={colors.primary}
@@ -119,7 +118,7 @@ class Info extends React.Component {
               <Icon name="arrow-left" size={size} color={color} />
             )}
           />
-          <Appbar.Content titleStyle={appStyles.headerColor} />
+          <Appbar.Content titleStyle={stores.styles.headerColor} />
           {(isPublic || isOwner) && (
             <Appbar.Action
               size={24}
@@ -238,36 +237,34 @@ class Info extends React.Component {
             </View>
             <View style={styles.body}>
               {Boolean(topic) && (
-                <View style={stores.appStyles.eventDetails.item}>
-                  <Text style={stores.appStyles.eventDetails.label}>
+                <View style={stores.styles.eventDetails.item}>
+                  <Text style={stores.styles.eventDetails.label}>
                     {I18n.get('TOPIC')}
                   </Text>
-                  <Text style={stores.appStyles.eventDetails.value}>
-                    {topic}
-                  </Text>
+                  <Text style={stores.styles.eventDetails.value}>{topic}</Text>
                 </View>
               )}
-              <View style={stores.appStyles.eventDetails.item}>
-                <Text style={stores.appStyles.eventDetails.label}>
+              <View style={stores.styles.eventDetails.item}>
+                <Text style={stores.styles.eventDetails.label}>
                   {I18n.get('CREATED')}
                 </Text>
-                <Text style={stores.appStyles.eventDetails.value}>
+                <Text style={stores.styles.eventDetails.value}>
                   {moment(createdAt).toDate().toDateString()}
                 </Text>
               </View>
               <TouchableOpacity onPress={() => navigateToProfile(ownerId)}>
-                <View style={stores.appStyles.eventDetails.item}>
-                  <Text style={stores.appStyles.eventDetails.label}>
+                <View style={stores.styles.eventDetails.item}>
+                  <Text style={stores.styles.eventDetails.label}>
                     {I18n.get('AUTHOR')}
                   </Text>
-                  <Text style={stores.appStyles.eventDetails.value}>
+                  <Text style={stores.styles.eventDetails.value}>
                     {ownerName}
                   </Text>
                 </View>
               </TouchableOpacity>
             </View>
-            <View style={stores.appStyles.eventDetails.item}>
-              <Text style={stores.appStyles.eventDetails.label}>
+            <View style={stores.styles.eventDetails.item}>
+              <Text style={stores.styles.eventDetails.label}>
                 {I18n.get('ABOUT')}
               </Text>
               <Hyperlink linkStyle={styles.linkStyle} linkDefault={true}>

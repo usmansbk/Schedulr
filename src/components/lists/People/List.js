@@ -89,7 +89,7 @@ class List extends React.Component {
   render() {
     const {people, loading, onRefresh, stores} = this.props;
 
-    const styles = stores.appStyles.peopleList;
+    const styles = stores.styles.peopleList;
 
     return (
       <FlatList

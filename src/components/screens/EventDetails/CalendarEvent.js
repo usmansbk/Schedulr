@@ -51,7 +51,7 @@ class CalendarEvent extends React.Component {
 
     const {stores} = this.props;
     const colors = stores.theme.colors;
-    const styles = stores.appStyles.styles;
+    const styles = stores.styles.styles;
 
     if (!event)
       return (
@@ -104,77 +104,75 @@ class CalendarEvent extends React.Component {
             )}
           />
         </Appbar.Header>
-        <View style={stores.appStyles.eventDetails.container}>
-          <ScrollView style={stores.appStyles.eventDetails.bg}>
-            <View style={stores.appStyles.eventDetails.content}>
-              <View style={stores.appStyles.eventDetails.head}>
-                <View style={stores.appStyles.eventDetails.headNote}>
+        <View style={stores.styles.eventDetails.container}>
+          <ScrollView style={stores.styles.eventDetails.bg}>
+            <View style={stores.styles.eventDetails.content}>
+              <View style={stores.styles.eventDetails.head}>
+                <View style={stores.styles.eventDetails.headNote}>
                   <Tag status={status} />
                 </View>
-                <Headline style={stores.appStyles.eventDetails.title}>
+                <Headline style={stores.styles.eventDetails.title}>
                   {title}
                 </Headline>
-                <Text style={stores.appStyles.eventDetails.date}>{date}</Text>
-                <Text style={stores.appStyles.eventDetails.date}>
-                  {duration}
-                </Text>
+                <Text style={stores.styles.eventDetails.date}>{date}</Text>
+                <Text style={stores.styles.eventDetails.date}>{duration}</Text>
               </View>
               <Divider />
-              <View style={stores.appStyles.eventDetails.body}>
-                <View style={stores.appStyles.eventDetails.item}>
-                  <Text style={stores.appStyles.eventDetails.label}>
+              <View style={stores.styles.eventDetails.body}>
+                <View style={stores.styles.eventDetails.item}>
+                  <Text style={stores.styles.eventDetails.label}>
                     {I18n.get('VENUE')}
                   </Text>
-                  <Text style={stores.appStyles.eventDetails.value}>
+                  <Text style={stores.styles.eventDetails.value}>
                     {address || I18n.get('No location set')}
                   </Text>
                 </View>
-                <View style={stores.appStyles.eventDetails.item}>
-                  <Text style={stores.appStyles.eventDetails.label}>
+                <View style={stores.styles.eventDetails.item}>
+                  <Text style={stores.styles.eventDetails.label}>
                     {I18n.get('REPEAT')}
                   </Text>
-                  <Text style={stores.appStyles.eventDetails.value}>
+                  <Text style={stores.styles.eventDetails.value}>
                     {repeatLabel}
                   </Text>
                 </View>
-                <View style={stores.appStyles.eventDetails.item}>
-                  <Text style={stores.appStyles.eventDetails.label}>
+                <View style={stores.styles.eventDetails.item}>
+                  <Text style={stores.styles.eventDetails.label}>
                     {I18n.get('CALENDAR')}
                   </Text>
                   <Text
                     ellipsizeMode="tail"
                     numberOfLines={1}
-                    style={stores.appStyles.eventDetails.value}>
+                    style={stores.styles.eventDetails.value}>
                     {scheduleName}
                   </Text>
                 </View>
-                <View style={stores.appStyles.eventDetails.item}>
-                  <Text style={stores.appStyles.eventDetails.label}>
+                <View style={stores.styles.eventDetails.item}>
+                  <Text style={stores.styles.eventDetails.label}>
                     {I18n.get('SOURCE')}
                   </Text>
-                  <Text style={stores.appStyles.eventDetails.value}>
+                  <Text style={stores.styles.eventDetails.value}>
                     {author.name || I18n.get('Calendar')}
                   </Text>
                 </View>
                 {Boolean(until) && (
-                  <View style={stores.appStyles.eventDetails.item}>
-                    <Text style={stores.appStyles.eventDetails.label}>
+                  <View style={stores.styles.eventDetails.item}>
+                    <Text style={stores.styles.eventDetails.label}>
                       {I18n.get('UNTIL')}
                     </Text>
-                    <Text style={stores.appStyles.eventDetails.value}>
+                    <Text style={stores.styles.eventDetails.value}>
                       {until}
                     </Text>
                   </View>
                 )}
                 {Boolean(description && description.trim()) && (
-                  <View style={stores.appStyles.eventDetails.item}>
-                    <Text style={stores.appStyles.eventDetails.label}>
+                  <View style={stores.styles.eventDetails.item}>
+                    <Text style={stores.styles.eventDetails.label}>
                       {I18n.get('DESCRIPTION')}
                     </Text>
                     <Hyperlink
-                      linkStyle={stores.appStyles.eventDetails.linkStyle}
+                      linkStyle={stores.styles.eventDetails.linkStyle}
                       linkDefault={true}>
-                      <Text style={stores.appStyles.eventDetails.value}>
+                      <Text style={stores.styles.eventDetails.value}>
                         {description || I18n.get('No description')}
                       </Text>
                     </Hyperlink>

@@ -33,7 +33,7 @@ class Item extends React.Component {
       stores,
     } = this.props;
 
-    const styles = stores.appStyles.scheduleSearch;
+    const styles = stores.styles.scheduleSearch;
     const isAuth = (isPublic || isFollowing) && !isOwner;
 
     return (

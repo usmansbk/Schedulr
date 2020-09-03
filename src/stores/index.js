@@ -4,7 +4,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import Settings from './Settings';
 import RemindMe from './RemindMe';
 import Theme from './Theme';
-import AppStyles from './Styles';
+import styles from './Styles';
 import AppState from './AppState';
 import Notifications from './Notifications';
 import Location from './Location';
@@ -32,12 +32,12 @@ class RootStore {
     hydrate('locationStore', locationStore);
 
     const theme = new Theme(settings);
-    const appStyles = new AppStyles(settings);
+    const styles = new styles(settings);
 
     this.settings = settings;
     this.remindMeStore = remindMeStore;
     this.theme = theme;
-    this.appStyles = appStyles;
+    this.styles = styles;
     this.appState = appState;
     this.notificationsStore = notificationsStore;
     this.locationStore = locationStore;

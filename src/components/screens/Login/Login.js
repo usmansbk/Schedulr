@@ -10,18 +10,16 @@ import Logo from 'components/common/Logo';
 
 export default inject('stores')(
   observer((props) => (
-    <View style={props.stores.appStyles.login.container}>
+    <View style={props.stores.styles.login.container}>
       <StatusBar
         backgroundColor={props.stores.settings.dark ? 'black' : 'white'}
         barStyle={props.stores.settings.dark ? 'light-content' : 'dark-content'}
       />
       <Logo />
-      <Headline
-        allowFontScaling={false}
-        style={props.stores.appStyles.login.h1}>
+      <Headline allowFontScaling={false} style={props.stores.styles.login.h1}>
         {I18n.get('APP_welcome')}
       </Headline>
-      <View style={props.stores.appStyles.login.content}>
+      <View style={props.stores.styles.login.content}>
         {props.stores.appState.loggingIn ? (
           <ActivityIndicator animating />
         ) : (
@@ -40,7 +38,7 @@ export default inject('stores')(
       </View>
       <Caption
         allowFontScaling={false}
-        style={props.stores.appStyles.login.caption}>
+        style={props.stores.styles.login.caption}>
         {I18n.get('APP_footerCaption')}
       </Caption>
     </View>

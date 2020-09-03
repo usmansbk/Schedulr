@@ -38,7 +38,7 @@ class Form extends React.Component {
 
     const {initialValues, onSubmit, handleCancel, stores} = this.props;
 
-    const styles = stores.appStyles.eventForm;
+    const styles = stores.styles.eventForm;
     const navButtonColor = stores.theme.colors.primary;
 
     return (

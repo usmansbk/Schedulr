@@ -19,7 +19,7 @@ export default inject('stores')(
         />
       )}
       title={I18n.get('BUTTON_signout')}
-      style={stores.appStyles.moreList.footer}
+      style={stores.styles.moreList.footer}
       onPress={openDialog}
     />
   )),

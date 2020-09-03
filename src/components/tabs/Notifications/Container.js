@@ -24,7 +24,7 @@ class Container extends React.Component {
   render() {
     const {stores} = this.props;
     const title = stores.notificationsStore.filter;
-    const styles = stores.appStyles.styles;
+    const styles = stores.styles.styles;
     const color = stores.theme.colors.primary;
     const allNotifications = stores.notificationsStore.allNotifications;
     const isConnected = stores.appState.isConnected;

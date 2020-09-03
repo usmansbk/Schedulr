@@ -92,7 +92,7 @@ class List extends React.Component {
 
   render() {
     const {stores, refreshing} = this.props;
-    const styles = stores.appStyles.notifications;
+    const styles = stores.styles.notifications;
     return (
       <FlatList
         data={stores.notificationsStore.updates}

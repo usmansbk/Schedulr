@@ -125,7 +125,7 @@ class List extends Component {
     const {events, loading, onRefresh, stores} = this.props;
     const {fetchingMore} = this.state;
 
-    const styles = stores.appStyles.bookmarkedEventsList;
+    const styles = stores.styles.bookmarkedEventsList;
     const colors = stores.theme.colors;
 
     return (

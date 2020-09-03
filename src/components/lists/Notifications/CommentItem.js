@@ -25,7 +25,7 @@ class Item extends React.Component {
       seen,
     } = this.props;
 
-    const styles = stores.appStyles.notifications;
+    const styles = stores.styles.notifications;
     const icon = 'comments';
     const {content, title} = extraData;
     const mark = seen ? {} : styles.unseen;

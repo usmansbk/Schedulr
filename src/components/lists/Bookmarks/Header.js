@@ -10,8 +10,8 @@ export default inject('stores')(
       <TouchableRipple
         disabled={!count || loading}
         onPress={onPress}
-        style={stores.appStyles.eventsList.loadPrevHeaderContainer}>
-        <View style={stores.appStyles.eventsList.footerContent}>
+        style={stores.styles.eventsList.loadPrevHeaderContainer}>
+        <View style={stores.styles.eventsList.footerContent}>
           {loading ? (
             <ActivityIndicator
               animating
@@ -19,7 +19,7 @@ export default inject('stores')(
               color={stores.theme.colors.primary}
             />
           ) : (
-            <Caption style={stores.appStyles.eventsList.footerText}>
+            <Caption style={stores.styles.eventsList.footerText}>
               {count
                 ? I18n.get('SCHEDULES_loadPastEvents')(count)
                 : I18n.get('SCHEDULES_noMoreEvents')}

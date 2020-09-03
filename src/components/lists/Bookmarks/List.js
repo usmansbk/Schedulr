@@ -133,9 +133,9 @@ class List extends Component {
             progressBackgroundColor={stores.theme.colors.bg}
           />
         }
-        style={stores.appStyles.bookmarkedEventsList.list}
+        style={stores.styles.bookmarkedEventsList.list}
         contentContainerStyle={
-          stores.appStyles.bookmarkedEventsList.contentContainer
+          stores.styles.bookmarkedEventsList.contentContainer
         }
         initialNumToRender={1}
         getItemLayout={this._getItemLayout}

@@ -53,7 +53,7 @@ class Item extends React.Component {
       stores,
     } = this.props;
 
-    const styles = stores.appStyles.searchEventsList;
+    const styles = stores.styles.searchEventsList;
     const category = getCategory(this.props.category);
     const recurrence = parseRepeat(this.props.recurrence);
     const time = getHumanTime({allDay, startAt, endAt});

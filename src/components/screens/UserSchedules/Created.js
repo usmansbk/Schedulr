@@ -87,7 +87,7 @@ class CreatedSchedules extends Component {
     if (!this.state.display) return <Suspense />;
     const {loading, onRefresh, schedules, stores} = this.props;
 
-    const styles = stores.appStyles.schedulesList;
+    const styles = stores.styles.schedulesList;
 
     return (
       <FlatList

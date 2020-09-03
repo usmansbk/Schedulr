@@ -1,13 +1,12 @@
 import React from 'react';
-import { View } from 'react-native';
-import { Text } from 'react-native-paper';
-import { I18n } from 'aws-amplify';
+import {View} from 'react-native';
+import {Text} from 'react-native-paper';
+import {I18n} from 'aws-amplify';
 import RBSheet from 'react-native-raw-bottom-sheet';
-import { inject, observer } from 'mobx-react';
+import {inject, observer} from 'mobx-react';
 import Button from '../Button';
 
 class Confirm extends React.Component {
-
   open = () => this.RBSheet.open();
 
   _cancel = () => this.RBSheet.close();
@@ -19,17 +18,17 @@ class Confirm extends React.Component {
     }
   };
 
-  _refRBSheet = ref => this.RBSheet = ref;
+  _refRBSheet = (ref) => (this.RBSheet = ref);
   render() {
     const {
       title,
       message,
-      confirmText=I18n.get("BUTTON_confirm"),
+      confirmText = I18n.get('BUTTON_confirm'),
       stores,
       alert,
-      height=300
+      height = 300,
     } = this.props;
-    const styles = stores.appStyles.sheet;
+    const styles = stores.styles.sheet;
     return (
       <RBSheet
         ref={this._refRBSheet}
@@ -37,10 +36,9 @@ class Confirm extends React.Component {
         customStyles={{
           wrapper: styles.wrapper,
           draggableIcon: styles.draggableIcon,
-          container: styles.container
+          container: styles.container,
         }}
-        height={height}
-      >
+        height={height}>
         <View style={styles.content}>
           <View style={styles.header}>
             <Text style={styles.title}>{title}</Text>
@@ -49,8 +47,14 @@ class Confirm extends React.Component {
             <Text style={styles.message}>{message}</Text>
           </View>
           <View style={styles.footer}>
-            {!alert && <Button onPress={this._cancel}>{I18n.get("BUTTON_cancel")}</Button>}
-            <Button danger={!alert} onPress={this._onConfirm}>{alert ? I18n.get("BUTTON_ok") : confirmText}</Button>
+            {!alert && (
+              <Button onPress={this._cancel}>
+                {I18n.get('BUTTON_cancel')}
+              </Button>
+            )}
+            <Button danger={!alert} onPress={this._onConfirm}>
+              {alert ? I18n.get('BUTTON_ok') : confirmText}
+            </Button>
           </View>
         </View>
       </RBSheet>
@@ -58,4 +62,4 @@ class Confirm extends React.Component {
   }
 }
 
-export default inject("stores")(observer(Confirm));
+export default inject('stores')(observer(Confirm));

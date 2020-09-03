@@ -63,49 +63,49 @@ export default inject('stores')(
         until,
       });
       return (
-        <View style={stores.appStyles.eventDetails.container}>
-          <ScrollView style={stores.appStyles.eventDetails.bg}>
-            <View style={stores.appStyles.eventDetails.content}>
-              <View style={stores.appStyles.eventDetails.head}>
-                <View style={stores.appStyles.eventDetails.headNote}>
+        <View style={stores.styles.eventDetails.container}>
+          <ScrollView style={stores.styles.eventDetails.bg}>
+            <View style={stores.styles.eventDetails.content}>
+              <View style={stores.styles.eventDetails.head}>
+                <View style={stores.styles.eventDetails.headNote}>
                   <Tag status={status} />
                 </View>
-                <Headline style={stores.appStyles.eventDetails.title}>
+                <Headline style={stores.styles.eventDetails.title}>
                   {title}
                 </Headline>
-                <Text style={stores.appStyles.eventDetails.date}>{date}</Text>
+                <Text style={stores.styles.eventDetails.date}>{date}</Text>
               </View>
               <Divider />
-              <View style={stores.appStyles.eventDetails.body}>
-                <View style={stores.appStyles.eventDetails.item}>
-                  <Text style={stores.appStyles.eventDetails.label}>
+              <View style={stores.styles.eventDetails.body}>
+                <View style={stores.styles.eventDetails.item}>
+                  <Text style={stores.styles.eventDetails.label}>
                     {I18n.get('DURATION')}
                   </Text>
-                  <Text style={stores.appStyles.eventDetails.value}>
+                  <Text style={stores.styles.eventDetails.value}>
                     {duration}
                   </Text>
                 </View>
                 {!!category && (
-                  <View style={stores.appStyles.eventDetails.item}>
-                    <Text style={stores.appStyles.eventDetails.label}>
+                  <View style={stores.styles.eventDetails.item}>
+                    <Text style={stores.styles.eventDetails.label}>
                       {I18n.get('TYPE')}
                     </Text>
-                    <Text style={stores.appStyles.eventDetails.value}>
+                    <Text style={stores.styles.eventDetails.value}>
                       {category}
                     </Text>
                   </View>
                 )}
-                <View style={stores.appStyles.eventDetails.item}>
-                  <Text style={stores.appStyles.eventDetails.label}>
+                <View style={stores.styles.eventDetails.item}>
+                  <Text style={stores.styles.eventDetails.label}>
                     {I18n.get('VENUE')}
                   </Text>
-                  <Text style={stores.appStyles.eventDetails.value}>
+                  <Text style={stores.styles.eventDetails.value}>
                     {address || I18n.get('EVENT_noLocationSet')}
                   </Text>
                 </View>
                 {isAuth && scheduleName && (
-                  <View style={stores.appStyles.eventDetails.item}>
-                    <Text style={stores.appStyles.eventDetails.label}>
+                  <View style={stores.styles.eventDetails.item}>
+                    <Text style={stores.styles.eventDetails.label}>
                       {I18n.get('SCHEDULE')}
                     </Text>
                     <Text
@@ -115,74 +115,74 @@ export default inject('stores')(
                         scheduleId && (() => navigateToSchedule(scheduleId))
                       }
                       style={[
-                        stores.appStyles.eventDetails.value,
-                        stores.appStyles.eventDetails.nav,
+                        stores.styles.eventDetails.value,
+                        stores.styles.eventDetails.nav,
                       ]}>
                       {scheduleName}
                     </Text>
                   </View>
                 )}
-                <View style={stores.appStyles.eventDetails.item}>
-                  <Text style={stores.appStyles.eventDetails.label}>
+                <View style={stores.styles.eventDetails.item}>
+                  <Text style={stores.styles.eventDetails.label}>
                     {I18n.get('REPEAT')}
                   </Text>
-                  <Text style={stores.appStyles.eventDetails.value}>
+                  <Text style={stores.styles.eventDetails.value}>
                     {repeatLabel}
                   </Text>
                 </View>
                 {Boolean(until) && (
-                  <View style={stores.appStyles.eventDetails.item}>
-                    <Text style={stores.appStyles.eventDetails.label}>
+                  <View style={stores.styles.eventDetails.item}>
+                    <Text style={stores.styles.eventDetails.label}>
                       {I18n.get('UNTIL')}
                     </Text>
-                    <Text style={stores.appStyles.eventDetails.value}>
+                    <Text style={stores.styles.eventDetails.value}>
                       {moment(until).format(DATE_ONLY_FORMAT)}
                     </Text>
                   </View>
                 )}
-                <View style={stores.appStyles.eventDetails.item}>
-                  <Text style={stores.appStyles.eventDetails.label}>
+                <View style={stores.styles.eventDetails.item}>
+                  <Text style={stores.styles.eventDetails.label}>
                     {I18n.get('CREATED')}
                   </Text>
-                  <Text style={stores.appStyles.eventDetails.value}>
+                  <Text style={stores.styles.eventDetails.value}>
                     {moment(createdAt).format(DATE_FORMAT)}
                   </Text>
                 </View>
                 {Boolean(updatedAt) && (
-                  <View style={stores.appStyles.eventDetails.item}>
-                    <Text style={stores.appStyles.eventDetails.label}>
+                  <View style={stores.styles.eventDetails.item}>
+                    <Text style={stores.styles.eventDetails.label}>
                       {I18n.get('EDITED')}
                     </Text>
-                    <Text style={stores.appStyles.eventDetails.value}>
+                    <Text style={stores.styles.eventDetails.value}>
                       {moment(updatedAt).format(DATE_FORMAT)}
                     </Text>
                   </View>
                 )}
-                <View style={stores.appStyles.eventDetails.item}>
-                  <Text style={stores.appStyles.eventDetails.label}>
+                <View style={stores.styles.eventDetails.item}>
+                  <Text style={stores.styles.eventDetails.label}>
                     {I18n.get('AUTHOR')}
                   </Text>
                   <Text
                     style={[
-                      stores.appStyles.eventDetails.value,
-                      stores.appStyles.eventDetails.nav,
+                      stores.styles.eventDetails.value,
+                      stores.styles.eventDetails.nav,
                     ]}
                     onPress={() => navigateToUser(authorId)}>
                     {authorName}
                   </Text>
                 </View>
-                <View style={stores.appStyles.eventDetails.item}>
-                  <Text style={stores.appStyles.eventDetails.label}>
+                <View style={stores.styles.eventDetails.item}>
+                  <Text style={stores.styles.eventDetails.label}>
                     {I18n.get('DESCRIPTION')}
                   </Text>
                   <Hyperlink
-                    linkStyle={stores.appStyles.eventDetails.linkStyle}
+                    linkStyle={stores.styles.eventDetails.linkStyle}
                     linkDefault={true}>
                     <Text
                       numberOfLines={expandDescription ? undefined : 2}
                       ellipsizeMode="tail"
                       onPress={expandText}
-                      style={stores.appStyles.eventDetails.value}>
+                      style={stores.styles.eventDetails.value}>
                       {description || I18n.get('EVENT_noDescription')}
                     </Text>
                   </Hyperlink>
@@ -195,9 +195,9 @@ export default inject('stores')(
                   navigateToBanner={navigateToBanner}
                 />
                 {Boolean(bookmarksCount) && (
-                  <View style={stores.appStyles.eventDetails.item}>
+                  <View style={stores.styles.eventDetails.item}>
                     <Text onPress={() => navigateToBookmarks(id)}>
-                      <Text style={stores.appStyles.eventDetails.date}>
+                      <Text style={stores.styles.eventDetails.date}>
                         {numeral(bookmarksCount).format('0 a')}
                       </Text>{' '}
                       {I18n.get('EVENT_interested')}

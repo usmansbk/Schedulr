@@ -44,7 +44,7 @@ class Input extends React.Component {
     const {disabled, noMin, stores, hideTime} = this.props;
 
     const value = this.props.value || moment().toISOString();
-    const styles = stores.appStyles.datePicker;
+    const styles = stores.styles.datePicker;
 
     return (
       <View>

@@ -35,10 +35,10 @@ class FileSelect extends React.Component {
   render() {
     const {stores, onCancel, disabled} = this.props;
     return (
-      <View style={stores.appStyles.fileSelect.view}>
+      <View style={stores.styles.fileSelect.view}>
         <FlatList
           horizontal
-          contentContainerStyle={stores.appStyles.fileSelect.container}
+          contentContainerStyle={stores.styles.fileSelect.container}
           data={this.props.data}
           getItemLayout={this._getItemLayout}
           renderItem={this._renderItem}

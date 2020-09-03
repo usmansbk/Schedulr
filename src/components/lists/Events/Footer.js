@@ -14,8 +14,8 @@ export default inject('stores')(
       <TouchableOpacity
         disabled={!hasMore || loading}
         onPress={onPress}
-        style={stores.appStyles.eventsList.footerContainer}>
-        <View style={stores.appStyles.eventsList.footerContent}>
+        style={stores.styles.eventsList.footerContainer}>
+        <View style={stores.styles.eventsList.footerContent}>
           {loading ? (
             <ActivityIndicator
               animating
@@ -28,7 +28,7 @@ export default inject('stores')(
           ) : hasMore ? (
             <Icon name="down" size={20} />
           ) : (
-            <Caption style={stores.appStyles.eventsList.footerText}>
+            <Caption style={stores.styles.eventsList.footerText}>
               {I18n.get(`EVENTS_SECTIONLIST_noMoreEvents`)}
             </Caption>
           )}

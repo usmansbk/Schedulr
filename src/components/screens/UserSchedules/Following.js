@@ -93,7 +93,7 @@ class FollowingSchedules extends Component {
     if (!this.state.display) return <Suspense />;
     const {loading, onRefresh, stores} = this.props;
 
-    const styles = stores.appStyles.schedulesList;
+    const styles = stores.styles.schedulesList;
 
     return (
       <FlatList

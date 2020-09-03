@@ -18,12 +18,12 @@ class AlbumViewer extends React.Component {
     const images = album.map((img) => ({
       url: getImageUrl(img, 1040, 'contain'),
     }));
-    const appStyles = stores.appStyles.styles;
+    const styles = stores.styles.styles;
     const colors = stores.theme.colors;
 
     return (
       <>
-        <Appbar.Header collapsable style={appStyles.header}>
+        <Appbar.Header collapsable style={styles.header}>
           <Appbar.Action
             onPress={this._goBack}
             color={colors.primary}
@@ -33,7 +33,7 @@ class AlbumViewer extends React.Component {
             )}
           />
           <Appbar.Content
-            titleStyle={appStyles.headerColor}
+            titleStyle={styles.headerColor}
             title={I18n.get('TEXT_album')}
           />
         </Appbar.Header>

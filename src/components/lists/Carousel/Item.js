@@ -11,7 +11,7 @@ class Item extends React.Component {
   render() {
     const {pictureUrl, stores} = this.props;
     const source = pictureUrl && {uri: pictureUrl};
-    const styles = stores.appStyles.carousel;
+    const styles = stores.styles.carousel;
     return (
       <TouchableOpacity onPress={this._onPress}>
         <Surface style={styles.container}>

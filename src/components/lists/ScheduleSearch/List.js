@@ -99,7 +99,7 @@ class List extends Component {
     const {schedules, loading, onRefresh, stores} = this.props;
     const {fetchingMore} = this.state;
 
-    const styles = stores.appStyles.scheduleSearch;
+    const styles = stores.styles.scheduleSearch;
 
     return (
       <FlatList

@@ -28,7 +28,7 @@ class Followers extends React.Component {
 
     return (
       <>
-        <Appbar style={stores.appStyles.styles.header}>
+        <Appbar style={stores.styles.styles.header}>
           <Appbar.Action
             color={stores.theme.colors.primary}
             size={24}
@@ -39,7 +39,7 @@ class Followers extends React.Component {
           />
           <Appbar.Content
             title={I18n.get('Followers')}
-            titleStyle={stores.appStyles.styles.headerColor}
+            titleStyle={stores.styles.styles.headerColor}
           />
         </Appbar>
         <List id={id} isOwner={isOwner} />

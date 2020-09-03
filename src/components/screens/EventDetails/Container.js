@@ -97,7 +97,7 @@ class EventDetails extends React.Component {
     });
 
     const colors = stores.theme.colors;
-    const styles = stores.appStyles.styles;
+    const styles = stores.styles.styles;
     const pictureUrl = banner && getImageUrl(banner, 320);
     const isFollowing = schedule && schedule.isFollowing;
 

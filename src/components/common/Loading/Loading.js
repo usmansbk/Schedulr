@@ -7,7 +7,7 @@ class Loading extends React.Component {
     const {stores, loading} = this.props;
 
     return (
-      <View style={stores.appStyles.loading.container}>
+      <View style={stores.styles.loading.container}>
         <StatusBar
           backgroundColor={stores.theme.colors.light_gray_2}
           barStyle={stores.settings.dark ? 'light-content' : 'dark-content'}

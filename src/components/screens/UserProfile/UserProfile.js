@@ -72,11 +72,11 @@ class UserProfile extends React.Component {
     const uriSmall = avatar ? getImageUrl(avatar) : pictureUrl;
     const uriBig = avatar ? getImageUrl(avatar, 400) : pictureUrl;
     const date = moment(createdAt).format('MMMM YYYY');
-    const styles = stores.appStyles.profile;
+    const styles = stores.styles.profile;
 
     return (
       <>
-        <Appbar.Header style={stores.appStyles.styles.header} collapsable>
+        <Appbar.Header style={stores.styles.styles.header} collapsable>
           <Appbar.Action
             onPress={this._goBack}
             size={24}

@@ -7,7 +7,7 @@ import {inject, observer} from 'mobx-react';
 class Item extends React.Component {
   render() {
     const {stores, marked, label} = this.props;
-    const styles = stores.appStyles.customTypes;
+    const styles = stores.styles.customTypes;
     const colors = stores.theme.colors;
 
     return (

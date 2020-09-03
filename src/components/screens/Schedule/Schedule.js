@@ -73,7 +73,7 @@ class Schedule extends React.Component {
     const {id, name, description, isOwner, isFollowing, isPublic, status} =
       schedule || {};
 
-    const styles = stores.appStyles.styles;
+    const styles = stores.styles.styles;
     const colors = stores.theme.colors;
     const isAuth = isPublic || isOwner || isFollowing;
 

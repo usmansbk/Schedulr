@@ -92,7 +92,7 @@ class List extends React.Component {
     const {loading, comments, stores} = this.props;
     const {fetchingMore} = this.state;
 
-    const styles = stores.appStyles.commentsList;
+    const styles = stores.styles.commentsList;
 
     return (
       <FlatList
