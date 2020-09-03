@@ -9,7 +9,6 @@ import {
   people_list,
   schedule_events,
   comments_list,
-  event_search,
   more_list,
   schedule_search,
   WIDTH,
@@ -46,12 +45,12 @@ export default class styles {
       },
       title: {
         fontSize: 25,
-        fontWeight: 'bold',
+        fontFamily: 'Bold',
       },
       message: {
         textAlign: 'center',
         fontSize: 16,
-        fontWeight: 'bold',
+        fontFamily: 'Bold',
         color: colors.light_gray_3,
       },
       footer: {
@@ -267,8 +266,7 @@ export default class styles {
 
     return StyleSheet.create({
       text: {
-        fontFamily: 'sans-serif-bold',
-        fontWeight: 'bold',
+        fontFamily: 'Bold',
       },
       cancelled: {
         color: colors.light_red,
@@ -354,14 +352,11 @@ export default class styles {
         flex: 1,
       },
       text: {
-        fontFamily: 'sans-serif-medium',
+        fontFamily: 'SemiBold',
       },
       button: {
         height: dp(48),
         justifyContent: 'center',
-        // paddingHorizontal: 8,
-        // borderWidth,
-        // borderRadius: 4,
         borderColor: colors.placeholder,
       },
       container: {
@@ -391,32 +386,20 @@ export default class styles {
       },
       text: {
         color: colors.primary,
-        // marginVertical: 8,
-        fontWeight: 'bold',
+        fontFamily: 'Bold',
       },
       pickerButton: {
-        fontFamily: 'sans-serif-medium',
+        fontFamily: 'SemiBold',
       },
       dateButton: {
         flex: 1,
-        // borderWidth,
-        // borderColor: colors.placeholder,
         height: dp(48),
         justifyContent: 'center',
-        // paddingHorizontal: 8,
-        // borderRightWidth: 0,
-        // borderTopLeftRadius: 4,
-        // borderBottomLeftRadius: 4,
       },
       timeButton: {
-        // borderWidth,
         borderColor: colors.placeholder,
         height: dp(48),
         justifyContent: 'center',
-        // paddingHorizontal: 8,
-        // borderLeftWidth: 0,
-        // borderTopRightRadius: 4,
-        // borderBottomRightRadius: 4,
       },
     });
   }
@@ -524,11 +507,8 @@ export default class styles {
         justifyContent: 'space-between',
       },
       radioText: {
-        // fontFamily: 'sans-serif-light',
         fontSize: 12,
-        // color: colors.primary,
         marginRight: 16,
-        // marginVertical: 4
       },
       pickerSpacing: {
         marginVertical: 10,
@@ -629,10 +609,10 @@ export default class styles {
       },
       cancelText: {
         color: colors.primary,
-        fontWeight: 'bold',
+        fontFamily: 'Bold',
       },
       targetName: {
-        fontWeight: 'bold',
+        fontFamily: 'Bold',
       },
     });
   }
@@ -646,13 +626,13 @@ export default class styles {
         backgroundColor: colors.bg,
       },
       title: {
-        fontWeight: 'bold',
+        fontFamily: 'Bold',
         fontSize: 30,
         paddingVertical: 4,
       },
       date: {
         color: colors.gray,
-        fontWeight: 'bold',
+        fontFamily: 'Bold',
         fontSize: 16,
         paddingBottom: 4,
       },
@@ -660,13 +640,12 @@ export default class styles {
         flexDirection: 'row',
       },
       status: {
-        fontFamily: 'sans-serif-light',
+        fontFamily: 'Light',
         fontSize: 18,
       },
       note: {
-        // fontFamily: 'sans-serif-bold',
         color: colors.gray,
-        fontWeight: 'bold',
+        fontFamily: 'Bold',
       },
       head: {
         marginVertical: 8,
@@ -684,7 +663,7 @@ export default class styles {
       },
       value: {
         fontSize: 18,
-        fontWeight: 'bold',
+        fontFamily: 'Bold',
       },
       linkStyle: {color: '#2980b9'},
       item: {
@@ -719,8 +698,8 @@ export default class styles {
       },
       name: {
         fontSize: 27,
-        fontWeight: 'bold',
         textAlign: 'center',
+        fontFamily: 'Bold',
       },
       label: {
         color: colors.black,
@@ -733,7 +712,7 @@ export default class styles {
       },
       count: {
         color: colors.black,
-        fontWeight: 'bold',
+        fontFamily: 'Bold',
         fontSize: 25,
       },
       countRow: {
@@ -761,7 +740,7 @@ export default class styles {
       },
       description: {
         fontSize: 18,
-        fontFamily: 'sans-serif-bold',
+        fontFamily: 'Bold',
         marginVertical: 8,
       },
     });
@@ -805,7 +784,7 @@ export default class styles {
         alignItems: 'center',
       },
       footerText: {
-        fontWeight: 'bold',
+        fontFamily: 'Bold',
         color: colors.light_gray_3,
       },
       itemContainer: {
@@ -830,17 +809,17 @@ export default class styles {
         marginRight: 8,
       },
       itemName: {
-        fontFamily: 'sans-serif-bold',
+        fontFamily: 'Bold',
         fontSize: 16,
       },
       offlineName: {
         color: colors.gray,
-        fontFamily: 'sans-serif-bold',
+        fontFamily: 'Bold',
         fontSize: 16,
       },
       danger: {
         color: colors.light_red,
-        fontWeight: 'bold',
+        fontFamily: 'Bold',
       },
       paragraph: {
         textAlign: 'center',
@@ -924,7 +903,7 @@ export default class styles {
         flex: 1,
       },
       boldText: {
-        fontWeight: 'bold',
+        fontFamily: 'Bold',
         color: colors.black,
       },
       dateLine: {
@@ -1019,7 +998,7 @@ export default class styles {
         alignItems: 'center',
       },
       footerText: {
-        fontWeight: 'bold',
+        fontFamily: 'Bold',
         color: colors.light_gray_3,
       },
       offlineTitle: {
@@ -1139,9 +1118,8 @@ export default class styles {
       },
       linkStyle: {color: '#2980b9'},
       authorName: {
-        fontFamily: 'sans-serif-bold',
+        fontFamily: 'Bold',
         color: colors.black,
-        fontWeight: 'bold',
       },
       separator: {
         height: SEPARATOR_HEIGHT,
@@ -1150,10 +1128,8 @@ export default class styles {
         flexDirection: 'row',
         justifyContent: 'flex-end',
         height: dp(48),
-        // marginTop: 2
       },
       actions: {
-        // justifyContent: 'flex-end',
         flexDirection: 'row',
       },
       empty: {
@@ -1203,8 +1179,7 @@ export default class styles {
         marginLeft: 16,
       },
       itemText: {
-        fontFamily: 'sans-serif-bold',
-        fontWeight: 'bold',
+        fontFamily: 'Bold',
         fontSize: 16,
         width: 250,
       },
@@ -1239,7 +1214,6 @@ export default class styles {
     return StyleSheet.create({
       contentContainer: {
         backgroundColor: colors.bg,
-        // marginTop: 1,
         flexGrow: 1,
       },
       list: {
@@ -1251,7 +1225,7 @@ export default class styles {
         alignItems: 'center',
       },
       footerText: {
-        fontWeight: 'bold',
+        fontFamily: 'Bold',
         color: colors.light_gray_3,
       },
       offlineTitle: {
@@ -1277,7 +1251,6 @@ export default class styles {
         paddingHorizontal: 16,
       },
       itemContent: {
-        // paddingVertical: 4,
         height: ITEM_HEIGHT,
         flexDirection: 'row',
       },
@@ -1352,7 +1325,6 @@ export default class styles {
       },
       text: {
         fontSize: 20,
-        // fontWeight: 'bold',
         color: colors.gray,
       },
     });
@@ -1378,12 +1350,12 @@ export default class styles {
         alignItems: 'center',
       },
       footerText: {
-        fontWeight: 'bold',
+        fontFamily: 'Bold',
         color: colors.light_gray_3,
       },
       offlineTitle: {
         fontSize: 20,
-        fontFamily: 'sans-serif-bold',
+        fontFamily: 'Bold',
         color: colors.gray,
       },
       empty: {
@@ -1466,7 +1438,6 @@ export default class styles {
       },
       contentContainer: {
         flexGrow: 1,
-        // marginTop: 1,
         backgroundColor: colors.bg,
       },
       separator: {
@@ -1517,11 +1488,11 @@ export default class styles {
         alignItems: 'center',
       },
       itemName: {
-        fontFamily: 'sans-serif-bold',
+        fontFamily: 'Bold',
         fontSize: 16,
       },
       offlineName: {
-        fontFamily: 'sans-serif-bold',
+        fontFamily: 'Bold',
         color: colors.gray,
       },
       danger: {
@@ -1568,7 +1539,6 @@ export default class styles {
     return StyleSheet.create({
       contentContainer: {
         backgroundColor: colors.bg,
-        // marginTop: 1,
         flexGrow: 1,
       },
       list: {
@@ -1621,7 +1591,7 @@ export default class styles {
         alignItems: 'center',
       },
       footerText: {
-        fontWeight: 'bold',
+        fontFamily: 'Bold',
         color: colors.light_gray_3,
       },
       offlineTitle: {
@@ -1645,7 +1615,6 @@ export default class styles {
       itemContainer: {
         height: ITEM_HEIGHT,
         backgroundColor: colors.bg,
-        // paddingHorizontal: 10
       },
       itemContent: {
         paddingTop: 4,
@@ -1680,7 +1649,7 @@ export default class styles {
         color: colors.gray,
       },
       duration: {
-        fontFamily: 'sans-serif-bold',
+        fontFamily: 'Bold',
         color: colors.gray,
       },
       durationRow: {
@@ -1746,12 +1715,12 @@ export default class styles {
       },
       title: {
         fontSize: 25,
-        fontWeight: 'bold',
+        fontFamily: 'Bold',
         color: colors.black,
       },
       label: {
         fontSize: 20,
-        fontWeight: 'bold',
+        fontFamily: 'Bold',
         color: colors.light_gray_3,
       },
       option: {
@@ -1821,21 +1790,20 @@ export default class styles {
       textLabel: {
         fontSize: 13,
         marginVertical: 4,
-        fontWeight: 'bold',
+        fontFamily: 'Bold',
       },
       value: {
         fontSize: 16,
         color: colors.black,
       },
       headline: {
-        fontWeight: 'bold',
-        fontFamily: 'sans-serif-bold',
+        fontFamily: 'Bold',
         textAlign: 'center',
         padding: 12,
       },
       count: {
         color: colors.black,
-        fontWeight: 'bold',
+        fontFamily: 'Bold',
         fontSize: 25,
       },
       label: {
