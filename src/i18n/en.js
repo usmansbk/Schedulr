@@ -279,6 +279,7 @@ export default {
   ERROR_failedToRemoveImage: 'Failed to delete image',
   ERROR_failedToUploadImage: 'Failed to upload image',
   ERROR_failedToApplyTheme: 'Failed to apply theme',
+  ERROR_failedToSendFiles: (len) => 'Failed to send ' + len + ' files',
   ERROR_navigationError: 'Navigation error',
   ERROR_signInFailure: 'Failed to Sign In',
 
