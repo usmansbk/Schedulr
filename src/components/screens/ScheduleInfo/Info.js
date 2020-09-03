@@ -157,12 +157,23 @@ class Info extends React.Component {
                   },
                 }}>
                 {!isClosed && (
-                  <MenuOption text="Edit" onSelect={this._onEdit} />
+                  <MenuOption
+                    text={I18n.get('MENU_edit')}
+                    onSelect={this._onEdit}
+                  />
                 )}
                 {!isPersonal && (
                   <>
-                    <MenuOption text="Archive" onSelect={this._onArchive} />
-                    <MenuOption text="Delete" onSelect={this._onDelete} />
+                    <MenuOption
+                      text={I18n.get(
+                        `MENU_${isClosed ? 'unarchive' : 'archive'}`,
+                      )}
+                      onSelect={this._onArchive}
+                    />
+                    <MenuOption
+                      text={I18n.get('MENU_delete')}
+                      onSelect={this._onDelete}
+                    />
                   </>
                 )}
               </MenuOptions>

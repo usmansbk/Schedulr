@@ -85,6 +85,13 @@ export default {
     return `Notifications - ${capitalize(filter)}s`;
   },
 
+  MENU_edit: 'Edit',
+  MENU_archive: 'Archive',
+  MENU_unarchive: 'Unarchive',
+  MENU_duplicate: 'Duplicate',
+  MENU_cancel: 'Cancel',
+  MENU_delete: 'Delete',
+
   SETTINGS_screenTitle: 'Settings',
   SETTINGS_generalSectionTitle: 'General',
   SETTINGS_commentSectionTitle: 'Comments',
@@ -147,6 +154,7 @@ export default {
   BUTTON_turnOnLocation: 'Turn on',
   BUTTON_confirm: 'Confirm',
   BUTTON_delete: 'DELETE',
+
   BUTTON_logout: 'LOGOUT',
 
   ALERT_whatIsASchedule: 'What is a group?',
@@ -288,8 +296,8 @@ export default {
   PLACEHOLDER_searchCities: 'Search cities',
   PLACEHOLDER_description: 'Tap to add description',
   PLACEHOLDER_title: 'Event Title',
-  PLACEHOLDER_untitledEvent: '(No Title)',
-  PLACEHOLDER_name: 'Group Name',
+  PLACEHOLDER_untitledEvent: 'No title',
+  PLACEHOLDER_name: 'Name',
 
   WARNING_dontMissOut: "Don't miss out!",
   WARNING_fileTooLarge: 'File is too large',

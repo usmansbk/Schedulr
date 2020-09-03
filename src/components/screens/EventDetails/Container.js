@@ -8,6 +8,7 @@ import {
   MenuOption,
 } from 'react-native-popup-menu';
 import Icon from 'components/common/Icon';
+import {I18n} from 'aws-amplify';
 import Suspense from 'components/common/Suspense';
 import CancelConfirm from 'components/dialogs/CancelEvent';
 import Details from './Details';
@@ -149,12 +150,18 @@ class EventDetails extends React.Component {
                       endAt,
                     })
                   }
-                  text="Edit"
+                  text={I18n.get('MENU_edit')}
                 />
                 {isValid && (
-                  <MenuOption text="Cancel" onSelect={this._openCancelDialog} />
+                  <MenuOption
+                    text={I18n.get('MENU_cancel')}
+                    onSelect={this._openCancelDialog}
+                  />
                 )}
-                <MenuOption text="Duplicate" onSelect={handleRepeat} />
+                <MenuOption
+                  text={I18n.get('MENU_duplicate')}
+                  onSelect={handleRepeat}
+                />
               </MenuOptions>
             </Menu>
           )}
