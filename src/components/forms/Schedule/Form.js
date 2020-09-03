@@ -140,8 +140,7 @@ class Form extends React.Component {
                     />
                     {values.isPublic && (
                       <HelperText>
-                        Location allows nearby people to find this group and
-                        it's events easily
+                        {I18n.get('SCHEDULE_FORM_locationHelperText')}
                       </HelperText>
                     )}
                   </View>
