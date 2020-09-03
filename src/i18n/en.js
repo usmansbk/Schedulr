@@ -217,8 +217,8 @@ export default {
   HELPER_TEXT_invalidDatesAndRecur: 'Event should end before repeating',
 
   SCHEDULE: 'GROUP',
-  SCHEDULE_public: 'Public Group',
-  SCHEDULE_private: 'Private Group',
+  SCHEDULE_public: 'Public group',
+  SCHEDULE_private: 'Private group',
   SCHEDULE_FORM_name: 'GROUP NAME',
   SCHEDULE_FORM_description: 'DESCRIPTION',
   SCHEDULE_FORM_private: 'Private',
