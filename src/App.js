@@ -130,6 +130,9 @@ const AuthStack = createStackNavigator(
   {
     Login,
     EmailLogin: EmailAuth.Login,
+    SignUp: EmailAuth.Signup,
+    ForgotPassword: EmailAuth.ForgotPassword,
+    Verify: EmailAuth.Verify,
   },
   {
     headerMode: 'none',
