@@ -231,6 +231,9 @@ export default class styles {
       labelStyle: {
         fontFamily: 'SemiBold',
       },
+      logo: {
+        paddingVertical: 48,
+      },
     });
   }
 

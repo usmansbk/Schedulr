@@ -24,11 +24,15 @@ export default inject('stores')(
             props.stores.settings.dark ? 'light-content' : 'dark-content'
           }
         />
-        <Logo />
-        <Headline allowFontScaling={false} style={props.stores.styles.login.h1}>
-          {I18n.get('APP_welcome')}
-        </Headline>
         <View style={props.stores.styles.login.content}>
+          <View style={props.stores.styles.login.logo}>
+            <Logo />
+            <Headline
+              allowFontScaling={false}
+              style={props.stores.styles.login.h1}>
+              {I18n.get('APP_welcome')}
+            </Headline>
+          </View>
           <View>
             <Button
               mode="contained"
