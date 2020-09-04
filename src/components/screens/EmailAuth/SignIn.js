@@ -78,7 +78,12 @@ function SignIn(props) {
         <TextInput
           label={I18n.get('LABEL_email')}
           placeholder={I18n.get('PLACEHOLDER_email')}
-          theme={{roundness: 0}}
+          theme={{
+            roundness: 0,
+            colors: {
+              text: '#000',
+            },
+          }}
           style={styles.field}
           returnKeyType="next"
           autoCompleteType="email"
@@ -94,7 +99,12 @@ function SignIn(props) {
           label={I18n.get('LABEL_password')}
           secureTextEntry={secureTextEntry}
           placeholder={I18n.get('PLACEHOLDER_password')}
-          theme={{roundness: 0}}
+          theme={{
+            roundness: 0,
+            colors: {
+              text: '#000',
+            },
+          }}
           style={styles.field}
           value={formik.values.password}
           onBlur={formik.handleBlur('password')}

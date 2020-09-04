@@ -96,7 +96,12 @@ function Confirm(props) {
           autoFocus
           label={I18n.get('LABEL_email')}
           placeholder={I18n.get('PLACEHOLDER_email')}
-          theme={{roundness: 0}}
+          theme={{
+            roundness: 0,
+            colors: {
+              text: '#000',
+            },
+          }}
           style={styles.field}
           value={formik.values.email}
           onChangeText={formik.handleChange('email')}
@@ -110,7 +115,12 @@ function Confirm(props) {
           ref={codeRef}
           label={I18n.get('LABEL_code')}
           placeholder={I18n.get('PLACEHOLDER_code')}
-          theme={{roundness: 0}}
+          theme={{
+            roundness: 0,
+            colors: {
+              text: '#000',
+            },
+          }}
           style={styles.field}
           value={formik.values.code}
           onChangeText={formik.handleChange('code')}

@@ -97,7 +97,12 @@ function SignUp(props) {
           autoFocus
           label={I18n.get('LABEL_name')}
           placeholder={I18n.get('PLACEHOLDER_name')}
-          theme={{roundness: 0}}
+          theme={{
+            roundness: 0,
+            colors: {
+              text: '#000',
+            },
+          }}
           style={styles.field}
           blurOnSubmit={false}
           onSubmitEditing={() => emailRef.current.focus()}
@@ -111,8 +116,12 @@ function SignUp(props) {
           ref={emailRef}
           label={I18n.get('LABEL_email')}
           placeholder={I18n.get('PLACEHOLDER_email')}
-          theme={{roundness: 0}}
-          style={styles.field}
+          theme={{
+            roundness: 0,
+            colors: {
+              text: '#000',
+            },
+          }}
           blurOnSubmit={false}
           onSubmitEditing={() => passwordRef.current.focus()}
           returnKeyType="next"
@@ -126,7 +135,12 @@ function SignUp(props) {
           label={I18n.get('LABEL_password')}
           secureTextEntry
           placeholder={I18n.get('PLACEHOLDER_password')}
-          theme={{roundness: 0}}
+          theme={{
+            roundness: 0,
+            colors: {
+              text: '#000',
+            },
+          }}
           style={styles.field}
           value={formik.values.password}
           onBlur={formik.handleBlur('password')}
