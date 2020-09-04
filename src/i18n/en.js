@@ -236,7 +236,7 @@ export default {
   SCHEDULE_FORM_location: 'LOCATION',
   SCHEDULE_FORM_selectTopic: 'Select Topic',
   SCHEDULE_FORM_locationHelperText:
-    "Location allows nearby people to find this group and it's events",
+    'Tagging location will enable nearby users discover your group and events',
 
   SCHEDULE_followerCount: 'Member',
   SCHEDULE_followerCounts: 'Members',
