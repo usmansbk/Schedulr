@@ -129,8 +129,8 @@ const AppStack = createStackNavigator(
 const AuthStack = createStackNavigator(
   {
     Login,
-    EmailLogin: EmailAuth.Login,
-    SignUp: EmailAuth.Signup,
+    EmailLogin: EmailAuth.SignIn,
+    SignUp: EmailAuth.SignUp,
     ForgotPassword: EmailAuth.ForgotPassword,
     Confirm: EmailAuth.Confirm,
   },

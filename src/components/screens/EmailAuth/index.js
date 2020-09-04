@@ -1,11 +1,11 @@
-import Login from './Login';
-import Signup from './Signup';
+import SignIn from './SignIn';
+import SignUp from './SignUp';
 import ForgotPassword from './ForgotPassword';
 import Confirm from './Confirm';
 
 export default {
-  Login,
-  Signup,
+  SignIn,
+  SignUp,
   ForgotPassword,
   Confirm,
 };
