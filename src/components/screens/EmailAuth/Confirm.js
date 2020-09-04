@@ -54,6 +54,13 @@ function Confirm(props) {
           contentStyle={styles.button}>
           {I18n.get('BUTTON_verify')}
         </Button>
+        <Button
+          onPress={() => null}
+          uppercase={false}
+          style={styles.field}
+          contentStyle={styles.button}>
+          {I18n.get('BUTTON_sendCode')}
+        </Button>
       </ScrollView>
     </>
   );

@@ -7,7 +7,7 @@ const CAL_TIME_FORMAT = 'DD MMM YYYY hh:mm';
 
 export default {
   APP_welcome: 'Welcome to Schedulr',
-  APP_footerCaption: 'By signing in, you agree to our',
+  APP_footerCaption: 'By continuing, you agree to our',
   APP_TERMS: 'Terms of Service',
   APP_AND: ' and ',
   APP_PRIVACY: 'Privacy Policy',
@@ -173,6 +173,7 @@ export default {
   BUTTON_forgotPassword: 'Forgot password?',
   BUTTON_signup: 'Sign Up',
   BUTTON_sendLink: 'Get link',
+  BUTTON_sendCode: 'Re-send code',
 
   ALERT_whatIsASchedule: 'What is a group?',
   ALERT_whatIsAScheduleA:
