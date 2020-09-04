@@ -25,7 +25,7 @@ class Container extends React.Component {
   }
 
   componentDidMount = async () => {
-    this.props.stores.appState.setLoginState(false);
+    this.props.stores.appState.setLoginState(null);
     Hub.listen('auth', this._authListener);
     try {
       changeNavigationBarColor('white', true);
@@ -38,7 +38,6 @@ class Container extends React.Component {
     const {client, stores} = this.props;
     switch (event) {
       case 'signIn_failure':
-        this.props.stores.appState.setLoginState(false);
         snackbar(I18n.get('ERROR_signInFailure'), true);
         break;
       case 'signIn':
@@ -116,22 +115,22 @@ class Container extends React.Component {
           crashlytics().setAttributes({email});
           logger.log('sign-in');
           this.props.navigation.navigate('App');
-          this.props.stores.appState.setLoginState(false);
         } catch (error) {
-          this.props.stores.appState.setLoginState(false);
           snackbar(I18n.get('ERROR_signInFailure'));
           logger.logError(error);
         }
+        this.props.stores.appState.setLoginState(null);
         break;
     }
   };
 
   _signInAsync = async (provider) => {
-    this.props.stores.appState.setLoginState(true);
+    this.props.stores.appState.setLoginState(provider);
     try {
       await Auth.federatedSignIn({provider});
     } catch (error) {
       logger.logError(error);
+      this.props.stores.appState.setLoginState(null);
     }
   };
 

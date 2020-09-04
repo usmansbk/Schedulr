@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, StatusBar, Linking, Image} from 'react-native';
-import {Caption, Headline, Button, ActivityIndicator} from 'react-native-paper';
+import {Caption, Headline, Button} from 'react-native-paper';
 import {inject, observer} from 'mobx-react';
 import {I18n} from 'aws-amplify';
 import Logo from 'components/common/Logo';
@@ -29,13 +29,11 @@ export default inject('stores')(
           {I18n.get('APP_welcome')}
         </Headline>
         <View style={props.stores.styles.login.content}>
-          <View style={props.stores.styles.login.button}>
-            <ActivityIndicator animating={props.stores.appState.loggingIn} />
-          </View>
           <View>
             <Button
               mode="contained"
               uppercase={false}
+              loading={props.stores.appState.loggingIn === 'Facebook'}
               color={props.stores.theme.colors.facebook}
               contentStyle={props.stores.styles.login.socialButton}
               labelStyle={props.stores.styles.login.labelStyle}
@@ -52,6 +50,7 @@ export default inject('stores')(
             <Button
               mode="contained"
               uppercase={false}
+              loading={props.stores.appState.loggingIn === 'Google'}
               color={props.stores.theme.colors.google}
               contentStyle={props.stores.styles.login.socialButton}
               labelStyle={props.stores.styles.login.labelStyle}

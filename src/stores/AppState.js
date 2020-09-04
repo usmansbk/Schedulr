@@ -44,7 +44,7 @@ export default class AppState {
   @action setUserId = (id) => (this.userId = id);
   @action updateLastSyncTimestamp = () =>
     (this.lastSyncTimestamp = moment().unix());
-  @action setLoginState = (state) => (this.loggingIn = Boolean(state));
+  @action setLoginState = (state) => (this.loggingIn = state);
   @action toggleConnection = (isConnected) => (this.isConnected = isConnected);
   @action togglePref = (pref) => {
     const prevValue = this.prefs[pref];
