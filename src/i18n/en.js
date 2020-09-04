@@ -16,6 +16,7 @@ export default {
   TITLE_signup: 'Create account',
   TITLE_forgotPassword: 'Forgot password',
   TITLE_code: 'Confirm',
+  TITLE_resetPassword: 'Reset password',
 
   LABEL_email: 'Email',
   LABEL_password: 'Password',
@@ -172,8 +173,10 @@ export default {
   BUTTON_createAccount: 'Create an account',
   BUTTON_forgotPassword: 'Forgot password?',
   BUTTON_signup: 'Sign Up',
-  BUTTON_sendLink: 'Get link',
+  BUTTON_sendLink: 'Get code',
   BUTTON_sendCode: 'Re-send code',
+  BUTTON_reset: 'Reset',
+  BUTTON_resetPassword: 'Reset password',
 
   ALERT_whatIsASchedule: 'What is a group?',
   ALERT_whatIsAScheduleA:

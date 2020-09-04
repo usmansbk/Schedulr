@@ -16,6 +16,14 @@ function ForgotPassword(props) {
   const [banner, setBanner] = React.useState(null);
   const [mode, setMode] = React.useState(null);
 
+  const toggleMode = React.useCallback(() => {
+    if (mode === 'Reset') {
+      setMode('Forgot');
+    } else {
+      setMode('Reset');
+    }
+  }, [mode]);
+
   const formik = useFormik({
     initialValues: {
       email: props.navigation.getParam('email', ''),
@@ -30,14 +38,21 @@ function ForgotPassword(props) {
             input.code,
             input.password,
           );
+          setBanner('Password changed. Login with new password');
         } else {
           await Auth.forgotPassword(input.email);
           setBanner(`A reset code has been sent to ${input.email}`);
         }
         setMode('Reset');
       } catch (error) {
-        console.log(error);
-        setBanner(error.message);
+        let message;
+        if (error.name === 'UserNotFoundException') {
+          message = "You don't have an accout with this email";
+        } else {
+          message = error.message;
+        }
+
+        setBanner(message);
       }
       actions.setSubmitting(false);
     },
@@ -86,7 +101,11 @@ function ForgotPassword(props) {
       <ScrollView
         keyboardShouldPersistTaps="always"
         contentContainerStyle={styles.container}>
-        <Headline>{I18n.get('TITLE_forgotPassword')}</Headline>
+        <Headline>
+          {I18n.get(
+            `TITLE_${mode === 'Reset' ? 'resetPassword' : 'forgotPassword'}`,
+          )}
+        </Headline>
         <TextInput
           label={I18n.get('LABEL_email')}
           placeholder={I18n.get('PLACEHOLDER_email')}
@@ -100,7 +119,6 @@ function ForgotPassword(props) {
         {mode === 'Reset' ? (
           <>
             <TextInput
-              autoFocus
               label={I18n.get('LABEL_password')}
               placeholder={I18n.get('PLACEHOLDER_password')}
               theme={{roundness: 0}}
@@ -110,7 +128,6 @@ function ForgotPassword(props) {
               onBlur={formik.handleBlur('password')}
             />
             <TextInput
-              autoFocus
               label={I18n.get('LABEL_code')}
               placeholder={I18n.get('PLACEHOLDER_code')}
               theme={{roundness: 0}}
@@ -130,7 +147,16 @@ function ForgotPassword(props) {
           mode="contained"
           labelStyle={styles.label}
           contentStyle={styles.button}>
-          {I18n.get('BUTTON_sendLink')}
+          {I18n.get(mode === 'Reset' ? 'BUTTON_reset' : 'BUTTON_sendLink')}
+        </Button>
+        <Button
+          onPress={toggleMode}
+          uppercase={false}
+          style={styles.field}
+          contentStyle={styles.button}>
+          {I18n.get(
+            mode === 'Reset' ? 'BUTTON_forgotPassword' : 'BUTTON_resetPassword',
+          )}
         </Button>
       </ScrollView>
     </>
