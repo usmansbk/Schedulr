@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, StatusBar, Linking, Image} from 'react-native';
+import {View, ScrollView, StatusBar, Linking, Image} from 'react-native';
 import {Caption, Headline, Button} from 'react-native-paper';
 import {inject, observer} from 'mobx-react';
 import {I18n} from 'aws-amplify';
@@ -17,7 +17,7 @@ export default inject('stores')(
     }, [props.handleLogin]);
 
     return (
-      <View style={props.stores.styles.login.container}>
+      <ScrollView contentContainerStyle={props.stores.styles.login.container}>
         <StatusBar
           backgroundColor={props.stores.settings.dark ? 'black' : 'white'}
           barStyle={
@@ -98,7 +98,7 @@ export default inject('stores')(
             {I18n.get('APP_PRIVACY')}
           </Caption>
         </Caption>
-      </View>
+      </ScrollView>
     );
   }),
 );
