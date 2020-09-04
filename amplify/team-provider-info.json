@@ -1,100 +1,106 @@
 {
-    "prod": {
-        "awscloudformation": {
-            "AuthRoleName": "amplify-schdlr-prod-21214-authRole",
-            "UnauthRoleArn": "arn:aws:iam::900820753842:role/amplify-schdlr-prod-21214-unauthRole",
-            "AuthRoleArn": "arn:aws:iam::900820753842:role/amplify-schdlr-prod-21214-authRole",
-            "Region": "us-east-1",
-            "DeploymentBucketName": "amplify-schdlr-prod-21214-deployment",
-            "UnauthRoleName": "amplify-schdlr-prod-21214-unauthRole",
-            "StackName": "amplify-schdlr-prod-21214",
-            "StackId": "arn:aws:cloudformation:us-east-1:900820753842:stack/amplify-schdlr-prod-21214/70800bf0-2133-11ea-ba0e-0e4c53e0aefd",
-            "AmplifyAppId": "d2hhxq5zotlv3x"
-        },
-        "categories": {
-            "auth": {
-                "schdlr1428cab7": {
-                    "hostedUIProviderCreds": "[{\"ProviderName\":\"Facebook\",\"client_id\":\"203644060264792\",\"client_secret\":\"25160892b72473bfb8e1355da76e7d68\"},{\"ProviderName\":\"Google\",\"client_id\":\"281442930531-6766tska22faigc1bs9hdoud9bqeulib.apps.googleusercontent.com\",\"client_secret\":\"-gwe8MZRjWeAKwzRh30AW55_\"}]"
-                }
-            },
-            "function": {
-                "notificationsresolver": {},
-                "deltasyncresolver": {},
-                "schdlr": {},
-                "commentspushhandler": {}
-            }
-        }
+  "prod": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-schdlr-prod-21214-authRole",
+      "UnauthRoleArn": "arn:aws:iam::900820753842:role/amplify-schdlr-prod-21214-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::900820753842:role/amplify-schdlr-prod-21214-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-schdlr-prod-21214-deployment",
+      "UnauthRoleName": "amplify-schdlr-prod-21214-unauthRole",
+      "StackName": "amplify-schdlr-prod-21214",
+      "StackId": "arn:aws:cloudformation:us-east-1:900820753842:stack/amplify-schdlr-prod-21214/70800bf0-2133-11ea-ba0e-0e4c53e0aefd",
+      "AmplifyAppId": "d2hhxq5zotlv3x"
     },
-    "migration": {
-        "awscloudformation": {
-            "AuthRoleName": "amplify-schdlr-migration-121417-authRole",
-            "UnauthRoleArn": "arn:aws:iam::900820753842:role/amplify-schdlr-migration-121417-unauthRole",
-            "AuthRoleArn": "arn:aws:iam::900820753842:role/amplify-schdlr-migration-121417-authRole",
-            "Region": "us-east-1",
-            "DeploymentBucketName": "amplify-schdlr-migration-121417-deployment",
-            "UnauthRoleName": "amplify-schdlr-migration-121417-unauthRole",
-            "StackName": "amplify-schdlr-migration-121417",
-            "StackId": "arn:aws:cloudformation:us-east-1:900820753842:stack/amplify-schdlr-migration-121417/c1cf43e0-8ad3-11ea-9d46-0aa554d91bcc",
-            "AmplifyAppId": "d2wydqac86m0jz"
-        },
-        "categories": {
-            "auth": {
-                "schdlr1428cab7": {
-                    "hostedUIProviderCreds": "[{\"ProviderName\":\"Facebook\",\"client_id\":\"203644060264792\",\"client_secret\":\"25160892b72473bfb8e1355da76e7d68\"},{\"ProviderName\":\"Google\",\"client_id\":\"281442930531-njrkpu44uvrcklg3e8v65iunvvuftj7r.apps.googleusercontent.com\",\"client_secret\":\"8A7MH-BPHoOKUJp4QmxfI80W\"}]"
-                }
-            },
-            "function": {
-                "notificationsresolver": {},
-                "deltasyncresolver": {},
-                "bookmarkstreamhandler": {},
-                "followstreamhandler": {},
-                "eventstreamhandler": {},
-                "commentstreamhandler": {},
-                "schedulestreamhandler": {},
-                "commentspushhandler": {},
-                "eventspushhandler": {},
-                "bookmarkdelta": {},
-                "followdelta": {},
-                "eventdelta": {},
-                "commentdelta": {},
-                "scheduledelta": {}
-            }
+    "categories": {
+      "auth": {
+        "schdlr1428cab7": {
+          "hostedUIProviderCreds": "[{\"ProviderName\":\"Facebook\",\"client_id\":\"203644060264792\",\"client_secret\":\"25160892b72473bfb8e1355da76e7d68\"},{\"ProviderName\":\"Google\",\"client_id\":\"281442930531-6766tska22faigc1bs9hdoud9bqeulib.apps.googleusercontent.com\",\"client_secret\":\"-gwe8MZRjWeAKwzRh30AW55_\"}]"
         }
-    },
-    "dev": {
-        "awscloudformation": {
-            "AuthRoleName": "amplify-schdlr-dev-132337-authRole",
-            "UnauthRoleArn": "arn:aws:iam::900820753842:role/amplify-schdlr-dev-132337-unauthRole",
-            "AuthRoleArn": "arn:aws:iam::900820753842:role/amplify-schdlr-dev-132337-authRole",
-            "Region": "us-east-1",
-            "DeploymentBucketName": "amplify-schdlr-dev-132337-deployment",
-            "UnauthRoleName": "amplify-schdlr-dev-132337-unauthRole",
-            "StackName": "amplify-schdlr-dev-132337",
-            "StackId": "arn:aws:cloudformation:us-east-1:900820753842:stack/amplify-schdlr-dev-132337/70647a20-8add-11ea-a826-0a6046b66d41",
-            "AmplifyAppId": "d2wydqac86m0jz"
-        },
-        "categories": {
-            "auth": {
-                "schdlr1428cab7": {
-                    "hostedUIProviderCreds": "[{\"ProviderName\":\"Facebook\",\"client_id\":\"203644060264792\",\"client_secret\":\"25160892b72473bfb8e1355da76e7d68\"},{\"ProviderName\":\"Google\",\"client_id\":\"281442930531-njrkpu44uvrcklg3e8v65iunvvuftj7r.apps.googleusercontent.com\",\"client_secret\":\"8A7MH-BPHoOKUJp4QmxfI80W\"}]"
-                }
-            },
-            "function": {
-                "notificationsresolver": {},
-                "deltasyncresolver": {},
-                "bookmarkstreamhandler": {},
-                "followstreamhandler": {},
-                "eventstreamhandler": {},
-                "commentstreamhandler": {},
-                "schedulestreamhandler": {},
-                "commentspushhandler": {},
-                "eventspushhandler": {},
-                "bookmarkdelta": {},
-                "followdelta": {},
-                "eventdelta": {},
-                "commentdelta": {},
-                "scheduledelta": {}
-            }
-        }
+      },
+      "function": {
+        "notificationsresolver": {},
+        "deltasyncresolver": {},
+        "schdlr": {},
+        "commentspushhandler": {},
+        "bookmarkstreamhandler": {},
+        "followstreamhandler": {},
+        "eventstreamhandler": {},
+        "commentstreamhandler": {},
+        "schedulestreamhandler": {},
+        "eventspushhandler": {}
+      }
     }
+  },
+  "migration": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-schdlr-migration-121417-authRole",
+      "UnauthRoleArn": "arn:aws:iam::900820753842:role/amplify-schdlr-migration-121417-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::900820753842:role/amplify-schdlr-migration-121417-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-schdlr-migration-121417-deployment",
+      "UnauthRoleName": "amplify-schdlr-migration-121417-unauthRole",
+      "StackName": "amplify-schdlr-migration-121417",
+      "StackId": "arn:aws:cloudformation:us-east-1:900820753842:stack/amplify-schdlr-migration-121417/c1cf43e0-8ad3-11ea-9d46-0aa554d91bcc",
+      "AmplifyAppId": "d2wydqac86m0jz"
+    },
+    "categories": {
+      "auth": {
+        "schdlr1428cab7": {
+          "hostedUIProviderCreds": "[{\"ProviderName\":\"Facebook\",\"client_id\":\"203644060264792\",\"client_secret\":\"25160892b72473bfb8e1355da76e7d68\"},{\"ProviderName\":\"Google\",\"client_id\":\"281442930531-njrkpu44uvrcklg3e8v65iunvvuftj7r.apps.googleusercontent.com\",\"client_secret\":\"8A7MH-BPHoOKUJp4QmxfI80W\"}]"
+        }
+      },
+      "function": {
+        "notificationsresolver": {},
+        "deltasyncresolver": {},
+        "bookmarkstreamhandler": {},
+        "followstreamhandler": {},
+        "eventstreamhandler": {},
+        "commentstreamhandler": {},
+        "schedulestreamhandler": {},
+        "commentspushhandler": {},
+        "eventspushhandler": {},
+        "bookmarkdelta": {},
+        "followdelta": {},
+        "eventdelta": {},
+        "commentdelta": {},
+        "scheduledelta": {}
+      }
+    }
+  },
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-schdlr-dev-132337-authRole",
+      "UnauthRoleArn": "arn:aws:iam::900820753842:role/amplify-schdlr-dev-132337-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::900820753842:role/amplify-schdlr-dev-132337-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-schdlr-dev-132337-deployment",
+      "UnauthRoleName": "amplify-schdlr-dev-132337-unauthRole",
+      "StackName": "amplify-schdlr-dev-132337",
+      "StackId": "arn:aws:cloudformation:us-east-1:900820753842:stack/amplify-schdlr-dev-132337/70647a20-8add-11ea-a826-0a6046b66d41",
+      "AmplifyAppId": "d2wydqac86m0jz"
+    },
+    "categories": {
+      "auth": {
+        "schdlr1428cab7": {
+          "hostedUIProviderCreds": "[{\"ProviderName\":\"Facebook\",\"client_id\":\"203644060264792\",\"client_secret\":\"25160892b72473bfb8e1355da76e7d68\"},{\"ProviderName\":\"Google\",\"client_id\":\"281442930531-njrkpu44uvrcklg3e8v65iunvvuftj7r.apps.googleusercontent.com\",\"client_secret\":\"8A7MH-BPHoOKUJp4QmxfI80W\"}]"
+        }
+      },
+      "function": {
+        "notificationsresolver": {},
+        "deltasyncresolver": {},
+        "bookmarkstreamhandler": {},
+        "followstreamhandler": {},
+        "eventstreamhandler": {},
+        "commentstreamhandler": {},
+        "schedulestreamhandler": {},
+        "commentspushhandler": {},
+        "eventspushhandler": {},
+        "bookmarkdelta": {},
+        "followdelta": {},
+        "eventdelta": {},
+        "commentdelta": {},
+        "scheduledelta": {}
+      }
+    }
+  }
 }
