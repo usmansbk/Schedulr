@@ -6,6 +6,14 @@ import {Appbar, Headline, TextInput, Button} from 'react-native-paper';
 import Icon from 'components/common/Icon';
 
 function SignIn(props) {
+  const passwordRef = React.useRef(null);
+  const [secureTextEntry, setSecureTextEntry] = React.useState(true);
+
+  const togglePassword = React.useCallback(
+    () => setSecureTextEntry(!secureTextEntry),
+    [secureTextEntry],
+  );
+
   const styles = StyleSheet.create({
     container: {
       flexGrow: 1,
@@ -39,17 +47,23 @@ function SignIn(props) {
           )}
         />
       </Appbar.Header>
-      <ScrollView contentContainerStyle={styles.container}>
+      <ScrollView
+        keyboardShouldPersistTaps="always"
+        contentContainerStyle={styles.container}>
         <Headline>{I18n.get('TITLE_login')}</Headline>
         <TextInput
           label={I18n.get('LABEL_email')}
           placeholder={I18n.get('PLACEHOLDER_email')}
           theme={{roundness: 0}}
           style={styles.field}
+          returnKeyType="next"
+          onSubmitEditing={() => passwordRef.current.focus()}
+          blurOnSubmit={false}
         />
         <TextInput
+          ref={passwordRef}
           label={I18n.get('LABEL_password')}
-          secureTextEntry
+          secureTextEntry={secureTextEntry}
           placeholder={I18n.get('PLACEHOLDER_password')}
           theme={{roundness: 0}}
           style={styles.field}

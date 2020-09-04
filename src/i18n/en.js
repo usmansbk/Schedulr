@@ -14,9 +14,13 @@ export default {
 
   TITLE_login: 'Login',
   TITLE_signup: 'Create account',
+  TITLE_forgotPassword: 'Forgot password',
+  TITLE_code: 'Verify',
+
   LABEL_email: 'Email',
   LABEL_password: 'Password',
   LABEL_name: 'Name',
+  LABEL_code: 'Code',
 
   ACTION_filterByType: (filter) => 'Filter By Type: ' + capitalize(filter),
   ACTION_all: 'All',
@@ -168,6 +172,7 @@ export default {
   BUTTON_createAccount: 'Create an account',
   BUTTON_forgotPassword: 'Forgot password?',
   BUTTON_signup: 'Sign Up',
+  BUTTON_sendLink: 'Get link',
 
   ALERT_whatIsASchedule: 'What is a group?',
   ALERT_whatIsAScheduleA:
@@ -313,6 +318,7 @@ export default {
   PLACEHOLDER_name: 'Name',
   PLACEHOLDER_email: 'Type your email',
   PLACEHOLDER_password: 'Type your password',
+  PLACEHOLDER_code: 'Enter confirmation code',
 
   WARNING_dontMissOut: "Don't miss out!",
   WARNING_fileTooLarge: 'File is too large',
