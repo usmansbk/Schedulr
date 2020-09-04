@@ -1,6 +1,6 @@
 import React from 'react';
 import {observer, inject} from 'mobx-react';
-import {I18n} from 'aws-amplify';
+import {I18n, Auth} from 'aws-amplify';
 import {ScrollView, StyleSheet} from 'react-native';
 import {
   Appbar,
@@ -10,7 +10,6 @@ import {
   HelperText,
   Banner,
 } from 'react-native-paper';
-import {Auth} from 'aws-amplify';
 import Icon from 'components/common/Icon';
 import {useFormik} from 'formik';
 import * as Yup from 'yup';
@@ -43,7 +42,9 @@ function SignUp(props) {
             name: input.name,
           },
         });
-        props.navigation.navigate('Confirm');
+        props.navigation.navigate('Confirm', {
+          email: input.email,
+        });
       } catch (error) {
         console.log(error);
         setBanner(error.message);

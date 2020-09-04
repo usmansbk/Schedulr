@@ -1,26 +1,49 @@
 import React from 'react';
 import {observer, inject} from 'mobx-react';
-import {I18n} from 'aws-amplify';
+import {I18n, Auth} from 'aws-amplify';
 import {ScrollView, StyleSheet} from 'react-native';
-import {Appbar, Headline, TextInput, Button} from 'react-native-paper';
+import {Appbar, Headline, TextInput, Button, Banner} from 'react-native-paper';
 import Icon from 'components/common/Icon';
 import {useFormik} from 'formik';
 import * as Yup from 'yup';
 
 const validationSchema = Yup.object().shape({
+  email: Yup.string().email().required('Email required'),
   code: Yup.number().required('Code required'),
 });
+
 function Confirm(props) {
+  const codeRef = React.useRef(null);
+  const [banner, setBanner] = React.useState(null);
+  const [resending, setSending] = React.useState(false);
+
   const formik = useFormik({
     initialValues: {
+      email: props.routes?.email || '',
       code: '',
     },
-    onSubmit: (input, actions) => {
-      console.log(input);
+    onSubmit: async (input, actions) => {
+      try {
+        await Auth.confirmSignUp(input.email, input.code);
+        setBanner('User confirmed');
+      } catch (error) {
+        setBanner(error.message);
+      }
       actions.setSubmitting(false);
     },
     validationSchema,
   });
+
+  const resend = React.useCallback(async () => {
+    try {
+      setSending(true);
+      await Auth.resendSignUp(formik.values.email);
+      setBanner('Code resent successfully');
+    } catch (error) {
+      setBanner(error.message);
+    }
+    setSending(false);
+  }, [formik.values.email]);
 
   const styles = StyleSheet.create({
     container: {
@@ -51,11 +74,36 @@ function Confirm(props) {
           )}
         />
       </Appbar.Header>
+      <Banner
+        visible={!!banner}
+        actions={[
+          {
+            label: 'Login',
+            onPress: () => props.navigation.navigate('EmailLogin'),
+          },
+        ]}>
+        {banner}
+      </Banner>
       <ScrollView
         keyboardShouldPersistTaps="always"
         contentContainerStyle={styles.container}>
         <Headline>{I18n.get('TITLE_code')}</Headline>
         <TextInput
+          label={I18n.get('LABEL_email')}
+          placeholder={I18n.get('PLACEHOLDER_email')}
+          theme={{roundness: 0}}
+          style={styles.field}
+          value={formik.values.email}
+          onChangeText={formik.handleChange('email')}
+          onBlur={formik.handleBlur('email')}
+          error={formik.touched.email && formik.errors.email}
+          blurOnSubmit={false}
+          onSubmitEditing={() => codeRef.current.focus()}
+          returnKeyType="next"
+        />
+        <TextInput
+          ref={codeRef}
+          autoFocus
           label={I18n.get('LABEL_code')}
           placeholder={I18n.get('PLACEHOLDER_code')}
           theme={{roundness: 0}}
@@ -76,7 +124,9 @@ function Confirm(props) {
           {I18n.get('BUTTON_confirm')}
         </Button>
         <Button
-          onPress={() => null}
+          disabled={!formik.values.email}
+          loading={resending}
+          onPress={resend}
           uppercase={false}
           style={styles.field}
           contentStyle={styles.button}>

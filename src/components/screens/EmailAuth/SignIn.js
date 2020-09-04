@@ -1,9 +1,8 @@
 import React from 'react';
 import {observer, inject} from 'mobx-react';
-import {I18n} from 'aws-amplify';
+import {I18n, Auth} from 'aws-amplify';
 import {View, ScrollView, StyleSheet} from 'react-native';
 import {Appbar, Headline, TextInput, Button} from 'react-native-paper';
-import {Auth} from 'aws-amplify';
 import {useFormik} from 'formik';
 import * as Yup from 'yup';
 import Icon from 'components/common/Icon';
@@ -104,7 +103,11 @@ function SignIn(props) {
         <View style={styles.row}>
           <Button
             uppercase={false}
-            onPress={() => props.navigation.navigate('Confirm')}
+            onPress={() =>
+              props.navigation.navigate('Confirm', {
+                email: formik.values.email,
+              })
+            }
             style={styles.field}
             contentStyle={styles.button}>
             {I18n.get('BUTTON_verify')}
