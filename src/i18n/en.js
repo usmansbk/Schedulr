@@ -12,6 +12,10 @@ export default {
   APP_AND: ' and ',
   APP_PRIVACY: 'Privacy Policy',
 
+  BANNER_passwordChanged: 'Password changed. Login with new password',
+  BANNER_resetSent: (email) => `A reset code has been sent ${email}`,
+  BANNER_noAccount: "You don't have an accout with this email",
+
   TITLE_login: 'Login',
   TITLE_signup: 'Create account',
   TITLE_forgotPassword: 'Forgot password',

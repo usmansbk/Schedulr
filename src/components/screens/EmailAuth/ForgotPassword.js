@@ -8,7 +8,7 @@ import {useFormik} from 'formik';
 import * as Yup from 'yup';
 
 const validationSchema = Yup.object().shape({
-  email: Yup.string().email().required('Email required'),
+  email: Yup.string().email().required(I18n.get('HELPER_TEXT_emailRequired')),
   password: Yup.string(),
 });
 
@@ -43,16 +43,16 @@ function ForgotPassword(props) {
             input.code,
             input.password,
           );
-          setBanner('Password changed. Login with new password');
+          setBanner(I18n.get('BANNER_passwordChanged'));
         } else {
           await Auth.forgotPassword(input.email);
-          setBanner(`A reset code has been sent to ${input.email}`);
+          setBanner(I18n.get('BANNER_resetSent')(input.email));
         }
         setMode('Reset');
       } catch (error) {
         let message;
         if (error.name === 'UserNotFoundException') {
-          message = "You don't have an accout with this email";
+          message = I18n.get('BANNER_noAccount');
         } else {
           message = error.message;
         }
