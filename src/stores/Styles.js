@@ -227,6 +227,9 @@ export default class styles {
       button: {
         marginVertical: 8,
       },
+      labelStyle: {
+        fontFamily: 'SemiBold',
+      },
     });
   }
 

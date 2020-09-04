@@ -121,9 +121,9 @@ class Container extends React.Component {
           snackbar(I18n.get('ERROR_signInFailure'));
           logger.logError(error);
         }
-        this.props.stores.appState.setLoginState(false);
         break;
     }
+    this.props.stores.appState.setLoginState(false);
   };
 
   _signInAsync = async (provider) => {
@@ -132,10 +132,10 @@ class Container extends React.Component {
     try {
       switch (provider.toLowerCase()) {
         case 'google':
-          googleSignIn();
+          await googleSignIn();
           break;
         case 'facebook':
-          facebookSignIn();
+          await facebookSignIn();
           break;
       }
     } catch (error) {
