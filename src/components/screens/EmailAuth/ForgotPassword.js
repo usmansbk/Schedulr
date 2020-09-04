@@ -1,8 +1,8 @@
 import React from 'react';
 import {observer, inject} from 'mobx-react';
-import {I18n} from 'aws-amplify';
+import {I18n, Auth} from 'aws-amplify';
 import {ScrollView, StyleSheet} from 'react-native';
-import {Appbar, Headline, TextInput, Button} from 'react-native-paper';
+import {Appbar, Headline, TextInput, Button, Banner} from 'react-native-paper';
 import Icon from 'components/common/Icon';
 import {useFormik} from 'formik';
 import * as Yup from 'yup';
@@ -12,11 +12,21 @@ const validationSchema = Yup.object().shape({
 });
 
 function ForgotPassword(props) {
+  const [banner, setBanner] = React.useState(null);
+
   const formik = useFormik({
     initialValues: {
-      email: '',
+      email: props.navigation.getParam('email', ''),
     },
-    onSubmit: (input, actions) => {
+    onSubmit: async (input, actions) => {
+      try {
+        const res = await Auth.forgotPassword(input.email);
+        setBanner(
+          `An email has been sent to ${input.email} with further instructions`,
+        );
+      } catch (error) {
+        setBanner(error.message);
+      }
       actions.setSubmitting(false);
     },
     validationSchema,
@@ -51,6 +61,16 @@ function ForgotPassword(props) {
           )}
         />
       </Appbar.Header>
+      <Banner
+        visible={!!banner}
+        actions={[
+          {
+            label: 'Dismiss',
+            onPress: () => setBanner(null),
+          },
+        ]}>
+        {banner}
+      </Banner>
       <ScrollView
         keyboardShouldPersistTaps="always"
         contentContainerStyle={styles.container}>

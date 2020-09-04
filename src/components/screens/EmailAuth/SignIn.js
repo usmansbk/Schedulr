@@ -115,7 +115,11 @@ function SignIn(props) {
           </Button>
           <Button
             uppercase={false}
-            onPress={() => props.navigation.navigate('ForgotPassword')}
+            onPress={() =>
+              props.navigation.navigate('ForgotPassword', {
+                email: formik.values.email,
+              })
+            }
             style={styles.field}
             contentStyle={styles.button}>
             {I18n.get('BUTTON_forgotPassword')}

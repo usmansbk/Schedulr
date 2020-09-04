@@ -19,7 +19,7 @@ function Confirm(props) {
 
   const formik = useFormik({
     initialValues: {
-      email: props.navigation.getParam('email') || '',
+      email: props.navigation.getParam('email', ''),
       code: '',
     },
     onSubmit: async (input, actions) => {
