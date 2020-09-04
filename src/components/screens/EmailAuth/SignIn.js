@@ -3,6 +3,7 @@ import {observer, inject} from 'mobx-react';
 import {I18n} from 'aws-amplify';
 import {View, ScrollView, StyleSheet} from 'react-native';
 import {Appbar, Headline, TextInput, Button} from 'react-native-paper';
+import {Auth} from 'aws-amplify';
 import {useFormik} from 'formik';
 import * as Yup from 'yup';
 import Icon from 'components/common/Icon';
@@ -21,8 +22,12 @@ function SignIn(props) {
       email: '',
       password: '',
     },
-    onSubmit: (input, actions) => {
-      console.log(input);
+    onSubmit: async (input, actions) => {
+      try {
+        await Auth.signIn(input.email, input.password);
+      } catch (error) {
+        console.log(error);
+      }
       actions.setSubmitting(false);
     },
     validationSchema,

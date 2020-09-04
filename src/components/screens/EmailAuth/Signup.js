@@ -8,7 +8,9 @@ import {
   TextInput,
   Button,
   HelperText,
+  Banner,
 } from 'react-native-paper';
+import {Auth} from 'aws-amplify';
 import Icon from 'components/common/Icon';
 import {useFormik} from 'formik';
 import * as Yup from 'yup';
@@ -24,6 +26,7 @@ const validationSchema = Yup.object().shape({
 function SignUp(props) {
   const emailRef = React.useRef(null);
   const passwordRef = React.useRef(null);
+  const [banner, setBanner] = React.useState(null);
 
   const formik = useFormik({
     initialValues: {
@@ -31,8 +34,20 @@ function SignUp(props) {
       email: '',
       password: '',
     },
-    onSubmit: (input, actions) => {
-      console.log(input);
+    onSubmit: async (input, actions) => {
+      try {
+        await Auth.signUp({
+          username: input.email,
+          password: input.password,
+          attributes: {
+            name: input.name,
+          },
+        });
+        props.navigation.navigate('Confirm');
+      } catch (error) {
+        console.log(error);
+        setBanner(error.message);
+      }
       actions.setSubmitting(false);
     },
     validationSchema,
@@ -67,6 +82,13 @@ function SignUp(props) {
           )}
         />
       </Appbar.Header>
+      <Banner
+        visible={!!banner}
+        actions={[
+          {label: I18n.get('BUTTON_dismiss'), onPress: () => setBanner(null)},
+        ]}>
+        {banner}
+      </Banner>
       <ScrollView
         keyboardShouldPersistTaps="always"
         contentContainerStyle={styles.container}>
