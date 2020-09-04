@@ -198,6 +198,7 @@ export default class styles {
         backgroundColor: colors.bg,
       },
       content: {
+        flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
         marginVertical: 32,
@@ -214,6 +215,17 @@ export default class styles {
       link: {
         color: colors.primary,
         fontFamily: 'SemiBold',
+      },
+      icon: {
+        width: 28,
+        height: 28,
+      },
+      socialButton: {
+        height: 48,
+        justifyContent: 'flex-start',
+      },
+      button: {
+        marginVertical: 8,
       },
     });
   }
