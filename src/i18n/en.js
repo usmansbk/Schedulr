@@ -9,6 +9,7 @@ export default {
   APP_welcome: 'Welcome to Schedulr',
   APP_footerCaption: 'By signing in, you agree to our',
   APP_TERMS: 'Terms of Service',
+  APP_AND: ' and ',
   APP_PRIVACY: 'Privacy Policy',
 
   ACTION_filterByType: (filter) => 'Filter By Type: ' + capitalize(filter),

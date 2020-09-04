@@ -88,7 +88,7 @@ export default inject('stores')(
             style={props.stores.styles.login.link}>
             {I18n.get('APP_TERMS')}
           </Caption>
-          {' and '}
+          {I18n.get('APP_AND')}
           <Caption
             onPress={() => Linking.openURL(env.PRIVACY_URL)}
             style={props.stores.styles.login.link}>
