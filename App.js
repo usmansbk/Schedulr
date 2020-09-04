@@ -17,8 +17,15 @@ import push from 'config/pushnotification';
 import i18n from 'config/i18n';
 import stores from 'stores';
 import logger from 'config/logger';
+import urlOpener from 'helpers/urlOpener';
 
-Amplify.configure(aws_config);
+Amplify.configure({
+  ...aws_config,
+  oauth: {
+    ...aws_config.oauth,
+    urlOpener,
+  },
+});
 i18n(stores);
 stores.init();
 
