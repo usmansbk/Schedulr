@@ -6,7 +6,6 @@ import {inject, observer} from 'mobx-react';
 import {withNavigationFocus} from 'react-navigation';
 import {withApollo} from 'react-apollo';
 import gql from 'graphql-tag';
-import changeNavigationBarColor from 'react-native-navigation-bar-color';
 import {getUserData} from 'api/queries';
 import {createUser, createSchedule, createPreference} from 'api/mutations';
 import Login from './Login';
@@ -27,11 +26,6 @@ class Container extends React.Component {
   componentDidMount = async () => {
     this.props.stores.appState.setLoginState(null);
     Hub.listen('auth', this._authListener);
-    try {
-      changeNavigationBarColor('white', true);
-    } catch (error) {
-      logger.logError(error);
-    }
   };
 
   _authListener = async ({payload: {event}}) => {
