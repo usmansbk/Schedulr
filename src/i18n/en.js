@@ -15,7 +15,7 @@ export default {
   TITLE_login: 'Login',
   TITLE_signup: 'Create account',
   TITLE_forgotPassword: 'Forgot password',
-  TITLE_code: 'Verify',
+  TITLE_code: 'Confirm',
 
   LABEL_email: 'Email',
   LABEL_password: 'Password',

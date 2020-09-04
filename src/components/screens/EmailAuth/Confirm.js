@@ -73,7 +73,7 @@ function Confirm(props) {
           mode="contained"
           labelStyle={styles.label}
           contentStyle={styles.button}>
-          {I18n.get('BUTTON_verify')}
+          {I18n.get('BUTTON_confirm')}
         </Button>
         <Button
           onPress={() => null}
