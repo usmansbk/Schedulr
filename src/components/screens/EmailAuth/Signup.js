@@ -46,7 +46,6 @@ function SignUp(props) {
           email: input.email,
         });
       } catch (error) {
-        console.log(error);
         setBanner(error.message);
       }
       actions.setSubmitting(false);

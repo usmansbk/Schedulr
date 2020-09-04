@@ -19,7 +19,7 @@ function Confirm(props) {
 
   const formik = useFormik({
     initialValues: {
-      email: props.routes?.email || '',
+      email: props.navigation.getParam('email') || '',
       code: '',
     },
     onSubmit: async (input, actions) => {
@@ -81,6 +81,10 @@ function Confirm(props) {
             label: 'Login',
             onPress: () => props.navigation.navigate('EmailLogin'),
           },
+          {
+            label: 'Dismiss',
+            onPress: () => setBanner(null),
+          },
         ]}>
         {banner}
       </Banner>
@@ -89,6 +93,7 @@ function Confirm(props) {
         contentContainerStyle={styles.container}>
         <Headline>{I18n.get('TITLE_code')}</Headline>
         <TextInput
+          autoFocus
           label={I18n.get('LABEL_email')}
           placeholder={I18n.get('PLACEHOLDER_email')}
           theme={{roundness: 0}}
@@ -103,7 +108,6 @@ function Confirm(props) {
         />
         <TextInput
           ref={codeRef}
-          autoFocus
           label={I18n.get('LABEL_code')}
           placeholder={I18n.get('PLACEHOLDER_code')}
           theme={{roundness: 0}}

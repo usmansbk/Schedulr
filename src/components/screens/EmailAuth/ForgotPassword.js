@@ -17,7 +17,6 @@ function ForgotPassword(props) {
       email: '',
     },
     onSubmit: (input, actions) => {
-      console.log(input);
       actions.setSubmitting(false);
     },
     validationSchema,
