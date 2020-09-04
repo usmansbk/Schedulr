@@ -15,6 +15,8 @@ export default {
   BANNER_passwordChanged: 'Password changed. Login with new password',
   BANNER_resetSent: (email) => `A reset code has been sent ${email}`,
   BANNER_noAccount: "You don't have an accout with this email",
+  BANNER_userConfirmed: 'User confirmed',
+  BANNER_codeSent: 'Code resent successfully',
 
   TITLE_login: 'Login',
   TITLE_signup: 'Create account',
@@ -251,6 +253,7 @@ export default {
   HELPER_TEXT_shortUntil: 'Event should happen at least once',
   HELPER_TEXT_invalidDatesAndRecur: 'Event should end before repeating',
   HELPER_TEXT_emailRequired: 'Email required',
+  HELPER_TEXT_codeRequired: 'Code required',
   HELPER_TEXT_passwordRequired: 'Password required',
   HELPER_TEXT_passwordLength: 'Password must be at least 8 characters',
 

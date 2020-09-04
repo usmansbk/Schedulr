@@ -8,8 +8,8 @@ import {useFormik} from 'formik';
 import * as Yup from 'yup';
 
 const validationSchema = Yup.object().shape({
-  email: Yup.string().email().required('Email required'),
-  code: Yup.number().required('Code required'),
+  email: Yup.string().email().required(I18n.get('HELPER_TEXT_emailRequired')),
+  code: Yup.number().required(I18n.get('HELPER_TEXT_codeRequired')),
 });
 
 function Confirm(props) {
@@ -25,7 +25,7 @@ function Confirm(props) {
     onSubmit: async (input, actions) => {
       try {
         await Auth.confirmSignUp(input.email, input.code);
-        setBanner('User confirmed');
+        setBanner(I18n.get('BANNER_userConfirmed'));
       } catch (error) {
         setBanner(error.message);
       }
@@ -38,7 +38,7 @@ function Confirm(props) {
     try {
       setSending(true);
       await Auth.resendSignUp(formik.values.email);
-      setBanner('Code resent successfully');
+      setBanner(I18n.get('BANNER_codeSent'));
     } catch (error) {
       setBanner(error.message);
     }
