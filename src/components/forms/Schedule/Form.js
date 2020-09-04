@@ -106,7 +106,7 @@ class Form extends React.Component {
                   onBlur={handleBlur('name')}
                   error={errors.name}
                   autoFocus
-                  theme={{roundness: 0}}
+                  theme={{roundness: 0, colors: {text: '#000'}}}
                 />
                 <View style={styles.gap} />
                 <View style={styles.horizontalSpacing}>
@@ -156,7 +156,7 @@ class Form extends React.Component {
                   onChangeText={handleChange('description')}
                   onBlur={handleBlur('description')}
                   error={errors.description}
-                  theme={{roundness: 0}}
+                  theme={{roundness: 0, colors: {text: '#000'}}}
                 />
               </View>
             </ScrollView>

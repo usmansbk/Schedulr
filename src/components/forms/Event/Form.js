@@ -113,7 +113,7 @@ class Form extends React.Component {
               style={styles.container}>
               <View style={styles.form}>
                 <TextInput
-                  theme={{roundness: 0}}
+                  theme={{roundness: 0, colors: {text: '#000'}}}
                   error={errors.title}
                   placeholder={I18n.get('PLACEHOLDER_untitledEvent')}
                   label={I18n.get('EVENT_FORM_title')}
@@ -370,11 +370,11 @@ class Form extends React.Component {
                   value={values.venue}
                   onChangeText={handleChange('venue')}
                   onBlur={handleBlur('venue')}
-                  theme={{roundness: 0}}
+                  theme={{roundness: 0, colors: {text: '#000'}}}
                 />
                 <View style={styles.gap} />
                 <TextInput
-                  theme={{roundness: 0}}
+                  theme={{roundness: 0, colors: {text: '#000'}}}
                   error={errors.description}
                   placeholder={I18n.get('PLACEHOLDER_description')}
                   label={I18n.get('EVENT_FORM_description')}
