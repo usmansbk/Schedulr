@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, StatusBar, Linking, Image} from 'react-native';
-import {Caption, Headline, Button} from 'react-native-paper';
+import {Caption, Headline, Button, ActivityIndicator} from 'react-native-paper';
 import {inject, observer} from 'mobx-react';
 import {I18n} from 'aws-amplify';
 import Logo from 'components/common/Logo';
@@ -29,6 +29,9 @@ export default inject('stores')(
           {I18n.get('APP_welcome')}
         </Headline>
         <View style={props.stores.styles.login.content}>
+          <View style={props.stores.styles.login.button}>
+            <ActivityIndicator animating={props.stores.appState.loggingIn} />
+          </View>
           <View>
             <Button
               mode="contained"
@@ -64,9 +67,7 @@ export default inject('stores')(
               {I18n.get('BUTTON_continueWithGoogle')}
             </Button>
             <Button
-              disabled={props.stores.appState.loggingIn}
               uppercase={false}
-              loading={props.loading}
               contentStyle={{
                 height: 48,
               }}

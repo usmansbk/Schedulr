@@ -117,13 +117,14 @@ class Container extends React.Component {
           crashlytics().setAttributes({email});
           logger.log('sign-in');
           this.props.navigation.navigate('App');
+          this.props.stores.appState.setLoginState(false);
         } catch (error) {
+          this.props.stores.appState.setLoginState(false);
           snackbar(I18n.get('ERROR_signInFailure'));
           logger.logError(error);
         }
         break;
     }
-    this.props.stores.appState.setLoginState(false);
   };
 
   _signInAsync = async (provider) => {
