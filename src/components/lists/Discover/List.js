@@ -59,24 +59,23 @@ class List extends Component {
       isBookmarked,
       schedule,
     } = item;
-    if (__typename === 'Event')
-      return (
-        <EventItem
-          id={id}
-          title={title}
-          pictureUrl={banner && getImageUrl(banner, 320)}
-          venue={venue}
-          startAt={startAt}
-          endAt={endAt}
-          description={description}
-          isBookmarked={isBookmarked}
-          month={getHumanMonth(startAt)}
-          day={new Date(startAt).getDate()}
-          bookmarkScheduleId={schedule && schedule.id}
-          onPressItem={this._onPressItem}
-          navigateToBanner={this._navigateToBanner}
-        />
-      );
+    return (
+      <EventItem
+        id={id}
+        title={title}
+        pictureUrl={banner && getImageUrl(banner, 320)}
+        venue={venue}
+        startAt={startAt}
+        endAt={endAt}
+        description={description}
+        isBookmarked={isBookmarked}
+        month={getHumanMonth(startAt)}
+        day={new Date(startAt).getDate()}
+        bookmarkScheduleId={schedule && schedule.id}
+        onPressItem={this._onPressItem}
+        navigateToBanner={this._navigateToBanner}
+      />
+    );
   };
 
   _keyExtractor = (item) => item.id;
