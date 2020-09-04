@@ -18,8 +18,8 @@ const validationSchema = Yup.object().shape({
   name: Yup.string().required('Name required'),
   email: Yup.string().email().required('Email required'),
   password: Yup.string()
-    .required('Password is required')
-    .min(8, 'Password must be at least 8 characters'),
+    .required(I18n.get('HELPER_TEXT_passwordRequired'))
+    .min(8, I18n.get('HELPER_TEXT_passwordLength')),
 });
 
 function SignUp(props) {

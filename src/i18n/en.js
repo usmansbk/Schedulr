@@ -246,6 +246,9 @@ export default {
 
   HELPER_TEXT_shortUntil: 'Event should happen at least once',
   HELPER_TEXT_invalidDatesAndRecur: 'Event should end before repeating',
+  HELPER_TEXT_emailRequired: 'Email required',
+  HELPER_TEXT_passwordRequired: 'Password required',
+  HELPER_TEXT_passwordLength: 'Password must be at least 8 characters',
 
   SCHEDULE: 'GROUP',
   SCHEDULE_public: 'Public group',

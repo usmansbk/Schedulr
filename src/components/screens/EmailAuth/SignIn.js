@@ -8,8 +8,8 @@ import * as Yup from 'yup';
 import Icon from 'components/common/Icon';
 
 const validationSchema = Yup.object().shape({
-  email: Yup.string().email().required('Email required'),
-  password: Yup.string().required('Password required'),
+  email: Yup.string().email().required(I18n.get('HELPER_TEXT_emailRequired')),
+  password: Yup.string().required(I18n.get('HELPER_TEXT_passwordRequired')),
 });
 
 function SignIn(props) {
