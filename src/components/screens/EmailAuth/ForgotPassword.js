@@ -21,9 +21,7 @@ function ForgotPassword(props) {
     onSubmit: async (input, actions) => {
       try {
         const res = await Auth.forgotPassword(input.email);
-        setBanner(
-          `An email has been sent to ${input.email} with further instructions`,
-        );
+        setBanner(`A reset code has been sent to ${input.email}`);
       } catch (error) {
         setBanner(error.message);
       }
@@ -67,6 +65,10 @@ function ForgotPassword(props) {
           {
             label: 'Dismiss',
             onPress: () => setBanner(null),
+          },
+          {
+            label: 'Continue',
+            onPress: () => props.navigation.navigate('ChangePassword'),
           },
         ]}>
         {banner}
