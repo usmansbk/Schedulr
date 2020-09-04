@@ -115,6 +115,8 @@ function SignUp(props) {
           {formik.errors.password}
         </HelperText>
         <Button
+          disabled={formik.isSubmitting}
+          loading={formik.isSubmitting}
           onPress={formik.handleSubmit}
           uppercase={false}
           style={styles.field}

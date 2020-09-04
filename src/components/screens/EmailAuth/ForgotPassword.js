@@ -4,8 +4,25 @@ import {I18n} from 'aws-amplify';
 import {ScrollView, StyleSheet} from 'react-native';
 import {Appbar, Headline, TextInput, Button} from 'react-native-paper';
 import Icon from 'components/common/Icon';
+import {useFormik} from 'formik';
+import * as Yup from 'yup';
+
+const validationSchema = Yup.object().shape({
+  email: Yup.string().email().required('Email required'),
+});
 
 function ForgotPassword(props) {
+  const formik = useFormik({
+    initialValues: {
+      email: '',
+    },
+    onSubmit: (input, actions) => {
+      console.log(input);
+      actions.setSubmitting(false);
+    },
+    validationSchema,
+  });
+
   const styles = StyleSheet.create({
     container: {
       flexGrow: 1,
@@ -44,9 +61,15 @@ function ForgotPassword(props) {
           placeholder={I18n.get('PLACEHOLDER_email')}
           theme={{roundness: 0}}
           style={styles.field}
+          value={formik.values.email}
+          onChangeText={formik.handleChange('email')}
+          onBlur={formik.handleBlur('email')}
+          error={formik.touched.email && formik.errors.email}
         />
         <Button
-          onPress={() => null}
+          disabled={formik.isSubmitting}
+          loading={formik.isSubmitting}
+          onPress={formik.handleSubmit}
           uppercase={false}
           style={styles.field}
           mode="contained"
