@@ -9,11 +9,11 @@ import env from 'config/env';
 export default inject('stores')(
   observer((props) => {
     const signInWithGoogle = React.useCallback(() => {
-      props.handleLogin('google');
+      props.handleLogin('Google');
     }, [props.handleLogin]);
 
     const signInWithFacebook = React.useCallback(() => {
-      props.handleLogin('facebook');
+      props.handleLogin('Facebook');
     }, [props.handleLogin]);
 
     return (

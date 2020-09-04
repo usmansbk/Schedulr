@@ -1,7 +1,6 @@
 import React from 'react';
 import uuidv5 from 'uuid/v5';
 import {Auth, Hub, I18n} from 'aws-amplify';
-import {withOAuth} from 'aws-amplify-react-native';
 import crashlytics from '@react-native-firebase/crashlytics';
 import {inject, observer} from 'mobx-react';
 import {withNavigationFocus} from 'react-navigation';
@@ -128,17 +127,9 @@ class Container extends React.Component {
   };
 
   _signInAsync = async (provider) => {
-    const {googleSignIn, facebookSignIn} = this.props;
     this.props.stores.appState.setLoginState(true);
     try {
-      switch (provider.toLowerCase()) {
-        case 'google':
-          await googleSignIn();
-          break;
-        case 'facebook':
-          await facebookSignIn();
-          break;
-      }
+      await Auth.federatedSignIn({provider});
     } catch (error) {
       logger.logError(error);
     }
@@ -156,7 +147,7 @@ class Container extends React.Component {
   }
 }
 
-const withApolloClient = withApollo(withOAuth(Container));
+const withApolloClient = withApollo(Container);
 const withFocus = withNavigationFocus(withApolloClient);
 
 export default inject('stores')(observer(withFocus));

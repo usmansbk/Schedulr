@@ -205,6 +205,7 @@ export default class styles {
       },
       h1: {
         fontSize: 27,
+        fontFamily: 'Bold',
         color: colors.black,
         textAlign: 'center',
       },
