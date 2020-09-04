@@ -161,7 +161,7 @@ function ForgotPassword(props) {
               }}
               style={styles.field}
               value={formik.values.password}
-              secureTextEntry
+              secureTextEntry={secureTextEntry}
               onChangeText={formik.handleChange('password')}
               onBlur={formik.handleBlur('password')}
             />
