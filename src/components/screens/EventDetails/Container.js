@@ -146,21 +146,23 @@ class EventDetails extends React.Component {
                     padding: 16,
                   },
                 }}>
-                <MenuOption
-                  onSelect={() =>
-                    handleEdit({
-                      id,
-                      startAt,
-                      endAt,
-                    })
-                  }
-                  text={I18n.get('MENU_edit')}
-                />
                 {isValid && (
-                  <MenuOption
-                    text={I18n.get('MENU_cancel')}
-                    onSelect={this._openCancelDialog}
-                  />
+                  <>
+                    <MenuOption
+                      onSelect={() =>
+                        handleEdit({
+                          id,
+                          startAt,
+                          endAt,
+                        })
+                      }
+                      text={I18n.get('MENU_edit')}
+                    />
+                    <MenuOption
+                      text={I18n.get('MENU_cancel')}
+                      onSelect={this._openCancelDialog}
+                    />
+                  </>
                 )}
                 <MenuOption
                   text={I18n.get('MENU_duplicate')}
