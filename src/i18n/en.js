@@ -145,7 +145,7 @@ export default {
   BUTTON_tryAgain: 'Try again',
   BUTTON_addMyCalendar: 'Add My Calendar',
   BUTTON_continueWithEmail: 'Continue with email',
-  BUTTON_continueWithGoogle: 'Continue with Google',
+  BUTTON_continueWithGoogle: 'Sign in with Google',
   BUTTON_continueWithFacebook: 'Continue with Facebook',
   BUTTON_loggingIn: 'Logging in...',
   BUTTON_signingIn: 'Signing in...',
