@@ -1,5 +1,5 @@
 import React from 'react';
-import {Dimensions, StatusBar} from 'react-native';
+import {Dimensions} from 'react-native';
 import {createBottomTabNavigator, BottomTabBar} from 'react-navigation-tabs';
 import Icon from 'components/common/Icon';
 import {inject, observer} from 'mobx-react';
@@ -59,18 +59,12 @@ const Home = createBottomTabNavigator(
 
 const TabBarComponent = inject('stores')(
   observer((props) => (
-    <>
-      <StatusBar
-        backgroundColor={props.stores.theme.colors.light_gray_2}
-        barStyle={props.stores.settings.dark ? 'light-content' : 'dark-content'}
-      />
-      <BottomTabBar
-        inactiveTintColor={props.stores.theme.colors.tint}
-        activeTintColor={props.stores.theme.colors.primary}
-        style={props.stores.styles.bottomTab.barStyle}
-        {...props}
-      />
-    </>
+    <BottomTabBar
+      inactiveTintColor={props.stores.theme.colors.tint}
+      activeTintColor={props.stores.theme.colors.primary}
+      style={props.stores.styles.bottomTab.barStyle}
+      {...props}
+    />
   )),
 );
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, StatusBar, ActivityIndicator, Image} from 'react-native';
+import {View, ActivityIndicator, Image} from 'react-native';
 import {inject, observer} from 'mobx-react';
 
 class Loading extends React.Component {
@@ -8,10 +8,6 @@ class Loading extends React.Component {
 
     return (
       <View style={stores.styles.loading.container}>
-        <StatusBar
-          backgroundColor={stores.theme.colors.light_gray_2}
-          barStyle={stores.settings.dark ? 'light-content' : 'dark-content'}
-        />
         {loading && (
           <ActivityIndicator size="large" color={stores.theme.colors.primary} />
         )}

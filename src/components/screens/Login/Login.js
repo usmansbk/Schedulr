@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, ScrollView, StatusBar, Linking, Image} from 'react-native';
+import {View, ScrollView, Linking, Image} from 'react-native';
 import {Caption, Headline, Button} from 'react-native-paper';
 import {inject, observer} from 'mobx-react';
 import {I18n} from 'aws-amplify';
@@ -18,12 +18,6 @@ export default inject('stores')(
 
     return (
       <ScrollView contentContainerStyle={props.stores.styles.login.container}>
-        <StatusBar
-          backgroundColor={props.stores.settings.dark ? 'black' : 'white'}
-          barStyle={
-            props.stores.settings.dark ? 'light-content' : 'dark-content'
-          }
-        />
         <View style={props.stores.styles.login.content}>
           <View style={props.stores.styles.login.logo}>
             <Logo />

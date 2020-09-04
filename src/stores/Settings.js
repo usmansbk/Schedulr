@@ -1,10 +1,10 @@
-import { Appearance } from 'react-native';
-import { observable, action, computed } from 'mobx';
-import { persist } from 'mobx-persist';
+import {Appearance, StatusBar} from 'react-native';
+import {observable, action, computed} from 'mobx';
+import {persist} from 'mobx-persist';
 import changeNavigationBarColor from 'react-native-navigation-bar-color';
 import OneSignal from 'react-native-onesignal';
-import { updatePreference } from 'api/mutations';
-import { dark, light } from 'config/colors';
+import {updatePreference} from 'api/mutations';
+import {dark, light} from 'config/colors';
 import logger from 'config/logger';
 import client from 'config/client';
 import gql from 'graphql-tag';
@@ -15,7 +15,7 @@ const DARK_THEME = 'dark';
 
 function isDark() {
   const scheme = Appearance.getColorScheme();
-  return (scheme === DARK_THEME || scheme === null);
+  return scheme === DARK_THEME || scheme === null;
 }
 
 function updateUserPreference(optimisticResponse) {
@@ -25,12 +25,12 @@ function updateUserPreference(optimisticResponse) {
     client.mutate({
       mutation: gql(updatePreference),
       variables: {
-        input
+        input,
       },
       optimisticResponse: {
         __typename: 'Mutation',
-        updateUserPreference: optimisticResponse
-      }
+        updateUserPreference: optimisticResponse,
+      },
     });
     return optimisticResponse;
   } catch (error) {
@@ -40,7 +40,6 @@ function updateUserPreference(optimisticResponse) {
 }
 
 export default class SettingsState {
-
   @observable currentLanguage = 'en';
   @persist @observable theme = SYSTEM_THEME;
   @persist @observable sound = true;
@@ -49,19 +48,24 @@ export default class SettingsState {
   @persist @observable headsUp = false;
   @persist @observable bookmarkedEventsOnly = false;
   @persist('object') @observable userPreference = {
-    language: this.currentLanguage
+    language: this.currentLanguage,
   };
   @observable extraData = 0;
 
-  @action toggle (value) {
+  @action toggle(value) {
     this[value] = !this[value];
     this.extraData += 1;
   }
 
-  @action async toggleTheme () {
+  @action toggleTheme() {
     const colors = this.dark ? dark : light;
     try {
-      await changeNavigationBarColor(this.dark ? colors.light_gray_2 : colors.bg, !this.dark);
+      StatusBar.setBackgroundColor(colors.bg);
+      StatusBar.setBarStyle(this.dark ? 'light-content' : 'dark-content');
+      changeNavigationBarColor(
+        this.dark ? colors.light_gray_2 : colors.bg,
+        !this.dark,
+      );
     } catch (error) {
       logger.logError(error);
     }
@@ -75,7 +79,7 @@ export default class SettingsState {
     this.headsUp = false;
     this.bookmarkedEventsOnly = false;
     this.userPreference = {
-      language: this.currentLanguage
+      language: this.currentLanguage,
     };
   }
 
@@ -91,7 +95,7 @@ export default class SettingsState {
     if (prev && prev.id) {
       const toggled = !prev[key];
       optimisticResponse = Object.assign({}, prev, {
-        [key]: toggled
+        [key]: toggled,
       });
       this.setUserPreference(optimisticResponse);
     }
