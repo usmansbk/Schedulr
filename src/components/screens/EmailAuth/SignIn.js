@@ -23,6 +23,7 @@ function SignIn(props) {
     },
     onSubmit: async (input, actions) => {
       try {
+        props.stores.appState.setLoginState('Email');
         await Auth.signIn(input.email, input.password);
       } catch (error) {
         console.log(error);
@@ -122,7 +123,9 @@ function SignIn(props) {
         </View>
         <Button
           disabled={formik.isSubmitting}
-          loading={formik.isSubmitting}
+          loading={
+            formik.isSubmitting || props.stores.appState.loggingIn === 'Email'
+          }
           onPress={formik.handleSubmit}
           uppercase={false}
           style={styles.field}
