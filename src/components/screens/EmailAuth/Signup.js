@@ -2,12 +2,41 @@ import React from 'react';
 import {observer, inject} from 'mobx-react';
 import {I18n} from 'aws-amplify';
 import {ScrollView, StyleSheet} from 'react-native';
-import {Appbar, Headline, TextInput, Button} from 'react-native-paper';
+import {
+  Appbar,
+  Headline,
+  TextInput,
+  Button,
+  HelperText,
+} from 'react-native-paper';
 import Icon from 'components/common/Icon';
+import {useFormik} from 'formik';
+import * as Yup from 'yup';
+
+const validationSchema = Yup.object().shape({
+  name: Yup.string().required('Name required'),
+  email: Yup.string().email().required('Email required'),
+  password: Yup.string()
+    .required('Password is required')
+    .min(8, 'Password must be at least 8 characters'),
+});
 
 function SignUp(props) {
   const emailRef = React.useRef(null);
   const passwordRef = React.useRef(null);
+
+  const formik = useFormik({
+    initialValues: {
+      name: '',
+      email: '',
+      password: '',
+    },
+    onSubmit: (input, actions) => {
+      console.log(input);
+      actions.setSubmitting(false);
+    },
+    validationSchema,
+  });
 
   const styles = StyleSheet.create({
     container: {
@@ -51,6 +80,10 @@ function SignUp(props) {
           blurOnSubmit={false}
           onSubmitEditing={() => emailRef.current.focus()}
           returnKeyType="next"
+          value={formik.values.name}
+          onBlur={formik.handleBlur('name')}
+          onChangeText={formik.handleChange('name')}
+          error={formik.touched.name && formik.errors.name}
         />
         <TextInput
           ref={emailRef}
@@ -61,6 +94,10 @@ function SignUp(props) {
           blurOnSubmit={false}
           onSubmitEditing={() => passwordRef.current.focus()}
           returnKeyType="next"
+          value={formik.values.email}
+          onBlur={formik.handleBlur('email')}
+          onChangeText={formik.handleChange('email')}
+          error={formik.touched.email && formik.errors.email}
         />
         <TextInput
           ref={passwordRef}
@@ -69,9 +106,16 @@ function SignUp(props) {
           placeholder={I18n.get('PLACEHOLDER_password')}
           theme={{roundness: 0}}
           style={styles.field}
+          value={formik.values.password}
+          onBlur={formik.handleBlur('password')}
+          onChangeText={formik.handleChange('password')}
+          error={formik.touched.password && formik.errors.password}
         />
+        <HelperText visible={formik.touched.password && formik.errors.password}>
+          {formik.errors.password}
+        </HelperText>
         <Button
-          onPress={() => null}
+          onPress={formik.handleSubmit}
           uppercase={false}
           style={styles.field}
           mode="contained"

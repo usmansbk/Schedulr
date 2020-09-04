@@ -3,11 +3,30 @@ import {observer, inject} from 'mobx-react';
 import {I18n} from 'aws-amplify';
 import {View, ScrollView, StyleSheet} from 'react-native';
 import {Appbar, Headline, TextInput, Button} from 'react-native-paper';
+import {useFormik} from 'formik';
+import * as Yup from 'yup';
 import Icon from 'components/common/Icon';
+
+const validationSchema = Yup.object().shape({
+  email: Yup.string().email().required('Email required'),
+  password: Yup.string().required('Password required'),
+});
 
 function SignIn(props) {
   const passwordRef = React.useRef(null);
   const [secureTextEntry, setSecureTextEntry] = React.useState(true);
+
+  const formik = useFormik({
+    initialValues: {
+      email: '',
+      password: '',
+    },
+    onSubmit: (input, actions) => {
+      console.log(input);
+      actions.setSubmitting(false);
+    },
+    validationSchema,
+  });
 
   const togglePassword = React.useCallback(
     () => setSecureTextEntry(!secureTextEntry),
@@ -57,8 +76,13 @@ function SignIn(props) {
           theme={{roundness: 0}}
           style={styles.field}
           returnKeyType="next"
+          autoCompleteType="email"
           onSubmitEditing={() => passwordRef.current.focus()}
           blurOnSubmit={false}
+          value={formik.values.email}
+          onBlur={formik.handleBlur('email')}
+          onChangeText={formik.handleChange('email')}
+          error={formik.touched.email && formik.errors.email}
         />
         <TextInput
           ref={passwordRef}
@@ -67,6 +91,10 @@ function SignIn(props) {
           placeholder={I18n.get('PLACEHOLDER_password')}
           theme={{roundness: 0}}
           style={styles.field}
+          value={formik.values.password}
+          onBlur={formik.handleBlur('password')}
+          onChangeText={formik.handleChange('password')}
+          error={formik.touched.password && formik.errors.password}
         />
         <View style={styles.row}>
           <Button
@@ -85,7 +113,7 @@ function SignIn(props) {
           </Button>
         </View>
         <Button
-          onPress={() => null}
+          onPress={formik.handleSubmit}
           uppercase={false}
           style={styles.field}
           mode="contained"
