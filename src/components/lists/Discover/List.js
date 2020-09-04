@@ -2,12 +2,12 @@ import React, {Component} from 'react';
 import {RefreshControl} from 'react-native';
 import {FlatList} from 'react-navigation';
 import {inject, observer} from 'mobx-react';
+import moment from 'moment';
 import Empty from './Empty';
 import Header from './Header';
 import EventItem from './Event';
 import Separator from 'components/lists/Bookmarks/Separator';
 import Footer from 'components/lists/Bookmarks/Footer';
-import {getHumanMonth} from 'lib/time';
 import {discover} from 'lib/constants';
 import getImageUrl from 'helpers/getImageUrl';
 
@@ -48,13 +48,11 @@ class List extends Component {
 
   _renderItem = ({item}) => {
     const {
-      __typename,
       id,
       title,
       description,
       banner,
       startAt,
-      endAt,
       venue,
       isBookmarked,
       schedule,
@@ -65,12 +63,9 @@ class List extends Component {
         title={title}
         pictureUrl={banner && getImageUrl(banner, 320)}
         venue={venue}
-        startAt={startAt}
-        endAt={endAt}
+        date={moment(startAt).calendar()}
         description={description}
         isBookmarked={isBookmarked}
-        month={getHumanMonth(startAt)}
-        day={new Date(startAt).getDate()}
         bookmarkScheduleId={schedule && schedule.id}
         onPressItem={this._onPressItem}
         navigateToBanner={this._navigateToBanner}

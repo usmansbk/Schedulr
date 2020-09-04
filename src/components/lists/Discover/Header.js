@@ -10,7 +10,7 @@ import {ellipsisMode} from 'lib/utils';
 export default inject('stores')(
   observer(({navigation, stores, onPressLocationButton}) => {
     return (
-      <>
+      <View style={{marginBottom: 16}}>
         <TouchableOpacity onPress={() => navigation.navigate('SearchScreen')}>
           <View
             style={{
@@ -47,7 +47,7 @@ export default inject('stores')(
           </View>
         </TouchableOpacity>
         <Chips data={stores.appState.categories} />
-      </>
+      </View>
     );
   }),
 );

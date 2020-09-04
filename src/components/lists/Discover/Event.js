@@ -7,30 +7,27 @@ import {dp} from 'lib/constants';
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: 'center',
-    height: dp(250),
-    margin: 4,
-    marginTop: 16,
+    flexDirection: 'row',
+    paddingHorizontal: 12,
   },
-  content: {
-    paddingBottom: 8,
+  title: {
+    fontSize: 18,
+    fontFamily: 'SemiBold',
   },
   image: {
-    height: 150,
-    width: 350,
-    borderRadius: 4,
+    height: 86,
+    width: 80,
+    borderRadius: 8,
   },
   body: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    width: 350,
+    flex: 1,
+    paddingLeft: 12,
   },
-  date: {
-    paddingRight: 12,
+  footer: {
     alignItems: 'center',
+    justifyContent: 'flex-end',
   },
-  month: {color: 'red'},
-  day: {fontSize: 20, fontWeight: 'bold'},
+  date: {color: 'red'},
   button: {
     backgroundColor: 'white',
     width: dp(48),
@@ -55,8 +52,7 @@ export default class EventItem extends React.Component {
       id,
       isBookmarked,
       title,
-      month,
-      day,
+      date,
       venue,
       description,
       pictureUrl,
@@ -68,35 +64,28 @@ export default class EventItem extends React.Component {
     return (
       <TouchableOpacity onPress={this._onPress}>
         <View style={styles.container}>
-          <View style={styles.content}>
-            <Image
-              defaultSource={require('../../../assets/placeholder.png')}
-              resizeMode="cover"
-              style={styles.image}
-              source={source}
-            />
-          </View>
+          <Image
+            defaultSource={require('../../../assets/placeholder.png')}
+            resizeMode="cover"
+            style={styles.image}
+            source={source}
+          />
           <View style={styles.body}>
-            <View style={styles.date}>
-              <Text style={styles.month}>{month}</Text>
-              <Text style={styles.day}>{day}</Text>
-            </View>
-            <View style={{flex: 1}}>
-              <Text style={{fontSize: 20}} numberOfLines={2}>
-                {title}
-              </Text>
-              <Caption numberOfLines={1}>{venue || description}</Caption>
-            </View>
-            <View>
-              <BookmarkButton
-                id={id}
-                size={24}
-                color={colors.gray}
-                activeColor={colors.primary}
-                isBookmarked={isBookmarked}
-                bookmarkScheduleId={bookmarkScheduleId}
-              />
-            </View>
+            <Text style={styles.date}>{date}</Text>
+            <Text style={styles.title} numberOfLines={2}>
+              {title}
+            </Text>
+            <Caption numberOfLines={1}>{venue || description}</Caption>
+          </View>
+          <View style={styles.footer}>
+            <BookmarkButton
+              id={id}
+              size={24}
+              color={colors.gray}
+              activeColor={colors.primary}
+              isBookmarked={isBookmarked}
+              bookmarkScheduleId={bookmarkScheduleId}
+            />
           </View>
         </View>
       </TouchableOpacity>
