@@ -1,7 +1,7 @@
 import React from 'react';
 import {observer, inject} from 'mobx-react';
 import {I18n, Auth} from 'aws-amplify';
-import {ScrollView, StyleSheet} from 'react-native';
+import {ScrollView, StyleSheet, View} from 'react-native';
 import {Appbar, Headline, TextInput, Button, Banner} from 'react-native-paper';
 import Icon from 'components/common/Icon';
 import {useFormik} from 'formik';
@@ -15,7 +15,12 @@ const validationSchema = Yup.object().shape({
 function ForgotPassword(props) {
   const [banner, setBanner] = React.useState(null);
   const [mode, setMode] = React.useState(null);
+  const [secureTextEntry, setSecureTextEntry] = React.useState(true);
 
+  const togglePassword = React.useCallback(
+    () => setSecureTextEntry(!secureTextEntry),
+    [secureTextEntry],
+  );
   const toggleMode = React.useCallback(() => {
     if (mode === 'Reset') {
       setMode('Forgot');
@@ -78,6 +83,10 @@ function ForgotPassword(props) {
     banner: {
       backgroundColor: props.stores.theme.colors.menuBackground,
     },
+    row: {
+      flexDirection: 'row',
+      justifyContent: 'flex-end',
+    },
   });
 
   return (
@@ -128,20 +137,6 @@ function ForgotPassword(props) {
         {mode === 'Reset' ? (
           <>
             <TextInput
-              label={I18n.get('LABEL_password')}
-              placeholder={I18n.get('PLACEHOLDER_password')}
-              theme={{
-                roundness: 0,
-                colors: {
-                  text: '#000',
-                },
-              }}
-              style={styles.field}
-              value={formik.values.password}
-              onChangeText={formik.handleChange('password')}
-              onBlur={formik.handleBlur('password')}
-            />
-            <TextInput
               label={I18n.get('LABEL_code')}
               placeholder={I18n.get('PLACEHOLDER_code')}
               theme={{
@@ -155,6 +150,29 @@ function ForgotPassword(props) {
               onChangeText={formik.handleChange('code')}
               onBlur={formik.handleBlur('code')}
             />
+            <TextInput
+              label={I18n.get('LABEL_password')}
+              placeholder={I18n.get('PLACEHOLDER_password')}
+              theme={{
+                roundness: 0,
+                colors: {
+                  text: '#000',
+                },
+              }}
+              style={styles.field}
+              value={formik.values.password}
+              secureTextEntry
+              onChangeText={formik.handleChange('password')}
+              onBlur={formik.handleBlur('password')}
+            />
+            <View style={styles.row}>
+              <Button
+                uppercase={false}
+                contentStyle={styles.button}
+                onPress={togglePassword}>
+                {I18n.get(`BUTTON_${secureTextEntry ? 'show' : 'hide'}`)}
+              </Button>
+            </View>
           </>
         ) : null}
         <Button

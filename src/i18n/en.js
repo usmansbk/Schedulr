@@ -177,6 +177,8 @@ export default {
   BUTTON_sendCode: 'Re-send code',
   BUTTON_reset: 'Reset',
   BUTTON_resetPassword: 'Reset password',
+  BUTTON_hide: 'Hide',
+  BUTTON_show: 'Show',
 
   ALERT_whatIsASchedule: 'What is a group?',
   ALERT_whatIsAScheduleA:

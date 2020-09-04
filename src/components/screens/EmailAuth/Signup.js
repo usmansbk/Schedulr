@@ -1,7 +1,7 @@
 import React from 'react';
 import {observer, inject} from 'mobx-react';
 import {I18n, Auth} from 'aws-amplify';
-import {ScrollView, StyleSheet} from 'react-native';
+import {View, ScrollView, StyleSheet} from 'react-native';
 import {
   Appbar,
   Headline,
@@ -26,6 +26,12 @@ function SignUp(props) {
   const emailRef = React.useRef(null);
   const passwordRef = React.useRef(null);
   const [banner, setBanner] = React.useState(null);
+  const [secureTextEntry, setSecureTextEntry] = React.useState(true);
+
+  const togglePassword = React.useCallback(
+    () => setSecureTextEntry(!secureTextEntry),
+    [secureTextEntry],
+  );
 
   const formik = useFormik({
     initialValues: {
@@ -71,6 +77,11 @@ function SignUp(props) {
     },
     banner: {
       backgroundColor: props.stores.theme.colors.menuBackground,
+    },
+    row: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'center',
     },
   });
 
@@ -137,7 +148,7 @@ function SignUp(props) {
         <TextInput
           ref={passwordRef}
           label={I18n.get('LABEL_password')}
-          secureTextEntry
+          secureTextEntry={secureTextEntry}
           placeholder={I18n.get('PLACEHOLDER_password')}
           theme={{
             roundness: 0,
@@ -151,9 +162,18 @@ function SignUp(props) {
           onChangeText={formik.handleChange('password')}
           error={formik.touched.password && formik.errors.password}
         />
-        <HelperText visible={formik.touched.password && formik.errors.password}>
-          {formik.errors.password}
-        </HelperText>
+        <View style={styles.row}>
+          <HelperText
+            visible={formik.touched.password && formik.errors.password}>
+            {formik.errors.password}
+          </HelperText>
+          <Button
+            uppercase={false}
+            contentStyle={styles.button}
+            onPress={togglePassword}>
+            {I18n.get(`BUTTON_${secureTextEntry ? 'show' : 'hide'}`)}
+          </Button>
+        </View>
         <Button
           disabled={formik.isSubmitting}
           loading={formik.isSubmitting}
