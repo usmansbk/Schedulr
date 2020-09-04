@@ -9,20 +9,34 @@ import * as Yup from 'yup';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().email().required('Email required'),
+  password: Yup.string(),
 });
 
 function ForgotPassword(props) {
   const [banner, setBanner] = React.useState(null);
+  const [mode, setMode] = React.useState(null);
 
   const formik = useFormik({
     initialValues: {
       email: props.navigation.getParam('email', ''),
+      code: '',
+      password: '',
     },
     onSubmit: async (input, actions) => {
       try {
-        const res = await Auth.forgotPassword(input.email);
-        setBanner(`A reset code has been sent to ${input.email}`);
+        if (mode === 'Reset') {
+          await Auth.forgotPasswordSubmit(
+            input.email,
+            input.code,
+            input.password,
+          );
+        } else {
+          await Auth.forgotPassword(input.email);
+          setBanner(`A reset code has been sent to ${input.email}`);
+        }
+        setMode('Reset');
       } catch (error) {
+        console.log(error);
         setBanner(error.message);
       }
       actions.setSubmitting(false);
@@ -66,10 +80,6 @@ function ForgotPassword(props) {
             label: 'Dismiss',
             onPress: () => setBanner(null),
           },
-          {
-            label: 'Continue',
-            onPress: () => props.navigation.navigate('ChangePassword'),
-          },
         ]}>
         {banner}
       </Banner>
@@ -87,6 +97,30 @@ function ForgotPassword(props) {
           onBlur={formik.handleBlur('email')}
           error={formik.touched.email && formik.errors.email}
         />
+        {mode === 'Reset' ? (
+          <>
+            <TextInput
+              autoFocus
+              label={I18n.get('LABEL_password')}
+              placeholder={I18n.get('PLACEHOLDER_password')}
+              theme={{roundness: 0}}
+              style={styles.field}
+              value={formik.values.password}
+              onChangeText={formik.handleChange('password')}
+              onBlur={formik.handleBlur('password')}
+            />
+            <TextInput
+              autoFocus
+              label={I18n.get('LABEL_code')}
+              placeholder={I18n.get('PLACEHOLDER_code')}
+              theme={{roundness: 0}}
+              style={styles.field}
+              value={formik.values.code}
+              onChangeText={formik.handleChange('code')}
+              onBlur={formik.handleBlur('code')}
+            />
+          </>
+        ) : null}
         <Button
           disabled={formik.isSubmitting}
           loading={formik.isSubmitting}
