@@ -194,7 +194,7 @@ export default inject('stores')(
                   banner={pictureUrl}
                   navigateToBanner={navigateToBanner}
                 />
-                {Boolean(bookmarksCount) && (
+                {Boolean(isOwner && bookmarksCount) && (
                   <View style={stores.styles.eventDetails.item}>
                     <Text onPress={() => navigateToBookmarks(id)}>
                       <Text style={stores.styles.eventDetails.date}>
