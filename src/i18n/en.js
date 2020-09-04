@@ -13,8 +13,10 @@ export default {
   APP_PRIVACY: 'Privacy Policy',
 
   TITLE_login: 'Login',
+  TITLE_signup: 'Create account',
   LABEL_email: 'Email',
   LABEL_password: 'Password',
+  LABEL_name: 'Name',
 
   ACTION_filterByType: (filter) => 'Filter By Type: ' + capitalize(filter),
   ACTION_all: 'All',
@@ -165,6 +167,7 @@ export default {
   BUTTON_verify: 'Verify',
   BUTTON_createAccount: 'Create an account',
   BUTTON_forgotPassword: 'Forgot password?',
+  BUTTON_signup: 'Sign Up',
 
   ALERT_whatIsASchedule: 'What is a group?',
   ALERT_whatIsAScheduleA:
