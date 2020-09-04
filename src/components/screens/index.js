@@ -1,5 +1,5 @@
 import Login from './Login';
-import EmailLogin from './EmailLogin';
+import EmailAuth from './EmailAuth';
 import Home from './Home';
 import EditEvent from './EditEvent';
 import EditSchedule from './EditSchedule';
@@ -47,7 +47,7 @@ export {
   Followers,
   SearchScreen,
   ScheduleEvents,
-  EmailLogin,
+  EmailAuth,
   EditProfile,
   AvatarViewer,
   Banner,

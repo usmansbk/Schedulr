@@ -19,7 +19,7 @@ import {
   EditSchedule,
   SearchScreen,
   ScheduleEvents,
-  EmailLogin,
+  EmailAuth,
   EditProfile,
   AvatarViewer,
   Banner,
@@ -129,7 +129,7 @@ const AppStack = createStackNavigator(
 const AuthStack = createStackNavigator(
   {
     Login,
-    EmailLogin,
+    EmailLogin: EmailAuth.Login,
   },
   {
     headerMode: 'none',
