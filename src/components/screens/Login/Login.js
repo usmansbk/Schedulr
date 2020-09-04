@@ -1,11 +1,8 @@
 import React from 'react';
 import {View, StatusBar, Linking} from 'react-native';
-import {Caption, Headline, ActivityIndicator} from 'react-native-paper';
+import {Caption, Headline, ActivityIndicator, Button} from 'react-native-paper';
 import {inject, observer} from 'mobx-react';
 import {I18n} from 'aws-amplify';
-import GLoginButton from 'components/social_buttons/GLoginButton';
-import FBLoginButton from 'components/social_buttons/FBLoginButton';
-import EmailLoginButton from 'components/social_buttons/EmailLoginButton';
 import Logo from 'components/common/Logo';
 import env from 'config/env';
 
@@ -21,21 +18,46 @@ export default inject('stores')(
         {I18n.get('APP_welcome')}
       </Headline>
       <View style={props.stores.styles.login.content}>
-        {props.stores.appState.loggingIn ? (
-          <ActivityIndicator animating />
-        ) : (
-          <>
-            <FBLoginButton
-              disabled={props.loading}
-              onLogin={props.handleLogin}
-            />
-            <GLoginButton
-              disabled={props.loading}
-              onLogin={props.handleLogin}
-            />
-            <EmailLoginButton onLogin={props.handleEmailLogin} />
-          </>
-        )}
+        <Button
+          mode="contained"
+          uppercase={false}
+          color={props.stores.theme.colors.facebook}
+          disabled={props.stores.appState.loggingIn}
+          loading={props.loading}
+          contentStyle={{
+            height: 48,
+          }}
+          onPress={() => props.handleLogin('facebook')}>
+          {I18n.get('BUTTON_continueWithFacebook')}
+        </Button>
+        <Button
+          mode="contained"
+          uppercase={false}
+          disabled={props.stores.appState.loggingIn}
+          color={props.stores.theme.colors.google}
+          loading={props.loading}
+          contentStyle={{
+            height: 48,
+          }}
+          style={{
+            marginVertical: 8,
+          }}
+          onPress={() => props.handleLogin('google')}>
+          {I18n.get('BUTTON_continueWithGoogle')}
+        </Button>
+        <Button
+          disabled={props.stores.appState.loggingIn}
+          uppercase={false}
+          loading={props.loading}
+          contentStyle={{
+            height: 48,
+          }}
+          style={{
+            marginVertical: 8,
+          }}
+          onPress={() => props.handleEmailLogin()}>
+          {I18n.get('BUTTON_continueWithEmail')}
+        </Button>
       </View>
       <Caption
         allowFontScaling={false}
