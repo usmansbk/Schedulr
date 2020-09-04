@@ -29,7 +29,7 @@ class Container extends React.Component {
     this.props.stores.appState.setLoginState(false);
     Hub.listen('auth', this._authListener);
     try {
-      await changeNavigationBarColor('white', true);
+      changeNavigationBarColor('white', true);
     } catch (error) {
       logger.logError(error);
     }
