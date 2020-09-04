@@ -1,21 +1,16 @@
 import React from 'react';
-import { View, StyleSheet, TouchableOpacity } from 'react-native';
-import {
-  Text,
-  Caption,
-  Image
-} from 'react-native-paper';
+import {View, StyleSheet, TouchableOpacity, Image} from 'react-native';
+import {Text, Caption} from 'react-native-paper';
 import BookmarkButton from 'components/common/BookmarkButton';
 import colors from 'config/colors';
 import {dp} from 'lib/constants';
 
-
-const styles  = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
     height: dp(250),
     margin: 4,
-    marginTop: 16
+    marginTop: 16,
   },
   content: {
     paddingBottom: 8,
@@ -23,18 +18,18 @@ const styles  = StyleSheet.create({
   image: {
     height: 150,
     width: 350,
-    borderRadius: 4
+    borderRadius: 4,
   },
-  body:{
+  body: {
     flexDirection: 'row',
     justifyContent: 'center',
-    width: 350
+    width: 350,
   },
   date: {
     paddingRight: 12,
     alignItems: 'center',
   },
-  month:{color: 'red'},
+  month: {color: 'red'},
   day: {fontSize: 20, fontWeight: 'bold'},
   button: {
     backgroundColor: 'white',
@@ -47,12 +42,13 @@ const styles  = StyleSheet.create({
     alignItems: 'center',
     position: 'absolute',
     right: dp(16),
-    bottom: 0
-  }
+    bottom: 0,
+  },
 });
 
 export default class EventItem extends React.Component {
-  _onPress = () => this.props.onPressItem(this.props.id, this.props.startAt, this.props.endAt);
+  _onPress = () =>
+    this.props.onPressItem(this.props.id, this.props.startAt, this.props.endAt);
   _onPressAvatar = () => this.props.navigateToBanner(this.props.id);
   render() {
     const {
@@ -64,14 +60,21 @@ export default class EventItem extends React.Component {
       venue,
       description,
       pictureUrl,
-      bookmarkScheduleId
+      bookmarkScheduleId,
     } = this.props;
-    let source = pictureUrl ? {uri: pictureUrl} : require('../../../assets/placeholder.png');
+    let source = pictureUrl
+      ? {uri: pictureUrl}
+      : require('../../../assets/placeholder.png');
     return (
       <TouchableOpacity onPress={this._onPress}>
         <View style={styles.container}>
           <View style={styles.content}>
-            <Image defaultSource={require('../../../assets/placeholder.png')} resizeMode="cover" style={styles.image} source={source}/>
+            <Image
+              defaultSource={require('../../../assets/placeholder.png')}
+              resizeMode="cover"
+              style={styles.image}
+              source={source}
+            />
           </View>
           <View style={styles.body}>
             <View style={styles.date}>
@@ -79,7 +82,9 @@ export default class EventItem extends React.Component {
               <Text style={styles.day}>{day}</Text>
             </View>
             <View style={{flex: 1}}>
-              <Text style={{fontSize: 20}} numberOfLines={2}>{title}</Text>
+              <Text style={{fontSize: 20}} numberOfLines={2}>
+                {title}
+              </Text>
               <Caption numberOfLines={1}>{venue || description}</Caption>
             </View>
             <View>
