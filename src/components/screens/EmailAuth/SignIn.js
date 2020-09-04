@@ -40,17 +40,17 @@ function SignIn(props) {
         />
       </Appbar.Header>
       <ScrollView contentContainerStyle={styles.container}>
-        <Headline>{I18n.get('Login')}</Headline>
+        <Headline>{I18n.get('TITLE_login')}</Headline>
         <TextInput
-          label={I18n.get('Email')}
-          placeholder={I18n.get('Type your email')}
+          label={I18n.get('LABEL_email')}
+          placeholder={I18n.get('PLACEHOLDER_email')}
           theme={{roundness: 0}}
           style={styles.field}
         />
         <TextInput
-          label={I18n.get('Password')}
+          label={I18n.get('LABEL_password')}
           secureTextEntry
-          placeholder={I18n.get('Type your password')}
+          placeholder={I18n.get('PLACEHOLDER_password')}
           theme={{roundness: 0}}
           style={styles.field}
         />
@@ -60,14 +60,14 @@ function SignIn(props) {
             onPress={() => props.navigation.navigate('Confirm')}
             style={styles.field}
             contentStyle={styles.button}>
-            {I18n.get('Verify')}
+            {I18n.get('BUTTON_verify')}
           </Button>
           <Button
             uppercase={false}
             onPress={() => props.navigation.navigate('ForgotPassword')}
             style={styles.field}
             contentStyle={styles.button}>
-            {I18n.get('Forgot password?')}
+            {I18n.get('BUTTON_forgotPassword')}
           </Button>
         </View>
         <Button
@@ -77,14 +77,14 @@ function SignIn(props) {
           mode="contained"
           labelStyle={styles.label}
           contentStyle={styles.button}>
-          {I18n.get('Login')}
+          {I18n.get('BUTTON_login')}
         </Button>
         <Button
           onPress={() => props.navigation.navigate('SignUp')}
           uppercase={false}
           style={styles.field}
           contentStyle={styles.button}>
-          {I18n.get('Create account')}
+          {I18n.get('BUTTON_createAccount')}
         </Button>
       </ScrollView>
     </>

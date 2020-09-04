@@ -12,6 +12,10 @@ export default {
   APP_AND: ' and ',
   APP_PRIVACY: 'Privacy Policy',
 
+  TITLE_login: 'Login',
+  LABEL_email: 'Email',
+  LABEL_password: 'Password',
+
   ACTION_filterByType: (filter) => 'Filter By Type: ' + capitalize(filter),
   ACTION_all: 'All',
   ACTION_events: 'Events',
@@ -156,8 +160,11 @@ export default {
   BUTTON_turnOnLocation: 'Turn on',
   BUTTON_confirm: 'Confirm',
   BUTTON_delete: 'DELETE',
-
   BUTTON_logout: 'SIGN OUT',
+  BUTTON_login: 'Login',
+  BUTTON_verify: 'Verify',
+  BUTTON_createAccount: 'Create an account',
+  BUTTON_forgotPassword: 'Forgot password?',
 
   ALERT_whatIsASchedule: 'What is a group?',
   ALERT_whatIsAScheduleA:
@@ -301,6 +308,8 @@ export default {
   PLACEHOLDER_title: 'Event Title',
   PLACEHOLDER_untitledEvent: 'No title',
   PLACEHOLDER_name: 'Name',
+  PLACEHOLDER_email: 'Type your email',
+  PLACEHOLDER_password: 'Type your password',
 
   WARNING_dontMissOut: "Don't miss out!",
   WARNING_fileTooLarge: 'File is too large',
