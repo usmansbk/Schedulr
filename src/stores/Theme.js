@@ -30,7 +30,7 @@ export default class theme {
   }
 
   @computed get theme() {
-    const colors = this.settings.dark ? dark : light;
+    const colors = this.colors;
     return {
       ...DefaultTheme,
       colors: {

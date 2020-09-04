@@ -51,6 +51,9 @@ function Confirm(props) {
       backgroundColor: props.stores.theme.colors.bg,
       padding: 16,
     },
+    banner: {
+      backgroundColor: props.stores.theme.colors.menuBackground,
+    },
     field: {
       marginVertical: 8,
     },
@@ -76,6 +79,7 @@ function Confirm(props) {
       </Appbar.Header>
       <Banner
         visible={!!banner}
+        contentStyle={styles.banner}
         actions={[
           {
             label: 'Login',

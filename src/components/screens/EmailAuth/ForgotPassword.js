@@ -75,6 +75,9 @@ function ForgotPassword(props) {
       color: 'white',
       fontFamily: 'SemiBold',
     },
+    banner: {
+      backgroundColor: props.stores.theme.colors.menuBackground,
+    },
   });
 
   return (
@@ -90,6 +93,7 @@ function ForgotPassword(props) {
       </Appbar.Header>
       <Banner
         visible={!!banner}
+        contentStyle={styles.banner}
         actions={[
           {
             label: 'Dismiss',

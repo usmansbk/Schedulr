@@ -60,7 +60,7 @@ export const dark = {
   tint: '#84939e',
   facebook: '#3b5998',
   google: '#fff',
-  black: '#ffffff',
+  black: '#fff',
   gray: 'white',
   menuBackground: '#000',
   bg: '#121212',

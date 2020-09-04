@@ -69,6 +69,9 @@ function SignUp(props) {
       color: 'white',
       fontFamily: 'SemiBold',
     },
+    banner: {
+      backgroundColor: props.stores.theme.colors.menuBackground,
+    },
   });
 
   return (
@@ -84,6 +87,7 @@ function SignUp(props) {
       </Appbar.Header>
       <Banner
         visible={!!banner}
+        contentStyle={styles.banner}
         actions={[
           {label: I18n.get('BUTTON_dismiss'), onPress: () => setBanner(null)},
         ]}>
