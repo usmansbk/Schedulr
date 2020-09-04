@@ -27,13 +27,13 @@ Amplify.configure({
   },
 });
 i18n(stores);
-stores.init();
 
 @observer
 export default class App extends React.Component {
   componentDidMount = () => {
     SplashScreen.hide();
     push.init();
+    stores.init();
   };
 
   componentDidCatch = (error) => {

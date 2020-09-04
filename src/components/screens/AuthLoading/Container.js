@@ -6,6 +6,7 @@ class Container extends Component {
   _navigateToAuth = () => this.props.navigation.navigate('Auth');
 
   componentDidMount = () => {
+    this.props.stores.settings.toggleTheme();
     if (!this.props.stores.appState.userId) {
       this._navigateToAuth();
     } else {
