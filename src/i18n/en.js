@@ -40,8 +40,6 @@ export default {
   FOLLOWERS_emptyList: 'No members',
   FOLLOWERS_loadMore: 'Load more',
   FOLLOWERS: 'Members',
-  BUTTON_leave: 'Leave',
-  BUTTON_join: 'Join',
 
   EVENTS_emptyList: 'No upcoming events',
   EVENT_noLocationSet: 'No location set',
@@ -141,6 +139,8 @@ export default {
   HELP_build: 'Build version',
   HELP_privacy: 'Privacy Policy',
 
+  BUTTON_leave: 'Leave',
+  BUTTON_join: 'Join',
   BUTTON_import: 'Import',
   BUTTON_cancel: 'Cancel',
   BUTTON_create: 'create',

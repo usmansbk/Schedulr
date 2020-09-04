@@ -174,7 +174,7 @@ function ForgotPassword(props) {
           style={styles.field}
           contentStyle={styles.button}>
           {I18n.get(
-            mode === 'Reset' ? 'BUTTON_forgotPassword' : 'BUTTON_resetPassword',
+            mode === 'Reset' ? 'BUTTON_sendLink' : 'BUTTON_resetPassword',
           )}
         </Button>
       </ScrollView>
