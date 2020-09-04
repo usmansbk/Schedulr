@@ -481,6 +481,9 @@ export default class styles {
       tightVerticalSpacing: {
         marginVertical: 4,
       },
+      gap: {
+        marginVertical: 8,
+      },
     });
   }
 
@@ -571,6 +574,9 @@ export default class styles {
       rowBody: {
         flex: 1,
         marginLeft: 16,
+      },
+      gap: {
+        marginVertical: 8,
       },
     });
   }

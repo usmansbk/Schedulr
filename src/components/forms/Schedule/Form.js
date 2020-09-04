@@ -1,8 +1,8 @@
 import React from 'react';
 import {View, ScrollView} from 'react-native';
 import isEqual from 'lodash.isequal';
-import {Text, Appbar, HelperText, Divider} from 'react-native-paper';
-import TextInput from 'components/common/TextInput';
+import {TextInput, Text, Appbar, HelperText, Divider} from 'react-native-paper';
+// import TextInput from 'components/common/TextInput';
 import Button from 'components/common/Button';
 import Switch from 'components/common/Switch';
 import LocationPicker from 'components/common/LocationPicker';
@@ -99,7 +99,6 @@ class Form extends React.Component {
               keyboardShouldPersistTaps="always">
               <View style={styles.form}>
                 <TextInput
-                  bold
                   label={I18n.get('SCHEDULE_FORM_name')}
                   placeholder={I18n.get('PLACEHOLDER_name')}
                   value={values.name}
@@ -107,7 +106,9 @@ class Form extends React.Component {
                   onBlur={handleBlur('name')}
                   error={errors.name}
                   autoFocus
+                  theme={{roundness: 0}}
                 />
+                <View style={styles.gap} />
                 <View style={styles.horizontalSpacing}>
                   <Text style={[styles.text, styles.tightVerticalSpacing]}>
                     {I18n.get('SCHEDULE_FORM_topic')}
@@ -155,6 +156,7 @@ class Form extends React.Component {
                   onChangeText={handleChange('description')}
                   onBlur={handleBlur('description')}
                   error={errors.description}
+                  theme={{roundness: 0}}
                 />
               </View>
             </ScrollView>
