@@ -866,27 +866,6 @@ export const searchEvents = `query SearchEvents($filter: SearchableEventFilterIn
     nextToken
   }
 }`;
-export const searchPeople = `query SearchPeople($filter: SearchableUserFilterInput!, $limit: Int, $nextToken: String, $sort: SearchableUserSortInput) {
-  searchUsers(filter: $filter, limit: $limit, nextToken: $nextToken, sort: $sort) @connection(key: "searchPeople") {
-    items {
-      id
-      name
-      pictureUrl
-      avatar {
-        key
-        bucket
-        name
-      }
-      website
-      bio
-      me
-      createdCount
-      followingCount
-      createdAt
-    }
-    nextToken
-  }
-}`;
 export const listBookmarks = `query GetEventBookmarks($id: ID!, $limit: Int, $nextToken: String) {
   listBookmarks: getEvent(id: $id) {
     id

@@ -10,13 +10,11 @@ import Icon from 'components/common/Icon';
 import {I18n} from 'aws-amplify';
 import Events from './Events';
 import Schedules from './Schedules';
-import People from './People';
 
 const Tabs = createMaterialTopTabNavigator(
   {
     Schedules,
     Events,
-    People,
   },
   {
     initialRouteName: 'Schedules',

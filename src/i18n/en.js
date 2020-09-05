@@ -88,7 +88,6 @@ export default {
   SEARCH_inputPlaceholder: (city) => `Search${city ? ' ' + city : ' Schedulr'}`,
   SEARCH_schedulesTabLabel: 'Groups',
   SEARCH_eventsTabLabel: 'Events',
-  SEARCH_peopleTabLabel: 'People',
   SEARCH_emptyList: 'No results',
   SEARCH_loadMore: 'Load more',
   SEARCH_noMoreResults: 'No more results',
