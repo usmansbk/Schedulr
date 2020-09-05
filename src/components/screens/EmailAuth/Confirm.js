@@ -2,7 +2,8 @@ import React from 'react';
 import {observer, inject} from 'mobx-react';
 import {I18n, Auth} from 'aws-amplify';
 import {ScrollView, StyleSheet} from 'react-native';
-import {Appbar, Headline, TextInput, Button, Banner} from 'react-native-paper';
+import {Appbar, Headline, Button, Banner} from 'react-native-paper';
+import {TextField as TextInput} from 'components/common/TextInput';
 import Icon from 'components/common/Icon';
 import {useFormik} from 'formik';
 import * as Yup from 'yup';
@@ -100,12 +101,6 @@ function Confirm(props) {
           autoFocus
           label={I18n.get('LABEL_email')}
           placeholder={I18n.get('PLACEHOLDER_email')}
-          theme={{
-            roundness: 0,
-            colors: {
-              text: '#000',
-            },
-          }}
           style={styles.field}
           value={formik.values.email}
           onChangeText={formik.handleChange('email')}

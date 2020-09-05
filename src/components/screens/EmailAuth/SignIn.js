@@ -2,7 +2,8 @@ import React from 'react';
 import {observer, inject} from 'mobx-react';
 import {I18n, Auth} from 'aws-amplify';
 import {View, ScrollView, StyleSheet} from 'react-native';
-import {Appbar, Headline, TextInput, Button} from 'react-native-paper';
+import {Appbar, Headline, Button} from 'react-native-paper';
+import {TextField as TextInput} from 'components/common/TextInput';
 import {useFormik} from 'formik';
 import * as Yup from 'yup';
 import Icon from 'components/common/Icon';
@@ -14,7 +15,6 @@ const validationSchema = Yup.object().shape({
 
 function SignIn(props) {
   const passwordRef = React.useRef(null);
-  const [secureTextEntry, setSecureTextEntry] = React.useState(true);
 
   const formik = useFormik({
     initialValues: {
@@ -32,11 +32,6 @@ function SignIn(props) {
     },
     validationSchema,
   });
-
-  const togglePassword = React.useCallback(
-    () => setSecureTextEntry(!secureTextEntry),
-    [secureTextEntry],
-  );
 
   const styles = StyleSheet.create({
     container: {
@@ -78,12 +73,6 @@ function SignIn(props) {
         <TextInput
           label={I18n.get('LABEL_email')}
           placeholder={I18n.get('PLACEHOLDER_email')}
-          theme={{
-            roundness: 0,
-            colors: {
-              text: '#000',
-            },
-          }}
           style={styles.field}
           returnKeyType="next"
           autoCompleteType="email"
@@ -97,14 +86,7 @@ function SignIn(props) {
         <TextInput
           ref={passwordRef}
           label={I18n.get('LABEL_password')}
-          secureTextEntry={secureTextEntry}
           placeholder={I18n.get('PLACEHOLDER_password')}
-          theme={{
-            roundness: 0,
-            colors: {
-              text: '#000',
-            },
-          }}
           style={styles.field}
           value={formik.values.password}
           onBlur={formik.handleBlur('password')}

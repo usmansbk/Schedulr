@@ -25,13 +25,16 @@ export default inject('stores')(
   }),
 );
 
-function CustomPaperInput({stores, ...rest}) {
+function CustomPaperInput({stores, style = [], ...rest}) {
   return (
     <PaperInput
       theme={{roundness: 0, colors: {text: '#000'}}}
-      style={{
-        backgroundColor: stores.theme.colors.light_gray,
-      }}
+      style={[
+        {
+          backgroundColor: stores.theme.colors.light_gray,
+        },
+        style,
+      ]}
       {...rest}
     />
   );
