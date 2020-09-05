@@ -510,44 +510,6 @@
         "LambdaExecutionRole": "schdlrLambdaRole89af59ca-prod"
       },
       "lastPushDirHash": "ZBYu4LFyXI0j8TbV/gn8zEyfTfQ="
-    },
-    "common": {
-      "runtimes": [
-        {
-          "value": "nodejs",
-          "name": "NodeJS",
-          "layerExecutablePath": "nodejs\\node_modules",
-          "cloudTemplateValue": "nodejs12.x"
-        }
-      ],
-      "layerVersionMap": {
-        "1": {
-          "permissions": [
-            {
-              "type": "public"
-            },
-            {
-              "type": "private"
-            }
-          ],
-          "hash": "NPYR7PayBsJnHF2TN0hmVXUDSe5uFTHR2OHSjE9pciI="
-        }
-      },
-      "providerPlugin": "awscloudformation",
-      "service": "LambdaLayer",
-      "build": true,
-      "lastPushTimeStamp": "2020-09-05T23:15:26.991Z",
-      "lastPackageTimeStamp": "2020-09-05T23:13:26.921Z",
-      "distZipFilename": "common-build.zip",
-      "providerMetadata": {
-        "s3TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-prod-21214-deployment/amplify-cfn-templates/function/common-awscloudformation-template.json",
-        "logicalId": "functioncommon"
-      },
-      "output": {
-        "Region": "us-east-1",
-        "Arn": "arn:aws:lambda:us-east-1:900820753842:layer:common:1"
-      },
-      "lastPushDirHash": "GXeJmLRPhiJiTU1bmsvviX7+5x0="
     }
   }
 }

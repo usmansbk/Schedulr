@@ -29,6 +29,24 @@
         "schedulestreamhandler": {},
         "eventspushhandler": {}
       }
+    },
+    "nonCFNdata": {
+      "function": {
+        "common": {
+          "layerVersionMap": {
+            "1": {
+              "permissions": [
+                {
+                  "type": "public"
+                },
+                {
+                  "type": "private"
+                }
+              ]
+            }
+          }
+        }
+      }
     }
   },
   "migration": {
