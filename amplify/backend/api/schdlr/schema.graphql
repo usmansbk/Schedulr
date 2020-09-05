@@ -73,7 +73,7 @@ type UserPreference
 type Schedule
   @model(
     subscriptions: null
-    queries: {get: "getSchedule", list: "listSchedules"}
+    queries: {get: "getSchedule", list: "searchSchedules"}
   )
   @auth(
     rules: [
@@ -115,7 +115,7 @@ enum ScheduleStatus {
 }
 
 type Event
-  @model(subscriptions: null, queries: {get: "getEvent", list: "listEvents"})
+  @model(subscriptions: null, queries: {get: "getEvent", list: "searchEvents"})
   @auth(
     rules: [
       {
