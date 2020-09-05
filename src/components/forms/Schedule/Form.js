@@ -1,12 +1,11 @@
 import React from 'react';
 import {View, ScrollView} from 'react-native';
 import isEqual from 'lodash.isequal';
-import {TextInput, Text, Appbar, HelperText, Divider} from 'react-native-paper';
-// import TextInput from 'components/common/TextInput';
+import {Text, Appbar, Divider} from 'react-native-paper';
+import TextInput from 'components/common/TextInput';
 import Button from 'components/common/Button';
 import Switch from 'components/common/Switch';
-import LocationPicker from 'components/common/LocationPicker';
-import {PickerInput, CustomPicker} from 'components/common/Picker';
+import {CustomPicker} from 'components/common/Picker';
 import {Formik} from 'formik';
 import {inject, observer} from 'mobx-react';
 import {I18n} from 'aws-amplify';
@@ -24,11 +23,7 @@ class Form extends React.Component {
     },
   };
 
-  _alertRef = (ref) => (this.alertRef = ref);
-
   state = {
-    showInfoAlert: false,
-    showLocationPicker: false,
     display: false,
   };
 
@@ -41,14 +36,6 @@ class Form extends React.Component {
       0,
     );
     setTimeout(this.props.stores.location.fetchLocation, 0);
-  };
-
-  _showInfoAlert = () => this.alertRef.open();
-  _hideDialog = () => {
-    this.setState({
-      showInfoAlert: false,
-      showLocationPicker: false,
-    });
   };
 
   render() {
@@ -99,6 +86,7 @@ class Form extends React.Component {
               keyboardShouldPersistTaps="always">
               <View style={styles.form}>
                 <TextInput
+                  bold
                   label={I18n.get('SCHEDULE_FORM_name')}
                   placeholder={I18n.get('PLACEHOLDER_name')}
                   value={values.name}
@@ -131,22 +119,8 @@ class Form extends React.Component {
                     />
                   </View>
                   <Divider />
-                  <View style={styles.field}>
-                    <Text style={styles.text}>
-                      {I18n.get('SCHEDULE_FORM_location')}
-                    </Text>
-                    <PickerInput
-                      value={values.location}
-                      onPress={() => this.setState({showLocationPicker: true})}
-                    />
-                    {values.isPublic && (
-                      <HelperText>
-                        {I18n.get('SCHEDULE_FORM_locationHelperText')}
-                      </HelperText>
-                    )}
-                  </View>
-                  <Divider />
                 </View>
+                <View style={styles.gap} />
                 <TextInput
                   label={I18n.get('SCHEDULE_FORM_description')}
                   placeholder={I18n.get('PLACEHOLDER_description')}
@@ -160,11 +134,6 @@ class Form extends React.Component {
                 />
               </View>
             </ScrollView>
-            <LocationPicker
-              visible={this.state.showLocationPicker}
-              hideModal={this._hideDialog}
-              onSelect={handleChange('location')}
-            />
           </>
         )}
       </Formik>

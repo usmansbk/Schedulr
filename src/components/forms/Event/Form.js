@@ -1,12 +1,12 @@
 import React from 'react';
 import moment from 'moment';
 import {View, ScrollView} from 'react-native';
-import {Text, TextInput, HelperText, Appbar, Divider} from 'react-native-paper';
+import {Text, HelperText, Appbar, Divider} from 'react-native-paper';
 import {Formik} from 'formik';
 import {inject, observer} from 'mobx-react';
 import {I18n} from 'aws-amplify';
 import Icon from 'components/common/Icon';
-// import TextInput from 'components/common/TextInput';
+import {TextField} from 'components/common/TextInput';
 import Button from 'components/common/Button';
 import Switch from 'components/common/Switch';
 import Picker, {CustomPicker} from 'components/common/Picker';
@@ -112,8 +112,7 @@ class Form extends React.Component {
               keyboardShouldPersistTaps="always"
               style={styles.container}>
               <View style={styles.form}>
-                <TextInput
-                  theme={{roundness: 0, colors: {text: '#000'}}}
+                <TextField
                   error={errors.title}
                   placeholder={I18n.get('PLACEHOLDER_untitledEvent')}
                   label={I18n.get('EVENT_FORM_title')}
@@ -361,20 +360,16 @@ class Form extends React.Component {
                   </View>
                 </View>
 
-                <Divider />
-
-                <TextInput
+                <TextField
                   error={errors.venue}
                   placeholder={I18n.get('PLACEHOLDER_venue')(values.location)}
                   label={I18n.get('EVENT_FORM_venue')}
                   value={values.venue}
                   onChangeText={handleChange('venue')}
                   onBlur={handleBlur('venue')}
-                  theme={{roundness: 0, colors: {text: '#000'}}}
                 />
                 <View style={styles.gap} />
-                <TextInput
-                  theme={{roundness: 0, colors: {text: '#000'}}}
+                <TextField
                   error={errors.description}
                   placeholder={I18n.get('PLACEHOLDER_description')}
                   label={I18n.get('EVENT_FORM_description')}

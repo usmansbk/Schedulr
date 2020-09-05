@@ -1,5 +1,6 @@
 import React from 'react';
 import {View, TextInput, StyleSheet, Text} from 'react-native';
+import {TextInput as PaperInput, useTheme} from 'react-native-paper';
 import {inject, observer} from 'mobx-react';
 import {dark as colors} from 'config/colors';
 
@@ -23,6 +24,20 @@ export default inject('stores')(
     );
   }),
 );
+
+function CustomPaperInput({stores, ...rest}) {
+  return (
+    <PaperInput
+      theme={{roundness: 0, colors: {text: '#000'}}}
+      style={{
+        backgroundColor: stores.theme.colors.light_gray,
+      }}
+      {...rest}
+    />
+  );
+}
+
+export const TextField = inject('stores')(observer(CustomPaperInput));
 
 const styles = StyleSheet.create({
   container: {
