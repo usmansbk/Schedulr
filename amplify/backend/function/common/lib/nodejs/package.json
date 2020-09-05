@@ -1,0 +1,12 @@
+{
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "aws-sdk": "^2.580.0",
+    "moment": "^2.27.0",
+    "onesignal-node": "^2.1.1",
+    "uuid": "^8.3.0"
+  },
+  "devDependencies": {}
+}

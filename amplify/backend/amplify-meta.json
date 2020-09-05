@@ -510,6 +510,31 @@
         "LambdaExecutionRole": "schdlrLambdaRole89af59ca-prod"
       },
       "lastPushDirHash": "ZBYu4LFyXI0j8TbV/gn8zEyfTfQ="
+    },
+    "common": {
+      "runtimes": [
+        {
+          "value": "nodejs",
+          "name": "NodeJS",
+          "layerExecutablePath": "nodejs\\node_modules",
+          "cloudTemplateValue": "nodejs12.x"
+        }
+      ],
+      "layerVersionMap": {
+        "1": {
+          "permissions": [
+            {
+              "type": "public"
+            },
+            {
+              "type": "private"
+            }
+          ]
+        }
+      },
+      "providerPlugin": "awscloudformation",
+      "service": "LambdaLayer",
+      "build": true
     }
   }
 }
