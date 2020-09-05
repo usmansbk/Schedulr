@@ -247,6 +247,18 @@
 				}
 			}
 		},
+		"storagegeotable": {
+			"Type": "AWS::CloudFormation::Stack",
+			"Properties": {
+				"TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-prod-21214-deployment/amplify-cfn-templates/storage/geotable-cloudformation-template.json",
+				"Parameters": {
+					"tableName": "GeoTable",
+					"partitionKeyName": "id",
+					"partitionKeyType": "S",
+					"env": "prod"
+				}
+			}
+		},
 		"functionnotificationsresolver": {
 			"Type": "AWS::CloudFormation::Stack",
 			"Properties": {
