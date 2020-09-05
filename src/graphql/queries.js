@@ -785,8 +785,8 @@ export const listFollowers = `query GetScheduleFollowers($id: ID!, $limit: Int, 
     }
   }
 }`;
-export const searchSchedules = `query SearchSchedules($filter: SearchableScheduleFilterInput!, $limit: Int, $nextToken: String, $sort: SearchableScheduleSortInput) {
-  searchSchedules(filter: $filter, limit: $limit, nextToken: $nextToken, sort: $sort) @connection(key: "searchSchedules") {
+export const searchSchedules = `query SearchSchedules($filter: ModelScheduleFilterInput!, $limit: Int, $nextToken: String) {
+  searchSchedules(filter: $filter, limit: $limit, nextToken: $nextToken) @connection(key: "searchSchedules") {
     items {
       id
       name
@@ -825,8 +825,8 @@ export const searchSchedules = `query SearchSchedules($filter: SearchableSchedul
     nextToken
   }
 }`;
-export const searchEvents = `query SearchEvents($filter: SearchableEventFilterInput!, $limit: Int, $nextToken: String, $sort: SearchableEventSortInput) {
-  searchEvents(filter: $filter, limit: $limit, nextToken: $nextToken, sort: $sort) @connection(key: "searchEvents") {
+export const searchEvents = `query SearchEvents($filter: ModelEventFilterInput!, $limit: Int, $nextToken: String) {
+  searchEvents(filter: $filter, limit: $limit, nextToken: $nextToken) @connection(key: "searchEvents") {
     items {
       id
       title
