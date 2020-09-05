@@ -509,6 +509,39 @@
 				}
 			}
 		},
+		"functiongeohandler": {
+			"Type": "AWS::CloudFormation::Stack",
+			"Properties": {
+				"TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-prod-21214-deployment/amplify-cfn-templates/function/geohandler-cloudformation-template.json",
+				"Parameters": {
+					"apischdlrGraphQLAPIIdOutput": {
+						"Fn::GetAtt": [
+							"apischdlr",
+							"Outputs.GraphQLAPIIdOutput"
+						]
+					},
+					"apischdlrGraphQLAPIEndpointOutput": {
+						"Fn::GetAtt": [
+							"apischdlr",
+							"Outputs.GraphQLAPIEndpointOutput"
+						]
+					},
+					"storagegeotableName": {
+						"Fn::GetAtt": [
+							"storagegeotable",
+							"Outputs.Name"
+						]
+					},
+					"storagegeotableArn": {
+						"Fn::GetAtt": [
+							"storagegeotable",
+							"Outputs.Arn"
+						]
+					},
+					"env": "prod"
+				}
+			}
+		},
 		"UpdateRolesWithIDPFunction": {
 			"DependsOn": [
 				"AuthRole",
