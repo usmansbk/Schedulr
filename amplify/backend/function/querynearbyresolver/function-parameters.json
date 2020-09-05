@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "storage": {
+      "geotable": [
+        "read"
+      ]
+    }
+  },
+  "lambdaLayers": []
+}

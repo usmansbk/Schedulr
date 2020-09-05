@@ -175,6 +175,21 @@
           ]
         }
       ]
+    },
+    "querynearbyresolver": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": [
+        {
+          "category": "storage",
+          "resourceName": "geotable",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        }
+      ]
     }
   }
 }

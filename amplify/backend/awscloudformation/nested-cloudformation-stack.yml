@@ -542,6 +542,27 @@
 				}
 			}
 		},
+		"functionquerynearbyresolver": {
+			"Type": "AWS::CloudFormation::Stack",
+			"Properties": {
+				"TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-prod-21214-deployment/amplify-cfn-templates/function/querynearbyresolver-cloudformation-template.json",
+				"Parameters": {
+					"storagegeotableName": {
+						"Fn::GetAtt": [
+							"storagegeotable",
+							"Outputs.Name"
+						]
+					},
+					"storagegeotableArn": {
+						"Fn::GetAtt": [
+							"storagegeotable",
+							"Outputs.Arn"
+						]
+					},
+					"env": "prod"
+				}
+			}
+		},
 		"UpdateRolesWithIDPFunction": {
 			"DependsOn": [
 				"AuthRole",
