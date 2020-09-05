@@ -212,12 +212,6 @@ type SearchableEventConnection {
   total: Int
 }
 
-type SearchableScheduleConnection {
-  items: [Schedule]
-  nextToken: String
-  total: Int
-}
-
 input GeoSearchFilterInput {
   location: LocationInput!
   city: String
@@ -227,11 +221,6 @@ input GeoSearchFilterInput {
 
 type Query {
   me: User
-  nearbySchedules(
-    filter: GeoSearchFilterInput!
-    limit: Int
-    nextToken: String
-  ): SearchableScheduleConnection
   nearbyEvents(
     filter: GeoSearchFilterInput!
     limit: Int
