@@ -25,9 +25,10 @@ export default inject('stores')(
   }),
 );
 
-function CustomPaperInput({stores, style = [], ...rest}) {
+function CustomPaperInput({stores, style = [], ...rest}, ref) {
   return (
     <PaperInput
+      ref={ref}
       theme={{roundness: 0, colors: {text: '#000'}}}
       style={[
         {
@@ -40,7 +41,9 @@ function CustomPaperInput({stores, style = [], ...rest}) {
   );
 }
 
-export const TextField = inject('stores')(observer(CustomPaperInput));
+export const TextField = inject('stores')(
+  observer(React.forwardRef(CustomPaperInput)),
+);
 
 const styles = StyleSheet.create({
   container: {
