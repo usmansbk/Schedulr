@@ -152,6 +152,11 @@ type Event
   commentsCount: Int
   bookmarks: [Bookmark]
     @connection(name: "EventBookmarks", sortField: "createdAt", limit: 20)
+    @auth(
+      rules: [
+        {allow: owner, ownerField: "eventAuthorId", identityClaim: "email"}
+      ]
+    )
   tickets: [Ticket]
     @connection(name: "EventTickets", sortField: "createdAt", limit: 150)
     @auth(
