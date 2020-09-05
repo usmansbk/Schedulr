@@ -1,19 +1,19 @@
 type User
-  @searchable
-  @model(subscriptions: null, queries: { get: "getUser" })
+  @model(subscriptions: null, queries: {get: "getUser"})
   @auth(
     rules: [
       {
-        allow: owner,
-        ownerField: "id",
-        identityClaim: "email",
+        allow: owner
+        ownerField: "id"
+        identityClaim: "email"
         operations: [create, update, delete]
       }
-    ])
-{
+    ]
+  ) {
   id: ID
   name: String!
-  email: String! @auth(rules: [{allow: owner, ownerField: "id", identityClaim: "email"}])
+  email: String!
+    @auth(rules: [{allow: owner, ownerField: "id", identityClaim: "email"}])
   avatar: S3Object
   pictureUrl: AWSURL
   website: String
@@ -40,19 +40,11 @@ type User
 
 type AppState
   @model(
-    subscriptions: null,
-    queries: { get: "state" },
-    mutations: { create: "persistState", update: "setState" })
-  @auth(
-    rules: [
-      {
-        allow: owner,
-        ownerField: "id",
-        identityClaim: "email"
-      }
-    ]
+    subscriptions: null
+    queries: {get: "state"}
+    mutations: {create: "persistState", update: "setState"}
   )
-{
+  @auth(rules: [{allow: owner, ownerField: "id", identityClaim: "email"}]) {
   id: ID
   mutedEvents: [ID]
   allowedEvents: [ID]
@@ -62,16 +54,12 @@ type AppState
 }
 
 type UserPreference
-  @model(subscriptions: null, queries: { get: "userPref" }, mutations: { create: "createUserPreference", update: "updateUserPreference" })
-  @auth(
-    rules: [
-      {
-        allow: owner,
-        ownerField: "id",
-        identityClaim: "email"
-      }
-    ])
-{
+  @model(
+    subscriptions: null
+    queries: {get: "userPref"}
+    mutations: {create: "createUserPreference", update: "updateUserPreference"}
+  )
+  @auth(rules: [{allow: owner, ownerField: "id", identityClaim: "email"}]) {
   id: ID
   userId: ID
   disablePush: Boolean
@@ -84,32 +72,33 @@ type UserPreference
 
 type Schedule
   @searchable
-  @model(subscriptions: null, queries: { get: "getSchedule" })
+  @model(subscriptions: null, queries: {get: "getSchedule"})
   @auth(
     rules: [
       {
-        allow: owner,
-        ownerField: "scheduleAuthorId",
-        identityClaim: "email",
+        allow: owner
+        ownerField: "scheduleAuthorId"
+        identityClaim: "email"
         operations: [create, update, delete]
       }
     ]
-  )
- {
+  ) {
   id: ID!
   name: String!
   description: String
   topic: String
   isPublic: Boolean
   isOwner: Boolean
-  isFollowing: Boolean 
+  isFollowing: Boolean
   isOffline: Boolean
-  status: ScheduleStatus 
+  status: ScheduleStatus
   location: String
   geo_point: Location
-  followers: [Follow] @connection(name: "Followers", sortField: "createdAt", limit: 25)
+  followers: [Follow]
+    @connection(name: "Followers", sortField: "createdAt", limit: 25)
   followersCount: Int
-  events: [Event] @connection(name: "ScheduleEvents", sortField: "createdAt", limit: 25)
+  events: [Event]
+    @connection(name: "ScheduleEvents", sortField: "createdAt", limit: 25)
   eventsCount: Int
   author: User @connection(name: "UserSchedules", sortField: "createdAt")
   picture: S3Object
@@ -125,18 +114,17 @@ enum ScheduleStatus {
 
 type Event
   @searchable
-  @model(subscriptions: null, queries: { get: "getEvent" })
+  @model(subscriptions: null, queries: {get: "getEvent"})
   @auth(
     rules: [
       {
-        allow: owner,
-        ownerField: "eventAuthorId",
-        identityClaim: "email",
+        allow: owner
+        ownerField: "eventAuthorId"
+        identityClaim: "email"
         operations: [create, update, delete]
       }
     ]
-  )
-{
+  ) {
   id: ID!
   title: String!
   description: String
@@ -157,13 +145,20 @@ type Event
   cancelledDates: [String]
   author: User @connection
   album: [S3Object]
-  schedule: Schedule! @connection(name: "ScheduleEvents", sortField: "createdAt")
-  comments: [Comment] @connection(name: "EventComments", sortField: "createdAt", limit: 20)
+  schedule: Schedule!
+    @connection(name: "ScheduleEvents", sortField: "createdAt")
+  comments: [Comment]
+    @connection(name: "EventComments", sortField: "createdAt", limit: 20)
   commentsCount: Int
-  bookmarks: [Bookmark] @connection(name: "EventBookmarks", sortField: "createdAt", limit: 20)
+  bookmarks: [Bookmark]
+    @connection(name: "EventBookmarks", sortField: "createdAt", limit: 20)
   tickets: [Ticket]
     @connection(name: "EventTickets", sortField: "createdAt", limit: 150)
-    @auth(rules: [{allow: owner, ownerField: "eventAuthorId", identityClaim: "email"}])
+    @auth(
+      rules: [
+        {allow: owner, ownerField: "eventAuthorId", identityClaim: "email"}
+      ]
+    )
   bookmarksCount: Int
   location: String
   geo_point: Location
@@ -188,24 +183,24 @@ enum Recurrence {
 }
 
 type Comment
-  @model(subscriptions: null, queries: { get: "getComment" })
+  @model(subscriptions: null, queries: {get: "getComment"})
   @auth(
     rules: [
       {
-        allow: owner,
-        ownerField: "commentAuthorId",
-        identityClaim: "email",
+        allow: owner
+        ownerField: "commentAuthorId"
+        identityClaim: "email"
         operations: [create, update, delete]
       }
     ]
-  )
-{
+  ) {
   id: ID
   content: String
   isOwner: Boolean
   isOffline: Boolean
   to: Comment @connection(name: "CommentThread")
-  thread: [Comment] @connection(name: "CommentThread", sortField: "createdAt", limit: 20)
+  thread: [Comment]
+    @connection(name: "CommentThread", sortField: "createdAt", limit: 20)
   at: User @connection
   schedule: Schedule @connection # Better handling of push notification
   event: Event! @connection(name: "EventComments", sortField: "createdAt")
@@ -229,10 +224,23 @@ type SearchableScheduleConnection {
 
 type Query {
   me: User
-  nearbySchedules(location: LocationInput!, km:Int, limit: Int, nextToken: String): SearchableScheduleConnection
-  nearbyEvents(location: LocationInput!, city: String, category: String, km: Int, limit: Int, nextToken: String): SearchableEventConnection
+  nearbySchedules(
+    location: LocationInput!
+    km: Int
+    limit: Int
+    nextToken: String
+  ): SearchableScheduleConnection
+  nearbyEvents(
+    location: LocationInput!
+    city: String
+    category: String
+    km: Int
+    limit: Int
+    nextToken: String
+  ): SearchableEventConnection
   deltaSync(lastSync: String!): Delta @function(name: "QueryDeltaSync-${env}")
-  notifications(lastSync: String!): [Notification] @function(name: "QueryNotifications-${env}")
+  notifications(lastSync: String!): [Notification]
+    @function(name: "QueryNotifications-${env}")
 }
 
 type S3Object {
@@ -269,7 +277,7 @@ type Notification {
 type NotificationExtraData {
   title: String
   content: String
-  pictureUrl: AWSURL 
+  pictureUrl: AWSURL
   ref: String
 }
 
@@ -281,17 +289,21 @@ type Delta {
 }
 
 type Bookmark
-  @model(subscriptions: null, queries: null, mutations: { create: "createBookmark", delete: "deleteBookmark" })
+  @model(
+    subscriptions: null
+    queries: null
+    mutations: {create: "createBookmark", delete: "deleteBookmark"}
+  )
   @auth(
     rules: [
       {
-        allow: owner,
-        ownerField: "bookmarkUserId",
-        identityClaim: "email",
+        allow: owner
+        ownerField: "bookmarkUserId"
+        identityClaim: "email"
         operations: [create, update, delete]
       }
-    ])
-{
+    ]
+  ) {
   id: ID!
   event: Event @connection(name: "EventBookmarks", sortField: "createdAt")
   user: User @connection(name: "UserBookmarks", sortField: "createdAt")
@@ -300,17 +312,21 @@ type Bookmark
 }
 
 type Follow
-  @model(subscriptions: null, queries: null, mutations: { create: "createFollow", delete: "deleteFollow" })
+  @model(
+    subscriptions: null
+    queries: null
+    mutations: {create: "createFollow", delete: "deleteFollow"}
+  )
   @auth(
     rules: [
       {
-        allow: owner,
-        ownerField: "followUserId",
-        identityClaim: "email",
+        allow: owner
+        ownerField: "followUserId"
+        identityClaim: "email"
         operations: [create, update, delete]
       }
-    ])
-{
+    ]
+  ) {
   id: ID!
   schedule: Schedule @connection(name: "Followers", sortField: "createdAt")
   user: User @connection(name: "Followings", sortField: "createdAt")
@@ -322,13 +338,13 @@ type Ticket
   @auth(
     rules: [
       {
-        allow: owner,
-        ownerField: "ticketAttendeeId",
-        identityClaim: "email",
+        allow: owner
+        ownerField: "ticketAttendeeId"
+        identityClaim: "email"
         operations: [create, update, delete]
       }
-    ])
-{
+    ]
+  ) {
   id: ID!
   ticketId: ID!
   event: Event @connection(name: "EventTickets")
@@ -344,13 +360,13 @@ type TicketCategory
   @auth(
     rules: [
       {
-        allow: owner,
-        ownerField: "owner",
-        identityClaim: "email",
+        allow: owner
+        ownerField: "owner"
+        identityClaim: "email"
         operations: [create, update, delete]
       }
-    ])
-{
+    ]
+  ) {
   id: ID!
   name: String!
   description: String

@@ -4,5 +4,6 @@
     "StackMapping": {
         "UserfollowingResolver": "ConnectionStack",
         "UsercreatedResolver": "ConnectionStack"
-    }
+    },
+    "ElasticsearchWarning": true
 }
