@@ -226,6 +226,7 @@ type Query {
     limit: Int
     nextToken: String
   ): SearchableEventConnection
+    @function(name: "QueryNearByEventsResolver-${env}")
   deltaSync(lastSync: String!): Delta @function(name: "QueryDeltaSync-${env}")
   notifications(lastSync: String!): [Notification]
     @function(name: "QueryNotifications-${env}")
