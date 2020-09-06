@@ -9,5 +9,11 @@
       ]
     }
   },
-  "lambdaLayers": []
+  "lambdaLayers": [
+    {
+      "type": "ProjectLayer",
+      "resourceName": "common",
+      "version": 1
+    }
+  ]
 }

@@ -89,6 +89,13 @@
             "Name",
             "Arn"
           ]
+        },
+        {
+          "category": "function",
+          "resourceName": "common",
+          "attributes": [
+            "Arn"
+          ]
         }
       ]
     },
@@ -102,6 +109,13 @@
           "resourceName": "followdelta",
           "attributes": [
             "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "function",
+          "resourceName": "common",
+          "attributes": [
             "Arn"
           ]
         }
@@ -119,6 +133,13 @@
             "Name",
             "Arn"
           ]
+        },
+        {
+          "category": "function",
+          "resourceName": "common",
+          "attributes": [
+            "Arn"
+          ]
         }
       ]
     },
@@ -132,6 +153,13 @@
           "resourceName": "commentdelta",
           "attributes": [
             "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "function",
+          "resourceName": "common",
+          "attributes": [
             "Arn"
           ]
         }
@@ -149,18 +177,43 @@
             "Name",
             "Arn"
           ]
+        },
+        {
+          "category": "function",
+          "resourceName": "common",
+          "attributes": [
+            "Arn"
+          ]
         }
       ]
     },
     "commentspushhandler": {
       "service": "Lambda",
       "providerPlugin": "awscloudformation",
-      "build": true
+      "build": true,
+      "dependsOn": [
+        {
+          "category": "function",
+          "resourceName": "common",
+          "attributes": [
+            "Arn"
+          ]
+        }
+      ]
     },
     "eventspushhandler": {
       "service": "Lambda",
       "providerPlugin": "awscloudformation",
-      "build": true
+      "build": true,
+      "dependsOn": [
+        {
+          "category": "function",
+          "resourceName": "common",
+          "attributes": [
+            "Arn"
+          ]
+        }
+      ]
     },
     "geohandler": {
       "build": true,
@@ -182,6 +235,13 @@
             "Name",
             "Arn"
           ]
+        },
+        {
+          "category": "function",
+          "resourceName": "common",
+          "attributes": [
+            "Arn"
+          ]
         }
       ]
     },
@@ -195,6 +255,13 @@
           "resourceName": "geotable",
           "attributes": [
             "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "function",
+          "resourceName": "common",
+          "attributes": [
             "Arn"
           ]
         }

@@ -1,7 +1,7 @@
 {
   "apiKey": "MDdlZGMzZmMtMWVkMi00NzY0LThkMGItMjM5NDQ0MjM2NmRk",
   "applicationId": "b6031600-8b05-4702-9e29-bde94401f18a",
-  "batchSize":  "100",
+  "batchSize": "100",
   "followTableName": "Follow-wb4flhdy5bfdjppc5l6kyzr63y-prod",
   "gsiFollowers": "gsi-Followers",
   "gsiFollowersKey": "followUserId",

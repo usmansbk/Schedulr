@@ -1,352 +1,361 @@
 {
-	"AWSTemplateFormatVersion": "2010-09-09",
-	"Description": "Lambda resource stack creation using Amplify CLI",
-	"Parameters": {
-		"env": {
-			"Type": "String"
-		},
-		"batchSize": {
-			"Type": "String"
-		},
-		"bookmarkTableName": {
-			"Type": "String"
-		},
-		"commentTableName": {
-			"Type": "String"
-		},
-		"deltaTable": {
-			"Type": "String"
-		},
-		"gsiEventBookmarks": {
-			"Type": "String"
-		},
-		"gsiEventBookmarksKey": {
-			"Type": "String"
-		},
-		"gsiEventComments": {
-			"Type": "String"
-		},
-		"gsiEventCommentsKey": {
-			"Type": "String"
-		},
-		"ttl": {
-			"Type": "String"
-		},
-		"storageeventdeltaName": {
-			"Type": "String",
-			"Default": "storageeventdeltaName"
-		},
-		"storageeventdeltaArn": {
-			"Type": "String",
-			"Default": "storageeventdeltaArn"
-		},
-		"StreamId": {
-			"Type": "String"
-		},
-		"TableName": {
-			"Type": "String"
-		}
-	},
-	"Conditions": {
-		"ShouldNotCreateEnvResources": {
-			"Fn::Equals": [
-				{
-					"Ref": "env"
-				},
-				"NONE"
-			]
-		}
-	},
-	"Resources": {
-		"EventSourceMapping": {
-			"Type": "AWS::Lambda::EventSourceMapping",
-			"Properties": {
-				"EventSourceArn": {
-					"Fn::Sub": [
-						"arn:aws:dynamodb:${region}:${account}:table/${tableName}/stream/${streamId}",
-						{
-							"region": {
-								"Ref": "AWS::Region"
-							},
-							"account": {
-								"Ref": "AWS::AccountId"
-							},
-							"tableName": {
-								"Ref": "TableName"
-							},
-							"streamId": {
-								"Ref": "StreamId"
-							}
-						}
-					]
-				},
-				"FunctionName": {
-					"Fn::GetAtt": [
-						"LambdaFunction",
-						"Arn"
-					]
-				},
-				"StartingPosition": "TRIM_HORIZON"
-			}
-		},
-		"LambdaFunction": {
-			"Type": "AWS::Lambda::Function",
-			"Metadata": {
-				"aws:asset:path": "./src",
-				"aws:asset:property": "Code"
-			},
-			"Properties": {
-				"Handler": "index.handler",
-				"FunctionName": {
-					"Fn::If": [
-						"ShouldNotCreateEnvResources",
-						"EventStreamHandler",
-						{
-							"Fn::Join": [
-								"",
-								[
-									"EventStreamHandler",
-									"-",
-									{
-										"Ref": "env"
-									}
-								]
-							]
-						}
-					]
-				},
-				"Environment": {
-					"Variables": {
-						"ENV": {
-							"Ref": "env"
-						},
-						"REGION": {
-							"Ref": "AWS::Region"
-						},
-						"BATCH_SIZE": {
-							"Ref": "batchSize"
-						},
-						"BOOKMARK_TABLE_NAME": {
-							"Ref": "bookmarkTableName"
-						},
-						"COMMENT_TABLE_NAME": {
-							"Ref": "commentTableName"
-						},
-						"DELTA_TABLE": {
-							"Ref": "deltaTable"
-						},
-						"GSI_EVENT_BOOKMARKS": {
-							"Ref": "gsiEventBookmarks"
-						},
-						"GSI_EVENT_BOOKMARKS_KEY": {
-							"Ref": "gsiEventBookmarksKey"
-						},
-						"GSI_EVENT_COMMENTS": {
-							"Ref": "gsiEventComments"
-						},
-						"GSI_EVENT_COMMENTS_KEY": {
-							"Ref": "gsiEventCommentsKey"
-						},
-						"TTL": {
-							"Ref": "ttl"
-						}
-					}
-				},
-				"Role": {
-					"Fn::GetAtt": [
-						"LambdaExecutionRole",
-						"Arn"
-					]
-				},
-				"Runtime": "nodejs10.x",
-				"Timeout": "25",
-				"Code": {
-					"S3Bucket": "amplify-schdlr-prod-21214-deployment",
-					"S3Key": "amplify-builds/eventstreamhandler-6334364e2b6e62754b48-build.zip"
-				}
-			}
-		},
-		"LambdaExecutionRole": {
-			"Type": "AWS::IAM::Role",
-			"Properties": {
-				"RoleName": {
-					"Fn::If": [
-						"ShouldNotCreateEnvResources",
-						"schdlrLambdaRolecce1b8ff",
-						{
-							"Fn::Join": [
-								"",
-								[
-									"schdlrLambdaRolecce1b8ff",
-									"-",
-									{
-										"Ref": "env"
-									}
-								]
-							]
-						}
-					]
-				},
-				"AssumeRolePolicyDocument": {
-					"Version": "2012-10-17",
-					"Statement": [
-						{
-							"Effect": "Allow",
-							"Principal": {
-								"Service": [
-									"lambda.amazonaws.com"
-								]
-							},
-							"Action": [
-								"sts:AssumeRole"
-							]
-						}
-					]
-				}
-			}
-		},
-		"lambdaexecutionpolicy": {
-			"DependsOn": [
-				"LambdaExecutionRole"
-			],
-			"Type": "AWS::IAM::Policy",
-			"Properties": {
-				"PolicyName": "lambda-execution-policy",
-				"Roles": [
-					{
-						"Ref": "LambdaExecutionRole"
-					}
-				],
-				"PolicyDocument": {
-					"Version": "2012-10-17",
-					"Statement": [
-						{
-							"Effect": "Allow",
-							"Action": [
-								"logs:CreateLogGroup",
-								"logs:CreateLogStream",
-								"logs:PutLogEvents"
-							],
-							"Resource": {
-								"Fn::Sub": [
-									"arn:aws:logs:${region}:${account}:log-group:/aws/lambda/${lambda}:log-stream:*",
-									{
-										"region": {
-											"Ref": "AWS::Region"
-										},
-										"account": {
-											"Ref": "AWS::AccountId"
-										},
-										"lambda": {
-											"Ref": "LambdaFunction"
-										}
-									}
-								]
-							}
-						},
-						{
-							"Effect": "Allow",
-							"Action": [
-								"dynamodb:GetItem",
-								"dynamodb:Query",
-								"dynamodb:Scan",
-								"dynamodb:PutItem",
-								"dynamodb:BatchWriteItem",
-								"dynamodb:UpdateItem",
-								"dynamodb:DeleteItem"
-							],
-							"Resource": [
-								{
-									"Ref": "storageeventdeltaArn"
-								},
-								{
-									"Fn::Join": [
-										"/",
-										[
-											{
-												"Ref": "storageeventdeltaArn"
-											},
-											"index/*"
-										]
-									]
-								}
-							]
-						},
-						{
-							"Effect": "Allow",
-							"Action": [
-								"dynamodb:GetShardIterator",
-								"dynamodb:DescribeStream",
-								"dynamodb:GetRecords"
-							],
-							"Resource": {
-								"Fn::Sub": [
-									"arn:aws:dynamodb:${region}:${account}:table/${tableName}/stream/${streamId}",
-									{
-										"region": {
-											"Ref": "AWS::Region"
-										},
-										"account": {
-											"Ref": "AWS::AccountId"
-										},
-										"tableName": {
-											"Ref": "TableName"
-										},
-										"streamId": {
-											"Ref": "StreamId"
-										}
-									}
-								]
-							}
-						},
-						{
-							"Effect": "Allow",
-							"Action": "dynamodb:ListStreams",
-							"Resource": "*"
-						},
-						{
-							"Effect": "Allow",
-							"Action": "dynamodb:Query",
-							"Resource": "arn:aws:dynamodb:*:*:table/*/index/*"
-						},
-						{
-							"Effect": "Allow",
-							"Action": [
-								"dynamodb:BatchGetItem",
-								"dynamodb:BatchWriteItem",
-								"dynamodb:GetItem",
-								"dynamodb:Query"
-							],
-							"Resource": "arn:aws:dynamodb:*:*:table/*"
-						}
-					]
-				}
-			}
-		}
-	},
-	"Outputs": {
-		"Name": {
-			"Value": {
-				"Ref": "LambdaFunction"
-			}
-		},
-		"Arn": {
-			"Value": {
-				"Fn::GetAtt": [
-					"LambdaFunction",
-					"Arn"
-				]
-			}
-		},
-		"Region": {
-			"Value": {
-				"Ref": "AWS::Region"
-			}
-		},
-		"LambdaExecutionRole": {
-			"Value": {
-				"Ref": "LambdaExecutionRole"
-			}
-		}
-	}
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "Lambda resource stack creation using Amplify CLI",
+  "Parameters": {
+    "env": {
+      "Type": "String"
+    },
+    "batchSize": {
+      "Type": "String"
+    },
+    "bookmarkTableName": {
+      "Type": "String"
+    },
+    "commentTableName": {
+      "Type": "String"
+    },
+    "deltaTable": {
+      "Type": "String"
+    },
+    "gsiEventBookmarks": {
+      "Type": "String"
+    },
+    "gsiEventBookmarksKey": {
+      "Type": "String"
+    },
+    "gsiEventComments": {
+      "Type": "String"
+    },
+    "gsiEventCommentsKey": {
+      "Type": "String"
+    },
+    "ttl": {
+      "Type": "String"
+    },
+    "storageeventdeltaName": {
+      "Type": "String",
+      "Default": "storageeventdeltaName"
+    },
+    "storageeventdeltaArn": {
+      "Type": "String",
+      "Default": "storageeventdeltaArn"
+    },
+    "StreamId": {
+      "Type": "String"
+    },
+    "TableName": {
+      "Type": "String"
+    },
+    "functioncommonArn": {
+      "Type": "String",
+      "Default": "functioncommonArn"
+    }
+  },
+  "Conditions": {
+    "ShouldNotCreateEnvResources": {
+      "Fn::Equals": [
+        {
+          "Ref": "env"
+        },
+        "NONE"
+      ]
+    }
+  },
+  "Resources": {
+    "EventSourceMapping": {
+      "Type": "AWS::Lambda::EventSourceMapping",
+      "Properties": {
+        "EventSourceArn": {
+          "Fn::Sub": [
+            "arn:aws:dynamodb:${region}:${account}:table/${tableName}/stream/${streamId}",
+            {
+              "region": {
+                "Ref": "AWS::Region"
+              },
+              "account": {
+                "Ref": "AWS::AccountId"
+              },
+              "tableName": {
+                "Ref": "TableName"
+              },
+              "streamId": {
+                "Ref": "StreamId"
+              }
+            }
+          ]
+        },
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "LambdaFunction",
+            "Arn"
+          ]
+        },
+        "StartingPosition": "TRIM_HORIZON"
+      }
+    },
+    "LambdaFunction": {
+      "Type": "AWS::Lambda::Function",
+      "Metadata": {
+        "aws:asset:path": "./src",
+        "aws:asset:property": "Code"
+      },
+      "Properties": {
+        "Handler": "index.handler",
+        "FunctionName": {
+          "Fn::If": [
+            "ShouldNotCreateEnvResources",
+            "EventStreamHandler",
+            {
+              "Fn::Join": [
+                "",
+                [
+                  "EventStreamHandler",
+                  "-",
+                  {
+                    "Ref": "env"
+                  }
+                ]
+              ]
+            }
+          ]
+        },
+        "Environment": {
+          "Variables": {
+            "ENV": {
+              "Ref": "env"
+            },
+            "REGION": {
+              "Ref": "AWS::Region"
+            },
+            "BATCH_SIZE": {
+              "Ref": "batchSize"
+            },
+            "BOOKMARK_TABLE_NAME": {
+              "Ref": "bookmarkTableName"
+            },
+            "COMMENT_TABLE_NAME": {
+              "Ref": "commentTableName"
+            },
+            "DELTA_TABLE": {
+              "Ref": "deltaTable"
+            },
+            "GSI_EVENT_BOOKMARKS": {
+              "Ref": "gsiEventBookmarks"
+            },
+            "GSI_EVENT_BOOKMARKS_KEY": {
+              "Ref": "gsiEventBookmarksKey"
+            },
+            "GSI_EVENT_COMMENTS": {
+              "Ref": "gsiEventComments"
+            },
+            "GSI_EVENT_COMMENTS_KEY": {
+              "Ref": "gsiEventCommentsKey"
+            },
+            "TTL": {
+              "Ref": "ttl"
+            }
+          }
+        },
+        "Role": {
+          "Fn::GetAtt": [
+            "LambdaExecutionRole",
+            "Arn"
+          ]
+        },
+        "Runtime": "nodejs10.x",
+        "Timeout": "25",
+        "Code": {
+          "S3Bucket": "amplify-schdlr-prod-21214-deployment",
+          "S3Key": "amplify-builds/eventstreamhandler-6334364e2b6e62754b48-build.zip"
+        },
+        "Layers": [
+          {
+            "Fn::Sub": "arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:layer:common-prod:1"
+          }
+        ]
+      }
+    },
+    "LambdaExecutionRole": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "RoleName": {
+          "Fn::If": [
+            "ShouldNotCreateEnvResources",
+            "schdlrLambdaRolecce1b8ff",
+            {
+              "Fn::Join": [
+                "",
+                [
+                  "schdlrLambdaRolecce1b8ff",
+                  "-",
+                  {
+                    "Ref": "env"
+                  }
+                ]
+              ]
+            }
+          ]
+        },
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": [
+                  "lambda.amazonaws.com"
+                ]
+              },
+              "Action": [
+                "sts:AssumeRole"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "lambdaexecutionpolicy": {
+      "DependsOn": [
+        "LambdaExecutionRole"
+      ],
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyName": "lambda-execution-policy",
+        "Roles": [
+          {
+            "Ref": "LambdaExecutionRole"
+          }
+        ],
+        "PolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Action": [
+                "logs:CreateLogGroup",
+                "logs:CreateLogStream",
+                "logs:PutLogEvents"
+              ],
+              "Resource": {
+                "Fn::Sub": [
+                  "arn:aws:logs:${region}:${account}:log-group:/aws/lambda/${lambda}:log-stream:*",
+                  {
+                    "region": {
+                      "Ref": "AWS::Region"
+                    },
+                    "account": {
+                      "Ref": "AWS::AccountId"
+                    },
+                    "lambda": {
+                      "Ref": "LambdaFunction"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "Effect": "Allow",
+              "Action": [
+                "dynamodb:GetItem",
+                "dynamodb:Query",
+                "dynamodb:Scan",
+                "dynamodb:PutItem",
+                "dynamodb:BatchWriteItem",
+                "dynamodb:UpdateItem",
+                "dynamodb:DeleteItem"
+              ],
+              "Resource": [
+                {
+                  "Ref": "storageeventdeltaArn"
+                },
+                {
+                  "Fn::Join": [
+                    "/",
+                    [
+                      {
+                        "Ref": "storageeventdeltaArn"
+                      },
+                      "index/*"
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "Effect": "Allow",
+              "Action": [
+                "dynamodb:GetShardIterator",
+                "dynamodb:DescribeStream",
+                "dynamodb:GetRecords"
+              ],
+              "Resource": {
+                "Fn::Sub": [
+                  "arn:aws:dynamodb:${region}:${account}:table/${tableName}/stream/${streamId}",
+                  {
+                    "region": {
+                      "Ref": "AWS::Region"
+                    },
+                    "account": {
+                      "Ref": "AWS::AccountId"
+                    },
+                    "tableName": {
+                      "Ref": "TableName"
+                    },
+                    "streamId": {
+                      "Ref": "StreamId"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "Effect": "Allow",
+              "Action": "dynamodb:ListStreams",
+              "Resource": "*"
+            },
+            {
+              "Effect": "Allow",
+              "Action": "dynamodb:Query",
+              "Resource": "arn:aws:dynamodb:*:*:table/*/index/*"
+            },
+            {
+              "Effect": "Allow",
+              "Action": [
+                "dynamodb:BatchGetItem",
+                "dynamodb:BatchWriteItem",
+                "dynamodb:GetItem",
+                "dynamodb:Query"
+              ],
+              "Resource": "arn:aws:dynamodb:*:*:table/*"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "Outputs": {
+    "Name": {
+      "Value": {
+        "Ref": "LambdaFunction"
+      }
+    },
+    "Arn": {
+      "Value": {
+        "Fn::GetAtt": [
+          "LambdaFunction",
+          "Arn"
+        ]
+      }
+    },
+    "Region": {
+      "Value": {
+        "Ref": "AWS::Region"
+      }
+    },
+    "LambdaExecutionRole": {
+      "Value": {
+        "Ref": "LambdaExecutionRole"
+      }
+    }
+  }
 }
