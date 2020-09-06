@@ -550,14 +550,14 @@
           ]
         }
       ],
-      "lastBuildTimeStamp": "2020-09-06T07:36:59.033Z",
-      "lastPackageTimeStamp": "2020-09-06T07:36:59.083Z",
-      "distZipFilename": "geohandler-32686c51736e39523044-build.zip",
+      "lastBuildTimeStamp": "2020-09-06T08:39:11.645Z",
+      "lastPackageTimeStamp": "2020-09-06T08:39:11.787Z",
+      "distZipFilename": "geohandler-542b6b69706b33746c33-build.zip",
       "providerMetadata": {
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-prod-21214-deployment/amplify-cfn-templates/function/geohandler-cloudformation-template.json",
         "logicalId": "functiongeohandler"
       },
-      "lastPushTimeStamp": "2020-09-06T08:35:48.742Z",
+      "lastPushTimeStamp": "2020-09-06T08:39:16.176Z",
       "output": {
         "Region": "us-east-1",
         "Arn": "arn:aws:lambda:us-east-1:900820753842:function:GeoDBHandler-prod",
