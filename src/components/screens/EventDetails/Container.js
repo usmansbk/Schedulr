@@ -150,23 +150,21 @@ class EventDetails extends React.Component {
               {isOwner && (
                 <>
                   {isValid && (
-                    <>
-                      <MenuOption
-                        onSelect={() =>
-                          handleEdit({
-                            id,
-                            startAt,
-                            endAt,
-                          })
-                        }
-                        text={I18n.get('MENU_edit')}
-                      />
-                      <MenuOption
-                        text={I18n.get('MENU_cancel')}
-                        onSelect={this._openCancelDialog}
-                      />
-                    </>
+                    <MenuOption
+                      onSelect={() =>
+                        handleEdit({
+                          id,
+                          startAt,
+                          endAt,
+                        })
+                      }
+                      text={I18n.get('MENU_edit')}
+                    />
                   )}
+                  <MenuOption
+                    text={I18n.get('MENU_cancel')}
+                    onSelect={this._openCancelDialog}
+                  />
                   <MenuOption
                     text={I18n.get('MENU_duplicate')}
                     onSelect={handleRepeat}
