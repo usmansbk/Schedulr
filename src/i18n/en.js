@@ -107,6 +107,8 @@ export default {
   MENU_duplicate: 'Duplicate',
   MENU_cancel: 'Cancel',
   MENU_delete: 'Delete',
+  MENU_mute: 'Mute',
+  MENU_unmute: 'Unmute',
 
   SETTINGS_screenTitle: 'Settings',
   SETTINGS_generalSectionTitle: 'General',

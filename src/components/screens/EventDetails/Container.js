@@ -123,54 +123,57 @@ class EventDetails extends React.Component {
             )}
           />
           <Appbar.Content titleStyle={styles.headerColor} />
-          {isOwner && (
-            <Menu>
-              <MenuTrigger
-                customStyles={{
-                  triggerWrapper: {
-                    padding: 16,
-                  },
-                }}>
-                <Icon name="menu" size={FONT_SIZE} color={colors.primary} />
-              </MenuTrigger>
-              <MenuOptions
-                customStyles={{
-                  optionsWrapper: {
-                    backgroundColor: colors.menuBackground,
-                  },
-                  optionText: {
-                    fontFamily: 'SemiBold',
-                    color: colors.black,
-                  },
-                  optionWrapper: {
-                    padding: 16,
-                  },
-                }}>
-                {isValid && (
-                  <>
-                    <MenuOption
-                      onSelect={() =>
-                        handleEdit({
-                          id,
-                          startAt,
-                          endAt,
-                        })
-                      }
-                      text={I18n.get('MENU_edit')}
-                    />
-                    <MenuOption
-                      text={I18n.get('MENU_cancel')}
-                      onSelect={this._openCancelDialog}
-                    />
-                  </>
-                )}
-                <MenuOption
-                  text={I18n.get('MENU_duplicate')}
-                  onSelect={handleRepeat}
-                />
-              </MenuOptions>
-            </Menu>
-          )}
+          <Menu>
+            <MenuTrigger
+              customStyles={{
+                triggerWrapper: {
+                  padding: 16,
+                },
+              }}>
+              <Icon name="menu" size={FONT_SIZE} color={colors.primary} />
+            </MenuTrigger>
+            <MenuOptions
+              customStyles={{
+                optionsWrapper: {
+                  backgroundColor: colors.menuBackground,
+                },
+                optionText: {
+                  fontFamily: 'SemiBold',
+                  color: colors.black,
+                },
+                optionWrapper: {
+                  padding: 16,
+                },
+              }}>
+              {isOwner && (
+                <>
+                  {isValid && (
+                    <>
+                      <MenuOption
+                        onSelect={() =>
+                          handleEdit({
+                            id,
+                            startAt,
+                            endAt,
+                          })
+                        }
+                        text={I18n.get('MENU_edit')}
+                      />
+                      <MenuOption
+                        text={I18n.get('MENU_cancel')}
+                        onSelect={this._openCancelDialog}
+                      />
+                    </>
+                  )}
+                  <MenuOption
+                    text={I18n.get('MENU_duplicate')}
+                    onSelect={handleRepeat}
+                  />
+                </>
+              )}
+              <MenuOption text={I18n.get('MENU_mute')} onSelect={() => null} />
+            </MenuOptions>
+          </Menu>
         </Appbar.Header>
         <Details
           id={id}
