@@ -348,7 +348,7 @@ export default {
   DIALOG_openSchedule: 'Unarchive this group?',
   DIALOG_closeSchedule: 'Archive this group?',
   DIALOG_closeScheduleWarning:
-    "If you archive this group, you won't be able to add new events ot it. If you change your mind, you can unarchive it.",
+    "If you archive this group, you won't be able to add new events ot it. You can undo this.",
   DIALOG_deleteEvent: 'Delete this event?',
   DIALOG_deleteSchedule: 'Delete this group?',
   DIALOG_deleteScheduleWarning:
