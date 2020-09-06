@@ -1678,6 +1678,7 @@ export default class styles {
       },
       itemHeadline: {
         fontSize: 18,
+        fontFamily: 'SemiBold',
       },
       itemNote: {
         fontSize: 16,

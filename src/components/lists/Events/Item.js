@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, TouchableOpacity} from 'react-native';
-import {Text, Headline} from 'react-native-paper';
+import {Text, Caption} from 'react-native-paper';
 import Icon from 'components/common/Icon';
 import {inject, observer} from 'mobx-react';
 import Avatar from 'components/common/UserAvatar';
@@ -52,6 +52,7 @@ class Item extends React.Component {
       isMuted,
       isOffline,
       cancelledDates,
+      category,
     } = this.props;
 
     const pictureUrl = banner && getImageUrl(banner);
@@ -93,12 +94,13 @@ class Item extends React.Component {
                 }
               />
             )}
-            <Headline
+            <Text
               style={styles.itemHeadline}
               numberOfLines={1}
               ellipsizeMode="tail">
               {title}
-            </Headline>
+            </Text>
+            <Caption>{category}</Caption>
             <Text style={styles.time}>{time}</Text>
           </View>
         </View>
