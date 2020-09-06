@@ -38,6 +38,7 @@ exports.handler = async (event) => {
           }),
         );
       } else {
+        // create or replace if no geo_point
         requestItems.push(record);
       }
     }
@@ -56,27 +57,33 @@ exports.handler = async (event) => {
   for (let i = 0; i < requestItems.length; i += BATCH_SIZE) {
     const batch = requestItems.slice(i, i + BATCH_SIZE).map((record) => {
       const {
-        // eventName,
+        eventName,
         dynamodb: {
           Keys: {id},
-          // NewImage: Item,
+          NewImage: Item,
         },
       } = record;
-      // if (eventName === 'REMOVE') {
-      return {
-        DeleteRequest: {
-          Key: {
-            id,
+      if (eventName === 'REMOVE') {
+        return {
+          DeleteRequest: {
+            Key: {
+              id,
+            },
           },
-        },
-      };
-      // } else {
-      //   return {
-      //     PutRequest: {
-      //       Item,
-      //     },
-      //   };
-      // }
+        };
+      } else {
+        return {
+          PutRequest: {
+            Item: {
+              ...Item,
+              _match: {
+                // use for searching
+                S: Item.title.S.toLowerCase(),
+              },
+            },
+          },
+        };
+      }
     });
 
     const RequestItems = {
@@ -105,7 +112,13 @@ function transform(record, GeoPoint) {
     RangeKeyValue,
     GeoPoint,
     PutItemInput: {
-      Item,
+      Item: {
+        ...Item,
+        _match: {
+          // use for searching
+          S: Item.title.S.toLowerCase(),
+        },
+      },
     },
   };
 }

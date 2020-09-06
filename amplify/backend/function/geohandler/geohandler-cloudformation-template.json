@@ -99,7 +99,7 @@
         "Timeout": "25",
         "Code": {
           "S3Bucket": "amplify-schdlr-prod-21214-deployment",
-          "S3Key": "amplify-builds/geohandler-734870357951354d5855-build.zip"
+          "S3Key": "amplify-builds/geohandler-415a39495231766b4842-build.zip"
         }
       }
     },
