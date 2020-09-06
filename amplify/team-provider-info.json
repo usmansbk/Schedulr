@@ -27,7 +27,11 @@
         "eventstreamhandler": {},
         "commentstreamhandler": {},
         "schedulestreamhandler": {},
-        "eventspushhandler": {}
+        "eventspushhandler": {},
+        "common": {
+          "deploymentBucketName": "amplify-schdlr-prod-21214-deployment",
+          "s3Key": "amplify-builds/common-build.zip"
+        }
       }
     },
     "nonCFNdata": {
@@ -42,7 +46,8 @@
                 {
                   "type": "private"
                 }
-              ]
+              ],
+              "hash": "8LUvJl5bcc6Nq70bd1HM0L4Odu5zhoSRaEoGT2G1RSs="
             }
           }
         }

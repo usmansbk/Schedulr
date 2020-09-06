@@ -563,6 +563,18 @@
 				}
 			}
 		},
+		"functioncommon": {
+			"Type": "AWS::CloudFormation::Stack",
+			"Properties": {
+				"TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-prod-21214-deployment/amplify-cfn-templates/function/common-awscloudformation-template.json",
+				"Parameters": {
+					"layerVersion": 1,
+					"deploymentBucketName": "amplify-schdlr-prod-21214-deployment",
+					"s3Key": "amplify-builds/common-build.zip",
+					"env": "prod"
+				}
+			}
+		},
 		"UpdateRolesWithIDPFunction": {
 			"DependsOn": [
 				"AuthRole",
