@@ -32,14 +32,26 @@
       "Properties": {
         "AttributeDefinitions": [
           {
-            "AttributeName": "id",
+            "AttributeName": "hashKey",
+            "AttributeType": "N"
+          },
+          {
+            "AttributeName": "rangeKey",
             "AttributeType": "S"
+          },
+          {
+            "AttributeName": "geohash",
+            "AttributeType": "N"
           }
         ],
         "KeySchema": [
           {
-            "AttributeName": "id",
+            "AttributeName": "hashKey",
             "KeyType": "HASH"
+          },
+          {
+            "AttributeName": "rangeKey",
+            "KeyType": "RANGE"
           }
         ],
         "BillingMode": "PAY_PER_REQUEST",
@@ -67,7 +79,25 @@
               ]
             }
           ]
-        }
+        },
+        "LocalSecondaryIndexes": [
+          {
+            "IndexName": "geohash-index",
+            "KeySchema": [
+              {
+                "KeyType": "HASH",
+                "AttributeName": "hashKey"
+              },
+              {
+                "KeyType": "RANGE",
+                "AttributeName": "geohash"
+              }
+            ],
+            "Projection": {
+              "ProjectionType": "ALL"
+            }
+          }
+        ]
       }
     }
   },

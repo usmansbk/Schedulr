@@ -49,7 +49,7 @@ const awsmobile = {
             "region": "us-east-1"
         },
         {
-            "tableName": "GeoTable1-prod",
+            "tableName": "GeoTable-prod",
             "region": "us-east-1"
         }
     ]
