@@ -20,14 +20,7 @@ class Input extends React.Component {
   };
 
   render() {
-    const {
-      value,
-      stores,
-      disabled,
-      onValueChange,
-      onBlur,
-      data = [],
-    } = this.props;
+    const {value, disabled, onValueChange, onBlur, data = []} = this.props;
     const customType = I18n.get('SELECT_customType');
 
     const items = [{value: customValue, label: customType}].concat(
