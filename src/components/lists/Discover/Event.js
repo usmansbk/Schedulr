@@ -9,6 +9,7 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     paddingHorizontal: 12,
+    marginBottom: 8,
   },
   title: {
     fontSize: 18,
@@ -25,9 +26,9 @@ const styles = StyleSheet.create({
   },
   footer: {
     alignItems: 'center',
-    justifyContent: 'flex-end',
+    justifyContent: 'center',
   },
-  date: {color: 'red'},
+  date: {color: 'red', fontSize: 16},
   button: {
     backgroundColor: 'white',
     width: dp(48),
@@ -64,12 +65,14 @@ export default class EventItem extends React.Component {
     return (
       <TouchableOpacity onPress={this._onPress}>
         <View style={styles.container}>
-          <Image
-            defaultSource={require('../../../assets/placeholder.png')}
-            resizeMode="cover"
-            style={styles.image}
-            source={source}
-          />
+          <TouchableOpacity onPress={this._onPressAvatar}>
+            <Image
+              defaultSource={require('../../../assets/placeholder.png')}
+              resizeMode="cover"
+              style={styles.image}
+              source={source}
+            />
+          </TouchableOpacity>
           <View style={styles.body}>
             <Text style={styles.date}>{date}</Text>
             <Text style={styles.title} numberOfLines={2}>
