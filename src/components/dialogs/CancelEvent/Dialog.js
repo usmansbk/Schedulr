@@ -32,9 +32,10 @@ class CancelEvent extends React.Component {
       cancelEvent,
       deleteEvent,
       cancelledDates,
+      isSingle,
     } = this.props;
     const {checked} = this.state;
-    if (checked === SINGLE_EVENT) {
+    if (checked === SINGLE_EVENT && !isSingle) {
       const input = {
         id,
         cancelledDates: Array.from(new Set([...cancelledDates, date])),
