@@ -453,7 +453,7 @@ export default {
     'Travel & Outdoor',
   ],
   personalSchedule: {
-    name: 'Personal List 📝',
+    name: 'Personal events',
     description: 'My appointments.',
     isPublic: false,
   },
