@@ -18,21 +18,34 @@ exports.handler = async (event) => {
   const {Records} = event;
 
   const putItems = [];
+  const deleteItems = [];
 
   Records.forEach((record) => {
     const {
       eventName,
-      dynamodb: {NewImage},
+      dynamodb: {NewImage, OldImage},
     } = record;
-    const {geo_point, isPublic, banner} = NewImage;
-    const publicEvent = isPublic && isPublic.BOOL;
-    if (publicEvent && banner && geo_point) {
-      putItems.push(
-        transform(record, {
-          latitude: Number(geo_point.M.lat.N),
-          longitude: Number(geo_point.M.lon.N),
-        }),
-      );
+    if (eventName === 'REMOVE') {
+      const {geo_point} = OldImage;
+      if (geo_point) {
+        deleteItems.push(
+          transformDelete(record, {
+            latitude: Number(geo_point.M.lat.N),
+            longitude: Number(geo_point.M.lon.N),
+          }),
+        );
+      }
+    } else {
+      const {geo_point, isPublic, banner} = NewImage;
+      const publicEvent = isPublic && isPublic.BOOL;
+      if (publicEvent && banner && geo_point) {
+        putItems.push(
+          transform(record, {
+            latitude: Number(geo_point.M.lat.N),
+            longitude: Number(geo_point.M.lon.N),
+          }),
+        );
+      }
     }
   });
 
@@ -48,6 +61,20 @@ exports.handler = async (event) => {
 
   return 'Successfully processed DynamoDB record';
 };
+
+function transformDelete(record) {
+  const {
+    dynamodb: {
+      Keys: {id: RangeKeyValue},
+      OldImage: Item,
+    },
+  } = record;
+  return {
+    RangeKeyValue,
+    GeoPoint,
+    DeleteItemInput: {},
+  };
+}
 
 function transform(record, GeoPoint) {
   const {
