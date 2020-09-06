@@ -41,7 +41,7 @@
         "OAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"schdlr://\"],\"LogoutURLs\":[\"schdlr://\"]}",
         "UserPoolName": "schdlr1428cab7_userpool_1428cab7"
       },
-      "lastPushTimeStamp": "2020-09-06T00:24:11.993Z",
+      "lastPushTimeStamp": "2020-09-06T00:30:44.378Z",
       "providerMetadata": {
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-prod-21214-deployment/amplify-cfn-templates/auth/schdlr1428cab7-cloudformation-template.yml",
         "logicalId": "authschdlr1428cab7"
@@ -70,7 +70,7 @@
         "GraphQLAPIIdOutput": "wb4flhdy5bfdjppc5l6kyzr63y",
         "GraphQLAPIEndpointOutput": "https://adeesfck7fhmxjpl47t5oklbue.appsync-api.us-east-1.amazonaws.com/graphql"
       },
-      "lastPushTimeStamp": "2020-09-06T00:24:12.003Z",
+      "lastPushTimeStamp": "2020-09-06T00:30:44.385Z",
       "providerMetadata": {
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-prod-21214-deployment/amplify-cfn-templates/api/cloudformation-template.json",
         "logicalId": "apischdlr"
@@ -86,7 +86,7 @@
         "BucketName": "schdlrassets-prod",
         "Region": "us-east-1"
       },
-      "lastPushTimeStamp": "2020-09-06T00:24:12.009Z",
+      "lastPushTimeStamp": "2020-09-06T00:30:44.394Z",
       "providerMetadata": {
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-prod-21214-deployment/amplify-cfn-templates/storage/s3-cloudformation-template.json",
         "logicalId": "storageschdlr"
@@ -106,7 +106,7 @@
         "PartitionKeyType": "S",
         "Name": "Bookmark-delta-prod"
       },
-      "lastPushTimeStamp": "2020-09-06T00:24:12.018Z",
+      "lastPushTimeStamp": "2020-09-06T00:30:44.403Z",
       "providerMetadata": {
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-prod-21214-deployment/amplify-cfn-templates/storage/bookmarkdelta-cloudformation-template.json",
         "logicalId": "storagebookmarkdelta"
@@ -126,7 +126,7 @@
         "PartitionKeyType": "S",
         "Name": "Comment-delta-prod"
       },
-      "lastPushTimeStamp": "2020-09-06T00:24:12.025Z",
+      "lastPushTimeStamp": "2020-09-06T00:30:44.411Z",
       "providerMetadata": {
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-prod-21214-deployment/amplify-cfn-templates/storage/commentdelta-cloudformation-template.json",
         "logicalId": "storagecommentdelta"
@@ -146,7 +146,7 @@
         "PartitionKeyType": "S",
         "Name": "Event-delta-prod"
       },
-      "lastPushTimeStamp": "2020-09-06T00:24:12.033Z",
+      "lastPushTimeStamp": "2020-09-06T00:30:44.421Z",
       "providerMetadata": {
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-prod-21214-deployment/amplify-cfn-templates/storage/eventdelta-cloudformation-template.json",
         "logicalId": "storageeventdelta"
@@ -166,7 +166,7 @@
         "PartitionKeyType": "S",
         "Name": "Follow-delta-prod"
       },
-      "lastPushTimeStamp": "2020-09-06T00:24:12.042Z",
+      "lastPushTimeStamp": "2020-09-06T00:30:44.427Z",
       "providerMetadata": {
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-prod-21214-deployment/amplify-cfn-templates/storage/followdelta-cloudformation-template.json",
         "logicalId": "storagefollowdelta"
@@ -186,7 +186,7 @@
         "PartitionKeyType": "S",
         "Name": "Schedule-delta-prod"
       },
-      "lastPushTimeStamp": "2020-09-06T00:24:12.051Z",
+      "lastPushTimeStamp": "2020-09-06T00:30:44.459Z",
       "providerMetadata": {
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-prod-21214-deployment/amplify-cfn-templates/storage/scheduledelta-cloudformation-template.json",
         "logicalId": "storagescheduledelta"
@@ -200,7 +200,7 @@
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-prod-21214-deployment/amplify-cfn-templates/storage/geotable-cloudformation-template.json",
         "logicalId": "storagegeotable"
       },
-      "lastPushTimeStamp": "2020-09-06T00:24:12.059Z",
+      "lastPushTimeStamp": "2020-09-06T00:30:44.473Z",
       "output": {
         "PartitionKeyName": "id",
         "Region": "us-east-1",
@@ -223,15 +223,24 @@
         "Name": "QueryNotifications-prod",
         "LambdaExecutionRole": "schdlrLambdaRolef28f203e-prod"
       },
-      "lastPushTimeStamp": "2020-09-06T00:24:12.069Z",
+      "lastPushTimeStamp": "2020-09-06T00:30:44.582Z",
       "providerMetadata": {
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-prod-21214-deployment/amplify-cfn-templates/function/notificationsresolver-cloudformation-template.json",
         "logicalId": "functionnotificationsresolver"
       },
-      "lastBuildTimeStamp": "2020-09-05T00:25:25.617Z",
-      "lastPackageTimeStamp": "2020-09-05T00:25:49.564Z",
-      "distZipFilename": "notificationsresolver-482b333233774b62624f-build.zip",
-      "lastPushDirHash": "B2oyNI6Fy0dY2TQs75VZyhk1+KA="
+      "lastBuildTimeStamp": "2020-09-06T00:28:57.977Z",
+      "lastPackageTimeStamp": "2020-09-06T00:28:58.085Z",
+      "distZipFilename": "notificationsresolver-51464e54414f49655748-build.zip",
+      "lastPushDirHash": "dBvEAFI3DhmMsMiMCqYj++pxn60=",
+      "dependsOn": [
+        {
+          "category": "function",
+          "resourceName": "common",
+          "attributes": [
+            "Arn"
+          ]
+        }
+      ]
     },
     "deltasyncresolver": {
       "service": "Lambda",
@@ -243,7 +252,7 @@
         "Name": "QueryDeltaSync-prod",
         "LambdaExecutionRole": "schdlrLambdaRoleeb76f572-prod"
       },
-      "lastPushTimeStamp": "2020-09-06T00:24:12.078Z",
+      "lastPushTimeStamp": "2020-09-06T00:30:44.490Z",
       "providerMetadata": {
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-prod-21214-deployment/amplify-cfn-templates/function/deltasyncresolver-cloudformation-template.json",
         "logicalId": "functiondeltasyncresolver"
@@ -289,7 +298,7 @@
         "Name": "BookmarkStreamHandler-prod",
         "LambdaExecutionRole": "schdlrLambdaRole5d039e73-prod"
       },
-      "lastPushTimeStamp": "2020-09-06T00:24:12.160Z",
+      "lastPushTimeStamp": "2020-09-06T00:30:44.502Z",
       "providerMetadata": {
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-prod-21214-deployment/amplify-cfn-templates/function/bookmarkstreamhandler-cloudformation-template.json",
         "logicalId": "functionbookmarkstreamhandler"
@@ -326,7 +335,7 @@
         "Name": "FollowStreamHandler-prod",
         "LambdaExecutionRole": "schdlrLambdaRole4c66a472-prod"
       },
-      "lastPushTimeStamp": "2020-09-06T00:24:12.160Z",
+      "lastPushTimeStamp": "2020-09-06T00:30:44.509Z",
       "providerMetadata": {
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-prod-21214-deployment/amplify-cfn-templates/function/followstreamhandler-cloudformation-template.json",
         "logicalId": "functionfollowstreamhandler"
@@ -363,7 +372,7 @@
         "Name": "EventStreamHandler-prod",
         "LambdaExecutionRole": "schdlrLambdaRolecce1b8ff-prod"
       },
-      "lastPushTimeStamp": "2020-09-06T00:24:12.160Z",
+      "lastPushTimeStamp": "2020-09-06T00:30:44.515Z",
       "providerMetadata": {
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-prod-21214-deployment/amplify-cfn-templates/function/eventstreamhandler-cloudformation-template.json",
         "logicalId": "functioneventstreamhandler"
@@ -400,7 +409,7 @@
         "Name": "CommentStreamHandler-prod",
         "LambdaExecutionRole": "schdlrLambdaRoleef5e4159-prod"
       },
-      "lastPushTimeStamp": "2020-09-06T00:24:12.160Z",
+      "lastPushTimeStamp": "2020-09-06T00:30:44.521Z",
       "providerMetadata": {
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-prod-21214-deployment/amplify-cfn-templates/function/commentstreamhandler-cloudformation-template.json",
         "logicalId": "functioncommentstreamhandler"
@@ -437,7 +446,7 @@
         "Name": "ScheduleStreamHandler-prod",
         "LambdaExecutionRole": "schdlrLambdaRole8cb48518-prod"
       },
-      "lastPushTimeStamp": "2020-09-06T00:24:12.160Z",
+      "lastPushTimeStamp": "2020-09-06T00:30:44.528Z",
       "providerMetadata": {
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-prod-21214-deployment/amplify-cfn-templates/function/schedulestreamhandler-cloudformation-template.json",
         "logicalId": "functionschedulestreamhandler"
@@ -457,7 +466,7 @@
         "Name": "CommentsPushNotificationsHandler-prod",
         "LambdaExecutionRole": "schdlrLambdaRoleffdadfe7-prod"
       },
-      "lastPushTimeStamp": "2020-09-06T00:24:12.160Z",
+      "lastPushTimeStamp": "2020-09-06T00:30:44.535Z",
       "providerMetadata": {
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-prod-21214-deployment/amplify-cfn-templates/function/commentspushhandler-cloudformation-template.json",
         "logicalId": "functioncommentspushhandler"
@@ -486,7 +495,7 @@
         "Name": "EventsPushNotificationsHandler-prod",
         "LambdaExecutionRole": "schdlrLambdaRole88bc1ed8-prod"
       },
-      "lastPushTimeStamp": "2020-09-06T00:24:12.160Z",
+      "lastPushTimeStamp": "2020-09-06T00:30:44.543Z",
       "providerMetadata": {
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-prod-21214-deployment/amplify-cfn-templates/function/eventspushhandler-cloudformation-template.json",
         "logicalId": "functioneventspushhandler"
@@ -541,7 +550,7 @@
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-prod-21214-deployment/amplify-cfn-templates/function/geohandler-cloudformation-template.json",
         "logicalId": "functiongeohandler"
       },
-      "lastPushTimeStamp": "2020-09-06T00:24:12.160Z",
+      "lastPushTimeStamp": "2020-09-06T00:30:44.549Z",
       "output": {
         "Region": "us-east-1",
         "Arn": "arn:aws:lambda:us-east-1:900820753842:function:GeoDBHandler-prod",
@@ -578,7 +587,7 @@
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-prod-21214-deployment/amplify-cfn-templates/function/querynearbyresolver-cloudformation-template.json",
         "logicalId": "functionquerynearbyresolver"
       },
-      "lastPushTimeStamp": "2020-09-06T00:24:12.160Z",
+      "lastPushTimeStamp": "2020-09-06T00:30:44.556Z",
       "output": {
         "Region": "us-east-1",
         "Arn": "arn:aws:lambda:us-east-1:900820753842:function:QueryNearByEventsResolver-prod",
@@ -614,7 +623,7 @@
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-prod-21214-deployment/amplify-cfn-templates/function/common-awscloudformation-template.json",
         "logicalId": "functioncommon"
       },
-      "lastPushTimeStamp": "2020-09-06T00:24:12.145Z",
+      "lastPushTimeStamp": "2020-09-06T00:30:44.563Z",
       "output": {
         "Region": "us-east-1",
         "Arn": "arn:aws:lambda:us-east-1:900820753842:layer:common-prod:1"

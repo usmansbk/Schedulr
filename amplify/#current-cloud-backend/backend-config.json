@@ -61,7 +61,16 @@
     "notificationsresolver": {
       "service": "Lambda",
       "providerPlugin": "awscloudformation",
-      "build": true
+      "build": true,
+      "dependsOn": [
+        {
+          "category": "function",
+          "resourceName": "common",
+          "attributes": [
+            "Arn"
+          ]
+        }
+      ]
     },
     "deltasyncresolver": {
       "service": "Lambda",

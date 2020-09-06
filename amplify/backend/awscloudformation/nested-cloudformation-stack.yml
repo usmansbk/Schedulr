@@ -295,6 +295,12 @@
 					"gsiFollowingSchedulesKey": "followScheduleId",
 					"gsiScheduleComments": "gsi-ScheduleComments",
 					"gsiScheduleCommentsKey": "commentScheduleId",
+					"functioncommonArn": {
+						"Fn::GetAtt": [
+							"functioncommon",
+							"Outputs.Arn"
+						]
+					},
 					"env": "prod"
 				}
 			}
