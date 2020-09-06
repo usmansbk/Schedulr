@@ -17,12 +17,19 @@ const manager = new ddbGeo.GeoDataManager(config);
 
 exports.handler = async (event) => {
   console.log(JSON.stringify(event, null, 2));
+  const {arguments} = event;
+  const {filter = {}, limit = 50, nextToken} = arguments;
+  const {
+    location: {lat: latitude, lon: longitude},
+    km: radius = 100,
+  } = filter;
+
   try {
     const result = await manager.queryRadius({
-      RadiusInMeter: 1000,
+      RadiusInMeter: radius * 1000,
       CenterPoint: {
-        latitude: 52.22573,
-        longitude: 0.149593,
+        latitude,
+        longitude,
       },
     });
     console.log(result);

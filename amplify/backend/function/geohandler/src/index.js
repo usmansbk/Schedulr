@@ -14,8 +14,6 @@ const manager = new ddbGeo.GeoDataManager(config);
 const BATCH_SIZE = 25;
 
 exports.handler = async (event) => {
-  //eslint-disable-line
-  console.log(JSON.stringify(event, null, 2));
   const {Records} = event;
 
   const putItems = [];
@@ -29,8 +27,15 @@ exports.handler = async (event) => {
     if (eventName === 'REMOVE') {
       requestItems.push(record);
     } else {
-      const {geo_point} = NewImage;
-      if (geo_point && geo_point.M && geo_point.M.lon && geo_point.M.lat) {
+      const {geo_point, isPublic} = NewImage;
+      const publicEvent = isPublic && isPublic.BOOL;
+      if (
+        publicEvent &&
+        geo_point &&
+        geo_point.M &&
+        geo_point.M.lon &&
+        geo_point.M.lat
+      ) {
         putItems.push(
           transform(record, {
             latitude: Number(geo_point.M.lat.N),
