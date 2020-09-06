@@ -258,7 +258,7 @@ export default {
   HELPER_TEXT_passwordRequired: 'Password required',
   HELPER_TEXT_passwordLength: 'Password must be at least 8 characters',
   HELPER_TEXT_muted: 'Muted',
-  HELPER_TEXT_youHaveMutedEvent: 'You have muted this event reminder',
+  HELPER_TEXT_youHaveMutedEvent: 'You have muted this group events reminder',
 
   SCHEDULE: 'GROUP',
   SCHEDULE_public: 'Public group',
