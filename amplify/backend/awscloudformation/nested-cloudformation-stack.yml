@@ -127,6 +127,7 @@
 			"Properties": {
 				"TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-prod-21214-deployment/amplify-cfn-templates/api/cloudformation-template.json",
 				"Parameters": {
+					"CreateAPIKey": 0,
 					"AppSyncApiName": "schdlr",
 					"DynamoDBBillingMode": "PAY_PER_REQUEST",
 					"DynamoDBEnableServerSideEncryption": "false",
@@ -137,7 +138,7 @@
 						]
 					},
 					"S3DeploymentBucket": "amplify-schdlr-prod-21214-deployment",
-					"S3DeploymentRootKey": "amplify-appsync-files/97d50f5dd898bffda1dda0885dbac1ab5bd8b05f",
+					"S3DeploymentRootKey": "amplify-appsync-files/f0ad3cde08ef244b45c3880797b60881f249a8b1",
 					"env": "prod"
 				}
 			}

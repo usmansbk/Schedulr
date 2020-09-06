@@ -27,13 +27,81 @@
     }
   },
   "Resources": {
+    "EchoLambdaDataSource": {
+      "Type": "AWS::AppSync::DataSource",
+      "Properties": {
+        "ApiId": {
+          "Ref": "AppSyncApiId"
+        },
+        "Name": "QueryNearByEventsResolver",
+        "Type": "AWS_LAMBDA",
+        "ServiceRoleArn": {
+          "Fn::GetAtt": ["EchoLambdaDataSourceRole", "Arn"]
+        },
+        "LambdaConfig": {
+          "LambdaFunctionArn": {
+            "Fn::Sub": [
+              "arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:QueryNearByEventsResolver-${env}",
+              {"env": {"Ref": "env"}}
+            ]
+          }
+        }
+      }
+    },
+    "EchoLambdaDataSourceRole": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "RoleName": {
+          "Fn::Sub": [
+            "EchoLambdaDataSourceRole-${env}",
+            {"env": {"Ref": "env"}}
+          ]
+        },
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "appsync.amazonaws.com"
+              },
+              "Action": "sts:AssumeRole"
+            }
+          ]
+        },
+        "Policies": [
+          {
+            "PolicyName": "InvokeLambdaFunction",
+            "PolicyDocument": {
+              "Version": "2012-10-17",
+              "Statement": [
+                {
+                  "Effect": "Allow",
+                  "Action": ["lambda:invokeFunction"],
+                  "Resource": [
+                    {
+                      "Fn::Sub": [
+                        "arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:QueryNearByEventsResolver-${env}",
+                        {"env": {"Ref": "env"}}
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
     "QueryNearbyEvents": {
       "Type": "AWS::AppSync::Resolver",
       "Properties": {
         "ApiId": {
           "Ref": "AppSyncApiId"
         },
-        "DataSourceName": "ElasticSearchDomain",
+        "DataSourceName": {
+          "Fn::GetAtt": ["EchoLambdaDataSource", "Name"]
+        },
         "TypeName": "Query",
         "FieldName": "nearbyEvents",
         "RequestMappingTemplateS3Location": {
