@@ -57,7 +57,7 @@ class CancelEvent extends React.Component {
   _toggleSingle = () => this.setState({checked: SINGLE_EVENT});
 
   render() {
-    const {date, stores, cancelledDates} = this.props;
+    const {date, stores, cancelledDates, isSingle} = this.props;
     const {checked} = this.state;
     const styles = stores.styles.sheet;
     const isCancelled = cancelledDates && cancelledDates.includes(date);
@@ -65,31 +65,37 @@ class CancelEvent extends React.Component {
     return (
       <RBSheet
         ref={this._confirmRef}
-        height={350}
+        height={isSingle ? 200 : 350}
         closeOnDragDown
         customStyles={{
           container: styles.container,
         }}>
-        <View style={{justifyContent: 'center', flex: 1}}>
+        <View
+          style={{
+            justifyContent: 'space-between',
+            flex: 1,
+          }}>
           <View style={(styles.header, {alignItems: 'center'})}>
             <Text style={styles.title}>{I18n.get('DIALOG_cancelEvent')}</Text>
           </View>
-          <View style={{flex: 1, padding: 40}}>
-            {!isCancelled && (
+          {!isSingle && (
+            <View style={{flex: 1, padding: 40}}>
+              {!isCancelled && (
+                <RadioButton
+                  label={I18n.get('DIALOG_onlyThisEvent')}
+                  checked={checked === SINGLE_EVENT}
+                  textStyle={styles.message}
+                  onPress={this._toggleSingle}
+                />
+              )}
               <RadioButton
-                label={I18n.get('DIALOG_onlyThisEvent')}
-                checked={checked === SINGLE_EVENT}
+                checked={checked === ALL_EVENTS}
+                label={I18n.get('DIALOG_allOfThisEvent')}
                 textStyle={styles.message}
-                onPress={this._toggleSingle}
+                onPress={this._toggleAll}
               />
-            )}
-            <RadioButton
-              checked={checked === ALL_EVENTS}
-              label={I18n.get('DIALOG_allOfThisEvent')}
-              textStyle={styles.message}
-              onPress={this._toggleAll}
-            />
-          </View>
+            </View>
+          )}
           <View style={styles.footer}>
             <Button onPress={this._handleDismiss}>
               {I18n.get('BUTTON_dismiss')}
