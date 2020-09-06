@@ -9,7 +9,7 @@ import {
   MenuOption,
 } from 'react-native-popup-menu';
 import numeral from 'numeral';
-import {Appbar, Text} from 'react-native-paper';
+import {Appbar, Text, Caption} from 'react-native-paper';
 import Icon from 'components/common/Icon';
 import Hyperlink from 'react-native-hyperlink';
 import {inject, observer} from 'mobx-react';
@@ -53,6 +53,10 @@ class Info extends React.Component {
     );
   };
 
+  _onMute = () => {
+    this.props.stores.appState.toggleMuteSchedule(this.props.schedule.id);
+  };
+
   shouldComponentUpdate = (nextProps, nextState) =>
     nextState.display !== this.state.display ||
     nextProps.schedule.updatedAt !== this.props.schedule.updatedAt ||
@@ -87,6 +91,8 @@ class Info extends React.Component {
           caption={I18n.get('ERROR_404_caption')}
         />
       );
+
+    const isMuted = stores.appState.mutedSchedules.includes(schedule.id);
 
     const {
       id,
@@ -137,52 +143,58 @@ class Info extends React.Component {
               onPress={() => handleShare({name, description, id})}
             />
           )}
-          {isOwner && (
-            <Menu>
-              <MenuTrigger
-                customStyles={{
-                  triggerWrapper: {
-                    padding: 16,
-                  },
-                }}>
-                <Icon name="menu" color={colors.primary} size={24} />
-              </MenuTrigger>
-              <MenuOptions
-                customStyles={{
-                  optionsWrapper: {
-                    backgroundColor: colors.menuBackground,
-                  },
-                  optionText: {
-                    fontFamily: 'SemiBold',
-                    color: colors.black,
-                  },
-                  optionWrapper: {
-                    padding: 16,
-                  },
-                }}>
-                {!isClosed && (
-                  <MenuOption
-                    text={I18n.get('MENU_edit')}
-                    onSelect={this._onEdit}
-                  />
-                )}
-                {!isPersonal && (
-                  <>
+          <Menu>
+            <MenuTrigger
+              customStyles={{
+                triggerWrapper: {
+                  padding: 16,
+                },
+              }}>
+              <Icon name="menu" color={colors.primary} size={24} />
+            </MenuTrigger>
+            <MenuOptions
+              customStyles={{
+                optionsWrapper: {
+                  backgroundColor: colors.menuBackground,
+                },
+                optionText: {
+                  fontFamily: 'SemiBold',
+                  color: colors.black,
+                },
+                optionWrapper: {
+                  padding: 16,
+                },
+              }}>
+              {isOwner && (
+                <>
+                  {!isClosed && (
                     <MenuOption
-                      text={I18n.get(
-                        `MENU_${isClosed ? 'unarchive' : 'archive'}`,
-                      )}
-                      onSelect={this._onArchive}
+                      text={I18n.get('MENU_edit')}
+                      onSelect={this._onEdit}
                     />
-                    <MenuOption
-                      text={I18n.get('MENU_delete')}
-                      onSelect={this._onDelete}
-                    />
-                  </>
-                )}
-              </MenuOptions>
-            </Menu>
-          )}
+                  )}
+                  {!isPersonal && (
+                    <>
+                      <MenuOption
+                        text={I18n.get(
+                          `MENU_${isClosed ? 'unarchive' : 'archive'}`,
+                        )}
+                        onSelect={this._onArchive}
+                      />
+                      <MenuOption
+                        text={I18n.get('MENU_delete')}
+                        onSelect={this._onDelete}
+                      />
+                    </>
+                  )}
+                </>
+              )}
+              <MenuOption
+                text={I18n.get(`MENU_${isMuted ? 'unmute' : 'mute'}`)}
+                onSelect={this._onMute}
+              />
+            </MenuOptions>
+          </Menu>
         </Appbar.Header>
         <ScrollView
           style={styles.container}
@@ -256,6 +268,9 @@ class Info extends React.Component {
               </TouchableOpacity>
             </View>
             <View style={styles.body}>
+              {isMuted && (
+                <Caption>{I18n.get('HELPER_TEXT_youHaveMutedEvent')}</Caption>
+              )}
               {Boolean(topic) && (
                 <View style={stores.styles.eventDetails.item}>
                   <Text style={stores.styles.eventDetails.label}>

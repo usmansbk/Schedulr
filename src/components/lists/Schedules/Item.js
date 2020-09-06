@@ -4,7 +4,6 @@ import {Text, Caption} from 'react-native-paper';
 import Icon from 'components/common/Icon';
 import {inject, observer} from 'mobx-react';
 import UserAvatar from 'components/common/UserAvatar';
-import ActionSheet from 'components/actionsheet/Schedule';
 import Badge from 'components/common/Badge';
 import {schedules} from 'lib/constants';
 
@@ -12,15 +11,6 @@ const {AVATAR_SIZE} = schedules;
 
 class Item extends React.Component {
   _onPress = () => this.props.onPressItem(this.props.id);
-  _onLongPress = () => {
-    this.ActionSheet && this.ActionSheet.getWrappedInstance().showActionSheet();
-  };
-  _onMute = () => {
-    this.props.stores.appState.toggleMuteSchedule(
-      this.props.id,
-      this.props.isMuted,
-    );
-  };
   _navigateToInfo = () => this.props.navigateToScheduleInfo(this.props.id);
   shouldComponentUpdate = (nextProps) => {
     return (
@@ -32,7 +22,6 @@ class Item extends React.Component {
 
   render() {
     const {
-      id,
       name,
       description,
       topic,
@@ -42,7 +31,6 @@ class Item extends React.Component {
       authorName,
       stores,
       isMuted,
-      isFollowing,
       isOffline,
       isOwner,
     } = this.props;
@@ -50,10 +38,7 @@ class Item extends React.Component {
     const styles = stores.styles.schedulesList;
 
     return (
-      <TouchableOpacity
-        style={styles.itemContainer}
-        onPress={this._onPress}
-        onLongPress={this._onLongPress}>
+      <TouchableOpacity style={styles.itemContainer} onPress={this._onPress}>
         <View style={styles.itemContent}>
           <UserAvatar
             onPress={this._navigateToInfo}
@@ -99,14 +84,6 @@ class Item extends React.Component {
               </Caption>
             )}
           </View>
-          <ActionSheet
-            id={id}
-            title={name}
-            isMuted={isMuted}
-            isFollowing={isFollowing}
-            ref={(ref) => (this.ActionSheet = ref)}
-            onMute={this._onMute}
-          />
         </View>
       </TouchableOpacity>
     );

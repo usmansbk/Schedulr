@@ -116,7 +116,8 @@ export default class AppState {
     return isMuted;
   };
 
-  @action toggleMuteSchedule = (mutedId, isMuted) => {
+  @action toggleMuteSchedule = (mutedId) => {
+    const isMuted = this.mutedSchedules.includes(mutedId);
     if (isMuted) {
       this.mutedSchedules = this.mutedSchedules.filter((id) => id !== mutedId);
     } else {
