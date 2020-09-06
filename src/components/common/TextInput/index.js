@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, TextInput, StyleSheet, Text} from 'react-native';
-import {TextInput as PaperInput, useTheme} from 'react-native-paper';
+import {TextInput as PaperInput} from 'react-native-paper';
 import {inject, observer} from 'mobx-react';
 import {dark as colors} from 'config/colors';
 
