@@ -18,7 +18,7 @@ const manager = new ddbGeo.GeoDataManager(config);
 exports.handler = async (event) => {
   console.log(JSON.stringify(event, null, 2));
   const {arguments} = event;
-  const {filter = {}, limit = 50, nextToken} = arguments;
+  const {filter = {}, limit = 50, nextToken = 0} = arguments;
   const {
     location: {lat: latitude, lon: longitude},
     km: radius = 100,
@@ -32,7 +32,16 @@ exports.handler = async (event) => {
         longitude,
       },
     });
-    console.log(result);
+    const start = nextToken ? Number(nextToken) : 0;
+    const end = start + Number(limit);
+
+    const paginated = result.slice(start, end);
+    console.log(paginated);
+    return {
+      items: paginated.map(AWS.DynamoDB.Converter.unmarshall),
+      nextToken: start + paginated.length + 1,
+      total: paginated.length,
+    };
   } catch (error) {
     console.log('Error %>', error.message);
   }
