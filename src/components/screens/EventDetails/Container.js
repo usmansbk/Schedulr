@@ -31,7 +31,12 @@ class EventDetails extends React.Component {
       .getWrappedInstance()
       .wrappedInstance.wrappedInstance.open();
 
-  _handleMute = () => {};
+  _handleMute = () => {
+    this.props.stores.appState.toggleMute(
+      this.props.event.id,
+      this.props.event.schedule.id,
+    );
+  };
 
   componentDidMount = () => {
     this.displayTimer = setTimeout(
@@ -107,6 +112,7 @@ class EventDetails extends React.Component {
 
     const colors = stores.theme.colors;
     const styles = stores.styles.appStyles;
+    const isMuted = stores.appState.isEventMuted(event.id);
     const pictureUrl = banner && getImageUrl(banner, 320);
     const isFollowing = schedule && schedule.isFollowing;
 
@@ -172,7 +178,7 @@ class EventDetails extends React.Component {
                 </>
               )}
               <MenuOption
-                text={I18n.get('MENU_mute')}
+                text={I18n.get(`MENU${isMuted ? '_unmute' : '_mute'}`)}
                 onSelect={this._handleMute}
               />
             </MenuOptions>
@@ -188,6 +194,7 @@ class EventDetails extends React.Component {
           recurrence={recurrence}
           category={category}
           address={venue}
+          isMuted={isMuted}
           isPublic={isPublic}
           isOffline={isOffline}
           publicSchedule={schedule && schedule.isPublic}

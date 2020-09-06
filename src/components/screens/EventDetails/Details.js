@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {View, ScrollView} from 'react-native';
-import {Text, Headline, Divider} from 'react-native-paper';
+import {Text, Headline, Divider, Caption} from 'react-native-paper';
 import Hyperlink from 'react-native-hyperlink';
 import {inject, observer} from 'mobx-react';
 import numeral from 'numeral';
@@ -33,6 +33,7 @@ export default inject('stores')(
       startAt,
       endAt,
       allDay,
+      isMuted,
       isOffline,
       isBookmarked,
       cancelledDates,
@@ -67,6 +68,7 @@ export default inject('stores')(
           <ScrollView style={stores.styles.eventDetails.bg}>
             <View style={stores.styles.eventDetails.content}>
               <View style={stores.styles.eventDetails.head}>
+                {isMuted && <Caption>{I18n.get('HELPER_TEXT_muted')}</Caption>}
                 <View style={stores.styles.eventDetails.headNote}>
                   <Tag status={status} />
                 </View>

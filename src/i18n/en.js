@@ -257,6 +257,7 @@ export default {
   HELPER_TEXT_codeRequired: 'Code required',
   HELPER_TEXT_passwordRequired: 'Password required',
   HELPER_TEXT_passwordLength: 'Password must be at least 8 characters',
+  HELPER_TEXT_muted: 'Muted',
 
   SCHEDULE: 'GROUP',
   SCHEDULE_public: 'Public group',
