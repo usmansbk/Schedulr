@@ -27,7 +27,6 @@ exports.handler = async (event) => {
     const {geo_point, isPublic, banner} = NewImage;
     const publicEvent = isPublic && isPublic.BOOL;
     if (publicEvent && banner && geo_point) {
-      console.log(record);
       putItems.push(
         transform(record, {
           latitude: Number(geo_point.M.lat.N),
