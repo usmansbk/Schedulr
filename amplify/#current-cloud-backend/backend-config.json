@@ -251,6 +251,13 @@
           "attributes": [
             "Arn"
           ]
+        },
+        {
+          "category": "function",
+          "resourceName": "common",
+          "attributes": [
+            "Arn"
+          ]
         }
       ]
     },
@@ -264,6 +271,13 @@
           "resourceName": "geotable",
           "attributes": [
             "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "function",
+          "resourceName": "common",
+          "attributes": [
             "Arn"
           ]
         },
