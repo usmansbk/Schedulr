@@ -317,6 +317,12 @@
 					"gsiUserBookmarksKey": "bookmarkUserId",
 					"gsiFollowingScheduleEvents": "gsi-FollowingScheduleEvents",
 					"gsiFollowingScheduleEventsKey": "eventScheduleId",
+					"functioncommonArn": {
+						"Fn::GetAtt": [
+							"functioncommon",
+							"Outputs.Arn"
+						]
+					},
 					"env": "prod"
 				}
 			}
