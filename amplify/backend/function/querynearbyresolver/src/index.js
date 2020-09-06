@@ -25,7 +25,7 @@ exports.handler = async (event) => {
   const {filter = {}, limit = 50, nextToken = 0} = arguments;
   const {
     location: {lat: latitude, lon: longitude},
-    category = inputCategory,
+    category: inputCategory,
     km: radius = 100,
   } = filter;
 
