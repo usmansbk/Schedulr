@@ -18,30 +18,22 @@ exports.handler = async (event) => {
   const {Records} = event;
 
   const putItems = [];
-  const requestItems = [];
 
   Records.forEach((record) => {
     const {
       eventName,
       dynamodb: {NewImage},
     } = record;
-    if (eventName === 'REMOVE') {
-      requestItems.push(record);
-    } else {
-      const {geo_point, isPublic, banner} = NewImage;
-      const publicEvent = isPublic && isPublic.BOOL;
-      if (publicEvent && banner && geo_point) {
-        console.log(record);
-        putItems.push(
-          transform(record, {
-            latitude: Number(geo_point.M.lat.N),
-            longitude: Number(geo_point.M.lon.N),
-          }),
-        );
-      } else {
-        // create or replace if no geo_point
-        requestItems.push(record);
-      }
+    const {geo_point, isPublic, banner} = NewImage;
+    const publicEvent = isPublic && isPublic.BOOL;
+    if (publicEvent && banner && geo_point) {
+      console.log(record);
+      putItems.push(
+        transform(record, {
+          latitude: Number(geo_point.M.lat.N),
+          longitude: Number(geo_point.M.lon.N),
+        }),
+      );
     }
   });
 
@@ -51,51 +43,7 @@ exports.handler = async (event) => {
       await manager.batchWritePoints(batch).promise();
       console.log('BATCH WRITE SUCCESSFUL');
     } catch (error) {
-      console.log('Error %>', error.message);
-    }
-  }
-
-  for (let i = 0; i < requestItems.length; i += BATCH_SIZE) {
-    const batch = requestItems.slice(i, i + BATCH_SIZE).map((record) => {
-      const {
-        // eventName,
-        dynamodb: {
-          Keys: {id},
-          // NewImage: Item,
-        },
-      } = record;
-      // if (eventName === 'REMOVE') {
-      return {
-        DeleteRequest: {
-          Key: {
-            id,
-          },
-        },
-      };
-      // } else {
-      //   return {
-      //     PutRequest: {
-      //       Item: {
-      //         ...Item,
-      //         _match: {
-      //           // use for searching
-      //           S: Item.title.S.toLowerCase(),
-      //         },
-      //       },
-      //     },
-      //   };
-      // }
-    });
-
-    const RequestItems = {
-      [process.env.STORAGE_GEOTABLE_NAME]: batch,
-    };
-
-    try {
-      await ddb.batchWriteItem({RequestItems}).promise();
-      console.log('BATCH REQUEST SUCCESSFUL');
-    } catch (error) {
-      console.log('Error %>', error.message);
+      console.log('BATCH DELETE Error %>', error.message);
     }
   }
 
@@ -113,13 +61,7 @@ function transform(record, GeoPoint) {
     RangeKeyValue,
     GeoPoint,
     PutItemInput: {
-      Item: {
-        ...Item,
-        _match: {
-          // use for searching
-          S: Item.title.S.toLowerCase(),
-        },
-      },
+      Item,
     },
   };
 }
