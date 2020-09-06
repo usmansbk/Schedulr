@@ -130,7 +130,7 @@
         "Timeout": "25",
         "Code": {
           "S3Bucket": "amplify-schdlr-prod-21214-deployment",
-          "S3Key": "amplify-builds/bookmarkstreamhandler-4b5a5270526b336f3431-build.zip"
+          "S3Key": "amplify-builds/bookmarkstreamhandler-794e334f474c704f2b66-build.zip"
         },
         "Layers": [
           {
