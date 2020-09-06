@@ -31,6 +31,8 @@ class EventDetails extends React.Component {
       .getWrappedInstance()
       .wrappedInstance.wrappedInstance.open();
 
+  _handleMute = () => {};
+
   componentDidMount = () => {
     this.displayTimer = setTimeout(
       () =>
@@ -171,7 +173,10 @@ class EventDetails extends React.Component {
                   />
                 </>
               )}
-              <MenuOption text={I18n.get('MENU_mute')} onSelect={() => null} />
+              <MenuOption
+                text={I18n.get('MENU_mute')}
+                onSelect={this._handleMute}
+              />
             </MenuOptions>
           </Menu>
         </Appbar.Header>
