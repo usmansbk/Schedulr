@@ -42,9 +42,9 @@ class Form extends React.Component {
     if (!this.state.display) return <Suspense />;
     const {initialValues, handleCancel, onSubmit, edit, stores} = this.props;
 
-    initialValues.location = initialValues.location
-      ? initialValues.location
-      : stores.location.location;
+    // initialValues.location = initialValues.location
+    //   ? initialValues.location
+    //   : stores.location.location;
     const styles = stores.styles.scheduleForm;
 
     return (
