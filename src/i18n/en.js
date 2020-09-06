@@ -192,7 +192,7 @@ export default {
     'A group is where you add events, so your team mates can join and receive updates',
   ALERT_privateSchedule: 'Private group',
   ALERT_privateScheduleA: 'This group can only be joined via group link',
-  ALERT_publicScheduleA: 'This group is visible to everyone.',
+  ALERT_publicScheduleA: 'This group will appear in search.',
   ALERT_deleteImage: 'Delete image?',
   ALERT_unfollow: (name) => `Leave ${name}?`,
   ALERT_unfollowMessage: "You'll no longer receive updates about their events.",
