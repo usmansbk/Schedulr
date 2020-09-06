@@ -12,6 +12,7 @@ config.longitudeFirst = true;
 const manager = new ddbGeo.GeoDataManager(config);
 
 const BATCH_SIZE = 25;
+const RANGE_KEY = '1234';
 
 exports.handler = async (event) => {
   //eslint-disable-line
@@ -33,11 +34,14 @@ exports.handler = async (event) => {
 
 function transform(record) {
   const {
-    dynamodb: {NewImage: Item},
+    dynamodb: {
+      Keys: {id: RangeKeyValue},
+      NewImage: Item,
+    },
   } = record;
   console.log('Transform', JSON.stringify(Item));
   return {
-    RangeKeyValue: {S: '1234'},
+    RangeKeyValue,
     GeoPoint: {
       latitude: 51.51,
       longitude: -0.13,
