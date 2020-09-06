@@ -634,7 +634,7 @@
 			"Properties": {
 				"TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-prod-21214-deployment/amplify-cfn-templates/function/common-awscloudformation-template.json",
 				"Parameters": {
-					"layerVersion": 1,
+					"layerVersion": 2,
 					"deploymentBucketName": "amplify-schdlr-prod-21214-deployment",
 					"s3Key": "amplify-builds/common-build.zip",
 					"env": "prod"

@@ -4,6 +4,7 @@
   "main": "index.js",
   "dependencies": {
     "aws-sdk": "^2.580.0",
+    "dynamodb-geo": "^0.4.0",
     "moment": "^2.27.0",
     "onesignal-node": "^2.1.1",
     "uuid": "^3.3.3"
