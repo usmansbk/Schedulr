@@ -1,8 +1,8 @@
 import React from 'react';
-import {TextInput} from 'react-native-paper';
 import {inject, observer} from 'mobx-react';
 import {I18n} from 'aws-amplify';
 import Picker from '../Picker';
+import {TextField} from '../../TextInput';
 
 const customValue = '__custom__type__schdlr__mobile__';
 
@@ -35,15 +35,8 @@ class Input extends React.Component {
     );
 
     return this.state.custom ? (
-      <TextInput
-        theme={{
-          roundness: 0,
-        }}
+      <TextField
         dense
-        style={{
-          marginTop: 8,
-          backgroundColor: stores.theme.colors.textInput,
-        }}
         underlineColor="transparent"
         placeholder={I18n.get('PLACEHOLDER_customType')}
         value={value}
@@ -52,7 +45,7 @@ class Input extends React.Component {
         onBlur={onBlur}
         onChangeText={onValueChange}
         clearButtonMode="while-editing"
-        autoFocus={this.state.custom}
+        autoFocus
       />
     ) : (
       <Picker
