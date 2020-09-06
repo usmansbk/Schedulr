@@ -13,7 +13,16 @@ const manager = new ddbGeo.GeoDataManager(config);
 
 const BATCH_SIZE = 25;
 
+const createTableInput = ddbGeo.GeoTableUtil.getCreateTableRequest(config);
+console.dir(createTableInput, {depth: null});
+
 exports.handler = async (event) => {
+  try {
+    await ddb.createTable(createTableInput).promise();
+    await ddb.waitFor('tableExists', {TableName: config.tableName}).promise();
+  } catch (error) {
+    console.log('FATAL Error %>', error.message);
+  }
   //eslint-disable-line
   console.log(JSON.stringify(event, null, 2));
   const {Records} = event;
