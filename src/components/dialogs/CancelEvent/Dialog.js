@@ -19,8 +19,7 @@ class CancelEvent extends React.Component {
   shouldComponentUpdate = (nextProps, nextState) =>
     nextProps.date !== this.props.date ||
     nextProps.cancelledDates !== this.props.cancelledDates ||
-    nextState.checked !== this.state.checked ||
-    nextState.loading !== this.state.loading;
+    nextState.checked !== this.state.checked;
 
   _onContinue = () => {
     const {

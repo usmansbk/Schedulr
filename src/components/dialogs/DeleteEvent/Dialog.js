@@ -10,9 +10,6 @@ class DeleteEvent extends React.Component {
   _confirmRef = (ref) => (this.confirmRef = ref);
   open = () => this.confirmRef.open();
 
-  shouldComponentUpdate = (nextProps, nextState) =>
-    nextState.loading !== this.state.loading;
-
   _onContinue = () => {
     const {id, navigation, deleteEvent} = this.props;
     let input = {id};
