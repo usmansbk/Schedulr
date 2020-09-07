@@ -369,8 +369,8 @@ export default {
   SYNC_importingComplete: 'Events imported',
   SYNC_complete: 'Synchronized',
 
-  TEXT_noAlbum: 'Photo Album',
-  TEXT_noBanner: 'Event Banner',
+  TEXT_noAlbum: 'Photos',
+  TEXT_noBanner: 'Banner',
   TEXT_album: 'Album',
 
   THEME_title: 'Theme',
