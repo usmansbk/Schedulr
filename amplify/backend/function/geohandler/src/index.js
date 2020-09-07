@@ -61,10 +61,18 @@ exports.handler = async (event) => {
     }
   }
 
+  for (let i = 0; i < deleteItems.length; i++) {
+    try {
+      await manager.deletePoint(deleteItems[i]);
+    } catch (error) {
+      console.log('DELETE Error %>', error.message);
+    }
+  }
+
   return 'Successfully processed DynamoDB record';
 };
 
-function transformDelete(record) {
+function transformDelete(record, GeoPoint) {
   const {
     dynamodb: {
       Keys: {id: RangeKeyValue},
