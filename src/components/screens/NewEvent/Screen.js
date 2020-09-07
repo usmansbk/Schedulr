@@ -101,7 +101,7 @@ class NewEventScreen extends React.Component {
       until,
       forever,
       eventScheduleId,
-      location,
+      location: location || currentSchedule?.location,
       category: this.props.stores.appState.categories[0],
       isPublic: currentSchedule?.isPublic,
     };

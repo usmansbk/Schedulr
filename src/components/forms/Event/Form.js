@@ -143,7 +143,8 @@ class Form extends React.Component {
                             (item) => item.id === itemValue,
                           );
                           if (found) {
-                            setFieldValue('isPublic', Boolean(found.isPublic));
+                            setFieldValue('location', found.location);
+                            setFieldValue('isPublic', !!found.isPublic);
                           }
                         }}
                         items={schedules.map((schedule) => ({

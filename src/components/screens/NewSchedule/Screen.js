@@ -28,6 +28,7 @@ export default class NewScheduleScreen extends React.Component {
       <Form
         initialValues={{
           topic: I18n.get('topics')[0],
+          location: this.props.stores.location.location,
         }}
         handleCancel={this._handleBack}
         onSubmit={this._handleSubmit}

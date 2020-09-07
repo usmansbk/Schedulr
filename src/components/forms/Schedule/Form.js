@@ -5,7 +5,8 @@ import {Text, Appbar, Divider} from 'react-native-paper';
 import TextInput from 'components/common/TextInput';
 import Button from 'components/common/Button';
 import Switch from 'components/common/Switch';
-import {CustomPicker} from 'components/common/Picker';
+import {CustomPicker, PickerInput} from 'components/common/Picker';
+import LocationPicker from 'components/common/LocationPicker';
 import {Formik} from 'formik';
 import {inject, observer} from 'mobx-react';
 import {I18n} from 'aws-amplify';
@@ -25,7 +26,10 @@ class Form extends React.Component {
 
   state = {
     display: false,
+    showLocationPicker: false,
   };
+  _showLocationPicker = () => this.setState({showLocationPicker: true});
+  _hideLocationPicker = () => this.setState({showLocationPicker: false});
 
   componentDidMount = () => {
     setTimeout(
@@ -35,16 +39,13 @@ class Form extends React.Component {
         }),
       0,
     );
-    // setTimeout(this.props.stores.location.fetchLocation, 0);
+    setTimeout(this.props.stores.location.fetchLocation, 0);
   };
 
   render() {
     if (!this.state.display) return <Suspense />;
     const {initialValues, handleCancel, onSubmit, edit, stores} = this.props;
 
-    // initialValues.location = initialValues.location
-    //   ? initialValues.location
-    //   : stores.location.location;
     const styles = stores.styles.scheduleForm;
 
     return (
@@ -52,7 +53,7 @@ class Form extends React.Component {
         initialValues={initialValues}
         validationSchema={schema}
         onSubmit={(values) => {
-          // values.geo_point = stores.location.point;
+          values.geo_point = stores.location.point;
           const castVal = schema.cast(values);
           onSubmit && onSubmit(castVal);
         }}>
@@ -120,6 +121,14 @@ class Form extends React.Component {
                   </View>
                   <Divider />
                 </View>
+                <View style={styles.horizontalSpacing}>
+                  <PickerInput
+                    leftIcon="find"
+                    value={values.location}
+                    onPress={this._showLocationPicker}
+                    placeholder={I18n.get('PLACEHOLDER_global')}
+                  />
+                </View>
                 <View style={styles.gap} />
                 <TextInput
                   label={I18n.get('SCHEDULE_FORM_description')}
@@ -134,6 +143,11 @@ class Form extends React.Component {
                 />
               </View>
             </ScrollView>
+            <LocationPicker
+              visible={this.state.showLocationPicker}
+              hideModal={this._hideLocationPicker}
+              onSelect={handleChange('location')}
+            />
           </>
         )}
       </Formik>
