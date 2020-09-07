@@ -167,9 +167,7 @@ class Form extends React.Component {
                       data={stores.appState.categories}
                     />
                   </View>
-
                   <Divider />
-
                   <View style={styles.iconRow}>
                     <Icon
                       color={stores.theme.colors.tint}
@@ -239,7 +237,6 @@ class Form extends React.Component {
                           }}
                         />
                       </View>
-
                       <View style={[styles.radio, styles.pickerSpacing]}>
                         <Switch
                           textStyle={styles.radioText}
@@ -267,9 +264,8 @@ class Form extends React.Component {
                       </View>
                     </View>
                   </View>
-
+                  <View style={styles.gap} />
                   <Divider />
-
                   <View style={styles.iconRow}>
                     <Icon
                       size={FONT_SIZE}
