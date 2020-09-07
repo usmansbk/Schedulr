@@ -104,9 +104,9 @@ export const searchScheduleFilter = (query, location) => {
     name: {
       contains: query,
     },
-    // location: {
-    //   eq: location,
-    // },
+    location: {
+      eq: location,
+    },
   };
 };
 export const searchEventFilter = (query, location) => {
