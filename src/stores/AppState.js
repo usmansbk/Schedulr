@@ -94,15 +94,20 @@ export default class AppState {
     const isScheduleMuted = this.mutedSchedules.includes(eventScheduleId);
 
     if (isEventMuted) {
-      this.mutedEvents = this.mutedEvents.filter((cid) => cid !== id);
+      this.mutedEvents = this.mutedEvents.filter((eventId) => eventId !== id);
     } else if (isScheduleMuted) {
       if (isEventAllowed) {
-        this.allowedEvents = this.allowedEvents.filter((cid) => cid !== id);
+        this.allowedEvents = this.allowedEvents.filter(
+          (eventId) => eventId !== id,
+        );
       } else {
         this.allowedEvents = Array.from(new Set([...this.allowedEvents, id]));
       }
     } else {
       this.mutedEvents = Array.from(new Set([...this.mutedEvents, id]));
+      this.allowedEvents = this.allowedEvents.filter(
+        (eventId) => eventId !== id,
+      );
     }
     this.updateExtraData();
   };
