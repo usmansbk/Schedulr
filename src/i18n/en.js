@@ -339,7 +339,7 @@ export default {
   PLACEHOLDER_email: 'Type your email',
   PLACEHOLDER_password: 'Type your password',
   PLACEHOLDER_code: 'Enter confirmation code',
-  PLACEHOLDER_global: 'Global',
+  PLACEHOLDER_global: 'Set city',
 
   WARNING_dontMissOut: "Don't miss out!",
   WARNING_fileTooLarge: 'File is too large',

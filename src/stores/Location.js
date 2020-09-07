@@ -95,6 +95,7 @@ export default class Location {
     return null;
   }
 
+  // %2B is the url code for the plus sign
   sign(number) {
     if (number > 0) return `%2B`;
     return '-';
