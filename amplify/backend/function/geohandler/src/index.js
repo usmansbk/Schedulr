@@ -71,11 +71,18 @@ function transformDelete(record) {
       OldImage: Item,
     },
   } = record;
-  const {} = AWS.DynamoDB.Converter.unmarshall(Item);
+  const {id} = AWS.DynamoDB.Converter.unmarshall(Item);
+  console.log('delete id', id);
+  console.log('RangeKeyValue', RangeKeyValue);
   return {
     RangeKeyValue,
     GeoPoint,
-    DeleteItemInput: {},
+    DeleteItemInput: {
+      ConditionExpression: 'id = :id',
+      ExpressionAttributeValues: {
+        ':id': id,
+      },
+    },
   };
 }
 
