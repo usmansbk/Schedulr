@@ -11,6 +11,7 @@ import Icon from 'components/common/Icon';
 import {I18n} from 'aws-amplify';
 import Suspense from 'components/common/Suspense';
 import CancelConfirm from 'components/dialogs/CancelEvent';
+import DeleteConfirm from 'components/dialogs/DeleteEvent';
 import Details from './Details';
 import {update} from 'lib/calendar';
 import {isEventValid} from 'lib/formatEvent';
@@ -26,14 +27,10 @@ class EventDetails extends React.Component {
   };
 
   _cancelRef = (ref) => (this.cancelConfirmRef = ref);
+  _deleteRef = (ref) => (this.deleteConfirmRef = ref);
   _openCancelDialog = () =>
-    this.cancelConfirmRef
-      .getWrappedInstance()
-      .wrappedInstance.wrappedInstance.open();
-  _openDeleteDialog = () =>
-    this.deleteConfirmRef
-      .getWrappedInstance()
-      .wrappedInstance.wrappedInstance.open();
+    this.cancelConfirmRef.getWrappedInstance().wrappedInstance.open();
+  _openDeleteDialog = () => this.deleteConfirmRef.getWrappedInstance().open();
 
   _handleMute = () => {
     this.props.stores.appState.toggleMute(
@@ -234,6 +231,7 @@ class EventDetails extends React.Component {
           navigateToBanner={navigateToBanner}
         />
         <CancelConfirm id={id} date={startAt} onRef={this._cancelRef} />
+        <DeleteConfirm id={id} onRef={this._deleteRef} />
       </>
     );
   }
