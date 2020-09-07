@@ -26,23 +26,25 @@ exports.handler = async (event) => {
       dynamodb: {NewImage, OldImage},
     } = record;
     if (eventName === 'REMOVE') {
-      const {geo_point} = OldImage;
+      const {geo_point} = AWS.DynamoDB.Converter.unmarshall(OldImage);
       if (geo_point) {
         deleteItems.push(
           transformDelete(record, {
-            latitude: Number(geo_point.M.lat.N),
-            longitude: Number(geo_point.M.lon.N),
+            latitude: Number(geo_point.lat),
+            longitude: Number(geo_point.lon),
           }),
         );
       }
     } else {
-      const {geo_point, isPublic, banner} = NewImage;
-      const publicEvent = isPublic && isPublic.BOOL;
+      const {geo_point, isPublic, banner} = AWS.DynamoDB.Converter.unmarshall(
+        NewImage,
+      );
+      const publicEvent = isPublic;
       if (publicEvent && banner && geo_point) {
         putItems.push(
           transform(record, {
-            latitude: Number(geo_point.M.lat.N),
-            longitude: Number(geo_point.M.lon.N),
+            latitude: Number(geo_point.lat),
+            longitude: Number(geo_point.lon),
           }),
         );
       }
@@ -69,6 +71,7 @@ function transformDelete(record) {
       OldImage: Item,
     },
   } = record;
+  const {} = AWS.DynamoDB.Converter.unmarshall(Item);
   return {
     RangeKeyValue,
     GeoPoint,

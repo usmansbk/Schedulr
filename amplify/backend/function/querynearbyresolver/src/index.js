@@ -16,20 +16,13 @@ config.longitudeFirst = true;
 const manager = new ddbGeo.GeoDataManager(config);
 
 exports.handler = async (event) => {
-  const {
-    arguments,
-    identity: {
-      claims: {email},
-    },
-  } = event;
+  const {arguments} = event;
   const {filter = {}, limit = 50, nextToken = 0} = arguments;
   const {
     location: {lat: latitude, lon: longitude},
-    category: inputCategory,
+    category,
     km: radius = 100,
   } = filter;
-
-  const category = inputCategory || '';
 
   try {
     const result = (
@@ -42,10 +35,10 @@ exports.handler = async (event) => {
       })
     )
       .map(AWS.DynamoDB.Converter.unmarshall)
-      .filter(
-        (item) =>
-          item.eventAuthorId !== email &&
-          item.category.toLowerCase().contains(category.toLowerCase()),
+      .filter((item) =>
+        item.category
+          .toLowerCase()
+          .includes(category ? category.toLowerCase() : ''),
       );
     const start = nextToken ? Number(nextToken) : 0;
     const end = start + Number(limit);
@@ -53,7 +46,7 @@ exports.handler = async (event) => {
     const items = result.slice(start, end);
     return {
       items,
-      nextToken: start + items.length + 1,
+      nextToken: end + 1,
       total: result.length,
     };
   } catch (error) {
