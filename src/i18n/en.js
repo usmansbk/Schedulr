@@ -115,7 +115,7 @@ export default {
   SETTINGS_commentSectionTitle: 'Comments',
   SETTINGS_sound: 'Sound',
   SETTINGS_vibrate: 'Vibrate',
-  SETTINGS_dark: 'Dark Theme',
+  SETTINGS_theme: 'Theme',
   SETTINGS_location: 'Location',
   SETTINGS_reminderSectionTitle: 'Reminder',
   SETTINGS_disableReminders: 'Mute all events',

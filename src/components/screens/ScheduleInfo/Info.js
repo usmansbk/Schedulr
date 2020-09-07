@@ -92,7 +92,7 @@ class Info extends React.Component {
         />
       );
 
-    const isMuted = stores.appState.mutedSchedules.includes(schedule.id);
+    const isMuted = stores.appState.isScheduleMuted(schedule.id);
 
     const {
       id,

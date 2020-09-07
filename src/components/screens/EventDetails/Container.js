@@ -112,9 +112,9 @@ class EventDetails extends React.Component {
 
     const colors = stores.theme.colors;
     const styles = stores.styles.appStyles;
-    const isMuted = stores.appState.isEventMuted(event.id);
+    const isMuted = stores.appState.isEventMuted(event.id, schedule?.id);
     const pictureUrl = banner && getImageUrl(banner, 320);
-    const isFollowing = schedule && schedule.isFollowing;
+    const isFollowing = schedule?.isFollowing;
 
     const isAuth = isPublic || isFollowing || isOwner;
 

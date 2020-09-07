@@ -1,48 +1,43 @@
 import React from 'react';
-import {
-  List,
-} from 'react-native-paper';
+import {List} from 'react-native-paper';
 import Switch from 'components/common/Switch';
 import Icon from 'components/common/Icon';
-import { inject, observer } from 'mobx-react';
-import { I18n } from 'aws-amplify';
+import {inject, observer} from 'mobx-react';
+import {I18n} from 'aws-amplify';
 
 class Item extends React.Component {
   _handleRemindMeDialog = () => this.props.handleRemindMeDialog();
   _handleThemeDialog = () => this.props.handleThemeDialog();
   _handleValueChange = () => this.props.handleValueChange(this.props.item.key);
-  shouldComponentUpdate = nextProps => Boolean(nextProps.value !== this.props.value);
+  shouldComponentUpdate = (nextProps) =>
+    Boolean(nextProps.value !== this.props.value);
 
   render() {
-    const { color, item, value } = this.props;
-    
+    const {color, item, value} = this.props;
+
     if (item.key === 'remindMe') {
       return (
         <List.Item
-          title={I18n.get("SETTINGS_remindMe")}
-          right={() => <List.Icon
-            icon={() => <Icon
-              name="chevron-right"
-              color={color}
-              size={24}
-            />}
-          />}
+          title={I18n.get('SETTINGS_remindMe')}
+          right={() => (
+            <List.Icon
+              icon={() => <Icon name="chevron-right" color={color} size={24} />}
+            />
+          )}
           onPress={this._handleRemindMeDialog}
         />
-      )
+      );
     }
 
-    if (item.key === 'dark') {
+    if (item.key === 'theme') {
       return (
         <List.Item
           title={I18n.get(`SETTINGS_${item.key}`)}
-          right={() => <List.Icon
-            icon={() => <Icon
-              name="chevron-right"
-              color={color}
-              size={24}
-            />}
-          />}
+          right={() => (
+            <List.Icon
+              icon={() => <Icon name="chevron-right" color={color} size={24} />}
+            />
+          )}
           onPress={this._handleThemeDialog}
         />
       );
@@ -52,10 +47,7 @@ class Item extends React.Component {
       <List.Item
         title={I18n.get(`SETTINGS_${item.key}`)}
         right={() => (
-          <Switch
-            value={value}
-            onValueChange={this._handleValueChange}
-          />
+          <Switch value={value} onValueChange={this._handleValueChange} />
         )}
         onPress={this._handleValueChange}
       />
@@ -63,4 +55,4 @@ class Item extends React.Component {
   }
 }
 
-export default inject("stores")(observer(Item));
+export default inject('stores')(observer(Item));

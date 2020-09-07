@@ -3,15 +3,15 @@ export default [
     title: 'general',
     data: [
       {
-        key: 'sound'
+        key: 'sound',
       },
       {
-        key: 'vibrate'
+        key: 'vibrate',
       },
       {
-        key: 'dark'
-      }
-    ]
+        key: 'theme',
+      },
+    ],
   },
   {
     title: 'reminder',
@@ -19,24 +19,24 @@ export default [
       {
         key: 'disableReminders',
         title: 'reminderDisable',
-        description: "WARNING_dontMissOut"
+        description: 'WARNING_dontMissOut',
       },
       {
         key: 'remindMe',
-      }
-    ]
+      },
+    ],
   },
   {
     title: 'push',
     data: [
       {
         title: 'pushDisable',
-        key: 'disablePush'
+        key: 'disablePush',
       },
       {
         title: 'disableComment',
-        key: 'disableComments'
-      }
-    ]
-  }
+        key: 'disableComments',
+      },
+    ],
+  },
 ];

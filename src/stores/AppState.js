@@ -107,6 +107,8 @@ export default class AppState {
     this.updateExtraData();
   };
 
+  isScheduleMuted = (id) => this.mutedSchedules.includes(id);
+
   isEventMuted = (id, scheduleId) => {
     const isEventMuted = this.mutedEvents.includes(id);
     const isScheduleMuted = this.mutedSchedules.includes(scheduleId);

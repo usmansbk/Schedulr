@@ -70,7 +70,7 @@ class List extends Component {
         }
         authorName={author && author.name}
         isClosed={status === SCHEDULE_CLOSED}
-        isMuted={this.props.stores.appState.mutedSchedules.includes(id)}
+        isMuted={this.props.stores.appState.isScheduleMuted(id)}
         isOwner={isOwner}
         isOffline={isOffline}
         isFollowing={isFollowing}
