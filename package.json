@@ -13,7 +13,7 @@
     "build": "yarn bump && yarn clean && yarn bundle",
     "release": "(yarn clean) && (react-native run-android --variant release)",
     "debug": "(yarn clean-android) && (react-native run-android)",
-    "bump": "RNV=android npm version patch",
+    "bump": "npm version patch",
     "postversion": "react-native-version"
   },
   "dependencies": {
