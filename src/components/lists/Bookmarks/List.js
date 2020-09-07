@@ -61,6 +61,7 @@ class List extends Component {
       category,
       allDay,
       cancelledDates,
+      isCancelled,
       isPublic,
       isOwner,
       banner,
@@ -82,6 +83,7 @@ class List extends Component {
         startAt={startAt}
         endAt={endAt}
         allDay={allDay}
+        isCancelled={isCancelled}
         cancelledDates={cancelledDates}
         until={until}
         pictureUrl={banner && getImageUrl(banner)}

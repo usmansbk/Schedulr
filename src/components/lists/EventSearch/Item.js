@@ -49,6 +49,7 @@ class Item extends React.Component {
       commentsCount,
       address,
       scheduleId,
+      isCancelled,
       cancelledDates,
       stores,
     } = this.props;
@@ -60,6 +61,7 @@ class Item extends React.Component {
     const duration = getDuration(startAt, endAt, allDay);
     const pictureUrl = banner && getImageUrl(banner);
     const status = getStatus({
+      isCancelled,
       cancelledDates,
       startAt,
       endAt,

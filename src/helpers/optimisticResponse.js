@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 import moment from 'moment';
-import stores from "stores";
+import stores from 'stores';
 import client from 'config/client';
 import {
   ADD,
@@ -9,10 +9,10 @@ import {
   SCHEDULE_TYPE,
   BOOKMARK_TYPE,
   COMMENT_TYPE,
-  FOLLOW_TYPE
+  FOLLOW_TYPE,
 } from 'lib/constants';
-import { getScheduleEvents, /*getEventComments*/ } from 'api/queries';
-import { deleteBookmark as deleteBookmarkQuery } from 'api/mutations';
+import {getScheduleEvents /*getEventComments*/} from 'api/queries';
+import {deleteBookmark as deleteBookmarkQuery} from 'api/mutations';
 import logger from 'config/logger';
 
 const __typename = 'Mutation';
@@ -20,7 +20,7 @@ const __typename = 'Mutation';
 const eventConnection = {
   items: [],
   nextToken: null,
-  __typename: "ModelEventConnection"
+  __typename: 'ModelEventConnection',
 };
 
 // const commentConnection = {
@@ -33,16 +33,16 @@ export default function buildOptimisticResponse({
   input,
   mutationName,
   responseType,
-  operationType
+  operationType,
 }) {
   const body = buildResponseBody(input, responseType, operationType);
   return {
     __typename,
-    [mutationName] : {
+    [mutationName]: {
       __typename: responseType,
-      ...body
-    }
-  }
+      ...body,
+    },
+  };
 }
 
 function buildResponseBody(input, typename, operationType) {
@@ -106,24 +106,28 @@ function buildUpdateResponse(input, typename) {
 
 function createEvent(input, typename) {
   const author = client.readFragment({
-    fragment: gql`fragment createEventAuthor on User {
-      id
-      name
-    }`,
-    id: `User:${stores.appState.userId}`
+    fragment: gql`
+      fragment createEventAuthor on User {
+        id
+        name
+      }
+    `,
+    id: `User:${stores.appState.userId}`,
   });
   // ================= Update schedule events count =======================
-  
-  const scheduleFragment = gql`fragment createEventSchedule on Schedule {
-    id
-    name
-    # eventsCount
-    isFollowing
-  }`;
+
+  const scheduleFragment = gql`
+    fragment createEventSchedule on Schedule {
+      id
+      name
+      # eventsCount
+      isFollowing
+    }
+  `;
   const fragmentId = `Schedule:${input.eventScheduleId}`;
   const schedule = client.readFragment({
     fragment: scheduleFragment,
-    id: fragmentId
+    id: fragmentId,
   });
   // let updatedSchedule = null;
   // if (schedule) {
@@ -184,6 +188,7 @@ function createEvent(input, typename) {
     isOwner: true,
     isBookmarked: false,
     isOffline: true,
+    isCancelled: false,
     cancelledDates: null,
     banner: null,
     author,
@@ -204,12 +209,14 @@ function createEvent(input, typename) {
 
 function createSchedule(input, typename) {
   const author = client.readFragment({
-    fragment: gql`fragment createScheduleAuthor on User {
-      id
-      name
-      createdCount
-    }`,
-    id: `User:${stores.appState.userId}`
+    fragment: gql`
+      fragment createScheduleAuthor on User {
+        id
+        name
+        createdCount
+      }
+    `,
+    id: `User:${stores.appState.userId}`,
   });
   const count = author.createdCount;
   if (typeof count === 'number') {
@@ -223,7 +230,7 @@ function createSchedule(input, typename) {
     client.writeQuery({
       query: gql(getScheduleEvents),
       variables: {
-        id: input.id
+        id: input.id,
       },
       data: {
         getScheduleEvents: {
@@ -232,16 +239,16 @@ function createSchedule(input, typename) {
           isFollowing: false,
           isOwner: true,
           isPublic: !!input.isPublic,
-          events: eventConnection
-        }
-      }
+          events: eventConnection,
+        },
+      },
     });
-  } catch(error) {
+  } catch (error) {
     logger.logError(error);
   }
   // =========================================================================
 
-  const schedule  = {
+  const schedule = {
     __typename: typename,
     ...input,
     isOwner: true,
@@ -261,43 +268,49 @@ function createSchedule(input, typename) {
 
 function createComment(input, typename) {
   const author = client.readFragment({
-    fragment: gql`fragment createCommentAuthor on User {
-      id
-      name
-      pictureUrl
-      avatar {
-        key
-        bucket
+    fragment: gql`
+      fragment createCommentAuthor on User {
+        id
         name
+        pictureUrl
+        avatar {
+          key
+          bucket
+          name
+        }
       }
-    }`,
-    id: `User:${stores.appState.userId}`
+    `,
+    id: `User:${stores.appState.userId}`,
   });
   const event = client.readFragment({
-    fragment: gql`fragment createCommentEvent on Event {
-      id
-      commentsCount
-    }`,
-    id: `Event:${input.commentEventId}`
+    fragment: gql`
+      fragment createCommentEvent on Event {
+        id
+        commentsCount
+      }
+    `,
+    id: `Event:${input.commentEventId}`,
   });
   let to = null;
   if (input.commentToId) {
     to = client.readFragment({
-      fragment: gql`fragment toComment on Comment {
-        id
-        content
-        attachment {
-          key
-          bucket
-          name
-          type
-        }
-        author {
+      fragment: gql`
+        fragment toComment on Comment {
           id
-          name
+          content
+          attachment {
+            key
+            bucket
+            name
+            type
+          }
+          author {
+            id
+            name
+          }
         }
-      }`,
-      id: `Comment:${input.commentToId}`
+      `,
+      id: `Comment:${input.commentToId}`,
     });
   }
   const count = event.commentsCount;
@@ -308,13 +321,13 @@ function createComment(input, typename) {
   }
   let attachment = null;
   if (input.attachment) {
-    attachment = input.attachment.map(file => {
+    attachment = input.attachment.map((file) => {
       return Object.assign({}, file, {
-        __typename: 'S3Object'
+        __typename: 'S3Object',
       });
     });
   }
-  
+
   const comment = {
     id: input.id,
     content: input.content,
@@ -325,53 +338,56 @@ function createComment(input, typename) {
     createdAt: moment().toISOString(),
     event,
     to,
-    __typename: typename
+    __typename: typename,
   };
   return comment;
 }
 
 function createBookmark(input, typename) {
   const event = client.readFragment({
-    fragment: gql`fragment bookmarkEventDetails on Event {
-      id
-      title
-      description
-      venue
-      category
-      startAt
-      endAt
-      allDay
-      recurrence
-      until
-      forever
-      isPublic
-      isOwner
-      isBookmarked
-      isOffline
-      cancelledDates
-      banner {
-        bucket
-        key
-        name
-      }
-      author {
+    fragment: gql`
+      fragment bookmarkEventDetails on Event {
         id
-        name
+        title
+        description
+        venue
+        category
+        startAt
+        endAt
+        allDay
+        recurrence
+        until
+        forever
+        isPublic
+        isOwner
+        isBookmarked
+        isOffline
+        isCancelled
+        cancelledDates
+        banner {
+          bucket
+          key
+          name
+        }
+        author {
+          id
+          name
+        }
+        schedule {
+          id
+          name
+          isFollowing
+        }
+        commentsCount
+        bookmarksCount
+        createdAt
+        updatedAt
       }
-      schedule {
-        id
-        name
-        isFollowing
-      }
-      commentsCount
-      bookmarksCount
-      createdAt
-      updatedAt
-    }`,
-    id: `Event:${input.bookmarkEventId}`
+    `,
+    id: `Event:${input.bookmarkEventId}`,
   });
   const count = event.bookmarksCount;
-  if (!event.isBookmarked && (typeof count === 'number')) {
+  if (!event.isBookmarked && typeof count === 'number') {
     event.bookmarksCount = count + 1;
   } else {
     event.bookmarksCount = 1;
@@ -387,112 +403,119 @@ function createBookmark(input, typename) {
 
 function createFollow(input, typename) {
   const schedule = client.readFragment({
-    fragment: gql`fragment followScheduleDetails on Schedule {
-      id
-      name
-      description
-      topic
-      isPublic
-      isOwner
-      isFollowing
-      location
-      status
-      picture {
-        key
-        bucket
-        name
-      }
-      author {
+    fragment: gql`
+      fragment followScheduleDetails on Schedule {
         id
         name
-        pictureUrl
-        avatar {
+        description
+        topic
+        isPublic
+        isOwner
+        isFollowing
+        location
+        status
+        picture {
           key
           bucket
           name
         }
-        me
-        website
-        bio
-        createdCount
-        followingCount
+        author {
+          id
+          name
+          pictureUrl
+          avatar {
+            key
+            bucket
+            name
+          }
+          me
+          website
+          bio
+          createdCount
+          followingCount
+          createdAt
+        }
+        followersCount
+        eventsCount
         createdAt
+        updatedAt
       }
-      followersCount
-      eventsCount
-      createdAt
-      updatedAt
-    }`,
-    id: `Schedule:${input.followScheduleId}`
+    `,
+    id: `Schedule:${input.followScheduleId}`,
   });
   // Check and read preloaded schedule events
-  
+
   let scheduleEventsConnection = eventConnection;
 
   try {
     const scheduleEvents = client.readFragment({
-      fragment: gql`fragment followingScheduleEvents on Schedule {
-        id
-        events {
-          items {
-            id
-            title
-            description
-            venue
-            category
-            startAt
-            endAt
-            allDay
-            recurrence
-            until
-            forever
-            isPublic
-            isOwner
-            isBookmarked
-            isOffline
-            cancelledDates
-            banner {
-              bucket
-              key
-              name
-            }
-            author {
+      fragment: gql`
+        fragment followingScheduleEvents on Schedule {
+          id
+          events {
+            items {
               id
-              name
+              title
+              description
+              venue
+              category
+              startAt
+              endAt
+              allDay
+              recurrence
+              until
+              forever
+              isPublic
+              isOwner
+              isBookmarked
+              isOffline
+              isCancelled
+              cancelledDates
+              banner {
+                bucket
+                key
+                name
+              }
+              author {
+                id
+                name
+              }
+              schedule {
+                id
+                name
+                isFollowing
+              }
+              commentsCount
+              bookmarksCount
+              createdAt
+              updatedAt
             }
-            schedule {
-              id
-              name
-              isFollowing
-            }
-            commentsCount
-            bookmarksCount
-            createdAt
-            updatedAt
+            nextToken
           }
-          nextToken
         }
-      }`,
-      id: `Schedule:${input.followScheduleId}`
+      `,
+      id: `Schedule:${input.followScheduleId}`,
     });
-  
+
     // Update event items schedule isFollowing field to true
     if (scheduleEvents) {
-      const { events: { items } } = scheduleEvents;
-      scheduleEvents.events.items = items.map(event => {
+      const {
+        events: {items},
+      } = scheduleEvents;
+      scheduleEvents.events.items = items.map((event) => {
         if (!event.schedule) return event;
         return Object.assign({}, event, {
           schedule: Object.assign({}, event.schedule, {
-            isFollowing: true
-          })
+            isFollowing: true,
+          }),
         });
       });
       scheduleEventsConnection = scheduleEvents.events;
     }
-  } catch(error) {
+  } catch (error) {
     logger.logError(error);
   }
-  // ********************************************************  
+  // ********************************************************
   if (schedule) {
     if (!schedule.isFollowing) {
       if (typeof schedule.followersCount === 'number') {
@@ -503,17 +526,19 @@ function createFollow(input, typename) {
     }
     const optimisticSchedule = Object.assign({}, schedule, {
       isFollowing: true,
-      events: scheduleEventsConnection
+      events: scheduleEventsConnection,
     });
     //=========== Update user following count ======================
     const userId = stores.appState.userId;
-    const userFragment = gql`fragment currentUser on User {
-      id
-      followingCount
-    }`;
+    const userFragment = gql`
+      fragment currentUser on User {
+        id
+        followingCount
+      }
+    `;
     const currentUser = client.readFragment({
       fragment: userFragment,
-      id: `User:${userId}`
+      id: `User:${userId}`,
     });
     if (currentUser) {
       if (typeof currentUser.followingCount === 'number') {
@@ -525,14 +550,14 @@ function createFollow(input, typename) {
     client.writeFragment({
       fragment: userFragment,
       id: `User:${userId}`,
-      data: currentUser
+      data: currentUser,
     });
     // ==============================================================
 
     const follow = {
       __typename: typename,
       id: input.id,
-      schedule: optimisticSchedule
+      schedule: optimisticSchedule,
     };
     return follow;
   }
@@ -543,14 +568,16 @@ function createFollow(input, typename) {
 
 function deleteSchedule(input, typename) {
   const schedule = client.readFragment({
-    fragment: gql`fragment deleteScheduleDetails on Schedule {
-      id
-      author {
+    fragment: gql`
+      fragment deleteScheduleDetails on Schedule {
         id
-        createdCount
+        author {
+          id
+          createdCount
+        }
       }
-    }`,
-    id: `${typename}:${input.id}`
+    `,
+    id: `${typename}:${input.id}`,
   });
   const count = schedule.author.createdCount;
   if (typeof count === 'number' && count > 0) {
@@ -561,48 +588,54 @@ function deleteSchedule(input, typename) {
 
 function deleteEvent(input, typename) {
   const event = client.readFragment({
-    fragment: gql`fragment deleteEventDetails on Event {
-      id
-      schedule {
+    fragment: gql`
+      fragment deleteEventDetails on Event {
         id
-        eventsCount
+        schedule {
+          id
+          eventsCount
+        }
+        author {
+          id
+        }
       }
-      author {
-        id
-      }
-    }`,
-    id: `${typename}:${input.id}`
+    `,
+    id: `${typename}:${input.id}`,
   });
   const schedule = event.schedule;
   if (schedule) {
     const count = schedule.eventsCount;
-    if ((typeof count === 'number') && count > 0) {
+    if (typeof count === 'number' && count > 0) {
       schedule.eventsCount = count - 1;
     }
   }
-  
+
   // ******************* Remove from bookmarks *******************
 
   const bookmark = client.readFragment({
-    fragment: gql`fragment deleteEventBookmark on Bookmark {
-      id
-    }`,
-    id: `${BOOKMARK_TYPE}:${event.author.id}-${event.id}`
+    fragment: gql`
+      fragment deleteEventBookmark on Bookmark {
+        id
+      }
+    `,
+    id: `${BOOKMARK_TYPE}:${event.author.id}-${event.id}`,
   });
   if (bookmark) {
     const deleteInput = {
-      id: bookmark.id
+      id: bookmark.id,
     };
-    client.mutate({
-      mutation: gql(deleteBookmarkQuery),
-      variables: {
-        input: deleteInput
-      },
-      optimisticResponse: {
-        __typename: 'Mutation',
-        deleteBookmark: deleteBookmark(deleteInput, BOOKMARK_TYPE)
-      }
-    }).catch(logger.logError);
+    client
+      .mutate({
+        mutation: gql(deleteBookmarkQuery),
+        variables: {
+          input: deleteInput,
+        },
+        optimisticResponse: {
+          __typename: 'Mutation',
+          deleteBookmark: deleteBookmark(deleteInput, BOOKMARK_TYPE),
+        },
+      })
+      .catch(logger.logError);
   }
   // ************************************************************
 
@@ -611,11 +644,13 @@ function deleteEvent(input, typename) {
 
 function deleteComment(input, typename) {
   const event = client.readFragment({
-    fragment: gql`fragment deleteCommentEvent on Event {
-      id
-      commentsCount
-    }`,
-    id: `${EVENT_TYPE}:${input.eventId}`
+    fragment: gql`
+      fragment deleteCommentEvent on Event {
+        id
+        commentsCount
+      }
+    `,
+    id: `${EVENT_TYPE}:${input.eventId}`,
   });
   if (event) {
     const count = event.commentsCount;
@@ -623,27 +658,32 @@ function deleteComment(input, typename) {
       event.commentsCount = count - 1;
     }
   }
-  const comment = Object.assign({}, {
-    __typename: typename,
-    id: input.id,
-    event
-  });
+  const comment = Object.assign(
+    {},
+    {
+      __typename: typename,
+      id: input.id,
+      event,
+    },
+  );
   return comment;
 }
 
 function deleteBookmark(input, typename) {
   const event = client.readFragment({
-    fragment: gql`fragment deleteBookmarkEvent on Event {
-      id
-      isBookmarked
-      bookmarksCount
-    }`,
-    id: `Event:${input.bookmarkEventId}`
+    fragment: gql`
+      fragment deleteBookmarkEvent on Event {
+        id
+        isBookmarked
+        bookmarksCount
+      }
+    `,
+    id: `Event:${input.bookmarkEventId}`,
   });
 
   if (event) {
     const count = event.bookmarksCount;
-    if (event.isBookmarked && (typeof count === 'number' && count > 0)) {
+    if (event.isBookmarked && typeof count === 'number' && count > 0) {
       event.bookmarksCount = count - 1;
     }
     event.isBookmarked = null;
@@ -651,35 +691,39 @@ function deleteBookmark(input, typename) {
   const bookmark = {
     __typename: typename,
     id: input.id,
-    event
+    event,
   };
   return bookmark;
 }
 
 function deleteFollow(input, typename) {
   const schedule = client.readFragment({
-    fragment: gql`fragment followScheduleDeleteDetails on Schedule {
-      id
-      followersCount
-      isFollowing
-    }`,
-    id: `Schedule:${input.followScheduleId}`
+    fragment: gql`
+      fragment followScheduleDeleteDetails on Schedule {
+        id
+        followersCount
+        isFollowing
+      }
+    `,
+    id: `Schedule:${input.followScheduleId}`,
   });
   if (schedule) {
     const count = schedule.followersCount;
-    if (schedule.isFollowing && (typeof count === 'number' && count > 0)) {
+    if (schedule.isFollowing && typeof count === 'number' && count > 0) {
       schedule.followersCount = count - 1;
     }
     schedule.isFollowing = null;
   }
   const user = client.readFragment({
-    fragment: gql`fragment followUserDetails on User {
-      id
-      followingCount
-    }`,
-    id: `User:${stores.appState.userId}`
+    fragment: gql`
+      fragment followUserDetails on User {
+        id
+        followingCount
+      }
+    `,
+    id: `User:${stores.appState.userId}`,
   });
-  const { followingCount } = user
+  const {followingCount} = user;
   if (typeof followingCount === 'number' && followingCount > 0) {
     user.followingCount -= 1;
   }
@@ -687,7 +731,7 @@ function deleteFollow(input, typename) {
     id: input.id,
     user,
     schedule,
-    __typename: typename
+    __typename: typename,
   };
   return deletedFollow;
 }
@@ -696,56 +740,61 @@ function deleteFollow(input, typename) {
 
 function updateSchedule(input, typename) {
   const schedule = client.readFragment({
-    fragment: gql`fragment updateScheduleDetails on Schedule {
-      id
-      name
-      description
-      isPublic
-      topic
-      status
-      location
-      updatedAt
-      picture {
-        key
-        bucket
+    fragment: gql`
+      fragment updateScheduleDetails on Schedule {
+        id
         name
+        description
+        isPublic
+        topic
+        status
+        location
+        updatedAt
+        picture {
+          key
+          bucket
+          name
+        }
       }
-    }`,
-    id: `${typename}:${input.id}`
+    `,
+    id: `${typename}:${input.id}`,
   });
   const updatedSchedule = Object.assign({}, schedule, input, {
-    updatedAt: moment().toISOString()
+    updatedAt: moment().toISOString(),
   });
   return updatedSchedule;
 }
 
 function updateEvent(input, typename) {
   const event = client.readFragment({
-    fragment: gql`fragment updateEventDetails on Event {
-      id
-      title
-      description
-      venue
-      category
-      startAt
-      endAt
-      allDay
-      recurrence
-      until
-      forever
-      isPublic
-      cancelledDates
-      banner {
-        key
-        bucket
-        name
+    fragment: gql`
+      fragment updateEventDetails on Event {
+        id
+        title
+        description
+        venue
+        category
+        startAt
+        endAt
+        allDay
+        recurrence
+        until
+        forever
+        isPublic
+        isCancelled
+        cancelledDates
+        banner {
+          key
+          bucket
+          name
+        }
+        updatedAt
       }
-      updatedAt
-    }`,
-    id: `${typename}:${input.id}`
+    `,
+    id: `${typename}:${input.id}`,
   });
   const updatedEvent = Object.assign({}, event, input, {
-    updatedAt: moment().toISOString()
+    updatedAt: moment().toISOString(),
   });
   delete updatedEvent.eventScheduleId;
   return updatedEvent;

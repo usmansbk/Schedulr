@@ -36,6 +36,7 @@ export default inject('stores')(
       isMuted,
       isOffline,
       isBookmarked,
+      isCancelled,
       cancelledDates,
       authorId,
       isAuth,
@@ -58,6 +59,7 @@ export default inject('stores')(
       const duration = getDuration(startAt, endAt);
       const repeatLabel = getRepeatLabel(recurrence, raw_startAt);
       const status = getStatus({
+        isCancelled,
         cancelledDates,
         startAt,
         endAt,

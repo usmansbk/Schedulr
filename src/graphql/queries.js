@@ -103,6 +103,7 @@ export const getEvent = `query GetEvent($id: ID!) {
     isOffline
     isOwner
     isBookmarked
+    isCancelled
     cancelledDates
     banner {
       bucket
@@ -296,6 +297,7 @@ export const getScheduleEvents = `query GetScheduleWithEvents($id: ID!, $limit: 
         isOwner
         isOffline
         isBookmarked
+        isCancelled
         cancelledDates
         banner {
           bucket
@@ -342,6 +344,7 @@ export const getUserBookmarks = `query GetBookmarks($nextToken: String, $limit: 
           isPublic
           isOwner
           isBookmarked
+          isCancelled
           cancelledDates
           banner {
             bucket
@@ -526,6 +529,7 @@ export const getUserData = `query GetUserData($filter: ModelEventFilterInput, $l
             isOwner
             isBookmarked
             isOffline
+            isCancelled
             cancelledDates
             banner {
               bucket
@@ -604,6 +608,7 @@ export const getUserData = `query GetUserData($filter: ModelEventFilterInput, $l
               isOwner
               isOffline
               isBookmarked
+              isCancelled
               cancelledDates
               banner {
                 bucket
@@ -651,6 +656,7 @@ export const getUserData = `query GetUserData($filter: ModelEventFilterInput, $l
           isOwner
           isBookmarked
           isOffline
+          isCancelled
           cancelledDates
           banner {
             bucket
@@ -695,6 +701,7 @@ export const getDeltaUpdates = `query GetDeltaUpdates($lastSync: String!) {
       isOwner
       isBookmarked
       isOffline
+      isCancelled
       cancelledDates
       banner {
         bucket
@@ -843,6 +850,7 @@ export const searchEvents = `query SearchEvents($filter: ModelEventFilterInput!,
       isOffline
       isOwner
       isBookmarked
+      isCancelled
       cancelledDates
       banner {
         bucket
@@ -912,6 +920,7 @@ export const nearbyEvents = `query GetNearbyEvents($filter: GeoSearchFilterInput
       isPublic
       isOwner
       isBookmarked
+      isCancelled
       cancelledDates
       banner {
         bucket

@@ -37,6 +37,7 @@ class Item extends React.Component {
       startAt,
       endAt,
       until,
+      isCancelled,
       cancelledDates,
     } = this.props;
 
@@ -49,6 +50,7 @@ class Item extends React.Component {
     });
 
     const status = getStatus({
+      isCancelled,
       cancelledDates: cancelledDates || [],
       startAt,
       endAt,

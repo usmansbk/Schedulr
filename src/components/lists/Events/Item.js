@@ -51,6 +51,7 @@ class Item extends React.Component {
       banner,
       isMuted,
       isOffline,
+      isCancelled,
       cancelledDates,
       category,
     } = this.props;
@@ -62,6 +63,7 @@ class Item extends React.Component {
     });
     const status = getStatus({
       cancelledDates,
+      isCancelled,
       startAt,
       endAt,
       until,

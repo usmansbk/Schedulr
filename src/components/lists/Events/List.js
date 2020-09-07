@@ -116,6 +116,7 @@ class List extends React.Component {
       venue,
       schedule,
       allDay,
+      isCancelled,
       isBookmarked,
       isOwner,
       isOffline,
@@ -130,6 +131,7 @@ class List extends React.Component {
         until={until}
         from={section.title}
         category={category}
+        isCancelled={isCancelled}
         cancelledDates={cancelledDates}
         recurrence={recurrence}
         banner={banner}

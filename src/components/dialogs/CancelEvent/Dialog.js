@@ -35,20 +35,20 @@ class CancelEvent extends React.Component {
       isSingle,
     } = this.props;
     const {checked} = this.state;
+    let input = {};
     if (checked === SINGLE_EVENT && !isSingle) {
-      const input = {
+      input = {
         id,
         cancelledDates: Array.from(new Set([...cancelledDates, date])),
       };
-      setTimeout(() => cancelEvent(input), 200);
     } else {
-      const input = {id};
+      input = {id, isCancelled: true};
       if (banner) {
         stores.appState.removeKeysFromStorage([banner.key]);
       }
-      setTimeout(() => deleteEvent(input), 200);
-      navigation.goBack();
     }
+    setTimeout(() => cancelEvent(input), 200);
+    navigation.goBack();
     this._handleDismiss();
   };
 

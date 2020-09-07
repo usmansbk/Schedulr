@@ -30,6 +30,10 @@ class EventDetails extends React.Component {
     this.cancelConfirmRef
       .getWrappedInstance()
       .wrappedInstance.wrappedInstance.open();
+  _openDeleteDialog = () =>
+    this.deleteConfirmRef
+      .getWrappedInstance()
+      .wrappedInstance.wrappedInstance.open();
 
   _handleMute = () => {
     this.props.stores.appState.toggleMute(
@@ -95,6 +99,7 @@ class EventDetails extends React.Component {
       commentsCount,
       isOwner,
       isBookmarked,
+      isCancelled,
       cancelledDates,
       isPublic,
       isOffline,
@@ -106,6 +111,7 @@ class EventDetails extends React.Component {
       endAt,
       startAt,
       cancelledDates,
+      isCancelled,
       recurrence,
       until,
     });
@@ -156,20 +162,26 @@ class EventDetails extends React.Component {
               {isOwner && (
                 <>
                   {isValid && (
-                    <MenuOption
-                      onSelect={() =>
-                        handleEdit({
-                          id,
-                          startAt,
-                          endAt,
-                        })
-                      }
-                      text={I18n.get('MENU_edit')}
-                    />
+                    <>
+                      <MenuOption
+                        onSelect={() =>
+                          handleEdit({
+                            id,
+                            startAt,
+                            endAt,
+                          })
+                        }
+                        text={I18n.get('MENU_edit')}
+                      />
+                      <MenuOption
+                        text={I18n.get('MENU_cancel')}
+                        onSelect={this._openCancelDialog}
+                      />
+                    </>
                   )}
                   <MenuOption
-                    text={I18n.get('MENU_cancel')}
-                    onSelect={this._openCancelDialog}
+                    text={I18n.get('MENU_delete')}
+                    onSelect={this._openDeleteDialog}
                   />
                   <MenuOption
                     text={I18n.get('MENU_duplicate')}
@@ -213,6 +225,7 @@ class EventDetails extends React.Component {
           isAuth={isAuth}
           banner={banner}
           isOwner={isOwner}
+          isCancelled={isCancelled}
           cancelledDates={cancelledDates}
           navigateToSchedule={navigateToSchedule}
           navigateToComments={navigateToComments}
