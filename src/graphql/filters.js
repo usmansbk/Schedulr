@@ -98,67 +98,27 @@ export const baseEventsFilter = () => {
 
 export const searchScheduleFilter = (query, location) => {
   return {
-    and: [
-      {
-        isPublic: {
-          ne: false,
-        },
-        location: {
-          contains: location || '',
-        },
-      },
-      {
-        or: [
-          {
-            name: {
-              contains: query,
-            },
-          },
-          {
-            description: {
-              contains: query,
-            },
-          },
-        ],
-      },
-    ],
+    isPublic: {
+      eq: true,
+    },
+    name: {
+      contains: query,
+    },
+    // location: {
+    //   eq: location,
+    // },
   };
 };
 export const searchEventFilter = (query, location) => {
   return {
-    and: [
-      {
-        isPublic: {
-          ne: false,
-        },
-        location: {
-          contains: location || '',
-        },
-      },
-      {
-        or: [
-          {
-            title: {
-              contains: query,
-            },
-          },
-          {
-            venue: {
-              contains: query,
-            },
-          },
-          {
-            category: {
-              contains: query,
-            },
-          },
-          {
-            description: {
-              contains: query,
-            },
-          },
-        ],
-      },
-    ],
+    isPublic: {
+      eq: true,
+    },
+    title: {
+      contains: query,
+    },
+    location: {
+      eq: location,
+    },
   };
 };

@@ -229,7 +229,8 @@ export default {
   EVENT_FORM_normal: 'Event',
   EVENT_FORM_title: 'TITLE',
   EVENT_FORM_description: 'DESCRIPTION',
-  EVENT_FORM_venue: 'LOCATION',
+  EVENT_FORM_venue: 'VENUE',
+  EVENT_FORM_city: 'CITY',
   EVENT_FORM_category: 'TYPE',
   EVENT_FORM_from: 'START',
   EVENT_FORM_to: 'END',
@@ -338,6 +339,7 @@ export default {
   PLACEHOLDER_email: 'Type your email',
   PLACEHOLDER_password: 'Type your password',
   PLACEHOLDER_code: 'Enter confirmation code',
+  PLACEHOLDER_global: 'Global',
 
   WARNING_dontMissOut: "Don't miss out!",
   WARNING_fileTooLarge: 'File is too large',

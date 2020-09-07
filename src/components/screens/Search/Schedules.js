@@ -7,7 +7,7 @@ import {mergeSchedules, filterSchedules} from 'lib/utils';
 import List from 'components/lists/ScheduleSearch';
 import {getUserSchedules, searchSchedules} from 'api/queries';
 import {searchScheduleFilter} from 'api/filters';
-import {SEARCH_LIMIT} from 'lib/constants';
+// import {SEARCH_LIMIT} from 'lib/constants';
 import updateQuery from 'helpers/updateQuery';
 import logger from 'config/logger';
 import Suspense from 'components/common/Suspense';
@@ -80,7 +80,7 @@ const ListHoc = compose(
       notifyOnNetworkStatusChange: true,
       variables: {
         filter: searchScheduleFilter(props.query, props.location),
-        limit: SEARCH_LIMIT,
+        // limit: SEARCH_LIMIT,
       },
     }),
     props: ({data, ownProps}) => ({

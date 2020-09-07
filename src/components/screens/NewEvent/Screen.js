@@ -3,7 +3,6 @@ import moment from 'moment';
 import uuidv5 from 'uuid/v5';
 import shortid from 'shortid';
 import {withApollo} from 'react-apollo';
-import {I18n} from 'aws-amplify';
 import Form from 'components/forms/Event';
 import {isPastDate} from 'lib/time';
 import {getUserSchedules} from 'api/fragments';
@@ -45,6 +44,7 @@ class NewEventScreen extends React.Component {
       category,
       recurrence,
       until,
+      location,
       forever,
       schedule,
     } = event;
@@ -101,9 +101,9 @@ class NewEventScreen extends React.Component {
       until,
       forever,
       eventScheduleId,
+      location,
       category: this.props.stores.appState.categories[0],
-      location: currentSchedule && currentSchedule.location,
-      isPublic: currentSchedule && currentSchedule.isPublic,
+      isPublic: currentSchedule?.isPublic,
     };
   }
 

@@ -9,8 +9,9 @@ import Icon from 'components/common/Icon';
 import {TextField} from 'components/common/TextInput';
 import Button from 'components/common/Button';
 import Switch from 'components/common/Switch';
-import Picker, {CustomPicker} from 'components/common/Picker';
+import Picker, {CustomPicker, PickerInput} from 'components/common/Picker';
 import DateTimePicker from 'components/common/DateTimePicker';
+import LocationPicker from 'components/common/LocationPicker';
 import Suspense from 'components/common/Suspense';
 import {getRepeatLabel, getTimeUnit} from 'lib/time';
 import recurrence from './recurrence';
@@ -22,6 +23,7 @@ const FONT_SIZE = 24;
 class Form extends React.Component {
   state = {
     display: false,
+    showLocationPicker: false,
   };
 
   componentDidMount = () => {
@@ -34,6 +36,9 @@ class Form extends React.Component {
     );
     setTimeout(this.props.stores.location.fetchLocation, 0);
   };
+
+  _showLocationPicker = () => this.setState({showLocationPicker: true});
+  _hideLocationPicker = () => this.setState({showLocationPicker: false});
 
   static defaultProps = {
     schedules: [],
@@ -69,6 +74,7 @@ class Form extends React.Component {
       stores,
     } = this.props;
 
+    initialValues.location = initialValues.location || stores.location.location;
     const styles = stores.styles.eventForm;
     const navButtonColor = stores.theme.colors.primary;
 
@@ -137,7 +143,6 @@ class Form extends React.Component {
                             (item) => item.id === itemValue,
                           );
                           if (found) {
-                            setFieldValue('location', found.location);
                             setFieldValue('isPublic', Boolean(found.isPublic));
                           }
                         }}
@@ -368,6 +373,12 @@ class Form extends React.Component {
                   onChangeText={handleChange('venue')}
                   onBlur={handleBlur('venue')}
                 />
+                <PickerInput
+                  leftIcon="find"
+                  value={values.location}
+                  onPress={this._showLocationPicker}
+                  placeholder={I18n.get('PLACEHOLDER_global')}
+                />
                 <View style={styles.gap} />
                 <TextField
                   error={errors.description}
@@ -380,6 +391,11 @@ class Form extends React.Component {
                 />
               </View>
             </ScrollView>
+            <LocationPicker
+              visible={this.state.showLocationPicker}
+              hideModal={this._hideLocationPicker}
+              onSelect={handleChange('location')}
+            />
           </>
         )}
       </Formik>
