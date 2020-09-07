@@ -29,7 +29,6 @@ class CancelEvent extends React.Component {
       banner,
       navigation,
       cancelEvent,
-      deleteEvent,
       cancelledDates,
       isSingle,
     } = this.props;
