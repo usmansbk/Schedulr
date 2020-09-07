@@ -1,24 +1,23 @@
 import Geolocation from 'react-native-geolocation-service';
-import { Geocoder } from 'react-native-geodb';
-import { observable, action, computed } from 'mobx';
-import { persist } from 'mobx-persist';
-import { I18n } from 'aws-amplify';
-import { requestLocationPermission } from 'helpers/permissions';
+import {Geocoder} from 'react-native-geodb';
+import {observable, action, computed} from 'mobx';
+import {persist} from 'mobx-persist';
+import {I18n} from 'aws-amplify';
+import {requestLocationPermission} from 'helpers/permissions';
 import numeral from 'numeral';
 import logger from 'config/logger';
 import snackbar from '../helpers/snackbar';
 import env from 'config/env';
 
 export default class Location {
-  @persist('object') @observable point = null; 
-  @persist('object') @observable currentLocation = null; 
+  @persist('object') @observable point = null;
+  @persist('object') @observable currentLocation = null;
 
   @persist @observable locality = null;
   @persist @observable country = null;
-  @persist @observable countryCode = null;
   @persist @observable searchLocation = null;
 
-  @action setCurrentLocation = loc => this.currentLocation = loc;
+  @action setCurrentLocation = (loc) => (this.currentLocation = loc);
 
   @action fetchLocation = async () => {
     if (this.searchLocation) return;
@@ -27,41 +26,37 @@ export default class Location {
       if (hasLocationPermission) {
         Geolocation.getCurrentPosition(
           (position) => {
-            const { coords: {
-              latitude,
-              longitude
-            } } = position;
+            const {
+              coords: {latitude, longitude},
+            } = position;
             const geo_point = {
               lat: latitude,
-              lon: longitude
+              lon: longitude,
             };
 
             this.point = geo_point;
             const loc = {
               lat: latitude,
-              lng: longitude
+              lng: longitude,
             };
             this.currentLocation = loc;
-            Geocoder(loc, env.GEODB_API_KEY).then((locations) => {
-              const bestLocation = locations[0];
-              const {
-                city,
-                country,
-                countryCode
-              } = bestLocation;
-              this.locality = city;
-              this.country = country;
-              this.searchLocation = city;
-              this.countryCode = countryCode;
-            }).catch((error) => {
-              snackbar(I18n.get("ERROR_failedToGetLocation"), true);
-              logger.logError(error);
-            });
+            Geocoder(loc, env.GEODB_API_KEY)
+              .then((locations) => {
+                const bestLocation = locations[0];
+                const {city, country} = bestLocation;
+                this.locality = city;
+                this.country = country;
+                this.searchLocation = `${city}, ${country}`;
+              })
+              .catch((error) => {
+                snackbar(I18n.get('ERROR_failedToGetLocation'), true);
+                logger.logError(error);
+              });
           },
           (error) => {
             snackbar(error.message, true);
           },
-          { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
+          {enableHighAccuracy: true, timeout: 15000, maximumAge: 10000},
         );
       }
     } catch (error) {
@@ -74,9 +69,9 @@ export default class Location {
       this.searchLocation = newLocation;
     }
   }
-  
+
   @computed get adLocation() {
-    if ( this.point && this.point.lat && this.point.lon) {
+    if (this.point && this.point.lat && this.point.lon) {
       return [this.point.lat, this.point.lon];
     }
     return undefined;
@@ -93,7 +88,9 @@ export default class Location {
     if (this.point) {
       const lat = this.point.lat;
       const lon = this.point.lon;
-      return `${this.sign(lat)}${numeral(Math.abs(lat)).format('00.0000')}${this.sign(lon)}${numeral(Math.abs(lon)).format('000.0000')}`;
+      return `${this.sign(lat)}${numeral(Math.abs(lat)).format(
+        '00.0000',
+      )}${this.sign(lon)}${numeral(Math.abs(lon)).format('000.0000')}`;
     }
     return null;
   }
@@ -105,10 +102,9 @@ export default class Location {
 
   @action reset() {
     this.country = null;
-    this.point = null; 
+    this.point = null;
     this.locality = null;
-    this.countryCode = null;
-    this.currentLocation = null; 
+    this.currentLocation = null;
     this.searchLocation = null;
   }
 }

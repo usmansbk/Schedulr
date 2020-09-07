@@ -12,7 +12,12 @@ export default inject('stores')(
       <TouchableOpacity onPress={onPress} style={styles.button}>
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
           {leftIcon && (
-            <Icon name={leftIcon} size={24} style={{marginRight: 16}} />
+            <Icon
+              color={stores.theme.colors.tint}
+              name={leftIcon}
+              size={24}
+              style={{marginRight: 16}}
+            />
           )}
           <Text style={styles.text}>{value || placeholder}</Text>
         </View>
