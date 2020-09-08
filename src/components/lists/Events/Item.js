@@ -102,8 +102,8 @@ class Item extends React.Component {
               ellipsizeMode="tail">
               {title}
             </Text>
-            <Caption>{category}</Caption>
             <Text style={styles.time}>{time}</Text>
+            <Caption>{category}</Caption>
           </View>
         </View>
       </TouchableOpacity>
