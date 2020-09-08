@@ -63,7 +63,9 @@ exports.handler = async (event) => {
 
   for (let i = 0; i < deleteItems.length; i++) {
     try {
+      console.log('DELETE', JSON.stringify(deleteItems[i]));
       await manager.deletePoint(deleteItems[i]);
+      console.log('ITEM DELETED');
     } catch (error) {
       console.log('DELETE Error %>', error.message);
     }
