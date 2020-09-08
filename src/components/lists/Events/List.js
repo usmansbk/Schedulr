@@ -204,9 +204,10 @@ class List extends React.Component {
         const result = this.state.nextIterator.next(this.state.afterDate);
         if (!result.done) {
           const {items, nextToken: afterDate} = result.value;
-          const length = this.state.sections.length;
-          const sections =
-            length < 20 ? this.state.sections.concat(items) : items;
+          // const length = this.state.sections.length;
+          // const sections =
+          //   length < 20 ? this.state.sections.concat(items) : items;
+          const sections = this.state.sections.concat(items);
           this.setState({
             sections,
             afterDate,
