@@ -343,6 +343,7 @@ export const getUserBookmarks = `query GetBookmarks($nextToken: String, $limit: 
           forever
           isPublic
           isOwner
+          isOffline
           isBookmarked
           isCancelled
           cancelledDates
