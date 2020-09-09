@@ -921,6 +921,7 @@ export const nearbyEvents = `query GetNearbyEvents($filter: GeoSearchFilterInput
       isOwner
       isBookmarked
       isCancelled
+      isOffline
       cancelledDates
       banner {
         bucket
