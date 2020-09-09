@@ -190,7 +190,9 @@ class Info extends React.Component {
                 </>
               )}
               <MenuOption
-                text={I18n.get(`MENU_${isMuted ? 'unmute' : 'mute'}`)}
+                text={I18n.get(
+                  `MENU_${isMuted ? 'unmuteEvents' : 'muteEvents'}`,
+                )}
                 onSelect={this._onMute}
               />
             </MenuOptions>

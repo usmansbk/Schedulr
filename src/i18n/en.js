@@ -109,6 +109,8 @@ export default {
   MENU_delete: 'Delete',
   MENU_mute: 'Mute',
   MENU_unmute: 'Unmute',
+  MENU_muteEvents: 'Mute events',
+  MENU_unmuteEvents: 'Unmute events',
 
   SETTINGS_screenTitle: 'Settings',
   SETTINGS_generalSectionTitle: 'General',
