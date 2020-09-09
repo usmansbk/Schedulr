@@ -84,24 +84,25 @@ class Item extends React.Component {
             key={status}
           />
           <View style={styles.itemBody}>
-            {(isOffline || isMuted) && (
-              <Icon
-                style={styles.privateIcon}
-                name={isMuted ? 'mute' : 'sync'}
-                size={16}
-                color={
-                  isMuted
-                    ? stores.theme.colors.light_red
-                    : stores.theme.colors.light_gray_3
-                }
-              />
-            )}
-            <Text
-              style={styles.itemHeadline}
-              numberOfLines={1}
-              ellipsizeMode="tail">
-              {title}
-            </Text>
+            <View style={{flexDirection: 'row', alignItems: 'center'}}>
+              <Text
+                style={styles.itemHeadline}
+                numberOfLines={1}
+                ellipsizeMode="tail">
+                {title}
+              </Text>
+              {(isOffline || isMuted) && (
+                <Icon
+                  name={isMuted ? 'mute' : 'sync'}
+                  size={16}
+                  color={
+                    isMuted
+                      ? stores.theme.colors.light_red
+                      : stores.theme.colors.light_gray_3
+                  }
+                />
+              )}
+            </View>
             <Text style={styles.time}>{time}</Text>
             <Caption>{category}</Caption>
           </View>

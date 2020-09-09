@@ -1570,7 +1570,7 @@ export default class styles {
         borderRadius: 5,
         position: 'absolute',
         top: dp(17),
-        right: dp(17),
+        left: dp(17),
       },
     });
   }
@@ -1679,6 +1679,7 @@ export default class styles {
       itemHeadline: {
         fontSize: 18,
         fontFamily: 'SemiBold',
+        flex: 1,
       },
       itemNote: {
         fontSize: 16,
@@ -1709,12 +1710,6 @@ export default class styles {
       },
       paragraph: {
         textAlign: 'center',
-      },
-      privateIcon: {
-        borderRadius: 5,
-        position: 'absolute',
-        top: 17,
-        right: 17,
       },
     });
   }
