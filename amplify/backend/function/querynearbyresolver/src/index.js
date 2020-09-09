@@ -8,17 +8,8 @@
 	STORAGE_GEOTABLE_NAME
 Amplify Params - DO NOT EDIT */
 const AWS = require('aws-sdk');
-const ddbGeo = require('dynamodb-geo');
 
 const ddb = new AWS.DynamoDB();
-const config = new ddbGeo.GeoDataManagerConfiguration(
-  ddb,
-  process.env.STORAGE_GEOTABLE_NAME,
-);
-
-config.longitudeFirst = true;
-
-const manager = new ddbGeo.GeoDataManager(config);
 
 exports.handler = async (event) => {
   const {arguments} = event;
@@ -27,10 +18,11 @@ exports.handler = async (event) => {
     // location: {lat: latitude, lon: longitude},
     city,
     category,
-    km: radius = 100,
+    // km: radius = 100,
   } = filter;
 
   try {
+    console.log('find events in', category, city);
   } catch (error) {
     console.log('Error %>', error.message);
   }
