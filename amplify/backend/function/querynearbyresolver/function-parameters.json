@@ -3,6 +3,9 @@
     "storage": {
       "geotable": [
         "read"
+      ],
+      "Event:@model(appsync)": [
+        "read"
       ]
     }
   },

@@ -275,17 +275,10 @@
           ]
         },
         {
-          "category": "function",
-          "resourceName": "common",
+          "category": "api",
+          "resourceName": "schdlr",
           "attributes": [
-            "Arn"
-          ]
-        },
-        {
-          "category": "function",
-          "resourceName": "common",
-          "attributes": [
-            "Arn"
+            "GraphQLAPIIdOutput"
           ]
         }
       ]

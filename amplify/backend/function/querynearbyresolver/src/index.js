@@ -1,4 +1,9 @@
 /* Amplify Params - DO NOT EDIT
+	API_SCHDLR_EVENTTABLE_ARN
+	API_SCHDLR_EVENTTABLE_NAME
+	API_SCHDLR_GRAPHQLAPIIDOUTPUT
+	ENV
+	REGION
 	STORAGE_GEOTABLE_ARN
 	STORAGE_GEOTABLE_NAME
 Amplify Params - DO NOT EDIT */
@@ -17,38 +22,15 @@ const manager = new ddbGeo.GeoDataManager(config);
 
 exports.handler = async (event) => {
   const {arguments} = event;
-  const {filter = {}, limit = 50, nextToken = 0} = arguments;
+  const {filter = {}, limit = 50, nextToken = null} = arguments;
   const {
-    location: {lat: latitude, lon: longitude},
+    // location: {lat: latitude, lon: longitude},
+    city,
     category,
     km: radius = 100,
   } = filter;
 
   try {
-    const result = (
-      await manager.queryRadius({
-        RadiusInMeter: radius * 1000,
-        CenterPoint: {
-          latitude,
-          longitude,
-        },
-      })
-    )
-      .map(AWS.DynamoDB.Converter.unmarshall)
-      .filter((item) =>
-        item.category
-          .toLowerCase()
-          .includes(category ? category.toLowerCase() : ''),
-      );
-    const start = nextToken ? Number(nextToken) : 0;
-    const end = start + Number(limit);
-
-    const items = result.slice(start, end);
-    return {
-      items,
-      nextToken: end + 1,
-      total: result.length,
-    };
   } catch (error) {
     console.log('Error %>', error.message);
   }
