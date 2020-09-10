@@ -61,7 +61,7 @@ export default class EventItem extends React.Component {
     } = this.props;
     let source = pictureUrl
       ? {uri: pictureUrl}
-      : require('../../../assets/placeholder.png');
+      : require('../../../assets/board.jpg');
     return (
       <TouchableOpacity onPress={this._onPress}>
         <View style={styles.container}>
