@@ -26,5 +26,5 @@ function devLog(message) {
 export default {
   logError,
   log,
-  devLog
+  devLog,
 };
