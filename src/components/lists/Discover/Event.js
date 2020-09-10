@@ -7,9 +7,12 @@ import {dp} from 'lib/constants';
 
 const styles = StyleSheet.create({
   container: {
+    marginVertical: 16,
+    marginHorizontal: 4,
+  },
+  contentContainer: {
     flexDirection: 'row',
     paddingHorizontal: 12,
-    marginBottom: 8,
   },
   title: {
     fontSize: 18,
@@ -63,8 +66,8 @@ export default class EventItem extends React.Component {
       ? {uri: pictureUrl}
       : require('../../../assets/placeholder.png');
     return (
-      <TouchableOpacity onPress={this._onPress}>
-        <View style={styles.container}>
+      <TouchableOpacity style={styles.container} onPress={this._onPress}>
+        <View style={styles.contentContainer}>
           <TouchableOpacity onPress={this._onPressAvatar}>
             <Image
               defaultSource={require('../../../assets/placeholder.png')}

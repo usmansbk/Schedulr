@@ -1553,7 +1553,7 @@ export default class styles {
       nameRow: {
         flexDirection: 'row',
         justifyContent: 'center',
-        alignItems: 'flex-start',
+        alignItems: 'center',
       },
       itemFooter: {
         flexDirection: 'row',

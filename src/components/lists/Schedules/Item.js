@@ -50,22 +50,22 @@ class Item extends React.Component {
               !isOwner && <Badge src={authorPictureUrl} name={authorName} />
             }
           />
-          {(isClosed || isOffline) && (
-            <Icon
-              style={styles.privateIcon}
-              name={isClosed ? 'archive' : 'sync'}
-              size={16}
-              color={stores.theme.colors.light_gray_3}
-            />
-          )}
           <View style={styles.itemBody}>
             <View style={styles.nameRow}>
-              {isMuted && (
+              {isMuted && !isClosed && (
                 <Icon
                   name="mute"
                   size={18}
                   style={styles.muteIcon}
                   color={stores.theme.colors.light_red}
+                />
+              )}
+              {(isClosed || isOffline) && (
+                <Icon
+                  style={styles.muteIcon}
+                  name={isClosed ? 'archive' : 'sync'}
+                  size={16}
+                  color={stores.theme.colors.light_gray_3}
                 />
               )}
               <Text

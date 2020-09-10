@@ -120,6 +120,7 @@ export const updateEvent = `mutation UpdateEvent($input: UpdateEventInput!) {
     forever
     isPublic
     isCancelled
+    isOffline
     cancelledDates
     banner {
       bucket
@@ -283,6 +284,7 @@ export const updateSchedule = `mutation UpdateSchedule($input: UpdateScheduleInp
     description
     topic
     location
+    isOffline
     isPublic
     status
     updatedAt

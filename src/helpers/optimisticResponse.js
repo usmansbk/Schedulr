@@ -745,6 +745,7 @@ function updateSchedule(input, typename) {
         id
         name
         description
+        isOffline
         isPublic
         topic
         status
@@ -760,6 +761,7 @@ function updateSchedule(input, typename) {
     id: `${typename}:${input.id}`,
   });
   const updatedSchedule = Object.assign({}, schedule, input, {
+    isOffline: true,
     updatedAt: moment().toISOString(),
   });
   return updatedSchedule;
@@ -780,6 +782,7 @@ function updateEvent(input, typename) {
         recurrence
         until
         forever
+        isOffline
         isPublic
         isCancelled
         cancelledDates
@@ -794,6 +797,7 @@ function updateEvent(input, typename) {
     id: `${typename}:${input.id}`,
   });
   const updatedEvent = Object.assign({}, event, input, {
+    isOffline: true,
     updatedAt: moment().toISOString(),
   });
   delete updatedEvent.eventScheduleId;
