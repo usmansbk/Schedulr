@@ -29,6 +29,9 @@ export default compose(
           category: {
             contains: props.category,
           },
+          isCancelled: {
+            ne: true,
+          },
         },
       },
       notifyOnNetworkStatusChange: true,

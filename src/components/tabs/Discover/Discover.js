@@ -21,7 +21,7 @@ class Discover extends React.Component {
   };
 
   render() {
-    const location = this.props.stores.location.point;
+    // const location = this.props.stores.location.point;
     const category = this.props.stores.appState.discoverFilter;
     const city = this.props.stores.location.searchLocation;
     return (
@@ -29,7 +29,7 @@ class Discover extends React.Component {
         <List
           city={city}
           category={category || ''}
-          location={location}
+          // location={location}
           onPressLocationButton={this._openLocationPicker}
         />
         <LocationPicker
