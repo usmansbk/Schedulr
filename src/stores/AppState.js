@@ -53,7 +53,7 @@ export default class AppState {
   @action clearMutedList = () => (this.mutedEvents = []);
 
   @action toggleFilter = (id) => {
-    this.discoverFilter = id.toLowerCase();
+    this.discoverFilter = id;
   };
 
   @action setDefaults = () => {
@@ -200,7 +200,7 @@ export default class AppState {
     this.keysToRemove = state.keysToRemove || [];
   }
 
-  isToggled = (id) => this.discoverFilter === id.toLowerCase();
+  isToggled = (id) => this.discoverFilter === id;
 
   _persistState = () => {
     persistState({
