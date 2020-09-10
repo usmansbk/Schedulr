@@ -1,0 +1,202 @@
+diff --git a/node_modules/react-apollo/Mutation.d.ts b/node_modules/react-apollo/Mutation.d.ts
+index 90d5086..9f9947b 100644
+--- a/node_modules/react-apollo/Mutation.d.ts
++++ b/node_modules/react-apollo/Mutation.d.ts
+@@ -84,7 +84,7 @@ declare class Mutation<TData = any, TVariables = OperationVariables> extends Rea
+     constructor(props: MutationProps<TData, TVariables>, context: any);
+     componentDidMount(): void;
+     componentWillUnmount(): void;
+-    componentWillReceiveProps(nextProps: MutationProps<TData, TVariables>, nextContext: MutationContext): void;
++    UNSAFE_componentWillReceiveProps(nextProps: MutationProps<TData, TVariables>, nextContext: MutationContext): void;
+     render(): React.ReactNode;
+     private runMutation;
+     private mutate;
+diff --git a/node_modules/react-apollo/Mutation.js b/node_modules/react-apollo/Mutation.js
+index 6184e7b..4a19357 100644
+--- a/node_modules/react-apollo/Mutation.js
++++ b/node_modules/react-apollo/Mutation.js
+@@ -111,7 +111,7 @@ var Mutation = (function (_super) {
+     Mutation.prototype.componentWillUnmount = function () {
+         this.hasMounted = false;
+     };
+-    Mutation.prototype.componentWillReceiveProps = function (nextProps, nextContext) {
++    Mutation.prototype.UNSAFE_componentWillReceiveProps = function (nextProps, nextContext) {
+         var nextClient = component_utils_1.getClient(nextProps, nextContext);
+         if (shallowEqual_1.default(this.props, nextProps) && this.client === nextClient) {
+             return;
+diff --git a/node_modules/react-apollo/Query.d.ts b/node_modules/react-apollo/Query.d.ts
+index 9a7e49b..46d584c 100644
+--- a/node_modules/react-apollo/Query.d.ts
++++ b/node_modules/react-apollo/Query.d.ts
+@@ -63,7 +63,7 @@ export default class Query<TData = any, TVariables = OperationVariables> extends
+     constructor(props: QueryProps<TData, TVariables>, context: QueryContext);
+     fetchData(): Promise<ApolloQueryResult<any>> | boolean;
+     componentDidMount(): void;
+-    componentWillReceiveProps(nextProps: QueryProps<TData, TVariables>, nextContext: QueryContext): void;
++    UNSAFE_componentWillReceiveProps(nextProps: QueryProps<TData, TVariables>, nextContext: QueryContext): void;
+     componentWillUnmount(): void;
+     componentDidUpdate(prevProps: QueryProps<TData, TVariables>): void;
+     render(): React.ReactNode;
+diff --git a/node_modules/react-apollo/Query.js b/node_modules/react-apollo/Query.js
+index a25cf9c..a781db2 100644
+--- a/node_modules/react-apollo/Query.js
++++ b/node_modules/react-apollo/Query.js
+@@ -178,7 +178,7 @@ var Query = (function (_super) {
+                 .catch(reject);
+         }
+     };
+-    Query.prototype.componentWillReceiveProps = function (nextProps, nextContext) {
++    Query.prototype.UNSAFE_componentWillReceiveProps = function (nextProps, nextContext) {
+         if (nextProps.skip && !this.props.skip) {
+             this.queryObservable.resetLastResults();
+             this.removeQuerySubscription();
+diff --git a/node_modules/react-apollo/Subscriptions.d.ts b/node_modules/react-apollo/Subscriptions.d.ts
+index ff26e19..9cdc84d 100644
+--- a/node_modules/react-apollo/Subscriptions.d.ts
++++ b/node_modules/react-apollo/Subscriptions.d.ts
+@@ -47,7 +47,7 @@ declare class Subscription<TData = any, TVariables = any> extends React.Componen
+     private querySubscription?;
+     constructor(props: SubscriptionProps<TData, TVariables>, context: SubscriptionContext);
+     componentDidMount(): void;
+-    componentWillReceiveProps(nextProps: SubscriptionProps<TData, TVariables>, nextContext: SubscriptionContext): void;
++    UNSAFE_componentWillReceiveProps(nextProps: SubscriptionProps<TData, TVariables>, nextContext: SubscriptionContext): void;
+     componentWillUnmount(): void;
+     render(): any;
+     private initialize;
+diff --git a/node_modules/react-apollo/Subscriptions.js b/node_modules/react-apollo/Subscriptions.js
+index 03d8f96..08168b1 100644
+--- a/node_modules/react-apollo/Subscriptions.js
++++ b/node_modules/react-apollo/Subscriptions.js
+@@ -68,7 +68,7 @@ var Subscription = (function (_super) {
+     Subscription.prototype.componentDidMount = function () {
+         this.startSubscription();
+     };
+-    Subscription.prototype.componentWillReceiveProps = function (nextProps, nextContext) {
++    Subscription.prototype.UNSAFE_componentWillReceiveProps = function (nextProps, nextContext) {
+         var nextClient = component_utils_1.getClient(nextProps, nextContext);
+         if (shallowEqual_1.default(this.props.variables, nextProps.variables) &&
+             this.client === nextClient &&
+diff --git a/node_modules/react-apollo/react-apollo.cjs.js b/node_modules/react-apollo/react-apollo.cjs.js
+index f03c052..8fb0922 100644
+--- a/node_modules/react-apollo/react-apollo.cjs.js
++++ b/node_modules/react-apollo/react-apollo.cjs.js
+@@ -312,7 +312,7 @@ var Query = (function (_super) {
+                 .catch(reject);
+         }
+     };
+-    Query.prototype.componentWillReceiveProps = function (nextProps, nextContext) {
++    Query.prototype.UNSAFE_componentWillReceiveProps = function (nextProps, nextContext) {
+         if (nextProps.skip && !this.props.skip) {
+             this.queryObservable.resetLastResults();
+             this.removeQuerySubscription();
+@@ -523,7 +523,7 @@ var Mutation = (function (_super) {
+     Mutation.prototype.componentWillUnmount = function () {
+         this.hasMounted = false;
+     };
+-    Mutation.prototype.componentWillReceiveProps = function (nextProps, nextContext) {
++    Mutation.prototype.UNSAFE_componentWillReceiveProps = function (nextProps, nextContext) {
+         var nextClient = getClient(nextProps, nextContext);
+         if (shallowEqual(this.props, nextProps) && this.client === nextClient) {
+             return;
+@@ -633,7 +633,7 @@ var Subscription = (function (_super) {
+     Subscription.prototype.componentDidMount = function () {
+         this.startSubscription();
+     };
+-    Subscription.prototype.componentWillReceiveProps = function (nextProps, nextContext) {
++    Subscription.prototype.UNSAFE_componentWillReceiveProps = function (nextProps, nextContext) {
+         var nextClient = getClient(nextProps, nextContext);
+         if (shallowEqual(this.props.variables, nextProps.variables) &&
+             this.client === nextClient &&
+@@ -860,7 +860,7 @@ function withSubscription(document, operationOptions) {
+                 _this.state = { resubscribe: false };
+                 return _this;
+             }
+-            GraphQL.prototype.componentWillReceiveProps = function (nextProps) {
++            GraphQL.prototype.UNSAFE_componentWillReceiveProps = function (nextProps) {
+                 if (!shouldResubscribe)
+                     return;
+                 this.setState({
+diff --git a/node_modules/react-apollo/react-apollo.esm.js b/node_modules/react-apollo/react-apollo.esm.js
+index 3dd29b4..115074f 100644
+--- a/node_modules/react-apollo/react-apollo.esm.js
++++ b/node_modules/react-apollo/react-apollo.esm.js
+@@ -306,7 +306,7 @@ var Query = (function (_super) {
+                 .catch(reject);
+         }
+     };
+-    Query.prototype.componentWillReceiveProps = function (nextProps, nextContext) {
++    Query.prototype.UNSAFE_componentWillReceiveProps = function (nextProps, nextContext) {
+         if (nextProps.skip && !this.props.skip) {
+             this.queryObservable.resetLastResults();
+             this.removeQuerySubscription();
+@@ -517,7 +517,7 @@ var Mutation = (function (_super) {
+     Mutation.prototype.componentWillUnmount = function () {
+         this.hasMounted = false;
+     };
+-    Mutation.prototype.componentWillReceiveProps = function (nextProps, nextContext) {
++    Mutation.prototype.UNSAFE_componentWillReceiveProps = function (nextProps, nextContext) {
+         var nextClient = getClient(nextProps, nextContext);
+         if (shallowEqual(this.props, nextProps) && this.client === nextClient) {
+             return;
+@@ -627,7 +627,7 @@ var Subscription = (function (_super) {
+     Subscription.prototype.componentDidMount = function () {
+         this.startSubscription();
+     };
+-    Subscription.prototype.componentWillReceiveProps = function (nextProps, nextContext) {
++    Subscription.prototype.UNSAFE_componentWillReceiveProps = function (nextProps, nextContext) {
+         var nextClient = getClient(nextProps, nextContext);
+         if (shallowEqual(this.props.variables, nextProps.variables) &&
+             this.client === nextClient &&
+@@ -854,7 +854,7 @@ function withSubscription(document, operationOptions) {
+                 _this.state = { resubscribe: false };
+                 return _this;
+             }
+-            GraphQL.prototype.componentWillReceiveProps = function (nextProps) {
++            GraphQL.prototype.UNSAFE_componentWillReceiveProps = function (nextProps) {
+                 if (!shouldResubscribe)
+                     return;
+                 this.setState({
+diff --git a/node_modules/react-apollo/react-apollo.umd.js b/node_modules/react-apollo/react-apollo.umd.js
+index bf99569..e249ec3 100644
+--- a/node_modules/react-apollo/react-apollo.umd.js
++++ b/node_modules/react-apollo/react-apollo.umd.js
+@@ -307,7 +307,7 @@
+                     .catch(reject);
+             }
+         };
+-        Query.prototype.componentWillReceiveProps = function (nextProps, nextContext) {
++        Query.prototype.UNSAFE_componentWillReceiveProps = function (nextProps, nextContext) {
+             if (nextProps.skip && !this.props.skip) {
+                 this.queryObservable.resetLastResults();
+                 this.removeQuerySubscription();
+@@ -518,7 +518,7 @@
+         Mutation.prototype.componentWillUnmount = function () {
+             this.hasMounted = false;
+         };
+-        Mutation.prototype.componentWillReceiveProps = function (nextProps, nextContext) {
++        Mutation.prototype.UNSAFE_componentWillReceiveProps = function (nextProps, nextContext) {
+             var nextClient = getClient(nextProps, nextContext);
+             if (shallowEqual(this.props, nextProps) && this.client === nextClient) {
+                 return;
+@@ -628,7 +628,7 @@
+         Subscription.prototype.componentDidMount = function () {
+             this.startSubscription();
+         };
+-        Subscription.prototype.componentWillReceiveProps = function (nextProps, nextContext) {
++        Subscription.prototype.UNSAFE_componentWillReceiveProps = function (nextProps, nextContext) {
+             var nextClient = getClient(nextProps, nextContext);
+             if (shallowEqual(this.props.variables, nextProps.variables) &&
+                 this.client === nextClient &&
+diff --git a/node_modules/react-apollo/subscription-hoc.js b/node_modules/react-apollo/subscription-hoc.js
+index 1500cbd..df6265f 100644
+--- a/node_modules/react-apollo/subscription-hoc.js
++++ b/node_modules/react-apollo/subscription-hoc.js
+@@ -26,7 +26,7 @@ function withSubscription(document, operationOptions) {
+                 _this.state = { resubscribe: false };
+                 return _this;
+             }
+-            GraphQL.prototype.componentWillReceiveProps = function (nextProps) {
++            GraphQL.prototype.UNSAFE_componentWillReceiveProps = function (nextProps) {
+                 if (!shouldResubscribe)
+                     return;
+                 this.setState({
