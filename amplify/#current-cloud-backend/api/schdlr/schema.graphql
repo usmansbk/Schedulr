@@ -212,21 +212,8 @@ type SearchableEventConnection {
   total: Int
 }
 
-input GeoSearchFilterInput {
-  location: LocationInput!
-  city: String
-  category: String
-  km: Int
-}
-
 type Query {
   me: User
-  nearbyEvents(
-    filter: GeoSearchFilterInput!
-    limit: Int
-    nextToken: String
-  ): SearchableEventConnection
-    @function(name: "QueryNearByEventsResolver-${env}")
   deltaSync(lastSync: String!): Delta @function(name: "QueryDeltaSync-${env}")
   notifications(lastSync: String!): [Notification]
     @function(name: "QueryNotifications-${env}")

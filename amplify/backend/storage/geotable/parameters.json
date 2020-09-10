@@ -1,5 +1,0 @@
-{
-  "tableName": "GeoTable",
-  "partitionKeyName": "id",
-  "partitionKeyType": "S"
-}

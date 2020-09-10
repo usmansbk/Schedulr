@@ -51,10 +51,6 @@
     "scheduledelta": {
       "service": "DynamoDB",
       "providerPlugin": "awscloudformation"
-    },
-    "geotable": {
-      "service": "DynamoDB",
-      "providerPlugin": "awscloudformation"
     }
   },
   "function": {
@@ -220,65 +216,6 @@
           "resourceName": "common",
           "attributes": [
             "Arn"
-          ]
-        }
-      ]
-    },
-    "geohandler": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda",
-      "dependsOn": [
-        {
-          "category": "api",
-          "resourceName": "schdlr",
-          "attributes": [
-            "GraphQLAPIIdOutput",
-            "GraphQLAPIEndpointOutput"
-          ]
-        },
-        {
-          "category": "storage",
-          "resourceName": "geotable",
-          "attributes": [
-            "Name",
-            "Arn"
-          ]
-        },
-        {
-          "category": "function",
-          "resourceName": "common",
-          "attributes": [
-            "Arn"
-          ]
-        },
-        {
-          "category": "function",
-          "resourceName": "common",
-          "attributes": [
-            "Arn"
-          ]
-        }
-      ]
-    },
-    "querynearbyresolver": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda",
-      "dependsOn": [
-        {
-          "category": "storage",
-          "resourceName": "geotable",
-          "attributes": [
-            "Name",
-            "Arn"
-          ]
-        },
-        {
-          "category": "api",
-          "resourceName": "schdlr",
-          "attributes": [
-            "GraphQLAPIIdOutput"
           ]
         }
       ]

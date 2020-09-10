@@ -47,10 +47,6 @@ const awsmobile = {
         {
             "tableName": "Schedule-delta-prod",
             "region": "us-east-1"
-        },
-        {
-            "tableName": "GeoTable-prod",
-            "region": "us-east-1"
         }
     ]
 };

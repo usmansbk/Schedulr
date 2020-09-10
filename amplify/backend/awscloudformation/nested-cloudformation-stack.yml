@@ -138,7 +138,7 @@
 						]
 					},
 					"S3DeploymentBucket": "amplify-schdlr-prod-21214-deployment",
-					"S3DeploymentRootKey": "amplify-appsync-files/f0ad3cde08ef244b45c3880797b60881f249a8b1",
+					"S3DeploymentRootKey": "amplify-appsync-files/22bec888514a9c0cf153531a8f045c514fd4be1e",
 					"env": "prod"
 				}
 			}
@@ -243,18 +243,6 @@
 					"partitionKeyType": "S",
 					"sortKeyName": "timestamp",
 					"sortKeyType": "N",
-					"env": "prod"
-				}
-			}
-		},
-		"storagegeotable": {
-			"Type": "AWS::CloudFormation::Stack",
-			"Properties": {
-				"TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-prod-21214-deployment/amplify-cfn-templates/storage/geotable-cloudformation-template.json",
-				"Parameters": {
-					"tableName": "GeoTable",
-					"partitionKeyName": "id",
-					"partitionKeyType": "S",
 					"env": "prod"
 				}
 			}
@@ -553,72 +541,6 @@
 					"webUrl": "https://www.schdlr.com",
 					"TableName": "Event-wb4flhdy5bfdjppc5l6kyzr63y-prod",
 					"StreamId": "2019-12-18T01:34:09.629",
-					"functioncommonArn": {
-						"Fn::GetAtt": [
-							"functioncommon",
-							"Outputs.Arn"
-						]
-					},
-					"env": "prod"
-				}
-			}
-		},
-		"functiongeohandler": {
-			"Type": "AWS::CloudFormation::Stack",
-			"Properties": {
-				"TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-prod-21214-deployment/amplify-cfn-templates/function/geohandler-cloudformation-template.json",
-				"Parameters": {
-					"apischdlrGraphQLAPIIdOutput": {
-						"Fn::GetAtt": [
-							"apischdlr",
-							"Outputs.GraphQLAPIIdOutput"
-						]
-					},
-					"apischdlrGraphQLAPIEndpointOutput": {
-						"Fn::GetAtt": [
-							"apischdlr",
-							"Outputs.GraphQLAPIEndpointOutput"
-						]
-					},
-					"storagegeotableName": {
-						"Fn::GetAtt": [
-							"storagegeotable",
-							"Outputs.Name"
-						]
-					},
-					"storagegeotableArn": {
-						"Fn::GetAtt": [
-							"storagegeotable",
-							"Outputs.Arn"
-						]
-					},
-					"functioncommonArn": {
-						"Fn::GetAtt": [
-							"functioncommon",
-							"Outputs.Arn"
-						]
-					},
-					"env": "prod"
-				}
-			}
-		},
-		"functionquerynearbyresolver": {
-			"Type": "AWS::CloudFormation::Stack",
-			"Properties": {
-				"TemplateURL": "https://s3.amazonaws.com/amplify-schdlr-prod-21214-deployment/amplify-cfn-templates/function/querynearbyresolver-cloudformation-template.json",
-				"Parameters": {
-					"storagegeotableName": {
-						"Fn::GetAtt": [
-							"storagegeotable",
-							"Outputs.Name"
-						]
-					},
-					"storagegeotableArn": {
-						"Fn::GetAtt": [
-							"storagegeotable",
-							"Outputs.Arn"
-						]
-					},
 					"functioncommonArn": {
 						"Fn::GetAtt": [
 							"functioncommon",
