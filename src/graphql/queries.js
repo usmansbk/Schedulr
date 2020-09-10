@@ -904,8 +904,8 @@ export const listBookmarks = `query GetEventBookmarks($id: ID!, $limit: Int, $ne
     }
   }
 }`;
-export const nearbyEvents = `query GetNearbyEvents($filter: GeoSearchFilterInput!, $limit: Int, $nextToken: String) {
-  nearbyEvents(filter: $filter, limit: $limit, nextToken: $nextToken) @connection(key: "nearbyEvents") {
+export const nearbyEvents = `query GetNearbyEvents($location: String, $startAt: ModelStringKeyConditionInput, $filter: ModelEventFilterInput, $limit: Int, $nextToken: String) {
+  nearbyEvents(location: $location, startAt: $startAt, filter: $filter, limit: $limit, nextToken: $nextToken) @connection(key: "nearbyEvents") {
     items {
       id
       title

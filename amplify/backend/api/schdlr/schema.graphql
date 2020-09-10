@@ -113,6 +113,11 @@ enum ScheduleStatus {
 
 type Event
   @model(subscriptions: null, queries: {get: "getEvent", list: "searchEvents"})
+  @key(
+    name: "byLocation"
+    fields: ["location", "startAt"]
+    queryField: "nearbyEvents"
+  )
   @auth(
     rules: [
       {

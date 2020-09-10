@@ -1,6 +1,7 @@
 import {graphql, compose} from 'react-apollo';
 import {withNavigationFocus} from 'react-navigation';
 import gql from 'graphql-tag';
+import moment from 'moment';
 import {nearbyEvents} from 'api/queries';
 import List from 'components/lists/Discover';
 import updateQuery from 'helpers/updateQuery';
@@ -14,17 +15,25 @@ export default compose(
     options: (props) => ({
       fetchPolicy: 'cache-and-network',
       variables: {
-        filter: {
-          city: props.city,
-          location: props.location,
-          category: props.category,
-          km: 250,
+        location: props.city,
+        startAt: {
+          ge: moment().toISOString(),
         },
-        limit: 50,
+        filter: {
+          isPublic: {
+            eq: true,
+          },
+          recurrence: {
+            eq: 'NEVER',
+          },
+          category: {
+            contains: props.category,
+          },
+        },
       },
       notifyOnNetworkStatusChange: true,
     }),
-    skip: (props) => !props.location,
+    skip: (props) => !props.city,
     props: ({data, ownProps}) => ({
       data: (data && data.nearbyEvents && data.nearbyEvents.items) || [],
       nextToken: data && data.nearbyEvents && data.nearbyEvents.nextToken,
