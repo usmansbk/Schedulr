@@ -55,7 +55,7 @@ class FilterAction extends React.Component {
     const options = [
       {label: I18n.get('ACTION_all'), value: 'all', icon: 'bells'},
       {label: I18n.get('ACTION_events'), value: EVENT_TYPE, icon: 'calendar'},
-      {label: I18n.get('ACTION_schedules'), value: SCHEDULE_TYPE, icon: 'pin'},
+      {label: I18n.get('ACTION_schedules'), value: SCHEDULE_TYPE, icon: 'team'},
       {
         label: I18n.get('ACTION_followers'),
         value: FOLLOW_TYPE,
