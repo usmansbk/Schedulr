@@ -44,22 +44,3 @@ function CustomPaperInput({stores, style = [], ...rest}, ref) {
 export const TextField = inject('stores')(
   observer(React.forwardRef(CustomPaperInput)),
 );
-
-const styles = StyleSheet.create({
-  container: {
-    marginVertical: 10,
-  },
-  input: {
-    // backgroundColor: colors.gray,
-    backgroundColor: colors.bg,
-    // height: 56,
-    padding: 8,
-    margin: 0,
-    fontSize: 18,
-    color: colors.black,
-  },
-  label: {
-    marginLeft: 8,
-    color: colors.black,
-  },
-});
