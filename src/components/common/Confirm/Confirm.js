@@ -43,9 +43,11 @@ class Confirm extends React.Component {
           <View style={styles.header}>
             <Text style={styles.title}>{title}</Text>
           </View>
-          <View style={styles.body}>
-            <Text style={styles.message}>{message}</Text>
-          </View>
+          {!!message && (
+            <View style={styles.body}>
+              <Text style={styles.message}>{message}</Text>
+            </View>
+          )}
           <View style={styles.footer}>
             {!alert && (
               <Button onPress={this._cancel}>
