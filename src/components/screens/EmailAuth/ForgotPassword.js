@@ -8,11 +8,6 @@ import Icon from 'components/common/Icon';
 import {useFormik} from 'formik';
 import * as Yup from 'yup';
 
-const validationSchema = Yup.object().shape({
-  email: Yup.string().email().required(I18n.get('HELPER_TEXT_emailRequired')),
-  password: Yup.string(),
-});
-
 function ForgotPassword(props) {
   const [banner, setBanner] = React.useState(null);
   const [mode, setMode] = React.useState(null);
@@ -29,6 +24,11 @@ function ForgotPassword(props) {
       setMode('Reset');
     }
   }, [mode]);
+
+  const validationSchema = Yup.object().shape({
+    email: Yup.string().email().required(I18n.get('HELPER_TEXT_emailRequired')),
+    password: Yup.string(),
+  });
 
   const formik = useFormik({
     initialValues: {

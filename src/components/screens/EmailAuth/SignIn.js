@@ -8,14 +8,13 @@ import {useFormik} from 'formik';
 import * as Yup from 'yup';
 import Icon from 'components/common/Icon';
 
-const validationSchema = Yup.object().shape({
-  email: Yup.string().email().required(I18n.get('HELPER_TEXT_emailRequired')),
-  password: Yup.string().required(I18n.get('HELPER_TEXT_passwordRequired')),
-});
-
 function SignIn(props) {
   const passwordRef = React.useRef(null);
 
+  const validationSchema = Yup.object().shape({
+    email: Yup.string().email().required(I18n.get('HELPER_TEXT_emailRequired')),
+    password: Yup.string().required(I18n.get('HELPER_TEXT_passwordRequired')),
+  });
   const formik = useFormik({
     initialValues: {
       email: '',

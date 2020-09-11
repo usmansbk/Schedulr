@@ -8,15 +8,15 @@ import Icon from 'components/common/Icon';
 import {useFormik} from 'formik';
 import * as Yup from 'yup';
 
-const validationSchema = Yup.object().shape({
-  email: Yup.string().email().required(I18n.get('HELPER_TEXT_emailRequired')),
-  code: Yup.number().required(I18n.get('HELPER_TEXT_codeRequired')),
-});
-
 function Confirm(props) {
   const codeRef = React.useRef(null);
   const [banner, setBanner] = React.useState(null);
   const [resending, setSending] = React.useState(false);
+
+  const validationSchema = Yup.object().shape({
+    email: Yup.string().email().required(I18n.get('HELPER_TEXT_emailRequired')),
+    code: Yup.number().required(I18n.get('HELPER_TEXT_codeRequired')),
+  });
 
   const formik = useFormik({
     initialValues: {

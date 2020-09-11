@@ -8,14 +8,6 @@ import Icon from 'components/common/Icon';
 import {useFormik} from 'formik';
 import * as Yup from 'yup';
 
-const validationSchema = Yup.object().shape({
-  name: Yup.string().required('Name required'),
-  email: Yup.string().email().required('Email required'),
-  password: Yup.string()
-    .required(I18n.get('HELPER_TEXT_passwordRequired'))
-    .min(8, I18n.get('HELPER_TEXT_passwordLength')),
-});
-
 function SignUp(props) {
   const emailRef = React.useRef(null);
   const passwordRef = React.useRef(null);
@@ -26,6 +18,14 @@ function SignUp(props) {
     () => setSecureTextEntry(!secureTextEntry),
     [secureTextEntry],
   );
+
+  const validationSchema = Yup.object().shape({
+    name: Yup.string().required('Name required'),
+    email: Yup.string().email().required('Email required'),
+    password: Yup.string()
+      .required(I18n.get('HELPER_TEXT_passwordRequired'))
+      .min(8, I18n.get('HELPER_TEXT_passwordLength')),
+  });
 
   const formik = useFormik({
     initialValues: {
