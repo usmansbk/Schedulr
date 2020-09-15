@@ -16,7 +16,7 @@ export default inject('stores')(
               color={stores.theme.colors.tint}
               name={leftIcon}
               size={24}
-              style={{marginRight: 16}}
+              style={{marginRight: 8}}
             />
           )}
           <Text style={styles.text}>{value || placeholder}</Text>
