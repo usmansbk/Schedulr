@@ -57,13 +57,15 @@ class Input extends React.Component {
           onPress={this._datePicker}>
           {this._formatDate(value)}
         </Button>
-        <Button
-          icon="clock"
-          disabled={disabled}
-          style={styles.timeButton}
-          onPress={this._timePicker}>
-          {hideTime ? '' : this._formatTime(value)}
-        </Button>
+        {!hideTime && (
+          <Button
+            icon="clock"
+            disabled={disabled}
+            style={styles.timeButton}
+            onPress={this._timePicker}>
+            {this._formatTime(value)}
+          </Button>
+        )}
         {this.state.showPicker && (
           <DateTimePicker
             mode={this.state.mode}

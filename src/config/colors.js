@@ -51,7 +51,7 @@ export const light = {
   actionsheet: '#e5e5e5',
   actionsheetTitleText: '#757575',
   selectedButton: 'white',
-  textInput: '#f5f8fa',
+  textInput: '#e1e8ed',
   primaryOpaque: (opacity) => `rgba(25, 118, 210, ${opacity})`,
 };
 

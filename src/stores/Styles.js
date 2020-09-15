@@ -321,7 +321,7 @@ export default class styles {
         justifyContent: 'center',
       },
       content: {
-        height: dp(48),
+        padding: 16,
         justifyContent: 'center',
       },
       text: {
