@@ -26,7 +26,7 @@ export default function Banner({navigateToBanner, id, pictureUrl, isOwner}) {
   return (
     <TouchableOpacity style={styles.container} onPress={onPress}>
       <ImageBackground
-        defaultSource={require('assets/work.png')}
+        defaultSource={require('assets/placeholder.png')}
         style={styles.image}
         source={source}
         resizeMode="cover">
