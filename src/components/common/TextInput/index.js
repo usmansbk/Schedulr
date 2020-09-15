@@ -1,42 +1,22 @@
 import React from 'react';
 import {View, TextInput, Text} from 'react-native';
-import {TextInput as PaperInput} from 'react-native-paper';
 import {inject, observer} from 'mobx-react';
 
-export default inject('stores')(
-  observer(({error, stores, label, bold, ...rest}) => {
-    const styles = stores.styles.textInput;
-    return (
-      <View style={styles.container}>
-        <Text style={styles.label}>{label}</Text>
-        <TextInput
-          placeholderTextColor={stores.theme.colors.placeholder}
-          autoCorrect={false}
-          underlineColorAndroid="transparent"
-          style={styles.input}
-          {...rest}
-        />
-      </View>
-    );
-  }),
-);
-
-function CustomPaperInput({stores, style = [], ...rest}, ref) {
+const TextField = ({error, stores, label, bold, ...rest}, ref) => {
+  const styles = stores.styles.textInput;
   return (
-    <PaperInput
-      ref={ref}
-      theme={{roundness: 0, colors: {text: stores.theme.colors.black}}}
-      style={[
-        {
-          backgroundColor: stores.theme.colors.textInput,
-        },
-        style,
-      ]}
-      {...rest}
-    />
+    <View style={styles.container}>
+      <Text style={styles.label}>{label}</Text>
+      <TextInput
+        ref={ref}
+        placeholderTextColor={stores.theme.colors.placeholder}
+        autoCorrect={false}
+        underlineColorAndroid="transparent"
+        style={styles.input}
+        {...rest}
+      />
+    </View>
   );
-}
+};
 
-export const TextField = inject('stores')(
-  observer(React.forwardRef(CustomPaperInput)),
-);
+export default inject('stores')(observer(React.forwardRef(TextField)));

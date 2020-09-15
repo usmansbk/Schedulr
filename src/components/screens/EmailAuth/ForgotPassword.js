@@ -3,7 +3,7 @@ import {observer, inject} from 'mobx-react';
 import {I18n, Auth} from 'aws-amplify';
 import {ScrollView, StyleSheet, View} from 'react-native';
 import {Appbar, Headline, Button, Banner} from 'react-native-paper';
-import {TextField as TextInput} from 'components/common/TextInput';
+import TextInput from 'components/common/TextInput';
 import Icon from 'components/common/Icon';
 import {useFormik} from 'formik';
 import * as Yup from 'yup';
@@ -123,7 +123,6 @@ function ForgotPassword(props) {
         <TextInput
           label={I18n.get('LABEL_email')}
           placeholder={I18n.get('PLACEHOLDER_email')}
-          style={styles.field}
           value={formik.values.email}
           onChangeText={formik.handleChange('email')}
           onBlur={formik.handleBlur('email')}
@@ -134,7 +133,6 @@ function ForgotPassword(props) {
             <TextInput
               label={I18n.get('LABEL_code')}
               placeholder={I18n.get('PLACEHOLDER_code')}
-              style={styles.field}
               value={formik.values.code}
               onChangeText={formik.handleChange('code')}
               onBlur={formik.handleBlur('code')}
@@ -142,7 +140,6 @@ function ForgotPassword(props) {
             <TextInput
               label={I18n.get('LABEL_password')}
               placeholder={I18n.get('PLACEHOLDER_password')}
-              style={styles.field}
               value={formik.values.password}
               secureTextEntry={secureTextEntry}
               onChangeText={formik.handleChange('password')}

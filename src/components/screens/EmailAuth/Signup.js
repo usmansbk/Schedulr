@@ -3,7 +3,7 @@ import {observer, inject} from 'mobx-react';
 import {I18n, Auth} from 'aws-amplify';
 import {View, ScrollView, StyleSheet} from 'react-native';
 import {Appbar, Headline, Button, HelperText, Banner} from 'react-native-paper';
-import {TextField as TextInput} from 'components/common/TextInput';
+import TextInput from 'components/common/TextInput';
 import Icon from 'components/common/Icon';
 import {useFormik} from 'formik';
 import * as Yup from 'yup';
@@ -106,7 +106,6 @@ function SignUp(props) {
           autoFocus
           label={I18n.get('LABEL_name')}
           placeholder={I18n.get('PLACEHOLDER_name')}
-          style={styles.field}
           blurOnSubmit={false}
           onSubmitEditing={() => emailRef.current.focus()}
           returnKeyType="next"
@@ -132,7 +131,6 @@ function SignUp(props) {
           label={I18n.get('LABEL_password')}
           secureTextEntry={secureTextEntry}
           placeholder={I18n.get('PLACEHOLDER_password')}
-          style={styles.field}
           value={formik.values.password}
           onBlur={formik.handleBlur('password')}
           onChangeText={formik.handleChange('password')}
