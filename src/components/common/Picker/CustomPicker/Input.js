@@ -2,7 +2,7 @@ import React from 'react';
 import {inject, observer} from 'mobx-react';
 import {I18n} from 'aws-amplify';
 import Picker from '../Picker';
-import {TextField} from '../../TextInput';
+import TextInput from '../../TextInput';
 
 const customValue = '__custom__type__schdlr__mobile__';
 
@@ -35,9 +35,7 @@ class Input extends React.Component {
     );
 
     return this.state.custom ? (
-      <TextField
-        dense
-        underlineColor="transparent"
+      <TextInput
         placeholder={I18n.get('PLACEHOLDER_customType')}
         value={value}
         editable={!disabled}

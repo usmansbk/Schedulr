@@ -6,7 +6,7 @@ const TextField = ({error, stores, label, bold, ...rest}, ref) => {
   const styles = stores.styles.textInput;
   return (
     <View style={styles.container}>
-      <Text style={styles.label}>{label}</Text>
+      {!!label && <Text style={styles.label}>{label}</Text>}
       <TextInput
         ref={ref}
         placeholderTextColor={stores.theme.colors.placeholder}
