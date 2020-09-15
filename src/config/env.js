@@ -17,5 +17,5 @@ export default {
   GEODB_HOST: 'wft-geo-db.p.mashape.com',
   BUILD: `${date}-beta`,
   APP_VERSION: '0.1.62',
-  BANNER_ID: 'ca-app-pub-5101585071736651/9363125562',
+  BANNER: 'ca-app-pub-5101585071736651/9363125562',
 };

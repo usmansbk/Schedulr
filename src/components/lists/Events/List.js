@@ -14,6 +14,7 @@ import Item from './Item';
 import {isPastDate, tick} from 'lib/time';
 import {eventsChanged} from 'lib/utils';
 import {EventSectionGenerator} from 'lib/calendar';
+import Banner from 'components/common/Banner/Ad';
 import {events} from 'lib/constants';
 
 const {
@@ -292,36 +293,39 @@ class List extends React.Component {
     const {sections} = this.state;
 
     return (
-      <SectionList
-        ref={this.listRef}
-        initialNumToRender={1}
-        getItemLayout={this._getItemLayout}
-        contentContainerStyle={stores.styles.eventsList.contentContainer}
-        style={stores.styles.eventsList.list}
-        stickySectionHeadersEnabled
-        sections={sections}
-        extraData={stores.appState.extraData}
-        ListHeaderComponent={this._renderHeader}
-        ListEmptyComponent={this._renderEmptyList}
-        ItemSeparatorComponent={this._renderSeparator}
-        refreshControl={
-          <RefreshControl
-            onRefresh={this._onRefresh}
-            refreshing={loading}
-            colors={[stores.theme.colors.primary]}
-            progressBackgroundColor={stores.theme.colors.bg}
-          />
-        }
-        scrollEventThrottle={16}
-        onScroll={this._onScroll}
-        onEndReachedThreshold={0.5}
-        onEndReached={this._onEndReached}
-        renderItem={this._renderItem}
-        renderSectionHeader={this._renderSectionHeader}
-        renderSectionFooter={this._renderSectionFooter}
-        keyExtractor={this._keyExtractor}
-        ListFooterComponent={this._renderFooter}
-      />
+      <>
+        <Banner />
+        <SectionList
+          ref={this.listRef}
+          initialNumToRender={1}
+          getItemLayout={this._getItemLayout}
+          contentContainerStyle={stores.styles.eventsList.contentContainer}
+          style={stores.styles.eventsList.list}
+          stickySectionHeadersEnabled
+          sections={sections}
+          extraData={stores.appState.extraData}
+          ListHeaderComponent={this._renderHeader}
+          ListEmptyComponent={this._renderEmptyList}
+          ItemSeparatorComponent={this._renderSeparator}
+          refreshControl={
+            <RefreshControl
+              onRefresh={this._onRefresh}
+              refreshing={loading}
+              colors={[stores.theme.colors.primary]}
+              progressBackgroundColor={stores.theme.colors.bg}
+            />
+          }
+          scrollEventThrottle={16}
+          onScroll={this._onScroll}
+          onEndReachedThreshold={0.5}
+          onEndReached={this._onEndReached}
+          renderItem={this._renderItem}
+          renderSectionHeader={this._renderSectionHeader}
+          renderSectionFooter={this._renderSectionFooter}
+          keyExtractor={this._keyExtractor}
+          ListFooterComponent={this._renderFooter}
+        />
+      </>
     );
   }
 }
