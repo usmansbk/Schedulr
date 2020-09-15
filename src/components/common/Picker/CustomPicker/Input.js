@@ -20,7 +20,14 @@ class Input extends React.Component {
   };
 
   render() {
-    const {value, disabled, onValueChange, onBlur, data = []} = this.props;
+    const {
+      value,
+      icon,
+      disabled,
+      onValueChange,
+      onBlur,
+      data = [],
+    } = this.props;
     const customType = I18n.get('SELECT_customType');
 
     const items = [{value: customValue, label: customType}].concat(
@@ -42,6 +49,7 @@ class Input extends React.Component {
       />
     ) : (
       <Picker
+        icon={icon}
         value={value}
         items={items}
         prompt={value}

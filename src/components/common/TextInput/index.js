@@ -12,11 +12,8 @@ export default inject('stores')(
         <TextInput
           placeholderTextColor={stores.theme.colors.placeholder}
           autoCorrect={false}
-          underlineColorAndroid={error && stores.theme.colors.light_red}
-          style={[
-            styles.input,
-            bold ? {fontWeight: 'bold', fontSize: 25} : null,
-          ]}
+          underlineColorAndroid="transparent"
+          style={styles.input}
           {...rest}
         />
       </View>

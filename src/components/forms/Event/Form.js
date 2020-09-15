@@ -5,7 +5,7 @@ import {Text, HelperText, Appbar, Divider} from 'react-native-paper';
 import {Formik} from 'formik';
 import {inject, observer} from 'mobx-react';
 import {I18n} from 'aws-amplify';
-import {TextField} from 'components/common/TextInput';
+import TextInput from 'components/common/TextInput';
 import Button from 'components/common/Button';
 import Switch from 'components/common/Switch';
 import Picker, {CustomPicker, PickerInput} from 'components/common/Picker';
@@ -116,7 +116,7 @@ class Form extends React.Component {
               keyboardShouldPersistTaps="always"
               style={styles.container}>
               <View style={styles.form}>
-                <TextField
+                <TextInput
                   error={errors.title}
                   placeholder={I18n.get('PLACEHOLDER_untitledEvent')}
                   label={I18n.get('EVENT_FORM_title')}
@@ -125,6 +125,19 @@ class Form extends React.Component {
                   onBlur={handleBlur('title')}
                 />
                 <View style={styles.gap} />
+                <View style={styles.pickerSpacing}>
+                  <Text style={styles.radioText}>
+                    {I18n.get('EVENT_FORM_category')}
+                  </Text>
+                  <CustomPicker
+                    icon="tagso"
+                    prompt={I18n.get('EVENT_FORM_category')}
+                    value={values.category}
+                    onValueChange={handleChange('category')}
+                    onBlur={handleBlur('category')}
+                    data={stores.appState.categories}
+                  />
+                </View>
                 <View style={styles.baseHorizonalSpacing}>
                   {!locked && (
                     <View style={styles.pickerSpacing}>
@@ -132,6 +145,7 @@ class Form extends React.Component {
                         {I18n.get('EVENT_FORM_schedule')}
                       </Text>
                       <Picker
+                        icon="team"
                         prompt={I18n.get('EVENT_FORM_selectASchedule')}
                         value={values.eventScheduleId}
                         disabled={locked}
@@ -153,18 +167,6 @@ class Form extends React.Component {
                       />
                     </View>
                   )}
-                  <View style={styles.pickerSpacing}>
-                    <Text style={styles.radioText}>
-                      {I18n.get('EVENT_FORM_category')}
-                    </Text>
-                    <CustomPicker
-                      prompt={I18n.get('EVENT_FORM_category')}
-                      value={values.category}
-                      onValueChange={handleChange('category')}
-                      onBlur={handleBlur('category')}
-                      data={stores.appState.categories}
-                    />
-                  </View>
                   <View style={styles.pickerSpacing}>
                     <Text style={styles.radioText}>
                       {I18n.get('EVENT_FORM_from')}
@@ -335,7 +337,7 @@ class Form extends React.Component {
                   )}
                 </View>
 
-                <TextField
+                <TextInput
                   error={errors.venue}
                   placeholder={I18n.get('PLACEHOLDER_venue')(values.location)}
                   label={I18n.get('EVENT_FORM_venue')}
@@ -350,7 +352,7 @@ class Form extends React.Component {
                   placeholder={I18n.get('PLACEHOLDER_global')}
                 />
                 <View style={styles.gap} />
-                <TextField
+                <TextInput
                   error={errors.description}
                   placeholder={I18n.get('PLACEHOLDER_description')}
                   label={I18n.get('EVENT_FORM_description')}

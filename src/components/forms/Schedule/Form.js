@@ -98,35 +98,33 @@ class Form extends React.Component {
                   theme={{roundness: 0, colors: {text: '#000'}}}
                 />
                 <View style={styles.gap} />
-                <View style={styles.horizontalSpacing}>
-                  <Text style={[styles.text, styles.tightVerticalSpacing]}>
-                    {I18n.get('SCHEDULE_FORM_topic')}
-                  </Text>
-                  <CustomPicker
-                    value={values.topic}
-                    prompt={I18n.get('SCHEDULE_FORM_selectTopic')}
-                    data={I18n.get('topics')}
-                    onValueChange={handleChange('topic')}
-                  />
-                  <View style={styles.field}>
-                    <Switch
-                      textStyle={styles.text}
-                      label={I18n.get('SCHEDULE_FORM_public')}
-                      value={values.isPublic}
-                      onValueChange={() => {
-                        setFieldValue('isPublic', !values.isPublic);
-                      }}
-                    />
-                  </View>
-                </View>
-                <View style={styles.horizontalSpacing}>
-                  <PickerInput
-                    leftIcon="find"
-                    value={values.location}
-                    onPress={this._showLocationPicker}
-                    placeholder={I18n.get('PLACEHOLDER_global')}
+                <Text style={[styles.text, styles.tightVerticalSpacing]}>
+                  {I18n.get('SCHEDULE_FORM_topic')}
+                </Text>
+                <CustomPicker
+                  value={values.topic}
+                  prompt={I18n.get('SCHEDULE_FORM_selectTopic')}
+                  data={I18n.get('topics')}
+                  onValueChange={handleChange('topic')}
+                />
+                <View style={styles.gap} />
+                <View style={styles.field}>
+                  <Switch
+                    textStyle={styles.text}
+                    label={I18n.get('SCHEDULE_FORM_public')}
+                    value={values.isPublic}
+                    onValueChange={() => {
+                      setFieldValue('isPublic', !values.isPublic);
+                    }}
                   />
                 </View>
+                <View style={styles.gap} />
+                <PickerInput
+                  leftIcon="find"
+                  value={values.location}
+                  onPress={this._showLocationPicker}
+                  placeholder={I18n.get('PLACEHOLDER_global')}
+                />
                 <View style={styles.gap} />
                 <TextInput
                   label={I18n.get('SCHEDULE_FORM_description')}

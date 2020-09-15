@@ -489,9 +489,6 @@ export default class styles {
       field: {
         marginVertical: 12,
       },
-      horizontalSpacing: {
-        paddingHorizontal: 8,
-      },
       tightVerticalSpacing: {
         marginVertical: 4,
       },
@@ -509,15 +506,15 @@ export default class styles {
         marginVertical: 10,
       },
       input: {
-        backgroundColor: colors.bg,
-        padding: 8,
-        margin: 0,
-        fontSize: 18,
+        backgroundColor: colors.textInput,
+        padding: 16,
         color: colors.black,
+        borderRadius: 8,
+        fontFamily: 'SemiBold',
       },
       label: {
         fontSize: 12,
-        marginLeft: 8,
+        marginBottom: 4,
         color: colors.black,
       },
     });
@@ -558,6 +555,7 @@ export default class styles {
       radioText: {
         fontSize: 12,
         marginRight: 16,
+        marginBottom: 4,
       },
       pickerSpacing: {
         marginVertical: 10,
