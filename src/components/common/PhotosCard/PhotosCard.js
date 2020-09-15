@@ -10,7 +10,7 @@ import gql from 'graphql-tag';
 import {getAlbum} from 'api/queries';
 import Cover from 'components/common/AlbumCover';
 
-class Footer extends React.Component {
+class PhotosCard extends React.Component {
   _navigateToAlbum = () =>
     this.props.navigation.navigate('Album', {id: this.props.id});
 
@@ -49,6 +49,6 @@ const withApi = graphql(gql(getAlbum), {
     id: ownProps.navigation.getParam('id'),
     ...ownProps,
   }),
-})(Footer);
+})(PhotosCard);
 
 export default inject('stores')(observer(withNavigation(withApi)));

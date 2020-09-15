@@ -10,7 +10,8 @@ import {getStatus} from 'lib/formatEvent';
 import {formatDate, getDuration, getRepeatLabel} from 'lib/time';
 import Actions from 'components/common/Actions';
 import Tag from 'components/common/Tag';
-import Carousel from 'components/lists/Carousel';
+import Banner from 'components/common/Banner';
+import PhotosCard from 'components/common/PhotosCard';
 
 const DATE_ONLY_FORMAT = 'ddd DD, MMM YYYY';
 const DATE_FORMAT = 'ddd DD, MMM YYYY, hh:mm a';
@@ -68,6 +69,12 @@ export default inject('stores')(
       return (
         <View style={stores.styles.eventDetails.container}>
           <ScrollView style={stores.styles.eventDetails.bg}>
+            <Banner
+              id={id}
+              isOwner={isOwner}
+              pictureUrl={pictureUrl}
+              navigateToBanner={navigateToBanner}
+            />
             <View style={stores.styles.eventDetails.content}>
               <View style={stores.styles.eventDetails.head}>
                 {isMuted && <Caption>{I18n.get('HELPER_TEXT_muted')}</Caption>}
@@ -146,6 +153,19 @@ export default inject('stores')(
                 )}
                 <View style={stores.styles.eventDetails.item}>
                   <Text style={stores.styles.eventDetails.label}>
+                    {I18n.get('AUTHOR')}
+                  </Text>
+                  <Text
+                    style={[
+                      stores.styles.eventDetails.value,
+                      stores.styles.eventDetails.nav,
+                    ]}
+                    onPress={() => navigateToUser(authorId)}>
+                    {authorName}
+                  </Text>
+                </View>
+                <View style={stores.styles.eventDetails.item}>
+                  <Text style={stores.styles.eventDetails.label}>
                     {I18n.get('CREATED')}
                   </Text>
                   <Text style={stores.styles.eventDetails.value}>
@@ -164,19 +184,6 @@ export default inject('stores')(
                 )}
                 <View style={stores.styles.eventDetails.item}>
                   <Text style={stores.styles.eventDetails.label}>
-                    {I18n.get('AUTHOR')}
-                  </Text>
-                  <Text
-                    style={[
-                      stores.styles.eventDetails.value,
-                      stores.styles.eventDetails.nav,
-                    ]}
-                    onPress={() => navigateToUser(authorId)}>
-                    {authorName}
-                  </Text>
-                </View>
-                <View style={stores.styles.eventDetails.item}>
-                  <Text style={stores.styles.eventDetails.label}>
                     {I18n.get('DESCRIPTION')}
                   </Text>
                   <Hyperlink
@@ -191,13 +198,7 @@ export default inject('stores')(
                     </Text>
                   </Hyperlink>
                 </View>
-                <Carousel
-                  id={id}
-                  isOwner={isOwner}
-                  data={[]}
-                  banner={pictureUrl}
-                  navigateToBanner={navigateToBanner}
-                />
+                <PhotosCard id={id} isOwner={isOwner} />
                 {Boolean(isOwner && bookmarksCount) && (
                   <View style={stores.styles.eventDetails.item}>
                     <Text onPress={() => navigateToBookmarks(id)}>
