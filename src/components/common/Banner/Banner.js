@@ -31,7 +31,11 @@ export default function Banner({navigateToBanner, id, pictureUrl, isOwner}) {
   const source = pictureUrl ? {uri: pictureUrl} : require('assets/work.png');
   return (
     <TouchableOpacity style={styles.container} onPress={onPress}>
-      <ImageBackground style={styles.image} source={source} resizeMode="cover">
+      <ImageBackground
+        defaultSource={require('assets/work.png')}
+        style={styles.image}
+        source={source}
+        resizeMode="cover">
         {!pictureUrl && !isOwner && (
           <BannerAd
             size={BannerAdSize.MEDIUM_RECTANGLE}
