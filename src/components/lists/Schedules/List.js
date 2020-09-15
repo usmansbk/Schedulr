@@ -6,6 +6,7 @@ import Separator from './Separator';
 import Header from './Header';
 import Footer from './Footer';
 import Empty from './Empty';
+import AdBanner from 'components/common/Banner/Ad';
 import {sortSchedules} from 'lib/utils';
 import {schedules, SCHEDULE_CLOSED, BANNER} from 'lib/constants';
 import getImageUrl from 'helpers/getImageUrl';
@@ -82,8 +83,8 @@ class List extends Component {
   };
 
   _renderSeparator = () => <Separator />;
+  _renderHeader = () => <AdBanner large />;
   _renderFooter = () => <Footer visible={this.props.schedules.length} />;
-  _renderHeader = () => (this.props.schedules.length ? <Header /> : null);
 
   render() {
     const {schedules, stores} = this.props;
@@ -100,6 +101,7 @@ class List extends Component {
         keyExtractor={this._keyExtractor}
         data={data}
         renderItem={this._renderItem}
+        ListHeaderComponent={this._renderHeader}
         ListEmptyComponent={this._renderEmptyList}
         ListFooterComponent={this._renderFooter}
       />

@@ -12,10 +12,13 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function AdBanner() {
+export default function AdBanner({large}) {
   return (
     <View style={styles.container}>
-      <BannerAd unitId={adUnitId} size={BannerAdSize.BANNER} />
+      <BannerAd
+        unitId={adUnitId}
+        size={large ? BannerAdSize.LARGE_BANNER : BannerAdSize.BANNER}
+      />
     </View>
   );
 }

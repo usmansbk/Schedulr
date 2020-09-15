@@ -19,7 +19,7 @@ export const ALL_FILTER = '';
 
 export const WIDTH = Dimensions.get('window').width;
 export const MEDIUM_RECTANGLE = 260;
-export const BANNER = 50;
+export const BANNER = 100;
 
 export const ONE_TIME_EVENT = 'NEVER';
 export const BULLET = '•';
