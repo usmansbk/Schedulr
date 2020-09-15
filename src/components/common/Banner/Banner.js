@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  View,
-  TouchableOpacity,
-  Image,
-  StyleSheet,
-  ImageBackground,
-} from 'react-native';
+import {TouchableOpacity, StyleSheet, ImageBackground} from 'react-native';
 import {BannerAd, TestIds, BannerAdSize} from '@react-native-firebase/admob';
 import env from 'config/env';
 
