@@ -5,7 +5,7 @@ import {withNavigationFocus} from 'react-navigation';
 import List from 'components/lists/Events';
 import FAB from 'components/common/Fab';
 import schdlAll from 'helpers/setReminders';
-import {mergeEvents} from 'lib/utils';
+import {mergeEvents, injectAds} from 'lib/utils';
 import {InteractionManager} from 'react-native';
 import snackbar from 'helpers/snackbar';
 
@@ -27,7 +27,7 @@ class Events extends React.Component {
     ) {
       return {
         data: props.data,
-        events: mergeEvents(props.data, props.calendarEvents),
+        events: injectAds(mergeEvents(props.data, props.calendarEvents)),
         calendarEvents: props.calendarEvents,
       };
     }

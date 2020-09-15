@@ -5,6 +5,7 @@ import Item from './Item';
 import Separator from './Separator';
 import Footer from './Footer';
 import Empty from './Empty';
+import Banner from 'components/common/Banner/Ad';
 import {sortSchedules} from 'lib/utils';
 import {schedules, SCHEDULE_CLOSED, BANNER} from 'lib/constants';
 import getImageUrl from 'helpers/getImageUrl';
@@ -88,19 +89,22 @@ class List extends Component {
     const data = sortSchedules(schedules);
 
     return (
-      <FlatList
-        style={stores.styles.schedulesList.list}
-        extraData={stores.appState.mutedSchedules.length || schedules.length}
-        contentContainerStyle={stores.styles.schedulesList.contentContainer}
-        initialNumToRender={1}
-        getItemLayout={this._getItemLayout}
-        ItemSeparatorComponent={this._renderSeparator}
-        keyExtractor={this._keyExtractor}
-        data={data}
-        renderItem={this._renderItem}
-        ListEmptyComponent={this._renderEmptyList}
-        ListFooterComponent={this._renderFooter}
-      />
+      <>
+        <Banner />
+        <FlatList
+          style={stores.styles.schedulesList.list}
+          extraData={stores.appState.mutedSchedules.length || schedules.length}
+          contentContainerStyle={stores.styles.schedulesList.contentContainer}
+          initialNumToRender={1}
+          getItemLayout={this._getItemLayout}
+          ItemSeparatorComponent={this._renderSeparator}
+          keyExtractor={this._keyExtractor}
+          data={data}
+          renderItem={this._renderItem}
+          ListEmptyComponent={this._renderEmptyList}
+          ListFooterComponent={this._renderFooter}
+        />
+      </>
     );
   }
 }
