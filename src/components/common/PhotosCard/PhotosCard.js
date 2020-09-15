@@ -15,8 +15,7 @@ class PhotosCard extends React.Component {
     this.props.navigation.navigate('Album', {id: this.props.id});
 
   render() {
-    const {stores, images, isOwner} = this.props;
-    if (!(isOwner || images.length)) return null;
+    const {stores, images} = this.props;
 
     const styles = stores.styles.carousel;
     return (
