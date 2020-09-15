@@ -12,13 +12,22 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function AdBanner({large}) {
+export default function AdBanner({large, mediumRect}) {
+  const height = large ? (mediumRect ? 250 : 100) : 50;
+  const size = large
+    ? mediumRect
+      ? BannerAdSize.MEDIUM_RECTANGLE
+      : BannerAdSize.LARGE_BANNER
+    : BannerAdSize.BANNER;
   return (
-    <View style={styles.container}>
-      <BannerAd
-        unitId={adUnitId}
-        size={large ? BannerAdSize.LARGE_BANNER : BannerAdSize.BANNER}
-      />
+    <View
+      style={[
+        styles.container,
+        {
+          height,
+        },
+      ]}>
+      <BannerAd unitId={adUnitId} size={size} />
     </View>
   );
 }

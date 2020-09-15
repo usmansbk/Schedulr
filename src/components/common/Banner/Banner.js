@@ -1,7 +1,6 @@
 import React from 'react';
 import {TouchableOpacity, StyleSheet, ImageBackground} from 'react-native';
-import {BannerAd, TestIds, BannerAdSize} from '@react-native-firebase/admob';
-import env from 'config/env';
+import BannerAd from './Ad';
 
 const styles = StyleSheet.create({
   container: {
@@ -18,8 +17,6 @@ const styles = StyleSheet.create({
   },
 });
 
-const adUnitId = __DEV__ ? TestIds.BANNER : env.BANNER_ID;
-
 export default function Banner({navigateToBanner, id, pictureUrl, isOwner}) {
   const onPress = React.useCallback(() => navigateToBanner(id));
   const source = pictureUrl ? {uri: pictureUrl} : require('assets/work.png');
@@ -30,15 +27,7 @@ export default function Banner({navigateToBanner, id, pictureUrl, isOwner}) {
         style={styles.image}
         source={source}
         resizeMode="cover">
-        {!pictureUrl && !isOwner && (
-          <BannerAd
-            size={BannerAdSize.MEDIUM_RECTANGLE}
-            unitId={adUnitId}
-            requestOptions={{
-              requestNonPersonalizedAdsOnly: true,
-            }}
-          />
-        )}
+        {!pictureUrl && !isOwner && <BannerAd large mediumRect />}
       </ImageBackground>
     </TouchableOpacity>
   );
