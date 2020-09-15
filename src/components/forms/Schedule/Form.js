@@ -108,7 +108,6 @@ class Form extends React.Component {
                     data={I18n.get('topics')}
                     onValueChange={handleChange('topic')}
                   />
-                  <Divider />
                   <View style={styles.field}>
                     <Switch
                       textStyle={styles.text}
@@ -119,7 +118,6 @@ class Form extends React.Component {
                       }}
                     />
                   </View>
-                  <Divider />
                 </View>
                 <View style={styles.horizontalSpacing}>
                   <PickerInput

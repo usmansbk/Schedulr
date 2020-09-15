@@ -32,7 +32,7 @@ function CustomPaperInput({stores, style = [], ...rest}, ref) {
       theme={{roundness: 0, colors: {text: stores.theme.colors.black}}}
       style={[
         {
-          backgroundColor: stores.theme.colors.light_gray,
+          backgroundColor: stores.theme.colors.textInput,
         },
         style,
       ]}

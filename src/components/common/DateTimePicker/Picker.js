@@ -8,7 +8,7 @@ export default inject('stores')(
     <TouchableOpacity
       disabled={props.disabled}
       onPress={props.onPress}
-      style={[props.stores.styles.datePicker.pickerButton, props.style]}>
+      style={[props.stores.styles.datePicker.pickerButton]}>
       <Text
         style={[
           {

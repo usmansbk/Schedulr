@@ -378,9 +378,11 @@ export default class styles {
         fontFamily: 'SemiBold',
       },
       button: {
-        height: dp(48),
         justifyContent: 'center',
         borderColor: colors.placeholder,
+        backgroundColor: colors.textInput,
+        padding: 16,
+        borderRadius: 8,
       },
       container: {
         flex: 1,
@@ -403,6 +405,7 @@ export default class styles {
     return StyleSheet.create({
       date: {
         flexDirection: 'row',
+        justifyContent: 'space-between',
       },
       button: {
         flexGrow: 1,
@@ -413,6 +416,10 @@ export default class styles {
       },
       pickerButton: {
         fontFamily: 'SemiBold',
+        backgroundColor: colors.textInput,
+        borderRadius: 8,
+        padding: 8,
+        justifyContent: 'space-between',
       },
       dateButton: {
         flex: 1,

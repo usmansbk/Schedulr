@@ -167,7 +167,6 @@ class Form extends React.Component {
                       data={stores.appState.categories}
                     />
                   </View>
-                  <Divider />
                   <View style={styles.iconRow}>
                     <Icon
                       color={stores.theme.colors.tint}

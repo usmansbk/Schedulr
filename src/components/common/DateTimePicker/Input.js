@@ -49,29 +49,27 @@ class Input extends React.Component {
     const styles = stores.styles.datePicker;
 
     return (
-      <View>
-        <View style={styles.date}>
-          <Button
-            disabled={disabled}
-            style={styles.dateButton}
-            onPress={this._datePicker}>
-            {this._formatDate(value)}
-          </Button>
-          <Button
-            disabled={disabled}
-            style={styles.timeButton}
-            onPress={this._timePicker}>
-            {hideTime ? '' : this._formatTime(value)}
-          </Button>
-          {this.state.showPicker && (
-            <DateTimePicker
-              mode={this.state.mode}
-              value={moment(value).toDate()}
-              minimumDate={noMin ? undefined : moment(value).toDate()}
-              onChange={this._handleChange}
-            />
-          )}
-        </View>
+      <View style={styles.date}>
+        <Button
+          disabled={disabled}
+          style={styles.dateButton}
+          onPress={this._datePicker}>
+          {this._formatDate(value)}
+        </Button>
+        <Button
+          disabled={disabled}
+          style={styles.timeButton}
+          onPress={this._timePicker}>
+          {hideTime ? '' : this._formatTime(value)}
+        </Button>
+        {this.state.showPicker && (
+          <DateTimePicker
+            mode={this.state.mode}
+            value={moment(value).toDate()}
+            minimumDate={noMin ? undefined : moment(value).toDate()}
+            onChange={this._handleChange}
+          />
+        )}
       </View>
     );
   }
