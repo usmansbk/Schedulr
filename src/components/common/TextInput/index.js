@@ -2,7 +2,7 @@ import React from 'react';
 import {View, TextInput, Text} from 'react-native';
 import {inject, observer} from 'mobx-react';
 
-const TextField = ({error, stores, label, bold, ...rest}, ref) => {
+const TextField = ({error, stores, label, bold, autoFocus, ...rest}, ref) => {
   const styles = stores.styles.textInput;
   return (
     <View style={styles.container}>
@@ -11,6 +11,7 @@ const TextField = ({error, stores, label, bold, ...rest}, ref) => {
         ref={ref}
         placeholderTextColor={stores.theme.colors.placeholder}
         autoCorrect={false}
+        autoFocus={autoFocus}
         underlineColorAndroid="transparent"
         style={styles.input}
         {...rest}
