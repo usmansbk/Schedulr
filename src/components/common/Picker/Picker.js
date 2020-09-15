@@ -3,6 +3,7 @@ import {View} from 'react-native';
 import {Text} from 'react-native-paper';
 import PickerItem from './Item';
 import {CustomPicker} from 'react-native-custom-picker';
+import Icon from '../Icon';
 import {inject, observer} from 'mobx-react';
 
 class Button extends React.Component {
@@ -30,6 +31,14 @@ class Button extends React.Component {
 
     return (
       <View style={styles.button}>
+        {this.props.icon && (
+          <Icon
+            name={this.props.icon}
+            size={24}
+            color={this.props.stores.theme.colors.tint}
+            style={styles.icon}
+          />
+        )}
         <Text style={styles.text}>{label}</Text>
       </View>
     );

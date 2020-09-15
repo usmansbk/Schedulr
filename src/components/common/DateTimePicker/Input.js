@@ -51,12 +51,14 @@ class Input extends React.Component {
     return (
       <View style={styles.date}>
         <Button
+          icon="calendar"
           disabled={disabled}
           style={styles.dateButton}
           onPress={this._datePicker}>
           {this._formatDate(value)}
         </Button>
         <Button
+          icon="clock"
           disabled={disabled}
           style={styles.timeButton}
           onPress={this._timePicker}>

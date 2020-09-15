@@ -1,8 +1,7 @@
 import React from 'react';
-import {View, TextInput, StyleSheet, Text} from 'react-native';
+import {View, TextInput, Text} from 'react-native';
 import {TextInput as PaperInput} from 'react-native-paper';
 import {inject, observer} from 'mobx-react';
-import {dark as colors} from 'config/colors';
 
 export default inject('stores')(
   observer(({error, stores, label, bold, ...rest}) => {

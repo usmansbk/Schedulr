@@ -365,7 +365,6 @@ export default class styles {
 
     return StyleSheet.create({
       contentContainer: {
-        padding: 16,
         backgroundColor: colors.bg,
       },
       textInputContainer: {
@@ -378,11 +377,12 @@ export default class styles {
         fontFamily: 'SemiBold',
       },
       button: {
-        justifyContent: 'center',
-        borderColor: colors.placeholder,
+        flexDirection: 'row',
         backgroundColor: colors.textInput,
-        padding: 16,
+        paddingVertical: 16,
+        paddingHorizontal: 10,
         borderRadius: 8,
+        alignItems: 'center',
       },
       container: {
         flex: 1,
@@ -395,12 +395,14 @@ export default class styles {
       placeholder: {
         color: colors.black,
       },
+      icon: {
+        marginRight: 8,
+      },
     });
   }
 
   @computed get datePicker() {
     const colors = this.settings.dark ? dark : light;
-    const borderWidth = 1 * StyleSheet.hairlineWidth;
 
     return StyleSheet.create({
       date: {
@@ -420,6 +422,11 @@ export default class styles {
         borderRadius: 8,
         padding: 8,
         justifyContent: 'space-between',
+      },
+      buttonContent: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
       },
       dateButton: {
         flex: 1,
@@ -571,16 +578,6 @@ export default class styles {
       },
       baseHorizontalSpacing: {
         paddingHorizontal: 8,
-      },
-      iconRow: {
-        flexDirection: 'row',
-      },
-      icon: {
-        marginTop: 12,
-      },
-      rowBody: {
-        flex: 1,
-        marginLeft: 16,
       },
       gap: {
         marginVertical: 8,
