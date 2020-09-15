@@ -1,5 +1,10 @@
 import React from 'react';
-import {TouchableOpacity, StyleSheet, ImageBackground} from 'react-native';
+import {
+  TouchableOpacity,
+  StyleSheet,
+  ImageBackground,
+  View,
+} from 'react-native';
 import BannerAd from './Ad';
 
 const styles = StyleSheet.create({
@@ -19,6 +24,14 @@ const styles = StyleSheet.create({
 
 export default function Banner({navigateToBanner, id, pictureUrl, isOwner}) {
   const onPress = React.useCallback(() => navigateToBanner(id));
+
+  if (!pictureUrl && !isOwner) {
+    return (
+      <View style={styles.image}>
+        <BannerAd large mediumRect />
+      </View>
+    );
+  }
   const source = pictureUrl ? {uri: pictureUrl} : require('assets/work.png');
   return (
     <TouchableOpacity style={styles.container} onPress={onPress}>
@@ -26,9 +39,7 @@ export default function Banner({navigateToBanner, id, pictureUrl, isOwner}) {
         defaultSource={require('assets/placeholder.png')}
         style={styles.image}
         source={source}
-        resizeMode="cover">
-        {!pictureUrl && !isOwner && <BannerAd large mediumRect />}
-      </ImageBackground>
+        resizeMode="cover"></ImageBackground>
     </TouchableOpacity>
   );
 }

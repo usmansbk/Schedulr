@@ -26,7 +26,7 @@ class PhotosCard extends React.Component {
           <Cover images={images} />
         ) : (
           <>
-            <Text style={styles.text}>{I18n.get(`TEXT_noAlbum`)}</Text>
+            <Text style={styles.text}>{I18n.get(`TEXT_album`)}</Text>
             <Icon name="camera" size={24} color={stores.theme.colors.gray} />
           </>
         )}
