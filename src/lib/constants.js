@@ -67,7 +67,7 @@ export const chips = {
 // list/events
 export const events = {
   AVATAR_SIZE: dp(54),
-  ITEM_HEIGHT: dp(90),
+  ITEM_HEIGHT: dp(100),
   SEPARATOR_HEIGHT: dp(thinLine),
   SECTION_HEADER_HEIGHT: dp(70),
   SECTION_FOOTER_HEIGHT: dp(40),
