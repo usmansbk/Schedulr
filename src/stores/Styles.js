@@ -1602,6 +1602,7 @@ export default class styles {
         paddingHorizontal: 16,
         height: SECTION_HEADER_HEIGHT,
         borderRadius: 8,
+        marginTop: 4,
       },
       sectionHeading: {
         fontSize: 22,
@@ -1665,7 +1666,8 @@ export default class styles {
       },
       itemContainer: {
         height: ITEM_HEIGHT,
-        backgroundColor: colors.bg,
+        // backgroundColor: colors.bg,
+        justifyContent: 'center',
       },
       itemContent: {
         paddingTop: 4,
