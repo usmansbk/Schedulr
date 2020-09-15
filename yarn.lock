@@ -8973,10 +8973,10 @@ react-native-screens@^2.10.1:
   resolved "https://registry.yarnpkg.com/react-native-screens/-/react-native-screens-2.10.1.tgz#06d22fae87ef0ce51c616c34a199726db1403b95"
   integrity sha512-Z2kKSk4AwWRQNCBmTjViuBQK0/Lx0jc25TZptn/2gKYUCOuVRvCekoA26u0Tsb3BIQ8tWDsZW14OwDlFUXW1aw==
 
-react-native-share@^3.7.1:
-  version "3.7.1"
-  resolved "https://registry.yarnpkg.com/react-native-share/-/react-native-share-3.7.1.tgz#adb62d69ff8ce76f16d43bf49f27f7df9fa366e3"
-  integrity sha512-mhg564UtXM+1b61mvPj2olghK30PMGqlY7JnGIVCQOPgfCb7vuozaICFEkbKCK8P8UX7+GSQ1FJ9ql9bfc1osg==
+react-native-share@^3.8.0:
+  version "3.8.0"
+  resolved "https://registry.yarnpkg.com/react-native-share/-/react-native-share-3.8.0.tgz#602bed51309a509afecfb28a89385d8ae3f17dca"
+  integrity sha512-7g8UfnotZDdSBQ75PE0kuUIACzg8wvkWXOcOgkscg5WcUjBvU3T4jeH9ki3J84PnLLBXBerCa2Z6Xu3UO2/gZA==
 
 react-native-snackbar@^2.2.3:
   version "2.2.3"

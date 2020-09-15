@@ -53,7 +53,7 @@ export default {
   EVENTS_SECTIONLIST_noMoreEvents: 'No more events',
   EVENTS_SECTIONLIST_noPrevEvents: 'No previous events',
   EVENTS_SECTION_FOOTER: 'No upcoming events',
-  EVENTS_SECTION_ITEM_COUNT: (count) => (count ? `${count} events` : ''),
+  EVENTS_SECTION_ITEM_COUNT: (count) => (count ? `${count} items` : ''),
   EVENT_interested: 'Interested',
   EVENT_share: 'Share this event...',
   EVENT_bookmark: "I'm interested",
