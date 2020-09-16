@@ -1,14 +1,14 @@
 import {I18nManager} from 'react-native';
 import {I18n} from 'aws-amplify';
 import * as RNLocalize from 'react-native-localize';
-import moment from 'moment';
 import dicts from 'i18n';
+import {init as setDateLanguage} from 'lib/date';
 
 export default (stores) => {
   const {isRTL, languageCode} = RNLocalize.getLocales()[0];
   stores.settings.userPreference.language = languageCode;
   stores.settings.currentLanguage = languageCode;
-  moment.locale(languageCode);
+  setDateLanguage(languageCode);
   I18n.setLanguage(languageCode);
   const dict = {
     [languageCode]: dicts(languageCode),

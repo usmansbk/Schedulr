@@ -1,5 +1,9 @@
 import moment from 'moment';
 
+export function init(languageCode) {
+  moment.locale(languageCode);
+}
+
 export default function date(date) {
   return moment(date).toISOString();
 }
