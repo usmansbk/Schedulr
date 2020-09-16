@@ -25,7 +25,10 @@ function toISOString(date) {
   return moment(date).toISOString();
 }
 
-function calendar(date, format) {
+function calendar(date, format, isDefault) {
+  if (isDefault) {
+    return moment(date).calendar();
+  }
   return moment(date).calendar(null, format);
 }
 
@@ -57,6 +60,17 @@ function subtractDuration(date, duration) {
   return moment(date).subtract(duration);
 }
 
+function castDateTime(source, target) {
+  const date = moment(target);
+  const src = moment(source);
+
+  const startSec = src.seconds();
+  const startMins = src.minutes();
+  const startHours = src.hours();
+
+  return date.seconds(startSec).minutes(startMins).hours(startHours).format();
+}
+
 export {
   format,
   exactTime,
@@ -72,4 +86,5 @@ export {
   diffDuration,
   isAfter,
   subtractDuration,
+  castDateTime,
 };

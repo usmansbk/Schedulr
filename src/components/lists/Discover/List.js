@@ -2,13 +2,13 @@ import React, {Component} from 'react';
 import {RefreshControl} from 'react-native';
 import {FlatList} from 'react-navigation';
 import {inject, observer} from 'mobx-react';
-import moment from 'moment';
 import Empty from './Empty';
 import Header from './Header';
 import EventItem from './Event';
 import Separator from 'components/lists/Bookmarks/Separator';
 import Footer from 'components/lists/Bookmarks/Footer';
 import {discover} from 'lib/constants';
+import {calendar} from 'lib/date';
 import getImageUrl from 'helpers/getImageUrl';
 
 const {ITEM_HEIGHT, SEPARATOR_HEIGHT, OFFSET} = discover;
@@ -63,7 +63,7 @@ class List extends Component {
         title={title}
         pictureUrl={banner && getImageUrl(banner, 320)}
         venue={venue}
-        date={moment(startAt).calendar()}
+        date={calendar(startAt, undefined, true)}
         description={description}
         isBookmarked={isBookmarked}
         bookmarkScheduleId={schedule && schedule.id}

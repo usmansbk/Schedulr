@@ -2,26 +2,16 @@ import React from 'react';
 import {View, TouchableOpacity} from 'react-native';
 import {Text, Caption, Headline} from 'react-native-paper';
 import {inject, observer} from 'mobx-react';
-import moment from 'moment';
 import {I18n} from 'aws-amplify';
 import {getSectionHeaderData} from 'lib/time';
+import {date, castDateTime, format} from 'lib/date';
 import {BULLET} from 'lib/constants';
 
 class SectionHeader extends React.Component {
   _onPress = () => {
-    const date = moment(this.props.section.title);
-    const now = moment();
-
-    const startSec = now.seconds();
-    const startMins = now.minutes();
-    const startHours = now.hours();
-
-    const targetDate = date
-      .seconds(startSec)
-      .minutes(startMins)
-      .hours(startHours)
-      .format();
-
+    const source = date();
+    const target = date(this.props.section.title);
+    const targetDate = format(castDateTime(source, target));
     this.props.onPress(targetDate);
   };
 
