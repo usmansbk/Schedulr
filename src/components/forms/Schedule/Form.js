@@ -102,7 +102,7 @@ class Form extends React.Component {
                   {I18n.get('SCHEDULE_FORM_topic')}
                 </Text>
                 <CustomPicker
-                  icon="tagso"
+                  icon="tago"
                   value={values.topic}
                   prompt={I18n.get('SCHEDULE_FORM_selectTopic')}
                   data={I18n.get('topics')}

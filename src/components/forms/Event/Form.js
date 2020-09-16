@@ -130,7 +130,7 @@ class Form extends React.Component {
                     {I18n.get('EVENT_FORM_category')}
                   </Text>
                   <CustomPicker
-                    icon="tagso"
+                    icon="tago"
                     prompt={I18n.get('EVENT_FORM_category')}
                     value={values.category}
                     onValueChange={handleChange('category')}
