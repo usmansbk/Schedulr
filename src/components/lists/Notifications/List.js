@@ -1,7 +1,6 @@
 import React from 'react';
 import {RefreshControl} from 'react-native';
 import {FlatList} from 'react-navigation';
-import moment from 'moment';
 import {I18n} from 'aws-amplify';
 import {inject, observer} from 'mobx-react';
 import Empty from './Empty';
@@ -9,6 +8,7 @@ import Footer from './Footer';
 import Separator from './Separator';
 import NotifItem from './Item';
 import {notifications_list} from 'lib/constants';
+import {format, date, unixTimestamp, greaterThan} from 'lib/date';
 import getImageUrl from 'helpers/getImageUrl';
 
 const {ITEM_HEIGHT, SEPARATOR_HEIGHT} = notifications_list;
@@ -64,10 +64,11 @@ class List extends React.Component {
         pictureUrl = extraData.pictureUrl;
       }
     }
-    let date = I18n.get('now');
-    if (moment() > moment.unix(timestamp).add(1, 'minute')) {
-      date = moment.unix(timestamp).fromNow();
+    let formatted = I18n.get('now');
+    if (greaterThan(date(), add(unixTimestamp(timestamp), 1, 'minute'))) {
+      formatted = fromNow(unixTimestamp(timestamp));
     }
+
     return (
       <Item
         id={id}
@@ -79,7 +80,7 @@ class List extends React.Component {
         extraData={extraData}
         seen={seen}
         pictureUrl={pictureUrl}
-        date={date}
+        date={formatted}
         from={extraData && extraData.ref}
         navigateToSchedule={this._navigateToSchedule}
         navigateToEvent={this._navigateToEvent}
@@ -98,7 +99,7 @@ class List extends React.Component {
         data={stores.notifications.updates}
         style={styles}
         initialNumToRender={1}
-        extraData={moment().format('mm')}
+        extraData={format(date(), 'mm')}
         getItemLayout={this._getItemLayout}
         contentContainerStyle={styles.contentContainer}
         renderItem={this._renderItem}

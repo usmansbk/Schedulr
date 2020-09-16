@@ -71,6 +71,18 @@ function castDateTime(source, target) {
   return date.seconds(startSec).minutes(startMins).hours(startHours).format();
 }
 
+function unixTimestamp(timestamp) {
+  return moment.unix(timestamp);
+}
+
+function fromNow(date) {
+  return moment(date).fromNow();
+}
+
+function greaterThan(date1, date2) {
+  return moment(date1) > moment(date2);
+}
+
 export {
   format,
   exactTime,
@@ -87,4 +99,7 @@ export {
   isAfter,
   subtractDuration,
   castDateTime,
+  unixTimestamp,
+  fromNow,
+  greaterThan,
 };
