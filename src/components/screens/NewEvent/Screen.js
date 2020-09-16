@@ -36,10 +36,6 @@ class NewEventScreen extends React.Component {
     return this._schedules();
   }
 
-  componentWillUnmount = () => {
-    if (this.waitAMoment) clearTimeout(this.waitAMoment);
-  };
-
   get getInitialValues() {
     const {event = {}, navigation} = this.props;
     const {
