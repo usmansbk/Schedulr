@@ -13,6 +13,7 @@ function exactTime(date) {
 }
 
 function toDate(date) {
+  if (!date) return moment().toDate();
   return moment(date).toDate();
 }
 
@@ -20,8 +21,55 @@ function toDateString(date) {
   return toDate(date).toDateString();
 }
 
+function toISOString(date) {
+  return moment(date).toISOString();
+}
+
 function calendar(date, format) {
   return moment(date).calendar(null, format);
 }
 
-export {format, exactTime, toDate, toDateString, calendar, date};
+function add(date, amount, unit) {
+  return moment(date).add(amount, unit);
+}
+
+function addDuration(date, duration) {
+  return moment(date).add(duration);
+}
+
+function startOf(date, unitOfTime) {
+  return moment(date).startOf(unitOfTime);
+}
+
+function endOf(date, unitOfTime) {
+  return moment(date).endOf(unitOfTime);
+}
+
+function diffDuration(date1, date2) {
+  return moment(date1).diff(moment(date2), null, true);
+}
+
+function isAfter(date1, date2) {
+  return moment(date1).isAfter(moment(date2));
+}
+
+function subtractDuration(date, duration) {
+  return moment(date).subtract(duration);
+}
+
+export {
+  format,
+  exactTime,
+  toDate,
+  toDateString,
+  calendar,
+  date,
+  toISOString,
+  add,
+  startOf,
+  endOf,
+  addDuration,
+  diffDuration,
+  isAfter,
+  subtractDuration,
+};

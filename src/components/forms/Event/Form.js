@@ -1,5 +1,4 @@
 import React from 'react';
-import moment from 'moment';
 import {View, ScrollView} from 'react-native';
 import {Text, HelperText, Appbar, Divider} from 'react-native-paper';
 import {Formik} from 'formik';
@@ -13,6 +12,18 @@ import DateTimePicker from 'components/common/DateTimePicker';
 import LocationPicker from 'components/common/LocationPicker';
 import Suspense from 'components/common/Suspense';
 import {getRepeatLabel, getTimeUnit} from 'lib/time';
+import {
+  toISOString,
+  date,
+  add,
+  addDuration,
+  diffDuration,
+  toDate,
+  isAfter,
+  subtractDuration,
+  startOf,
+  endOf,
+} from 'lib/date';
 import recurrence from './recurrence';
 import schema from './schema';
 
@@ -44,8 +55,8 @@ class Form extends React.Component {
       title: '',
       description: null,
       venue: null,
-      startAt: moment().toISOString(),
-      endAt: moment().add(2, 'hours').toISOString(),
+      startAt: toISOString(),
+      endAt: toISOString(add(date(), 2, 'hours')),
       allDay: false,
       category: 'Event',
       recurrence: recurrence[0].id,
@@ -177,24 +188,20 @@ class Form extends React.Component {
                       value={values.startAt}
                       hideTime={values.allDay}
                       onValueChange={handleChange('startAt')}
-                      onDateChange={(date) => {
-                        const prevStartAt = moment(values.startAt);
-                        const prevEndAt = moment(values.endAt);
+                      onDateChange={(value) => {
+                        const prevStartAt = date(values.startAt);
+                        const prevEndAt = date(values.endAt);
 
                         if (values.allDay) {
                           setFieldValue(
                             'endAt',
-                            moment(date).endOf('day').toISOString(),
+                            toISOString(endOf(date(value), 'day')),
                           );
                         } else {
-                          const duration = prevEndAt.diff(
-                            prevStartAt,
-                            null,
-                            true,
+                          const duration = diffDuration(prevEndAt, prevStartAt);
+                          const endAt = toISOString(
+                            addDuration(date(value), duration),
                           );
-                          const endAt = moment(date)
-                            .add(duration)
-                            .toISOString();
                           setFieldValue('endAt', endAt);
                         }
                       }}
@@ -205,24 +212,20 @@ class Form extends React.Component {
                       {I18n.get('EVENT_FORM_to')}
                     </Text>
                     <DateTimePicker
-                      min={moment().toDate()}
+                      min={toDate()}
                       noMin
                       value={values.endAt}
                       disabled={values.allDay}
                       hideTime={values.allDay}
                       onValueChange={handleChange('endAt')}
-                      onDateChange={(date) => {
-                        const prevStartAt = moment(values.startAt);
-                        const prevEndAt = moment(values.endAt);
-                        if (prevStartAt.isAfter(moment(date))) {
-                          const duration = prevEndAt.diff(
-                            prevStartAt,
-                            null,
-                            true,
+                      onDateChange={(value) => {
+                        const prevStartAt = date(values.startAt);
+                        const prevEndAt = date(values.endAt);
+                        if (isAfter(prevStartAt, date(value))) {
+                          const duration = diff(prevEndAt, prevStartAt);
+                          const startAt = toISOString(
+                            subtractDuration(value, duration),
                           );
-                          const startAt = moment(date)
-                            .subtract(duration)
-                            .toISOString();
                           setFieldValue('startAt', startAt);
                         }
                       }}
@@ -239,11 +242,11 @@ class Form extends React.Component {
                         if (!allDay) {
                           setFieldValue(
                             'startAt',
-                            moment(values.startAt).startOf('day').toISOString(),
+                            toISOString(startOf(values.startAt, 'day')),
                           );
                           setFieldValue(
                             'endAt',
-                            moment(values.startAt).endOf('day').toISOString(),
+                            toISOString(endOf(values.startAt, 'day')),
                           );
                         }
                       }}
@@ -268,10 +271,9 @@ class Form extends React.Component {
                           const unit = getTimeUnit(itemValue);
                           setFieldValue(
                             'until',
-                            moment(values.startAt)
-                              .add(MIN_UNTIL_DATE, unit)
-                              .endOf('day')
-                              .toISOString(),
+                            toISOString(
+                              endOf(add(values.startAt, MIN_UNTIL_DATE, unit)),
+                            ),
                           );
                         }
                       }}
@@ -304,10 +306,12 @@ class Form extends React.Component {
                             const unit = getTimeUnit(values.recurrence);
                             setFieldValue(
                               'until',
-                              moment(values.startAt)
-                                .add(MIN_UNTIL_DATE, unit)
-                                .endOf('day')
-                                .toISOString(),
+                              toISOString(
+                                endOf(
+                                  add(values.startAt, MIN_UNTIL_DATE, unit),
+                                  'day',
+                                ),
+                              ),
                             );
                           }
                           setFieldValue('forever', value);
@@ -321,7 +325,7 @@ class Form extends React.Component {
                         {I18n.get('EVENT_FORM_repeatUntil')}
                       </Text>
                       <DateTimePicker
-                        minDate={moment().toDate()}
+                        minDate={toDate()}
                         value={values.until}
                         onValueChange={handleChange('until')}
                         hideTime
