@@ -1,10 +1,18 @@
 import React from 'react';
-import moment from 'moment';
 import uuidv5 from 'uuid/v5';
 import shortid from 'shortid';
 import {withApollo} from 'react-apollo';
 import Form from 'components/forms/Event';
 import {isPastDate} from 'lib/time';
+import {
+  toISOString,
+  add,
+  getDuration,
+  castDateTime,
+  date,
+  addDuration,
+  diffDuration,
+} from 'lib/date';
 import {getUserSchedules} from 'api/fragments';
 import {SCHEDULE_CLOSED, ONE_TIME_EVENT} from 'lib/constants';
 import logger from 'config/logger';
@@ -56,37 +64,21 @@ class NewEventScreen extends React.Component {
     const currentSchedule =
       this.schedules &&
       this.schedules.find((schedule) => schedule.id === eventScheduleId);
-    const targetDate = navigation.getParam(
-      'targetDate',
-      moment().toISOString(),
-    );
-    const targetStartAt = targetDate;
-    const targetEndAt = moment(targetDate).add(2, 'hours').toISOString();
+
+    const targetDate = navigation.getParam('targetDate', toISOString());
+    const targetEndAt = toISOString(add(targetDate, 2, 'hours'));
     let newStart = startAt;
     let newEnd = endAt;
 
     if (startAt) {
-      const currentStart = moment(startAt);
-      const currentEnd = moment(endAt);
-      const duration = Math.abs(
-        moment.duration(currentStart.diff(currentEnd, null, true)),
-      );
-
-      const startSec = currentStart.seconds();
-      const startMins = currentStart.minutes();
-      const startHours = currentStart.hours();
-
-      newStart = moment()
-        .seconds(startSec)
-        .minutes(startMins)
-        .hours(startHours)
-        .toISOString();
+      const duration = Math.abs(getDuration(diffDuration(startAt, endAt)));
+      newStart = toISOString(castDateTime(startAt, date()));
       if (isPastDate(newStart)) {
-        newStart = moment(newStart).add(1, 'day').toISOString();
+        newStart = toISOString(add(newStart, 1, 'day'));
       }
-      newEnd = moment(newStart).add(duration).toISOString();
+      newEnd = toISOString(addDuration(newStart, duration));
     }
-    const start = newStart || targetStartAt;
+    const start = newStart || targetDate;
     const end = newEnd || targetEndAt;
 
     return {

@@ -83,6 +83,10 @@ function greaterThan(date1, date2) {
   return moment(date1) > moment(date2);
 }
 
+function getDuration(timestamp) {
+  return moment.duration(timestamp);
+}
+
 export {
   format,
   exactTime,
@@ -102,4 +106,5 @@ export {
   unixTimestamp,
   fromNow,
   greaterThan,
+  getDuration,
 };

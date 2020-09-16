@@ -1,10 +1,10 @@
 import {graphql, compose} from 'react-apollo';
 import {withNavigationFocus} from 'react-navigation';
 import gql from 'graphql-tag';
-import moment from 'moment';
 import {nearbyEvents} from 'api/queries';
 import List from 'components/lists/Discover';
 import updateQuery from 'helpers/updateQuery';
+import {toISOString} from 'lib/date';
 
 const alias = 'withDiscoverContainer';
 
@@ -17,7 +17,7 @@ export default compose(
       variables: {
         location: props.city,
         startAt: {
-          ge: moment().toISOString(),
+          ge: toISOString(),
         },
         filter: {
           isPublic: {
