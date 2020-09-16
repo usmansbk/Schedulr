@@ -1,6 +1,6 @@
 import moment from 'moment';
 
-export function init(languageCode) {
+export function setDateLanguage(languageCode) {
   moment.locale(languageCode);
 }
 
