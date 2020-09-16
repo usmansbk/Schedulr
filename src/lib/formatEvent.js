@@ -68,7 +68,7 @@ export const isEventValid = (event) => {
   const cancelledDates = event.cancelledDates || [];
   return (
     (recurrence !== ONE_TIME_EVENT && isCurrentDate(date(), until)) ||
-    (isCurrent(date(), endAt) &&
+    (isCurrentDate(date(), endAt) &&
       !isEventCancelled({cancelledDates, startAt, isCancelled}))
   );
 };
