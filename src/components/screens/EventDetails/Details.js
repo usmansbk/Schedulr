@@ -4,10 +4,10 @@ import {Text, Headline, Divider, Caption} from 'react-native-paper';
 import Hyperlink from 'react-native-hyperlink';
 import {inject, observer} from 'mobx-react';
 import numeral from 'numeral';
-import moment from 'moment';
 import {I18n} from 'aws-amplify';
 import {getStatus} from 'lib/formatEvent';
 import {formatDate, getDuration, getRepeatLabel} from 'lib/time';
+import {format} from 'lib/date';
 import Actions from 'components/common/Actions';
 import Tag from 'components/common/Tag';
 import Banner from 'components/common/Banner';
@@ -147,7 +147,7 @@ export default inject('stores')(
                       {I18n.get('UNTIL')}
                     </Text>
                     <Text style={stores.styles.eventDetails.value}>
-                      {moment(until).format(DATE_ONLY_FORMAT)}
+                      {format(until, DATE_ONLY_FORMAT)}
                     </Text>
                   </View>
                 )}
@@ -169,7 +169,7 @@ export default inject('stores')(
                     {I18n.get('CREATED')}
                   </Text>
                   <Text style={stores.styles.eventDetails.value}>
-                    {moment(createdAt).format(DATE_FORMAT)}
+                    {format(createdAt, DATE_FORMAT)}
                   </Text>
                 </View>
                 {Boolean(updatedAt) && (
@@ -178,7 +178,7 @@ export default inject('stores')(
                       {I18n.get('EDITED')}
                     </Text>
                     <Text style={stores.styles.eventDetails.value}>
-                      {moment(updatedAt).format(DATE_FORMAT)}
+                      {format(updatedAt, DATE_FORMAT)}
                     </Text>
                   </View>
                 )}
