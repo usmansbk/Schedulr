@@ -31,7 +31,7 @@ function extractDates(events, previous) {
       .from(add(date(), direction, 'day'))
       .until(e.until);
 
-    const nextDate = previous ? recur.previousDate() : recur.nextDate();
+    const nextDate = previous ? recur.previous() : recur.next();
     if (nextDate) {
       dates.push(toISOString(nextDate));
     }
@@ -57,7 +57,7 @@ function EventFlatList(events = []) {
           .every(event.recurrence)
           .until(event.until);
 
-        const newEvent = update(event, recur.nextDate(), recur.nextSpan());
+        const newEvent = update(event, recur.next(), recur.nextSpan());
         data.push(newEvent);
         flatCache[key] = newEvent;
       }
