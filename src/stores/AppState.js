@@ -2,10 +2,10 @@ import {Storage} from 'aws-amplify';
 import {observable, action} from 'mobx';
 import {persist} from 'mobx-persist';
 import debounce from 'lodash.debounce';
-import moment from 'moment';
 import gql from 'graphql-tag';
 import {I18n} from 'aws-amplify';
 import {ALL_FILTER} from 'lib/constants';
+import {toUnix} from 'lib/date';
 import {getDeltaUpdates, getUserData} from 'api/queries';
 import updateBaseQuery from 'helpers/deltaSync';
 import persistState from 'helpers/persistAppState';
@@ -29,7 +29,7 @@ export default class AppState {
 
   @persist @observable userId = null;
   @persist @observable loggingIn = false;
-  @persist @observable lastSyncTimestamp = moment().unix();
+  @persist @observable lastSyncTimestamp = toUnix();
 
   @persist('list') @observable keysToRemove = [];
   @persist('list') @observable mutedEvents = [];
@@ -42,8 +42,7 @@ export default class AppState {
 
   @action updateExtraData = () => (this.extraData += 1);
   @action setUserId = (id) => (this.userId = id);
-  @action updateLastSyncTimestamp = () =>
-    (this.lastSyncTimestamp = moment().unix());
+  @action updateLastSyncTimestamp = () => (this.lastSyncTimestamp = toUnix());
   @action setLoginState = (state) => (this.loggingIn = state);
   @action toggleConnection = (isConnected) => (this.isConnected = isConnected);
   @action togglePref = (pref) => {
@@ -74,7 +73,7 @@ export default class AppState {
     this.categories = Array.from(I18n.get('categories'));
     this.loggingIn = false;
     this.userId = null;
-    this.lastSyncTimestamp = moment().unix();
+    this.lastSyncTimestamp = toUnix();
     this.removeKeysFromStorage();
   }
 

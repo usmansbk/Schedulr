@@ -1,7 +1,7 @@
 import RNCalendarEvents from 'react-native-calendar-events';
 import {observable, action} from 'mobx';
-import moment from 'moment';
 import {persist} from 'mobx-persist';
+import {startOf, endOf, toISOString, date, getMonth} from 'lib/date';
 import logger from 'config/logger';
 
 export default class Calendar {
@@ -56,12 +56,12 @@ export default class Calendar {
   };
 
   transformEvent = (event) => {
-    const startAt = moment(event.startDate).toISOString();
+    const startAt = toISOString(event.startDate);
     let endAt;
     if (event.allDay) {
-      endAt = moment(event.startDate).endOf('D').toISOString();
+      endAt = toISOString(endOf(event.startDate, 'day'));
     } else {
-      endAt = moment(event.endDate).toISOString();
+      endAt = toISOString(event.endDate);
     }
     const recurrenceRule = event.recurrenceRule;
     const recurrence = getRecurrence(recurrenceRule);
@@ -102,14 +102,14 @@ export default class Calendar {
   @action fetchEvents = async () => {
     try {
       if (this.calendars.length) {
-        const m = moment().startOf('D');
-        const month = m.month();
-        const startDate = m.toDate().toISOString();
+        const m = startOf(date(), 'day');
+        const month = getMonth(m);
+        const startDate = toISOString(m);
         let endDate;
         if (month === 11) {
-          endDate = m.clone().add(1, 'year').toDate().toISOString();
+          endDate = toISOString(add(m, 1, 'year'));
         } else {
-          endDate = m.clone().endOf('year').toDate().toISOString();
+          endDate = toISOString(endOf(m, 'year'));
         }
         let all = await RNCalendarEvents.fetchAllEvents(
           startDate,

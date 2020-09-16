@@ -75,6 +75,10 @@ function unixTimestamp(timestamp) {
   return moment.unix(timestamp);
 }
 
+function toUnix() {
+  return moment().unix();
+}
+
 function fromNow(date) {
   return moment(date).fromNow();
 }
@@ -85,6 +89,10 @@ function greaterThan(date1, date2) {
 
 function getDuration(timestamp) {
   return moment.duration(timestamp);
+}
+
+function getMonth(date) {
+  return moment(date).month();
 }
 
 export {
@@ -107,4 +115,6 @@ export {
   fromNow,
   greaterThan,
   getDuration,
+  toUnix,
+  getMonth,
 };

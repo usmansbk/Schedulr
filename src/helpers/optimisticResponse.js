@@ -1,5 +1,4 @@
 import gql from 'graphql-tag';
-import moment from 'moment';
 import stores from 'stores';
 import client from 'config/client';
 import {
@@ -11,6 +10,7 @@ import {
   COMMENT_TYPE,
   FOLLOW_TYPE,
 } from 'lib/constants';
+import {toISOString} from 'lib/date';
 import {getScheduleEvents /*getEventComments*/} from 'api/queries';
 import {deleteBookmark as deleteBookmarkQuery} from 'api/mutations';
 import logger from 'config/logger';
@@ -180,7 +180,7 @@ function createEvent(input, typename) {
   //   logger.logError(error);
   // }
   // ==============================================================================
-  const createdAt = moment().toISOString();
+  const createdAt = toISOString();
 
   const event = {
     __typename: typename,
@@ -224,7 +224,7 @@ function createSchedule(input, typename) {
   } else {
     author.createdCount = 1;
   }
-  const createdAt = moment().toISOString();
+  const createdAt = toISOString();
   // ================== Create schedule events optimistic query =================
   try {
     client.writeQuery({
@@ -335,7 +335,7 @@ function createComment(input, typename) {
     isOwner: true,
     isOffline: true,
     author,
-    createdAt: moment().toISOString(),
+    createdAt: toISOString(),
     event,
     to,
     __typename: typename,
@@ -762,7 +762,7 @@ function updateSchedule(input, typename) {
   });
   const updatedSchedule = Object.assign({}, schedule, input, {
     isOffline: true,
-    updatedAt: moment().toISOString(),
+    updatedAt: toISOString(),
   });
   return updatedSchedule;
 }
@@ -798,7 +798,7 @@ function updateEvent(input, typename) {
   });
   const updatedEvent = Object.assign({}, event, input, {
     isOffline: true,
-    updatedAt: moment().toISOString(),
+    updatedAt: toISOString(),
   });
   delete updatedEvent.eventScheduleId;
   return updatedEvent;
