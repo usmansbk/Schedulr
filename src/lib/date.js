@@ -95,6 +95,39 @@ function getMonth(date) {
   return moment(date).month();
 }
 
+function from(date, start) {
+  return moment(date).from(start);
+}
+
+function subtract(date, amount, unit) {
+  return moment(date).subtract(amount, unit);
+}
+
+function now() {
+  return moment.now();
+}
+
+function valueOf(date) {
+  return moment(date).valueOf();
+}
+
+function getTime(date) {
+  const start = moment(date);
+  const hour = start.hour();
+  const minute = start.minute();
+  const second = start.second();
+  return {
+    hour,
+    minute,
+    second,
+  };
+}
+
+function setTime(d, {hour, minute, second}) {
+  const date = moment(d);
+  return date.hour(hour).minute(minute).second(second);
+}
+
 export {
   format,
   exactTime,
@@ -117,4 +150,10 @@ export {
   getDuration,
   toUnix,
   getMonth,
+  from,
+  subtract,
+  now,
+  valueOf,
+  getTime,
+  setTime,
 };

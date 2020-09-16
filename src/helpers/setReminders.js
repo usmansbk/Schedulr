@@ -1,8 +1,23 @@
 import PushNotification from 'react-native-push-notification';
 import {InteractionManager} from 'react-native';
-import moment from 'moment';
-import 'twix';
 import {decapitalize} from 'lib/utils';
+import {
+  from,
+  subtract,
+  toDate,
+  format,
+  now,
+  valueOf,
+  greaterThan,
+  date,
+  add,
+  addDuration,
+  diffDuration,
+  getDuration,
+  getTime,
+  setTime,
+  toISOString,
+} from 'lib/date';
 import {
   FIVE_MINUTES,
   TEN_MINUTES,
@@ -19,14 +34,14 @@ const color = colors.primary;
 
 function getReminderMessage({category, startAt, date}) {
   const validCategory = category ? category + ' ' : '';
-  return decapitalize(`${validCategory}${moment(startAt).from(date)}`);
+  return decapitalize(`${validCategory}${from(startAt, date)}`);
 }
 
 const setReminder = (event, before, settings) => {
   const {id, title, startAt, endAt, category, recurrence} = event;
   const {amount, unit} = before;
   const {sound, vibrate} = settings;
-  const date = moment(startAt).subtract(amount, unit).toDate();
+  const date = toDate(subtract(startAt, amount, unit));
   const message = getReminderMessage({
     category,
     startAt,
@@ -61,8 +76,8 @@ const setReminder = (event, before, settings) => {
 const schdlStart = (event, settings) => {
   const {id, title, startAt, endAt, category, recurrence, __typename} = event;
   const {sound, vibrate} = settings;
-  const time = moment(startAt).format('hh:mm a');
-  const date = moment(startAt).toDate();
+  const time = format(startAt, 'hh:mm a');
+  const date = toDate(startAt);
   const message = decapitalize(`${category ? category + ' - ' : ''}${time}`);
   const repeatType = getRepeatType(recurrence);
   const repeatTime = {};
@@ -95,11 +110,11 @@ const schdl = (event, before, settings) => {
   const {fiveMin, tenMin, fifteenMin, thirtyMin, oneHour, oneDay} = before;
 
   const start = event.startAt;
-  const isStarted = moment() > moment(start);
+  const isStarted = greaterThan(date(), start);
 
   if (!isStarted) {
     schdlStart(event, settings);
-    const distance = moment(start).valueOf() - moment.now();
+    const distance = valueOf(start) - now();
     if (fiveMin && distance > FIVE_MINUTES) {
       setReminder(event, {amount: 5, unit: 'minutes'}, settings);
     }
@@ -159,22 +174,20 @@ const schdlAll = (events, mutedList, allowedList) => {
 };
 
 function schdlWeekdaysEvent(event, remindMeBefore, settings) {
-  const start = moment(event.startAt);
-  const end = moment(event.endAt);
-  const duration = Math.abs(moment.duration(start.diff(end, null, true)));
+  const duration = Math.abs(
+    getDuration(diffDuration(event.startAt, event.endAt)),
+  );
 
-  const hour = start.hour();
-  const minute = start.minute();
-  const second = start.second();
+  const {hour, minute, second} = getTime(event.startAt);
 
   const days = getWeekdays();
   days.forEach((date) => {
-    const startAt = date.clone().hour(hour).minute(minute).second(second);
-    const endAt = startAt.clone().add(duration);
+    const startAt = setTime(date, {hour, minute, second});
+    const endAt = addDuration(startAt, duration);
 
     const nextEvent = Object.assign({}, event, {
-      startAt: startAt.toISOString(),
-      endAt: endAt.toISOString(),
+      startAt: toISOString(startAt),
+      endAt: toISOString(endAt),
     });
     schdl(nextEvent, remindMeBefore, settings);
   });
@@ -198,16 +211,16 @@ function getRepeatTime(ms, recurrence) {
   let interval;
   switch (recurrence) {
     case 'MONTHLY':
-      interval = moment(ms).add(1, 'month');
+      interval = add(ms, 1, 'month');
       break;
     case 'YEARLY':
-      interval = moment(ms).add(1, 'year');
+      interval = add(ms, 1, 'year');
       break;
     default:
-      interval = moment(ms).add(15, 'minutes');
+      interval = add(ms, 15, 'minutes');
       break;
   }
-  return interval.toDate().getTime();
+  return toDate(interval).getTime();
 }
 
 export default schdlAll;
