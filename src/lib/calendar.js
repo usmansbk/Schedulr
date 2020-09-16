@@ -33,7 +33,7 @@ function extractDates(events, previous) {
 
     const nextDate = previous ? recur.previousDate() : recur.nextDate();
     if (nextDate) {
-      dates.push(nextDate.toISOString());
+      dates.push(toISOString(nextDate));
     }
   });
   return dates;
