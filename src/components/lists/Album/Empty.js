@@ -15,7 +15,7 @@ export default inject('stores')(
         <Image
           resizeMode="contain"
           style={{width: 200, height: 200}}
-          source={require('../../../assets/photographer.png')}
+          source={require('../../../assets/images.png')}
         />
         <Headline style={stores.styles.eventsList.emptyTitle}>
           {I18n.get('TEXT_noAlbum')}

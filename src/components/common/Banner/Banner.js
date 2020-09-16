@@ -32,7 +32,7 @@ export default function Banner({navigateToBanner, id, pictureUrl, isOwner}) {
       </View>
     );
   }
-  const source = pictureUrl ? {uri: pictureUrl} : require('assets/work.png');
+  const source = pictureUrl ? {uri: pictureUrl} : require('assets/upload.jpg');
   return (
     <TouchableOpacity style={styles.container} onPress={onPress}>
       <ImageBackground

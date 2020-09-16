@@ -88,7 +88,7 @@ class ImageViewer extends React.Component {
     const source = {
       url: uri,
       props: {
-        source: uri ? undefined : require('../../../assets/photographer.png'),
+        source: uri ? undefined : require('../../../assets/upload.jpg'),
       },
     };
 

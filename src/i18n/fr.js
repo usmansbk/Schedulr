@@ -372,6 +372,7 @@ export default {
   SYNC_complete: 'Synchronized',
 
   TEXT_album: 'Album',
+  TEXT_noAlbum: 'No photos',
 
   THEME_title: 'Theme',
   THEME_auto: 'Use my System Theme',
