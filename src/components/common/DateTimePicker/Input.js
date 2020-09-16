@@ -1,9 +1,9 @@
 import React from 'react';
-import moment from 'moment';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import {View} from 'react-native';
 import {inject, observer} from 'mobx-react';
 import Button from './Picker';
+import {format, exactTime, toDate, calendar, date} from 'lib/date';
 import {I18n} from 'aws-amplify';
 
 class Input extends React.Component {
@@ -18,9 +18,8 @@ class Input extends React.Component {
     nextState.showPicker !== this.state.showPicker ||
     nextState.mode !== this.state.mode;
 
-  _formatDate = (date) =>
-    moment(date).calendar(null, I18n.get('calendarFormats'));
-  _formatTime = (time) => moment(time).format('hh:mm a');
+  _formatDate = (date) => calendar(date, I18n.get('calendarFormats'));
+  _formatTime = (time) => format(time, 'hh:mm a');
 
   _hidePicker = () => this.setState({showPicker: false});
   _showPicker = (mode) => this.setState({showPicker: true, mode});
@@ -35,9 +34,7 @@ class Input extends React.Component {
         if (this.props.onDateChange) {
           this.props.onDateChange(date);
         }
-        this.props.onValueChange(
-          moment(date).seconds(0).milliseconds(0).toISOString(),
-        );
+        this.props.onValueChange(exactTime(date));
       }, 0);
     }
   };
@@ -45,7 +42,7 @@ class Input extends React.Component {
   render() {
     const {disabled, noMin, stores, hideTime} = this.props;
 
-    const value = this.props.value || moment().toISOString();
+    const value = this.props.value || date();
     const styles = stores.styles.datePicker;
 
     return (
@@ -69,8 +66,8 @@ class Input extends React.Component {
         {this.state.showPicker && (
           <DateTimePicker
             mode={this.state.mode}
-            value={moment(value).toDate()}
-            minimumDate={noMin ? undefined : moment(value).toDate()}
+            value={toDate(value)}
+            minimumDate={noMin ? undefined : toDate(value)}
             onChange={this._handleChange}
           />
         )}
