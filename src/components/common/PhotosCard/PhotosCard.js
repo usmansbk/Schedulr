@@ -27,7 +27,7 @@ class PhotosCard extends React.Component {
         ) : (
           <>
             <Text style={styles.text}>{I18n.get(`TEXT_album`)}</Text>
-            <Icon name="camera" size={24} color={stores.theme.colors.gray} />
+            <Icon name="picture" size={24} color={stores.theme.colors.gray} />
           </>
         )}
       </TouchableOpacity>
