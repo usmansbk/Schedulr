@@ -1,6 +1,14 @@
 import moment from 'moment';
 
 export function setDateLanguage(languageCode) {
+  switch (languageCode.toLowerCase()) {
+    case 'fr':
+      require('moment/locale/fr');
+    case 'es':
+      require('moment/locale/es');
+    default:
+      break;
+  }
   moment.locale(languageCode);
 }
 
