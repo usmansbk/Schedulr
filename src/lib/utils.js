@@ -1,6 +1,6 @@
-import moment from 'moment';
 import shortid from 'shortid';
 import {SCHEDULE_CLOSED} from 'lib/constants';
+import {format, date, startOf, endOf} from 'lib/date';
 
 function sortList(list) {
   return list.sort((a, b) => {
@@ -167,10 +167,10 @@ function getFileExtension(type) {
 }
 
 export function getFileName(type, withExtension) {
-  const m = moment();
-  const year = m.format('YYYY');
-  const month = m.format('MM');
-  const day = m.format('D');
+  const m = date();
+  const year = format(m, 'YYYY');
+  const month = format(m, 'MM');
+  const day = format(m, 'D');
   const dateTag = `${year}${month}${day}`;
   name = `${getFilePrefix(type)}-${dateTag}-${shortid.generate()}`;
   if (withExtension) {
@@ -181,8 +181,8 @@ export function getFileName(type, withExtension) {
 }
 
 export function injectAds(events = []) {
-  const today = moment().startOf('day');
-  const end = today.clone().endOf('day');
+  const today = startOf(date(), 'day');
+  const end = endOf(date(today), 'day');
 
   events.push({
     __typename: 'AdMob',

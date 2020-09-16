@@ -1,7 +1,7 @@
-import moment from 'moment';
+import {toISOString} from 'lib/date';
 
 export const pastEventsFilter = (before) => {
-  const time = moment(before).toISOString();
+  const time = toISOString(before);
   return {
     or: [
       {
@@ -37,8 +37,7 @@ export const pastEventsFilter = (before) => {
 };
 
 export const deltaEventsFilter = (timestamp) => {
-  const time = timestamp ? moment(timestamp) : moment();
-  const lastSync = time.toISOString();
+  const lastSync = toISOString(timestamp);
   return {
     updatedAt: {
       gt: lastSync,
@@ -47,7 +46,7 @@ export const deltaEventsFilter = (timestamp) => {
 };
 
 export const baseEventsFilter = () => {
-  const now = moment().toISOString();
+  const now = toISOString();
   return {
     or: [
       {
