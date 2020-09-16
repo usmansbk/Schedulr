@@ -19,10 +19,6 @@ export default class NewScheduleScreen extends React.Component {
     this.props.navigation.popToTop();
   };
 
-  componentWillUnmount = () => {
-    if (this.waitAMoment) clearTimeout(this.waitAMoment);
-  };
-
   render() {
     return (
       <Form
