@@ -1,9 +1,9 @@
-import moment from 'moment';
-import 'twix';
 import {I18n} from 'aws-amplify';
 import {capitalize} from './utils';
-import {getDaysCount, isSpanDays} from './time';
+import {getDaysCount, isSpanDays, isPastDate, isCurrentDate} from './time';
+import {isAfter, date} from './date';
 import {ONE_TIME_EVENT} from './constants';
+
 /**
  *
  * A calendar event
@@ -46,14 +46,14 @@ export const getStatus = ({
   isCancelled,
 }) => {
   if (until) {
-    const isConcluded = moment().isAfter(moment(until));
+    const isConcluded = isAfter(date(), until);
     if (isConcluded) return 'concluded';
   }
   const cancelled = isEventCancelled({cancelledDates, startAt, isCancelled});
   if (cancelled) return 'cancelled';
-  const isEnded = moment().twix(endAt).isPast();
+  const isEnded = isPastDate(endAt);
   if (isEnded) return 'done';
-  const isOngoing = moment(startAt).twix(endAt).isCurrent();
+  const isOngoing = isCurrentDate(startAt, endAt);
   if (isOngoing) return 'ongoing';
   return 'upcoming';
 };
@@ -67,8 +67,8 @@ export const isEventValid = (event) => {
   const {startAt, endAt, recurrence, until, isCancelled} = event;
   const cancelledDates = event.cancelledDates || [];
   return (
-    (recurrence !== ONE_TIME_EVENT && moment().twix(until).isCurrent()) ||
-    (moment().twix(endAt).isCurrent() &&
+    (recurrence !== ONE_TIME_EVENT && isCurrentDate(date(), until)) ||
+    (isCurrent(date(), endAt) &&
       !isEventCancelled({cancelledDates, startAt, isCancelled}))
   );
 };
