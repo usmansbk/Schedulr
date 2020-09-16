@@ -5,8 +5,8 @@ import Icon from 'components/common/Icon';
 import Hyperlink from 'react-native-hyperlink';
 import {inject, observer} from 'mobx-react';
 import numeral from 'numeral';
-import moment from 'moment';
 import {I18n} from 'aws-amplify';
+import {format} from 'lib/date';
 import getImageUrl from 'helpers/getImageUrl';
 import UserAvatar from 'components/common/UserAvatar';
 import Loading from 'components/common/Loading';
@@ -69,9 +69,8 @@ class UserProfile extends React.Component {
       createdCount = 0,
     } = user;
 
-    const uriSmall = avatar ? getImageUrl(avatar) : pictureUrl;
     const uriBig = avatar ? getImageUrl(avatar, 400) : pictureUrl;
-    const date = moment(createdAt).format('MMMM YYYY');
+    const date = format(createdAt, 'MMMM YYYY');
     const styles = stores.styles.profile;
 
     return (
