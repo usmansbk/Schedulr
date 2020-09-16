@@ -52,6 +52,10 @@ function diffDuration(date1, date2) {
   return moment(date1).diff(moment(date2), null, true);
 }
 
+function diff(date1, date2) {
+  return moment(date1).diff(moment(date2));
+}
+
 function isAfter(date1, date2) {
   return moment(date1).isAfter(moment(date2));
 }
@@ -60,8 +64,8 @@ function subtractDuration(date, duration) {
   return moment(date).subtract(duration);
 }
 
-function castDateTime(source, target) {
-  const date = moment(target);
+function castDateTime(source, dest) {
+  const date = moment(dest);
   const src = moment(source);
 
   const startSec = src.seconds();
@@ -156,4 +160,5 @@ export {
   valueOf,
   getTime,
   setTime,
+  diff,
 };

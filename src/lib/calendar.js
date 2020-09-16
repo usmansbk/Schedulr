@@ -1,4 +1,12 @@
-import moment from 'moment';
+import {
+  add,
+  startOf,
+  toISOString,
+  date,
+  diff,
+  getDuration,
+  castDateTime,
+} from './date';
 import repeat from './repeat';
 
 // Get next seven days starting from today
@@ -8,11 +16,8 @@ export const getDaysFromNow = (previous, num = 1) => {
   const direction = previous ? -1 : 1;
   let dates = [];
   for (let i = start; i <= days; i++) {
-    const date = moment()
-      .add(i * direction, 'day')
-      .startOf('day')
-      .toISOString();
-    dates.push(date);
+    const d = toISOString(startOf(add(date(), i * direction, 'day'), 'day'));
+    dates.push(d);
   }
   return dates;
 };
@@ -23,7 +28,7 @@ function extractDates(events, previous) {
   events.forEach((e) => {
     const recur = repeat(e.startAt)
       .every(e.recurrence)
-      .from(moment().add(direction, 'day'))
+      .from(add(date(), direction, 'day'))
       .until(e.until);
 
     const nextDate = previous ? recur.previousDate() : recur.nextDate();
@@ -40,15 +45,15 @@ function EventFlatList(events = []) {
   events.forEach((event) => {
     // deleted bookmarked events are represented as string ids
     if (typeof event === 'object') {
-      const date = moment().startOf('day').toISOString();
-      const key = `${event.id}-${event.isBookmarked}-${event.updatedAt}-${date}`;
+      const d = toISOString(startOf(date(), 'day'));
+      const key = `${event.id}-${event.isBookmarked}-${event.updatedAt}-${d}`;
       const cached = flatCache[key];
       if (cached) {
         data.push(cached);
       } else {
         const recur = repeat(event.startAt)
           .span(event.endAt)
-          .maybeFrom(date)
+          .maybeFrom(d)
           .every(event.recurrence)
           .until(event.until);
 
@@ -58,7 +63,7 @@ function EventFlatList(events = []) {
       }
     }
   });
-  data.sort((a, b) => moment(a.startAt).diff(moment(b.startAt)));
+  data.sort((a, b) => diff(a.startAt, b.startAt));
   return data;
 }
 
@@ -95,35 +100,33 @@ function process(events, date, previous) {
       }
     }
   });
-  data.sort((a, b) => moment(a.startAt).diff(b.startAt));
+  data.sort((a, b) => diff(a.startAt, b.startAt));
   return data;
 }
 
 function* EventInfiniteSectionGenerator(events, previous) {
   const direction = previous ? -1 : 1;
   // previous should start from yesterday
-  let date = moment()
-    .add(previous ? -1 : 0, 'day')
-    .startOf('day');
-  while (date) {
+  let d = startOf(add(date(), previous ? -1 : 0, 'day'), 'day');
+  while (d) {
     const items = [
       {
-        data: process(events, date, previous),
-        title: date,
+        data: process(events, d, previous),
+        title: d,
       },
     ];
     yield {
       items,
-      nextToken: date,
+      nextToken: d,
     };
-    date = moment(date).add(direction, 'day').toISOString();
+    d = toISOString(add(d, direction, 'day'));
   }
 }
 
 function* EventFiniteSectionGenerator(events, previous) {
   const order = previous ? -1 : 1;
   const dates = Array.from(new Set(extractDates(events, previous))).sort(
-    (a, b) => moment(a).diff(b) * order,
+    (a, b) => diff(a, b) * order,
   );
 
   for (let date of dates) {
@@ -140,27 +143,21 @@ function* EventFiniteSectionGenerator(events, previous) {
   }
 }
 
-export function update(event, date, span) {
+export function update(event, currentDate, span) {
   let startAt, endAt;
 
-  const previousEndMoment = moment(event.endAt);
+  const previousEnd = date(event.endAt);
 
   if (span) {
-    startAt = moment(date).toISOString();
-    endAt = moment(span).toISOString();
+    startAt = toISOString(currentDate);
+    endAt = toISOString(span);
   } else {
-    const previousStartMoment = moment(event.startAt);
+    const previousStart = date(event.startAt);
 
-    const hr = previousStartMoment.hour();
-    const min = previousStartMoment.minute();
-    const sec = previousStartMoment.second();
-
-    const duration = moment.duration(
-      previousEndMoment.diff(previousStartMoment),
-    );
-    const nextMoment = moment(date).hour(hr).minute(min).second(sec);
-    startAt = nextMoment.toISOString();
-    endAt = nextMoment.clone().add(duration).toISOString();
+    const duration = getDuration(diff(previousEnd, previousStart));
+    const next = castDateTime(previousStart, currentDate);
+    startAt = toISOString(next);
+    endAt = toISOString(add(next, duration));
   }
 
   return Object.assign({}, event, {
