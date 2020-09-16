@@ -1,5 +1,4 @@
 import React from 'react';
-import moment from 'moment';
 import uuidv5 from 'uuid/v5';
 import {View, ScrollView, RefreshControl, TouchableOpacity} from 'react-native';
 import {
@@ -15,6 +14,7 @@ import Hyperlink from 'react-native-hyperlink';
 import {inject, observer} from 'mobx-react';
 import {I18n} from 'aws-amplify';
 import {schedule_info, SCHEDULE_CLOSED} from 'lib/constants';
+import {toDateString} from 'lib/date';
 import getImageUrl from 'helpers/getImageUrl';
 import UserAvatar from 'components/common/UserAvatar';
 import FollowButton from 'components/common/FollowButton';
@@ -286,7 +286,7 @@ class Info extends React.Component {
                   {I18n.get('CREATED')}
                 </Text>
                 <Text style={stores.styles.eventDetails.value}>
-                  {moment(createdAt).toDate().toDateString()}
+                  {toDateString(createdAt)}
                 </Text>
               </View>
               <TouchableOpacity onPress={() => navigateToProfile(ownerId)}>

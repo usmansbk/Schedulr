@@ -16,8 +16,12 @@ function toDate(date) {
   return moment(date).toDate();
 }
 
+function toDateString(date) {
+  return toDate(date).toDateString();
+}
+
 function calendar(date, format) {
   return moment(date).calendar(null, format);
 }
 
-export {format, exactTime, toDate, calendar, date};
+export {format, exactTime, toDate, toDateString, calendar, date};
