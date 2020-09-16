@@ -218,7 +218,7 @@ export default function repeat(date) {
       }
       return this;
     },
-    next(numberOfDates) {
+    next(numberOfDates = 1) {
       return datesFrom({
         numberOfDates,
         _date,
@@ -229,7 +229,7 @@ export default function repeat(date) {
         _maybeFrom,
       });
     },
-    previous(numberOfDates) {
+    previous(numberOfDates = 1) {
       return datesFrom({
         numberOfDates,
         _date,
@@ -239,12 +239,6 @@ export default function repeat(date) {
         _span,
         previous: true,
       });
-    },
-    next() {
-      return this.next(1)[0];
-    },
-    previous() {
-      return this.previous(1)[0];
     },
     matches(date) {
       if (_from && moment(date).isBefore(_from, DAY)) return false;
