@@ -30,7 +30,6 @@ export default function repeat({startAt, endAt}) {
   let _until = null;
   let _span = moment(endAt);
   let _from = moment(startAt).startOf(DAY);
-  let _maybeFrom = false;
 
   const rule = {
     every(recurrence) {
@@ -41,12 +40,6 @@ export default function repeat({startAt, endAt}) {
       if (date) {
         _from = moment(date).startOf(DAY);
       }
-      return this;
-    },
-    // prevent FlatList from making non-recurring past events as upcoming
-    maybeFrom(date) {
-      this.from(date);
-      _maybeFrom = true;
       return this;
     },
     until(date) {
