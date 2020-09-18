@@ -13,10 +13,8 @@ import Suspense from 'components/common/Suspense';
 import CancelConfirm from 'components/dialogs/CancelEvent';
 import DeleteConfirm from 'components/dialogs/DeleteEvent';
 import Details from './Details';
-import {update} from 'lib/calendar';
 import {isEventValid} from 'lib/formatEvent';
 import getImageUrl from 'helpers/getImageUrl';
-import repeat from 'lib/repeat';
 import logger from 'config/logger';
 
 const FONT_SIZE = 24;
@@ -72,12 +70,6 @@ class EventDetails extends React.Component {
       navigateToBookmarks,
       stores,
     } = this.props;
-    const recur = repeat(event.startAt)
-      .span(event.endAt)
-      .every(event.recurrence)
-      .until(event.until)
-      .from(from);
-    const currentEvent = update(event, recur.next(), recur.nextSpan());
     const {
       id,
       title,
@@ -103,7 +95,7 @@ class EventDetails extends React.Component {
       banner,
       author,
       raw_startAt,
-    } = currentEvent;
+    } = event;
     const isValid = isEventValid({
       endAt,
       startAt,

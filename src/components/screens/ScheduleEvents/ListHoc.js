@@ -1,11 +1,10 @@
 import React from 'react';
-import { graphql } from 'react-apollo';
+import {graphql} from 'react-apollo';
 import gql from 'graphql-tag';
-import { getScheduleEvents } from 'api/queries';
-import { EventFlatList } from 'lib/calendar';
+import {getScheduleEvents} from 'api/queries';
 import List from 'components/lists/Bookmarks';
-import { baseEventsFilter, pastEventsFilter } from 'graphql/filters';
-import { PAGINATION_LIMIT } from 'lib/constants';
+import {baseEventsFilter, pastEventsFilter} from 'graphql/filters';
+import {PAGINATION_LIMIT} from 'lib/constants';
 import updateQuery from 'helpers/updateQuery';
 import Suspense from 'components/common/Suspense';
 
@@ -13,7 +12,7 @@ const alias = 'withScheduleEventsContainer';
 
 class ListHoc extends React.Component {
   state = {
-    display: false
+    display: false,
   };
 
   _onRefresh = () => this.props.onRefresh && this.props.onRefresh();
@@ -24,10 +23,13 @@ class ListHoc extends React.Component {
   };
 
   componentDidMount = () => {
-    setTimeout(() =>
-      this.setState({
-        display: true
-    }), 0);
+    setTimeout(
+      () =>
+        this.setState({
+          display: true,
+        }),
+      0,
+    );
   };
 
   render() {
@@ -38,64 +40,77 @@ class ListHoc extends React.Component {
       events,
       isAuth,
       eventsCount,
-      navigation
+      navigation,
     } = this.props;
 
     const eventsLength = events ? events.length : 0;
 
     const pastEventsCount = eventsCount - eventsLength;
 
-    return <List
-            listType="schedule"
-            events={events}
-            eventsCount={eventsCount}
-            pastEventsCount={pastEventsCount}
-            loading={loading}
-            error={error}
-            onRefresh={this._onRefresh}
-            fetchPastEvents={this._fetchPastEvents}
-            isAuth={isAuth}
-            navigation={navigation}
-          />;
+    return (
+      <List
+        listType="schedule"
+        events={events}
+        eventsCount={eventsCount}
+        pastEventsCount={pastEventsCount}
+        loading={loading}
+        error={error}
+        onRefresh={this._onRefresh}
+        fetchPastEvents={this._fetchPastEvents}
+        isAuth={isAuth}
+        navigation={navigation}
+      />
+    );
   }
 }
 
 export default graphql(gql(getScheduleEvents), {
   alias,
-  options: props => ({
+  options: (props) => ({
     fetchPolicy: 'cache-first',
     notifyOnNetworkStatusChange: true,
     variables: {
       id: props.id,
-      filter: baseEventsFilter()
+      filter: baseEventsFilter(),
     },
   }),
-  skip: props => !props.isAuth,
-  props: ({ data, ownProps}) => ({
-    loading: data && (data.loading || data.networkStatus === 4 || data.networkStatus === 3),
+  skip: (props) => !props.isAuth,
+  props: ({data, ownProps}) => ({
+    loading:
+      data &&
+      (data.loading || data.networkStatus === 4 || data.networkStatus === 3),
     error: data.error,
-    onRefresh: () => data.refetch({
-      filter: baseEventsFilter(),
-      limit: PAGINATION_LIMIT,
-      nextToken: null
-    }),
-    fetchMore: (nextToken, before) => data.fetchMore({
-      variables: {
+    onRefresh: () =>
+      data.refetch({
+        filter: baseEventsFilter(),
         limit: PAGINATION_LIMIT,
-        nextToken,
-        filter: pastEventsFilter(before)
-      },
-      updateQuery: (prev, { fetchMoreResult }) => (
-        updateQuery({
-          prev,
-          fetchMoreResult,
-          rootField: 'getScheduleEvents',
-          connectionField: 'events'
-        })
-      )
-    }),
-    events: data && data.getScheduleEvents && data.getScheduleEvents.events && EventFlatList(data.getScheduleEvents.events.items),
-    nextToken: data && data.getScheduleEvents && data.getScheduleEvents.events && data.getScheduleEvents.events.nextToken,
-    ...ownProps
-  }) 
+        nextToken: null,
+      }),
+    fetchMore: (nextToken, before) =>
+      data.fetchMore({
+        variables: {
+          limit: PAGINATION_LIMIT,
+          nextToken,
+          filter: pastEventsFilter(before),
+        },
+        updateQuery: (prev, {fetchMoreResult}) =>
+          updateQuery({
+            prev,
+            fetchMoreResult,
+            rootField: 'getScheduleEvents',
+            connectionField: 'events',
+          }),
+      }),
+    events:
+      data &&
+      data.getScheduleEvents &&
+      data.getScheduleEvents.events &&
+      data.getScheduleEvents.events.items,
+    nextToken:
+      data &&
+      data.getScheduleEvents &&
+      data.getScheduleEvents.events &&
+      data.getScheduleEvents.events.nextToken,
+    ...ownProps,
+  }),
 })(ListHoc);

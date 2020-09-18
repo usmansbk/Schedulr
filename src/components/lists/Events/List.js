@@ -230,16 +230,8 @@ class List extends React.Component {
 
   _processEvents(events, forceUpdate) {
     if (forceUpdate || eventsChanged(events, this.state.events)) {
-      const nextIterator = EventSectionGenerator(
-        events,
-        false,
-        this.props.finite,
-      );
-      const prevIterator = EventSectionGenerator(
-        events,
-        true,
-        this.props.finite,
-      );
+      const nextIterator = EventSectionGenerator(events, false);
+      const prevIterator = EventSectionGenerator(events, true);
       let result = nextIterator.next();
       if (!result.done) {
         const {items, nextToken} = result.value;

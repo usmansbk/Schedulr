@@ -10,7 +10,6 @@ import Footer from './Footer';
 import Empty from './Empty';
 import {parseRepeat, getCategory} from 'lib/formatEvent';
 import {getDuration, getHumanTime} from 'lib/time';
-import {EventFlatList} from 'lib/calendar';
 import {bookmarkedEvents} from 'lib/constants';
 import getImageUrl from 'helpers/getImageUrl';
 
@@ -126,7 +125,7 @@ class List extends Component {
 
     return (
       <FlatList
-        data={EventFlatList(events)}
+        data={events}
         refreshControl={
           <RefreshControl
             onRefresh={this._onRefresh}

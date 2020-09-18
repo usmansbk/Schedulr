@@ -22,57 +22,8 @@ export const getDaysFromNow = (previous, num = 1) => {
   return dates;
 };
 
-function extractDates(events, previous) {
-  const direction = previous ? -1 : 0;
-  let dates = [];
-  events.forEach((e) => {
-    const recur = repeat(e.startAt)
-      .every(e.recurrence)
-      .from(add(date(), direction, 'day'))
-      .until(e.until);
-
-    const nextDate = previous ? recur.previous() : recur.next();
-    if (nextDate) {
-      dates.push(toISOString(nextDate));
-    }
-  });
-  return dates;
-}
-
-const flatCache = {};
-function EventFlatList(events = []) {
-  const data = [];
-  events.forEach((event) => {
-    // deleted bookmarked events are represented as string ids
-    if (typeof event === 'object') {
-      const d = toISOString(startOf(date(), 'day'));
-      const key = `${event.id}-${event.isBookmarked}-${event.updatedAt}-${d}`;
-      const cached = flatCache[key];
-      if (cached) {
-        data.push(cached);
-      } else {
-        const recur = repeat(event.startAt)
-          .span(event.endAt)
-          .maybeFrom(d)
-          .every(event.recurrence)
-          .until(event.until);
-
-        const newEvent = update(event, recur.next(), recur.nextSpan());
-        data.push(newEvent);
-        flatCache[key] = newEvent;
-      }
-    }
-  });
-  data.sort((a, b) => diff(a.startAt, b.startAt));
-  return data;
-}
-
-function* EventSectionGenerator(events, previous, finite) {
-  if (finite) {
-    yield* EventFiniteSectionGenerator(events, previous);
-  } else {
-    yield* EventInfiniteSectionGenerator(events, previous);
-  }
+function* EventSectionGenerator(events, previous) {
+  yield* EventInfiniteSectionGenerator(events, previous);
 }
 
 const cache = {};
@@ -86,15 +37,13 @@ function process(events, date, previous) {
         data.push(cached);
       }
     } else {
-      const recur = repeat(event.startAt)
-        .span(event.endAt)
+      const recur = repeat(event)
         .from(date)
         .every(event.recurrence)
         .until(event.until);
       if (recur.matches(date)) {
-        const newEvent = update(event, date, recur.nextSpan());
-        data.push(newEvent);
-        cache[key] = newEvent;
+        data.push(event);
+        cache[key] = event;
       } else {
         cache[key] = '__not__match__';
       }
@@ -123,26 +72,6 @@ function* EventInfiniteSectionGenerator(events, previous) {
   }
 }
 
-function* EventFiniteSectionGenerator(events, previous) {
-  const order = previous ? -1 : 1;
-  const dates = Array.from(new Set(extractDates(events, previous))).sort(
-    (a, b) => diff(a, b) * order,
-  );
-
-  for (let date of dates) {
-    const items = [
-      {
-        data: process(events, date, previous),
-        title: date,
-      },
-    ];
-    yield {
-      items,
-      nextToken: date,
-    };
-  }
-}
-
 export function update(event, currentDate, span) {
   let startAt, endAt;
 
@@ -168,4 +97,4 @@ export function update(event, currentDate, span) {
   });
 }
 
-export {EventSectionGenerator, EventFlatList};
+export {EventSectionGenerator};
