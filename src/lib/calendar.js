@@ -1,12 +1,4 @@
-import {
-  add,
-  startOf,
-  toISOString,
-  date,
-  diff,
-  getDuration,
-  castDateTime,
-} from './date';
+import {add, startOf, toISOString, date, diff} from './date';
 import repeat from './repeat';
 
 // Get next seven days starting from today

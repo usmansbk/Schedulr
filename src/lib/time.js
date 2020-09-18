@@ -75,17 +75,15 @@ export const formatDate = (startAt, endAt, allDay) => {
 export const calendarTime = (date) =>
   moment(date).calendar(null, I18n.get('calendarTimeFormats'));
 
-export const isSpanDays = (from, to) => {
-  return !moment(from).isSame(moment(to), 'day');
-};
-
 export const isPastDate = (date, endOfDay) => {
+  const today = moment();
   const d = endOfDay ? moment(date).endOf('day') : date;
-  moment().twix(d).isPast();
+  return today.isAfter(d, 'day');
 };
 
 export const isCurrentDate = (startAt, endAt) => {
-  return moment(startAt).twix(endAt).isCurrent();
+  const today = moment();
+  return today.isBetween(startAt, endAt, 'day', '[]');
 };
 
 export const isWeekDay = (momentDate) => {

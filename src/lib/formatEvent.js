@@ -1,6 +1,6 @@
 import {I18n} from 'aws-amplify';
 import {capitalize} from './utils';
-import {getDaysCount, isSpanDays, isPastDate, isCurrentDate} from './time';
+import {isPastDate, isCurrentDate} from './time';
 import {isAfter, date} from './date';
 import {ONE_TIME_EVENT} from './constants';
 
@@ -122,15 +122,3 @@ export const captionDetails = ({allDay, recurrence, category, duration}) => {
   let formatted = capitalize(caption.trim());
   return formatted;
 };
-
-function count({startAt, endAt, from, _endAt}) {
-  const spanDays = isSpanDays(startAt, endAt);
-
-  let currentDayCount, totalDayCount;
-  if (spanDays) {
-    totalDayCount = getDaysCount(startAt, _endAt);
-    const count = getDaysCount(startAt, from);
-    currentDayCount = count;
-  }
-  return [currentDayCount, totalDayCount];
-}

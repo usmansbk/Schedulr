@@ -2,16 +2,10 @@ import React from 'react';
 import {View, TouchableOpacity} from 'react-native';
 import {Text, Caption, Headline} from 'react-native-paper';
 import {inject, observer} from 'mobx-react';
-import Badge from 'components/common/Badge';
 import Avatar from 'components/common/UserAvatar';
 import Actions from 'components/common/Actions';
 import {bookmarkedEvents} from 'lib/constants';
-import {
-  parseRepeat,
-  getStatus,
-  getCategory,
-  captionDetails,
-} from 'lib/formatEvent';
+import {parseRepeat, getCategory, captionDetails} from 'lib/formatEvent';
 import {getDuration, getHumanTime} from 'lib/time';
 import getImageUrl from 'helpers/getImageUrl';
 
@@ -39,7 +33,6 @@ class Item extends React.Component {
       title,
       startAt,
       endAt,
-      until,
       allDay,
       isAuth,
       isOffline,
@@ -49,8 +42,6 @@ class Item extends React.Component {
       commentsCount,
       address,
       scheduleId,
-      isCancelled,
-      cancelledDates,
       stores,
     } = this.props;
 
@@ -60,13 +51,6 @@ class Item extends React.Component {
     const time = getHumanTime({allDay, startAt, endAt});
     const duration = getDuration(startAt, endAt, allDay);
     const pictureUrl = banner && getImageUrl(banner);
-    const status = getStatus({
-      isCancelled,
-      cancelledDates,
-      startAt,
-      endAt,
-      until,
-    });
     const caption = captionDetails({
       allDay,
       recurrence,
@@ -82,9 +66,7 @@ class Item extends React.Component {
             name={title}
             src={pictureUrl}
             onPress={this._onPressAvatar}
-            badge={<Badge status={status} />}
             style={styles.left}
-            key={status}
           />
           <View style={styles.right}>
             <View style={styles.itemBody}>
