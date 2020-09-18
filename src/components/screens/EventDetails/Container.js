@@ -94,7 +94,6 @@ class EventDetails extends React.Component {
       isOffline,
       banner,
       author,
-      raw_startAt,
     } = event;
     const isValid = isEventValid({
       endAt,
@@ -189,7 +188,6 @@ class EventDetails extends React.Component {
           id={id}
           title={title}
           startAt={startAt}
-          raw_startAt={raw_startAt}
           endAt={endAt}
           allDay={allDay}
           recurrence={recurrence}

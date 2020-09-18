@@ -51,14 +51,13 @@ export default inject('stores')(
       navigateToBookmarks,
       navigateToBanner,
       stores,
-      raw_startAt,
     }) => {
       const [expandDescription, setExpand] = useState(false);
       const expandText = () => setExpand(!expandDescription);
 
       const date = formatDate(startAt, endAt, allDay);
       const duration = getDuration(startAt, endAt);
-      const repeatLabel = getRepeatLabel(recurrence, raw_startAt);
+      const repeatLabel = getRepeatLabel(recurrence, startAt);
       const status = getStatus({
         isCancelled,
         cancelledDates,

@@ -72,29 +72,4 @@ function* EventInfiniteSectionGenerator(events, previous) {
   }
 }
 
-export function update(event, currentDate, span) {
-  let startAt, endAt;
-
-  const previousEnd = date(event.endAt);
-
-  if (span) {
-    startAt = toISOString(currentDate);
-    endAt = toISOString(span);
-  } else {
-    const previousStart = date(event.startAt);
-
-    const duration = getDuration(diff(previousEnd, previousStart));
-    const next = castDateTime(previousStart, currentDate);
-    startAt = toISOString(next);
-    endAt = toISOString(add(next, duration));
-  }
-
-  return Object.assign({}, event, {
-    startAt,
-    endAt,
-    raw_startAt: event.startAt,
-    raw_endAt: event.endAt,
-  });
-}
-
 export {EventSectionGenerator};
