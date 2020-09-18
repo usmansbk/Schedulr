@@ -2,7 +2,6 @@ import React from 'react';
 import {View, TouchableOpacity} from 'react-native';
 import {Text, Caption, Headline} from 'react-native-paper';
 import {inject, observer} from 'mobx-react';
-import Badge from 'components/common/Badge';
 import Avatar from 'components/common/UserAvatar';
 import BookmarkButton from 'components/common/BookmarkButton';
 import {bookmarkedEvents} from 'lib/constants';
@@ -34,11 +33,6 @@ class Item extends React.Component {
       pictureUrl,
       isBookmarked,
       stores,
-      startAt,
-      endAt,
-      until,
-      isCancelled,
-      cancelledDates,
     } = this.props;
 
     const styles = stores.styles.bookmarkedEventsList;
@@ -49,13 +43,6 @@ class Item extends React.Component {
       duration,
     });
 
-    const status = getStatus({
-      isCancelled,
-      cancelledDates: cancelledDates || [],
-      startAt,
-      endAt,
-      until,
-    });
     return (
       <TouchableOpacity onPress={this._onPress} style={styles.itemContainer}>
         <View style={styles.itemContent}>
@@ -64,9 +51,7 @@ class Item extends React.Component {
             name={title}
             src={pictureUrl}
             onPress={this._onPressAvatar}
-            badge={<Badge status={status} />}
             style={styles.left}
-            key={status}
           />
           <View style={styles.right}>
             <View style={styles.itemBody}>
