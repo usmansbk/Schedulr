@@ -1,19 +1,6 @@
 import {add, startOf, toISOString, date, diff} from './date';
 import repeat from './repeat';
 
-// Get next seven days starting from today
-export const getDaysFromNow = (previous, num = 1) => {
-  const days = num;
-  const start = previous ? 1 : 0;
-  const direction = previous ? -1 : 1;
-  let dates = [];
-  for (let i = start; i <= days; i++) {
-    const d = toISOString(startOf(add(date(), i * direction, 'day'), 'day'));
-    dates.push(d);
-  }
-  return dates;
-};
-
 function* EventSectionGenerator(events, previous) {
   yield* EventInfiniteSectionGenerator(events, previous);
 }
