@@ -54,12 +54,14 @@ class Item extends React.Component {
       isCancelled,
       cancelledDates,
       category,
+      from,
     } = this.props;
 
     const pictureUrl = banner && getImageUrl(banner);
     const time = getTime({
       startAt,
       endAt,
+      from,
     });
     const status = getStatus({
       cancelledDates,
