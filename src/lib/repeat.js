@@ -26,6 +26,21 @@ export default function repeat(event) {
       finalDay = moment(date);
       return rule;
     },
+    next: () => {
+      switch (every) {
+        case 'DAILY':
+        case 'WEEKDAYS':
+          return fromDay;
+        case 'WEEKLY':
+          return fromDay.clone().isoWeekday(start.isoWeekday());
+        case 'MONTHLY':
+          return fromDay.clone().date(start.date());
+        case 'YEARLY':
+          return fromDay.clone().month(start.month()).date(start.date());
+        default:
+          return start;
+      }
+    },
     /**
      * DAILY and WEEKDAY event cannot span multiple days.
      * WEEKLY event must end before the next recurring event

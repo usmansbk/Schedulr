@@ -1,3 +1,4 @@
+import moment from 'moment';
 import {add, startOf, toISOString, date, diff} from './date';
 import repeat from './repeat';
 
@@ -21,8 +22,9 @@ function process(events, date, previous) {
         .every(event.recurrence)
         .until(event.until);
       if (recur.matches(date)) {
-        data.push(event);
-        cache[key] = event;
+        const eventFromDate = update(event, recur.next());
+        data.push(eventFromDate);
+        cache[key] = eventFromDate;
       } else {
         cache[key] = '__not__match__';
       }
@@ -49,6 +51,24 @@ function* EventInfiniteSectionGenerator(events, previous) {
     };
     d = toISOString(add(d, direction, 'day'));
   }
+}
+
+function update(event, date) {
+  const {startAt, endAt} = event;
+  const startDate = moment(date);
+  const startMoment = moment(startAt);
+  const endMoment = moment(endAt);
+
+  const duration = endMoment.diff(startMoment, 'milliseconds');
+  const startFromDate = startDate
+    .hour(startMoment.hour())
+    .minute(startMoment.minute())
+    .second(startMoment.second());
+  const endFromDate = startDate.clone().add(duration, 'milliseconds');
+  return Object.assign({}, event, {
+    startAt: startFromDate.toISOString(),
+    endAt: endFromDate.toISOString(),
+  });
 }
 
 export {EventSectionGenerator};
