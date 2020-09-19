@@ -23,7 +23,9 @@ export default function repeat(event) {
       return rule;
     },
     until: (date) => {
-      finalDay = moment(date);
+      if (date) {
+        finalDay = moment(date);
+      }
       return rule;
     },
     next: () => {
@@ -62,26 +64,22 @@ export default function repeat(event) {
         case 'WEEKDAYS':
           return date.isoWeekday() < 6;
         case 'WEEKLY': {
-          const endDay = fromDay
-            .clone()
-            .isoWeekday(start.isoWeekday())
-            .add(duration, 'days');
-          return date.isBetween(fromDay, endDay, 'day', '[]');
+          const startAt = fromDay.clone().isoWeekday(start.isoWeekday());
+          const endAt = startAt.clone().add(duration, 'days');
+          return date.isBetween(startAt, endAt, 'day', '[]');
         }
         case 'MONTHLY': {
-          const endDay = fromDay
-            .clone()
-            .date(start.date())
-            .add(duration, 'days');
-          return date.isBetween(fromDay, endDay, 'day', '[]');
+          const startAt = fromDay.clone().date(start.date());
+          const endAt = startAt.clone().add(duration, 'days');
+          return date.isBetween(startAt, endAt, 'day', '[]');
         }
         case 'YEARLY': {
-          const endDay = fromDay
+          const startAt = fromDay
             .clone()
             .month(start.month())
-            .date(start.date())
-            .add(duration, 'days');
-          return date.isBetween(fromDay, endDay, 'day', '[]');
+            .date(start.date());
+          const endAt = startAt.clone().add(duration, 'days');
+          return date.isBetween(startAt, endAt, 'day', '[]');
         }
         default:
           return date.isBetween(start, end, 'day', '[]');
