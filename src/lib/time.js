@@ -112,7 +112,6 @@ export const getTime = ({startAt, endAt}) => {
   const allDay = isSameDay && moment(endAt).diff(moment(startAt), 'hour') > 22;
   const t = moment(startAt).twix(endAt, allDay);
   return t.format({
-    // hideTime: isExtended,
     hideDate: isSameDay,
     allDay: I18n.get('EVENT_ITEM_allDay'),
     explicitAllDay: true,
