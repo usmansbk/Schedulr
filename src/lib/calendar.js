@@ -17,16 +17,13 @@ function process(events, date, previous) {
         data.push(cached);
       }
     } else {
-      const recur = repeat(event)
-        .from(date)
-        .every(event.recurrence)
-        .until(event.until);
+      const recur = repeat(event).from(date);
       if (recur.matches(date)) {
         const eventFromDate = update(event, recur.next());
         data.push(eventFromDate);
         cache[key] = eventFromDate;
       } else {
-        cache[key] = '__not__match__';
+        cache[key] = '__no__match__';
       }
     }
   });
@@ -54,10 +51,7 @@ function* EventInfiniteSectionGenerator(events, previous) {
 }
 
 export function nextEvent(event, from) {
-  const nextEventDate = repeat(event)
-    .every(event.recurrence)
-    .from(from)
-    .until(event.until);
+  const nextEventDate = repeat(event).from(from);
   return update(event, nextEventDate.next());
 }
 

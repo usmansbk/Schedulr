@@ -5,27 +5,17 @@ import moment from 'moment';
  * @param event
  */
 export default function repeat(event) {
-  const {startAt, endAt} = event;
+  const {startAt, endAt, until, recurrence = 'NEVER'} = event;
 
   let start = moment(startAt);
   let end = moment(endAt);
-  let every = 'NEVER';
+  let every = recurrence;
   let fromDay = moment();
-  let finalDay;
+  let finalDay = until && moment(until);
 
   const rule = {
-    every: (recurrence) => {
-      every = recurrence;
-      return rule;
-    },
     from: (date) => {
       fromDay = moment(date);
-      return rule;
-    },
-    until: (date) => {
-      if (date) {
-        finalDay = moment(date);
-      }
       return rule;
     },
     next: () => {
