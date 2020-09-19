@@ -53,6 +53,14 @@ function* EventInfiniteSectionGenerator(events, previous) {
   }
 }
 
+export function nextEvent(event, from) {
+  const nextEventDate = repeat(event)
+    .every(event.recurrence)
+    .from(from)
+    .until(event.until);
+  return update(event, nextEventDate.next());
+}
+
 function update(event, date) {
   const {startAt, endAt} = event;
   const startDate = moment(date);

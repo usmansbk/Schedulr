@@ -14,6 +14,7 @@ import CancelConfirm from 'components/dialogs/CancelEvent';
 import DeleteConfirm from 'components/dialogs/DeleteEvent';
 import Details from './Details';
 import {isEventValid} from 'lib/formatEvent';
+import {nextEvent} from 'lib/calendar';
 import getImageUrl from 'helpers/getImageUrl';
 import logger from 'config/logger';
 
@@ -94,7 +95,7 @@ class EventDetails extends React.Component {
       isOffline,
       banner,
       author,
-    } = event;
+    } = nextEvent(event, from);
     const isValid = isEventValid({
       endAt,
       startAt,
