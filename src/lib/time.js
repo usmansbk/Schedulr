@@ -78,7 +78,7 @@ export const calendarTime = (date) =>
 export const isPastDate = (date, endOfDay) => {
   const today = moment();
   const d = endOfDay ? moment(date).endOf('day') : date;
-  return today.isAfter(d, 'day');
+  return today.isAfter(d);
 };
 
 export const isCurrentDate = (startAt, endAt) => {
