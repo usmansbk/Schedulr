@@ -37,7 +37,13 @@ function AdBanner({large, mediumRect, stores}) {
             width,
           },
         ]}>
-        <BannerAd unitId={adUnitId} size={size} />
+        <BannerAd
+          unitId={adUnitId}
+          size={size}
+          requestOptions={{
+            location: stores.location.adLocation,
+          }}
+        />
       </ImageBackground>
     </View>
   );
