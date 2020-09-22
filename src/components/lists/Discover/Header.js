@@ -5,7 +5,6 @@ import {I18n} from 'aws-amplify';
 import Icon from 'components/common/Icon';
 import Chips from 'components/lists/Chips';
 import {inject, observer} from 'mobx-react';
-import {ellipsisMode} from 'lib/utils';
 
 export default inject('stores')(
   observer(({navigation, stores, onPressLocationButton}) => {
@@ -24,10 +23,8 @@ export default inject('stores')(
               iconColor={stores.theme.colors.primary}
               editable={false}
               collapsable
-              placeholder={ellipsisMode(
-                I18n.get('SEARCH_inputPlaceholder')(
-                  stores.location.searchLocation,
-                ),
+              placeholder={I18n.get('SEARCH_inputPlaceholder')(
+                stores.location.searchLocation,
               )}
               theme={{roundness: 0}}
               style={{
