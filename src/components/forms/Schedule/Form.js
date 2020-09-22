@@ -114,29 +114,6 @@ class Form extends React.Component {
                   data={I18n.get('topics')}
                   onValueChange={handleChange('topic')}
                 /> */}
-                <View style={styles.gap} />
-                <View style={styles.field}>
-                  <Switch
-                    textStyle={styles.text}
-                    label={I18n.get('SCHEDULE_FORM_public')}
-                    value={values.isPublic}
-                    onValueChange={() => {
-                      setFieldValue('isPublic', !values.isPublic);
-                    }}
-                  />
-                </View>
-                {values.isPublic && (
-                  <>
-                    <View style={styles.gap} />
-                    <PickerInput
-                      leftIcon="find"
-                      value={values.location}
-                      onPress={this._showLocationPicker}
-                      placeholder={I18n.get('PLACEHOLDER_global')}
-                    />
-                    <View style={styles.gap} />
-                  </>
-                )}
                 <TextInput
                   label={I18n.get('SCHEDULE_FORM_description')}
                   placeholder={I18n.get('PLACEHOLDER_description')}
@@ -148,6 +125,24 @@ class Form extends React.Component {
                   error={errors.description}
                   theme={{roundness: 0, colors: {text: '#000'}}}
                 />
+                <View style={styles.field}>
+                  <Switch
+                    textStyle={styles.text}
+                    label={I18n.get('SCHEDULE_FORM_public')}
+                    value={values.isPublic}
+                    onValueChange={() => {
+                      setFieldValue('isPublic', !values.isPublic);
+                    }}
+                  />
+                </View>
+                {values.isPublic && (
+                  <PickerInput
+                    leftIcon="find"
+                    value={values.location}
+                    onPress={this._showLocationPicker}
+                    placeholder={I18n.get('PLACEHOLDER_global')}
+                  />
+                )}
               </View>
             </ScrollView>
             <LocationPicker
