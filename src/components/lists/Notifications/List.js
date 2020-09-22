@@ -8,7 +8,7 @@ import Footer from './Footer';
 import Separator from './Separator';
 import NotifItem from './Item';
 import {notifications_list} from 'lib/constants';
-import {format, date, unixTimestamp, greaterThan} from 'lib/date';
+import {format, date, unixTimestamp, greaterThan, add, fromNow} from 'lib/date';
 import getImageUrl from 'helpers/getImageUrl';
 
 const {ITEM_HEIGHT, SEPARATOR_HEIGHT} = notifications_list;
