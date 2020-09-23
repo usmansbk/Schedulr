@@ -16,6 +16,7 @@ export default class Location {
   @persist @observable locality = null;
   @persist @observable country = null;
   @persist @observable searchLocation = null;
+  @persist @observable location = null;
 
   @action setCurrentLocation = (loc) => (this.currentLocation = loc);
 
@@ -47,6 +48,7 @@ export default class Location {
                 this.locality = city;
                 this.country = country;
                 this.searchLocation = `${city}, ${country}`;
+                this.location = `${city}, ${country}`;
               })
               .catch((error) => {
                 snackbar(I18n.get('ERROR_failedToGetLocation'), true);
@@ -77,12 +79,12 @@ export default class Location {
     return undefined;
   }
 
-  @computed get location() {
-    if (this.locality && this.country) {
-      return `${this.locality}, ${this.country}`;
-    }
-    return null;
-  }
+  // @computed get location() {
+  //   if (this.locality && this.country) {
+  //     return `${this.locality}, ${this.country}`;
+  //   }
+  //   return null;
+  // }
 
   @computed get parsedLocation() {
     if (this.point) {

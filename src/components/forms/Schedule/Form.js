@@ -1,17 +1,11 @@
 import React from 'react';
 import {View, ScrollView} from 'react-native';
 import isEqual from 'lodash.isequal';
-import {
-  // Text,
-  Appbar,
-} from 'react-native-paper';
+import {Appbar} from 'react-native-paper';
 import TextInput from 'components/common/TextInput';
 import Button from 'components/common/Button';
 import Switch from 'components/common/Switch';
-import {
-  // CustomPicker,
-  PickerInput,
-} from 'components/common/Picker';
+import {PickerInput} from 'components/common/Picker';
 import LocationPicker from 'components/common/LocationPicker';
 import {Formik} from 'formik';
 import {inject, observer} from 'mobx-react';
@@ -102,17 +96,6 @@ class Form extends React.Component {
                   autoFocus
                   theme={{roundness: 0, colors: {text: '#000'}}}
                 />
-                {/* <View style={styles.gap} />
-                <Text style={[styles.text, styles.tightVerticalSpacing]}>
-                  {I18n.get('SCHEDULE_FORM_topic')}
-                </Text>
-                <CustomPicker
-                  icon="tago"
-                  value={values.topic}
-                  prompt={I18n.get('SCHEDULE_FORM_selectTopic')}
-                  data={I18n.get('topics')}
-                  onValueChange={handleChange('topic')}
-                /> */}
                 <TextInput
                   label={I18n.get('SCHEDULE_FORM_description')}
                   placeholder={I18n.get('PLACEHOLDER_description')}

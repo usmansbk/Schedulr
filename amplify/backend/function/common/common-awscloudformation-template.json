@@ -79,6 +79,25 @@
       "Properties": {
         "Action": "lambda:GetLayerVersion",
         "LayerVersionArn": {
+          "Fn::Sub": [
+            "arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:layer:${layerName}-${env}:${layerVersion}",
+            {
+              "layerName": "common",
+              "env": {
+                "Ref": "env"
+              },
+              "layerVersion": "2"
+            }
+          ]
+        },
+        "Principal": "*"
+      }
+    },
+    "LambdaLayerPermissionpublic3": {
+      "Type": "AWS::Lambda::LayerVersionPermission",
+      "Properties": {
+        "Action": "lambda:GetLayerVersion",
+        "LayerVersionArn": {
           "Ref": "LambdaLayer"
         },
         "Principal": "*"
