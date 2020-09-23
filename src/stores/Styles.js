@@ -375,6 +375,7 @@ export default class styles {
       },
       text: {
         fontFamily: 'SemiBold',
+        flex: 1,
       },
       button: {
         flexDirection: 'row',

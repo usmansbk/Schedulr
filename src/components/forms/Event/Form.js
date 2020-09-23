@@ -83,7 +83,6 @@ class Form extends React.Component {
       stores,
     } = this.props;
 
-    initialValues.location = initialValues.location || stores.location.location;
     const styles = stores.styles.eventForm;
     const navButtonColor = stores.theme.colors.primary;
 
@@ -351,9 +350,15 @@ class Form extends React.Component {
                 />
                 <PickerInput
                   leftIcon="find"
+                  rightIcon="environment"
                   value={values.location}
                   onPress={this._showLocationPicker}
                   placeholder={I18n.get('PLACEHOLDER_global')}
+                  onPressRightIcon={() =>
+                    stores.location.fetchLocation((value) =>
+                      setFieldValue('location', value),
+                    )
+                  }
                 />
                 <View style={styles.gap} />
                 <TextInput

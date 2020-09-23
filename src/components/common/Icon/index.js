@@ -34,6 +34,7 @@ const names = {
   menu: 'menufold',
   clock: 'clockcircleo',
   find: 'find',
+  environment: 'enviroment',
 };
 
 export default ({name, color, size, style}) => {

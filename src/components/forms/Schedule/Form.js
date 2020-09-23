@@ -124,6 +124,12 @@ class Form extends React.Component {
                     value={values.location}
                     onPress={this._showLocationPicker}
                     placeholder={I18n.get('PLACEHOLDER_global')}
+                    rightIcon="enviroment"
+                    onPressRightIcon={() =>
+                      stores.location.fetchLocation((value) =>
+                        setFieldValue('location', value),
+                      )
+                    }
                   />
                 )}
               </View>

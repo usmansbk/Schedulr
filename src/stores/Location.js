@@ -20,7 +20,7 @@ export default class Location {
 
   @action setCurrentLocation = (loc) => (this.currentLocation = loc);
 
-  @action fetchLocation = async () => {
+  @action fetchLocation = async (callback) => {
     if (this.searchLocation) return;
     try {
       const hasLocationPermission = await requestLocationPermission();
@@ -49,6 +49,7 @@ export default class Location {
                 this.country = country;
                 this.searchLocation = `${city}, ${country}`;
                 this.location = `${city}, ${country}`;
+                callback && callback(this.location);
               })
               .catch((error) => {
                 snackbar(I18n.get('ERROR_failedToGetLocation'), true);
