@@ -44,7 +44,6 @@ class Form extends React.Component {
         }),
       0,
     );
-    setTimeout(this.props.stores.location.fetchLocation, 0);
   };
 
   _showLocationPicker = () => this.setState({showLocationPicker: true});

@@ -69,6 +69,7 @@ class Input extends React.Component {
             value={toDate(value)}
             minimumDate={noMin ? undefined : toDate(value)}
             onChange={this._handleChange}
+            display={this.state.mode === 'time' ? 'spinner' : 'calendar'}
           />
         )}
       </View>

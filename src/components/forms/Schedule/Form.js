@@ -45,7 +45,6 @@ class Form extends React.Component {
         }),
       0,
     );
-    setTimeout(this.props.stores.location.fetchLocation, 0);
   };
 
   render() {
@@ -131,7 +130,8 @@ class Form extends React.Component {
                     label={I18n.get('SCHEDULE_FORM_public')}
                     value={values.isPublic}
                     onValueChange={() => {
-                      setFieldValue('isPublic', !values.isPublic);
+                      const prevValue = values.isPublic;
+                      setFieldValue('isPublic', !prevValue);
                     }}
                   />
                 </View>

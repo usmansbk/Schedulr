@@ -110,32 +110,34 @@ class UserProfile extends React.Component {
               {name}
             </Headline>
           </View>
-          <TouchableOpacity onPress={this._toCreatedFollowingTab}>
-            <View style={styles.countRow}>
-              <View style={styles.item}>
-                <Text style={styles.count}>
-                  {numeral(followingCount).format('0a')}
-                </Text>
-                <Text
-                  ellipsizeMode="tail"
-                  numberOfLines={1}
-                  style={styles.label}>
-                  {I18n.get('PROFILE_followingLabel')}
-                </Text>
+          {me && (
+            <TouchableOpacity onPress={this._toCreatedFollowingTab}>
+              <View style={styles.countRow}>
+                <View style={styles.item}>
+                  <Text style={styles.count}>
+                    {numeral(followingCount).format('0a')}
+                  </Text>
+                  <Text
+                    ellipsizeMode="tail"
+                    numberOfLines={1}
+                    style={styles.label}>
+                    {I18n.get('PROFILE_followingLabel')}
+                  </Text>
+                </View>
+                <View style={styles.item}>
+                  <Text style={styles.count}>
+                    {numeral(createdCount).format('0a')}
+                  </Text>
+                  <Text
+                    ellipsizeMode="tail"
+                    numberOfLines={1}
+                    style={styles.label}>
+                    {I18n.get('PROFILE_createdLabel')}
+                  </Text>
+                </View>
               </View>
-              <View style={styles.item}>
-                <Text style={styles.count}>
-                  {numeral(createdCount).format('0a')}
-                </Text>
-                <Text
-                  ellipsizeMode="tail"
-                  numberOfLines={1}
-                  style={styles.label}>
-                  {I18n.get('PROFILE_createdLabel')}
-                </Text>
-              </View>
-            </View>
-          </TouchableOpacity>
+            </TouchableOpacity>
+          )}
           <View style={styles.body}>
             <View style={styles.link}>
               <Icon
