@@ -7,7 +7,6 @@ import Icon from '../../Icon';
 export default inject('stores')(
   observer(({stores, leftIcon, value, onPress, placeholder}) => {
     const styles = stores.styles.picker;
-    console.log('Input', value);
 
     return (
       <TouchableOpacity onPress={onPress} style={styles.button}>
