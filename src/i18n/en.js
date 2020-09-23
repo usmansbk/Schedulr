@@ -332,7 +332,7 @@ export default {
   PLACEHOLDER_addYourWebsite: 'Add your website',
   PLACEHOLDER_bio: 'About me',
   PLACEHOLDER_venue: (city) => (city ? `In ${city}` : 'Venue'),
-  PLACEHOLDER_customType: 'Custom type...',
+  PLACEHOLDER_customType: 'Tap here to edit',
   PLACEHOLDER_searchCities: 'Search cities',
   PLACEHOLDER_description: 'Add info',
   PLACEHOLDER_title: 'Event Title',

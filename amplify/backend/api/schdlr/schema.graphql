@@ -22,9 +22,11 @@ type User
   me: Boolean
   following: [Follow]
     @connection(name: "Followings", sortField: "createdAt", limit: 25)
+    @auth(rules: [{allow: owner, ownerField: "id", identityClaim: "email"}])
   followingCount: Int
   created: [Schedule]
     @connection(name: "UserSchedules", sortField: "createdAt", limit: 25)
+    @auth(rules: [{allow: owner, ownerField: "id", identityClaim: "email"}])
   createdCount: Int
   bookmarks: [Bookmark]
     @connection(name: "UserBookmarks", sortField: "createdAt", limit: 25)
