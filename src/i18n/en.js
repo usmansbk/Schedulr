@@ -430,7 +430,7 @@ export default {
     'Conference',
     'Festival',
     'Performance',
-    'Funfare/Gala Night',
+    'Funfare / Gala Night',
     'Competition',
     'Party',
     'Tournament',
