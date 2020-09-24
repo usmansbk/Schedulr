@@ -21,8 +21,12 @@ class Container extends React.Component {
       await this.props.client.clearStore();
       await Auth.signOut();
       this.props.stores.reset();
-      await AsyncStorage.clear();
     } catch (error) {
+      logger.logError(error);
+    }
+    try {
+      await AsyncStorage.clear();
+    } catch (e) {
       logger.logError(error);
     }
     this.props.navigation.navigate('Auth');
