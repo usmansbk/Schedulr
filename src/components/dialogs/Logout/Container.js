@@ -1,5 +1,6 @@
 import React from 'react';
 import {Auth} from 'aws-amplify';
+import AsyncStorage from '@react-native-community/async-storage';
 import {withNavigation} from 'react-navigation';
 import {inject, observer} from 'mobx-react';
 import {withApollo} from 'react-apollo';
@@ -20,6 +21,7 @@ class Container extends React.Component {
       await this.props.client.clearStore();
       await Auth.signOut();
       this.props.stores.reset();
+      await AsyncStorage.clear();
     } catch (error) {
       logger.logError(error);
     }
