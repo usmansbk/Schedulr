@@ -26,6 +26,14 @@ export const me = `query {
       disableComments
       enableMembersComments
     }
+    state {
+      id
+      allowedEvents
+      mutedEvents
+      mutedSchedules
+      keysToRemove
+      checkedList
+    }
   }
 }
 `;

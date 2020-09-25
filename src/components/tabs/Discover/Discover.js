@@ -12,7 +12,7 @@ class Discover extends React.Component {
   _hideLocationPicker = () => this.setState({showLocationPicker: false});
 
   componentDidMount = () => {
-    this.props.stores.location.fetchLocation(true);
+    this.props.stores.location.fetchLocation();
   };
 
   _handleSelect = (location, point) => {
