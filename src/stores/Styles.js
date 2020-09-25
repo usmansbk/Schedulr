@@ -1190,6 +1190,7 @@ export default class styles {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
+        padding: 16,
       },
       emptyTitle: {
         fontSize: 25,

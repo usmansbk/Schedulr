@@ -39,7 +39,7 @@ export default {
   ACTION_clearAll: 'Clear all',
 
   COMMENTS: 'Comments',
-  COMMENTS_emptyList: 'No comments',
+  COMMENTS_emptyList: 'Start the conversation with chat, photos, and files',
   COMMENTS_loadMore: (count) =>
     `View ${count} more comment${count > 1 ? 's' : ''}`,
   COMMENT_tooLong: 'Comment too long',
