@@ -68,6 +68,7 @@ const setReminder = (event, before, settings) => {
       endAt,
     }),
     repeatType,
+    allowWhileIdle: true,
     ...repeatTime,
   };
   PushNotification.localNotificationSchedule(notification);
@@ -101,6 +102,7 @@ const schdlStart = (event, settings) => {
       __typename,
     }),
     repeatType,
+    allowWhileIdle: true,
     ...repeatTime,
   };
   PushNotification.localNotificationSchedule(notification);
