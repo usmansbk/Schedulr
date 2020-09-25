@@ -81,8 +81,11 @@ export const isPastDate = (date, endOfDay) => {
   return today.isAfter(d);
 };
 
-export const isCurrentDate = (startAt, endAt) => {
+export const isCurrentDate = (startAt, endAt, precise) => {
   const today = moment();
+  if (precise) {
+    return today.isBetween(startAt, endAt);
+  }
   return today.isBetween(startAt, endAt, 'day', '[]');
 };
 

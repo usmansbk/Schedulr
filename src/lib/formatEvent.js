@@ -51,10 +51,13 @@ export const getStatus = ({
   }
   const cancelled = isEventCancelled({cancelledDates, startAt, isCancelled});
   if (cancelled) return 'cancelled';
+
   const isEnded = isPastDate(endAt);
   if (isEnded) return 'done';
-  const isOngoing = isCurrentDate(startAt, endAt);
+
+  const isOngoing = isCurrentDate(startAt, endAt, true);
   if (isOngoing) return 'ongoing';
+
   return 'upcoming';
 };
 
