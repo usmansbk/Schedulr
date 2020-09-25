@@ -26,10 +26,12 @@ function AdBanner({large, mediumRect, stores}) {
       ? BannerAdSize.MEDIUM_RECTANGLE
       : BannerAdSize.LARGE_BANNER
     : BannerAdSize.BANNER;
+  const uri = `${env.UNSPLASH}/${width}x${height}`;
   return (
     <View style={[styles.container, {backgroundColor: stores.theme.colors.bg}]}>
       <ImageBackground
-        source={require('assets/nature-rays.jpg')}
+        defaultSource={require('assets/placeholder.png')}
+        source={{uri}}
         style={[
           styles.image,
           {
