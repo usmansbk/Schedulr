@@ -101,7 +101,6 @@ class List extends Component {
         ListFooterComponent={this._renderFooter}
         initialNumToRender={2}
         getItemLayout={this._getItemLayout}
-        stickyHeaderIndices={[0]}
         contentContainerStyle={styles.contentContainer}
         onEndReached={this._onEndReached}
         ItemSeparatorComponent={this._renderSeparator}
