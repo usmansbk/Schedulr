@@ -19,5 +19,6 @@ export default {
   APP_VERSION: '0.1.62',
   BANNER: 'ca-app-pub-5101585071736651/9363125562',
   UNSPLASH: 'https://source.unsplash.com/random',
-  UNSPLASH_DAILY: 'https://source.unsplash.com/daily',
+  // UNSPLASH_DAILY: 'https://source.unsplash.com/daily',
+  UNSPLASH_DAILY: 'https://source.unsplash.com/collection/58359918',
 };
