@@ -85,7 +85,7 @@ export default {
     'Schedulr requires your location to find nearby events.',
   DISCOVER_emptyListCaption: 'Events happening around you!',
 
-  SEARCH_inputPlaceholder: (city) => `Search${city ? ' ' + city : ' Schedulr'}`,
+  SEARCH_inputPlaceholder: (_city) => `Search for...`,
   SEARCH_schedulesTabLabel: 'Groups',
   SEARCH_eventsTabLabel: 'Events',
   SEARCH_emptyList: 'No results',
@@ -342,6 +342,8 @@ export default {
   PLACEHOLDER_password: 'Type your password',
   PLACEHOLDER_code: 'Enter confirmation code',
   PLACEHOLDER_global: 'Set city',
+  PLACEHOLDER_pickLocation: 'Pick location',
+  PLACEHOLDER_whatsHappening: "What's happening",
 
   WARNING_dontMissOut: "Don't miss out!",
   WARNING_fileTooLarge: 'File is too large',

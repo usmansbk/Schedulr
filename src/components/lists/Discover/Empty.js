@@ -15,12 +15,6 @@ export default inject('stores')(
             style={{width: 200, height: 200}}
             source={require('../../../assets/directions.png')}
           />
-          <Headline style={stores.styles.discover.emptyTitle}>
-            {I18n.get('DISCOVER_emptyList')}
-          </Headline>
-          <Caption style={stores.styles.discover.paragraph}>
-            {I18n.get('DISCOVER_emptyListCaption')}
-          </Caption>
         </>
       ) : (
         <>
