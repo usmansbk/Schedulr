@@ -5,6 +5,7 @@ import {
   ImageBackground,
   View,
 } from 'react-native';
+import Icon from '../Icon';
 import BannerAd from './Ad';
 import env from 'config/env';
 
@@ -40,7 +41,9 @@ export default function Banner({navigateToBanner, id, pictureUrl, isOwner}) {
         defaultSource={require('assets/placeholder.png')}
         style={styles.image}
         source={source}
-        resizeMode="cover"></ImageBackground>
+        resizeMode="cover">
+        <Icon name="camera" size={24} />
+      </ImageBackground>
     </TouchableOpacity>
   );
 }
