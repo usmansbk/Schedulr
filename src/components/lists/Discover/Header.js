@@ -17,8 +17,7 @@ export default inject('stores')(
           <Text
             style={{fontFamily: 'ExtraBold', fontSize: 24}}
             onPress={onPressLocationButton}>
-            {stores.location.searchLocation ||
-              I18n.get('PLACEHOLDER_pickLocation')}
+            {stores.location.locality || I18n.get('PLACEHOLDER_pickLocation')}
           </Text>
         </View>
       </View>
