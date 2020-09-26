@@ -6,6 +6,7 @@ import {
   View,
 } from 'react-native';
 import BannerAd from './Ad';
+import env from 'config/env';
 
 const styles = StyleSheet.create({
   container: {
@@ -32,7 +33,7 @@ export default function Banner({navigateToBanner, id, pictureUrl, isOwner}) {
       </View>
     );
   }
-  const source = pictureUrl ? {uri: pictureUrl} : require('assets/upload.jpg');
+  const source = {uri: pictureUrl || `${env.UNSPLASH_DAILY}`};
   return (
     <TouchableOpacity style={styles.container} onPress={onPress}>
       <ImageBackground

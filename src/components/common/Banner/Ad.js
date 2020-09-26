@@ -26,7 +26,7 @@ function AdBanner({large, mediumRect, stores}) {
       ? BannerAdSize.MEDIUM_RECTANGLE
       : BannerAdSize.LARGE_BANNER
     : BannerAdSize.BANNER;
-  const uri = `${env.UNSPLASH}/${width}x${height}`;
+  const uri = `${env.UNSPLASH_DAILY}`;
   return (
     <View style={[styles.container, {backgroundColor: stores.theme.colors.bg}]}>
       <ImageBackground
