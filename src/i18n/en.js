@@ -343,7 +343,7 @@ export default {
   PLACEHOLDER_code: 'Enter confirmation code',
   PLACEHOLDER_global: 'Set city',
   PLACEHOLDER_pickLocation: 'Pick location',
-  PLACEHOLDER_whatsHappening: "What's happening",
+  PLACEHOLDER_whatsHappening: "What's happening in",
 
   WARNING_dontMissOut: "Don't miss out!",
   WARNING_fileTooLarge: 'File is too large',
