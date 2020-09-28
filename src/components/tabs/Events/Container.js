@@ -1,30 +1,17 @@
 import React from 'react';
 import NetInfo from '@react-native-community/netinfo';
 import OneSignal from 'react-native-onesignal';
-import PushNotifications from 'react-native-push-notification';
 import {Linking, InteractionManager} from 'react-native';
 import changeNavigationBarColor from 'react-native-navigation-bar-color';
 import {inject, observer} from 'mobx-react';
 import {I18n} from 'aws-amplify';
 import NavigationService from 'config/navigation';
-import {
-  processLocalNotification,
-  processRemoteNotification,
-} from 'helpers/notification';
+import {processRemoteNotification} from 'helpers/notification';
 import Events from './Hoc';
 import {updateUserPushToken} from 'helpers/updatePreference';
 import logger from 'config/logger';
 import snackbar from 'helpers/snackbar';
 
-PushNotifications.configure({
-  onNotification: (notification) => {
-    const {data, tag} = notification;
-    if (tag === 'local') {
-      processLocalNotification(data);
-    }
-  },
-  requestPermissions: true,
-});
 /**
  * This component handles Local Notifications
  */

@@ -2,6 +2,7 @@ import {observable, action} from 'mobx';
 import {persist} from 'mobx-persist';
 import PushNotification from 'react-native-push-notification';
 import {InteractionManager} from 'react-native';
+import {processLocalNotification} from 'helpers/notification';
 import {decapitalize} from 'lib/utils';
 import {
   from,
@@ -33,6 +34,16 @@ import colors from 'config/colors';
 const color = colors.primary;
 
 const CHANNEL_ID = 'default-channel-id';
+
+PushNotification.configure({
+  onNotification: (notification) => {
+    const {data, tag} = notification;
+    if (tag === 'local') {
+      processLocalNotification(data);
+    }
+  },
+  requestPermissions: true,
+});
 
 export default class RemindMe {
   @persist @observable fiveMin = true;
