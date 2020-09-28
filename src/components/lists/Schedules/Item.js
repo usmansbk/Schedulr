@@ -52,6 +52,12 @@ class Item extends React.Component {
           />
           <View style={styles.itemBody}>
             <View style={styles.nameRow}>
+              <Text
+                numberOfLines={1}
+                ellipsizeMode="tail"
+                style={styles.itemName}>
+                {name}
+              </Text>
               {isMuted && !isClosed && (
                 <Icon
                   name="mute"
@@ -68,12 +74,6 @@ class Item extends React.Component {
                   color={stores.theme.colors.light_gray_3}
                 />
               )}
-              <Text
-                numberOfLines={1}
-                ellipsizeMode="tail"
-                style={styles.itemName}>
-                {name}
-              </Text>
             </View>
             {Boolean(description || topic) && (
               <Caption
