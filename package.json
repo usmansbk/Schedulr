@@ -62,7 +62,7 @@
     "react-native-open-maps": "^0.3.5",
     "react-native-paper": "^4.2.0",
     "react-native-popup-menu": "^0.15.9",
-    "react-native-push-notification": "^6.0.0",
+    "react-native-push-notification": "^6.1.0",
     "react-native-raw-bottom-sheet": "^2.2.0",
     "react-native-reanimated": "^1.13.1",
     "react-native-safe-area-context": "^3.1.8",

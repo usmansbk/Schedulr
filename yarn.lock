@@ -8942,10 +8942,10 @@ react-native-popup-menu@^0.15.9:
   resolved "https://registry.yarnpkg.com/react-native-popup-menu/-/react-native-popup-menu-0.15.9.tgz#75bccf71ff4627cb302d871a28be84a91eb2f8d9"
   integrity sha512-PO99dptMocEfUSS3SM7gY6UqophaBxizKjnZ7FcEwa+H4ONVxTk310/JCXJ9vdNunomgpxHluKRXnApfm9Md1w==
 
-react-native-push-notification@^6.0.0:
-  version "6.0.0"
-  resolved "https://registry.yarnpkg.com/react-native-push-notification/-/react-native-push-notification-6.0.0.tgz#2af998caaadfc9506d96a675c3a1e337449dc2f7"
-  integrity sha512-R7dpKnfReYeB68xyy/Cibxl6YWcZtWnwJc26f5opBsfm0SMmutUBtw4B11pqfbyUxopgUADXwR7Nz5WTw2Vqrg==
+react-native-push-notification@^6.1.0:
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/react-native-push-notification/-/react-native-push-notification-6.1.0.tgz#3584355772c63151fcf8b251e040387363a7332f"
+  integrity sha512-DjPR0qgKTaUt5zGaJqiW0ZPsHAMTusXeUYfHA38C7ycEIN8lO5KZ3dkNhYwUTDD+bYKHnKLois05bWeO1eaxFQ==
 
 react-native-raw-bottom-sheet@^2.2.0:
   version "2.2.0"
