@@ -129,9 +129,8 @@ class Container extends React.Component {
     return (
       <Events
         id={stores.appState.userId}
-        mutedEvents={stores.appState.mutedEvents}
-        allowedEvents={stores.appState.allowedEvents}
         isConnected={stores.appState.isConnected}
+        schdlAll={stores.reminder.setMultiple}
         fetchingUpdates={stores.appState.loading}
         deltaSync={this._deltaSync}
         fetchNotifications={this._fetchNotifications}

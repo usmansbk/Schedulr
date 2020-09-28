@@ -3,15 +3,10 @@ import uuidv5 from 'uuid/v5';
 import {withNavigationFocus} from 'react-navigation';
 import List from 'components/lists/Events';
 import FAB from 'components/common/Fab';
-import schdlAll from 'helpers/setReminders';
 import {mergeEvents, injectAds} from 'lib/utils';
 import {InteractionManager} from 'react-native';
 
 class Events extends React.Component {
-  static defaultProps = {
-    mutedEvents: [],
-    allowedEvents: [],
-  };
   state = {
     data: null,
     events: [],
@@ -35,9 +30,8 @@ class Events extends React.Component {
   shouldComponentUpdate = (nextProps) => nextProps.isFocused;
 
   componentDidUpdate = () => {
-    const {mutedEvents, allowedEvents} = this.props;
     InteractionManager.runAfterInteractions(() =>
-      schdlAll(this.state.events, mutedEvents, allowedEvents),
+      this.props.schdlAll(this.state.events),
     );
   };
 

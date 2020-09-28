@@ -17,17 +17,19 @@ class RootStore {
     });
 
     const settings = new Settings();
-    const reminder = new RemindMe();
     const notifications = new Notifications();
     const location = new Location();
     const calendar = new Calendar();
 
     hydrate('settings', settings);
-    hydrate('remindMe', reminder);
     hydrate('notifications', notifications);
-    // Create theme store after hydrating the settings store
+
     const appState = new AppState(settings);
     hydrate('appState', appState);
+
+    const reminder = new RemindMe(settings, appState);
+    hydrate('remindMe', reminder);
+
     hydrate('calendar', calendar);
     hydrate('location', location);
 
