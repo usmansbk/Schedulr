@@ -10,7 +10,7 @@ const cache = {};
 function process(events, date, previous) {
   const data = [];
   events.forEach((event) => {
-    const key = `${previous}-${event.id}-${event.updatedAt}-${event.isBookmarked}-${date}`;
+    const key = `${previous}-${event.id}-${event.isOffline}-${event.updatedAt}-${date}`;
     const cached = cache[key];
     if (cached) {
       if (typeof cached !== 'string') {
