@@ -75,12 +75,12 @@ class Item extends React.Component {
                 />
               )}
             </View>
-            {Boolean(description || topic) && (
+            {Boolean(description) && (
               <Caption
                 numberOfLines={1}
                 ellipsizeMode="tail"
                 style={styles.itemDescription}>
-                {topic || description}
+                {description}
               </Caption>
             )}
           </View>

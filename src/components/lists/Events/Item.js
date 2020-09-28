@@ -104,7 +104,7 @@ class Item extends React.Component {
               )}
             </View>
             <Text style={styles.time}>{time}</Text>
-            <Caption>{category}</Caption>
+            {!!category && <Caption>{category}</Caption>}
           </View>
         </View>
       </TouchableOpacity>
