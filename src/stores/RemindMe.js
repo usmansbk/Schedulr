@@ -31,8 +31,8 @@ import {
   getWeekdays,
 } from 'lib/time';
 import colors from 'config/colors';
-const color = colors.primary;
 
+const color = colors.primary;
 const CHANNEL_ID = 'default-channel-id';
 
 PushNotification.configure({
