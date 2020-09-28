@@ -2,12 +2,7 @@ import React from 'react';
 import NetInfo from '@react-native-community/netinfo';
 import OneSignal from 'react-native-onesignal';
 import PushNotifications from 'react-native-push-notification';
-import {
-  Linking,
-  Platform,
-  PushNotificationIOS,
-  InteractionManager,
-} from 'react-native';
+import {Linking, InteractionManager} from 'react-native';
 import changeNavigationBarColor from 'react-native-navigation-bar-color';
 import {inject, observer} from 'mobx-react';
 import {I18n} from 'aws-amplify';
@@ -26,9 +21,6 @@ PushNotifications.configure({
     const {data, tag} = notification;
     if (tag === 'local') {
       processLocalNotification(data);
-    }
-    if (Platform.OS === 'ios') {
-      notification.finish(PushNotificationIOS.FetchResult.NoData);
     }
   },
   requestPermissions: true,

@@ -85,6 +85,7 @@ function SignIn(props) {
           ref={passwordRef}
           label={I18n.get('LABEL_password')}
           placeholder={I18n.get('PLACEHOLDER_password')}
+          secureTextEntry
           value={formik.values.password}
           onBlur={formik.handleBlur('password')}
           onChangeText={formik.handleChange('password')}
