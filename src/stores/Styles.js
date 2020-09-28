@@ -1533,8 +1533,7 @@ export default class styles {
         flexDirection: 'row',
       },
       itemBody: {
-        width: 250,
-        alignItems: 'flex-start',
+        flex: 1,
         paddingLeft: 8,
       },
       itemAvatar: {
@@ -1543,6 +1542,7 @@ export default class styles {
         alignItems: 'center',
       },
       itemName: {
+        flex: 1,
         fontFamily: 'Bold',
         fontSize: 16,
       },
@@ -1556,7 +1556,7 @@ export default class styles {
       },
       nameRow: {
         flexDirection: 'row',
-        justifyContent: 'center',
+        justifyContent: 'space-between',
         alignItems: 'center',
       },
       itemFooter: {
