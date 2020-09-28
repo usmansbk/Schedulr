@@ -42,7 +42,7 @@ export default function Banner({navigateToBanner, id, pictureUrl, isOwner}) {
         style={styles.image}
         source={source}
         resizeMode="cover">
-        {!pictureUrl && <Icon name="camera" size={24} />}
+        {!pictureUrl && <Icon name="camera" size={56} />}
       </ImageBackground>
     </TouchableOpacity>
   );
