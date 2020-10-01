@@ -2928,10 +2928,10 @@
     sudo-prompt "^9.0.0"
     wcwidth "^1.0.1"
 
-"@react-native-community/datetimepicker@^3.0.2":
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/@react-native-community/datetimepicker/-/datetimepicker-3.0.2.tgz#6e52cda7fa46ecebfb216f5520cfbf2754348299"
-  integrity sha512-NLcV3HLrjtvyYM4CU4O+nWJ+LsjB4XnkUiXjK52PgnlRrg5i3hJQHcp/GsrHQbB62UC+Zn96+Hy+jiw4K5Rw/w==
+"@react-native-community/datetimepicker@^3.0.3":
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/@react-native-community/datetimepicker/-/datetimepicker-3.0.3.tgz#711b4cb7fd195ab7ae867b8feab176ce46e765c8"
+  integrity sha512-znltGqSyELRpS/JchT/6MraTRqC83INekEyAkH+0gBrDzv0SwFKwVWacv1tF5D1y5VrHcSrcFB3T/tBsksUgwA==
   dependencies:
     invariant "^2.2.4"
 
@@ -2969,23 +2969,23 @@
   resolved "https://registry.yarnpkg.com/@react-native-community/netinfo/-/netinfo-5.9.7.tgz#769c6b306ea6bbaa1c4a3fffdd183d0cfc30ed7e"
   integrity sha512-NAkkT68oF+M9o6El2xeUqZK7magPjG/tAcEbvCbqyhlh3yElKWnI1e1vpbVvFXzTefy67FwYFWOJqBN6U7Mnkg==
 
-"@react-native-firebase/admob@^7.6.5":
-  version "7.6.5"
-  resolved "https://registry.yarnpkg.com/@react-native-firebase/admob/-/admob-7.6.5.tgz#cf9f4e2b6ee65d6c1a4a3aaea861e488ccd10fa6"
-  integrity sha512-3oYImmwFNxlqBdRJpakHKTv6ifgXXbrB0i6L2zQHNcoSGOmAzhmr7mBGXkybRcEXsBtvCMdXfbNs9O9u864Utw==
+"@react-native-firebase/admob@^7.6.8":
+  version "7.6.8"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/admob/-/admob-7.6.8.tgz#1c70c1e30fadc5f01bcf501a63e4d243b844f200"
+  integrity sha512-kijVojLxLsy2HWzKKN3MuN/7exy6JgymZC5FkZ/0LaMnamvA1PgqDYPl2VjPUWNkbeQfQQgdbtOndyjIXalXrw==
 
-"@react-native-firebase/app@^8.4.3":
-  version "8.4.3"
-  resolved "https://registry.yarnpkg.com/@react-native-firebase/app/-/app-8.4.3.tgz#7f5c0d16c8b56808a26625af34259c8c50e0307b"
-  integrity sha512-qkjY4gvX4B0x1PKwaZIxByxwtnSlpvRt6IAlygB4rkeUv9XTBvW2j2xCGprEbKYZswEgSeY4ZDWl5SXYe6FgCg==
+"@react-native-firebase/app@^8.4.5":
+  version "8.4.5"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/app/-/app-8.4.5.tgz#a5194c34a1f75af8641153163700305ae578d31d"
+  integrity sha512-27qsFzX2Z1GPDyU8tUhYYCUkMlhYYCd/XJvteprTAjC8R6zPGdn/Y9Xxdrwkvhpj8Ply19lsxZ8UfvYIUbgOIQ==
   dependencies:
     opencollective-postinstall "^2.0.1"
     superstruct "^0.6.2"
 
-"@react-native-firebase/crashlytics@^8.4.5":
-  version "8.4.5"
-  resolved "https://registry.yarnpkg.com/@react-native-firebase/crashlytics/-/crashlytics-8.4.5.tgz#4908e7aebb78cc7f02d882f6908a95371df047d4"
-  integrity sha512-unOFluKP/aDsdg7FN4r6fsBTNxWD5PWTeL8+VART+xq9iH2/2UXYGZNqY2bKLG8UUksz89zuyqQSl55SPJ2n8A==
+"@react-native-firebase/crashlytics@^8.4.8":
+  version "8.4.8"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/crashlytics/-/crashlytics-8.4.8.tgz#ce1583a2aa6dec7775063323e04d5d252147e7f5"
+  integrity sha512-NLWEGphkbGBp25TiYpcNaIKwWuLtRSyo2PMtWpxDKWXgMZqOtW0SsrZzsyXr8CM8bWIMDpjLtloBLu4kGriB4w==
   dependencies:
     stacktrace-js "^2.0.0"
 
@@ -7897,17 +7897,17 @@ mobx-persist@^0.4.1:
   dependencies:
     serializr "^1.1.11"
 
-mobx-react-lite@>=2.2.0:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/mobx-react-lite/-/mobx-react-lite-2.2.0.tgz#95eecde237367af1087cc5c51d962ae081b6d1de"
-  integrity sha512-FUPacb4bk21qp/wrEv2vPcqC314nGRgHQzzIPHVBGAT5GtzaYiwvMHx192/Vy8TyI4+8H5JY9689jnvDOvLRuQ==
+mobx-react-lite@^2.2.0:
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/mobx-react-lite/-/mobx-react-lite-2.2.2.tgz#87c217dc72b4e47b22493daf155daf3759f868a6"
+  integrity sha512-2SlXALHIkyUPDsV4VTKVR9DW7K3Ksh1aaIv3NrNJygTbhXe2A9GrcKHZ2ovIiOp/BXilOcTYemfHHZubP431dg==
 
-mobx-react@^6.3.0:
-  version "6.3.0"
-  resolved "https://registry.yarnpkg.com/mobx-react/-/mobx-react-6.3.0.tgz#7d11799f988bbdadc49e725081993b18baa20329"
-  integrity sha512-C14yya2nqEBRSEiJjPkhoWJLlV8pcCX3m2JRV7w1KivwANJqipoiPx9UMH4pm6QNMbqDdvJqoyl+LqNu9AhvEQ==
+mobx-react@^6.3.1:
+  version "6.3.1"
+  resolved "https://registry.yarnpkg.com/mobx-react/-/mobx-react-6.3.1.tgz#204f9756e42e19d91cb6598837063b7e7de87c52"
+  integrity sha512-IOxdJGnRSNSJrL2uGpWO5w9JH5q5HoxEqwOF4gye1gmZYdjoYkkMzSGMDnRCUpN/BNzZcFoMdHXrjvkwO7KgaQ==
   dependencies:
-    mobx-react-lite ">=2.2.0"
+    mobx-react-lite "^2.2.0"
 
 mobx@4.15.4:
   version "4.15.4"
