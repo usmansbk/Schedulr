@@ -1,3 +1,4 @@
+# v2
 type User
   @model(subscriptions: null, queries: {get: "getUser"})
   @auth(

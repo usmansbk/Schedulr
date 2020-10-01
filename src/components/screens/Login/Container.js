@@ -67,6 +67,7 @@ class Container extends React.Component {
               mutation: CREATE_PREFERENCE,
               variables: {
                 input: {
+                  id: email,
                   disablePush: false,
                   language: stores.settings.userPreference.language || 'en',
                 },
@@ -76,6 +77,7 @@ class Container extends React.Component {
               mutation: CREATE_USER,
               variables: {
                 input: {
+                  id: email,
                   name,
                   email,
                   pictureUrl,
