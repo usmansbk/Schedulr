@@ -21,7 +21,6 @@ export default class Location {
   @action setCurrentLocation = (loc) => (this.currentLocation = loc);
 
   @action fetchLocation = async (callback) => {
-    if (this.searchLocation) return;
     try {
       const hasLocationPermission = await requestLocationPermission();
       if (hasLocationPermission) {

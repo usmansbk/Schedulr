@@ -43,6 +43,9 @@ export default Yup.object().shape({
     })
     .default(null)
     .nullable(),
-  location: Yup.string().default(null).nullable(),
+  location: Yup.string()
+    .default(null)
+    .nullable()
+    .transform((val) => val || 'Global'),
   category: Yup.string().nullable().default(null).transform(emptyToNull),
 });
