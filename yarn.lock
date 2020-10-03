@@ -7902,7 +7902,7 @@ mobx-react-lite@^2.2.0:
   resolved "https://registry.yarnpkg.com/mobx-react-lite/-/mobx-react-lite-2.2.2.tgz#87c217dc72b4e47b22493daf155daf3759f868a6"
   integrity sha512-2SlXALHIkyUPDsV4VTKVR9DW7K3Ksh1aaIv3NrNJygTbhXe2A9GrcKHZ2ovIiOp/BXilOcTYemfHHZubP431dg==
 
-mobx-react@^6.3.1:
+mobx-react@6.3.1:
   version "6.3.1"
   resolved "https://registry.yarnpkg.com/mobx-react/-/mobx-react-6.3.1.tgz#204f9756e42e19d91cb6598837063b7e7de87c52"
   integrity sha512-IOxdJGnRSNSJrL2uGpWO5w9JH5q5HoxEqwOF4gye1gmZYdjoYkkMzSGMDnRCUpN/BNzZcFoMdHXrjvkwO7KgaQ==
@@ -8847,10 +8847,10 @@ react-native-document-picker@^3.5.4:
   resolved "https://registry.yarnpkg.com/react-native-document-picker/-/react-native-document-picker-3.5.4.tgz#4b9f261ea0d52e91d571670caaf55923ceb80f5f"
   integrity sha512-ZKGAa8ztQ7zA1eE95OCiNsI/Q6fiq1Q3es8MyOEakBkWcX9avWNYaJUrbv/8v80Vo4RzcNxsO3wT6a2hgfpz7A==
 
-react-native-file-viewer@^2.1.1:
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/react-native-file-viewer/-/react-native-file-viewer-2.1.1.tgz#d0b4c51e9b38870ba2b9fb1d436df844e974f087"
-  integrity sha512-Q5OtfA+VlprLaXmKk1tH/IFzMHwa2B5YnR4xfoEKOJ53UI5BKvYc67Y/ammUUog7bUwPkUBWenwd4MxBTi1R+g==
+react-native-file-viewer@^2.1.2:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/react-native-file-viewer/-/react-native-file-viewer-2.1.2.tgz#fd62504d0966c0f7a3c6bdead1474320b0cc3b71"
+  integrity sha512-ST8eY/DA2rjy84n13UiE/qnuo1i0iaW5BgfEX7oDVhBeOt+PV6ZUtqEAqYxmQyj8zx5vFUvYpEpTJlE1E6eJ4w==
 
 react-native-fs@^2.16.6:
   version "2.16.6"
