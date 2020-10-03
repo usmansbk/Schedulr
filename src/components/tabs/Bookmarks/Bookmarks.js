@@ -1,21 +1,21 @@
 import React from 'react';
 import List from 'components/lists/Bookmarks';
-import logger from 'config/logger';
+// import logger from 'config/logger';
 
 export default class Bookmarks extends React.Component {
-  shouldComponentUpdate = nextProps => {
+  shouldComponentUpdate = (nextProps) => {
     // nextProps.isFocused;
     return nextProps.data !== this.props.data;
   };
 
-  componentDidMount = () => logger.log('bookmarks');
+  // componentDidMount = () => logger.log('bookmarks');
 
   get events() {
-    const { data } = this.props;
+    const {data} = this.props;
     if (!data) return [];
-    const { bookmarks } = data;
+    const {bookmarks} = data;
     // some bookmarked events may be missing
-    const events = bookmarks.items.map(item => {
+    const events = bookmarks.items.map((item) => {
       if (!item.event) {
         const start = item.id.indexOf('-') + 1; // indicate missing events
         return item.id.slice(start);
@@ -24,15 +24,9 @@ export default class Bookmarks extends React.Component {
     });
     return events;
   }
-  
+
   render() {
-    const {
-      navigation,
-      fetchMore,
-      nextToken,
-      loading,
-      onRefresh
-    } = this.props;
+    const {navigation, fetchMore, nextToken, loading, onRefresh} = this.props;
     return (
       <List
         navigation={navigation}

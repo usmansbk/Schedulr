@@ -419,7 +419,6 @@ export default {
   },
   SELECT_customType: 'Custom type...',
   categories: [
-    'Class',
     'Lecture',
     'Task',
     'Tutorials',

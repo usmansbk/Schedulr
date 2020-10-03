@@ -152,4 +152,4 @@ class Screen extends React.Component {
   }
 }
 
-export default inject('stores')(observer(Screen));
+export default Screen;
