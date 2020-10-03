@@ -82,9 +82,7 @@ export default class AppState {
   };
 
   @action removeCustomType = (category) => {
-    this.categories = this.categories.filter(
-      (item) => item.toLowerCase() !== category.toLowerCase(),
-    );
+    this.categories = this.categories.filter((item) => item !== category);
   };
 
   @action toggleMute = (id, eventScheduleId) => {

@@ -7,7 +7,7 @@ import {I18n} from 'aws-amplify';
 import TextInput from 'components/common/TextInput';
 import Button from 'components/common/Button';
 import Switch from 'components/common/Switch';
-import Picker, {CustomPicker, PickerInput} from 'components/common/Picker';
+import Picker, {CustomPicker} from 'components/common/Picker';
 import DateTimePicker from 'components/common/DateTimePicker';
 import LocationPicker from 'components/common/LocationPicker';
 import Suspense from 'components/common/Suspense';
@@ -58,6 +58,9 @@ class Form extends React.Component {
       clearTimeout(this.submitTimer);
     }
   };
+
+  _onLongPressItem = (value) =>
+    this.props.stores.appState.removeCustomType(value);
 
   static defaultProps = {
     schedules: [],
@@ -153,8 +156,10 @@ class Form extends React.Component {
                     prompt={I18n.get('EVENT_FORM_category')}
                     value={values.category}
                     onValueChange={handleChange('category')}
+                    onLongPressItem={this._onLongPressItem}
                     onBlur={handleBlur('category')}
                     data={stores.appState.categories}
+                    editable
                   />
                 </View>
                 <View style={styles.baseHorizonalSpacing}>
