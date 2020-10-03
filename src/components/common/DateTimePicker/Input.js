@@ -30,12 +30,18 @@ class Input extends React.Component {
   _handleChange = (_, date) => {
     this.setState({showPicker: false});
     if (date) {
-      setTimeout(() => {
+      this.timer = setTimeout(() => {
         if (this.props.onDateChange) {
           this.props.onDateChange(date);
         }
         this.props.onValueChange(exactTime(date));
       }, 0);
+    }
+  };
+
+  componentWillUnmount = () => {
+    if (this.timer) {
+      clearTimeout(this.timer);
     }
   };
 

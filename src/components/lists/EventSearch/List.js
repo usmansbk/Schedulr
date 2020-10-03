@@ -29,13 +29,19 @@ class List extends Component {
     index,
   });
   componentDidMount = () => {
-    setTimeout(
+    this.timer = setTimeout(
       () =>
         this.setState({
           display: true,
         }),
       0,
     );
+  };
+
+  componentWillUnmount = () => {
+    if (this.timer) {
+      clearTimeout(this.timer);
+    }
   };
 
   shouldComponentUpdate = (nextProps) => nextProps.isFocused;

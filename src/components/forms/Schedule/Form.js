@@ -32,13 +32,19 @@ class Form extends React.Component {
   _hideLocationPicker = () => this.setState({showLocationPicker: false});
 
   componentDidMount = () => {
-    setTimeout(
+    this.timer = setTimeout(
       () =>
         this.setState({
           display: true,
         }),
       0,
     );
+  };
+
+  componentWillUnmount = () => {
+    if (this.timer) {
+      clearTimeout(this.timer);
+    }
   };
 
   render() {

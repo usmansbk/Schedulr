@@ -4,22 +4,32 @@ import DeleteConfirm from 'components/dialogs/DeleteSchedule';
 import UnarchiveConfirm from 'components/dialogs/OpenSchedule';
 import ArchiveConfirm from 'components/dialogs/CloseSchedule';
 import Suspense from 'components/common/Suspense';
-import { handleShareSchedule } from 'helpers/share';
+import {handleShareSchedule} from 'helpers/share';
 
 export default class Screen extends React.Component {
   state = {
     pictureKey: null,
-    display: false
+    display: false,
   };
 
   componentDidMount = () => {
-    setTimeout(() => this.setState({
-      display: true
-    }), 0);
+    this.timer = setTimeout(
+      () =>
+        this.setState({
+          display: true,
+        }),
+      0,
+    );
+  };
+
+  componentWillUnmount = () => {
+    if (this.timer) {
+      clearTimeout(this.timer);
+    }
   };
 
   _goBack = () => this.props.navigation.goBack();
-  _handleShare = ({ id, name }) => {
+  _handleShare = ({id, name}) => {
     handleShareSchedule({
       id,
       title: name,
@@ -29,7 +39,7 @@ export default class Screen extends React.Component {
     const id = this.props.navigation.getParam('id');
     switch (option) {
       case 'edit':
-        this.props.navigation.navigate('EditSchedule', { id });
+        this.props.navigation.navigate('EditSchedule', {id});
         break;
       case 'delete':
         this.deleteConfirmRef.wrappedInstance.open();
@@ -41,18 +51,22 @@ export default class Screen extends React.Component {
         this.unarchiveConfirmRef.getWrappedInstance().open();
         break;
       default:
-        this.setState({ visibleDialog: option, pictureKey});
+        this.setState({visibleDialog: option, pictureKey});
         break;
     }
   };
-  _navigateToFollowers = (id) => this.props.navigation.navigate('Followers', { id });
-  _navigateToProfile = (id) => this.props.navigation.navigate('UserProfile', { id });
-  _navigateToEvents = (id) => this.props.navigation.navigate('ScheduleEvents', { id });
-  _navigateToPicture = (id) => this.props.navigation.navigate('SchedulePicture', { id });
+  _navigateToFollowers = (id) =>
+    this.props.navigation.navigate('Followers', {id});
+  _navigateToProfile = (id) =>
+    this.props.navigation.navigate('UserProfile', {id});
+  _navigateToEvents = (id) =>
+    this.props.navigation.navigate('ScheduleEvents', {id});
+  _navigateToPicture = (id) =>
+    this.props.navigation.navigate('SchedulePicture', {id});
 
   render() {
-    const { display, pictureKey } = this.state;
-    if (!display) return <Suspense/>;
+    const {display, pictureKey} = this.state;
+    if (!display) return <Suspense />;
 
     const id = this.props.navigation.getParam('id');
     return (
@@ -70,16 +84,13 @@ export default class Screen extends React.Component {
         <DeleteConfirm
           id={id}
           pictureKey={pictureKey}
-          onRef={ref => this.deleteConfirmRef = ref}
+          onRef={(ref) => (this.deleteConfirmRef = ref)}
         />
         <UnarchiveConfirm
           id={id}
-          ref={ref => this.unarchiveConfirmRef = ref}
+          ref={(ref) => (this.unarchiveConfirmRef = ref)}
         />
-        <ArchiveConfirm
-          id={id}
-          ref={ref => this.archiveConfirmRef = ref}
-        />
+        <ArchiveConfirm id={id} ref={(ref) => (this.archiveConfirmRef = ref)} />
       </>
     );
   }

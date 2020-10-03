@@ -84,7 +84,13 @@ class List extends React.Component {
     }
   };
 
-  _onEndReached = () => setTimeout(this._fetchMore, 0);
+  _onEndReached = () => (this.timer = setTimeout(this._fetchMore, 0));
+
+  componentWillUnmount = () => {
+    if (this.timer) {
+      clearTimeout(this.timer);
+    }
+  };
 
   render() {
     const {people, loading, onRefresh, stores} = this.props;

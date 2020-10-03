@@ -24,7 +24,7 @@ class Schedules extends React.Component {
   }
 
   componentDidMount = () => {
-    setTimeout(
+    this.timer = setTimeout(
       () =>
         this.setState({
           display: true,
@@ -34,7 +34,12 @@ class Schedules extends React.Component {
     logger.log('search_screen');
   };
 
-  componentWillUnmount = () => this.props.stores.appState.onChangeText('');
+  componentWillUnmount = () => {
+    if (this.timer) {
+      clearTimeout(this.timer);
+    }
+    this.props.stores.appState.onChangeText('');
+  };
 
   render() {
     if (!this.state.display) return <Suspense />;

@@ -49,6 +49,12 @@ class EventDetails extends React.Component {
     logger.log('event_details_screen');
   };
 
+  componentWillUnmount = () => {
+    if (this.displayTimer) {
+      clearTimeout(this.displayTimer);
+    }
+  };
+
   shouldComponentUpdate = (nextProps, nextState) =>
     nextState.display !== this.state.display ||
     nextProps.event.updatedAt !== this.props.event.updatedAt ||

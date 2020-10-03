@@ -13,9 +13,15 @@ class DeleteEvent extends React.Component {
   _onContinue = () => {
     const {id, navigation, deleteEvent} = this.props;
     let input = {id};
-    setTimeout(() => deleteEvent(input), 200);
+    this.timer = setTimeout(() => deleteEvent(input), 200);
     navigation.goBack();
     this._handleDismiss();
+  };
+
+  componentWillUnmount = () => {
+    if (this.timer) {
+      clearTimeout(this.timer);
+    }
   };
 
   _handleDismiss = () => this.confirmRef.close();

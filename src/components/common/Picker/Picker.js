@@ -50,11 +50,17 @@ class Button extends React.Component {
     } else {
       this.props.onValueChange(item.value);
     }
-    setTimeout(() => {
+    this.timer = setTimeout(() => {
       if (this.props.onItemChange) {
         this.props.onItemChange(item.value);
       }
     }, 0);
+  };
+
+  componentWillUnmount = () => {
+    if (this.timer) {
+      clearTimeout(this.timer);
+    }
   };
 
   render() {

@@ -35,7 +35,7 @@ export default class Button extends React.Component {
       isBookmarked: !prevState.isBookmarked,
     }));
     const {loading} = this.state;
-    setTimeout(async () => {
+    this.timer = setTimeout(async () => {
       if (!loading) {
         const input = {
           id: `${stores.appState.userId}-${id}`,
@@ -54,6 +54,12 @@ export default class Button extends React.Component {
         this.setState({loading: false});
       }
     }, 0);
+  };
+
+  componentWillUnmount = () => {
+    if (this.timer) {
+      clearTimeout(this.timer);
+    }
   };
 
   render() {

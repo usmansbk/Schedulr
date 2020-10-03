@@ -14,7 +14,13 @@ class Confirm extends React.Component {
   _onConfirm = () => {
     this._cancel();
     if (!this.props.alert) {
-      setTimeout(this.props.onConfirm, 200); // 200ms allows the sheet to close
+      this.timer = setTimeout(this.props.onConfirm, 200); // 200ms allows the sheet to close
+    }
+  };
+
+  componentWillUnmount = () => {
+    if (this.timer) {
+      clearTimeout(this.timer);
     }
   };
 

@@ -37,7 +37,7 @@ class Form extends React.Component {
   };
 
   componentDidMount = () => {
-    setTimeout(
+    this.displayTimer = setTimeout(
       () =>
         this.setState({
           display: true,
@@ -48,6 +48,16 @@ class Form extends React.Component {
 
   _showLocationPicker = () => this.setState({showLocationPicker: true});
   _hideLocationPicker = () => this.setState({showLocationPicker: false});
+
+  componentWillUnmount = () => {
+    if (this.displayTimer) {
+      clearTimeout(this.displayTimer);
+    }
+
+    if (this.submitTimer) {
+      clearTimeout(this.submitTimer);
+    }
+  };
 
   static defaultProps = {
     schedules: [],
@@ -93,7 +103,7 @@ class Form extends React.Component {
         onSubmit={(values, {setSubmitting}) => {
           values.venue = values.venue || values.location;
           values.geo_point = stores.location.point;
-          setTimeout(() => {
+          this.submitTimer = setTimeout(() => {
             const castVal = schema.cast(values);
             onSubmit && onSubmit(castVal);
             setSubmitting(false);

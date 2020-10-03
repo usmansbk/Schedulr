@@ -181,22 +181,36 @@ class List extends React.Component {
   loadPreviousEvents = () => {
     if (this.state.beforeDate) {
       this.setState({loadingPrev: true});
-      setTimeout(() => {
+      this.prevTimer = setTimeout(() => {
         const result = this.state.prevIterator.next(this.state.beforeDate);
         if (!result.done) {
           const {nextToken: beforeDate, items} = result.value;
           // const sections = items.concat(this.state.sections);
           const sections = items;
-          this.setState({
-            sections,
-            beforeDate,
-            loadingPrev: false,
-          });
+          this.setState(
+            {
+              sections,
+              beforeDate,
+              loadingPrev: false,
+            },
+            () => {
+              if (this.prevTimer) {
+                clearTimeout(this.prevTimer);
+              }
+            },
+          );
         } else {
-          this.setState({
-            loadingPrev: false,
-            beforeDate: null,
-          });
+          this.setState(
+            {
+              loadingPrev: false,
+              beforeDate: null,
+            },
+            () => {
+              if (this.prevTimer) {
+                clearTimeout(this.prevTimer);
+              }
+            },
+          );
         }
       }, 0);
     }
@@ -205,7 +219,7 @@ class List extends React.Component {
   loadMoreEvents = () => {
     if (this.state.afterDate) {
       this.setState({loadingMore: true});
-      setTimeout(() => {
+      this.moreTimer = setTimeout(() => {
         const result = this.state.nextIterator.next(this.state.afterDate);
         if (!result.done) {
           const {items, nextToken: afterDate} = result.value;
@@ -213,16 +227,30 @@ class List extends React.Component {
           // const sections =
           //   length < 20 ? this.state.sections.concat(items) : items;
           const sections = this.state.sections.concat(items);
-          this.setState({
-            sections,
-            afterDate,
-            loadingMore: false,
-          });
+          this.setState(
+            {
+              sections,
+              afterDate,
+              loadingMore: false,
+            },
+            () => {
+              if (this.moreTimer) {
+                clearTimeout(this.moreTimer);
+              }
+            },
+          );
         } else {
-          this.setState({
-            loadingMore: false,
-            afterDate: null,
-          });
+          this.setState(
+            {
+              loadingMore: false,
+              afterDate: null,
+            },
+            () => {
+              if (this.moreTimer) {
+                clearTimeout(this.moreTimer);
+              }
+            },
+          );
         }
       }, 0);
     }

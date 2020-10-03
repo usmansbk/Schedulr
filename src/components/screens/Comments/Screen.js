@@ -30,13 +30,19 @@ class Screen extends React.Component {
   scrollTop = () => this.listRef && this.listRef.scrollTop();
 
   componentDidMount = () => {
-    setTimeout(
+    this.timer = setTimeout(
       () =>
         this.setState({
           display: true,
         }),
       0,
     );
+  };
+
+  componentWillUnmount = () => {
+    if (this.timer) {
+      clearTimeout(this.timer);
+    }
   };
 
   _goBack = () => this.props.navigation.goBack();

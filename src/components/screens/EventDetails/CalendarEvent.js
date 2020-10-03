@@ -34,7 +34,7 @@ class CalendarEvent extends React.Component {
   componentDidMount = () => {
     const id = this.props.navigation.getParam('id');
     const event = this.props.stores.calendar.findEventById(id);
-    setTimeout(
+    this.timer = setTimeout(
       () =>
         this.setState({
           event,
@@ -42,7 +42,13 @@ class CalendarEvent extends React.Component {
         }),
       0,
     );
-    this.setState({event});
+    // this.setState({event});
+  };
+
+  componentWillUnmount = () => {
+    if (this.timer) {
+      clearTimeout(this.timer);
+    }
   };
 
   render() {

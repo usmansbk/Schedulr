@@ -45,7 +45,7 @@ class CancelEvent extends React.Component {
         stores.appState.removeKeysFromStorage([banner.key]);
       }
     }
-    setTimeout(() => cancelEvent(input), 200);
+    this.timer = setTimeout(() => cancelEvent(input), 200);
     navigation.goBack();
     this._handleDismiss();
   };
@@ -54,6 +54,12 @@ class CancelEvent extends React.Component {
 
   _toggleAll = () => this.setState({checked: ALL_EVENTS});
   _toggleSingle = () => this.setState({checked: SINGLE_EVENT});
+
+  componentWillUnmount = () => {
+    if (this.timer) {
+      clearTimeout(this.timer);
+    }
+  };
 
   render() {
     const {date, stores, cancelledDates, isSingle} = this.props;

@@ -12,11 +12,17 @@ export default class NewScheduleScreen extends React.Component {
     const sort = shortid.generate();
     const id = `${hash}-${sort}`;
     const input = {id, ...form};
-    setTimeout(() => {
+    this.timer = setTimeout(() => {
       this.props.onSubmit(input);
       logger.log('create_schedule');
     }, 0);
     this.props.navigation.popToTop();
+  };
+
+  componentWillUnmount = () => {
+    if (this.timer) {
+      clearTimeout(this.timer);
+    }
   };
 
   render() {

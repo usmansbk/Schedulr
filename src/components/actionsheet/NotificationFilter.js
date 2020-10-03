@@ -43,9 +43,15 @@ class FilterAction extends React.Component {
         break;
     }
     if (filter) {
-      setTimeout(() => {
+      this.timer = setTimeout(() => {
         this.props.stores.notifications.handleFilterAction(filter);
       }, 0);
+    }
+  };
+
+  componentWillUnmount = () => {
+    if (this.timer) {
+      clearTimeout(this.timer);
     }
   };
 

@@ -18,13 +18,19 @@ class Schedule extends React.Component {
   shouldComponentUpdate = (nextProps) => nextProps.isFocused;
 
   componentDidMount = () => {
-    setTimeout(
+    this.timer = setTimeout(
       () =>
         this.setState({
           display: true,
         }),
       0,
     );
+  };
+
+  componentWillUnmount = () => {
+    if (this.timer) {
+      clearTimeout(this.timer);
+    }
   };
 
   _navigateToScheduleInfo = () => {

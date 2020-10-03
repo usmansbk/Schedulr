@@ -26,10 +26,16 @@ class NewEventScreen extends React.Component {
     const id = `${hash}-${sort}`;
     const input = {id, ...form};
     this.props.navigation.goBack();
-    setTimeout(() => {
+    this.timer = setTimeout(() => {
       this.props.onSubmit(input);
       logger.log('create_event');
     }, 0);
+  };
+
+  componentWillUnmount = () => {
+    if (this.timer) {
+      clearTimeout(this.timer);
+    }
   };
 
   get schedules() {
@@ -84,7 +90,6 @@ class NewEventScreen extends React.Component {
       startAt: start,
       endAt: end,
       allDay,
-      category,
       recurrence: recurrence || ONE_TIME_EVENT,
       until,
       forever,
@@ -93,7 +98,7 @@ class NewEventScreen extends React.Component {
         location ||
         currentSchedule?.location ||
         this.props.stores.location.location,
-      category: this.props.stores.appState.categories[0],
+      category: category || this.props.stores.appState.categories[0],
       isPublic: currentSchedule?.isPublic,
     };
   }

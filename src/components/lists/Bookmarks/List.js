@@ -40,7 +40,7 @@ class List extends Component {
       await this.props.fetchMore(this.props.nextToken);
     }
   };
-  _fetchMore = () => setTimeout(this._fetchPastEvents, 0);
+  _fetchMore = () => (this.timer = setTimeout(this._fetchPastEvents, 0));
 
   _fetchPastEvents = async () => {
     const {loading, fetchPastEvents, nextToken, pastEventsCount} = this.props;
@@ -48,6 +48,12 @@ class List extends Component {
       this.setState({loadingPrev: true});
       await fetchPastEvents(nextToken);
       this.setState({loadingPrev: false});
+    }
+  };
+
+  componentWillUnmount = () => {
+    if (this.timer) {
+      clearTimeout(this.timer);
     }
   };
 

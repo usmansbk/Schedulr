@@ -1,46 +1,48 @@
 import React from 'react';
-import { inject, observer } from 'mobx-react';
+import {inject, observer} from 'mobx-react';
 import Confirm from 'components/common/Confirm';
-import { I18n } from 'aws-amplify';
-import { SCHEDULE_CLOSED } from 'lib/constants';
+import {I18n} from 'aws-amplify';
+import {SCHEDULE_CLOSED} from 'lib/constants';
 
 class CloseSchedule extends React.Component {
   state = {
-    loading: false
+    loading: false,
   };
 
-  _confirmRef = ref => this.confirmRef = ref;
+  _confirmRef = (ref) => (this.confirmRef = ref);
   open = () => this.confirmRef.open();
-  
-  shouldComponentUpdate = (_, nextState) => (
-    nextState.loading !== this.state.loading
-  );
+
+  shouldComponentUpdate = (_, nextState) =>
+    nextState.loading !== this.state.loading;
 
   _onContinue = () => {
-    const {
-      id,
-      onSubmit,
-    } = this.props;
-    this.setState({ loading: true });
-    setTimeout(() => {
-      onSubmit({ id, status: SCHEDULE_CLOSED }).catch(() => {});
+    const {id, onSubmit} = this.props;
+    this.setState({loading: true});
+    this.timer = setTimeout(() => {
+      onSubmit({id, status: SCHEDULE_CLOSED}).catch(() => {});
     }, 0);
-    this.setState({ loading: false });
-  }
+    this.setState({loading: false});
+  };
+
+  componentWillUnmount = () => {
+    if (this.timer) {
+      clearTimeout(this.timer);
+    }
+  };
 
   render() {
     // const { stores } = this.props;
 
     return (
       <Confirm
-        title={I18n.get("DIALOG_closeSchedule")}
-        message={I18n.get("DIALOG_closeScheduleWarning")}
+        title={I18n.get('DIALOG_closeSchedule')}
+        message={I18n.get('DIALOG_closeScheduleWarning')}
         onConfirm={this._onContinue}
-        confirmText={"Archive"}
+        confirmText={'Archive'}
         ref={this._confirmRef}
       />
     );
   }
 }
 
-export default inject("stores")(observer(CloseSchedule));
+export default inject('stores')(observer(CloseSchedule));

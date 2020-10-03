@@ -1,5 +1,5 @@
 import React from 'react';
-import { Linking, Platform } from 'react-native';
+import {Linking, Platform} from 'react-native';
 import Help from './Help';
 import env from 'config/env';
 import logger from 'config/logger';
@@ -7,19 +7,29 @@ import Suspense from 'components/common/Suspense';
 
 export default class Screen extends React.Component {
   state = {
-    display: false 
+    display: false,
   };
 
   componentDidMount = () => {
-    setTimeout(() => this.setState({
-      display: true
-    }), 0);
+    this.timer = setTimeout(
+      () =>
+        this.setState({
+          display: true,
+        }),
+      0,
+    );
+  };
+
+  componentWillUnmount = () => {
+    if (this.timer) {
+      clearTimeout(this.timer);
+    }
   };
 
   _goBack = () => this.props.navigation.goBack();
   _onPressItem = (id) => {
     let url;
-    switch(id) {
+    switch (id) {
       case 'faq':
         url = env.FAQ_URL;
         break;
@@ -39,17 +49,11 @@ export default class Screen extends React.Component {
         url = env.APP_URL;
         break;
     }
-    Linking.openURL(url)
-      .catch(logger.logError);
+    Linking.openURL(url).catch(logger.logError);
   };
 
   render() {
     if (!this.state.display) return <Suspense />;
-    return (
-      <Help
-        goBack={this._goBack}
-        onPressItem={this._onPressItem}
-      />
-    );
+    return <Help goBack={this._goBack} onPressItem={this._onPressItem} />;
   }
 }
