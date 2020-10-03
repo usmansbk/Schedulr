@@ -19,6 +19,11 @@ class Input extends React.Component {
     }
   };
 
+  _onAddCustomType = () => {
+    this.props.stores.appState.addCustomType(this.props.value);
+    this.setState({custom: false});
+  };
+
   render() {
     const {
       value,
@@ -46,6 +51,7 @@ class Input extends React.Component {
         clearButtonMode="while-editing"
         autoFocus={this.state.custom}
         rightIcon="pluscircleo"
+        onPressRightIcon={this._onAddCustomType}
       />
     ) : (
       <Picker
