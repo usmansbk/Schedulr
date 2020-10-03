@@ -189,7 +189,7 @@ export default inject('stores')(
                     linkStyle={stores.styles.eventDetails.linkStyle}
                     linkDefault={true}>
                     <Text
-                      numberOfLines={expandDescription ? undefined : 2}
+                      numberOfLines={expandDescription ? undefined : 10}
                       ellipsizeMode="tail"
                       onPress={expandText}
                       style={stores.styles.eventDetails.value}>

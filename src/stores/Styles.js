@@ -506,11 +506,17 @@ export default class styles {
       container: {
         marginVertical: 10,
       },
-      input: {
+      inputContainer: {
+        flex: 1,
         backgroundColor: colors.textInput,
-        padding: 16,
-        color: colors.black,
+        padding: 4,
         borderRadius: 8,
+        paddingHorizontal: 8,
+      },
+      input: {
+        flex: 1,
+        color: colors.black,
+        paddingHorizontal: 4,
         fontFamily: 'SemiBold',
       },
       label: {

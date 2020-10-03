@@ -40,6 +40,7 @@ class Input extends React.Component {
         value={value}
         editable={!disabled}
         maxLength={51}
+        leftIcon={icon}
         onBlur={onBlur}
         onChangeText={onValueChange}
         clearButtonMode="while-editing"

@@ -134,7 +134,6 @@ class Form extends React.Component {
                   onChangeText={handleChange('title')}
                   onBlur={handleBlur('title')}
                 />
-                <View style={styles.gap} />
                 <View style={styles.pickerSpacing}>
                   <Text style={styles.radioText}>
                     {I18n.get('EVENT_FORM_category')}
@@ -347,20 +346,15 @@ class Form extends React.Component {
                   value={values.venue}
                   onChangeText={handleChange('venue')}
                   onBlur={handleBlur('venue')}
-                />
-                <PickerInput
                   leftIcon="find"
+                  onPressLeftIcon={this._showLocationPicker}
                   rightIcon="environment"
-                  value={values.location}
-                  onPress={this._showLocationPicker}
-                  placeholder={I18n.get('PLACEHOLDER_global')}
                   onPressRightIcon={() =>
                     stores.location.fetchLocation((value) =>
                       setFieldValue('location', value),
                     )
                   }
                 />
-                <View style={styles.gap} />
                 <TextInput
                   error={errors.description}
                   placeholder={I18n.get('PLACEHOLDER_description')}
