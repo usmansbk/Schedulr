@@ -10,7 +10,6 @@ class Button extends React.Component {
   _renderOption = ({item: {label, value}}) => (
     <PickerItem
       onLongPress={this.props.onLongPressItem}
-      editable={this.props.editable}
       key={value}
       value={value}
       label={label}

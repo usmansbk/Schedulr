@@ -159,7 +159,6 @@ class Form extends React.Component {
                     onLongPressItem={this._onLongPressItem}
                     onBlur={handleBlur('category')}
                     data={stores.appState.categories}
-                    editable
                   />
                 </View>
                 <View style={styles.baseHorizonalSpacing}>

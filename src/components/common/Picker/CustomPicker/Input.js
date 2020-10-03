@@ -33,7 +33,6 @@ class Input extends React.Component {
       onLongPressItem,
       onBlur,
       data = [],
-      editable,
     } = this.props;
     const customType = I18n.get('SELECT_customType');
 
@@ -64,7 +63,6 @@ class Input extends React.Component {
         disabled={disabled}
         onValueChange={this._onValueChange}
         onLongPressItem={onLongPressItem}
-        editable={editable}
       />
     );
   }
