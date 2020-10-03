@@ -417,9 +417,8 @@ export default {
   },
   SELECT_customType: 'Custom type...',
   categories: [
-    'Class',
-    'To-Do',
     'Lecture',
+    'To-Do',
     'Event',
     'Meeting',
     'Meetup',
