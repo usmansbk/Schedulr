@@ -31,7 +31,7 @@ class Input extends React.Component {
       icon,
       disabled,
       onValueChange,
-      onLongPressItem,
+      onDeleteItem,
       onBlur,
       data = [],
       label,
@@ -69,7 +69,7 @@ class Input extends React.Component {
           prompt={value}
           disabled={disabled}
           onValueChange={this._onValueChange}
-          onLongPressItem={onLongPressItem}
+          onDeleteItem={onDeleteItem}
         />
       </>
     );

@@ -10,6 +10,8 @@ function EventType({
   onBlur = () => null,
   ...rest
 }) {
+  const _onDeleteItem = (val) => stores.appState.removeCustomType(val);
+
   return (
     <CustomPicker
       icon="tago"
@@ -18,6 +20,7 @@ function EventType({
       onValueChange={onValueChange}
       onBlur={onBlur}
       data={stores.appState.categories}
+      onDeleteItem={_onDeleteItem}
       {...rest}
     />
   );
