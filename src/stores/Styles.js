@@ -366,6 +366,7 @@ export default class styles {
     return StyleSheet.create({
       contentContainer: {
         backgroundColor: colors.bg,
+        paddingVertical: 8,
       },
       textInputContainer: {
         flexDirection: 'row',
@@ -504,7 +505,7 @@ export default class styles {
 
     return StyleSheet.create({
       container: {
-        marginVertical: 10,
+        marginVertical: 8,
       },
       inputContainer: {
         flex: 1,

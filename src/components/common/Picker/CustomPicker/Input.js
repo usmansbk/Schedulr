@@ -1,4 +1,5 @@
 import React from 'react';
+import {Text} from 'react-native-paper';
 import {inject, observer} from 'mobx-react';
 import {I18n} from 'aws-amplify';
 import Picker from '../Picker';
@@ -33,6 +34,7 @@ class Input extends React.Component {
       onLongPressItem,
       onBlur,
       data = [],
+      label,
     } = this.props;
     const customType = I18n.get('SELECT_customType');
 
@@ -42,6 +44,7 @@ class Input extends React.Component {
 
     return this.state.custom ? (
       <TextInput
+        label={label}
         placeholder={I18n.get('PLACEHOLDER_customType')}
         value={value}
         editable={!disabled}
@@ -50,20 +53,25 @@ class Input extends React.Component {
         onBlur={onBlur}
         onChangeText={onValueChange}
         clearButtonMode="while-editing"
-        autoFocus={this.state.custom}
+        autoFocus
         rightIcon="pluscircleo"
         onPressRightIcon={this._onAddCustomType}
       />
     ) : (
-      <Picker
-        icon={icon}
-        value={value}
-        items={items}
-        prompt={value}
-        disabled={disabled}
-        onValueChange={this._onValueChange}
-        onLongPressItem={onLongPressItem}
-      />
+      <>
+        <Text style={{marginBottom: 4, fontSize: 12}}>
+          {I18n.get('EVENT_FORM_category')}
+        </Text>
+        <Picker
+          icon={icon}
+          value={value}
+          items={items}
+          prompt={value}
+          disabled={disabled}
+          onValueChange={this._onValueChange}
+          onLongPressItem={onLongPressItem}
+        />
+      </>
     );
   }
 }

@@ -25,6 +25,7 @@ import {
   endOf,
   diff,
 } from 'lib/date';
+import EventTypePicker from './EventType';
 import recurrence from './recurrence';
 import schema from './schema';
 
@@ -58,9 +59,6 @@ class Form extends React.Component {
       clearTimeout(this.submitTimer);
     }
   };
-
-  _onLongPressItem = (value) =>
-    this.props.stores.appState.removeCustomType(value);
 
   static defaultProps = {
     schedules: [],
@@ -148,17 +146,12 @@ class Form extends React.Component {
                   onBlur={handleBlur('title')}
                 />
                 <View style={styles.pickerSpacing}>
-                  <Text style={styles.radioText}>
-                    {I18n.get('EVENT_FORM_category')}
-                  </Text>
-                  <CustomPicker
-                    icon="tago"
-                    prompt={I18n.get('EVENT_FORM_category')}
+                  <EventTypePicker
+                    label={I18n.get('EVENT_FORM_category')}
                     value={values.category}
+                    prompt={I18n.get('EVENT_FORM_category')}
                     onValueChange={handleChange('category')}
-                    onLongPressItem={this._onLongPressItem}
                     onBlur={handleBlur('category')}
-                    data={stores.appState.categories}
                   />
                 </View>
                 <View style={styles.baseHorizonalSpacing}>
