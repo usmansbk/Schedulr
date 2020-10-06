@@ -46,7 +46,7 @@ export default class Location {
                 const {city, country} = bestLocation;
                 this.locality = city;
                 this.country = country;
-                this.searchLocation = city;
+                this.searchLocation = `${city}, ${country}`;
                 this.location = `${city}, ${country}`;
                 callback && callback(this.location);
               })
