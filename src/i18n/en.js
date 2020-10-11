@@ -292,11 +292,11 @@ export default {
     `Load (${count}) past event${count > 1 ? 's' : ''}`,
   SCHEDULES_noMoreEvents: 'No more events',
 
-  RECUR_never: 'Never',
+  RECUR_never: 'Do not repeat',
   RECUR_daily: 'Every day',
   RECUR_weekly: (day) => `Every week ( ${day} )`,
   RECUR_weekdays: 'Every weekday ( Mon - Fri )',
-  RECUR_monthly: 'Every month',
+  RECUR_monthly: (month) => `Every month ( ${month} )`,
   RECUR_yearly: (date) => `Every year ( ${date} )`,
 
   STATUS_concluded: 'Concluded',

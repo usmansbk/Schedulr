@@ -194,7 +194,7 @@ export function getRepeatLabel(id, date) {
     case 'weekdays':
       return I18n.get(`RECUR_${val}`);
     case 'monthly':
-      return I18n.get(`RECUR_${val}`);
+      return I18n.get(`RECUR_${val}`)(moment(date).format('Do'));
     case 'yearly':
       return I18n.get(`RECUR_${val}`)(moment(date).format('Do MMMM'));
     default:
