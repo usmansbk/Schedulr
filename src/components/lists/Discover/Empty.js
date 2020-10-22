@@ -28,7 +28,7 @@ export default inject('stores')(
             icon={({size, color}) => (
               <Icon name="map" size={size} color={color} />
             )}
-            onPress={stores.location.fetchLocation}>
+            onPress={() => stores.location.fetchLocation()}>
             {I18n.get('BUTTON_turnOnLocation')}
           </Button>
         </>

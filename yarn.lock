@@ -8983,10 +8983,10 @@ react-native-navigation-bar-color@^2.0.1:
   resolved "https://registry.yarnpkg.com/react-native-navigation-bar-color/-/react-native-navigation-bar-color-2.0.1.tgz#ee2be25cc37105f7da355717b0a9a32c9c059ae6"
   integrity sha512-1kE/oxWt+HYjRxdZdvke9tJ365xaee5n3+euOQA1En8zQuSbOxiE4SYEGM7TeaWnmLJ0l37mRnPHaB2H4mGh0A==
 
-react-native-onesignal@^3.9.1:
-  version "3.9.1"
-  resolved "https://registry.yarnpkg.com/react-native-onesignal/-/react-native-onesignal-3.9.1.tgz#b47c2ab61e84dcc7fce63cd565574760c01b1f46"
-  integrity sha512-m511mn6Kgh6AbU8TiGvA5u1yp7od1b/0rVK4m3pz13Yp8PDceGEBd8IxoghLSZRR1/HHBxxe+CWZS9Tsa/IKsg==
+react-native-onesignal@^3.9.2:
+  version "3.9.2"
+  resolved "https://registry.yarnpkg.com/react-native-onesignal/-/react-native-onesignal-3.9.2.tgz#d53fa6aa19b8c73bc8f2fd627423d0a9f9f0975a"
+  integrity sha512-tir7cDYzB7lGvy9f3iLTuVOC53fQzOexdLOei6oGuklVTJbwni3rrB9JP/Jw23TbbfgDDpTaTkPhvyZL4A6b5A==
   dependencies:
     invariant "^2.2.2"
 
@@ -9740,10 +9740,10 @@ shellwords@^0.1.1:
   resolved "https://registry.yarnpkg.com/shellwords/-/shellwords-0.1.1.tgz#d6b9181c1a48d397324c84871efbcfc73fc0654b"
   integrity sha512-vFwSUfQvqybiICwZY5+DAWIPLKsWO31Q91JSKl3UYv+K5c2QRPzn0qzec6QPu1Qc9eHYItiP3NdJqNVqetYAww==
 
-shortid@^2.2.15:
-  version "2.2.15"
-  resolved "https://registry.yarnpkg.com/shortid/-/shortid-2.2.15.tgz#2b902eaa93a69b11120373cd42a1f1fe4437c122"
-  integrity sha512-5EaCy2mx2Jgc/Fdn9uuDuNIIfWBpzY4XIlhoqtXF6qsf+/+SGZ+FxDdX/ZsMZiWupIWNqAEmiNY4RC+LSmCeOw==
+shortid@^2.2.16:
+  version "2.2.16"
+  resolved "https://registry.yarnpkg.com/shortid/-/shortid-2.2.16.tgz#b742b8f0cb96406fd391c76bfc18a67a57fe5608"
+  integrity sha512-Ugt+GIZqvGXCIItnsL+lvFJOiN7RYqlGy7QE41O3YC1xbNSeDGIRO7xg2JJXIAj1cAGnOeC1r7/T9pgrtQbv4g==
   dependencies:
     nanoid "^2.1.0"
 
