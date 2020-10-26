@@ -351,7 +351,7 @@ export default {
 
   DIALOG_cancelEvent: 'Cancel event?',
   DIALOG_onlyThisEvent: 'Only this date',
-  DIALOG_allOfThisEvent: 'Cancel and delete all',
+  DIALOG_allOfThisEvent: 'Cancel all',
   DIALOG_openSchedule: 'Unarchive this group?',
   DIALOG_closeSchedule: 'Archive this group?',
   DIALOG_closeScheduleWarning:
