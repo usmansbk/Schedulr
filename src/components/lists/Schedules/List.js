@@ -90,7 +90,7 @@ class List extends Component {
 
     return (
       <>
-        <Banner />
+        {schedules.length > 5 && <Banner />}
         <FlatList
           style={stores.styles.schedulesList.list}
           extraData={stores.appState.mutedSchedules.length || schedules.length}

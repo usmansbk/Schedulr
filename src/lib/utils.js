@@ -184,13 +184,15 @@ export function injectAds(events = []) {
   const today = startOf(date(), 'day');
   const end = endOf(date(today), 'day');
 
-  events.push({
-    __typename: 'AdMob',
-    id: 'injected-admod-event',
-    title: 'AdMob',
-    startAt: today.toISOString(),
-    endAt: end.toISOString(),
-    recurrence: 'NEVER',
-  });
+  if (events.length > 10) {
+    events.push({
+      __typename: 'AdMob',
+      id: 'injected-admod-event',
+      title: 'AdMob',
+      startAt: today.toISOString(),
+      endAt: end.toISOString(),
+      recurrence: 'NEVER',
+    });
+  }
   return events;
 }
