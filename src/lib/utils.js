@@ -184,7 +184,7 @@ export function injectAds(events = []) {
   const today = startOf(date(), 'day');
   const end = endOf(date(today), 'day');
 
-  if (events.length > 10) {
+  if (events.length > 40) {
     events.push({
       __typename: 'AdMob',
       id: 'injected-admod-event',

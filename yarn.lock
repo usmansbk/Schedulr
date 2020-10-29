@@ -8921,10 +8921,10 @@ react-native-custom-picker@^0.4.0:
   resolved "https://registry.yarnpkg.com/react-native-custom-picker/-/react-native-custom-picker-0.4.0.tgz#258896b1eae65f95e4122b4bbdf6bfd68a27d0e3"
   integrity sha512-zhpt3pEYo/6xH2F0+G//SCo3Q7QddAS8/Xrrwc8Cif/PfaPU15cEMUakBGyJ/5vAv67RtF74WQcGhfA4RS09xg==
 
-react-native-document-picker@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/react-native-document-picker/-/react-native-document-picker-4.0.0.tgz#b9bcb6a1996bd8f7e902cef184cee8ca312026e1"
-  integrity sha512-tjIOBBcyjv4j5E1MDL2OvEKNpXxQybLNkjjfpTyDUzek7grZ5eOvSlp6i/Y3EfuIGLByeaw++9R1SZtOij6R7w==
+react-native-document-picker@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/react-native-document-picker/-/react-native-document-picker-4.1.0.tgz#8092c09727018587da34358bf731fe948d4171a5"
+  integrity sha512-tHYNng9GrnVrOoLk9K2j+T1xa8gAfC2Mk2dbJq32QBYD3zkHGMkFYGd2FZt0nuYxCBnd768tOQWuEZXwXM1tsg==
 
 react-native-file-viewer@^2.1.4:
   version "2.1.4"
