@@ -38,13 +38,12 @@ class Form extends React.Component {
   };
 
   componentDidMount = () => {
-    this.displayTimer = setTimeout(
-      () =>
-        this.setState({
-          display: true,
-        }),
-      0,
-    );
+    this.displayTimer = setTimeout(() => {
+      // this.props.stores.location.fetchLocation();
+      this.setState({
+        display: true,
+      });
+    }, 0);
   };
 
   _showLocationPicker = () => this.setState({showLocationPicker: true});
@@ -273,13 +272,14 @@ class Form extends React.Component {
                           setFieldValue('until', null);
                           setFieldValue('forever', false);
                         } else if (!values.forever) {
-                          const unit = getTimeUnit(itemValue);
-                          setFieldValue(
-                            'until',
-                            toISOString(
-                              endOf(add(values.startAt, MIN_UNTIL_DATE, unit)),
-                            ),
-                          );
+                          setFieldValue('forever', true);
+                          // const unit = getTimeUnit(itemValue);
+                          // setFieldValue(
+                          //   'until',
+                          //   toISOString(
+                          //     endOf(add(values.startAt, MIN_UNTIL_DATE, unit)),
+                          //   ),
+                          // );
                         }
                       }}
                       items={recurrence.map((recur) => ({
@@ -319,7 +319,6 @@ class Form extends React.Component {
                               ),
                             );
                           }
-                          setFieldValue('forever', value);
                         }}
                       />
                     </View>
@@ -354,13 +353,8 @@ class Form extends React.Component {
                   onChangeText={handleChange('venue')}
                   onBlur={handleBlur('venue')}
                   leftIcon="find"
-                  onPressLeftIcon={this._showLocationPicker}
+                  onPressRightIcon={this._showLocationPicker}
                   rightIcon="environment"
-                  onPressRightIcon={() =>
-                    stores.location.fetchLocation((value) =>
-                      setFieldValue('location', value),
-                    )
-                  }
                 />
                 <TextInput
                   error={errors.description}

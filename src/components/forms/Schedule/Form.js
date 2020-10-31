@@ -5,8 +5,8 @@ import {Appbar} from 'react-native-paper';
 import TextInput from 'components/common/TextInput';
 import Button from 'components/common/Button';
 import Switch from 'components/common/Switch';
-import {PickerInput} from 'components/common/Picker';
-import LocationPicker from 'components/common/LocationPicker';
+// import {PickerInput} from 'components/common/Picker';
+// import LocationPicker from 'components/common/LocationPicker';
 import {Formik} from 'formik';
 import {inject, observer} from 'mobx-react';
 import {I18n} from 'aws-amplify';
@@ -121,10 +121,15 @@ class Form extends React.Component {
                     onValueChange={() => {
                       const prevValue = values.isPublic;
                       setFieldValue('isPublic', !prevValue);
+                      if (!prevValue) {
+                        stores.location.fetchLocation((value) =>
+                          setFieldValue('location', value),
+                        );
+                      }
                     }}
                   />
                 </View>
-                {values.isPublic && (
+                {/* {values.isPublic && (
                   <PickerInput
                     leftIcon="find"
                     value={values.location}
@@ -137,14 +142,14 @@ class Form extends React.Component {
                       )
                     }
                   />
-                )}
+                )} */}
               </View>
             </ScrollView>
-            <LocationPicker
+            {/* <LocationPicker
               visible={this.state.showLocationPicker}
               hideModal={this._hideLocationPicker}
               onSelect={handleChange('location')}
-            />
+            /> */}
           </>
         )}
       </Formik>
