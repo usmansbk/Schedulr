@@ -1308,11 +1308,11 @@ export default class styles {
       },
       separator: {
         height: SEPARATOR_HEIGHT,
-        backgroundColor: colors.light_gray_4,
       },
       itemContainer: {
         backgroundColor: colors.bg,
         paddingHorizontal: 16,
+        elevation: 1,
       },
       itemContent: {
         height: ITEM_HEIGHT,
@@ -1340,7 +1340,6 @@ export default class styles {
       },
       left: {
         padding: 8,
-        paddingLeft: 2,
         alignItems: 'center',
       },
       right: {
