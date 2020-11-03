@@ -519,6 +519,7 @@ export default class styles {
         color: colors.black,
         paddingHorizontal: 4,
         fontFamily: 'SemiBold',
+        fontWeight: 'normal',
       },
       label: {
         fontSize: 12,
