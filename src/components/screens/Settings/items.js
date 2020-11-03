@@ -39,13 +39,13 @@ export default [
       },
     ],
   },
-  {
-    title: 'location',
-    data: [
-      {
-        title: 'tagLocation',
-        key: 'tagLocation',
-      },
-    ],
-  },
+  // {
+  //   title: 'location',
+  //   data: [
+  //     {
+  //       title: 'tagLocation',
+  //       key: 'tagLocation',
+  //     },
+  //   ],
+  // },
 ];
