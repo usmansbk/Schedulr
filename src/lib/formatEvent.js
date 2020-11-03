@@ -69,11 +69,18 @@ export const getStatus = ({
 export const isEventValid = (event) => {
   const {startAt, endAt, recurrence, until, isCancelled} = event;
   const cancelledDates = event.cancelledDates || [];
-  return (
-    (recurrence !== ONE_TIME_EVENT && isCurrentDate(date(), until)) ||
-    (isCurrentDate(date(), endAt) &&
-      !isEventCancelled({cancelledDates, startAt, isCancelled}))
-  );
+
+  const isDateCancelled = isEventCancelled({
+    cancelledDates,
+    startAt,
+    isCancelled,
+  });
+
+  const isEnded = isAfter(date(), endAt);
+  const isExpired = isAfter(date(), until);
+  const isRecurring = recurrence !== ONE_TIME_EVENT;
+
+  return !isDateCancelled && !(isRecurring ? isExpired : isEnded);
 };
 
 /**
