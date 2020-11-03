@@ -1308,6 +1308,7 @@ export default class styles {
       },
       separator: {
         height: SEPARATOR_HEIGHT,
+        backgroundColor: colors.light_gray_4,
       },
       itemContainer: {
         backgroundColor: colors.bg,
@@ -1316,6 +1317,7 @@ export default class styles {
       itemContent: {
         height: ITEM_HEIGHT,
         flexDirection: 'row',
+        alignItems: 'center',
       },
       unavailableItemContent: {
         paddingTop: 4,
@@ -1325,7 +1327,7 @@ export default class styles {
         justifyContent: 'space-between',
       },
       itemBody: {
-        paddingLeft: 8,
+        paddingLeft: 4,
         flex: 1,
       },
       itemHeadline: {
@@ -1338,7 +1340,7 @@ export default class styles {
       },
       left: {
         padding: 8,
-        paddingTop: 12,
+        paddingLeft: 2,
         alignItems: 'center',
       },
       right: {
