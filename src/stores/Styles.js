@@ -1534,7 +1534,7 @@ export default class styles {
       itemContainer: {
         backgroundColor: colors.bg,
         paddingHorizontal: 16,
-        elevation: 2,
+        elevation: 1,
       },
       itemContent: {
         height: ITEM_HEIGHT,
