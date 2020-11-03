@@ -217,6 +217,8 @@ export default {
   TOAST_downloading: 'Downloading...',
   TOAST_downloadFailed: 'Download failed',
   TOAST_fileTooLarge: (name) => `"${name.slice(0, 20)}..." is larger than 8mb`,
+  TOAST_muted: 'You have muted this event',
+  TOAST_unmuted: 'You have unmuted this event',
 
   PROFILE_FORM_name: 'NAME',
   PROFILE_FORM_website: 'WEBSITE',

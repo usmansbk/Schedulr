@@ -17,6 +17,7 @@ import {isEventValid} from 'lib/formatEvent';
 import {nextEvent} from 'lib/calendar';
 import getImageUrl from 'helpers/getImageUrl';
 import logger from 'config/logger';
+import snackbar from 'helpers/snackbar';
 
 const FONT_SIZE = 24;
 
@@ -32,10 +33,13 @@ class EventDetails extends React.Component {
   _openDeleteDialog = () => this.deleteConfirmRef.getWrappedInstance().open();
 
   _handleMute = () => {
-    this.props.stores.appState.toggleMute(
-      this.props.event.id,
-      this.props.event.schedule.id,
-    );
+    const {
+      event: {id, schedule},
+      stores,
+    } = this.props;
+    stores.appState.toggleMute(id, schedule.id);
+    const isMuted = stores.appState.isEventMuted(id, schedule.id);
+    snackbar(I18n.get(`TOAST_${isMuted ? 'muted' : 'unmuted'}`));
   };
 
   componentDidMount = () => {
