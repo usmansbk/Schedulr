@@ -1658,7 +1658,7 @@ export default class styles {
         alignItems: 'center',
       },
       footerText: {
-        fontFamily: 'Bold',
+        // fontFamily: 'Bold',
         color: colors.light_gray_3,
       },
       offlineTitle: {
