@@ -336,7 +336,7 @@ export default {
   PLACEHOLDER_venue: (city) => (city ? `In ${city}` : 'Venue'),
   PLACEHOLDER_customType: 'Tap here to edit',
   PLACEHOLDER_searchCities: 'Search cities',
-  PLACEHOLDER_description: 'Add info',
+  PLACEHOLDER_description: 'Add more information',
   PLACEHOLDER_title: 'Event Title',
   PLACEHOLDER_untitledEvent: 'Name of task or event',
   PLACEHOLDER_name: 'Name',
