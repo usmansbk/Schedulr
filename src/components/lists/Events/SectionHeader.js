@@ -37,8 +37,8 @@ class SectionHeader extends React.Component {
     const styles = stores.styles.eventsList;
 
     return (
-      <TouchableOpacity onPress={this._onPress}>
-        <View style={styles.sectionHeader}>
+      <TouchableOpacity style={styles.sectionHeader} onPress={this._onPress}>
+        <View>
           <Headline
             ellipsizeMode="tail"
             numberOfLines={1}

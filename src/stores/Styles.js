@@ -1534,6 +1534,7 @@ export default class styles {
       itemContainer: {
         backgroundColor: colors.bg,
         paddingHorizontal: 16,
+        elevation: 2,
       },
       itemContent: {
         height: ITEM_HEIGHT,
@@ -1606,15 +1607,17 @@ export default class styles {
       },
       list: {
         backgroundColor: colors.bg,
-        paddingHorizontal: 14,
+        paddingHorizontal: 12,
       },
       sectionHeader: {
         backgroundColor: colors.light_gray,
         paddingVertical: 5,
         paddingHorizontal: 16,
+        marginHorizontal: 4,
         height: SECTION_HEADER_HEIGHT,
         borderRadius: 8,
         marginTop: 4,
+        elevation: 1,
       },
       sectionHeading: {
         fontSize: 22,
