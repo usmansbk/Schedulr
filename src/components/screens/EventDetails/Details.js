@@ -68,12 +68,14 @@ export default inject('stores')(
       return (
         <View style={stores.styles.eventDetails.container}>
           <ScrollView style={stores.styles.eventDetails.bg}>
-            <Banner
-              id={id}
-              isOwner={isOwner}
-              pictureUrl={pictureUrl}
-              navigateToBanner={navigateToBanner}
-            />
+            {(pictureUrl || isOwner) && (
+              <Banner
+                id={id}
+                isOwner={isOwner}
+                pictureUrl={pictureUrl}
+                navigateToBanner={navigateToBanner}
+              />
+            )}
             <View style={stores.styles.eventDetails.content}>
               <View style={stores.styles.eventDetails.head}>
                 {isMuted && <Caption>{I18n.get('HELPER_TEXT_muted')}</Caption>}
