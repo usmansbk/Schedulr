@@ -277,7 +277,13 @@ class Info extends React.Component {
             </View>
             <View style={styles.body}>
               {isMuted && (
-                <Caption>{I18n.get('HELPER_TEXT_youHaveMutedEvent')}</Caption>
+                <Caption
+                  style={{
+                    fontWeight: 'bold',
+                    fontSize: 16,
+                  }}>
+                  {I18n.get('HELPER_TEXT_youHaveMutedEvent')}
+                </Caption>
               )}
               {Boolean(topic) && (
                 <View style={stores.styles.eventDetails.item}>
