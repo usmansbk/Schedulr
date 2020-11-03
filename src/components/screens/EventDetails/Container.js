@@ -188,10 +188,12 @@ class EventDetails extends React.Component {
                   />
                 </>
               )}
-              <MenuOption
-                text={I18n.get(`MENU${isMuted ? '_unmute' : '_mute'}`)}
-                onSelect={this._handleMute}
-              />
+              {isValid && (
+                <MenuOption
+                  text={I18n.get(`MENU${isMuted ? '_unmute' : '_mute'}`)}
+                  onSelect={this._handleMute}
+                />
+              )}
             </MenuOptions>
           </Menu>
         </Appbar.Header>
