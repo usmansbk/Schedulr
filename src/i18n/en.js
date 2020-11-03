@@ -330,7 +330,7 @@ export default {
     if (addressee) {
       return 'Replying ' + addressee;
     }
-    return 'About this event...';
+    return 'Write a comment...';
   },
   PLACEHOLDER_normal: 'Event',
   PLACEHOLDER_addYourWebsite: 'Add your website',
