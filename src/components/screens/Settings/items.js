@@ -39,4 +39,13 @@ export default [
       },
     ],
   },
+  {
+    title: 'location',
+    data: [
+      {
+        title: 'tagLocation',
+        key: 'tagLocation',
+      },
+    ],
+  },
 ];

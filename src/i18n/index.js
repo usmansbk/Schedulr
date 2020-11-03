@@ -3,9 +3,9 @@ export default (lang) => {
     case 'en':
       return require('./en').default;
     case 'fr':
-      return require('./fr').default;
+      return require('./en').default;
     case 'es':
-      return require('./es').default;
+      return require('./en').default;
     default:
       return require('./en').default;
   }

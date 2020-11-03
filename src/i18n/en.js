@@ -128,6 +128,8 @@ export default {
   SETTINGS_disableAdminComment: 'Disable admin comments',
   SETTINGS_enableMembersComment: 'Enable members comments',
   SETTINGS_disableReplies: 'Disable replies',
+  SETTINGS_locationSectionTitle: 'Location',
+  SETTINGS_tagLocation: 'Tag current location',
 
   REMIND_ME_title: 'Remind me',
   REMIND_ME_five: '5 minutes before',
@@ -336,7 +338,7 @@ export default {
   PLACEHOLDER_searchCities: 'Search cities',
   PLACEHOLDER_description: 'Add info',
   PLACEHOLDER_title: 'Event Title',
-  PLACEHOLDER_untitledEvent: 'No title',
+  PLACEHOLDER_untitledEvent: 'Name of task or event',
   PLACEHOLDER_name: 'Name',
   PLACEHOLDER_email: 'Type your email',
   PLACEHOLDER_password: 'Type your password',
