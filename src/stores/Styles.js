@@ -1604,16 +1604,15 @@ export default class styles {
       contentContainer: {
         backgroundColor: colors.bg,
         flexGrow: 1,
+        paddingHorizontal: 10,
       },
       list: {
         backgroundColor: colors.bg,
-        paddingHorizontal: 12,
       },
       sectionHeader: {
         backgroundColor: colors.light_gray,
         paddingVertical: 5,
         paddingHorizontal: 16,
-        marginHorizontal: 4,
         height: SECTION_HEADER_HEIGHT,
         borderRadius: 8,
         marginTop: 4,
@@ -1678,10 +1677,10 @@ export default class styles {
       },
       separator: {
         height: SEPARATOR_HEIGHT,
+        backgroundColor: colors.light_gray_4,
       },
       itemContainer: {
         height: ITEM_HEIGHT,
-        // backgroundColor: colors.bg,
         justifyContent: 'center',
       },
       itemContent: {
