@@ -384,7 +384,6 @@ export default class styles {
         paddingHorizontal: 10,
         borderRadius: 8,
         alignItems: 'center',
-        elevation: 1,
       },
       buttonContent: {
         backgroundColor: colors.textInput,
@@ -422,8 +421,6 @@ export default class styles {
         fontFamily: 'Bold',
       },
       pickerButton: {
-        elevation: 1,
-        fontFamily: 'SemiBold',
         backgroundColor: colors.textInput,
         borderRadius: 8,
         padding: 8,
@@ -431,8 +428,6 @@ export default class styles {
       },
       buttonText: {
         fontFamily: 'SemiBold',
-        backgroundColor: colors.textInput,
-        borderRadius: 8,
         padding: 8,
         justifyContent: 'space-between',
       },
@@ -531,7 +526,6 @@ export default class styles {
         padding: 4,
         borderRadius: 8,
         paddingHorizontal: 8,
-        elevation: 1,
       },
       input: {
         flex: 1,
