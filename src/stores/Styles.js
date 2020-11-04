@@ -1392,7 +1392,7 @@ export default class styles {
         justifyContent: 'center',
         alignItems: 'center',
         margin: 4,
-        elevation: 2,
+        elevation: 1,
         borderRadius: 8,
         backgroundColor: colors.light_gray,
       },
