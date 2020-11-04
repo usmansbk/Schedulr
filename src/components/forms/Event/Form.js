@@ -364,6 +364,7 @@ class Form extends React.Component {
                   onChangeText={handleChange('description')}
                   onBlur={handleBlur('description')}
                   multiline
+                  numberOfLines={4}
                 />
               </View>
             </ScrollView>

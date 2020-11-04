@@ -108,6 +108,7 @@ class Form extends React.Component {
                   onChangeText={handleChange('bio')}
                   onBlur={handleBlur('bio')}
                   multiline
+                  numberOfLines={4}
                   maxHeight={200}
                   error={errors.bio && touched.bio}
                 />
