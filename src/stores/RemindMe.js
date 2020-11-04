@@ -1,7 +1,7 @@
 import {observable, action} from 'mobx';
 import {persist} from 'mobx-persist';
 import PushNotification from 'react-native-push-notification';
-import {InteractionManager} from 'react-native';
+import {InteractionManager, Platform} from 'react-native';
 import {processLocalNotification} from 'helpers/notification';
 import {decapitalize} from 'lib/utils';
 import {
@@ -42,7 +42,7 @@ PushNotification.configure({
       processLocalNotification(data);
     }
   },
-  requestPermissions: true,
+  requestPermissions: Platform.OS === 'ios',
 });
 
 export default class RemindMe {
