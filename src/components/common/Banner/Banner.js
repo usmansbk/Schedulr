@@ -3,10 +3,10 @@ import {
   TouchableOpacity,
   StyleSheet,
   ImageBackground,
-  View,
+  // View,
 } from 'react-native';
 import Icon from '../Icon';
-import BannerAd from './Ad';
+// import BannerAd from './Ad';
 import env from 'config/env';
 
 const styles = StyleSheet.create({
@@ -27,13 +27,13 @@ const styles = StyleSheet.create({
 export default function Banner({navigateToBanner, id, pictureUrl, isOwner}) {
   const onPress = React.useCallback(() => navigateToBanner(id));
 
-  if (!pictureUrl && !isOwner) {
-    return (
-      <View style={styles.image}>
-        <BannerAd large mediumRect />
-      </View>
-    );
-  }
+  // if (!pictureUrl && !isOwner) {
+  //   return (
+  //     <View style={styles.image}>
+  //       <BannerAd large mediumRect />
+  //     </View>
+  //   );
+  // }
   const source = {uri: pictureUrl || `${env.UNSPLASH_DAILY}`};
   return (
     <TouchableOpacity style={styles.container} onPress={onPress}>

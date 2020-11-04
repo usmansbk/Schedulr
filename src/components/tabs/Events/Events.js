@@ -3,7 +3,7 @@ import uuidv5 from 'uuid/v5';
 import {withNavigationFocus} from 'react-navigation';
 import List from 'components/lists/Events';
 import FAB from 'components/common/Fab';
-import {mergeEvents, injectAds} from 'lib/utils';
+import {mergeEvents} from 'lib/utils';
 import {InteractionManager} from 'react-native';
 
 class Events extends React.Component {
@@ -20,7 +20,7 @@ class Events extends React.Component {
     ) {
       return {
         data: props.data,
-        events: injectAds(mergeEvents(props.data, props.calendarEvents)),
+        events: mergeEvents(props.data, props.calendarEvents),
         calendarEvents: props.calendarEvents,
       };
     }

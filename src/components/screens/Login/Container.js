@@ -1,7 +1,6 @@
 import React from 'react';
 import uuidv5 from 'uuid/v5';
 import {Auth, Hub, I18n} from 'aws-amplify';
-import crashlytics from '@react-native-firebase/crashlytics';
 import {inject, observer} from 'mobx-react';
 import {withNavigationFocus} from 'react-navigation';
 import {withApollo} from 'react-apollo';
@@ -108,7 +107,6 @@ class Container extends React.Component {
           this.props.stores.appState.setState(user.state || {});
           this.props.stores.appState.setUserId(email);
           this.props.stores.settings.setUserPreference(user.preference);
-          crashlytics().setAttributes({email});
           logger.log('sign-in');
           this.props.navigation.navigate('App');
         } catch (error) {

@@ -10,8 +10,6 @@ buildscript {
 apply plugin: 'com.onesignal.androidsdk.onesignal-gradle-plugin'
 
 apply plugin: "com.android.application"
-apply plugin: 'com.google.gms.google-services'
-apply plugin: 'com.google.firebase.crashlytics'
 project.ext.vectoricons = [
     iconFontNames: [ 'AntDesign.ttf' ] // Name of the font files you want to copy
 ]

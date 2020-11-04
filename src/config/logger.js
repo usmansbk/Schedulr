@@ -1,5 +1,3 @@
-import crashlytics from '@react-native-firebase/crashlytics';
-
 function logError(error) {
   let e = error;
   if (!(error instanceof Error)) {
@@ -9,12 +7,10 @@ function logError(error) {
   if (__DEV__) {
     devLog(e.message);
   }
-  crashlytics().recordError(e);
 }
 
 function log(message) {
   if (__DEV__ && message) {
-    crashlytics().log(message);
     devLog(message);
   }
 }

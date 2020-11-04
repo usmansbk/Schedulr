@@ -14,7 +14,6 @@ import Item from './Item';
 import {isPastDate, tick} from 'lib/time';
 import {eventsChanged} from 'lib/utils';
 import {EventSectionGenerator} from 'lib/calendar';
-import Banner from 'components/common/Banner/Ad';
 import {events} from 'lib/constants';
 
 const {
@@ -122,10 +121,6 @@ class List extends React.Component {
       isOwner,
       isOffline,
     } = item;
-
-    if (__typename === 'AdMob') {
-      return <Banner large />;
-    }
 
     return (
       <Item

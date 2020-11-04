@@ -5,7 +5,6 @@ import Item from './Item';
 import Separator from './Separator';
 import Footer from './Footer';
 import Empty from './Empty';
-import Banner from 'components/common/Banner/Ad';
 import {sortSchedules} from 'lib/utils';
 import {schedules, SCHEDULE_CLOSED, BANNER} from 'lib/constants';
 import getImageUrl from 'helpers/getImageUrl';
@@ -90,7 +89,6 @@ class List extends Component {
 
     return (
       <>
-        {schedules.length > 5 && <Banner />}
         <FlatList
           style={stores.styles.schedulesList.list}
           extraData={stores.appState.mutedSchedules.length || schedules.length}
