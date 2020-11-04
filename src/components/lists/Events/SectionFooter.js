@@ -10,7 +10,7 @@ export default inject('stores')(
     return (
       <View style={stores.styles.eventsList.sectionFooter}>
         <Text style={stores.styles.eventsList.footerText}>
-          {I18n.get(`EVENTS_SECTION_FOOTER_${isPast ? 'PAST' : 'CURRENT'}`)}
+          {I18n.get(`EVENTS_SECTION_FOOTER_${isPast ? 'PAST' : 'FUTURE'}`)}
         </Text>
       </View>
     );

@@ -52,7 +52,7 @@ export default {
   EVENT_noDescription: 'No description',
   EVENTS_SECTIONLIST_noMoreEvents: 'No more events',
   EVENTS_SECTIONLIST_noPrevEvents: 'No previous events',
-  EVENTS_SECTION_FOOTER_CURRENT: 'No upcoming events',
+  EVENTS_SECTION_FOOTER_FUTURE: 'No upcoming events',
   EVENTS_SECTION_FOOTER_PAST: 'No events',
   EVENTS_SECTION_ITEM_COUNT: (count) => (count ? `${count} items` : ''),
   EVENT_interested: 'Interested',
