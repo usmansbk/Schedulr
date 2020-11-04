@@ -23,7 +23,7 @@ export default inject('stores')(
                 ? props.stores.theme.colors.gray
                 : props.stores.theme.colors.black,
             },
-            props.stores.styles.datePicker.pickerButton,
+            props.stores.styles.datePicker.buttonText,
           ]}>
           {props.children}
         </Text>

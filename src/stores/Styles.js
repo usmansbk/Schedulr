@@ -376,7 +376,6 @@ export default class styles {
       },
       text: {
         fontFamily: 'SemiBold',
-        flex: 1,
       },
       button: {
         flexDirection: 'row',
@@ -385,6 +384,10 @@ export default class styles {
         paddingHorizontal: 10,
         borderRadius: 8,
         alignItems: 'center',
+        elevation: 1,
+      },
+      buttonContent: {
+        backgroundColor: colors.textInput,
       },
       container: {
         flex: 1,
@@ -419,6 +422,21 @@ export default class styles {
         fontFamily: 'Bold',
       },
       pickerButton: {
+        elevation: 1,
+        fontFamily: 'SemiBold',
+        backgroundColor: colors.textInput,
+        borderRadius: 8,
+        padding: 8,
+        justifyContent: 'space-between',
+      },
+      buttonText: {
+        fontFamily: 'SemiBold',
+        backgroundColor: colors.textInput,
+        borderRadius: 8,
+        padding: 8,
+        justifyContent: 'space-between',
+      },
+      pickerButtonText: {
         fontFamily: 'SemiBold',
         backgroundColor: colors.textInput,
         borderRadius: 8,
@@ -513,6 +531,7 @@ export default class styles {
         padding: 4,
         borderRadius: 8,
         paddingHorizontal: 8,
+        elevation: 1,
       },
       input: {
         flex: 1,
