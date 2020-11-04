@@ -6,7 +6,6 @@ import {I18n} from 'aws-amplify';
 
 export default inject('stores')(
   observer(({section, stores, isPast}) => {
-    console.log(isPast);
     if (section.data.length) return null;
     return (
       <View style={stores.styles.eventsList.sectionFooter}>
