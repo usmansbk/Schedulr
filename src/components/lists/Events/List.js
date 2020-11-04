@@ -98,7 +98,9 @@ class List extends React.Component {
     <SectionHeader onPress={this._onPressSectionHeader} section={section} />
   );
 
-  _renderSectionFooter = ({section}) => <SectionFooter section={section} />;
+  _renderSectionFooter = ({section}) => (
+    <SectionFooter section={section} isPast={isPastDate(section.title, true)} />
+  );
 
   _renderItem = ({item, section}) => {
     const {
@@ -218,9 +220,6 @@ class List extends React.Component {
         const result = this.state.nextIterator.next(this.state.afterDate);
         if (!result.done) {
           const {items, nextToken: afterDate} = result.value;
-          // const length = this.state.sections.length;
-          // const sections =
-          //   length < 20 ? this.state.sections.concat(items) : items;
           const sections = this.state.sections.concat(items);
           this.setState(
             {
@@ -321,7 +320,7 @@ class List extends React.Component {
         stickySectionHeadersEnabled
         sections={sections}
         extraData={stores.appState.extraData}
-        // ListHeaderComponent={this._renderHeader}
+        ListHeaderComponent={this._renderHeader}
         ListEmptyComponent={this._renderEmptyList}
         ItemSeparatorComponent={this._renderSeparator}
         refreshControl={
