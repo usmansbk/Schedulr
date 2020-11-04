@@ -321,7 +321,7 @@ class List extends React.Component {
         stickySectionHeadersEnabled
         sections={sections}
         extraData={stores.appState.extraData}
-        ListHeaderComponent={this._renderHeader}
+        // ListHeaderComponent={this._renderHeader}
         ListEmptyComponent={this._renderEmptyList}
         ItemSeparatorComponent={this._renderSeparator}
         refreshControl={
