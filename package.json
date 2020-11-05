@@ -69,7 +69,7 @@
     "react-native-splash-screen": "^3.2.0",
     "react-native-vector-icons": "^7.1.0",
     "react-navigation": "^4.4.3",
-    "react-navigation-stack": "^2.10.0",
+    "react-navigation-stack": "^2.10.1",
     "react-navigation-tabs": "^2.10.1",
     "sectionlist-get-itemlayout": "^1.0.8",
     "shortid": "^2.2.16",
