@@ -105,6 +105,7 @@ class Form extends React.Component {
                   placeholder={I18n.get('PLACEHOLDER_description')}
                   value={values.description}
                   multiline
+                  numberOfLines={3}
                   maxHeight={120}
                   onChangeText={handleChange('description')}
                   onBlur={handleBlur('description')}
