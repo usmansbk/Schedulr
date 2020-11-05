@@ -6,6 +6,7 @@ import {I18n} from 'aws-amplify';
 import Fab from 'components/common/Fab';
 import Error from 'components/common/Error';
 import Suspense from 'components/common/Suspense';
+import QuickForm from 'components/actionsheet/QuickEvent';
 import {SCHEDULE_CLOSED} from 'lib/constants';
 import List from './ListHoc';
 import {handleShareSchedule} from 'helpers/share';
@@ -44,6 +45,13 @@ class Schedule extends React.Component {
       eventScheduleId: id,
       locked: true,
     });
+  };
+
+  _quickFormRef = (ref) => (this.quickForm = ref);
+
+  _openQuickForm = () => {
+    console.log(this.quickForm);
+    this.quickForm.open();
   };
 
   _handleShare = ({id, name}) => {
@@ -130,8 +138,9 @@ class Schedule extends React.Component {
         {!(Boolean(error) && this.events.length) &&
           isOwner &&
           status !== SCHEDULE_CLOSED && (
-            <Fab icon="plus" onPress={this._navigateToNewEvent} />
+            <Fab icon="plus" onPress={this._openQuickForm} />
           )}
+        <QuickForm ref={this._quickFormRef} />
       </>
     );
   }
