@@ -6,7 +6,6 @@ function* EventSectionGenerator(events, previous) {
   yield* EventInfiniteSectionGenerator(events, previous);
 }
 
-// const cache = {};
 function process(events, date /*, previous */) {
   const data = [];
   events.forEach((event) => {
@@ -15,22 +14,6 @@ function process(events, date /*, previous */) {
       const eventFromDate = update(event, recur.next());
       data.push(eventFromDate);
     }
-    // const key = `${previous}-${event.id}-${event.isOffline}-${event.updatedAt}-${date}`;
-    // const cached = cache[key];
-    // if (cached) {
-    //   if (typeof cached !== 'string') {
-    //     data.push(cached);
-    //   }
-    // } else {
-    //   const recur = repeat(event).from(date);
-    //   if (recur.matches(date)) {
-    //     const eventFromDate = update(event, recur.next());
-    //     data.push(eventFromDate);
-    //     cache[key] = eventFromDate;
-    //   } else {
-    //     cache[key] = '__no__match__';
-    //   }
-    // }
   });
   data.sort((a, b) => diff(a.startAt, b.startAt));
   return data;
