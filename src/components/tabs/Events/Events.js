@@ -60,6 +60,7 @@ class Events extends React.Component {
       <>
         <List
           isAuth
+          hideHeader
           events={this.state.events}
           loading={this.props.loading}
           fetchMore={this._sync}

@@ -66,7 +66,9 @@ class List extends React.Component {
   _renderHeader = () =>
     this.state.sections.length && this.props.isAuth ? (
       <Header
-        hide={this.props.error || !this.state.events.length}
+        hide={
+          this.props.hideHeader || this.props.error || !this.state.events.length
+        }
         beforeDate={this.state.beforeDate}
         loading={this.state.loadingPrev}
         onPress={this._onLoadPrevious}
