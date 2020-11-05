@@ -149,7 +149,7 @@ export default {
   HELP_terms: 'Terms of Service',
   HELP_appVersion: 'App version',
   HELP_build: 'Build version',
-  HELP_reminder: 'Reminder not working',
+  HELP_reminder: 'Reminder not working?',
   HELP_privacy: 'Privacy Policy',
 
   BUTTON_leave: 'Leave',

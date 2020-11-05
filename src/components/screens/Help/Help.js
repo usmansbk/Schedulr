@@ -32,6 +32,11 @@ export default inject('stores')(
         />
         <Divider />
         <List.Item
+          title={I18n.get('HELP_reminder')}
+          onPress={() => props.onPressItem('reminder')}
+        />
+        <Divider />
+        <List.Item
           title={I18n.get('HELP_privacy')}
           onPress={() => props.onPressItem('privacy')}
         />
@@ -39,11 +44,6 @@ export default inject('stores')(
         <List.Item
           title={I18n.get('HELP_terms')}
           onPress={() => props.onPressItem('terms')}
-        />
-        <Divider />
-        <List.Item
-          title={I18n.get('HELP_reminder')}
-          onPress={() => props.onPressItem('reminder')}
         />
         <Divider />
         <List.Item title={I18n.get('HELP_build')} description={env.BUILD} />
