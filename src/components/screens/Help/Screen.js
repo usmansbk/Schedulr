@@ -45,6 +45,9 @@ export default class Screen extends React.Component {
       case 'privacy':
         url = env.PRIVACY_URL;
         break;
+      case 'reminder':
+        url = env.DONT_KILL_MY_APP;
+        break;
       default:
         url = env.APP_URL;
         break;

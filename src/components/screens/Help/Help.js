@@ -41,6 +41,11 @@ export default inject('stores')(
           onPress={() => props.onPressItem('terms')}
         />
         <Divider />
+        <List.Item
+          title={I18n.get('HELP_reminder')}
+          onPress={() => props.onPressItem('reminder')}
+        />
+        <Divider />
         <List.Item title={I18n.get('HELP_build')} description={env.BUILD} />
       </ScrollView>
     </>

@@ -21,4 +21,5 @@ export default {
   UNSPLASH: 'https://source.unsplash.com/random',
   // UNSPLASH_DAILY: 'https://source.unsplash.com/daily',
   UNSPLASH_DAILY: 'https://source.unsplash.com/collection/58359918',
+  DONT_KILL_MY_APP: 'https://dontkillmyapp.com/',
 };
