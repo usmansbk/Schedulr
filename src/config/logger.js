@@ -1,10 +1,10 @@
 function logError(error) {
-  let e = error;
-  if (!(error instanceof Error)) {
-    if (typeof error === 'object') e = JSON.stringify(error);
-    e = new Error(e);
-  }
   if (__DEV__) {
+    let e = error;
+    if (!(error instanceof Error)) {
+      if (typeof error === 'object') e = JSON.stringify(error);
+      e = new Error(e);
+    }
     devLog(e.message);
   }
 }
