@@ -8979,10 +8979,10 @@ react-native-open-maps@^0.3.5:
   dependencies:
     query-string "^6.1.0"
 
-react-native-paper@^4.3.0:
-  version "4.3.0"
-  resolved "https://registry.yarnpkg.com/react-native-paper/-/react-native-paper-4.3.0.tgz#07e3e2fa60bbbf898179f10dc74b985a22682152"
-  integrity sha512-mT8nw8ultKak42CrjRLezGLKIrgzFMp/qvNk3jIVsZ/chrxefcEKaSaxePWthcrvL/kaqhk6HSZtW7Ug+QLmhg==
+react-native-paper@^4.3.1:
+  version "4.3.1"
+  resolved "https://registry.yarnpkg.com/react-native-paper/-/react-native-paper-4.3.1.tgz#2c230a29b077fe0a89c2d192c22f91f300311b27"
+  integrity sha512-3UYPtTJrRZz0OJFFZcD/Nzd7oIUBSiZkavLtPch+FzOSGEezvL0nV9P2VPvGHjFidel0VmDAMptX95UY3qSzPw==
   dependencies:
     "@callstack/react-theme-provider" "^3.0.5"
     color "^3.1.2"
@@ -9027,10 +9027,10 @@ react-native-screens@^2.13.0:
   resolved "https://registry.yarnpkg.com/react-native-screens/-/react-native-screens-2.13.0.tgz#6360dfd65d51f73479bea14373a8e289cd58a327"
   integrity sha512-B0kPYq5ZK/2G7pPhcAFLflDfm+HXktdVEeLFHnP/+oPnao+b28hXsOBCi0IgK72gxbdPtnpZME8KONRIKOBDug==
 
-react-native-share@^4.0.4:
-  version "4.0.4"
-  resolved "https://registry.yarnpkg.com/react-native-share/-/react-native-share-4.0.4.tgz#6087c3e91f7280be3610cc44953344ae6957aa47"
-  integrity sha512-hBC97nkUaa9Mg6SZoVUiGG68wb211dgOEkeCHU31kIMvisyQNOEkVfY8ZXerzjSdXqItA+RPNy6PYSg6gH1FmQ==
+react-native-share@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/react-native-share/-/react-native-share-4.1.0.tgz#78083d03c236849342decd0ecbc0bb9b77f1eb72"
+  integrity sha512-ytkgi9UsjQviKgWKuniApomB3opjydxPKnrApBF+SPMnQFVVDlH5EyHR6rK+qxMtIAcspb7ylNPj3KzgO+YCrg==
 
 react-native-snackbar@^2.2.4:
   version "2.2.4"
