@@ -447,8 +447,7 @@ export default {
   ],
   topics: ['Agenda', 'Timetable', 'List'],
   personalSchedule: {
-    name: 'Personal',
-    description: 'Appointments.',
+    name: 'Personal reminder',
     isPublic: false,
   },
   timeLabels: {
