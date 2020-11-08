@@ -19,7 +19,9 @@ const styles = StyleSheet.create({
 
 export default function Banner({navigateToBanner, id, pictureUrl, isOwner}) {
   const onPress = React.useCallback(() => navigateToBanner(id));
-  const source = {uri: pictureUrl || `${env.UNSPLASH_DAILY}`};
+  const source = pictureUrl
+    ? {uri: pictureUrl}
+    : require('assets/placeholder.png');
 
   return (
     <TouchableOpacity style={styles.container} onPress={onPress}>
