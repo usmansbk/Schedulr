@@ -8859,10 +8859,10 @@ react-lifecycles-compat@^3.0.4:
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
   integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
 
-react-native-calendar-events@^2.1.1:
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/react-native-calendar-events/-/react-native-calendar-events-2.1.1.tgz#e96518ae4b72c94cbbebb84fbf79251720c4fafe"
-  integrity sha512-8imYJD7XmadUCoxzo5G7QsWu/Zfg2LWLuwDvu3h/k507J6lObR1EMiDKdsy8UpnkNb7nBW+Tsuc0LZPFQj/n/A==
+react-native-calendar-events@^2.1.2:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/react-native-calendar-events/-/react-native-calendar-events-2.1.2.tgz#313fec7e904563c053d2b50d92336d30af48f9c8"
+  integrity sha512-E5JzNNwnLnwzpAsV3i80AjdEwHEdWCe43liZ776WX5X09QNUatwK8wddaX/s84HfcghG0UERuUmfwId8d0weXA==
 
 react-native-custom-picker@^0.4.0:
   version "0.4.0"
