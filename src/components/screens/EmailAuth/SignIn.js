@@ -25,6 +25,11 @@ function SignIn(props) {
         props.stores.appState.setLoginState('Email');
         await Auth.signIn(input.email, input.password);
       } catch (error) {
+        if (error?.code === 'UserNotConfirmedException') {
+          props.navigation.navigate('Confirm', {
+            email: formik.values.email,
+          });
+        }
         console.log(error);
       }
       actions.setSubmitting(false);
@@ -50,7 +55,7 @@ function SignIn(props) {
     },
     row: {
       flexDirection: 'row',
-      justifyContent: 'space-between',
+      justifyContent: 'flex-end',
     },
   });
 
@@ -92,17 +97,6 @@ function SignIn(props) {
           error={formik.touched.password && formik.errors.password}
         />
         <View style={styles.row}>
-          <Button
-            uppercase={false}
-            onPress={() =>
-              props.navigation.navigate('Confirm', {
-                email: formik.values.email,
-              })
-            }
-            style={styles.field}
-            contentStyle={styles.button}>
-            {I18n.get('BUTTON_verify')}
-          </Button>
           <Button
             uppercase={false}
             onPress={() =>
