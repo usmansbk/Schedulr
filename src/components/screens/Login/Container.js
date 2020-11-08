@@ -32,6 +32,7 @@ class Container extends React.Component {
     switch (event) {
       case 'signIn_failure':
         snackbar(I18n.get('ERROR_signInFailure'), true);
+        this.props.stores.appState.setLoginState(null);
         break;
       case 'signIn':
         try {

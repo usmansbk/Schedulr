@@ -110,7 +110,9 @@ function SignIn(props) {
         </View>
         <Button
           disabled={formik.isSubmitting}
-          loading={formik.isSubmitting}
+          loading={
+            formik.isSubmitting || props.stores.appState.loggingIn === 'Email'
+          }
           onPress={formik.handleSubmit}
           uppercase={false}
           style={styles.field}
