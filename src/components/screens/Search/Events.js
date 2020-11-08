@@ -82,7 +82,7 @@ const ListHoc = compose(
         // limit: SEARCH_LIMIT,
         nextToken: null,
       },
-      onCompleted: (result) => console.log(result),
+      // onCompleted: (result) => console.log(result),
     }),
     props: ({data, ownProps}) => ({
       loading:

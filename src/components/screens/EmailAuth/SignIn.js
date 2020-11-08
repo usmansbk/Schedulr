@@ -30,7 +30,6 @@ function SignIn(props) {
             email: formik.values.email,
           });
         }
-        console.log(error);
       }
       actions.setSubmitting(false);
     },
