@@ -17,6 +17,7 @@ class Item extends React.Component {
   shouldComponentUpdate = (nextProps) => {
     return (
       this.props.updatedAt !== nextProps.updatedAt ||
+      this.props.isBookmarked !== nextProps.isBookmarked ||
       this.props.bookmarksCount !== nextProps.bookmarksCount
     );
   };
