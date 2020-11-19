@@ -29,7 +29,7 @@ import EventTypePicker from './EventType';
 import recurrence from './recurrence';
 import schema from './schema';
 
-const MIN_UNTIL_DATE = 1;
+const MIN_UNTIL_DATE = 2;
 
 class Form extends React.Component {
   state = {
@@ -270,8 +270,17 @@ class Form extends React.Component {
                         if (itemValue === recurrence[0].id) {
                           setFieldValue('until', null);
                           setFieldValue('forever', false);
-                        } else if (!values.forever) {
-                          setFieldValue('forever', true);
+                        } else if (!values.until) {
+                          const unit = getTimeUnit(values.recurrence);
+                          setFieldValue(
+                            'until',
+                            toISOString(
+                              endOf(
+                                add(values.startAt, MIN_UNTIL_DATE, unit),
+                                'day',
+                              ),
+                            ),
+                          );
                         }
                       }}
                       items={recurrence.map((recur) => ({
@@ -296,7 +305,6 @@ class Form extends React.Component {
                       <Switch
                         value={values.forever}
                         onValueChange={(value) => {
-                          console.log(value);
                           const forever = values.forever;
                           setFieldValue('forever', value);
                           if (!forever) {
