@@ -1,4 +1,5 @@
-import {capitalize} from 'lib/utils';
+import {ONE_TIME_EVENT} from 'lib/constants';
+import {capitalize, decapitalize} from 'lib/utils';
 
 const DATE_FORMAT = 'MMMM DD, YYYY';
 const DAY_FORMAT = 'dddd';
@@ -61,7 +62,11 @@ export default {
   EVENT_unbookmark: "I'm not interested",
   EVENT_mute: 'Mute this event',
   EVENT_unmute: 'Unmute this event',
-
+  EVENT_caption: ({recurrence, category}) => {
+    return `${
+      recurrence === ONE_TIME_EVENT ? '' : decapitalize(recurrence) + ' '
+    } ${category}`;
+  },
   BOARD_emptyList: "You don't belong to any group",
   BOARD_emptyListCaption: 'Join or create a group',
 

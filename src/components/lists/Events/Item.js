@@ -54,6 +54,7 @@ class Item extends React.Component {
       isCancelled,
       cancelledDates,
       category,
+      caption,
     } = this.props;
 
     const pictureUrl = banner && getImageUrl(banner);
@@ -104,7 +105,7 @@ class Item extends React.Component {
               )}
             </View>
             <Text style={styles.time}>{time}</Text>
-            {!!category && <Caption>{category}</Caption>}
+            {!!category && <Caption>{caption || category}</Caption>}
           </View>
         </View>
       </TouchableOpacity>

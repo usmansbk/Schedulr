@@ -2,6 +2,7 @@ import React from 'react';
 import {RefreshControl} from 'react-native';
 import {SectionList} from 'react-navigation';
 import {inject, observer} from 'mobx-react';
+import {I18n} from 'aws-amplify';
 import uuidv5 from 'uuid/v5';
 import sectionListGetItemLayout from 'sectionlist-get-itemlayout';
 import Header from './Header';
@@ -141,6 +142,7 @@ class List extends React.Component {
         banner={banner}
         allDay={allDay}
         address={venue}
+        caption={I18n.get('EVENT_caption')({recurrence, category})}
         isMuted={this.props.stores.appState.isEventMuted(id, schedule.id)}
         eventScheduleId={schedule && schedule.id}
         isBookmarked={isBookmarked}
