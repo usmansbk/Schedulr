@@ -10,7 +10,7 @@ import client from 'config/client';
 import gql from 'graphql-tag';
 
 const SYSTEM_THEME = 'auto';
-const LIGHT_THEME = 'light';
+// const LIGHT_THEME = 'light';
 const DARK_THEME = 'dark';
 
 function isDark() {
@@ -41,7 +41,7 @@ function updateUserPreference(optimisticResponse) {
 
 export default class SettingsState {
   @observable currentLanguage = 'en';
-  @persist @observable theme = LIGHT_THEME;
+  @persist @observable theme = SYSTEM_THEME;
   @persist @observable sound = true;
   @persist @observable vibrate = true;
   @persist @observable disableReminders = false;
