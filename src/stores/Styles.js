@@ -425,11 +425,13 @@ export default class styles {
         borderRadius: 8,
         padding: 8,
         justifyContent: 'space-between',
+        alignItems: 'center',
       },
       buttonText: {
         fontFamily: 'SemiBold',
         padding: 8,
         justifyContent: 'space-between',
+        // height: dp(48),
       },
       pickerButtonText: {
         fontFamily: 'SemiBold',
@@ -445,15 +447,14 @@ export default class styles {
       },
       dateButton: {
         flex: 1,
-        height: dp(48),
         alignItems: 'flex-start',
         justifyContent: 'center',
-        marginRight: 8,
       },
       timeButton: {
         borderColor: colors.placeholder,
-        height: dp(48),
+        alignItems: 'center',
         justifyContent: 'center',
+        marginLeft: 8,
       },
     });
   }
