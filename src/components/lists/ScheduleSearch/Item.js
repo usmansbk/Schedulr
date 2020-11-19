@@ -37,46 +37,48 @@ class Item extends React.Component {
     const isAuth = (isPublic || isFollowing) && !isOwner;
 
     return (
-      <TouchableOpacity style={styles.itemContainer} onPress={this._onPress}>
-        <View style={styles.itemContent}>
-          <UserAvatar
-            size={AVATAR_SIZE}
-            name={name}
-            style={styles.itemAvatar}
-            src={pictureUrl}
-            onPress={this._onPress}
-          />
-          {isClosed && (
-            <Icon
-              style={styles.rightIcon}
-              name={isClosed ? 'archive' : 'cloud-off'}
-              size={16}
-              color={stores.theme.colors.light_gray_3}
+      <View style={styles.itemContainer}>
+        <TouchableOpacity onPress={this._onPress}>
+          <View style={styles.itemContent}>
+            <UserAvatar
+              size={AVATAR_SIZE}
+              name={name}
+              style={styles.itemAvatar}
+              src={pictureUrl}
+              onPress={this._onPress}
             />
-          )}
-          <View style={styles.itemBody}>
-            <View style={styles.nameRow}>
-              <Text
-                numberOfLines={1}
-                ellipsizeMode="tail"
-                style={styles.itemName}>
-                {name}
-              </Text>
-            </View>
-            {Boolean(description || topic) && (
-              <Caption
-                numberOfLines={1}
-                ellipsizeMode="tail"
-                style={styles.itemDescription}>
-                {topic || description}
-              </Caption>
+            {isClosed && (
+              <Icon
+                style={styles.rightIcon}
+                name={isClosed ? 'archive' : 'cloud-off'}
+                size={16}
+                color={stores.theme.colors.light_gray_3}
+              />
             )}
+            <View style={styles.itemBody}>
+              <View style={styles.nameRow}>
+                <Text
+                  numberOfLines={1}
+                  ellipsizeMode="tail"
+                  style={styles.itemName}>
+                  {name}
+                </Text>
+              </View>
+              {Boolean(description || topic) && (
+                <Caption
+                  numberOfLines={1}
+                  ellipsizeMode="tail"
+                  style={styles.itemDescription}>
+                  {topic || description}
+                </Caption>
+              )}
+            </View>
           </View>
-          {isAuth && (
-            <FollowButton id={id} name={name} isFollowing={isFollowing} small />
-          )}
-        </View>
-      </TouchableOpacity>
+        </TouchableOpacity>
+        {isAuth && (
+          <FollowButton id={id} name={name} isFollowing={isFollowing} small />
+        )}
+      </View>
     );
   }
 }

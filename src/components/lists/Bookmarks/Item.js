@@ -5,7 +5,7 @@ import {inject, observer} from 'mobx-react';
 import Avatar from 'components/common/UserAvatar';
 import BookmarkButton from 'components/common/BookmarkButton';
 import {bookmarkedEvents} from 'lib/constants';
-import {captionDetails, getStatus} from 'lib/formatEvent';
+import {captionDetails} from 'lib/formatEvent';
 
 const {AVATAR_SIZE} = bookmarkedEvents;
 
