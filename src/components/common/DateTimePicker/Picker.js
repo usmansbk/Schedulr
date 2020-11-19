@@ -9,7 +9,7 @@ export default inject('stores')(
     <TouchableOpacity
       disabled={props.disabled}
       onPress={props.onPress}
-      style={[props.stores.styles.datePicker.pickerButton]}>
+      style={[props.stores.styles.datePicker.pickerButton, props.style]}>
       <View style={props.stores.styles.datePicker.buttonContent}>
         <Icon
           name={props.icon}

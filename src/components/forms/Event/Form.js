@@ -187,7 +187,7 @@ class Form extends React.Component {
                       {I18n.get('EVENT_FORM_from')}
                     </Text>
                     <DateTimePicker
-                      noMin
+                      minimumDate={toDate()}
                       disabled={values.allDay}
                       value={values.startAt}
                       hideTime={values.allDay}
@@ -216,7 +216,7 @@ class Form extends React.Component {
                       {I18n.get('EVENT_FORM_to')}
                     </Text>
                     <DateTimePicker
-                      min={toDate()}
+                      minimumDate={toDate()}
                       noMin
                       value={values.endAt}
                       disabled={values.allDay}
@@ -273,13 +273,6 @@ class Form extends React.Component {
                           setFieldValue('forever', false);
                         } else if (!values.forever) {
                           setFieldValue('forever', true);
-                          // const unit = getTimeUnit(itemValue);
-                          // setFieldValue(
-                          //   'until',
-                          //   toISOString(
-                          //     endOf(add(values.startAt, MIN_UNTIL_DATE, unit)),
-                          //   ),
-                          // );
                         }
                       }}
                       items={recurrence.map((recur) => ({
@@ -304,7 +297,9 @@ class Form extends React.Component {
                       <Switch
                         value={values.forever}
                         onValueChange={(value) => {
+                          console.log(value);
                           const forever = values.forever;
+                          setFieldValue('forever', value);
                           if (!forever) {
                             setFieldValue('until', null);
                           } else {
@@ -329,7 +324,7 @@ class Form extends React.Component {
                         {I18n.get('EVENT_FORM_repeatUntil')}
                       </Text>
                       <DateTimePicker
-                        minDate={toDate()}
+                        minimumDate={toDate()}
                         value={values.until}
                         onValueChange={handleChange('until')}
                         hideTime

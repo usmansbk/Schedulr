@@ -446,7 +446,9 @@ export default class styles {
       dateButton: {
         flex: 1,
         height: dp(48),
+        alignItems: 'flex-start',
         justifyContent: 'center',
+        marginRight: 8,
       },
       timeButton: {
         borderColor: colors.placeholder,

@@ -59,7 +59,7 @@ class List extends React.Component {
   UNSAFE_componentWillReceiveProps = (nextProps) =>
     this._processEvents(nextProps.events);
 
-  componentDidMount = () => this._processEvents(this.props.events);
+  componentDidMount = () => this._processEvents(this.props.events, true);
 
   _keyExtractor = (item) => item.id;
 

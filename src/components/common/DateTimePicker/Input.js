@@ -46,39 +46,41 @@ class Input extends React.Component {
   };
 
   render() {
-    const {disabled, noMin, stores, hideTime} = this.props;
+    const {disabled, minimumDate, stores, hideTime} = this.props;
 
     const value = this.props.value || date();
     const styles = stores.styles.datePicker;
 
     return (
-      <View style={styles.date}>
-        <Button
-          icon="calendar"
-          disabled={disabled}
-          style={styles.dateButton}
-          onPress={this._datePicker}>
-          {this._formatDate(value)}
-        </Button>
-        {!hideTime && (
+      <>
+        <View style={styles.date}>
           <Button
-            icon="clock"
+            icon="calendar"
             disabled={disabled}
-            style={styles.timeButton}
-            onPress={this._timePicker}>
-            {this._formatTime(value)}
+            style={styles.dateButton}
+            onPress={this._datePicker}>
+            {this._formatDate(value)}
           </Button>
-        )}
+          {!hideTime && (
+            <Button
+              icon="clock"
+              disabled={disabled}
+              style={styles.timeButton}
+              onPress={this._timePicker}>
+              {this._formatTime(value)}
+            </Button>
+          )}
+        </View>
         {this.state.showPicker && (
           <DateTimePicker
             mode={this.state.mode}
             value={toDate(value)}
-            minimumDate={noMin ? undefined : toDate(value)}
+            minimumDate={minimumDate}
             onChange={this._handleChange}
             is24Hour={false}
           />
         )}
-      </View>
+      </>
     );
   }
 }
