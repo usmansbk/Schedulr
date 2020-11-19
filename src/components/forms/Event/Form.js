@@ -188,7 +188,6 @@ class Form extends React.Component {
                     </Text>
                     <DateTimePicker
                       minimumDate={toDate()}
-                      disabled={values.allDay}
                       value={values.startAt}
                       hideTime={values.allDay}
                       onValueChange={handleChange('startAt')}
@@ -211,30 +210,31 @@ class Form extends React.Component {
                       }}
                     />
                   </View>
-                  <View style={styles.pickerSpacing}>
-                    <Text style={styles.radioText}>
-                      {I18n.get('EVENT_FORM_to')}
-                    </Text>
-                    <DateTimePicker
-                      minimumDate={toDate()}
-                      noMin
-                      value={values.endAt}
-                      disabled={values.allDay}
-                      hideTime={values.allDay}
-                      onValueChange={handleChange('endAt')}
-                      onDateChange={(value) => {
-                        const prevStartAt = date(values.startAt);
-                        const prevEndAt = date(values.endAt);
-                        if (isAfter(prevStartAt, date(value))) {
-                          const duration = diff(prevEndAt, prevStartAt);
-                          const startAt = toISOString(
-                            subtractDuration(value, duration),
-                          );
-                          setFieldValue('startAt', startAt);
-                        }
-                      }}
-                    />
-                  </View>
+                  {!values.allDay && (
+                    <View style={styles.pickerSpacing}>
+                      <Text style={styles.radioText}>
+                        {I18n.get('EVENT_FORM_to')}
+                      </Text>
+                      <DateTimePicker
+                        minimumDate={toDate()}
+                        noMin
+                        value={values.endAt}
+                        hideTime={values.allDay}
+                        onValueChange={handleChange('endAt')}
+                        onDateChange={(value) => {
+                          const prevStartAt = date(values.startAt);
+                          const prevEndAt = date(values.endAt);
+                          if (isAfter(prevStartAt, date(value))) {
+                            const duration = diff(prevEndAt, prevStartAt);
+                            const startAt = toISOString(
+                              subtractDuration(value, duration),
+                            );
+                            setFieldValue('startAt', startAt);
+                          }
+                        }}
+                      />
+                    </View>
+                  )}
                   <View style={[styles.radio, styles.pickerSpacing]}>
                     <Switch
                       textStyle={styles.radioText}
