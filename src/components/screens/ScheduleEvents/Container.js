@@ -1,4 +1,5 @@
 import React from 'react';
+import uuidv5 from 'uuid/v5';
 import {inject, observer} from 'mobx-react';
 import {Appbar} from 'react-native-paper';
 import {I18n} from 'aws-amplify';
@@ -9,6 +10,7 @@ import List from 'components/lists/Bookmarks';
 import Suspense from 'components/common/Suspense';
 import Fab from 'components/common/Fab';
 import {SCHEDULE_CLOSED} from 'lib/constants';
+import FollowButton from 'components/common/FollowButton';
 
 class ScheduleEvents extends React.Component {
   state = {
@@ -28,6 +30,11 @@ class ScheduleEvents extends React.Component {
       eventScheduleId: id,
       locked: true,
     });
+  };
+
+  _navigateToScheduleInfo = () => {
+    const id = this.props.schedule.id;
+    this.props.navigation.navigate('ScheduleInfo', {id});
   };
 
   componentDidMount = () => {
@@ -72,7 +79,15 @@ class ScheduleEvents extends React.Component {
         />
       );
 
-    const {id, name, description, eventsCount, status, isOwner} = schedule;
+    const {
+      id,
+      name,
+      description,
+      eventsCount,
+      status,
+      isOwner,
+      isFollowing,
+    } = schedule;
 
     const styles = stores.styles.appStyles;
     const colors = stores.theme.colors;
@@ -83,7 +98,7 @@ class ScheduleEvents extends React.Component {
 
     return (
       <>
-        <Appbar style={styles.header} collapsable>
+        <Appbar.Header style={styles.header} collapsable>
           <Appbar.Action
             animated={false}
             onPress={this._onBack}
@@ -98,7 +113,16 @@ class ScheduleEvents extends React.Component {
             subtitle={description}
             titleStyle={styles.headerColor}
           />
-        </Appbar>
+          <Appbar.Action
+            animated={false}
+            size={24}
+            color={colors.primary}
+            icon={({size, color}) => (
+              <Icon name="info" size={size} color={color} />
+            )}
+            onPress={this._navigateToScheduleInfo}
+          />
+        </Appbar.Header>
         <List
           id={id}
           listType="schedule"
@@ -111,11 +135,13 @@ class ScheduleEvents extends React.Component {
           fetchPastEvents={this._fetchPastEvents}
           navigation={navigation}
         />
-        {!(Boolean(error) && this.events.length) &&
-          isOwner &&
-          status !== SCHEDULE_CLOSED && (
-            <Fab icon="plus" onPress={this._navigateToNewEvent} />
-          )}
+        {!(Boolean(error) && this.events.length) && isOwner && (
+          <Fab
+            disabled={status === SCHEDULE_CLOSED}
+            icon="plus"
+            onPress={this._navigateToNewEvent}
+          />
+        )}
       </>
     );
   }

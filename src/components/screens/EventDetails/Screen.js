@@ -35,7 +35,7 @@ class Screen extends React.Component {
     });
   _navigateToEdit = ({id}) => this.props.navigation.navigate('EditEvent', {id});
   _navigateToSchedule = (id) =>
-    this.props.navigation.navigate('Schedule', {id});
+    this.props.navigation.navigate('ScheduleEvents', {id});
   _navigateToComments = (id, title, date) =>
     this.props.navigation.navigate('Comments', {id, title, date});
   _navigateToUser = (id) => this.props.navigation.navigate('UserProfile', {id});
