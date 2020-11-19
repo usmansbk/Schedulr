@@ -217,7 +217,6 @@ class Form extends React.Component {
                       </Text>
                       <DateTimePicker
                         minimumDate={toDate()}
-                        noMin
                         value={values.endAt}
                         hideTime={values.allDay}
                         onValueChange={handleChange('endAt')}
