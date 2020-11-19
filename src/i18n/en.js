@@ -65,7 +65,7 @@ export default {
   EVENT_caption: ({recurrence, category}) => {
     return `${
       recurrence === ONE_TIME_EVENT ? '' : decapitalize(recurrence) + ' '
-    } ${category}`;
+    }${category}`;
   },
   BOARD_emptyList: "You don't belong to any group",
   BOARD_emptyListCaption: 'Join or create a group',
