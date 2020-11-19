@@ -7,7 +7,6 @@ import NewEvent from './NewEvent';
 import NewSchedule from './NewSchedule';
 import AuthLoading from './AuthLoading';
 import EventDetails, {CalendarEvent} from './EventDetails';
-import Schedule from './Schedule';
 import ScheduleInfo from './ScheduleInfo';
 import Settings from './Settings';
 import Help from './Help';
@@ -37,7 +36,6 @@ export {
   NewEvent,
   NewSchedule,
   EventDetails,
-  Schedule,
   ScheduleInfo,
   Settings,
   Help,

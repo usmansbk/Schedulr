@@ -7,7 +7,6 @@ import {
   NewSchedule,
   Home,
   EventDetails,
-  Schedule,
   ScheduleInfo,
   Help,
   Settings,
@@ -55,9 +54,6 @@ const AppStack = createStackNavigator(
     EventDetails: {
       screen: EventDetails,
       path: 'event/:id',
-    },
-    Schedule: {
-      screen: Schedule,
     },
     ScheduleEvents: {
       screen: ScheduleEvents,
