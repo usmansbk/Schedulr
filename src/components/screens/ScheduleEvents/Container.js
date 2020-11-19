@@ -7,6 +7,8 @@ import Loading from 'components/common/Loading';
 import Error from 'components/common/Error';
 import List from 'components/lists/Bookmarks';
 import Suspense from 'components/common/Suspense';
+import Fab from 'components/common/Fab';
+import {SCHEDULE_CLOSED} from 'lib/constants';
 
 class ScheduleEvents extends React.Component {
   state = {
@@ -19,6 +21,13 @@ class ScheduleEvents extends React.Component {
     const first = this.props.events[0];
     const before = first && first.startAt;
     this.props.fetchMore && this.props.fetchMore(nextToken, before);
+  };
+  _navigateToNewEvent = () => {
+    const id = this.props.schedule.id;
+    this.props.navigation.navigate('NewEvent', {
+      eventScheduleId: id,
+      locked: true,
+    });
   };
 
   componentDidMount = () => {
@@ -63,7 +72,7 @@ class ScheduleEvents extends React.Component {
         />
       );
 
-    const {id, name, description, eventsCount} = schedule;
+    const {id, name, description, eventsCount, status, isOwner} = schedule;
 
     const styles = stores.styles.appStyles;
     const colors = stores.theme.colors;
@@ -102,6 +111,11 @@ class ScheduleEvents extends React.Component {
           fetchPastEvents={this._fetchPastEvents}
           navigation={navigation}
         />
+        {!(Boolean(error) && this.events.length) &&
+          isOwner &&
+          status !== SCHEDULE_CLOSED && (
+            <Fab icon="plus" onPress={this._navigateToNewEvent} />
+          )}
       </>
     );
   }
