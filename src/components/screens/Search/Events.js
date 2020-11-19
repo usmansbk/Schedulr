@@ -8,7 +8,6 @@ import Suspense from 'components/common/Suspense';
 import {getUserData, searchEvents} from 'api/queries';
 import {mergeEvents, filterEvents} from 'lib/utils';
 import {searchEventFilter} from 'api/filters';
-// import {SEARCH_LIMIT} from 'lib/constants';
 import updateQuery from 'helpers/updateQuery';
 
 class Events extends React.Component {
@@ -79,10 +78,8 @@ const ListHoc = compose(
       fetchPolicy: 'cache-and-network',
       variables: {
         filter: searchEventFilter(props.query, props.location),
-        // limit: SEARCH_LIMIT,
         nextToken: null,
       },
-      // onCompleted: (result) => console.log(result),
     }),
     props: ({data, ownProps}) => ({
       loading:

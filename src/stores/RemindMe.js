@@ -73,17 +73,14 @@ export default class RemindMe {
     this.settings = settings;
     this.appState = appState;
 
-    PushNotification.createChannel(
-      {
-        channelId: CHANNEL_ID,
-        channelName: 'Default channel',
-        channelDescription: 'A default channel',
-        soundName: 'default',
-        importance: 4,
-        vibrate: true,
-      },
-      // (created) => console.log('default-channel-id', created),
-    );
+    PushNotification.createChannel({
+      channelId: CHANNEL_ID,
+      channelName: 'Default channel',
+      channelDescription: 'A default channel',
+      soundName: 'default',
+      importance: 4,
+      vibrate: true,
+    });
   }
 
   setReminder = (event, before) => {
