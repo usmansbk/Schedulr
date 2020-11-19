@@ -122,7 +122,6 @@ export default class styles {
       itemContainer: {
         width: ITEM_HEIGHT,
         marginHorizontal: 2,
-        marginVertical: 4,
         backgroundColor: colors.light_gray_2,
       },
       itemContent: {

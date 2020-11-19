@@ -1,39 +1,33 @@
 import React from 'react';
-import { Image } from 'react-native';
-import { getFilePrefix } from 'lib/utils';
+import {Image} from 'react-native';
+import {getFilePrefix} from 'lib/utils';
 
-export default ({ type="", style, uri }) => {
+export default ({type = '', style, uri}) => {
   let source;
   const prefix = getFilePrefix(type);
-  switch(prefix) {
-    case "AUD":
+  switch (prefix) {
+    case 'AUD':
       source = require('../../../assets/audio.png');
       break;
-    case "IMG":
-      source = uri ? { uri } : require('../../../assets/img.png');
+    case 'IMG':
+      source = uri ? {uri} : require('../../../assets/img.png');
       break;
-    case "VID":
+    case 'VID':
       source = require('../../../assets/video.png');
       break;
-    case "TXT":
+    case 'TXT':
       source = require('../../../assets/txt.png');
       break;
-    case "ZIP":
-      source = require('../../../assets/zip.png'); 
+    case 'ZIP':
+      source = require('../../../assets/zip.png');
       break;
-    case "DOC":
-      source = require('../../../assets/doc.png'); 
+    case 'DOC':
+      source = require('../../../assets/doc.png');
       break;
-    case "PDF":
+    case 'PDF':
       source = require('../../../assets/pdf.png');
       break;
   }
-  
-  return (
-    <Image
-      source={source}
-      style={style}
-      resizeMode="contain"
-    />
-  );
+
+  return <Image source={source} style={style} resizeMode="cover" />;
 };
