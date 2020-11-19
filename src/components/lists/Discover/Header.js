@@ -15,7 +15,11 @@ export default inject('stores')(
             {I18n.get('PLACEHOLDER_whatsHappening')}
           </Text>
           <Text
-            style={{fontFamily: 'ExtraBold', fontSize: 24}}
+            style={{
+              fontFamily: 'ExtraBold',
+              fontSize: 24,
+              color: stores.theme.colors.primary,
+            }}
             onPress={onPressLocationButton}>
             {stores.location.searchLocation ||
               I18n.get('PLACEHOLDER_pickLocation')}
