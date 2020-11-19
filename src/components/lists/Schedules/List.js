@@ -27,9 +27,9 @@ class List extends Component {
     };
   };
 
-  _onPressItem = (id) => this.props.navigation.navigate('Schedule', {id});
+  _onPressItem = (id) => this.props.navigation.navigate('ScheduleEvents', {id});
   _navigateToInfo = (id) =>
-    this.props.navigation.navigate('ScheduleInfo', {id});
+    this.props.navigation.navigate('SchedulePicture', {id});
   _keyExtractor = (item) => String(item.id);
   _renderEmptyList = () => (
     <Empty
