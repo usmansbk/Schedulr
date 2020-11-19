@@ -255,7 +255,6 @@ class Form extends React.Component {
                       }}
                     />
                   </View>
-                  <View style={styles.gap} />
                   <Divider />
                   <View style={styles.pickerSpacing}>
                     <Text style={styles.radioText}>
@@ -297,6 +296,26 @@ class Form extends React.Component {
                       </HelperText>
                     )}
                   </View>
+                  {values.recurrence !== recurrence[0].id && !values.forever && (
+                    <View style={styles.pickerSpacing}>
+                      <Text style={styles.radioText}>
+                        {I18n.get('EVENT_FORM_repeatUntil')}
+                      </Text>
+                      <DateTimePicker
+                        minimumDate={toDate()}
+                        value={values.until}
+                        onValueChange={handleChange('until')}
+                        hideTime
+                      />
+                      {Boolean(errors.until) && (
+                        <HelperText
+                          type="error"
+                          visible={errors.until && touched.until}>
+                          {I18n.get(`HELPER_TEXT_${errors.until}`)}
+                        </HelperText>
+                      )}
+                    </View>
+                  )}
                   {values.recurrence !== recurrence[0].id && (
                     <View style={[styles.radio, styles.pickerSpacing]}>
                       <Text style={styles.radioText}>
@@ -323,26 +342,6 @@ class Form extends React.Component {
                           }
                         }}
                       />
-                    </View>
-                  )}
-                  {values.recurrence !== recurrence[0].id && !values.forever && (
-                    <View style={styles.pickerSpacing}>
-                      <Text style={styles.radioText}>
-                        {I18n.get('EVENT_FORM_repeatUntil')}
-                      </Text>
-                      <DateTimePicker
-                        minimumDate={toDate()}
-                        value={values.until}
-                        onValueChange={handleChange('until')}
-                        hideTime
-                      />
-                      {Boolean(errors.until) && (
-                        <HelperText
-                          type="error"
-                          visible={errors.until && touched.until}>
-                          {I18n.get(`HELPER_TEXT_${errors.until}`)}
-                        </HelperText>
-                      )}
                     </View>
                   )}
                 </View>
