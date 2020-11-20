@@ -348,7 +348,9 @@ class Form extends React.Component {
 
                 <TextInput
                   error={errors.venue}
-                  placeholder={I18n.get('PLACEHOLDER_venue')(values.location)}
+                  placeholder={I18n.get('PLACEHOLDER_venue')(
+                    stores.location.locality,
+                  )}
                   label={I18n.get('EVENT_FORM_venue')}
                   value={values.venue}
                   onChangeText={handleChange('venue')}
