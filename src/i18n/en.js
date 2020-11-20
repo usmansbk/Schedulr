@@ -265,7 +265,7 @@ export default {
     }`;
   },
 
-  HELPER_TEXT_shortUntil: 'Event should happen at least once',
+  HELPER_TEXT_shortUntil: 'Event should repeat at least once',
   HELPER_TEXT_invalidDatesAndRecur: 'Event should end before repeating',
   HELPER_TEXT_emailRequired: 'Email required',
   HELPER_TEXT_codeRequired: 'Code required',

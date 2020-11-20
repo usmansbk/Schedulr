@@ -29,7 +29,7 @@ class List extends Component {
 
   _onPressItem = (id) => this.props.navigation.navigate('ScheduleEvents', {id});
   _navigateToInfo = (id) =>
-    this.props.navigation.navigate('SchedulePicture', {id});
+    this.props.navigation.navigate('ScheduleInfo', {id});
   _keyExtractor = (item) => String(item.id);
   _renderEmptyList = () => (
     <Empty
