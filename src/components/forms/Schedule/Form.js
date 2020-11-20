@@ -10,8 +10,6 @@ import {inject, observer} from 'mobx-react';
 import {I18n} from 'aws-amplify';
 import Suspense from 'components/common/Suspense';
 import schema from './schema';
-import LocationPicker from 'components/common/LocationPicker';
-import PickerInput from 'components/common/Picker/Input';
 
 class Form extends React.Component {
   static defaultProps = {
