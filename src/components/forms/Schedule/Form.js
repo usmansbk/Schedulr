@@ -121,8 +121,9 @@ class Form extends React.Component {
                       const prevValue = values.isPublic;
                       setFieldValue('isPublic', !prevValue);
                       if (!prevValue) {
-                        stores.location.fetchLocation((value) =>
-                          setFieldValue('location', value),
+                        stores.location.fetchLocation(
+                          (value) => setFieldValue('location', value),
+                          true,
                         );
                       }
                     }}

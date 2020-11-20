@@ -20,9 +20,11 @@ export default class Location {
 
   @action setCurrentLocation = (loc) => (this.currentLocation = loc);
 
-  @action fetchLocation = async (callback) => {
+  @action fetchLocation = async (callback, requestTagLocation) => {
     try {
-      const hasLocationPermission = await requestLocationPermission();
+      const hasLocationPermission = await requestLocationPermission(
+        requestTagLocation,
+      );
       if (hasLocationPermission) {
         Geolocation.getCurrentPosition(
           (position) => {

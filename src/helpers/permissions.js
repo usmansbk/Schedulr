@@ -23,13 +23,15 @@ async function requestReadWritePermission() {
   return false;
 }
 
-async function requestLocationPermission() {
+async function requestLocationPermission(tag) {
   try {
     const granted = await PermissionsAndroid.request(
       PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
       {
         title: I18n.get('REQUEST_LOCATION_TITLE'),
-        message: I18n.get('REQUEST_LOCATION_MESSAGE'),
+        message: I18n.get(
+          tag ? 'REQUEST_TAG_LOCATION' : 'REQUEST_LOCATION_MESSAGE',
+        ),
         buttonPositive: I18n.get('BUTTON_ok'),
         // buttonNegative: I18n.get('BUTTON_cancel'),
         // buttonNeutral: I18n.get('BUTTON_askMeLater'),

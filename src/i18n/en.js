@@ -376,7 +376,9 @@ export default {
 
   REQUEST_LOCATION_TITLE: 'Schedulr Location Permission',
   REQUEST_LOCATION_MESSAGE:
-    'Allow Schedulr to find public events near you and tag your public events and groups to allow nearby users find them easily.',
+    'Schedulr needs to use your location to find public events and groups around you.',
+  REQUEST_TAG_LOCATION:
+    'Tag your location to allow people near you find your public events',
 
   PICKER_location: 'Location',
   SYNC_message: 'Will refresh all your data',
