@@ -64,10 +64,9 @@ export default class Location {
     }
   };
 
-  @action setSearchLocation(newLocation) {
-    if (newLocation) {
-      this.searchLocation = newLocation;
-    }
+  @action setSearchLocation({city, country}) {
+    this.locality = city;
+    this.country = country;
   }
 
   @computed get adLocation() {

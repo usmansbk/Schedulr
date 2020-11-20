@@ -19,10 +19,10 @@ export default inject('stores')(
               fontFamily: 'ExtraBold',
               fontSize: 24,
               color: stores.theme.colors.primary,
+              textDecorationLine: 'underline',
             }}
             onPress={onPressLocationButton}>
-            {stores.location.searchLocation ||
-              I18n.get('PLACEHOLDER_pickLocation')}
+            {stores.location.locality || I18n.get('PLACEHOLDER_pickLocation')}
           </Text>
         </View>
       </View>

@@ -15,7 +15,7 @@ export default class Picker extends React.Component {
       lng: longitude,
     };
     this.props.onSelectLocation &&
-      this.props.onSelectLocation(`${city}, ${country}`, point);
+      this.props.onSelectLocation({city, country, point});
     this.props.hideModal();
   };
 
