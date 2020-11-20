@@ -105,7 +105,9 @@ class Item extends React.Component {
               )}
             </View>
             <Text style={styles.time}>{time}</Text>
-            {!!category && <Caption>{caption || category}</Caption>}
+            {!!category && (
+              <Caption numberOfLines={1}>{caption || category}</Caption>
+            )}
           </View>
         </View>
       </TouchableOpacity>

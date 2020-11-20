@@ -63,7 +63,7 @@ class Item extends React.Component {
                 {title}
               </Headline>
               <Text style={styles.time}>{time}</Text>
-              <Caption>{caption}</Caption>
+              <Caption numberOfLines={1}>{caption}</Caption>
             </View>
             <BookmarkButton
               id={id}

@@ -260,8 +260,8 @@ export default {
     return `${recurrence} ${type}`;
   },
   EVENT_CAPTION_xDurationRecurrenceType: ({duration, recurrence, type}) => {
-    return `${duration}${recurrence ? ` ${recurrence}` : ''}${
-      type ? ` ${type}` : ''
+    return `${duration}${type ? ` ${type}` : ''}${
+      recurrence ? ` ${recurrence}` : ''
     }`;
   },
 
