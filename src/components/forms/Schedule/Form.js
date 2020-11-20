@@ -10,6 +10,8 @@ import {inject, observer} from 'mobx-react';
 import {I18n} from 'aws-amplify';
 import Suspense from 'components/common/Suspense';
 import schema from './schema';
+import LocationPicker from 'components/common/LocationPicker';
+import PickerInput from 'components/common/Picker/Input';
 
 class Form extends React.Component {
   static defaultProps = {
@@ -117,18 +119,30 @@ class Form extends React.Component {
                     textStyle={styles.text}
                     label={I18n.get('SCHEDULE_FORM_public')}
                     value={values.isPublic}
-                    onValueChange={() => {
-                      const prevValue = values.isPublic;
-                      setFieldValue('isPublic', !prevValue);
-                      if (!prevValue) {
-                        stores.location.fetchLocation(
-                          (value) => setFieldValue('location', value),
-                          true,
-                        );
-                      }
+                    onValueChange={(val) => {
+                      setFieldValue('isPublic', val);
                     }}
                   />
                 </View>
+                {values.isPublic && (
+                  <>
+                    <View style={styles.field}>
+                      <PickerInput
+                        leftIcon="enviroment"
+                        value={values.location}
+                        placeholder={stores.location.locality}
+                        onPress={this._showLocationPicker}
+                      />
+                    </View>
+                    <LocationPicker
+                      hideModal={this._hideLocationPicker}
+                      visible={this.state.showLocationPicker}
+                      onSelect={({city, country}) => {
+                        setFieldValue('location', `${city}, ${country}`);
+                      }}
+                    />
+                  </>
+                )}
               </View>
             </ScrollView>
           </>
