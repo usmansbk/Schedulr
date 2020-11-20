@@ -121,29 +121,15 @@ class Form extends React.Component {
                     value={values.isPublic}
                     onValueChange={(val) => {
                       setFieldValue('isPublic', val);
+                      if (val) {
+                        stores.location.fetchLocation(
+                          (value) => setFieldValue('location', value),
+                          true,
+                        );
+                      }
                     }}
                   />
                 </View>
-                {values.isPublic && (
-                  <>
-                    <View style={styles.field}>
-                      <PickerInput
-                        leftIcon="enviroment"
-                        // value={values.location}
-                        placeholder={stores.location.locality}
-                        onPress={this._showLocationPicker}
-                      />
-                    </View>
-                    <LocationPicker
-                      hideModal={this._hideLocationPicker}
-                      visible={this.state.showLocationPicker}
-                      onSelect={({city, country}) => {
-                        // setFieldValue('location', `${city}, ${country}`);
-                        stores.location.setSearchLocation({city, country});
-                      }}
-                    />
-                  </>
-                )}
               </View>
             </ScrollView>
           </>
