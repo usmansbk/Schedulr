@@ -37,7 +37,6 @@ async function requestLocationPermission(tag) {
         // buttonNeutral: I18n.get('BUTTON_askMeLater'),
       },
     );
-    console.log(granted);
     return granted === PermissionsAndroid.RESULTS.GRANTED;
   } catch (error) {
     snackbar(error.message);
