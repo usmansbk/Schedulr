@@ -129,7 +129,7 @@ class Form extends React.Component {
                     <View style={styles.field}>
                       <PickerInput
                         leftIcon="enviroment"
-                        value={values.location}
+                        // value={values.location}
                         placeholder={stores.location.locality}
                         onPress={this._showLocationPicker}
                       />
@@ -138,7 +138,8 @@ class Form extends React.Component {
                       hideModal={this._hideLocationPicker}
                       visible={this.state.showLocationPicker}
                       onSelect={({city, country}) => {
-                        setFieldValue('location', `${city}, ${country}`);
+                        // setFieldValue('location', `${city}, ${country}`);
+                        stores.location.setSearchLocation({city, country});
                       }}
                     />
                   </>
