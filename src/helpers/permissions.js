@@ -1,21 +1,21 @@
-import { PermissionsAndroid } from 'react-native';
-import { I18n } from 'aws-amplify';
+import {PermissionsAndroid} from 'react-native';
+import {I18n} from 'aws-amplify';
 import logger from 'config/logger';
 import snackbar from 'helpers/snackbar';
 
 async function requestReadWritePermission() {
   try {
-    const response = await PermissionsAndroid.requestMultiple(
-      [
-        PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
-        PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE
-      ]
-    );
-    const readGranted = response[PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE];
-    const writeGranted = response[PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE];
+    const response = await PermissionsAndroid.requestMultiple([
+      PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
+      PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
+    ]);
+    const readGranted =
+      response[PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE];
+    const writeGranted =
+      response[PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE];
     const granted = PermissionsAndroid.RESULTS.GRANTED;
 
-    const hasPermission = (writeGranted === granted) && (readGranted === granted);
+    const hasPermission = writeGranted === granted && readGranted === granted;
     return hasPermission;
   } catch (error) {
     logger.logError(error);
@@ -30,11 +30,12 @@ async function requestLocationPermission() {
       {
         title: I18n.get('REQUEST_LOCATION_TITLE'),
         message: I18n.get('REQUEST_LOCATION_MESSAGE'),
-        buttonPositive: I18n.get("BUTTON_ok"),
-        buttonNegative: I18n.get("BUTTON_cancel"),
-        buttonNeutral: I18n.get("BUTTON_askMeLater")
-      }
+        buttonPositive: I18n.get('BUTTON_ok'),
+        // buttonNegative: I18n.get('BUTTON_cancel'),
+        // buttonNeutral: I18n.get('BUTTON_askMeLater'),
+      },
     );
+    console.log(granted);
     return granted === PermissionsAndroid.RESULTS.GRANTED;
   } catch (error) {
     snackbar(error.message);
@@ -42,7 +43,4 @@ async function requestLocationPermission() {
   }
 }
 
-export {
-  requestLocationPermission,
-  requestReadWritePermission
-};
+export {requestLocationPermission, requestReadWritePermission};
