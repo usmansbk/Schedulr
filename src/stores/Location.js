@@ -15,8 +15,6 @@ export default class Location {
 
   @persist @observable locality = null;
   @persist @observable country = null;
-  @persist @observable searchLocation = null;
-  @persist @observable location = null;
 
   @action setCurrentLocation = (loc) => (this.currentLocation = loc);
 
@@ -48,8 +46,6 @@ export default class Location {
                 const {city, country} = bestLocation;
                 this.locality = city;
                 this.country = country;
-                this.searchLocation = `${city}, ${country}`;
-                this.location = `${city}, ${country}`;
                 callback && callback(this.location);
               })
               .catch((error) => {
@@ -81,12 +77,19 @@ export default class Location {
     return undefined;
   }
 
-  // @computed get location() {
-  //   if (this.locality && this.country) {
-  //     return `${this.locality}, ${this.country}`;
-  //   }
-  //   return null;
-  // }
+  @computed get location() {
+    if (this.locality && this.country) {
+      return `${this.locality}, ${this.country}`;
+    }
+    return 'Kaduna, Nigeria';
+  }
+
+  @computed get searchLocation() {
+    if (this.locality && this.country) {
+      return `${this.locality}, ${this.country}`;
+    }
+    return 'Kaduna, Nigeria';
+  }
 
   @computed get parsedLocation() {
     if (this.point) {
@@ -110,6 +113,5 @@ export default class Location {
     this.point = null;
     this.locality = null;
     this.currentLocation = null;
-    this.searchLocation = null;
   }
 }
