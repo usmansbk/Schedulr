@@ -52,7 +52,7 @@ class CreatedSchedules extends Component {
     offset: ITEM_HEIGHT * index + SEPARATOR_HEIGHT,
     index,
   });
-  _onPressItem = (id) => this.props.navigation.navigate('Schedule', {id});
+  _onPressItem = (id) => this.props.navigation.navigate('ScheduleEvents', {id});
   _navigateToInfo = (id) =>
     this.props.navigation.navigate('ScheduleInfo', {id});
   _keyExtractor = (item) => String(item.id);
