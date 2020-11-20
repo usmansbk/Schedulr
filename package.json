@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.12.1",
-    "@react-native-community/datetimepicker": "^3.0.5",
+    "@react-native-community/datetimepicker": "^3.0.6",
     "@react-native-community/masked-view": "^0.1.10",
     "@react-native-community/netinfo": "^5.9.7",
     "apollo-link": "^1.2.14",
@@ -53,7 +53,7 @@
     "react-native-image-picker": "^2.3.4",
     "react-native-image-zoom-viewer": "^3.0.1",
     "react-native-inappbrowser-reborn": "^3.5.1",
-    "react-native-localize": "^2.0.0",
+    "react-native-localize": "^2.0.1",
     "react-native-navigation-bar-color": "^2.0.1",
     "react-native-onesignal": "^3.9.2",
     "react-native-open-maps": "^0.3.5",
