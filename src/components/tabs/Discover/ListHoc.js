@@ -13,7 +13,7 @@ export default compose(
   graphql(gql(nearbyEvents), {
     alias,
     options: (props) => ({
-      fetchPolicy: 'cache-and-network',
+      fetchPolicy: 'cache-first',
       variables: {
         location: props.city,
         startAt: {
