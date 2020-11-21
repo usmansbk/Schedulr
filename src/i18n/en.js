@@ -303,7 +303,7 @@ export default {
     `Load (${count}) past event${count > 1 ? 's' : ''}`,
   SCHEDULES_noMoreEvents: 'No more events',
 
-  RECUR_never: 'Do not repeat',
+  RECUR_never: 'Does not repeat',
   RECUR_daily: 'Every day',
   RECUR_weekly: (day) => `Every week ( ${day} )`,
   RECUR_weekdays: 'Every weekday ( Mon - Fri )',
