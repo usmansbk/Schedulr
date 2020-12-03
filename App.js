@@ -44,7 +44,14 @@ export default class App extends React.Component {
   render() {
     return (
       <PaperProvider theme={stores.theme.theme}>
-        <MenuProvider backHandler>
+        <MenuProvider
+          backHandler
+          customStyles={{
+            backdrop: {
+              backgroundColor: '#000',
+              opacity: 0.3,
+            },
+          }}>
           <ApolloProvider client={client}>
             <Rehydrated loading={<Loading dark={stores.settings.dark} />}>
               <MobxProvider stores={stores}>
