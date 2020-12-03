@@ -8,7 +8,7 @@ import {
   MenuOption,
 } from 'react-native-popup-menu';
 import numeral from 'numeral';
-import {Appbar, Text, Caption} from 'react-native-paper';
+import {Appbar, Text, Caption, IconButton} from 'react-native-paper';
 import Icon from 'components/common/Icon';
 import Hyperlink from 'react-native-hyperlink';
 import {inject, observer} from 'mobx-react';
@@ -149,15 +149,16 @@ class Info extends React.Component {
               onPress={() => handleShare({name, description, id})}
             />
           )}
-          <Menu>
-            <MenuTrigger
-              customStyles={{
-                triggerWrapper: {
-                  padding: 16,
-                },
-              }}>
-              <Icon name="menu" color={colors.primary} size={24} />
-            </MenuTrigger>
+          <Menu ref={(ref) => (this.menuRef = ref)}>
+            <IconButton
+              color={colors.primary}
+              size={24}
+              icon={({size, color}) => (
+                <Icon size={size} color={color} name="menu" />
+              )}
+              onPress={() => this.menuRef.open()}
+            />
+            <MenuTrigger />
             <MenuOptions
               customStyles={{
                 optionsWrapper: {

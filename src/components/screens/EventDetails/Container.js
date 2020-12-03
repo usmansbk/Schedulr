@@ -1,5 +1,5 @@
 import React from 'react';
-import {Appbar} from 'react-native-paper';
+import {Appbar, IconButton} from 'react-native-paper';
 import {inject, observer} from 'mobx-react';
 import {
   Menu,
@@ -136,15 +136,16 @@ class EventDetails extends React.Component {
             )}
           />
           <Appbar.Content titleStyle={styles.headerColor} />
-          <Menu>
-            <MenuTrigger
-              customStyles={{
-                triggerWrapper: {
-                  padding: 16,
-                },
-              }}>
-              <Icon name="menu" size={FONT_SIZE} color={colors.primary} />
-            </MenuTrigger>
+          <Menu ref={(ref) => (this.menuRef = ref)}>
+            <IconButton
+              size={FONT_SIZE}
+              color={colors.primary}
+              icon={({size, color}) => (
+                <Icon name="menu" color={color} size={size} />
+              )}
+              onPress={() => this.menuRef.open()}
+            />
+            <MenuTrigger />
             <MenuOptions
               customStyles={{
                 optionsWrapper: {
@@ -188,12 +189,11 @@ class EventDetails extends React.Component {
                   />
                 </>
               )}
-              {isValid && (
-                <MenuOption
-                  text={I18n.get(`MENU${isMuted ? '_unmute' : '_mute'}`)}
-                  onSelect={this._handleMute}
-                />
-              )}
+              <MenuOption
+                text={I18n.get(`MENU${isMuted ? '_unmute' : '_mute'}`)}
+                onSelect={this._handleMute}
+                disabled={!isValid}
+              />
             </MenuOptions>
           </Menu>
         </Appbar.Header>
