@@ -1,6 +1,6 @@
 {
   "name": "Schedulr",
-  "version": "0.1.93",
+  "version": "0.1.94",
   "private": true,
   "scripts": {
     "start": "npx react-native start",
