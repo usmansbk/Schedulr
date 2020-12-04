@@ -1,7 +1,7 @@
 import RNCalendarEvents from 'react-native-calendar-events';
 import {observable, action} from 'mobx';
 import {persist} from 'mobx-persist';
-import {startOf, endOf, toISOString, date, getMonth} from 'lib/date';
+import {startOf, endOf, toISOString, date, getMonth, add} from 'lib/date';
 import logger from 'config/logger';
 
 export default class Calendar {
