@@ -1,5 +1,5 @@
 import SignIn from './SignIn';
-import SignUp from './SignUp';
+import SignUp from './Signup';
 import ForgotPassword from './ForgotPassword';
 import Confirm from './Confirm';
 
