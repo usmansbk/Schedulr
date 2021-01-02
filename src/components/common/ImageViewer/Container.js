@@ -1,5 +1,5 @@
 import React from 'react';
-import ImagePicker from 'react-native-image-picker';
+import * as ImagePicker from 'react-native-image-picker';
 import {inject, observer} from 'mobx-react';
 import {Storage, I18n} from 'aws-amplify';
 import config from 'aws_config';
@@ -50,14 +50,7 @@ class ImageViewerContainer extends React.Component {
   _uploadPhoto = () => {
     if (this.props.stores.appState.isConnected) {
       const {onUploadPhoto, s3Object, folder = 'public'} = this.props;
-      const options = {
-        title: 'Select image',
-        storageOptions: {
-          skipBackup: true,
-          path: 'images',
-        },
-      };
-      ImagePicker.showImagePicker(options, async (response) => {
+      ImagePicker.launchImageLibrary({}, async (response) => {
         if (response.didCancel) {
           // Do nothing
         } else if (response.error) {
