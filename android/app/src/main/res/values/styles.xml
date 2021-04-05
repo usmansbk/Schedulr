@@ -10,6 +10,8 @@
     </style>
 
     <style name="DialogDatePicker.Theme" parent="Theme.AppCompat.Light.Dialog">
-        <item name="colorAccent">#1DA1F2</item>
+        <item name="colorAccent">@color/primary</item>
+        <item name="android:textColor">@color/primary</item>
+        <item name="android:textColorPrimary">@color/primary</item>
     </style>
 </resources>
