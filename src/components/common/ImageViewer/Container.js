@@ -1,5 +1,5 @@
 import React from 'react';
-import ImagePicker from 'react-native-image-picker';
+import {launchImageLibrary} from 'react-native-image-picker';
 import {inject, observer} from 'mobx-react';
 import {Storage, I18n} from 'aws-amplify';
 import config from 'aws_config';
@@ -57,7 +57,7 @@ class ImageViewerContainer extends React.Component {
           path: 'images',
         },
       };
-      ImagePicker.showImagePicker(options, async (response) => {
+      launchImageLibrary(options, async (response) => {
         if (response.didCancel) {
           // Do nothing
         } else if (response.error) {
