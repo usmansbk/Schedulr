@@ -13,7 +13,6 @@ import NavigationService from 'config/navigation';
 import aws_config from 'aws_config';
 import client from 'config/client';
 import env from 'config/env';
-import push from 'config/pushnotification';
 import i18n from 'config/i18n';
 import stores from 'stores';
 import logger from 'config/logger';
@@ -32,7 +31,6 @@ i18n(stores);
 export default class App extends React.Component {
   componentDidMount = () => {
     SplashScreen.hide();
-    push.init();
     stores.init();
   };
 

@@ -1,6 +1,5 @@
 import React from 'react';
 import NetInfo from '@react-native-community/netinfo';
-import OneSignal from 'react-native-onesignal';
 import {Linking, InteractionManager} from 'react-native';
 import changeNavigationBarColor from 'react-native-navigation-bar-color';
 import {inject, observer} from 'mobx-react';
@@ -8,7 +7,7 @@ import {I18n} from 'aws-amplify';
 import NavigationService from 'config/navigation';
 import {processRemoteNotification} from 'helpers/notification';
 import Events from './Hoc';
-import {updateUserPushToken} from 'helpers/updatePreference';
+// import {updateUserPushToken} from 'helpers/updatePreference';
 import logger from 'config/logger';
 import snackbar from 'helpers/snackbar';
 
@@ -22,19 +21,15 @@ class Container extends React.Component {
     this._handlePushNotifications();
   }
 
-  _handlePushNotifications = () => {
-    OneSignal.addEventListener('ids', updateUserPushToken);
-    OneSignal.addEventListener('received', this.onReceived);
-    OneSignal.addEventListener('opened', this.onOpened);
-  };
+  _handlePushNotifications = () => {};
 
   onOpened = processRemoteNotification;
 
-  onReceived = (result) => {
+  onReceived = (received) => {
     InteractionManager.runAfterInteractions(() => {
       const {
         payload: {additionalData},
-      } = result;
+      } = received.getNotification();
       this.props.stores.notifications.fetchNotifications();
       if (additionalData && additionalData.type === 'Event') {
         this.props.stores.appState.deltaSync();
@@ -93,9 +88,6 @@ class Container extends React.Component {
 
   componentWillUnmount = () => {
     Linking.removeEventListener('url', this.handleOpenURL);
-    OneSignal.removeEventListener('ids', updateUserPushToken);
-    OneSignal.removeEventListener('received', this.onReceived);
-    OneSignal.removeEventListener('opened', this.onOpened);
     this.unsubscribe();
   };
 

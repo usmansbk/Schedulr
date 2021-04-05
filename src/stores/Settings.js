@@ -2,7 +2,6 @@ import {Appearance, StatusBar} from 'react-native';
 import {observable, action, computed} from 'mobx';
 import {persist} from 'mobx-persist';
 import changeNavigationBarColor from 'react-native-navigation-bar-color';
-import OneSignal from 'react-native-onesignal';
 import {updatePreference} from 'api/mutations';
 import {dark, light} from 'config/colors';
 import logger from 'config/logger';
@@ -101,15 +100,11 @@ export default class SettingsState {
     }
     const updatedPreference = await updateUserPreference(optimisticResponse);
     if (updatedPreference) this.setUserPreference(updatedPreference);
-    if (key === 'disablePush') {
-      OneSignal.setSubscription(!optimisticResponse.disablePush);
-    }
     this.extraData += 1;
   }
 
   @action setUserPreference = async (pref) => {
     if (pref) {
-      OneSignal.setSubscription(!pref.disablePush);
       pref.language = this.currentLanguage;
       this.userPreference = pref;
     }
