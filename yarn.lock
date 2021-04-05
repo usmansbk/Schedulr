@@ -8750,10 +8750,10 @@ react-native-custom-picker@^0.4.0:
   resolved "https://registry.yarnpkg.com/react-native-custom-picker/-/react-native-custom-picker-0.4.0.tgz#258896b1eae65f95e4122b4bbdf6bfd68a27d0e3"
   integrity sha512-zhpt3pEYo/6xH2F0+G//SCo3Q7QddAS8/Xrrwc8Cif/PfaPU15cEMUakBGyJ/5vAv67RtF74WQcGhfA4RS09xg==
 
-react-native-document-picker@^4.1.0:
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/react-native-document-picker/-/react-native-document-picker-4.1.0.tgz#8092c09727018587da34358bf731fe948d4171a5"
-  integrity sha512-tHYNng9GrnVrOoLk9K2j+T1xa8gAfC2Mk2dbJq32QBYD3zkHGMkFYGd2FZt0nuYxCBnd768tOQWuEZXwXM1tsg==
+react-native-document-picker@^5.0.3:
+  version "5.0.3"
+  resolved "https://registry.yarnpkg.com/react-native-document-picker/-/react-native-document-picker-5.0.3.tgz#f31f18ee7a90fb8ea94f301d7a5fdb069322dcd8"
+  integrity sha512-OLTUB9SvY2J6bYZ6F/b4FKwDfEimP+sRsEP3OSp1oosYD4+G9C5J3CKiJ69B7CCXmA89Bi/QBr5j2lW9y9rWlQ==
 
 react-native-file-viewer@^2.1.4:
   version "2.1.4"
@@ -8852,10 +8852,10 @@ react-native-navigation-bar-color@^2.0.1:
   resolved "https://registry.yarnpkg.com/react-native-navigation-bar-color/-/react-native-navigation-bar-color-2.0.1.tgz#ee2be25cc37105f7da355717b0a9a32c9c059ae6"
   integrity sha512-1kE/oxWt+HYjRxdZdvke9tJ365xaee5n3+euOQA1En8zQuSbOxiE4SYEGM7TeaWnmLJ0l37mRnPHaB2H4mGh0A==
 
-react-native-onesignal@^3.9.3:
-  version "3.9.3"
-  resolved "https://registry.yarnpkg.com/react-native-onesignal/-/react-native-onesignal-3.9.3.tgz#8f8c095f8eed4ca4d934d25d7f33790569076fc9"
-  integrity sha512-ruCwKfBbofb6wDBVDLe37tIrnt3lqoIhPvejk/yIeie21yYirXt3HdytaDH47TuuXclet7HsC+2X39rLFP5JpQ==
+react-native-onesignal@^4.0.6:
+  version "4.0.6"
+  resolved "https://registry.yarnpkg.com/react-native-onesignal/-/react-native-onesignal-4.0.6.tgz#e20dd164310113fc0fe9a97c8b70270d5cec6fcd"
+  integrity sha512-HHU7+sy7qMOyEeVkaCguOSTq9IbHYkloJLy/CUgiRIKvlUItyHRIwAb7mmaZk4ieVANTxbUzy9LKZvKAburLhw==
   dependencies:
     invariant "^2.2.2"
 
